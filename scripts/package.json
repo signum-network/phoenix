@@ -1,0 +1,20 @@
+{
+  "name": "@bats/phoenix-scripts",
+  "version": "1.0.0",
+  "description": "Development scripts for Burst Cross-Platform Wallet UI",
+  "keywords": [
+    "burst",
+    "burstcoin",
+    "wallet"
+  ],
+  "author": "ohager",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "args": "^5.0.0",
+    "chalk": "^2.4.2",
+    "fs-extra": "^7.0.1"
+  },
+  "engines": {
+    "node": ">=10"
+  }
+}

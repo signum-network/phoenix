@@ -1,0 +1,25 @@
+{
+  "name": "@bats/phoenix-common",
+  "version": "1.0.0",
+  "description": "Common BURST library",
+  "main": "index.js",
+  "author": "ohager",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.6.0",
+    "regenerator-runtime": "^0.13.1"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/jest.init.js"
+    ]
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
