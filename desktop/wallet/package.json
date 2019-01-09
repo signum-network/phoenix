@@ -2,6 +2,12 @@
   "name": "@bats/phoenix-desktop-wallet",
   "productName": "BURST Phoenix Desktop Wallet",
   "version": "1.0.0",
+  "contributors":  ["ohager"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/burst-apps-team/phoenix"
+  },
+  "license": "GPL-3.0",
   "description": "The BURST coin desktop wallet",
   "keywords": [
     "burst",
@@ -11,10 +17,12 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "release:linux": "electron-packager . @bats/phoenix-desktop-wallet --overwrite --asar=true --platform=linux --arch=x64 --prune=true --out=release-builds"
+    "pack": "electron-packager . @bats/phoenix-desktop-wallet --overwrite --asar=true --prune=true --out=release-builds",
+    "release:all": "npm run pack -- --all",
+    "release:linux": "npm run -- --platform=linux --arch=x64",
+    "release:win32": "npm run -- --platform=win32 --arch=x64",
+    "release:macos": "npm run -- --platform=macos --arch=x64"
   },
-  "author": "ohager",
-  "license": "GPL-3.0",
   "devDependencies": {
     "electron": "^4.0.1",
     "electron-packager": "^13.0.1"

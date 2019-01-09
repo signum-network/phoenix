@@ -2,9 +2,13 @@
   "name": "@bats/phoenix-common",
   "version": "1.0.0",
   "description": "Common BURST library",
+  "contributors":  ["ohager"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/burst-apps-team/phoenix"
+  },
+  "license": "GPL-3.0",
   "main": "index.js",
-  "author": "ohager",
-  "license": "MIT",
   "private": false,
   "devDependencies": {
     "babel-core": "^6.26.3",
