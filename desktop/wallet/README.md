@@ -1,13 +1,29 @@
-# The desktop wallet
+# The Phoenix Desktop Wallet
 
 
-Goto `../../web/<implementation>`
-Run the following commands:
+## Build and Start Desktop Wallet
 
-1. `npm install`
-2. `npm run build:desktop`
-
-Come back here and run
+Run the following commands to start the wallet as [electron](https://electronjs.org/) app
 
 1. `npm install`
-2. `npm run electron`
+2. `cd ../../web/angular-wallet`
+3. `npm install` 
+4. `cd ../../desktop/wallet`
+5. `npm start` 
+
+## Create Desktop Wallet Executable for Deployment
+
+To create a platform dependent executable run step 1 to 4 (if not already done)
+and then run
+
+`npm run release:<platform>`, where `platform` can be one of 
+
+- win32
+- linux
+- macos
+
+The executable will be written into `./release-builds`
+
+_Example_:
+
+`npm release:win32` creates an .exe for windows (x86/x64)

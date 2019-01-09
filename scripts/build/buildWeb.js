@@ -1,12 +1,16 @@
 const exep = require('../execAsync');
 
-const expectedSubPath = '/web/angular-wallet';
+function navigateToAngularWalletDir()
+{
+    const angularWalletPath = path.join(__dirname, '../../web/angular-wallet');
+    process.chdir(angularWalletPath);
+
+}
 
 async function build({type, cwd}){
-    if(cwd.indexOf(expectedSubPath) === -1){
-        throw `You must not call this command in another directory than ${expectedSubPath}`
-    }
+    navigateToAngularWalletDir();
     await exep('ng', ['build', '--prod'] );
+    process.chdir(cwd);
 }
 
 module.exports = build;
