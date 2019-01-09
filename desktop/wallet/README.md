@@ -9,12 +9,11 @@ Run the following commands to start the wallet as [electron](https://electronjs.
 2. `cd ../../web/angular-wallet`
 3. `npm install` 
 4. `cd ../../desktop/wallet`
-5. `npm run build`
 5. `npm start` 
 
 ## Create Desktop Wallet Executable for Deployment
 
-To create a platform dependent executable run step 1 to 5 (if not done)
+To create a platform dependent executable run step 1 to 4 (if not already done)
 and then run
 
 `npm run release:<platform>`, where `platform` can be one of 
