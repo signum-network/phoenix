@@ -3,7 +3,7 @@ import BaseApi from "./baseApi";
 /**
  * Playing around with the guthub API
  */
-class GithubApi extends BaseApi{
+class Github extends BaseApi{
 
     constructor(){
         super('https://api.github.com/repos/burst-apps-team')
@@ -16,4 +16,4 @@ class GithubApi extends BaseApi{
     }
 }
 
-export default GithubApi;
+export default Github;

@@ -1,5 +1,8 @@
-import PuppyApi from './puppyApi';
+import Github from './github';
+import Http from './http';
 
 export {
-    PuppyApi,
-}
+    Github,
+    Http
+};
+

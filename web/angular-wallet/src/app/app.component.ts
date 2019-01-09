@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
+import {Api} from '@bats/phoenix-common';
 
-import {PuppyApi} from '@bats/phoenix-common/api';
+const {Github} = Api;
 
 @Component({
   selector: 'app-root',
@@ -9,12 +10,11 @@ import {PuppyApi} from '@bats/phoenix-common/api';
 })
 export class AppComponent {
   title = 'angular-wallet';
-  result: String;
+  result = '(loading...)';
 
   async ngOnInit() {
-    const puppyApi = new PuppyApi();
-    const puppies = await puppyApi.getAllPuppies();
-
-    this.result = puppies.map(p => p.name).join(',');
+    const github = new Github();
+    const contributors = await github.getAllPhoenixContributors();
+    this.result = contributors.join(',');
   }
 }

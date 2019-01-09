@@ -1,5 +1,5 @@
-import Api from './api';
+import * as Api from './src/api';
 
-export default {
+export {
     Api
 }

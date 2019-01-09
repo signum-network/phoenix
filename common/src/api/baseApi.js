@@ -11,7 +11,7 @@ class BaseApi  {
      * @param baseUrl The host url of API
      */
     constructor(baseUrl) {
-        this._http = new Http("http://mighty.ba.org");
+        this._http = new Http(baseUrl);
     }
 
     /**

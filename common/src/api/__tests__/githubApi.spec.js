@@ -1,5 +1,5 @@
 import Http from "../http";
-import GithubApi from "../githubApi";
+import Github from "../github";
 import HttpResponse from "../httpResponse";
 
 jest.mock('../http');
@@ -7,24 +7,24 @@ jest.mock('../http');
 /**
  * This test is a reference implementation to show how Http requests can be mocked
  */
-describe("GithubApi", () => {
+describe("Github", () => {
 
-    it("should getAllPuppies easily", async () => {
+    it("should getAllPhoenixContributors easily", async () => {
 
         Http.mockImplementationOnce(() => {
             return {
-                get : () => Promise.resolve(new HttpResponse(200, ["fluffy", "puffy"]))
+                get : () => Promise.resolve(new HttpResponse(200, [{login:'ohager'}]))
             }
         });
 
-        const puppyApi = new GithubApi("http://crazy.puppyworld");
-        const puppies = await puppyApi.getAllPuppies();
-        expect(puppies.length).toBe(2);
-        expect(puppies).toEqual(["fluffy", "puffy"]);
+        const github = new Github();
+        const contributors = await github.getAllPhoenixContributors();
+        expect(contributors.length).toBe(1);
+        expect(contributors).toEqual(["ohager"]);
     });
 
 
-    it("should return error on getAllPuppies failure", async () => {
+    it("should return error on getAllPhoenixContributors  failure", async () => {
 
         Http.mockImplementationOnce(() => {
             return {
@@ -32,10 +32,9 @@ describe("GithubApi", () => {
             }
         });
 
-        const puppyApi = new GithubApi("http://crazy.puppyworld");
+        const github = new Github();
         try{
-            const puppies = await puppyApi.getAllPuppies();
-
+            await github.getAllPhoenixContributors();
         }catch(e){
             expect(e).toBe("Oh no, internal server error. Blame the backend");
         }
