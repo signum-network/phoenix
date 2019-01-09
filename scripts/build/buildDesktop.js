@@ -1,26 +1,27 @@
+const path = require('path');
 const chalk = require('chalk');
 const fs = require('fs-extra');
-const path = require('path');
 const exec = require('../execAsync');
 const log = require('../log');
 
-const expectedSubPath = '/web/angular-wallet';
+async function buildAngularWallet(cwd){
+    const angularWalletPath = path.join(__dirname, '../../web/angular-wallet');
+    process.chdir(angularWalletPath);
+    await exec('ng', ['build', '--prod']);
+    process.chdir(cwd);
+}
 
-async function copyDistFiles(cwd){
-    const src = path.join(cwd, './dist/angular-wallet');
-    const dest = path.join(cwd, '../../desktop/wallet/dist');
+async function copyDistFiles(cwd) {
+    const src = path.join(__dirname, '../../web/angular-wallet/dist/angular-wallet');
+    const dest = path.join(__dirname, '../../desktop/wallet/dist');
     log.info(`Copying dist files
     from: ${chalk.gray(src)} 
     to: ${chalk.gray(dest)}`);
     await fs.copy(src, dest);
 }
 
-async function build({target, cwd}){
-    if(cwd.indexOf(expectedSubPath) === -1){
-        throw `You must not call this command in another directory than '<phoenix_root>/${expectedSubPath}'`
-    }
-    await exec('ng', ['build', '--prod'] );
-
+async function build({cwd}) {
+    await buildAngularWallet(cwd);
     await copyDistFiles(cwd);
 }
 

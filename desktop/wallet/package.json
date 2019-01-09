@@ -2,7 +2,9 @@
   "name": "@bats/phoenix-desktop-wallet",
   "productName": "BURST Phoenix Desktop Wallet",
   "version": "1.0.0",
-  "contributors":  ["ohager"],
+  "contributors": [
+    "ohager"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/burst-apps-team/phoenix"
@@ -15,13 +17,17 @@
     "wallet"
   ],
   "main": "main.js",
+  "engines": {
+    "node": ">=10"
+  },
   "scripts": {
-    "start": "electron .",
-    "pack": "electron-packager . @bats/phoenix-desktop-wallet --overwrite --asar=true --prune=true --out=release-builds",
+    "build": "node ../../scripts/build.js --target desktop",
+    "start": "npm run build && electron .",
+    "pack": "npm run build && electron-packager . @bats/phoenix-desktop-wallet --overwrite --asar=true --prune=true --out=release-builds",
     "release:all": "npm run pack -- --all",
-    "release:linux": "npm run -- --platform=linux --arch=x64",
-    "release:win32": "npm run -- --platform=win32 --arch=x64",
-    "release:macos": "npm run -- --platform=macos --arch=x64"
+    "release:linux": "npm run pack -- --platform=linux --arch=x64",
+    "release:win32": "npm run pack -- --platform=win32 --arch=x64",
+    "release:macos": "npm run pack -- --platform=macos --arch=x64"
   },
   "devDependencies": {
     "electron": "^4.0.1",
