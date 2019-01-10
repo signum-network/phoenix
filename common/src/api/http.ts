@@ -34,8 +34,8 @@ class Http {
      */
     async get(url) {
         try {
-            const {status, data} = await this._clientImpl.get(url);
-            return new HttpResponse(status, data);
+            const {status, responseData} = await this._clientImpl.get(url);
+            return new HttpResponse(status, responseData);
         } catch (error) {
             return Http._getErrorResponse(error);
         }
@@ -49,8 +49,8 @@ class Http {
      */
     async post(url, data) {
         try {
-            const {status, data} = await this._clientImpl.post(url, data);
-            return new HttpResponse(status, data);
+            const {status, responseData} = await this._clientImpl.post(url, data);
+            return new HttpResponse(status, responseData);
         } catch (error) {
             return Http._getErrorResponse(error);
         }
@@ -64,8 +64,8 @@ class Http {
      */
     async put(url, data) {
         try {
-            const {status, data} = await this._clientImpl.put(url, data);
-            return new HttpResponse(status, data);
+            const {status, responseData} = await this._clientImpl.put(url, data);
+            return new HttpResponse(status, responseData);
         } catch (error) {
             return Http._getErrorResponse(error);
         }
@@ -78,8 +78,8 @@ class Http {
      */
     async delete(url) {
         try {
-            const {status, data} = await this._clientImpl.delete(url);
-            return new HttpResponse(status, data);
+            const {status, responseData} = await this._clientImpl.delete(url);
+            return new HttpResponse(status, responseData);
         } catch (error) {
             return Http._getErrorResponse(error);
         }
