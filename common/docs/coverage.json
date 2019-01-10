@@ -1,0 +1,46 @@
+{
+  "coverage": "40%",
+  "expectCount": 25,
+  "actualCount": 10,
+  "files": {
+    "src/api/baseApi.js": {
+      "expectCount": 4,
+      "actualCount": 3,
+      "undocumentLines": [
+        14
+      ]
+    },
+    "src/api/http.js": {
+      "expectCount": 8,
+      "actualCount": 6,
+      "undocumentLines": [
+        15,
+        20
+      ]
+    },
+    "src/api/httpResponse.js": {
+      "expectCount": 9,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "src/api/puppyApi.js": {
+      "expectCount": 4,
+      "actualCount": 1,
+      "undocumentLines": [
+        3,
+        10,
+        14
+      ]
+    }
+  }
+}
