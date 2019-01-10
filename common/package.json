@@ -13,8 +13,8 @@
     "node": ">=10"
   },
   "license": "GPL-3.0",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "index.ts",
+  "types": "./src/index.d.ts",
   "private": false,
   "devDependencies": {
     "axios-mock-adapter": "^1.16.0",

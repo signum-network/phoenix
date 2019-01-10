@@ -1,4 +1,8 @@
 class HttpResponse {
+    __response;
+    __status;
+    _error;
+    
     constructor(status, response, error = null){
         this.__response = response;
         this.__status = status;

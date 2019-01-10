@@ -6,6 +6,8 @@ import Http from './http';
  */
 class BaseApi  {
 
+    _http;
+
     /**
      * Creates API instance
      * @param baseUrl The host url of API

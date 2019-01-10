@@ -1,15 +1,21 @@
 import BaseApi from "./baseApi";
+import { AxiosResponse } from "axios";
+
+interface User {
+    name: string;
+    url: string;
+}
 
 /**
  * Playing around with the guthub API
  */
-class Github extends BaseApi{
+class Github extends BaseApi {
 
     constructor(){
         super('https://api.github.com/repos/burst-apps-team')
     }
 
-    async getAllPhoenixContributors() {
+    public async getAllPhoenixContributors(): Promise<User[]> {
         const httpResponse = await this.http.get('/phoenix/contributors');
         if(httpResponse.hasError()) throw httpResponse.error;
         return httpResponse.response.map( c => c.login);

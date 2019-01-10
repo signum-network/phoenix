@@ -6,6 +6,8 @@ import HttpResponse from "./httpResponse";
  */
 class Http {
 
+    _clientImpl;
+
     /**
      * Creates your Http client
      * @param baseURL The baseUrl, i.e host url
