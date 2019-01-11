@@ -1,0 +1,1129 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "packages/.external-ecmascript.js",
+    "static": true,
+    "longname": "packages/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "packages/http/__tests__/githubApi.spec.ts",
+    "content": "\njest.mock('../http');\n\nimport Http from '../http';\nimport Github from '../github';\nimport HttpResponse from '../httpResponse';\n\n/**\n * This test is a reference implementation to show how Http requests can be mocked\n */\ndescribe('Github', () => {\n\n    it('should getAllPhoenixContributors easily', async () => {\n\n        (Http as any).mockImplementationOnce(() => {\n            return {\n                get : () => Promise.resolve(new HttpResponse(200, [{login: 'ohager'}]))\n            };\n        });\n\n        const github = new Github();\n        const contributors = await github.getAllPhoenixContributors();\n        expect(contributors.length).toBe(1);\n        expect(contributors).toEqual(['ohager']);\n    });\n\n\n    it('should return error on getAllPhoenixContributors  failure', async () => {\n\n        (Http as any).mockImplementationOnce(() => {\n            return {\n                get : () => Promise.resolve(new HttpResponse(500, null, 'Oh no, internal server error. Blame the backend'))\n            };\n        });\n\n        const github = new Github();\n        try {\n            await github.getAllPhoenixContributors();\n        } catch (e) {\n            expect(e).toBe('Oh no, internal server error. Blame the backend');\n        }\n    });\n\n\n});\n",
+    "static": true,
+    "longname": "/home/ohager/projects/devbutze/phoenix/lib/packages/http/__tests__/githubApi.spec.ts",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "file",
+    "name": "packages/http/baseApi.ts",
+    "content": "import Http from './http';\n\n/**\n * Base API class.\n * Extend and specific APIs here\n */\nclass BaseApi  {\n    private _http: Http;\n\n    /**\n     * @returns The internal Http client\n     */\n    protected get http(): Http {\n        return this._http;\n    }\n\n    /**\n     * Creates API instance\n     * @param baseUrl The host url of API\n     */\n    constructor(baseUrl: string) {\n        this._http = new Http(baseUrl);\n    }\n\n\n    // TODO unify/centralize exception handling here!\n}\n\nexport default BaseApi;\n",
+    "static": true,
+    "longname": "/home/ohager/projects/devbutze/phoenix/lib/packages/http/baseApi.ts",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 50,
+    "kind": "class",
+    "name": "BaseApi",
+    "memberof": "packages/http/baseApi.ts",
+    "static": true,
+    "longname": "packages/http/baseApi.ts~BaseApi",
+    "access": "public",
+    "export": true,
+    "importPath": "burst-js/packages/http/baseApi.ts",
+    "importStyle": "BaseApi",
+    "description": "Base API class.\nExtend and specific APIs here",
+    "lineNumber": 7,
+    "interface": false
+  },
+  {
+    "__docId__": 51,
+    "kind": "get",
+    "name": "http",
+    "memberof": "packages/http/baseApi.ts~BaseApi",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "packages/http/baseApi.ts~BaseApi#http",
+    "access": "public",
+    "description": "",
+    "lineNumber": 21,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "The internal Http client"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "The internal Http client"
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "packages/http/baseApi.ts~BaseApi",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "packages/http/baseApi.ts~BaseApi#constructor",
+    "access": "public",
+    "description": "Creates API instance",
+    "lineNumber": 28,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "baseUrl",
+        "description": "The host url of API"
+      }
+    ]
+  },
+  {
+    "__docId__": 53,
+    "kind": "member",
+    "name": "_http",
+    "memberof": "packages/http/baseApi.ts~BaseApi",
+    "static": false,
+    "longname": "packages/http/baseApi.ts~BaseApi#_http",
+    "access": "private",
+    "description": null,
+    "lineNumber": 29,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "file",
+    "name": "packages/http/github.ts",
+    "content": "import BaseApi from './baseApi';\n\ninterface User {\n    name: string;\n    url: string;\n}\n\n/**\n * Playing around with the guthub API\n */\nclass Github extends BaseApi {\n\n    constructor() {\n        super('https://api.github.com/repos/burst-apps-team');\n    }\n\n    public async getAllPhoenixContributors(): Promise<User[]> {\n        const httpResponse = await this.http.get('/phoenix/contributors');\n        if (httpResponse.hasError()) { throw httpResponse.error; }\n        return httpResponse.response.map( c => c.login);\n    }\n}\n\nexport default Github;\n",
+    "static": true,
+    "longname": "/home/ohager/projects/devbutze/phoenix/lib/packages/http/github.ts",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 55,
+    "kind": "class",
+    "name": "Github",
+    "memberof": "packages/http/github.ts",
+    "static": true,
+    "longname": "packages/http/github.ts~Github",
+    "access": "public",
+    "export": true,
+    "importPath": "burst-js/packages/http/github.ts",
+    "importStyle": "Github",
+    "description": "Playing around with the guthub API",
+    "lineNumber": 11,
+    "interface": false,
+    "extends": [
+      "packages/http/baseApi.js~BaseApi"
+    ]
+  },
+  {
+    "__docId__": 56,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "packages/http/github.ts~Github",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "packages/http/github.ts~Github#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true
+  },
+  {
+    "__docId__": 57,
+    "kind": "method",
+    "name": "getAllPhoenixContributors",
+    "memberof": "packages/http/github.ts~Github",
+    "generator": false,
+    "async": true,
+    "static": false,
+    "longname": "packages/http/github.ts~Github#getAllPhoenixContributors",
+    "access": "public",
+    "description": "",
+    "lineNumber": 17,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 58,
+    "kind": "file",
+    "name": "packages/http/http.ts",
+    "content": "import axios from 'axios';\nimport HttpResponse from './httpResponse';\n\n/**\n * An generic HTTP client\n */\nclass Http {\n\n    private _clientImpl: any;\n\n    /**\n     * Creates your Http client\n     * @param baseURL The baseUrl, i.e host url\n     */\n    constructor(baseURL: string) {\n        // see https://github.com/axios/axios#request-config for more\n        this._clientImpl = axios.create({\n            baseURL,\n        });\n    }\n\n    static _getErrorResponse(error: any): HttpResponse {\n        if (error.response) {\n            return new HttpResponse(error.response.status, error.response.statusText, error.response.data);\n        } else if (error.request) {\n            return new HttpResponse(0, error.request, 'Request failed');\n        }\n        return new HttpResponse(-1, '', 'Axios Configuration error');\n    }\n\n    /**\n     * Get Method\n     * @param url The relative url\n     * @returns request result in case of success or error\n     */\n    async get(url: string): Promise<HttpResponse> {\n        try {\n            const {status, data} = await this._clientImpl.get(url);\n            return new HttpResponse(status, data);\n        } catch (error) {\n            return Http._getErrorResponse(error);\n        }\n    }\n\n    /**\n     * Post Method\n     * @param url The relative url\n     * @param payload The post data\n     * @returns request result in case of success or error\n     */\n    async post(url: string, payload: any): Promise<HttpResponse> {\n        try {\n            const {status, data} = await this._clientImpl.post(url, payload);\n            return new HttpResponse(status, data);\n        } catch (error) {\n            return Http._getErrorResponse(error);\n        }\n    }\n\n    /**\n     * Put Method\n     * @param url The relative url\n     * @param payload The put data\n     * @returns request result in case of success or error\n     */\n    async put(url: string, payload: any): Promise<HttpResponse> {\n        try {\n            const {status, data} = await this._clientImpl.put(url, payload);\n            return new HttpResponse(status, data);\n        } catch (error) {\n            return Http._getErrorResponse(error);\n        }\n    }\n\n    /**\n     * Delete Method\n     * @param url The relative url\n     * @returns request result in case of success or error\n     */\n    async delete(url: string) {\n        try {\n            const {status, data} = await this._clientImpl.delete(url);\n            return new HttpResponse(status, data);\n        } catch (error) {\n            return Http._getErrorResponse(error);\n        }\n    }\n}\n\nexport default Http;\n",
+    "static": true,
+    "longname": "/home/ohager/projects/devbutze/phoenix/lib/packages/http/http.ts",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 59,
+    "kind": "class",
+    "name": "Http",
+    "memberof": "packages/http/http.ts",
+    "static": true,
+    "longname": "packages/http/http.ts~Http",
+    "access": "public",
+    "export": true,
+    "importPath": "burst-js/packages/http/http.ts",
+    "importStyle": "Http",
+    "description": "An generic HTTP client",
+    "lineNumber": 7,
+    "interface": false
+  },
+  {
+    "__docId__": 60,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "packages/http/http.ts~Http",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "packages/http/http.ts~Http#constructor",
+    "access": "public",
+    "description": "Creates your Http client",
+    "lineNumber": 14,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "baseURL",
+        "description": "The baseUrl, i.e host url"
+      }
+    ]
+  },
+  {
+    "__docId__": 61,
+    "kind": "member",
+    "name": "_clientImpl",
+    "memberof": "packages/http/http.ts~Http",
+    "static": false,
+    "longname": "packages/http/http.ts~Http#_clientImpl",
+    "access": "private",
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 62,
+    "kind": "method",
+    "name": "_getErrorResponse",
+    "memberof": "packages/http/http.ts~Http",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "packages/http/http.ts~Http._getErrorResponse",
+    "access": "private",
+    "description": "",
+    "lineNumber": 22,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "undefined"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "error",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "HttpResponse"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 63,
+    "kind": "method",
+    "name": "get",
+    "memberof": "packages/http/http.ts~Http",
+    "generator": false,
+    "async": true,
+    "static": false,
+    "longname": "packages/http/http.ts~Http#get",
+    "access": "public",
+    "description": "Get Method",
+    "lineNumber": 36,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "url",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 64,
+    "kind": "method",
+    "name": "post",
+    "memberof": "packages/http/http.ts~Http",
+    "generator": false,
+    "async": true,
+    "static": false,
+    "longname": "packages/http/http.ts~Http#post",
+    "access": "public",
+    "description": "Post Method",
+    "lineNumber": 51,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "url",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "undefined"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "payload",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 65,
+    "kind": "method",
+    "name": "put",
+    "memberof": "packages/http/http.ts~Http",
+    "generator": false,
+    "async": true,
+    "static": false,
+    "longname": "packages/http/http.ts~Http#put",
+    "access": "public",
+    "description": "Put Method",
+    "lineNumber": 66,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "url",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "undefined"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "payload",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 66,
+    "kind": "method",
+    "name": "delete",
+    "memberof": "packages/http/http.ts~Http",
+    "generator": false,
+    "async": true,
+    "static": false,
+    "longname": "packages/http/http.ts~Http#delete",
+    "access": "public",
+    "description": "Delete Method",
+    "lineNumber": 80,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "url",
+        "description": ""
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 67,
+    "kind": "file",
+    "name": "packages/http/httpResponse.ts",
+    "content": "class HttpResponse {\n    constructor(public status: number, public response: any, public error?: string) {}\n\n    hasError() { return !!this.error; }\n}\n\nexport default HttpResponse;\n",
+    "static": true,
+    "longname": "/home/ohager/projects/devbutze/phoenix/lib/packages/http/httpResponse.ts",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 68,
+    "kind": "class",
+    "name": "HttpResponse",
+    "memberof": "packages/http/httpResponse.ts",
+    "static": true,
+    "longname": "packages/http/httpResponse.ts~HttpResponse",
+    "access": "public",
+    "export": true,
+    "importPath": "burst-js/packages/http/httpResponse.ts",
+    "importStyle": "HttpResponse",
+    "description": "",
+    "lineNumber": 1,
+    "interface": false
+  },
+  {
+    "__docId__": 69,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "packages/http/httpResponse.ts~HttpResponse",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "packages/http/httpResponse.ts~HttpResponse#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true
+  },
+  {
+    "__docId__": 70,
+    "kind": "member",
+    "name": "status",
+    "memberof": "packages/http/httpResponse.ts~HttpResponse",
+    "static": false,
+    "longname": "packages/http/httpResponse.ts~HttpResponse#status",
+    "access": "public",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 71,
+    "kind": "member",
+    "name": "response",
+    "memberof": "packages/http/httpResponse.ts~HttpResponse",
+    "static": false,
+    "longname": "packages/http/httpResponse.ts~HttpResponse#response",
+    "access": "public",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 72,
+    "kind": "member",
+    "name": "error",
+    "memberof": "packages/http/httpResponse.ts~HttpResponse",
+    "static": false,
+    "longname": "packages/http/httpResponse.ts~HttpResponse#error",
+    "access": "public",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 73,
+    "kind": "method",
+    "name": "hasError",
+    "memberof": "packages/http/httpResponse.ts~HttpResponse",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "packages/http/httpResponse.ts~HttpResponse#hasError",
+    "access": "public",
+    "description": "",
+    "lineNumber": 4,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 74,
+    "kind": "file",
+    "name": "packages/http/index.ts",
+    "content": "import Github from './github';\nimport Http from './http';\n\nexport {\n    Github,\n    Http\n};\n\n",
+    "static": true,
+    "longname": "/home/ohager/projects/devbutze/phoenix/lib/packages/http/index.ts",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "kind": "index",
+    "content": "# BURST Javascript Lib\n\nThis library provides common functionalities used by all platforms.\n",
+    "longname": "/home/ohager/projects/devbutze/phoenix/lib/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"burst-js\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Common BURST library\",\n  \"contributors\": [\n    \"ohager\",\n    \"blankey\"\n  ],\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/burst-apps-team/phoenix\"\n  },\n  \"engines\": {\n    \"node\": \">=10\"\n  },\n  \"license\": \"GPL-3.0\",\n  \"main\": \"index.ts\",\n  \"types\": \"./src/index.d.ts\",\n  \"private\": false,\n  \"jest\": {\n    \"transform\": {\n      \"^.+\\\\.tsx?$\": \"<rootDir>/node_modules/ts-jest/preprocessor.js\"\n    },\n    \"testRegex\": \"(/__tests__/.*|(\\\\.|/)(test|spec))\\\\.(jsx?|tsx?)$\",\n    \"moduleFileExtensions\": [\n      \"ts\",\n      \"tsx\",\n      \"js\",\n      \"jsx\",\n      \"json\"\n    ]\n  },\n  \"devDependencies\": {\n    \"@types/jest\": \"^23.3.12\",\n    \"axios-mock-adapter\": \"^1.16.0\",\n    \"babel-core\": \"^6.26.3\",\n    \"babel-jest\": \"^23.6.0\",\n    \"babel-polyfill\": \"^6.26.0\",\n    \"babel-preset-env\": \"^1.7.0\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-importpath-plugin\": \"^1.0.2\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"husky\": \"^1.3.1\",\n    \"jest\": \"^23.6.0\",\n    \"lerna\": \"^3.10.5\",\n    \"regenerator-runtime\": \"^0.13.1\",\n    \"ts-jest\": \"^23.10.5\",\n    \"typescript\": \"^3.2.2\"\n  },\n  \"scripts\": {\n    \"test\": \"jest\",\n    \"doc\": \"./node_modules/.bin/esdoc\"\n  },\n  \"dependencies\": {\n    \"axios\": \"^0.18.0\",\n    \"esdoc-typescript-plugin\": \"^1.0.1\"\n  },\n  \"husky\": {\n    \"hooks\": {\n      \"pre-push\": \"npm test && npm doc\"\n    }\n  }\n}\n",
+    "longname": "/home/ohager/projects/devbutze/phoenix/lib/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]

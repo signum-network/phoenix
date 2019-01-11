@@ -1,0 +1,38 @@
+{
+  "coverage": "66.66%",
+  "expectCount": 21,
+  "actualCount": 14,
+  "files": {
+    "packages/http/baseApi.ts": {
+      "expectCount": 4,
+      "actualCount": 3,
+      "undocumentLines": [
+        29
+      ]
+    },
+    "packages/http/github.ts": {
+      "expectCount": 3,
+      "actualCount": 2,
+      "undocumentLines": [
+        9
+      ]
+    },
+    "packages/http/http.ts": {
+      "expectCount": 8,
+      "actualCount": 7,
+      "undocumentLines": [
+        16
+      ]
+    },
+    "packages/http/httpResponse.ts": {
+      "expectCount": 6,
+      "actualCount": 2,
+      "undocumentLines": [
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  }
+}

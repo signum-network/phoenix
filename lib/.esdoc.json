@@ -3,6 +3,9 @@
   "destination": "./docs",
   "plugins": [
     {
+      "name": "esdoc-typescript-plugin"
+    },
+    {
       "name": "esdoc-standard-plugin"
     }
   ],
