@@ -12,6 +12,7 @@ Targeted platforms are
 - Linux
 - Windows
 - Android
+- iOS
 
 ![Application Architecture Diagram](doc/architecture.png "Application Architecture Diagram")
 

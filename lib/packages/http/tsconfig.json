@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": [
+            "es2015"
+        ],
+        "noImplicitThis": true,
+        "strict": true,
+        "outDir": "out",
+        "declaration": true,
+        "declarationDir": "typings",
+        "sourceMap": true,
+        "types": [
+            "axios",
+            "jest"
+        ],
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    },
+    "include": [
+        "src",
+        "__tests__"
+    ]
+}

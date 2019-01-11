@@ -1,0 +1,47 @@
+{
+  "name": "@burst/http",
+  "version": "1.0.0",
+  "description": "Send commands to BURST over HTTP",
+  "contributors": [
+    "ohager",
+    "blankey"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/burst-apps-team/phoenix"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "license": "GPL-3.0",
+  "main": "index.ts",
+  "private": false,
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.12"
+  },
+  "scripts": {
+    "test": "jest",
+    "doc": "./node_modules/.bin/esdoc"
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test"
+    }
+  }
+}
