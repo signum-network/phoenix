@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Send commands to BURST over HTTP",
   "contributors": [
-    "ohager"
+    "ohager",
+    "blankey"
   ],
   "repository": {
     "type": "git",
@@ -14,7 +15,6 @@
   },
   "license": "GPL-3.0",
   "main": "index.ts",
-  "types": "./src/index.d.ts",
   "private": false,
   "jest": {
     "transform": {
@@ -29,13 +29,14 @@
       "json"
     ]
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/jest": "^23.3.12"
+  },
   "scripts": {
     "test": "jest",
     "doc": "./node_modules/.bin/esdoc"
   },
   "dependencies": {
-    "@types/axios": "^0.14.0",
     "axios": "^0.18.0"
   },
   "husky": {

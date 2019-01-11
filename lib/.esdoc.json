@@ -1,9 +1,12 @@
 {
-  "source": "./src",
+  "source": "./packages",
   "destination": "./docs",
   "plugins": [
     {
       "name": "esdoc-standard-plugin"
     }
+  ],
+  "excludes": [
+    "/node_modules/"
   ]
 }

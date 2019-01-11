@@ -1,18 +1,7 @@
 class HttpResponse {
-    __response;
-    __status;
-    _error;
-    
-    constructor(status, response, error = null){
-        this.__response = response;
-        this.__status = status;
-        this._error = error;
-    }
+    constructor(public status: number, public response: any, public error?: string) {}
 
-    get response() { return this.__response }
-    get status() { return this.__status }
-    get error() { return this._error }
-    hasError() { return !!this._error; }
+    hasError() { return !!this.error; }
 }
 
 export default HttpResponse;

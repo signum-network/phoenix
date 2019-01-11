@@ -5,23 +5,25 @@ import Http from './http';
  * Extend and specific APIs here
  */
 class BaseApi  {
+    private _http: Http;
 
-    _http;
+    /**
+     * @returns The internal Http client
+     */
+    protected get http(): Http {
+        return this._http;
+    }
 
     /**
      * Creates API instance
      * @param baseUrl The host url of API
      */
-    constructor(baseUrl) {
+    constructor(baseUrl: string) {
         this._http = new Http(baseUrl);
     }
 
-    /**
-     * @returns {Http} The internal Http client
-     */
-    get http() { return this._http;}
 
-    //TODO unify/centralize exception handling here!
+    // TODO unify/centralize exception handling here!
 }
 
 export default BaseApi;

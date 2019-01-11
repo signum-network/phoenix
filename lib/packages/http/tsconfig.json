@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "target": "es5",
         "lib": [
             "dom",
             "es2015"
@@ -9,7 +10,14 @@
         "outDir": "out",
         "declaration": true,
         "declarationDir": "typings",
-        "sourceMap": true
+        "sourceMap": true,
+        "types": [
+            "axios",
+            "jest"
+        ],
+        "typeRoots": [
+            "node_modules/@types"
+        ]
     },
     "include": [
         "src",

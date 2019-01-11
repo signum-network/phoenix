@@ -1,4 +1,4 @@
-import BaseApi from "./baseApi";
+import BaseApi from './baseApi';
 
 interface User {
     name: string;
@@ -10,13 +10,13 @@ interface User {
  */
 class Github extends BaseApi {
 
-    constructor(){
-        super('https://api.github.com/repos/burst-apps-team')
+    constructor() {
+        super('https://api.github.com/repos/burst-apps-team');
     }
 
     public async getAllPhoenixContributors(): Promise<User[]> {
         const httpResponse = await this.http.get('/phoenix/contributors');
-        if(httpResponse.hasError()) throw httpResponse.error;
+        if (httpResponse.hasError()) { throw httpResponse.error; }
         return httpResponse.response.map( c => c.login);
     }
 }
