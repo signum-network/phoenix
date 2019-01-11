@@ -1,7 +1,7 @@
+jest.mock('../../http');
 import Http from '../../http';
 import HttpResponse from '../../httpResponse';
 
-jest.mock('../../http');
 
 interface MockBehavior {
     reply(status: number, payload?: any): void;
@@ -23,30 +23,30 @@ function createMockImplementationFunctionForError(method: string, status: number
     });
 }
 
-/*
-        (Http as any).mockImplementationOnce(() => {
-            return {
-                get : () => Promise.resolve(new HttpResponse(200, [{login: 'ohager'}]))
-            };
-        });
-
- */
-
-/*
-httpMock.onGet('foo/bar').reply(200, {foo:'bar'})
- */
-
-class HttpMock {
-    public onGet(url: string): MockBehavior {
-        return {
-            reply: (status: number, response: any) => {
-                // @ts-ignore
-                Http.mockImplementionOnce(createMockImplementationFunctionForReply('get', status, response));
-            },
-            error: (status: number, message: string) => {
-                // @ts-ignore
-                Http.mockImplementionOnce(createMockImplementationFunctionForError('get', status, message));
-            },
-        };
+class MockBehavior {
+    constructor(private method: string) { }
+    public reply(status: number, response: any) {
+        // @ts-ignore
+        Http.mockImplementationOnce(createMockImplementationFunctionForReply(this.method, status, response));
+    }
+    public error(status: number, message: string) {
+        // @ts-ignore
+        Http.mockImplementationOnce(createMockImplementationFunctionForError(this.method, status, message));
     }
 }
+
+
+/**
+ * Easy http mocking
+ * @example
+ *
+ *  HttpMock.onGet().reply(200, [{login: 'ohager'}]);
+ */
+module HttpMock {
+    export function onGet(): MockBehavior { return new MockBehavior('get'); }
+    export function onPost(): MockBehavior { return new MockBehavior('post'); }
+    export function onPut(): MockBehavior { return new MockBehavior('put'); }
+    export function onDelete(): MockBehavior { return new MockBehavior('delete'); }
+}
+
+export default HttpMock;
