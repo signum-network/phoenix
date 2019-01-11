@@ -1,5 +1,4 @@
 import BaseApi from "./baseApi";
-import { AxiosResponse } from "axios";
 
 interface User {
     name: string;
