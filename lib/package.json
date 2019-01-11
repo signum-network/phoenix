@@ -1,5 +1,5 @@
 {
-  "name": "@bats/phoenix-common",
+  "name": "burst-js",
   "version": "1.0.0",
   "description": "Common BURST library",
   "contributors": [
@@ -16,6 +16,19 @@
   "main": "index.ts",
   "types": "./src/index.d.ts",
   "private": false,
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  },
   "devDependencies": {
     "@types/jest": "^23.3.12",
     "axios-mock-adapter": "^1.16.0",
@@ -29,7 +42,8 @@
     "jest": "^23.6.0",
     "regenerator-runtime": "^0.13.1",
     "ts-jest": "^23.10.5",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.2",
+    "lerna": "^3.10.5"
   },
   "scripts": {
     "test": "jest",

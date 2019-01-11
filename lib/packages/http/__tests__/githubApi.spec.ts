@@ -12,7 +12,7 @@ describe("Github", () => {
 
     it("should getAllPhoenixContributors easily", async () => {
 
-        Http.mockImplementationOnce(() => {
+        (Http as any).mockImplementationOnce(() => {
             return {
                 get : () => Promise.resolve(new HttpResponse(200, [{login:'ohager'}]))
             }
@@ -25,21 +25,21 @@ describe("Github", () => {
     });
 
 
-    // it("should return error on getAllPhoenixContributors  failure", async () => {
+    it("should return error on getAllPhoenixContributors  failure", async () => {
 
-    //     mockedHttp.mockImplementationOnce(() => {
-    //         return {
-    //             get : () => Promise.resolve(new HttpResponse(500, null, "Oh no, internal server error. Blame the backend"))
-    //         }
-    //     });
+        (Http as any).mockImplementationOnce(() => {
+            return {
+                get : () => Promise.resolve(new HttpResponse(500, null, "Oh no, internal server error. Blame the backend"))
+            }
+        });
 
-    //     const github = new Github();
-    //     try{
-    //         await github.getAllPhoenixContributors();
-    //     }catch(e){
-    //         expect(e).toBe("Oh no, internal server error. Blame the backend");
-    //     }
-    // })
+        const github = new Github();
+        try{
+            await github.getAllPhoenixContributors();
+        }catch(e){
+            expect(e).toBe("Oh no, internal server error. Blame the backend");
+        }
+    })
 
 
 });
