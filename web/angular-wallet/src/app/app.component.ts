@@ -1,7 +1,5 @@
-import {Component} from '@angular/core';
-import {Api} from '@bats/phoenix-common';
-
-const {Github} = Api;
+import { Component } from '@angular/core';
+import { Github } from '@burst/http';
 
 @Component({
   selector: 'app-root',

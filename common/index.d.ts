@@ -1,1 +1,0 @@
-declare module '@bats/phoenix-common';

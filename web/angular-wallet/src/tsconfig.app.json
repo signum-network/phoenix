@@ -4,8 +4,13 @@
     "outDir": "../out-tsc/app",
     "types": []
   },
+  "include": [
+    "**/*.ts",
+    "../../../lib/**/*.ts"
+  ],
   "exclude": [
     "test.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "../../../lib/**/*.spec.ts"
   ]
 }
