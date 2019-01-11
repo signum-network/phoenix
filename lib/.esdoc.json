@@ -1,0 +1,15 @@
+{
+  "source": "./packages",
+  "destination": "./docs",
+  "plugins": [
+    {
+      "name": "esdoc-typescript-plugin"
+    },
+    {
+      "name": "esdoc-standard-plugin"
+    }
+  ],
+  "excludes": [
+    "/node_modules/"
+  ]
+}
