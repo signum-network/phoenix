@@ -1,134 +1,73 @@
 <div id="dashboard" class="page-layout blank">
 
     <div class="content">
-        <div class="mr-lg-32">
-            <div class="pb-24 font-size-18 font-weight-300">
-                How are your active users trending over time?
-            </div>
+        <div class="mr-lg-32" fxFlex="100">
 
             <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
 
-                <!-- Widget 2 -->
-                <div class="widget" fxFlex="100" fxFlex.gt-sm="33">
-
+                <div class="widget" fxFlex="100" fxFlex.gt-sm="40" fxFlex.gt-md="50">
                     <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
-
-                        <div class="p-16 pb-0" fxLayout="row wrap" fxLayoutAlign="start end">
-
+                        <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
                             <div class="pr-16">
-                                <div class="h3 secondary-text">Conversion</div>
-                                <div class="font-size-54 font-weight-300 line-height-1 mt-8">
-                                    {{widgets.widget2.conversion.value}}
+                                <div class="h3 secondary-text">Balance</div>
+                                <div [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1 mt-8">
+                                    164,033.0334
                                 </div>
                             </div>
-
-                            <div class="py-4 font-size-16" fxLayout="row" fxLayoutAlign="start center">
-                                <div fxFlex="row" fxLayoutAlign="start center" class="green-fg" *ngIf="widgets.widget2.conversion.ofTarget > 0">
-                                    <mat-icon class="green-fg mr-4">trending_up</mat-icon>
-                                    <span>{{widgets.widget2.conversion.ofTarget}}%</span>
-                                </div>
-                                <div fxFlex="row" fxLayoutAlign="start center" class="red-fg" *ngIf="widgets.widget2.conversion.ofTarget < 0">
-                                    <mat-icon class="red-fg mr-4">trending_down</mat-icon>
-                                    <span>{{widgets.widget2.conversion.ofTarget}}%</span>
-                                </div>
-                                <div class="ml-4 text-nowrap">of target</div>
-                            </div>
-
                         </div>
-
-                        <div class="h-96 w-100-p">
-                            <canvas baseChart [datasets]="widgets.widget2.datasets" [labels]="widgets.widget2.labels"
-                                [colors]="widgets.widget2.colors" [options]="widgets.widget2.options" [chartType]="widgets.widget2.chartType">
-                            </canvas>
-                        </div>
-
                     </div>
-
                 </div>
-                <!-- / Widget 2 -->
 
-                <!-- Widget 3 -->
-                <div class="widget" fxFlex="100" fxFlex.gt-sm="34">
-
+                <div class="widget" fxFlex="100" fxFlex.gt-sm="30" fxFlex.gt-md="25">
                     <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
-
-                        <div class="p-16 pb-0" fxLayout="row wrap" fxLayoutAlign="start end">
-
+                        <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
                             <div class="pr-16">
-                                <div class="h3 secondary-text">Impressions</div>
-                                <div class="font-size-54 font-weight-300 line-height-1 mt-8">
-                                    {{widgets.widget3.impressions.value}}
+                                <div class="h3 secondary-text">Blocks Forged</div>
+                                <div [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1 mt-8">
+                                    420
                                 </div>
                             </div>
-
-                            <div class="py-4 font-size-16" fxLayout="row" fxLayoutAlign="start center">
-                                <div fxFlex="row" fxLayoutAlign="start center" class="green-fg" *ngIf="widgets.widget3.impressions.ofTarget > 0">
-                                    <mat-icon class="green-fg mr-4">trending_up</mat-icon>
-                                    <span>{{widgets.widget3.impressions.ofTarget}}%</span>
-                                </div>
-                                <div fxFlex="row" fxLayoutAlign="start center" class="red-fg" *ngIf="widgets.widget3.impressions.ofTarget < 0">
-                                    <mat-icon class="red-fg mr-4">trending_down</mat-icon>
-                                    <span>{{widgets.widget3.impressions.ofTarget}}%</span>
-                                </div>
-                                <div class="ml-4 text-nowrap">of target</div>
-                            </div>
-
-                        </div>
-
-                        <div class="h-96 w-100-p">
-                            <canvas baseChart [datasets]="widgets.widget3.datasets" [labels]="widgets.widget3.labels"
-                                [colors]="widgets.widget3.colors" [options]="widgets.widget3.options" [chartType]="widgets.widget3.chartType">
-                            </canvas>
-                        </div>
-
-                    </div>
-
-                </div>
-                <!-- / Widget 3 -->
-
-                <!-- Widget 4 -->
-                <div class="widget" fxFlex="100" fxFlex.gt-sm="33">
-
-                    <div class="fuse-card auto-width">
-
-                        <div class="p-16 pb-0" fxLayout="row wrap" fxLayoutAlign="start end">
-
-                            <div class="pr-16">
-                                <div class="h3 secondary-text">Visits</div>
-                                <div class="font-size-54 font-weight-300 line-height-1 mt-8">
-                                    {{widgets.widget4.visits.value}}
-                                </div>
-                            </div>
-
-                            <div class="py-4 font-size-16" fxLayout="row" fxLayoutAlign="start center">
-                                <div fxFlex="row" fxLayoutAlign="start center" class="green-fg" *ngIf="widgets.widget4.visits.ofTarget > 0">
-                                    <mat-icon class="green-fg mr-4">trending_up</mat-icon>
-                                    <span>{{widgets.widget4.visits.ofTarget}}%</span>
-                                </div>
-                                <div fxFlex="row" fxLayoutAlign="start center" class="red-fg" *ngIf="widgets.widget4.visits.ofTarget < 0">
-                                    <mat-icon class="red-fg mr-4">trending_down</mat-icon>
-                                    <span>{{widgets.widget4.visits.ofTarget}}%</span>
-                                </div>
-                                <div class="ml-4 text-nowrap">of target</div>
-                            </div>
-
-                        </div>
-
-                        <div class="h-96 w-100-p">
-                            <canvas baseChart [datasets]="widgets.widget4.datasets" [labels]="widgets.widget4.labels"
-                                [colors]="widgets.widget4.colors" [options]="widgets.widget4.options" [chartType]="widgets.widget4.chartType">
-                            </canvas>
                         </div>
                     </div>
                 </div>
-                <!-- / Widget 4 -->
+
+                <div class="widget" fxFlex="100" fxFlex.gt-sm="30" fxFlex.gt-md="25">
+                    <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
+                        <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
+                            <div class="pr-16">
+                                <div class="h3 secondary-text">Assets Owned</div>
+                                <div [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1 mt-8">
+                                    120
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="pb-24 font-size-18 font-weight-300">
-                <div class="fuse-card auto-width">
-                    test
+            
+            <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
+                <div class="widget" fxFlex="100" fxFlex.gt-sm="50">
+                    <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
+                        <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
+                            <div class="pr-16">
+                                <div class="h3 secondary-text">Recent Transactions</div>
+                                Table goes here
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget" fxFlex="100" fxFlex.gt-sm="50">
+                    <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
+                        <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
+                            <div class="pr-16">
+                                <div class="h3 secondary-text">Latest Blocks</div>
+                                Table goes here
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
