@@ -1,5 +1,7 @@
 # Phoenix
 
+<img src="./doc/phoenix.png" width="400" />
+
 ## BURST Cross-Platform Wallet UI
 
 > NOTE: The reported vulnerability issue is treated [here](https://github.com/angular/angular-cli/issues/13342) - Hopefully, fixed with angular-cli update
@@ -24,6 +26,6 @@ The project is structured per platform, and further build/installation instructi
 - [Web Wallet](/web/angular-wallet/README.md)
 - [Desktop Wallet](/desktop/wallet/README.md)
 - [Mobile Wallet](/mobile/README.md)
-- [BurstJS Library](/common/README.md)
+- [BurstJS Library](/lib/README.md)
 - [Development Scripts](/scripts/README.md)
 
