@@ -1,0 +1,76 @@
+// -----------------------------------------------------------------------------------------------------
+// @ Theming
+// -----------------------------------------------------------------------------------------------------
+@mixin cards-theme($theme) {
+
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    .fuse-card {
+        background: map-get($background, card);
+        border-color: map-get($foreground, divider);
+
+        .card-divider {
+            border-top: 1px solid map-get($foreground, divider);
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Cards
+// -----------------------------------------------------------------------------------------------------
+.fuse-card {
+    max-width: 320px;
+    min-width: 320px;
+    border-radius: 8px;
+    border: 1px solid;
+
+    &.variable-width {
+        min-width: 0;
+    }
+
+    &.auto-width {
+        min-width: 0;
+        max-width: none;
+    }
+
+    // Buttons
+    .mat-button {
+        min-width: 0 !important;
+        padding: 0 8px !important;
+    }
+
+    // Button Toggle Group
+    .mat-button-toggle-group,
+    .mat-button-toggle-standalone {
+        box-shadow: none !important;
+    }
+
+    // Tabs
+    .mat-tab-labels {
+        justify-content: center;
+    }
+
+    .mat-tab-label {
+        min-width: 0 !important;
+    }
+
+    // Divider
+    .card-divider {
+        margin: 16px;
+
+        &.full-width {
+            margin: 0;
+        }
+    }
+
+    // Expand Area
+    .card-expand-area {
+        overflow: hidden;
+
+        .card-expanded-content {
+            padding: 8px 16px 16px 16px;
+            line-height: 1.75;
+        }
+    }
+}

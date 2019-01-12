@@ -1,0 +1,597 @@
+// -----------------------------------------------------------------------------------------------------
+// @ Theming
+// -----------------------------------------------------------------------------------------------------
+@mixin material-theme($theme) {
+
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Avatar
+    // -----------------------------------------------------------------------------------------------------
+    .avatar {
+        color: map-get($foreground, text);
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Forms
+    // -----------------------------------------------------------------------------------------------------
+    .form-wrapper {
+        background-color: map-get($background, card);
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Navigation - Simple
+    // -----------------------------------------------------------------------------------------------------
+    .navigation-simple {
+
+        .item {
+
+            &.selected {
+                background-color: map-get($background, hover);
+            }
+        }
+
+        .subheader {
+            border-top: 1px solid map-get($foreground, divider);
+        }
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Pagination - Simple
+    // -----------------------------------------------------------------------------------------------------
+    .simple-pagination {
+        background: map-get($background, card);
+
+        .pagination-item {
+            color: map-get($foreground, secondary-text);
+
+            &:hover {
+                color: map-get($foreground, text);
+            }
+
+            &.disabled {
+                color: map-get($foreground, disabled-text);
+            }
+        }
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Price tables
+    // -----------------------------------------------------------------------------------------------------
+    .price-tables {
+
+        .price-table {
+            background: map-get($background, card);
+
+            &.style-1 {
+
+                .price {
+
+                    .currency {
+                        color: map-get($foreground, secondary-text);
+                    }
+
+                    .period {
+                        color: map-get($foreground, secondary-text);
+                    }
+                }
+            }
+
+            &.style-2 {
+
+                .price {
+
+                    .currency {
+                        color: map-get($foreground, secondary-text);
+                    }
+
+                }
+
+                .period {
+                    color: map-get($foreground, secondary-text);
+                }
+            }
+
+            &.style-3 {
+
+                .package-type {
+
+                    .subtitle {
+                        color: map-get($foreground, secondary-text);
+                    }
+                }
+
+                .terms {
+                    color: map-get($foreground, secondary-text);
+                }
+
+                .note {
+                    color: map-get($foreground, secondary-text);
+                }
+            }
+        }
+    }
+
+    // -------------------------------------------------------------------------------------------------
+    // @ Table - Simple
+    // -------------------------------------------------------------------------------------------------
+    .simple-table-container {
+        background: map-get($background, card);
+    }
+
+    table {
+
+        &.simple {
+
+            thead {
+
+                tr {
+
+                    th {
+                        color: map-get($foreground, secondary-text);
+                        border-bottom: 1px solid map-get($foreground, divider);
+                    }
+                }
+            }
+
+            tbody {
+
+                tr {
+
+                    td {
+                        border-bottom: 1px solid map-get($foreground, divider);
+                    }
+                }
+            }
+
+            &.clickable {
+
+                tbody {
+
+                    tr {
+
+                        &:hover {
+                            background-color: map-get($background, hover);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Avatar
+// -----------------------------------------------------------------------------------------------------
+.avatar {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 8px 0 0;
+    border-radius: 50%;
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+
+    &.square {
+        border-radius: 0;
+    }
+
+    &.small {
+        width: 20px;
+        min-width: 20px;
+        height: 20px;
+        line-height: 20px;
+    }
+
+    &.big {
+        width: 72px;
+        min-width: 72px;
+        height: 72px;
+        line-height: 72px;
+    }
+
+    &.huge {
+        width: 96px;
+        min-width: 96px;
+        height: 96px;
+        line-height: 96px;
+    }
+}
+
+.avatar-wrapper {
+    position: relative;
+
+    .avatar {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    mat-icon.status {
+        position: absolute;
+        top: 28px;
+        left: 28px;
+    }
+}
+
+mat-icon.status {
+    border-radius: 50%;
+
+    &.online {
+        color: #4CAF50;
+
+        &:before {
+            content: "check_circle";
+        }
+    }
+
+    &.do-not-disturb {
+        color: #F44336;
+
+        &:before {
+            content: "remove_circle_outline";
+        }
+    }
+
+    &.away {
+        color: #FFC107;
+
+        &:before {
+            content: "access_time";
+        }
+    }
+
+    &.offline {
+        color: #646464;
+
+        &:before {
+            content: "not_interested";
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Forms
+// -----------------------------------------------------------------------------------------------------
+.form-wrapper {
+    padding: 16px;
+
+    .form-title {
+        font-size: 21px;
+        padding: 8px 0;
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Navigation - Simple
+// -----------------------------------------------------------------------------------------------------
+.navigation-simple {
+
+    .item {
+        position: relative;
+        cursor: pointer;
+        text-align: left;
+        margin: 0;
+        padding: 0 24px;
+        text-transform: none;
+        line-height: 48px;
+        max-height: 48px;
+        height: 48px;
+
+        mat-icon {
+            margin: 0 16px 0 0;
+        }
+
+        .title {
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1;
+        }
+    }
+
+    .subheader {
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 8px;
+    }
+
+    mat-divider {
+        margin: 8px 0;
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Pagination - Simple
+// -----------------------------------------------------------------------------------------------------
+.simple-pagination {
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    padding: 0 8px;
+    border-radius: 4px;
+    @include mat-elevation(1);
+
+    .pagination-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 48px;
+        min-height: 56px;
+        line-height: 56px;
+        border-radius: 0;
+        margin: 0;
+        font-weight: normal;
+
+        &.active {
+            cursor: default;
+        }
+
+        &.disabled {
+            cursor: default;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Price tables
+// -----------------------------------------------------------------------------------------------------
+.price-tables {
+
+    .price-table {
+        position: relative;
+        width: 280px;
+        border-radius: 2px;
+        margin: 12px;
+        overflow: hidden;
+
+        &.style-1 {
+
+            .package-type {
+                font-size: 17px;
+                padding: 16px 24px;
+
+                .sale {
+                    font-size: 13px;
+                    font-weight: 600;
+                }
+            }
+
+            .price {
+                padding: 32px 32px 16px 32px;
+
+                .currency {
+                    padding-right: 4px;
+                    font-size: 24px;
+                    font-weight: 600;
+                }
+
+                .value {
+                    font-size: 72px;
+                    font-weight: 300;
+                    line-height: 1;
+                }
+
+                .period {
+                    padding: 0 0 5px 4px;
+                    font-size: 17px;
+                }
+            }
+
+            mat-divider {
+                margin: 16px 32px;
+            }
+
+            .terms {
+                padding: 16px 32px;
+                font-size: 15px;
+
+                .term {
+
+                }
+            }
+
+            .cta-button {
+                margin: 16px auto 32px auto;
+                width: 128px;
+            }
+        }
+
+        &.style-2 {
+
+            .badge {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 11px;
+                font-weight: 600;
+                padding: 6px 8px;
+            }
+
+            .package-type {
+                padding: 48px 32px 24px 32px;
+                font-size: 20px;
+                font-weight: 600;
+                text-align: center;
+            }
+
+            .price {
+                padding: 0 32px 8px 32px;
+
+                .currency {
+                    padding-right: 4px;
+                    font-size: 24px;
+                    font-weight: 600;
+                }
+
+                .value {
+                    font-size: 56px;
+                    font-weight: 300;
+                    line-height: 1;
+                }
+            }
+
+            .period {
+                padding: 0 32px;
+                font-size: 15px;
+                font-weight: 600;
+                text-align: center;
+            }
+
+            .terms {
+                padding: 32px;
+                font-size: 15px;
+
+                .term {
+                    padding-bottom: 8px;
+
+                    &:last-child {
+                        padding-bottom: 0;
+                    }
+                }
+            }
+
+            .cta-button {
+                margin: 8px auto 32px auto;
+                width: 128px;
+            }
+        }
+
+        &.style-3 {
+
+            .package-type {
+                padding: 32px;
+                text-align: center;
+
+                .title {
+                    font-size: 34px;
+                }
+
+                .subtitle {
+                    font-size: 17px;
+                    font-weight: 600;
+                }
+            }
+
+            .price {
+                padding: 16px 32px;
+
+                .currency {
+                    padding-right: 4px;
+                    font-size: 15px;
+                    font-weight: 600;
+                }
+
+                .value {
+                    font-size: 34px;
+                    font-weight: 300;
+                    line-height: 1;
+                }
+
+                .period {
+                    padding-left: 4px;
+                    text-align: center;
+                }
+            }
+
+            .terms {
+                margin: 32px;
+                font-size: 15px;
+
+                .term {
+                    padding-bottom: 16px;
+
+                    &:last-child {
+                        padding-bottom: 0;
+                    }
+                }
+            }
+
+            .cta-button {
+                margin: 8px 32px;
+            }
+
+            .note {
+                padding: 8px 32px 16px 32px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Table - Simple
+// -----------------------------------------------------------------------------------------------------
+.simple-table-container {
+
+    .table-title {
+        font-size: 20px;
+        padding: 24px;
+    }
+}
+
+table {
+
+    &.simple {
+        width: 100%;
+        border: none;
+        border-spacing: 0;
+        text-align: left;
+
+        thead {
+
+            tr {
+
+                th {
+                    padding: 16px 8px;
+                    font-weight: 600;
+                    white-space: nowrap;
+
+                    &:first-child {
+                        padding-left: 24px;
+                    }
+
+                    &:last-child {
+                        padding-right: 24px;
+                    }
+                }
+            }
+        }
+
+        tbody {
+
+            tr {
+
+                td {
+                    padding: 16px 8px;
+
+                    &:first-child {
+                        padding-left: 24px;
+                    }
+
+                    &:last-child {
+                        padding-right: 24px;
+                    }
+                }
+
+                &:last-child {
+
+                    td {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+
+        &.clickable {
+
+            tbody {
+
+                tr {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
