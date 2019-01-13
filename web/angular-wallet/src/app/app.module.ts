@@ -17,11 +17,12 @@ import { fuseConfig } from 'app/fuse-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
+import { DashboardModule } from './main/dashboard/dashboard.module';
 
 const appRoutes: Routes = [
     {
         path      : '**',
-        redirectTo: 'sample'
+        redirectTo: 'dashboard'
     }
 ];
 
@@ -48,12 +49,14 @@ const appRoutes: Routes = [
         FuseModule.forRoot(fuseConfig),
         FuseProgressBarModule,
         FuseSharedModule,
+        
         FuseSidebarModule,
         FuseThemeOptionsModule,
 
         // App modules
         LayoutModule,
-        SampleModule
+        SampleModule,
+        DashboardModule
     ],
     bootstrap   : [
         AppComponent
