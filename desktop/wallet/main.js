@@ -3,22 +3,32 @@ const { app, BrowserWindow } = require('electron');
 
 let win;
 
+const isDevelopment = process.env.development;
+
+function getBrowserWindowConfig() {
+    const commonConfig = {
+        //icon: `file://${distPath}/dist/assets/logo.png`
+    };
+    return isDevelopment ? {
+        ...commonConfig ,
+        fullscreen: false,
+        width: 800,
+        height: 600
+    } :
+    {
+        ...commonConfig,
+    }
+}
+
 function createWindow () {
 
     const distPath = path.join(__dirname, "./dist");
     // Create the browser window.
-    win = new BrowserWindow({
-        width: 600,
-        height: 600,
-        backgroundColor: '#ffffff',
-        //icon: `file://${distPath}/dist/assets/logo.png`
-    });
-
+    win = new BrowserWindow(getBrowserWindowConfig());
 
     win.loadURL(`file://${distPath}/index.html`);
 
-    //// uncomment below to open the DevTools.
-    // win.webContents.openDevTools()
+    win.webContents.openDevTools();
 
     // Event when the window is closed.
     win.on('closed', function () {
