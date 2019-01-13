@@ -3,7 +3,7 @@
 */
 
 import { constants } from "./constants";
-import { environment } from "../../../environments/environment";
+import { environment } from "../environments/environment";
 
 /*
 * Settings class

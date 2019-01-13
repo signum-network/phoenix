@@ -1,11 +1,10 @@
-import { HttpError } from "../../model";
-import HttpResponse from "../http/httpResponse";
+import { HttpError } from "@burst/http";
+import { HttpResponse } from "@burst/http";
+import * as BN from "bn.js";
 
 /*
 * Copyright 2018 PoC-Consortium
 */
-
-let BN = require('bn.js');
 
 /*
 * BurstUtil class

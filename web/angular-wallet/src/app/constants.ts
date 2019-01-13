@@ -41,8 +41,8 @@ export const constants = {
     defaultCurrency: "USD",
     defaultLanguage: "en",
     defaultTheme: "light",
-    documentationUrl: "https://poc-consortium.github.io/burstcoin-mobile-doc/",
-    donate: "BURST-RTEY-HUSA-BJG4-EZW9E",
+    documentationUrl: "",
+    donate: "BURST-HT4V-8H5E-ESS5-223SB",
     languages: [
         { code: "en", name: "English (Default)" },
         { code: "bg", name: "Български" },
@@ -75,17 +75,10 @@ export const constants = {
         { code: "zh-tw", name:"中文 (traditional)" }
     ],
     nodes: [
-        { "name": "CryptoGuru", "region": "Global", "location": "Munich", "address": "https://wallet.burst.cryptoguru.org", "port": 8125, "selected": true, "ping": -1 },
-        { "name": "CryptoGuru", "region": "Africa", "location": "Munich", "address": "https://wallet.burst.cryptoguru.org", "port": 8125, "selected": false, "ping": -1 },
-        { "name": "CryptoGuru", "region": "Asia", "location": "Munich", "address": "https://wallet.burst.cryptoguru.org", "port": 8125, "selected": false, "ping": -1 },
-        { "name": "CryptoGuru", "region": "Europe", "location": "Munich", "address": "https://wallet.burst.cryptoguru.org", "port": 8125, "selected": false, "ping": -1 },
-        { "name": "CryptoGuru", "region": "North America", "location": "Munich", "address": "https://wallet.burst.cryptoguru.org", "port": 8125, "selected": false, "ping": -1 },
-        { "name": "CryptoGuru", "region": "Oceania", "location": "Munich", "address": "https://wallet.burst.cryptoguru.org", "port": 8125, "selected": false, "ping": -1 },
-        { "name": "CryptoGuru", "region": "South America", "location": "Munich", "address": "https://wallet.burst.cryptoguru.org", "port": 8125, "selected": false, "ping": -1 },
+        { "name": "burst-team.us", "region": "Global", "location": "USA", "address": "https://wallet1.burst-team.us", "port": 2083, "selected": true, "ping": -1 }
     ],
-    supportUrl: "https://github.com/poc-consortium/burstcoin-mobile-doc/issues",
+    supportUrl: "https://github.com/burst-apps-team/phoenix/issues",
     transactionCount: "100",
     transactionUrl: "https://explore.burst.cryptoguru.org/transaction/",
-    twitter: "https://twitter.com/PoC_Consortium",
     version: "0.2.1"
 }

@@ -2,8 +2,8 @@
 * Copyright 2018 PoC-Consortium
 */
 
-let seedrandom = require('seedrandom');
-
+import * as seedrandom from "seedrandom";
+ 
 export class PassPhraseGenerator {
 
     // taken from https://github.com/first20hours/google-10000-english/blob/master/google-10000-english-usa-no-swears-medium.txt

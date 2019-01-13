@@ -5,12 +5,10 @@
 import { Converter } from "./converter";
 import { PassPhraseGenerator } from "./passPhraseGenerator";
 import { ECKCDSA } from "./ec-kcdsa";
-import { Keys } from "../../model";
-import { BurstUtil } from "./burst";
-
-let CryptoJS = require("crypto-js");
-let BN = require('bn.js');
-let pako = require('pako');
+import { Keys, BurstUtil } from "@burst/core";
+import { decryptAES } from "./decryptAES";
+import * as BN from "bn.js";
+import * as CryptoJS from "crypto-js";
 
 /*
 * Crypto class
@@ -85,16 +83,6 @@ export class Crypto {
     }
 
     /*
-    * Convert Burst Address back to account id
-    */
-    public getAccountIdFromBurstAddress(address: string): Promise<string> {
-        return new Promise((resolve, reject) => {
-            // TODO: refactor shitty nxt address resolution
-            resolve(BurstUtil.decode(address));
-        });
-    }
-
-    /*
     * Encrypt a derived hd private key with a given pin and return it in Base64 form
     */
     public encryptAES(text: string, key: string): Promise<string> {
@@ -102,81 +90,6 @@ export class Crypto {
             let encrypted = CryptoJS.AES.encrypt(text, key);
             resolve(encrypted.toString()); // Base 64
         });
-    }
-    /*
-    * Decrypt a derived hd private key with a given pin
-    */
-    public decryptAES(encryptedBase64: string, key: string): Promise<string> {
-        return new Promise((resolve, reject) => {
-            let decrypted = CryptoJS.AES.decrypt(encryptedBase64, key);
-            resolve(decrypted.toString(CryptoJS.enc.Utf8));
-        });
-    }
-
-    /*
-    * Encrypt a message attached to a transaction
-    */
-    public encryptMessage(message: string, encryptedPrivateKey: string, pinHash: string, recipientPublicKey: string): Promise<any> {
-        return new Promise((resolve, reject) => {
-            this.decryptAES(encryptedPrivateKey, pinHash)
-                .then(privateKey => {
-                    // generate shared key
-                    let sharedKey =
-                        ECKCDSA.sharedkey(
-                            Converter.convertHexStringToByteArray(privateKey),
-                            Converter.convertHexStringToByteArray(recipientPublicKey)
-                        );
-                    // Create random nonce
-                    let random_bytes = CryptoJS.lib.WordArray.random(32);
-                    let r_nonce = Converter.convertWordArrayToUint8Array(random_bytes);
-                    // combine
-                    for (let i = 0; i < 32; i++) {
-                        sharedKey[i] ^= r_nonce[i];
-                    }
-                    // hash shared key
-                    let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey));
-                    // ENCRYPT
-                    let iv = CryptoJS.lib.WordArray.random(16);
-                    let messageB64 = CryptoJS.AES.encrypt(message, key.toString(), {iv: iv}).toString();
-                    // convert base 64 to hex due to node limitation
-                    let messageHex = iv.toString(CryptoJS.enc.Hex) + CryptoJS.enc.Base64.parse(messageB64).toString(CryptoJS.enc.Hex);
-                    // Uint 8 to hex
-                    let nonce = random_bytes.toString(CryptoJS.enc.Hex);
-                    // return encrypted pair
-                    resolve({ m: messageHex, n: nonce })
-                })
-        })
-    }
-
-    /*
-    * Decrypt a message attached to transaction
-    */
-    public decryptMessage(encryptedMessage: string, nonce: string, encryptedPrivateKey: string, pinHash: string, senderPublicKey: string): Promise<any> {
-        return new Promise((resolve, reject) => {
-            this.decryptAES(encryptedPrivateKey, pinHash)
-                .then(privateKey => {
-                    // generate shared key
-                    let sharedKey =
-                        ECKCDSA.sharedkey(
-                            Converter.convertHexStringToByteArray(privateKey),
-                            Converter.convertHexStringToByteArray(senderPublicKey)
-                        );
-                    // convert nonce to uint8array
-                    let nonce_array = Converter.convertWordArrayToUint8Array(CryptoJS.enc.Hex.parse(nonce));
-                    // combine
-                    for (let i = 0; i < 32; i++) {
-                        sharedKey[i] ^= nonce_array[i];
-                    }
-                    // hash shared key
-                    let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey))
-                    // convert message hex back to base 64 due to limitation of node
-                    let messageB64 = CryptoJS.enc.Hex.parse(encryptedMessage).toString(CryptoJS.enc.Base64);
-                    // DECRYPT
-                    let message = CryptoJS.AES.decrypt(messageB64, key.toString()).toString(CryptoJS.enc.Utf8);
-                    // return decrypted message
-                    resolve(message);
-                })
-        })
     }
 
     /*
@@ -195,7 +108,7 @@ export class Crypto {
     */
     public generateSignature(transactionHex: string, encryptedPrivateKey: string, pinHash: string): Promise<string> {
         return new Promise((resolve, reject) => {
-            this.decryptAES(encryptedPrivateKey, pinHash)
+            decryptAES(encryptedPrivateKey, pinHash)
                 .then(privateKey => {
                     let s = Converter.convertHexStringToByteArray(privateKey);
                     let m = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(transactionHex)));

@@ -27,5 +27,5 @@ import { ToolbarComponent } from 'app/layout/components/toolbar/toolbar.componen
     ]
 })
 export class ToolbarModule
-{
+{ 
 }

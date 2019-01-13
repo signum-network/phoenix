@@ -2,7 +2,7 @@ import {Injectable, ApplicationRef} from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
-import { constants } from '../model';
+import { constants } from '../../../constants';
 
 
 @Injectable()

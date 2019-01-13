@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { constants } from '../../model'
+import { constants } from '../../../../constants'
 import { I18nService } from "../i18n.service";
 
 @Component({

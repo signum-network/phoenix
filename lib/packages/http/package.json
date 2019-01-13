@@ -14,7 +14,7 @@
     "node": ">=10"
   },
   "license": "GPL-3.0",
-  "main": "index.ts",
+  "main": "./src/index.ts",
   "private": false,
   "jest": {
     "transform": {

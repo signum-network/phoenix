@@ -1,9 +1,9 @@
 
-jest.mock('../http');
+jest.mock('../src/http');
 
-import Http from '../http';
-import Github from '../github';
-import HttpResponse from '../httpResponse';
+import Http from '../src/http';
+import Github from '../src/github';
+import HttpResponse from '../src/httpResponse';
 
 /**
  * This test is a reference implementation to show how Http requests can be mocked
@@ -40,6 +40,4 @@ describe('Github', () => {
             expect(e).toBe('Oh no, internal server error. Blame the backend');
         }
     });
-
-
 });

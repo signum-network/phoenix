@@ -3,6 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+    defaultNode: "http://localhost:4200/burst",
+    marketUrl: "http://localhost:4200/v1/ticker/burst/",
     production: false,
     hmr       : false
 };

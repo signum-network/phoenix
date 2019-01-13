@@ -4,8 +4,13 @@
         "outDir": "../out-tsc/app",
         "module": "es2015"
     },
+    "include": [
+      "**/*.ts",
+      "../../../lib/**/*.ts"
+    ],
     "exclude": [
-        "test.ts",
-        "**/*.spec.ts"
+      "test.ts",
+      "**/*.spec.ts",
+      "../../../lib/**/*.spec.ts"
     ]
 }

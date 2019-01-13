@@ -7,7 +7,7 @@
 *
 * Thrown on HTTP errors
 */
-export class HttpError {
+export default class HttpError {
     public status: number;
     public error: string;
     public exception: string;
