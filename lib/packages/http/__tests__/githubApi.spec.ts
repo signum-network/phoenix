@@ -1,9 +1,5 @@
-
-jest.mock('../http');
-
-import Http from '../http';
+import HttpMock from './helpers/httpMock';
 import Github from '../github';
-import HttpResponse from '../httpResponse';
 
 /**
  * This test is a reference implementation to show how Http requests can be mocked
@@ -12,12 +8,7 @@ describe('Github', () => {
 
     it('should getAllPhoenixContributors easily', async () => {
 
-        (Http as any).mockImplementationOnce(() => {
-            return {
-                get : () => Promise.resolve(new HttpResponse(200, [{login: 'ohager'}]))
-            };
-        });
-
+        HttpMock.onGet().reply(200, [{login: 'ohager'}]);
         const github = new Github();
         const contributors = await github.getAllPhoenixContributors();
         expect(contributors.length).toBe(1);
@@ -26,13 +17,7 @@ describe('Github', () => {
 
 
     it('should return error on getAllPhoenixContributors  failure', async () => {
-
-        (Http as any).mockImplementationOnce(() => {
-            return {
-                get : () => Promise.resolve(new HttpResponse(500, null, 'Oh no, internal server error. Blame the backend'))
-            };
-        });
-
+        HttpMock.onGet().error(500, 'Oh no, internal server error. Blame the backend');
         const github = new Github();
         try {
             await github.getAllPhoenixContributors();
