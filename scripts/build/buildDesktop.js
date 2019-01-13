@@ -14,6 +14,7 @@ async function buildAngularWallet(cwd){
 async function copyDistFiles(cwd) {
     const src = path.join(__dirname, '../../web/angular-wallet/dist');
     const dest = path.join(__dirname, '../../desktop/wallet/dist');
+    await fs.remove(dest);
     log.info(`Copying dist files
     from: ${chalk.gray(src)} 
     to: ${chalk.gray(dest)}`);
