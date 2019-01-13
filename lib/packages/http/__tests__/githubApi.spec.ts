@@ -12,8 +12,8 @@ describe('Github', () => {
         HttpMock.onGet().reply(200, [{login: 'ohager'}]);
         const github = new Github();
         const contributors = await github.getAllPhoenixContributors();
-        expect(contributors.length).toBe(1);
-        expect(contributors).toEqual(['ohager']);
+        expect(contributors.length).toBe(2);
+        expect(contributors).toEqual(['ohager', 'blankey1337']);
     });
 
 
@@ -24,6 +24,6 @@ describe('Github', () => {
             await github.getAllPhoenixContributors();
         } catch (e) {
             expect(e).toBe('Oh no, internal server error. Blame the backend');
-        }
+        } 
     });
 });

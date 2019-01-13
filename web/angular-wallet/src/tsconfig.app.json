@@ -11,6 +11,7 @@
     "exclude": [
       "test.ts",
       "**/*.spec.ts",
-      "../../../lib/**/*.spec.ts"
+      "../../../lib/**/*.spec.ts",
+      "../../../lib/**/__tests__/**/*.ts"
     ]
 }

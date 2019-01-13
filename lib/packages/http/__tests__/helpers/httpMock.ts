@@ -1,6 +1,6 @@
-jest.mock('../../http');
-import Http from '../../http';
-import HttpResponse from '../../httpResponse';
+jest.mock('../../src/http');
+import Http from '../../src/http';
+import HttpResponse from '../../src/httpResponse';
 
 
 interface MockBehavior {
