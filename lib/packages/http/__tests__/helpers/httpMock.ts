@@ -11,14 +11,12 @@ interface MockBehavior {
 
 function createMockImplementationFunctionForReply(method: string, status: number, response?: any) {
     return () => ({
-        // @ts-ignore
         [method]: () => Promise.resolve(new HttpResponse(status, response))
     });
 }
 
 function createMockImplementationFunctionForError(method: string, status: number, message: string) {
     return () => ({
-        // @ts-ignore
         [method]: () => Promise.resolve(new HttpResponse(status, '', message))
     });
 }
