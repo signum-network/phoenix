@@ -1,22 +1,38 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<h3>Phoenix Contributors {{result}}</h3>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!-- PROGRESS BAR -->
+<fuse-progress-bar></fuse-progress-bar>
+<!-- / PROGRESS BAR -->
 
-<router-outlet></router-outlet>
+<!-- VERTICAL LAYOUT 1 -->
+<ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-1'">
+    <vertical-layout-1></vertical-layout-1>
+</ng-container>
+<!-- / VERTICAL LAYOUT 1 -->
+
+<!-- VERTICAL LAYOUT 2 -->
+<ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-2'">
+    <vertical-layout-2></vertical-layout-2>
+</ng-container>
+<!-- / VERTICAL LAYOUT 2 -->
+
+<!-- VERTICAL LAYOUT 3 -->
+<ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-3'">
+    <vertical-layout-3></vertical-layout-3>
+</ng-container>
+<!-- / VERTICAL LAYOUT 3 -->
+
+<!-- HORIZONTAL LAYOUT 1 -->
+<ng-container *ngIf="fuseConfig.layout.style === 'horizontal-layout-1'">
+    <horizontal-layout-1></horizontal-layout-1>
+</ng-container>
+<!-- / HORIZONTAL LAYOUT 1 -->
+
+<!-- THEME OPTIONS PANEL -->
+<button mat-icon-button class="warn mat-elevation-z2 theme-options-button"
+        (click)="toggleSidebarOpen('themeOptionsPanel')">
+    <mat-icon>settings</mat-icon>
+</button>
+
+<fuse-sidebar name="themeOptionsPanel" class="theme-options-sidebar" position="right" [invisibleOverlay]="true">
+    <fuse-theme-options></fuse-theme-options>
+</fuse-sidebar>
+<!-- / THEME OPTIONS PANEL -->
