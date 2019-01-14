@@ -4,7 +4,7 @@
   "description": "Send commands to BURST over HTTP",
   "contributors": [
     "ohager",
-    "blankey"
+    "blankey1337"
   ],
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "node": ">=10"
   },
   "license": "GPL-3.0",
-  "main": "index.ts",
+  "main": "./src/index.ts",
   "private": false,
   "jest": {
     "transform": {
