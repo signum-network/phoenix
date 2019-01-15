@@ -1,0 +1,49 @@
+.login {
+    background: #1e5799;
+    background: linear-gradient(141deg, #3dc6c2 0%, #3ca4bc 25%, #3c8dbc 50%, #3c73bc 75%, #2b50bf 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#428bca',GradientType=0 );
+    height: 100%;
+    padding-top:1px;
+
+    form {
+        text-align: center;
+        margin:100px auto;
+        max-width:600px;
+        color:rgba(#000, .75);
+    }
+
+    h2 {
+        text-align:left;
+    }
+
+    .buttons {
+        margin:0;
+        padding:0;
+        list-style: none;
+        text-align: center;
+        margin:50px 0 20px;
+        li {
+            cursor: pointer;
+            display:inline-block;
+            margin:0;
+            width:50px;
+            height:50px;
+            line-height: 61px;
+            color:#fff;
+            background:rgba(#000, .2);
+            &:hover {
+                background:rgba(#000, .3);
+            }
+            &:first-child {
+                border-radius:3px 0 0 3px;
+            }
+            &:last-child {
+                border-radius:0 3px 3px 0;
+            }
+            &.selected {
+                // box-shadow: inset 0 0px 4px rgba(#000, .4);
+                color:rgba(#fff, .5);
+            }
+        }
+    }
+}
