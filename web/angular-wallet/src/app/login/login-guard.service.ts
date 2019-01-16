@@ -10,7 +10,7 @@ import {CanActivate, Router} from '@angular/router';
 export class LoginGuard implements CanActivate {
 
   // FIXME: need to get this from a store (single source)
-  private isLoggedIn: true;
+  private isLoggedIn = true;
 
   constructor(
     // private storeService: StoreService,
@@ -19,6 +19,7 @@ export class LoginGuard implements CanActivate {
   ) {}
 
   canActivate(): Promise<boolean> {
+
     if (!this.isLoggedIn) {
       this.router.navigate(['/login']);
     }
