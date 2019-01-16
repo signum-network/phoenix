@@ -9,6 +9,9 @@ import {CanActivate, Router} from '@angular/router';
 })
 export class LoginGuard implements CanActivate {
 
+  // FIXME: need to get this from a store (single source)
+  private isLoggedIn: true;
+
   constructor(
     // private storeService: StoreService,
     // private accountService: AccountService,
@@ -16,12 +19,12 @@ export class LoginGuard implements CanActivate {
   ) {}
 
   canActivate(): Promise<boolean> {
-    console.log('test');
-
-    this.router.navigate(['/dashboard']);
-
+    if (!this.isLoggedIn) {
+      this.router.navigate(['/login']);
+    }
     return Promise.resolve(true);
 
+    // FIXME: review old code and adapt it accordingly
     /*
     return this.storeService.ready.pipe(
       filter(Boolean),
@@ -36,7 +39,6 @@ export class LoginGuard implements CanActivate {
           this.router.navigate(['/dashboard/accounts']);
           return false;
         } else {
-          this.router.navigate(['/login']);
           return false;
         }
       })

@@ -29,7 +29,11 @@ import {TranslateModule} from '@ngx-translate/core';
   ],
   declarations: [
     LoginComponent
+  ],
+  exports: [
+    LoginComponent
   ]
 })
-export class LoginModule {
+export class LoginModule
+{
 }

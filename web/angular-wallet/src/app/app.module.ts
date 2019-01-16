@@ -8,29 +8,20 @@ import {MatButtonModule, MatIconModule} from '@angular/material';
 import {TranslateModule} from '@ngx-translate/core';
 import 'hammerjs';
 
-import {FuseModule} from '@fuse/fuse.module';
-import {FuseSharedModule} from '@fuse/shared.module';
-import {FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule} from '@fuse/components';
-
-import {fuseConfig} from 'app/fuse-config';
-
 import {AppComponent} from 'app/app.component';
-import {LayoutModule} from 'app/layout/layout.module';
-import {SampleModule} from 'app/main/sample/sample.module';
-import {DashboardModule} from './main/dashboard/dashboard.module';
-import {LoginModule} from './main/login/login.module';
-import {LoginGuard} from './main/login/login-guard.service';
+import {MainModule} from './main/main.module';
+import {MainComponent} from './main/main.component';
+import {LoginModule} from './login/login.module';
+import {LoginComponent} from './login/login.component';
 
 const appRoutes: Routes = [
   {
     path: 'login',
-    redirectTo: 'login'
+    component: LoginComponent
   },
   {
     path: '**',
-    redirectTo: 'dashboard',
-    canActivate: [LoginGuard],
-    runGuardsAndResolvers: 'always',
+    component: MainComponent
   },
 ];
 
@@ -52,20 +43,9 @@ const appRoutes: Routes = [
     // Material
     MatButtonModule,
     MatIconModule,
-
-    // Fuse modules
-    FuseModule.forRoot(fuseConfig),
-    FuseProgressBarModule,
-    FuseSharedModule,
-
-    FuseSidebarModule,
-    FuseThemeOptionsModule,
-
     // App modules
-    LayoutModule,
-    SampleModule,
     LoginModule,
-    DashboardModule,
+    MainModule,
   ],
   bootstrap: [
     AppComponent

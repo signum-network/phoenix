@@ -16,32 +16,33 @@ import {locale as navigationEnglish} from 'app/navigation/i18n/en';
 import {locale as navigationTurkish} from 'app/navigation/i18n/tr';
 
 @Component({
-  selector: 'app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
-  // FIXME: need to control this in a store
-  isLoggedIn = true;
+export class MainComponent implements OnInit, OnDestroy {
+  fuseConfig: any;
+  navigation: any;
 
   private _unsubscribeAll: Subject<any>;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
+    private _fuseConfigService: FuseConfigService,
+    private _fuseNavigationService: FuseNavigationService,
+    private _fuseSidebarService: FuseSidebarService,
+    private _fuseSplashScreenService: FuseSplashScreenService,
     private _fuseTranslationLoaderService: FuseTranslationLoaderService,
     private _translateService: TranslateService,
     private _platform: Platform
   ) {
-    // Add languages
+    this.navigation = navigation;
+    this._fuseNavigationService.register('main', this.navigation);
+    this._fuseNavigationService.setCurrentNavigation('main');
     this._translateService.addLangs(['en', 'tr']);
-
-    // Set the default language
     this._translateService.setDefaultLang('en');
-
-    // Set the navigation translations
     this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationTurkish);
 
-    // Use a language
     this._translateService.use('en');
 
     /**
@@ -90,11 +91,56 @@ export class AppComponent implements OnInit, OnDestroy {
   // @ Lifecycle hooks
   // -----------------------------------------------------------------------------------------------------
 
-  ngOnInit(): void {}
+  /**
+   * On init
+   */
+  ngOnInit(): void {
+    // Subscribe to config changes
+    this._fuseConfigService.config
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((config) => {
 
+        this.fuseConfig = config;
+
+        // Boxed
+        if (this.fuseConfig.layout.width === 'boxed') {
+          this.document.body.classList.add('boxed');
+        } else {
+          this.document.body.classList.remove('boxed');
+        }
+
+        // Color theme - Use normal for loop for IE11 compatibility
+        for (let i = 0; i < this.document.body.classList.length; i++) {
+          const className = this.document.body.classList[i];
+
+          if (className.startsWith('theme-')) {
+            this.document.body.classList.remove(className);
+          }
+        }
+
+        this.document.body.classList.add(this.fuseConfig.colorTheme);
+      });
+  }
+
+  /**
+   * On destroy
+   */
   ngOnDestroy(): void {
     // Unsubscribe from all subscriptions
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
+  }
+
+  // -----------------------------------------------------------------------------------------------------
+  // @ Public methods
+  // -----------------------------------------------------------------------------------------------------
+
+  /**
+   * Toggle sidebar open
+   *
+   * @param key
+   */
+  toggleSidebarOpen(key): void {
+    this._fuseSidebarService.getSidebar(key).toggleOpen();
   }
 }

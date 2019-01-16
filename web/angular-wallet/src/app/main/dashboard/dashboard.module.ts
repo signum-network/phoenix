@@ -10,14 +10,17 @@ import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardService } from './dashboard.service';
+import {LoginGuard} from '../../login/login-guard.service';
 
+// TODO: Isn't it better to control the routes in main?!
 const routes: Routes = [
     {
-        path     : '**',
+        path     : 'dashboard',
         component: DashboardComponent,
         resolve  : {
             data: DashboardService
-        }
+        },
+        canActivate: [LoginGuard],
     }
 ];
 
@@ -34,10 +37,6 @@ const routes: Routes = [
         MatMenuModule,
         MatSelectModule,
         MatTabsModule,
-
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyD81ecsCj4yYpcXSLFcYU97PvRsE_X8Bx8'
-        }),
         ChartsModule,
         NgxChartsModule,
 
