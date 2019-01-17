@@ -1,6 +1,7 @@
-
-import Github from '../src/github';
+// Import HttpMock as first!
 import HttpMock from './helpers/httpMock';
+//
+import Github from '../src/github';
 
 /**
  * This test is a reference implementation to show how Http requests can be mocked
@@ -9,11 +10,11 @@ describe('Github', () => {
 
     it('should getAllPhoenixContributors easily', async () => {
 
-        HttpMock.onGet().reply(200, [{login: 'ohager'}]);
+        HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);
         const github = new Github();
         const contributors = await github.getAllPhoenixContributors();
         expect(contributors.length).toBe(2);
-        expect(contributors).toEqual(['ohager', 'blankey1337']);
+        expect(contributors).toEqual(['foo', 'bar']);
     });
 
 
@@ -24,6 +25,6 @@ describe('Github', () => {
             await github.getAllPhoenixContributors();
         } catch (e) {
             expect(e).toBe('Oh no, internal server error. Blame the backend');
-        } 
+        }
     });
 });
