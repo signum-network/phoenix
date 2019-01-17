@@ -1,6 +1,6 @@
-# Angular Wallet
+# BURST Angular Wallet
 
-Material Design Admin Template with Angular 7+ and Angular Material
+The BURST Angular wallet is a JavaScript application written in Angular and TypeScript. 
 
 ## The Community
 
