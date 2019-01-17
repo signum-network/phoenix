@@ -12,7 +12,7 @@ let errorMap: ResponseMap = {};
 function getMappedResponse(map: ResponseMap, endpoint: string ) {
     const response = map[endpoint] || map[FOR_ALL_ENDPOINTS];
     if (!response && endpoint !== FOR_ALL_ENDPOINTS) {
-        throw new Error(`No mock for endpoint '${endpoint}' found.`);
+        throw new Error(`No mock for called endpoint '${endpoint}' found. Use onGet() or onGet('${endpoint}').`);
     }
 
     return response;

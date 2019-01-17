@@ -33,6 +33,20 @@ describe('Github', () => {
         expect(contributors).toEqual(['baz']);
     });
 
+    it('should getAllPhoenixContributors - specific url mock , but non-existing', async () => {
+
+        // mock for that very specific endpoint
+        HttpMock.onGet('/phoenix/contributors/invalid').reply(200, [{login: 'baz'}]);
+        const github = new Github();
+        try {
+            await github.getAllPhoenixContributors();
+            expect('Should throw exception').toBeTruthy();
+        } catch (e) {
+            expect(e.message)
+                .toBe('No mock for called endpoint \'/phoenix/contributors\' found. Use onGet() or onGet(\'/phoenix/contributors\').');
+        }
+    });
+
 
     it('should return error on getAllPhoenixContributors  failure', async () => {
         HttpMock.onGet().error(500, 'Oh no, internal server error. Blame the backend');
