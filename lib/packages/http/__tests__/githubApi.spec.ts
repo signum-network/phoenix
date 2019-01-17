@@ -8,13 +8,29 @@ import Github from '../src/github';
  */
 describe('Github', () => {
 
+    beforeEach(() => {
+        HttpMock.reset();
+    });
+
     it('should getAllPhoenixContributors easily', async () => {
 
+        // mock for any get
         HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);
         const github = new Github();
         const contributors = await github.getAllPhoenixContributors();
         expect(contributors.length).toBe(2);
         expect(contributors).toEqual(['foo', 'bar']);
+    });
+
+
+    it('should getAllPhoenixContributors - specific url mock', async () => {
+
+        // mock for that very specific endpoint
+        HttpMock.onGet('/phoenix/contributors').reply(200, [{login: 'baz'}]);
+        const github = new Github();
+        const contributors = await github.getAllPhoenixContributors();
+        expect(contributors.length).toBe(1);
+        expect(contributors).toEqual(['baz']);
     });
 
 
