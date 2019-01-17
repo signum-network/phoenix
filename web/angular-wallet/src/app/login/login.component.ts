@@ -17,9 +17,9 @@ export class LoginComponent implements OnInit {
     // private notificationService: NotifierService,
     private router: Router) {}
 
-  method: string;
+  method = 'active';
+  version = 'v0.0.1'; // FIXME: bump version
 
   ngOnInit() {
-    this.method = 'active';
   }
 }
