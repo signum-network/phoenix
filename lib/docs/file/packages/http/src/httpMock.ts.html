@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">packages/http/src/httpMock.ts | burst-js</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Common BURST library"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="burst-js"><meta property="twitter:description" content="Common BURST library"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/burst-apps-team/phoenix"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src">core/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/account.ts~Account.html">Account</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/attachment.ts~Attachment.html">Attachment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/attachment.ts~EncryptedMessage.html">EncryptedMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/attachment.ts~Message.html">Message</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/block.ts~Block.html">Block</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/burstNode.ts~BurstNode.html">BurstNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/burstUtil.ts~BurstUtil.html">BurstUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/currency.ts~Currency.html">Currency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/keys.ts~Keys.html">Keys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/transaction.ts~Transaction.html">Transaction</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-abstract">core/src/abstract</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/abstract/store.ts~Store.html">Store</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-brs">core/src/brs</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/brs/baseApi.ts~BaseApi.html">BaseApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/brs/github.ts~Github.html">Github</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-error">core/src/error</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/error/noConnectionError.ts~NoConnectionError.html">NoConnectionError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/error/unknownAccountError.ts~UnknownAccountError.html">UnknownAccountError</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#crypto-src">crypto/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/converter.ts~Converter.html">Converter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/crypto.ts~Crypto.html">Crypto</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/curve25519.ts~Curve25519.html">Curve25519</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/ec-kcdsa.ts~ECKCDSA.html">ECKCDSA</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/passPhraseGenerator.ts~PassPhraseGenerator.html">PassPhraseGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-decryptAES">decryptAES</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-decryptMessage">decryptMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-encryptMessage">encryptMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAccountIdFromBurstAddress">getAccountIdFromBurstAddress</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#http-src">http/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/http/src/http.ts~Http.html">Http</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/http/src/httpError.ts~HttpError.html">HttpError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/http/src/httpMock.ts~HttpMock.html">HttpMock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/http/src/httpResponse.ts~HttpResponse.html">HttpResponse</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">packages/http/src/httpMock.ts</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Http from &apos;./http&apos;;
+import HttpResponse from &apos;./httpResponse&apos;;
+
+const FOR_ALL_ENDPOINTS = &apos;__all&apos;;
+
+interface ResponseMap {
+    [endpoint: string]: HttpResponse;
+}
+
+let replyMap: ResponseMap = {};
+let errorMap: ResponseMap = {};
+
+function getMappedResponse(map: ResponseMap, endpoint: string) {
+    const response = map[endpoint] || map[FOR_ALL_ENDPOINTS];
+    if (!response &amp;&amp; endpoint !== FOR_ALL_ENDPOINTS) {
+        throw new Error(`No mock for called endpoint &apos;${endpoint}&apos; found. Use onGet() or onGet(&apos;${endpoint}&apos;).`);
+    }
+
+    return response;
+}
+
+function createMockImplementationFunctionForReply(method: string, endpoint: string, status: number, response?: any) {
+    replyMap[endpoint] = new HttpResponse(status, response);
+    return function () {
+        return {
+            [method]: (url: string) =&gt; Promise.resolve(getMappedResponse(replyMap, url))
+        };
+    };
+}
+
+function createMockImplementationFunctionForError(method: string, endpoint: string, status: number, message: string) {
+    errorMap[endpoint] = new HttpResponse(status, &apos;&apos;, message);
+    return function () {
+        return {
+            [method]: (url: string) =&gt; Promise.resolve(getMappedResponse(errorMap, url))
+        };
+    };
+}
+
+interface MockBehavior {
+    reply(status: number, payload?: any): void;
+
+    error(status: number, message: string): void;
+}
+
+class MockBehavior {
+    constructor(private method: string, private endpoint: string = FOR_ALL_ENDPOINTS) {
+    }
+
+    public reply(status: number, response: any) {
+        // @ts-ignore
+        Http.mockImplementationOnce(createMockImplementationFunctionForReply(this.method, this.endpoint, status, response));
+    }
+
+    public error(status: number, message: string) {
+        // @ts-ignore
+        Http.mockImplementationOnce(createMockImplementationFunctionForError(this.method, this.endpoint, status, message));
+    }
+}
+
+/**
+ * Http Mocker for easy to http testing using Jest
+ *
+ * When using this mocking helper you need to call `jest.mock(&apos;@burst/http/src/http&apos;)`
+ * at first line of your tests.
+ *``` typescript
+ *jest.mock(&apos;@burst/http/src/http&apos;);
+ *import {HttpMock} from &apos;@burst/http&apos;;
+ *import Github from &apos;../src/brs/github&apos;;
+ *
+ *describe(&apos;Github&apos;, () =&gt; {
+ *
+ *   beforeEach(() =&gt; {
+ *       HttpMock.reset();
+ *   });
+ *
+ *   it(&apos;should getAllPhoenixContributors easily&apos;, async () =&gt; {
+ *
+ *       // mock for any get
+ *       HttpMock.onGet().reply(200, [{login: &apos;foo&apos;}, {login: &apos;bar&apos;}]);
+ *       const github = new Github();
+ *       const contributors = await github.getAllPhoenixContributors();
+ *       expect(contributors.length).toBe(2);
+ *       expect(contributors).toEqual([&apos;foo&apos;, &apos;bar&apos;]);
+ *   });
+ *});
+ *```
+ *
+ */
+class HttpMock {
+
+    /**
+     * Mocks responses for get methods
+     * You may pass a specific endpoint as parameter to mock only selected endpoints.
+     * This is very useful, when having methods that do several Http requests,
+     * so you can mock them one on one.
+     *
+     * The following code returns the same content on _every_ get call
+     * ```
+     *   HttpMock.onGet().reply(200, [{login: &apos;foo&apos;}, {login: &apos;bar&apos;}]);
+     * ```
+     *
+     *  The next code returns the different content depending on the passed endpoint
+     * ```
+     *   HttpMock.onGet(&apos;/foo&apos;).reply(200, {data: &apos;foo&apos;});
+     *   HttpMock.onGet(&apos;/bar&apos;).reply(200, {data: &apos;bar&apos;});
+     * ```
+     * @param endpoint?  An endpoint, to allow specific behavior on that endpoint
+     */
+    public static onGet(endpoint?: string): MockBehavior {
+        return new MockBehavior(&apos;get&apos;, endpoint);
+    }
+
+    /**
+     * Mocks responses for post methods
+     * @param endpoint?  An endpoint, to allow specific behavior on that endpoint
+     */
+    public static onPost(endpoint?: string): MockBehavior {
+        return new MockBehavior(&apos;post&apos;, endpoint);
+    }
+
+    /**
+     * Mocks responses for put methods
+     * @param endpoint?  An endpoint, to allow specific behavior on that endpoint
+     */
+    public static onPut(endpoint?: string): MockBehavior {
+        return new MockBehavior(&apos;put&apos;, endpoint);
+    }
+
+    /**
+     * Mocks responses for delete methods
+     * @param endpoint?  An endpoint, to allow specific behavior on that endpoint
+     */
+    public static onDelete(endpoint?: string): MockBehavior {
+        return new MockBehavior(&apos;delete&apos;, endpoint);
+    }
+
+    /**
+     * Resets all mocked behavior
+     */
+    public static reset() {
+        // @ts-ignore
+        Http.mockClear();
+        errorMap = {};
+        replyMap = {};
+    }
+
+}
+
+export default HttpMock;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">packages/core/src/burstUtil.ts | burst-js</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Common BURST library"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="burst-js"><meta property="twitter:description" content="Common BURST library"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/burst-apps-team/phoenix"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src">core/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/account.ts~Account.html">Account</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/attachment.ts~Attachment.html">Attachment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/attachment.ts~EncryptedMessage.html">EncryptedMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/attachment.ts~Message.html">Message</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/block.ts~Block.html">Block</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/burstNode.ts~BurstNode.html">BurstNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/burstUtil.ts~BurstUtil.html">BurstUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/currency.ts~Currency.html">Currency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/keys.ts~Keys.html">Keys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/transaction.ts~Transaction.html">Transaction</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-abstract">core/src/abstract</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/abstract/store.ts~Store.html">Store</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-brs">core/src/brs</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/brs/baseApi.ts~BaseApi.html">BaseApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/brs/github.ts~Github.html">Github</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-error">core/src/error</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/error/noConnectionError.ts~NoConnectionError.html">NoConnectionError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/error/unknownAccountError.ts~UnknownAccountError.html">UnknownAccountError</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#crypto-src">crypto/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/converter.ts~Converter.html">Converter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/crypto.ts~Crypto.html">Crypto</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/curve25519.ts~Curve25519.html">Curve25519</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/ec-kcdsa.ts~ECKCDSA.html">ECKCDSA</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/passPhraseGenerator.ts~PassPhraseGenerator.html">PassPhraseGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-decryptAES">decryptAES</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-decryptMessage">decryptMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-encryptMessage">encryptMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAccountIdFromBurstAddress">getAccountIdFromBurstAddress</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#http-src">http/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/http/src/http.ts~Http.html">Http</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/http/src/httpError.ts~HttpError.html">HttpError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/http/src/httpMock.ts~HttpMock.html">HttpMock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/http/src/httpResponse.ts~HttpResponse.html">HttpResponse</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">packages/core/src/burstUtil.ts</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { HttpError } from &quot;@burst/http&quot;;
+import { HttpResponse } from &quot;@burst/http&quot;;
+import * as BN from &quot;bn.js&quot;;
+
+/*
+* Copyright 2018 PoC-Consortium
+*/
+
+/*
+* BurstUtil class
+*
+* The BurstUtil class provides static methods for encoding and decoding numeric ids.
+* In addition, addresses can be checked for validity.
+*/
+export class BurstUtil {
+    private static readonly initialCodeword = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    private static readonly gexp: number[] = [1, 2, 4, 8, 16, 5, 10, 20, 13, 26, 17, 7, 14, 28, 29, 31, 27, 19, 3, 6, 12, 24, 21, 15, 30, 25, 23, 11, 22, 9, 18, 1];
+    private static readonly glog: number[] = [0, 0, 1, 18, 2, 5, 19, 11, 3, 29, 6, 27, 20, 8, 12, 23, 4, 10, 30, 17, 7, 22, 28, 26, 21, 25, 9, 16, 13, 14, 24, 15];
+    private static readonly cwmap: number[] = [3, 2, 1, 0, 7, 6, 5, 4, 13, 14, 15, 16, 12, 8, 9, 10, 11];
+    private static readonly alphabet: string[] = &apos;23456789ABCDEFGHJKLMNPQRSTUVWXYZ&apos;.split(&apos;&apos;);
+    private static readonly base32Length = 13;
+
+    private static ginv(a) {
+        return BurstUtil.gexp[31 - BurstUtil.glog[a]];
+    }
+
+    private static gmult(a, b) {
+        if (a == 0 || b == 0) {
+            return 0;
+        }
+
+        let idx = (BurstUtil.glog[a] + BurstUtil.glog[b]) % 31;
+
+        return BurstUtil.gexp[idx];
+    }
+
+    /*
+    * Encode a numeric id into BURST-XXXX-XXXX-XXXX-XXXXX
+    */
+    public static encode(plain: string): string {
+        let plainString10 = [],
+            codeword = BurstUtil.initialCodeword.slice(),
+            pos = 0;
+
+        let plainString = new BN(plain).toString();
+        let length = plainString.length;
+
+        for (let i = 0; i &lt; length; i++) {
+            plainString10[i] = plainString.charCodeAt(i) - &apos;0&apos;.charCodeAt(0);
+        }
+
+        let digit32 = 0,
+            newLength = 0;
+        do // base 10 to base 32 conversion
+        {
+            digit32 = 0;
+            newLength = 0;
+            for (let i = 0; i &lt; length; i++) {
+                digit32 = digit32 * 10 + plainString10[i];
+                if (digit32 &gt;= 32) {
+                    plainString10[newLength] = digit32 &gt;&gt; 5;
+                    digit32 &amp;= 31;
+                    newLength++;
+                } else if (newLength &gt; 0) {
+                    plainString10[newLength] = 0;
+                    newLength++;
+                }
+            }
+
+            length = newLength;
+            codeword[pos] = digit32;
+            pos++;
+        }
+        while (length &gt; 0);
+
+        let p = [0, 0, 0, 0];
+
+        for (let i = BurstUtil.base32Length - 1; i &gt;= 0; i--) {
+            let fb = codeword[i] ^ p[3];
+
+            p[3] = p[2] ^ BurstUtil.gmult(30, fb);
+            p[2] = p[1] ^ BurstUtil.gmult(6, fb);
+            p[1] = p[0] ^ BurstUtil.gmult(9, fb);
+            p[0] = BurstUtil.gmult(17, fb);
+        }
+
+        codeword[13] = p[0];
+        codeword[14] = p[1];
+        codeword[15] = p[2];
+        codeword[16] = p[3];
+
+        let out = &apos;BURST-&apos;;
+
+        for (let i = 0; i &lt; 17; i++) {
+            out += BurstUtil.alphabet[codeword[BurstUtil.cwmap[i]]];
+
+            if ((i &amp; 3) == 3 &amp;&amp; i &lt; 13) out += &apos;-&apos;;
+        }
+
+        return out;
+    }
+
+    /*
+    * Decode a BURST-XXXX-XXXX-XXXX-XXXXX into a numeric id
+    */
+    public static decode(address: string): string {
+        // remove Burst prefix
+        if (address.indexOf(&apos;BURST-&apos;) == 0) {
+            address = address.substr(6);
+        } else {
+            return undefined;
+        }
+
+        let codeword = BurstUtil.initialCodeword.slice(),
+            codewordLength = 0;
+
+        for (let i = 0; i &lt; address.length; i++) {
+            let pos = BurstUtil.alphabet.indexOf(address.charAt(i));
+
+            if (pos &lt;= -1 || pos &gt; BurstUtil.alphabet.length) {
+                continue;
+            }
+
+            if (codewordLength &gt; 16) {
+                return undefined;
+            }
+
+            let codeworkIndex = BurstUtil.cwmap[codewordLength];
+            codeword[codeworkIndex] = pos;
+            codewordLength++;
+        }
+
+        if (!BurstUtil.isValid(address)) {
+            return undefined;
+        }
+
+        let length = BurstUtil.base32Length;
+        let cypherString32 = [];
+        for (let i = 0; i &lt; length; i++) {
+            cypherString32[i] = codeword[length - i - 1];
+        }
+
+        let out: string = &quot;&quot;,
+            newLength,
+            digit10 = 0
+        do { // base 32 to base 10 conversion
+            newLength = 0;
+            digit10 = 0;
+
+            for (let i = 0; i &lt; length; i++) {
+                digit10 = digit10 * 32 + cypherString32[i];
+
+                if (digit10 &gt;= 10) {
+                    cypherString32[newLength] = Math.floor(digit10 / 10);
+                    digit10 %= 10;
+                    newLength += 1;
+                } else if (newLength &gt; 0) {
+                    cypherString32[newLength] = 0;
+                    newLength += 1;
+                }
+            }
+            length = newLength;
+            out += digit10;
+        } while (length &gt; 0);
+
+        return new BN(out.split(&quot;&quot;).reverse().join(&quot;&quot;)).toString();
+    }
+
+    /*
+    * Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX, XXXX-XXXX-XXXX-XXXXX)
+    */
+    public static isValid(address: string) {
+        if (address.indexOf(&apos;BURST-&apos;) == 0) {
+            address = address.substr(6);
+        }
+
+        let codeword = BurstUtil.initialCodeword.slice(),
+            codewordLength = 0;
+
+        for (let i = 0; i &lt; address.length; i++) {
+            let pos = BurstUtil.alphabet.indexOf(address.charAt(i));
+
+            if (pos &lt;= -1 || pos &gt; BurstUtil.alphabet.length) {
+                continue;
+            }
+
+            if (codewordLength &gt; 16) {
+                return false;
+            }
+
+            let codeworkIndex = BurstUtil.cwmap[codewordLength];
+            codeword[codeworkIndex] = pos;
+            codewordLength++;
+        }
+
+        if (codewordLength != 17) {
+            return false;
+        }
+
+        let sum = 0;
+
+        for (let i = 1; i &lt; 5; i++) {
+            let t = 0;
+
+            for (let j = 0; j &lt; 31; j++) {
+                if (j &gt; 12 &amp;&amp; j &lt; 27) {
+                    continue;
+                }
+
+                let pos = j;
+                if (j &gt; 26) {
+                    pos -= 14;
+                }
+
+                t ^= BurstUtil.gmult(codeword[pos], BurstUtil.gexp[(i * j) % 31]);
+            }
+
+            sum |= t;
+        }
+
+        return (sum == 0);
+    }
+
+    /*
+    * Split the Burst address string into an array of 4 parts
+    */
+    public static splitBurstAddress(address: string): string[] {
+        let parts: string[] = address.split(&quot;-&quot;)
+        parts.shift()
+        if (parts.length == 4) {
+            return parts
+        } else {
+            return []
+        }
+    }
+
+
+    /*
+    * Construct a Burst address from a string array
+    */
+    public static constructBurstAddress(parts: string[]): string {
+        return &quot;BURST-&quot; + parts[0] + &quot;-&quot; + parts[1] + &quot;-&quot; + parts[2] + &quot;-&quot; + parts[3];
+    }
+
+    /* 
+    * Validation Check. Quick validation of Burst addresses included
+    */
+    public static isBurstcoinAddress(address: string): boolean {
+        return /^BURST\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}/i.test(address) &amp;&amp; BurstUtil.isValid(address);
+    }
+
+    public static burstAddressPattern = {
+        &apos;_&apos;: { pattern: new RegExp(&apos;\[a-zA-Z0-9\]&apos;)}
+    };
+
+    /*
+    * Helper method to handle HTTP error
+    */
+    private handleError(error: HttpResponse | any) {
+        return Promise.reject(new HttpError(error));
+    }
+
+    public static convertStringToNumber(amount: string) {
+        return parseFloat(amount)/100000000;
+    }
+
+    /*
+    * Helper method to Number to String(8 decimals) representation
+    */
+    public static convertNumberToString(n: number) {
+        return parseFloat(n.toString()).toFixed(8).replace(&quot;.&quot;, &quot;&quot;);
+    }
+
+    
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

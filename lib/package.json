@@ -48,7 +48,7 @@
   "scripts": {
     "test": "jest",
     "doc": "./node_modules/.bin/esdoc",
-    "bootstrap": "lerna exec npm install"
+    "bootstrap": "lerna bootstrap && lerna exec npm install"
   },
   "dependencies": {
     "axios": "^0.18.0",

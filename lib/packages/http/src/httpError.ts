@@ -6,6 +6,8 @@
 * HttpError class
 *
 * Thrown on HTTP errors
+*
+* TODO: seems a specific BRS structure
 */
 export default class HttpError {
     public status: number;
