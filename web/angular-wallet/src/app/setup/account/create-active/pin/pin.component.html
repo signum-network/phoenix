@@ -1,0 +1,17 @@
+
+<h2>
+    Set your Pin!
+</h2>
+<div class="pin-container">
+    <mat-form-field class="example-full-width">
+        <input matInput type="password" placeholder="Pin" [(ngModel)]="pin">
+    </mat-form-field>
+</div>
+<hr>
+<small>
+    Enter a pin to secure your account. The pin is used to verify actions made with your account.
+</small>
+<div class="text-center navigation">
+    <button mat-raised-button (click)="back()">Back</button>
+    <button mat-raised-button (click)="finish(pin)">Finish</button>
+</div>

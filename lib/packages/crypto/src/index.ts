@@ -8,3 +8,6 @@ export * from "./decryptMessage";
 export * from "./encryptMessage";
 export * from "./getAccountIdFromBurstAddress";
 export * from "./passPhraseGenerator";
+export * from "./generateMasterKeys";
+export * from "./getAccountIdFromPublicKey";
+export * from "./getBurstAddressFromAccountId";

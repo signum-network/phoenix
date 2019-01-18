@@ -1,0 +1,16 @@
+.address-container mat-form-field {
+    width: 300px;
+    text-align: center;
+    input {
+        top: -.2em;
+        position: relative;
+    }
+}
+
+.fa-arrow-right {
+    color: #fff;
+    top: -4px;
+    left: 10px;
+    position: relative;
+    cursor: pointer;
+}

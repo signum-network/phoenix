@@ -12,7 +12,6 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardService } from './dashboard.service';
 import {LoginGuard} from '../../login/login-guard.service';
 
-// TODO: Isn't it better to control the routes in main?!
 const routes: Routes = [
     {
         path     : 'dashboard',
@@ -47,7 +46,6 @@ const routes: Routes = [
         DashboardService
     ]
 })
-export class DashboardModule
-{
+export class DashboardModule {
 }
 

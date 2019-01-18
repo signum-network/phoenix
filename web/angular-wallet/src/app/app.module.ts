@@ -13,6 +13,7 @@ import {MainModule} from './main/main.module';
 import {MainComponent} from './main/main.component';
 import {LoginModule} from './login/login.module';
 import {LoginComponent} from './login/login.component';
+import { SetupModule } from './setup/setup.module';
 
 const appRoutes: Routes = [
   {
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
     // App modules
     LoginModule,
     MainModule,
+    SetupModule
   ],
   bootstrap: [
     AppComponent

@@ -5,7 +5,6 @@ import { BurstUtil } from "@burst/core"
 */
 export const getAccountIdFromBurstAddress = (address: string): Promise<string> => {
     return new Promise((resolve, reject) => {
-        // TODO: refactor shitty nxt address resolution
         resolve(BurstUtil.decode(address));
     });
 }
