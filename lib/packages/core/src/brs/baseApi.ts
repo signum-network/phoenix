@@ -22,8 +22,6 @@ class BaseApi  {
         this._http = new Http(baseUrl);
     }
 
-
-    // TODO unify/centralize exception handling here!
 }
 
 export default BaseApi;
