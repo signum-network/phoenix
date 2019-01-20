@@ -14,7 +14,8 @@
             "axios",
             "jest"
         ],
-        "typeRoots": [
+        "typeRoots": [ 
+            "typings", 
             "node_modules/@types"
         ]
     },

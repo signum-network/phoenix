@@ -1,0 +1,27 @@
+td {
+    padding: 10px;
+    text-align:left;
+}
+
+.copy-button {
+    min-width: 0px;
+    line-height: 28px;
+    padding: 0 10px;
+}
+
+.copy-icon {
+    font-size: 14px;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.navigation {
+    margin: 10px;
+}
