@@ -1,0 +1,32 @@
+<div class="login">
+  <form>
+    <div class="logo">
+      <img src="../../assets/images/logos/logo_white.png" alt="BURST Logo"/>
+      <small>"Phoenix" Wallet ({{version}})</small>
+    </div>
+    <div class="buttons">
+      <button (click)="method='active'"
+              mat-raised-button
+              matTooltip="Info about the action"
+              matTooltipPosition="above"
+              color="primary">
+        <mat-icon>person</mat-icon>
+        Enter Active
+      </button>
+      <button (click)="method='passive'"
+              mat-raised-button
+              matTooltip="Info about the action"
+              matTooltipPosition="above"
+              color="primary">
+        <mat-icon>visibility</mat-icon>
+        Enter Passive
+      </button>
+    </div>
+    <div *ngIf="method==='passive'">
+    <app-create-passive></app-create-passive>
+    </div>
+    <div *ngIf="method==='active'">
+    <app-account-create></app-account-create>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,40 @@
+<h2>
+        Account has been created!
+</h2>
+<table cellspacing="10">
+    <tr>
+        <td>
+            ID:
+        </td>
+        <td>
+            {{ this.createService.getId() }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Address:
+        </td>
+        <td>
+            {{ this.createService.getAddress() }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Passphrase:
+        </td>
+        <td class="unselectable">
+            {{ this.createService.getCompletePassphrase() }}
+        </td>
+        <td>
+            <button class="copy-button" mat-raised-button (click)="copy()"><i class="material-icons copy-icon">content_copy</i></button>
+        </td>
+    </tr>
+</table>
+<hr>
+<small>
+    Note down your passphrase. The passphrase is the master key to your account. Therefore, keep your passphrase always safe and private!
+</small>
+<div class="text-center navigation">
+    <button mat-raised-button (click)="reset()">Back</button>
+    <button mat-raised-button (click)="next()">Next</button>
+</div>

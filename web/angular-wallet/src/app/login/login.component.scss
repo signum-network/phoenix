@@ -1,0 +1,42 @@
+.login {
+  height: 100%;
+  width: 100%;
+  background: rgb(0, 35, 65) url("../../assets/images/logos/phoenix.png") no-repeat center;
+  display: flex;
+
+  justify-content: center;
+  align-content: center;
+
+
+  .logo {
+
+    display: flex;
+    flex-direction: column;
+
+    img {
+      height: 128px;
+      padding: 1em;
+    }
+
+    small {
+      color: white;
+      align-self: flex-end;
+    }
+  }
+
+  .buttons {
+    // height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+
+    button {
+      flex-grow: 1;
+      align-self: center;
+      font-size: 24px;
+      height: 5em;
+      margin: 0.25em;
+    }
+  }
+}
+

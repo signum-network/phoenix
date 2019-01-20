@@ -1,0 +1,25 @@
+.seed-area {
+    height: 100px;
+    text-align: center;
+    border-radius: 10px;
+    border: solid 1px #666;
+}
+
+.spinner-center {
+    margin: 0 auto;
+    width: 5%;
+}
+
+.passphrase {
+    width:75%;
+    margin-right:20px;
+}
+
+.passphrase-container mat-form-field {
+    display:block;
+}
+
+.pin-container {
+    font-size:.8em;
+    margin-bottom: 2.5em;
+} 
