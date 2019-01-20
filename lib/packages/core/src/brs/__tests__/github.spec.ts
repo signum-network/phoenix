@@ -1,3 +1,4 @@
+// IMPORTANT: Need to call mock here!
 jest.mock('@burst/http/src/http');
 import {HttpMock} from '@burst/http';
 
@@ -7,8 +8,7 @@ import Github from '../github';
  * This test is a reference implementation to show how Http requests can be mocked
  */
 
-// FIXME: Already reported github issue: the mock does not mock!
-xdescribe('Github', () => {
+describe('Github', () => {
 
     beforeEach(() => {
         HttpMock.reset();
