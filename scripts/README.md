@@ -7,7 +7,6 @@ This project provides useful scripts for development
 ---
 
 - [build](#build) - Build for different targets
-- [version](#version) - Bump version
 
 ---
 
@@ -31,25 +30,3 @@ Valid targets are:
 For more information call:
 
 `node build --help`
-
-
-## <a name="version"></a> version
-
-This script bumps the version number into the code for different targets
-
-_Example_
-
-`node version --target ng` or
-`node version --t desktop` 
-
-Valid targets are:
-
-- ng (default)
-- ios (not implemented yet)
-- android (not implemented yet)
-
-
-For more information call:
-
-`node version --help`
-
