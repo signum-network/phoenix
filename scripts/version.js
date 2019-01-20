@@ -1,15 +1,11 @@
 const args = require('args');
 const chalk = require('chalk');
-const buildDesktop = require('./build/buildDesktop');
-const buildWeb = require('./build/buildWeb');
-
 const log = require('./log');
 
 const Targets = {
-    desktop: buildDesktop,
-    web: buildWeb,
-    ios: () => console.error("iOS build not implemented yet"),
-    android: () => console.error("Android build not implemented yet"),
+    ng: require('./version/versionNg'),
+    ios: () => log.error("iOS version not implemented yet"),
+    android: () => log.error("Android version not implemented yet"),
 };
 
 const AllowedTargets = Object.keys(Targets);
@@ -26,18 +22,14 @@ function validateType(v) {
     return v;
 }
 
-args.option("target", "The target ", 'web', validateType);
+args.option("target", "The target ", 'ng', validateType);
 
 const options = args.parse(process.argv);
-const cwd = process.cwd();
 (async function () {
     try {
-        log.info(`Building Phoenix for [${chalk.bold.yellow(options.target)}]...`);
-        const buildFn = Targets[options.target];
-        await buildFn({
-            ...options,
-            cwd
-        });
+        log.info(`Updating Phoenix Version for [${chalk.bold.yellow(options.target)}]...`);
+        const versionFn = Targets[options.target];
+        await versionFn(options);
         log.success('Finished');
     } catch (e) {
         log.error(e);

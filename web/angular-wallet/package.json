@@ -1,7 +1,11 @@
 {
-  "name": "fuse",
-  "version": "7.0.1",
-  "license": "https://themeforest.net/licenses/terms/regular",
+  "name": "@burst/phoenix-angular-web-wallet",
+  "version": "0.0.1",
+  "license": "GPLv3",
+  "contributors":  [
+    "ohager",
+    "blankey1337"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
