@@ -15,7 +15,7 @@
     "build": "npm run bump-version && node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build",
     "build-stats": "npm run build -- --dev --stats-json",
     "build-prod": "npm run build -- --prod",
-    "build-prod-stats": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --prod --stats-json",
+    "build-prod-stats": "npm run build -- --prod --stats-json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
