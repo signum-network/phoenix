@@ -6,17 +6,17 @@ import BaseService from '../baseService';
 describe('BaseService', () => {
 
     it('should create BRS BURST url without any parameter', () => {
-        const url = BaseService.toBRSUrl('getBlock');
+        const url = BaseService.toBRSEndpoint('getBlock');
         expect(url).toBe('?requestType=getBlock');
     });
 
     it('should create BRS BURST url with one parameter', () => {
-        const url = BaseService.toBRSUrl('getBlock', {id: 123});
+        const url = BaseService.toBRSEndpoint('getBlock', {id: 123});
         expect(url).toBe('?requestType=getBlock&id=123');
     });
 
     it('should create BRS BURST url with many parameters', () => {
-        const url = BaseService.toBRSUrl('getBlock', {id: 123, includeTransactions: true});
+        const url = BaseService.toBRSEndpoint('getBlock', {id: 123, includeTransactions: true});
         expect(url).toBe('?requestType=getBlock&id=123&includeTransactions=true');
     });
 
