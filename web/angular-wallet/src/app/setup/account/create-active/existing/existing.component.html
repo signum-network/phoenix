@@ -1,0 +1,9 @@
+<h2>
+    Existing Account: Enter Passphrase
+</h2>
+<div class="passphrase-container">
+    <mat-form-field>
+        <input matInput type="text" placeholder="Passphrase" [(ngModel)]="passphrase">
+    </mat-form-field>
+    <button mat-raised-button (click)="setManualPassphrase(this.passphrase)">Next</button>
+</div>

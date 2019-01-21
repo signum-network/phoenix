@@ -19,7 +19,6 @@ const routes: Routes = [
         resolve  : {
             data: DashboardService
         },
-        canActivate: [LoginGuard],
     }
 ];
 

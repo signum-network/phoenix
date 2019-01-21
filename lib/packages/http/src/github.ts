@@ -21,4 +21,4 @@ class Github extends BaseApi {
     }
 }
 
-export default Github;
+export default Github; 

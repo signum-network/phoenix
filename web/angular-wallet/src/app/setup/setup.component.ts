@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { constants } from '../constants';
 import { I18nService } from '../layout/components/i18n/i18n.service';
 import { MatSelectChange } from '@angular/material';
+import { Account } from '@burst/core';
 
 @Component({
     selector: 'app-setup',

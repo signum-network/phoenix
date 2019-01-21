@@ -19,11 +19,13 @@ import {SampleModule} from './sample/sample.module';
 import {MainComponent} from './main.component';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import { LoginGuard } from 'app/login/login-guard.service';
 
 const mainRoutes: Routes = [
   {
     path: '**',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [LoginGuard]
   },
 ];
 

@@ -1,0 +1,15 @@
+.login-passive {
+    height: 100%;
+    width: 100%;
+    background: #00579D;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    .content {
+        padding: 20px;
+        background: #fff;
+        border-radius: 20px;
+    }
+}

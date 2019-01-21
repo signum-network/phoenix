@@ -15,7 +15,7 @@ export class FuseProgressBarComponent implements OnInit, OnDestroy
     bufferValue: number;
     mode: 'determinate' | 'indeterminate' | 'buffer' | 'query';
     value: number;
-    visible: boolean;
+    visible: boolean;        
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -33,6 +33,8 @@ export class FuseProgressBarComponent implements OnInit, OnDestroy
 
         // Set the private defaults
         this._unsubscribeAll = new Subject();
+
+
     }
 
     // -----------------------------------------------------------------------------------------------------

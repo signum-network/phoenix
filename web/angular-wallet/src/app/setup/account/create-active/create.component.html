@@ -2,7 +2,12 @@
     <mat-step [completed]="this.createService.isPassphraseGenerated()" [editable]="!this.createService.isPassphraseGenerated()">
         <ng-template matStepLabel>Seed</ng-template>
         <div class="step-container">
-            <app-account-create-seed></app-account-create-seed>
+            <ng-container *ngIf="newUser">
+                <app-account-create-seed></app-account-create-seed>
+            </ng-container>
+            <ng-container *ngIf="!newUser">
+                <app-account-create-existing></app-account-create-existing>
+            </ng-container>
         </div>
     </mat-step>
     <mat-step [completed]="this.createService.getAddress() != undefined && this.createService.getId() != undefined">

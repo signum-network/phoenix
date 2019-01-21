@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-// import { AccountService } from '../../../../lib/services';
+import { AccountService } from './account.service';
 
 @Injectable()
 export class CreateService {
@@ -9,9 +9,7 @@ export class CreateService {
     private address: string;
     private stepIndex: number;
 
-    constructor(
-        // private accountService: AccountService
-        ) {
+    constructor(private accountService: AccountService) {
         this.stepIndex = 0;
         this.reset();
     }
@@ -69,11 +67,11 @@ export class CreateService {
     }
 
     public createActiveAccount() {
-        // return this.accountService.createActiveAccount({ passphrase: this.getCompletePassphrase(), pin: this.pin });
+        return this.accountService.createActiveAccount({ passphrase: this.getCompletePassphrase(), pin: this.pin });
     }
 
     public createPassiveAccount() {
-        // return this.accountService.createOfflineAccount(`BURST-${this.address}`);
+        return this.accountService.createOfflineAccount(`BURST-${this.address}`);
     }
 
     public reset() {
