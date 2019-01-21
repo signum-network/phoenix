@@ -1,9 +1,8 @@
-import {Block} from '../../block';
-
 jest.mock('@burst/http/src/http');
 import {HttpMock} from '@burst/http';
 
-import BlockApi from '../blockApi';
+import BlockService from '../blockService';
+import {Block} from '../../model/block';
 
 /**
  * This test is a reference implementation to show how Http requests can be mocked
@@ -19,7 +18,7 @@ describe('BlockApi', () => {
         const mockedBlock = new Block({id: 1});
         HttpMock.onGet().reply(200, mockedBlock);
 
-        const blockApi = new BlockApi('localhost');
+        const blockApi = new BlockService('localhost');
         const block = await blockApi.getBlock(1, false);
         expect(block.id).toBe(1);
     });

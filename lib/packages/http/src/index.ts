@@ -8,6 +8,7 @@ import HttpMock from './httpMock';
 export {
     Http,
     HttpResponse,
-    HttpMock
+    HttpMock,
+    HttpError
 };
 

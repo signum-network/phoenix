@@ -2,8 +2,8 @@
 * Copyright 2018 PoC-Consortium
 */
 
-import { Keys } from "./keys";
-import { Transaction } from "./transaction";
+import { Keys } from './keys';
+import { Transaction } from './transaction';
 
 /*
 * Account class
@@ -28,7 +28,7 @@ export class Account {
         this.address = data.address || undefined;
         this.alias = data.alias || undefined;
         this.balance = data.balance || 0;
-        if (data.keys != undefined) {
+        if (data.keys !== undefined) {
             this.keys = new Keys();
             this.pinHash = data.pinHash || undefined;
             this.keys.publicKey = data.keys.publicKey || undefined;
@@ -36,12 +36,12 @@ export class Account {
             this.keys.agreementPrivateKey = data.keys.agreementPrivateKey || undefined;
         }
         this.selected = data.selected || false;
-        if (data.transactions != undefined && data.transactions.length > 0) {
+        if (data.transactions !== undefined && data.transactions.length > 0) {
             this.transactions = data.transactions;
         } else {
             this.transactions = [];
         }
-        this.type = data.type || "offline";
+        this.type = data.type || 'offline';
         this.unconfirmedBalance = data.unconfirmedBalance || 0;
     }
 }

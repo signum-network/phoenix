@@ -2,7 +2,7 @@
 * Copyright 2018 PoC-Consortium
 */
 
-import { Attachment, EncryptedMessage, Message } from "./";
+import { Attachment, EncryptedMessage, Message } from "..";
 
 /*
 * Transaction class

@@ -1,6 +1,6 @@
-import { HttpError } from "@burst/http";
-import { HttpResponse } from "@burst/http";
-import * as BN from "bn.js";
+import { HttpError } from '@burst/http';
+import { HttpResponse } from '@burst/http';
+import * as BN from 'bn.js';
 
 /*
 * Copyright 2018 PoC-Consortium
@@ -242,7 +242,7 @@ export class BurstUtil {
         return "BURST-" + parts[0] + "-" + parts[1] + "-" + parts[2] + "-" + parts[3];
     }
 
-    /* 
+    /*
     * Validation Check. Quick validation of Burst addresses included
     */
     public static isBurstcoinAddress(address: string): boolean {
@@ -271,6 +271,6 @@ export class BurstUtil {
         return parseFloat(n.toString()).toFixed(8).replace(".", "");
     }
 
-    
+
 
 }
