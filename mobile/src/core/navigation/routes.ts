@@ -1,4 +1,4 @@
-import { NavigationRouteConfig } from 'react-navigation'
+import { NavigationRouteConfig } from 'react-navigation';
 
 // we need to describe interface to get proper type-hinting
 export interface IRoutes {
@@ -8,7 +8,7 @@ export interface IRoutes {
 
 export type TRoutesMap = {
   [key in keyof Partial<IRoutes>]: NavigationRouteConfig
-}
+};
 
 /**
  * List of all in-app routes
@@ -16,4 +16,4 @@ export type TRoutesMap = {
 export const routes: IRoutes = {
   home: 'home',
   settings: 'settings'
-}
+};

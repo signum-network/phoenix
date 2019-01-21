@@ -1,4 +1,4 @@
-import { appState, IAppReduxState } from './app/reducer'
+import { appState, IAppReduxState } from './app/reducer';
 
 export interface IApplicationState {
   app: IAppReduxState
@@ -6,4 +6,4 @@ export interface IApplicationState {
 
 export const initialState: IApplicationState = {
   app: appState()
-}
+};

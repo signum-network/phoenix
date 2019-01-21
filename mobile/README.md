@@ -17,8 +17,6 @@ Share your ideas, discuss Burst and help each other.
 Install `XCode` 9.4+ from AppStore.
 Next you need `Command Line Tools`, install them from `XCode => Preferences => Locations`
 
-Run `react-native run-ios` and the simulator will start automatically.
-
 #### for Android
 
 Install `Oracle JDK 8`
@@ -122,4 +120,4 @@ npm install
 
 ## Development server
 
-Run `react-native run-ios` for a iOS dev server and `react-native run-android` for Android. The simulator will start automatically.
+Run `npm run dev` for a iOS dev server and `npm run dev:android` for Android. The simulator will start automatically.
