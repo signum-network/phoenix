@@ -1,32 +1,22 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
-// import { Observable } from 'rxjs';
-// import { filter, switchMap } from 'rxjs/operators';
-// import { StoreService, AccountService } from '../../lib/services';
+import { Observable } from 'rxjs';
+import { filter, switchMap } from 'rxjs/operators';
+import { StoreService } from 'app/store/store.service';
+import { AccountService } from 'app/setup/account/account.service';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class LoginGuard implements CanActivate {
+  authorized: boolean = false;
+  constructor(private storeService: StoreService,
+              private accountService: AccountService,
+              private router: Router) {
+  }
 
-  // FIXME: need to get this from a store (single source)
-  private isLoggedIn = true;
-
-  constructor(
-    // private storeService: StoreService,
-    // private accountService: AccountService,
-    private router: Router
-  ) {}
-
-  canActivate(): Promise<boolean> {
-
-    if (!this.isLoggedIn) {
-      this.router.navigate(['/login']);
-    }
-    return Promise.resolve(true);
-
-    // FIXME: review old code and adapt it accordingly
-    /*
+  canActivate(): Observable<boolean> {
     return this.storeService.ready.pipe(
       filter(Boolean),
       switchMap(async (ready) => {
@@ -37,13 +27,13 @@ export class LoginGuard implements CanActivate {
           this.accountService.setCurrentAccount(selectedAccount);
           return true;
         } else if (allAccounts && allAccounts.length) {
-          this.router.navigate(['/dashboard/accounts']);
+          this.router.navigate(['/dashboard/accounts'])
           return false;
         } else {
+          this.router.navigate(['/login']);
           return false;
         }
       })
-    );
-    */
+    )
   }
 }

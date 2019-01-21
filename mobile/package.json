@@ -1,0 +1,78 @@
+{
+  "name": "mobile",
+  "version": "0.0.1",
+  "contributors": [
+    "titanishu"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/burst-apps-team/phoenix"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "license": "GPL-3.0",
+  "private": false,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "tslint --fix --project tsconfig.json 'src/**/*.{ts,tsx}'",
+    "test": "jest",
+    "tsc": "tsc --init --pretty --jsx react"
+  },
+  "dependencies": {
+    "@burst/core": "file:../lib/packages/core",
+    "@burst/crypto": "file:../lib/packages/crypto",
+    "@burst/http": "file:../lib/packages/http",
+    "axios": "^0.18.0",
+    "lodash": "^4.17.11",
+    "react": "16.6.3",
+    "react-native": "0.57.8",
+    "react-native-gesture-handler": "^1.0.12",
+    "react-navigation": "^3.0.9",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.13",
+    "@types/lodash": "^4.14.120",
+    "@types/react": "^16.7.20",
+    "@types/react-native": "^0.57.29",
+    "@types/react-navigation": "^3.0.1",
+    "@types/react-redux": "^7.0.0",
+    "@types/react-test-renderer": "^16.0.3",
+    "babel-jest": "23.6.0",
+    "jest": "23.6.0",
+    "metro-react-native-babel-preset": "0.51.1",
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "16.6.3",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.12.1",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.2.4"
+  },
+  "jest": {
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testPathIgnorePatterns": [
+      "\\.snap$",
+      "<rootDir>/node_modules/"
+    ],
+    "cacheDirectory": ".jest/cache"
+  }
+}

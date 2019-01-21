@@ -29,6 +29,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatStepperModule } from '@angular/material/stepper';
 import { I18nModule } from '../layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
+import { AccountService } from './account/account.service';
+import { AccountCreateExistingComponent } from './account/create-active/existing/existing.component';
 
 @NgModule({
     imports: [
@@ -60,11 +62,13 @@ import { NgxMaskModule } from 'ngx-mask';
         CreatePassiveAccountComponent,
         AccountCreatePinComponent,
         AccountCreateRecordComponent,
+        AccountCreateExistingComponent,
         AccountCreateSeedComponent,
         AccountNewComponent,
     ],
     providers: [
         CreateService,
+        AccountService
     ],
     exports: [
         AccountNewComponent,

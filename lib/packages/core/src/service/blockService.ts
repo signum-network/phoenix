@@ -1,6 +1,6 @@
 import BaseService from './baseService';
 import HttpResponse from '@burst/http/src/httpResponse';
-import {Block} from '../model/block';
+import {Block} from '..';
 
 // https://burstwiki.org/wiki/The_Burst_API#Block_Operations
 

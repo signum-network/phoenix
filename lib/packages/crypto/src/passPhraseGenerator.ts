@@ -21,13 +21,13 @@ export class PassPhraseGenerator {
         this.seed.map(element => seedrandom(element, { "entropy": true, "global":true }));
 
         // get random words
-        let words: string[] = [];
+        let randomWords: string[] = [];
 		for (let i = 0; i < 12; i++) {
 			let number = Math.floor((Math.random() * PassPhraseGenerator.wordCount) + 1);
-			words.push(words[number]);
+			randomWords.push(words[number]);
 		}
         // return concatenated string
-        return words;
+        return randomWords;
 	}
 
 	public reSeed(seed) {

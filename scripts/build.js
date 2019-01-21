@@ -32,7 +32,7 @@ const options = args.parse(process.argv);
 const cwd = process.cwd();
 (async function () {
     try {
-        log.info(`Building 🔥Phoenix for [${chalk.bold.yellow(options.target)}]...`);
+        log.info(`Building Phoenix for [${chalk.bold.yellow(options.target)}]...`);
         const buildFn = Targets[options.target];
         await buildFn({
             ...options,

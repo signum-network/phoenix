@@ -1,6 +1,4 @@
-import BaseService from './baseApi';
-import HttpResponse from '@burst/http/src/httpResponse';
-import {Block} from '../model/block';
+import BaseService from './baseService';
 
 // https://burstwiki.org/wiki/The_Burst_API#Utilities
 
