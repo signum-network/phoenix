@@ -30,13 +30,13 @@ export class AccountCreatePinComponent implements OnInit {
 
     public finish(pin: string) {
         this.createService.setPin(pin);
-        // this.createService.createActiveAccount().then((success) => {
-        //     this.notificationService.notify('success', `Account added successfully`);
-        //     this.router.navigate(['/']);
-        //   },
-        //   (error) => {
-        //     this.notificationService.notify('error', error.toString());
-        //   });;
+        this.createService.createActiveAccount().then((success) => {
+            this.notificationService.notify('success', `Account added successfully`);
+            this.router.navigate(['/']);
+          },
+          (error) => {
+            this.notificationService.notify('error', error.toString());
+          });;
     }
 
 }

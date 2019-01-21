@@ -13,6 +13,8 @@ import { SetupModule } from 'app/setup/setup.module';
 import { NotifierModule } from 'angular-notifier';
 import { I18nModule } from '../layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
+import { LoginPassiveComponent } from './login-passive/login-passive.component';
+import { LoginActiveComponent } from './login-active/login-active.component';
 
 @NgModule({
   imports: [
@@ -33,9 +35,13 @@ import { NgxMaskModule } from 'ngx-mask';
     MatButtonModule,
     MatIconModule,
 
+    SetupModule
+
   ],
   declarations: [
-    LoginComponent
+    LoginComponent,
+    LoginPassiveComponent,
+    LoginActiveComponent,
   ],
   exports: [
     LoginComponent

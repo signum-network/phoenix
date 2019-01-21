@@ -3,9 +3,9 @@
     <h1>Welcome to burst</h1>
     <h2>Are you a new user?</h2>
     <div class="button-row">
-        <button mat-button color="primary" [routerLink]="['/create/active']">Yes, I need a passphrase</button>
-        <button mat-button color="accent" routerLink="/create/active">No, I have a passphrase</button>
+        <button mat-button color="primary" routerLink="/login/active" [queryParams]="{new: true}">Yes, I need a passphrase</button>
+        <button mat-button color="accent" routerLink="/login/active">No, I have a passphrase</button>
     </div>
-    <small routerLink="/create/passive">Add account without passphrase</small>
+    <small routerLink="/login/passive">Add account without passphrase</small>
   </form>
 </div>

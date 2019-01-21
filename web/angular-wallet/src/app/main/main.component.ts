@@ -1,4 +1,4 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, Input} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {Platform} from '@angular/cdk/platform';
 import {TranslateService} from '@ngx-translate/core';
@@ -24,6 +24,7 @@ export class MainComponent implements OnInit, OnDestroy {
   fuseConfig: any;
   navigation: any;
 
+  @Input('') account: Account;
   private _unsubscribeAll: Subject<any>;
 
   constructor(

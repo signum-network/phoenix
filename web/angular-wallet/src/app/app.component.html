@@ -1,8 +1,7 @@
-<!-- FIXME: isLoggedIn should be centralized -->
-<ng-container *ngIf="isLoggedIn===false">
+<ng-container *ngIf="!account">
   <router-outlet></router-outlet>
 </ng-container>
 
-<ng-container *ngIf="isLoggedIn===true">
-  <main></main>
+<ng-container *ngIf="account">
+  <main [account]="account"></main>
 </ng-container>

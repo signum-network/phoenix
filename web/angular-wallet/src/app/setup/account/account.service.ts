@@ -5,7 +5,8 @@ import 'rxjs/add/operator/timeout'
 
 import { StoreService } from "app/store/store.service";
 import { Settings } from "app/settings";
-import { Account } from "@burst/core";
+import { Account, Keys, BurstUtil } from "@burst/core";
+import { generateMasterKeys, encryptAES, hashSHA256, getAccountIdFromPublicKey, getBurstAddressFromAccountId, getAccountIdFromBurstAddress } from "@burst/crypto";
 
 @Injectable()
 export class AccountService {
@@ -23,4 +24,91 @@ export class AccountService {
         this.currentAccount.next(account);
     }
 
+    /*
+    * Method responsible for creating a new active account from a passphrase.
+    * Generates keys for an account, encrypts them with the provided key and saves them.
+    * TODO: error handling of asynchronous method calls
+    */
+    public createActiveAccount({ passphrase, pin = "" }): Promise<Account> {
+        return new Promise((resolve, reject) => {
+            let account: Account = new Account();
+            // import active account
+            account.type = "active";
+            return generateMasterKeys(passphrase)
+                .then(keys => {
+                    let newKeys = new Keys();
+                    newKeys.publicKey = keys.publicKey;
+                    return encryptAES(keys.signPrivateKey, hashSHA256(pin))
+                        .then(encryptedKey => {
+                            newKeys.signPrivateKey = encryptedKey;
+                            return encryptAES(keys.agreementPrivateKey, hashSHA256(pin))
+                                .then(encryptedKey => {
+                                    newKeys.agreementPrivateKey = encryptedKey;
+                                    account.keys = newKeys;
+                                    account.pinHash = hashSHA256(pin + keys.publicKey);
+                                    return getAccountIdFromPublicKey(keys.publicKey)
+                                        .then(id => {
+                                            account.id = id;
+                                            return getBurstAddressFromAccountId(id)
+                                                .then(address => {
+                                                    account.address = address;
+                                                    return this.storeService.saveAccount(account)
+                                                        .then(account => {
+                                                            resolve(account);
+                                                        });
+                                                });
+                                        });
+                                });
+                        });
+                });
+        });
+    }
+
+    /*
+    * Method responsible for importing an offline account.
+    * Creates an account object with no keys attached.
+    */
+    public createOfflineAccount(address: string): Promise<Account> {
+        return new Promise((resolve, reject) => {
+
+            if (!BurstUtil.isValid(address)) {
+                reject("Invalid Burst Address");
+            }
+
+            let account: Account = new Account();
+
+            this.storeService.findAccount(BurstUtil.decode(address))
+                .then(found => {
+                    if (found == undefined) {
+                        // import offline account
+                        account.type = "offline";
+                        account.address = address;
+                        return getAccountIdFromBurstAddress(address)
+                            .then(id => {
+                                account.id = id;
+                                return this.storeService.saveAccount(account)
+                                    .then(account => {
+                                        resolve(account);
+                                    });
+                            });
+                    } else {
+                        reject("Burstcoin address already imported!");
+                    }
+                })
+        });
+    }
+
+    /*
+    * Method responsible for selecting a different account.
+    */
+    public selectAccount(account: Account): Promise<Account> {
+        return new Promise((resolve, reject) => {
+            this.storeService.selectAccount(account)
+                .then(account => {
+                    // this.synchronizeAccount(account);
+                })
+            this.setCurrentAccount(account);
+            resolve(account);
+        });
+    }
 }

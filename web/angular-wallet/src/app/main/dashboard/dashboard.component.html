@@ -2,10 +2,10 @@
 
     <div class="content">
 
-        <div class="widget auto-width">
+        <div class="widget auto-width" *ngIf="address">
             <strong>Example:</strong>
-            {{ selectedAccount.address }}
-            {{ selectedAccount.accountId }}
+            {{ account.address }}
+            {{ account.id }}
         </div>
 
         <div class="mr-lg-32" fxFlex="100">

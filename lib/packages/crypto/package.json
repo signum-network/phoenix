@@ -37,11 +37,12 @@
     "doc": "./node_modules/.bin/esdoc"
   },
   "dependencies": {
-    "@burst/http": "file:../http",
     "@burst/core": "file:../core",
+    "@burst/http": "file:../http",
     "@types/crypto-js": "^3.1.43",
-    "crypto-js": "^3.1.9-1",
+    "@types/seedrandom": "^2.4.27",
     "bn.js": "^4.11.8",
+    "crypto-js": "^3.1.9-1",
     "seedrandom": "^2.4.3"
   },
   "husky": {

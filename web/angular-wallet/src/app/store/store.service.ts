@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as Loki from "lokijs";
 import { StoreConfig } from "./store.config";
 import { Settings } from 'app/settings';
-import { Account } from '@burst/core/src/account';
+import { Account } from '@burst/core';
 
 @Injectable()
 export class StoreService {

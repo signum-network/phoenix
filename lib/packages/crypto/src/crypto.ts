@@ -5,9 +5,7 @@
 import { Converter } from "./converter";
 import { PassPhraseGenerator } from "./passPhraseGenerator";
 import { ECKCDSA } from "./ec-kcdsa";
-import { Keys, BurstUtil } from "@burst/core";
 import { decryptAES } from "./decryptAES";
-import * as BN from "bn.js";
 import * as CryptoJS from "crypto-js";
 
 /*
@@ -33,22 +31,6 @@ export class Crypto {
         });
     }
 
-    /*
-    * Encrypt a derived hd private key with a given pin and return it in Base64 form
-    */
-    public encryptAES(text: string, key: string): Promise<string> {
-        return new Promise((resolve, reject) => {
-            let encrypted = CryptoJS.AES.encrypt(text, key);
-            resolve(encrypted.toString()); // Base 64
-        });
-    }
-
-    /*
-    * Hash string into hex string
-    */
-    public hashSHA256(input: string): string {
-        return CryptoJS.SHA256(input).toString();
-    }
 
     /*
     * Generate signature for transaction
