@@ -4,7 +4,13 @@ This project provides useful scripts for development
 
 > Work in progress
 
-## build
+---
+
+- [build](#build) - Build for different targets
+
+---
+
+## <a name="build"></a> build
 
 This script helps to build the wallet for different targets
 
@@ -23,6 +29,4 @@ Valid targets are:
 
 For more information call:
 
-`node build.js --help`
-
-> This script can only be called in valid working directories, e.g.  _web/angular_wallet_
+`node build --help`
