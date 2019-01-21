@@ -20,8 +20,8 @@ export class LoginGuard implements CanActivate {
     return this.storeService.ready.pipe(
       filter(Boolean),
       switchMap(async (ready) => {
-        const selectedAccount = await this.storeService.getSelectedAccount().catch(() => {console.log('something bad')});
-        const allAccounts = await this.storeService.getAllAccounts().catch(() => {console.log('something bad2')});
+        const selectedAccount = await this.storeService.getSelectedAccount().catch(() => {});
+        const allAccounts = await this.storeService.getAllAccounts().catch(() => {});
         console.log(selectedAccount, allAccounts);
         if (selectedAccount) {
           this.accountService.setCurrentAccount(selectedAccount);
