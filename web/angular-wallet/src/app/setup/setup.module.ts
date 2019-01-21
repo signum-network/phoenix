@@ -30,6 +30,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { I18nModule } from '../layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { AccountService } from './account/account.service';
+import { AccountCreateExistingComponent } from './account/create-active/existing/existing.component';
 
 @NgModule({
     imports: [
@@ -61,6 +62,7 @@ import { AccountService } from './account/account.service';
         CreatePassiveAccountComponent,
         AccountCreatePinComponent,
         AccountCreateRecordComponent,
+        AccountCreateExistingComponent,
         AccountCreateSeedComponent,
         AccountNewComponent,
     ],

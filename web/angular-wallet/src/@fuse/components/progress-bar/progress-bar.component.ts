@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
 
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 
@@ -17,7 +16,6 @@ export class FuseProgressBarComponent implements OnInit, OnDestroy
     mode: 'determinate' | 'indeterminate' | 'buffer' | 'query';
     value: number;
     visible: boolean;        
-    version = environment.version;
 
     // Private
     private _unsubscribeAll: Subject<any>;

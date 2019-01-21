@@ -54,8 +54,4 @@ export class AccountCreateSeedComponent {
             });
         });
     }
-
-    public setManualPassphrase(phrase: string) {
-        return this.setPassphraseAndGenerateMasterKeys(phrase.split(' '));
-    }
 }
