@@ -3,7 +3,6 @@
 */
 
 import { Converter } from "./converter";
-import { PassPhraseGenerator } from "./passPhraseGenerator";
 import { ECKCDSA } from "./ec-kcdsa";
 import { decryptAES } from "./decryptAES";
 import * as CryptoJS from "crypto-js";
@@ -14,24 +13,6 @@ import * as CryptoJS from "crypto-js";
 * The Crypto class takes care of everything cryptography related.
 */
 export class Crypto {
-    private passPhraseGenerator: PassPhraseGenerator;
-
-    constructor() {
-        this.passPhraseGenerator = new PassPhraseGenerator();
-    }
-
-    /*
-    * Generate a passphrase with the help of the PassPhraseGenerator
-    * pass optional seed for seeding generation
-    */
-    public generatePassPhrase(seed: any[] = []): Promise<string[]> {
-        return new Promise((resolve, reject) => {
-            this.passPhraseGenerator.reSeed(seed);
-            resolve(this.passPhraseGenerator.generatePassPhrase());
-        });
-    }
-
-
     /*
     * Generate signature for transaction
     * s = sign(sha256(sha256(transactionHex)_keygen(sha256(sha256(transactionHex)_privateKey)).publicKey),
@@ -39,21 +20,17 @@ export class Crypto {
     *          privateKey)
     * p = sha256(sha256(transactionHex)_keygen(sha256(transactionHex_privateKey)).publicKey)
     */
-    public generateSignature(transactionHex: string, encryptedPrivateKey: string, pinHash: string): Promise<string> {
-        return new Promise((resolve, reject) => {
-            decryptAES(encryptedPrivateKey, pinHash)
-                .then(privateKey => {
-                    let s = Converter.convertHexStringToByteArray(privateKey);
-                    let m = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(transactionHex)));
-                    let m_s = m.concat(s);
-                    let x = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(Converter.convertByteArrayToWordArray(m_s)));
-                    let y = ECKCDSA.keygen(x).p;
-                    let m_y = m.concat(y);
-                    let h = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(Converter.convertByteArrayToWordArray(m_y)));
-                    let v = ECKCDSA.sign(h, x, s);
-                    resolve(Converter.convertByteArrayToHexString([].concat(v, h)));
-                })
-        });
+    public generateSignature(transactionHex: string, encryptedPrivateKey: string, pinHash: string): string {
+        const privateKey = decryptAES(encryptedPrivateKey, pinHash)
+        let s = Converter.convertHexStringToByteArray(privateKey);
+        let m = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(transactionHex)));
+        let m_s = m.concat(s);
+        let x = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(Converter.convertByteArrayToWordArray(m_s)));
+        let y = ECKCDSA.keygen(x).p;
+        let m_y = m.concat(y);
+        let h = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(Converter.convertByteArrayToWordArray(m_y)));
+        let v = ECKCDSA.sign(h, x, s);
+        return Converter.convertByteArrayToHexString([].concat(v, h));
     }
 
 

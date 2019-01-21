@@ -34,32 +34,28 @@ export class AccountService {
             let account: Account = new Account();
             // import active account
             account.type = "active";
-            return generateMasterKeys(passphrase)
-                .then(keys => {
-                    let newKeys = new Keys();
-                    newKeys.publicKey = keys.publicKey;
-                    return encryptAES(keys.signPrivateKey, hashSHA256(pin))
-                        .then(encryptedKey => {
-                            newKeys.signPrivateKey = encryptedKey;
-                            return encryptAES(keys.agreementPrivateKey, hashSHA256(pin))
-                                .then(encryptedKey => {
-                                    newKeys.agreementPrivateKey = encryptedKey;
-                                    account.keys = newKeys;
-                                    account.pinHash = hashSHA256(pin + keys.publicKey);
-                                    return getAccountIdFromPublicKey(keys.publicKey)
-                                        .then(id => {
-                                            account.id = id;
-                                            return getBurstAddressFromAccountId(id)
-                                                .then(address => {
-                                                    account.address = address;
-                                                    return this.storeService.saveAccount(account)
-                                                        .then(account => {
-                                                            resolve(account);
-                                                        });
-                                                });
-                                        });
-                                });
-                        });
+            const keys = generateMasterKeys(passphrase);
+
+            let newKeys = new Keys();
+            newKeys.publicKey = keys.publicKey;
+
+            const encryptedKey = encryptAES(keys.signPrivateKey, hashSHA256(pin))
+            newKeys.signPrivateKey = encryptedKey;
+
+            const encrypedSignKey = encryptAES(keys.agreementPrivateKey, hashSHA256(pin));
+            newKeys.agreementPrivateKey = encrypedSignKey;
+            account.keys = newKeys;
+            account.pinHash = hashSHA256(pin + keys.publicKey);
+            
+            const id = getAccountIdFromPublicKey(keys.publicKey)
+            account.id = id;
+
+            const address = getBurstAddressFromAccountId(id)
+            account.address = address;
+
+            return this.storeService.saveAccount(account)
+                .then(account => {
+                    resolve(account);
                 });
         });
     }
@@ -83,13 +79,11 @@ export class AccountService {
                         // import offline account
                         account.type = "offline";
                         account.address = address;
-                        return getAccountIdFromBurstAddress(address)
-                            .then(id => {
-                                account.id = id;
-                                return this.storeService.saveAccount(account)
-                                    .then(account => {
-                                        resolve(account);
-                                    });
+                        const id = getAccountIdFromBurstAddress(address)
+                        account.id = id;
+                        return this.storeService.saveAccount(account)
+                            .then(account => {
+                                resolve(account);
                             });
                     } else {
                         reject("Burstcoin address already imported!");

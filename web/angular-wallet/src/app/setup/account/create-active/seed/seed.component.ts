@@ -41,17 +41,14 @@ export class AccountCreateSeedComponent {
 
     public setPassphraseAndGenerateMasterKeys(phrase: string[]) {
         this.createService.setPassphrase(phrase);
-        generateMasterKeys(this.createService.getCompletePassphrase()).then(keys => {
-            getAccountIdFromPublicKey(keys.publicKey).then(id => {
-                this.createService.setId(id);
-                getBurstAddressFromAccountId(id).then(address => {
-                    this.createService.setAddress(address);
-                    this.seed = [];
-                    setTimeout(x => {
-                        this.createService.setStepIndex(1);
-                    }, 0);
-                });
-            });
-        });
+        const keys = generateMasterKeys(this.createService.getCompletePassphrase());
+        const id = getAccountIdFromPublicKey(keys.publicKey);
+        this.createService.setId(id);
+        const address = getBurstAddressFromAccountId(id);
+        this.createService.setAddress(address);
+        this.seed = [];
+        setTimeout(x => {
+            this.createService.setStepIndex(1);
+        }, 0);
     }
 }
