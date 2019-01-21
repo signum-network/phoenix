@@ -1,6 +1,6 @@
 <!-- FIXME: isLoggedIn should be centralized -->
 <ng-container *ngIf="isLoggedIn===false">
-  <login></login>
+  <router-outlet></router-outlet>
 </ng-container>
 
 <ng-container *ngIf="isLoggedIn===true">

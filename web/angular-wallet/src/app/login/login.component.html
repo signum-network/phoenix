@@ -1,32 +1,11 @@
 <div class="login">
   <form>
-    <div class="logo">
-      <img src="../../assets/images/logos/logo_white.png" alt="BURST Logo"/>
-      <small>"Phoenix" Wallet ({{version}})</small>
+    <h1>Welcome to burst</h1>
+    <h2>Are you a new user?</h2>
+    <div class="button-row">
+        <button mat-button color="primary" [routerLink]="['/create/active']">Yes, I need a passphrase</button>
+        <button mat-button color="accent" routerLink="/create/active">No, I have a passphrase</button>
     </div>
-    <div class="buttons">
-      <button (click)="method='active'"
-              mat-raised-button
-              matTooltip="Info about the action"
-              matTooltipPosition="above"
-              color="primary">
-        <mat-icon>person</mat-icon>
-        Enter Active
-      </button>
-      <button (click)="method='passive'"
-              mat-raised-button
-              matTooltip="Info about the action"
-              matTooltipPosition="above"
-              color="primary">
-        <mat-icon>visibility</mat-icon>
-        Enter Passive
-      </button>
-    </div>
-    <div *ngIf="method==='passive'">
-    <app-create-passive></app-create-passive>
-    </div>
-    <div *ngIf="method==='active'">
-    <app-account-create></app-account-create>
-    </div>
+    <small routerLink="/create/passive">Add account without passphrase</small>
   </form>
 </div>
