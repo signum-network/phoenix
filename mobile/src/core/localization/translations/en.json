@@ -13,9 +13,17 @@
   "home": {
     "screens": {
       "home": {
-        "title": "Home",
-        "testButtonTitle": "Touch me!"
+        "testButtonTitle": "Touch me!",
+        "title": "Home"
       }
+    }
+  },
+  "models": {
+    "account": {
+      "address": "Address",
+      "id": "ID",
+      "passphrase": "Passphrase",
+      "title": "Account"
     }
   },
   "settings": {
@@ -23,14 +31,6 @@
       "settings": {
         "title": "Settings"
       }
-    }
-  },
-  "models": {
-    "account": {
-      "title": "Account",
-      "address": "Address",
-      "id": "ID",
-      "passphrase": "Passphrase"
     }
   }
 }

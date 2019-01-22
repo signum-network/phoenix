@@ -13,9 +13,17 @@
   "home": {
     "screens": {
       "home": {
-        "title": "Главная",
-        "testButtonTitle": "Нажми меня!"
+        "testButtonTitle": "Нажми меня!",
+        "title": "Главная"
       }
+    }
+  },
+  "models": {
+    "account": {
+      "address": "Адрес",
+      "id": "ID",
+      "passphrase": "Кодовая фраза",
+      "title": "Учетная запись"
     }
   },
   "settings": {
@@ -23,14 +31,6 @@
       "settings": {
         "title": "Настройки"
       }
-    }
-  },
-  "models": {
-    "account": {
-      "title": "Учетная запись",
-      "address": "Адрес",
-      "id": "ID",
-      "passphrase": "Кодовая фраза"
     }
   }
 }
