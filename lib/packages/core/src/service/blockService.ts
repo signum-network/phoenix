@@ -12,7 +12,7 @@ class BlockService extends BaseService {
     // http://3.16.150.48:6876/burst?requestType=getBlock&height=2956&includeTransactions=true&_=1547826203045
     public getBlock(height: number, includeTransactions: boolean): Promise<Block> {
 
-        const url = BaseService.toBRSEndpoint('getBlock', {height, includeTransactions});
+        const url = this.toBRSEndpoint('getBlock', {height, includeTransactions});
 
         return this.http.get(url)
             .then((response: HttpResponse) => {

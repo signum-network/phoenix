@@ -6,6 +6,7 @@ import {Http} from '@burst/http';
  */
 class BaseService {
     private _http: Http;
+    private _relPath: string;
 
     /**
      * @returns The internal Http client
@@ -23,8 +24,8 @@ class BaseService {
      * @param data A JSON object which will be mapped to url params, e.g. {foo:1; bar:true} -> foo=1&bar=true
      * @return The mounted url (without host)
      */
-    public static toBRSEndpoint(method: string, data: any = {}): string {
-        const request = `?requestType=${method}`;
+    public toBRSEndpoint(method: string, data: any = {}): string {
+        const request = `${this._relPath}?requestType=${method}`;
         const params = Object.keys(data).map(k => `${k}=${data[k]}`).join('&');
 
         return params ? `${request}&${params}` : request;
@@ -33,9 +34,11 @@ class BaseService {
     /**
      * Creates Service instance
      * @param baseUrl The host url of web service
+     * @param relativePath The relative path will be prepended before each url created with toBRSEndpoint()
      */
-    constructor(baseUrl: string) {
+    constructor(baseUrl: string, relativePath: string = '') {
         this._http = new Http(baseUrl);
+        this._relPath = relativePath.endsWith('/') ? relativePath.substr(0, relativePath.length - 1) : relativePath;
     }
 
 }
