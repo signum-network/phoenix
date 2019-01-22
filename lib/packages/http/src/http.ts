@@ -1,8 +1,9 @@
 import axios from 'axios';
 import HttpResponse from './httpResponse';
+import HttpError from './httpError';
 
 /**
- * An generic HTTP client
+ * A generic HTTP client
  */
 class Http {
 
@@ -19,13 +20,13 @@ class Http {
         });
     }
 
-    static _getErrorResponse(error: any): HttpResponse {
+    static mountError(url: string, error: any): HttpError {
         if (error.response) {
-            return new HttpResponse(error.response.status, error.response.statusText, error.response.data);
+            return new HttpError(url, error.response.status, error.response.statusText, error.response.data);
         } else if (error.request) {
-            return new HttpResponse(0, error.request, 'Request failed');
+            return new HttpError(url, 0, 'Request failed', error.request);
         }
-        return new HttpResponse(-1, '', 'Axios Configuration error');
+        return new HttpError(url, -1, 'Http Configuration error', null);
     }
 
     /**
@@ -38,7 +39,7 @@ class Http {
             const {status, data} = await this._clientImpl.get(url);
             return new HttpResponse(status, data);
         } catch (error) {
-            return Http._getErrorResponse(error);
+            throw Http.mountError(url, error);
         }
     }
 
@@ -53,7 +54,7 @@ class Http {
             const {status, data} = await this._clientImpl.post(url, payload);
             return new HttpResponse(status, data);
         } catch (error) {
-            return Http._getErrorResponse(error);
+            throw Http.mountError(url, error);
         }
     }
 
@@ -68,7 +69,7 @@ class Http {
             const {status, data} = await this._clientImpl.put(url, payload);
             return new HttpResponse(status, data);
         } catch (error) {
-            return Http._getErrorResponse(error);
+            throw Http.mountError(url, error);
         }
     }
 
@@ -82,7 +83,7 @@ class Http {
             const {status, data} = await this._clientImpl.delete(url);
             return new HttpResponse(status, data);
         } catch (error) {
-            return Http._getErrorResponse(error);
+            throw Http.mountError(url, error);
         }
     }
 }

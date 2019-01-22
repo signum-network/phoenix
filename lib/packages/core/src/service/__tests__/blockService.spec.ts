@@ -15,12 +15,12 @@ describe('BlockApi', () => {
 
     it('should getBlock without transactions included', async () => {
 
-        const mockedBlock = new Block({id: 1});
+        const mockedBlock = new Block({height: 1});
         HttpMock.onGet().reply(200, mockedBlock);
 
         const blockApi = new BlockService('localhost');
         const block = await blockApi.getBlock(1, false);
-        expect(block.id).toBe(1);
+        expect(block.height).toBe(1);
     });
 
 });

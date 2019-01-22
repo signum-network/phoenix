@@ -1,7 +1,5 @@
 class HttpResponse {
-    constructor(public status: number, public response: any, public error?: string) {}
-
-    hasError() { return !!this.error; }
+    constructor(public status: number, public response: any) {}
 }
 
 export default HttpResponse;

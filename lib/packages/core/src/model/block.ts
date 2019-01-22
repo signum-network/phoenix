@@ -11,7 +11,7 @@ export class Block {
     public generatorPublicKey: number[] = undefined;
     public totalAmountNQT: number = undefined;
     public totalFeeNQT: number = undefined;
-    public payoadLength: number = undefined;
+    public payloadLength: number = undefined;
     public generatorId: number = undefined;
     public generatorRS: string = undefined;
     public generationSignature: number[] = undefined;
