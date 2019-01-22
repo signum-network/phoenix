@@ -1,8 +1,8 @@
-import React from 'react'
-import { ActivityIndicator, StyleSheet, Text } from 'react-native'
-import { colors } from '../theme/colors'
-import { getFonts } from '../theme/fonts'
-import { Screen } from './Screen'
+import React from 'react';
+import { ActivityIndicator, StyleSheet, Text } from 'react-native';
+import { colors } from '../theme/colors';
+import { fonts } from '../theme/fonts';
+import { Screen } from './Screen';
 
 const styles = StyleSheet.create({
   view: {
@@ -17,9 +17,9 @@ const styles = StyleSheet.create({
   },
   loaderText: {
     color: colors.white,
-    fontFamily: getFonts().noto
+    fontFamily: fonts.noto
   }
-})
+});
 
 export class LoadingView extends React.PureComponent {
   render () {
@@ -35,6 +35,6 @@ export class LoadingView extends React.PureComponent {
           Loading application (i'm joking, just show you a loader screen)
         </Text>
       </Screen>
-    )
+    );
   }
 }

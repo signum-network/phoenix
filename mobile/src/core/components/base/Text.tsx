@@ -1,10 +1,10 @@
-import React from 'react'
-import { StyleSheet, Text as RNText, TextProps } from 'react-native'
-import { getFonts } from '../../theme/fonts'
+import React from 'react';
+import { StyleSheet, Text as RNText, TextProps } from 'react-native';
+import { fonts } from '../../theme/fonts';
 
 interface IProps extends TextProps {
-  children: string
-  isHeader?: boolean
+  children: string | string[];
+  isHeader?: boolean;
 }
 
 /**
@@ -15,24 +15,23 @@ interface IProps extends TextProps {
  */
 export class Text extends React.PureComponent<IProps> {
   getStyles = (): any => {
-    const fonts = getFonts()
     const styles = {
       text: {
         fontFamily: this.props.isHeader ? fonts.bebas : fonts.noto
       }
-    }
+    };
 
-    return StyleSheet.create(styles as any)
+    return StyleSheet.create(styles as any);
   }
 
   render () {
-    const { children } = this.props
-    const styles = this.getStyles()
+    const { children } = this.props;
+    const styles = this.getStyles();
 
     return (
       <RNText style={styles.text} {...this.props}>
         {children}
       </RNText>
-    )
+    );
   }
 }
