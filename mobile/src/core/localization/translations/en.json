@@ -1,0 +1,36 @@
+{
+  "core": {
+    "actions": {
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+    "screens": {
+      "loading": {
+        "loadingText": "Loading application (i'm joking, just show you a loader screen)"
+      }
+    }
+  },
+  "home": {
+    "screens": {
+      "home": {
+        "title": "Home",
+        "testButtonTitle": "Touch me!"
+      }
+    }
+  },
+  "settings": {
+    "screens": {
+      "settings": {
+        "title": "Settings"
+      }
+    }
+  },
+  "models": {
+    "account": {
+      "title": "Account",
+      "address": "Address",
+      "id": "ID",
+      "passphrase": "Passphrase"
+    }
+  }
+}

@@ -1,7 +1,9 @@
 import React from 'react';
 import { ActivityIndicator, StyleSheet, Text } from 'react-native';
+import { i18n } from '../localization/i18n';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/fonts';
+import { core } from '../translations';
 import { Screen } from './Screen';
 
 const styles = StyleSheet.create({
@@ -32,7 +34,7 @@ export class LoadingView extends React.PureComponent {
           color={colors.white}
         />
         <Text style={styles.loaderText}>
-          Loading application (i'm joking, just show you a loader screen)
+          {i18n.t(core.loading.text)}
         </Text>
       </Screen>
     );

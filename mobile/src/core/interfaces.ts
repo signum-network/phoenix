@@ -21,3 +21,8 @@ export interface ITouchIDOptionalConfig extends AuthenticateConfig {
   unifiedErrors?: boolean; // Both platforms
   passcodeFallback?: boolean; // iOS
 }
+
+export interface IChangeLanguageEvent {
+  language: string;
+  languages: string[];
+}

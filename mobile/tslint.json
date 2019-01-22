@@ -16,5 +16,11 @@
     "no-console": true,
     "semicolon": [true, "always", "ignore-interfaces"]
   },
-  "rulesDirectory": []
+  "rulesDirectory": [],
+  "linterOptions": {
+    "exclude": [
+      "*.json",
+      "**/*.json"
+    ]
+  }
 }
