@@ -1,12 +1,10 @@
+// IMPORTANT: mocking http at first
 jest.mock('@burst/http/src/http');
 import {HttpMock} from '@burst/http';
 
 import BlockService from '../blockService';
 import {Block} from '../../model/block';
 
-/**
- * This test is a reference implementation to show how Http requests can be mocked
- */
 describe('BlockApi', () => {
 
     beforeEach(() => {

@@ -17,7 +17,7 @@ describe('[E2E] Http', () => {
         } catch (error) {
             expect(error.status).toBe(404);
             expect(error.message).toBe('Not Found');
-            expect(error.timestamp).toBeLessThan(Date.now());
+            expect(error.timestamp).not.toBeNull();
             expect(error.requestUrl).toBe('/repos/burst-apps-team/phoenix/no-valid-resource');
         }
 

@@ -1,7 +1,9 @@
 /**
  * Block Model provided by Burst Network
  */
-export class Block {
+import AbstractModel from './abstractModel';
+
+export class Block extends AbstractModel {
     public id: number = undefined;
     public version: number = undefined;
     public timestamp: number = undefined;
@@ -28,6 +30,7 @@ export class Block {
     public numberOfTransactions: number = undefined;
 
     constructor(data: any = {}) {
-        Object.keys(data).forEach( k => this[k] = data[k] );
+        super();
+        this.mapJsonToProps(data);
     }
 }
