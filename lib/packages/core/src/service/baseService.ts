@@ -1,4 +1,6 @@
 import {Http} from '@burst/http';
+import HttpResponse from '@burst/http/src/httpResponse';
+import AbstractModel from '../model/abstractModel';
 
 /**
  * Base Web Service class.
@@ -41,6 +43,16 @@ class BaseService {
         this._relPath = relativePath.endsWith('/') ? relativePath.substr(0, relativePath.length - 1) : relativePath;
     }
 
+    /**
+     * Calls a HTTP Get with given BRS Url
+     * @param brsUrl The Url created with toBRSEndpoint
+     */
+    protected requestGet(brsUrl: string): Promise<any> {
+        return this.http.get(brsUrl)
+            .then((response: HttpResponse) => {
+                return Promise.resolve(response.response);
+            });
+    }
 }
 
 export default BaseService;

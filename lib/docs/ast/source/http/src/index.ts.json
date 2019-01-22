@@ -1,28 +1,28 @@
 {
   "type": "File",
   "start": 0,
-  "end": 166,
+  "end": 214,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 6,
+      "line": 7,
       "column": 0
     }
   },
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 166,
+    "end": 214,
     "loc": {
       "start": {
         "line": 1,
         "column": 0
       },
       "end": {
-        "line": 6,
+        "line": 7,
         "column": 0
       }
     },
@@ -189,7 +189,7 @@
       {
         "type": "ImportDeclaration",
         "start": 90,
-        "end": 124,
+        "end": 126,
         "loc": {
           "start": {
             "line": 4,
@@ -197,14 +197,14 @@
           },
           "end": {
             "line": 4,
-            "column": 34
+            "column": 36
           }
         },
         "specifiers": [
           {
             "type": "ImportDefaultSpecifier",
             "start": 97,
-            "end": 105,
+            "end": 106,
             "loc": {
               "start": {
                 "line": 4,
@@ -212,13 +212,13 @@
               },
               "end": {
                 "line": 4,
-                "column": 15
+                "column": 16
               }
             },
             "local": {
               "type": "Identifier",
               "start": 97,
-              "end": 105,
+              "end": 106,
               "loc": {
                 "start": {
                   "line": 4,
@@ -226,6 +226,75 @@
                 },
                 "end": {
                   "line": 4,
+                  "column": 16
+                },
+                "identifierName": "HttpError"
+              },
+              "name": "HttpError"
+            }
+          }
+        ],
+        "source": {
+          "type": "StringLiteral",
+          "start": 112,
+          "end": 125,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 22
+            },
+            "end": {
+              "line": 4,
+              "column": 35
+            }
+          },
+          "extra": {
+            "rawValue": "./httpError",
+            "raw": "'./httpError'"
+          },
+          "value": "./httpError"
+        }
+      },
+      {
+        "type": "ImportDeclaration",
+        "start": 127,
+        "end": 161,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 0
+          },
+          "end": {
+            "line": 5,
+            "column": 34
+          }
+        },
+        "specifiers": [
+          {
+            "type": "ImportDefaultSpecifier",
+            "start": 134,
+            "end": 142,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 7
+              },
+              "end": {
+                "line": 5,
+                "column": 15
+              }
+            },
+            "local": {
+              "type": "Identifier",
+              "start": 134,
+              "end": 142,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 7
+                },
+                "end": {
+                  "line": 5,
                   "column": 15
                 },
                 "identifierName": "HttpMock"
@@ -236,15 +305,15 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 111,
-          "end": 123,
+          "start": 148,
+          "end": 160,
           "loc": {
             "start": {
-              "line": 4,
+              "line": 5,
               "column": 21
             },
             "end": {
-              "line": 4,
+              "line": 5,
               "column": 33
             }
           },
@@ -257,45 +326,45 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 125,
-        "end": 165,
+        "start": 162,
+        "end": 213,
         "loc": {
           "start": {
-            "line": 5,
+            "line": 6,
             "column": 0
           },
           "end": {
-            "line": 5,
-            "column": 40
+            "line": 6,
+            "column": 51
           }
         },
         "declaration": null,
         "specifiers": [
           {
             "type": "ExportSpecifier",
-            "start": 134,
-            "end": 138,
+            "start": 171,
+            "end": 175,
             "loc": {
               "start": {
-                "line": 5,
+                "line": 6,
                 "column": 9
               },
               "end": {
-                "line": 5,
+                "line": 6,
                 "column": 13
               }
             },
             "local": {
               "type": "Identifier",
-              "start": 134,
-              "end": 138,
+              "start": 171,
+              "end": 175,
               "loc": {
                 "start": {
-                  "line": 5,
+                  "line": 6,
                   "column": 9
                 },
                 "end": {
-                  "line": 5,
+                  "line": 6,
                   "column": 13
                 },
                 "identifierName": "Http"
@@ -304,15 +373,15 @@
             },
             "exported": {
               "type": "Identifier",
-              "start": 134,
-              "end": 138,
+              "start": 171,
+              "end": 175,
               "loc": {
                 "start": {
-                  "line": 5,
+                  "line": 6,
                   "column": 9
                 },
                 "end": {
-                  "line": 5,
+                  "line": 6,
                   "column": 13
                 },
                 "identifierName": "Http"
@@ -322,29 +391,29 @@
           },
           {
             "type": "ExportSpecifier",
-            "start": 140,
-            "end": 152,
+            "start": 177,
+            "end": 189,
             "loc": {
               "start": {
-                "line": 5,
+                "line": 6,
                 "column": 15
               },
               "end": {
-                "line": 5,
+                "line": 6,
                 "column": 27
               }
             },
             "local": {
               "type": "Identifier",
-              "start": 140,
-              "end": 152,
+              "start": 177,
+              "end": 189,
               "loc": {
                 "start": {
-                  "line": 5,
+                  "line": 6,
                   "column": 15
                 },
                 "end": {
-                  "line": 5,
+                  "line": 6,
                   "column": 27
                 },
                 "identifierName": "HttpResponse"
@@ -353,15 +422,15 @@
             },
             "exported": {
               "type": "Identifier",
-              "start": 140,
-              "end": 152,
+              "start": 177,
+              "end": 189,
               "loc": {
                 "start": {
-                  "line": 5,
+                  "line": 6,
                   "column": 15
                 },
                 "end": {
-                  "line": 5,
+                  "line": 6,
                   "column": 27
                 },
                 "identifierName": "HttpResponse"
@@ -371,29 +440,29 @@
           },
           {
             "type": "ExportSpecifier",
-            "start": 154,
-            "end": 162,
+            "start": 191,
+            "end": 199,
             "loc": {
               "start": {
-                "line": 5,
+                "line": 6,
                 "column": 29
               },
               "end": {
-                "line": 5,
+                "line": 6,
                 "column": 37
               }
             },
             "local": {
               "type": "Identifier",
-              "start": 154,
-              "end": 162,
+              "start": 191,
+              "end": 199,
               "loc": {
                 "start": {
-                  "line": 5,
+                  "line": 6,
                   "column": 29
                 },
                 "end": {
-                  "line": 5,
+                  "line": 6,
                   "column": 37
                 },
                 "identifierName": "HttpMock"
@@ -402,20 +471,69 @@
             },
             "exported": {
               "type": "Identifier",
-              "start": 154,
-              "end": 162,
+              "start": 191,
+              "end": 199,
               "loc": {
                 "start": {
-                  "line": 5,
+                  "line": 6,
                   "column": 29
                 },
                 "end": {
-                  "line": 5,
+                  "line": 6,
                   "column": 37
                 },
                 "identifierName": "HttpMock"
               },
               "name": "HttpMock"
+            }
+          },
+          {
+            "type": "ExportSpecifier",
+            "start": 201,
+            "end": 210,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 39
+              },
+              "end": {
+                "line": 6,
+                "column": 48
+              }
+            },
+            "local": {
+              "type": "Identifier",
+              "start": 201,
+              "end": 210,
+              "loc": {
+                "start": {
+                  "line": 6,
+                  "column": 39
+                },
+                "end": {
+                  "line": 6,
+                  "column": 48
+                },
+                "identifierName": "HttpError"
+              },
+              "name": "HttpError"
+            },
+            "exported": {
+              "type": "Identifier",
+              "start": 201,
+              "end": 210,
+              "loc": {
+                "start": {
+                  "line": 6,
+                  "column": 39
+                },
+                "end": {
+                  "line": 6,
+                  "column": 48
+                },
+                "identifierName": "HttpError"
+              },
+              "name": "HttpError"
             }
           }
         ],
@@ -765,9 +883,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "HttpMock",
+      "value": "HttpError",
       "start": 97,
-      "end": 105,
+      "end": 106,
       "loc": {
         "start": {
           "line": 4,
@@ -775,6 +893,139 @@
         },
         "end": {
           "line": 4,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "from",
+      "start": 107,
+      "end": 111,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 17
+        },
+        "end": {
+          "line": 4,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "./httpError",
+      "start": 112,
+      "end": 125,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 22
+        },
+        "end": {
+          "line": 4,
+          "column": 35
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 125,
+      "end": 126,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 35
+        },
+        "end": {
+          "line": 4,
+          "column": 36
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "import",
+        "keyword": "import",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "import",
+      "start": 127,
+      "end": 133,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "HttpMock",
+      "start": 134,
+      "end": 142,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 7
+        },
+        "end": {
+          "line": 5,
           "column": 15
         }
       }
@@ -792,15 +1043,15 @@
         "binop": null
       },
       "value": "from",
-      "start": 106,
-      "end": 110,
+      "start": 143,
+      "end": 147,
       "loc": {
         "start": {
-          "line": 4,
+          "line": 5,
           "column": 16
         },
         "end": {
-          "line": 4,
+          "line": 5,
           "column": 20
         }
       }
@@ -819,15 +1070,15 @@
         "updateContext": null
       },
       "value": "./httpMock",
-      "start": 111,
-      "end": 123,
+      "start": 148,
+      "end": 160,
       "loc": {
         "start": {
-          "line": 4,
+          "line": 5,
           "column": 21
         },
         "end": {
-          "line": 4,
+          "line": 5,
           "column": 33
         }
       }
@@ -845,15 +1096,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 123,
-      "end": 124,
+      "start": 160,
+      "end": 161,
       "loc": {
         "start": {
-          "line": 4,
+          "line": 5,
           "column": 33
         },
         "end": {
-          "line": 4,
+          "line": 5,
           "column": 34
         }
       }
@@ -873,15 +1124,15 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 125,
-      "end": 131,
+      "start": 162,
+      "end": 168,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 0
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 6
         }
       }
@@ -898,15 +1149,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 132,
-      "end": 133,
+      "start": 169,
+      "end": 170,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 7
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 8
         }
       }
@@ -924,15 +1175,15 @@
         "binop": null
       },
       "value": "Http",
-      "start": 134,
-      "end": 138,
+      "start": 171,
+      "end": 175,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 9
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 13
         }
       }
@@ -950,15 +1201,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 138,
-      "end": 139,
+      "start": 175,
+      "end": 176,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 13
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 14
         }
       }
@@ -976,15 +1227,15 @@
         "binop": null
       },
       "value": "HttpResponse",
-      "start": 140,
-      "end": 152,
+      "start": 177,
+      "end": 189,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 15
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 27
         }
       }
@@ -1002,15 +1253,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 152,
-      "end": 153,
+      "start": 189,
+      "end": 190,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 27
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 28
         }
       }
@@ -1028,16 +1279,68 @@
         "binop": null
       },
       "value": "HttpMock",
-      "start": 154,
-      "end": 162,
+      "start": 191,
+      "end": 199,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 29
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 37
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ",",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 199,
+      "end": 200,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 37
+        },
+        "end": {
+          "line": 6,
+          "column": 38
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "HttpError",
+      "start": 201,
+      "end": 210,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 39
+        },
+        "end": {
+          "line": 6,
+          "column": 48
         }
       }
     },
@@ -1053,16 +1356,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 163,
-      "end": 164,
+      "start": 211,
+      "end": 212,
       "loc": {
         "start": {
-          "line": 5,
-          "column": 38
+          "line": 6,
+          "column": 49
         },
         "end": {
-          "line": 5,
-          "column": 39
+          "line": 6,
+          "column": 50
         }
       }
     },
@@ -1079,16 +1382,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 164,
-      "end": 165,
+      "start": 212,
+      "end": 213,
       "loc": {
         "start": {
-          "line": 5,
-          "column": 39
+          "line": 6,
+          "column": 50
         },
         "end": {
-          "line": 5,
-          "column": 40
+          "line": 6,
+          "column": 51
         }
       }
     },
@@ -1105,15 +1408,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 166,
-      "end": 166,
+      "start": 214,
+      "end": 214,
       "loc": {
         "start": {
-          "line": 6,
+          "line": 7,
           "column": 0
         },
         "end": {
-          "line": 6,
+          "line": 7,
           "column": 0
         }
       }

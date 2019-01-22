@@ -5,20 +5,22 @@ import {HttpMock} from '@burst/http';
 import BlockService from '../blockService';
 import {Block} from '../../model/block';
 
-describe('BlockApi', () => {
+describe('Block Service', () => {
 
     beforeEach(() => {
         HttpMock.reset();
     });
 
-    it('should getBlock without transactions included', async () => {
+    describe('GetBlock()', () => {
+        it('should getBlock without transactions included', async () => {
 
-        const mockedBlock = new Block({height: 1});
-        HttpMock.onGet().reply(200, mockedBlock);
+            const mockedBlock = new Block({height: 1});
+            HttpMock.onGet().reply(200, mockedBlock);
 
-        const blockApi = new BlockService('localhost');
-        const block = await blockApi.getBlock(1, false);
-        expect(block.height).toBe(1);
+            const blockApi = new BlockService('localhost');
+            const block = await blockApi.getBlock(1, false);
+            expect(block.height).toBe(1);
+        });
     });
 
 });

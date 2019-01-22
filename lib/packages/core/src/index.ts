@@ -8,4 +8,3 @@ export * from './model/keys';
 export * from './model/burstNode';
 export * from './model/transaction';
 export * from './suggestedFees';
-export * from './getBlockchainStatusResponse';

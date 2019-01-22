@@ -1,10 +1,11 @@
 import Http from './http';
 import HttpResponse from './httpResponse';
+import HttpError from './httpError';
 
 const FOR_ALL_ENDPOINTS = '__all';
 
 interface ResponseMap {
-    [endpoint: string]: HttpResponse;
+    [endpoint: string]: HttpResponse | HttpError;
 }
 
 let replyMap: ResponseMap = {};
@@ -29,10 +30,10 @@ function createMockImplementationFunctionForReply(method: string, endpoint: stri
 }
 
 function createMockImplementationFunctionForError(method: string, endpoint: string, status: number, message: string) {
-    errorMap[endpoint] = new HttpResponse(status, '', message);
+    errorMap[endpoint] = new HttpError(endpoint, status, message, {});
     return function () {
         return {
-            [method]: (url: string) => Promise.resolve(getMappedResponse(errorMap, url))
+            [method]: (url: string) => { throw getMappedResponse(errorMap, url); }
         };
     };
 }

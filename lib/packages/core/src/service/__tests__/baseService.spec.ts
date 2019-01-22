@@ -1,10 +1,6 @@
 import BaseService from '../baseService';
 
-/**
- * This test is a reference implementation to show how Http requests can be mocked
- */
 describe('BaseService', () => {
-
 
     describe('toBRSEndpoint() relative Path', () => {
 

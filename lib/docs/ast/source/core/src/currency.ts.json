@@ -353,7 +353,7 @@
                             },
                             "extra": {
                               "rawValue": "",
-                              "raw": "\"\""
+                              "raw": "''"
                             },
                             "value": ""
                           }
@@ -765,7 +765,7 @@
                             },
                             "extra": {
                               "rawValue": "USD",
-                              "raw": "\"USD\""
+                              "raw": "'USD'"
                             },
                             "value": "USD"
                           }
@@ -1089,7 +1089,7 @@
                                 },
                                 "extra": {
                                   "rawValue": "market_cap_",
-                                  "raw": "\"market_cap_\""
+                                  "raw": "'market_cap_'"
                                 },
                                 "value": "market_cap_"
                               },
@@ -1162,7 +1162,7 @@
                             },
                             "extra": {
                               "rawValue": "",
-                              "raw": "\"\""
+                              "raw": "''"
                             },
                             "value": ""
                           }
@@ -1492,7 +1492,7 @@
                             },
                             "extra": {
                               "rawValue": "",
-                              "raw": "\"\""
+                              "raw": "''"
                             },
                             "value": ""
                           }
@@ -2311,7 +2311,7 @@
                                 },
                                 "extra": {
                                   "rawValue": "price_",
-                                  "raw": "\"price_\""
+                                  "raw": "'price_'"
                                 },
                                 "value": "price_"
                               },
@@ -2433,7 +2433,7 @@
                             },
                             "extra": {
                               "rawValue": "",
-                              "raw": "\"\""
+                              "raw": "''"
                             },
                             "value": ""
                           }
@@ -2928,7 +2928,7 @@
                             },
                             "extra": {
                               "rawValue": "",
-                              "raw": "\"\""
+                              "raw": "''"
                             },
                             "value": ""
                           }
@@ -3238,7 +3238,7 @@
                               },
                               "extra": {
                                 "rawValue": "24h_volume_usd",
-                                "raw": "\"24h_volume_usd\""
+                                "raw": "'24h_volume_usd'"
                               },
                               "value": "24h_volume_usd"
                             },
@@ -3420,7 +3420,7 @@
                                 },
                                 "extra": {
                                   "rawValue": "24h_volume_",
-                                  "raw": "\"24h_volume_\""
+                                  "raw": "'24h_volume_'"
                                 },
                                 "value": "24h_volume_"
                               },
@@ -3493,7 +3493,7 @@
                             },
                             "extra": {
                               "rawValue": "",
-                              "raw": "\"\""
+                              "raw": "''"
                             },
                             "value": ""
                           }
