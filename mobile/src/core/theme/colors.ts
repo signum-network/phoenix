@@ -10,4 +10,4 @@ export const colors: IColors = {
   grey: '#F2F2F2',
   black: '#262626',
   blue: '#00579D'
-}
+};

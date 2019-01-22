@@ -12,7 +12,9 @@
     "member-access": false,
     "member-ordering": false,
     "jsx-no-lambda": true,
-    "jsx-boolean-value": false
+    "jsx-boolean-value": false,
+    "no-console": true,
+    "semicolon": [true, "always", "ignore-interfaces"]
   },
   "rulesDirectory": []
 }
