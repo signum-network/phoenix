@@ -1,6 +1,6 @@
 {
-  "name": "@burst/core",
-  "version": "1.0.0",
+  "name": "@burstjs/core",
+  "version": "0.0.5",
   "description": "Burst-related functions and models for building Burstcoin applications.",
   "contributors": [
     "ohager",
@@ -37,12 +37,16 @@
     "doc": "./node_modules/.bin/esdoc"
   },
   "dependencies": {
-    "@burst/http": "file:../http",
+    "@burst/http": "^0.0.2",
     "bn.js": "^4.11.8"
   },
   "husky": {
     "hooks": {
       "pre-push": "npm test"
     }
+  },
+  "gitHead": "0a87d62edcd74661d38df6832a2a8f6122d1d127",
+  "publishConfig": {
+    "access": "public"
   }
 }
