@@ -1,0 +1,36 @@
+{
+  "core": {
+    "actions": {
+      "cancel": "Отмена",
+      "save": "Сохранить"
+    },
+    "screens": {
+      "loading": {
+        "loadingText": "Загрузка приложения (Шучу, просто показываю загрузочный экран)"
+      }
+    }
+  },
+  "home": {
+    "screens": {
+      "home": {
+        "testButtonTitle": "Нажми меня!",
+        "title": "Главная"
+      }
+    }
+  },
+  "models": {
+    "account": {
+      "address": "Адрес",
+      "id": "ID",
+      "passphrase": "Кодовая фраза",
+      "title": "Учетная запись"
+    }
+  },
+  "settings": {
+    "screens": {
+      "settings": {
+        "title": "Настройки"
+      }
+    }
+  }
+}
