@@ -1,7 +1,7 @@
 {
-  "coverage": "54.13%",
+  "coverage": "53.71%",
   "expectCount": 242,
-  "actualCount": 131,
+  "actualCount": 130,
   "files": {
     "packages/core/src/abstract/store.ts": {
       "expectCount": 1,
@@ -199,8 +199,8 @@
       ]
     },
     "packages/crypto/src/crypto.ts": {
-      "expectCount": 4,
-      "actualCount": 4,
+      "expectCount": 3,
+      "actualCount": 3,
       "undocumentLines": []
     },
     "packages/crypto/src/curve25519.ts": {
@@ -282,6 +282,13 @@
       "undocumentLines": [
         13,
         15
+      ]
+    },
+    "packages/crypto/src/verifySignature.ts": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        10
       ]
     },
     "packages/crypto/src/words.ts": {
