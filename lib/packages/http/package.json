@@ -1,5 +1,5 @@
 {
-  "name": "@burst/http",
+  "name": "@burstjs/http",
   "version": "0.0.2",
   "description": "Send commands to BURST over HTTP",
   "contributors": [
@@ -43,5 +43,6 @@
     "hooks": {
       "pre-push": "npm test"
     }
-  }
+  },
+  "gitHead": "5e6a8a79ae31038bad207cd18f6772b062767e65"
 }
