@@ -1,28 +1,28 @@
 {
   "type": "File",
   "start": 0,
-  "end": 777,
+  "end": 757,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 35,
+      "line": 34,
       "column": 0
     }
   },
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 777,
+    "end": 757,
     "loc": {
       "start": {
         "line": 1,
         "column": 0
       },
       "end": {
-        "line": 35,
+        "line": 34,
         "column": 0
       }
     },
@@ -31,7 +31,7 @@
       {
         "type": "ImportDeclaration",
         "start": 0,
-        "end": 40,
+        "end": 44,
         "loc": {
           "start": {
             "line": 1,
@@ -39,36 +39,53 @@
           },
           "end": {
             "line": 1,
-            "column": 40
+            "column": 44
           }
         },
         "specifiers": [
           {
-            "type": "ImportDefaultSpecifier",
-            "start": 7,
-            "end": 18,
+            "type": "ImportSpecifier",
+            "start": 9,
+            "end": 20,
             "loc": {
               "start": {
                 "line": 1,
-                "column": 7
+                "column": 9
               },
               "end": {
                 "line": 1,
-                "column": 18
+                "column": 20
               }
             },
-            "local": {
+            "imported": {
               "type": "Identifier",
-              "start": 7,
-              "end": 18,
+              "start": 9,
+              "end": 20,
               "loc": {
                 "start": {
                   "line": 1,
-                  "column": 7
+                  "column": 9
                 },
                 "end": {
                   "line": 1,
-                  "column": 18
+                  "column": 20
+                },
+                "identifierName": "BaseService"
+              },
+              "name": "BaseService"
+            },
+            "local": {
+              "type": "Identifier",
+              "start": 9,
+              "end": 20,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 9
+                },
+                "end": {
+                  "line": 1,
+                  "column": 20
                 },
                 "identifierName": "BaseService"
               },
@@ -78,16 +95,16 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 24,
-          "end": 39,
+          "start": 28,
+          "end": 43,
           "loc": {
             "start": {
               "line": 1,
-              "column": 24
+              "column": 28
             },
             "end": {
               "line": 1,
-              "column": 39
+              "column": 43
             }
           },
           "extra": {
@@ -100,8 +117,8 @@
           {
             "type": "CommentBlock",
             "value": "*\n * @desc\n * This service provides information about the blockchains network status\n *\n * https://burstwiki.org/wiki/The_Burst_API#Server_Information_Operations\n * @lineNumber\n * 10\n ",
-            "start": 41,
-            "end": 229,
+            "start": 45,
+            "end": 233,
             "loc": {
               "start": {
                 "line": 2,
@@ -116,9 +133,9 @@
         ]
       },
       {
-        "type": "Identifier",
-        "start": 230,
-        "end": 745,
+        "type": "ExportNamedDeclaration",
+        "start": 234,
+        "end": 756,
         "loc": {
           "start": {
             "line": 10,
@@ -129,622 +146,16 @@
             "column": 1
           }
         },
-        "id": {
-          "type": "Identifier",
-          "start": 236,
-          "end": 250,
-          "loc": {
-            "start": {
-              "line": 10,
-              "column": 6
-            },
-            "end": {
-              "line": 10,
-              "column": 20
-            },
-            "identifierName": "NetworkService"
-          },
-          "name": "NetworkService",
-          "leadingComments": null
-        },
-        "superClass": {
-          "type": "Identifier",
-          "start": 259,
-          "end": 270,
-          "loc": {
-            "start": {
-              "line": 10,
-              "column": 29
-            },
-            "end": {
-              "line": 10,
-              "column": 40
-            },
-            "identifierName": "BaseService"
-          },
-          "name": "BaseService"
-        },
-        "body": {
-          "type": "ClassBody",
-          "start": 271,
-          "end": 745,
-          "loc": {
-            "start": {
-              "line": 10,
-              "column": 41
-            },
-            "end": {
-              "line": 33,
-              "column": 1
-            }
-          },
-          "body": [
-            {
-              "type": "ClassMethod",
-              "start": 401,
-              "end": 505,
-              "loc": {
-                "start": {
-                  "line": 19,
-                  "column": 4
-                },
-                "end": {
-                  "line": 21,
-                  "column": 5
-                }
-              },
-              "static": false,
-              "computed": false,
-              "key": {
-                "type": "Identifier",
-                "start": 401,
-                "end": 420,
-                "loc": {
-                  "start": {
-                    "line": 19,
-                    "column": 4
-                  },
-                  "end": {
-                    "line": 19,
-                    "column": 23
-                  },
-                  "identifierName": "getBlockchainStatus"
-                },
-                "name": "getBlockchainStatus",
-                "leadingComments": null
-              },
-              "kind": "method",
-              "id": null,
-              "generator": false,
-              "expression": false,
-              "async": false,
-              "params": [],
-              "body": {
-                "type": "BlockStatement",
-                "start": 423,
-                "end": 505,
-                "loc": {
-                  "start": {
-                    "line": 19,
-                    "column": 26
-                  },
-                  "end": {
-                    "line": 21,
-                    "column": 5
-                  }
-                },
-                "body": [
-                  {
-                    "type": "ReturnStatement",
-                    "start": 433,
-                    "end": 499,
-                    "loc": {
-                      "start": {
-                        "line": 20,
-                        "column": 8
-                      },
-                      "end": {
-                        "line": 20,
-                        "column": 74
-                      }
-                    },
-                    "argument": {
-                      "type": "CallExpression",
-                      "start": 440,
-                      "end": 498,
-                      "loc": {
-                        "start": {
-                          "line": 20,
-                          "column": 15
-                        },
-                        "end": {
-                          "line": 20,
-                          "column": 73
-                        }
-                      },
-                      "callee": {
-                        "type": "MemberExpression",
-                        "start": 440,
-                        "end": 455,
-                        "loc": {
-                          "start": {
-                            "line": 20,
-                            "column": 15
-                          },
-                          "end": {
-                            "line": 20,
-                            "column": 30
-                          }
-                        },
-                        "object": {
-                          "type": "ThisExpression",
-                          "start": 440,
-                          "end": 444,
-                          "loc": {
-                            "start": {
-                              "line": 20,
-                              "column": 15
-                            },
-                            "end": {
-                              "line": 20,
-                              "column": 19
-                            }
-                          }
-                        },
-                        "property": {
-                          "type": "Identifier",
-                          "start": 445,
-                          "end": 455,
-                          "loc": {
-                            "start": {
-                              "line": 20,
-                              "column": 20
-                            },
-                            "end": {
-                              "line": 20,
-                              "column": 30
-                            },
-                            "identifierName": "requestGet"
-                          },
-                          "name": "requestGet"
-                        },
-                        "computed": false
-                      },
-                      "arguments": [
-                        {
-                          "type": "CallExpression",
-                          "start": 456,
-                          "end": 497,
-                          "loc": {
-                            "start": {
-                              "line": 20,
-                              "column": 31
-                            },
-                            "end": {
-                              "line": 20,
-                              "column": 72
-                            }
-                          },
-                          "callee": {
-                            "type": "MemberExpression",
-                            "start": 456,
-                            "end": 474,
-                            "loc": {
-                              "start": {
-                                "line": 20,
-                                "column": 31
-                              },
-                              "end": {
-                                "line": 20,
-                                "column": 49
-                              }
-                            },
-                            "object": {
-                              "type": "ThisExpression",
-                              "start": 456,
-                              "end": 460,
-                              "loc": {
-                                "start": {
-                                  "line": 20,
-                                  "column": 31
-                                },
-                                "end": {
-                                  "line": 20,
-                                  "column": 35
-                                }
-                              }
-                            },
-                            "property": {
-                              "type": "Identifier",
-                              "start": 461,
-                              "end": 474,
-                              "loc": {
-                                "start": {
-                                  "line": 20,
-                                  "column": 36
-                                },
-                                "end": {
-                                  "line": 20,
-                                  "column": 49
-                                },
-                                "identifierName": "toBRSEndpoint"
-                              },
-                              "name": "toBRSEndpoint"
-                            },
-                            "computed": false
-                          },
-                          "arguments": [
-                            {
-                              "type": "StringLiteral",
-                              "start": 475,
-                              "end": 496,
-                              "loc": {
-                                "start": {
-                                  "line": 20,
-                                  "column": 50
-                                },
-                                "end": {
-                                  "line": 20,
-                                  "column": 71
-                                }
-                              },
-                              "extra": {
-                                "rawValue": "getBlockchainStatus",
-                                "raw": "'getBlockchainStatus'"
-                              },
-                              "value": "getBlockchainStatus"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                ],
-                "directives": [],
-                "trailingComments": null
-              },
-              "leadingComments": [
-                {
-                  "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     * Get the blockchain status.\n     * @lineNumber\n     * 15\n     * @return\n     * {Promise}\n     ",
-                  "start": 277,
-                  "end": 396,
-                  "loc": {
-                    "start": {
-                      "line": 11,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 18,
-                      "column": 7
-                    }
-                  }
-                }
-              ],
-              "trailingComments": [
-                {
-                  "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     * Get the state of the server node and network.\n     * @lineNumber\n     * 22\n     * @return\n     * {Promise}\n     ",
-                  "start": 510,
-                  "end": 648,
-                  "loc": {
-                    "start": {
-                      "line": 22,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 29,
-                      "column": 7
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "type": "ClassMethod",
-              "start": 653,
-              "end": 743,
-              "loc": {
-                "start": {
-                  "line": 30,
-                  "column": 4
-                },
-                "end": {
-                  "line": 32,
-                  "column": 5
-                }
-              },
-              "static": false,
-              "computed": false,
-              "key": {
-                "type": "Identifier",
-                "start": 653,
-                "end": 669,
-                "loc": {
-                  "start": {
-                    "line": 30,
-                    "column": 4
-                  },
-                  "end": {
-                    "line": 30,
-                    "column": 20
-                  },
-                  "identifierName": "getNetworkStatus"
-                },
-                "name": "getNetworkStatus",
-                "leadingComments": null
-              },
-              "kind": "method",
-              "id": null,
-              "generator": false,
-              "expression": false,
-              "async": false,
-              "params": [],
-              "body": {
-                "type": "BlockStatement",
-                "start": 672,
-                "end": 743,
-                "loc": {
-                  "start": {
-                    "line": 30,
-                    "column": 23
-                  },
-                  "end": {
-                    "line": 32,
-                    "column": 5
-                  }
-                },
-                "body": [
-                  {
-                    "type": "ReturnStatement",
-                    "start": 682,
-                    "end": 737,
-                    "loc": {
-                      "start": {
-                        "line": 31,
-                        "column": 8
-                      },
-                      "end": {
-                        "line": 31,
-                        "column": 63
-                      }
-                    },
-                    "argument": {
-                      "type": "CallExpression",
-                      "start": 689,
-                      "end": 736,
-                      "loc": {
-                        "start": {
-                          "line": 31,
-                          "column": 15
-                        },
-                        "end": {
-                          "line": 31,
-                          "column": 62
-                        }
-                      },
-                      "callee": {
-                        "type": "MemberExpression",
-                        "start": 689,
-                        "end": 704,
-                        "loc": {
-                          "start": {
-                            "line": 31,
-                            "column": 15
-                          },
-                          "end": {
-                            "line": 31,
-                            "column": 30
-                          }
-                        },
-                        "object": {
-                          "type": "ThisExpression",
-                          "start": 689,
-                          "end": 693,
-                          "loc": {
-                            "start": {
-                              "line": 31,
-                              "column": 15
-                            },
-                            "end": {
-                              "line": 31,
-                              "column": 19
-                            }
-                          }
-                        },
-                        "property": {
-                          "type": "Identifier",
-                          "start": 694,
-                          "end": 704,
-                          "loc": {
-                            "start": {
-                              "line": 31,
-                              "column": 20
-                            },
-                            "end": {
-                              "line": 31,
-                              "column": 30
-                            },
-                            "identifierName": "requestGet"
-                          },
-                          "name": "requestGet"
-                        },
-                        "computed": false
-                      },
-                      "arguments": [
-                        {
-                          "type": "CallExpression",
-                          "start": 705,
-                          "end": 735,
-                          "loc": {
-                            "start": {
-                              "line": 31,
-                              "column": 31
-                            },
-                            "end": {
-                              "line": 31,
-                              "column": 61
-                            }
-                          },
-                          "callee": {
-                            "type": "MemberExpression",
-                            "start": 705,
-                            "end": 723,
-                            "loc": {
-                              "start": {
-                                "line": 31,
-                                "column": 31
-                              },
-                              "end": {
-                                "line": 31,
-                                "column": 49
-                              }
-                            },
-                            "object": {
-                              "type": "ThisExpression",
-                              "start": 705,
-                              "end": 709,
-                              "loc": {
-                                "start": {
-                                  "line": 31,
-                                  "column": 31
-                                },
-                                "end": {
-                                  "line": 31,
-                                  "column": 35
-                                }
-                              }
-                            },
-                            "property": {
-                              "type": "Identifier",
-                              "start": 710,
-                              "end": 723,
-                              "loc": {
-                                "start": {
-                                  "line": 31,
-                                  "column": 36
-                                },
-                                "end": {
-                                  "line": 31,
-                                  "column": 49
-                                },
-                                "identifierName": "toBRSEndpoint"
-                              },
-                              "name": "toBRSEndpoint"
-                            },
-                            "computed": false
-                          },
-                          "arguments": [
-                            {
-                              "type": "StringLiteral",
-                              "start": 724,
-                              "end": 734,
-                              "loc": {
-                                "start": {
-                                  "line": 31,
-                                  "column": 50
-                                },
-                                "end": {
-                                  "line": 31,
-                                  "column": 60
-                                }
-                              },
-                              "extra": {
-                                "rawValue": "getState",
-                                "raw": "'getState'"
-                              },
-                              "value": "getState"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                ],
-                "directives": []
-              },
-              "leadingComments": [
-                {
-                  "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     * Get the state of the server node and network.\n     * @lineNumber\n     * 22\n     * @return\n     * {Promise}\n     ",
-                  "start": 510,
-                  "end": 648,
-                  "loc": {
-                    "start": {
-                      "line": 22,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 29,
-                      "column": 7
-                    }
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "leadingComments": [],
-        "name": "_",
-        "trailingComments": []
-      },
-      {
-        "type": "Identifier",
-        "start": 746,
-        "end": 776,
-        "loc": {
-          "start": {
-            "line": 34,
-            "column": 0
-          },
-          "end": {
-            "line": 34,
-            "column": 30
-          }
-        },
-        "declaration": {
-          "type": "Identifier",
-          "start": 761,
-          "end": 775,
-          "loc": {
-            "start": {
-              "line": 34,
-              "column": 15
-            },
-            "end": {
-              "line": 34,
-              "column": 29
-            },
-            "identifierName": "NetworkService"
-          },
-          "name": "NetworkService"
-        },
-        "name": "_",
-        "leadingComments": [],
-        "trailingComments": []
-      },
-      {
-        "type": "ExportDefaultDeclaration",
-        "start": 746,
-        "end": 776,
-        "loc": {
-          "start": {
-            "line": 34,
-            "column": 0
-          },
-          "end": {
-            "line": 34,
-            "column": 30
-          }
-        },
+        "specifiers": [],
+        "source": null,
         "declaration": {
           "type": "ClassDeclaration",
-          "start": 230,
-          "end": 745,
+          "start": 241,
+          "end": 756,
           "loc": {
             "start": {
               "line": 10,
-              "column": 0
+              "column": 7
             },
             "end": {
               "line": 33,
@@ -753,16 +164,16 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 236,
-            "end": 250,
+            "start": 247,
+            "end": 261,
             "loc": {
               "start": {
                 "line": 10,
-                "column": 6
+                "column": 13
               },
               "end": {
                 "line": 10,
-                "column": 20
+                "column": 27
               },
               "identifierName": "NetworkService"
             },
@@ -771,16 +182,16 @@
           },
           "superClass": {
             "type": "Identifier",
-            "start": 259,
-            "end": 270,
+            "start": 270,
+            "end": 281,
             "loc": {
               "start": {
                 "line": 10,
-                "column": 29
+                "column": 36
               },
               "end": {
                 "line": 10,
-                "column": 40
+                "column": 47
               },
               "identifierName": "BaseService"
             },
@@ -788,12 +199,12 @@
           },
           "body": {
             "type": "ClassBody",
-            "start": 271,
-            "end": 745,
+            "start": 282,
+            "end": 756,
             "loc": {
               "start": {
                 "line": 10,
-                "column": 41
+                "column": 48
               },
               "end": {
                 "line": 33,
@@ -803,8 +214,8 @@
             "body": [
               {
                 "type": "ClassMethod",
-                "start": 401,
-                "end": 505,
+                "start": 412,
+                "end": 516,
                 "loc": {
                   "start": {
                     "line": 19,
@@ -819,8 +230,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 401,
-                  "end": 420,
+                  "start": 412,
+                  "end": 431,
                   "loc": {
                     "start": {
                       "line": 19,
@@ -843,8 +254,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 423,
-                  "end": 505,
+                  "start": 434,
+                  "end": 516,
                   "loc": {
                     "start": {
                       "line": 19,
@@ -858,8 +269,8 @@
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 433,
-                      "end": 499,
+                      "start": 444,
+                      "end": 510,
                       "loc": {
                         "start": {
                           "line": 20,
@@ -872,8 +283,8 @@
                       },
                       "argument": {
                         "type": "CallExpression",
-                        "start": 440,
-                        "end": 498,
+                        "start": 451,
+                        "end": 509,
                         "loc": {
                           "start": {
                             "line": 20,
@@ -886,8 +297,8 @@
                         },
                         "callee": {
                           "type": "MemberExpression",
-                          "start": 440,
-                          "end": 455,
+                          "start": 451,
+                          "end": 466,
                           "loc": {
                             "start": {
                               "line": 20,
@@ -900,8 +311,8 @@
                           },
                           "object": {
                             "type": "ThisExpression",
-                            "start": 440,
-                            "end": 444,
+                            "start": 451,
+                            "end": 455,
                             "loc": {
                               "start": {
                                 "line": 20,
@@ -915,8 +326,8 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 445,
-                            "end": 455,
+                            "start": 456,
+                            "end": 466,
                             "loc": {
                               "start": {
                                 "line": 20,
@@ -935,8 +346,8 @@
                         "arguments": [
                           {
                             "type": "CallExpression",
-                            "start": 456,
-                            "end": 497,
+                            "start": 467,
+                            "end": 508,
                             "loc": {
                               "start": {
                                 "line": 20,
@@ -949,8 +360,8 @@
                             },
                             "callee": {
                               "type": "MemberExpression",
-                              "start": 456,
-                              "end": 474,
+                              "start": 467,
+                              "end": 485,
                               "loc": {
                                 "start": {
                                   "line": 20,
@@ -963,8 +374,8 @@
                               },
                               "object": {
                                 "type": "ThisExpression",
-                                "start": 456,
-                                "end": 460,
+                                "start": 467,
+                                "end": 471,
                                 "loc": {
                                   "start": {
                                     "line": 20,
@@ -978,8 +389,8 @@
                               },
                               "property": {
                                 "type": "Identifier",
-                                "start": 461,
-                                "end": 474,
+                                "start": 472,
+                                "end": 485,
                                 "loc": {
                                   "start": {
                                     "line": 20,
@@ -998,8 +409,8 @@
                             "arguments": [
                               {
                                 "type": "StringLiteral",
-                                "start": 475,
-                                "end": 496,
+                                "start": 486,
+                                "end": 507,
                                 "loc": {
                                   "start": {
                                     "line": 20,
@@ -1029,8 +440,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * @desc\n     * Get the blockchain status.\n     * @lineNumber\n     * 15\n     * @return\n     * {Promise}\n     ",
-                    "start": 277,
-                    "end": 396,
+                    "start": 288,
+                    "end": 407,
                     "loc": {
                       "start": {
                         "line": 11,
@@ -1047,8 +458,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * @desc\n     * Get the state of the server node and network.\n     * @lineNumber\n     * 22\n     * @return\n     * {Promise}\n     ",
-                    "start": 510,
-                    "end": 648,
+                    "start": 521,
+                    "end": 659,
                     "loc": {
                       "start": {
                         "line": 22,
@@ -1064,8 +475,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 653,
-                "end": 743,
+                "start": 664,
+                "end": 754,
                 "loc": {
                   "start": {
                     "line": 30,
@@ -1080,8 +491,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 653,
-                  "end": 669,
+                  "start": 664,
+                  "end": 680,
                   "loc": {
                     "start": {
                       "line": 30,
@@ -1104,8 +515,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 672,
-                  "end": 743,
+                  "start": 683,
+                  "end": 754,
                   "loc": {
                     "start": {
                       "line": 30,
@@ -1119,8 +530,8 @@
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 682,
-                      "end": 737,
+                      "start": 693,
+                      "end": 748,
                       "loc": {
                         "start": {
                           "line": 31,
@@ -1133,8 +544,8 @@
                       },
                       "argument": {
                         "type": "CallExpression",
-                        "start": 689,
-                        "end": 736,
+                        "start": 700,
+                        "end": 747,
                         "loc": {
                           "start": {
                             "line": 31,
@@ -1147,8 +558,8 @@
                         },
                         "callee": {
                           "type": "MemberExpression",
-                          "start": 689,
-                          "end": 704,
+                          "start": 700,
+                          "end": 715,
                           "loc": {
                             "start": {
                               "line": 31,
@@ -1161,8 +572,8 @@
                           },
                           "object": {
                             "type": "ThisExpression",
-                            "start": 689,
-                            "end": 693,
+                            "start": 700,
+                            "end": 704,
                             "loc": {
                               "start": {
                                 "line": 31,
@@ -1176,8 +587,8 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 694,
-                            "end": 704,
+                            "start": 705,
+                            "end": 715,
                             "loc": {
                               "start": {
                                 "line": 31,
@@ -1196,8 +607,8 @@
                         "arguments": [
                           {
                             "type": "CallExpression",
-                            "start": 705,
-                            "end": 735,
+                            "start": 716,
+                            "end": 746,
                             "loc": {
                               "start": {
                                 "line": 31,
@@ -1210,8 +621,8 @@
                             },
                             "callee": {
                               "type": "MemberExpression",
-                              "start": 705,
-                              "end": 723,
+                              "start": 716,
+                              "end": 734,
                               "loc": {
                                 "start": {
                                   "line": 31,
@@ -1224,8 +635,8 @@
                               },
                               "object": {
                                 "type": "ThisExpression",
-                                "start": 705,
-                                "end": 709,
+                                "start": 716,
+                                "end": 720,
                                 "loc": {
                                   "start": {
                                     "line": 31,
@@ -1239,8 +650,8 @@
                               },
                               "property": {
                                 "type": "Identifier",
-                                "start": 710,
-                                "end": 723,
+                                "start": 721,
+                                "end": 734,
                                 "loc": {
                                   "start": {
                                     "line": 31,
@@ -1259,8 +670,8 @@
                             "arguments": [
                               {
                                 "type": "StringLiteral",
-                                "start": 724,
-                                "end": 734,
+                                "start": 735,
+                                "end": 745,
                                 "loc": {
                                   "start": {
                                     "line": 31,
@@ -1289,8 +700,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * @desc\n     * Get the state of the server node and network.\n     * @lineNumber\n     * 22\n     * @return\n     * {Promise}\n     ",
-                    "start": 510,
-                    "end": 648,
+                    "start": 521,
+                    "end": 659,
                     "loc": {
                       "start": {
                         "line": 22,
@@ -1310,8 +721,8 @@
             {
               "type": "CommentBlock",
               "value": "*\n * @desc\n * This service provides information about the blockchains network status\n *\n * https://burstwiki.org/wiki/The_Burst_API#Server_Information_Operations\n * @lineNumber\n * 10\n ",
-              "start": 41,
-              "end": 229,
+              "start": 45,
+              "end": 233,
               "loc": {
                 "start": {
                   "line": 2,
@@ -1324,10 +735,26 @@
               }
             }
           ],
-          "__PseudoExport__": false,
           "trailingComments": []
         },
-        "leadingComments": null
+        "leadingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\n * @desc\n * This service provides information about the blockchains network status\n *\n * https://burstwiki.org/wiki/The_Burst_API#Server_Information_Operations\n * @lineNumber\n * 10\n ",
+            "start": 45,
+            "end": 233,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 0
+              },
+              "end": {
+                "line": 9,
+                "column": 3
+              }
+            }
+          }
+        ]
       }
     ],
     "directives": []
@@ -1336,8 +763,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n * @desc\n * This service provides information about the blockchains network status\n *\n * https://burstwiki.org/wiki/The_Burst_API#Server_Information_Operations\n * @lineNumber\n * 10\n ",
-      "start": 41,
-      "end": 229,
+      "start": 45,
+      "end": 233,
       "loc": {
         "start": {
           "line": 2,
@@ -1352,8 +779,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * @desc\n     * Get the blockchain status.\n     * @lineNumber\n     * 15\n     * @return\n     * {Promise}\n     ",
-      "start": 277,
-      "end": 396,
+      "start": 288,
+      "end": 407,
       "loc": {
         "start": {
           "line": 11,
@@ -1368,8 +795,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * @desc\n     * Get the state of the server node and network.\n     * @lineNumber\n     * 22\n     * @return\n     * {Promise}\n     ",
-      "start": 510,
-      "end": 648,
+      "start": 521,
+      "end": 659,
       "loc": {
         "start": {
           "line": 22,
@@ -1413,6 +840,31 @@
     },
     {
       "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 7,
+      "end": 8,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 7
+        },
+        "end": {
+          "line": 1,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": {
         "label": "name",
         "beforeExpr": false,
         "startsExpr": true,
@@ -1424,16 +876,41 @@
         "binop": null
       },
       "value": "BaseService",
-      "start": 7,
-      "end": 18,
+      "start": 9,
+      "end": 20,
       "loc": {
         "start": {
           "line": 1,
-          "column": 7
+          "column": 9
         },
         "end": {
           "line": 1,
-          "column": 18
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 21,
+      "end": 22,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 21
+        },
+        "end": {
+          "line": 1,
+          "column": 22
         }
       }
     },
@@ -1450,16 +927,16 @@
         "binop": null
       },
       "value": "from",
-      "start": 19,
-      "end": 23,
+      "start": 23,
+      "end": 27,
       "loc": {
         "start": {
           "line": 1,
-          "column": 19
+          "column": 23
         },
         "end": {
           "line": 1,
-          "column": 23
+          "column": 27
         }
       }
     },
@@ -1477,16 +954,16 @@
         "updateContext": null
       },
       "value": "./baseService",
-      "start": 24,
-      "end": 39,
+      "start": 28,
+      "end": 43,
       "loc": {
         "start": {
           "line": 1,
-          "column": 24
+          "column": 28
         },
         "end": {
           "line": 1,
-          "column": 39
+          "column": 43
         }
       }
     },
@@ -1503,24 +980,24 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 39,
-      "end": 40,
+      "start": 43,
+      "end": 44,
       "loc": {
         "start": {
           "line": 1,
-          "column": 39
+          "column": 43
         },
         "end": {
           "line": 1,
-          "column": 40
+          "column": 44
         }
       }
     },
     {
       "type": "CommentBlock",
       "value": "*\n * @desc\n * This service provides information about the blockchains network status\n *\n * https://burstwiki.org/wiki/The_Burst_API#Server_Information_Operations\n * @lineNumber\n * 10\n ",
-      "start": 41,
-      "end": 229,
+      "start": 45,
+      "end": 233,
       "loc": {
         "start": {
           "line": 2,
@@ -1529,6 +1006,34 @@
         "end": {
           "line": 9,
           "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "export",
+        "keyword": "export",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "export",
+      "start": 234,
+      "end": 240,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 6
         }
       }
     },
@@ -1547,16 +1052,16 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 230,
-      "end": 235,
+      "start": 241,
+      "end": 246,
       "loc": {
         "start": {
           "line": 10,
-          "column": 0
+          "column": 7
         },
         "end": {
           "line": 10,
-          "column": 5
+          "column": 12
         }
       }
     },
@@ -1573,16 +1078,16 @@
         "binop": null
       },
       "value": "NetworkService",
-      "start": 236,
-      "end": 250,
+      "start": 247,
+      "end": 261,
       "loc": {
         "start": {
           "line": 10,
-          "column": 6
+          "column": 13
         },
         "end": {
           "line": 10,
-          "column": 20
+          "column": 27
         }
       }
     },
@@ -1601,16 +1106,16 @@
         "updateContext": null
       },
       "value": "extends",
-      "start": 251,
-      "end": 258,
+      "start": 262,
+      "end": 269,
       "loc": {
         "start": {
           "line": 10,
-          "column": 21
+          "column": 28
         },
         "end": {
           "line": 10,
-          "column": 28
+          "column": 35
         }
       }
     },
@@ -1627,16 +1132,16 @@
         "binop": null
       },
       "value": "BaseService",
-      "start": 259,
-      "end": 270,
+      "start": 270,
+      "end": 281,
       "loc": {
         "start": {
           "line": 10,
-          "column": 29
+          "column": 36
         },
         "end": {
           "line": 10,
-          "column": 40
+          "column": 47
         }
       }
     },
@@ -1652,24 +1157,24 @@
         "postfix": false,
         "binop": null
       },
-      "start": 271,
-      "end": 272,
+      "start": 282,
+      "end": 283,
       "loc": {
         "start": {
           "line": 10,
-          "column": 41
+          "column": 48
         },
         "end": {
           "line": 10,
-          "column": 42
+          "column": 49
         }
       }
     },
     {
       "type": "CommentBlock",
       "value": "*\n     * @desc\n     * Get the blockchain status.\n     * @lineNumber\n     * 15\n     * @return\n     * {Promise}\n     ",
-      "start": 277,
-      "end": 396,
+      "start": 288,
+      "end": 407,
       "loc": {
         "start": {
           "line": 11,
@@ -1694,8 +1199,8 @@
         "binop": null
       },
       "value": "getBlockchainStatus",
-      "start": 401,
-      "end": 420,
+      "start": 412,
+      "end": 431,
       "loc": {
         "start": {
           "line": 19,
@@ -1719,8 +1224,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 420,
-      "end": 421,
+      "start": 431,
+      "end": 432,
       "loc": {
         "start": {
           "line": 19,
@@ -1744,8 +1249,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 421,
-      "end": 422,
+      "start": 432,
+      "end": 433,
       "loc": {
         "start": {
           "line": 19,
@@ -1769,8 +1274,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 423,
-      "end": 424,
+      "start": 434,
+      "end": 435,
       "loc": {
         "start": {
           "line": 19,
@@ -1797,8 +1302,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 433,
-      "end": 439,
+      "start": 444,
+      "end": 450,
       "loc": {
         "start": {
           "line": 20,
@@ -1825,8 +1330,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 440,
-      "end": 444,
+      "start": 451,
+      "end": 455,
       "loc": {
         "start": {
           "line": 20,
@@ -1851,8 +1356,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 444,
-      "end": 445,
+      "start": 455,
+      "end": 456,
       "loc": {
         "start": {
           "line": 20,
@@ -1877,8 +1382,8 @@
         "binop": null
       },
       "value": "requestGet",
-      "start": 445,
-      "end": 455,
+      "start": 456,
+      "end": 466,
       "loc": {
         "start": {
           "line": 20,
@@ -1902,8 +1407,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 455,
-      "end": 456,
+      "start": 466,
+      "end": 467,
       "loc": {
         "start": {
           "line": 20,
@@ -1930,8 +1435,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 456,
-      "end": 460,
+      "start": 467,
+      "end": 471,
       "loc": {
         "start": {
           "line": 20,
@@ -1956,8 +1461,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 460,
-      "end": 461,
+      "start": 471,
+      "end": 472,
       "loc": {
         "start": {
           "line": 20,
@@ -1982,8 +1487,8 @@
         "binop": null
       },
       "value": "toBRSEndpoint",
-      "start": 461,
-      "end": 474,
+      "start": 472,
+      "end": 485,
       "loc": {
         "start": {
           "line": 20,
@@ -2007,8 +1512,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 474,
-      "end": 475,
+      "start": 485,
+      "end": 486,
       "loc": {
         "start": {
           "line": 20,
@@ -2034,8 +1539,8 @@
         "updateContext": null
       },
       "value": "getBlockchainStatus",
-      "start": 475,
-      "end": 496,
+      "start": 486,
+      "end": 507,
       "loc": {
         "start": {
           "line": 20,
@@ -2059,8 +1564,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 496,
-      "end": 497,
+      "start": 507,
+      "end": 508,
       "loc": {
         "start": {
           "line": 20,
@@ -2084,8 +1589,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 497,
-      "end": 498,
+      "start": 508,
+      "end": 509,
       "loc": {
         "start": {
           "line": 20,
@@ -2110,8 +1615,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 498,
-      "end": 499,
+      "start": 509,
+      "end": 510,
       "loc": {
         "start": {
           "line": 20,
@@ -2135,8 +1640,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 504,
-      "end": 505,
+      "start": 515,
+      "end": 516,
       "loc": {
         "start": {
           "line": 21,
@@ -2151,8 +1656,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * @desc\n     * Get the state of the server node and network.\n     * @lineNumber\n     * 22\n     * @return\n     * {Promise}\n     ",
-      "start": 510,
-      "end": 648,
+      "start": 521,
+      "end": 659,
       "loc": {
         "start": {
           "line": 22,
@@ -2177,8 +1682,8 @@
         "binop": null
       },
       "value": "getNetworkStatus",
-      "start": 653,
-      "end": 669,
+      "start": 664,
+      "end": 680,
       "loc": {
         "start": {
           "line": 30,
@@ -2202,8 +1707,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 669,
-      "end": 670,
+      "start": 680,
+      "end": 681,
       "loc": {
         "start": {
           "line": 30,
@@ -2227,8 +1732,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 670,
-      "end": 671,
+      "start": 681,
+      "end": 682,
       "loc": {
         "start": {
           "line": 30,
@@ -2252,8 +1757,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 672,
-      "end": 673,
+      "start": 683,
+      "end": 684,
       "loc": {
         "start": {
           "line": 30,
@@ -2280,8 +1785,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 682,
-      "end": 688,
+      "start": 693,
+      "end": 699,
       "loc": {
         "start": {
           "line": 31,
@@ -2308,8 +1813,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 689,
-      "end": 693,
+      "start": 700,
+      "end": 704,
       "loc": {
         "start": {
           "line": 31,
@@ -2334,8 +1839,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 693,
-      "end": 694,
+      "start": 704,
+      "end": 705,
       "loc": {
         "start": {
           "line": 31,
@@ -2360,8 +1865,8 @@
         "binop": null
       },
       "value": "requestGet",
-      "start": 694,
-      "end": 704,
+      "start": 705,
+      "end": 715,
       "loc": {
         "start": {
           "line": 31,
@@ -2385,8 +1890,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 704,
-      "end": 705,
+      "start": 715,
+      "end": 716,
       "loc": {
         "start": {
           "line": 31,
@@ -2413,8 +1918,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 705,
-      "end": 709,
+      "start": 716,
+      "end": 720,
       "loc": {
         "start": {
           "line": 31,
@@ -2439,8 +1944,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 709,
-      "end": 710,
+      "start": 720,
+      "end": 721,
       "loc": {
         "start": {
           "line": 31,
@@ -2465,8 +1970,8 @@
         "binop": null
       },
       "value": "toBRSEndpoint",
-      "start": 710,
-      "end": 723,
+      "start": 721,
+      "end": 734,
       "loc": {
         "start": {
           "line": 31,
@@ -2490,8 +1995,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 723,
-      "end": 724,
+      "start": 734,
+      "end": 735,
       "loc": {
         "start": {
           "line": 31,
@@ -2517,8 +2022,8 @@
         "updateContext": null
       },
       "value": "getState",
-      "start": 724,
-      "end": 734,
+      "start": 735,
+      "end": 745,
       "loc": {
         "start": {
           "line": 31,
@@ -2542,8 +2047,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 734,
-      "end": 735,
+      "start": 745,
+      "end": 746,
       "loc": {
         "start": {
           "line": 31,
@@ -2567,8 +2072,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 735,
-      "end": 736,
+      "start": 746,
+      "end": 747,
       "loc": {
         "start": {
           "line": 31,
@@ -2593,8 +2098,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 736,
-      "end": 737,
+      "start": 747,
+      "end": 748,
       "loc": {
         "start": {
           "line": 31,
@@ -2618,8 +2123,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 742,
-      "end": 743,
+      "start": 753,
+      "end": 754,
       "loc": {
         "start": {
           "line": 32,
@@ -2643,8 +2148,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 744,
-      "end": 745,
+      "start": 755,
+      "end": 756,
       "loc": {
         "start": {
           "line": 33,
@@ -2653,114 +2158,6 @@
         "end": {
           "line": 33,
           "column": 1
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "export",
-        "keyword": "export",
-        "beforeExpr": false,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-      "value": "export",
-      "start": 746,
-      "end": 752,
-      "loc": {
-        "start": {
-          "line": 34,
-          "column": 0
-        },
-        "end": {
-          "line": 34,
-          "column": 6
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "default",
-        "keyword": "default",
-        "beforeExpr": true,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-      "value": "default",
-      "start": 753,
-      "end": 760,
-      "loc": {
-        "start": {
-          "line": 34,
-          "column": 7
-        },
-        "end": {
-          "line": 34,
-          "column": 14
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "name",
-        "beforeExpr": false,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-      "value": "NetworkService",
-      "start": 761,
-      "end": 775,
-      "loc": {
-        "start": {
-          "line": 34,
-          "column": 15
-        },
-        "end": {
-          "line": 34,
-          "column": 29
-        }
-      }
-    },
-    {
-      "type": {
-        "label": ";",
-        "beforeExpr": true,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-      "start": 775,
-      "end": 776,
-      "loc": {
-        "start": {
-          "line": 34,
-          "column": 29
-        },
-        "end": {
-          "line": 34,
-          "column": 30
         }
       }
     },
@@ -2777,15 +2174,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 777,
-      "end": 777,
+      "start": 757,
+      "end": 757,
       "loc": {
         "start": {
-          "line": 35,
+          "line": 34,
           "column": 0
         },
         "end": {
-          "line": 35,
+          "line": 34,
           "column": 0
         }
       }

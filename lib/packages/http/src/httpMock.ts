@@ -38,17 +38,11 @@ function createMockImplementationFunctionForError(method: string, endpoint: stri
     };
 }
 
-interface MockBehavior {
-    reply(status: number, payload?: any): void;
-
-    error(status: number, message: string): void;
-}
-
 class MockBehavior {
     constructor(private method: string, private endpoint: string = FOR_ALL_ENDPOINTS) {
     }
 
-    public reply(status: number, response: any) {
+    public reply<T>(status: number, response: T) {
         // @ts-ignore
         Http.mockImplementationOnce(createMockImplementationFunctionForReply(this.method, this.endpoint, status, response));
     }
@@ -62,8 +56,8 @@ class MockBehavior {
 /**
  * Http Mocker for easy to http testing using Jest
  *
- * When using this mocking helper you need to call `jest.mock('@burst/http/src/http')`
- * at first line of your tests.
+ * When using this mocking helper you need to call `Http.onGet()`
+ * before Http instance is created
  *``` typescript
  *jest.mock('@burst/http/src/http');
  *import {HttpMock} from '@burst/http';
@@ -77,7 +71,7 @@ class MockBehavior {
  *
  *   it('should getAllPhoenixContributors easily', async () => {
  *
- *       // mock for any get
+ *       // mock for any get - call before Http is instantiated (here: in Github)
  *       HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);
  *       const github = new Github();
  *       const contributors = await github.getAllPhoenixContributors();

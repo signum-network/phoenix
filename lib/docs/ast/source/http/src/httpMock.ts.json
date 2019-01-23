@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 5103,
+  "end": 5130,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 5103,
+    "end": 5130,
     "loc": {
       "start": {
         "line": 1,
@@ -2268,7 +2268,7 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\n * @desc\n *\n * @lineNumber\n * 47\n ",
+            "value": "*\n * @desc\n *\n * @lineNumber\n * 41\n ",
             "start": 1498,
             "end": 1538,
             "loc": {
@@ -2287,7 +2287,7 @@
       {
         "type": "ClassDeclaration",
         "start": 1539,
-        "end": 2335,
+        "end": 2327,
         "loc": {
           "start": {
             "line": 74,
@@ -2320,7 +2320,7 @@
         "body": {
           "type": "ClassBody",
           "start": 1558,
-          "end": 2335,
+          "end": 2327,
           "loc": {
             "start": {
               "line": 74,
@@ -2652,9 +2652,9 @@
               "trailingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 51\n     * @param\n     * {number} status\n     * @param\n     * {undefined} response\n     ",
+                  "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 45\n     * @param\n     * {number} status\n     * @param\n     * {T} response\n     ",
                   "start": 1690,
-                  "end": 1829,
+                  "end": 1821,
                   "loc": {
                     "start": {
                       "line": 79,
@@ -2670,8 +2670,8 @@
             },
             {
               "type": "ClassMethod",
-              "start": 1834,
-              "end": 2012,
+              "start": 1826,
+              "end": 2004,
               "loc": {
                 "start": {
                   "line": 89,
@@ -2686,8 +2686,8 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 1834,
-                "end": 1839,
+                "start": 1826,
+                "end": 1831,
                 "loc": {
                   "start": {
                     "line": 89,
@@ -2710,8 +2710,8 @@
               "params": [
                 {
                   "type": "Identifier",
-                  "start": 1840,
-                  "end": 1846,
+                  "start": 1832,
+                  "end": 1838,
                   "loc": {
                     "start": {
                       "line": 89,
@@ -2727,8 +2727,8 @@
                 },
                 {
                   "type": "Identifier",
-                  "start": 1848,
-                  "end": 1856,
+                  "start": 1840,
+                  "end": 1848,
                   "loc": {
                     "start": {
                       "line": 89,
@@ -2745,8 +2745,8 @@
               ],
               "body": {
                 "type": "BlockStatement",
-                "start": 1858,
-                "end": 2012,
+                "start": 1850,
+                "end": 2004,
                 "loc": {
                   "start": {
                     "line": 89,
@@ -2760,8 +2760,8 @@
                 "body": [
                   {
                     "type": "ExpressionStatement",
-                    "start": 1890,
-                    "end": 2006,
+                    "start": 1882,
+                    "end": 1998,
                     "loc": {
                       "start": {
                         "line": 91,
@@ -2774,8 +2774,8 @@
                     },
                     "expression": {
                       "type": "CallExpression",
-                      "start": 1890,
-                      "end": 2005,
+                      "start": 1882,
+                      "end": 1997,
                       "loc": {
                         "start": {
                           "line": 91,
@@ -2788,8 +2788,8 @@
                       },
                       "callee": {
                         "type": "MemberExpression",
-                        "start": 1890,
-                        "end": 1917,
+                        "start": 1882,
+                        "end": 1909,
                         "loc": {
                           "start": {
                             "line": 91,
@@ -2802,8 +2802,8 @@
                         },
                         "object": {
                           "type": "Identifier",
-                          "start": 1890,
-                          "end": 1894,
+                          "start": 1882,
+                          "end": 1886,
                           "loc": {
                             "start": {
                               "line": 91,
@@ -2820,8 +2820,8 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 1895,
-                          "end": 1917,
+                          "start": 1887,
+                          "end": 1909,
                           "loc": {
                             "start": {
                               "line": 91,
@@ -2841,8 +2841,8 @@
                       "arguments": [
                         {
                           "type": "CallExpression",
-                          "start": 1918,
-                          "end": 2004,
+                          "start": 1910,
+                          "end": 1996,
                           "loc": {
                             "start": {
                               "line": 91,
@@ -2855,8 +2855,8 @@
                           },
                           "callee": {
                             "type": "Identifier",
-                            "start": 1918,
-                            "end": 1958,
+                            "start": 1910,
+                            "end": 1950,
                             "loc": {
                               "start": {
                                 "line": 91,
@@ -2873,8 +2873,8 @@
                           "arguments": [
                             {
                               "type": "MemberExpression",
-                              "start": 1959,
-                              "end": 1970,
+                              "start": 1951,
+                              "end": 1962,
                               "loc": {
                                 "start": {
                                   "line": 91,
@@ -2887,8 +2887,8 @@
                               },
                               "object": {
                                 "type": "ThisExpression",
-                                "start": 1959,
-                                "end": 1963,
+                                "start": 1951,
+                                "end": 1955,
                                 "loc": {
                                   "start": {
                                     "line": 91,
@@ -2902,8 +2902,8 @@
                               },
                               "property": {
                                 "type": "Identifier",
-                                "start": 1964,
-                                "end": 1970,
+                                "start": 1956,
+                                "end": 1962,
                                 "loc": {
                                   "start": {
                                     "line": 91,
@@ -2921,8 +2921,8 @@
                             },
                             {
                               "type": "MemberExpression",
-                              "start": 1972,
-                              "end": 1985,
+                              "start": 1964,
+                              "end": 1977,
                               "loc": {
                                 "start": {
                                   "line": 91,
@@ -2935,8 +2935,8 @@
                               },
                               "object": {
                                 "type": "ThisExpression",
-                                "start": 1972,
-                                "end": 1976,
+                                "start": 1964,
+                                "end": 1968,
                                 "loc": {
                                   "start": {
                                     "line": 91,
@@ -2950,8 +2950,8 @@
                               },
                               "property": {
                                 "type": "Identifier",
-                                "start": 1977,
-                                "end": 1985,
+                                "start": 1969,
+                                "end": 1977,
                                 "loc": {
                                   "start": {
                                     "line": 91,
@@ -2969,8 +2969,8 @@
                             },
                             {
                               "type": "Identifier",
-                              "start": 1987,
-                              "end": 1993,
+                              "start": 1979,
+                              "end": 1985,
                               "loc": {
                                 "start": {
                                   "line": 91,
@@ -2986,8 +2986,8 @@
                             },
                             {
                               "type": "Identifier",
-                              "start": 1995,
-                              "end": 2003,
+                              "start": 1987,
+                              "end": 1995,
                               "loc": {
                                 "start": {
                                   "line": 91,
@@ -3010,8 +3010,8 @@
                       {
                         "type": "CommentLine",
                         "value": " @ts-ignore",
-                        "start": 1868,
-                        "end": 1881,
+                        "start": 1860,
+                        "end": 1873,
                         "loc": {
                           "start": {
                             "line": 90,
@@ -3032,9 +3032,9 @@
               "leadingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 51\n     * @param\n     * {number} status\n     * @param\n     * {undefined} response\n     ",
+                  "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 45\n     * @param\n     * {number} status\n     * @param\n     * {T} response\n     ",
                   "start": 1690,
-                  "end": 1829,
+                  "end": 1821,
                   "loc": {
                     "start": {
                       "line": 79,
@@ -3050,9 +3050,9 @@
               "trailingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 56\n     * @param\n     * {number} status\n     * @param\n     * {string} message\n     ",
-                  "start": 2017,
-                  "end": 2152,
+                  "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 50\n     * @param\n     * {number} status\n     * @param\n     * {string} message\n     ",
+                  "start": 2009,
+                  "end": 2144,
                   "loc": {
                     "start": {
                       "line": 93,
@@ -3068,8 +3068,8 @@
             },
             {
               "type": "ClassMethod",
-              "start": 2157,
-              "end": 2333,
+              "start": 2149,
+              "end": 2325,
               "loc": {
                 "start": {
                   "line": 103,
@@ -3084,8 +3084,8 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 2157,
-                "end": 2162,
+                "start": 2149,
+                "end": 2154,
                 "loc": {
                   "start": {
                     "line": 103,
@@ -3108,8 +3108,8 @@
               "params": [
                 {
                   "type": "Identifier",
-                  "start": 2163,
-                  "end": 2169,
+                  "start": 2155,
+                  "end": 2161,
                   "loc": {
                     "start": {
                       "line": 103,
@@ -3125,8 +3125,8 @@
                 },
                 {
                   "type": "Identifier",
-                  "start": 2171,
-                  "end": 2178,
+                  "start": 2163,
+                  "end": 2170,
                   "loc": {
                     "start": {
                       "line": 103,
@@ -3143,8 +3143,8 @@
               ],
               "body": {
                 "type": "BlockStatement",
-                "start": 2180,
-                "end": 2333,
+                "start": 2172,
+                "end": 2325,
                 "loc": {
                   "start": {
                     "line": 103,
@@ -3158,8 +3158,8 @@
                 "body": [
                   {
                     "type": "ExpressionStatement",
-                    "start": 2212,
-                    "end": 2327,
+                    "start": 2204,
+                    "end": 2319,
                     "loc": {
                       "start": {
                         "line": 105,
@@ -3172,8 +3172,8 @@
                     },
                     "expression": {
                       "type": "CallExpression",
-                      "start": 2212,
-                      "end": 2326,
+                      "start": 2204,
+                      "end": 2318,
                       "loc": {
                         "start": {
                           "line": 105,
@@ -3186,8 +3186,8 @@
                       },
                       "callee": {
                         "type": "MemberExpression",
-                        "start": 2212,
-                        "end": 2239,
+                        "start": 2204,
+                        "end": 2231,
                         "loc": {
                           "start": {
                             "line": 105,
@@ -3200,8 +3200,8 @@
                         },
                         "object": {
                           "type": "Identifier",
-                          "start": 2212,
-                          "end": 2216,
+                          "start": 2204,
+                          "end": 2208,
                           "loc": {
                             "start": {
                               "line": 105,
@@ -3218,8 +3218,8 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 2217,
-                          "end": 2239,
+                          "start": 2209,
+                          "end": 2231,
                           "loc": {
                             "start": {
                               "line": 105,
@@ -3239,8 +3239,8 @@
                       "arguments": [
                         {
                           "type": "CallExpression",
-                          "start": 2240,
-                          "end": 2325,
+                          "start": 2232,
+                          "end": 2317,
                           "loc": {
                             "start": {
                               "line": 105,
@@ -3253,8 +3253,8 @@
                           },
                           "callee": {
                             "type": "Identifier",
-                            "start": 2240,
-                            "end": 2280,
+                            "start": 2232,
+                            "end": 2272,
                             "loc": {
                               "start": {
                                 "line": 105,
@@ -3271,8 +3271,8 @@
                           "arguments": [
                             {
                               "type": "MemberExpression",
-                              "start": 2281,
-                              "end": 2292,
+                              "start": 2273,
+                              "end": 2284,
                               "loc": {
                                 "start": {
                                   "line": 105,
@@ -3285,8 +3285,8 @@
                               },
                               "object": {
                                 "type": "ThisExpression",
-                                "start": 2281,
-                                "end": 2285,
+                                "start": 2273,
+                                "end": 2277,
                                 "loc": {
                                   "start": {
                                     "line": 105,
@@ -3300,8 +3300,8 @@
                               },
                               "property": {
                                 "type": "Identifier",
-                                "start": 2286,
-                                "end": 2292,
+                                "start": 2278,
+                                "end": 2284,
                                 "loc": {
                                   "start": {
                                     "line": 105,
@@ -3319,8 +3319,8 @@
                             },
                             {
                               "type": "MemberExpression",
-                              "start": 2294,
-                              "end": 2307,
+                              "start": 2286,
+                              "end": 2299,
                               "loc": {
                                 "start": {
                                   "line": 105,
@@ -3333,8 +3333,8 @@
                               },
                               "object": {
                                 "type": "ThisExpression",
-                                "start": 2294,
-                                "end": 2298,
+                                "start": 2286,
+                                "end": 2290,
                                 "loc": {
                                   "start": {
                                     "line": 105,
@@ -3348,8 +3348,8 @@
                               },
                               "property": {
                                 "type": "Identifier",
-                                "start": 2299,
-                                "end": 2307,
+                                "start": 2291,
+                                "end": 2299,
                                 "loc": {
                                   "start": {
                                     "line": 105,
@@ -3367,8 +3367,8 @@
                             },
                             {
                               "type": "Identifier",
-                              "start": 2309,
-                              "end": 2315,
+                              "start": 2301,
+                              "end": 2307,
                               "loc": {
                                 "start": {
                                   "line": 105,
@@ -3384,8 +3384,8 @@
                             },
                             {
                               "type": "Identifier",
-                              "start": 2317,
-                              "end": 2324,
+                              "start": 2309,
+                              "end": 2316,
                               "loc": {
                                 "start": {
                                   "line": 105,
@@ -3408,8 +3408,8 @@
                       {
                         "type": "CommentLine",
                         "value": " @ts-ignore",
-                        "start": 2190,
-                        "end": 2203,
+                        "start": 2182,
+                        "end": 2195,
                         "loc": {
                           "start": {
                             "line": 104,
@@ -3429,9 +3429,9 @@
               "leadingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 56\n     * @param\n     * {number} status\n     * @param\n     * {string} message\n     ",
-                  "start": 2017,
-                  "end": 2152,
+                  "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 50\n     * @param\n     * {number} status\n     * @param\n     * {string} message\n     ",
+                  "start": 2009,
+                  "end": 2144,
                   "loc": {
                     "start": {
                       "line": 93,
@@ -3451,7 +3451,7 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\n * @desc\n *\n * @lineNumber\n * 47\n ",
+            "value": "*\n * @desc\n *\n * @lineNumber\n * 41\n ",
             "start": 1498,
             "end": 1538,
             "loc": {
@@ -3469,9 +3469,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\n * @desc\n * Http Mocker for easy to http testing using Jest\n *\n * When using this mocking helper you need to call `jest.mock('@burst/http/src/http')`\n * at first line of your tests.\n * ``` typescript\n * jest.mock('@burst/http/src/http');\n * import {HttpMock} from '@burst/http';\n * import Github from '../src/brs/github';\n *\n * describe('Github', () => {\n *\n *   beforeEach(() => {\n *       HttpMock.reset();\n *   });\n *\n *   it('should getAllPhoenixContributors easily', async () => {\n *\n *       // mock for any get\n *       HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n *       const github = new Github();\n *       const contributors = await github.getAllPhoenixContributors();\n *       expect(contributors.length).toBe(2);\n *       expect(contributors).toEqual(['foo', 'bar']);\n *   });\n * });\n * ```\n * @lineNumber\n * 91\n ",
-            "start": 2336,
-            "end": 3188,
+            "value": "*\n * @desc\n * Http Mocker for easy to http testing using Jest\n *\n * When using this mocking helper you need to call `Http.onGet()`\n * before Http instance is created\n * ``` typescript\n * jest.mock('@burst/http/src/http');\n * import {HttpMock} from '@burst/http';\n * import Github from '../src/brs/github';\n *\n * describe('Github', () => {\n *\n *   beforeEach(() => {\n *       HttpMock.reset();\n *   });\n *\n *   it('should getAllPhoenixContributors easily', async () => {\n *\n *       // mock for any get - call before Http is instantiated (here: in Github)\n *       HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n *       const github = new Github();\n *       const contributors = await github.getAllPhoenixContributors();\n *       expect(contributors.length).toBe(2);\n *       expect(contributors).toEqual(['foo', 'bar']);\n *   });\n * });\n * ```\n * @lineNumber\n * 85\n ",
+            "start": 2328,
+            "end": 3215,
             "loc": {
               "start": {
                 "line": 108,
@@ -3487,8 +3487,8 @@
       },
       {
         "type": "Identifier",
-        "start": 3189,
-        "end": 5077,
+        "start": 3216,
+        "end": 5104,
         "loc": {
           "start": {
             "line": 139,
@@ -3501,8 +3501,8 @@
         },
         "id": {
           "type": "Identifier",
-          "start": 3195,
-          "end": 3203,
+          "start": 3222,
+          "end": 3230,
           "loc": {
             "start": {
               "line": 139,
@@ -3520,8 +3520,8 @@
         "superClass": null,
         "body": {
           "type": "ClassBody",
-          "start": 3204,
-          "end": 5077,
+          "start": 3231,
+          "end": 5104,
           "loc": {
             "start": {
               "line": 139,
@@ -3535,8 +3535,8 @@
           "body": [
             {
               "type": "ClassMethod",
-              "start": 3992,
-              "end": 4072,
+              "start": 4019,
+              "end": 4099,
               "loc": {
                 "start": {
                   "line": 164,
@@ -3551,8 +3551,8 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 3999,
-                "end": 4004,
+                "start": 4026,
+                "end": 4031,
                 "loc": {
                   "start": {
                     "line": 164,
@@ -3574,8 +3574,8 @@
               "params": [
                 {
                   "type": "Identifier",
-                  "start": 4005,
-                  "end": 4013,
+                  "start": 4032,
+                  "end": 4040,
                   "loc": {
                     "start": {
                       "line": 164,
@@ -3592,8 +3592,8 @@
               ],
               "body": {
                 "type": "BlockStatement",
-                "start": 4015,
-                "end": 4072,
+                "start": 4042,
+                "end": 4099,
                 "loc": {
                   "start": {
                     "line": 164,
@@ -3607,8 +3607,8 @@
                 "body": [
                   {
                     "type": "ReturnStatement",
-                    "start": 4025,
-                    "end": 4066,
+                    "start": 4052,
+                    "end": 4093,
                     "loc": {
                       "start": {
                         "line": 165,
@@ -3621,8 +3621,8 @@
                     },
                     "argument": {
                       "type": "NewExpression",
-                      "start": 4032,
-                      "end": 4065,
+                      "start": 4059,
+                      "end": 4092,
                       "loc": {
                         "start": {
                           "line": 165,
@@ -3635,8 +3635,8 @@
                       },
                       "callee": {
                         "type": "Identifier",
-                        "start": 4036,
-                        "end": 4048,
+                        "start": 4063,
+                        "end": 4075,
                         "loc": {
                           "start": {
                             "line": 165,
@@ -3653,8 +3653,8 @@
                       "arguments": [
                         {
                           "type": "StringLiteral",
-                          "start": 4049,
-                          "end": 4054,
+                          "start": 4076,
+                          "end": 4081,
                           "loc": {
                             "start": {
                               "line": 165,
@@ -3673,8 +3673,8 @@
                         },
                         {
                           "type": "Identifier",
-                          "start": 4056,
-                          "end": 4064,
+                          "start": 4083,
+                          "end": 4091,
                           "loc": {
                             "start": {
                               "line": 165,
@@ -3698,9 +3698,9 @@
               "leadingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     * Mocks responses for get methods\n     * You may pass a specific endpoint as parameter to mock only selected endpoints.\n     * This is very useful, when having methods that do several Http requests,\n     * so you can mock them one on one.\n     *\n     * The following code returns the same content on _every_ get call\n     * ```\n     *   HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n     * ```\n     *\n     * The next code returns the different content depending on the passed endpoint\n     * ```\n     *   HttpMock.onGet('/foo').reply(200, {data: 'foo'});\n     *   HttpMock.onGet('/bar').reply(200, {data: 'bar'});\n     * ```\n     * @lineNumber\n     * 111\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-                  "start": 3210,
-                  "end": 3987,
+                  "value": "*\n     * @desc\n     * Mocks responses for get methods\n     * You may pass a specific endpoint as parameter to mock only selected endpoints.\n     * This is very useful, when having methods that do several Http requests,\n     * so you can mock them one on one.\n     *\n     * The following code returns the same content on _every_ get call\n     * ```\n     *   HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n     * ```\n     *\n     * The next code returns the different content depending on the passed endpoint\n     * ```\n     *   HttpMock.onGet('/foo').reply(200, {data: 'foo'});\n     *   HttpMock.onGet('/bar').reply(200, {data: 'bar'});\n     * ```\n     * @lineNumber\n     * 105\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+                  "start": 3237,
+                  "end": 4014,
                   "loc": {
                     "start": {
                       "line": 140,
@@ -3716,9 +3716,9 @@
               "trailingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     * Mocks responses for post methods\n     * @lineNumber\n     * 119\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-                  "start": 4077,
-                  "end": 4247,
+                  "value": "*\n     * @desc\n     * Mocks responses for post methods\n     * @lineNumber\n     * 113\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+                  "start": 4104,
+                  "end": 4274,
                   "loc": {
                     "start": {
                       "line": 167,
@@ -3734,8 +3734,8 @@
             },
             {
               "type": "ClassMethod",
-              "start": 4252,
-              "end": 4334,
+              "start": 4279,
+              "end": 4361,
               "loc": {
                 "start": {
                   "line": 177,
@@ -3750,8 +3750,8 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 4259,
-                "end": 4265,
+                "start": 4286,
+                "end": 4292,
                 "loc": {
                   "start": {
                     "line": 177,
@@ -3773,8 +3773,8 @@
               "params": [
                 {
                   "type": "Identifier",
-                  "start": 4266,
-                  "end": 4274,
+                  "start": 4293,
+                  "end": 4301,
                   "loc": {
                     "start": {
                       "line": 177,
@@ -3791,8 +3791,8 @@
               ],
               "body": {
                 "type": "BlockStatement",
-                "start": 4276,
-                "end": 4334,
+                "start": 4303,
+                "end": 4361,
                 "loc": {
                   "start": {
                     "line": 177,
@@ -3806,8 +3806,8 @@
                 "body": [
                   {
                     "type": "ReturnStatement",
-                    "start": 4286,
-                    "end": 4328,
+                    "start": 4313,
+                    "end": 4355,
                     "loc": {
                       "start": {
                         "line": 178,
@@ -3820,8 +3820,8 @@
                     },
                     "argument": {
                       "type": "NewExpression",
-                      "start": 4293,
-                      "end": 4327,
+                      "start": 4320,
+                      "end": 4354,
                       "loc": {
                         "start": {
                           "line": 178,
@@ -3834,8 +3834,8 @@
                       },
                       "callee": {
                         "type": "Identifier",
-                        "start": 4297,
-                        "end": 4309,
+                        "start": 4324,
+                        "end": 4336,
                         "loc": {
                           "start": {
                             "line": 178,
@@ -3852,8 +3852,8 @@
                       "arguments": [
                         {
                           "type": "StringLiteral",
-                          "start": 4310,
-                          "end": 4316,
+                          "start": 4337,
+                          "end": 4343,
                           "loc": {
                             "start": {
                               "line": 178,
@@ -3872,8 +3872,8 @@
                         },
                         {
                           "type": "Identifier",
-                          "start": 4318,
-                          "end": 4326,
+                          "start": 4345,
+                          "end": 4353,
                           "loc": {
                             "start": {
                               "line": 178,
@@ -3897,9 +3897,9 @@
               "leadingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     * Mocks responses for post methods\n     * @lineNumber\n     * 119\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-                  "start": 4077,
-                  "end": 4247,
+                  "value": "*\n     * @desc\n     * Mocks responses for post methods\n     * @lineNumber\n     * 113\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+                  "start": 4104,
+                  "end": 4274,
                   "loc": {
                     "start": {
                       "line": 167,
@@ -3915,9 +3915,9 @@
               "trailingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     * Mocks responses for put methods\n     * @lineNumber\n     * 127\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-                  "start": 4339,
-                  "end": 4508,
+                  "value": "*\n     * @desc\n     * Mocks responses for put methods\n     * @lineNumber\n     * 121\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+                  "start": 4366,
+                  "end": 4535,
                   "loc": {
                     "start": {
                       "line": 180,
@@ -3933,8 +3933,8 @@
             },
             {
               "type": "ClassMethod",
-              "start": 4513,
-              "end": 4593,
+              "start": 4540,
+              "end": 4620,
               "loc": {
                 "start": {
                   "line": 190,
@@ -3949,8 +3949,8 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 4520,
-                "end": 4525,
+                "start": 4547,
+                "end": 4552,
                 "loc": {
                   "start": {
                     "line": 190,
@@ -3972,8 +3972,8 @@
               "params": [
                 {
                   "type": "Identifier",
-                  "start": 4526,
-                  "end": 4534,
+                  "start": 4553,
+                  "end": 4561,
                   "loc": {
                     "start": {
                       "line": 190,
@@ -3990,8 +3990,8 @@
               ],
               "body": {
                 "type": "BlockStatement",
-                "start": 4536,
-                "end": 4593,
+                "start": 4563,
+                "end": 4620,
                 "loc": {
                   "start": {
                     "line": 190,
@@ -4005,8 +4005,8 @@
                 "body": [
                   {
                     "type": "ReturnStatement",
-                    "start": 4546,
-                    "end": 4587,
+                    "start": 4573,
+                    "end": 4614,
                     "loc": {
                       "start": {
                         "line": 191,
@@ -4019,8 +4019,8 @@
                     },
                     "argument": {
                       "type": "NewExpression",
-                      "start": 4553,
-                      "end": 4586,
+                      "start": 4580,
+                      "end": 4613,
                       "loc": {
                         "start": {
                           "line": 191,
@@ -4033,8 +4033,8 @@
                       },
                       "callee": {
                         "type": "Identifier",
-                        "start": 4557,
-                        "end": 4569,
+                        "start": 4584,
+                        "end": 4596,
                         "loc": {
                           "start": {
                             "line": 191,
@@ -4051,8 +4051,8 @@
                       "arguments": [
                         {
                           "type": "StringLiteral",
-                          "start": 4570,
-                          "end": 4575,
+                          "start": 4597,
+                          "end": 4602,
                           "loc": {
                             "start": {
                               "line": 191,
@@ -4071,8 +4071,8 @@
                         },
                         {
                           "type": "Identifier",
-                          "start": 4577,
-                          "end": 4585,
+                          "start": 4604,
+                          "end": 4612,
                           "loc": {
                             "start": {
                               "line": 191,
@@ -4096,9 +4096,9 @@
               "leadingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     * Mocks responses for put methods\n     * @lineNumber\n     * 127\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-                  "start": 4339,
-                  "end": 4508,
+                  "value": "*\n     * @desc\n     * Mocks responses for put methods\n     * @lineNumber\n     * 121\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+                  "start": 4366,
+                  "end": 4535,
                   "loc": {
                     "start": {
                       "line": 180,
@@ -4114,9 +4114,9 @@
               "trailingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     * Mocks responses for delete methods\n     * @lineNumber\n     * 135\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-                  "start": 4598,
-                  "end": 4770,
+                  "value": "*\n     * @desc\n     * Mocks responses for delete methods\n     * @lineNumber\n     * 129\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+                  "start": 4625,
+                  "end": 4797,
                   "loc": {
                     "start": {
                       "line": 193,
@@ -4132,8 +4132,8 @@
             },
             {
               "type": "ClassMethod",
-              "start": 4775,
-              "end": 4861,
+              "start": 4802,
+              "end": 4888,
               "loc": {
                 "start": {
                   "line": 203,
@@ -4148,8 +4148,8 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 4782,
-                "end": 4790,
+                "start": 4809,
+                "end": 4817,
                 "loc": {
                   "start": {
                     "line": 203,
@@ -4171,8 +4171,8 @@
               "params": [
                 {
                   "type": "Identifier",
-                  "start": 4791,
-                  "end": 4799,
+                  "start": 4818,
+                  "end": 4826,
                   "loc": {
                     "start": {
                       "line": 203,
@@ -4189,8 +4189,8 @@
               ],
               "body": {
                 "type": "BlockStatement",
-                "start": 4801,
-                "end": 4861,
+                "start": 4828,
+                "end": 4888,
                 "loc": {
                   "start": {
                     "line": 203,
@@ -4204,8 +4204,8 @@
                 "body": [
                   {
                     "type": "ReturnStatement",
-                    "start": 4811,
-                    "end": 4855,
+                    "start": 4838,
+                    "end": 4882,
                     "loc": {
                       "start": {
                         "line": 204,
@@ -4218,8 +4218,8 @@
                     },
                     "argument": {
                       "type": "NewExpression",
-                      "start": 4818,
-                      "end": 4854,
+                      "start": 4845,
+                      "end": 4881,
                       "loc": {
                         "start": {
                           "line": 204,
@@ -4232,8 +4232,8 @@
                       },
                       "callee": {
                         "type": "Identifier",
-                        "start": 4822,
-                        "end": 4834,
+                        "start": 4849,
+                        "end": 4861,
                         "loc": {
                           "start": {
                             "line": 204,
@@ -4250,8 +4250,8 @@
                       "arguments": [
                         {
                           "type": "StringLiteral",
-                          "start": 4835,
-                          "end": 4843,
+                          "start": 4862,
+                          "end": 4870,
                           "loc": {
                             "start": {
                               "line": 204,
@@ -4270,8 +4270,8 @@
                         },
                         {
                           "type": "Identifier",
-                          "start": 4845,
-                          "end": 4853,
+                          "start": 4872,
+                          "end": 4880,
                           "loc": {
                             "start": {
                               "line": 204,
@@ -4295,9 +4295,9 @@
               "leadingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     * Mocks responses for delete methods\n     * @lineNumber\n     * 135\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-                  "start": 4598,
-                  "end": 4770,
+                  "value": "*\n     * @desc\n     * Mocks responses for delete methods\n     * @lineNumber\n     * 129\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+                  "start": 4625,
+                  "end": 4797,
                   "loc": {
                     "start": {
                       "line": 193,
@@ -4313,9 +4313,9 @@
               "trailingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     * Resets all mocked behavior\n     * @lineNumber\n     * 142\n     ",
-                  "start": 4866,
-                  "end": 4954,
+                  "value": "*\n     * @desc\n     * Resets all mocked behavior\n     * @lineNumber\n     * 136\n     ",
+                  "start": 4893,
+                  "end": 4981,
                   "loc": {
                     "start": {
                       "line": 206,
@@ -4331,8 +4331,8 @@
             },
             {
               "type": "ClassMethod",
-              "start": 4959,
-              "end": 5075,
+              "start": 4986,
+              "end": 5102,
               "loc": {
                 "start": {
                   "line": 212,
@@ -4347,8 +4347,8 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 4966,
-                "end": 4971,
+                "start": 4993,
+                "end": 4998,
                 "loc": {
                   "start": {
                     "line": 212,
@@ -4370,8 +4370,8 @@
               "params": [],
               "body": {
                 "type": "BlockStatement",
-                "start": 4974,
-                "end": 5075,
+                "start": 5001,
+                "end": 5102,
                 "loc": {
                   "start": {
                     "line": 212,
@@ -4385,8 +4385,8 @@
                 "body": [
                   {
                     "type": "ExpressionStatement",
-                    "start": 5006,
-                    "end": 5023,
+                    "start": 5033,
+                    "end": 5050,
                     "loc": {
                       "start": {
                         "line": 214,
@@ -4399,8 +4399,8 @@
                     },
                     "expression": {
                       "type": "CallExpression",
-                      "start": 5006,
-                      "end": 5022,
+                      "start": 5033,
+                      "end": 5049,
                       "loc": {
                         "start": {
                           "line": 214,
@@ -4413,8 +4413,8 @@
                       },
                       "callee": {
                         "type": "MemberExpression",
-                        "start": 5006,
-                        "end": 5020,
+                        "start": 5033,
+                        "end": 5047,
                         "loc": {
                           "start": {
                             "line": 214,
@@ -4427,8 +4427,8 @@
                         },
                         "object": {
                           "type": "Identifier",
-                          "start": 5006,
-                          "end": 5010,
+                          "start": 5033,
+                          "end": 5037,
                           "loc": {
                             "start": {
                               "line": 214,
@@ -4445,8 +4445,8 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 5011,
-                          "end": 5020,
+                          "start": 5038,
+                          "end": 5047,
                           "loc": {
                             "start": {
                               "line": 214,
@@ -4470,8 +4470,8 @@
                       {
                         "type": "CommentLine",
                         "value": " @ts-ignore",
-                        "start": 4984,
-                        "end": 4997,
+                        "start": 5011,
+                        "end": 5024,
                         "loc": {
                           "start": {
                             "line": 213,
@@ -4487,8 +4487,8 @@
                   },
                   {
                     "type": "ExpressionStatement",
-                    "start": 5032,
-                    "end": 5046,
+                    "start": 5059,
+                    "end": 5073,
                     "loc": {
                       "start": {
                         "line": 215,
@@ -4501,8 +4501,8 @@
                     },
                     "expression": {
                       "type": "AssignmentExpression",
-                      "start": 5032,
-                      "end": 5045,
+                      "start": 5059,
+                      "end": 5072,
                       "loc": {
                         "start": {
                           "line": 215,
@@ -4516,8 +4516,8 @@
                       "operator": "=",
                       "left": {
                         "type": "Identifier",
-                        "start": 5032,
-                        "end": 5040,
+                        "start": 5059,
+                        "end": 5067,
                         "loc": {
                           "start": {
                             "line": 215,
@@ -4533,8 +4533,8 @@
                       },
                       "right": {
                         "type": "ObjectExpression",
-                        "start": 5043,
-                        "end": 5045,
+                        "start": 5070,
+                        "end": 5072,
                         "loc": {
                           "start": {
                             "line": 215,
@@ -4551,8 +4551,8 @@
                   },
                   {
                     "type": "ExpressionStatement",
-                    "start": 5055,
-                    "end": 5069,
+                    "start": 5082,
+                    "end": 5096,
                     "loc": {
                       "start": {
                         "line": 216,
@@ -4565,8 +4565,8 @@
                     },
                     "expression": {
                       "type": "AssignmentExpression",
-                      "start": 5055,
-                      "end": 5068,
+                      "start": 5082,
+                      "end": 5095,
                       "loc": {
                         "start": {
                           "line": 216,
@@ -4580,8 +4580,8 @@
                       "operator": "=",
                       "left": {
                         "type": "Identifier",
-                        "start": 5055,
-                        "end": 5063,
+                        "start": 5082,
+                        "end": 5090,
                         "loc": {
                           "start": {
                             "line": 216,
@@ -4597,8 +4597,8 @@
                       },
                       "right": {
                         "type": "ObjectExpression",
-                        "start": 5066,
-                        "end": 5068,
+                        "start": 5093,
+                        "end": 5095,
                         "loc": {
                           "start": {
                             "line": 216,
@@ -4619,9 +4619,9 @@
               "leadingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\n     * @desc\n     * Resets all mocked behavior\n     * @lineNumber\n     * 142\n     ",
-                  "start": 4866,
-                  "end": 4954,
+                  "value": "*\n     * @desc\n     * Resets all mocked behavior\n     * @lineNumber\n     * 136\n     ",
+                  "start": 4893,
+                  "end": 4981,
                   "loc": {
                     "start": {
                       "line": 206,
@@ -4643,8 +4643,8 @@
       },
       {
         "type": "Identifier",
-        "start": 5078,
-        "end": 5102,
+        "start": 5105,
+        "end": 5129,
         "loc": {
           "start": {
             "line": 219,
@@ -4657,8 +4657,8 @@
         },
         "declaration": {
           "type": "Identifier",
-          "start": 5093,
-          "end": 5101,
+          "start": 5120,
+          "end": 5128,
           "loc": {
             "start": {
               "line": 219,
@@ -4678,8 +4678,8 @@
       },
       {
         "type": "ExportDefaultDeclaration",
-        "start": 5078,
-        "end": 5102,
+        "start": 5105,
+        "end": 5129,
         "loc": {
           "start": {
             "line": 219,
@@ -4692,8 +4692,8 @@
         },
         "declaration": {
           "type": "ClassDeclaration",
-          "start": 3189,
-          "end": 5077,
+          "start": 3216,
+          "end": 5104,
           "loc": {
             "start": {
               "line": 139,
@@ -4706,8 +4706,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 3195,
-            "end": 3203,
+            "start": 3222,
+            "end": 3230,
             "loc": {
               "start": {
                 "line": 139,
@@ -4725,8 +4725,8 @@
           "superClass": null,
           "body": {
             "type": "ClassBody",
-            "start": 3204,
-            "end": 5077,
+            "start": 3231,
+            "end": 5104,
             "loc": {
               "start": {
                 "line": 139,
@@ -4740,8 +4740,8 @@
             "body": [
               {
                 "type": "ClassMethod",
-                "start": 3992,
-                "end": 4072,
+                "start": 4019,
+                "end": 4099,
                 "loc": {
                   "start": {
                     "line": 164,
@@ -4756,8 +4756,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 3999,
-                  "end": 4004,
+                  "start": 4026,
+                  "end": 4031,
                   "loc": {
                     "start": {
                       "line": 164,
@@ -4779,8 +4779,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 4005,
-                    "end": 4013,
+                    "start": 4032,
+                    "end": 4040,
                     "loc": {
                       "start": {
                         "line": 164,
@@ -4797,8 +4797,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 4015,
-                  "end": 4072,
+                  "start": 4042,
+                  "end": 4099,
                   "loc": {
                     "start": {
                       "line": 164,
@@ -4812,8 +4812,8 @@
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 4025,
-                      "end": 4066,
+                      "start": 4052,
+                      "end": 4093,
                       "loc": {
                         "start": {
                           "line": 165,
@@ -4826,8 +4826,8 @@
                       },
                       "argument": {
                         "type": "NewExpression",
-                        "start": 4032,
-                        "end": 4065,
+                        "start": 4059,
+                        "end": 4092,
                         "loc": {
                           "start": {
                             "line": 165,
@@ -4840,8 +4840,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 4036,
-                          "end": 4048,
+                          "start": 4063,
+                          "end": 4075,
                           "loc": {
                             "start": {
                               "line": 165,
@@ -4858,8 +4858,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 4049,
-                            "end": 4054,
+                            "start": 4076,
+                            "end": 4081,
                             "loc": {
                               "start": {
                                 "line": 165,
@@ -4878,8 +4878,8 @@
                           },
                           {
                             "type": "Identifier",
-                            "start": 4056,
-                            "end": 4064,
+                            "start": 4083,
+                            "end": 4091,
                             "loc": {
                               "start": {
                                 "line": 165,
@@ -4903,9 +4903,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\n     * @desc\n     * Mocks responses for get methods\n     * You may pass a specific endpoint as parameter to mock only selected endpoints.\n     * This is very useful, when having methods that do several Http requests,\n     * so you can mock them one on one.\n     *\n     * The following code returns the same content on _every_ get call\n     * ```\n     *   HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n     * ```\n     *\n     * The next code returns the different content depending on the passed endpoint\n     * ```\n     *   HttpMock.onGet('/foo').reply(200, {data: 'foo'});\n     *   HttpMock.onGet('/bar').reply(200, {data: 'bar'});\n     * ```\n     * @lineNumber\n     * 111\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-                    "start": 3210,
-                    "end": 3987,
+                    "value": "*\n     * @desc\n     * Mocks responses for get methods\n     * You may pass a specific endpoint as parameter to mock only selected endpoints.\n     * This is very useful, when having methods that do several Http requests,\n     * so you can mock them one on one.\n     *\n     * The following code returns the same content on _every_ get call\n     * ```\n     *   HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n     * ```\n     *\n     * The next code returns the different content depending on the passed endpoint\n     * ```\n     *   HttpMock.onGet('/foo').reply(200, {data: 'foo'});\n     *   HttpMock.onGet('/bar').reply(200, {data: 'bar'});\n     * ```\n     * @lineNumber\n     * 105\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+                    "start": 3237,
+                    "end": 4014,
                     "loc": {
                       "start": {
                         "line": 140,
@@ -4921,9 +4921,9 @@
                 "trailingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\n     * @desc\n     * Mocks responses for post methods\n     * @lineNumber\n     * 119\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-                    "start": 4077,
-                    "end": 4247,
+                    "value": "*\n     * @desc\n     * Mocks responses for post methods\n     * @lineNumber\n     * 113\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+                    "start": 4104,
+                    "end": 4274,
                     "loc": {
                       "start": {
                         "line": 167,
@@ -4939,8 +4939,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 4252,
-                "end": 4334,
+                "start": 4279,
+                "end": 4361,
                 "loc": {
                   "start": {
                     "line": 177,
@@ -4955,8 +4955,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 4259,
-                  "end": 4265,
+                  "start": 4286,
+                  "end": 4292,
                   "loc": {
                     "start": {
                       "line": 177,
@@ -4978,8 +4978,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 4266,
-                    "end": 4274,
+                    "start": 4293,
+                    "end": 4301,
                     "loc": {
                       "start": {
                         "line": 177,
@@ -4996,8 +4996,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 4276,
-                  "end": 4334,
+                  "start": 4303,
+                  "end": 4361,
                   "loc": {
                     "start": {
                       "line": 177,
@@ -5011,8 +5011,8 @@
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 4286,
-                      "end": 4328,
+                      "start": 4313,
+                      "end": 4355,
                       "loc": {
                         "start": {
                           "line": 178,
@@ -5025,8 +5025,8 @@
                       },
                       "argument": {
                         "type": "NewExpression",
-                        "start": 4293,
-                        "end": 4327,
+                        "start": 4320,
+                        "end": 4354,
                         "loc": {
                           "start": {
                             "line": 178,
@@ -5039,8 +5039,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 4297,
-                          "end": 4309,
+                          "start": 4324,
+                          "end": 4336,
                           "loc": {
                             "start": {
                               "line": 178,
@@ -5057,8 +5057,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 4310,
-                            "end": 4316,
+                            "start": 4337,
+                            "end": 4343,
                             "loc": {
                               "start": {
                                 "line": 178,
@@ -5077,8 +5077,8 @@
                           },
                           {
                             "type": "Identifier",
-                            "start": 4318,
-                            "end": 4326,
+                            "start": 4345,
+                            "end": 4353,
                             "loc": {
                               "start": {
                                 "line": 178,
@@ -5102,9 +5102,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\n     * @desc\n     * Mocks responses for post methods\n     * @lineNumber\n     * 119\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-                    "start": 4077,
-                    "end": 4247,
+                    "value": "*\n     * @desc\n     * Mocks responses for post methods\n     * @lineNumber\n     * 113\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+                    "start": 4104,
+                    "end": 4274,
                     "loc": {
                       "start": {
                         "line": 167,
@@ -5120,9 +5120,9 @@
                 "trailingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\n     * @desc\n     * Mocks responses for put methods\n     * @lineNumber\n     * 127\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-                    "start": 4339,
-                    "end": 4508,
+                    "value": "*\n     * @desc\n     * Mocks responses for put methods\n     * @lineNumber\n     * 121\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+                    "start": 4366,
+                    "end": 4535,
                     "loc": {
                       "start": {
                         "line": 180,
@@ -5138,8 +5138,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 4513,
-                "end": 4593,
+                "start": 4540,
+                "end": 4620,
                 "loc": {
                   "start": {
                     "line": 190,
@@ -5154,8 +5154,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 4520,
-                  "end": 4525,
+                  "start": 4547,
+                  "end": 4552,
                   "loc": {
                     "start": {
                       "line": 190,
@@ -5177,8 +5177,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 4526,
-                    "end": 4534,
+                    "start": 4553,
+                    "end": 4561,
                     "loc": {
                       "start": {
                         "line": 190,
@@ -5195,8 +5195,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 4536,
-                  "end": 4593,
+                  "start": 4563,
+                  "end": 4620,
                   "loc": {
                     "start": {
                       "line": 190,
@@ -5210,8 +5210,8 @@
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 4546,
-                      "end": 4587,
+                      "start": 4573,
+                      "end": 4614,
                       "loc": {
                         "start": {
                           "line": 191,
@@ -5224,8 +5224,8 @@
                       },
                       "argument": {
                         "type": "NewExpression",
-                        "start": 4553,
-                        "end": 4586,
+                        "start": 4580,
+                        "end": 4613,
                         "loc": {
                           "start": {
                             "line": 191,
@@ -5238,8 +5238,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 4557,
-                          "end": 4569,
+                          "start": 4584,
+                          "end": 4596,
                           "loc": {
                             "start": {
                               "line": 191,
@@ -5256,8 +5256,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 4570,
-                            "end": 4575,
+                            "start": 4597,
+                            "end": 4602,
                             "loc": {
                               "start": {
                                 "line": 191,
@@ -5276,8 +5276,8 @@
                           },
                           {
                             "type": "Identifier",
-                            "start": 4577,
-                            "end": 4585,
+                            "start": 4604,
+                            "end": 4612,
                             "loc": {
                               "start": {
                                 "line": 191,
@@ -5301,9 +5301,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\n     * @desc\n     * Mocks responses for put methods\n     * @lineNumber\n     * 127\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-                    "start": 4339,
-                    "end": 4508,
+                    "value": "*\n     * @desc\n     * Mocks responses for put methods\n     * @lineNumber\n     * 121\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+                    "start": 4366,
+                    "end": 4535,
                     "loc": {
                       "start": {
                         "line": 180,
@@ -5319,9 +5319,9 @@
                 "trailingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\n     * @desc\n     * Mocks responses for delete methods\n     * @lineNumber\n     * 135\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-                    "start": 4598,
-                    "end": 4770,
+                    "value": "*\n     * @desc\n     * Mocks responses for delete methods\n     * @lineNumber\n     * 129\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+                    "start": 4625,
+                    "end": 4797,
                     "loc": {
                       "start": {
                         "line": 193,
@@ -5337,8 +5337,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 4775,
-                "end": 4861,
+                "start": 4802,
+                "end": 4888,
                 "loc": {
                   "start": {
                     "line": 203,
@@ -5353,8 +5353,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 4782,
-                  "end": 4790,
+                  "start": 4809,
+                  "end": 4817,
                   "loc": {
                     "start": {
                       "line": 203,
@@ -5376,8 +5376,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 4791,
-                    "end": 4799,
+                    "start": 4818,
+                    "end": 4826,
                     "loc": {
                       "start": {
                         "line": 203,
@@ -5394,8 +5394,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 4801,
-                  "end": 4861,
+                  "start": 4828,
+                  "end": 4888,
                   "loc": {
                     "start": {
                       "line": 203,
@@ -5409,8 +5409,8 @@
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 4811,
-                      "end": 4855,
+                      "start": 4838,
+                      "end": 4882,
                       "loc": {
                         "start": {
                           "line": 204,
@@ -5423,8 +5423,8 @@
                       },
                       "argument": {
                         "type": "NewExpression",
-                        "start": 4818,
-                        "end": 4854,
+                        "start": 4845,
+                        "end": 4881,
                         "loc": {
                           "start": {
                             "line": 204,
@@ -5437,8 +5437,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 4822,
-                          "end": 4834,
+                          "start": 4849,
+                          "end": 4861,
                           "loc": {
                             "start": {
                               "line": 204,
@@ -5455,8 +5455,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 4835,
-                            "end": 4843,
+                            "start": 4862,
+                            "end": 4870,
                             "loc": {
                               "start": {
                                 "line": 204,
@@ -5475,8 +5475,8 @@
                           },
                           {
                             "type": "Identifier",
-                            "start": 4845,
-                            "end": 4853,
+                            "start": 4872,
+                            "end": 4880,
                             "loc": {
                               "start": {
                                 "line": 204,
@@ -5500,9 +5500,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\n     * @desc\n     * Mocks responses for delete methods\n     * @lineNumber\n     * 135\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-                    "start": 4598,
-                    "end": 4770,
+                    "value": "*\n     * @desc\n     * Mocks responses for delete methods\n     * @lineNumber\n     * 129\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+                    "start": 4625,
+                    "end": 4797,
                     "loc": {
                       "start": {
                         "line": 193,
@@ -5518,9 +5518,9 @@
                 "trailingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\n     * @desc\n     * Resets all mocked behavior\n     * @lineNumber\n     * 142\n     ",
-                    "start": 4866,
-                    "end": 4954,
+                    "value": "*\n     * @desc\n     * Resets all mocked behavior\n     * @lineNumber\n     * 136\n     ",
+                    "start": 4893,
+                    "end": 4981,
                     "loc": {
                       "start": {
                         "line": 206,
@@ -5536,8 +5536,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 4959,
-                "end": 5075,
+                "start": 4986,
+                "end": 5102,
                 "loc": {
                   "start": {
                     "line": 212,
@@ -5552,8 +5552,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 4966,
-                  "end": 4971,
+                  "start": 4993,
+                  "end": 4998,
                   "loc": {
                     "start": {
                       "line": 212,
@@ -5575,8 +5575,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 4974,
-                  "end": 5075,
+                  "start": 5001,
+                  "end": 5102,
                   "loc": {
                     "start": {
                       "line": 212,
@@ -5590,8 +5590,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 5006,
-                      "end": 5023,
+                      "start": 5033,
+                      "end": 5050,
                       "loc": {
                         "start": {
                           "line": 214,
@@ -5604,8 +5604,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 5006,
-                        "end": 5022,
+                        "start": 5033,
+                        "end": 5049,
                         "loc": {
                           "start": {
                             "line": 214,
@@ -5618,8 +5618,8 @@
                         },
                         "callee": {
                           "type": "MemberExpression",
-                          "start": 5006,
-                          "end": 5020,
+                          "start": 5033,
+                          "end": 5047,
                           "loc": {
                             "start": {
                               "line": 214,
@@ -5632,8 +5632,8 @@
                           },
                           "object": {
                             "type": "Identifier",
-                            "start": 5006,
-                            "end": 5010,
+                            "start": 5033,
+                            "end": 5037,
                             "loc": {
                               "start": {
                                 "line": 214,
@@ -5650,8 +5650,8 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 5011,
-                            "end": 5020,
+                            "start": 5038,
+                            "end": 5047,
                             "loc": {
                               "start": {
                                 "line": 214,
@@ -5675,8 +5675,8 @@
                         {
                           "type": "CommentLine",
                           "value": " @ts-ignore",
-                          "start": 4984,
-                          "end": 4997,
+                          "start": 5011,
+                          "end": 5024,
                           "loc": {
                             "start": {
                               "line": 213,
@@ -5692,8 +5692,8 @@
                     },
                     {
                       "type": "ExpressionStatement",
-                      "start": 5032,
-                      "end": 5046,
+                      "start": 5059,
+                      "end": 5073,
                       "loc": {
                         "start": {
                           "line": 215,
@@ -5706,8 +5706,8 @@
                       },
                       "expression": {
                         "type": "AssignmentExpression",
-                        "start": 5032,
-                        "end": 5045,
+                        "start": 5059,
+                        "end": 5072,
                         "loc": {
                           "start": {
                             "line": 215,
@@ -5721,8 +5721,8 @@
                         "operator": "=",
                         "left": {
                           "type": "Identifier",
-                          "start": 5032,
-                          "end": 5040,
+                          "start": 5059,
+                          "end": 5067,
                           "loc": {
                             "start": {
                               "line": 215,
@@ -5738,8 +5738,8 @@
                         },
                         "right": {
                           "type": "ObjectExpression",
-                          "start": 5043,
-                          "end": 5045,
+                          "start": 5070,
+                          "end": 5072,
                           "loc": {
                             "start": {
                               "line": 215,
@@ -5756,8 +5756,8 @@
                     },
                     {
                       "type": "ExpressionStatement",
-                      "start": 5055,
-                      "end": 5069,
+                      "start": 5082,
+                      "end": 5096,
                       "loc": {
                         "start": {
                           "line": 216,
@@ -5770,8 +5770,8 @@
                       },
                       "expression": {
                         "type": "AssignmentExpression",
-                        "start": 5055,
-                        "end": 5068,
+                        "start": 5082,
+                        "end": 5095,
                         "loc": {
                           "start": {
                             "line": 216,
@@ -5785,8 +5785,8 @@
                         "operator": "=",
                         "left": {
                           "type": "Identifier",
-                          "start": 5055,
-                          "end": 5063,
+                          "start": 5082,
+                          "end": 5090,
                           "loc": {
                             "start": {
                               "line": 216,
@@ -5802,8 +5802,8 @@
                         },
                         "right": {
                           "type": "ObjectExpression",
-                          "start": 5066,
-                          "end": 5068,
+                          "start": 5093,
+                          "end": 5095,
                           "loc": {
                             "start": {
                               "line": 216,
@@ -5824,9 +5824,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\n     * @desc\n     * Resets all mocked behavior\n     * @lineNumber\n     * 142\n     ",
-                    "start": 4866,
-                    "end": 4954,
+                    "value": "*\n     * @desc\n     * Resets all mocked behavior\n     * @lineNumber\n     * 136\n     ",
+                    "start": 4893,
+                    "end": 4981,
                     "loc": {
                       "start": {
                         "line": 206,
@@ -5845,9 +5845,9 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\n * @desc\n * Http Mocker for easy to http testing using Jest\n *\n * When using this mocking helper you need to call `jest.mock('@burst/http/src/http')`\n * at first line of your tests.\n * ``` typescript\n * jest.mock('@burst/http/src/http');\n * import {HttpMock} from '@burst/http';\n * import Github from '../src/brs/github';\n *\n * describe('Github', () => {\n *\n *   beforeEach(() => {\n *       HttpMock.reset();\n *   });\n *\n *   it('should getAllPhoenixContributors easily', async () => {\n *\n *       // mock for any get\n *       HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n *       const github = new Github();\n *       const contributors = await github.getAllPhoenixContributors();\n *       expect(contributors.length).toBe(2);\n *       expect(contributors).toEqual(['foo', 'bar']);\n *   });\n * });\n * ```\n * @lineNumber\n * 91\n ",
-              "start": 2336,
-              "end": 3188,
+              "value": "*\n * @desc\n * Http Mocker for easy to http testing using Jest\n *\n * When using this mocking helper you need to call `Http.onGet()`\n * before Http instance is created\n * ``` typescript\n * jest.mock('@burst/http/src/http');\n * import {HttpMock} from '@burst/http';\n * import Github from '../src/brs/github';\n *\n * describe('Github', () => {\n *\n *   beforeEach(() => {\n *       HttpMock.reset();\n *   });\n *\n *   it('should getAllPhoenixContributors easily', async () => {\n *\n *       // mock for any get - call before Http is instantiated (here: in Github)\n *       HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n *       const github = new Github();\n *       const contributors = await github.getAllPhoenixContributors();\n *       expect(contributors.length).toBe(2);\n *       expect(contributors).toEqual(['foo', 'bar']);\n *   });\n * });\n * ```\n * @lineNumber\n * 85\n ",
+              "start": 2328,
+              "end": 3215,
               "loc": {
                 "start": {
                   "line": 108,
@@ -5919,7 +5919,7 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n * @desc\n *\n * @lineNumber\n * 47\n ",
+      "value": "*\n * @desc\n *\n * @lineNumber\n * 41\n ",
       "start": 1498,
       "end": 1538,
       "loc": {
@@ -5935,9 +5935,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 51\n     * @param\n     * {number} status\n     * @param\n     * {undefined} response\n     ",
+      "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 45\n     * @param\n     * {number} status\n     * @param\n     * {T} response\n     ",
       "start": 1690,
-      "end": 1829,
+      "end": 1821,
       "loc": {
         "start": {
           "line": 79,
@@ -5952,8 +5952,8 @@
     {
       "type": "CommentLine",
       "value": " @ts-ignore",
-      "start": 1868,
-      "end": 1881,
+      "start": 1860,
+      "end": 1873,
       "loc": {
         "start": {
           "line": 90,
@@ -5967,9 +5967,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 56\n     * @param\n     * {number} status\n     * @param\n     * {string} message\n     ",
-      "start": 2017,
-      "end": 2152,
+      "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 50\n     * @param\n     * {number} status\n     * @param\n     * {string} message\n     ",
+      "start": 2009,
+      "end": 2144,
       "loc": {
         "start": {
           "line": 93,
@@ -5984,8 +5984,8 @@
     {
       "type": "CommentLine",
       "value": " @ts-ignore",
-      "start": 2190,
-      "end": 2203,
+      "start": 2182,
+      "end": 2195,
       "loc": {
         "start": {
           "line": 104,
@@ -5999,9 +5999,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n * @desc\n * Http Mocker for easy to http testing using Jest\n *\n * When using this mocking helper you need to call `jest.mock('@burst/http/src/http')`\n * at first line of your tests.\n * ``` typescript\n * jest.mock('@burst/http/src/http');\n * import {HttpMock} from '@burst/http';\n * import Github from '../src/brs/github';\n *\n * describe('Github', () => {\n *\n *   beforeEach(() => {\n *       HttpMock.reset();\n *   });\n *\n *   it('should getAllPhoenixContributors easily', async () => {\n *\n *       // mock for any get\n *       HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n *       const github = new Github();\n *       const contributors = await github.getAllPhoenixContributors();\n *       expect(contributors.length).toBe(2);\n *       expect(contributors).toEqual(['foo', 'bar']);\n *   });\n * });\n * ```\n * @lineNumber\n * 91\n ",
-      "start": 2336,
-      "end": 3188,
+      "value": "*\n * @desc\n * Http Mocker for easy to http testing using Jest\n *\n * When using this mocking helper you need to call `Http.onGet()`\n * before Http instance is created\n * ``` typescript\n * jest.mock('@burst/http/src/http');\n * import {HttpMock} from '@burst/http';\n * import Github from '../src/brs/github';\n *\n * describe('Github', () => {\n *\n *   beforeEach(() => {\n *       HttpMock.reset();\n *   });\n *\n *   it('should getAllPhoenixContributors easily', async () => {\n *\n *       // mock for any get - call before Http is instantiated (here: in Github)\n *       HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n *       const github = new Github();\n *       const contributors = await github.getAllPhoenixContributors();\n *       expect(contributors.length).toBe(2);\n *       expect(contributors).toEqual(['foo', 'bar']);\n *   });\n * });\n * ```\n * @lineNumber\n * 85\n ",
+      "start": 2328,
+      "end": 3215,
       "loc": {
         "start": {
           "line": 108,
@@ -6015,9 +6015,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * @desc\n     * Mocks responses for get methods\n     * You may pass a specific endpoint as parameter to mock only selected endpoints.\n     * This is very useful, when having methods that do several Http requests,\n     * so you can mock them one on one.\n     *\n     * The following code returns the same content on _every_ get call\n     * ```\n     *   HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n     * ```\n     *\n     * The next code returns the different content depending on the passed endpoint\n     * ```\n     *   HttpMock.onGet('/foo').reply(200, {data: 'foo'});\n     *   HttpMock.onGet('/bar').reply(200, {data: 'bar'});\n     * ```\n     * @lineNumber\n     * 111\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-      "start": 3210,
-      "end": 3987,
+      "value": "*\n     * @desc\n     * Mocks responses for get methods\n     * You may pass a specific endpoint as parameter to mock only selected endpoints.\n     * This is very useful, when having methods that do several Http requests,\n     * so you can mock them one on one.\n     *\n     * The following code returns the same content on _every_ get call\n     * ```\n     *   HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n     * ```\n     *\n     * The next code returns the different content depending on the passed endpoint\n     * ```\n     *   HttpMock.onGet('/foo').reply(200, {data: 'foo'});\n     *   HttpMock.onGet('/bar').reply(200, {data: 'bar'});\n     * ```\n     * @lineNumber\n     * 105\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+      "start": 3237,
+      "end": 4014,
       "loc": {
         "start": {
           "line": 140,
@@ -6031,9 +6031,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * @desc\n     * Mocks responses for post methods\n     * @lineNumber\n     * 119\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-      "start": 4077,
-      "end": 4247,
+      "value": "*\n     * @desc\n     * Mocks responses for post methods\n     * @lineNumber\n     * 113\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+      "start": 4104,
+      "end": 4274,
       "loc": {
         "start": {
           "line": 167,
@@ -6047,9 +6047,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * @desc\n     * Mocks responses for put methods\n     * @lineNumber\n     * 127\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-      "start": 4339,
-      "end": 4508,
+      "value": "*\n     * @desc\n     * Mocks responses for put methods\n     * @lineNumber\n     * 121\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+      "start": 4366,
+      "end": 4535,
       "loc": {
         "start": {
           "line": 180,
@@ -6063,9 +6063,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * @desc\n     * Mocks responses for delete methods\n     * @lineNumber\n     * 135\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-      "start": 4598,
-      "end": 4770,
+      "value": "*\n     * @desc\n     * Mocks responses for delete methods\n     * @lineNumber\n     * 129\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+      "start": 4625,
+      "end": 4797,
       "loc": {
         "start": {
           "line": 193,
@@ -6079,9 +6079,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * @desc\n     * Resets all mocked behavior\n     * @lineNumber\n     * 142\n     ",
-      "start": 4866,
-      "end": 4954,
+      "value": "*\n     * @desc\n     * Resets all mocked behavior\n     * @lineNumber\n     * 136\n     ",
+      "start": 4893,
+      "end": 4981,
       "loc": {
         "start": {
           "line": 206,
@@ -6096,8 +6096,8 @@
     {
       "type": "CommentLine",
       "value": " @ts-ignore",
-      "start": 4984,
-      "end": 4997,
+      "start": 5011,
+      "end": 5024,
       "loc": {
         "start": {
           "line": 213,
@@ -11387,7 +11387,7 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n * @desc\n *\n * @lineNumber\n * 47\n ",
+      "value": "*\n * @desc\n *\n * @lineNumber\n * 41\n ",
       "start": 1498,
       "end": 1538,
       "loc": {
@@ -12057,9 +12057,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 51\n     * @param\n     * {number} status\n     * @param\n     * {undefined} response\n     ",
+      "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 45\n     * @param\n     * {number} status\n     * @param\n     * {T} response\n     ",
       "start": 1690,
-      "end": 1829,
+      "end": 1821,
       "loc": {
         "start": {
           "line": 79,
@@ -12084,8 +12084,8 @@
         "binop": null
       },
       "value": "reply",
-      "start": 1834,
-      "end": 1839,
+      "start": 1826,
+      "end": 1831,
       "loc": {
         "start": {
           "line": 89,
@@ -12109,8 +12109,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1839,
-      "end": 1840,
+      "start": 1831,
+      "end": 1832,
       "loc": {
         "start": {
           "line": 89,
@@ -12135,8 +12135,8 @@
         "binop": null
       },
       "value": "status",
-      "start": 1840,
-      "end": 1846,
+      "start": 1832,
+      "end": 1838,
       "loc": {
         "start": {
           "line": 89,
@@ -12161,8 +12161,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1846,
-      "end": 1847,
+      "start": 1838,
+      "end": 1839,
       "loc": {
         "start": {
           "line": 89,
@@ -12187,8 +12187,8 @@
         "binop": null
       },
       "value": "response",
-      "start": 1848,
-      "end": 1856,
+      "start": 1840,
+      "end": 1848,
       "loc": {
         "start": {
           "line": 89,
@@ -12212,8 +12212,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1856,
-      "end": 1857,
+      "start": 1848,
+      "end": 1849,
       "loc": {
         "start": {
           "line": 89,
@@ -12237,8 +12237,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1858,
-      "end": 1859,
+      "start": 1850,
+      "end": 1851,
       "loc": {
         "start": {
           "line": 89,
@@ -12253,8 +12253,8 @@
     {
       "type": "CommentLine",
       "value": " @ts-ignore",
-      "start": 1868,
-      "end": 1881,
+      "start": 1860,
+      "end": 1873,
       "loc": {
         "start": {
           "line": 90,
@@ -12279,8 +12279,8 @@
         "binop": null
       },
       "value": "Http",
-      "start": 1890,
-      "end": 1894,
+      "start": 1882,
+      "end": 1886,
       "loc": {
         "start": {
           "line": 91,
@@ -12305,8 +12305,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1894,
-      "end": 1895,
+      "start": 1886,
+      "end": 1887,
       "loc": {
         "start": {
           "line": 91,
@@ -12331,8 +12331,8 @@
         "binop": null
       },
       "value": "mockImplementationOnce",
-      "start": 1895,
-      "end": 1917,
+      "start": 1887,
+      "end": 1909,
       "loc": {
         "start": {
           "line": 91,
@@ -12356,8 +12356,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1917,
-      "end": 1918,
+      "start": 1909,
+      "end": 1910,
       "loc": {
         "start": {
           "line": 91,
@@ -12382,8 +12382,8 @@
         "binop": null
       },
       "value": "createMockImplementationFunctionForReply",
-      "start": 1918,
-      "end": 1958,
+      "start": 1910,
+      "end": 1950,
       "loc": {
         "start": {
           "line": 91,
@@ -12407,8 +12407,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1958,
-      "end": 1959,
+      "start": 1950,
+      "end": 1951,
       "loc": {
         "start": {
           "line": 91,
@@ -12435,8 +12435,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 1959,
-      "end": 1963,
+      "start": 1951,
+      "end": 1955,
       "loc": {
         "start": {
           "line": 91,
@@ -12461,8 +12461,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1963,
-      "end": 1964,
+      "start": 1955,
+      "end": 1956,
       "loc": {
         "start": {
           "line": 91,
@@ -12487,8 +12487,8 @@
         "binop": null
       },
       "value": "method",
-      "start": 1964,
-      "end": 1970,
+      "start": 1956,
+      "end": 1962,
       "loc": {
         "start": {
           "line": 91,
@@ -12513,8 +12513,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1970,
-      "end": 1971,
+      "start": 1962,
+      "end": 1963,
       "loc": {
         "start": {
           "line": 91,
@@ -12541,8 +12541,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 1972,
-      "end": 1976,
+      "start": 1964,
+      "end": 1968,
       "loc": {
         "start": {
           "line": 91,
@@ -12567,8 +12567,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1976,
-      "end": 1977,
+      "start": 1968,
+      "end": 1969,
       "loc": {
         "start": {
           "line": 91,
@@ -12593,8 +12593,8 @@
         "binop": null
       },
       "value": "endpoint",
-      "start": 1977,
-      "end": 1985,
+      "start": 1969,
+      "end": 1977,
       "loc": {
         "start": {
           "line": 91,
@@ -12619,8 +12619,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1985,
-      "end": 1986,
+      "start": 1977,
+      "end": 1978,
       "loc": {
         "start": {
           "line": 91,
@@ -12645,8 +12645,8 @@
         "binop": null
       },
       "value": "status",
-      "start": 1987,
-      "end": 1993,
+      "start": 1979,
+      "end": 1985,
       "loc": {
         "start": {
           "line": 91,
@@ -12671,8 +12671,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1993,
-      "end": 1994,
+      "start": 1985,
+      "end": 1986,
       "loc": {
         "start": {
           "line": 91,
@@ -12697,8 +12697,8 @@
         "binop": null
       },
       "value": "response",
-      "start": 1995,
-      "end": 2003,
+      "start": 1987,
+      "end": 1995,
       "loc": {
         "start": {
           "line": 91,
@@ -12722,8 +12722,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2003,
-      "end": 2004,
+      "start": 1995,
+      "end": 1996,
       "loc": {
         "start": {
           "line": 91,
@@ -12747,8 +12747,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2004,
-      "end": 2005,
+      "start": 1996,
+      "end": 1997,
       "loc": {
         "start": {
           "line": 91,
@@ -12773,8 +12773,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2005,
-      "end": 2006,
+      "start": 1997,
+      "end": 1998,
       "loc": {
         "start": {
           "line": 91,
@@ -12798,8 +12798,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2011,
-      "end": 2012,
+      "start": 2003,
+      "end": 2004,
       "loc": {
         "start": {
           "line": 92,
@@ -12813,9 +12813,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 56\n     * @param\n     * {number} status\n     * @param\n     * {string} message\n     ",
-      "start": 2017,
-      "end": 2152,
+      "value": "*\n     * @desc\n     *\n     * @lineNumber\n     * 50\n     * @param\n     * {number} status\n     * @param\n     * {string} message\n     ",
+      "start": 2009,
+      "end": 2144,
       "loc": {
         "start": {
           "line": 93,
@@ -12840,8 +12840,8 @@
         "binop": null
       },
       "value": "error",
-      "start": 2157,
-      "end": 2162,
+      "start": 2149,
+      "end": 2154,
       "loc": {
         "start": {
           "line": 103,
@@ -12865,8 +12865,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2162,
-      "end": 2163,
+      "start": 2154,
+      "end": 2155,
       "loc": {
         "start": {
           "line": 103,
@@ -12891,8 +12891,8 @@
         "binop": null
       },
       "value": "status",
-      "start": 2163,
-      "end": 2169,
+      "start": 2155,
+      "end": 2161,
       "loc": {
         "start": {
           "line": 103,
@@ -12917,8 +12917,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2169,
-      "end": 2170,
+      "start": 2161,
+      "end": 2162,
       "loc": {
         "start": {
           "line": 103,
@@ -12943,8 +12943,8 @@
         "binop": null
       },
       "value": "message",
-      "start": 2171,
-      "end": 2178,
+      "start": 2163,
+      "end": 2170,
       "loc": {
         "start": {
           "line": 103,
@@ -12968,8 +12968,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2178,
-      "end": 2179,
+      "start": 2170,
+      "end": 2171,
       "loc": {
         "start": {
           "line": 103,
@@ -12993,8 +12993,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2180,
-      "end": 2181,
+      "start": 2172,
+      "end": 2173,
       "loc": {
         "start": {
           "line": 103,
@@ -13009,8 +13009,8 @@
     {
       "type": "CommentLine",
       "value": " @ts-ignore",
-      "start": 2190,
-      "end": 2203,
+      "start": 2182,
+      "end": 2195,
       "loc": {
         "start": {
           "line": 104,
@@ -13035,8 +13035,8 @@
         "binop": null
       },
       "value": "Http",
-      "start": 2212,
-      "end": 2216,
+      "start": 2204,
+      "end": 2208,
       "loc": {
         "start": {
           "line": 105,
@@ -13061,8 +13061,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2216,
-      "end": 2217,
+      "start": 2208,
+      "end": 2209,
       "loc": {
         "start": {
           "line": 105,
@@ -13087,8 +13087,8 @@
         "binop": null
       },
       "value": "mockImplementationOnce",
-      "start": 2217,
-      "end": 2239,
+      "start": 2209,
+      "end": 2231,
       "loc": {
         "start": {
           "line": 105,
@@ -13112,8 +13112,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2239,
-      "end": 2240,
+      "start": 2231,
+      "end": 2232,
       "loc": {
         "start": {
           "line": 105,
@@ -13138,8 +13138,8 @@
         "binop": null
       },
       "value": "createMockImplementationFunctionForError",
-      "start": 2240,
-      "end": 2280,
+      "start": 2232,
+      "end": 2272,
       "loc": {
         "start": {
           "line": 105,
@@ -13163,8 +13163,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2280,
-      "end": 2281,
+      "start": 2272,
+      "end": 2273,
       "loc": {
         "start": {
           "line": 105,
@@ -13191,8 +13191,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 2281,
-      "end": 2285,
+      "start": 2273,
+      "end": 2277,
       "loc": {
         "start": {
           "line": 105,
@@ -13217,8 +13217,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2285,
-      "end": 2286,
+      "start": 2277,
+      "end": 2278,
       "loc": {
         "start": {
           "line": 105,
@@ -13243,8 +13243,8 @@
         "binop": null
       },
       "value": "method",
-      "start": 2286,
-      "end": 2292,
+      "start": 2278,
+      "end": 2284,
       "loc": {
         "start": {
           "line": 105,
@@ -13269,8 +13269,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2292,
-      "end": 2293,
+      "start": 2284,
+      "end": 2285,
       "loc": {
         "start": {
           "line": 105,
@@ -13297,8 +13297,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 2294,
-      "end": 2298,
+      "start": 2286,
+      "end": 2290,
       "loc": {
         "start": {
           "line": 105,
@@ -13323,8 +13323,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2298,
-      "end": 2299,
+      "start": 2290,
+      "end": 2291,
       "loc": {
         "start": {
           "line": 105,
@@ -13349,8 +13349,8 @@
         "binop": null
       },
       "value": "endpoint",
-      "start": 2299,
-      "end": 2307,
+      "start": 2291,
+      "end": 2299,
       "loc": {
         "start": {
           "line": 105,
@@ -13375,8 +13375,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2307,
-      "end": 2308,
+      "start": 2299,
+      "end": 2300,
       "loc": {
         "start": {
           "line": 105,
@@ -13401,8 +13401,8 @@
         "binop": null
       },
       "value": "status",
-      "start": 2309,
-      "end": 2315,
+      "start": 2301,
+      "end": 2307,
       "loc": {
         "start": {
           "line": 105,
@@ -13427,8 +13427,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2315,
-      "end": 2316,
+      "start": 2307,
+      "end": 2308,
       "loc": {
         "start": {
           "line": 105,
@@ -13453,8 +13453,8 @@
         "binop": null
       },
       "value": "message",
-      "start": 2317,
-      "end": 2324,
+      "start": 2309,
+      "end": 2316,
       "loc": {
         "start": {
           "line": 105,
@@ -13478,8 +13478,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2324,
-      "end": 2325,
+      "start": 2316,
+      "end": 2317,
       "loc": {
         "start": {
           "line": 105,
@@ -13503,8 +13503,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2325,
-      "end": 2326,
+      "start": 2317,
+      "end": 2318,
       "loc": {
         "start": {
           "line": 105,
@@ -13529,8 +13529,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2326,
-      "end": 2327,
+      "start": 2318,
+      "end": 2319,
       "loc": {
         "start": {
           "line": 105,
@@ -13554,8 +13554,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2332,
-      "end": 2333,
+      "start": 2324,
+      "end": 2325,
       "loc": {
         "start": {
           "line": 106,
@@ -13579,8 +13579,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2334,
-      "end": 2335,
+      "start": 2326,
+      "end": 2327,
       "loc": {
         "start": {
           "line": 107,
@@ -13594,9 +13594,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n * @desc\n * Http Mocker for easy to http testing using Jest\n *\n * When using this mocking helper you need to call `jest.mock('@burst/http/src/http')`\n * at first line of your tests.\n * ``` typescript\n * jest.mock('@burst/http/src/http');\n * import {HttpMock} from '@burst/http';\n * import Github from '../src/brs/github';\n *\n * describe('Github', () => {\n *\n *   beforeEach(() => {\n *       HttpMock.reset();\n *   });\n *\n *   it('should getAllPhoenixContributors easily', async () => {\n *\n *       // mock for any get\n *       HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n *       const github = new Github();\n *       const contributors = await github.getAllPhoenixContributors();\n *       expect(contributors.length).toBe(2);\n *       expect(contributors).toEqual(['foo', 'bar']);\n *   });\n * });\n * ```\n * @lineNumber\n * 91\n ",
-      "start": 2336,
-      "end": 3188,
+      "value": "*\n * @desc\n * Http Mocker for easy to http testing using Jest\n *\n * When using this mocking helper you need to call `Http.onGet()`\n * before Http instance is created\n * ``` typescript\n * jest.mock('@burst/http/src/http');\n * import {HttpMock} from '@burst/http';\n * import Github from '../src/brs/github';\n *\n * describe('Github', () => {\n *\n *   beforeEach(() => {\n *       HttpMock.reset();\n *   });\n *\n *   it('should getAllPhoenixContributors easily', async () => {\n *\n *       // mock for any get - call before Http is instantiated (here: in Github)\n *       HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n *       const github = new Github();\n *       const contributors = await github.getAllPhoenixContributors();\n *       expect(contributors.length).toBe(2);\n *       expect(contributors).toEqual(['foo', 'bar']);\n *   });\n * });\n * ```\n * @lineNumber\n * 85\n ",
+      "start": 2328,
+      "end": 3215,
       "loc": {
         "start": {
           "line": 108,
@@ -13623,8 +13623,8 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 3189,
-      "end": 3194,
+      "start": 3216,
+      "end": 3221,
       "loc": {
         "start": {
           "line": 139,
@@ -13649,8 +13649,8 @@
         "binop": null
       },
       "value": "HttpMock",
-      "start": 3195,
-      "end": 3203,
+      "start": 3222,
+      "end": 3230,
       "loc": {
         "start": {
           "line": 139,
@@ -13674,8 +13674,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3204,
-      "end": 3205,
+      "start": 3231,
+      "end": 3232,
       "loc": {
         "start": {
           "line": 139,
@@ -13689,9 +13689,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * @desc\n     * Mocks responses for get methods\n     * You may pass a specific endpoint as parameter to mock only selected endpoints.\n     * This is very useful, when having methods that do several Http requests,\n     * so you can mock them one on one.\n     *\n     * The following code returns the same content on _every_ get call\n     * ```\n     *   HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n     * ```\n     *\n     * The next code returns the different content depending on the passed endpoint\n     * ```\n     *   HttpMock.onGet('/foo').reply(200, {data: 'foo'});\n     *   HttpMock.onGet('/bar').reply(200, {data: 'bar'});\n     * ```\n     * @lineNumber\n     * 111\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-      "start": 3210,
-      "end": 3987,
+      "value": "*\n     * @desc\n     * Mocks responses for get methods\n     * You may pass a specific endpoint as parameter to mock only selected endpoints.\n     * This is very useful, when having methods that do several Http requests,\n     * so you can mock them one on one.\n     *\n     * The following code returns the same content on _every_ get call\n     * ```\n     *   HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);\n     * ```\n     *\n     * The next code returns the different content depending on the passed endpoint\n     * ```\n     *   HttpMock.onGet('/foo').reply(200, {data: 'foo'});\n     *   HttpMock.onGet('/bar').reply(200, {data: 'bar'});\n     * ```\n     * @lineNumber\n     * 105\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+      "start": 3237,
+      "end": 4014,
       "loc": {
         "start": {
           "line": 140,
@@ -13716,8 +13716,8 @@
         "binop": null
       },
       "value": "static",
-      "start": 3992,
-      "end": 3998,
+      "start": 4019,
+      "end": 4025,
       "loc": {
         "start": {
           "line": 164,
@@ -13742,8 +13742,8 @@
         "binop": null
       },
       "value": "onGet",
-      "start": 3999,
-      "end": 4004,
+      "start": 4026,
+      "end": 4031,
       "loc": {
         "start": {
           "line": 164,
@@ -13767,8 +13767,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4004,
-      "end": 4005,
+      "start": 4031,
+      "end": 4032,
       "loc": {
         "start": {
           "line": 164,
@@ -13793,8 +13793,8 @@
         "binop": null
       },
       "value": "endpoint",
-      "start": 4005,
-      "end": 4013,
+      "start": 4032,
+      "end": 4040,
       "loc": {
         "start": {
           "line": 164,
@@ -13818,8 +13818,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4013,
-      "end": 4014,
+      "start": 4040,
+      "end": 4041,
       "loc": {
         "start": {
           "line": 164,
@@ -13843,8 +13843,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4015,
-      "end": 4016,
+      "start": 4042,
+      "end": 4043,
       "loc": {
         "start": {
           "line": 164,
@@ -13871,8 +13871,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 4025,
-      "end": 4031,
+      "start": 4052,
+      "end": 4058,
       "loc": {
         "start": {
           "line": 165,
@@ -13899,8 +13899,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 4032,
-      "end": 4035,
+      "start": 4059,
+      "end": 4062,
       "loc": {
         "start": {
           "line": 165,
@@ -13925,8 +13925,8 @@
         "binop": null
       },
       "value": "MockBehavior",
-      "start": 4036,
-      "end": 4048,
+      "start": 4063,
+      "end": 4075,
       "loc": {
         "start": {
           "line": 165,
@@ -13950,8 +13950,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4048,
-      "end": 4049,
+      "start": 4075,
+      "end": 4076,
       "loc": {
         "start": {
           "line": 165,
@@ -13977,8 +13977,8 @@
         "updateContext": null
       },
       "value": "get",
-      "start": 4049,
-      "end": 4054,
+      "start": 4076,
+      "end": 4081,
       "loc": {
         "start": {
           "line": 165,
@@ -14003,8 +14003,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4054,
-      "end": 4055,
+      "start": 4081,
+      "end": 4082,
       "loc": {
         "start": {
           "line": 165,
@@ -14029,8 +14029,8 @@
         "binop": null
       },
       "value": "endpoint",
-      "start": 4056,
-      "end": 4064,
+      "start": 4083,
+      "end": 4091,
       "loc": {
         "start": {
           "line": 165,
@@ -14054,8 +14054,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4064,
-      "end": 4065,
+      "start": 4091,
+      "end": 4092,
       "loc": {
         "start": {
           "line": 165,
@@ -14080,8 +14080,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4065,
-      "end": 4066,
+      "start": 4092,
+      "end": 4093,
       "loc": {
         "start": {
           "line": 165,
@@ -14105,8 +14105,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4071,
-      "end": 4072,
+      "start": 4098,
+      "end": 4099,
       "loc": {
         "start": {
           "line": 166,
@@ -14120,9 +14120,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * @desc\n     * Mocks responses for post methods\n     * @lineNumber\n     * 119\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-      "start": 4077,
-      "end": 4247,
+      "value": "*\n     * @desc\n     * Mocks responses for post methods\n     * @lineNumber\n     * 113\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+      "start": 4104,
+      "end": 4274,
       "loc": {
         "start": {
           "line": 167,
@@ -14147,8 +14147,8 @@
         "binop": null
       },
       "value": "static",
-      "start": 4252,
-      "end": 4258,
+      "start": 4279,
+      "end": 4285,
       "loc": {
         "start": {
           "line": 177,
@@ -14173,8 +14173,8 @@
         "binop": null
       },
       "value": "onPost",
-      "start": 4259,
-      "end": 4265,
+      "start": 4286,
+      "end": 4292,
       "loc": {
         "start": {
           "line": 177,
@@ -14198,8 +14198,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4265,
-      "end": 4266,
+      "start": 4292,
+      "end": 4293,
       "loc": {
         "start": {
           "line": 177,
@@ -14224,8 +14224,8 @@
         "binop": null
       },
       "value": "endpoint",
-      "start": 4266,
-      "end": 4274,
+      "start": 4293,
+      "end": 4301,
       "loc": {
         "start": {
           "line": 177,
@@ -14249,8 +14249,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4274,
-      "end": 4275,
+      "start": 4301,
+      "end": 4302,
       "loc": {
         "start": {
           "line": 177,
@@ -14274,8 +14274,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4276,
-      "end": 4277,
+      "start": 4303,
+      "end": 4304,
       "loc": {
         "start": {
           "line": 177,
@@ -14302,8 +14302,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 4286,
-      "end": 4292,
+      "start": 4313,
+      "end": 4319,
       "loc": {
         "start": {
           "line": 178,
@@ -14330,8 +14330,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 4293,
-      "end": 4296,
+      "start": 4320,
+      "end": 4323,
       "loc": {
         "start": {
           "line": 178,
@@ -14356,8 +14356,8 @@
         "binop": null
       },
       "value": "MockBehavior",
-      "start": 4297,
-      "end": 4309,
+      "start": 4324,
+      "end": 4336,
       "loc": {
         "start": {
           "line": 178,
@@ -14381,8 +14381,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4309,
-      "end": 4310,
+      "start": 4336,
+      "end": 4337,
       "loc": {
         "start": {
           "line": 178,
@@ -14408,8 +14408,8 @@
         "updateContext": null
       },
       "value": "post",
-      "start": 4310,
-      "end": 4316,
+      "start": 4337,
+      "end": 4343,
       "loc": {
         "start": {
           "line": 178,
@@ -14434,8 +14434,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4316,
-      "end": 4317,
+      "start": 4343,
+      "end": 4344,
       "loc": {
         "start": {
           "line": 178,
@@ -14460,8 +14460,8 @@
         "binop": null
       },
       "value": "endpoint",
-      "start": 4318,
-      "end": 4326,
+      "start": 4345,
+      "end": 4353,
       "loc": {
         "start": {
           "line": 178,
@@ -14485,8 +14485,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4326,
-      "end": 4327,
+      "start": 4353,
+      "end": 4354,
       "loc": {
         "start": {
           "line": 178,
@@ -14511,8 +14511,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4327,
-      "end": 4328,
+      "start": 4354,
+      "end": 4355,
       "loc": {
         "start": {
           "line": 178,
@@ -14536,8 +14536,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4333,
-      "end": 4334,
+      "start": 4360,
+      "end": 4361,
       "loc": {
         "start": {
           "line": 179,
@@ -14551,9 +14551,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * @desc\n     * Mocks responses for put methods\n     * @lineNumber\n     * 127\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-      "start": 4339,
-      "end": 4508,
+      "value": "*\n     * @desc\n     * Mocks responses for put methods\n     * @lineNumber\n     * 121\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+      "start": 4366,
+      "end": 4535,
       "loc": {
         "start": {
           "line": 180,
@@ -14578,8 +14578,8 @@
         "binop": null
       },
       "value": "static",
-      "start": 4513,
-      "end": 4519,
+      "start": 4540,
+      "end": 4546,
       "loc": {
         "start": {
           "line": 190,
@@ -14604,8 +14604,8 @@
         "binop": null
       },
       "value": "onPut",
-      "start": 4520,
-      "end": 4525,
+      "start": 4547,
+      "end": 4552,
       "loc": {
         "start": {
           "line": 190,
@@ -14629,8 +14629,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4525,
-      "end": 4526,
+      "start": 4552,
+      "end": 4553,
       "loc": {
         "start": {
           "line": 190,
@@ -14655,8 +14655,8 @@
         "binop": null
       },
       "value": "endpoint",
-      "start": 4526,
-      "end": 4534,
+      "start": 4553,
+      "end": 4561,
       "loc": {
         "start": {
           "line": 190,
@@ -14680,8 +14680,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4534,
-      "end": 4535,
+      "start": 4561,
+      "end": 4562,
       "loc": {
         "start": {
           "line": 190,
@@ -14705,8 +14705,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4536,
-      "end": 4537,
+      "start": 4563,
+      "end": 4564,
       "loc": {
         "start": {
           "line": 190,
@@ -14733,8 +14733,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 4546,
-      "end": 4552,
+      "start": 4573,
+      "end": 4579,
       "loc": {
         "start": {
           "line": 191,
@@ -14761,8 +14761,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 4553,
-      "end": 4556,
+      "start": 4580,
+      "end": 4583,
       "loc": {
         "start": {
           "line": 191,
@@ -14787,8 +14787,8 @@
         "binop": null
       },
       "value": "MockBehavior",
-      "start": 4557,
-      "end": 4569,
+      "start": 4584,
+      "end": 4596,
       "loc": {
         "start": {
           "line": 191,
@@ -14812,8 +14812,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4569,
-      "end": 4570,
+      "start": 4596,
+      "end": 4597,
       "loc": {
         "start": {
           "line": 191,
@@ -14839,8 +14839,8 @@
         "updateContext": null
       },
       "value": "put",
-      "start": 4570,
-      "end": 4575,
+      "start": 4597,
+      "end": 4602,
       "loc": {
         "start": {
           "line": 191,
@@ -14865,8 +14865,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4575,
-      "end": 4576,
+      "start": 4602,
+      "end": 4603,
       "loc": {
         "start": {
           "line": 191,
@@ -14891,8 +14891,8 @@
         "binop": null
       },
       "value": "endpoint",
-      "start": 4577,
-      "end": 4585,
+      "start": 4604,
+      "end": 4612,
       "loc": {
         "start": {
           "line": 191,
@@ -14916,8 +14916,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4585,
-      "end": 4586,
+      "start": 4612,
+      "end": 4613,
       "loc": {
         "start": {
           "line": 191,
@@ -14942,8 +14942,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4586,
-      "end": 4587,
+      "start": 4613,
+      "end": 4614,
       "loc": {
         "start": {
           "line": 191,
@@ -14967,8 +14967,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4592,
-      "end": 4593,
+      "start": 4619,
+      "end": 4620,
       "loc": {
         "start": {
           "line": 192,
@@ -14982,9 +14982,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * @desc\n     * Mocks responses for delete methods\n     * @lineNumber\n     * 135\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
-      "start": 4598,
-      "end": 4770,
+      "value": "*\n     * @desc\n     * Mocks responses for delete methods\n     * @lineNumber\n     * 129\n     * @param\n     * {string} endpoint\n     * @return\n     * {MockBehavior}\n     ",
+      "start": 4625,
+      "end": 4797,
       "loc": {
         "start": {
           "line": 193,
@@ -15009,8 +15009,8 @@
         "binop": null
       },
       "value": "static",
-      "start": 4775,
-      "end": 4781,
+      "start": 4802,
+      "end": 4808,
       "loc": {
         "start": {
           "line": 203,
@@ -15035,8 +15035,8 @@
         "binop": null
       },
       "value": "onDelete",
-      "start": 4782,
-      "end": 4790,
+      "start": 4809,
+      "end": 4817,
       "loc": {
         "start": {
           "line": 203,
@@ -15060,8 +15060,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4790,
-      "end": 4791,
+      "start": 4817,
+      "end": 4818,
       "loc": {
         "start": {
           "line": 203,
@@ -15086,8 +15086,8 @@
         "binop": null
       },
       "value": "endpoint",
-      "start": 4791,
-      "end": 4799,
+      "start": 4818,
+      "end": 4826,
       "loc": {
         "start": {
           "line": 203,
@@ -15111,8 +15111,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4799,
-      "end": 4800,
+      "start": 4826,
+      "end": 4827,
       "loc": {
         "start": {
           "line": 203,
@@ -15136,8 +15136,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4801,
-      "end": 4802,
+      "start": 4828,
+      "end": 4829,
       "loc": {
         "start": {
           "line": 203,
@@ -15164,8 +15164,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 4811,
-      "end": 4817,
+      "start": 4838,
+      "end": 4844,
       "loc": {
         "start": {
           "line": 204,
@@ -15192,8 +15192,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 4818,
-      "end": 4821,
+      "start": 4845,
+      "end": 4848,
       "loc": {
         "start": {
           "line": 204,
@@ -15218,8 +15218,8 @@
         "binop": null
       },
       "value": "MockBehavior",
-      "start": 4822,
-      "end": 4834,
+      "start": 4849,
+      "end": 4861,
       "loc": {
         "start": {
           "line": 204,
@@ -15243,8 +15243,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4834,
-      "end": 4835,
+      "start": 4861,
+      "end": 4862,
       "loc": {
         "start": {
           "line": 204,
@@ -15270,8 +15270,8 @@
         "updateContext": null
       },
       "value": "delete",
-      "start": 4835,
-      "end": 4843,
+      "start": 4862,
+      "end": 4870,
       "loc": {
         "start": {
           "line": 204,
@@ -15296,8 +15296,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4843,
-      "end": 4844,
+      "start": 4870,
+      "end": 4871,
       "loc": {
         "start": {
           "line": 204,
@@ -15322,8 +15322,8 @@
         "binop": null
       },
       "value": "endpoint",
-      "start": 4845,
-      "end": 4853,
+      "start": 4872,
+      "end": 4880,
       "loc": {
         "start": {
           "line": 204,
@@ -15347,8 +15347,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4853,
-      "end": 4854,
+      "start": 4880,
+      "end": 4881,
       "loc": {
         "start": {
           "line": 204,
@@ -15373,8 +15373,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4854,
-      "end": 4855,
+      "start": 4881,
+      "end": 4882,
       "loc": {
         "start": {
           "line": 204,
@@ -15398,8 +15398,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4860,
-      "end": 4861,
+      "start": 4887,
+      "end": 4888,
       "loc": {
         "start": {
           "line": 205,
@@ -15413,9 +15413,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * @desc\n     * Resets all mocked behavior\n     * @lineNumber\n     * 142\n     ",
-      "start": 4866,
-      "end": 4954,
+      "value": "*\n     * @desc\n     * Resets all mocked behavior\n     * @lineNumber\n     * 136\n     ",
+      "start": 4893,
+      "end": 4981,
       "loc": {
         "start": {
           "line": 206,
@@ -15440,8 +15440,8 @@
         "binop": null
       },
       "value": "static",
-      "start": 4959,
-      "end": 4965,
+      "start": 4986,
+      "end": 4992,
       "loc": {
         "start": {
           "line": 212,
@@ -15466,8 +15466,8 @@
         "binop": null
       },
       "value": "reset",
-      "start": 4966,
-      "end": 4971,
+      "start": 4993,
+      "end": 4998,
       "loc": {
         "start": {
           "line": 212,
@@ -15491,8 +15491,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4971,
-      "end": 4972,
+      "start": 4998,
+      "end": 4999,
       "loc": {
         "start": {
           "line": 212,
@@ -15516,8 +15516,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4972,
-      "end": 4973,
+      "start": 4999,
+      "end": 5000,
       "loc": {
         "start": {
           "line": 212,
@@ -15541,8 +15541,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4974,
-      "end": 4975,
+      "start": 5001,
+      "end": 5002,
       "loc": {
         "start": {
           "line": 212,
@@ -15557,8 +15557,8 @@
     {
       "type": "CommentLine",
       "value": " @ts-ignore",
-      "start": 4984,
-      "end": 4997,
+      "start": 5011,
+      "end": 5024,
       "loc": {
         "start": {
           "line": 213,
@@ -15583,8 +15583,8 @@
         "binop": null
       },
       "value": "Http",
-      "start": 5006,
-      "end": 5010,
+      "start": 5033,
+      "end": 5037,
       "loc": {
         "start": {
           "line": 214,
@@ -15609,8 +15609,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 5010,
-      "end": 5011,
+      "start": 5037,
+      "end": 5038,
       "loc": {
         "start": {
           "line": 214,
@@ -15635,8 +15635,8 @@
         "binop": null
       },
       "value": "mockClear",
-      "start": 5011,
-      "end": 5020,
+      "start": 5038,
+      "end": 5047,
       "loc": {
         "start": {
           "line": 214,
@@ -15660,8 +15660,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 5020,
-      "end": 5021,
+      "start": 5047,
+      "end": 5048,
       "loc": {
         "start": {
           "line": 214,
@@ -15685,8 +15685,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 5021,
-      "end": 5022,
+      "start": 5048,
+      "end": 5049,
       "loc": {
         "start": {
           "line": 214,
@@ -15711,8 +15711,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 5022,
-      "end": 5023,
+      "start": 5049,
+      "end": 5050,
       "loc": {
         "start": {
           "line": 214,
@@ -15737,8 +15737,8 @@
         "binop": null
       },
       "value": "errorMap",
-      "start": 5032,
-      "end": 5040,
+      "start": 5059,
+      "end": 5067,
       "loc": {
         "start": {
           "line": 215,
@@ -15764,8 +15764,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 5041,
-      "end": 5042,
+      "start": 5068,
+      "end": 5069,
       "loc": {
         "start": {
           "line": 215,
@@ -15789,8 +15789,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 5043,
-      "end": 5044,
+      "start": 5070,
+      "end": 5071,
       "loc": {
         "start": {
           "line": 215,
@@ -15814,8 +15814,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 5044,
-      "end": 5045,
+      "start": 5071,
+      "end": 5072,
       "loc": {
         "start": {
           "line": 215,
@@ -15840,8 +15840,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 5045,
-      "end": 5046,
+      "start": 5072,
+      "end": 5073,
       "loc": {
         "start": {
           "line": 215,
@@ -15866,8 +15866,8 @@
         "binop": null
       },
       "value": "replyMap",
-      "start": 5055,
-      "end": 5063,
+      "start": 5082,
+      "end": 5090,
       "loc": {
         "start": {
           "line": 216,
@@ -15893,8 +15893,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 5064,
-      "end": 5065,
+      "start": 5091,
+      "end": 5092,
       "loc": {
         "start": {
           "line": 216,
@@ -15918,8 +15918,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 5066,
-      "end": 5067,
+      "start": 5093,
+      "end": 5094,
       "loc": {
         "start": {
           "line": 216,
@@ -15943,8 +15943,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 5067,
-      "end": 5068,
+      "start": 5094,
+      "end": 5095,
       "loc": {
         "start": {
           "line": 216,
@@ -15969,8 +15969,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 5068,
-      "end": 5069,
+      "start": 5095,
+      "end": 5096,
       "loc": {
         "start": {
           "line": 216,
@@ -15994,8 +15994,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 5074,
-      "end": 5075,
+      "start": 5101,
+      "end": 5102,
       "loc": {
         "start": {
           "line": 217,
@@ -16019,8 +16019,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 5076,
-      "end": 5077,
+      "start": 5103,
+      "end": 5104,
       "loc": {
         "start": {
           "line": 218,
@@ -16047,8 +16047,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 5078,
-      "end": 5084,
+      "start": 5105,
+      "end": 5111,
       "loc": {
         "start": {
           "line": 219,
@@ -16075,8 +16075,8 @@
         "updateContext": null
       },
       "value": "default",
-      "start": 5085,
-      "end": 5092,
+      "start": 5112,
+      "end": 5119,
       "loc": {
         "start": {
           "line": 219,
@@ -16101,8 +16101,8 @@
         "binop": null
       },
       "value": "HttpMock",
-      "start": 5093,
-      "end": 5101,
+      "start": 5120,
+      "end": 5128,
       "loc": {
         "start": {
           "line": 219,
@@ -16127,8 +16127,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 5101,
-      "end": 5102,
+      "start": 5128,
+      "end": 5129,
       "loc": {
         "start": {
           "line": 219,
@@ -16153,8 +16153,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 5103,
-      "end": 5103,
+      "start": 5130,
+      "end": 5130,
       "loc": {
         "start": {
           "line": 220,

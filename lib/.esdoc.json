@@ -6,7 +6,15 @@
       "name": "esdoc-typescript-plugin"
     },
     {
-      "name": "esdoc-standard-plugin"
+      "name": "esdoc-standard-plugin",
+      "option": {
+        "lint": {
+          "enable": false
+        },
+        "undocumentIdentifier": {
+          "enable": false
+        }
+      }
     }
   ],
   "excludes": [

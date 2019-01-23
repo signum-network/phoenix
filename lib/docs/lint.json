@@ -1,1 +1,43 @@
-[]
+[
+  {
+    "name": "getBlockByTimestamp",
+    "filePath": "packages/core/src/api/getBlockByTimestamp.ts",
+    "lines": [
+      {
+        "lineNumber": 0,
+        "line": "import {BaseService} from '../service/baseService';"
+      },
+      {
+        "lineNumber": 1,
+        "line": "import {Block} from '../model/block';"
+      },
+      {
+        "lineNumber": 2,
+        "line": ""
+      },
+      {
+        "lineNumber": 3,
+        "line": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "line": " * Get a block by given timestamp"
+      },
+      {
+        "lineNumber": 5,
+        "line": " * @param timestamp The block timestamp is the timestamp in seconds since the genesis block"
+      },
+      {
+        "lineNumber": 6,
+        "line": " * @param includeTransactions _true_, if transactions shall be included"
+      }
+    ],
+    "codeParams": [
+      "service"
+    ],
+    "docParams": [
+      "timestamp",
+      "includeTransactions"
+    ]
+  }
+]

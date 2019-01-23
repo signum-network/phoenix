@@ -1,12 +1,59 @@
 {
-  "coverage": "64.07%",
-  "expectCount": 309,
-  "actualCount": 198,
+  "coverage": "54.13%",
+  "expectCount": 242,
+  "actualCount": 131,
   "files": {
     "packages/core/src/abstract/store.ts": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
+    },
+    "packages/core/src/api/block/getBlockByHeight.ts": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "packages/core/src/api/block/getBlockById.ts": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "packages/core/src/api/block/getBlockByTimestamp.ts": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "packages/core/src/api/block/getBlockId.ts": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "packages/core/src/api/composeApi.ts": {
+      "expectCount": 5,
+      "actualCount": 2,
+      "undocumentLines": [
+        15,
+        16,
+        17
+      ]
+    },
+    "packages/core/src/api/network/getBlockchainStatus.ts": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "packages/core/src/api/network/getServerStatus.ts": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "packages/core/src/burstService.ts": {
+      "expectCount": 7,
+      "actualCount": 5,
+      "undocumentLines": [
+        47,
+        48
+      ]
     },
     "packages/core/src/burstUtil.ts": {
       "expectCount": 11,
@@ -52,12 +99,12 @@
         8
       ]
     },
-    "packages/core/src/model/abstractModel.ts": {
+    "packages/core/src/typings/abstractModel.ts": {
       "expectCount": 3,
       "actualCount": 3,
       "undocumentLines": []
     },
-    "packages/core/src/model/account.ts": {
+    "packages/core/src/typings/account.ts": {
       "expectCount": 12,
       "actualCount": 1,
       "undocumentLines": [
@@ -74,7 +121,7 @@
         38
       ]
     },
-    "packages/core/src/model/attachment.ts": {
+    "packages/core/src/typings/attachment.ts": {
       "expectCount": 12,
       "actualCount": 3,
       "undocumentLines": [
@@ -89,21 +136,7 @@
         55
       ]
     },
-    "packages/core/src/model/block.ts": {
-      "expectCount": 26,
-      "actualCount": 25,
-      "undocumentLines": [
-        12
-      ]
-    },
-    "packages/core/src/model/blockchainStatus.ts": {
-      "expectCount": 12,
-      "actualCount": 11,
-      "undocumentLines": [
-        9
-      ]
-    },
-    "packages/core/src/model/burstNode.ts": {
+    "packages/core/src/typings/burstNode.ts": {
       "expectCount": 9,
       "actualCount": 1,
       "undocumentLines": [
@@ -117,7 +150,7 @@
         15
       ]
     },
-    "packages/core/src/model/keys.ts": {
+    "packages/core/src/typings/keys.ts": {
       "expectCount": 5,
       "actualCount": 1,
       "undocumentLines": [
@@ -127,14 +160,7 @@
         19
       ]
     },
-    "packages/core/src/model/networkStatus.ts": {
-      "expectCount": 28,
-      "actualCount": 27,
-      "undocumentLines": [
-        9
-      ]
-    },
-    "packages/core/src/model/transaction.ts": {
+    "packages/core/src/typings/transaction.ts": {
       "expectCount": 25,
       "actualCount": 1,
       "undocumentLines": [
@@ -163,59 +189,6 @@
         46,
         47
       ]
-    },
-    "packages/core/src/service/accountService.ts": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "packages/core/src/service/aliasService.ts": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "packages/core/src/service/assetsExchangeService.ts": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "packages/core/src/service/baseService.ts": {
-      "expectCount": 7,
-      "actualCount": 5,
-      "undocumentLines": [
-        47,
-        48
-      ]
-    },
-    "packages/core/src/service/blockService.ts": {
-      "expectCount": 2,
-      "actualCount": 2,
-      "undocumentLines": []
-    },
-    "packages/core/src/service/marketplaceService.ts": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "packages/core/src/service/messageService.ts": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "packages/core/src/service/networkService.ts": {
-      "expectCount": 3,
-      "actualCount": 3,
-      "undocumentLines": []
-    },
-    "packages/core/src/service/transactionService.ts": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "packages/core/src/service/utilitiesService.ts": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
     },
     "packages/crypto/src/converter.ts": {
       "expectCount": 27,
