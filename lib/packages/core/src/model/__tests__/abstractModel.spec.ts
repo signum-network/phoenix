@@ -47,6 +47,20 @@ describe('AbstractModel', () => {
             expect(json.cat).toBeTruthy();
             expect(json.zombie).toBeUndefined();
         });
+
+        it('should return Json on toJson() with custom mapping', () => {
+            const mapper = ({bar, ...props}) => ({
+                ...props,
+                // some custom mappings
+                bar: bar + 1,
+                zombie: 'Alive!'
+            });
+            const json = simple.toJson(mapper);
+            expect(json.foo).toBe('some text');
+            expect(json.bar).toBe(2);
+            expect(json.cat).toBeTruthy();
+            expect(json.zombie).toBe('Alive!');
+        });
     });
 
     describe('Complex Model', () => {

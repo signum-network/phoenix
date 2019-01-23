@@ -1,6 +1,6 @@
 import AbstractModel from './abstractModel';
 
-export default class BlockchainStatus extends AbstractModel{
+export class BlockchainStatus extends AbstractModel{
     public application: string = undefined;
     public cumulativeDifficulty: string = undefined;
     public isScanning: boolean = undefined;
@@ -8,7 +8,6 @@ export default class BlockchainStatus extends AbstractModel{
     public lastBlockchainFeeder: string = undefined;
     public lastBlockchainFeederHeight: number = undefined;
     public numberOfBlocks: number = undefined;
-    public requestProcessingTime: number = undefined;
     public time: number = undefined;
     public version: string = undefined;
 

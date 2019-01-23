@@ -79,11 +79,39 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">packages/core/src/model/abstractModel.ts</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export default abstract class AbstractModel {
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * The base class for all models
+ */
+export default abstract class AbstractModel {
 
+    /**
+     * Maps the json properties to the models _declared_ members
+     * @param json Any json
+     */
     protected mapJsonToProps(json: any) {
         Object.keys(json).forEach(k =&gt; this[k] = json[k]);
     }
+
+    /**
+     * Transform class members of this class into a JSON object
+     * @code
+     *   const mapper = ({bar, ...props}) =&gt; ({
+     *   ...props,
+     *   // some custom mappings
+     *   bar: bar + 1,
+     *   zombie: &apos;Alive!&apos;
+     *   });
+     *   const json = simple.toJson(mapper);
+     *
+     * @param customMapper A custom mapping function to override the default mapping
+     * @return A Json with mapped class members
+     */
+    public toJson(customMapper?: (model) =&gt; any): any {
+        return customMapper ? customMapper(this) : Object.assign({}, this);
+    }
+
+
+
 }
 </code></pre>
 

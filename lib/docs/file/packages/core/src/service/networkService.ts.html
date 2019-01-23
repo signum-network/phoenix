@@ -81,17 +81,25 @@
 <div class="content" data-ice="content"><h1 data-ice="title">packages/core/src/service/networkService.ts</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import BaseService from &apos;./baseService&apos;;
 import BlockchainStatus from &apos;../model/blockchainStatus&apos;;
-import HttpResponse from &apos;@burst/http/src/httpResponse&apos;;
 import NetworkStatus from &apos;../model/networkStatus&apos;;
 
-// https://burstwiki.org/wiki/The_Burst_API#Server_Information_Operations
-
+/**
+ * This service provides information about the blockchains network status
+ *
+ * https://burstwiki.org/wiki/The_Burst_API#Server_Information_Operations
+ */
 class NetworkService extends BaseService {
 
+    /**
+     * Get the blockchain status.
+     */
     public getBlockchainStatus(): Promise&lt;BlockchainStatus&gt; {
         return this.requestGet(this.toBRSEndpoint(&apos;getBlockchainStatus&apos;));
     }
 
+    /**
+     * Get the state of the server node and network.
+     */
     public getNetworkStatus(): Promise&lt;NetworkStatus&gt; {
         return this.requestGet(this.toBRSEndpoint(&apos;getState&apos;));
     }

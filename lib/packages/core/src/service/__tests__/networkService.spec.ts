@@ -2,9 +2,9 @@
 jest.mock('@burst/http/src/http');
 
 import {HttpMock} from '@burst/http';
-import NetworkService from '../networkService';
-import NetworkStatus from '../../model/networkStatus';
-import BlockchainStatus from '../../model/blockchainStatus';
+import {NetworkService} from '../networkService';
+import {NetworkStatus} from '../../model/networkStatus';
+import {BlockchainStatus} from '../../model/blockchainStatus';
 
 describe('BlockApi', () => {
 

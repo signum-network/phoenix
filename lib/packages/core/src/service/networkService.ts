@@ -1,13 +1,13 @@
-import BaseService from './baseService';
-import BlockchainStatus from '../model/blockchainStatus';
-import NetworkStatus from '../model/networkStatus';
+import {BaseService} from './baseService';
+import {BlockchainStatus} from '../model/blockchainStatus';
+import {NetworkStatus} from '../model/networkStatus';
 
 /**
  * This service provides information about the blockchains network status
  *
  * https://burstwiki.org/wiki/The_Burst_API#Server_Information_Operations
  */
-class NetworkService extends BaseService {
+export class NetworkService extends BaseService {
 
     /**
      * Get the blockchain status.
@@ -23,5 +23,3 @@ class NetworkService extends BaseService {
         return this.requestGet(this.toBRSEndpoint('getState'));
     }
 }
-
-export default NetworkService;

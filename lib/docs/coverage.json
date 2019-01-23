@@ -1,7 +1,7 @@
 {
-  "coverage": "63.96%",
-  "expectCount": 308,
-  "actualCount": 197,
+  "coverage": "64.07%",
+  "expectCount": 309,
+  "actualCount": 198,
   "files": {
     "packages/core/src/abstract/store.ts": {
       "expectCount": 1,
@@ -53,8 +53,8 @@
       ]
     },
     "packages/core/src/model/abstractModel.ts": {
-      "expectCount": 2,
-      "actualCount": 2,
+      "expectCount": 3,
+      "actualCount": 3,
       "undocumentLines": []
     },
     "packages/core/src/model/account.ts": {

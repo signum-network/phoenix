@@ -6,7 +6,7 @@ import AbstractModel from '../model/abstractModel';
  * Base Web Service class.
  * Extend and specific services here
  */
-class BaseService {
+export class BaseService {
     private _http: Http;
     private _relPath: string;
 
@@ -54,5 +54,3 @@ class BaseService {
             });
     }
 }
-
-export default BaseService;

@@ -1,4 +1,4 @@
-export default {
+export const environment = {
   testNetHost: 'http://3.16.150.48:6876',
   testNetApiUrl: '/burst'
 };
