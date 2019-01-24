@@ -7,7 +7,7 @@ import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { AccountService } from './setup/account/account.service';
 import { StoreService } from './store/store.service';
-import { Account } from '@burst/core';
+import { Account } from '@burstjs/core';
 
 @Component({
   selector: 'app',

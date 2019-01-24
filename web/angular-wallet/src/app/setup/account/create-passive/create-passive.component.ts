@@ -2,7 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { CreateService } from '../create.service';
 import { NotifierService } from 'angular-notifier';
 import { Router } from '@angular/router';
-import { BurstUtil } from '@burst/core';
+import { BurstUtil } from '@burstjs/core';
 
 @Injectable()
 @Component({
@@ -23,13 +23,13 @@ export class CreatePassiveAccountComponent implements OnInit {
 
   public submit(address: string) {
       this.createService.setAddress(address);
-      // this.createService.createPassiveAccount().then((success) => {
-      //   this.notificationService.notify('success', `Account added: ${address}`);
-      //   this.router.navigate(['/']);
-      // },
-      // (error) => {
-      //   this.notificationService.notify('error', error.toString());
-      // });
+      this.createService.createPassiveAccount().then((success) => {
+        this.notificationService.notify('success', `Account added: ${address}`);
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        this.notificationService.notify('error', error.toString());
+      });
   }
 
 }

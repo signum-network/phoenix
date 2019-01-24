@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { constants } from '../constants';
 import { I18nService } from '../layout/components/i18n/i18n.service';
 import { MatSelectChange } from '@angular/material';
-import { Account } from '@burst/core';
+import { Account } from '@burstjs/core';
 
 @Component({
     selector: 'app-setup',

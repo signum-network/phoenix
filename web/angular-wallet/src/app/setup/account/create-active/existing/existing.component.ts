@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateService } from '../../create.service';
-import { generateMasterKeys, getAccountIdFromPublicKey, getBurstAddressFromAccountId, PassPhraseGenerator } from '@burst/crypto';
+import { generateMasterKeys, getAccountIdFromPublicKey, getBurstAddressFromAccountId, PassPhraseGenerator } from '@burstjs/crypto';
 
 
 @Component({

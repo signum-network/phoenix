@@ -6,5 +6,5 @@ export const environment = {
   version,
   // TODO: correct urls, once they are established
   defaultNode: 'http://localhost:4200/burst',
-  marketUrl: 'http://localhost:4200/v1/ticker/burst/',
+  marketUrl: 'http://localhost:4200/v1/ticker/burstjs/',
 };
