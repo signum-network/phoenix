@@ -1,5 +1,6 @@
-import { Account } from "..";
+import { Account } from '..';
 
+// TODO: review the relevance of this class
 export abstract class Store {
     protected static readonly DATABASE_TABLE = "burst";
     public abstract init(): void;

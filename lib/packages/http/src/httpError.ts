@@ -6,23 +6,9 @@
 * HttpError class
 *
 * Thrown on HTTP errors
+*
 */
 export default class HttpError {
-    public status: number;
-    public error: string;
-    public exception: string;
-    public message: string;
-    public path: string;
-    public timestamp: Date;
-    public errorCode: number;
-
-    constructor (data: any = {}) {
-        this.status = data.status || 0;
-        this.error = data.error || '';
-        this.exception = data.exception || '';
-        this.message = data.message || '';
-        this.path = data.path || '';
-        this.timestamp = data.timestamp || Date.now();
-        this.errorCode = data.errorCode || 0;
-    }
+    public timestamp: number = Date.now();
+    constructor(public requestUrl: string, public status: number, public message: string, public data: any) {}
 }
