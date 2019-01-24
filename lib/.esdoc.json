@@ -15,6 +15,14 @@
           "enable": false
         }
       }
+    },
+    {
+      "name": "esdoc-importpath-plugin",
+      "option": {
+        "replaces": [
+          {"from": "^/packages/(.*)/src/(.*)$", "to": "$1/$2"}
+        ]
+      }
     }
   ],
   "excludes": [
