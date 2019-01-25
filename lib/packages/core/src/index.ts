@@ -9,3 +9,8 @@ export * from './typings/transaction';
 export * from './suggestedFees';
 export * from './burstUtil';
 export * from './currency';
+
+/** @module core/api */
+export * from './api';
+
+

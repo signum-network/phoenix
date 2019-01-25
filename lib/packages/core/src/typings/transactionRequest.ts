@@ -1,7 +1,3 @@
-/*
-* Copyright 2018 PoC-Consortium
-*/
-
 import AbstractModel from './abstractModel';
 import { Attachment, EncryptedMessage, Message } from '..';
 
@@ -10,8 +6,7 @@ import { Attachment, EncryptedMessage, Message } from '..';
 *
 * The Transaction class is a mapping for a transaction on the Burst blockchain
 */
-// TODO: maybe an interface is sufficient here?
-export class Transaction extends AbstractModel {
+export class TransactionRequest extends AbstractModel {
     public id?: string = undefined;
     public amountNQT = 0;
     public attachment?: Attachment | EncryptedMessage | Message = undefined;
