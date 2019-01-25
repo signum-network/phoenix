@@ -48,7 +48,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:e2e": "jest --config jest.config.e2e.js",
+    "test:e2e": "jest --config jest.config.e2e.js --runInBand",
     "doc": "./node_modules/.bin/esdoc",
     "bootstrap": "lerna bootstrap && lerna exec npm install"
   },

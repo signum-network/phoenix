@@ -1,5 +1,5 @@
 /**
- * Transaction Id Type provided by Burst Network
+ * Transaction Id Type
  */
 export interface TransactionId {
     readonly fullHase: string;

@@ -1,5 +1,5 @@
 /**
- * Block Model provided by Burst Network
+ * Block Type
  */
 export interface Block {
     readonly block: number ;

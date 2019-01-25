@@ -2,10 +2,7 @@
 * Copyright 2018 PoC-Consortium
 */
 
-export interface Attachment {
-    message?: string;
-    encryptedMessage?: string;
-}
+// TODO: review this class here - may collide with Attachment interface in Transaction
 
 /*
 * Attachment class

@@ -1,3 +1,6 @@
+/**
+ * Blockchain Status Type
+ */
 export interface BlockchainStatus {
     readonly application: string;
     readonly cumulativeDifficulty: string;
