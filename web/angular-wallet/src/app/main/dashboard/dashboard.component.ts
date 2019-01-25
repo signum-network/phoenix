@@ -4,8 +4,7 @@ import { DashboardService } from './dashboard.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { StoreService } from 'app/store/store.service';
-import { Account } from '@burst/core';
-import { getBlockById } from '@burst/core';
+import { Account } from '@burstjs/core';
 
 @Component({
     selector     : 'dashboard-dashboard',
@@ -35,7 +34,7 @@ export class DashboardComponent implements OnInit
             }
         });
     }
-
+    
     fetchTransactions() {
         this.storeService.getSelectedAccount()
             .then((account) => {
@@ -49,6 +48,6 @@ export class DashboardComponent implements OnInit
         this.widgets = this._dashboardService.widgets;
         this.fetchTransactions();
     }
-
+    
 }
 
