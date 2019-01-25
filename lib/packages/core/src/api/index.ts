@@ -8,3 +8,9 @@ export * from './block/getBlockByHeight';
 export * from './block/getBlockById';
 export * from './block/getBlockId';
 
+export * from './transaction/getTransaction';
+export * from './transaction/broadcastTransaction';
+
+export * from './message/sendMessage';
+
+

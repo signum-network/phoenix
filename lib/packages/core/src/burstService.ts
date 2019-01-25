@@ -49,7 +49,7 @@ export class BurstService {
      * @return The response data of success
      * @throws HttpError in case of failure
      */
-    public async query(method: string, args: any = {}): Promise<any> {
+    public async query<T>(method: string, args: any = {}): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
         const response = await this.http.get(brsUrl);
         return Promise.resolve(response.response);
@@ -63,7 +63,7 @@ export class BurstService {
      * @return The response data of success
      * @throws HttpError in case of failure
      */
-    public async send(method: string, args: any = {}): Promise<any> {
+    public async send<T>(method: string, args: any = {}): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
         const response = await this.http.post(brsUrl, {});
         return Promise.resolve(response.response);
