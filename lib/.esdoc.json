@@ -6,6 +6,16 @@
       "name": "esdoc-typescript-plugin"
     },
     {
+      "name": "esdoc-importpath-plugin",
+      "option": {
+        "replaces": [
+          {"from": "packages/(.*)/src/(.+?)/(.*)", "to": "@burstjs/$1/$2"},
+          {"from": "/typings", "to": ""}
+        ],
+        "stripPackageName": true
+      }
+    },
+    {
       "name": "esdoc-standard-plugin",
       "option": {
         "lint": {
@@ -14,14 +24,6 @@
         "undocumentIdentifier": {
           "enable": false
         }
-      }
-    },
-    {
-      "name": "esdoc-importpath-plugin",
-      "option": {
-        "replaces": [
-          {"from": "^/packages/(.*)/src/(.*)$", "to": "$1/$2"}
-        ]
       }
     }
   ],
