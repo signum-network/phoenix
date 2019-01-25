@@ -1,5 +1,5 @@
 {
-  "name": "@burst/phoenix-angular-web-wallet",
+  "name": "phoenix-angular-web-wallet",
   "version": "0.0.1",
   "license": "GPL-3.0",
   "contributors": [
@@ -37,9 +37,9 @@
     "@angular/platform-browser": "^7.2.0",
     "@angular/platform-browser-dynamic": "^7.2.0",
     "@angular/router": "^7.2.0",
-    "@burst/core": "file:../../lib/packages/core",
-    "@burst/crypto": "file:../../lib/packages/crypto",
-    "@burst/http": "file:../../lib/packages/http",
+    "@burstjs/core": "file:../../lib/packages/core",
+    "@burstjs/crypto": "file:../../lib/packages/crypto",
+    "@burstjs/http": "file:../../lib/packages/http",
     "@ngrx/effects": "7.0.0",
     "@ngrx/router-store": "7.0.0",
     "@ngrx/store": "7.0.0",
