@@ -1,6 +1,7 @@
-language: node_js
 node_js:
-  - lts/*
+  - 10
+before_install:
+  - cd lib
 install:
   - npm
 cache:
