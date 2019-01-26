@@ -1,10 +1,11 @@
 language: node_js
-node_js: 
+node_js:
   - 10
 before_install:
   - cd lib
 install:
   - npm install
+  - npm run bootstrap
 cache:
   directories:
     - node_modules
