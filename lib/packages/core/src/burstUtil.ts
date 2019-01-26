@@ -1,9 +1,10 @@
 /* tslint:disable:no-bitwise */
 import * as BN from 'bn.js';
 
-/*
-* Copyright 2018 PoC-Consortium
-*/
+/**
+ * Original work Copyright (c) 2018 PoC-Consortium  
+ * Modified work Copyright (c) 2019 Burst Apps Team
+ */
 
 // TODO: Tests and maybe break up in exportable functions
 

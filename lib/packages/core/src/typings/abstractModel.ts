@@ -1,4 +1,8 @@
 /**
+ * Original work Copyright (c) 2018 PoC-Consortium  
+ * Modified work Copyright (c) 2019 Burst Apps Team
+ */
+/**
  * The base class for all models
  */
 export default abstract class AbstractModel {

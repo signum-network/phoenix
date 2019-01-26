@@ -1,7 +1,7 @@
 {
-  "coverage": "62.33%",
+  "coverage": "62.78%",
   "expectCount": 223,
-  "actualCount": 139,
+  "actualCount": 140,
   "files": {
     "packages/core/src/abstract/store.ts": {
       "expectCount": 1,
@@ -32,9 +32,9 @@
       "expectCount": 5,
       "actualCount": 2,
       "undocumentLines": [
-        18,
-        19,
-        20
+        21,
+        22,
+        23
       ]
     },
     "packages/core/src/api/message/sendTextMessage.ts": {
@@ -79,6 +79,8 @@
       "expectCount": 20,
       "actualCount": 1,
       "undocumentLines": [
+        14,
+        15,
         16,
         17,
         18,
@@ -95,23 +97,21 @@
         29,
         30,
         31,
-        32,
-        33,
-        34
+        32
       ]
     },
     "packages/core/src/error/noConnectionError.ts": {
       "expectCount": 3,
       "actualCount": 2,
       "undocumentLines": [
-        8
+        9
       ]
     },
     "packages/core/src/error/unknownAccountError.ts": {
       "expectCount": 3,
       "actualCount": 2,
       "undocumentLines": [
-        8
+        9
       ]
     },
     "packages/core/src/typings/abstractModel.ts": {
@@ -123,32 +123,32 @@
       "expectCount": 12,
       "actualCount": 1,
       "undocumentLines": [
-        18,
         19,
         20,
         21,
         22,
-        24,
+        23,
         25,
-        30,
-        32,
-        37,
-        38
+        26,
+        31,
+        33,
+        38,
+        39
       ]
     },
     "packages/core/src/typings/attachment.ts": {
       "expectCount": 12,
       "actualCount": 3,
       "undocumentLines": [
-        18,
-        19,
+        16,
+        17,
+        32,
         34,
-        36,
-        37,
+        35,
+        50,
         52,
-        54,
-        55,
-        56
+        53,
+        54
       ]
     },
     "packages/core/src/typings/burstNode.ts": {
@@ -165,22 +165,11 @@
         15
       ]
     },
-    "packages/core/src/typings/keys.ts": {
-      "expectCount": 5,
-      "actualCount": 1,
-      "undocumentLines": [
-        16,
-        17,
-        18,
-        19
-      ]
-    },
     "packages/crypto/src/converter.ts": {
       "expectCount": 27,
-      "actualCount": 25,
+      "actualCount": 26,
       "undocumentLines": [
-        4,
-        5
+        6
       ]
     },
     "packages/crypto/src/crypto.ts": {
@@ -269,8 +258,8 @@
       "expectCount": 6,
       "actualCount": 4,
       "undocumentLines": [
-        13,
-        15
+        14,
+        16
       ]
     },
     "packages/crypto/src/verifySignature.ts": {
@@ -285,6 +274,16 @@
         3
       ]
     },
+    "packages/crypto/typings/keys.ts": {
+      "expectCount": 5,
+      "actualCount": 1,
+      "undocumentLines": [
+        14,
+        15,
+        16,
+        17
+      ]
+    },
     "packages/http/src/http.ts": {
       "expectCount": 8,
       "actualCount": 7,
@@ -296,11 +295,11 @@
       "expectCount": 7,
       "actualCount": 2,
       "undocumentLines": [
+        15,
+        16,
         17,
         18,
-        19,
-        20,
-        21
+        19
       ]
     },
     "packages/http/src/httpMock.ts": {
