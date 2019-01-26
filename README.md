@@ -1,5 +1,7 @@
 # Phoenix
 
+[![Build Status](https://travis-ci.org/burst-apps-team/phoenix.svg?branch=develop)](https://travis-ci.org/burst-apps-team/phoenix)
+
 ## BURST Cross-Platform Wallet UI
 
 According to [CIP-18](https://github.com/burst-apps-team/CIPs/blob/master/cip-0018.md) this is the new Cross-Platform Burst Wallet
