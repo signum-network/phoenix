@@ -1,6 +1,35 @@
 # Phoenix
 
-[![Build Status](https://travis-ci.org/burst-apps-team/phoenix.svg?branch=develop)](https://travis-ci.org/burst-apps-team/phoenix)
+
+----
+
+## Project Status:
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/81a6119af03d4a7e8a55c65999884709)](https://www.codacy.com/app/ohager/phoenix?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=burst-apps-team/phoenix&amp;utm_campaign=Badge_Grade)
+
+
+#### BurstJS 
+
+[![Build Status](https://travis-ci.org/burst-apps-team/phoenix.svg?branch=develop)](https://travis-ci.org/burst-apps-team/phoenix) [![Known Vulnerabilities](https://snyk.io/test/github/burst-apps-team/phoenix/badge.svg?targetFile=lib%2Fpackage.json)](https://snyk.io/test/github/burst-apps-team/phoenix?targetFile=lib%2Fpackage.json)
+
+
+#### Web Wallet
+
+TBD
+
+#### Desktop Wallet
+
+TBD
+
+#### iOS 
+
+TBD
+
+#### Android
+
+TBD
+
+---
 
 ## BURST Cross-Platform Wallet UI
 
