@@ -22,6 +22,7 @@
     "babel-jest": "^23.6.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "codecov": "^3.1.0",
     "custom-tslint-formatters": "^2.4.0",
     "esdoc": "^1.1.0",
     "esdoc-importpath-plugin": "^1.0.2",
@@ -37,6 +38,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
+    "test:ci": "jest --coverage && codecov",
     "test:e2e": "jest --config jest.config.e2e.js --runInBand --detectOpenHandles",
     "doc": "./node_modules/.bin/esdoc",
     "bootstrap": "lerna bootstrap && lerna exec npm install",
