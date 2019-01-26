@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2019 Burst Apps Team
+ */
 import {broadcastTransaction} from '..';
 import {BurstService} from '../../burstService';
 import {BurstUtil} from '../../burstUtil';

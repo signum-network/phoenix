@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2019 Burst Apps Team
+ */
 import {BurstService} from '../burstService';
 
 import {getBlockByTimestamp} from './block/getBlockByTimestamp';

@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2019 Burst Apps Team
+ */
 export * from './composeApi';
 
 export * from './network/getServerStatus';

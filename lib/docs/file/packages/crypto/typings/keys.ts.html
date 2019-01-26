@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../../">
-  <title data-ice="title">packages/crypto/src/decryptAES.ts | burstjs</title>
+  <title data-ice="title">packages/crypto/typings/keys.ts | burstjs</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -72,19 +72,28 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">packages/crypto/src/decryptAES.ts</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import * as CryptoJS from &apos;crypto-js&apos;;
-
-/**
- * Decrypt an encrypted message
- * @param encryptedBase64 encryprts data in base64 format
- * @param key The secret key
- * @return The decrypted content
+<div class="content" data-ice="content"><h1 data-ice="title">packages/crypto/typings/keys.ts</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Original work Copyright (c) 2018 PoC-Consortium  
+ * Modified work Copyright (c) 2019 Burst Apps Team
  */
-export const decryptAES = (encryptedBase64: string, key: string): string =&gt; {
-    const decrypted = CryptoJS.AES.decrypt(encryptedBase64, key);
-    return decrypted.toString(CryptoJS.enc.Utf8);
-};
+
+/*
+* Keys class
+*
+* The Keys class is used to encompass keys associated to an account.
+*/
+export class Keys {
+    public agreementPrivateKey: string;
+    public publicKey: string;
+    public signPrivateKey: string;
+
+    constructor(data: any = {}) {
+        this.agreementPrivateKey = data.agreementPrivateKey || undefined;
+        this.publicKey = data.publicKey || undefined;
+        this.signPrivateKey = data.signPrivateKey || undefined;
+    }
+}
 </code></pre>
 
 </div>

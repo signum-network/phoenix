@@ -1,6 +1,7 @@
-/*
-* Copyright 2018 PoC-Consortium
-*/
+/**
+ * Original work Copyright (c) 2018 PoC-Consortium  
+ * Modified work Copyright (c) 2019 Burst Apps Team
+ */
 
 // TODO: review this class here - may collide with Attachment interface in Transaction
 

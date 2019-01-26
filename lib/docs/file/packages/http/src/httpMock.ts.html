@@ -52,7 +52,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/attachment.ts~EncryptedMessage.html">EncryptedMessage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/attachment.ts~Message.html">Message</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/burstNode.ts~BurstNode.html">BurstNode</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/keys.ts~Keys.html">Keys</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#crypto-src">crypto/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/converter.ts~Converter.html">Converter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/crypto.ts~Crypto.html">Crypto</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/curve25519.ts~Curve25519.html">Curve25519</a></span></span></li>
@@ -64,6 +63,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateSignedTransactionBytes">generateSignedTransactionBytes</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAccountIdFromPublicKey">getAccountIdFromPublicKey</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-verifySignature">verifySignature</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#crypto-typings">crypto/typings</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/typings/keys.ts~Keys.html">Keys</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#http-src">http/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/http/src/http.ts~Http.html">Http</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/http/src/httpError.ts~HttpError.html">HttpError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/http/src/httpMock.ts~HttpMock.html">HttpMock</a></span></span></li>
@@ -133,28 +133,6 @@ class MockBehavior {
  *
  * When using this mocking helper you need to call `Http.onGet()`
  * before Http instance is created
- *``` typescript
- *jest.mock(&apos;@burst/http/src/http&apos;);
- *import {HttpMock} from &apos;@burst/http&apos;;
- *import Github from &apos;../src/brs/github&apos;;
- *
- *describe(&apos;Github&apos;, () =&gt; {
- *
- *   beforeEach(() =&gt; {
- *       HttpMock.reset();
- *   });
- *
- *   it(&apos;should getAllPhoenixContributors easily&apos;, async () =&gt; {
- *
- *       // mock for any get - call before Http is instantiated (here: in Github)
- *       HttpMock.onGet().reply(200, [{login: &apos;foo&apos;}, {login: &apos;bar&apos;}]);
- *       const github = new Github();
- *       const contributors = await github.getAllPhoenixContributors();
- *       expect(contributors.length).toBe(2);
- *       expect(contributors).toEqual([&apos;foo&apos;, &apos;bar&apos;]);
- *   });
- *});
- *```
  *
  */
 class HttpMock {
