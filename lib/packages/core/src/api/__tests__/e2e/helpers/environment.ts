@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import * as path from 'path';
 
 /**
@@ -7,7 +8,21 @@ import * as path from 'path';
  * Use .env.template as reference
  */
 export const loadEnvironment = () => {
-  require('dotenv').config({path: path.join(__dirname, '.env')});
+
+  const envFilePath = path.join(__dirname, '.env');
+
+  if (!fs.existsSync(envFilePath)) {
+    throw new Error(`
+    Cannot find environment variables file:
+
+    - ${envFilePath}
+
+    Please, copy .env.template and create your local .env file.
+    NOTE: The file won't be commited, as it contains sensible information!
+    `);
+  }
+
+  require('dotenv').config({path: envFilePath});
 
   return {
     timeout : Number.parseInt(process.env.JEST_TIMEOUT, 10) * 1000,
@@ -16,6 +31,7 @@ export const loadEnvironment = () => {
     testPassphrase:  process.env.TEST_PASSPHRASE,
     testRecipientId:  process.env.TEST_RECIPIENT_ID,
     testTransactionId:  process.env.TEST_TRANSACTION_ID
+    // .. add more variables here
   };
 };
 
