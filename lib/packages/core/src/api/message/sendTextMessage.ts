@@ -18,15 +18,17 @@ import {generateSignedTransactionBytes} from '../../../../crypto/src/generateSig
  * @param recipientId The recipients Id, not RS Address
  * @param senderPublicKey The senders public key for sending an _unsigned_ message
  * @param senderPrivateKey The senders private key to _sign_ the message
+ * @param fee The optional fee (expressed in Burst) for the message, default is 0.1 Burst.
  * @return The Transaction Id
  */
 export const sendTextMessage = (service: BurstService):
-    (message: string, recipientId: string, senderPublicKey: string, senderPrivateKey: string) => Promise<TransactionId> =>
+    (message: string, recipientId: string, senderPublicKey: string, senderPrivateKey: string, fee?: number) => Promise<TransactionId> =>
     async (
         message: string,
         recipientId: string,
         senderPublicKey: string,
         senderPrivateKey: string,
+        fee: number = 0.1,
     ): Promise<TransactionId> => {
 
         const parameters = {
@@ -36,13 +38,13 @@ export const sendTextMessage = (service: BurstService):
             messageIsText: true,
             broadcast: true,
             deadline: 1440, // which deadline?
-            feeNQT: BurstUtil.convertNumberToString(1000), // which fee?
+            feeNQT: BurstUtil.convertNumberToString(fee),
         };
 
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('sendMessage', parameters);
         const signature = generateSignature(unsignedHexMessage, senderPrivateKey);
         if (!verifySignature(signature, unsignedHexMessage, senderPublicKey)) {
-            throw new Error('The signed message could not be verified!');
+            throw new Error('The signed message could not be verified! Message not broadcasted!');
         }
 
         const signedMessage = generateSignedTransactionBytes(unsignedHexMessage, signature);

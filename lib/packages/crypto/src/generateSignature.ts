@@ -24,5 +24,5 @@ export const generateSignature = (messageHex: string, privateKey: string): strin
     const m_y = m.concat(y);
     const h = Converter.convertWordArrayToByteArray(CryptoJS.SHA256(Converter.convertByteArrayToWordArray(m_y)));
     const v = ECKCDSA.sign(h, x, s);
-    return Converter.convertByteArrayToHexString(Array.of(v).concat(h));
+    return Converter.convertByteArrayToHexString([].concat(v, h));
 };

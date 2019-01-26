@@ -13,7 +13,10 @@ export const loadEnvironment = () => {
     timeout : Number.parseInt(process.env.JEST_TIMEOUT, 10) * 1000,
     testNetHost : process.env.TEST_NET_HOST,
     testNetApiPath:  process.env.TEST_NET_API_PATH,
-    testPassphrase:  process.env.TEST_PASSPHRASE
+    testPassphrase:  process.env.TEST_PASSPHRASE,
+    testRecipientId:  process.env.TEST_RECIPIENT_ID
   };
-
 };
+
+
+

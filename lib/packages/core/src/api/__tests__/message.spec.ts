@@ -51,7 +51,9 @@ describe('Message Api', () => {
                 'Message Text',
                 'recipientId',
                 'senderPublicKey',
-                'senderPrivateKey');
+                'senderPrivateKey',
+                0.2
+            );
 
             expect(fullHash).toBe('fullHash');
             expect(transaction).toBe('transaction');
