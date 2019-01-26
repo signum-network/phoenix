@@ -1,9 +1,10 @@
-node_js:
+language: node_js
+node_js: 
   - 10
 before_install:
   - cd lib
 install:
-  - npm
+  - npm install
 cache:
   directories:
     - node_modules
