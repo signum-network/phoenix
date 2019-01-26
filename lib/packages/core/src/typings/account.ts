@@ -2,7 +2,7 @@
 * Copyright 2018 PoC-Consortium
 */
 
-import { Keys } from './keys';
+import { Keys } from '../../../crypto/typings/keys';
 import { Transaction } from './transaction';
 
 /*

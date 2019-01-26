@@ -1,4 +1,4 @@
-import {Http} from '@burst/http';
+import {Http} from '@burstjs/http';
 
 /**
  * Generic BRS Web Service class.

@@ -15,19 +15,6 @@
   },
   "license": "GPL-3.0",
   "private": false,
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json"
-    ]
-  },
   "devDependencies": {
     "@types/jest": "^23.3.12",
     "axios-mock-adapter": "^1.16.0",

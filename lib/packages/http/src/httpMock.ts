@@ -58,28 +58,6 @@ class MockBehavior {
  *
  * When using this mocking helper you need to call `Http.onGet()`
  * before Http instance is created
- *``` typescript
- *jest.mock('@burst/http/src/http');
- *import {HttpMock} from '@burst/http';
- *import Github from '../src/brs/github';
- *
- *describe('Github', () => {
- *
- *   beforeEach(() => {
- *       HttpMock.reset();
- *   });
- *
- *   it('should getAllPhoenixContributors easily', async () => {
- *
- *       // mock for any get - call before Http is instantiated (here: in Github)
- *       HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);
- *       const github = new Github();
- *       const contributors = await github.getAllPhoenixContributors();
- *       expect(contributors.length).toBe(2);
- *       expect(contributors).toEqual(['foo', 'bar']);
- *   });
- *});
- *```
  *
  */
 class HttpMock {

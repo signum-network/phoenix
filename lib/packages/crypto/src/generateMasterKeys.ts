@@ -1,5 +1,5 @@
 // TODO: Keys are a crypto typing...or not?
-import { Keys } from '@burst/core';
+import { Keys } from '../typings/keys';
 import * as CryptoJS from 'crypto-js';
 import { ECKCDSA } from './ec-kcdsa';
 import { Converter } from './converter';

@@ -1,5 +1,5 @@
-jest.mock('@burst/http/src/http');
-import {HttpMock} from '@burst/http';
+jest.mock('@burstjs/http/src/http');
+import {HttpMock} from '@burstjs/http';
 import {BurstService} from '../../burstService';
 import {broadcastTransaction, sendTextMessage} from '..';
 import {generateSignature} from '../../../../crypto/src/generateSignature';
