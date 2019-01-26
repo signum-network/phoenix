@@ -1,15 +1,17 @@
-import {environment} from './helpers/environment';
+import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../burstService';
 import {getBlockByTimestamp} from '../../block/getBlockByTimestamp';
 import {getBlockByHeight} from '../../block/getBlockByHeight';
 import {getBlockById} from '../../block/getBlockById';
 import {getBlockId} from '../../block/getBlockId';
 
+const environment = loadEnvironment();
+
 jest.setTimeout(environment.timeout);
 
 describe(`[E2E] Block Api - TestNet: [${environment.testNetHost}]`, () => {
 
-    const service = new BurstService(environment.testNetHost, environment.testNetApiUrl);
+    const service = new BurstService(environment.testNetHost, environment.testNetApiPath);
 
     it('should getBlockByTimestamp', async () => {
         const block = await getBlockByTimestamp(service)(1000, false);

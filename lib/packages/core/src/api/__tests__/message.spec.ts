@@ -4,7 +4,6 @@ jest.mock('@burst/http/src/http');
 import {HttpMock} from '@burst/http';
 import {BurstService} from '../../burstService';
 import {broadcastTransaction, sendTextMessage} from '..';
-import {TransactionId} from '../../typings/transactionId';
 import {generateSignature} from '../../../../crypto/src/generateSignature';
 import {verifySignature} from '../../../../crypto/src/verifySignature';
 import {generateSignedTransactionBytes} from '../../../../crypto/src/generateSignedTransactionBytes';

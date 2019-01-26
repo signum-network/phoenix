@@ -1,12 +1,14 @@
-import {environment} from './helpers/environment';
+import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../burstService';
 import {getTransaction} from '../../transaction/getTransaction';
+
+const environment = loadEnvironment();
 
 jest.setTimeout(environment.timeout);
 
 describe('[E2E] Transaction Api', () => {
 
-    const service = new BurstService(environment.testNetHost, environment.testNetApiUrl);
+    const service = new BurstService(environment.testNetHost, environment.testNetApiPath);
 
     it('should getTransaction', async () => {
         const transaction = await getTransaction(service)('16869443137219243808');
