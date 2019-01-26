@@ -1,5 +1,3 @@
-import {generateMasterKeys} from '../../../../crypto/src';
-
 jest.mock('@burst/http/src/http');
 import {HttpMock} from '@burst/http';
 import {BurstService} from '../../burstService';
@@ -9,12 +7,6 @@ import {verifySignature} from '../../../../crypto/src/verifySignature';
 import {generateSignedTransactionBytes} from '../../../../crypto/src/generateSignedTransactionBytes';
 
 describe('Message Api', () => {
-
-    const keys = generateMasterKeys('SuperSecretPhrase');
-
-    beforeEach(() => {
-        HttpMock.reset();
-    });
 
     describe('sendTextMessage', () => {
 
@@ -27,14 +19,10 @@ describe('Message Api', () => {
                 fullHash: 'fullHash',
                 transaction: 'transaction'
             }));
-
             // @ts-ignore
             generateSignature = jest.fn(() => 'signature');
-
             // @ts-ignore
             verifySignature = jest.fn(() => true);
-
-
             // @ts-ignore
             generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
 
@@ -63,6 +51,7 @@ describe('Message Api', () => {
             expect(generateSignedTransactionBytes).toBeCalledTimes(1);
 
         });
+
         it('try sendTextMessage, but verification fails', async () => {
 
             // @ts-ignore
@@ -84,9 +73,6 @@ describe('Message Api', () => {
                 expect(generateSignedTransactionBytes).toBeCalledTimes(0);
                 expect(broadcastTransaction).toBeCalledTimes(0);
             }
-
         });
-
     });
-
 });
