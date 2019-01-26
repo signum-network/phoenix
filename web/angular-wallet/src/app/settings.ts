@@ -1,6 +1,8 @@
-/*
-* Copyright 2018 PoC-Consortium
-*/
+
+/**
+ * Original work Copyright (c) 2018 PoC-Consortium  
+ * Modified work Copyright (c) 2019 Burst Apps Team
+ */
 
 import { constants } from "./constants";
 import { environment } from "../environments/environment";
