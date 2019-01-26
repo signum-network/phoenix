@@ -1,9 +1,12 @@
-import * as CryptoJS from "crypto-js";
+import * as CryptoJS from 'crypto-js';
 
-/*
-* Decrypt a derived hd private key with a given pin
-*/
+/**
+ * Decrypt an encrypted message
+ * @param encryptedBase64 encryprts data in base64 format
+ * @param key The secret key
+ * @return The decrypted content
+ */
 export const decryptAES = (encryptedBase64: string, key: string): string => {
-    let decrypted = CryptoJS.AES.decrypt(encryptedBase64, key);
+    const decrypted = CryptoJS.AES.decrypt(encryptedBase64, key);
     return decrypted.toString(CryptoJS.enc.Utf8);
-}
+};

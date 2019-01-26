@@ -262,7 +262,8 @@ export class BurstUtil {
 
     /**
      * Helper method to convert a String to number
-     * @param amount The amount
+     * @param amount The amount in NQT
+     * @return A number expressed in Burst (not NQT)
      */
     public static convertStringToNumber(amount: string): number {
         return parseFloat(amount) / 100000000;
@@ -271,6 +272,7 @@ export class BurstUtil {
     /**
      * Helper method to Number to String(8 decimals) representation
      * @param n the number
+     * @return a NQT number string
      */
     public static convertNumberToString(n: number): string {
         return parseFloat(n.toString()).toFixed(8).replace('.', '');

@@ -1,5 +1,5 @@
 /**
- * Block Id Type provided by Burst Network
+ * Block Id Type
  */
 export interface BlockId {
     readonly block: string;

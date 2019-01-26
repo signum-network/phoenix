@@ -2,10 +2,7 @@
 * Copyright 2018 PoC-Consortium
 */
 
-export interface Attachment {
-    message?: string;
-    encryptedMessage?: string;
-}
+// TODO: review this class here - may collide with Attachment interface in Transaction
 
 /*
 * Attachment class
@@ -31,7 +28,7 @@ export class Message extends Attachment {
     public message: string;
 
     constructor(data: any = {}) {
-        super("message")
+        super('message');
         this.messageIsText = data.messageIsText || false;
         this.message = data.message || undefined;
     }
@@ -48,7 +45,7 @@ export class EncryptedMessage extends Attachment {
     public isText: boolean;
 
     constructor(data: any = {}) {
-        super("encrypted_message")
+        super('encrypted_message');
         this.data = data.data || undefined;
         this.nonce = data.nonce || undefined;
         this.isText = data.isText || false;
