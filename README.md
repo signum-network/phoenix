@@ -52,7 +52,7 @@ Targeted platforms are
 The project is structured per platform, and further build/installation instruction can be obtained from the `README.md` in their respective folders
 
 ### Required 
-- [BurstJS Library](/common/README.md)
+- [BurstJS Library](/lib/README.md)
 
 ### Optional
 - [Web Wallet](/web/angular-wallet/README.md)
