@@ -5,3 +5,4 @@ lerna-debug.log
 .DS_Store
 lib/docs/index.json
 lib/docs/ast
+coverage

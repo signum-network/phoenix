@@ -10,4 +10,7 @@ cache:
   directories:
     - node_modules
 script:
-  - npm test
+  - npm test:ci
+
+after-success:
+  - bash <(curl -s https://codecov.io/bash)
