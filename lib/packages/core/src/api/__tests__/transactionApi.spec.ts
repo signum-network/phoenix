@@ -14,11 +14,11 @@ describe('Transaction Api', () => {
     describe('broadcastTransaction', () => {
         it('should broadcastTransaction (generic)', async () => {
 
-            HttpMock.onPost().reply<TransactionId>(200, {fullHase: 'fullHash', transaction: 'transaction'});
+            HttpMock.onPost().reply<TransactionId>(200, {fullHash: 'fullHash', transaction: 'transaction'});
 
             const service = new BurstService('localhost');
             const status = await broadcastTransaction(service)('some_data');
-            expect(status.fullHase).toBe('fullHash');
+            expect(status.fullHash).toBe('fullHash');
             expect(status.transaction).toBe('transaction');
         });
 

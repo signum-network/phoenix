@@ -3,52 +3,9 @@ import {BurstService} from '../../burstService';
 import {BurstUtil} from '../../burstUtil';
 import {TransactionId} from '../../typings/transactionId';
 import {TransactionResponse} from '../../typings/transactionResponse';
-
-/* TODO: remove this logic, once send message is dons
-private postTransaction: any = (resolve, reject, transaction, encryptedPrivateKey, pin) => async (response) => {
-    if (response.unsignedTransactionBytes != undefined) {
-        // get unsigned transactionbytes
-        const unsignedTransactionHex = response.unsignedTransactionBytes;
-        // sign unsigned transaction bytes
-        const signature = await this.cryptoService.generateSignature(unsignedTransactionHex, encryptedPrivateKey, this.hashPinEncryption(pin));
-        const verified = await this.cryptoService.verifySignature(signature, unsignedTransactionHex, transaction.senderPublicKey);
-        if (verified) {
-            const signedTransactionBytes = await this.cryptoService.generateSignedTransactionBytes(unsignedTransactionHex, signature);
-            const params = new HttpParams()
-                .set("requestType", "broadcastTransaction")
-                .set("transactionBytes", signedTransactionBytes);
-            let requestOptions = BurstUtil.getRequestOptions();
-            requestOptions.params = params;
-            // request 'broadcastTransaction' to burst node
-            return this.http.post(this.nodeUrl, {}, requestOptions)
-                .timeout(constants.connectionTimeout)
-                .toPromise<any>() // todo
-                .then(response => {
-                    const params = new HttpParams()
-                        .set("requestType", "getTransaction")
-                        .set("transaction", response.transaction);
-                    requestOptions = BurstUtil.getRequestOptions();
-                    requestOptions.params = params;
-                    // request 'getTransaction' to burst node
-                    return this.http.get(this.nodeUrl, requestOptions)
-                        .timeout(constants.connectionTimeout)
-                        .toPromise<any>() // todo
-                        .then(response => {
-                            resolve(new Transaction(response));
-                        })
-                        .catch(error => reject("Transaction error: Finalizing transaction!"));
-                }).catch(error => reject("Transaction error: Executing transaction!"));
-        }
-        else {
-            reject("Transaction error: Verifying signature!");
-        }
-    }
-    else {
-        reject("Transaction error: Generating transaction. Check the recipient!");
-    }
-};
-*/
-
+import {generateSignature} from '../../../../crypto/src/generateSignature';
+import {verifySignature} from '../../../../crypto/src/verifySignature';
+import {generateSignedTransactionBytes} from '../../../../crypto/src/generateSignedTransactionBytes';
 
 /**
  * Broadcasts a text message to the network/blockchain
@@ -82,10 +39,12 @@ export const sendTextMessage = (service: BurstService):
             feeNQT: BurstUtil.convertNumberToString(1000), // which fee?
         };
 
-        const transactionResponse = await service.send<TransactionResponse>('sendMessage', parameters);
+        const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('sendMessage', parameters);
+        const signature = generateSignature(unsignedHexMessage, senderPrivateKey);
+        if (!verifySignature(signature, unsignedHexMessage, senderPublicKey)) {
+            throw new Error('The signed message could not be verified!');
+        }
 
-        // TODO: sign the message
-
-        const signedMessage = null;
+        const signedMessage = generateSignedTransactionBytes(unsignedHexMessage, signature);
         return broadcastTransaction(service)(signedMessage);
     };

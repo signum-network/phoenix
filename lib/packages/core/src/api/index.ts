@@ -11,6 +11,6 @@ export * from './block/getBlockId';
 export * from './transaction/getTransaction';
 export * from './transaction/broadcastTransaction';
 
-export * from './message/sendMessage';
+export * from './message/sendTextMessage';
 
 
