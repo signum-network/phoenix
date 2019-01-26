@@ -1,5 +1,6 @@
 # Phoenix
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6bc47a6d11bf409bad16b7d3d8ec9d17)](https://app.codacy.com/app/ohager/phoenix?utm_source=github.com&utm_medium=referral&utm_content=burst-apps-team/phoenix&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/burst-apps-team/phoenix.svg?branch=develop)](https://travis-ci.org/burst-apps-team/phoenix)
 
 ## BURST Cross-Platform Wallet UI
