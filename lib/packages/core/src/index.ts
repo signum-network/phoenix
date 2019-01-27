@@ -7,7 +7,7 @@ export * from '../../crypto/typings/keys';
 export * from './typings/burstNode';
 export * from './typings/transaction';
 export * from './suggestedFees';
-export * from './burstUtil';
+export * from '../../crypto/src/burstUtil';
 export * from './currency';
 export * from './api';
 

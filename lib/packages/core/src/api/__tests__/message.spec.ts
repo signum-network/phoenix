@@ -2,9 +2,9 @@ jest.mock('@burstjs/http/src/http');
 import {HttpMock} from '@burstjs/http';
 import {BurstService} from '../../burstService';
 import {broadcastTransaction, sendTextMessage} from '..';
-import {generateSignature} from '../../../../crypto/src/generateSignature';
-import {verifySignature} from '../../../../crypto/src/verifySignature';
-import {generateSignedTransactionBytes} from '../../../../crypto/src/generateSignedTransactionBytes';
+import {generateSignature} from '@burstjs/crypto';
+import {verifySignature} from '@burstjs/crypto';
+import {generateSignedTransactionBytes} from '@burstjs/crypto';
 
 describe('Message Api', () => {
 

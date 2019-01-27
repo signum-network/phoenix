@@ -3,12 +3,12 @@
  */
 import {broadcastTransaction} from '..';
 import {BurstService} from '../../burstService';
-import {BurstUtil} from '../../burstUtil';
+import {BurstUtil} from '@burstjs/crypto';
 import {TransactionId} from '../../typings/transactionId';
 import {TransactionResponse} from '../../typings/transactionResponse';
-import {generateSignature} from '../../../../crypto/src/generateSignature';
-import {verifySignature} from '../../../../crypto/src/verifySignature';
-import {generateSignedTransactionBytes} from '../../../../crypto/src/generateSignedTransactionBytes';
+import {generateSignature} from '@burstjs/crypto';
+import {verifySignature} from '@burstjs/crypto';
+import {generateSignedTransactionBytes} from '@burstjs/crypto';
 
 /**
  * Broadcasts a text message to the network/blockchain

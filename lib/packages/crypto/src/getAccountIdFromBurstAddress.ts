@@ -1,4 +1,4 @@
-import { BurstUtil } from "@burstjs/core"
+import { BurstUtil } from "./burstUtil"
 
 /*
 * Convert Burst Address back to account id
