@@ -5,6 +5,7 @@
     "declaration": true,
     "noImplicitAny": false,
     "noImplicitThis": true,
+    "strictNullChecks": false,
     "strict": true,
     "removeComments": true,
     "noLib": false,
@@ -18,6 +19,7 @@
   },
   "exclude": [
     "node_modules",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "**/__tests__/**/*"
   ]
  }

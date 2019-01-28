@@ -14,8 +14,8 @@
     "node": ">=10"
   },
   "license": "GPL-3.0",
-  "main": "./out/index.ts",
-  "typings": "./out/index.d.ts",
+  "main": "./out/src/index.js",
+  "typings": "./out/src/index.d.ts",
   "private": false,
   "jest": {
     "transform": {
@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "@types/crypto-js": "^3.1.43",
+    "@types/node": "^10.12.18",
     "@types/seedrandom": "^2.4.27",
     "bn.js": "^4.11.8",
     "crypto-js": "^3.1.9-1",

@@ -4,7 +4,8 @@
         "outDir": "./out",
         "types": [
             "axios",
-            "jest"
+            "jest",
+            "node"
         ],
     },
     "typeRoots": [ 
