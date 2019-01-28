@@ -6,3 +6,4 @@ lerna-debug.log
 lib/docs/index.json
 lib/docs/ast
 coverage
+out/
