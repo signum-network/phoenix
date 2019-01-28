@@ -1,5 +1,5 @@
 // IMPORTANT: mocking http at first
-jest.mock('@burstjs/http/src/http');
+jest.mock('@burstjs/http');
 import {HttpMock} from '@burstjs/http';
 import {BurstService} from '../../burstService';
 import {getBlockchainStatus} from '../network/getBlockchainStatus';

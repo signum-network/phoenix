@@ -1,5 +1,5 @@
 import {HttpMock} from '@burstjs/http';
-jest.mock('@burstjs/http/src/http');
+jest.mock('@burstjs/http');
 
 import {BurstService} from '../../burstService';
 import {getBlockByTimestamp} from '../block/getBlockByTimestamp';

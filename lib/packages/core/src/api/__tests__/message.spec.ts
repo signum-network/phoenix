@@ -1,4 +1,4 @@
-jest.mock('@burstjs/http/src/http');
+jest.mock('@burstjs/http');
 import {HttpMock} from '@burstjs/http';
 import {BurstService} from '../../burstService';
 import {broadcastTransaction, sendTextMessage} from '..';
@@ -11,7 +11,7 @@ describe('Message Api', () => {
     describe('sendTextMessage', () => {
 
         beforeEach(() => {
-            HttpMock.reset();
+            // HttpMock.reset();
             jest.resetAllMocks();
 
             // @ts-ignore
