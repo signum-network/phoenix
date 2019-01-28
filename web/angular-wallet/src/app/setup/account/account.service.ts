@@ -42,8 +42,8 @@ export class AccountService {
             const encryptedKey = encryptAES(keys.signPrivateKey, hashSHA256(pin))
             newKeys.signPrivateKey = encryptedKey;
 
-            const encrypedSignKey = encryptAES(keys.agreementPrivateKey, hashSHA256(pin));
-            newKeys.agreementPrivateKey = encrypedSignKey;
+            const encryptedSignKey = encryptAES(keys.agreementPrivateKey, hashSHA256(pin));
+            newKeys.agreementPrivateKey = encryptedSignKey;
             account.keys = newKeys;
             account.pinHash = hashSHA256(pin + keys.publicKey);
             

@@ -14,7 +14,8 @@
     "node": ">=10"
   },
   "license": "GPL-3.0",
-  "main": "./src/index.ts",
+  "main": "./out/index.ts",
+  "typings": "./out/index.d.ts",
   "private": false,
   "jest": {
     "transform": {
@@ -34,6 +35,7 @@
   },
   "scripts": {
     "test": "jest",
+    "tsc": "tsc",
     "doc": "./node_modules/.bin/esdoc"
   },
   "dependencies": {
