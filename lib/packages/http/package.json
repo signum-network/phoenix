@@ -14,8 +14,8 @@
     "node": ">=10"
   },
   "license": "GPL-3.0",
-  "main": "./out/src/index.js",
-  "typings": "./out/src/index.d.ts",
+  "main": "./out/index.js",
+  "typings": "./out/index.d.ts",
   "private": false,
   "jest": {
     "transform": {
@@ -46,7 +46,7 @@
       "pre-push": "npm test"
     }
   },
-  "gitHead": "0a87d62edcd74661d38df6832a2a8f6122d1d127",
+  "gitHead": "9e038b8737cd2359d8888dca4bcd98c456b3e3f7",
   "publishConfig": {
     "access": "public"
   }
