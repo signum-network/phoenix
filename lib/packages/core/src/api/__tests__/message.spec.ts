@@ -6,7 +6,7 @@ import {generateSignature} from '@burstjs/crypto';
 import {verifySignature} from '@burstjs/crypto';
 import {generateSignedTransactionBytes} from '@burstjs/crypto';
 
-describe('Message Api', () => {
+xdescribe('Message Api', () => {
 
     describe('sendTextMessage', () => {
 

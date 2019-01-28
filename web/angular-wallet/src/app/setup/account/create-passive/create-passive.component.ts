@@ -2,7 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { CreateService } from '../create.service';
 import { NotifierService } from 'angular-notifier';
 import { Router } from '@angular/router';
-import { BurstUtil } from '@burstjs/core';
+import { BurstUtil } from '@burstjs/crypto';
 
 @Injectable()
 @Component({

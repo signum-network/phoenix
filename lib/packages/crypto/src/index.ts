@@ -17,3 +17,4 @@ export * from './burstUtil';
 export * from './verifySignature';
 export * from './generateSignedTransactionBytes';
 export * from './generateSignature';
+export * from '../typings/keys';

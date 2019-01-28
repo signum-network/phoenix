@@ -5,7 +5,7 @@ import {broadcastTransaction} from '../transaction/broadcastTransaction';
 import {getTransaction} from '../transaction/getTransaction';
 import {TransactionId} from '../../typings/transactionId';
 
-describe('Transaction Api', () => {
+xdescribe('Transaction Api', () => {
 
     beforeEach(() => {
         HttpMock.reset();

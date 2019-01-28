@@ -5,8 +5,8 @@ import 'rxjs/add/operator/timeout'
 
 import { StoreService } from "app/store/store.service";
 import { Settings } from "app/settings";
-import { Account, Keys, BurstUtil } from "@burstjs/core";
-import { generateMasterKeys, encryptAES, hashSHA256, getAccountIdFromPublicKey, getBurstAddressFromAccountId, getAccountIdFromBurstAddress } from "@burstjs/crypto";
+import { Account } from "@burstjs/core";
+import { generateMasterKeys, BurstUtil, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey, getBurstAddressFromAccountId, getAccountIdFromBurstAddress } from "@burstjs/crypto";
 
 @Injectable()
 export class AccountService {
