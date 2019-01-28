@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/http",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Send commands to BURST over HTTP",
   "contributors": [
     "ohager",
