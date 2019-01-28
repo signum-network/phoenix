@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/core",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Burst-related functions and models for building Burstcoin applications.",
   "contributors": [
     "ohager",
@@ -40,8 +40,8 @@
     "doc": "./node_modules/.bin/esdoc"
   },
   "dependencies": {
-    "@burstjs/crypto": "^0.0.8",
-    "@burstjs/http": "^0.0.8",
+    "@burstjs/crypto": "^0.0.9",
+    "@burstjs/http": "^0.0.9",
     "bn.js": "^4.11.8"
   },
   "husky": {
