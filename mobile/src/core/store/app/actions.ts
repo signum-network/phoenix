@@ -1,14 +1,15 @@
-import { AnyAction, Dispatch } from 'redux';
-import { wait } from '../../utils/async';
+import { loadAccounts } from '../../../modules/auth/store/actions';
+import { createAction, createActionFn } from '../../utils/store';
 import { actionTypes } from './actionTypes';
 
-const appLoadedAction = (): AnyAction => ({ type: actionTypes.appLoaded });
+const appLoadedAction = createAction<void>(actionTypes.appLoaded);
 
-export const loadApp = (): (dispatch: Dispatch) => Promise<void> => {
-  return async (dispatch: Dispatch) => {
-    // TODO: here we will load all caches and settings
-    await wait(3000);
+export const loadApp = createActionFn<void, Promise<void>>(
+  async (dispatch) => {
+    await Promise.all([
+      dispatch(loadAccounts())
+    ]);
     dispatch(appLoadedAction());
     return;
-  };
-};
+  }
+);
