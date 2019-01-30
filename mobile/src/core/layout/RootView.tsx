@@ -1,24 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IInjectedReduxProps } from '../interfaces';
+import { InjectedReduxProps } from '../interfaces';
 import { loadApp } from '../store/app/actions';
-import { IAppReduxState } from '../store/app/reducer';
-import { IApplicationState } from '../store/initialState';
+import { AppReduxState } from '../store/app/reducer';
+import { ApplicationState } from '../store/initialState';
 import { LoadingView } from './LoadingView';
 
-function mapStateToProps (state: IApplicationState) {
+function mapStateToProps (state: ApplicationState) {
   return {
     app: state.app
   };
 }
 
-interface IInjectedProps extends IInjectedReduxProps {
-  app: IAppReduxState
+interface InjectedProps extends InjectedReduxProps {
+  app: AppReduxState
 }
-interface IProps {
+interface Props {
   children: JSX.Element
 }
-type TProps = IInjectedProps & IProps;
+type TProps = InjectedProps & Props;
 
 class Root extends React.PureComponent<TProps> {
   componentDidMount () {

@@ -3,17 +3,15 @@ import {
   createBottomTabNavigator,
   NavigationContainer
 } from 'react-navigation';
-import { homeStack } from '../../modules/home/navigation/homeStack';
-import { settingsStack } from '../../modules/settings/navigation/settingsStack';
-import { routes, TRoutesMap } from './routes';
+import { authStack } from '../../modules/auth/navigation/authStack';
+import { routes, RoutesMap } from './routes';
 
-const routesMap: TRoutesMap = {
-  [routes.home]: homeStack,
-  [routes.settings]: settingsStack
+const routesMap: RoutesMap = {
+  [routes.accounts]: authStack
 };
 
 const rootTabStackConfig: BottomTabNavigatorConfig = {
-  initialRouteName: routes.home
+  initialRouteName: routes.accounts
 };
 
 export const rootTabStack: NavigationContainer = createBottomTabNavigator(

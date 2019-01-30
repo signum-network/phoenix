@@ -1,9 +1,12 @@
-import { appState, IAppReduxState } from './app/reducer';
+import { AuthReduxState, authState } from '../../modules/auth/store/reducer';
+import { AppReduxState, appState } from './app/reducer';
 
-export interface IApplicationState {
-  app: IAppReduxState
+export interface ApplicationState {
+  app: AppReduxState
+  auth: AuthReduxState
 }
 
-export const initialState: IApplicationState = {
-  app: appState()
+export const initialState: ApplicationState = {
+  app: appState(),
+  auth: authState()
 };

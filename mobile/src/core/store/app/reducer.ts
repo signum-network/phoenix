@@ -1,27 +1,26 @@
-import { AnyAction, Reducer } from 'redux';
+import { Reducer } from '../../interfaces';
+import { createReducers } from '../../utils/store';
 import { actionTypes } from './actionTypes';
 
-export interface IAppReduxState {
-  isAppLoaded: boolean
+export interface AppReduxState {
+  isAppLoaded: boolean;
 }
 
-export const appState = (): IAppReduxState => {
+export const appState = (): AppReduxState => {
   return {
     isAppLoaded: false
   };
 };
 
-export const app: Reducer = (
-  state: IAppReduxState = appState(),
-  action: AnyAction
-) => {
-  switch (action.type) {
-    case actionTypes.appLoaded:
-      return {
-        ...appState(),
-        isAppLoaded: true
-      };
-    default:
-      return state;
-  }
+const appLoaded: Reducer<AppReduxState, undefined> = (state) => {
+  return {
+    ...state,
+    isAppLoaded: true
+  };
 };
+
+const reducers = {
+  [actionTypes.appLoaded]: appLoaded
+};
+
+export const app = createReducers<AppReduxState>(appState(), reducers);
