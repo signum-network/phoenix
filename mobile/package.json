@@ -24,9 +24,10 @@
     "tsc": "tsc --init --pretty --jsx react"
   },
   "dependencies": {
-    "@burstjs/core": "^0.0.9",
-    "@burstjs/crypto": "^0.0.9",
-    "@burstjs/http": "^0.0.9",
+    "@babel/runtime": "^7.3.1",
+    "@burstjs/core": "^0.0.10",
+    "@burstjs/crypto": "^0.0.10",
+    "@burstjs/http": "^0.0.10",
     "@types/react-native-touch-id": "^4.0.1",
     "axios": "^0.18.0",
     "i18n-js": "^3.1.0",

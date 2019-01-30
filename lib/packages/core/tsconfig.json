@@ -1,5 +1,4 @@
 {
-    "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "./out",
         "types": [
@@ -13,5 +12,6 @@
     ],
     "include": [
         "./src"
-    ]
+    ],
+    "extends": "../../tsconfig.json"
 }

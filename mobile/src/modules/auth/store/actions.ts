@@ -1,11 +1,12 @@
-import { Account, BurstUtil } from '@burstjs/core';
+import { Account } from '@burstjs/core';
 import {
   encryptAES,
   generateMasterKeys,
   getAccountIdFromBurstAddress,
   getAccountIdFromPublicKey,
   getBurstAddressFromAccountId,
-  hashSHA256
+  hashSHA256,
+  BurstUtil
 } from '@burstjs/crypto';
 import { some } from 'lodash';
 import { ThunkAction } from '../../../core/interfaces';

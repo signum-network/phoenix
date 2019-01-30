@@ -48,7 +48,7 @@ export class AccountListItem extends React.PureComponent<Props> {
     return (
       <TouchableOpacity style={styles.view} onPress={this.handlePress}>
         <View style={styles.address}>
-          <Text>{address}</Text>
+          <Text>{address} </Text>
         </View>
         <View style={styles.info}>
           <View style={styles.accountType}>
