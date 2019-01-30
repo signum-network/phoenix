@@ -1,14 +1,14 @@
 /** @module http */
 
-import Http from './http';
+import Http from './httpImpl';
 import HttpResponse from './httpResponse';
 import HttpError from './httpError';
-import HttpMock from './httpMock';
+import HttpMockBuilder from './httpMockBuilder';
 
 export {
     Http,
     HttpResponse,
-    HttpMock,
+    HttpMockBuilder,
     HttpError
 };
 

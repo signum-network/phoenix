@@ -7,7 +7,7 @@ import {getBlockByHeight} from '../block/getBlockByHeight';
 import {getBlockById} from '../block/getBlockById';
 import {getBlockId} from '../block/getBlockId';
 
-describe('Block Api', () => {
+xdescribe('Block Api', () => {
 
     beforeEach(() => {
         HttpMock.reset();

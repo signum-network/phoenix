@@ -5,7 +5,7 @@ import {BurstService} from '../../burstService';
 import {getBlockchainStatus} from '../network/getBlockchainStatus';
 import {getServerStatus} from '../network/getServerStatus';
 
-describe('Network Api', () => {
+xdescribe('Network Api', () => {
 
     beforeEach(() => {
         HttpMock.reset();
