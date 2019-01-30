@@ -3,12 +3,14 @@
 import Http from './http';
 import HttpResponse from './httpResponse';
 import HttpError from './httpError';
-import HttpMock from './httpMock';
+import HttpMockBuilder from './httpMockBuilder';
+import HttpImpl from './httpImpl';
 
 export {
     Http,
+    HttpImpl,
     HttpResponse,
-    HttpMock,
+    HttpMockBuilder,
     HttpError
 };
 

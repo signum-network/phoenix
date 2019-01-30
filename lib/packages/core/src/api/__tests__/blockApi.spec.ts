@@ -1,5 +1,4 @@
-import {HttpMock} from '@burstjs/http';
-jest.mock('@burstjs/http');
+import {HttpMockBuilder, Http} from '@burstjs/http';
 
 import {BurstService} from '../../burstService';
 import {getBlockByTimestamp} from '../block/getBlockByTimestamp';
@@ -7,46 +6,44 @@ import {getBlockByHeight} from '../block/getBlockByHeight';
 import {getBlockById} from '../block/getBlockById';
 import {getBlockId} from '../block/getBlockId';
 
-xdescribe('Block Api', () => {
+describe('Block Api', () => {
 
-    beforeEach(() => {
-        HttpMock.reset();
+    let httpMock: Http;
+
+    afterEach(() => {
+        if (httpMock) {
+            // @ts-ignore
+            httpMock.reset();
+        }
     });
 
     describe('GetBlock()', () => {
 
         it('should getBlockByTimestamp', async () => {
-            HttpMock.onGet().reply<any>(200, {timestamp: 1});
-            // must always be created after HttpMock
-            const service = new BurstService('localhost');
-
+            httpMock = HttpMockBuilder.create().onGetReply(200, {timestamp: 1}).build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
             const block = await getBlockByTimestamp(service)(1, false);
             expect(block.timestamp).toBe(1);
         });
 
         it('should getBlockByHeight', async () => {
-            HttpMock.onGet().reply<any>(200, {height: 10});
-            // must always be created after HttpMock
-            const service = new BurstService('localhost');
-
+            httpMock = HttpMockBuilder.create().onGetReply(200, {height: 10}).build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
             const block = await getBlockByHeight(service)(10, false);
             expect(block.height).toBe(10);
         });
 
         it('should getBlockById', async () => {
-            HttpMock.onGet().reply<any>(200, {block: '123abc'});
-            // must always be created after HttpMock
-            const service = new BurstService('localhost');
-
+            httpMock = HttpMockBuilder.create().onGetReply(200, {block: '123abc'}).build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
             const block = await getBlockById(service)('123abc', false);
             expect(block.block).toBe('123abc');
         });
 
         // This failure test is proxy for all block api tests...as implementation is almost identical
         it('should getBlockById fail', async () => {
-            HttpMock.onGet().error(500, 'Test Error');
-            // must always be created after HttpMock
-            const service = new BurstService('localhost');
+            httpMock = HttpMockBuilder.create().onGetThrowError(500, 'Test Error').build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
             try {
                 await getBlockById(service)('123abc', false);
                 expect(true).toBe('Expected Exception');
@@ -61,9 +58,8 @@ xdescribe('Block Api', () => {
     describe('GetBlockId()', () => {
 
         it('should getBlockId', async () => {
-            HttpMock.onGet().reply<any>(200, {block: 100});
-            // must always be created after HttpMock
-            const service = new BurstService('localhost');
+            httpMock = HttpMockBuilder.create().onGetReply(200, {block: 100}).build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
 
             const block = await getBlockId(service)(1);
             expect(block.block).toBe(100);

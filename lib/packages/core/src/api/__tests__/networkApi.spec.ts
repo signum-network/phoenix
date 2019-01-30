@@ -1,28 +1,27 @@
-// IMPORTANT: mocking http at first
-jest.mock('@burstjs/http');
-import {HttpMock, Http} from '@burstjs/http';
+import {HttpMockBuilder, Http} from '@burstjs/http';
 import {BurstService} from '../../burstService';
 import {getBlockchainStatus} from '../network/getBlockchainStatus';
 import {getServerStatus} from '../network/getServerStatus';
 
 
-xdescribe('Network Api', () => {
+describe('Network Api', () => {
 
-    beforeEach(() => {
-        HttpMock.reset();
+    let httpMock: Http;
+
+    afterEach(() => {
+        if (httpMock) {
+            // @ts-ignore
+            httpMock.reset();
+        }
     });
 
     describe('getBlockchainStatus', () => {
         it('should getBlockchainStatus', async () => {
-
-            console.log('test', getBlockchainStatus);
-
-            // @ohager please help meee
-            jest.spyOn(Http.prototype, 'get').mockReturnValue(() => {
-                return { application: 'BRS', numberOfBlocks: 100}
-            });
-
-            const service = new BurstService('localhost');
+            httpMock = HttpMockBuilder.create().onGetReply(200, {
+                application: 'BRS',
+                numberOfBlocks: 100
+            }).build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
             const status = await getBlockchainStatus(service)();
             console.log('status', status);
             expect(status.application).toBe('BRS');
@@ -31,11 +30,9 @@ xdescribe('Network Api', () => {
         });
 
         it('should fail on getBlockchainStatus', async () => {
-
-            HttpMock.onGet().error(500, 'Internal Server Error');
-
             try {
-                const service = new BurstService('localhost');
+                httpMock = HttpMockBuilder.create().onGetThrowError(500, 'Internal Server Error').build();
+                const service = new BurstService('baseUrl', 'relPath', httpMock);
                 await getBlockchainStatus(service)();
                 expect(true).toBe('Exception expected');
             } catch (error) {
@@ -47,13 +44,12 @@ xdescribe('Network Api', () => {
     describe('getNetworkState', () => {
         it('should getNetworkState', async () => {
 
-            HttpMock.onGet().reply(200, {
+            httpMock = HttpMockBuilder.create().onGetReply(200, {
                 application: 'BRS',
                 numberOfPeers: 100,
                 numberOfAccounts: 10,
-            });
-
-            const service = new BurstService('localhost');
+            }).build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
             const status = await getServerStatus(service)();
             expect(status.application).toBe('BRS');
             expect(status.numberOfAccounts).toBe(10);
@@ -62,11 +58,9 @@ xdescribe('Network Api', () => {
         });
 
         it('should fail on getNetworkState', async () => {
-
-            HttpMock.onGet().error(500, 'Internal Server Error');
-
             try {
-                const service = new BurstService('localhost');
+                httpMock = HttpMockBuilder.create().onGetThrowError(500, 'Internal Server Error').build();
+                const service = new BurstService('baseUrl', 'relPath', httpMock);
                 await getServerStatus(service)();
                 expect(true).toBe('Exception expected');
             } catch (error) {
