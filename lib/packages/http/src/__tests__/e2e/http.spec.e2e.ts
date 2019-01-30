@@ -1,4 +1,4 @@
-import {Http} from '../..';
+import {HttpImpl as Http} from '../..';
 
 describe('[E2E] Http', () => {
 

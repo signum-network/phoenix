@@ -1,4 +1,4 @@
-import {Http} from '@burstjs/http';
+import {Http, HttpImpl} from '@burstjs/http';
 
 /**
  * Generic BRS Web Service class.
@@ -35,9 +35,10 @@ export class BurstService {
      * Creates Service instance
      * @param baseUrl The host url of web service
      * @param relativePath The relative path will be prepended before each url created with toBRSEndpoint()
+     * @param httpClient {Http?} If passed an client instance, it will be used instead of default HttpImpl. Good for testing.
      */
-    constructor(baseUrl: string, relativePath: string = '') {
-        this._http = new Http(baseUrl);
+    constructor(baseUrl: string, relativePath: string = '', httpClient?: Http) {
+        this._http = httpClient ? httpClient : new HttpImpl(baseUrl);
         this._relPath = relativePath.endsWith('/') ? relativePath.substr(0, relativePath.length - 1) : relativePath;
     }
 

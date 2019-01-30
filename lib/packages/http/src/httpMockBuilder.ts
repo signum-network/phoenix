@@ -142,6 +142,7 @@ class HttpMockBuilder {
      * @param status {number} The status to be returned
      * @param data The data to be returned
      * @param url {string?} If given, the mock applies for that specific url, other for all method calls
+     * @return {HttpMockBuilder} The builder instance (Fluent API)
      */
     public onGetReply(status: number, data: any, url?: string): HttpMockBuilder {
         return this.onReply('get', status, data, url);
@@ -149,8 +150,13 @@ class HttpMockBuilder {
 
     /**
      * Mocks response exceptions for get methods. It works like onGetReply(), but throws an HttpError instead
+     * @param status {number} The status to be returned in exception object
+     * @param errorMessage {string} The error message
+     * @param data {any?} Eventual data carried with the error object
+     * @param url {string?} The specific url for which the exception should be thrown
+     * @return {HttpMockBuilder} The builder instance (Fluent API)
      */
-    public onGetThrowError(status: number, errorMessage: string, data: any, url: string = HttpMock.ForAll): HttpMockBuilder {
+    public onGetThrowError(status: number, errorMessage: string, data: any = null, url: string = HttpMock.ForAll): HttpMockBuilder {
         return this.onThrowError('get', status, errorMessage, data, url);
     }
 
