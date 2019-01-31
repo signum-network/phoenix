@@ -44,6 +44,7 @@ export const createActiveAccount = createActionFn<ActiveAccountGeneratorData, Th
     }
     const address = getBurstAddressFromAccountId(id);
 
+    // @ts-ignore
     const account: Account = {
       id,
       address,
@@ -66,7 +67,8 @@ export const createOfflineAccount = createActionFn<string, ThunkAction<Promise<A
     if (hasAccount) {
       throw new Error(i18n.t(auth.errors.accountExist));
     }
-    const account: any = {
+    // @ts-ignore
+    const account: Account = {
       type: 'offline',
       address,
       id: getAccountIdFromBurstAddress(address)
