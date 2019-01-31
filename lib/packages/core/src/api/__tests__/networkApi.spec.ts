@@ -3,7 +3,6 @@ import {BurstService} from '../../burstService';
 import {getBlockchainStatus} from '../network/getBlockchainStatus';
 import {getServerStatus} from '../network/getServerStatus';
 
-
 describe('Network Api', () => {
 
     let httpMock: Http;
@@ -23,7 +22,6 @@ describe('Network Api', () => {
             }).build();
             const service = new BurstService('baseUrl', 'relPath', httpMock);
             const status = await getBlockchainStatus(service)();
-            console.log('status', status);
             expect(status.application).toBe('BRS');
             expect(status.numberOfBlocks).toBe(100);
             expect(status.lastBlockchainFeederHeight).toBeUndefined(); // not mapped

@@ -24,7 +24,6 @@
     "tsc": "tsc --init --pretty --jsx react"
   },
   "dependencies": {
-    "@babel/runtime": "^7.3.1",
     "@burstjs/core": "^0.0.10",
     "@burstjs/crypto": "^0.0.10",
     "@burstjs/http": "^0.0.10",
