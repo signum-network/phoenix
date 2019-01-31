@@ -5,7 +5,7 @@
             "axios",
             "jest",
             "node"
-        ],
+        ]
     },
     "typeRoots": [ 
         "typings", 
