@@ -66,7 +66,7 @@ export const createOfflineAccount = createActionFn<string, ThunkAction<Promise<A
     if (hasAccount) {
       throw new Error(i18n.t(auth.errors.accountExist));
     }
-    const account: Account = {
+    const account: any = {
       type: 'offline',
       address,
       id: getAccountIdFromBurstAddress(address)
