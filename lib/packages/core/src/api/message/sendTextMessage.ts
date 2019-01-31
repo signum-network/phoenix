@@ -48,8 +48,9 @@ export const sendTextMessage = (service: BurstService):
         const signature = generateSignature(unsignedHexMessage, senderPrivateKey);
         if (!verifySignature(signature, unsignedHexMessage, senderPublicKey)) {
             throw new Error('The signed message could not be verified! Message not broadcasted!');
-        }
+        } 
 
         const signedMessage = generateSignedTransactionBytes(unsignedHexMessage, signature);
         return broadcastTransaction(service)(signedMessage);
     };
+    

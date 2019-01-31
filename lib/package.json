@@ -16,7 +16,7 @@
   "license": "GPL-3.0",
   "private": false,
   "devDependencies": {
-    "@types/jest": "^23.3.12",
+    "@types/jest": "^23.3.13",
     "axios-mock-adapter": "^1.16.0",
     "babel-core": "^6.26.3",
     "babel-jest": "^23.6.0",
@@ -43,7 +43,8 @@
     "test:e2e": "jest --config jest.config.e2e.js --runInBand --detectOpenHandles --forceExit",
     "doc": "./node_modules/.bin/esdoc",
     "bootstrap": "lerna bootstrap && lerna exec npm install",
-    "lint": "tslint -p tsconfig.json -t stylish -s node_modules/custom-tslint-formatters/formatters -t grouped"
+    "lint": "tslint -p tsconfig.json -t stylish -s node_modules/custom-tslint-formatters/formatters -t grouped",
+    "publish": "lerna run tsc && lerna publish"
   },
   "dependencies": {
     "axios": "^0.18.0"

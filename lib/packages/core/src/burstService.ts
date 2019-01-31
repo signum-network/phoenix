@@ -54,7 +54,7 @@ export class BurstService {
         const brsUrl = this.toBRSEndpoint(method, args);
         const response = await this.http.get(brsUrl);
         return Promise.resolve(response.response);
-    }
+    } 
 
     /**
      * Send data to BRS

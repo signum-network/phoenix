@@ -1,4 +1,4 @@
-import { Account, BurstUtil } from '@burstjs/core';
+import { Account } from '@burstjs/core';
 import React from 'react';
 import { Keyboard, ScrollView, StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
@@ -17,6 +17,7 @@ import { defaultSideOffset, ESpaces, SizeNames } from '../../../core/theme/sizes
 import { createActiveAccount, createOfflineAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
+import { BurstUtil } from '@burstjs/crypto';
 
 interface Props extends InjectedReduxProps {
   auth: AuthReduxState,

@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/core",
-  "version": "0.0.5",
+  "version": "0.0.10",
   "description": "Burst-related functions and models for building Burstcoin applications.",
   "contributors": [
     "ohager",
@@ -14,7 +14,8 @@
     "node": ">=10"
   },
   "license": "GPL-3.0",
-  "main": "./src/index.ts",
+  "main": "./out/index.js",
+  "typings": "./out/index.d.ts",
   "private": false,
   "jest": {
     "transform": {
@@ -35,11 +36,12 @@
   },
   "scripts": {
     "test": "jest",
+    "tsc": "tsc",
     "doc": "./node_modules/.bin/esdoc"
   },
   "dependencies": {
-    "@burstjs/http": "file:../http",
-    "@burstjs/crypto": "file:../crypto",
+    "@burstjs/crypto": "^0.0.10",
+    "@burstjs/http": "^0.0.10",
     "bn.js": "^4.11.8"
   },
   "husky": {
@@ -47,7 +49,7 @@
       "pre-push": "npm test"
     }
   },
-  "gitHead": "0a87d62edcd74661d38df6832a2a8f6122d1d127",
+  "gitHead": "d66916118ee787da2aacfc18b9809c66617c2b57",
   "publishConfig": {
     "access": "public"
   }

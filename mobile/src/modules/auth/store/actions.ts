@@ -1,11 +1,12 @@
-import { Account, BurstUtil } from '@burstjs/core';
+import { Account } from '@burstjs/core';
 import {
   encryptAES,
   generateMasterKeys,
   getAccountIdFromBurstAddress,
   getAccountIdFromPublicKey,
   getBurstAddressFromAccountId,
-  hashSHA256
+  hashSHA256,
+  BurstUtil
 } from '@burstjs/crypto';
 import { some } from 'lodash';
 import { ThunkAction } from '../../../core/interfaces';
@@ -43,6 +44,7 @@ export const createActiveAccount = createActionFn<ActiveAccountGeneratorData, Th
     }
     const address = getBurstAddressFromAccountId(id);
 
+    // @ts-ignore
     const account: Account = {
       id,
       address,
@@ -65,6 +67,7 @@ export const createOfflineAccount = createActionFn<string, ThunkAction<Promise<A
     if (hasAccount) {
       throw new Error(i18n.t(auth.errors.accountExist));
     }
+    // @ts-ignore
     const account: Account = {
       type: 'offline',
       address,
