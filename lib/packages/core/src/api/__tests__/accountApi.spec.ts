@@ -1,11 +1,9 @@
 import {HttpMockBuilder, Http} from '@burstjs/http';
 
 import {BurstService} from '../../burstService';
-import {getBlockByTimestamp} from '../block/getBlockByTimestamp';
-import {getBlockByHeight} from '../block/getBlockByHeight';
-import {getBlockById} from '../block/getBlockById';
-import {getBlockId} from '../block/getBlockId';
 import {getAccountTransactions} from '../account/getAccountTransactions';
+import {getUnconfirmedAccountTransactions} from '../account/getUnconfirmedAccountTransactions';
+import {getAccountBalance} from '../account/getAccountBalance';
 
 describe('Account Api', () => {
 
@@ -94,9 +92,9 @@ describe('Account Api', () => {
         it('should fail on getAccountTransaction', async () => {
             httpMock = HttpMockBuilder.create().onGetThrowError(404, 'Test Error').build();
             const service = new BurstService('baseUrl', 'relPath', httpMock);
-            try{
+            try {
                 await getAccountTransactions(service)('accountId');
-            }catch(e){
+            } catch (e) {
                 expect(e.status).toBe(404);
                 expect(e.message).toBe('Test Error');
             }
@@ -110,6 +108,106 @@ describe('Account Api', () => {
             expect(transactions.transactions).toHaveLength(2);
             expect(transactions.transactions[0].height).toBe(20);
             expect(transactions.transactions[1].height).toBe(30);
+        });
+
+        it('should getAccountTransaction with number of confirmations', async () => {
+            httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const transactions = await getAccountTransactions(service)('accountId', undefined, undefined, 10);
+            expect(transactions.requestProcessingTime).not.toBeNull();
+            expect(transactions.transactions).toHaveLength(2);
+            expect(transactions.transactions[0].height).toBe(20);
+            expect(transactions.transactions[1].height).toBe(30);
+        });
+    });
+
+    describe('GetUnconfirmedAccountTransactions()', () => {
+        const mockedTransactions = {
+            'requestProcessingTime': 738,
+            'unconfirmedTransactions': [{
+                'senderPublicKey': 'spk',
+                'signature': 'sign',
+                'feeNQT': '5000000',
+                'type': 1,
+                'confirmations': 0,
+                'fullHash': 'fh',
+                'version': 1,
+                'ecBlockId': '14044948199172881479',
+                'signatureHash': 'sh',
+                'attachment': {
+                    'version.Message': 1,
+                    'messageIsText': true,
+                    'message': 'message'
+                },
+                'senderRS': 'BURST-ABC',
+                'subtype': 0,
+                'amountNQT': '0',
+                'sender': '123',
+                'recipientRS': 'BURST-DEF',
+                'recipient': '456',
+                'ecBlockHeight': 10,
+                'block': '6204640184665879259',
+                'blockTimestamp': 141094246,
+                'deadline': 1440,
+                'transaction': '123',
+                'timestamp': 141094191,
+                'height': 20
+            }
+            ]
+        };
+
+        it('should getUnconfirmedAccountTransactions', async () => {
+            httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const transactions = await getUnconfirmedAccountTransactions(service)('accountId');
+            expect(transactions.requestProcessingTime).not.toBeNull();
+            expect(transactions.unconfirmedTransactions).toHaveLength(1);
+        });
+
+        it('should fail on getUnconfirmedAccountTransactions', async () => {
+            httpMock = HttpMockBuilder.create().onGetThrowError(404, 'Test Error').build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            try {
+                await getUnconfirmedAccountTransactions(service)('accountId');
+            } catch (e) {
+                expect(e.status).toBe(404);
+                expect(e.message).toBe('Test Error');
+            }
+        });
+    });
+
+    describe('GetAccountBalance', () => {
+
+        it('should getAccountBalance', async () => {
+            const mockedBalance = {
+                unconfirmedBalanceNQT: '100000000000',
+                guaranteedBalanceNQT: '100000000000',
+                effectiveBalanceNXT: '100000000000',
+                forgedBalanceNQT: '0',
+                balanceNQT: '100000000000',
+                requestProcessingTime: 0
+            };
+
+            httpMock = HttpMockBuilder.create().onGetReply(200, mockedBalance).build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const balance = await getAccountBalance(service)('accountId');
+            expect(balance.requestProcessingTime).toBe(0);
+            expect(balance.unconfirmedBalanceNQT).toBe('100000000000');
+            expect(balance.guaranteedBalanceNQT).toBe('100000000000');
+            expect(balance.effectiveBalanceNXT).toBe('100000000000');
+            expect(balance.balanceNQT).toBe('100000000000');
+            expect(balance.forgedBalanceNQT).toBe('0');
+        });
+
+        it('should fail getAccountBalance', async () => {
+            httpMock = HttpMockBuilder.create().onGetThrowError(404, 'Test Error').build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            try {
+                await getAccountBalance(service)('accountId');
+            } catch (e) {
+                expect(e.status).toBe(404);
+                expect(e.message).toBe('Test Error');
+            }
         });
     });
 });
