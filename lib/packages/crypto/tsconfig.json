@@ -12,7 +12,8 @@
         "node_modules/@types"
     ],
     "include": [
-        "./src"
+        "./src",
+        "README.md"
     ],
     "extends": "../../tsconfig.json"
 }
