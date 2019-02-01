@@ -21,7 +21,7 @@ export class BurstService {
      * @see https://burstwiki.org/wiki/The_Burst_API
      *
      * @param method The method name for `requestType`
-     * @param data A JSON object which will be mapped to url params, e.g. {foo:1; bar:true} -> foo=1&bar=true
+     * @param data A JSON object which will be mapped to url params
      * @return The mounted url (without host)
      */
     public toBRSEndpoint(method: string, data: any = {}): string {
@@ -46,7 +46,7 @@ export class BurstService {
     /**
      * Requests a query to BRS
      * @param method The BRS method according https://burstwiki.org/wiki/The_Burst_API
-     * @param args A JSON object which will be mapped to url params, e.g. {foo:1; bar:true} -> foo=1&bar=true
+     * @param args A JSON object which will be mapped to url params
      * @return The response data of success
      * @throws HttpError in case of failure
      */
@@ -60,7 +60,7 @@ export class BurstService {
      * Send data to BRS
      * @param method The BRS method accordinghttps://burstwiki.org/wiki/The_Burst_API#Create_Transaction.
      *        Note that there are only a few POST methods
-     * @param args A JSON object which will be mapped to url params, e.g. {foo:1; bar:true} -> foo=1&bar=true
+     * @param args A JSON object which will be mapped to url params
      * @return The response data of success
      * @throws HttpError in case of failure
      */
