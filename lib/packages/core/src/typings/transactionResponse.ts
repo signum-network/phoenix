@@ -2,7 +2,7 @@
  * Transaction Response Type
  */
 export interface TransactionResponse {
-    readonly fullHase: string;
+    readonly fullHash: string;
     readonly transaction: string;
     readonly signatureHash: string;
     readonly unsignedTransactionBytes: string;
