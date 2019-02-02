@@ -37,7 +37,8 @@
   "scripts": {
     "test": "jest",
     "tsc": "tsc",
-    "doc": "./node_modules/.bin/esdoc"
+    "doc": "./node_modules/.bin/esdoc",
+    "readme": "jsdoc2md  --files ./src/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
   },
   "dependencies": {
     "@burstjs/crypto": "^0.0.10",
