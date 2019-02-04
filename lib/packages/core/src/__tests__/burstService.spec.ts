@@ -21,6 +21,17 @@ describe('BurstService', () => {
             expect(url).toBe('?requestType=getBlockByHeight&id=123&includeTransactions=true');
         });
 
+        it('should create BRS BURST url with many parameters ignoring undefined', () => {
+            const url = service.toBRSEndpoint('getBlockByHeight',
+                {
+                    id: 123,
+                    includeTransactions: true,
+                    foo: undefined,
+                    bar: undefined
+                });
+            expect(url).toBe('?requestType=getBlockByHeight&id=123&includeTransactions=true');
+        });
+
         it('should create BRS BURST url with many parameters and relative Url', () => {
             service = new BurstService('localhost', '/burst/'); // chopps trailing slash
             const url = service.toBRSEndpoint('getBlockByHeight', {id: 123, includeTransactions: true});
