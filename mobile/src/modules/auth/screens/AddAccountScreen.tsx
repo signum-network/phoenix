@@ -17,7 +17,7 @@ import { defaultSideOffset, ESpaces, SizeNames } from '../../../core/theme/sizes
 import { createActiveAccount, createOfflineAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
-import { BurstUtil } from '@burstjs/crypto';
+import { isValid } from '@burstjs/util';
 
 interface Props extends InjectedReduxProps {
   auth: AuthReduxState,
@@ -130,7 +130,7 @@ class AddAccount extends React.PureComponent<TProps, State> {
 
   renderOfflineBlock = () => {
     const { address, error } = this.state;
-    const isAddressCorrect = BurstUtil.isValid(address);
+    const isAddressCorrect = isValid(address);
 
     return (
       <View>

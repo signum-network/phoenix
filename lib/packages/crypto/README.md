@@ -17,14 +17,6 @@ yarn add @burstjs/crypto
 ```
 
 ## API Reference
-## Classes
-
-<dl>
-<dt><a href="#BurstUtil">BurstUtil</a></dt>
-<dd><p>The BurstUtil class provides static methods for encoding and decoding numeric ids.
-In addition, addresses can be checked for validity.</p></dd>
-</dl>
-
 ## Members
 
 <dl>
@@ -58,114 +50,6 @@ In addition, addresses can be checked for validity.</p></dd>
 sha256(sha256(transactionHex)_verify(v, h1, publickey)) = h2</code></pre></li>
 </ul></dd>
 </dl>
-
-<a name="BurstUtil"></a>
-
-## BurstUtil
-<p>The BurstUtil class provides static methods for encoding and decoding numeric ids.
-In addition, addresses can be checked for validity.</p>
-
-**Kind**: global class  
-
-* [BurstUtil](#BurstUtil)
-    * [.encode(numericId)](#BurstUtil.encode)
-    * [.decode(address)](#BurstUtil.decode)
-    * [.isValid(address)](#BurstUtil.isValid)
-    * [.splitBurstAddress(address)](#BurstUtil.splitBurstAddress)
-    * [.constructBurstAddress(parts)](#BurstUtil.constructBurstAddress)
-    * [.isBurstcoinAddress(address)](#BurstUtil.isBurstcoinAddress)
-    * [.convertStringToNumber(amount)](#BurstUtil.convertStringToNumber) ⇒
-    * [.convertNumberToString(n)](#BurstUtil.convertNumberToString) ⇒
-
-<a name="BurstUtil.encode"></a>
-
-### BurstUtil.encode(numericId)
-<p>Encode a numeric id into BURST-XXXX-XXXX-XXXX-XXXXX</p>
-
-**Kind**: static method of [<code>BurstUtil</code>](#BurstUtil)  
-
-| Param | Description |
-| --- | --- |
-| numericId | <p>The numeric Id</p> |
-
-<a name="BurstUtil.decode"></a>
-
-### BurstUtil.decode(address)
-<p>Decode BURST-XXXX-XXXX-XXXX-XXXXX into numeric Id</p>
-
-**Kind**: static method of [<code>BurstUtil</code>](#BurstUtil)  
-
-| Param | Description |
-| --- | --- |
-| address | <p>The BURST address</p> |
-
-<a name="BurstUtil.isValid"></a>
-
-### BurstUtil.isValid(address)
-<p>Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX, XXXX-XXXX-XXXX-XXXXX)</p>
-
-**Kind**: static method of [<code>BurstUtil</code>](#BurstUtil)  
-
-| Param | Description |
-| --- | --- |
-| address | <p>The address</p> |
-
-<a name="BurstUtil.splitBurstAddress"></a>
-
-### BurstUtil.splitBurstAddress(address)
-<p>Split the Burst address string into an array of 4 parts</p>
-
-**Kind**: static method of [<code>BurstUtil</code>](#BurstUtil)  
-
-| Param | Description |
-| --- | --- |
-| address | <p>A valid Burst address</p> |
-
-<a name="BurstUtil.constructBurstAddress"></a>
-
-### BurstUtil.constructBurstAddress(parts)
-<p>Construct a Burst address from a string array</p>
-
-**Kind**: static method of [<code>BurstUtil</code>](#BurstUtil)  
-
-| Param | Description |
-| --- | --- |
-| parts | <p>4 parts string array</p> |
-
-<a name="BurstUtil.isBurstcoinAddress"></a>
-
-### BurstUtil.isBurstcoinAddress(address)
-<p>Validation Check. Quick validation of Burst addresses included</p>
-
-**Kind**: static method of [<code>BurstUtil</code>](#BurstUtil)  
-
-| Param | Description |
-| --- | --- |
-| address | <p>Burst Address</p> |
-
-<a name="BurstUtil.convertStringToNumber"></a>
-
-### BurstUtil.convertStringToNumber(amount) ⇒
-<p>Helper method to convert a String to number</p>
-
-**Kind**: static method of [<code>BurstUtil</code>](#BurstUtil)  
-**Returns**: <p>A number expressed in Burst (not NQT)</p>  
-
-| Param | Description |
-| --- | --- |
-| amount | <p>The amount in NQT</p> |
-
-<a name="BurstUtil.convertNumberToString"></a>
-
-### BurstUtil.convertNumberToString(n) ⇒
-<p>Helper method to Number to String(8 decimals) representation</p>
-
-**Kind**: static method of [<code>BurstUtil</code>](#BurstUtil)  
-**Returns**: <p>a NQT number string</p>  
-
-| Param | Description |
-| --- | --- |
-| n | <p>the number</p> |
 
 <a name="BN"></a>
 

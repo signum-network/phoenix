@@ -5,8 +5,7 @@ import {
   getAccountIdFromBurstAddress,
   getAccountIdFromPublicKey,
   getBurstAddressFromAccountId,
-  hashSHA256,
-  BurstUtil
+  hashSHA256
 } from '@burstjs/crypto';
 import { some } from 'lodash';
 import { ThunkAction } from '../../../core/interfaces';
@@ -15,6 +14,7 @@ import { createAction, createActionFn } from '../../../core/utils/store';
 import { auth } from '../translations';
 import { actionTypes } from './actionTypes';
 import { getAccounts, setAccounts } from './utils';
+import { decode, isValid } from '@burstjs/util';
 
 const actions = {
   addAccount: createAction<Account>(actionTypes.addAccount),
@@ -58,10 +58,10 @@ export const createActiveAccount = createActionFn<ActiveAccountGeneratorData, Th
 
 export const createOfflineAccount = createActionFn<string, ThunkAction<Promise<Account>>>(
   (dispatch, getState, address) => {
-    if (!BurstUtil.isValid(address)) {
+    if (!isValid(address)) {
       throw new Error(i18n.t(auth.errors.incorrectAddress));
     }
-    const id = BurstUtil.decode(address);
+    const id = decode(address);
     const hasAccount = some(getState().auth.accounts, (item) => item.id === id);
 
     if (hasAccount) {

@@ -1,7 +1,13 @@
 {
-  "name": "@burstjs/core",
+  "name": "@burstjs/util",
   "version": "0.0.13",
-  "description": "Burst-related functions and models for building Burstcoin applications.",
+  "description": "Useful utilities and tools for building Burstcoin applications",
+  "keywords": [
+    "burst",
+    "burstcoin",
+    "utils",
+    "burstjs"
+  ],
   "contributors": [
     "ohager",
     "blankey1337"
@@ -31,8 +37,7 @@
     ]
   },
   "devDependencies": {
-    "@types/jest": "^23.3.12",
-    "dotenv": "^6.2.0"
+    "@types/jest": "^23.3.12"
   },
   "scripts": {
     "test": "jest",
@@ -40,18 +45,16 @@
     "doc": "./node_modules/.bin/esdoc",
     "readme": "jsdoc2md  --files ./src/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
   },
-  "dependencies": {
-    "@burstjs/crypto": "^0.0.13",
-    "@burstjs/http": "^0.0.13",
-    "@burstjs/util": "^0.0.13"
-  },
   "husky": {
     "hooks": {
       "pre-push": "npm test"
     }
   },
-  "gitHead": "d270043990cbfc28dd72c675499b4502eb7a1c40",
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "dependencies": {
+    "bn.js": "^4.11.8"
+  },
+  "gitHead": "d270043990cbfc28dd72c675499b4502eb7a1c40"
 }
