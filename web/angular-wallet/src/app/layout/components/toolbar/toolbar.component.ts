@@ -1,13 +1,15 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
+import { I18nService } from '../i18n/i18n.service';
+import { constants } from 'app/constants';
+import { StoreService } from 'app/store/store.service';
 
 @Component({
     selector     : 'toolbar',
@@ -39,50 +41,12 @@ export class ToolbarComponent implements OnInit, OnDestroy
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
-        private _translateService: TranslateService
+        private i18nService: I18nService,
+        private storeService: StoreService
     )
     {
-        // Set the defaults
-        this.userStatusOptions = [
-            {
-                'title': 'Online',
-                'icon' : 'icon-checkbox-marked-circle',
-                'color': '#4CAF50'
-            },
-            {
-                'title': 'Away',
-                'icon' : 'icon-clock',
-                'color': '#FFC107'
-            },
-            {
-                'title': 'Do not Disturb',
-                'icon' : 'icon-minus-circle',
-                'color': '#F44336'
-            },
-            {
-                'title': 'Invisible',
-                'icon' : 'icon-checkbox-blank-circle-outline',
-                'color': '#BDBDBD'
-            },
-            {
-                'title': 'Offline',
-                'icon' : 'icon-checkbox-blank-circle-outline',
-                'color': '#616161'
-            }
-        ];
 
-        this.languages = [
-            {
-                id   : 'en',
-                title: 'English',
-                flag : 'us'
-            },
-            {
-                id   : 'tr',
-                title: 'Turkish',
-                flag : 'tr'
-            }
-        ];
+        this.languages = constants.languages;
 
         this.navigation = navigation;
 
@@ -109,7 +73,14 @@ export class ToolbarComponent implements OnInit, OnDestroy
             });
 
         // Set the selected language from default languages
-        this.selectedLanguage = _.find(this.languages, {'id': this._translateService.currentLang});
+        this.storeService.getSettings().then(s => {
+            let language = constants.languages.find((it)=> {
+              return it.code === s.language
+            });
+            if (language) {
+              this.selectedLanguage = language
+            }
+        });
     }
 
     /**
@@ -158,6 +129,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
         this.selectedLanguage = lang;
 
         // Use the selected language for translations
-        this._translateService.use(lang.id);
+        this.i18nService.setLanguage(lang);
+
     }
 }

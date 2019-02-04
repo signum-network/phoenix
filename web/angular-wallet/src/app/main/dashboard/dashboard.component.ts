@@ -4,8 +4,7 @@ import { DashboardService } from './dashboard.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { StoreService } from 'app/store/store.service';
-import {Account, ApiSettings} from '@burstjs/core';
-import { compose } from '@burstjs/core';
+import { Account, ApiSettings, compose } from '@burstjs/core';
 
 @Component({
     selector     : 'dashboard-dashboard',
