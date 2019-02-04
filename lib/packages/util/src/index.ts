@@ -1,6 +1,6 @@
 /** @module util */
 export * from './constructBurstAddress';
-export * from './convertNumberToString';
+export * from './convertNumberToNQTString';
 export * from './convertStringToNumber';
 export * from './decode';
 export * from './encode';
