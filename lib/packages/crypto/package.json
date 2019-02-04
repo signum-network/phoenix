@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/crypto",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Cryptographic functions for building Burstcoin apps.",
   "contributors": [
     "ohager",
@@ -40,7 +40,7 @@
     "readme": "jsdoc2md  --files ./src/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
   },
   "dependencies": {
-    "@burstjs/util": "^0.0.10",
+    "@burstjs/util": "^0.0.12",
     "@types/crypto-js": "^3.1.43",
     "@types/node": "^10.12.18",
     "@types/seedrandom": "^2.4.27",

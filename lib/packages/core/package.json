@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/core",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Burst-related functions and models for building Burstcoin applications.",
   "contributors": [
     "ohager",
