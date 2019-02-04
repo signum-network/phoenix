@@ -2,13 +2,13 @@
 
     <div class="content">
 
-        <div class="widget auto-width" *ngIf="address">
+        <div class="widget auto-width" *ngIf="account">
             <strong>Example:</strong>
             {{ account.address }}
             {{ account.id }}
         </div>
 
-        <div class="mr-lg-32" fxFlex="100">
+        <div class="mr-lg-32" fxFlex="100" *ngIf="account">
 
             <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
 
@@ -16,9 +16,9 @@
                     <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
                         <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
                             <div class="pr-16">
-                                <div class="h3 secondary-text">Balance</div>
+                                <div class="h3 secondary-text">{{ 'balance' | i18n }}</div>
                                 <div [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1 mt-8">
-                                    164,033.0334
+                                    {{ account.balance }}
                                 </div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                     <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
                         <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
                             <div class="pr-16">
-                                <div class="h3 secondary-text">Blocks Forged</div>
+                                <div class="h3 secondary-text">{{ 'forged_balance' | i18n }}</div>
                                 <div [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1 mt-8">
                                     420
                                 </div>
@@ -42,7 +42,7 @@
                     <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
                         <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
                             <div class="pr-16">
-                                <div class="h3 secondary-text">Assets Owned</div>
+                                <div class="h3 secondary-text">{{ 'assets_owned' | i18n }}</div>
                                 <div [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1 mt-8">
                                     120
                                 </div>
@@ -58,7 +58,7 @@
                     <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
                         <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
                             <div class="pr-16">
-                                <div class="h3 secondary-text">Recent Transactions</div>
+                                <div class="h3 secondary-text">{{ 'recent_transactions' | i18n }}</div>
                                 Table goes here
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                     <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
                         <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
                             <div class="pr-16">
-                                <div class="h3 secondary-text">Latest Blocks</div>
+                                <div class="h3 secondary-text">{{ 'recent_blocks' | i18n }}</div>
                                 Table goes here
                             </div>
                         </div>

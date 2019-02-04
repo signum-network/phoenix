@@ -3,7 +3,12 @@ import {Injectable, ApplicationRef} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { constants } from '../../../constants';
-
+import { StoreService } from 'app/store/store.service';
+import { Settings } from 'app/settings';
+export interface Language {
+    name: string,
+    code: string
+}
 
 @Injectable()
 export class I18nService {
@@ -13,10 +18,19 @@ export class I18nService {
   public currentLanguage:any;
 
 
-  constructor(private http: HttpClient, private ref: ApplicationRef) {
+  constructor(
+      private http: HttpClient, 
+      private ref: ApplicationRef,
+      private storeService: StoreService
+    ) {
     this.state = new Subject();
 
     this.initLanguage(constants.defaultLanguage || 'en');
+
+    this.storeService.getSettings().then(s => {
+          this.initLanguage(s.language);
+    });
+
     this.fetch(this.currentLanguage.code)
   }
 
@@ -34,16 +48,19 @@ export class I18nService {
       return it.code == locale
     });
     if (language) {
-      this.currentLanguage = language
+      this.setLanguage(language);
     } else {
       throw new Error(`Incorrect locale used for I18nService: ${locale}`);
-
     }
   }
 
   setLanguage(language){
     this.currentLanguage = language;
-    this.fetch(language.code)
+    this.storeService.getSettings()
+        .then(s => {
+            this.storeService.saveSettings(new Settings({...s, language: language.code}));
+        });
+    this.fetch(language.code);
   }
 
   subscribe(sub:any, err:any) {

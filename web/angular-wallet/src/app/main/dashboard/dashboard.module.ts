@@ -9,6 +9,7 @@ import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardService } from './dashboard.service';
+import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 
 const routes: Routes = [
     {
@@ -37,7 +38,8 @@ const routes: Routes = [
         NgxChartsModule,
 
         FuseSharedModule,
-        FuseWidgetModule
+        FuseWidgetModule,
+        I18nModule
     ],
     providers   : [
         DashboardService

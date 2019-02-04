@@ -4,6 +4,7 @@ import * as Loki from "lokijs";
 import { StoreConfig } from "./store.config";
 import { Settings } from 'app/settings';
 import { Account } from '@burstjs/core';
+import { constants } from 'app/constants';
 
 @Injectable()
 export class StoreService {

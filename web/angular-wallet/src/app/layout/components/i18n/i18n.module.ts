@@ -5,6 +5,11 @@ import {I18nPipe} from "./i18n.pipe";
 import {I18nService} from "./i18n.service";
 import {CommonModule} from "@angular/common";
 
+export interface Language {
+  name: string,
+  code: string
+}
+
 @NgModule({
   imports: [
     CommonModule
