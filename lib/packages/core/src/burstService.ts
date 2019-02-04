@@ -26,8 +26,10 @@ export class BurstService {
      */
     public toBRSEndpoint(method: string, data: any = {}): string {
         const request = `${this._relPath}?requestType=${method}`;
-        const params = Object.keys(data).map(k => `${k}=${data[k]}`).join('&');
-
+        const params = Object.keys(data)
+            .filter(k => data[k] !== undefined)
+            .map(k => `${k}=${data[k]}`)
+            .join('&');
         return params ? `${request}&${params}` : request;
     }
 
@@ -54,7 +56,7 @@ export class BurstService {
         const brsUrl = this.toBRSEndpoint(method, args);
         const response = await this.http.get(brsUrl);
         return Promise.resolve(response.response);
-    } 
+    }
 
     /**
      * Send data to BRS

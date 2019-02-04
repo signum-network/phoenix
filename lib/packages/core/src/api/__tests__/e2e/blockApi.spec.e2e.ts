@@ -9,7 +9,7 @@ const environment = loadEnvironment();
 
 jest.setTimeout(environment.timeout);
 
-describe(`[E2E] Block Api - TestNet: [${environment.testNetHost}]`, () => {
+describe(`[E2E] Block Api`, () => {
 
     const service = new BurstService(environment.testNetHost, environment.testNetApiPath);
 
