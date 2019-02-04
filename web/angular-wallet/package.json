@@ -40,6 +40,7 @@
     "@burstjs/core": "^0.0.10",
     "@burstjs/crypto": "^0.0.10",
     "@burstjs/http": "^0.0.10",
+    "@burstjs/util": "^0.0.10",
     "@ngrx/effects": "7.0.0",
     "@ngrx/router-store": "7.0.0",
     "@ngrx/store": "7.0.0",

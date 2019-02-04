@@ -6,7 +6,8 @@ import 'rxjs/add/operator/timeout'
 import { StoreService } from "app/store/store.service";
 import { Settings } from "app/settings";
 import { Account } from "@burstjs/core";
-import { generateMasterKeys, BurstUtil, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey, getBurstAddressFromAccountId, getAccountIdFromBurstAddress } from "@burstjs/crypto";
+import { isValid, decode } from "@burstjs/util";
+import { generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey, getBurstAddressFromAccountId, getAccountIdFromBurstAddress } from "@burstjs/crypto";
 
 @Injectable()
 export class AccountService {
@@ -67,13 +68,13 @@ export class AccountService {
     public createOfflineAccount(address: string): Promise<Account> {
         return new Promise((resolve, reject) => {
 
-            if (!BurstUtil.isValid(address)) {
+            if (!isValid(address)) {
                 reject("Invalid Burst Address");
             }
 
             let account: Account = new Account();
 
-            this.storeService.findAccount(BurstUtil.decode(address))
+            this.storeService.findAccount(decode(address))
                 .then(found => {
                     if (found == undefined) {
                         // import offline account

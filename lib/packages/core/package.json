@@ -43,7 +43,7 @@
   "dependencies": {
     "@burstjs/crypto": "^0.0.10",
     "@burstjs/http": "^0.0.10",
-    "bn.js": "^4.11.8"
+    "@burstjs/util": "^0.0.10"
   },
   "husky": {
     "hooks": {

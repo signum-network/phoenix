@@ -54,7 +54,6 @@
     "access": "public"
   },
   "dependencies": {
-    "typescript": "^3.3.1",
     "bn.js": "^4.11.8"
   }
 }

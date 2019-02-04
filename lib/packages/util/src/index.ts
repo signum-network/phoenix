@@ -1,7 +1,12 @@
-/**
- * Original work Copyright (c) 2018 PoC-Consortium  
- * Modified work Copyright (c) 2019 Burst Apps Team
- */
+/** @module util */
+export * from './constructBurstAddress';
+export * from './convertNumberToString';
+export * from './convertStringToNumber';
+export * from './decode';
+export * from './encode';
+export * from './isBurstAddress';
+export * from './isValid';
+export * from './splitBurstAddress';
 
  /**
   * A useful regex for matching burst addresses

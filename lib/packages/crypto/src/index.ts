@@ -13,7 +13,6 @@ export * from './getAccountIdFromPublicKey';
 export * from './getBurstAddressFromAccountId';
 export * from './hashSHA256';
 export * from './passPhraseGenerator';
-export * from './burstUtil';
 export * from './verifySignature';
 export * from './generateSignedTransactionBytes';
 export * from './generateSignature';
