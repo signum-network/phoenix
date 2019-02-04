@@ -8,8 +8,8 @@ const log = require('./log');
 const Targets = {
     desktop: buildDesktop,
     web: buildWeb,
-    ios: () => console.error("iOS build not implemented yet"),
-    android: () => console.error("Android build not implemented yet"),
+    ios: () => console.error('iOS build not implemented yet'),
+    android: () => console.error('Android build not implemented yet'),
 };
 
 const AllowedTargets = Object.keys(Targets);
