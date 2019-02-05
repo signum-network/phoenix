@@ -7,7 +7,7 @@ import { StoreService } from 'app/store/store.service';
 import { Settings } from 'app/settings';
 import { Account } from '@burstjs/core';
 import { generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey } from '@burstjs/crypto';
-import { isValidBurstAddress, convertNumericIdToAddress, convertAddressToNumericId } from '@burstjs/util';
+import { isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId } from '@burstjs/util';
 
 
 @Injectable()
@@ -69,7 +69,7 @@ export class AccountService {
     public createOfflineAccount(address: string): Promise<Account> {
         return new Promise((resolve, reject) => {
 
-            if (!isValidBurstAddress(address)) {
+            if (!isBurstAddress(address)) {
                 reject('Invalid Burst Address');
             }
 
