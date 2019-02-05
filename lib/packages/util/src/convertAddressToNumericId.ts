@@ -1,17 +1,29 @@
+// tslint:disable:no-bitwise
+
 /**
- * Original work Copyright (c) 2018 PoC-Consortium  
+ * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
 import * as BN from 'bn.js';
-import { base32Length, cwmap, alphabet, initialCodeword } from ".";
-import { isValid } from "./isValid";
+import { base32Length, cwmap, alphabet, initialCodeword } from './internal';
+import { isValid } from './isBurstAddress';
 
 /**
- * Decode BURST-XXXX-XXXX-XXXX-XXXXX into numeric Id
+ * Converts BURST-XXXX-XXXX-XXXX-XXXXX into numeric Id
  * @param address The BURST address
+ * @return The numeric id, or undefined if address is invalid
  */
-export const decode = (address: string): string => {
+    // @todo review, maybe better throwing exception
+export const convertAddressToNumericId = (address: string): string => {
+
+
+    if (address === undefined ||
+        address === null ||
+        address.trim().length === 0) {
+        return undefined;
+    }
+
     // remove Burst prefix
     if (address.indexOf('BURST-') === 0) {
         address = address.substr(6);
@@ -72,4 +84,4 @@ export const decode = (address: string): string => {
     } while (length > 0);
 
     return new BN(out.split('').reverse().join('')).toString();
-}
+};

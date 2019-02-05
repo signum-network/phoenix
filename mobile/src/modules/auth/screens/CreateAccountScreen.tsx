@@ -2,7 +2,6 @@ import { Account } from '@burstjs/core';
 import {
   generateMasterKeys,
   getAccountIdFromPublicKey,
-  getBurstAddressFromAccountId,
   PassPhraseGenerator
 } from '@burstjs/crypto';
 import { toString } from 'lodash';
