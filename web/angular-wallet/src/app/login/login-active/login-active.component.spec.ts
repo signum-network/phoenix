@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LoginActiveComponent } from './login-active.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+import { MockComponent } from 'ng-mocks';
+import { CreateActiveAccountComponent } from 'app/setup/account/create-active/create.component';
 
 describe('LoginActiveComponent', () => {
   let component: LoginActiveComponent;
@@ -8,9 +11,20 @@ describe('LoginActiveComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginActiveComponent ]
+      declarations: [
+        LoginActiveComponent,
+        MockComponent(CreateActiveAccountComponent)
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            queryParamMap: of({newUser: {}})
+          }
+        }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
