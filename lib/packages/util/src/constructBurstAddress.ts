@@ -1,6 +1,7 @@
+// @todo review the need of this function...IMHO too trivial
 
 /**
- * Original work Copyright (c) 2018 PoC-Consortium  
+ * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
@@ -10,4 +11,5 @@
  */
 export const constructBurstAddress = (parts: string[]): string => {
     return 'BURST-' + parts[0] + '-' + parts[1] + '-' + parts[2] + '-' + parts[3];
-}
+};
+

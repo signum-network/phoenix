@@ -1,8 +1,9 @@
-import { Account } from '@burstjs/core';
 import React from 'react';
 import { Keyboard, ScrollView, StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
+import { isBurstAddress } from '@burstjs/util';
+import { Account } from '@burstjs/core';
 import { Button } from '../../../core/components/base/Button';
 import { Input } from '../../../core/components/base/Input';
 import { SwitchItem } from '../../../core/components/base/SwitchItem';
@@ -17,7 +18,6 @@ import { defaultSideOffset, ESpaces, SizeNames } from '../../../core/theme/sizes
 import { createActiveAccount, createOfflineAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
-import { isValid } from '@burstjs/util';
 
 interface Props extends InjectedReduxProps {
   auth: AuthReduxState,
@@ -130,7 +130,7 @@ class AddAccount extends React.PureComponent<TProps, State> {
 
   renderOfflineBlock = () => {
     const { address, error } = this.state;
-    const isAddressCorrect = isValid(address);
+    const isAddressCorrect = isBurstAddress(address);
 
     return (
       <View>

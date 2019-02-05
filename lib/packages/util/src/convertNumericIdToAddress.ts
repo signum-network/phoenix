@@ -1,17 +1,27 @@
+// tslint:disable:no-bitwise
+
 /**
- * Original work Copyright (c) 2018 PoC-Consortium  
+ * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
 import * as BN from 'bn.js';
-import { initialCodeword, base32Length, gmult, alphabet, cwmap } from ".";
+import { initialCodeword, base32Length, gmult, alphabet, cwmap } from './internal';
 
 
 /**
  * Encode a numeric id into BURST-XXXX-XXXX-XXXX-XXXXX
  * @param numericId The numeric Id
+ * @return the BURST address in Reed-Solomon encoding, or undefined if passed null, undefined
  */
-export const encode = (numericId: string): string => {
+export const convertNumericIdToAddress = (numericId: string): string => {
+
+    if (numericId  === undefined ||
+        numericId  === null ||
+        numericId.trim().length === 0) {
+        return undefined;
+    }
+
     const plainString10 = [],
         codeword = initialCodeword.slice();
     let pos = 0;
@@ -73,4 +83,4 @@ export const encode = (numericId: string): string => {
     }
 
     return out;
-}
+};
