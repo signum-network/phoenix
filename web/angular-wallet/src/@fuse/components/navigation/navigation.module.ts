@@ -12,6 +12,8 @@ import { FuseNavVerticalGroupComponent } from './vertical/group/group.component'
 import { FuseNavHorizontalItemComponent } from './horizontal/item/item.component';
 import { FuseNavHorizontalCollapsableComponent } from './horizontal/collapsable/collapsable.component';
 
+import { I18nModule } from '../../../app/layout/components/i18n/i18n.module'
+
 @NgModule({
     imports     : [
         CommonModule,
@@ -20,7 +22,7 @@ import { FuseNavHorizontalCollapsableComponent } from './horizontal/collapsable/
         MatIconModule,
         MatRippleModule,
 
-        TranslateModule.forChild()
+        I18nModule
     ],
     exports     : [
         FuseNavigationComponent

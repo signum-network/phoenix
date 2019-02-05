@@ -37,11 +37,10 @@
     </a>
 
     <ng-template #itemContent>
-        <mat-icon class="nav-link-icon" *ngIf="item.icon">{{item.icon}}</mat-icon>
-        <span class="nav-link-title" [translate]="item.translate">{{item.title}}</span>
-        <span class="nav-link-badge" *ngIf="item.badge" [translate]="item.badge.translate"
-              [ngStyle]="{'background-color': item.badge.bg,'color': item.badge.fg}">
-            {{item.badge.title}}
+       <mat-icon class="nav-link-icon" *ngIf="item.icon">{{item.icon}}</mat-icon>
+        <span class="nav-link-title">{{item.id | i18n}}</span>
+        <span class="nav-link-badge" *ngIf="item.badge"[ngStyle]="{'background-color': item.badge.bg,'color': item.badge.fg}">
+            {{item.badge.translate | i18n}}
         </span>
     </ng-template>
 
