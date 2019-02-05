@@ -8,7 +8,7 @@ import { TransactionResponse } from '../../typings/transactionResponse';
 import { generateSignature } from '@burstjs/crypto';
 import { verifySignature } from '@burstjs/crypto';
 import { generateSignedTransactionBytes } from '@burstjs/crypto';
-import { convertNumberToString } from '@burstjs/util';
+import { convertNumberToNQTString } from '@burstjs/util';
 
 /**
  * Broadcasts a text message to the network/blockchain
@@ -41,16 +41,15 @@ export const sendTextMessage = (service: BurstService):
             messageIsText: true,
             broadcast: true,
             deadline: 1440, // which deadline?
-            feeNQT: convertNumberToString(fee),
+            feeNQT: convertNumberToNQTString(fee),
         };
 
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('sendMessage', parameters);
         const signature = generateSignature(unsignedHexMessage, senderPrivateKey);
         if (!verifySignature(signature, unsignedHexMessage, senderPublicKey)) {
             throw new Error('The signed message could not be verified! Message not broadcasted!');
-        } 
+        }
 
         const signedMessage = generateSignedTransactionBytes(unsignedHexMessage, signature);
         return broadcastTransaction(service)(signedMessage);
     };
-    

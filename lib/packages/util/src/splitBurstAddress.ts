@@ -1,5 +1,5 @@
 /**
- * Original work Copyright (c) 2018 PoC-Consortium  
+ * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
@@ -15,4 +15,5 @@ export const splitBurstAddress = (address: string): string[] => {
     } else {
         return [];
     }
-}
+};
+
