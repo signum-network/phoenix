@@ -1,4 +1,4 @@
-{
+git{
   "name": "@burstjs/core",
   "version": "0.0.14",
   "description": "Burst-related functions and models for building Burstcoin applications.",
