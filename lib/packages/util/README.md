@@ -17,11 +17,26 @@ yarn add @burstjs/util
 ```
 
 ## API Reference
+## Modules
+
+<dl>
+<dt><a href="#module_util">util</a></dt>
+<dd></dd>
+</dl>
+
+## Members
+
+<dl>
+<dt><a href="#isValid">isValid</a> ⇒ <code>boolean</code></dt>
+<dd><p>Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX, XXXX-XXXX-XXXX-XXXXX)</p></dd>
+</dl>
+
 ## Constants
 
 <dl>
-<dt><a href="#burstAddressPattern">burstAddressPattern</a></dt>
-<dd><p>A useful regex for matching burst addresses</p></dd>
+<dt><a href="#initialCodeword">initialCodeword</a></dt>
+<dd><p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team</p></dd>
 </dl>
 
 ## Functions
@@ -29,26 +44,47 @@ yarn add @burstjs/util
 <dl>
 <dt><a href="#constructBurstAddress">constructBurstAddress(parts)</a></dt>
 <dd><p>Construct a Burst address from a string array</p></dd>
-<dt><a href="#convertNumberToString">convertNumberToString(n)</a> ⇒</dt>
-<dd><p>Helper method to Number to String(8 decimals) representation</p></dd>
-<dt><a href="#convertStringToNumber">convertStringToNumber(amount)</a> ⇒</dt>
+<dt><a href="#convertAddressToNumericId">convertAddressToNumericId(address)</a> ⇒</dt>
+<dd><p>Converts BURST-XXXX-XXXX-XXXX-XXXXX into numeric Id</p></dd>
+<dt><a href="#convertNQTStringToNumber">convertNQTStringToNumber(amount)</a> ⇒</dt>
 <dd><p>Helper method to convert a String to number</p></dd>
-<dt><a href="#decode">decode(address)</a></dt>
-<dd><p>Decode BURST-XXXX-XXXX-XXXX-XXXXX into numeric Id</p></dd>
-<dt><a href="#encode">encode(numericId)</a></dt>
+<dt><a href="#convertNumberToNQTString">convertNumberToNQTString(n)</a> ⇒</dt>
+<dd><p>Helper method to Number to String(8 decimals) representation</p></dd>
+<dt><a href="#convertNumericIdToAddress">convertNumericIdToAddress(numericId)</a> ⇒</dt>
 <dd><p>Encode a numeric id into BURST-XXXX-XXXX-XXXX-XXXXX</p></dd>
-<dt><a href="#isBurstAddress">isBurstAddress(address)</a></dt>
-<dd><p>Validation Check. Quick validation of Burst addresses included</p></dd>
-<dt><a href="#isValid">isValid(address)</a></dt>
+<dt><a href="#isValid">isValid(address)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX, XXXX-XXXX-XXXX-XXXXX)</p></dd>
 <dt><a href="#splitBurstAddress">splitBurstAddress(address)</a></dt>
 <dd><p>Split the Burst address string into an array of 4 parts</p></dd>
 </dl>
 
-<a name="burstAddressPattern"></a>
+<a name="module_util"></a>
 
-## burstAddressPattern
+## util
+<a name="module_util..burstAddressPattern"></a>
+
+### util~burstAddressPattern
 <p>A useful regex for matching burst addresses</p>
+
+**Kind**: inner constant of [<code>util</code>](#module_util)  
+<a name="isValid"></a>
+
+## isValid ⇒ <code>boolean</code>
+<p>Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX, XXXX-XXXX-XXXX-XXXXX)</p>
+
+**Kind**: global variable  
+**Returns**: <code>boolean</code> - <p>true, if is a valid address, else false</p>  
+**Note**: This is with prior quick check  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| address | <code>string</code> | <p>The address</p> |
+
+<a name="initialCodeword"></a>
+
+## initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team</p>
 
 **Kind**: global constant  
 <a name="constructBurstAddress"></a>
@@ -62,9 +98,37 @@ yarn add @burstjs/util
 | --- | --- |
 | parts | <p>4 parts string array</p> |
 
-<a name="convertNumberToString"></a>
+<a name="convertAddressToNumericId"></a>
 
-## convertNumberToString(n) ⇒
+## convertAddressToNumericId(address) ⇒
+<p>Converts BURST-XXXX-XXXX-XXXX-XXXXX into numeric Id</p>
+
+**Kind**: global function  
+**Returns**: <p>The numeric id, or undefined if address is invalid</p>  
+
+| Param | Description |
+| --- | --- |
+| address | <p>The BURST address</p> |
+
+<a name="convertNQTStringToNumber"></a>
+
+## convertNQTStringToNumber(amount) ⇒
+<p>Helper method to convert a String to number</p>
+
+**Kind**: global function  
+**Returns**: <p>A number expressed in Burst (not NQT)</p>  
+**Throws**:
+
+- <p>exception if argument is invalid</p>
+
+
+| Param | Description |
+| --- | --- |
+| amount | <p>The amount in NQT</p> |
+
+<a name="convertNumberToNQTString"></a>
+
+## convertNumberToNQTString(n) ⇒
 <p>Helper method to Number to String(8 decimals) representation</p>
 
 **Kind**: global function  
@@ -74,61 +138,29 @@ yarn add @burstjs/util
 | --- | --- |
 | n | <p>the number</p> |
 
-<a name="convertStringToNumber"></a>
+<a name="convertNumericIdToAddress"></a>
 
-## convertStringToNumber(amount) ⇒
-<p>Helper method to convert a String to number</p>
-
-**Kind**: global function  
-**Returns**: <p>A number expressed in Burst (not NQT)</p>  
-
-| Param | Description |
-| --- | --- |
-| amount | <p>The amount in NQT</p> |
-
-<a name="decode"></a>
-
-## decode(address)
-<p>Decode BURST-XXXX-XXXX-XXXX-XXXXX into numeric Id</p>
-
-**Kind**: global function  
-
-| Param | Description |
-| --- | --- |
-| address | <p>The BURST address</p> |
-
-<a name="encode"></a>
-
-## encode(numericId)
+## convertNumericIdToAddress(numericId) ⇒
 <p>Encode a numeric id into BURST-XXXX-XXXX-XXXX-XXXXX</p>
 
 **Kind**: global function  
+**Returns**: <p>the BURST address in Reed-Solomon encoding, or undefined if passed null, undefined</p>  
 
 | Param | Description |
 | --- | --- |
 | numericId | <p>The numeric Id</p> |
 
-<a name="isBurstAddress"></a>
-
-## isBurstAddress(address)
-<p>Validation Check. Quick validation of Burst addresses included</p>
-
-**Kind**: global function  
-
-| Param | Description |
-| --- | --- |
-| address | <p>Burst Address</p> |
-
 <a name="isValid"></a>
 
-## isValid(address)
+## isValid(address) ⇒ <code>boolean</code>
 <p>Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX, XXXX-XXXX-XXXX-XXXXX)</p>
 
 **Kind**: global function  
+**Returns**: <code>boolean</code> - <p>true, if is a valid address, else false</p>  
 
-| Param | Description |
-| --- | --- |
-| address | <p>The address</p> |
+| Param | Type | Description |
+| --- | --- | --- |
+| address | <code>string</code> | <p>The address</p> |
 
 <a name="splitBurstAddress"></a>
 
