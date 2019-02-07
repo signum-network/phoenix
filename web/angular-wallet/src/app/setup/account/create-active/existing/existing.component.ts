@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CreateService} from '../../create.service';
 import {convertNumericIdToAddress} from '@burstjs/util';
 import {
@@ -14,9 +14,12 @@ import {
   templateUrl: './existing.component.html'
 })
 export class AccountCreateExistingComponent {
+
+  @Input('passphrase') passphrase: string;
+
   passphraseGenerator: PassPhraseGenerator;
 
-  constructor(private createService: CreateService) {
+  constructor(public createService: CreateService) {
     this.passphraseGenerator = new PassPhraseGenerator();
   }
 

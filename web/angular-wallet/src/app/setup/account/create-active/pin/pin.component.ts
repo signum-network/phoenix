@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewEncapsulation, Input} from '@angular/core';
 import { Router } from '@angular/router';
 import { CreateService } from '../../create.service';
 import { NotifierService } from 'angular-notifier';
@@ -10,10 +10,12 @@ import { NotifierService } from 'angular-notifier';
 })
 export class AccountCreatePinComponent implements OnInit {
 
-    constructor(
+  @Input('pin') pin: string;
+
+  constructor(
         private router: Router,
         private createService: CreateService,
-        private notificationService: NotifierService
+        private notificationService: NotifierService,
     ) { }
 
     public ngOnInit() {
@@ -36,7 +38,7 @@ export class AccountCreatePinComponent implements OnInit {
           },
           (error) => {
             this.notificationService.notify('error', error.toString());
-          });;
+          });
     }
 
 }

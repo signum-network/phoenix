@@ -56,8 +56,8 @@ export class AccountService {
             account.address = address;
 
             return this.storeService.saveAccount(account)
-                .then(account => {
-                    resolve(account);
+                .then(acc => {
+                    resolve(acc);
                 });
         });
     }

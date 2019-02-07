@@ -17,7 +17,7 @@ export class AccountCreateSeedComponent {
   private seedLimit = 100;
   private seed: any[] = [];
   private update = false;
-  private progress = 0;
+  public progress = 0;
   passphraseGenerator: PassPhraseGenerator;
 
   constructor(
