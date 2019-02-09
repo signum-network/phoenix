@@ -9,7 +9,7 @@ import { CreateService } from '../../create.service';
 export class AccountCreateRecordComponent implements OnInit {
 
     constructor(
-        private createService: CreateService,
+        public createService: CreateService,
     ) { }
 
     public ngOnInit() {
@@ -24,7 +24,7 @@ export class AccountCreateRecordComponent implements OnInit {
         this.createService.reset();
         // Angular Stepper hack
         setTimeout(x => {
-            this.createService.setStepIndex(0)
+            this.createService.setStepIndex(0);
         }, 0);
     }
 
@@ -33,7 +33,7 @@ export class AccountCreateRecordComponent implements OnInit {
     }
 
     public copy() {
-        let selBox = document.createElement('textarea');
+        const selBox = document.createElement('textarea');
         selBox.style.position = 'fixed';
         selBox.style.left = '0';
         selBox.style.top = '0';

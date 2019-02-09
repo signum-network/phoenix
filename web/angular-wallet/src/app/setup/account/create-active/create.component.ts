@@ -14,7 +14,7 @@ export class CreateActiveAccountComponent implements OnInit {
     @ViewChild(MatStepper) stepper: MatStepper;
     @Input('newUser') newUser: boolean;
 
-    constructor(private createService: CreateService) {}
+    constructor(public createService: CreateService) {}
 
     public ngOnInit() {
     }
@@ -23,8 +23,7 @@ export class CreateActiveAccountComponent implements OnInit {
     }
 
     public setIndex() {
-        this.stepper.selectedIndex = 1
+        this.stepper.selectedIndex = 1;
     }
 
 }
- 
