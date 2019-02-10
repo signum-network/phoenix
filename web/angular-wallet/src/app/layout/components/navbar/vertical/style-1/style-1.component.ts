@@ -7,6 +7,8 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { StoreService } from 'app/store/store.service';
+import { Account } from '@burstjs/core';
 
 @Component({
     selector     : 'navbar-vertical-style-1',
@@ -18,6 +20,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
+    account: Account;
 
     // Private
     private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
@@ -29,12 +32,14 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
      * @param {FuseConfigService} _fuseConfigService
      * @param {FuseNavigationService} _fuseNavigationService
      * @param {FuseSidebarService} _fuseSidebarService
+     * @param {StoreService} _storeService
      * @param {Router} _router
      */
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _fuseNavigationService: FuseNavigationService,
         private _fuseSidebarService: FuseSidebarService,
+        private _storeService: StoreService,
         private _router: Router
     )
     {
@@ -128,6 +133,11 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
             .subscribe(() => {
                 this.navigation = this._fuseNavigationService.getCurrentNavigation();
             });
+
+        // Get current user
+        this._storeService.getSelectedAccount().then((account) => {
+            this.account = account;
+        });
     }
 
     /**

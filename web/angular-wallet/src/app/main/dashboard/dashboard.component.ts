@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { StoreService } from 'app/store/store.service';
 import { Account, ApiSettings, compose } from '@burstjs/core';
+import { convertNumericIdToAddress } from '@burstjs/util';
 
 @Component({
     selector     : 'dashboard-dashboard',
@@ -38,13 +39,14 @@ export class DashboardComponent implements OnInit {
             if (e instanceof NavigationEnd) {
                 this.fetchTransactions();
             }
-        });
+        }); 
 
     }
 
     async fetchTransactions() {
       try {
         this.account =  await this.storeService.getSelectedAccount();
+        console.log(convertNumericIdToAddress(this.account.id));
         const accountTransactions = await this.api.account.getAccountTransactions(this.account.id);
         console.log(accountTransactions);
       } catch (e) {

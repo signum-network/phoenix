@@ -1,8 +1,7 @@
 <div class="navbar-top" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
     <div class="logo">
-        <img class="logo-icon" src="assets/images/logos/icon_white.png">
-        <span class="logo-text secondary-text">BURST</span>
+        <img src="assets/images/logos/logo_white.png">
     </div>
 
     <div class="buttons">
@@ -25,10 +24,10 @@
 <div class="navbar-scroll-container" [ngClass]="fuseConfig.layout.navbar.primaryBackground"
      fusePerfectScrollbar [fusePerfectScrollbarOptions]="{suppressScrollX: true}">
 
-    <div class="user" fxLayout="column" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
+    <div *ngIf="account" class="user" fxLayout="column" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
-        <div class="h3 username">HT4V-8H5E-ESS5-223SB</div>
-        <div class="h5 email hint-text mt-8">@blankey1337</div>
+        <div class="h3 username">{{ account.address.slice(6, account.address.length) }}</div>
+        <div class="h5 email hint-text mt-8" *ngIf="account.alias">{{ account.alias }}</div>
 
     </div>
 
