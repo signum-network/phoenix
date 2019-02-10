@@ -27,8 +27,8 @@
     <div *ngIf="account" class="user" fxLayout="column" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
         <div class="h3 username">{{ account.address.slice(6, account.address.length) }}</div>
-        <div class="h5 email hint-text mt-8" *ngIf="account.alias">{{ account.alias }}</div>
-
+        <div class="h5 email hint-text mt-8">{{ getAccountName() }}</div>
+        <div class="avatar-container fuse-navy-700"><img class="avatar" [src]="getQRCode(account.address)"></div>
     </div>
 
     <div class="navbar-content">

@@ -5,14 +5,16 @@ import 'rxjs/add/operator/timeout';
 
 import { StoreService } from 'app/store/store.service';
 import { Settings } from 'app/settings';
-import { Account } from '@burstjs/core';
+import { Account, compose, ApiSettings } from '@burstjs/core';
 import { generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey } from '@burstjs/crypto';
 import { isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId } from '@burstjs/util';
+import { environment } from 'environments/environment.prod';
 
 
 @Injectable()
 export class AccountService {
     private nodeUrl: string;
+    private api: any; //todo
 
     public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
@@ -20,10 +22,21 @@ export class AccountService {
         this.storeService.settings.subscribe((settings: Settings) => {
             this.nodeUrl = settings.node;
         });
+
+        const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
+        this.api = compose(apiSettings);
     }
 
     public setCurrentAccount(account: Account) {
         this.currentAccount.next(account);
+    }
+
+    public getAccountTransactions(id: string) {
+        return this.api.account.getAccountTransactions(id);
+    }
+
+    public generateSendTransactionQRCodeAddress(id: string) {
+        return this.api.account.generateSendTransactionQRCodeAddress(id);
     }
 
     /*

@@ -18,6 +18,8 @@ import {sendTextMessage} from './message/sendTextMessage';
 import {getAccountTransactions} from './account/getAccountTransactions';
 import {getUnconfirmedAccountTransactions} from './account/getUnconfirmedAccountTransactions';
 import {getAccountBalance} from './account/getAccountBalance';
+import { generateSendTransactionQRCode } from './account/generateSendTransactionQRCode';
+import { generateSendTransactionQRCodeAddress } from './account/generateSendTransactionQRCodeAddress';
 
 export class ApiSettings {
     constructor(
@@ -59,6 +61,8 @@ export function compose(settings: ApiSettings) {
             getAccountTransactions: getAccountTransactions(service),
             getUnconfirmedAccountTransactions: getUnconfirmedAccountTransactions(service),
             getAccountBalance: getAccountBalance(service),
+            generateSendTransactionQRCode: generateSendTransactionQRCode(service),
+            generateSendTransactionQRCodeAddress: generateSendTransactionQRCodeAddress(service),
         }
     };
 }

@@ -9,6 +9,7 @@ import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scr
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { StoreService } from 'app/store/store.service';
 import { Account } from '@burstjs/core';
+import { AccountService } from 'app/setup/account/account.service';
 
 @Component({
     selector     : 'navbar-vertical-style-1',
@@ -33,6 +34,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
      * @param {FuseNavigationService} _fuseNavigationService
      * @param {FuseSidebarService} _fuseSidebarService
      * @param {StoreService} _storeService
+     * @param {AccountService} _accountService
      * @param {Router} _router
      */
     constructor(
@@ -40,6 +42,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         private _fuseNavigationService: FuseNavigationService,
         private _fuseSidebarService: FuseSidebarService,
         private _storeService: StoreService,
+        private _accountService: AccountService,
         private _router: Router
     )
     {
@@ -168,5 +171,13 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     toggleSidebarFolded(): void
     {
         this._fuseSidebarService.getSidebar('navbar').toggleFold();
+    }
+
+    getQRCode(id: string): Promise<string> {
+        return this._accountService.generateSendTransactionQRCodeAddress(id);
+    }
+
+    getAccountName() {
+        return `No Account Name Set`;
     }
 }

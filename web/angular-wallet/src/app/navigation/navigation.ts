@@ -6,13 +6,7 @@ export const navigation: FuseNavigation[] = [
         title    : 'Dashboard',
         type     : 'item',
         icon     : 'dashboard',
-        url      : '/dashboard',
-        badge    : {
-            title    : '25',
-            translate: '25',
-            bg       : '#F44336',
-            fg       : '#FFFFFF'
-        }
+        url      : '/dashboard'
     },
     {
         id       : 'transactions',
@@ -56,13 +50,13 @@ export const navigation: FuseNavigation[] = [
         ]
     },
     {
-        id       : 'dex',
-        title    : 'Decentralized Exchange',
+        id       : 'asset_exchange',
+        title    : 'Exchange',
         type     : 'group',
         children : [
             {
                 id       : 'asset_exchange',
-                title    : 'Decentralized Exchange',
+                title    : 'Exchange',
                 type     : 'item',
                 icon     : 'account_balance',
                 url      : '/dex',
@@ -100,44 +94,58 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'add_box',
                 url      : '/dex/issue-asset'
-            },
-            {
-                id       : 'payout_dividends',
-                title    : 'Payout Dividends',
-                type     : 'item',
-                icon     : 'money',
-                url      : '/dex/payout-dividends'
             }
         ]
     },
     {
-        id: 'contacts',
-        title: 'Contacts',
-        type: 'item',
-        icon: 'contacts'
+        id: 'account',
+        title: 'Account',
+        type: 'group',
+        children: [
+            {
+                id: 'contacts',
+                title: 'Contacts',
+                type: 'item',
+                icon: 'contacts',
+                url: 'contacts'
+            },
+            {
+                id: 'messages',
+                title: 'Messages',
+                type: 'item',
+                icon: 'messages',
+                url: 'messages'
+            },
+            {
+                id: 'aliases',
+                title: 'Aliases',
+                type: 'item',
+                icon: 'group',
+                url: 'aliases'
+            }
+        ]
+
     },
     {
-        id: 'messages',
-        title: 'Messages',
-        type: 'item',
-        icon: 'messages'
-    },
-    {
-        id: 'aliases',
-        title: 'Aliases',
-        type: 'item',
-        icon: 'group'
-    },
-    {
-        id: 'blocks',
-        title: 'Blocks',
-        type: 'item',
-        icon: 'apps'
-    },
-    {
-        id: 'peers',
-        title: 'Peers',
-        type: 'item',
-        icon: 'device_hub'
+
+        id: 'network',
+        title: 'Network',
+        type: 'group',
+        children: [
+            {
+                id: 'blocks',
+                title: 'Blocks',
+                type: 'item',
+                icon: 'apps',
+                url: 'blocks'
+            },
+            {
+                id: 'peers',
+                title: 'Peers',
+                type: 'item',
+                icon: 'device_hub',
+                url: 'peers'
+            }
+        ]
     }
 ];
