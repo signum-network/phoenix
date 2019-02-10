@@ -1,7 +1,7 @@
 {
-  "coverage": "29.77%",
-  "expectCount": 571,
-  "actualCount": 170,
+  "coverage": "29.6%",
+  "expectCount": 581,
+  "actualCount": 172,
   "files": {
     "packages/core/out/abstract/index.js": {
       "expectCount": 1,
@@ -18,7 +18,7 @@
       ]
     },
     "packages/core/out/api/composeApi.js": {
-      "expectCount": 18,
+      "expectCount": 20,
       "actualCount": 0,
       "undocumentLines": [
         3,
@@ -38,7 +38,9 @@
         17,
         18,
         19,
-        23
+        20,
+        21,
+        25
       ]
     },
     "packages/core/out/api/index.js": {
@@ -205,6 +207,16 @@
       "actualCount": 1,
       "undocumentLines": []
     },
+    "packages/core/src/api/account/generateSendTransactionQRCode.ts": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "packages/core/src/api/account/generateSendTransactionQRCodeAddress.ts": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
     "packages/core/src/api/account/getAccountBalance.ts": {
       "expectCount": 1,
       "actualCount": 1,
@@ -244,9 +256,9 @@
       "expectCount": 5,
       "actualCount": 2,
       "undocumentLines": [
-        24,
-        25,
-        26
+        26,
+        27,
+        28
       ]
     },
     "packages/core/src/api/message/sendTextMessage.ts": {
@@ -898,6 +910,23 @@
         4
       ]
     },
+    "packages/util/out/decode.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        4,
+        5
+      ]
+    },
+    "packages/util/out/encode.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        4
+      ]
+    },
     "packages/util/out/index.js": {
       "expectCount": 1,
       "actualCount": 0,
@@ -906,6 +935,13 @@
       ]
     },
     "packages/util/out/isBurstAddress.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    },
+    "packages/util/out/isValid.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
