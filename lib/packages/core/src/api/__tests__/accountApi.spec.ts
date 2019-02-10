@@ -4,6 +4,8 @@ import {BurstService} from '../../burstService';
 import {getAccountTransactions} from '../account/getAccountTransactions';
 import {getUnconfirmedAccountTransactions} from '../account/getUnconfirmedAccountTransactions';
 import {getAccountBalance} from '../account/getAccountBalance';
+import { generateSendTransactionQRCodeAddress } from '../account/generateSendTransactionQRCodeAddress';
+import { generateSendTransactionQRCode } from '../account/generateSendTransactionQRCode';
 
 describe('Account Api', () => {
 
@@ -204,6 +206,36 @@ describe('Account Api', () => {
             const service = new BurstService('baseUrl', 'relPath', httpMock);
             try {
                 await getAccountBalance(service)('accountId');
+            } catch (e) {
+                expect(e.status).toBe(404);
+                expect(e.message).toBe('Test Error');
+            }
+        });
+    });
+
+    describe('generateSendTransactionQRCode', () => {
+        const mockAddress = `BURST-K8MA-U2JT-R6DJ-FVQLC`;
+
+        it('should expose a method for constructing the URL', async () => {
+            const expected = `relPath?requestType=generateSendTransactionQRCode&receiverId=BURST-K8MA-U2JT-R6DJ-FVQLC&amountNQT=0&feeSuggestionType=standard`
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const generatedImageUrl = generateSendTransactionQRCodeAddress(service)(mockAddress);
+            expect(generatedImageUrl).toBe(expected);
+        });
+
+        it('should fetch the QR image', async () => {
+            const mockedImage = new ArrayBuffer(1337);
+            httpMock = HttpMockBuilder.create().onGetReply(200, mockedImage).build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const generatedImage = await generateSendTransactionQRCode(service)(mockAddress);
+            expect(generatedImage.byteLength).toBe(1337);
+        });
+
+        it('should fail generateSendTransactionQRCode', async () => {
+            httpMock = HttpMockBuilder.create().onGetThrowError(404, 'Test Error').build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            try {
+                await generateSendTransactionQRCode(service)(mockAddress);
             } catch (e) {
                 expect(e.status).toBe(404);
                 expect(e.message).toBe('Test Error');

@@ -97,21 +97,27 @@
 import {BurstService} from &apos;../../burstService&apos;;
 
 /**
- * Generate the URL for a QR Code for a given BURST address
- * @param {string} address The recipient burst address
+ * Generate the URL for a QR Code for a given BURST address. Useful for IMG tags in HTML.
+ * @param {string} receiverId The recipient burst address
+ * @param {string} amountNQT The amount (in NQT) to request 
+ * @param {string} feeSuggestionType The fee suggestion type string
  * @return {string}
  */
 export const generateSendTransactionQRCodeAddress = (service: BurstService):
     (
-        address: string
+        receiverId: string,
+        amountNQT?: number,
+        feeSuggestionType?: string
     ) =&gt; string =&gt;
     (
-        address: string
+        receiverId: string,
+        amountNQT: number = 0,
+        feeSuggestionType: string = &apos;standard&apos;
     ): string =&gt;
         service.toBRSEndpoint(&apos;generateSendTransactionQRCode&apos;, {
-            receiverId: address,
-            amountNQT: 0,
-            feeSuggestionType: &apos;standard&apos;
+            receiverId: receiverId,
+            amountNQT,
+            feeSuggestionType
         });
 </code></pre>
 

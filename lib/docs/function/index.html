@@ -370,13 +370,13 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-generateSendTransactionQRCode">generateSendTransactionQRCode</a></span></span><span class="code" data-ice="signature">(address: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>ArrayBufferLike</span>&gt;</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-generateSendTransactionQRCode">generateSendTransactionQRCode</a></span></span><span class="code" data-ice="signature">(receiverId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, amountNQT: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, feeSuggestionType: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>ArrayBufferLike</span>&gt;</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Get QR Code for a given BURST address</p>
+        <div data-ice="description"><p>Get QR Code image for a given BURST address</p>
 </div>
       </div>
     </td>
@@ -399,13 +399,13 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-generateSendTransactionQRCodeAddress">generateSendTransactionQRCodeAddress</a></span></span><span class="code" data-ice="signature">(address: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-generateSendTransactionQRCodeAddress">generateSendTransactionQRCodeAddress</a></span></span><span class="code" data-ice="signature">(receiverId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, amountNQT: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, feeSuggestionType: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Generate the URL for a QR Code for a given BURST address</p>
+        <div data-ice="description"><p>Generate the URL for a QR Code for a given BURST address.</p>
 </div>
       </div>
     </td>
@@ -1632,18 +1632,18 @@ with its functions.</p>
     
     
     
-    <span class="code" data-ice="name">generateSendTransactionQRCode</span><span class="code" data-ice="signature">(address: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>ArrayBufferLike</span>&gt;</span>
+    <span class="code" data-ice="name">generateSendTransactionQRCode</span><span class="code" data-ice="signature">(receiverId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, amountNQT: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, feeSuggestionType: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>ArrayBufferLike</span>&gt;</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/api/account/generateSendTransactionQRCode.ts.html#lineNumber6">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/api/account/generateSendTransactionQRCode.ts.html#lineNumber8">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {generateSendTransactionQRCode} from &apos;<span><a href="file/packages/core/src/api/account/generateSendTransactionQRCode.ts.html#lineNumber6">@burstjs/core/api</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {generateSendTransactionQRCode} from &apos;<span><a href="file/packages/core/src/api/account/generateSendTransactionQRCode.ts.html#lineNumber8">@burstjs/core/api</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>Get QR Code for a given BURST address</p>
+  <div data-ice="description"><p>Get QR Code image for a given BURST address</p>
 </div>
 
   
@@ -1657,10 +1657,24 @@ with its functions.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">address</td>
+      <td data-ice="name" class="code" data-depth="0">receiverId</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>The recipient burst address</p>
+      <td data-ice="description"><p>The recipient burst</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">amountNQT</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The amount (in NQT) to request</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">feeSuggestionType</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The fee suggestion type string</p>
 </td>
     </tr>
 </tbody>
@@ -1705,18 +1719,18 @@ with its functions.</p>
     
     
     
-    <span class="code" data-ice="name">generateSendTransactionQRCodeAddress</span><span class="code" data-ice="signature">(address: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+    <span class="code" data-ice="name">generateSendTransactionQRCodeAddress</span><span class="code" data-ice="signature">(receiverId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, amountNQT: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, feeSuggestionType: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/api/account/generateSendTransactionQRCodeAddress.ts.html#lineNumber6">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/api/account/generateSendTransactionQRCodeAddress.ts.html#lineNumber8">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {generateSendTransactionQRCodeAddress} from &apos;<span><a href="file/packages/core/src/api/account/generateSendTransactionQRCodeAddress.ts.html#lineNumber6">@burstjs/core/api</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {generateSendTransactionQRCodeAddress} from &apos;<span><a href="file/packages/core/src/api/account/generateSendTransactionQRCodeAddress.ts.html#lineNumber8">@burstjs/core/api</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>Generate the URL for a QR Code for a given BURST address</p>
+  <div data-ice="description"><p>Generate the URL for a QR Code for a given BURST address. Useful for IMG tags in HTML.</p>
 </div>
 
   
@@ -1730,10 +1744,24 @@ with its functions.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">address</td>
+      <td data-ice="name" class="code" data-depth="0">receiverId</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>The recipient burst address</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">amountNQT</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The amount (in NQT) to request</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">feeSuggestionType</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The fee suggestion type string</p>
 </td>
     </tr>
 </tbody>
