@@ -1,0 +1,108 @@
+<div class="page-layout blank p-24" fusePerfectScrollbar>
+    <mat-card class="transaction-header">
+        <mat-grid-list cols="8" rowHeight="80px">
+            <mat-grid-tile class="border-divide-right" [colspan]="4" [rowspan]="1">
+                <div class="transaction-filter">
+                    Filter:
+                </div>
+                <div class="transaction-filter">
+                    <mat-form-field class="search-form">
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" #query>
+                    </mat-form-field>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <mat-form-field>
+                    <input matInput [matDatepicker]="pickerFrom" placeholder="From" [formControl]="pickerFromField"
+                        (dateChange)="applyFilter(this.query.value)">
+                    <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerFrom></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <mat-form-field>
+                    <input matInput [matDatepicker]="pickerTo" placeholder="To" [formControl]="pickerToField"
+                        (dateChange)="applyFilter(this.query.value)">
+                    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerTo></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card>
+    <mat-card>
+        <h3>{{ 'transactions' | i18n }}</h3>
+        <mat-table #table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="transaction_id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'transaction_id' | i18n }}</mat-header-cell>
+                <mat-cell *matCellDef="let transaction">
+                    <span class="link" (click)="openTransactionModal(transaction)">{{ transaction.id }}</span>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="attachment">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>mail</mat-icon>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let transaction">
+                    <span *ngIf="transaction.attachment">
+                        <mat-icon>mail</mat-icon>
+                    </span>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="timestamp">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>schedule</mat-icon>&nbsp;Date
+                </mat-header-cell>
+                <mat-cell *matCellDef="let transaction"
+                    title="{{convertTimestamp(transaction.timestamp) | date:'MMM d, y, h:mm:ss'}}">
+                    {{convertTimestamp(transaction.timestamp) | timeAgo}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="type">
+                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                <mat-cell *matCellDef="let transaction">
+                    {{ getTransactionNameFromType(transaction, account) | i18n }}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="amount">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>local_atm</mat-icon>&nbsp;{{ 'amount' | i18n }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let transaction"> {{transaction.amountNQT| number : '1.0-8'}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="fee">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>compare_arrows</mat-icon>&nbsp;{{ 'fee' | i18n }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let transaction"> {{transaction.feeNQT | number : '1.0-8'}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="account">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>account_box</mat-icon>&nbsp;{{ 'account' | i18n }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let transaction">
+                    <span *ngIf="isOwnAccount(transaction.senderAddress)">{{transaction.recipientAddress}}</span>
+                    <span *ngIf="!isOwnAccount(transaction.senderAddress)">{{transaction.senderAddress}}</span>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="confirmed">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'confirmed' | i18n }}</mat-header-cell>
+                <mat-cell *matCellDef="let transaction">
+                    <mat-icon *ngIf="transaction.confirmed">check</mat-icon>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 500]" [showFirstLastButtons]="true">
+        </mat-paginator>
+    </mat-card>
+</div>

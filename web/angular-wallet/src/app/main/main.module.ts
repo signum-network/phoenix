@@ -20,13 +20,15 @@ import {MainComponent} from './main.component';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import { LoginGuard } from 'app/login/login-guard.service';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { TransactionsModule } from './transactions/transactions.module';
 
 const mainRoutes: Routes = [
   {
-    path: '**',
-    component: DashboardComponent,
-    canActivate: [LoginGuard]
-  },
+    path: '*',
+    canActivate: [LoginGuard],
+    redirectTo: 'dashboard'
+  }
 ];
 
 @NgModule({
@@ -60,6 +62,7 @@ const mainRoutes: Routes = [
     LayoutModule,
     SampleModule,
     DashboardModule,
+    TransactionsModule
   ],
   exports: [
     MainComponent

@@ -25,13 +25,15 @@ export class I18nService {
     ) {
     this.state = new Subject();
 
-    this.initLanguage(constants.defaultLanguage || 'en');
-
-    this.storeService.getSettings().then(s => {
+    this.storeService.ready.subscribe((ready) => {
+      if (ready) {
+        this.initLanguage(constants.defaultLanguage || 'en');
+        this.fetch(this.currentLanguage.code);
+        this.storeService.getSettings().then(s => {
           this.initLanguage(s.language);
+        });
+      }
     });
-
-    this.fetch(this.currentLanguage.code)
   }
 
   private fetch(locale: any) {

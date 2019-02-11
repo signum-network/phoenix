@@ -1,0 +1,18 @@
+h2 span {
+    font-size: 14px;
+    font-weight: normal;
+    color: #666;
+    float: right;
+}
+
+table {
+    margin-top:10px;
+}
+
+th, td {
+    padding:5px;
+    text-align: left;
+    border-bottom:1px solid #efefef;
+    word-break: break-word;
+    min-width: 150px;
+}

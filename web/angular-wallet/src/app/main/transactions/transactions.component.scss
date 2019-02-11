@@ -1,0 +1,59 @@
+.indicator {
+    padding-top: 5px;
+}
+
+.mat-column-amount {
+  flex: 0 0 100px;
+}
+
+.mat-column-timestamp {
+  flex: 0 0 100px;
+}
+
+.mat-column-transaction_id {
+  flex: 0 0 200px;
+}
+
+.mat-column-fee {
+  flex: 0 0 100px;
+}
+
+.mat-column-attachment {
+  flex: 0 0 50px;
+}
+
+.mat-column-type {
+  flex: 0 0 150px;
+}
+
+.mat-column-account {
+  flex: 0 1 300px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: calc(100vh - 280px);
+}
+
+.search-form {
+    width: 300px;
+}
+
+.sync-icon {
+    height: 40px;
+    width: 40px;
+    font-size: 40px;
+}
+
+.transaction-filter {
+    padding: 0px 10px;
+}
+
+.transaction-checkbox {
+    padding: 0px 5px;
+}
+
+.transaction-header {
+    margin-bottom: 15px;
+    padding: 0px;
+}

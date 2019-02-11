@@ -4,7 +4,7 @@ import { DashboardService } from './dashboard.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { StoreService } from 'app/store/store.service';
-import { Account, ApiSettings, compose } from '@burstjs/core';
+import { Account } from '@burstjs/core';
 import { convertNumericIdToAddress } from '@burstjs/util';
 import { AccountService } from 'app/setup/account/account.service';
 
