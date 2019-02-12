@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { Transaction, Account } from '@burstjs/core';
 import { Converter } from '@burstjs/crypto';
-import { TransactionDetailsDialogComponent } from './transaction-details-dialog';
 import { FormControl } from '@angular/forms';
 import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
@@ -39,7 +38,7 @@ export class TransactionsComponent {
                     if (transactions.errorCode) {
                         // temporary
                         transactions = [{
-                            id: '1234', attachment: '123', timestamp: new Date(), type: '123', amountNQT: '12345', feeNQT: '123'
+                            id: '17134635898950935218', attachment: '123', timestamp: new Date(), type: '123', amountNQT: '12345', feeNQT: '123'
                         }];
                         console.log(transactions.errorDescription);
                     }
@@ -78,20 +77,6 @@ export class TransactionsComponent {
 
     public convertTimestamp(timestamp: number): Date {
         return Converter.convertTimestampToDate(timestamp);
-    }
-
-    public openTransactionModal(transaction: Transaction): void {
-        console.log(transaction);
-
-        const dialogRef = this.dialog.open(TransactionDetailsDialogComponent, {
-            width: '600px',
-            data: { transaction: transaction }
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed', result);
-        });
-
     }
 
     public getTransactionNameFromType() {

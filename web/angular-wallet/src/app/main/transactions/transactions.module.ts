@@ -19,16 +19,25 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
-import { TransactionDetailsDialogComponent } from './transaction-details-dialog/transaction-details-dialog.component';
 import { TransactionRowValueCellComponent } from './transaction-row-value-cell/transaction-row-value-cell.component';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { RouterModule } from '@angular/router';
+import { TransactionDetailsComponent } from './transaction-details';
+import { TransactionResolver } from './transaction.resolver';
+import { TransactionService } from './transaction.service';
 
 const routes = [
     {
         path     : 'transactions',
         component: TransactionsComponent
+    },
+    {
+        path     : 'transaction/:id',
+        component: TransactionDetailsComponent,
+        resolve: {
+            transaction: TransactionResolver
+        }
     }
 ];
 
@@ -63,12 +72,13 @@ const routes = [
         RouterModule.forChild(routes)
     ],
     declarations: [
-        TransactionDetailsDialogComponent,
         TransactionsComponent,
         TransactionRowValueCellComponent,
+        TransactionDetailsComponent
     ],
-    entryComponents: [ TransactionDetailsDialogComponent ],
     providers: [
+        TransactionResolver,
+        TransactionService
     ]
 })
 export class TransactionsModule { }

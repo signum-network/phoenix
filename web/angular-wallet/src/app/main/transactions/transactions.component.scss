@@ -39,21 +39,16 @@
     width: 300px;
 }
 
+mat-form-field {
+  width:100%;
+}
+
 .sync-icon {
     height: 40px;
     width: 40px;
     font-size: 40px;
 }
 
-.transaction-filter {
-    padding: 0px 10px;
-}
-
-.transaction-checkbox {
-    padding: 0px 5px;
-}
-
-.transaction-header {
-    margin-bottom: 15px;
-    padding: 0px;
+.link {
+  cursor:pointer;
 }

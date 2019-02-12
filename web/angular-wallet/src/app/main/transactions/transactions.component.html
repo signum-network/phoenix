@@ -1,42 +1,54 @@
-<div class="page-layout blank p-24" fusePerfectScrollbar>
-    <mat-card class="transaction-header">
-        <mat-grid-list cols="8" rowHeight="80px">
-            <mat-grid-tile class="border-divide-right" [colspan]="4" [rowspan]="1">
-                <div class="transaction-filter">
-                    Filter:
-                </div>
+<div class="page-layout blank simple" fusePerfectScrollbar>
+
+    <!-- HEADER -->
+    <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+        fxLayoutAlign.gt-xs="space-between center">
+
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="secondary-text s-18">home</mat-icon>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">{{ 'transactions' | i18n }}</span>
+            </div>
+            <div class="h1 mt-16">{{ 'transactions' | i18n }}</div>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <mat-card>
+
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+            <div fxFlex="50">
                 <div class="transaction-filter">
                     <mat-form-field class="search-form">
                         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" #query>
                     </mat-form-field>
                 </div>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="2" [rowspan]="1">
+            </div>
+            <div>
                 <mat-form-field>
-                    <input matInput [matDatepicker]="pickerFrom" placeholder="From" [formControl]="pickerFromField"
+                    <input matInput [matDatepicker]="pickerFrom" placeholder="{{ 'from' | i18n }}" [formControl]="pickerFromField"
                         (dateChange)="applyFilter(this.query.value)">
                     <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
                     <mat-datepicker #pickerFrom></mat-datepicker>
                 </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="2" [rowspan]="1">
+            </div>
+            <div>
                 <mat-form-field>
-                    <input matInput [matDatepicker]="pickerTo" placeholder="To" [formControl]="pickerToField"
+                    <input matInput [matDatepicker]="pickerTo" placeholder="{{ 'to' | i18n }}" [formControl]="pickerToField"
                         (dateChange)="applyFilter(this.query.value)">
                     <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
                     <mat-datepicker #pickerTo></mat-datepicker>
                 </mat-form-field>
-            </mat-grid-tile>
-        </mat-grid-list>
-    </mat-card>
-    <mat-card>
-        <h3>{{ 'transactions' | i18n }}</h3>
+            </div>
+        </div>
+
         <mat-table #table [dataSource]="dataSource" matSort>
 
             <ng-container matColumnDef="transaction_id">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'transaction_id' | i18n }}</mat-header-cell>
                 <mat-cell *matCellDef="let transaction">
-                    <span class="link" (click)="openTransactionModal(transaction)">{{ transaction.id }}</span>
+                    <span class="link" [routerLink]="['/transaction', transaction.id]">{{ transaction.id }}</span>
                 </mat-cell>
             </ng-container>
 
