@@ -1,0 +1,120 @@
+<div class="page-layout blank simple" fusePerfectScrollbar>
+
+    <!-- HEADER -->
+    <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+        fxLayoutAlign.gt-xs="space-between center">
+
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="secondary-text s-18">home</mat-icon>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">{{ 'transactions' | i18n }}</span>
+            </div>
+            <div class="h1 mt-16">{{ 'transactions' | i18n }}</div>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <mat-card>
+
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+            <div fxFlex="50">
+                <div class="transaction-filter">
+                    <mat-form-field class="search-form">
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" #query>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="pickerFrom" placeholder="{{ 'from' | i18n }}" [formControl]="pickerFromField"
+                        (dateChange)="applyFilter(this.query.value)">
+                    <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerFrom></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="pickerTo" placeholder="{{ 'to' | i18n }}" [formControl]="pickerToField"
+                        (dateChange)="applyFilter(this.query.value)">
+                    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerTo></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <mat-table #table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="transaction_id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'transaction_id' | i18n }}</mat-header-cell>
+                <mat-cell *matCellDef="let transaction">
+                    <span class="link" [routerLink]="['/transaction', transaction.id]">{{ transaction.id }}</span>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="attachment">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>mail</mat-icon>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let transaction">
+                    <span *ngIf="transaction.attachment">
+                        <mat-icon>mail</mat-icon>
+                    </span>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="timestamp">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>schedule</mat-icon>&nbsp;Date
+                </mat-header-cell>
+                <mat-cell *matCellDef="let transaction"
+                    title="{{convertTimestamp(transaction.timestamp) | date:'MMM d, y, h:mm:ss'}}">
+                    {{convertTimestamp(transaction.timestamp) | timeAgo}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="type">
+                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                <mat-cell *matCellDef="let transaction">
+                    {{ getTransactionNameFromType(transaction, account) | i18n }}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="amount">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>local_atm</mat-icon>&nbsp;{{ 'amount' | i18n }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let transaction"> {{transaction.amountNQT| number : '1.0-8'}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="fee">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>compare_arrows</mat-icon>&nbsp;{{ 'fee' | i18n }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let transaction"> {{transaction.feeNQT | number : '1.0-8'}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="account">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>account_box</mat-icon>&nbsp;{{ 'account' | i18n }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let transaction">
+                    <span *ngIf="isOwnAccount(transaction.senderAddress)">{{transaction.recipientAddress}}</span>
+                    <span *ngIf="!isOwnAccount(transaction.senderAddress)">{{transaction.senderAddress}}</span>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="confirmed">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'confirmed' | i18n }}</mat-header-cell>
+                <mat-cell *matCellDef="let transaction">
+                    <mat-icon *ngIf="transaction.confirmed">check</mat-icon>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 500]" [showFirstLastButtons]="true">
+        </mat-paginator>
+    </mat-card>
+</div>

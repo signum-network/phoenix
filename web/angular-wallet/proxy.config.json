@@ -1,9 +1,9 @@
 {
   "/burst": {
     "target": {
-      "host": "3.16.150.48",
+      "host": "localhost",
       "protocol": "http:",
-      "port": 6876
+      "port": 8125
     },
     "secure": false,
     "changeOrigin": true,

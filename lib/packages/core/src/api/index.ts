@@ -24,6 +24,8 @@ export * from './message/sendTextMessage';
 export * from './account/getAccountBalance';
 export * from './account/getAccountTransactions';
 export * from './account/getUnconfirmedAccountTransactions';
+export * from './account/generateSendTransactionQRCode';
+export * from './account/generateSendTransactionQRCodeAddress';
 
 
 

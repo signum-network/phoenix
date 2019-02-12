@@ -36,7 +36,9 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-abstract">core/src/abstract</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/abstract/store.ts~Store.html">Store</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api">core/src/api</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/api/composeApi.ts~ApiSettings.html">ApiSettings</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-compose">compose</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-account">core/src/api/account</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAccountBalance">getAccountBalance</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-account">core/src/api/account</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateSendTransactionQRCode">generateSendTransactionQRCode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateSendTransactionQRCodeAddress">generateSendTransactionQRCodeAddress</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAccountBalance">getAccountBalance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAccountTransactions">getAccountTransactions</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getUnconfirmedAccountTransactions">getUnconfirmedAccountTransactions</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-block">core/src/api/block</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBlockByHeight">getBlockByHeight</a></span></span></li>
@@ -109,6 +111,8 @@ import {sendTextMessage} from &apos;./message/sendTextMessage&apos;;
 import {getAccountTransactions} from &apos;./account/getAccountTransactions&apos;;
 import {getUnconfirmedAccountTransactions} from &apos;./account/getUnconfirmedAccountTransactions&apos;;
 import {getAccountBalance} from &apos;./account/getAccountBalance&apos;;
+import { generateSendTransactionQRCode } from &apos;./account/generateSendTransactionQRCode&apos;;
+import { generateSendTransactionQRCodeAddress } from &apos;./account/generateSendTransactionQRCodeAddress&apos;;
 
 export class ApiSettings {
     constructor(
@@ -150,6 +154,8 @@ export function compose(settings: ApiSettings) {
             getAccountTransactions: getAccountTransactions(service),
             getUnconfirmedAccountTransactions: getUnconfirmedAccountTransactions(service),
             getAccountBalance: getAccountBalance(service),
+            generateSendTransactionQRCode: generateSendTransactionQRCode(service),
+            generateSendTransactionQRCodeAddress: generateSendTransactionQRCodeAddress(service),
         }
     };
 }

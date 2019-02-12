@@ -1,7 +1,6 @@
 import {Component, Inject, OnDestroy, OnInit, Input} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {Platform} from '@angular/cdk/platform';
-import {TranslateService} from '@ngx-translate/core';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
