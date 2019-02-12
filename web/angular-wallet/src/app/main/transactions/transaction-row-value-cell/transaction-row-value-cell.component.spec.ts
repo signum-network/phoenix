@@ -16,7 +16,7 @@ describe('TransactionRowValueCellComponent', () => {
     
     TestBed.configureTestingModule({
       declarations: [ TransactionRowValueCellComponent ],
-      imports: [ I18nModule, HttpClientTestingModule ],
+      imports: [ I18nModule ],
       providers: [ I18nService, {
         provide: StoreService,
         useFactory: () => {

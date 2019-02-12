@@ -6,7 +6,8 @@ module.exports = {
     '@burstjs/core': '<rootDir>../../lib/packages/core',
     '@burstjs/crypto': '<rootDir>../../lib/packages/crypto',
     '@burstjs/util': '<rootDir>../../lib/packages/util',
-    '@burstjs/http': '<rootDir>../../lib/packages/http'
+    '@burstjs/http': '<rootDir>../../lib/packages/http',
+    '@fuse': '<rootDir>/src'
   },
   setupFilesAfterEnv: ['<rootDir>/src/setup-jest.ts'],
   transformIgnorePatterns: ['node_modules/(?!(jest-test))']

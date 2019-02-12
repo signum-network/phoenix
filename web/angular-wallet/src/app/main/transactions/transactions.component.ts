@@ -27,24 +27,21 @@ export class TransactionsComponent {
         private dialog: MatDialog
     ) {}
 
-    public ngOnInit() {
+    public async ngOnInit() {
         this.displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmed'];
         this.dataSource = new MatTableDataSource<Transaction>();
-        this.storeService.getSelectedAccount()
-            .then((account) => {
-                this.account = account;
-                this.accountService.getAccountTransactions(account.id).then(transactions => {
-                    console.log(transactions);
-                    if (transactions.errorCode) {
-                        // temporary
-                        transactions = [{
-                            id: '17134635898950935218', attachment: '123', timestamp: new Date(), type: '123', amountNQT: '12345', feeNQT: '123'
-                        }];
-                        console.log(transactions.errorDescription);
-                    }
-                    this.dataSource.data = transactions;
-                })
-            })
+        this.account = await this.storeService.getSelectedAccount()
+        this.accountService.getAccountTransactions(this.account.id).then(transactions => {
+            console.log(transactions);
+            if (transactions.errorCode) {
+                // temporary
+                transactions = [{
+                    id: '17134635898950935218', attachment: '123', timestamp: new Date(), type: '123', amountNQT: '12345', feeNQT: '123'
+                }];
+                console.log(transactions.errorDescription);
+            }
+            this.dataSource.data = transactions;
+        })
     } 
 
     public ngAfterViewInit() {
@@ -66,8 +63,8 @@ export class TransactionsComponent {
     }
 
     public applyFilter(filterValue: string) {
-        filterValue = filterValue.trim(); // Remove whitespace
-        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        filterValue = filterValue.trim();
+        filterValue = filterValue.toLowerCase();
         this.dataSource.filter = filterValue || "burst";
     }
 
