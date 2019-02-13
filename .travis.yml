@@ -11,7 +11,7 @@ matrix:
 
 before_install:
   - if [ "$JOB" = "build_burstjs" ]; then cd lib; fi;
-  - if [ "$JOB" = "build_wallet" ]; then cd web/angular-wallet; fi;
+  - if [ "$JOB" = "build_wallet" ]; then cd lib && npm install && npm run bootstrap && cd ../web/angular-wallet; fi;
 install:
   - if [ "$JOB" = "build_burstjs" ]; then npm install && npm run bootstrap; fi;
   - if [ "$JOB" = "build_wallet" ]; then npm install; fi;
