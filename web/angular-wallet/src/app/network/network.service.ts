@@ -11,8 +11,6 @@ import { environment } from 'environments/environment.prod';
 export class NetworkService {
     private api: any; //todo
 
-    public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
-
     constructor() {
         const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
         this.api = compose(apiSettings);

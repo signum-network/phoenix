@@ -18,6 +18,7 @@ import { LoginGuard } from './login/login-guard.service';
 import { StoreService } from './store/store.service';
 import { StoreConfig, appConfigFactory } from './store/store.config';
 import { NetworkService } from './network/network.service';
+import { NetworkModule } from './network/network.module';
 
 const appRoutes: Routes = [
   {
@@ -53,12 +54,12 @@ const appRoutes: Routes = [
     // App modules
     LoginModule,
     MainModule,
-    SetupModule
+    SetupModule,
+    NetworkModule,
   ],
   providers: [
     StoreService,
-    { provide: StoreConfig, useFactory: appConfigFactory },
-    NetworkService
+    { provide: StoreConfig, useFactory: appConfigFactory }
   ],
   bootstrap: [
     AppComponent

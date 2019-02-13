@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SuggestFeeResolver } from './suggest-fee.resolver';
+import { NetworkService } from './network.service';
 
 @NgModule({
-  declarations: [],
+  declarations: [ ],
   imports: [
     CommonModule
   ],
-  providers: [ SuggestFeeResolver ]
+  providers: [ SuggestFeeResolver, NetworkService ]
 })
 export class NetworkModule { }
