@@ -57,10 +57,5 @@
   },
   "dependencies": {
     "axios": "^0.18.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm test"
-    }
   }
 }
