@@ -12,15 +12,15 @@ matrix:
 before_install:
   - if [ "$JOB" = "build_burstjs" ]; then cd lib; fi;
 install:
-  - if [ "$JOB" = "build_burstjs" ]; npm install && npm run bootstrap; fi;
-  - if [ "$JOB" = "build_wallet" ]; npm install; fi;
+  - if [ "$JOB" = "build_burstjs" ]; then npm install && npm run bootstrap; fi;
+  - if [ "$JOB" = "build_wallet" ]; then npm install; fi;
 
 cache:
   directories:
     - node_modules
 script:
-  - if [ "$JOB" = "build_burstjs" ]; npm run test:ci; fi;
-  - if [ "$JOB" = "build_wallet" ]; npm run test && npm run build:ci; fi;
+  - if [ "$JOB" = "build_burstjs" ]; then npm run test:ci; fi;
+  - if [ "$JOB" = "build_wallet" ]; then npm run test && npm run build:ci; fi;
 
 after-success:
-  - if [ "$JOB" = "build_burstjs" ]; bash <(curl -s https://codecov.io/bash); fi;
+  - if [ "$JOB" = "build_burstjs" ]; then bash <(curl -s https://codecov.io/bash); fi;
