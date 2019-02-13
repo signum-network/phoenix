@@ -11,12 +11,12 @@ export class TransactionRowValueCellComponent implements OnInit {
 
   @Input('value') value: string | Attachment | number;
   @Input('key') key: string;
-  valueType: string = "string";
+  valueType = 'string';
 
   constructor() { }
 
   ngOnInit() {
-    switch(this.value && this.value.constructor) {
+    switch (this.value && this.value.constructor) {
       case Message: {
         this.valueType = 'Message';
         break;
