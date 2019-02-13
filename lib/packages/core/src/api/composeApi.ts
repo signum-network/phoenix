@@ -20,6 +20,7 @@ import {getUnconfirmedAccountTransactions} from './account/getUnconfirmedAccount
 import {getAccountBalance} from './account/getAccountBalance';
 import { generateSendTransactionQRCode } from './account/generateSendTransactionQRCode';
 import { generateSendTransactionQRCodeAddress } from './account/generateSendTransactionQRCodeAddress';
+import { suggestFee } from './network/suggestFee';
 
 export class ApiSettings {
     constructor(
@@ -49,6 +50,7 @@ export function compose(settings: ApiSettings) {
         network: {
             getBlockchainStatus: getBlockchainStatus(service),
             getServerStatus: getServerStatus(service),
+            suggestFee: suggestFee(service),
         },
         transaction: {
             broadcastTransaction: broadcastTransaction(service),

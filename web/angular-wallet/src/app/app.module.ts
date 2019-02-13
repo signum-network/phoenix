@@ -17,6 +17,7 @@ import { SetupModule } from './setup/setup.module';
 import { LoginGuard } from './login/login-guard.service';
 import { StoreService } from './store/store.service';
 import { StoreConfig, appConfigFactory } from './store/store.config';
+import { NetworkService } from './network/network.service';
 
 const appRoutes: Routes = [
   {
@@ -25,7 +26,7 @@ const appRoutes: Routes = [
   },
   {
     path: '**',
-    component: MainComponent,
+    redirectTo: 'dashboard',
     canActivate: [LoginGuard]
   },
 ];
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     StoreService,
-    { provide: StoreConfig, useFactory: appConfigFactory }
+    { provide: StoreConfig, useFactory: appConfigFactory },
+    NetworkService
   ],
   bootstrap: [
     AppComponent
