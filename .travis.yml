@@ -1,16 +1,26 @@
-language: node_js
-node_js:
-  - 10
+matrix:
+  fast_finish: true
+  include:
+  - name: "Build BurstJS"
+    node_js: "10"
+    env: JOB=build_burstjs
+  - name: "Build Web Wallet"
+    node_js: "10"
+    env: JOB=build_wallet
+
+
 before_install:
-  - cd lib
+  - if [ "$JOB" = "build_burstjs" ]; then cd lib; fi
 install:
-  - npm install
-  - npm run bootstrap
+  - if [ "$JOB" = "build_burstjs" ]; npm install && npm run bootstrap; fi
+  - if [ "$JOB" = "build_wallet" ]; npm install; fi
+
 cache:
   directories:
     - node_modules
 script:
-  - npm run test:ci
+  - if [ "$JOB" = "build_burstjs" ]; npm run test:ci; fi
+  - if [ "$JOB" = "build_wallet" ]; npm run test && npm run build:ci; fi
 
 after-success:
-  - bash <(curl -s https://codecov.io/bash)
+  - if [ "$JOB" = "build_burstjs" ]; bash <(curl -s https://codecov.io/bash); fi
