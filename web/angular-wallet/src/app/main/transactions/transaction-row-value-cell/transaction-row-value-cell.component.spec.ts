@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TransactionRowValueCellComponent } from './transaction-row-value-cell.component';
 import { Message } from '@burstjs/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { StoreService } from 'app/store/store.service';
@@ -13,18 +12,18 @@ describe('TransactionRowValueCellComponent', () => {
   let fixture: ComponentFixture<TransactionRowValueCellComponent>;
 
   beforeEach(async(() => {
-    
+
     TestBed.configureTestingModule({
       declarations: [ TransactionRowValueCellComponent ],
-      imports: [ I18nModule ],
+      imports: [ I18nModule, HttpClientTestingModule ],
       providers: [ I18nService, {
         provide: StoreService,
         useFactory: () => {
           return {
             ready: new BehaviorSubject(true),
-            getSettings: () => Promise.resolve({language:'en'}),
+            getSettings: () => Promise.resolve({language: 'en'}),
             saveSettings: () => Promise.resolve(true)
-          }
+          };
         }
       } ]
     })
@@ -37,7 +36,7 @@ describe('TransactionRowValueCellComponent', () => {
   });
 
   test('should create', () => {
-    component.value = "when moon";
+    component.value = 'when moon';
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
