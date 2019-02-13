@@ -2,5 +2,5 @@
 
 cd web/angular-wallet
 npm install
-npm run test:ci
+npm run test
 npm run build:ci
