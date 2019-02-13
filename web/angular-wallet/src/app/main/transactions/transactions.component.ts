@@ -12,8 +12,8 @@ import { StoreService } from 'app/store/store.service';
     templateUrl: './transactions.component.html'
 })
 export class TransactionsComponent {
-    private dataSource: MatTableDataSource<Transaction>;
-    private displayedColumns: string[];
+    public dataSource: MatTableDataSource<Transaction>;
+    public displayedColumns: string[];
     private account: Account;
     pickerFromField = new FormControl();
     pickerToField = new FormControl();
@@ -42,7 +42,7 @@ export class TransactionsComponent {
             }
             this.dataSource.data = transactions;
         })
-    } 
+    }
 
     public ngAfterViewInit() {
         const defaultFilterPredicate = this.dataSource.filterPredicate;
