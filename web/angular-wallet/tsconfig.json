@@ -11,10 +11,7 @@
     "resolveJsonModule": true,
     "paths": {
       "@fuse": ["@fuse/"],
-      "@burstjs/core": ["../../../lib/packages/core"],
-      "@burstjs/crypto": ["../../../lib/packages/crypto"],
-      "@burstjs/util": ["../../../lib/packages/util"],
-      "@burstjs/http": ["../../../lib/packages/http"]
+      "@burstjs/*": ["../../../lib/packages/*"]
     },
     "target": "es5",
     "typeRoots": [

@@ -37,7 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this._unsubscribeAll = new Subject();
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
 
     this.storeService.ready.subscribe((ready) => {
         if (ready) {
