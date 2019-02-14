@@ -1,25 +1,35 @@
-.seed-area {
+.seed {
+  &__title {
+    margin: 0;
+  }
+  &__area {
+    border: solid 1px #dcdcdc;
+    box-shadow: 1px 2px 7px rgba(0, 0, 0, .2);
     height: 100px;
+    margin-bottom: 1rem;
     text-align: center;
-    border-radius: 10px;
-    border: solid 1px #666;
+  }
+  &__legend {
+    font-size: 1rem;
+  }
 }
 
+
 .spinner-center {
-    margin: 0 auto;
-    width: 5%;
+  margin: 0 auto;
+  width: 5%;
 }
 
 .passphrase {
-    width:75%;
-    margin-right:20px;
+  width: 75%;
+  margin-right: 20px;
 }
 
 .passphrase-container mat-form-field {
-    display:block;
+  display: block;
 }
 
 .pin-container {
-    font-size:.8em;
-    margin-bottom: 2.5em;
-} 
+  font-size: .8em;
+  margin-bottom: 2.5em;
+}

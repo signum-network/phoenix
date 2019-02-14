@@ -1,10 +1,10 @@
-<div>
-    <h2>
-        New Account: Generate Passphrase
+<div class="seed">
+    <h2 class="seed__title">
+        Generate Passphrase
     </h2>
     <div class="pin-container">
-        <div class="seed-area" (mousemove)="movement($event)"></div>
-        <mat-progress-bar mode="determinate" [value]="this.progress"></mat-progress-bar><br />
-        Move your mouse across the area to create a random seed for the password generation.
+        <div class="seed__area" (mousemove)="movement($event)"></div>
+        <mat-progress-bar mode="determinate" [value]="this.progress"></mat-progress-bar>
+        <small class="seed__legend">Move your mouse across the area to create a random seed for the password generation.</small>
     </div>
 </div>
