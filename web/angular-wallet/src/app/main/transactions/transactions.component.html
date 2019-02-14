@@ -6,7 +6,7 @@
 
         <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
             <div fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="secondary-text s-18">home</mat-icon>
+                <mat-icon class="secondary-text s-18" routerLink="/dashboard">home</mat-icon>
                 <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
                 <span class="secondary-text">{{ 'transactions' | i18n }}</span>
             </div>
@@ -15,7 +15,7 @@
     </div>
     <!-- / HEADER -->
 
-    <mat-card>
+    <div class="p-24">
 
         <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="20px">
             <div fxFlex="50">
@@ -116,5 +116,5 @@
         </mat-table>
         <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 500]" [showFirstLastButtons]="true">
         </mat-paginator>
-    </mat-card>
+    </div>
 </div>

@@ -105,6 +105,13 @@ export class AccountService {
     }
 
     /*
+    * Method responsible for removing an existing account.
+    */
+    public removeAccount(account: Account): Promise<boolean> {
+        return this.storeService.removeAccount(account).catch(error => error)
+    }
+
+    /*
     * Method responsible for selecting a different account.
     */
     public selectAccount(account: Account): Promise<Account> {

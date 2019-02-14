@@ -1,5 +1,6 @@
 {
     "account": "Compte",
+    "accounts" : "Accounts",
     "account_balance": "Solde du compte",
     "account_details": "Détails du compte",
     "account_id": "ID de compte",
