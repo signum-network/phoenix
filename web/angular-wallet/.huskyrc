@@ -1,5 +1,5 @@
 {
   "hooks": {
-    "pre-push": "npm test && ng build --aot --source-map=false"
+    "pre-push": "../../scripts/hooks/pre-push.sh"
   }
 }
