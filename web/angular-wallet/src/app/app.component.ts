@@ -16,7 +16,8 @@ import { Account } from '@burstjs/core';
 })
 export class AppComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
-  account: Account;
+  selectedAccount: Account;
+  accounts: Account[];
   private _unsubscribeAll: Subject<any>;
 
   constructor(
@@ -41,16 +42,20 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.storeService.ready.subscribe((ready) => {
         if (ready) {
-          this.storeService.getSelectedAccount().then((account) => {
-            if (account) {
-              this.account = account;
-              this.accountService.selectAccount(account);
+          this.storeService.getSelectedAccount().then((selectedAccount) => {
+            if (selectedAccount) {
+              this.selectedAccount = selectedAccount;
+              this.accountService.selectAccount(selectedAccount);
             }
           });
 
           this.accountService.currentAccount.subscribe((account) => {
-            this.account = account;
+            this.selectedAccount = account;
           });
+
+          this.storeService.getAllAccounts().then((accounts) => {
+            this.accounts = accounts;
+          })
         }
     });
 
