@@ -19,6 +19,7 @@ import { StoreService } from './store/store.service';
 import { StoreConfig, appConfigFactory } from './store/store.config';
 import { NetworkService } from './network/network.service';
 import { NetworkModule } from './network/network.module';
+import { NotifierModule } from 'angular-notifier';
 
 const appRoutes: Routes = [
   {
@@ -56,6 +57,8 @@ const appRoutes: Routes = [
     MainModule,
     SetupModule,
     NetworkModule,
+
+    NotifierModule
   ],
   providers: [
     StoreService,

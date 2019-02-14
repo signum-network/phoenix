@@ -4,7 +4,11 @@ import { NgForm } from '@angular/forms';
 import { burstAddressPattern, convertNQTStringToNumber } from '@burstjs/util';
 import { ActivatedRoute } from '@angular/router';
 import { TransactionService } from '../transactions/transaction.service';
-import { Keys } from '../../../../../../lib/packages/crypto/out/src';
+import { decryptAES } from '@burstjs/crypto';
+import { AccountService } from 'app/setup/account/account.service';
+import { StoreService } from 'app/store/store.service';
+import { NotifierService } from 'angular-notifier';
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
 
 @Component({
   selector: 'app-send-burst',
@@ -29,14 +33,27 @@ export class SendBurstComponent implements OnInit {
 
   account: Account;
   fees: SuggestedFees;
-  
+
   constructor(private route: ActivatedRoute,
-    private transactionService: TransactionService) {
+    private transactionService: TransactionService,
+    private accountService: AccountService,
+    private storeService: StoreService,
+    private notifierService: NotifierService,
+    private i18nService: I18nService) {
   }
 
   ngOnInit() {
     this.account = this.route.snapshot.data.account as Account;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
+
+    this.storeService.ready.subscribe((ready) => {
+      if (ready) {
+        this.accountService.currentAccount.subscribe((account) => {
+          this.account = account;
+        });
+      }
+    });
+
   }
 
   getTotal() {
@@ -52,9 +69,8 @@ export class SendBurstComponent implements OnInit {
   }
 
   onSubmit(event) {
-    this.transactionService.sendBurst({
+    this.transactionService.sendMoney({
       transaction: {
-        recipientAddress: `BURST-${this.recipientAddress}`,
         amountNQT: parseFloat(this.amountNQT),
         feeNQT: this.feeNQT,
         attachment: this.getMessage(),
@@ -63,7 +79,12 @@ export class SendBurstComponent implements OnInit {
         type: 1
       },
       pin: this.pin,
-      keys: new Keys()
+      keys: this.account.keys,
+      recipientAddress: `BURST-${this.recipientAddress}`,
+    }).then(() => {
+      this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
+    }).catch(() => {
+      this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
     });
     event.stopImmediatePropagation();
   }

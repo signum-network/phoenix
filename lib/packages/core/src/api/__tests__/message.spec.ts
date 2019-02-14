@@ -4,10 +4,15 @@ import {broadcastTransaction, sendTextMessage} from '..';
 import {generateSignature} from '@burstjs/crypto';
 import {verifySignature} from '@burstjs/crypto';
 import {generateSignedTransactionBytes} from '@burstjs/crypto';
+import { constructAttachment } from '../message/constructMessage';
 
 describe('Message Api', () => {
 
     describe('sendTextMessage', () => {
+
+        const params = {
+            requestType: 'moon'
+        };
 
         let httpMock: Http;
         let service: BurstService;
@@ -80,6 +85,36 @@ describe('Message Api', () => {
                 expect(generateSignedTransactionBytes).toBeCalledTimes(0);
                 expect(broadcastTransaction).toBeCalledTimes(0);
             }
+        });
+
+        it('constructs an encrypted attachment', () => {
+            const mockTransaction = {
+                attachment: {
+                    data: '123',
+                    nonce: '321',
+                    isText: true,
+                    type: 'encrypted_message'
+                }
+            }
+            const output = constructAttachment(mockTransaction, params);
+            expect(output.encryptedMessageData).toBe(mockTransaction.attachment.data);
+            expect(output.encryptedMessageNonce).toBe(mockTransaction.attachment.nonce);
+            expect(output.messageToEncryptIsText).toBe('true');
+            expect(output.requestType).toBe(params.requestType);
+        });
+
+        it('constructs an unencrypted attachment', () => {
+            const mockTransaction = {
+                attachment: {
+                    message: '123',
+                    messageIsText: true,
+                    type: 'message'
+                }
+            }
+            const output = constructAttachment(mockTransaction, params);
+            expect(output.message).toBe(mockTransaction.attachment.message);
+            expect(output.messageIsText).toBe('true');
+            expect(output.requestType).toBe(params.requestType);
         });
     });
 });

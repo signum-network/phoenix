@@ -5,11 +5,10 @@ import 'rxjs/add/operator/timeout';
 
 import { compose, ApiSettings, Transaction, EncryptedMessage, Attachment } from '@burstjs/core';
 import { environment } from 'environments/environment.prod';
-import { Keys, getAccountIdFromPublicKey, encryptMessage } from '@burstjs/crypto';
+import { Keys, getAccountIdFromPublicKey, encryptMessage, decryptAES, hashSHA256 } from '@burstjs/crypto';
 
-interface TransactionRequest {
+interface SendMoneyRequest {
     transaction: {
-        recipientAddress: string,
         amountNQT: number,
         feeNQT: string,
         attachment: Attachment,
@@ -18,7 +17,8 @@ interface TransactionRequest {
         type: number,
     },
     pin: string,
-    keys: Keys
+    keys: Keys,
+    recipientAddress: string
 };
 
 @Injectable()
@@ -36,12 +36,7 @@ export class TransactionService {
         return this.api.transaction.getTransaction(id);
     }
 
-    public async sendBurst({ transaction, pin, keys }: TransactionRequest) {
-        let transactionToSend = {
-            senderPublicKey: keys.publicKey,
-            ...transaction
-        };
-
+    public async sendMoney({ transaction, pin, keys, recipientAddress }: SendMoneyRequest) {
         // todo
         // if (transactionToSend.attachment && transactionToSend.attachment.encryptedMessage) {
         //     const recipientPublicKey = await getAccountIdFromPublicKey(transaction.recipientAddress);
@@ -56,6 +51,10 @@ export class TransactionService {
         //         ...transactionToSend
         //     };
         // }
-        return true; // todo: call sendMoney then postTransaction
+        const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+        return this.api.transaction.sendMoney(transaction, keys.publicKey, senderPrivateKey, recipientAddress)
+            .catch((err) => {
+                throw new Error(`There was a problem submitting your transaction.`)
+            }) 
     }
 }
