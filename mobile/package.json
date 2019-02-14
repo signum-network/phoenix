@@ -1,6 +1,6 @@
 {
   "name": "mobile",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "contributors": [
     "titanishu"
   ],
@@ -18,14 +18,16 @@
     "dev:ios": "react-native run-ios --simulator=\"iPhone SE\"",
     "dev:android": "react-native run-android",
     "lint": "tslint --fix --project tsconfig.json 'src/**/*.{ts,tsx}'",
+    "start": "node ./node_modules/react-scripts/bin/react-scripts.js start",
     "translations:sort": "node tasks/sortJsonDir.js src/core/localization/translations",
     "test": "jest",
     "tsc": "tsc --init --pretty --jsx react"
   },
   "dependencies": {
-    "@burst/core": "file:../lib/packages/core",
-    "@burst/crypto": "file:../lib/packages/crypto",
-    "@burst/http": "file:../lib/packages/http",
+    "@burstjs/core": "^0.0.12",
+    "@burstjs/crypto": "^0.0.12",
+    "@burstjs/http": "^0.0.12",
+    "@burstjs/util": "^0.0.12",
     "@types/react-native-touch-id": "^4.0.1",
     "axios": "^0.18.0",
     "i18n-js": "^3.1.0",

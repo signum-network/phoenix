@@ -3,7 +3,7 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-import { Keys } from '../../../crypto/typings/keys';
+import { Keys } from '@burstjs/crypto';
 import { Transaction } from './transaction';
 
 /*
@@ -45,4 +45,4 @@ export class Account {
         this.type = data.type || 'offline';
         this.unconfirmedBalance = data.unconfirmedBalance || 0;
     }
-}
+} 

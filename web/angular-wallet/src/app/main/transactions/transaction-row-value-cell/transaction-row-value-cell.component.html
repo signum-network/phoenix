@@ -1,0 +1,11 @@
+<div [ngSwitch]="valueType">
+  <span *ngSwitchCase="'Message'">{{value.message}}</span>
+  <span *ngSwitchCase="'EncryptedMessage'">
+    <span class="link" (click)="showPinPrompt()">Enter PIN</span>
+    <span>{{decryptedMessage}}</span>
+  </span>
+  <span *ngSwitchCase="'BurstAddress'">
+    <span class="link" (click)="showAccountDialog(value)">{{value}}</span>
+  </span>
+  <span *ngSwitchDefault>{{value | i18n}}</span>
+</div>

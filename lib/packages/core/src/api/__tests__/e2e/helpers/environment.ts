@@ -24,7 +24,7 @@ export const loadEnvironment = () => {
 
   require('dotenv').config({path: envFilePath});
 
-  return {
+  const env = {
     timeout : Number.parseInt(process.env.JEST_TIMEOUT, 10) * 1000,
     testNetHost : process.env.TEST_NET_HOST,
     testNetApiPath:  process.env.TEST_NET_API_PATH,
@@ -33,6 +33,14 @@ export const loadEnvironment = () => {
     testTransactionId:  process.env.TEST_TRANSACTION_ID
     // .. add more variables here
   };
+
+  console.log(`
+  ---------------------------------------------------
+                  TEST ENVIRONMENT
+  ---------------------------------------------------
+  ${JSON.stringify(env, null, '\t')}
+  `);
+  return env;
 };
 
 

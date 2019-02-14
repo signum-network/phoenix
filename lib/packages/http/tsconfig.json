@@ -1,25 +1,24 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "lib": [
-            "es2015"
-        ],
-        "noImplicitThis": true,
-        "strict": true,
-        "outDir": "out",
-        "declaration": true,
-        "declarationDir": "typings",
-        "sourceMap": true,
+        "outDir": "./out",
         "types": [
             "axios",
             "jest"
-        ],
-        "typeRoots": [
-            "node_modules/@types"
         ]
     },
+    "typeRoots": [ 
+        "typings", 
+        "node_modules/@types"
+    ],
     "include": [
-        "src",
-      "src/__tests__"
-    ]
+        "./src",
+        "README.md"
+    ],
+  "autogenerate-readme": {
+    "srcFiles": [
+      "./src/**/*.ts"
+    ],
+    "template": "./README.md.hbs"
+  },
+    "extends": "../../tsconfig.json"
 }

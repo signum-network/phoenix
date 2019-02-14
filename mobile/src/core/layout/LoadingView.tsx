@@ -1,14 +1,14 @@
 import React from 'react';
 import { ActivityIndicator, StyleSheet, Text } from 'react-native';
 import { i18n } from '../localization/i18n';
-import { colors } from '../theme/colors';
+import { Colors } from '../theme/colors';
 import { fonts } from '../theme/fonts';
 import { core } from '../translations';
 import { Screen } from './Screen';
 
 const styles = StyleSheet.create({
   view: {
-    backgroundColor: colors.blue,
+    backgroundColor: Colors.blue,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   loaderText: {
-    color: colors.white,
+    color: Colors.white,
     fontFamily: fonts.noto
   }
 });
@@ -31,7 +31,7 @@ export class LoadingView extends React.PureComponent {
         <ActivityIndicator
           style={styles.loader}
           size={'large'}
-          color={colors.white}
+          color={Colors.white}
         />
         <Text style={styles.loaderText}>
           {i18n.t(core.loading.text)}

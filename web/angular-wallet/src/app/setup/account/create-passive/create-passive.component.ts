@@ -1,8 +1,8 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import {Component, OnInit, Injectable, Input} from '@angular/core';
 import { CreateService } from '../create.service';
 import { NotifierService } from 'angular-notifier';
 import { Router } from '@angular/router';
-import { BurstUtil } from '@burstjs/core';
+import { burstAddressPattern } from '@burstjs/util';
 
 @Injectable()
 @Component({
@@ -12,7 +12,9 @@ import { BurstUtil } from '@burstjs/core';
 })
 export class CreatePassiveAccountComponent implements OnInit {
 
-  burstAddressPattern = BurstUtil.burstAddressPattern;
+  @Input('address') address: string;
+
+  burstAddressPattern = burstAddressPattern;
 
   constructor(private createService: CreateService,
               private notificationService: NotifierService,

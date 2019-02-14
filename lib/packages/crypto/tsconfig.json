@@ -1,26 +1,19 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "lib": [
-            "es2015"
-        ],
-        "noImplicitThis": true,
-        "strict": true,
-        "outDir": "out",
-        "declaration": true,
-        "declarationDir": "typings",
-        "sourceMap": true,
+        "outDir": "./out",
         "types": [
             "axios",
-            "jest"
-        ],
-        "typeRoots": [ 
-            "typings", 
-            "node_modules/@types"
+            "jest",
+            "node"
         ]
     },
+    "typeRoots": [ 
+        "typings", 
+        "node_modules/@types"
+    ],
     "include": [
-        "src",
-        "__tests__"
-    ]
+        "./src",
+        "README.md"
+    ],
+    "extends": "../../tsconfig.json"
 }

@@ -1,7 +1,7 @@
-import {Inject, Injectable, Optional} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import * as Loki from "lokijs";
-import { StoreConfig } from "./store.config";
+import * as Loki from 'lokijs';
+import { StoreConfig } from './store.config';
 import { Settings } from 'app/settings';
 import { Account } from '@burstjs/core';
 
@@ -12,7 +12,7 @@ export class StoreService {
     public ready: BehaviorSubject<any> = new BehaviorSubject(false);
     public settings: BehaviorSubject<any> = new BehaviorSubject(false);
 
-    constructor(private storeConfig : StoreConfig) {
+    constructor(private storeConfig: StoreConfig) {
 
         this.store = new Loki(storeConfig.databaseName, {
             autoload: true,
@@ -25,29 +25,29 @@ export class StoreService {
     * Called on db start
     */
     public init() {
-        let blocks = this.store.getCollection("blocks");
+        let blocks = this.store.getCollection('blocks');
         if (blocks == null) {
-            blocks = this.store.addCollection("blocks", { unique : ["blockHeight"]});
+            blocks = this.store.addCollection('blocks', { unique : ['blockHeight']});
         }
-        let accounts = this.store.getCollection("accounts");
+        let accounts = this.store.getCollection('accounts');
         if (accounts == null) {
-            accounts = this.store.addCollection("accounts", { unique : ["id"]});
+            accounts = this.store.addCollection('accounts', { unique : ['id']});
         }
-        let settings = this.store.getCollection("settings");
+        let settings = this.store.getCollection('settings');
         if (settings == null) {
-            settings = this.store.addCollection("settings", { unique : ["currency", "id", "language", "node", "notification", "patchnotes", "theme"]});
+            settings = this.store.addCollection('settings', { unique : ['currency', 'id', 'language', 'node', 'notification', 'patchnotes', 'theme']});
             settings.insert(new Settings());
         }
-        this.store.saveDatabase(); 
+        this.store.saveDatabase();
         this.setReady(true);
         this.getSettings()
             .then(s => {
-                this.setSettings(s); 
+                this.setSettings(s);
             })
             .catch(error => {
                 this.setSettings(new Settings());
-            })
-    } 
+            });
+    }
 
     public setReady(state: boolean) {
         this.ready.next(state);
@@ -63,8 +63,8 @@ export class StoreService {
     public saveAccount(account: Account): Promise<Account> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
-                let accounts = this.store.getCollection("accounts");
-                let rs = accounts.find({ id : account.id });
+                const accounts = this.store.getCollection('accounts');
+                const rs = accounts.find({ id : account.id });
                 if (rs.length == 0) {
                     accounts.insert(account);
                 } else {
@@ -90,10 +90,10 @@ export class StoreService {
     public getSelectedAccount(): Promise<Account> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
-                let accounts = this.store.getCollection("accounts");
+                const accounts = this.store.getCollection('accounts');
                 let rs = accounts.find({ selected : true });
                 if (rs.length > 0) {
-                    let account = new Account(rs[0]);
+                    const account = new Account(rs[0]);
                     resolve(account);
                 } else {
                     rs = accounts.find();
@@ -101,7 +101,7 @@ export class StoreService {
                         accounts.chain().find({ id : rs[0].id }).update(w => {
                             w.selected = true;
                         });
-                        let w = new Account(rs[0]);
+                        const w = new Account(rs[0]);
                         this.store.saveDatabase();
                         resolve(w);
                     } else {
@@ -122,7 +122,7 @@ export class StoreService {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
                 account.selected = true;
-                let accounts = this.store.getCollection("accounts");
+                const accounts = this.store.getCollection('accounts');
                 accounts.chain().find({ selected : true }).update(w => {
                     w.selected = false;
                 });
@@ -143,12 +143,12 @@ export class StoreService {
     public getAllAccounts(): Promise<Account[]> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
-                let accounts = this.store.getCollection("accounts");
-                let rs = accounts.find();
-                let ws = [];
+                const accounts = this.store.getCollection('accounts');
+                const rs = accounts.find();
+                const ws = [];
                 rs.map(single => {
-                    ws.push(new Account(single))
-                })
+                    ws.push(new Account(single));
+                });
                 resolve(ws);
             } else {
                 reject([]);
@@ -162,13 +162,13 @@ export class StoreService {
     public findAccount(id: string): Promise<Account> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
-                let accounts = this.store.getCollection("accounts");
-                let rs = accounts.find({ id : id });
+                const accounts = this.store.getCollection('accounts');
+                const rs = accounts.find({ id : id });
                 if (id && rs.length > 0) {
-                    let account = new Account(rs[0]);
+                    const account = new Account(rs[0]);
                     resolve(account);
                 } else {
-                    resolve(undefined)
+                    resolve(undefined);
                 }
             } else {
                 reject(undefined);
@@ -182,8 +182,8 @@ export class StoreService {
     public removeAccount(account: Account): Promise<boolean> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
-                let accounts = this.store.getCollection("accounts");
-                let rs = accounts.chain().find({ id : account.id }).remove();
+                const accounts = this.store.getCollection('accounts');
+                const rs = accounts.chain().find({ id : account.id }).remove();
                 this.store.saveDatabase();
                 resolve(true);
             } else {
@@ -198,8 +198,8 @@ export class StoreService {
     public saveSettings(save: Settings): Promise<Settings> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
-                let settings = this.store.getCollection("settings");
-                let rs = settings.find({ id: save.id });
+                const settings = this.store.getCollection('settings');
+                const rs = settings.find({ id: save.id });
                 if (rs.length > 0) {
                     settings.chain().find({ id: save.id }).update(s => {
                         s.currency = save.currency;
@@ -227,8 +227,8 @@ export class StoreService {
     public getSettings(): Promise<Settings> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
-                let settings = this.store.getCollection("settings");
-                let rs = settings.find();
+                const settings = this.store.getCollection('settings');
+                const rs = settings.find();
                 resolve(new Settings(rs[0]));
             } else {
                 resolve(new Settings());

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MatButtonModule, MatFormFieldModule, MatIconModule, MatMenuModule, MatSelectModule, MatTabsModule } from '@angular/material';
-import { AgmCoreModule } from '@agm/core';
 import { ChartsModule } from 'ng2-charts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
@@ -10,7 +9,7 @@ import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardService } from './dashboard.service';
-import {LoginGuard} from '../../login/login-guard.service';
+import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 
 const routes: Routes = [
     {
@@ -39,7 +38,8 @@ const routes: Routes = [
         NgxChartsModule,
 
         FuseSharedModule,
-        FuseWidgetModule
+        FuseWidgetModule,
+        I18nModule
     ],
     providers   : [
         DashboardService

@@ -1,14 +1,14 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {broadcastTransaction} from '..';
-import {BurstService} from '../../burstService';
-import {BurstUtil} from '@burstjs/crypto';
-import {TransactionId} from '../../typings/transactionId';
-import {TransactionResponse} from '../../typings/transactionResponse';
-import {generateSignature} from '@burstjs/crypto';
-import {verifySignature} from '@burstjs/crypto';
-import {generateSignedTransactionBytes} from '@burstjs/crypto';
+import { broadcastTransaction } from '..';
+import { BurstService } from '../../burstService';
+import { TransactionId } from '../../typings/transactionId';
+import { TransactionResponse } from '../../typings/transactionResponse';
+import { generateSignature } from '@burstjs/crypto';
+import { verifySignature } from '@burstjs/crypto';
+import { generateSignedTransactionBytes } from '@burstjs/crypto';
+import { convertNumberToNQTString } from '@burstjs/util';
 
 /**
  * Broadcasts a text message to the network/blockchain
@@ -41,7 +41,7 @@ export const sendTextMessage = (service: BurstService):
             messageIsText: true,
             broadcast: true,
             deadline: 1440, // which deadline?
-            feeNQT: BurstUtil.convertNumberToString(fee),
+            feeNQT: convertNumberToNQTString(fee),
         };
 
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('sendMessage', parameters);

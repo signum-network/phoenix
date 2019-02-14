@@ -15,6 +15,11 @@ import {broadcastTransaction} from './transaction/broadcastTransaction';
 import {getTransaction} from './transaction/getTransaction';
 
 import {sendTextMessage} from './message/sendTextMessage';
+import {getAccountTransactions} from './account/getAccountTransactions';
+import {getUnconfirmedAccountTransactions} from './account/getUnconfirmedAccountTransactions';
+import {getAccountBalance} from './account/getAccountBalance';
+import { generateSendTransactionQRCode } from './account/generateSendTransactionQRCode';
+import { generateSendTransactionQRCodeAddress } from './account/generateSendTransactionQRCodeAddress';
 
 export class ApiSettings {
     constructor(
@@ -46,12 +51,18 @@ export function compose(settings: ApiSettings) {
             getServerStatus: getServerStatus(service),
         },
         transaction: {
-            // TODO: review, if we really want to expose this method
             broadcastTransaction: broadcastTransaction(service),
             getTransaction: getTransaction(service),
         },
         message: {
             sendTextMessage: sendTextMessage(service),
+        },
+        account: {
+            getAccountTransactions: getAccountTransactions(service),
+            getUnconfirmedAccountTransactions: getUnconfirmedAccountTransactions(service),
+            getAccountBalance: getAccountBalance(service),
+            generateSendTransactionQRCode: generateSendTransactionQRCode(service),
+            generateSendTransactionQRCodeAddress: generateSendTransactionQRCodeAddress(service),
         }
     };
 }

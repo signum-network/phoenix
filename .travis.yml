@@ -1,16 +1,17 @@
 language: node_js
-node_js:
-  - 10
-before_install:
-  - cd lib
-install:
-  - npm install
-  - npm run bootstrap
+
+matrix:
+  fast_finish: true
+  include:
+  - name: "Build BurstJS"
+    node_js: "10"
+    env: JOB=burstjs
+  - name: "Build Web Wallet"
+    node_js: "10"
+    env: JOB=web
+
 cache:
   directories:
     - node_modules
 script:
-  - npm run test:ci
-
-after-success:
-  - bash <(curl -s https://codecov.io/bash)
+  - ./scripts/ci/$JOB.sh

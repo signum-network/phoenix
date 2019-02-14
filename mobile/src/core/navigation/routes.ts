@@ -1,19 +1,21 @@
 import { NavigationRouteConfig } from 'react-navigation';
 
 // we need to describe interface to get proper type-hinting
-export interface IRoutes {
-  home: string
-  settings: string
+export interface Routes {
+  accounts: string;
+  addAccount: string;
+  createAccount: string;
 }
 
-export type TRoutesMap = {
-  [key in keyof Partial<IRoutes>]: NavigationRouteConfig
+export type RoutesMap = {
+  [key in keyof Partial<Routes>]: NavigationRouteConfig
 };
 
 /**
  * List of all in-app routes
  */
-export const routes: IRoutes = {
-  home: 'home',
-  settings: 'settings'
+export const routes: Routes = {
+  accounts: 'accounts',
+  addAccount: 'addAccount',
+  createAccount: 'createAccount'
 };

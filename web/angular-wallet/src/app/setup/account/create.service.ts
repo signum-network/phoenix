@@ -35,14 +35,14 @@ export class CreateService {
     }
 
     public getCompletePassphrase(): string {
-        return this.passphrase.join(" ");
+        return this.passphrase.join(' ');
     }
 
     public setId(id: string) {
         this.id = id;
     }
 
-    public getId(id: string) {
+    public getId() {
         return this.id;
     }
 
@@ -50,7 +50,7 @@ export class CreateService {
         this.address = address;
     }
 
-    public getAddress() : string {
+    public getAddress(): string {
         return this.address;
     }
 
@@ -58,12 +58,14 @@ export class CreateService {
         this.stepIndex = index;
     }
 
-    public getStepIndex() : number {
+    public getStepIndex(): number {
         return this.stepIndex;
     }
 
-    public isPassphraseGenerated() : boolean {
-        return this.passphrase.length > 0 && this.address != undefined && this.id != undefined
+    public isPassphraseGenerated(): boolean {
+        return this.passphrase.length > 0 &&
+          this.address !== undefined &&
+          this.id !== undefined;
     }
 
     public createActiveAccount() {

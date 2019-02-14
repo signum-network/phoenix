@@ -1,5 +1,4 @@
-jest.mock('@burstjs/http/src/http');
-import {HttpMock} from '@burstjs/http';
+import {HttpMockBuilder, Http} from '@burstjs/http';
 import {BurstService} from '../../burstService';
 import {broadcastTransaction, sendTextMessage} from '..';
 import {generateSignature} from '@burstjs/crypto';
@@ -10,8 +9,10 @@ describe('Message Api', () => {
 
     describe('sendTextMessage', () => {
 
+        let httpMock: Http;
+        let service: BurstService;
+
         beforeEach(() => {
-            HttpMock.reset();
             jest.resetAllMocks();
 
             // @ts-ignore
@@ -26,15 +27,22 @@ describe('Message Api', () => {
             // @ts-ignore
             generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
 
-            HttpMock.onPost().reply(200, {
+            httpMock = HttpMockBuilder.create().onPostReply(200, {
                 unsignedTransactionBytes: 'unsignedHexMessage'
-            });
+            }).build();
+
+            service = new BurstService('baseUrl', 'relPath', httpMock);
 
         });
 
+        afterEach(() => {
+            // @ts-ignore
+            httpMock.reset();
+        });
+
+
         it('should sendTextMessage', async () => {
 
-            const service = new BurstService('localhost');
             const {fullHash, transaction} = await sendTextMessage(service)(
                 'Message Text',
                 'recipientId',
@@ -57,7 +65,6 @@ describe('Message Api', () => {
             // @ts-ignore
             verifySignature = jest.fn(() => false); // verification fails
 
-            const service = new BurstService('localhost');
             try {
 
                 await sendTextMessage(service)(

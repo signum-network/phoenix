@@ -1,16 +1,20 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/timeout'
+import 'rxjs/add/operator/timeout';
 
-import { StoreService } from "app/store/store.service";
-import { Settings } from "app/settings";
-import { Account, Keys, BurstUtil } from "@burstjs/core";
-import { generateMasterKeys, encryptAES, hashSHA256, getAccountIdFromPublicKey, getBurstAddressFromAccountId, getAccountIdFromBurstAddress } from "@burstjs/crypto";
+import { StoreService } from 'app/store/store.service';
+import { Settings } from 'app/settings';
+import { Account, compose, ApiSettings } from '@burstjs/core';
+import { generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey } from '@burstjs/crypto';
+import { isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId } from '@burstjs/util';
+import { environment } from 'environments/environment.prod';
+
 
 @Injectable()
 export class AccountService {
     private nodeUrl: string;
+    private api: any; //todo
 
     public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
@@ -18,10 +22,21 @@ export class AccountService {
         this.storeService.settings.subscribe((settings: Settings) => {
             this.nodeUrl = settings.node;
         });
+
+        const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
+        this.api = compose(apiSettings);
     }
 
     public setCurrentAccount(account: Account) {
         this.currentAccount.next(account);
+    }
+
+    public getAccountTransactions(id: string) {
+        return this.api.account.getAccountTransactions(id);
+    }
+
+    public generateSendTransactionQRCodeAddress(id: string) {
+        return this.api.account.generateSendTransactionQRCodeAddress(id);
     }
 
     /*
@@ -29,33 +44,33 @@ export class AccountService {
     * Generates keys for an account, encrypts them with the provided key and saves them.
     * TODO: error handling of asynchronous method calls
     */
-    public createActiveAccount({ passphrase, pin = "" }): Promise<Account> {
+    public createActiveAccount({ passphrase, pin = '' }): Promise<Account> {
         return new Promise((resolve, reject) => {
-            let account: Account = new Account();
+            const account: Account = new Account();
             // import active account
-            account.type = "active";
+            account.type = 'active';
             const keys = generateMasterKeys(passphrase);
 
-            let newKeys = new Keys();
+            const newKeys = new Keys();
             newKeys.publicKey = keys.publicKey;
 
-            const encryptedKey = encryptAES(keys.signPrivateKey, hashSHA256(pin))
+            const encryptedKey = encryptAES(keys.signPrivateKey, hashSHA256(pin));
             newKeys.signPrivateKey = encryptedKey;
 
-            const encrypedSignKey = encryptAES(keys.agreementPrivateKey, hashSHA256(pin));
-            newKeys.agreementPrivateKey = encrypedSignKey;
+            const encryptedSignKey = encryptAES(keys.agreementPrivateKey, hashSHA256(pin));
+            newKeys.agreementPrivateKey = encryptedSignKey;
             account.keys = newKeys;
             account.pinHash = hashSHA256(pin + keys.publicKey);
-            
-            const id = getAccountIdFromPublicKey(keys.publicKey)
+
+            const id = getAccountIdFromPublicKey(keys.publicKey);
             account.id = id;
 
-            const address = getBurstAddressFromAccountId(id)
+            const address = convertNumericIdToAddress(id);
             account.address = address;
 
             return this.storeService.saveAccount(account)
-                .then(account => {
-                    resolve(account);
+                .then(acc => {
+                    resolve(acc);
                 });
         });
     }
@@ -67,28 +82,25 @@ export class AccountService {
     public createOfflineAccount(address: string): Promise<Account> {
         return new Promise((resolve, reject) => {
 
-            if (!BurstUtil.isValid(address)) {
-                reject("Invalid Burst Address");
+            if (!isBurstAddress(address)) {
+                reject('Invalid Burst Address');
             }
 
-            let account: Account = new Account();
-
-            this.storeService.findAccount(BurstUtil.decode(address))
+            const account: Account = new Account();
+            const accountId = convertAddressToNumericId(address);
+            this.storeService.findAccount(accountId)
                 .then(found => {
-                    if (found == undefined) {
+                    if (found === undefined) {
                         // import offline account
-                        account.type = "offline";
+                        account.type = 'offline';
                         account.address = address;
-                        const id = getAccountIdFromBurstAddress(address)
-                        account.id = id;
+                        account.id = accountId;
                         return this.storeService.saveAccount(account)
-                            .then(account => {
-                                resolve(account);
-                            });
+                            .then(resolve);
                     } else {
-                        reject("Burstcoin address already imported!");
+                        reject('Burstcoin address already imported!');
                     }
-                })
+                });
         });
     }
 
@@ -100,7 +112,7 @@ export class AccountService {
             this.storeService.selectAccount(account)
                 .then(account => {
                     // this.synchronizeAccount(account);
-                })
+                });
             this.setCurrentAccount(account);
             resolve(account);
         });

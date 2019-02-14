@@ -1,4 +1,4 @@
-import {Http} from '@burstjs/http';
+import {Http, HttpImpl} from '@burstjs/http';
 
 /**
  * Generic BRS Web Service class.
@@ -21,13 +21,15 @@ export class BurstService {
      * @see https://burstwiki.org/wiki/The_Burst_API
      *
      * @param method The method name for `requestType`
-     * @param data A JSON object which will be mapped to url params, e.g. {foo:1; bar:true} -> foo=1&bar=true
+     * @param data A JSON object which will be mapped to url params
      * @return The mounted url (without host)
      */
     public toBRSEndpoint(method: string, data: any = {}): string {
         const request = `${this._relPath}?requestType=${method}`;
-        const params = Object.keys(data).map(k => `${k}=${data[k]}`).join('&');
-
+        const params = Object.keys(data)
+            .filter(k => data[k] !== undefined)
+            .map(k => `${k}=${data[k]}`)
+            .join('&');
         return params ? `${request}&${params}` : request;
     }
 
@@ -35,9 +37,10 @@ export class BurstService {
      * Creates Service instance
      * @param baseUrl The host url of web service
      * @param relativePath The relative path will be prepended before each url created with toBRSEndpoint()
+     * @param httpClient {Http?} If passed an client instance, it will be used instead of default HttpImpl. Good for testing.
      */
-    constructor(baseUrl: string, relativePath: string = '') {
-        this._http = new Http(baseUrl);
+    constructor(baseUrl: string, relativePath: string = '', httpClient?: Http) {
+        this._http = httpClient ? httpClient : new HttpImpl(baseUrl);
         this._relPath = relativePath.endsWith('/') ? relativePath.substr(0, relativePath.length - 1) : relativePath;
     }
 
@@ -45,7 +48,7 @@ export class BurstService {
     /**
      * Requests a query to BRS
      * @param method The BRS method according https://burstwiki.org/wiki/The_Burst_API
-     * @param args A JSON object which will be mapped to url params, e.g. {foo:1; bar:true} -> foo=1&bar=true
+     * @param args A JSON object which will be mapped to url params
      * @return The response data of success
      * @throws HttpError in case of failure
      */
@@ -59,7 +62,7 @@ export class BurstService {
      * Send data to BRS
      * @param method The BRS method accordinghttps://burstwiki.org/wiki/The_Burst_API#Create_Transaction.
      *        Note that there are only a few POST methods
-     * @param args A JSON object which will be mapped to url params, e.g. {foo:1; bar:true} -> foo=1&bar=true
+     * @param args A JSON object which will be mapped to url params
      * @return The response data of success
      * @throws HttpError in case of failure
      */

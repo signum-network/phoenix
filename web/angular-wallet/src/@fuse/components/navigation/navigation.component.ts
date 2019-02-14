@@ -7,9 +7,7 @@ import { FuseNavigationService } from '@fuse/components/navigation/navigation.se
 @Component({
     selector       : 'fuse-navigation',
     templateUrl    : './navigation.component.html',
-    styleUrls      : ['./navigation.component.scss'],
-    encapsulation  : ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls      : ['./navigation.component.scss']
 })
 export class FuseNavigationComponent implements OnInit
 {

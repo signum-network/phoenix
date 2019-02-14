@@ -21,14 +21,10 @@ fuse-sidebar {
 
                         .logo {
 
-                            .logo-icon {
-                                width: 32px;
-                                height: 32px;
+                            img {
+                                width: 100px;
                             }
 
-                            .logo-text {
-                                display: none;
-                            }
                         }
                     }
 
@@ -129,18 +125,10 @@ navbar {
                 display: flex;
                 align-items: center;
 
-                .logo-icon {
-                    width: 24px;
-                    height: 24px;
+                img {
+                    width: 100px;
                 }
 
-                .logo-text {
-                    margin-left: 12px;
-                    font-size: 16px;
-                    font-weight: 300;
-                    letter-spacing: 0.4px;
-                    line-height: normal;
-                }
             }
 
             .buttons {
@@ -177,7 +165,6 @@ navbar {
                 .avatar-container {
                     position: absolute;
                     top: 92px;
-                    border-radius: 50%;
                     padding: 8px;
                     transform: translateX(-50%);
                     left: 50%;
@@ -186,13 +173,14 @@ navbar {
                         width: 72px;
                         height: 72px;
                         margin: 0;
+                        border-radius: 0;
                     }
                 }
             }
 
             .navbar-content {
                 flex: 1 1 auto;
-                padding-top: 32px;
+                padding-top: 65px;
             }
         }
     }

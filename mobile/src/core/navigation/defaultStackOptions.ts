@@ -1,12 +1,12 @@
 import { NavigationScreenOptions } from 'react-navigation';
-import { colors } from '../theme/colors';
+import { Colors } from '../theme/colors';
 import { fonts } from '../theme/fonts';
 
 export const defaultStackOptions: NavigationScreenOptions = {
   headerStyle: {
-    backgroundColor: colors.blue
+    backgroundColor: Colors.blue
   },
-  headerTintColor: colors.white,
+  headerTintColor: Colors.white,
   headerTitleStyle: {
     fontWeight: 'bold',
     fontFamily: fonts.bebas
