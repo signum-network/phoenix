@@ -1,9 +1,9 @@
 {
   "/burst": {
     "target": {
-      "host": "wallet1.burst-team.us",
-      "protocol": "https:",
-      "port": 2083
+      "host": "localhost",
+      "protocol": "http:",
+      "port": 8125
     },
     "secure": false,
     "changeOrigin": true,
