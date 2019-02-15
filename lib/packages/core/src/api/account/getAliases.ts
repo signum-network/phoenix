@@ -10,7 +10,7 @@ export interface AliasResponse {
 }
 
 /**
- * Gets the balance od an account
+ * Gets the aliases of an account
  * @param {string} accountId
  * @return {Promise<AliasResponse>}
  */
