@@ -1,5 +1,6 @@
 {
    "account" : "Сметка",
+   "accounts" : "Accounts",
    "account_balance" : "Наличност по сметка",
    "account_details" : "Данни за сметка",
    "account_id" : "Сметка ID",
@@ -22,7 +23,7 @@
    "advanced_transaction_operations" : "Разширени операции със сделки",
    "advanced_uppercase" : "Допълнително",
    "alias" : "Псевдоним",
-   "Aliases" : "Aliases",
+   "aliases" : "Aliases",
    "aliases_owned" : "Собствени псевдоними",
    "aliases_to_account_id" : "Псевдоними към сметка ID",
    "aliases_to_uri" : "Псевдоними към URI",

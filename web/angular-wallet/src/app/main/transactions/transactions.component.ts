@@ -6,7 +6,7 @@ import { FormControl } from '@angular/forms';
 import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
 import { NotifierService } from 'angular-notifier';
-import { convertNQTStringToNumber } from '@burstjs/util/out';
+import { convertNQTStringToNumber } from '@burstjs/util';
 
 @Component({
     selector: 'app-transactions',
