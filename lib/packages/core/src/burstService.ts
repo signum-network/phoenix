@@ -63,12 +63,13 @@ export class BurstService {
      * @param method The BRS method accordinghttps://burstwiki.org/wiki/The_Burst_API#Create_Transaction.
      *        Note that there are only a few POST methods
      * @param args A JSON object which will be mapped to url params
+     * @param body An object with key value pairs to submit as post body
      * @return The response data of success
      * @throws HttpError in case of failure
      */
-    public async send<T>(method: string, args: any = {}): Promise<T> {
+    public async send<T>(method: string, args: any = {}, body={}): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
-        const response = await this.http.post(brsUrl, {});
+        const response = await this.http.post(brsUrl, body);
         return Promise.resolve(response.response);
     }
 }

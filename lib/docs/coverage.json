@@ -1,7 +1,7 @@
 {
-  "coverage": "29.6%",
-  "expectCount": 581,
-  "actualCount": 172,
+  "coverage": "29.67%",
+  "expectCount": 583,
+  "actualCount": 173,
   "files": {
     "packages/core/out/abstract/index.js": {
       "expectCount": 1,
@@ -18,7 +18,7 @@
       ]
     },
     "packages/core/out/api/composeApi.js": {
-      "expectCount": 20,
+      "expectCount": 21,
       "actualCount": 0,
       "undocumentLines": [
         3,
@@ -40,7 +40,8 @@
         19,
         20,
         21,
-        25
+        22,
+        26
       ]
     },
     "packages/core/out/api/index.js": {
@@ -256,9 +257,9 @@
       "expectCount": 5,
       "actualCount": 2,
       "undocumentLines": [
-        26,
         27,
-        28
+        28,
+        29
       ]
     },
     "packages/core/src/api/message/sendTextMessage.ts": {
@@ -272,6 +273,11 @@
       "undocumentLines": []
     },
     "packages/core/src/api/network/getServerStatus.ts": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "packages/core/src/api/network/suggestFee.ts": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []

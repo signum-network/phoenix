@@ -1,7 +1,9 @@
 <fuse-progress-bar></fuse-progress-bar>
 
 <ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-1'">
-  <vertical-layout-1></vertical-layout-1>
+  <vertical-layout-1
+    [selectedAccount]="selectedAccount"
+    [accounts]="accounts"></vertical-layout-1>
 </ng-container>
 <ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-2'">
   <vertical-layout-2></vertical-layout-2>

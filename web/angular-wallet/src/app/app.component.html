@@ -1,7 +1,10 @@
-<ng-container *ngIf="!account">
+<ng-container *ngIf="!selectedAccount">
   <router-outlet></router-outlet>
 </ng-container>
 
-<ng-container *ngIf="account">
-  <main [account]="account"></main>
+<ng-container *ngIf="selectedAccount">
+  <main [selectedAccount]="selectedAccount"
+        [accounts]="accounts"></main>
 </ng-container>
+
+<notifier-container></notifier-container>

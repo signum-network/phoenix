@@ -38,7 +38,8 @@ export class StoreService {
             settings = this.store.addCollection('settings', { unique : ['currency', 'id', 'language', 'node', 'notification', 'patchnotes', 'theme']});
             settings.insert(new Settings());
         }
-        this.store.saveDatabase();
+
+        this.store.saveDatabase(); 
         this.setReady(true);
         this.getSettings()
             .then(s => {

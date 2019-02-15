@@ -48,6 +48,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-message">core/src/api/message</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sendTextMessage">sendTextMessage</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-network">core/src/api/network</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBlockchainStatus">getBlockchainStatus</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getServerStatus">getServerStatus</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-suggestFee">suggestFee</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-transaction">core/src/api/transaction</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-broadcastTransaction">broadcastTransaction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getTransaction">getTransaction</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-error">core/src/error</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/error/noConnectionError.ts~NoConnectionError.html">NoConnectionError</a></span></span></li>
@@ -921,6 +922,35 @@
           
           
           
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-suggestFee">suggestFee</a></span></span><span class="code" data-ice="signature">(service: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>SuggestedFees</span>&gt;</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Get the current suggested fees</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
           <span class="code" data-ice="name"><span><a href="function/index.html#static-function-verifySignature">verifySignature</a></span></span><span class="code" data-ice="signature">(signature: <span>*</span>, messageHex: <span>*</span>, publicKey: <span>*</span>): <span>*</span></span>
         </p>
       </div>
@@ -1027,11 +1057,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/api/composeApi.ts.html#lineNumber38">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/api/composeApi.ts.html#lineNumber39">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {compose} from &apos;<span><a href="file/packages/core/src/api/composeApi.ts.html#lineNumber38">@burstjs/core/api</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {compose} from &apos;<span><a href="file/packages/core/src/api/composeApi.ts.html#lineNumber39">@burstjs/core/api</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Composes the API, i.e. setup the environment and mounts the API structure
@@ -3120,6 +3150,79 @@ with its functions.</p>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><span>*</span><span>[]</span></span></td>
           
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-suggestFee">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">suggestFee</span><span class="code" data-ice="signature">(service: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>SuggestedFees</span>&gt;</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/api/network/suggestFee.ts.html#lineNumber5">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {suggestFee} from &apos;<span><a href="file/packages/core/src/api/network/suggestFee.ts.html#lineNumber5">@burstjs/core/api</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Get the current suggested fees</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">service</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>SuggestedFees</span>&gt;</td>
+          <td class="return-desc" data-ice="returnDescription"><p>The Suggested Fees</p>
+</td>
         </tr>
       </tbody>
     </table>

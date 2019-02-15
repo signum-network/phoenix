@@ -6,6 +6,7 @@ export * from './composeApi';
 /* NETWORK */
 export * from './network/getServerStatus';
 export * from './network/getBlockchainStatus';
+export * from './network/suggestFee';
 
 /* BLOCK */
 export * from './block/getBlockByTimestamp';
