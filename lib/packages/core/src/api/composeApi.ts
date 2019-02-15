@@ -22,6 +22,7 @@ import { generateSendTransactionQRCode } from './account/generateSendTransaction
 import { generateSendTransactionQRCodeAddress } from './account/generateSendTransactionQRCodeAddress';
 import { suggestFee } from './network/suggestFee';
 import { sendMoney } from './transaction/sendMoney';
+import {Api} from '..';
 
 export class ApiSettings {
     constructor(
@@ -35,9 +36,9 @@ export class ApiSettings {
  * Composes the API, i.e. setup the environment and mounts the API structure
  * with its functions.
  * @param settings Injects necessary execution context
- * @return The configured BURST API object
+ * @return {Api} The configured BURST API object
  */
-export function compose(settings: ApiSettings) {
+export function compose(settings: ApiSettings): Api {
 
     const service = new BurstService(settings.nodeHost, settings.apiRootUrl);
 

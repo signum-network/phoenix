@@ -4,8 +4,8 @@ import {BurstService} from '../../burstService';
 import {getAccountTransactions} from '../account/getAccountTransactions';
 import {getUnconfirmedAccountTransactions} from '../account/getUnconfirmedAccountTransactions';
 import {getAccountBalance} from '../account/getAccountBalance';
-import { generateSendTransactionQRCodeAddress } from '../account/generateSendTransactionQRCodeAddress';
-import { generateSendTransactionQRCode } from '../account/generateSendTransactionQRCode';
+import {generateSendTransactionQRCodeAddress} from '../account/generateSendTransactionQRCodeAddress';
+import {generateSendTransactionQRCode} from '../account/generateSendTransactionQRCode';
 
 describe('Account Api', () => {
 
@@ -217,9 +217,10 @@ describe('Account Api', () => {
         const mockAddress = `BURST-K8MA-U2JT-R6DJ-FVQLC`;
 
         it('should expose a method for constructing the URL', async () => {
-            const expected = `relPath?requestType=generateSendTransactionQRCode&receiverId=BURST-K8MA-U2JT-R6DJ-FVQLC&amountNQT=0&feeSuggestionType=standard`
+            // tslint:disable-next-line
+            const expected = 'relPath?requestType=generateSendTransactionQRCode&receiverId=BURST-K8MA-U2JT-R6DJ-FVQLC&amountNQT=0&feeSuggestionType=standard';
             const service = new BurstService('baseUrl', 'relPath', httpMock);
-            const generatedImageUrl = generateSendTransactionQRCodeAddress(service)(mockAddress);
+            const generatedImageUrl = await generateSendTransactionQRCodeAddress(service)(mockAddress);
             expect(generatedImageUrl).toBe(expected);
         });
 
