@@ -21,7 +21,6 @@ export class TransactionsComponent {
     pickerFromField = new FormControl();
     pickerToField = new FormControl();
 
-
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 

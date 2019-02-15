@@ -39,6 +39,10 @@ export class AccountService {
         return this.api.account.generateSendTransactionQRCodeAddress(id);
     }
 
+    public getAliases(id: string) {
+        return this.api.account.getAliases(id);
+    }
+
     /*
     * Method responsible for creating a new active account from a passphrase.
     * Generates keys for an account, encrypts them with the provided key and saves them.
