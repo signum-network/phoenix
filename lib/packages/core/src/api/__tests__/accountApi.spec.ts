@@ -249,11 +249,11 @@ describe('Account Api', () => {
 
         it('should getAliases', async () => {
             const mockAlias: Alias = {
-                account: "351316177685308507",
-                accountRS: "BURST-HT4V-8H5E-ESS5-223SB",
-                alias: "4284736368065812210",
-                aliasName: "blankey1337",
-                aliasURI: "acct:burst-ht4v-8h5e-ess5-223sb@burst",
+                account: "12345",
+                accountRS: "BURST-K8MA-U2JT-R6DJ-FVQLC`",
+                alias: "12345",
+                aliasName: "test",
+                aliasURI: "acct:burst-K8MA-U2JT-R6DJ-FVQLC@burst",
                 timestamp: 131932255
             };
             const mockResponse: AliasResponse = {
