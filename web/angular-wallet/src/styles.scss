@@ -1,3 +1,30 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "../node_modules/angular-notifier/styles.scss";
 @import "@fuse/scss/core";
 @import "app/app.theme";
-@import "../node_modules/angular-notifier/styles.scss"; 
+
+$danger-color: #ff8080;
+$success-color: #00cc99;
+
+.btn-danger {
+  background: $danger-color;
+}
+.btn-danger:hover {
+  background: darken($danger-color, 5%);
+}
+
+.btn-success {
+  background: $success-color;
+}
+.btn-success:hover {
+  background: darken($success-color, 5%);
+}
+
+.mat-raised-button.btn-danger, .mat-raised-button.btn-success {
+  color: #fdfdfd;
+  margin: 0 .5rem;
+}
+
+.divider {
+  border-top-color: #dcdcdc;
+}

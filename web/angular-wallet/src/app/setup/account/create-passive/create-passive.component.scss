@@ -1,10 +1,15 @@
+$media-querie-mobile: 0;
+$media-querie-tablet: 768px;
+
 .address-container mat-form-field {
-    width: 300px;
-    text-align: center;
-    input {
-        top: -.2em;
-        position: relative;
-    }
+  @media screen and (min-width: $media-querie-mobile) {
+    margin-left: 3rem;
+    width: 80%;
+  }
+  @media screen and (min-width: $media-querie-tablet) {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 .fa-arrow-right {
