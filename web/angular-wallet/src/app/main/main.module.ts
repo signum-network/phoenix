@@ -1,29 +1,27 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RouterModule, Routes} from '@angular/router';
-import {MatMomentDateModule} from '@angular/material-moment-adapter';
-import {MatButtonModule, MatIconModule} from '@angular/material';
-import {TranslateModule} from '@ngx-translate/core';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatButtonModule, MatIconModule } from '@angular/material';
+import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
 
-import {FuseModule} from '@fuse/fuse.module';
-import {FuseSharedModule} from '@fuse/shared.module';
-import {FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule} from '@fuse/components';
+import { FuseModule } from '@fuse/fuse.module';
+import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
 
-import {fuseConfig} from 'app/fuse-config';
+import { fuseConfig } from 'app/fuse-config';
 
-import {LayoutModule} from 'app/layout/layout.module';
-import {SampleModule} from './sample/sample.module';
-import {MainComponent} from './main.component';
-import {DashboardModule} from './dashboard/dashboard.module';
-import {DashboardComponent} from './dashboard/dashboard.component';
+import { LayoutModule } from 'app/layout/layout.module';
+import { SampleModule } from './sample/sample.module';
+import { MainComponent } from './main.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { LoginGuard } from 'app/login/login-guard.service';
-import { TransactionsComponent } from './transactions/transactions.component';
 import { TransactionsModule } from './transactions/transactions.module';
-import { SendBurstComponent } from './send-burst/send-burst.component';
 import { SendBurstModule } from './send-burst/send-burst.module';
+import { AccountsModule } from './accounts/accounts.module';
 
 const mainRoutes: Routes = [
   {
@@ -65,11 +63,12 @@ const mainRoutes: Routes = [
     SampleModule,
     DashboardModule,
     TransactionsModule,
-    SendBurstModule
+    SendBurstModule,
+    AccountsModule
   ],
   exports: [
     MainComponent
   ]
 })
 
-export class MainModule {}
+export class MainModule { }

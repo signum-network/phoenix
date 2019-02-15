@@ -1,21 +1,17 @@
 <div class="page-layout blank simple" fusePerfectScrollbar *ngIf="fees">
 
-  <!-- HEADER -->
   <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-    fxLayoutAlign.gt-xs="space-between center">
+      fxLayoutAlign.gt-xs="space-between center">
 
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <mat-icon class="secondary-text s-18" [routerLink]="['/']">home</mat-icon>
-        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-        <span class="secondary-text" [routerLink]="['/transactions']">{{ 'send_burst' | i18n }}</span>
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+          <div fxLayout="row" fxLayoutAlign="start center">
+              <mat-icon class="secondary-text s-18" routerLink="/dashboard">home</mat-icon>
+              <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+              <span class="secondary-text">{{ 'send_burst' | i18n }}</span>
+          </div>
+          <div class="h1 mt-16">{{ 'send_burst' | i18n }}</div>
       </div>
-      <div class="h1 mt-16">
-        <h2>{{ 'send_burst' | i18n }}</h2>
-      </div>
-    </div>
   </div>
-  <!-- / HEADER -->
 
   <div class="p-24 w-600">
 

@@ -1,0 +1,35 @@
+
+
+.mat-header-cell.mat-sort-header-sorted {
+    color: black;
+}
+
+.button-row {
+    justify-content: space-between;
+    display: flex;
+}
+
+.button-row button {
+    align-self: center;
+}
+
+.button-row button.delete {
+    margin-left:auto;
+    margin-right:10px;
+}
+
+.mat-column-address {
+    flex: 0 0 270px;
+}
+.mat-column-id {
+    flex: 0 0 200px;
+}
+.mat-column-balance {
+    flex: 0 0 200px;
+}
+.mat-column-delete {
+    flex: 0 0 50px;
+}
+.center {
+    justify-content: center
+}

@@ -1,0 +1,78 @@
+<div class="page-layout blank simple" fusePerfectScrollbar *ngIf="accounts">
+
+    <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+    fxLayoutAlign.gt-xs="space-between center">
+
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="secondary-text s-18" routerLink="/dashboard">home</mat-icon>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">{{ 'accounts' | i18n }}</span>
+            </div>
+            <div class="h1 mt-16">{{ 'accounts' | i18n }}</div>
+        </div>
+    </div>
+
+    <div class="p-24">
+
+        <div class="button-row">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+            <button mat-button color="accent" class="delete" *ngIf="getSelectedAccounts().length"
+                (click)="deleteSelectedAccounts()">Delete Selected</button>
+            <button mat-button color="primary" 
+                (click)="router.navigate(['/dashboard/setup/create'])">New Account</button>
+        </div>
+
+        <mat-table #table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>bookmark</mat-icon> Id
+                </mat-header-cell>
+                <mat-cell *matCellDef="let account"> {{account.id}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="address">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>account_box</mat-icon> Address
+                </mat-header-cell>
+                <mat-cell *matCellDef="let account"> {{account.address}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="alias">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>account_box</mat-icon> Alias
+                </mat-header-cell>
+                <mat-cell *matCellDef="let account"> {{account.alias}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="balance">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>local_atm</mat-icon> Balance
+                </mat-header-cell>
+                <mat-cell *matCellDef="let account"> {{account.balance}} BURST</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="selected">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>keyboard_arrow_down</mat-icon> Selected
+                </mat-header-cell>
+                <mat-cell *matCellDef="let account"> {{account.selected}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>delete</mat-icon>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let account" class="center">
+                    <mat-checkbox [(ngModel)]="selectedAccounts[account.id]"></mat-checkbox>
+                </mat-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+</div>

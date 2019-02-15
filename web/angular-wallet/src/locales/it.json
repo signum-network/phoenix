@@ -1,5 +1,6 @@
 {
     "account": "Account",
+    "accounts" : "Accounts",
     "account_balance": "Saldo",
     "account_details": "Dettagli account",
     "account_id": "Account ID",
