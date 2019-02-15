@@ -5,6 +5,8 @@ import { Converter } from '@burstjs/crypto';
 import { FormControl } from '@angular/forms';
 import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
+import { NotifierService } from 'angular-notifier';
+import { convertNQTStringToNumber } from '@burstjs/util/out';
 
 @Component({
     selector: 'app-transactions',
@@ -13,10 +15,12 @@ import { StoreService } from 'app/store/store.service';
 })
 export class TransactionsComponent {
     public dataSource: MatTableDataSource<Transaction>;
+    public convertNQTStringToNumber = convertNQTStringToNumber;
     public displayedColumns: string[];
     private account: Account;
     pickerFromField = new FormControl();
     pickerToField = new FormControl();
+
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -24,30 +28,25 @@ export class TransactionsComponent {
     constructor(
         private accountService: AccountService,
         private storeService: StoreService,
-        private dialog: MatDialog
+        private notifierService: NotifierService
     ) {}
 
     public async ngOnInit() {
-        this.displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmed'];
+        this.displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmations'];
         this.dataSource = new MatTableDataSource<Transaction>();
-        this.account = await this.storeService.getSelectedAccount()
+        this.account = await this.storeService.getSelectedAccount();
         this.accountService.getAccountTransactions(this.account.id).then(transactions => {
-            console.log(transactions);
             if (transactions.errorCode) {
-                // temporary
-                transactions = [{
-                    id: '17134635898950935218', attachment: '123', timestamp: new Date(), type: '123', amountNQT: '12345', feeNQT: '123'
-                }];
-                console.log(transactions.errorDescription);
+                this.notifierService.notify('error', 'Error fetching transactions');
             }
-            this.dataSource.data = transactions;
+            this.dataSource.data = transactions.transactions;
         })
     }
 
     public ngAfterViewInit() {
         const defaultFilterPredicate = this.dataSource.filterPredicate;
-        // this.dataSource.paginator = this.paginator;
-        // this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         this.dataSource.filterPredicate = (data, filterValue: string) => {
             let withinRange = true;
             if (this.pickerFromField.value && this.pickerToField.value) {

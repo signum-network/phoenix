@@ -48,7 +48,7 @@
             <ng-container matColumnDef="transaction_id">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'transaction_id' | i18n }}</mat-header-cell>
                 <mat-cell *matCellDef="let transaction">
-                    <span class="link" [routerLink]="['/transaction', transaction.id]">{{ transaction.id }}</span>
+                    <span class="link" [routerLink]="['/transaction', transaction.transaction]">{{ transaction.transaction }}</span>
                 </mat-cell>
             </ng-container>
 
@@ -84,14 +84,14 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                     <mat-icon>local_atm</mat-icon>&nbsp;{{ 'amount' | i18n }}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let transaction"> {{transaction.amountNQT| number : '1.0-8'}}</mat-cell>
+                <mat-cell *matCellDef="let transaction"> {{ convertNQTStringToNumber(transaction.amountNQT) | number : '1.0-8' }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="fee">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                     <mat-icon>compare_arrows</mat-icon>&nbsp;{{ 'fee' | i18n }}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let transaction"> {{transaction.feeNQT | number : '1.0-8'}}</mat-cell>
+                <mat-cell *matCellDef="let transaction"> {{ convertNQTStringToNumber(transaction.feeNQT) | number : '1.0-8'}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="account">
@@ -99,15 +99,15 @@
                     <mat-icon>account_box</mat-icon>&nbsp;{{ 'account' | i18n }}
                 </mat-header-cell>
                 <mat-cell *matCellDef="let transaction">
-                    <span *ngIf="isOwnAccount(transaction.senderAddress)">{{transaction.recipientAddress}}</span>
-                    <span *ngIf="!isOwnAccount(transaction.senderAddress)">{{transaction.senderAddress}}</span>
+                    <span *ngIf="isOwnAccount(transaction.senderRS)">{{transaction.recipientRS}}</span>
+                    <span *ngIf="!isOwnAccount(transaction.senderRS)">{{transaction.senderRS}}</span>
                 </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="confirmed">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'confirmed' | i18n }}</mat-header-cell>
+            <ng-container matColumnDef="confirmations">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'confirmations' | i18n }}</mat-header-cell>
                 <mat-cell *matCellDef="let transaction">
-                    <mat-icon *ngIf="transaction.confirmed">check</mat-icon>
+                    <span *ngIf="transaction.confirmations">{{transaction.confirmations}}</span>
                 </mat-cell>
             </ng-container>
 
