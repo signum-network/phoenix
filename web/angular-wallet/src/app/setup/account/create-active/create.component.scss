@@ -1,3 +1,9 @@
-mat-horizontal-stepper {
-    border-radius:5px;
+:host .mat-step-header .mat-step-icon-state-number.mat-step-icon-selected,
+:host .mat-step-header .mat-step-icon-state-done,
+:host .mat-step-header .mat-step-icon-state-edit {
+  background-color: #00579d;
+}
+
+:host .mat-horizontal-stepper-header.cdk-focused {
+  background: none;
 }

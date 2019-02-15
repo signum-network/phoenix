@@ -1,4 +1,4 @@
-<mat-horizontal-stepper #stepper [linear]="true" [selectedIndex]="this.createService.getStepIndex()">
+<mat-horizontal-stepper #stepper [linear]="true" [selectedIndex]="this.createService.getStepIndex()" labelPosition="bottom">
     <mat-step [completed]="this.createService.isPassphraseGenerated()" [editable]="!this.createService.isPassphraseGenerated()">
         <ng-template matStepLabel>Seed</ng-template>
         <div class="step-container">
