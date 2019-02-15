@@ -22,10 +22,7 @@ import { LoginGuard } from 'app/login/login-guard.service';
 import { TransactionsModule } from './transactions/transactions.module';
 import { SendBurstModule } from './send-burst/send-burst.module';
 import { AccountsModule } from './accounts/accounts.module';
-<<<<<<< HEAD
 import { AliasesModule } from './aliases/aliases.module';
-=======
->>>>>>> 3f3837a22fd2c3f8b02f4175b4f6976cf1fcc1f0
 
 const mainRoutes: Routes = [
   {
