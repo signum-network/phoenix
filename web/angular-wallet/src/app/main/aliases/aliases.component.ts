@@ -12,8 +12,8 @@ import { Account, Alias } from '@burstjs/core';
   templateUrl: './aliases.component.html'
 })
 export class AliasesComponent {
-  private dataSource: MatTableDataSource<Alias>;
-  private displayedColumns: string[];
+  public dataSource: MatTableDataSource<Alias>;
+  public displayedColumns: string[];
   public selectedAccount: Account;
 
   @ViewChild(MatSort) sort: MatSort;
