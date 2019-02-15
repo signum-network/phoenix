@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -15,6 +15,8 @@ export class VerticalLayout1Component implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
+    @Input('selectedAccount') selectedAccount: Account;
+    @Input('accounts') accounts: Account[];
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -44,6 +46,9 @@ export class VerticalLayout1Component implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
+
+
+        console.log(this.selectedAccount);
         // Subscribe to config changes
         this._fuseConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))

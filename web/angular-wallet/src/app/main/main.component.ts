@@ -21,7 +21,8 @@ export class MainComponent implements OnInit, OnDestroy {
   fuseConfig: any;
   navigation: any;
 
-  @Input('') account: Account;
+  @Input('selectedAccount') selectedAccount: Account;
+  @Input('accounts') accounts: Account[];
   private _unsubscribeAll: Subject<any>;
 
   constructor(
@@ -54,6 +55,9 @@ export class MainComponent implements OnInit, OnDestroy {
    * On init
    */
   ngOnInit(): void {
+
+
+    console.log(this.selectedAccount);
     // Subscribe to config changes
     this._fuseConfigService.config
       .pipe(takeUntil(this._unsubscribeAll))
