@@ -6,6 +6,8 @@ import {getUnconfirmedAccountTransactions} from '../account/getUnconfirmedAccoun
 import {getAccountBalance} from '../account/getAccountBalance';
 import { generateSendTransactionQRCodeAddress } from '../account/generateSendTransactionQRCodeAddress';
 import { generateSendTransactionQRCode } from '../account/generateSendTransactionQRCode';
+import { getAliases, AliasResponse } from '../account/getAliases';
+import { Alias } from '../../typings/alias';
 
 describe('Account Api', () => {
 
@@ -236,6 +238,40 @@ describe('Account Api', () => {
             const service = new BurstService('baseUrl', 'relPath', httpMock);
             try {
                 await generateSendTransactionQRCode(service)(mockAddress);
+            } catch (e) {
+                expect(e.status).toBe(404);
+                expect(e.message).toBe('Test Error');
+            }
+        });
+    });
+
+    describe('getAliases', () => {
+
+        it('should getAliases', async () => {
+            const mockAlias: Alias = {
+                account: "351316177685308507",
+                accountRS: "BURST-HT4V-8H5E-ESS5-223SB",
+                alias: "4284736368065812210",
+                aliasName: "blankey1337",
+                aliasURI: "acct:burst-ht4v-8h5e-ess5-223sb@burst",
+                timestamp: 131932255
+            };
+            const mockResponse: AliasResponse = {
+                aliases: [mockAlias],
+                requestProcessingTime: 1337
+            };
+
+            httpMock = HttpMockBuilder.create().onGetReply(200, mockResponse).build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const aliasesResponse = await getAliases(service)('accountId');
+            expect(aliasesResponse.aliases).toHaveLength(1);
+        });
+
+        it('should fail getAliases', async () => {
+            httpMock = HttpMockBuilder.create().onGetThrowError(404, 'Test Error').build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            try {
+                await getAliases(service)('accountId');
             } catch (e) {
                 expect(e.status).toBe(404);
                 expect(e.message).toBe('Test Error');
