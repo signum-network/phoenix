@@ -31,6 +31,7 @@ import { I18nModule } from '../layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { AccountService } from './account/account.service';
 import { AccountCreateExistingComponent } from './account/create-active/existing/existing.component';
+import { AccountResolver } from './account/account.resolver';
 
 @NgModule({
     imports: [
@@ -68,7 +69,8 @@ import { AccountCreateExistingComponent } from './account/create-active/existing
     ],
     providers: [
         CreateService,
-        AccountService
+        AccountService,
+        AccountResolver
     ],
     exports: [
         AccountNewComponent,

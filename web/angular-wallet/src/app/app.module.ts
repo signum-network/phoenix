@@ -17,6 +17,9 @@ import { SetupModule } from './setup/setup.module';
 import { LoginGuard } from './login/login-guard.service';
 import { StoreService } from './store/store.service';
 import { StoreConfig, appConfigFactory } from './store/store.config';
+import { NetworkService } from './network/network.service';
+import { NetworkModule } from './network/network.module';
+import { NotifierModule } from 'angular-notifier';
 
 const appRoutes: Routes = [
   {
@@ -25,7 +28,7 @@ const appRoutes: Routes = [
   },
   {
     path: '**',
-    component: MainComponent,
+    redirectTo: 'dashboard',
     canActivate: [LoginGuard]
   },
 ];
@@ -52,7 +55,10 @@ const appRoutes: Routes = [
     // App modules
     LoginModule,
     MainModule,
-    SetupModule
+    SetupModule,
+    NetworkModule,
+
+    NotifierModule
   ],
   providers: [
     StoreService,

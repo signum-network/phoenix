@@ -1,0 +1,26 @@
+.pill {
+    background:#428bca;
+    color:#fff;
+    border-radius:3px;
+    padding:1px 5px;
+    line-height:1.5em;
+    font-size:12px;
+}
+
+em {
+    font-style:italic;
+    color:#428bca;
+}
+em:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+mat-form-field {
+    width: 100%;
+    display: block;
+}
+
+form {
+    margin:20px 0;
+}

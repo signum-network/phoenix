@@ -3,13 +3,23 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 
-import { StoreService } from 'app/store/store.service';
-import { Settings } from 'app/settings';
-import { Account, compose, ApiSettings } from '@burstjs/core';
-import { generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey } from '@burstjs/crypto';
-import { isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId } from '@burstjs/util';
+import { compose, ApiSettings, Transaction, EncryptedMessage, Attachment } from '@burstjs/core';
 import { environment } from 'environments/environment.prod';
+import { Keys, getAccountIdFromPublicKey, encryptMessage, decryptAES, hashSHA256 } from '@burstjs/crypto';
 
+interface SendMoneyRequest {
+    transaction: {
+        amountNQT: number,
+        feeNQT: string,
+        attachment: Attachment,
+        deadline: number,
+        fullHash: string,
+        type: number,
+    },
+    pin: string,
+    keys: Keys,
+    recipientAddress: string
+};
 
 @Injectable()
 export class TransactionService {
@@ -24,5 +34,27 @@ export class TransactionService {
 
     public getTransaction(id: string) {
         return this.api.transaction.getTransaction(id);
+    }
+
+    public async sendMoney({ transaction, pin, keys, recipientAddress }: SendMoneyRequest) {
+        // todo
+        // if (transactionToSend.attachment && transactionToSend.attachment.encryptedMessage) {
+        //     const recipientPublicKey = await getAccountIdFromPublicKey(transaction.recipientAddress);
+        //     const encryptedMessage = await encryptMessage(transactionToSend.attachment.encryptedMessage,
+        //         keys.agreementPrivateKey, this.accountService.hashPinEncryption(pin), recipientPublicKey);
+        //     transactionToSend = {
+        //         attachment: new EncryptedMessage({
+        //             data: encryptedMessage.m,
+        //             nonce: encryptedMessage.n,
+        //             isText: true
+        //         }),
+        //         ...transactionToSend
+        //     };
+        // }
+        const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+        return this.api.transaction.sendMoney(transaction, keys.publicKey, senderPrivateKey, recipientAddress)
+            .catch((err) => {
+                throw new Error(`There was a problem submitting your transaction.`)
+            }) 
     }
 }
