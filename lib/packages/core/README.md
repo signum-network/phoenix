@@ -30,7 +30,7 @@ Extend and specific services here</p>
     * [.http](#BurstService+http) ⇒
     * [.toBRSEndpoint(method, data)](#BurstService+toBRSEndpoint) ⇒
     * [.query(method, args)](#BurstService+query) ⇒
-    * [.send(method, args)](#BurstService+send) ⇒
+    * [.send(method, args, body)](#BurstService+send) ⇒
 
 <a name="new_BurstService_new"></a>
 
@@ -82,7 +82,7 @@ Extend and specific services here</p>
 
 <a name="BurstService+send"></a>
 
-### burstService.send(method, args) ⇒
+### burstService.send(method, args, body) ⇒
 <p>Send data to BRS</p>
 
 **Kind**: instance method of [<code>BurstService</code>](#BurstService)  
@@ -96,4 +96,5 @@ Extend and specific services here</p>
 | --- | --- |
 | method | <p>The BRS method accordinghttps://burstwiki.org/wiki/The_Burst_API#Create_Transaction.        Note that there are only a few POST methods</p> |
 | args | <p>A JSON object which will be mapped to url params</p> |
+| body | <p>An object with key value pairs to submit as post body</p> |
 

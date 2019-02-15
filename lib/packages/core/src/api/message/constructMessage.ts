@@ -9,22 +9,20 @@ import { Transaction } from "../../typings/transaction";
  * @return HttpParams
  */
 export const constructAttachment = (transaction: Transaction, params: any) => {
-    if (transaction.attachment.type == "encrypted_message") {
-        let em: EncryptedMessage = <EncryptedMessage>transaction.attachment;
-        params = {
+    if (transaction.attachment.type === "encrypted_message") {
+        let em: EncryptedMessage = transaction.attachment;
+        params = Object.assign({
             encryptedMessageData: em.data,
             encryptedMessageNonce: em.nonce,
-            messageToEncryptIsText: String(em.isText),
-            ...params
-        }
+            messageToEncryptIsText: String(em.isText)
+        }, params);
     }
-    else if (transaction.attachment.type == "message") {
-        let m: Message = <Message>transaction.attachment;
-        params = {
+    else if (transaction.attachment.type === "message") {
+        let m: Message = transaction.attachment;
+        params = Object.assign({
             message: m.message,
-            messageIsText: String(m.messageIsText),
-            ...params
-        };
+            messageIsText: String(m.messageIsText)
+        }, params);
     }
     return params;
 }
