@@ -42,14 +42,14 @@ describe('Transaction Api', () => {
     });
 
     describe('sendMoney', () => {
-        let service; 
+        let service;
 
         const mockTransaction: Transaction = {
             transaction: 'transactionId',
             requestProcessingTime: 4,
-            feeNQT: "1",
-            amountNQT: "1",
-            fullHash: "808d5c32b12f4d4b963404c19523b6391ddf7a04a96ec4a495703aeead76c6ff",
+            feeNQT: '1',
+            amountNQT: '1',
+            fullHash: '808d5c32b12f4d4b963404c19523b6391ddf7a04a96ec4a495703aeead76c6ff',
         };
 
         const mockBroadcastResponse = {
@@ -68,14 +68,15 @@ describe('Transaction Api', () => {
             generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
 
             httpMock = HttpMockBuilder.create()
-            .onPostReply(200, mockBroadcastResponse, 
+            // tslint:disable:max-line-length
+            .onPostReply(200, mockBroadcastResponse,
                 'relPath?requestType=sendMoney&requestType=sendMoney&amountNQT=100000000&publicKey=recipientId&recipient=senderPrivateKey&deadline=1440&feeNQT=100000000')
-            .onPostReply(200, mockTransaction.transaction, 
+            .onPostReply(200, mockTransaction.transaction,
                 'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
             .build();
 
             service = new BurstService('baseUrl', 'relPath', httpMock);
-        })
+        });
 
         afterEach(() => {
             // @ts-ignore
@@ -84,7 +85,7 @@ describe('Transaction Api', () => {
 
         it('should sendMoney', async () => {
             const status = await sendMoney(service)(
-                mockTransaction, 
+                mockTransaction,
                 'recipientId',
                 'senderPublicKey',
                 'senderPrivateKey'

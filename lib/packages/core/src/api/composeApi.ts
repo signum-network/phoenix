@@ -2,6 +2,8 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 import {BurstService} from '../burstService';
+import {Api} from '../typings/api';
+import {ApiComposer} from './apiComposer';
 
 import {getBlockByTimestamp} from './block/getBlockByTimestamp';
 import {getBlockByHeight} from './block/getBlockByHeight';
@@ -18,11 +20,10 @@ import {sendTextMessage} from './message/sendTextMessage';
 import {getAccountTransactions} from './account/getAccountTransactions';
 import {getUnconfirmedAccountTransactions} from './account/getUnconfirmedAccountTransactions';
 import {getAccountBalance} from './account/getAccountBalance';
-import { generateSendTransactionQRCode } from './account/generateSendTransactionQRCode';
-import { generateSendTransactionQRCodeAddress } from './account/generateSendTransactionQRCodeAddress';
-import { suggestFee } from './network/suggestFee';
-import { sendMoney } from './transaction/sendMoney';
-import {Api} from '..';
+import {generateSendTransactionQRCode} from './account/generateSendTransactionQRCode';
+import {generateSendTransactionQRCodeAddress} from './account/generateSendTransactionQRCodeAddress';
+import {suggestFee} from './network/suggestFee';
+import {sendMoney} from './transaction/sendMoney';
 
 export class ApiSettings {
     constructor(
@@ -42,32 +43,34 @@ export function compose(settings: ApiSettings): Api {
 
     const service = new BurstService(settings.nodeHost, settings.apiRootUrl);
 
-    return {
-        block: {
-            getBlockByTimestamp: getBlockByTimestamp(service),
-            getBlockByHeight: getBlockByHeight(service),
-            getBlockById: getBlockById(service),
-            getBlockId: getBlockId(service),
-        },
-        network: {
-            getBlockchainStatus: getBlockchainStatus(service),
-            getServerStatus: getServerStatus(service),
-            suggestFee: suggestFee(service),
-        },
-        transaction: {
-            broadcastTransaction: broadcastTransaction(service),
-            getTransaction: getTransaction(service),
-            sendMoney: sendMoney(service),
-        },
-        message: {
-            sendTextMessage: sendTextMessage(service),
-        },
-        account: {
-            getAccountTransactions: getAccountTransactions(service),
-            getUnconfirmedAccountTransactions: getUnconfirmedAccountTransactions(service),
-            getAccountBalance: getAccountBalance(service),
-            generateSendTransactionQRCode: generateSendTransactionQRCode(service),
-            generateSendTransactionQRCodeAddress: generateSendTransactionQRCodeAddress(service),
-        }
-    };
+    return ApiComposer
+        .create(service)
+        .withBlockApi({
+            getBlockByTimestamp,
+            getBlockByHeight,
+            getBlockById,
+            getBlockId,
+        })
+        .withNetworkApi({
+            getBlockchainStatus,
+            getServerStatus,
+            suggestFee,
+        })
+        .withTransactionApi({
+            broadcastTransaction,
+            getTransaction,
+            sendMoney,
+        })
+        .withMessageApi({
+            sendTextMessage
+        })
+        .withAccountApi({
+            getAccountTransactions,
+            getUnconfirmedAccountTransactions,
+            getAccountBalance,
+            generateSendTransactionQRCode,
+            generateSendTransactionQRCodeAddress,
+        })
+        .compose();
+
 }

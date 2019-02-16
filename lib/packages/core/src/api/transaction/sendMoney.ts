@@ -1,7 +1,6 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import { broadcastTransaction } from '..';
 import { BurstService } from '../../burstService';
 import { TransactionId } from '../../typings/transactionId';
 import { TransactionResponse } from '../../typings/transactionResponse';
@@ -11,6 +10,7 @@ import { generateSignedTransactionBytes } from '@burstjs/crypto';
 import { convertNumberToNQTString, convertNQTStringToNumber } from '@burstjs/util';
 import { Transaction } from '../../typings/transaction';
 import { constructAttachment } from '../message/constructMessage';
+import {broadcastTransaction} from './broadcastTransaction';
 
 /**
  * Sends burst to the blockchain
@@ -33,7 +33,7 @@ export const sendMoney = (service: BurstService):
         senderPrivateKey: string,
         recipientAddress: string,
     ): Promise<TransactionId | Error> => {
-        
+
         let parameters = {
             requestType: 'sendMoney',
             amountNQT: convertNumberToNQTString(parseFloat(transaction.amountNQT)),
@@ -44,14 +44,14 @@ export const sendMoney = (service: BurstService):
         };
         if (transaction.attachment) {
             parameters = constructAttachment(transaction, parameters);
-        } 
+        }
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('sendMoney', parameters);
         const signature = generateSignature(unsignedHexMessage, senderPrivateKey);
         if (!verifySignature(signature, unsignedHexMessage, senderPublicKey)) {
-            throw new Error('The signed message could not be verified! Message not broadcasted!');
+            throw new Error('The signed message could not be verified! Transaction not broadcasted!');
         }
 
         const signedMessage = generateSignedTransactionBytes(unsignedHexMessage, signature);
         return broadcastTransaction(service)(signedMessage);
- 
+
     };

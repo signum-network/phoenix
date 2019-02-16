@@ -1,5 +1,5 @@
 /** @module core */
-export * from './typings/api';
+export * from './typings/api/api';
 export * from './typings/account';
 export * from './typings/attachment';
 export * from './typings/block';
