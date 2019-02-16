@@ -1,10 +1,10 @@
+import {convertNQTStringToNumber} from '@burstjs/util';
 import {loadEnvironment} from './helpers/environment';
 import {getAccountIdFromPassphrase} from './helpers/account';
 import {BurstService} from '../../../burstService';
 import {getAccountTransactions} from '../../account/getAccountTransactions';
 import {getUnconfirmedAccountTransactions} from '../../account/getUnconfirmedAccountTransactions';
 import {getAccountBalance} from '../../account/getAccountBalance';
-import {BurstUtil} from '@burstjs/crypto';
 
 const environment = loadEnvironment();
 
@@ -27,6 +27,7 @@ describe(`[E2E] Account Api`, () => {
             )[0];
             expect(testTransaction).toBeDefined();
             expect(testTransaction.sender).toBe(accountId);
+
         });
 
         it('should getAccountTransactions paged', async () => {
@@ -40,7 +41,7 @@ describe(`[E2E] Account Api`, () => {
             const transactionList = await getAccountTransactions(service)(accountId, undefined, undefined, 1440);
             expect(transactionList).not.toBeUndefined();
             const {transactions} = transactionList;
-            expect(transactions.length).toBe(4);
+            expect(transactions.length).toBeGreaterThanOrEqual(4);
         });
     });
 
@@ -57,7 +58,7 @@ describe(`[E2E] Account Api`, () => {
         it('should getAccountBalance', async () => {
             const balance = await getAccountBalance(service)(accountId);
 
-            const c = BurstUtil.convertStringToNumber;
+            const c = convertNQTStringToNumber;
             expect(c(balance.balanceNQT)).toBeGreaterThan(1);
             expect(c(balance.forgedBalanceNQT)).toBeGreaterThanOrEqual(0);
             expect(c(balance.effectiveBalanceNXT)).toBeGreaterThan(1);

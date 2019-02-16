@@ -1,6 +1,8 @@
 /** @module core */
+export * from './typings/api';
 export * from './typings/account';
 export * from './typings/alias';
+export * from './typings/aliasList';
 export * from './typings/attachment';
 export * from './typings/balance';
 export * from './typings/block';
@@ -14,7 +16,7 @@ export * from './typings/transactionId';
 export * from './typings/transactionList';
 export * from './typings/transactionResponse';
 export * from './typings/unconfirmedTransactionList';
-export * from './currency';
+export * from './typings/currency';
 export * from './api';
 
 

@@ -2,20 +2,15 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 import {BurstService} from '../../burstService';
-import { Alias } from '../../typings/alias';
-
-export interface AliasResponse {
-    aliases: Alias[],
-    requestProcessingTime: number
-}
+import {AliasList} from '../../typings/aliasList';
 
 /**
  * Gets the aliases of an account
  * @param {string} accountId
- * @return {Promise<AliasResponse>}
+ * @return {Promise<AliasList>}
  */
 export const getAliases = (service: BurstService):
-    (accountId: string) => Promise<AliasResponse> =>
-    (accountId: string): Promise<AliasResponse> => service.query('getAliases', {
+    (accountId: string) => Promise<AliasList> =>
+    (accountId: string): Promise<AliasList> => service.query('getAliases', {
         account: accountId,
     });

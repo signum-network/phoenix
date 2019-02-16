@@ -1,10 +1,11 @@
 import {HttpMockBuilder, Http} from '@burstjs/http';
 import {BurstService} from '../../burstService';
-import {broadcastTransaction, sendTextMessage} from '..';
 import {generateSignature} from '@burstjs/crypto';
 import {verifySignature} from '@burstjs/crypto';
 import {generateSignedTransactionBytes} from '@burstjs/crypto';
 import { constructAttachment } from '../message/constructMessage';
+import {sendTextMessage} from '../message/sendTextMessage';
+import {broadcastTransaction} from '../transaction/broadcastTransaction';
 
 describe('Message Api', () => {
 
@@ -95,7 +96,7 @@ describe('Message Api', () => {
                     isText: true,
                     type: 'encrypted_message'
                 }
-            }
+            };
             const output = constructAttachment(mockTransaction, params);
             expect(output.encryptedMessageData).toBe(mockTransaction.attachment.data);
             expect(output.encryptedMessageNonce).toBe(mockTransaction.attachment.nonce);
@@ -110,7 +111,7 @@ describe('Message Api', () => {
                     messageIsText: true,
                     type: 'message'
                 }
-            }
+            };
             const output = constructAttachment(mockTransaction, params);
             expect(output.message).toBe(mockTransaction.attachment.message);
             expect(output.messageIsText).toBe('true');
