@@ -30,8 +30,8 @@ export interface AccountApi {
 
     generateSendTransactionQRCodeAddress: (
         receiverId: string,
-        amountNQT: number,
-        feeSuggestionType: string
+        amountNQT?: number,
+        feeSuggestionType?: string
     ) => Promise<string>;
 
     getAliases: (accountId: string) => Promise<AliasList>;

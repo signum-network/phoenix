@@ -3,32 +3,5 @@
  */
 export * from './composeApi';
 
-// /* NETWORK */
-// export * from './network/getServerStatus';
-// export * from './network/getBlockchainStatus';
-// export * from './network/suggestFee';
-//
-// /* BLOCK */
-// export * from './block/getBlockByTimestamp';
-// export * from './block/getBlockByHeight';
-// export * from './block/getBlockById';
-// export * from './block/getBlockId';
-//
-// /* TRANSACTION */
-// export * from './transaction/getTransaction';
-// export * from './transaction/broadcastTransaction';
-// export * from './transaction/sendMoney';
-//
-// /* MESSAGE */
-// export * from './message/sendTextMessage';
-//
-// /* ACCOUNT */
-// export * from './account/getAccountBalance';
-// export * from './account/getAccountTransactions';
-// export * from './account/getUnconfirmedAccountTransactions';
-// export * from './account/generateSendTransactionQRCode';
-// export * from './account/generateSendTransactionQRCodeAddress';
-
-
 
 

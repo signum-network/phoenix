@@ -5,10 +5,10 @@ import 'rxjs/add/operator/timeout';
 
 import {StoreService} from 'app/store/store.service';
 import {Settings} from 'app/settings';
-import {Account, compose, ApiSettings, Api, TransactionList} from '@burstjs/core';
+import {Account, compose, ApiSettings, Api, TransactionList, AliasList} from '@burstjs/core';
 import {generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey} from '@burstjs/crypto';
 import {isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId} from '@burstjs/util';
-import {environment} from 'environments/environment.prod';
+import {environment} from 'environments/environment';
 
 
 @Injectable()
@@ -27,19 +27,20 @@ export class AccountService {
     this.api = compose(apiSettings);
   }
 
-  public setCurrentAccount(account: Account) {
+  public setCurrentAccount(account: Account): void {
     this.currentAccount.next(account);
   }
 
-  public getAccountTransactions(id: string): Promise<TransactionList> {
+  // FIXME: any as return type is shitty...will introduce a better execption handling
+  public getAccountTransactions(id: string): Promise<TransactionList|any> {
     return this.api.account.getAccountTransactions(id);
   }
 
-  public generateSendTransactionQRCodeAddress(id: string) {
+  public generateSendTransactionQRCodeAddress(id: string): Promise<string> {
     return this.api.account.generateSendTransactionQRCodeAddress(id);
   }
 
-  public getAliases(id: string) {
+  public getAliases(id: string): Promise<AliasList> {
     return this.api.account.getAliases(id);
   }
 
