@@ -1,7 +1,7 @@
 {
-  "coverage": "29.57%",
-  "expectCount": 595,
-  "actualCount": 176,
+  "coverage": "30.18%",
+  "expectCount": 603,
+  "actualCount": 182,
   "files": {
     "packages/core/out/abstract/index.js": {
       "expectCount": 1,
@@ -253,6 +253,14 @@
       "actualCount": 1,
       "undocumentLines": []
     },
+    "packages/core/src/api/apiComposer.ts": {
+      "expectCount": 13,
+      "actualCount": 11,
+      "undocumentLines": [
+        16,
+        17
+      ]
+    },
     "packages/core/src/api/block/getBlockByHeight.ts": {
       "expectCount": 1,
       "actualCount": 1,
@@ -265,8 +273,10 @@
     },
     "packages/core/src/api/block/getBlockByTimestamp.ts": {
       "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
     },
     "packages/core/src/api/block/getBlockId.ts": {
       "expectCount": 1,
@@ -277,9 +287,9 @@
       "expectCount": 5,
       "actualCount": 2,
       "undocumentLines": [
-        29,
         30,
-        31
+        31,
+        32
       ]
     },
     "packages/core/src/api/message/constructMessage.ts": {
@@ -330,31 +340,6 @@
         52
       ]
     },
-    "packages/core/src/currency.ts": {
-      "expectCount": 20,
-      "actualCount": 1,
-      "undocumentLines": [
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        30,
-        31,
-        32
-      ]
-    },
     "packages/core/src/error/noConnectionError.ts": {
       "expectCount": 3,
       "actualCount": 2,
@@ -369,26 +354,21 @@
         9
       ]
     },
-    "packages/core/src/typings/abstractModel.ts": {
-      "expectCount": 3,
-      "actualCount": 3,
-      "undocumentLines": []
-    },
     "packages/core/src/typings/account.ts": {
       "expectCount": 12,
       "actualCount": 1,
       "undocumentLines": [
+        16,
+        17,
+        18,
         19,
         20,
-        21,
         22,
         23,
-        25,
-        26,
-        31,
-        33,
-        38,
-        39
+        28,
+        30,
+        35,
+        36
       ]
     },
     "packages/core/src/typings/attachment.ts": {
@@ -418,6 +398,31 @@
         13,
         14,
         15
+      ]
+    },
+    "packages/core/src/typings/currency.ts": {
+      "expectCount": 20,
+      "actualCount": 1,
+      "undocumentLines": [
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
       ]
     },
     "packages/crypto/out/src/burstUtil.js": {
@@ -658,11 +663,9 @@
       ]
     },
     "packages/crypto/src/converter.ts": {
-      "expectCount": 27,
-      "actualCount": 26,
-      "undocumentLines": [
-        6
-      ]
+      "expectCount": 25,
+      "actualCount": 25,
+      "undocumentLines": []
     },
     "packages/crypto/src/crypto.ts": {
       "expectCount": 3,

@@ -17,11 +17,11 @@ yarn add @burstjs/crypto
 ```
 
 ## API Reference
-## Members
+## Classes
 
 <dl>
-<dt><a href="#BN">BN</a></dt>
-<dd><p>Original work Copyright (c) 2018 PoC-Consortium<br>Modified work Copyright (c) 2019 Burst Apps Team</p></dd>
+<dt><a href="#Converter">Converter</a></dt>
+<dd><p>A set of useful converter methods for crypto operations.</p></dd>
 </dl>
 
 ## Functions
@@ -51,12 +51,21 @@ sha256(sha256(transactionHex)_verify(v, h1, publickey)) = h2</code></pre></li>
 </ul></dd>
 </dl>
 
-<a name="BN"></a>
+<a name="Converter"></a>
 
-## BN
-<p>Original work Copyright (c) 2018 PoC-Consortium<br>Modified work Copyright (c) 2019 Burst Apps Team</p>
+## Converter
+<p>A set of useful converter methods for crypto operations.</p>
 
-**Kind**: global variable  
+**Kind**: global class  
+<a name="Converter.intToBytes_"></a>
+
+### Converter.intToBytes\_()
+<p>Produces an array of the specified number of bytes to represent the integer
+value. Default output encodes ints in little endian format. Handles signed
+as well as unsigned integers. Due to limitations in JavaScript's number
+format, x cannot be a true 64 bit integer (8 bytes).</p>
+
+**Kind**: static method of [<code>Converter</code>](#Converter)  
 <a name="decryptAES"></a>
 
 ## decryptAES(encryptedBase64, key) ⇒
