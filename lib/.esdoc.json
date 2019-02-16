@@ -1,6 +1,6 @@
 {
   "source": "./packages",
-  "destination": "./docs",
+  "destination": "../docs",
   "plugins": [
     {
       "name": "esdoc-typescript-plugin"

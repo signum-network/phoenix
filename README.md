@@ -44,7 +44,7 @@ Targeted platforms are
 - Android
 - iOS
 
-![Application Architecture Diagram](doc/architecture.png "Application Architecture Diagram")
+![Application Architecture Diagram](assets/architecture.png "Application Architecture Diagram")
 
 
 ## Installation and Build

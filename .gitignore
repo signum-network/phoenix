@@ -3,7 +3,7 @@ node_modules/
 npm-debug.log
 lerna-debug.log
 .DS_Store
-lib/docs/index.json
-lib/docs/ast
+docs/index.json
+docs/ast
 coverage
 out/
