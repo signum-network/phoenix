@@ -1,12 +1,12 @@
 /**
- * Original work Copyright (c) 2018 PoC-Consortium  
+ * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
 import { Keys } from '@burstjs/crypto';
 import { Transaction } from './transaction';
 
-/*
+/**
 * Account class
 *
 * The account class serves as a model for a Burstcoin account.
@@ -45,4 +45,4 @@ export class Account {
         this.type = data.type || 'offline';
         this.unconfirmedBalance = data.unconfirmedBalance || 0;
     }
-} 
+}

@@ -22,6 +22,7 @@ import { LoginGuard } from 'app/login/login-guard.service';
 import { TransactionsModule } from './transactions/transactions.module';
 import { SendBurstModule } from './send-burst/send-burst.module';
 import { AccountsModule } from './accounts/accounts.module';
+import { AliasesModule } from './aliases/aliases.module';
 
 const mainRoutes: Routes = [
   {
@@ -64,7 +65,8 @@ const mainRoutes: Routes = [
     DashboardModule,
     TransactionsModule,
     SendBurstModule,
-    AccountsModule
+    AccountsModule,
+    AliasesModule
   ],
   exports: [
     MainComponent

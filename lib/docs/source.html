@@ -40,17 +40,20 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateSendTransactionQRCodeAddress">generateSendTransactionQRCodeAddress</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAccountBalance">getAccountBalance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAccountTransactions">getAccountTransactions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAliases">getAliases</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getUnconfirmedAccountTransactions">getUnconfirmedAccountTransactions</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-block">core/src/api/block</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBlockByHeight">getBlockByHeight</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBlockById">getBlockById</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBlockByTimestamp">getBlockByTimestamp</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBlockId">getBlockId</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-message">core/src/api/message</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sendTextMessage">sendTextMessage</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-message">core/src/api/message</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-constructAttachment">constructAttachment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sendTextMessage">sendTextMessage</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-network">core/src/api/network</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBlockchainStatus">getBlockchainStatus</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getServerStatus">getServerStatus</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-suggestFee">suggestFee</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-transaction">core/src/api/transaction</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-broadcastTransaction">broadcastTransaction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getTransaction">getTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sendMoney">sendMoney</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-error">core/src/error</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/error/noConnectionError.ts~NoConnectionError.html">NoConnectionError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/error/unknownAccountError.ts~UnknownAccountError.html">UnknownAccountError</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-typings">core/src/typings</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/abstractModel.ts~AbstractModel.html">AbstractModel</a></span></span></li>
@@ -91,7 +94,7 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">173/583</span></h1>
+<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">176/595</span></h1>
 
 <table class="files-summary" data-ice="files" data-use-coverage="true">
   <thead>
@@ -112,7 +115,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">25 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/abstract/index.js.html#errorLines=2">packages/core/out/abstract/index.js</a></span></td>
@@ -120,7 +123,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
       <td style="display: none;" data-ice="size">237 byte</td>
       <td style="display: none;" data-ice="lines">6</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/abstract/store.d.ts.html">packages/core/out/abstract/store.d.ts</a></span></td>
@@ -128,7 +131,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">388 byte</td>
       <td style="display: none;" data-ice="lines">9</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/abstract/store.js.html#errorLines=3">packages/core/out/abstract/store.js</a></span></td>
@@ -136,7 +139,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
       <td style="display: none;" data-ice="size">181 byte</td>
       <td style="display: none;" data-ice="lines">6</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/account/generateSendTransactionQRCode.d.ts.html">packages/core/out/api/account/generateSendTransactionQRCode.d.ts</a></span></td>
@@ -144,7 +147,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">224 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/account/generateSendTransactionQRCode.js.html">packages/core/out/api/account/generateSendTransactionQRCode.js</a></span></td>
@@ -152,7 +155,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">356 byte</td>
       <td style="display: none;" data-ice="lines">7</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/account/generateSendTransactionQRCodeAddress.d.ts.html">packages/core/out/api/account/generateSendTransactionQRCodeAddress.d.ts</a></span></td>
@@ -160,7 +163,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">217 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/account/generateSendTransactionQRCodeAddress.js.html">packages/core/out/api/account/generateSendTransactionQRCodeAddress.js</a></span></td>
@@ -168,7 +171,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">390 byte</td>
       <td style="display: none;" data-ice="lines">7</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/account/getAccountBalance.d.ts.html">packages/core/out/api/account/getAccountBalance.d.ts</a></span></td>
@@ -176,7 +179,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">208 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/account/getAccountBalance.js.html">packages/core/out/api/account/getAccountBalance.js</a></span></td>
@@ -184,7 +187,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">236 byte</td>
       <td style="display: none;" data-ice="lines">5</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/account/getAccountTransactions.d.ts.html">packages/core/out/api/account/getAccountTransactions.d.ts</a></span></td>
@@ -192,7 +195,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">310 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/account/getAccountTransactions.js.html">packages/core/out/api/account/getAccountTransactions.js</a></span></td>
@@ -200,7 +203,23 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">361 byte</td>
       <td style="display: none;" data-ice="lines">8</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/out/api/account/getAliases.d.ts.html">packages/core/out/api/account/getAliases.d.ts</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">295 byte</td>
+      <td style="display: none;" data-ice="lines">7</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/out/api/account/getAliases.js.html">packages/core/out/api/account/getAliases.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">222 byte</td>
+      <td style="display: none;" data-ice="lines">5</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/account/getQRCodeImage.d.ts.html">packages/core/out/api/account/getQRCodeImage.d.ts</a></span></td>
@@ -224,7 +243,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">281 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/account/getUnconfirmedAccountTransactions.js.html">packages/core/out/api/account/getUnconfirmedAccountTransactions.js</a></span></td>
@@ -232,7 +251,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">279 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/block/getBlockByHeight.d.ts.html">packages/core/out/api/block/getBlockByHeight.d.ts</a></span></td>
@@ -240,7 +259,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">228 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/block/getBlockByHeight.js.html">packages/core/out/api/block/getBlockByHeight.js</a></span></td>
@@ -248,7 +267,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">262 byte</td>
       <td style="display: none;" data-ice="lines">6</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/block/getBlockById.d.ts.html">packages/core/out/api/block/getBlockById.d.ts</a></span></td>
@@ -256,7 +275,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">223 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/block/getBlockById.js.html">packages/core/out/api/block/getBlockById.js</a></span></td>
@@ -264,7 +283,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">252 byte</td>
       <td style="display: none;" data-ice="lines">6</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/block/getBlockByTimestamp.d.ts.html">packages/core/out/api/block/getBlockByTimestamp.d.ts</a></span></td>
@@ -272,7 +291,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">234 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/block/getBlockByTimestamp.js.html">packages/core/out/api/block/getBlockByTimestamp.js</a></span></td>
@@ -280,7 +299,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">274 byte</td>
       <td style="display: none;" data-ice="lines">6</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/block/getBlockId.d.ts.html">packages/core/out/api/block/getBlockId.d.ts</a></span></td>
@@ -288,7 +307,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">182 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/block/getBlockId.js.html">packages/core/out/api/block/getBlockId.js</a></span></td>
@@ -296,23 +315,23 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">207 byte</td>
       <td style="display: none;" data-ice="lines">5</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/composeApi.d.ts.html">packages/core/out/api/composeApi.d.ts</a></span></td>
       <td data-ice="identifier" class="identifiers">-</td>
       <td class="coverage"><span data-ice="coverage">-</span></td>
-      <td style="display: none;" data-ice="size">2051 byte</td>
-      <td style="display: none;" data-ice="lines">32</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="size">2168 byte</td>
+      <td style="display: none;" data-ice="lines">34</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/packages/core/out/api/composeApi.js.html#errorLines=10,11,12,13,14,15,16,17,18,19,20,21,22,26,3,4,5,6,7,8,9">packages/core/out/api/composeApi.js</a></span></td>
+      <td data-ice="filePath"><span><a href="file/packages/core/out/api/composeApi.js.html#errorLines=10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,28,3,4,5,6,7,8,9">packages/core/out/api/composeApi.js</a></span></td>
       <td data-ice="identifier" class="identifiers">-</td>
-      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/21</span></td>
-      <td style="display: none;" data-ice="size">3028 byte</td>
-      <td style="display: none;" data-ice="lines">56</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/23</span></td>
+      <td style="display: none;" data-ice="size">3251 byte</td>
+      <td style="display: none;" data-ice="lines">60</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/index.d.ts.html">packages/core/out/api/index.d.ts</a></span></td>
@@ -320,7 +339,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">737 byte</td>
       <td style="display: none;" data-ice="lines">16</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/index.js.html#errorLines=2">packages/core/out/api/index.js</a></span></td>
@@ -328,7 +347,23 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
       <td style="display: none;" data-ice="size">1024 byte</td>
       <td style="display: none;" data-ice="lines">21</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/out/api/message/constructMessage.d.ts.html">packages/core/out/api/message/constructMessage.d.ts</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">147 byte</td>
+      <td style="display: none;" data-ice="lines">2</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/out/api/message/constructMessage.js.html">packages/core/out/api/message/constructMessage.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">667 byte</td>
+      <td style="display: none;" data-ice="lines">13</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/message/sendTextMessage.d.ts.html">packages/core/out/api/message/sendTextMessage.d.ts</a></span></td>
@@ -336,7 +371,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">308 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/message/sendTextMessage.js.html#errorLines=11,12,13,14,15,2">packages/core/out/api/message/sendTextMessage.js</a></span></td>
@@ -344,7 +379,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/6</span></td>
       <td style="display: none;" data-ice="size">1876 byte</td>
       <td style="display: none;" data-ice="lines">33</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/network/getBlockchainStatus.d.ts.html">packages/core/out/api/network/getBlockchainStatus.d.ts</a></span></td>
@@ -352,7 +387,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">220 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/network/getBlockchainStatus.js.html">packages/core/out/api/network/getBlockchainStatus.js</a></span></td>
@@ -360,7 +395,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">211 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/network/getServerStatus.d.ts.html">packages/core/out/api/network/getServerStatus.d.ts</a></span></td>
@@ -368,7 +403,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">204 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/network/getServerStatus.js.html">packages/core/out/api/network/getServerStatus.js</a></span></td>
@@ -376,15 +411,15 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">192 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/network/suggestFee.d.ts.html">packages/core/out/api/network/suggestFee.d.ts</a></span></td>
       <td data-ice="identifier" class="identifiers">-</td>
       <td class="coverage"><span data-ice="coverage">-</span></td>
-      <td style="display: none;" data-ice="size">194 byte</td>
+      <td style="display: none;" data-ice="size">202 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/network/suggestFee.js.html">packages/core/out/api/network/suggestFee.js</a></span></td>
@@ -392,7 +427,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">184 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/transaction/broadcastTransaction.d.ts.html">packages/core/out/api/transaction/broadcastTransaction.d.ts</a></span></td>
@@ -400,7 +435,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">244 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/transaction/broadcastTransaction.js.html">packages/core/out/api/transaction/broadcastTransaction.js</a></span></td>
@@ -408,7 +443,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">285 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/transaction/getTransaction.d.ts.html">packages/core/out/api/transaction/getTransaction.d.ts</a></span></td>
@@ -416,7 +451,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">201 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/api/transaction/getTransaction.js.html">packages/core/out/api/transaction/getTransaction.js</a></span></td>
@@ -424,23 +459,39 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">241 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/out/api/transaction/sendMoney.d.ts.html">packages/core/out/api/transaction/sendMoney.d.ts</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">367 byte</td>
+      <td style="display: none;" data-ice="lines">4</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/out/api/transaction/sendMoney.js.html#errorLines=11,12,13,14,15,16,2">packages/core/out/api/transaction/sendMoney.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/7</span></td>
+      <td style="display: none;" data-ice="size">2133 byte</td>
+      <td style="display: none;" data-ice="lines">36</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/burstService.d.ts.html">packages/core/out/burstService.d.ts</a></span></td>
       <td data-ice="identifier" class="identifiers">-</td>
       <td class="coverage"><span data-ice="coverage">-</span></td>
-      <td style="display: none;" data-ice="size">390 byte</td>
+      <td style="display: none;" data-ice="size">401 byte</td>
       <td style="display: none;" data-ice="lines">10</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/burstService.js.html#errorLines=11,12,13,16,2,24,25,26,28,35">packages/core/out/burstService.js</a></span></td>
       <td data-ice="identifier" class="identifiers">-</td>
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/10</span></td>
-      <td style="display: none;" data-ice="size">2024 byte</td>
+      <td style="display: none;" data-ice="size">2037 byte</td>
       <td style="display: none;" data-ice="lines">43</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/currency.d.ts.html">packages/core/out/currency.d.ts</a></span></td>
@@ -448,7 +499,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">491 byte</td>
       <td style="display: none;" data-ice="lines">21</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/currency.js.html#errorLines=10,11,12,13,14,15,16,17,18,19,20,21,22,3,4,5,6,7,8,9">packages/core/out/currency.js</a></span></td>
@@ -456,7 +507,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/20</span></td>
       <td style="display: none;" data-ice="size">1178 byte</td>
       <td style="display: none;" data-ice="lines">25</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/error/index.d.ts.html">packages/core/out/error/index.d.ts</a></span></td>
@@ -464,7 +515,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">76 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/error/index.js.html#errorLines=2">packages/core/out/error/index.js</a></span></td>
@@ -472,7 +523,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
       <td style="display: none;" data-ice="size">293 byte</td>
       <td style="display: none;" data-ice="lines">7</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/error/noConnectionError.d.ts.html">packages/core/out/error/noConnectionError.d.ts</a></span></td>
@@ -480,7 +531,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">110 byte</td>
       <td style="display: none;" data-ice="lines">4</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/error/noConnectionError.js.html#errorLines=3,4,8">packages/core/out/error/noConnectionError.js</a></span></td>
@@ -488,7 +539,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/3</span></td>
       <td style="display: none;" data-ice="size">410 byte</td>
       <td style="display: none;" data-ice="lines">12</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/error/unknownAccountError.d.ts.html">packages/core/out/error/unknownAccountError.d.ts</a></span></td>
@@ -496,7 +547,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">112 byte</td>
       <td style="display: none;" data-ice="lines">4</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/error/unknownAccountError.js.html#errorLines=3,4,8">packages/core/out/error/unknownAccountError.js</a></span></td>
@@ -504,15 +555,15 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/3</span></td>
       <td style="display: none;" data-ice="size">425 byte</td>
       <td style="display: none;" data-ice="lines">12</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/index.d.ts.html">packages/core/out/index.d.ts</a></span></td>
       <td data-ice="identifier" class="identifiers">-</td>
       <td class="coverage"><span data-ice="coverage">-</span></td>
-      <td style="display: none;" data-ice="size">301 byte</td>
-      <td style="display: none;" data-ice="lines">9</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="size">646 byte</td>
+      <td style="display: none;" data-ice="lines">17</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/index.js.html#errorLines=2">packages/core/out/index.js</a></span></td>
@@ -520,7 +571,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
       <td style="display: none;" data-ice="size">393 byte</td>
       <td style="display: none;" data-ice="lines">10</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/suggestedFees.d.ts.html">packages/core/out/suggestedFees.d.ts</a></span></td>
@@ -528,7 +579,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">133 byte</td>
       <td style="display: none;" data-ice="lines">6</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:16:14 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/suggestedFees.js.html">packages/core/out/suggestedFees.js</a></span></td>
@@ -536,7 +587,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">118 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:16:14 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/abstractModel.d.ts.html">packages/core/out/typings/abstractModel.d.ts</a></span></td>
@@ -544,7 +595,7 @@
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
       <td style="display: none;" data-ice="size">148 byte</td>
       <td style="display: none;" data-ice="lines">4</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/abstractModel.js.html#errorLines=3,4,7">packages/core/out/typings/abstractModel.js</a></span></td>
@@ -552,7 +603,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/3</span></td>
       <td style="display: none;" data-ice="size">376 byte</td>
       <td style="display: none;" data-ice="lines">11</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/account.d.ts.html">packages/core/out/typings/account.d.ts</a></span></td>
@@ -560,7 +611,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">367 byte</td>
       <td style="display: none;" data-ice="lines">15</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/account.js.html#errorLines=11,12,17,19,24,25,3,4,5,6,7,8,9">packages/core/out/typings/account.js</a></span></td>
@@ -568,7 +619,23 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/13</span></td>
       <td style="display: none;" data-ice="size">1154 byte</td>
       <td style="display: none;" data-ice="lines">28</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/out/typings/alias.d.ts.html">packages/core/out/typings/alias.d.ts</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">158 byte</td>
+      <td style="display: none;" data-ice="lines">8</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/out/typings/alias.js.html">packages/core/out/typings/alias.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">112 byte</td>
+      <td style="display: none;" data-ice="lines">3</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/attachment.d.ts.html">packages/core/out/typings/attachment.d.ts</a></span></td>
@@ -576,7 +643,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">364 byte</td>
       <td style="display: none;" data-ice="lines">15</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/attachment.js.html#errorLines=10,12,13,17,18,20,21,22,3,4,5,9">packages/core/out/typings/attachment.js</a></span></td>
@@ -584,7 +651,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/12</span></td>
       <td style="display: none;" data-ice="size">754 byte</td>
       <td style="display: none;" data-ice="lines">25</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/balance.d.ts.html">packages/core/out/typings/balance.d.ts</a></span></td>
@@ -592,7 +659,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">274 byte</td>
       <td style="display: none;" data-ice="lines">8</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/balance.js.html">packages/core/out/typings/balance.js</a></span></td>
@@ -600,7 +667,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">112 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:47 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/block.d.ts.html">packages/core/out/typings/block.d.ts</a></span></td>
@@ -608,7 +675,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">877 byte</td>
       <td style="display: none;" data-ice="lines">26</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/block.js.html">packages/core/out/typings/block.js</a></span></td>
@@ -616,7 +683,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">110 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/blockId.d.ts.html">packages/core/out/typings/blockId.d.ts</a></span></td>
@@ -624,7 +691,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">57 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/blockId.js.html">packages/core/out/typings/blockId.js</a></span></td>
@@ -632,7 +699,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">112 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/blockchainStatus.d.ts.html">packages/core/out/typings/blockchainStatus.d.ts</a></span></td>
@@ -640,7 +707,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">367 byte</td>
       <td style="display: none;" data-ice="lines">11</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/blockchainStatus.js.html">packages/core/out/typings/blockchainStatus.js</a></span></td>
@@ -648,7 +715,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">121 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/burstNode.d.ts.html">packages/core/out/typings/burstNode.d.ts</a></span></td>
@@ -656,7 +723,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">204 byte</td>
       <td style="display: none;" data-ice="lines">10</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/burstNode.js.html#errorLines=10,11,3,4,5,6,7,8,9">packages/core/out/typings/burstNode.js</a></span></td>
@@ -664,7 +731,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/9</span></td>
       <td style="display: none;" data-ice="size">516 byte</td>
       <td style="display: none;" data-ice="lines">14</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/serverStatus.d.ts.html">packages/core/out/typings/serverStatus.d.ts</a></span></td>
@@ -672,7 +739,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">985 byte</td>
       <td style="display: none;" data-ice="lines">27</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/serverStatus.js.html">packages/core/out/typings/serverStatus.js</a></span></td>
@@ -680,15 +747,31 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">117 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/out/typings/suggestedFees.d.ts.html">packages/core/out/typings/suggestedFees.d.ts</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">133 byte</td>
+      <td style="display: none;" data-ice="lines">6</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/out/typings/suggestedFees.js.html">packages/core/out/typings/suggestedFees.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">118 byte</td>
+      <td style="display: none;" data-ice="lines">2</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/transaction.d.ts.html">packages/core/out/typings/transaction.d.ts</a></span></td>
       <td data-ice="identifier" class="identifiers">-</td>
       <td class="coverage"><span data-ice="coverage">-</span></td>
-      <td style="display: none;" data-ice="size">747 byte</td>
+      <td style="display: none;" data-ice="size">769 byte</td>
       <td style="display: none;" data-ice="lines">24</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/transaction.js.html">packages/core/out/typings/transaction.js</a></span></td>
@@ -696,7 +779,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">116 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/transactionId.d.ts.html">packages/core/out/typings/transactionId.d.ts</a></span></td>
@@ -704,7 +787,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">100 byte</td>
       <td style="display: none;" data-ice="lines">4</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/transactionId.js.html">packages/core/out/typings/transactionId.js</a></span></td>
@@ -712,7 +795,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">118 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/transactionList.d.ts.html">packages/core/out/typings/transactionList.d.ts</a></span></td>
@@ -720,7 +803,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">168 byte</td>
       <td style="display: none;" data-ice="lines">5</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/transactionList.js.html">packages/core/out/typings/transactionList.js</a></span></td>
@@ -728,7 +811,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">120 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/transactionResponse.d.ts.html">packages/core/out/typings/transactionResponse.d.ts</a></span></td>
@@ -736,7 +819,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">345 byte</td>
       <td style="display: none;" data-ice="lines">10</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/transactionResponse.js.html">packages/core/out/typings/transactionResponse.js</a></span></td>
@@ -744,7 +827,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">124 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/unconfirmedTransactionList.d.ts.html">packages/core/out/typings/unconfirmedTransactionList.d.ts</a></span></td>
@@ -752,7 +835,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">190 byte</td>
       <td style="display: none;" data-ice="lines">5</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/out/typings/unconfirmedTransactionList.js.html">packages/core/out/typings/unconfirmedTransactionList.js</a></span></td>
@@ -760,7 +843,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">131 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:46 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/src/abstract/index.ts.html">packages/core/src/abstract/index.ts</a></span></td>
@@ -811,6 +894,14 @@
       <td style="display: none;" data-ice="updated">2019-02-03 01:36:15 (UTC)</td>
     </tr>
 <tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/src/api/account/getAliases.ts.html">packages/core/src/api/account/getAliases.ts</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-getAliases">getAliases</a></span></td>
+      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
+      <td style="display: none;" data-ice="size">561 byte</td>
+      <td style="display: none;" data-ice="lines">21</td>
+      <td style="display: none;" data-ice="updated">2019-02-06 00:32:39 (UTC)</td>
+    </tr>
+<tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/src/api/account/getUnconfirmedAccountTransactions.ts.html">packages/core/src/api/account/getUnconfirmedAccountTransactions.ts</a></span></td>
       <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-getUnconfirmedAccountTransactions">getUnconfirmedAccountTransactions</a></span></td>
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
@@ -851,13 +942,13 @@
       <td style="display: none;" data-ice="updated">2019-01-02 00:42:19 (UTC)</td>
     </tr>
 <tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/packages/core/src/api/composeApi.ts.html#errorLines=27,28,29">packages/core/src/api/composeApi.ts</a></span></td>
+      <td data-ice="filePath"><span><a href="file/packages/core/src/api/composeApi.ts.html#errorLines=29,30,31">packages/core/src/api/composeApi.ts</a></span></td>
       <td data-ice="identifier" class="identifiers"><span><a href="class/packages/core/src/api/composeApi.ts~ApiSettings.html">ApiSettings</a></span>
 <span><a href="function/index.html#static-function-compose">compose</a></span></td>
       <td class="coverage"><span data-ice="coverage">40 %</span><span data-ice="coverageCount" class="coverage-count">2/5</span></td>
-      <td style="display: none;" data-ice="size">2698 byte</td>
-      <td style="display: none;" data-ice="lines">70</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:50:36 (UTC)</td>
+      <td style="display: none;" data-ice="size">2890 byte</td>
+      <td style="display: none;" data-ice="lines">74</td>
+      <td style="display: none;" data-ice="updated">2019-02-06 00:41:45 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/src/api/index.ts.html">packages/core/src/api/index.ts</a></span></td>
@@ -866,6 +957,14 @@
       <td style="display: none;" data-ice="size">864 byte</td>
       <td style="display: none;" data-ice="lines">33</td>
       <td style="display: none;" data-ice="updated">2019-02-04 02:56:28 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/src/api/message/constructMessage.ts.html">packages/core/src/api/message/constructMessage.ts</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-constructAttachment">constructAttachment</a></span></td>
+      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
+      <td style="display: none;" data-ice="size">954 byte</td>
+      <td style="display: none;" data-ice="lines">27</td>
+      <td style="display: none;" data-ice="updated">2019-02-06 01:28:39 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/src/api/message/sendTextMessage.ts.html">packages/core/src/api/message/sendTextMessage.ts</a></span></td>
@@ -895,9 +994,9 @@
       <td data-ice="filePath"><span><a href="file/packages/core/src/api/network/suggestFee.ts.html">packages/core/src/api/network/suggestFee.ts</a></span></td>
       <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-suggestFee">suggestFee</a></span></td>
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
-      <td style="display: none;" data-ice="size">394 byte</td>
+      <td style="display: none;" data-ice="size">402 byte</td>
       <td style="display: none;" data-ice="lines">12</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:36:50 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-06 00:41:36 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/src/api/transaction/broadcastTransaction.ts.html">packages/core/src/api/transaction/broadcastTransaction.ts</a></span></td>
@@ -916,12 +1015,20 @@
       <td style="display: none;" data-ice="updated">2019-01-02 00:42:19 (UTC)</td>
     </tr>
 <tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/src/api/transaction/sendMoney.ts.html">packages/core/src/api/transaction/sendMoney.ts</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-sendMoney">sendMoney</a></span></td>
+      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
+      <td style="display: none;" data-ice="size">2634 byte</td>
+      <td style="display: none;" data-ice="lines">57</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 18:58:49 (UTC)</td>
+    </tr>
+<tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/src/burstService.ts.html#errorLines=51,52">packages/core/src/burstService.ts</a></span></td>
       <td data-ice="identifier" class="identifiers"><span><a href="class/packages/core/src/burstService.ts~BurstService.html">BurstService</a></span></td>
       <td class="coverage"><span data-ice="coverage">75 %</span><span data-ice="coverageCount" class="coverage-count">6/8</span></td>
-      <td style="display: none;" data-ice="size">2775 byte</td>
-      <td style="display: none;" data-ice="lines">74</td>
-      <td style="display: none;" data-ice="updated">2019-02-03 01:36:15 (UTC)</td>
+      <td style="display: none;" data-ice="size">2859 byte</td>
+      <td style="display: none;" data-ice="lines">75</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 05:40:17 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/src/currency.ts.html#errorLines=14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32">packages/core/src/currency.ts</a></span></td>
@@ -959,17 +1066,9 @@
       <td data-ice="filePath"><span><a href="file/packages/core/src/index.ts.html">packages/core/src/index.ts</a></span></td>
       <td data-ice="identifier" class="identifiers">-</td>
       <td class="coverage"><span data-ice="coverage">-</span></td>
-      <td style="display: none;" data-ice="size">323 byte</td>
-      <td style="display: none;" data-ice="lines">12</td>
-      <td style="display: none;" data-ice="updated">2019-02-06 05:31:38 (UTC)</td>
-    </tr>
-<tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/packages/core/src/suggestedFees.ts.html">packages/core/src/suggestedFees.ts</a></span></td>
-      <td data-ice="identifier" class="identifiers">-</td>
-      <td class="coverage"><span data-ice="coverage">-</span></td>
-      <td style="display: none;" data-ice="size">132 byte</td>
-      <td style="display: none;" data-ice="lines">5</td>
-      <td style="display: none;" data-ice="updated">2019-01-04 02:17:07 (UTC)</td>
+      <td style="display: none;" data-ice="size">668 byte</td>
+      <td style="display: none;" data-ice="lines">20</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:19:46 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/src/typings/abstractModel.ts.html">packages/core/src/typings/abstractModel.ts</a></span></td>
@@ -986,6 +1085,14 @@
       <td style="display: none;" data-ice="size">1602 byte</td>
       <td style="display: none;" data-ice="lines">48</td>
       <td style="display: none;" data-ice="updated">2019-02-06 05:31:38 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/src/typings/alias.ts.html">packages/core/src/typings/alias.ts</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">564 byte</td>
+      <td style="display: none;" data-ice="lines">19</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:12:41 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/src/typings/attachment.ts.html#errorLines=16,17,32,34,35,50,52,53,54">packages/core/src/typings/attachment.ts</a></span></td>
@@ -1046,12 +1153,20 @@
       <td style="display: none;" data-ice="updated">2019-01-07 17:26:59 (UTC)</td>
     </tr>
 <tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/src/typings/suggestedFees.ts.html">packages/core/src/typings/suggestedFees.ts</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">132 byte</td>
+      <td style="display: none;" data-ice="lines">5</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:17:21 (UTC)</td>
+    </tr>
+<tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/src/typings/transaction.ts.html">packages/core/src/typings/transaction.ts</a></span></td>
       <td data-ice="identifier" class="identifiers">-</td>
       <td class="coverage"><span data-ice="coverage">-</span></td>
-      <td style="display: none;" data-ice="size">775 byte</td>
+      <td style="display: none;" data-ice="size">797 byte</td>
       <td style="display: none;" data-ice="lines">27</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 05:07:09 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 17:23:12 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/src/typings/transactionId.ts.html">packages/core/src/typings/transactionId.ts</a></span></td>
@@ -1107,7 +1222,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">1760 byte</td>
       <td style="display: none;" data-ice="lines">31</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/converter.js.html#errorLines=100,114,124,132,141,148,159,172,179,186,20,221,224,25,3,32,39,4,42,45,5,55,6,61,70,81,88">packages/crypto/out/src/converter.js</a></span></td>
@@ -1115,7 +1230,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/27</span></td>
       <td style="display: none;" data-ice="size">8640 byte</td>
       <td style="display: none;" data-ice="lines">230</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/crypto.d.ts.html">packages/crypto/out/src/crypto.d.ts</a></span></td>
@@ -1123,7 +1238,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">237 byte</td>
       <td style="display: none;" data-ice="lines">4</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/crypto.js.html#errorLines=20,3,4,5,6,7,8">packages/crypto/out/src/crypto.js</a></span></td>
@@ -1131,7 +1246,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/7</span></td>
       <td style="display: none;" data-ice="size">1457 byte</td>
       <td style="display: none;" data-ice="lines">26</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/curve25519.d.ts.html">packages/crypto/out/src/curve25519.d.ts</a></span></td>
@@ -1139,7 +1254,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">2039 byte</td>
       <td style="display: none;" data-ice="lines">43</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/curve25519.js.html#errorLines=104,107,111,116,13,186,191,203,239,25,277,3,313,351,362,372,382,393,397,4,40,406,415,422,61,65,89,9,93,98">packages/crypto/out/src/curve25519.js</a></span></td>
@@ -1147,7 +1262,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/30</span></td>
       <td style="display: none;" data-ice="size">20147 byte</td>
       <td style="display: none;" data-ice="lines">522</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/decryptAES.d.ts.html">packages/crypto/out/src/decryptAES.d.ts</a></span></td>
@@ -1155,7 +1270,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">83 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/decryptAES.js.html#errorLines=3">packages/crypto/out/src/decryptAES.js</a></span></td>
@@ -1163,7 +1278,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
       <td style="display: none;" data-ice="size">322 byte</td>
       <td style="display: none;" data-ice="lines">7</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/decryptMessage.d.ts.html">packages/crypto/out/src/decryptMessage.d.ts</a></span></td>
@@ -1171,7 +1286,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">161 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/decryptMessage.js.html#errorLines=3,4,5,6">packages/crypto/out/src/decryptMessage.js</a></span></td>
@@ -1179,7 +1294,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/4</span></td>
       <td style="display: none;" data-ice="size">1143 byte</td>
       <td style="display: none;" data-ice="lines">18</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/ec-kcdsa.d.ts.html">packages/crypto/out/src/ec-kcdsa.d.ts</a></span></td>
@@ -1187,7 +1302,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">312 byte</td>
       <td style="display: none;" data-ice="lines">11</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/ec-kcdsa.js.html#errorLines=101,109,113,25,3,4,5">packages/crypto/out/src/ec-kcdsa.js</a></span></td>
@@ -1195,7 +1310,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/7</span></td>
       <td style="display: none;" data-ice="size">6017 byte</td>
       <td style="display: none;" data-ice="lines">119</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/encryptAES.d.ts.html">packages/crypto/out/src/encryptAES.d.ts</a></span></td>
@@ -1203,7 +1318,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">72 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/encryptAES.js.html#errorLines=3">packages/crypto/out/src/encryptAES.js</a></span></td>
@@ -1211,7 +1326,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
       <td style="display: none;" data-ice="size">250 byte</td>
       <td style="display: none;" data-ice="lines">6</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/encryptMessage.d.ts.html">packages/crypto/out/src/encryptMessage.d.ts</a></span></td>
@@ -1219,7 +1334,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">140 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/encryptMessage.js.html#errorLines=3,4,5,6">packages/crypto/out/src/encryptMessage.js</a></span></td>
@@ -1227,7 +1342,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/4</span></td>
       <td style="display: none;" data-ice="size">1134 byte</td>
       <td style="display: none;" data-ice="lines">19</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/generateMasterKeys.d.ts.html">packages/crypto/out/src/generateMasterKeys.d.ts</a></span></td>
@@ -1235,7 +1350,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">111 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/generateMasterKeys.js.html#errorLines=3,4,5,6">packages/crypto/out/src/generateMasterKeys.js</a></span></td>
@@ -1243,7 +1358,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/4</span></td>
       <td style="display: none;" data-ice="size">797 byte</td>
       <td style="display: none;" data-ice="lines">15</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/generateSignature.d.ts.html">packages/crypto/out/src/generateSignature.d.ts</a></span></td>
@@ -1251,7 +1366,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">92 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/generateSignature.js.html#errorLines=3,4,5">packages/crypto/out/src/generateSignature.js</a></span></td>
@@ -1259,7 +1374,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/3</span></td>
       <td style="display: none;" data-ice="size">1010 byte</td>
       <td style="display: none;" data-ice="lines">16</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/generateSignedTransactionBytes.d.ts.html">packages/crypto/out/src/generateSignedTransactionBytes.d.ts</a></span></td>
@@ -1267,7 +1382,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">116 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/generateSignedTransactionBytes.js.html">packages/crypto/out/src/generateSignedTransactionBytes.js</a></span></td>
@@ -1275,7 +1390,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">303 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/getAccountIdFromBurstAddress.d.ts.html">packages/crypto/out/src/getAccountIdFromBurstAddress.d.ts</a></span></td>
@@ -1299,7 +1414,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">79 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/getAccountIdFromPublicKey.js.html#errorLines=3,4,5">packages/crypto/out/src/getAccountIdFromPublicKey.js</a></span></td>
@@ -1307,7 +1422,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/3</span></td>
       <td style="display: none;" data-ice="size">629 byte</td>
       <td style="display: none;" data-ice="lines">14</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/getBurstAddressFromAccountId.d.ts.html">packages/crypto/out/src/getBurstAddressFromAccountId.d.ts</a></span></td>
@@ -1331,7 +1446,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">60 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/hashSHA256.js.html#errorLines=3">packages/crypto/out/src/hashSHA256.js</a></span></td>
@@ -1339,7 +1454,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
       <td style="display: none;" data-ice="size">237 byte</td>
       <td style="display: none;" data-ice="lines">6</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/index.d.ts.html">packages/crypto/out/src/index.d.ts</a></span></td>
@@ -1347,7 +1462,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">548 byte</td>
       <td style="display: none;" data-ice="lines">16</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/index.js.html#errorLines=2">packages/crypto/out/src/index.js</a></span></td>
@@ -1355,7 +1470,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
       <td style="display: none;" data-ice="size">835 byte</td>
       <td style="display: none;" data-ice="lines">21</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/passPhraseGenerator.d.ts.html">packages/crypto/out/src/passPhraseGenerator.d.ts</a></span></td>
@@ -1363,7 +1478,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">233 byte</td>
       <td style="display: none;" data-ice="lines">8</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/passPhraseGenerator.js.html#errorLines=10,19,22,3,4,5,6,8">packages/crypto/out/src/passPhraseGenerator.js</a></span></td>
@@ -1371,7 +1486,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/8</span></td>
       <td style="display: none;" data-ice="size">998 byte</td>
       <td style="display: none;" data-ice="lines">30</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/verifySignature.d.ts.html">packages/crypto/out/src/verifySignature.d.ts</a></span></td>
@@ -1379,7 +1494,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">109 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/verifySignature.js.html#errorLines=3,4,5">packages/crypto/out/src/verifySignature.js</a></span></td>
@@ -1387,7 +1502,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/3</span></td>
       <td style="display: none;" data-ice="size">1100 byte</td>
       <td style="display: none;" data-ice="lines">18</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/words.d.ts.html">packages/crypto/out/src/words.d.ts</a></span></td>
@@ -1395,7 +1510,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">38 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/src/words.js.html">packages/crypto/out/src/words.js</a></span></td>
@@ -1403,7 +1518,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">57233 byte</td>
       <td style="display: none;" data-ice="lines">3</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/typings/keys.d.ts.html">packages/crypto/out/typings/keys.d.ts</a></span></td>
@@ -1411,7 +1526,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">143 byte</td>
       <td style="display: none;" data-ice="lines">6</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/out/typings/keys.js.html#errorLines=3,4,5,6,7">packages/crypto/out/typings/keys.js</a></span></td>
@@ -1419,7 +1534,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/5</span></td>
       <td style="display: none;" data-ice="size">372 byte</td>
       <td style="display: none;" data-ice="lines">10</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:44 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:52 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/crypto/src/converter.ts.html#errorLines=6">packages/crypto/src/converter.ts</a></span></td>
@@ -1579,7 +1694,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">289 byte</td>
       <td style="display: none;" data-ice="lines">7</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/http/out/http.js.html">packages/http/out/http.js</a></span></td>
@@ -1587,7 +1702,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">109 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/http/out/httpError.d.ts.html">packages/http/out/httpError.d.ts</a></span></td>
@@ -1595,7 +1710,7 @@
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
       <td style="display: none;" data-ice="size">219 byte</td>
       <td style="display: none;" data-ice="lines">8</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/http/out/httpError.js.html#errorLines=3,4,5,6,7,8,9">packages/http/out/httpError.js</a></span></td>
@@ -1603,7 +1718,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/7</span></td>
       <td style="display: none;" data-ice="size">385 byte</td>
       <td style="display: none;" data-ice="lines">12</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/http/out/httpImpl.d.ts.html">packages/http/out/httpImpl.d.ts</a></span></td>
@@ -1611,7 +1726,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">505 byte</td>
       <td style="display: none;" data-ice="lines">13</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/http/out/httpImpl.js.html#errorLines=11,12,13,14,15,16,2,20,29,40,51,62">packages/http/out/httpImpl.js</a></span></td>
@@ -1619,7 +1734,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/12</span></td>
       <td style="display: none;" data-ice="size">2917 byte</td>
       <td style="display: none;" data-ice="lines">74</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/http/out/httpMock.d.ts.html">packages/http/out/httpMock.d.ts</a></span></td>
@@ -1627,7 +1742,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">510 byte</td>
       <td style="display: none;" data-ice="lines">15</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/http/out/httpMock.js.html#errorLines=15,23,3,31,32,33,34,36,39,4,43,44,47,5,50,53,56,6,7,8">packages/http/out/httpMock.js</a></span></td>
@@ -1635,7 +1750,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/20</span></td>
       <td style="display: none;" data-ice="size">2154 byte</td>
       <td style="display: none;" data-ice="lines">62</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/http/out/httpMockBuilder.d.ts.html">packages/http/out/httpMockBuilder.d.ts</a></span></td>
@@ -1643,7 +1758,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">1053 byte</td>
       <td style="display: none;" data-ice="lines">18</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/http/out/httpMockBuilder.js.html#errorLines=10,18,21,26,29,3,32,35,38,4,41,44,47,5,56,57,58,6,60,63,67,7,71,74,77,80,83,86,89,92,95">packages/http/out/httpMockBuilder.js</a></span></td>
@@ -1651,7 +1766,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/31</span></td>
       <td style="display: none;" data-ice="size">3398 byte</td>
       <td style="display: none;" data-ice="lines">99</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/http/out/httpResponse.d.ts.html">packages/http/out/httpResponse.d.ts</a></span></td>
@@ -1659,7 +1774,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">147 byte</td>
       <td style="display: none;" data-ice="lines">6</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/http/out/httpResponse.js.html#errorLines=3,4,5,6">packages/http/out/httpResponse.js</a></span></td>
@@ -1667,7 +1782,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/4</span></td>
       <td style="display: none;" data-ice="size">278 byte</td>
       <td style="display: none;" data-ice="lines">9</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/http/out/index.d.ts.html">packages/http/out/index.d.ts</a></span></td>
@@ -1675,7 +1790,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">260 byte</td>
       <td style="display: none;" data-ice="lines">6</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/http/out/index.js.html#errorLines=3,5,7,9">packages/http/out/index.js</a></span></td>
@@ -1683,7 +1798,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/4</span></td>
       <td style="display: none;" data-ice="size">482 byte</td>
       <td style="display: none;" data-ice="lines">10</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/http/src/http.ts.html">packages/http/src/http.ts</a></span></td>
@@ -1747,7 +1862,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">73 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/constructBurstAddress.js.html">packages/util/out/constructBurstAddress.js</a></span></td>
@@ -1755,7 +1870,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">257 byte</td>
       <td style="display: none;" data-ice="lines">5</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/convertAddressToNumericId.d.ts.html">packages/util/out/convertAddressToNumericId.d.ts</a></span></td>
@@ -1763,7 +1878,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">77 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/convertAddressToNumericId.js.html#errorLines=3,4,5">packages/util/out/convertAddressToNumericId.js</a></span></td>
@@ -1771,7 +1886,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/3</span></td>
       <td style="display: none;" data-ice="size">1980 byte</td>
       <td style="display: none;" data-ice="lines">60</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/convertNQTStringToNumber.d.ts.html">packages/util/out/convertNQTStringToNumber.d.ts</a></span></td>
@@ -1779,7 +1894,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">75 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/convertNQTStringToNumber.js.html">packages/util/out/convertNQTStringToNumber.js</a></span></td>
@@ -1787,7 +1902,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">359 byte</td>
       <td style="display: none;" data-ice="lines">10</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/convertNumberToNQTString.d.ts.html">packages/util/out/convertNumberToNQTString.d.ts</a></span></td>
@@ -1795,7 +1910,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">70 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/convertNumberToNQTString.js.html">packages/util/out/convertNumberToNQTString.js</a></span></td>
@@ -1803,7 +1918,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">351 byte</td>
       <td style="display: none;" data-ice="lines">10</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/convertNumberToString.d.ts.html">packages/util/out/convertNumberToString.d.ts</a></span></td>
@@ -1827,7 +1942,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">79 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/convertNumericIdToAddress.js.html#errorLines=3,4">packages/util/out/convertNumericIdToAddress.js</a></span></td>
@@ -1835,7 +1950,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/2</span></td>
       <td style="display: none;" data-ice="size">1927 byte</td>
       <td style="display: none;" data-ice="lines">58</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/convertStringToNumber.d.ts.html">packages/util/out/convertStringToNumber.d.ts</a></span></td>
@@ -1891,7 +2006,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">380 byte</td>
       <td style="display: none;" data-ice="lines">12</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/index.js.html#errorLines=2">packages/util/out/index.js</a></span></td>
@@ -1899,7 +2014,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
       <td style="display: none;" data-ice="size">617 byte</td>
       <td style="display: none;" data-ice="lines">15</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/internal.d.ts.html">packages/util/out/internal.d.ts</a></span></td>
@@ -1907,7 +2022,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">344 byte</td>
       <td style="display: none;" data-ice="lines">8</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/internal.js.html">packages/util/out/internal.js</a></span></td>
@@ -1915,7 +2030,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">876 byte</td>
       <td style="display: none;" data-ice="lines">18</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/isBurstAddress.d.ts.html">packages/util/out/isBurstAddress.d.ts</a></span></td>
@@ -1923,7 +2038,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">127 byte</td>
       <td style="display: none;" data-ice="lines">2</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/isBurstAddress.js.html#errorLines=3">packages/util/out/isBurstAddress.js</a></span></td>
@@ -1931,7 +2046,7 @@
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
       <td style="display: none;" data-ice="size">1427 byte</td>
       <td style="display: none;" data-ice="lines">45</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/isValid.d.ts.html">packages/util/out/isValid.d.ts</a></span></td>
@@ -1955,7 +2070,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">71 byte</td>
       <td style="display: none;" data-ice="lines">1</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/out/splitBurstAddress.js.html">packages/util/out/splitBurstAddress.js</a></span></td>
@@ -1963,7 +2078,7 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">319 byte</td>
       <td style="display: none;" data-ice="lines">12</td>
-      <td style="display: none;" data-ice="updated">2019-02-04 02:56:43 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2019-02-05 23:59:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/util/src/constructBurstAddress.ts.html">packages/util/src/constructBurstAddress.ts</a></span></td>

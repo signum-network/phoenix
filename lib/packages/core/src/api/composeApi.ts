@@ -24,6 +24,7 @@ import {generateSendTransactionQRCode} from './account/generateSendTransactionQR
 import {generateSendTransactionQRCodeAddress} from './account/generateSendTransactionQRCodeAddress';
 import {suggestFee} from './network/suggestFee';
 import {sendMoney} from './transaction/sendMoney';
+import {getAliases} from './account/getAliases';
 
 export class ApiSettings {
     constructor(
@@ -70,6 +71,7 @@ export function compose(settings: ApiSettings): Api {
             getAccountBalance,
             generateSendTransactionQRCode,
             generateSendTransactionQRCodeAddress,
+            getAliases,
         })
         .compose();
 

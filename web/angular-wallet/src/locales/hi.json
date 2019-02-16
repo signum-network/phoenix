@@ -23,7 +23,7 @@
    "advanced_transaction_operations" : "उच्च लेनदेन परिचालन",
    "advanced_uppercase" : "Advanced",
    "alias" : "अन्य नाम",
-   "Aliases" : "उपनाम",
+   "aliases" : "उपनाम",
    "aliases_owned" : "Aliases Owned",
    "aliases_to_account_id" : "Aliases to Account ID",
    "aliases_to_uri" : "Aliases to URI",

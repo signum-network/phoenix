@@ -23,7 +23,7 @@
    "advanced_transaction_operations" : "Gelişmiş  işlemler",
    "advanced_uppercase" : "Gelişmiş",
    "alias" : "Rumuz",
-   "Aliases" : "Rumuzlar",
+   "aliases" : "Rumuzlar",
    "aliases_owned" : "Sahip olduğunuz Rumuzlar",
    "aliases_to_account_id" : "Hesap ID'si ile özdeştirilen rumuzlar",
    "aliases_to_uri" : "URI adressi ile  özdeştirilen rumuzlar",

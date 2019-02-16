@@ -2,7 +2,7 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 import { BurstService } from '../../burstService';
-import { SuggestedFees } from '../../suggestedFees';
+import { SuggestedFees } from '../../typings/suggestedFees';
 
 /**
  * Get the current suggested fees
