@@ -8,5 +8,5 @@ npm run bootstrap
 # run angular build
 cd ../web/angular-wallet
 npm install
-# npm run test
+npm run test
 npm run build:ci

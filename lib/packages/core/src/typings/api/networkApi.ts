@@ -1,6 +1,6 @@
-import {BlockchainStatus} from "../blockchainStatus";
-import {ServerStatus} from "../serverStatus";
-import {SuggestedFees} from "../../suggestedFees";
+import {BlockchainStatus} from '../blockchainStatus';
+import {ServerStatus} from '../serverStatus';
+import {SuggestedFees} from '../suggestedFees';
 
 export interface NetworkApi {
     getBlockchainStatus: () => Promise<BlockchainStatus>;
