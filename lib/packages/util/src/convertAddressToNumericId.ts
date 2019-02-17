@@ -1,3 +1,4 @@
+/** @module util */
 // tslint:disable:no-bitwise
 
 /**

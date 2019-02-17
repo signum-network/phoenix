@@ -1,7 +1,10 @@
+/** @module core */
 
 /**
- * Blockchain Status Type
+ * Original work Copyright (c) 2018 PoC-Consortium
+ * Modified work Copyright (c) 2019 Burst Apps Team
  */
+
 export interface BlockchainStatus {
     readonly application: string;
     readonly cumulativeDifficulty: string;

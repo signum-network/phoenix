@@ -1,6 +1,6 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../burstService';
-import {getTransaction} from '../../transaction/getTransaction';
+import {getTransaction} from '../../factories/transaction/getTransaction';
 
 const environment = loadEnvironment();
 

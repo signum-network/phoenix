@@ -3,9 +3,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 
-import { compose, ApiSettings, Transaction, EncryptedMessage, Attachment } from '@burstjs/core';
+import { composeApi, ApiSettings, Attachment } from '@burstjs/core';
 import { environment } from 'environments/environment.prod';
-import { Keys, getAccountIdFromPublicKey, encryptMessage, decryptAES, hashSHA256 } from '@burstjs/crypto';
+import { Keys, decryptAES, hashSHA256 } from '@burstjs/crypto';
 
 interface SendMoneyRequest {
     transaction: {
@@ -15,21 +15,21 @@ interface SendMoneyRequest {
         deadline: number,
         fullHash: string,
         type: number,
-    },
-    pin: string,
-    keys: Keys,
-    recipientAddress: string
-};
+    };
+    pin: string;
+    keys: Keys;
+    recipientAddress: string;
+}
 
 @Injectable()
 export class TransactionService {
-    private api: any; //todo
+    private api: any; // todo
 
     public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
     constructor() {
         const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
-        this.api = compose(apiSettings);
+        this.api = composeApi(apiSettings);
     }
 
     public getTransaction(id: string) {
@@ -54,7 +54,7 @@ export class TransactionService {
         const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
         return this.api.transaction.sendMoney(transaction, keys.publicKey, senderPrivateKey, recipientAddress)
             .catch((err) => {
-                throw new Error(`There was a problem submitting your transaction.`)
-            }) 
+                throw new Error(`There was a problem submitting your transaction.`);
+            });
     }
 }

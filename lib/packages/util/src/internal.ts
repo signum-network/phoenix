@@ -1,8 +1,12 @@
+/** @ignore */
+/** @module util */
+
 // tslint:disable:max-line-length
-/**
+/*
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
+
 
 // Internal helper functions and structures
 

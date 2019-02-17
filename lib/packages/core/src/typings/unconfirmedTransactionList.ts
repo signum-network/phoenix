@@ -1,6 +1,9 @@
+/** @module core */
+
 /**
- * Transaction Type
+ * Original work Copyright (c) 2019 Burst Apps Team
  */
+
 import {Transaction} from './transaction';
 
 export interface UnconfirmedTransactionList {

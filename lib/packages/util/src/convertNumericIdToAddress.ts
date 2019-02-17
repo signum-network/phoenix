@@ -1,4 +1,5 @@
 // tslint:disable:no-bitwise
+/** @module util */
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium

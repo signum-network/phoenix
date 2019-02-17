@@ -1,11 +1,10 @@
+/** @module core */
+
 /**
- * Original work Copyright (c) 2018 PoC-Consortium  
+ * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-/**
- * Block Type
- */
 export interface Block {
     readonly block: number ;
     readonly version: number ;

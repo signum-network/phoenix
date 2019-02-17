@@ -1,7 +1,7 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../burstService';
 import {generateMasterKeys, getAccountIdFromPublicKey} from '@burstjs/crypto';
-import {sendTextMessage} from '../..';
+import {sendTextMessage} from '../../factories/message/sendTextMessage';
 
 const environment = loadEnvironment();
 

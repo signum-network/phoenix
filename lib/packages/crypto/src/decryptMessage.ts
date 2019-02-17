@@ -1,12 +1,24 @@
-import { decryptAES } from "./decryptAES";
-import { ECKCDSA } from "./ec-kcdsa";
-import { Converter } from "./converter";
+/* tslint:disable */
+/** @module crypto */
+// TODO: remove ignore whene fixed
+/** @ignore */
+
+import {decryptAES} from "./decryptAES";
+import {ECKCDSA} from "./ec-kcdsa";
+import {Converter} from "./converter";
 import * as CryptoJS from "crypto-js";
 
-/*
-* Decrypt a message attached to transaction
-*/
-export const decryptMessage = (encryptedMessage: string, nonce: string, encryptedPrivateKey: string, pinHash: string, senderPublicKey: string): string => {
+/**
+ * Decrypt a message attached to transaction
+ * FIXME: Fix en/decryption!
+ */
+export const decryptMessage = (
+    encryptedMessage: string,
+    nonce: string,
+    encryptedPrivateKey: string,
+    pinHash: string,
+    senderPublicKey: string
+): string => {
     const privateKey = decryptAES(encryptedPrivateKey, pinHash);
     // generate shared key
     let sharedKey =

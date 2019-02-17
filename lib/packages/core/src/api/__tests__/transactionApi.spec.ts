@@ -1,8 +1,8 @@
 import { HttpMockBuilder, Http } from '@burstjs/http';
 import { BurstService } from '../../burstService';
-import { broadcastTransaction } from '../transaction/broadcastTransaction';
-import { getTransaction } from '../transaction/getTransaction';
-import { sendMoney } from '../transaction/sendMoney';
+import { broadcastTransaction } from '../factories/transaction/broadcastTransaction';
+import { getTransaction } from '../factories/transaction/getTransaction';
+import { sendMoney } from '../factories/transaction/sendMoney';
 import { Transaction } from '../../typings/transaction';
 import { generateSignature } from '@burstjs/crypto';
 import { verifySignature } from '@burstjs/crypto';

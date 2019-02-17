@@ -1,4 +1,5 @@
-// TODO: Keys are a crypto typing...or not?
+/** @module crypto */
+
 import { Keys } from '../typings/keys';
 import * as CryptoJS from 'crypto-js';
 import { ECKCDSA } from './ec-kcdsa';

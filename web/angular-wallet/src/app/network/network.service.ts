@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 
-import { compose, ApiSettings } from '@burstjs/core';
+import { composeApi, ApiSettings } from '@burstjs/core';
 import { environment } from 'environments/environment.prod';
 
 
@@ -13,10 +13,10 @@ export class NetworkService {
 
     constructor() {
         const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
-        this.api = compose(apiSettings);
+        this.api = composeApi(apiSettings);
     }
 
     public suggestFee() {
         return this.api.network.suggestFee();
-    } 
+    }
 }

@@ -1,3 +1,4 @@
+/** @module core */
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -5,27 +6,31 @@ import {BurstService} from '../burstService';
 import {Api} from '../typings/api';
 import {ApiComposer} from './apiComposer';
 
-import {getBlockByTimestamp} from './block/getBlockByTimestamp';
-import {getBlockByHeight} from './block/getBlockByHeight';
-import {getBlockById} from './block/getBlockById';
-import {getBlockId} from './block/getBlockId';
+import {getBlockByTimestamp} from './factories/block/getBlockByTimestamp';
+import {getBlockByHeight} from './factories/block/getBlockByHeight';
+import {getBlockById} from './factories/block/getBlockById';
+import {getBlockId} from './factories/block/getBlockId';
 
-import {getBlockchainStatus} from './network/getBlockchainStatus';
-import {getServerStatus} from './network/getServerStatus';
+import {getBlockchainStatus} from './factories/network/getBlockchainStatus';
+import {getServerStatus} from './factories/network/getServerStatus';
 
-import {broadcastTransaction} from './transaction/broadcastTransaction';
-import {getTransaction} from './transaction/getTransaction';
+import {broadcastTransaction} from './factories/transaction/broadcastTransaction';
+import {getTransaction} from './factories/transaction/getTransaction';
 
-import {sendTextMessage} from './message/sendTextMessage';
-import {getAccountTransactions} from './account/getAccountTransactions';
-import {getUnconfirmedAccountTransactions} from './account/getUnconfirmedAccountTransactions';
-import {getAccountBalance} from './account/getAccountBalance';
-import {generateSendTransactionQRCode} from './account/generateSendTransactionQRCode';
-import {generateSendTransactionQRCodeAddress} from './account/generateSendTransactionQRCodeAddress';
-import {suggestFee} from './network/suggestFee';
-import {sendMoney} from './transaction/sendMoney';
-import {getAliases} from './account/getAliases';
+import {sendTextMessage} from './factories/message/sendTextMessage';
+import {getAccountTransactions} from './factories/account/getAccountTransactions';
+import {getUnconfirmedAccountTransactions} from './factories/account/getUnconfirmedAccountTransactions';
+import {getAccountBalance} from './factories/account/getAccountBalance';
+import {generateSendTransactionQRCode} from './factories/account/generateSendTransactionQRCode';
+import {generateSendTransactionQRCodeAddress} from './factories/account/generateSendTransactionQRCodeAddress';
+import {suggestFee} from './factories/network/suggestFee';
+import {sendMoney} from './factories/transaction/sendMoney';
+import {getAliases} from './factories/account/getAliases';
 
+
+/**
+ * Context for API used in [[composeApi]]
+ */
 export class ApiSettings {
     constructor(
         public nodeHost: string,
@@ -37,10 +42,10 @@ export class ApiSettings {
 /**
  * Composes the API, i.e. setup the environment and mounts the API structure
  * with its functions.
- * @param settings Injects necessary execution context
- * @return {Api} The configured BURST API object
+ * @param settings necessary execution context
+ * @return The configured BURST API object
  */
-export function compose(settings: ApiSettings): Api {
+export function composeApi(settings: ApiSettings): Api {
 
     const service = new BurstService(settings.nodeHost, settings.apiRootUrl);
 

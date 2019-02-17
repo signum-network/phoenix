@@ -2,9 +2,9 @@ import {convertNQTStringToNumber} from '@burstjs/util';
 import {loadEnvironment} from './helpers/environment';
 import {getAccountIdFromPassphrase} from './helpers/account';
 import {BurstService} from '../../../burstService';
-import {getAccountTransactions} from '../../account/getAccountTransactions';
-import {getUnconfirmedAccountTransactions} from '../../account/getUnconfirmedAccountTransactions';
-import {getAccountBalance} from '../../account/getAccountBalance';
+import {getAccountTransactions} from '../../factories/account/getAccountTransactions';
+import {getUnconfirmedAccountTransactions} from '../../factories/account/getUnconfirmedAccountTransactions';
+import {getAccountBalance} from '../../factories/account/getAccountBalance';
 
 const environment = loadEnvironment();
 

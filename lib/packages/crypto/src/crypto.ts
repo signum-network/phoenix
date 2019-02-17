@@ -1,5 +1,8 @@
+/** @ignore */
+/** @module crypto */
+
 /**
- * Original work Copyright (c) 2018 PoC-Consortium  
+ * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
@@ -12,7 +15,7 @@ import * as CryptoJS from "crypto-js";
 * Crypto class
 *
 * The Crypto class takes care of everything cryptography related.
-*/ 
+*/
 export class Crypto {
     /*
     * Generate signature for transaction

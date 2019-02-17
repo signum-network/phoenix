@@ -1,4 +1,4 @@
-// @todo review the need of this function...IMHO too trivial
+/** @module util */
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium

@@ -1,5 +1,8 @@
+/** @module crypto */
+/** @ignore */
+
 /**
- * Original work Copyright (c) 2018 PoC-Consortium  
+ * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
@@ -12,7 +15,6 @@ declare function unescape(s: string): string;
 /**
  * A set of useful converter methods for crypto operations.
  */
-
 export class Converter {
 
     private static charToNibble: any = {};

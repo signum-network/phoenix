@@ -1,7 +1,7 @@
 import {HttpMockBuilder, Http} from '@burstjs/http';
 import {BurstService} from '../../burstService';
-import {getBlockchainStatus} from '../network/getBlockchainStatus';
-import {getServerStatus} from '../network/getServerStatus';
+import {getBlockchainStatus} from '../factories/network/getBlockchainStatus';
+import {getServerStatus} from '../factories/network/getServerStatus';
 
 describe('Network Api', () => {
 
