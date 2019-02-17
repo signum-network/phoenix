@@ -148,4 +148,33 @@ describe('ApiComposer', () => {
 
     });
 
+   it('should compose account Api with multiple modules', () => {
+
+        const api = apiComposer
+            .withMessageApi({
+                sendTextMessage
+            })
+            .withAccountApi({
+                getAccountTransactions,
+                getUnconfirmedAccountTransactions,
+                getAccountBalance,
+                generateSendTransactionQRCode,
+                generateSendTransactionQRCodeAddress,
+            })
+            .compose();
+
+        expect(api).toBeDefined();
+        expect(api.account).toBeDefined();
+        expect(api.account.getAccountTransactions).toBeDefined();
+        expect(api.account.getUnconfirmedAccountTransactions).toBeDefined();
+        expect(api.account.getAccountBalance).toBeDefined();
+        expect(api.account.generateSendTransactionQRCode).toBeDefined();
+        expect(api.account.generateSendTransactionQRCodeAddress).toBeDefined();
+
+       expect(api).toBeDefined();
+       expect(api.message).toBeDefined();
+       expect(api.message.sendTextMessage).toBeDefined();
+
+   });
+
 });

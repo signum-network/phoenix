@@ -1,3 +1,6 @@
+/** @module core */
+/** @ignore */
+
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -12,21 +15,11 @@ import { Transaction } from '../../typings/transaction';
 import { constructAttachment } from '../../constructMessage';
 import {broadcastTransaction} from './broadcastTransaction';
 
-/**
- * Sends burst to the blockchain
- *
- * The message will be broadcasted in two steps.
- * 1. Send the sendMoney call with public key to the network
- * 2. Take the returned unsigned message and sign it, i.e. the private key won't be transmitted.
- *
- * @param transaction The unsigned transaction
- * @param senderPublicKey The senders public key for sending an _unsigned_ message
- * @param senderPrivateKey The senders private key to _sign_ the message
- * @param recipientAddress The recipients RS Address
- * @return The Transaction
- */
 export const sendMoney = (service: BurstService):
-    (transaction: Transaction, senderPublicKey: string, senderPrivateKey: string, recipientAddress: string) => Promise<TransactionId | Error> =>
+    (transaction: Transaction,
+     senderPublicKey: string,
+     senderPrivateKey: string,
+     recipientAddress: string) => Promise<TransactionId | Error> =>
     async (
         transaction: Transaction,
         senderPublicKey: string,

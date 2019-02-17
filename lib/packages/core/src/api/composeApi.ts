@@ -1,3 +1,4 @@
+/** @module core */
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -26,6 +27,10 @@ import {suggestFee} from './network/suggestFee';
 import {sendMoney} from './transaction/sendMoney';
 import {getAliases} from './account/getAliases';
 
+
+/**
+ * Context for API used in [[composeApi]]
+ */
 export class ApiSettings {
     constructor(
         public nodeHost: string,
@@ -37,8 +42,8 @@ export class ApiSettings {
 /**
  * Composes the API, i.e. setup the environment and mounts the API structure
  * with its functions.
- * @param settings Injects necessary execution context
- * @return {Api} The configured BURST API object
+ * @param settings necessary execution context
+ * @return The configured BURST API object
  */
 export function composeApi(settings: ApiSettings): Api {
 

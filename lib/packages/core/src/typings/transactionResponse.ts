@@ -1,6 +1,9 @@
+/** @module core */
+
 /**
- * Transaction Response Type
+ * Original work Copyright (c) 2019 Burst Apps Team
  */
+
 export interface TransactionResponse {
     readonly fullHash: string;
     readonly transaction: string;

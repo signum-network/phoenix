@@ -1,6 +1,9 @@
+/** @module core */
+
 /**
- * Transaction Type
+ * Original work Copyright (c) 2019 Burst Apps Team
  */
+
 export interface Transaction {
     readonly senderPublicKey?: string;
     readonly signature?: string;
