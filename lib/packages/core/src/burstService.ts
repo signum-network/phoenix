@@ -1,5 +1,5 @@
 /** @module core */
-/** @ignore */
+/** @hidden */
 
 import {Http, HttpImpl} from '@burstjs/http';
 
