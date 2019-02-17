@@ -27,5 +27,5 @@ That's it!
 
 ## Documentation
 
-- To generate esdocs: `npm run doc`
+- To generate docs: `npm run doc`
 - To update the README.md files: `lerna run readme`
