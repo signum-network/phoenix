@@ -2,7 +2,7 @@
   "name": "burstjs",
   "mode": "modules",
   "source": "./packages",
-  "out": "./tsdocs",
+  "out": "../docs",
   "excludeNotExported": true,
   "excludePrivate": true,
   "exclude": [

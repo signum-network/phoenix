@@ -50,7 +50,7 @@
     "test:watch": "jest --watch",
     "test:ci": "jest --coverage && codecov",
     "test:e2e": "jest --config jest.config.e2e.js --runInBand --detectOpenHandles --forceExit",
-    "doc": "rm -rf ../docs && ./node_modules/.bin/esdoc",
+    "doc": "typedoc --options tsdoc.json",
     "bootstrap": "lerna bootstrap && lerna exec npm install && lerna run tsc",
     "lint": "tslint -p tsconfig.json -t stylish -s node_modules/custom-tslint-formatters/formatters -t grouped",
     "publish": "lerna run tsc && lerna publish",

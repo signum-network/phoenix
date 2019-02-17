@@ -1,9 +1,9 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../burstService';
-import {getBlockByTimestamp} from '../../block/getBlockByTimestamp';
-import {getBlockByHeight} from '../../block/getBlockByHeight';
-import {getBlockById} from '../../block/getBlockById';
-import {getBlockId} from '../../block/getBlockId';
+import {getBlockByTimestamp} from '../../factories/block/getBlockByTimestamp';
+import {getBlockByHeight} from '../../factories/block/getBlockByHeight';
+import {getBlockById} from '../../factories/block/getBlockById';
+import {getBlockId} from '../../factories/block/getBlockId';
 
 const environment = loadEnvironment();
 

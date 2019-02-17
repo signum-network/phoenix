@@ -1,12 +1,12 @@
 import {HttpMockBuilder, Http} from '@burstjs/http';
 
 import {BurstService} from '../../burstService';
-import {getAccountTransactions} from '../account/getAccountTransactions';
-import {getUnconfirmedAccountTransactions} from '../account/getUnconfirmedAccountTransactions';
-import {getAccountBalance} from '../account/getAccountBalance';
-import { generateSendTransactionQRCodeAddress } from '../account/generateSendTransactionQRCodeAddress';
-import { generateSendTransactionQRCode } from '../account/generateSendTransactionQRCode';
-import { getAliases} from '../account/getAliases';
+import {getAccountTransactions} from '../factories/account/getAccountTransactions';
+import {getUnconfirmedAccountTransactions} from '../factories/account/getUnconfirmedAccountTransactions';
+import {getAccountBalance} from '../factories/account/getAccountBalance';
+import { generateSendTransactionQRCodeAddress } from '../factories/account/generateSendTransactionQRCodeAddress';
+import { generateSendTransactionQRCode } from '../factories/account/generateSendTransactionQRCode';
+import { getAliases} from '../factories/account/getAliases';
 import { Alias } from '../../typings/alias';
 import {AliasList} from "../../typings/aliasList";
 

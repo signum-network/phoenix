@@ -1,7 +1,7 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../burstService';
-import {getBlockchainStatus} from '../../network/getBlockchainStatus';
-import {getServerStatus} from '../../network/getServerStatus';
+import {getBlockchainStatus} from '../../factories/network/getBlockchainStatus';
+import {getServerStatus} from '../../factories/network/getServerStatus';
 
 const environment = loadEnvironment();
 
