@@ -1,0 +1,12 @@
+{
+  "name": "burstjs",
+  "mode": "modules",
+  "source": "./packages",
+  "out": "./tsdocs",
+  "excludeNotExported": true,
+  "excludePrivate": true,
+  "exclude": [
+    "/node_modules/",
+    "/__tests__/"
+  ]
+}

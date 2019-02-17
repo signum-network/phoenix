@@ -6,9 +6,12 @@ import {AccountApi} from './accountApi';
 
 
 /**
- * API Interface used by #composeApi
+ * @interface API Interface used by #composeApi
  */
-export interface Api {
+export class Api {
+    /**
+     * The Block API
+     */
     readonly block: BlockApi;
     readonly network: NetworkApi;
     readonly transaction: TransactionApi;

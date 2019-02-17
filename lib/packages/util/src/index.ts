@@ -7,9 +7,9 @@ export * from './convertAddressToNumericId';
 export * from './isBurstAddress';
 export * from './splitBurstAddress';
 
- /**
-  * A useful regex for matching burst addresses
-  */
+/**
+ * A useful regex for matching burst addresses
+ */
 export const burstAddressPattern = {
-    '_': { pattern: new RegExp('\[a-zA-Z0-9\]') }
+    '_': {pattern: new RegExp('\[a-zA-Z0-9\]')}
 };

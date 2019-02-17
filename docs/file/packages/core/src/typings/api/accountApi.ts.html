@@ -34,12 +34,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api">core/src/api</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/api/apiComposer.ts~ApiComposer.html">ApiComposer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/api/composeApi.ts~ApiSettings.html">ApiSettings</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-compose">compose</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-account">core/src/api/account</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateSendTransactionQRCode">generateSendTransactionQRCode</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateSendTransactionQRCodeAddress">generateSendTransactionQRCodeAddress</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAccountBalance">getAccountBalance</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAccountTransactions">getAccountTransactions</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAliases">getAliases</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getUnconfirmedAccountTransactions">getUnconfirmedAccountTransactions</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-account">core/src/api/account</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAccountBalance">getAccountBalance</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-block">core/src/api/block</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBlockByHeight">getBlockByHeight</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBlockById">getBlockById</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBlockId">getBlockId</a></span></span></li>
@@ -57,6 +52,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/attachment.ts~Message.html">Message</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/burstNode.ts~BurstNode.html">BurstNode</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/currency.ts~Currency.html">Currency</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-typings-api">core/src/typings/api</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/api/accountApi.ts~AccountApi.html">AccountApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/api/index.ts~Api.html">Api</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#crypto-src">crypto/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/converter.ts~Converter.html">Converter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/crypto.ts~Crypto.html">Crypto</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/curve25519.ts~Curve25519.html">Curve25519</a></span></span></li>
@@ -96,37 +93,74 @@ import {Balance} from &apos;../balance&apos;;
 import {AliasList} from &apos;../aliasList&apos;;
 
 /**
- * Account API
+ * @interface Account API
  */
-export interface AccountApi {
-    getAccountTransactions: (
+export class AccountApi {
+
+    /**
+     * Get transactions of given account
+     * @param {string} accountId The numeric accountId
+     * @param {number?} firstIndex The first index of the transaction list, beginning at 0
+     * @param {number?} lastIndex The last index of the transaction list
+     * @param {number?} numberOfConfirmations The minimum required number of confirmations per transaction
+     * @return {Promise&lt;TransactionList&gt;} List of transactions
+     */
+    public getAccountTransactions: (
         accountId: string,
         firstIndex?: number,
         lastIndex?: number,
         numberOfConfirmations?: number
     ) =&gt; Promise&lt;TransactionList&gt;;
-    getUnconfirmedAccountTransactions: (accountId: string) =&gt; Promise&lt;UnconfirmedTransactionList&gt;;
+
+
 
     /**
-     * Gets the balance of an account
-     * @param {string} accountId
-     * @return {Promise&lt;Balance&gt;}
+     * Get _unconfirmed_ transactions of given account
+     * @param {string} accountId The numeric accountId
+     * @return {Promise&lt;UnconfirmedTransactionList&gt;} List of unconfirmed transactions
      */
-    getAccountBalance: (accountId: string) =&gt; Promise&lt;Balance&gt;;
+    public getUnconfirmedAccountTransactions: (accountId: string) =&gt; Promise&lt;UnconfirmedTransactionList&gt;;
 
-    generateSendTransactionQRCode: (
+    /**
+     * Get the balance of an account
+     * @param {string} accountId
+     * @return {Promise&lt;Balance&gt;} The account&apos;s balance
+     */
+    public getAccountBalance: (accountId: string) =&gt; Promise&lt;Balance&gt;;
+
+    /**
+     * Get QR Code image for a given BURST address
+     * @param {string} receiverId The recipient burst
+     * @param {number?} amountNQT The amount (in NQT) to request (Default = 0)
+     * @param {string?} feeSuggestionType The fee suggestion type string (Default = &apos;standard&apos;)
+     * @return {Promise&lt;ArrayBufferLike&gt;} QR code image data
+     */
+    public generateSendTransactionQRCode: (
         receiverId: string,
         amountNQT?: number,
         feeSuggestionType?: string
     ) =&gt; Promise&lt;ArrayBufferLike&gt;;
 
-    generateSendTransactionQRCodeAddress: (
+
+    /**
+     * Generate the URL for a QR Code for a given BURST address. Useful for IMG tags in HTML.
+     * @param {string} receiverId The recipient burst address
+     * @param {number?} amountNQT The amount (in NQT) to request (Default = 0)
+     * @param {string?} feeSuggestionType The fee suggestion type string (Default = &apos;standard&apos;)
+     * @return {Promise&lt;string&gt;} The url
+     */
+    public generateSendTransactionQRCodeAddress: (
         receiverId: string,
         amountNQT?: number,
         feeSuggestionType?: string
     ) =&gt; Promise&lt;string&gt;;
 
-    getAliases: (accountId: string) =&gt; Promise&lt;AliasList&gt;;
+    /**
+     * Gets the aliases of an account
+     * @param {string} accountId
+     * @return {Promise&lt;AliasList&gt;} A list of aliases of given account
+     */
+    public getAliases: (accountId: string) =&gt; Promise&lt;AliasList&gt;;
 }
 </code></pre>
 

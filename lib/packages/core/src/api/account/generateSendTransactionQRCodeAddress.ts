@@ -3,13 +3,6 @@
  */
 import {BurstService} from '../../burstService';
 
-/**
- * Generate the URL for a QR Code for a given BURST address. Useful for IMG tags in HTML.
- * @param {string} receiverId The recipient burst address
- * @param {string} amountNQT The amount (in NQT) to request
- * @param {string} feeSuggestionType The fee suggestion type string
- * @return {Promise<string>}
- */
 export const generateSendTransactionQRCodeAddress = (service: BurstService):
     (
         receiverId: string,

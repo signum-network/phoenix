@@ -1,3 +1,5 @@
+/** @module burstjs/core */
+
 
 /*
  * Ported to TypeScript 2.4.2 (https://github.com/Microsoft/TypeScript/issues/18158) 09/02/17.

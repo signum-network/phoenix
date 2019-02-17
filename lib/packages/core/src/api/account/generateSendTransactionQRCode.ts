@@ -3,13 +3,6 @@
  */
 import {BurstService} from '../../burstService';
 
-/**
- * Get QR Code image for a given BURST address
- * @param {string} receiverId The recipient burst 
- * @param {string} amountNQT The amount (in NQT) to request 
- * @param {string} feeSuggestionType The fee suggestion type string
- * @return {Promise<ArrayBufferLike>}
- */
 export const generateSendTransactionQRCode = (service: BurstService):
     (
         receiverId: string,

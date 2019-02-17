@@ -1,6 +1,9 @@
-import {TransactionId} from "../transactionId";
-import {Transaction} from "../transaction";
+import {TransactionId} from '../transactionId';
+import {Transaction} from '../transaction';
 
+/**
+ * Transaction API
+ */
 export interface TransactionApi {
     broadcastTransaction: (signedTransactionPayload: string) => Promise<TransactionId>;
     getTransaction: (transactionId: string) => Promise<Transaction>;

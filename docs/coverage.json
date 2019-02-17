@@ -1,7 +1,7 @@
 {
-  "coverage": "30.03%",
-  "expectCount": 586,
-  "actualCount": 176,
+  "coverage": "29.42%",
+  "expectCount": 588,
+  "actualCount": 173,
   "files": {
     "packages/core/out/abstract/index.js": {
       "expectCount": 1,
@@ -226,13 +226,17 @@
     },
     "packages/core/src/api/account/generateSendTransactionQRCode.ts": {
       "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
     },
     "packages/core/src/api/account/generateSendTransactionQRCodeAddress.ts": {
       "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
     },
     "packages/core/src/api/account/getAccountBalance.ts": {
       "expectCount": 1,
@@ -241,18 +245,24 @@
     },
     "packages/core/src/api/account/getAccountTransactions.ts": {
       "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
     },
     "packages/core/src/api/account/getAliases.ts": {
       "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
     },
     "packages/core/src/api/account/getUnconfirmedAccountTransactions.ts": {
       "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
     },
     "packages/core/src/api/apiComposer.ts": {
       "expectCount": 13,
@@ -357,6 +367,16 @@
         35,
         36
       ]
+    },
+    "packages/core/src/typings/api/accountApi.ts": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "packages/core/src/typings/api/index.ts": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
     },
     "packages/core/src/typings/attachment.ts": {
       "expectCount": 12,

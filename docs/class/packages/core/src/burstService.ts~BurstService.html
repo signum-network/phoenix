@@ -34,12 +34,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api">core/src/api</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/api/apiComposer.ts~ApiComposer.html">ApiComposer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/api/composeApi.ts~ApiSettings.html">ApiSettings</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-compose">compose</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-account">core/src/api/account</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateSendTransactionQRCode">generateSendTransactionQRCode</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateSendTransactionQRCodeAddress">generateSendTransactionQRCodeAddress</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAccountBalance">getAccountBalance</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAccountTransactions">getAccountTransactions</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAliases">getAliases</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getUnconfirmedAccountTransactions">getUnconfirmedAccountTransactions</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-account">core/src/api/account</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAccountBalance">getAccountBalance</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-api-block">core/src/api/block</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBlockByHeight">getBlockByHeight</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBlockById">getBlockById</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBlockId">getBlockId</a></span></span></li>
@@ -57,6 +52,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/attachment.ts~Message.html">Message</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/burstNode.ts~BurstNode.html">BurstNode</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/currency.ts~Currency.html">Currency</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-typings-api">core/src/typings/api</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/api/accountApi.ts~AccountApi.html">AccountApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/typings/api/index.ts~Api.html">Api</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#crypto-src">crypto/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/converter.ts~Converter.html">Converter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/crypto.ts~Crypto.html">Crypto</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/crypto/src/curve25519.ts~Curve25519.html">Curve25519</a></span></span></li>
@@ -150,7 +147,7 @@ Extend and specific services here</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/burstService.ts~BurstService.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(baseUrl: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, {string}relativePath: <span>*</span>, httpClient: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/burstService.ts~BurstService.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(baseUrl: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, relativePath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, httpClient: <span>Http?</span>)</span>
         </p>
       </div>
       <div>
@@ -312,7 +309,7 @@ Extend and specific services here</p>
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(baseUrl: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, {string}relativePath: <span>*</span>, httpClient: <span>*</span>)</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(baseUrl: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, relativePath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, httpClient: <span>Http?</span>)</span>
     <span class="right-info">
       
       
@@ -344,17 +341,17 @@ Extend and specific services here</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">{string}relativePath</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="name" class="code" data-depth="0">relativePath</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>The relative path will be prepended before each url created with toBRSEndpoint()</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">httpClient</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>Http?</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>{Http?} If passed an client instance, it will be used instead of default HttpImpl. Good for testing.</p>
+      <td data-ice="description"><p>If passed an client instance, it will be used instead of default HttpImpl. Good for testing.</p>
 </td>
     </tr>
 </tbody>

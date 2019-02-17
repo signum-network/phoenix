@@ -6,6 +6,18 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "@burstjs/core~accountapi",
+    "class/packages/core/src/typings/api/accountApi.ts~AccountApi.html",
+    "<span>AccountApi</span> <span class=\"search-result-import-path\">@burstjs/core</span>",
+    "class"
+  ],
+  [
+    "@burstjs/core~api",
+    "class/packages/core/src/typings/api/index.ts~Api.html",
+    "<span>Api</span> <span class=\"search-result-import-path\">@burstjs/core</span>",
+    "class"
+  ],
+  [
     "@burstjs/core~apicomposer",
     "class/packages/core/src/api/apiComposer.ts~ApiComposer.html",
     "<span>ApiComposer</span> <span class=\"search-result-import-path\">@burstjs/core</span>",
@@ -198,18 +210,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "@burstjs/core~generatesendtransactionqrcode",
-    "function/index.html#static-function-generateSendTransactionQRCode",
-    "<span>generateSendTransactionQRCode</span> <span class=\"search-result-import-path\">@burstjs/core</span>",
-    "function"
-  ],
-  [
-    "@burstjs/core~generatesendtransactionqrcodeaddress",
-    "function/index.html#static-function-generateSendTransactionQRCodeAddress",
-    "<span>generateSendTransactionQRCodeAddress</span> <span class=\"search-result-import-path\">@burstjs/core</span>",
-    "function"
-  ],
-  [
     "@burstjs/crypto~generatesignature",
     "function/index.html#static-function-generateSignature",
     "<span>generateSignature</span> <span class=\"search-result-import-path\">@burstjs/crypto</span>",
@@ -231,18 +231,6 @@ window.esdocSearchIndex = [
     "@burstjs/crypto~getaccountidfrompublickey",
     "function/index.html#static-function-getAccountIdFromPublicKey",
     "<span>getAccountIdFromPublicKey</span> <span class=\"search-result-import-path\">@burstjs/crypto</span>",
-    "function"
-  ],
-  [
-    "@burstjs/core~getaccounttransactions",
-    "function/index.html#static-function-getAccountTransactions",
-    "<span>getAccountTransactions</span> <span class=\"search-result-import-path\">@burstjs/core</span>",
-    "function"
-  ],
-  [
-    "@burstjs/core~getaliases",
-    "function/index.html#static-function-getAliases",
-    "<span>getAliases</span> <span class=\"search-result-import-path\">@burstjs/core</span>",
     "function"
   ],
   [
@@ -279,12 +267,6 @@ window.esdocSearchIndex = [
     "@burstjs/core~gettransaction",
     "function/index.html#static-function-getTransaction",
     "<span>getTransaction</span> <span class=\"search-result-import-path\">@burstjs/core</span>",
-    "function"
-  ],
-  [
-    "@burstjs/core~getunconfirmedaccounttransactions",
-    "function/index.html#static-function-getUnconfirmedAccountTransactions",
-    "<span>getUnconfirmedAccountTransactions</span> <span class=\"search-result-import-path\">@burstjs/core</span>",
     "function"
   ],
   [
