@@ -1,4 +1,5 @@
-/** @module burstjs/core */
+/** @module crypto */
+/** @ignore */
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium

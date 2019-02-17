@@ -1,3 +1,5 @@
+/** @module crypto */
+
 import * as CryptoJS from 'crypto-js';
 
 /**

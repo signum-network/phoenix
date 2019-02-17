@@ -1,3 +1,5 @@
+/** @module crypto */
+
 import { Converter } from './converter';
 import * as CryptoJS from 'crypto-js';
 import * as BN from 'bn.js';

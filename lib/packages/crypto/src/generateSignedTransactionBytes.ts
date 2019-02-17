@@ -1,3 +1,5 @@
+/** @module crypto */
+
 /**
  * Generates a signed message digest
  * @param unsignedTransactionHex The unsigned message

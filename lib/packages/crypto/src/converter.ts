@@ -1,4 +1,5 @@
-/** @module burstjs/core */
+/** @module crypto */
+/** @ignore */
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
@@ -14,7 +15,6 @@ declare function unescape(s: string): string;
 /**
  * A set of useful converter methods for crypto operations.
  */
-
 export class Converter {
 
     private static charToNibble: any = {};

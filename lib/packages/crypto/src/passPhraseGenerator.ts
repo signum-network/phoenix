@@ -1,11 +1,14 @@
+/* tslint:disable */
+/** @module crypto */
+
 /**
- * Original work Copyright (c) 2018 PoC-Consortium  
+ * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
 import * as seedrandom from "seedrandom";
 import { words } from "./words";
- 
+
 export class PassPhraseGenerator {
 
     private static readonly wordCount: number = words.length;
