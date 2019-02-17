@@ -1,13 +1,17 @@
-import { EncryptedMessage, Message } from '../../typings/attachment';
-import { Transaction } from '../../typings/transaction';
+/** @module core */
+/** @ignore */
+
+import { EncryptedMessage, Message } from './typings/attachment';
+import { Transaction } from './typings/transaction';
 
 /**
  * Constructs an Attachment
  *
- * @param transactions The transaction with the attachment
+ * @param transaction The transaction with the attachment
  * @param params Some HttpParams
  * @return HttpParams
  */
+// TODO: refactor me...
 export const constructAttachment = (transaction: Transaction, params: any) => {
     if (transaction.attachment.type === 'encrypted_message') {
         const em: EncryptedMessage = transaction.attachment;

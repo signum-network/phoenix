@@ -40,7 +40,7 @@ export class ApiSettings {
  * @param settings Injects necessary execution context
  * @return {Api} The configured BURST API object
  */
-export function compose(settings: ApiSettings): Api {
+export function composeApi(settings: ApiSettings): Api {
 
     const service = new BurstService(settings.nodeHost, settings.apiRootUrl);
 

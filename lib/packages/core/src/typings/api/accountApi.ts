@@ -1,3 +1,5 @@
+/** @module core */
+
 import {TransactionList} from '../transactionList';
 import {UnconfirmedTransactionList} from '../unconfirmedTransactionList';
 import {Balance} from '../balance';

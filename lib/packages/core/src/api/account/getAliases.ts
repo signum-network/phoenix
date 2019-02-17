@@ -1,3 +1,6 @@
+/** @module core */
+/** @ignore */
+
 /**
  * Copyright (c) 2019 Burst Apps Team
  */

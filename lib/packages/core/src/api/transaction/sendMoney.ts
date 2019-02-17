@@ -9,7 +9,7 @@ import { verifySignature } from '@burstjs/crypto';
 import { generateSignedTransactionBytes } from '@burstjs/crypto';
 import { convertNumberToNQTString, convertNQTStringToNumber } from '@burstjs/util';
 import { Transaction } from '../../typings/transaction';
-import { constructAttachment } from '../message/constructMessage';
+import { constructAttachment } from '../../constructMessage';
 import {broadcastTransaction} from './broadcastTransaction';
 
 /**

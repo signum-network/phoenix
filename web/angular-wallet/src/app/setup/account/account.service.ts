@@ -5,7 +5,7 @@ import 'rxjs/add/operator/timeout';
 
 import {StoreService} from 'app/store/store.service';
 import {Settings} from 'app/settings';
-import {Account, compose, ApiSettings, Api, TransactionList, AliasList} from '@burstjs/core';
+import {Account, composeApi, ApiSettings, Api, TransactionList, AliasList} from '@burstjs/core';
 import {generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey} from '@burstjs/crypto';
 import {isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId} from '@burstjs/util';
 import {environment} from 'environments/environment';
@@ -24,7 +24,7 @@ export class AccountService {
     });
 
     const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
-    this.api = compose(apiSettings);
+    this.api = composeApi(apiSettings);
   }
 
   public setCurrentAccount(account: Account): void {
