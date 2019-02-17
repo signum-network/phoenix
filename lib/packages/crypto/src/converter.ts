@@ -3,11 +3,15 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-let BN = require('bn.js');
-let CryptoJS = require("crypto-js");
+import * as BN from 'bn.js';
+import * as CryptoJS from 'crypto-js';
 
 declare function escape(s: string): string;
 declare function unescape(s: string): string;
+
+/**
+ * A set of useful converter methods for crypto operations.
+ */
 
 export class Converter {
 
@@ -115,6 +119,7 @@ export class Converter {
             wa[(i / 4) | 0] |= ba[i] << (24 - 8 * i);
         }
 
+        // @ts-ignore
         return CryptoJS.lib.WordArray.create(wa, ba.length);
     }
 

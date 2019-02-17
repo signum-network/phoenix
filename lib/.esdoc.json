@@ -1,6 +1,6 @@
 {
   "source": "./packages",
-  "destination": "./docs",
+  "destination": "../docs",
   "plugins": [
     {
       "name": "esdoc-typescript-plugin"
@@ -9,7 +9,7 @@
       "name": "esdoc-importpath-plugin",
       "option": {
         "replaces": [
-          {"from": "packages/(.*)/src/(.+?)/(.*)", "to": "@burstjs/$1/$2"},
+          {"from": "packages/(.*)/src/(.*)", "to": "@burstjs/$1"},
           {"from": "/typings", "to": ""}
         ],
         "stripPackageName": true
