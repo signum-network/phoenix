@@ -1,7 +1,7 @@
 {
-  "coverage": "30.18%",
-  "expectCount": 603,
-  "actualCount": 182,
+  "coverage": "30.52%",
+  "expectCount": 593,
+  "actualCount": 181,
   "files": {
     "packages/core/out/abstract/index.js": {
       "expectCount": 1,
@@ -17,8 +17,27 @@
         3
       ]
     },
+    "packages/core/out/api/apiComposer.js": {
+      "expectCount": 13,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        5,
+        6,
+        7,
+        8,
+        10,
+        13,
+        18,
+        22,
+        26,
+        30,
+        34,
+        38
+      ]
+    },
     "packages/core/out/api/composeApi.js": {
-      "expectCount": 23,
+      "expectCount": 24,
       "actualCount": 0,
       "undocumentLines": [
         3,
@@ -43,7 +62,8 @@
         22,
         23,
         24,
-        28
+        25,
+        29
       ]
     },
     "packages/core/out/api/index.js": {
@@ -94,32 +114,6 @@
         35
       ]
     },
-    "packages/core/out/currency.js": {
-      "expectCount": 20,
-      "actualCount": 0,
-      "undocumentLines": [
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22
-      ]
-    },
     "packages/core/out/error/index.js": {
       "expectCount": 1,
       "actualCount": 0,
@@ -150,20 +144,6 @@
       "actualCount": 0,
       "undocumentLines": [
         2
-      ]
-    },
-    "packages/core/out/typings/abstractModel.d.ts": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "packages/core/out/typings/abstractModel.js": {
-      "expectCount": 3,
-      "actualCount": 0,
-      "undocumentLines": [
-        3,
-        4,
-        7
       ]
     },
     "packages/core/out/typings/account.js": {
@@ -216,6 +196,32 @@
         9,
         10,
         11
+      ]
+    },
+    "packages/core/out/typings/currency.js": {
+      "expectCount": 20,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
       ]
     },
     "packages/core/src/abstract/store.ts": {
@@ -425,24 +431,6 @@
         32
       ]
     },
-    "packages/crypto/out/src/burstUtil.js": {
-      "expectCount": 12,
-      "actualCount": 0,
-      "undocumentLines": [
-        3,
-        4,
-        5,
-        8,
-        15,
-        64,
-        114,
-        152,
-        162,
-        165,
-        168,
-        171
-      ]
-    },
     "packages/crypto/out/src/converter.js": {
       "expectCount": 27,
       "actualCount": 0,
@@ -591,13 +579,6 @@
         5
       ]
     },
-    "packages/crypto/out/src/getAccountIdFromBurstAddress.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        3
-      ]
-    },
     "packages/crypto/out/src/getAccountIdFromPublicKey.js": {
       "expectCount": 3,
       "actualCount": 0,
@@ -605,13 +586,6 @@
         3,
         4,
         5
-      ]
-    },
-    "packages/crypto/out/src/getBurstAddressFromAccountId.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        3
       ]
     },
     "packages/crypto/out/src/hashSHA256.js": {
@@ -949,23 +923,6 @@
         4
       ]
     },
-    "packages/util/out/decode.js": {
-      "expectCount": 3,
-      "actualCount": 0,
-      "undocumentLines": [
-        3,
-        4,
-        5
-      ]
-    },
-    "packages/util/out/encode.js": {
-      "expectCount": 2,
-      "actualCount": 0,
-      "undocumentLines": [
-        3,
-        4
-      ]
-    },
     "packages/util/out/index.js": {
       "expectCount": 1,
       "actualCount": 0,
@@ -974,13 +931,6 @@
       ]
     },
     "packages/util/out/isBurstAddress.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        3
-      ]
-    },
-    "packages/util/out/isValid.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [

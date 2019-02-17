@@ -1,11 +1,5 @@
 window.esdocSearchIndex = [
   [
-    "packages/core/out/abstractmodel.d.ts~abstractmodel",
-    "class/packages/core/out/typings/abstractModel.d.ts~AbstractModel.html",
-    "<span>AbstractModel</span> <span class=\"search-result-import-path\">packages/core/out/abstractModel.d.ts</span>",
-    "class"
-  ],
-  [
     "@burstjs/core~account",
     "class/packages/core/src/typings/account.ts~Account.html",
     "<span>Account</span> <span class=\"search-result-import-path\">@burstjs/core</span>",
@@ -726,18 +720,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "packages/core/out/api/account/getqrcodeimage.d.ts",
-    "file/packages/core/out/api/account/getQRCodeImage.d.ts.html",
-    "packages/core/out/api/account/getQRCodeImage.d.ts",
-    "file"
-  ],
-  [
-    "packages/core/out/api/account/getqrcodeimage.js",
-    "file/packages/core/out/api/account/getQRCodeImage.js.html",
-    "packages/core/out/api/account/getQRCodeImage.js",
-    "file"
-  ],
-  [
     "packages/core/out/api/account/getunconfirmedaccounttransactions.d.ts",
     "file/packages/core/out/api/account/getUnconfirmedAccountTransactions.d.ts.html",
     "packages/core/out/api/account/getUnconfirmedAccountTransactions.d.ts",
@@ -747,6 +729,18 @@ window.esdocSearchIndex = [
     "packages/core/out/api/account/getunconfirmedaccounttransactions.js",
     "file/packages/core/out/api/account/getUnconfirmedAccountTransactions.js.html",
     "packages/core/out/api/account/getUnconfirmedAccountTransactions.js",
+    "file"
+  ],
+  [
+    "packages/core/out/api/apicomposer.d.ts",
+    "file/packages/core/out/api/apiComposer.d.ts.html",
+    "packages/core/out/api/apiComposer.d.ts",
+    "file"
+  ],
+  [
+    "packages/core/out/api/apicomposer.js",
+    "file/packages/core/out/api/apiComposer.js.html",
+    "packages/core/out/api/apiComposer.js",
     "file"
   ],
   [
@@ -930,18 +924,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "packages/core/out/currency.d.ts",
-    "file/packages/core/out/currency.d.ts.html",
-    "packages/core/out/currency.d.ts",
-    "file"
-  ],
-  [
-    "packages/core/out/currency.js",
-    "file/packages/core/out/currency.js.html",
-    "packages/core/out/currency.js",
-    "file"
-  ],
-  [
     "packages/core/out/error/index.d.ts",
     "file/packages/core/out/error/index.d.ts.html",
     "packages/core/out/error/index.d.ts",
@@ -990,30 +972,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "packages/core/out/suggestedfees.d.ts",
-    "file/packages/core/out/suggestedFees.d.ts.html",
-    "packages/core/out/suggestedFees.d.ts",
-    "file"
-  ],
-  [
-    "packages/core/out/suggestedfees.js",
-    "file/packages/core/out/suggestedFees.js.html",
-    "packages/core/out/suggestedFees.js",
-    "file"
-  ],
-  [
-    "packages/core/out/typings/abstractmodel.d.ts",
-    "file/packages/core/out/typings/abstractModel.d.ts.html",
-    "packages/core/out/typings/abstractModel.d.ts",
-    "file"
-  ],
-  [
-    "packages/core/out/typings/abstractmodel.js",
-    "file/packages/core/out/typings/abstractModel.js.html",
-    "packages/core/out/typings/abstractModel.js",
-    "file"
-  ],
-  [
     "packages/core/out/typings/account.d.ts",
     "file/packages/core/out/typings/account.d.ts.html",
     "packages/core/out/typings/account.d.ts",
@@ -1035,6 +993,90 @@ window.esdocSearchIndex = [
     "packages/core/out/typings/alias.js",
     "file/packages/core/out/typings/alias.js.html",
     "packages/core/out/typings/alias.js",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/aliaslist.d.ts",
+    "file/packages/core/out/typings/aliasList.d.ts.html",
+    "packages/core/out/typings/aliasList.d.ts",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/aliaslist.js",
+    "file/packages/core/out/typings/aliasList.js.html",
+    "packages/core/out/typings/aliasList.js",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/api/accountapi.d.ts",
+    "file/packages/core/out/typings/api/accountApi.d.ts.html",
+    "packages/core/out/typings/api/accountApi.d.ts",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/api/accountapi.js",
+    "file/packages/core/out/typings/api/accountApi.js.html",
+    "packages/core/out/typings/api/accountApi.js",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/api/blockapi.d.ts",
+    "file/packages/core/out/typings/api/blockApi.d.ts.html",
+    "packages/core/out/typings/api/blockApi.d.ts",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/api/blockapi.js",
+    "file/packages/core/out/typings/api/blockApi.js.html",
+    "packages/core/out/typings/api/blockApi.js",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/api/index.d.ts",
+    "file/packages/core/out/typings/api/index.d.ts.html",
+    "packages/core/out/typings/api/index.d.ts",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/api/index.js",
+    "file/packages/core/out/typings/api/index.js.html",
+    "packages/core/out/typings/api/index.js",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/api/messageapi.d.ts",
+    "file/packages/core/out/typings/api/messageApi.d.ts.html",
+    "packages/core/out/typings/api/messageApi.d.ts",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/api/messageapi.js",
+    "file/packages/core/out/typings/api/messageApi.js.html",
+    "packages/core/out/typings/api/messageApi.js",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/api/networkapi.d.ts",
+    "file/packages/core/out/typings/api/networkApi.d.ts.html",
+    "packages/core/out/typings/api/networkApi.d.ts",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/api/networkapi.js",
+    "file/packages/core/out/typings/api/networkApi.js.html",
+    "packages/core/out/typings/api/networkApi.js",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/api/transactionapi.d.ts",
+    "file/packages/core/out/typings/api/transactionApi.d.ts.html",
+    "packages/core/out/typings/api/transactionApi.d.ts",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/api/transactionapi.js",
+    "file/packages/core/out/typings/api/transactionApi.js.html",
+    "packages/core/out/typings/api/transactionApi.js",
     "file"
   ],
   [
@@ -1107,6 +1149,30 @@ window.esdocSearchIndex = [
     "packages/core/out/typings/burstnode.js",
     "file/packages/core/out/typings/burstNode.js.html",
     "packages/core/out/typings/burstNode.js",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/currency.d.ts",
+    "file/packages/core/out/typings/currency.d.ts.html",
+    "packages/core/out/typings/currency.d.ts",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/currency.js",
+    "file/packages/core/out/typings/currency.js.html",
+    "packages/core/out/typings/currency.js",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/error.d.ts",
+    "file/packages/core/out/typings/error.d.ts.html",
+    "packages/core/out/typings/error.d.ts",
+    "file"
+  ],
+  [
+    "packages/core/out/typings/error.js",
+    "file/packages/core/out/typings/error.js.html",
+    "packages/core/out/typings/error.js",
     "file"
   ],
   [
@@ -1602,18 +1668,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "packages/crypto/out/src/burstutil.d.ts",
-    "file/packages/crypto/out/src/burstUtil.d.ts.html",
-    "packages/crypto/out/src/burstUtil.d.ts",
-    "file"
-  ],
-  [
-    "packages/crypto/out/src/burstutil.js",
-    "file/packages/crypto/out/src/burstUtil.js.html",
-    "packages/crypto/out/src/burstUtil.js",
-    "file"
-  ],
-  [
     "packages/crypto/out/src/converter.d.ts",
     "file/packages/crypto/out/src/converter.d.ts.html",
     "packages/crypto/out/src/converter.d.ts",
@@ -1746,18 +1800,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "packages/crypto/out/src/getaccountidfromburstaddress.d.ts",
-    "file/packages/crypto/out/src/getAccountIdFromBurstAddress.d.ts.html",
-    "packages/crypto/out/src/getAccountIdFromBurstAddress.d.ts",
-    "file"
-  ],
-  [
-    "packages/crypto/out/src/getaccountidfromburstaddress.js",
-    "file/packages/crypto/out/src/getAccountIdFromBurstAddress.js.html",
-    "packages/crypto/out/src/getAccountIdFromBurstAddress.js",
-    "file"
-  ],
-  [
     "packages/crypto/out/src/getaccountidfrompublickey.d.ts",
     "file/packages/crypto/out/src/getAccountIdFromPublicKey.d.ts.html",
     "packages/crypto/out/src/getAccountIdFromPublicKey.d.ts",
@@ -1767,18 +1809,6 @@ window.esdocSearchIndex = [
     "packages/crypto/out/src/getaccountidfrompublickey.js",
     "file/packages/crypto/out/src/getAccountIdFromPublicKey.js.html",
     "packages/crypto/out/src/getAccountIdFromPublicKey.js",
-    "file"
-  ],
-  [
-    "packages/crypto/out/src/getburstaddressfromaccountid.d.ts",
-    "file/packages/crypto/out/src/getBurstAddressFromAccountId.d.ts.html",
-    "packages/crypto/out/src/getBurstAddressFromAccountId.d.ts",
-    "file"
-  ],
-  [
-    "packages/crypto/out/src/getburstaddressfromaccountid.js",
-    "file/packages/crypto/out/src/getBurstAddressFromAccountId.js.html",
-    "packages/crypto/out/src/getBurstAddressFromAccountId.js",
     "file"
   ],
   [
@@ -2664,18 +2694,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "packages/util/out/convertnumbertostring.d.ts",
-    "file/packages/util/out/convertNumberToString.d.ts.html",
-    "packages/util/out/convertNumberToString.d.ts",
-    "file"
-  ],
-  [
-    "packages/util/out/convertnumbertostring.js",
-    "file/packages/util/out/convertNumberToString.js.html",
-    "packages/util/out/convertNumberToString.js",
-    "file"
-  ],
-  [
     "packages/util/out/convertnumericidtoaddress.d.ts",
     "file/packages/util/out/convertNumericIdToAddress.d.ts.html",
     "packages/util/out/convertNumericIdToAddress.d.ts",
@@ -2685,42 +2703,6 @@ window.esdocSearchIndex = [
     "packages/util/out/convertnumericidtoaddress.js",
     "file/packages/util/out/convertNumericIdToAddress.js.html",
     "packages/util/out/convertNumericIdToAddress.js",
-    "file"
-  ],
-  [
-    "packages/util/out/convertstringtonumber.d.ts",
-    "file/packages/util/out/convertStringToNumber.d.ts.html",
-    "packages/util/out/convertStringToNumber.d.ts",
-    "file"
-  ],
-  [
-    "packages/util/out/convertstringtonumber.js",
-    "file/packages/util/out/convertStringToNumber.js.html",
-    "packages/util/out/convertStringToNumber.js",
-    "file"
-  ],
-  [
-    "packages/util/out/decode.d.ts",
-    "file/packages/util/out/decode.d.ts.html",
-    "packages/util/out/decode.d.ts",
-    "file"
-  ],
-  [
-    "packages/util/out/decode.js",
-    "file/packages/util/out/decode.js.html",
-    "packages/util/out/decode.js",
-    "file"
-  ],
-  [
-    "packages/util/out/encode.d.ts",
-    "file/packages/util/out/encode.d.ts.html",
-    "packages/util/out/encode.d.ts",
-    "file"
-  ],
-  [
-    "packages/util/out/encode.js",
-    "file/packages/util/out/encode.js.html",
-    "packages/util/out/encode.js",
     "file"
   ],
   [
@@ -2757,18 +2739,6 @@ window.esdocSearchIndex = [
     "packages/util/out/isburstaddress.js",
     "file/packages/util/out/isBurstAddress.js.html",
     "packages/util/out/isBurstAddress.js",
-    "file"
-  ],
-  [
-    "packages/util/out/isvalid.d.ts",
-    "file/packages/util/out/isValid.d.ts.html",
-    "packages/util/out/isValid.d.ts",
-    "file"
-  ],
-  [
-    "packages/util/out/isvalid.js",
-    "file/packages/util/out/isValid.js.html",
-    "packages/util/out/isValid.js",
     "file"
   ],
   [
