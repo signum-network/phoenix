@@ -1,7 +1,6 @@
 # Phoenix
 
-
-----
+<img src="./assets/phoenix.png" width="400" />
 
 ## Project Status:
 
