@@ -22,7 +22,8 @@
   },
   "scripts": {
     "build": "node ../../scripts/build.js --target desktop",
-    "start": "npm run build && electron .",
+    "start": "cross-env NODE_ENV=develop && npm run build && electron .",
+    "start:fast": "cross-env NODE_ENV=develop && electron .",
     "pack": "npm run build && electron-packager . @bats/phoenix-desktop-wallet --overwrite --asar=true --prune=true --out=release-builds",
     "release:all": "npm run pack -- --all",
     "release:linux": "npm run pack -- --platform=linux --arch=x64",
@@ -30,6 +31,7 @@
     "release:macos": "npm run pack -- --platform=macos --arch=x64"
   },
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "electron": "^4.0.1",
     "electron-packager": "^13.0.1"
   }

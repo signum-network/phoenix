@@ -1,0 +1,82 @@
+@mixin chat-panel-theme($theme) {
+
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $is-dark: map-get($theme, is-dark);
+
+    chat-panel {
+
+        #contacts-list {
+            background-color: map-get($background, app-bar);
+
+            .contacts-list-item {
+
+                &.active {
+                    background: map-get($background, hover);
+
+                    &:after {
+                        background-color: map-get($accent, default);
+                    }
+                }
+
+                .unread-count {
+                    background-color: map-get($accent, default);
+                    color: map-get($accent, default-contrast);
+                }
+
+                .status-icon {
+                    border-color: map-get($background, app-bar);
+                }
+            }
+        }
+
+        #chat {
+
+            .messages {
+
+                .message-row {
+
+                    &.contact {
+
+                        .bubble {
+                            background-color: map-get($primary, default);
+                            color: map-get($primary, default-contrast);
+                        }
+                    }
+
+                    &.me {
+
+                        .bubble {
+                            color: rgba(0, 0, 0, 0.87);
+                            background-color: #E0E0E0;
+                        }
+                    }
+                }
+            }
+
+            .reply-form {
+
+                .message-text {
+                    background-color: map-get($background, app-bar);
+                    border-color: map-get($foreground, divider);
+
+                    .mat-form-field-wrapper {
+
+                        .mat-form-field-flex {
+
+                            .mat-form-field-infix {
+                                @if ($is-dark == true) {
+                                    background-color: map-get($background, hover);
+                                } @else {
+                                    background-color: white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

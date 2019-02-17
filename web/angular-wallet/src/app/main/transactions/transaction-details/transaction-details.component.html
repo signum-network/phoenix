@@ -1,0 +1,32 @@
+<div class="page-layout blank simple" fusePerfectScrollbar>
+
+  <!-- HEADER -->
+  <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+    fxLayoutAlign.gt-xs="space-between center">
+
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <mat-icon class="secondary-text s-18" [routerLink]="['/']">home</mat-icon>
+        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+        <span class="secondary-text" [routerLink]="['/transactions']">{{ 'transactions' | i18n }}</span>
+        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+        <span class="secondary-text">{{ transaction.transaction }}</span>
+      </div>
+      <div class="h1 mt-16">
+        <h2>{{ 'transaction_details' | i18n }}</h2>
+      </div>
+    </div>
+  </div>
+  <!-- / HEADER -->
+
+  <div class=" p-24">
+    <table class="info table">
+      <tr *ngFor="let row of getDetailsData()">
+        <th>{{ row[0] | i18n }}</th>
+        <td>
+          <app-transaction-row-value-cell [value]="row[1]" [key]="row[0]"></app-transaction-row-value-cell>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

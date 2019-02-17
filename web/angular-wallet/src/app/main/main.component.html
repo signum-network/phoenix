@@ -1,0 +1,28 @@
+<fuse-progress-bar></fuse-progress-bar>
+
+<ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-1'">
+  <vertical-layout-1
+    [selectedAccount]="selectedAccount"
+    [accounts]="accounts"></vertical-layout-1>
+</ng-container>
+<ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-2'">
+  <vertical-layout-2></vertical-layout-2>
+</ng-container>
+<ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-3'">
+  <vertical-layout-3></vertical-layout-3>
+</ng-container>
+<ng-container *ngIf="fuseConfig.layout.style === 'horizontal-layout-1'">
+  <horizontal-layout-1></horizontal-layout-1>
+</ng-container>
+
+
+<!-- THEME OPTIONS PANEL -->
+<button mat-icon-button class="warn mat-elevation-z2 theme-options-button"
+        (click)="toggleSidebarOpen('themeOptionsPanel')">
+  <mat-icon>settings</mat-icon>
+</button>
+
+<fuse-sidebar name="themeOptionsPanel" class="theme-options-sidebar" position="right" [invisibleOverlay]="true">
+  <fuse-theme-options></fuse-theme-options>
+</fuse-sidebar>
+<!-- / THEME OPTIONS PANEL -->

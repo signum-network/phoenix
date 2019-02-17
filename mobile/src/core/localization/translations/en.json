@@ -1,0 +1,62 @@
+{
+  "auth": {
+    "errors": {
+      "accountExist": "Account already imported",
+      "incorrectAddress": "Incorrect BURST-address",
+      "insecurePin": "Insecure PIN, recommended {{length}} chars minimum"
+    },
+    "screens": {
+      "accounts": {
+        "addAccount": "Add account",
+        "createAccount": "Create account",
+        "noAccounts": "No accounts",
+        "title": "Accounts"
+      },
+      "addAccount": {
+        "activeAccount": "Active account",
+        "activeAccountHint": "Active accounts are used for making BURST transactions. Requires user generate a passphrase or provide one. Requires a user create a PIN for transactions. The passphrase is only used once locally to encrypt your private key; it is not stored anywhere.",
+        "addAccount": "Add account",
+        "passiveAccountHint": "Passive accounts are useful if you know a BURST address, but don't intend on making any transactions. Adds increased security. Can be converted to an active account at any time.",
+        "title": "Add account"
+      },
+      "createAccount": {
+        "createAccount": "Create account",
+        "enterPin": "Enter a pin to secure your account. The pin is used to verify actions made with your account.",
+        "generatedPercent": "Generated: {{percent}}%",
+        "howToGenerate": "Move your finger across the area to create a random seed for the password generation.",
+        "notePassphraseHint": "Note down your passphrase. The passphrase is the master key to your account. Therefore, keep your passphrase always safe and private!",
+        "pinPlaceholder": "PIN",
+        "title": "Create account"
+      }
+    }
+  },
+  "core": {
+    "actions": {
+      "add": "Add",
+      "cancel": "Cancel",
+      "create": "Create",
+      "ok": "OK",
+      "save": "Save"
+    },
+    "layout": {
+      "preventBackButton": {
+        "alertMessage": "Information will be lost",
+        "alertTitle": "Are you sure?"
+      }
+    },
+    "screens": {
+      "loading": {
+        "loadingText": "Loading..."
+      }
+    }
+  },
+  "models": {
+    "account": {
+      "address": "Address",
+      "id": "ID",
+      "passphrase": "Passphrase",
+      "pin": "PIN",
+      "title": "Account"
+    }
+  }
+}

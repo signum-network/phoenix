@@ -1,15 +1,18 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "module": "es2015",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "importHelpers": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@fuse": ["@fuse/"],
+      "@burstjs/*": ["../../../lib/packages/*"]
+    },
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"

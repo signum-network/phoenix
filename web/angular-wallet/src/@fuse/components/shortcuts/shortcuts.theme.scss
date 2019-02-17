@@ -1,0 +1,11 @@
+@mixin fuse-shortcuts-theme($theme) {
+
+    $background: map-get($theme, background);
+
+    #fuse-shortcuts {
+
+        &.show-mobile-panel {
+            background-color: map-get($background, background);
+        }
+    }
+}

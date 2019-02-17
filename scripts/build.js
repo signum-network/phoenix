@@ -8,8 +8,8 @@ const log = require('./log');
 const Targets = {
     desktop: buildDesktop,
     web: buildWeb,
-    ios: () => console.error("iOS build not implemented yet"),
-    android: () => console.error("Android build not implemented yet"),
+    ios: () => console.error('iOS build not implemented yet'),
+    android: () => console.error('Android build not implemented yet'),
 };
 
 const AllowedTargets = Object.keys(Targets);
@@ -32,7 +32,7 @@ const options = args.parse(process.argv);
 const cwd = process.cwd();
 (async function () {
     try {
-        log.info(`Building 🔥Phoenix for [${chalk.bold.yellow(options.target)}]...`);
+        log.info(`Building Phoenix for [${chalk.bold.yellow(options.target)}]...`);
         const buildFn = Targets[options.target];
         await buildFn({
             ...options,

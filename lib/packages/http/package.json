@@ -1,0 +1,54 @@
+{
+  "name": "@burstjs/http",
+  "version": "0.0.14",
+  "description": "Send commands to BURST over HTTP",
+  "contributors": [
+    "ohager",
+    "blankey1337"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/burst-apps-team/phoenix"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "license": "GPL-3.0",
+  "main": "./out/index.js",
+  "typings": "./out/index.d.ts",
+  "private": false,
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.12"
+  },
+  "scripts": {
+    "test": "jest",
+    "tsc": "tsc",
+    "doc": "./node_modules/.bin/esdoc",
+    "readme": "jsdoc2md  --files ./src/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test"
+    }
+  },
+  "gitHead": "d270043990cbfc28dd72c675499b4502eb7a1c40",
+  "publishConfig": {
+    "access": "public"
+  }
+}

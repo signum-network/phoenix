@@ -1,20 +1,70 @@
-import {Component} from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Platform } from '@angular/cdk/platform';
+import { Subject } from 'rxjs';
 
-import {PuppyApi} from '@bats/phoenix-common/api';
+import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
+import { FuseConfigService } from '@fuse/services/config.service';
+import { AccountService } from './setup/account/account.service';
+import { StoreService } from './store/store.service';
+import { Account } from '@burstjs/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'angular-wallet';
-  result: String;
+export class AppComponent implements OnInit, OnDestroy {
+  isLoggedIn = false;
+  selectedAccount: Account;
+  accounts: Account[];
+  private _unsubscribeAll: Subject<any>;
 
-  async ngOnInit() {
-    const puppyApi = new PuppyApi();
-    const puppies = await puppyApi.getAllPuppies();
+  constructor(
+    @Inject(DOCUMENT) private document: any,
+    private _fuseConfigService: FuseConfigService,
+    private _fuseSplashScreenService: FuseSplashScreenService,
+    private _platform: Platform,
+    private storeService: StoreService,
+    private accountService: AccountService
+  ) {
 
-    this.result = puppies.map(p => p.name).join(',');
+    // Add is-mobile class to the body if the platform is mobile
+    if (this._platform.ANDROID || this._platform.IOS) {
+      this.document.body.classList.add('is-mobile');
+    }
+
+    // Set the private defaults
+    this._unsubscribeAll = new Subject();
+  }
+
+  ngOnInit(): void {
+
+    this.storeService.ready.subscribe((ready) => {
+        if (ready) {
+          this.storeService.getSelectedAccount().then((selectedAccount) => {
+            if (selectedAccount) {
+              this.selectedAccount = selectedAccount;
+              this.accountService.selectAccount(selectedAccount);
+            }
+          });
+
+          this.accountService.currentAccount.subscribe((account) => {
+            this.selectedAccount = account;
+          });
+
+          this.storeService.getAllAccounts().then((accounts) => {
+            this.accounts = accounts;
+          })
+        }
+    });
+
+
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe from all subscriptions
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
   }
 }

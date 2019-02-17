@@ -1,0 +1,89 @@
+<div class="page-layout blank simple" fusePerfectScrollbar *ngIf="fees">
+
+  <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+      fxLayoutAlign.gt-xs="space-between center">
+
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+          <div fxLayout="row" fxLayoutAlign="start center">
+              <mat-icon class="secondary-text s-18" routerLink="/dashboard">home</mat-icon>
+              <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+              <span class="secondary-text">{{ 'send_burst' | i18n }}</span>
+          </div>
+          <div class="h1 mt-16">{{ 'send_burst' | i18n }}</div>
+      </div>
+  </div>
+
+  <div class="p-24 w-600">
+
+    <form (ngSubmit)="onSubmit($event);" #sendBurstForm="ngForm">
+      <mat-form-field appearance="outline">
+        <input matInput prefix="BURST-" burstInputValidator [patterns]="burstAddressPatternRef"
+          mask="____-____-____-_____" [dropSpecialCharacters]="false" [showMaskTyped]="true"
+          [(ngModel)]="recipientAddress" name="recipientAddress" placeholder="{{ 'recipient' | i18n }}">
+      </mat-form-field>
+
+      <mat-grid-list cols="2" rowHeight="85px" gutterSize="10px">
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <input matInput [(ngModel)]="amountNQT" name="amountNQT" placeholder="{{ 'amount' | i18n }}">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+
+      <label class="pill">Suggested fee:</label>
+      Standard: <em (click)="setFee(fees.standard)">{{ convertFeeToBurst(fees.standard) }}</em>
+      Cheap: <em (click)="setFee(fees.cheap)">{{ convertFeeToBurst(fees.cheap) }}</em>
+      Priority: <em (click)="setFee(fees.priority)">{{ convertFeeToBurst(fees.priority) }}</em><br /><br />
+
+
+      <mat-form-field class="pin" appearance="outline">
+        <input matInput [(ngModel)]="pin" name="pin" placeholder="Your PIN">
+      </mat-form-field>
+
+      <mat-checkbox (click)="showMessage=!showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>
+
+      <div *ngIf="showMessage">
+        <mat-form-field appearance="outline">
+          <textarea matInput [(ngModel)]="message" name="message" placeholder="{{ 'message' | i18n }}"></textarea>
+        </mat-form-field>
+        <mat-checkbox [(ngModel)]="encrypt" name="encrypt">{{ "encrypt_message" | i18n }}</mat-checkbox>
+      </div>
+
+      <div *ngIf="advanced">
+        <mat-form-field appearance="outline">
+          <input matInput [(ngModel)]="deadline" value="24" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}"
+            disabled>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <input matInput [(ngModel)]="fullHash" name="fullHash"
+            placeholder="{{ 'referenced_transaction_full_hash' | i18n }}" disabled>
+        </mat-form-field>
+
+        <mat-checkbox [(ngModel)]="broadcast" name="broadcast" disabled>{{ "do_not_broadcast" | i18n }}</mat-checkbox>
+        <br />
+
+        <mat-checkbox [(ngModel)]="note" name="note" disabled>{{ "add_note_to_self_q" | i18n }}</mat-checkbox>
+
+        <div *ngIf="note">
+          <mat-form-field appearance="outline">
+            <textarea matInput [(ngModel)]="note_text" name="note_text" placeholder="{{ 'note' | i18n }}"></textarea>
+          </mat-form-field>
+        </div>
+
+      </div>
+    </form>
+
+    <strong>Total:</strong> {{ getTotal() }} BURST - 
+    <em (click)="advanced=!advanced">{{ advanced ? "basic" : "advanced" | i18n }}</em>
+    <br /><br />
+
+    <button type="submit" class="mr-8" mat-raised-button mat-button color="primary" (click)="onSubmit($event)">{{ "send_burst" | i18n }}</button>
+  </div>
+</div>
