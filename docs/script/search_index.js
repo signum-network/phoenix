@@ -126,27 +126,9 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "@burstjs/core~noconnectionerror",
-    "class/packages/core/src/error/noConnectionError.ts~NoConnectionError.html",
-    "<span>NoConnectionError</span> <span class=\"search-result-import-path\">@burstjs/core</span>",
-    "class"
-  ],
-  [
     "@burstjs/crypto~passphrasegenerator",
     "class/packages/crypto/src/passPhraseGenerator.ts~PassPhraseGenerator.html",
     "<span>PassPhraseGenerator</span> <span class=\"search-result-import-path\">@burstjs/crypto</span>",
-    "class"
-  ],
-  [
-    "@burstjs/core~store",
-    "class/packages/core/src/abstract/store.ts~Store.html",
-    "<span>Store</span> <span class=\"search-result-import-path\">@burstjs/core</span>",
-    "class"
-  ],
-  [
-    "@burstjs/core~unknownaccounterror",
-    "class/packages/core/src/error/unknownAccountError.ts~UnknownAccountError.html",
-    "<span>UnknownAccountError</span> <span class=\"search-result-import-path\">@burstjs/core</span>",
     "class"
   ],
   [
@@ -1260,18 +1242,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "packages/core/src/abstract/index.ts",
-    "file/packages/core/src/abstract/index.ts.html",
-    "packages/core/src/abstract/index.ts",
-    "file"
-  ],
-  [
-    "packages/core/src/abstract/store.ts",
-    "file/packages/core/src/abstract/store.ts.html",
-    "packages/core/src/abstract/store.ts",
-    "file"
-  ],
-  [
     "packages/core/src/api/account/generatesendtransactionqrcode.ts",
     "file/packages/core/src/api/account/generateSendTransactionQRCode.ts.html",
     "packages/core/src/api/account/generateSendTransactionQRCode.ts",
@@ -1485,36 +1455,6 @@ window.esdocSearchIndex = [
     "packages/core/src/burstservice.ts~burstservice#tobrsendpoint",
     "class/packages/core/src/burstService.ts~BurstService.html#instance-method-toBRSEndpoint",
     "packages/core/src/burstService.ts~BurstService#toBRSEndpoint",
-    "method"
-  ],
-  [
-    "packages/core/src/error/index.ts",
-    "file/packages/core/src/error/index.ts.html",
-    "packages/core/src/error/index.ts",
-    "file"
-  ],
-  [
-    "packages/core/src/error/noconnectionerror.ts",
-    "file/packages/core/src/error/noConnectionError.ts.html",
-    "packages/core/src/error/noConnectionError.ts",
-    "file"
-  ],
-  [
-    "packages/core/src/error/noconnectionerror.ts~noconnectionerror#tostring",
-    "class/packages/core/src/error/noConnectionError.ts~NoConnectionError.html#instance-method-toString",
-    "packages/core/src/error/noConnectionError.ts~NoConnectionError#toString",
-    "method"
-  ],
-  [
-    "packages/core/src/error/unknownaccounterror.ts",
-    "file/packages/core/src/error/unknownAccountError.ts.html",
-    "packages/core/src/error/unknownAccountError.ts",
-    "file"
-  ],
-  [
-    "packages/core/src/error/unknownaccounterror.ts~unknownaccounterror#tostring",
-    "class/packages/core/src/error/unknownAccountError.ts~UnknownAccountError.html#instance-method-toString",
-    "packages/core/src/error/unknownAccountError.ts~UnknownAccountError#toString",
     "method"
   ],
   [

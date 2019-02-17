@@ -1,7 +1,7 @@
 {
-  "coverage": "30.52%",
-  "expectCount": 593,
-  "actualCount": 181,
+  "coverage": "30.03%",
+  "expectCount": 586,
+  "actualCount": 176,
   "files": {
     "packages/core/out/abstract/index.js": {
       "expectCount": 1,
@@ -224,11 +224,6 @@
         22
       ]
     },
-    "packages/core/src/abstract/store.ts": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
     "packages/core/src/api/account/generateSendTransactionQRCode.ts": {
       "expectCount": 1,
       "actualCount": 1,
@@ -344,20 +339,6 @@
       "undocumentLines": [
         51,
         52
-      ]
-    },
-    "packages/core/src/error/noConnectionError.ts": {
-      "expectCount": 3,
-      "actualCount": 2,
-      "undocumentLines": [
-        9
-      ]
-    },
-    "packages/core/src/error/unknownAccountError.ts": {
-      "expectCount": 3,
-      "actualCount": 2,
-      "undocumentLines": [
-        9
       ]
     },
     "packages/core/src/typings/account.ts": {
