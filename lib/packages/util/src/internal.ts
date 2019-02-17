@@ -1,4 +1,6 @@
+/** @module util */
 /** @ignore */
+
 // tslint:disable:max-line-length
 /*
  * Original work Copyright (c) 2018 PoC-Consortium

@@ -1,3 +1,4 @@
+/** @module http */
 import HttpResponse from './httpResponse';
 
 /**

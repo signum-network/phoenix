@@ -1,3 +1,5 @@
+/** @module http */
+
 import Http from './http';
 import HttpResponse from './httpResponse';
 import HttpError from './httpError';
@@ -91,7 +93,7 @@ class HttpMock implements Http {
 
  * ```
  */
-class HttpMockBuilder {
+export default class HttpMockBuilder {
 
     private readonly _httpMock: HttpMock;
 
@@ -112,7 +114,7 @@ class HttpMockBuilder {
         return this;
     }
 
-    public onThrowError(method: string, status: number, errorMessage: string, data: any, url: string = HttpMock.ForAll): HttpMockBuilder {
+    private onThrowError(method: string, status: number, errorMessage: string, data: any, url: string = HttpMock.ForAll): HttpMockBuilder {
         this._httpMock.registerError(method, url, status, errorMessage, data);
         return this;
     }
@@ -210,5 +212,3 @@ class HttpMockBuilder {
         return this._httpMock;
     }
 }
-
-export default HttpMockBuilder;

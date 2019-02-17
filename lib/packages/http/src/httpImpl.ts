@@ -1,9 +1,14 @@
+/** @module http */
+
 import axios from 'axios';
 import HttpResponse from './httpResponse';
 import HttpError from './httpError';
 import Http from './http';
 
-class HttpImpl implements Http {
+/**
+ * Generic Http client
+ */
+export default class HttpImpl implements Http {
 
     private _clientImpl: any;
 
@@ -63,5 +68,3 @@ class HttpImpl implements Http {
         }
     }
 }
-
-export default HttpImpl;
