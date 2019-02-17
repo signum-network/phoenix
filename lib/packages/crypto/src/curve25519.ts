@@ -1,5 +1,5 @@
-/** @module crypto */
 /** @ignore */
+/** @module crypto */
 
 /* tslint:disable */
 /*

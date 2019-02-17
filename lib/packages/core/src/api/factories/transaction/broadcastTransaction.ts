@@ -1,5 +1,5 @@
-/** @module core */
 /** @ignore */
+/** @module core */
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
@@ -7,7 +7,6 @@
  */
 import {BurstService} from '../../../burstService';
 import {TransactionId} from '../../../typings/transactionId';
-
 
 export const broadcastTransaction = (service: BurstService):
     (signedTransactionPayload: string) => Promise<TransactionId> =>

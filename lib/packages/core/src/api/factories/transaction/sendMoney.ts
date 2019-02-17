@@ -1,5 +1,5 @@
-/** @module core */
 /** @ignore */
+/** @module core */
 
 /**
  * Copyright (c) 2019 Burst Apps Team
@@ -7,12 +7,12 @@
 import { BurstService } from '../../../burstService';
 import { TransactionId } from '../../../typings/transactionId';
 import { TransactionResponse } from '../../../typings/transactionResponse';
+import { Transaction } from '../../../typings/transaction';
 import { generateSignature, decryptAES, Keys } from '@burstjs/crypto';
 import { verifySignature } from '@burstjs/crypto';
 import { generateSignedTransactionBytes } from '@burstjs/crypto';
 import { convertNumberToNQTString, convertNQTStringToNumber } from '@burstjs/util';
-import { Transaction } from '../../../typings/transaction';
-import { constructAttachment } from '../../../constructMessage';
+import { constructAttachment } from '../../../constructAttachment';
 import {broadcastTransaction} from './broadcastTransaction';
 
 export const sendMoney = (service: BurstService):

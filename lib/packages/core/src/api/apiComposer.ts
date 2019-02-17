@@ -27,19 +27,20 @@ class ApiImpl implements Api {
  *
  *
  * Usage:
- ```  const api = apiComposer
- .withMessageApi({
-                sendTextMessage
-            })
- .withAccountApi({
-                getAccountTransactions,
-                getUnconfirmedAccountTransactions,
-                getAccountBalance,
-                generateSendTransactionQRCode,
-                generateSendTransactionQRCodeAddress,
-            })
- .compose();
-```
+ * ```typescript
+ * const api = apiComposer
+ * .withMessageApi({
+ *                sendTextMessage
+ *            })
+ * .withAccountApi({
+ *                getAccountTransactions,
+ *                getUnconfirmedAccountTransactions,
+ *                getAccountBalance,
+ *                generateSendTransactionQRCode,
+ *                generateSendTransactionQRCodeAddress,
+ *            })
+ * .compose();
+ * ```
  *
  */
 export class ApiComposer {

@@ -1,5 +1,5 @@
-/** @module crypto */
 /** @ignore */
+/** @module crypto */
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium

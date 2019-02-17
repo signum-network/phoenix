@@ -1,5 +1,5 @@
-/** @module util */
 /** @ignore */
+/** @module util */
 
 // tslint:disable:max-line-length
 /*

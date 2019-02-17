@@ -1,5 +1,5 @@
-/** @module core */
 /** @ignore */
+/** @module core */
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium

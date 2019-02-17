@@ -1,6 +1,6 @@
-/* tslint:disable */
-/** @module crypto */
 /** @ignore */
+/** @module crypto */
+/* tslint:disable */
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium

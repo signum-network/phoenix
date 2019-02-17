@@ -1,9 +1,9 @@
 /** @module core */
-/** @hidden */
 
 import {Http, HttpImpl} from '@burstjs/http';
 
 /**
+ * @ignore
  * Generic BRS Web Service class.
  * Extend and specific services here
  */

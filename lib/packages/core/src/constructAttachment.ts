@@ -1,10 +1,10 @@
 /** @module core */
-/** @ignore */
 
 import { EncryptedMessage, Message } from './typings/attachment';
 import { Transaction } from './typings/transaction';
 
 /**
+ * @ignore
  * Constructs an Attachment
  *
  * @param transaction The transaction with the attachment
