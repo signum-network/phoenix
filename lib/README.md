@@ -11,6 +11,18 @@ This library provides common functionalities used by all platforms.
 
 ## Installation
 
+### For app development:
+```
+npm install @burstjs/core
+npm install @burstjs/crypto
+npm install @burstjs/util
+```
+
+Then import the methods you need, e.g. `import { generateSignature } from '@burstjs/crypto'`.
+
+
+### For Phoenix wallet development:
+
 ```
 npm install && npm run bootstrap
 ```
@@ -27,5 +39,6 @@ That's it!
 
 ## Documentation
 
-- To generate docs: `npm run doc`
+- [BurstJS Online Documentation](https://burst-apps-team.github.io/phoenix/)
+- To generate esdocs: `npm run doc`
 - To update the README.md files: `lerna run readme`
