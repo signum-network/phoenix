@@ -1,8 +1,12 @@
 import { isString } from 'lodash';
 import React from 'react';
-import { StyleSheet, Switch, View } from 'react-native';
-import { SpacingProps } from '../../interfaces';
-import { ESpaces } from '../../theme/sizes';
+import {
+  StyleSheet,
+  Switch,
+  TouchableOpacity,
+  View
+} from 'react-native';
+import { Sizes } from '../../theme/sizes';
 import { Text } from './Text';
 
 interface IProps {
@@ -12,92 +16,40 @@ interface IProps {
   disabled?: boolean;
 }
 
-type Props = IProps & SpacingProps;
+type Props = IProps;
 
-const defaultMarginBottom = ESpaces.s;
-
-export class SwitchItem extends React.PureComponent<Props> {
-  getStyles = () => {
-    const {
-      marginTop,
-      marginRight,
-      marginBottom = defaultMarginBottom,
-      marginLeft,
-      marginHor,
-      marginVert,
-      margin,
-      paddingTop,
-      paddingRight,
-      paddingBottom,
-      paddingLeft,
-      paddingHor,
-      paddingVert,
-      padding
-    } = this.props;
-
-    return StyleSheet.create({
-      mainView: {
-        flexDirection: 'row',
-        padding,
-        marginHorizontal: marginHor,
-        marginVertical: marginVert,
-        margin,
-        marginTop,
-        marginRight,
-        marginBottom,
-        marginLeft,
-        paddingHorizontal: paddingHor,
-        paddingVertical: paddingVert,
-        paddingTop,
-        paddingRight,
-        paddingBottom,
-        paddingLeft
-      },
-      textView: {
-        flex: 1,
-        paddingRight: ESpaces.m,
-        alignSelf: 'center'
-      },
-      switchView: {
-        alignSelf: 'center',
-        alignItems: 'flex-end'
-      }
-    });
+const styles = StyleSheet.create({
+  mainView: {
+    flexDirection: 'row'
+  },
+  textView: {
+    flex: 1,
+    paddingRight: Sizes.MEDIUM,
+    alignSelf: 'center'
+  },
+  switchView: {
+    alignSelf: 'center',
+    alignItems: 'flex-end'
   }
+});
 
-  handleSwitchChange = (newValue: boolean) => {
-    const { disabled, onChange } = this.props;
+export const SwitchItem: React.FunctionComponent<Props> = (props) => {
+  const { text, disabled, onChange, value } = props;
 
+  const handleSwitchChange = () => {
     if (!disabled) {
-      onChange(newValue);
+      onChange(!value);
     }
-  }
+  };
 
-  renderText = () => {
-    const { text } = this.props;
-
-    return isString(text) ? <Text>{text}</Text> : text;
-  }
-
-  renderSwitch = () => {
-    const { value, disabled } = this.props;
-
-    return (
-      <Switch onValueChange={this.handleSwitchChange} value={value} disabled={disabled} />
-    );
-  }
-
-  render () {
-    const styles = this.getStyles();
-    return (
-      <View style={styles.mainView}>
-        <View style={styles.textView}>
-          {this.renderText()}
-        </View>
-        <View style={styles.switchView}>
-          {this.renderSwitch()}
-        </View>
+  return (
+    <TouchableOpacity activeOpacity={1} onPress={handleSwitchChange} style={styles.mainView}>
+      <View style={styles.textView}>
+        {isString(text) ? <Text>{text}</Text> : text}
       </View>
-    );
-  }
-}
+      <View style={styles.switchView}>
+        <Switch onValueChange={handleSwitchChange} value={value} disabled={disabled} />
+      </View>
+    </TouchableOpacity>
+  );
+};

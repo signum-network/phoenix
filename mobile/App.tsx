@@ -3,9 +3,9 @@ import RNLanguages from 'react-native-languages';
 import { createAppContainer, NavigationContainer } from 'react-navigation';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
+import { i18n } from './src/core/i18n';
 import { ChangeLanguageEvent } from './src/core/interfaces';
 import { RootView } from './src/core/layout/RootView';
-import { i18n } from './src/core/localization/i18n';
 import { rootTabStack } from './src/core/navigation/rootTabStack';
 import { getStore } from './src/core/store/store';
 

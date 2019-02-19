@@ -1,10 +1,11 @@
 import { NavigationRouteConfig } from 'react-navigation';
 
-// we need to describe interface to get proper type-hinting
+// we have to describe interface to get proper type-hinting
 export interface Routes {
   accounts: string;
   addAccount: string;
   createAccount: string;
+  importAccount: string;
 }
 
 export type RoutesMap = {
@@ -17,5 +18,6 @@ export type RoutesMap = {
 export const routes: Routes = {
   accounts: 'accounts',
   addAccount: 'addAccount',
-  createAccount: 'createAccount'
+  createAccount: 'createAccount',
+  importAccount: 'importAccount'
 };

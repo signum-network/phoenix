@@ -1,233 +1,129 @@
 import { Account } from '@burstjs/core';
-import {
-  generateMasterKeys,
-  getAccountIdFromPublicKey,
-  PassPhraseGenerator
-} from '@burstjs/crypto';
-import { toString } from 'lodash';
+import { PassPhraseGenerator } from '@burstjs/crypto';
 import React from 'react';
-import {
-  BackHandler,
-  GestureResponderEvent,
-  PanResponder,
-  PanResponderGestureState,
-  PanResponderInstance,
-  ScrollView,
-  StyleSheet,
-  View
-} from 'react-native';
-import { NavigationEventSubscription, NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { Alert } from 'react-native';
+import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-import { Button } from '../../../core/components/base/Button';
-import { Input } from '../../../core/components/base/Input';
-import { Text } from '../../../core/components/base/Text';
+import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
+import { i18n } from '../../../core/i18n';
 import { InjectedReduxProps } from '../../../core/interfaces';
-import { preventBackAction, PreventBackButton } from '../../../core/layout/PreventBackButton';
+import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
-import { i18n } from '../../../core/localization/i18n';
+import { routes } from '../../../core/navigation/routes';
 import { ApplicationState } from '../../../core/store/initialState';
-import { Colors, ColorThemeNames } from '../../../core/theme/colors';
-import { defaultSideOffset, ESpaces, SizeNames } from '../../../core/theme/sizes';
-import { PIN_LENGTH } from '../consts';
-import { createActiveAccount } from '../store/actions';
+import { EnterPassphraseStage } from '../components/create/EnterPassphraseStage';
+import { EnterPinStage } from '../components/create/EnterPinStage';
+import { NotePassphraseStage } from '../components/create/NotePassphraseStage';
+import { SeedGeneratorStage } from '../components/create/SeedGeneratorStage';
+import { StepCounter } from '../components/create/StepCounter';
+import { addAccount, createActiveAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
 
-interface Props extends InjectedReduxProps {
+interface IProps extends InjectedReduxProps {
   auth: AuthReduxState,
 }
-type TProps = NavigationInjectedProps & Props;
+type Props = NavigationInjectedProps & IProps;
 
 interface State {
+  stage: Stages;
   seed: any[];
-  seedLimit: number;
-  seedGenerated: boolean;
-  passphraseGenerated: boolean;
   phrase: string[];
   account: Account | null;
   pin: string;
-  error: string;
 }
 
-const styles = StyleSheet.create({
-  mainView: {
-    paddingHorizontal: defaultSideOffset
-  },
-  accountTypeView: {},
-  newAccountView: {
-    paddingVertical: ESpaces.s
-  },
-  seedGeneratorView: {},
-  passphraseGeneratorView: {
-    height: 250,
-    borderRadius: 8,
-    backgroundColor: Colors.greyLight,
-    borderWidth: 1,
-    borderColor: Colors.grey
-  }
+enum Stages {
+  GENERATE_SEED = 0,
+  ENTER_PIN = 1,
+  NOTE_PASSPHRASE = 2,
+  ENTER_PASSPHRASE = 3
+}
+
+const getDefaultState = (): State => ({
+  stage: Stages.GENERATE_SEED,
+  seed: [],
+  phrase: [],
+  account: null,
+  pin: ''
 });
 
 const passPhraseGenerator: PassPhraseGenerator = new PassPhraseGenerator();
 
-class CreateAccount extends React.PureComponent<TProps, State> {
-  private _panResponder: PanResponderInstance;
-  private _didFocusSubscription: NavigationEventSubscription;
-  private _willBlurSubscription?: NavigationEventSubscription;
-
+class CreateAccount extends React.PureComponent<Props, State> {
   static navigationOptions = {
-    title: i18n.t(auth.createAccount.title),
-    headerLeft: PreventBackButton
+    headerTitle: <HeaderTitle>{i18n.t(auth.createAccount.title)}</HeaderTitle>
   };
 
-  state: State = {
-    seed: [],
-    seedLimit: 100,
-    seedGenerated: false,
-    passphraseGenerated: false,
-    phrase: [],
-    account: null,
-    pin: '',
-    error: ''
-  };
+  state: State = getDefaultState();
 
-  constructor (props: TProps) {
-    super(props);
-    this._didFocusSubscription = props.navigation.addListener('didFocus', (payload) =>
-      BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
-    );
-    this._panResponder = PanResponder.create({
-      onMoveShouldSetPanResponder: (e: GestureResponderEvent, state: PanResponderGestureState) => true,
-      onPanResponderMove: async (e: GestureResponderEvent, state: PanResponderGestureState) => {
-        if (!this.state.seedGenerated) {
-          if (this.state.seed.length >= this.state.seedLimit) {
-            const phrase = await passPhraseGenerator.generatePassPhrase(this.state.seed);
-            this.setState({ seedGenerated: true, phrase, passphraseGenerated: true });
-          } else {
-            const seedItem: any[] = [state.moveX, state.moveY, new Date()];
-            const seed: any[] = [...this.state.seed, seedItem];
-
-            this.setState({ seed });
-          }
-        }
-      }
-    });
-  }
-
-  componentDidMount () {
-    this._willBlurSubscription = this.props.navigation.addListener('willBlur', (payload) =>
-      BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
-    );
-  }
-
-  onBackButtonPressAndroid = () => {
-    preventBackAction(() => {
-      requestAnimationFrame(() => {
-        this.props.navigation.goBack();
-      });
-    });
-  }
-
-  getFullPassphrase = (phrase: string[]) => {
-    return phrase.join(' ');
-  }
-
-  generateAccount = async (): Promise<void> => {
+  createAccount = async () => {
     const { phrase, pin } = this.state;
-    const account = await this.props.dispatch(createActiveAccount({ phrase, pin }));
 
-    this.setState({
-      account,
-      phrase,
-      error: ''
-    });
-  }
-
-  handleChangePin = (pin: string) => {
-    const isPinSecure = pin.length >= PIN_LENGTH || pin.length === 0;
-    const error = isPinSecure ? '' : i18n.t(auth.errors.insecurePin, { length: PIN_LENGTH });
-    this.setState({ pin, error });
-  }
-
-  renderPinEnter = () => {
-    const { account, pin, error } = this.state;
-    const isPinCorrect = pin.length !== 0;
-
-    return (
-      <View>
-        <Input
-          secureTextEntry={true}
-          keyboardType={'numeric'}
-          value={pin}
-          placeholder={i18n.t(auth.models.account.pin)}
-          onChangeText={this.handleChangePin}
-          editable={!account}
-        />
-        <Text sizeName={SizeNames.sm} colorTheme={ColorThemeNames.light}>
-          {i18n.t(auth.createAccount.enterPin)}
-        </Text>
-        <Text textAlign={'center'} color={Colors.pink}>{error}</Text>
-        {isPinCorrect && (
-          <Button onPress={this.generateAccount}>{i18n.t(auth.createAccount.createAccount)}</Button>
-        )}
-      </View>
-    );
-  }
-
-  renderAccountInfo = () => {
-    const { phrase, account } = this.state;
-    const passphrase = this.getFullPassphrase(phrase);
-
-    if (account) {
-      return (
-        <View>
-          <Text sizeName={SizeNames.sm}>{i18n.t(auth.models.account.id)}</Text>
-          <Text>{toString(account.id)}</Text>
-          <Text sizeName={SizeNames.sm}>{i18n.t(auth.models.account.address)}</Text>
-          <Text>{toString(account.address)}</Text>
-          <Text sizeName={SizeNames.sm}>{i18n.t(auth.models.account.passphrase)}</Text>
-          <Text marginBottom={ESpaces.sm}>{passphrase}</Text>
-          <Text
-            sizeName={SizeNames.sm}
-            color={Colors.pink}
-          >
-            {i18n.t(auth.createAccount.notePassphraseHint)}
-          </Text>
-        </View>
-      );
-    } else {
-      return null;
+    try {
+      const account = await this.props.dispatch(createActiveAccount({ phrase, pin }));
+      this.setState({
+        account,
+        stage: Stages.NOTE_PASSPHRASE
+      });
+    } catch (error) {
+      // This error shouldn't be possible, but still
+      this.setState(getDefaultState());
+      Alert.alert(error.message);
     }
   }
 
-  renderGenerateInfo = () => {
-    return this.state.account ? this.renderAccountInfo() : this.renderPinEnter();
+  saveAccount = async () => {
+    // @ts-ignore because we have account here 100%
+    await this.props.dispatch(addAccount(this.state.account));
   }
 
-  renderSeedGenerator = () => {
-    const { seed, seedLimit, pin } = this.state;
-    const percent = Math.round(seed.length / seedLimit * 100.0);
+  handlePhraseEntered = async () => {
+    await this.saveAccount();
+    this.props.navigation.navigate(routes.accounts);
+  }
 
-    return (
-      <View style={styles.seedGeneratorView}>
-        <Text>{i18n.t(auth.createAccount.howToGenerate)}</Text>
-        <Text>{i18n.t(auth.createAccount.generatedPercent, { percent })}</Text>
-        <View style={styles.passphraseGeneratorView} {...this._panResponder.panHandlers} />
-      </View>
-    );
+  handlePhraseNoted = () => {
+    this.setState({
+      stage: Stages.ENTER_PASSPHRASE
+    });
+  }
+
+  handlePinEntered = (newPin: string) => {
+    this.setState({ pin: newPin }, async () => {
+      await this.createAccount();
+    });
+  }
+
+  handleSeedGenerated = async (seed: string[]) => {
+    const phrase = await passPhraseGenerator.generatePassPhrase(seed);
+    this.setState({ phrase, stage: Stages.ENTER_PIN });
+  }
+
+  renderStage = () => {
+    const { stage, phrase } = this.state;
+
+    switch (stage) {
+      case Stages.GENERATE_SEED:
+        return <SeedGeneratorStage onSeedGenerated={this.handleSeedGenerated}/>;
+      case Stages.ENTER_PIN:
+        return <EnterPinStage onFinish={this.handlePinEntered}/>;
+      case Stages.NOTE_PASSPHRASE:
+        return <NotePassphraseStage phrase={phrase} onFinish={this.handlePhraseNoted}/>;
+      case Stages.ENTER_PASSPHRASE:
+        return <EnterPassphraseStage phrase={phrase} onFinish={this.handlePhraseEntered} />;
+    }
+
+    return null;
   }
 
   render () {
-    const { seedGenerated } = this.state;
-
     return (
       <Screen>
-        <ScrollView>
-          <View style={styles.mainView}>
-            <View style={styles.newAccountView}>
-              {!seedGenerated ? this.renderSeedGenerator() : this.renderGenerateInfo()}
-            </View>
-          </View>
-        </ScrollView>
+        <FullHeightView>
+          <StepCounter stage={this.state.stage}/>
+          {this.renderStage()}
+        </FullHeightView>
       </Screen>
     );
   }

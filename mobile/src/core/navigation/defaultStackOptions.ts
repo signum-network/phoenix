@@ -4,9 +4,9 @@ import { fonts } from '../theme/fonts';
 
 export const defaultStackOptions: NavigationScreenOptions = {
   headerStyle: {
-    backgroundColor: Colors.blue
+    backgroundColor: Colors.BLUE
   },
-  headerTintColor: Colors.white,
+  headerTintColor: Colors.WHITE,
   headerTitleStyle: {
     fontWeight: 'bold',
     fontFamily: fonts.bebas

@@ -29,23 +29,6 @@ export interface KeychainCredentials {
   service?: string;
 }
 
-export interface SpacingProps {
-  marginTop?: number;
-  marginBottom?: number;
-  marginLeft?: number;
-  marginRight?: number;
-  marginHor?: number;
-  marginVert?: number;
-  margin?: number;
-  paddingTop?: number;
-  paddingBottom?: number;
-  paddingLeft?: number;
-  paddingRight?: number;
-  paddingHor?: number;
-  paddingVert?: number;
-  padding?: number;
-}
-
 export interface TouchIDOptionalConfig extends AuthenticateConfig {
   title?: string; // Android
   imageColor?: string; // Android
