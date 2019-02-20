@@ -7,10 +7,11 @@
  */
 import {BurstService} from '../../../burstService';
 import {Block} from '../../../typings/block';
+import { ApiError } from '../../../typings/api/apiError';
 
 export const getBlockById = (service: BurstService):
-    (block: string, includeTransactions: boolean) => Promise<Block> =>
-    (block: string, includeTransactions: boolean): Promise<Block> =>
+    (block: string, includeTransactions: boolean) => Promise<Block | ApiError> =>
+    (block: string, includeTransactions: boolean): Promise<Block | ApiError> =>
         service.query('getBlock', {
             block,
             includeTransactions

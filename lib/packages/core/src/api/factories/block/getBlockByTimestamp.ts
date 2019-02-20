@@ -6,10 +6,11 @@
  */
 import {BurstService} from '../../../burstService';
 import {Block} from '../../../typings/block';
+import { ApiError } from '../../../typings/api/apiError';
 
 export const getBlockByTimestamp = (service: BurstService):
-    (timestamp: number, includeTransactions: boolean) => Promise<Block> =>
-    (timestamp: number, includeTransactions: boolean): Promise<Block> =>
+    (timestamp: number, includeTransactions: boolean) => Promise<Block | ApiError> =>
+    (timestamp: number, includeTransactions: boolean): Promise<Block | ApiError> =>
         service.query('getBlock', {
             timestamp,
             includeTransactions

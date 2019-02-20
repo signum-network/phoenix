@@ -7,6 +7,7 @@
  */
 import {BurstService} from '../../../burstService';
 import {ServerStatus} from '../../../typings/serverStatus';
+import { ApiError } from '../../../typings/api/apiError';
 
-export const getServerStatus = (service: BurstService): () => Promise<ServerStatus> =>
-    (): Promise<ServerStatus> => service.query('getState');
+export const getServerStatus = (service: BurstService): () => Promise<ServerStatus | ApiError> =>
+    (): Promise<ServerStatus | ApiError> => service.query('getState');

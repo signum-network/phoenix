@@ -7,10 +7,11 @@
  */
 import {BurstService} from '../../../burstService';
 import {Block} from '../../../typings/block';
+import { ApiError } from '../../../typings/api/apiError';
 
 export const getBlockByHeight = (service: BurstService):
-    (height: number, includeTransactions: boolean) => Promise<Block> =>
-    (height: number, includeTransactions: boolean): Promise<Block> =>
+    (height: number, includeTransactions: boolean) => Promise<Block | ApiError> =>
+    (height: number, includeTransactions: boolean): Promise<Block | ApiError> =>
         service.query('getBlock', {
             height,
             includeTransactions

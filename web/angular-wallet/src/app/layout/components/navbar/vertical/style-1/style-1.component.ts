@@ -22,6 +22,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     fuseConfig: any;
     navigation: any;
     account: Account;
+    accountQRCode: string;
 
     // Private
     private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
@@ -138,8 +139,9 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
             });
 
         // Get current user
-        this._storeService.getSelectedAccount().then((account) => {
+        this._storeService.getSelectedAccount().then(async (account) => {
             this.account = account;
+            this.accountQRCode = await this.getQRCode(account.address);
         });
     }
 
