@@ -1,4 +1,3 @@
-import { Account } from '@burstjs/core';
 import * as Keychain from 'react-native-keychain';
 import TouchID, { TouchIDError } from 'react-native-touch-id';
 import { KeychainCredentials, TouchIDOptionalConfig } from '../interfaces';

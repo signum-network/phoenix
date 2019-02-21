@@ -14,12 +14,16 @@
   "license": "GPL-3.0",
   "private": false,
   "scripts": {
+    "check": "npm run check:lint && npm run check:tsc",
+    "check:lint": "tslint --project tsconfig.json 'src/**/*.{ts,tsx}'",
+    "check:tsc": "tsc --noEmit",
     "dev": "npm run dev:ios",
     "dev:ios": "react-native run-ios --simulator=\"iPhone SE\"",
     "dev:android": "react-native run-android",
     "lint": "tslint --fix --project tsconfig.json 'src/**/*.{ts,tsx}'",
+    "lint:staged": "tslint --fix --project tsconfig.json",
     "start": "node ./node_modules/react-scripts/bin/react-scripts.js start",
-    "translations:sort": "node tasks/sortJsonDir.js src/core/localization/translations",
+    "translations:sort": "node tasks/sortJsonDir.js src/translations && git add src/translations/*.json",
     "test": "jest",
     "tsc": "tsc --init --pretty --jsx react"
   },
@@ -68,6 +72,15 @@
     "tslint-config-standard": "^8.0.1",
     "tslint-react": "^3.6.0",
     "typescript": "^3.2.4"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged && npm run translations:sort && npm run check"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "npm run lint:staged",
+      "git add"
+    ]
   },
   "jest": {
     "preset": "react-native",
