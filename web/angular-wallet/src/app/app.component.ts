@@ -58,6 +58,9 @@ export class AppComponent implements OnInit, OnDestroy {
         this.updateAccounts();
         setInterval(this.checkBlockchainStatus.bind(this), this.BLOCKCHAIN_STATUS_INTERVAL);
       }
+      this.accountService.currentAccount.subscribe((account) => {
+        this.selectedAccount = account;
+      })
     });
   }
 
