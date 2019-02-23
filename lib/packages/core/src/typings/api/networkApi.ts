@@ -3,7 +3,6 @@
 import {BlockchainStatus} from '../blockchainStatus';
 import {ServerStatus} from '../serverStatus';
 import {SuggestedFees} from '../suggestedFees';
-import { ApiError } from './apiError';
 
 /**
  * Network API
@@ -15,17 +14,17 @@ export interface NetworkApi {
      * Get the blockchain status.
      * @return The Blockchain Status
      */
-    getBlockchainStatus: () => Promise<BlockchainStatus | ApiError>;
+    getBlockchainStatus: () => Promise<BlockchainStatus>;
 
     /**
      * Get the state of the server node and network
      * @return The server Status
      */
-    getServerStatus: () => Promise<ServerStatus | ApiError>;
+    getServerStatus: () => Promise<ServerStatus>;
 
     /**
      * Get the current suggested fees
      * @return The Suggested Fees
      */
-    suggestFee: () => Promise<SuggestedFees | ApiError>;
+    suggestFee: () => Promise<SuggestedFees>;
 }

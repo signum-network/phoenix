@@ -4,28 +4,32 @@ import 'rxjs/add/operator/timeout';
 
 import { composeApi, ApiSettings, Block, BlockchainStatus, SuggestedFees, Api, ApiError } from '@burstjs/core';
 import { environment } from 'environments/environment.prod';
-import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Injectable()
 export class NetworkService {
-    private api: Api; //todo
+    private api: Api;
+    blocks: Block[];
 
     constructor() {
         const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
         this.api = composeApi(apiSettings);
     }
 
-    public suggestFee(): Promise<SuggestedFees | ApiError> {
+    public suggestFee(): Promise<SuggestedFees> {
         return this.api.network.suggestFee();
     }
 
-    public getBlockchainStatus(): Promise<BlockchainStatus | ApiError> {
+    public getBlockchainStatus(): Promise<BlockchainStatus> {
         return this.api.network.getBlockchainStatus();    
     }
-
-    public getBlockByHeight(height?: number): Promise<Block | ApiError> {
-        return this.api.block.getBlockByHeight(height, false);
-    }
-
+ 
+    public getBlockById(id?: string): Promise<Block> {
+        return this.api.block.getBlockById(id, false);
+    } 
+ 
+    public getBlocks(firstIndex?: number, lastIndex?: number, includeTransactions?: boolean): Promise<Block[]> {
+        return this.api.block.getBlocks(firstIndex, lastIndex, includeTransactions);
+    }  
 }
+ 

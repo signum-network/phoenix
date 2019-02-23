@@ -145,7 +145,12 @@ export class AccountService {
   public synchronizeAccount(account: Account): Promise<Account> {
     return new Promise(async (resolve, reject) => {
       try {
-        const balance = await this.getAccountBalance(account.id)
+        const balance = await this.getAccountBalance(account.id);
+        // @ts-ignore
+        if (balance.errorCode) {
+          // @ts-ignore
+          throw new Error(balance.errorDescription);
+        }
         account.balance = convertNQTStringToNumber(balance.balanceNQT);
         account.unconfirmedBalance = convertNQTStringToNumber(balance.unconfirmedBalanceNQT);
         const transactions = await this.getAccountTransactions(account.id);

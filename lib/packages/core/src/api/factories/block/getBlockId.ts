@@ -7,11 +7,10 @@
  */
 import {BurstService} from '../../../burstService';
 import {BlockId} from '../../..';
-import { ApiError } from '../../../typings/api/apiError';
 
 export const getBlockId = (service: BurstService):
-    (height: number) => Promise<BlockId | ApiError> =>
-    (height: number): Promise<BlockId | ApiError> =>
+    (height: number) => Promise<BlockId> =>
+    (height: number): Promise<BlockId> =>
         service.query('getBlockId', {
             height,
         });

@@ -7,7 +7,6 @@
  */
 import {BurstService} from '../../../burstService';
 import {BlockchainStatus} from '../../../typings/blockchainStatus';
-import { ApiError } from '../../../typings/api/apiError';
 
-export const getBlockchainStatus = (service: BurstService): () => Promise<BlockchainStatus | ApiError> =>
-    (): Promise<BlockchainStatus | ApiError> => service.query('getBlockchainStatus');
+export const getBlockchainStatus = (service: BurstService): () => Promise<BlockchainStatus> =>
+    (): Promise<BlockchainStatus> => service.query('getBlockchainStatus');

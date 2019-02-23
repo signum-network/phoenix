@@ -5,7 +5,6 @@
  */
 import {Block} from '../block';
 import {BlockId} from '../blockId';
-import { ApiError } from './apiError';
 
 
 /**
@@ -18,7 +17,7 @@ export interface BlockApi {
      * @param includeTransactions _true_, if transactions shall be included
      * @return The Block
      */
-    getBlockByTimestamp: (timestamp: number, includeTransactions: boolean) => Promise<Block | ApiError>;
+    getBlockByTimestamp: (timestamp: number, includeTransactions: boolean) => Promise<Block>;
 
     /**
      * Get a block by given height
@@ -26,7 +25,7 @@ export interface BlockApi {
      * @param includeTransactions _true_, if transactions shall be included
      * @return The Block
      */
-    getBlockByHeight: (height: number, includeTransactions: boolean) => Promise<Block | ApiError>;
+    getBlockByHeight: (height: number, includeTransactions: boolean) => Promise<Block>;
 
     /**
      * Get a block by given id
@@ -34,12 +33,21 @@ export interface BlockApi {
      * @param includeTransactions _true_, if transactions shall be included
      * @return The Block
      */
-    getBlockById: (block: string, includeTransactions: boolean) => Promise<Block | ApiError>;
+    getBlockById: (block: string, includeTransactions: boolean) => Promise<Block>;
 
     /**
      * Get a block id by given height
      * @param height The block height
      * @return The Block Id
      */
-    getBlockId: (height: number) => Promise<BlockId | ApiError>;
+    getBlockId: (height: number) => Promise<BlockId>;
+
+    /**
+     * Get blocks from the blockchain in reverse block height order.
+     * @param firstIndex first block to retrieve (optional, default is zero or the last block on the blockchain)
+     * @param lastIndex the last block to retrieve (optional, default is firstIndex + 99)
+     * @param includeTransactions _true_, if transactions shall be included
+     * @return {Block[]} the array of blocks retrieved
+     */
+    getBlocks: (firstIndex?: number, lastIndex?: number, includeTransactions?: boolean) => Promise<Block[]>;
 }
