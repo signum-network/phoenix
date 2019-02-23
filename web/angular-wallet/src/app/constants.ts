@@ -46,7 +46,7 @@ export const constants = {
     documentationUrl: '',
     donate: 'BURST-HT4V-8H5E-ESS5-223SB',
     languages: [
-        { code: 'en', name: 'English (Default)' },
+        { code: 'en', name: 'English' },
         { code: 'bg', name: 'Български' },
         { code: 'ca', name: 'Català' },
         { code: 'cs', name: 'Čeština' },

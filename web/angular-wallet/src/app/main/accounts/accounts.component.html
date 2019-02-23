@@ -22,7 +22,7 @@
             <button mat-button color="accent" class="delete" *ngIf="getSelectedAccounts().length"
                 (click)="deleteSelectedAccounts()">Delete Selected</button>
             <button mat-button color="primary" 
-                (click)="router.navigate(['/dashboard/setup/create'])">New Account</button>
+                (click)="router.navigate(['/login'])">New Account</button>
         </div>
 
         <mat-table #table [dataSource]="dataSource" matSort>

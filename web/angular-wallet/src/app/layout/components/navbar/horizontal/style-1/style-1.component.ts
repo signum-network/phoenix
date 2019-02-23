@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
@@ -16,6 +16,7 @@ export class NavbarHorizontalStyle1Component implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
+    @Input('selectedAccount') selectedAccount: Account;
 
     // Private
     private _unsubscribeAll: Subject<any>;
