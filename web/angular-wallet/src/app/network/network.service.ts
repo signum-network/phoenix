@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 
-import { composeApi, ApiSettings, Block, BlockchainStatus, SuggestedFees, Api, ApiError } from '@burstjs/core';
+import { composeApi, ApiSettings, Block, BlockchainStatus, SuggestedFees, Api, Peer, PeersResponse } from '@burstjs/core';
 import { environment } from 'environments/environment.prod';
 
 
@@ -31,5 +31,13 @@ export class NetworkService {
     public getBlocks(firstIndex?: number, lastIndex?: number, includeTransactions?: boolean): Promise<Block[]> {
         return this.api.block.getBlocks(firstIndex, lastIndex, includeTransactions);
     }  
+
+    public getPeer(address: string): Promise<Peer> {
+        return this.api.network.getPeer(address);
+    }  
+
+    public getPeers(): Promise<PeersResponse> {
+        return this.api.network.getPeers(); 
+    } 
 }
  
