@@ -26,6 +26,7 @@ import {generateSendTransactionQRCodeAddress} from './factories/account/generate
 import {suggestFee} from './factories/network/suggestFee';
 import {sendMoney} from './factories/transaction/sendMoney';
 import {getAliases} from './factories/account/getAliases';
+import {getTime} from './factories/network/getTime';
 
 
 /**
@@ -61,6 +62,7 @@ export function composeApi(settings: ApiSettings): Api {
             getBlockchainStatus,
             getServerStatus,
             suggestFee,
+            getTime,
         })
         .withTransactionApi({
             broadcastTransaction,

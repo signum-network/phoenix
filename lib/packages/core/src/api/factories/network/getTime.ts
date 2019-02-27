@@ -6,13 +6,8 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 import {BurstService} from '../../../burstService';
-import {BlockchainTime} from '../../../typings/blockchainTime';
+import {BurstTime} from '../../../typings/burstTime';
 
-export const getTime = (service: BurstService): () => Promise<BlockchainTime> =>
-    async (): Promise<BlockchainTime> => {
-        const {time} = await service.query('getTime');
-        return Promise.resolve({
-            time,
-            unixTime: Math.floor((Date.now() / 1000))
-        });
-    };
+export const getTime = (service: BurstService): () => Promise<BurstTime> =>
+    async (): Promise<BurstTime> => await service.query('getTime');
+

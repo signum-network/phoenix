@@ -77,8 +77,6 @@ describe('Network Api', () => {
             const service = new BurstService('baseUrl', 'relPath', httpMock);
             const status = await getTime(service)();
             expect(status.time).toBe(100000000);
-            expect(status.unixTime).toBeGreaterThan(status.time);
-            expect(status.unixTime).toBeGreaterThanOrEqual(Math.floor(Date.now() / 1000));
         });
     });
 });

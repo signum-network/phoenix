@@ -3,6 +3,7 @@
 import {BlockchainStatus} from '../blockchainStatus';
 import {ServerStatus} from '../serverStatus';
 import {SuggestedFees} from '../suggestedFees';
+import {BurstTime} from '../burstTime';
 
 /**
  * Network API
@@ -27,4 +28,11 @@ export interface NetworkApi {
      * @return The Suggested Fees
      */
     suggestFee: () => Promise<SuggestedFees>;
+
+    /**
+     * Get the current blockchain/Burst timestamp in seconds since Genesis Block
+     * @return timestamp in seconds since Genesis Block
+     */
+    getTime: () => Promise<BurstTime>;
+
 }
