@@ -27,4 +27,6 @@ export interface Transaction {
     readonly transaction?: string;
     readonly timestamp?: string;
     readonly height?: number;
+    readonly recipient?: string;
+    readonly recipientRS?: string;
 }
