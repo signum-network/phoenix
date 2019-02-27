@@ -40,7 +40,7 @@ export class TransactionsComponent {
                 this.notifierService.notify('error', 'Error fetching transactions');
             }
             this.dataSource.data = transactions.transactions;
-        })
+        });
     }
 
     public ngAfterViewInit() {
@@ -48,27 +48,28 @@ export class TransactionsComponent {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.dataSource.filterPredicate = (data, filterValue: string) => {
-            let withinRange = true;
+          const date = this.convertTimestamp(data.timestamp);
+          let withinRange = true;
             if (this.pickerFromField.value && this.pickerToField.value) {
-                withinRange = this.convertTimestamp(parseFloat(data.timestamp)) > this.pickerFromField.value &&
-                this.convertTimestamp(parseFloat(data.timestamp)) < this.pickerToField.value;
+                withinRange = date > this.pickerFromField.value &&
+                date < this.pickerToField.value;
             } else if (this.pickerFromField.value) {
-                withinRange = this.convertTimestamp(parseFloat(data.timestamp)) > this.pickerFromField.value;
+                withinRange = date > this.pickerFromField.value;
             } else if (this.pickerToField.value) {
-                withinRange = this.convertTimestamp(parseFloat(data.timestamp)) < this.pickerToField.value;
+                withinRange = date < this.pickerToField.value;
             }
             return withinRange && defaultFilterPredicate(data, filterValue);
-        }
+        };
     }
 
     public applyFilter(filterValue: string) {
         filterValue = filterValue.trim();
         filterValue = filterValue.toLowerCase();
-        this.dataSource.filter = filterValue || "burst";
+        this.dataSource.filter = filterValue || 'burst';
     }
 
     public isOwnAccount(address: string): boolean {
-        return address != undefined && address == this.account.address;
+        return address !== undefined && address === this.account.address;
     }
 
     public convertTimestamp(timestamp: number): Date {
