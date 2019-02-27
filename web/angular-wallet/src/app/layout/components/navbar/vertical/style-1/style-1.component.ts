@@ -106,7 +106,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
+    async ngOnInit()
     {
         this._router.events
             .pipe(
@@ -139,11 +139,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
             });
 
         // Get current user
-       this.account =  await this._storeService.getSelectedAccount();
-       this.accountQRCode = await this.getQRCode(this.account.address);
-            this.account = account;
-            this.accountQRCode = await this.getQRCode(account.address);
-        });
+        this.account =  await this._storeService.getSelectedAccount();
+        this.accountQRCode = await this.getQRCode(this.account.address);
     }
 
     /**
