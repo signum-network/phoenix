@@ -12,6 +12,7 @@ import { constants } from 'app/constants';
 import { StoreService } from 'app/store/store.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { Account } from '@burstjs/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'toolbar',
@@ -46,7 +47,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
         private i18nService: I18nService,
-        private accountService: AccountService
+        private accountService: AccountService,
+        private router: Router
     ) {
 
         this.languages = constants.languages;
@@ -125,5 +127,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     setAccount(account): void {
         this.selectedAccount = account;
         this.accountService.selectAccount(account);
+        this.router.navigate(['/']);
     }
 }

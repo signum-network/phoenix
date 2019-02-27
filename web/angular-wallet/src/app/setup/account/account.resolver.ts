@@ -14,7 +14,7 @@ export class AccountResolver implements Resolve<Promise<void|Account>> {
     }
 
     resolve(route: ActivatedRouteSnapshot) {
-        return this.storeService.getSelectedAccount().catch(() => {});
+        return this.accountService.currentAccount.getValue();
     }
 }
 

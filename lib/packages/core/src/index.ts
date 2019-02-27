@@ -10,6 +10,8 @@ export * from './typings/block';
 export * from './typings/blockchainStatus';
 export * from './typings/blockId';
 export * from './typings/burstNode';
+export * from './typings/peer';
+export * from './typings/peersResponse';
 export * from './typings/serverStatus';
 export * from './typings/suggestedFees';
 export * from './typings/transaction';

@@ -42,9 +42,7 @@ export class DashboardComponent implements OnInit {
     async fetchTransactions() {
       try {
         this.account =  await this.storeService.getSelectedAccount();
-        console.log(convertNumericIdToAddress(this.account.id));
         const accountTransactions = await this.accountService.getAccountTransactions(this.account.id);
-        console.log(accountTransactions);
       } catch (e) {
         console.log(e);
       }
