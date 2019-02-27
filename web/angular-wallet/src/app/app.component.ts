@@ -22,8 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
   firstTime = true;
   isScanning = false;
   downloadingBlockchain = false;
-  previousLastBlock = "0";
-  lastBlock = "0";
+  previousLastBlock = '0';
+  lastBlock = '0';
   isLoggedIn = false;
   selectedAccount: Account;
   accounts: Account[];
@@ -61,7 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.accountService.currentAccount.subscribe(async (account) => {
         this.selectedAccount = account;
         this.accounts = await this.storeService.getAllAccounts();
-      })
+      });
     });
   }
 
@@ -111,22 +111,6 @@ export class AppComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.accountService.synchronizeAccount(account).catch(() => {});
       }, 1);
-    });
-
-  private updateAccounts() {
-    this.storeService.getSelectedAccount().then((account) => {
-      if (account) {
-        this.selectedAccount = account;
-        this.accountService.selectAccount(account);
-      }
-    });
-    this.storeService.getAllAccounts().then((accounts) => {
-      this.accounts = accounts;
-      accounts.map((account) => {
-        setTimeout(() => {
-          this.accountService.synchronizeAccount(account).catch(() => {});
-        }, 1);
-      });
     });
   }
 

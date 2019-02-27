@@ -43,6 +43,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         private _fuseNavigationService: FuseNavigationService,
         private _fuseSidebarService: FuseSidebarService,
         private _accountService: AccountService,
+        private _storeService: StoreService,
         private _router: Router
     )
     {
@@ -139,7 +140,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
 
         // Get current user
         this.selectedAccount =  await this._storeService.getSelectedAccount();
-        this.selectedAccountQRCode = await this.getQRCode(this.account.address);
+        this.selectedAccountQRCode = await this.getQRCode(this.selectedAccount.address);
     }
 
     /**

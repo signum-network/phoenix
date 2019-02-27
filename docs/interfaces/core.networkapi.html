@@ -91,6 +91,8 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.networkapi.html#getblockchainstatus" class="tsd-kind-icon">get<wbr>Blockchain<wbr>Status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.networkapi.html#getpeer" class="tsd-kind-icon">get<wbr>Peer</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.networkapi.html#getpeers" class="tsd-kind-icon">get<wbr>Peers</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.networkapi.html#getserverstatus" class="tsd-kind-icon">get<wbr>Server<wbr>Status</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.networkapi.html#gettime" class="tsd-kind-icon">get<wbr>Time</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.networkapi.html#suggestfee" class="tsd-kind-icon">suggest<wbr>Fee</a></li>
@@ -107,7 +109,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Blockchain<wbr>Status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb55a4b/lib/packages/core/src/typings/api/networkApi.ts#L18">core/src/typings/api/networkApi.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/core/src/typings/api/networkApi.ts#L20">core/src/typings/api/networkApi.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -137,12 +139,100 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="getpeer" class="tsd-anchor"></a>
+					<h3>get<wbr>Peer</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Peer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/core/src/typings/api/networkApi.ts#L39">core/src/typings/api/networkApi.ts:39</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get a peer by a given IP address</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The peer&#39;s address</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>The Peer</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>address<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_core_src_typings_peer_.peer.html" class="tsd-signature-type">Peer</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>address: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_core_src_typings_peer_.peer.html" class="tsd-signature-type">Peer</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="getpeers" class="tsd-anchor"></a>
+					<h3>get<wbr>Peers</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Peers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/core/src/typings/api/networkApi.ts#L46">core/src/typings/api/networkApi.ts:46</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get a list of peers</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>Only return active peers (default: true)</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>The Peer Address List</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>active<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_core_src_typings_peeraddresslist_.peeraddresslist.html" class="tsd-signature-type">PeerAddressList</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> active: <span class="tsd-signature-type">boolean</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_core_src_typings_peeraddresslist_.peeraddresslist.html" class="tsd-signature-type">PeerAddressList</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="getserverstatus" class="tsd-anchor"></a>
 					<h3>get<wbr>Server<wbr>Status</h3>
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Server<wbr>Status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb55a4b/lib/packages/core/src/typings/api/networkApi.ts#L24">core/src/typings/api/networkApi.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/core/src/typings/api/networkApi.ts#L26">core/src/typings/api/networkApi.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -177,7 +267,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb55a4b/lib/packages/core/src/typings/api/networkApi.ts#L36">core/src/typings/api/networkApi.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/core/src/typings/api/networkApi.ts#L52">core/src/typings/api/networkApi.ts:52</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -212,7 +302,7 @@
 					<div class="tsd-signature tsd-kind-icon">suggest<wbr>Fee<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb55a4b/lib/packages/core/src/typings/api/networkApi.ts#L30">core/src/typings/api/networkApi.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/core/src/typings/api/networkApi.ts#L32">core/src/typings/api/networkApi.ts:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -248,6 +338,12 @@
 				<ul>
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_src_typings_peer_.html">"core/src/typings/peer"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_src_typings_peeraddresslist_.html">"core/src/typings/peer<wbr>Address<wbr>List"</a>
 					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
@@ -332,6 +428,12 @@
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core.networkapi.html#getblockchainstatus" class="tsd-kind-icon">get<wbr>Blockchain<wbr>Status</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.networkapi.html#getpeer" class="tsd-kind-icon">get<wbr>Peer</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.networkapi.html#getpeers" class="tsd-kind-icon">get<wbr>Peers</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core.networkapi.html#getserverstatus" class="tsd-kind-icon">get<wbr>Server<wbr>Status</a>
