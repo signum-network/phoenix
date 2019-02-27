@@ -24,7 +24,7 @@ describe('convertNumberToNQTString/convertNQTStringToNumber', () => {
             const unixTime = convertBurstTimeToEpochTime(-1);
 
             const received = new Date(unixTime).toISOString();
-            const expected = '2019-02-19T13:42:15.000Z';
+            const expected = '2014-08-11T01:59:59.000Z';
             expect(received).toBe(expected);
         });
 

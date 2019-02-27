@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ApiError | burstjs</title>
+	<title>BlockchainTime | burstjs</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="core.apierror.html">ApiError</a>
+					<a href="core.blockchaintime.html">BlockchainTime</a>
 				</li>
 			</ul>
-			<h1>Interface ApiError</h1>
+			<h1>Interface BlockchainTime</h1>
 		</div>
 	</div>
 </header>
@@ -70,16 +70,15 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Error</p>
+						<p>Original work Copyright (c) 2019 Burst Apps Team</p>
 					</div>
-					<p>The Error type, returned by BRS Api</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ApiError</span>
+						<span class="target">BlockchainTime</span>
 					</li>
 				</ul>
 			</section>
@@ -90,8 +89,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.apierror.html#errorcode" class="tsd-kind-icon">error<wbr>Code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.apierror.html#errordescription" class="tsd-kind-icon">error<wbr>Description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.blockchaintime.html#time" class="tsd-kind-icon">time</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.blockchaintime.html#unixtime" class="tsd-kind-icon">unix<wbr>Time</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,24 +99,34 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="errorcode" class="tsd-anchor"></a>
-					<h3>error<wbr>Code</h3>
-					<div class="tsd-signature tsd-kind-icon">error<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="time" class="tsd-anchor"></a>
+					<h3>time</h3>
+					<div class="tsd-signature tsd-kind-icon">time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/ca4b926/lib/packages/core/src/typings/api/apiError.ts#L14">core/src/typings/api/apiError.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/ca4b926/lib/packages/core/src/typings/blockchainTime.ts#L11">core/src/typings/blockchainTime.ts:11</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The current node time (in seconds since the genesis block)</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="errordescription" class="tsd-anchor"></a>
-					<h3>error<wbr>Description</h3>
-					<div class="tsd-signature tsd-kind-icon">error<wbr>Description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="unixtime" class="tsd-anchor"></a>
+					<h3>unix<wbr>Time</h3>
+					<div class="tsd-signature tsd-kind-icon">unix<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/ca4b926/lib/packages/core/src/typings/api/apiError.ts#L15">core/src/typings/api/apiError.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/ca4b926/lib/packages/core/src/typings/blockchainTime.ts#L15">core/src/typings/blockchainTime.ts:15</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The according Unix timestamp (seconds since 01.01.1970)</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -179,21 +188,9 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="core.aliaslist.html" class="tsd-kind-icon">Alias<wbr>List</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="core.apierror.html" class="tsd-kind-icon">Api<wbr>Error</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.apierror.html#errorcode" class="tsd-kind-icon">error<wbr>Code</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.apierror.html#errordescription" class="tsd-kind-icon">error<wbr>Description</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="core.balance.html" class="tsd-kind-icon">Balance</a>
 					</li>
@@ -209,9 +206,21 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="core.blockchainstatus.html" class="tsd-kind-icon">Blockchain<wbr>Status</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="core.blockchaintime.html" class="tsd-kind-icon">Blockchain<wbr>Time</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.blockchaintime.html#time" class="tsd-kind-icon">time</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.blockchaintime.html#unixtime" class="tsd-kind-icon">unix<wbr>Time</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="core.messageapi.html" class="tsd-kind-icon">Message<wbr>Api</a>
 					</li>
