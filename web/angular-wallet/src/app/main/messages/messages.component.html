@@ -1,0 +1,43 @@
+<div id="messages" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <mat-sidenav-container>
+
+                <!-- LEFT SIDENAV -->
+                <mat-sidenav class="sidenav" position="start" opened="true" mode="side"
+                             fuseMatSidenavHelper="message-left-sidenav" matIsLockedOpen="gt-md">
+                    <message-left-sidenav></message-left-sidenav>
+                </mat-sidenav>
+                <!-- / LEFT SIDENAV -->
+
+                <!-- CONTENT -->
+                <message-start *ngIf="!selectedMessage"></message-start>
+
+                <message-view *ngIf="selectedMessage"></message-view>
+                <!-- / CONTENT -->
+
+                <!-- RIGHT SIDENAV -->
+                <mat-sidenav class="sidenav" position="end" opened="false" mode="over"
+                             fuseMatSidenavHelper="message-right-sidenav">
+                    <message-right-sidenav></message-right-sidenav>
+                </mat-sidenav>
+                <!-- / RIGHT SIDENAV -->
+
+            </mat-sidenav-container>
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

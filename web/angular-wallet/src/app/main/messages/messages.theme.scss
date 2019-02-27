@@ -1,0 +1,123 @@
+@mixin messages-theme($theme) {
+
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $is-dark: map-get($theme, is-dark);
+
+    // Message start
+    message-start {
+
+        .big-circle {
+            background: map-get($background, card);
+            border-color: map-get($foreground, divider);
+        }
+    }
+
+    // Message view
+    message-view {
+
+        .message {
+
+            .message-toolbar {
+                border-bottom-color: map-get($foreground, divider);
+            }
+
+            #message-content {
+
+                .message-row {
+
+                    &.contact {
+
+                        .bubble {
+                            background-color: map-get($primary, default);
+                            color: map-get($primary, default-contrast);
+                        }
+                    }
+
+                    &.me {
+
+                        .bubble {
+                            color: rgba(0, 0, 0, 0.87);
+                            background-color: #E0E0E0;
+                        }
+                    }
+                }
+            }
+
+            .message-footer {
+                background: map-get($background, app-bar);
+                border-top-color: map-get($foreground, divider);
+
+                .reply-form {
+
+                    .message-text {
+                        background-color: map-get($background, app-bar);
+                        border-color: map-get($foreground, divider);
+
+                        .mat-form-field-wrapper {
+
+                            .mat-form-field-flex {
+
+                                .mat-form-field-infix {
+                                    border-color: map-get($foreground, divider);
+
+                                    @if ($is-dark == true) {
+                                        background-color: map-get($background, hover);
+                                    } @else {
+                                        background-color: white;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Messages sidenav
+    message-sidenav {
+
+        .sidenav-header {
+
+            mat-toolbar {
+                border-bottom-color: map-get($foreground, divider);
+
+                .search {
+                    background: map-get($background, background);
+                    border-color: map-get($foreground, divider);
+
+                    input {
+                        background: map-get($background, background);
+                        color: map-get($foreground, text);
+                    }
+                }
+            }
+        }
+
+        .sidenav-content {
+
+            .contact-list,
+            .message-list {
+
+                .mat-subheader {
+                    color: map-get($accent, default);
+                }
+
+                .contact {
+                    border-bottom-color: map-get($foreground, divider);
+
+                    .contact-last-message {
+                        color: map-get($foreground, secondary-text);
+                    }
+
+                    .contact-mood {
+                        color: map-get($foreground, secondary-text);
+                    }
+                }
+            }
+        }
+    }
+}

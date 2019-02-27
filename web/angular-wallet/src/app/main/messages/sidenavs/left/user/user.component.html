@@ -1,0 +1,32 @@
+<!-- SIDENAV HEADER -->
+<div class="sidenav-header">
+
+    <!-- USER TOOLBAR -->
+    <mat-toolbar class="accent">
+
+        <!-- TOOLBAR TOP -->
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+
+            <button mat-icon-button (click)="changeLeftSidenavView('messages')" aria-label="back">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+
+        </mat-toolbar-row>
+        <!-- / TOOLBAR TOP -->
+
+        <!-- TOOLBAR BOTTOM -->
+        <mat-toolbar-row class="toolbar-bottom" fxLayout="column" fxLayoutAlign="center center">
+
+            <img [src]="user.avatar" class="avatar user-avatar huge" alt="{{user.name}}"/>
+            <div class="user-name my-8">{{user.name}}</div>
+
+        </mat-toolbar-row>
+        <!-- / TOOLBAR BOTTOM -->
+
+    </mat-toolbar>
+    <!-- / USER TOOLBAR -->
+</div>
+
+<!-- SIDENAV CONTENT -->
+<div class="sidenav-content py-32 px-24" fxFlex>
+</div>
