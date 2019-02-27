@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort, MatDialog } from '@angular/material';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { Transaction, Account } from '@burstjs/core';
 import { Converter } from '@burstjs/crypto';
 import { FormControl } from '@angular/forms';
@@ -8,6 +8,7 @@ import { StoreService } from 'app/store/store.service';
 import { NotifierService } from 'angular-notifier';
 import { convertNQTStringToNumber } from '@burstjs/util';
 import { UtilService } from 'app/util.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-transactions',
@@ -30,19 +31,15 @@ export class TransactionsComponent {
         private accountService: AccountService,
         private storeService: StoreService,
         private notifierService: NotifierService,
-        private utilService: UtilService
+        private utilService: UtilService,
+        private route: ActivatedRoute
     ) {}
 
     public async ngOnInit() {
         this.displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmations'];
         this.dataSource = new MatTableDataSource<Transaction>();
-        this.account = await this.storeService.getSelectedAccount();
-        this.accountService.getAccountTransactions(this.account.id).then(transactions => {
-            if (transactions.errorCode) {
-                this.notifierService.notify('error', 'Error fetching transactions');
-            }
-            this.dataSource.data = transactions.transactions;
-        });
+        this.account = this.route.snapshot.data.account;
+        this.dataSource.data = this.route.snapshot.data.transactions.transactions;
     }
 
     public ngAfterViewInit() {

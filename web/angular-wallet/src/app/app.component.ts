@@ -58,6 +58,10 @@ export class AppComponent implements OnInit, OnDestroy {
         this.updateAccounts();
         setInterval(this.checkBlockchainStatus.bind(this), this.BLOCKCHAIN_STATUS_INTERVAL);
       }
+      this.accountService.currentAccount.subscribe(async (account) => {
+        this.selectedAccount = account;
+        this.accounts = await this.storeService.getAllAccounts();
+      })
     });
   }
 
@@ -93,6 +97,21 @@ export class AppComponent implements OnInit, OnDestroy {
     this.storeService.saveBlock(block);
     this.checkBlockchainStatus();
   }
+
+  private async updateAccounts() {
+    this.storeService.getSelectedAccount().then((account) => {
+      if (account !== this.selectedAccount) {
+        this.selectedAccount = account;
+        this.accountService.selectAccount(account);
+      }
+    });
+
+    this.accounts = await this.storeService.getAllAccounts();
+    this.accounts.map((account) => {
+      setTimeout(() => {
+        this.accountService.synchronizeAccount(account).catch(() => {});
+      }, 1);
+    });
 
   private updateAccounts() {
     this.storeService.getSelectedAccount().then((account) => {

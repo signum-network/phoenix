@@ -58,7 +58,7 @@ export class AccountService {
   * TODO: error handling of asynchronous method calls
   */
   public createActiveAccount({ passphrase, pin = '' }): Promise<Account> {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       const account: Account = new Account();
       // import active account
       account.type = 'active';
@@ -81,6 +81,7 @@ export class AccountService {
       const address = convertNumericIdToAddress(id);
       account.address = address;
 
+      await this.selectAccount(account);
       return this.storeService.saveAccount(account)
         .then(acc => {
           resolve(acc);
@@ -102,12 +103,13 @@ export class AccountService {
       const account: Account = new Account();
       const accountId = convertAddressToNumericId(address);
       this.storeService.findAccount(accountId)
-        .then(found => {
+        .then(async found => {
           if (found === undefined) {
             // import offline account
             account.type = 'offline';
             account.address = address;
             account.id = accountId;
+            await this.selectAccount(account);
             return this.storeService.saveAccount(account)
               .then(resolve);
           } else {
