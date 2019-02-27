@@ -139,7 +139,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
             });
 
         // Get current user
-        this._storeService.getSelectedAccount().then(async (account) => {
+       this.account =  await this._storeService.getSelectedAccount();
+       this.accountQRCode = await this.getQRCode(this.account.address);
             this.account = account;
             this.accountQRCode = await this.getQRCode(account.address);
         });
