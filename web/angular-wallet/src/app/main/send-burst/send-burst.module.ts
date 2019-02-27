@@ -15,6 +15,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { SuggestFeeResolver } from '../../network/suggest-fee.resolver';
 import { NetworkModule } from 'app/network/network.module';
 import { BurstInputValidatorDirective } from './send-burst-validator.directive';
+import { LayoutModule } from 'app/layout/layout.module';
 
 const routes = [
   {
@@ -45,6 +46,7 @@ const routes = [
     MatGridListModule,
     MatCheckboxModule,
     NetworkModule,
+    LayoutModule,
     RouterModule.forChild(routes)
   ]
 })
