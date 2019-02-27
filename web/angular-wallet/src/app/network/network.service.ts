@@ -31,7 +31,6 @@ export class NetworkService {
     public getBlocks(firstIndex?: number, lastIndex?: number, includeTransactions?: boolean): Promise<Block[]> {
         return this.api.block.getBlocks(firstIndex, lastIndex, includeTransactions);
     }  
-
     public getPeer(address: string): Promise<Peer> {
         return this.api.network.getPeer(address);
     }  

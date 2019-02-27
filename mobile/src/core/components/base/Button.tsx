@@ -1,98 +1,120 @@
 import React from 'react';
-import { ActivityIndicatorComponent, StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
-import { SpacingProps } from '../../interfaces';
-import { ColorThemeNames, ThemeColors } from '../../theme/colors';
-import { fonts } from '../../theme/fonts';
-import { SizeNames, ThemeSizes } from '../../theme/sizes';
-import { getSizes, getThemeColors } from '../../utils/theme';
+import { ActivityIndicatorComponent, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Colors } from '../../theme/colors';
+import { BorderRadiusSizes, FontSizes, Sizes } from '../../theme/sizes';
 import { Text, TextAlign } from './Text';
 
-interface Props extends TouchableOpacityProps, SpacingProps {
+export enum ButtonThemes {
+  DEFAULT = 'DEFAULT',
+  ACCENT = 'ACCENT'
+}
+
+export enum ButtonSizes {
+  DEFAULT = 'DEFAULT',
+  SMALL = 'SMALL',
+  LARGE = 'LARGE'
+}
+
+interface Props {
   children: string | JSX.Element | JSX.Element[];
   onPress: () => any;
   loading?: boolean;
-  colorTheme?: ColorThemeNames;
-  sizeName?: SizeNames;
+  theme?: ButtonThemes;
+  size?: ButtonSizes;
+  fullWidth?: boolean;
+  disabled?: boolean;
 }
 
-const defaultColorTheme = ColorThemeNames.default;
-const defaultSizeName = SizeNames.m;
+const defaultTheme = ButtonThemes.DEFAULT;
+const defaultSize = ButtonSizes.DEFAULT;
 
-/**
- * Standard button component from React Native, but with our fonts and styles.
- *
- * NOTE: if you pass custom style properties, you should set font manually.
- */
-export class Button extends React.PureComponent<Props> {
-  getStyles = (themeColors: ThemeColors, size: ThemeSizes): any => {
-    const {
-      marginTop,
-      marginRight,
-      marginBottom,
-      marginLeft,
-      marginHor,
-      marginVert,
-      margin,
-      paddingTop,
-      paddingRight,
-      paddingBottom,
-      paddingLeft,
-      paddingHor,
-      paddingVert,
-      padding
-    } = this.props;
+const childrenColors = {
+  [ButtonThemes.DEFAULT]: Colors.BLUE,
+  [ButtonThemes.ACCENT]: Colors.WHITE
+};
+const textSizes = {
+  [ButtonSizes.DEFAULT]: FontSizes.MEDIUM,
+  [ButtonSizes.SMALL]: FontSizes.SMALL,
+  [ButtonSizes.LARGE]: FontSizes.LARGE
+};
 
-    const styles: any = {
-      touchable: {
-        padding: !padding ? size.buttonOuterPadding : padding,
-        marginHorizontal: marginHor,
-        marginVertical: marginVert,
-        margin,
-        marginTop,
-        marginRight,
-        marginBottom,
-        marginLeft,
-        paddingHorizontal: paddingHor,
-        paddingVertical: paddingVert,
-        paddingTop,
-        paddingRight,
-        paddingBottom,
-        paddingLeft
-      },
-      view: {
-        fontFamily: fonts.noto,
-        backgroundColor: themeColors.bgColor,
-        color: themeColors.color,
-        padding: size.buttonInnerPadding,
-        borderRadius: size.borderRadius
-      }
-    };
-
-    return StyleSheet.create(styles);
+const styles = StyleSheet.create({
+  wrapper: {
+    padding: Sizes.MEDIUM
+  },
+  wrapperSmall: {
+    padding: Sizes.SMALL
+  },
+  wrapperLarge: {
+    padding: Sizes.LARGE
+  },
+  button: {
+    backgroundColor: Colors.WHITE,
+    borderWidth: 1,
+    borderRadius: BorderRadiusSizes.MEDIUM,
+    borderColor: Colors.BLUE,
+    padding: Sizes.MEDIUM
+  },
+  buttonSmall: {
+    padding: Sizes.SMALL,
+    borderRadius: BorderRadiusSizes.SMALL
+  },
+  buttonLarge: {
+    padding: Sizes.LARGE,
+    borderRadius: BorderRadiusSizes.LARGE
+  },
+  buttonAccent: {
+    backgroundColor: Colors.BLUE,
+    borderColor: Colors.BLUE_DARK
+  },
+  buttonDisabled: {
+    backgroundColor: Colors.GREY,
+    borderColor: Colors.GREY_DARK
   }
+});
 
-  handlePress = () => {
-    const { disabled, onPress } = this.props;
-    if (!disabled) {
-      onPress();
+export const Button: React.FunctionComponent<Props> = (props) => {
+  const { size = defaultSize, theme = defaultTheme, disabled } = props;
+
+  const textSize = textSizes[size];
+  const childrenColor = (disabled)
+    ? Colors.GREY
+    : childrenColors[theme];
+  const wrapperStyles = [
+    styles.wrapper,
+    size === ButtonSizes.SMALL && styles.wrapperSmall,
+    size === ButtonSizes.LARGE && styles.wrapperLarge
+  ];
+  const buttonStyles = [
+    styles.button,
+    theme === ButtonThemes.ACCENT && styles.buttonAccent,
+    size === ButtonSizes.SMALL && styles.buttonSmall,
+    size === ButtonSizes.LARGE && styles.buttonLarge,
+    disabled && styles.buttonDisabled
+  ];
+
+  const handlePress = () => {
+    if (!props.disabled && !props.loading) {
+      props.onPress();
     }
-  }
+  };
 
-  renderLoader = (themeColors: ThemeColors) => {
+  const renderLoader = () => {
     return (
-      <ActivityIndicatorComponent animating={true} color={themeColors.color} size={'small'} />
+      <ActivityIndicatorComponent animating={true} color={childrenColor} size={'small'} />
     );
-  }
+  };
 
-  renderChildren = (colorTheme: ColorThemeNames, sizeName: SizeNames) => {
-    const { children, disabled } = this.props;
+  const renderChildren = () => {
+    const { children } = props;
     if (typeof children === 'string') {
       return (
         <Text
-          colorTheme={colorTheme}
-          textAlign={TextAlign.center}
-          sizeName={sizeName}
-          disabled={disabled}
+          color={childrenColor}
+          textAlign={TextAlign.CENTER}
+          size={textSize}
+          disabled={props.disabled}
+          bold
         >
           {children}
         </Text>
@@ -100,20 +122,13 @@ export class Button extends React.PureComponent<Props> {
     } else {
       return children;
     }
-  }
+  };
 
-  render () {
-    const { loading, colorTheme = defaultColorTheme, sizeName = defaultSizeName, disabled, ...rest } = this.props;
-    const themeColors = getThemeColors(colorTheme, disabled);
-    const size = getSizes(sizeName);
-    const styles = this.getStyles(themeColors, size);
-
-    return (
-      <TouchableOpacity style={styles.touchable} {...rest} onPress={this.handlePress}>
-        <View style={styles.view}>
-          {loading ? this.renderLoader(themeColors) : this.renderChildren(colorTheme, sizeName)}
-        </View>
-      </TouchableOpacity>
-    );
-  }
-}
+  return (
+    <TouchableOpacity style={wrapperStyles} onPress={handlePress}>
+      <View style={buttonStyles}>
+        {props.loading ? renderLoader() : renderChildren()}
+      </View>
+    </TouchableOpacity>
+  );
+};

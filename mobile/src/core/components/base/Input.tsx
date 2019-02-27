@@ -1,81 +1,61 @@
 import React from 'react';
-import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
-import { SpacingProps } from '../../interfaces';
-import { ColorThemeNames, ThemeColors } from '../../theme/colors';
+import { StyleSheet, TextInput, View } from 'react-native';
+import { Colors } from '../../theme/colors';
 import { fonts } from '../../theme/fonts';
-import { SizeNames, ThemeSizes } from '../../theme/sizes';
-import { getSizes, getThemeColors } from '../../utils/theme';
+import { FontSizes } from '../../theme/sizes';
+import { Text, TextThemes } from './Text';
 
-interface IProps {
-  colorTheme?: ColorThemeNames;
-  sizeName?: SizeNames;
+// TODO: maybe add themes?
+
+export enum KeyboardTypes {
+  DEFAULT = 'default',
+  EMAIL = 'email-address',
+  NUMERIC = 'numeric',
+  PHONE = 'phone-pad'
 }
 
-// Because default theme has blue background and white color;
-const defaultColorTheme = ColorThemeNames.white;
-const defaultSizeName = SizeNames.m;
-
-type Props = IProps & SpacingProps & TextInputProps;
-
-export class Input extends React.PureComponent<Props> {
-  getStyles = (themeColors: ThemeColors, size: ThemeSizes) => {
-    const {
-      marginTop,
-      marginRight,
-      marginBottom,
-      marginLeft,
-      marginHor,
-      marginVert,
-      margin,
-      paddingTop,
-      paddingRight,
-      paddingBottom,
-      paddingLeft,
-      paddingHor,
-      paddingVert,
-      padding
-    } = this.props;
-
-    const styles: any = {
-      view: {
-        padding,
-        marginHorizontal: marginHor,
-        marginVertical: marginVert,
-        margin,
-        marginTop,
-        marginRight,
-        marginBottom,
-        marginLeft,
-        paddingHorizontal: paddingHor,
-        paddingVertical: paddingVert,
-        paddingTop,
-        paddingRight,
-        paddingBottom,
-        paddingLeft
-      },
-      text: {
-        fontFamily: fonts.noto,
-        fontSize: size.fontSize,
-        color: themeColors.color,
-        padding: size.buttonInnerPadding,
-        borderBottomWidth: 1,
-        borderBottomColor: themeColors.inputBorderColor
-      }
-    };
-
-    return StyleSheet.create(styles);
-  }
-
-  render () {
-    const { colorTheme = defaultColorTheme, sizeName = defaultSizeName, editable = true, ...rest } = this.props;
-    const themeColors = getThemeColors(colorTheme, !editable);
-    const size = getSizes(sizeName);
-    const styles = this.getStyles(themeColors, size);
-
-    return (
-      <View style={styles.view} >
-        <TextInput editable={editable} style={styles.text} {...rest}/>
-      </View>
-    );
-  }
+interface Props {
+  value: string;
+  onChangeText: (value: string) => void;
+  hint?: string;
+  keyboardType?: KeyboardTypes;
+  maxLength?: number;
+  secure?: boolean;
+  placeholder?: string;
+  disabled?: boolean;
 }
+
+const color = Colors.BLUE;
+
+const styles = StyleSheet.create({
+  text: {
+    fontFamily: fonts.noto,
+    fontSize: FontSizes.MEDIUM,
+    color,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.BLUE_DARK
+  }
+});
+
+export const Input: React.FunctionComponent<Props> = (props) => {
+  const { keyboardType, maxLength, disabled, value, secure, placeholder, hint, onChangeText } = props;
+
+  return (
+    <View>
+      {hint && <Text theme={TextThemes.HINT}>{hint}</Text>}
+      <TextInput
+        value={value}
+        maxLength={maxLength}
+        editable={!disabled}
+        keyboardType={keyboardType}
+        onChangeText={onChangeText}
+        returnKeyType={'done'}
+        secureTextEntry={secure}
+        style={styles.text}
+        selectionColor={color}
+        placeholder={placeholder}
+        placeholderTextColor={Colors.GREY}
+      />
+    </View>
+  );
+};
