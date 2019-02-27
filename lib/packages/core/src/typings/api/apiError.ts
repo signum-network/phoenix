@@ -9,7 +9,6 @@
 *
 * The Error type, returned by BRS Api
 */
-// TODO: use this in exception handling
 export interface ApiError {
     readonly errorCode: number;
     readonly errorDescription: string;

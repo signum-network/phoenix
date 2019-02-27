@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   hmr: false,
   version,
-  defaultNode: 'http://localhost:4200/burst',
+  defaultNode: 'http://localhost:4200',
   marketUrl: 'http://localhost:4200/v1/ticker/burstjs/',
 };
 

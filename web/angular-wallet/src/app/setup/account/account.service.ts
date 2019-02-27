@@ -1,14 +1,14 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 
-import {StoreService} from 'app/store/store.service';
-import {Settings} from 'app/settings';
-import {Account, composeApi, ApiSettings, Api, TransactionList, AliasList} from '@burstjs/core';
-import {generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey} from '@burstjs/crypto';
-import {isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId} from '@burstjs/util';
-import {environment} from 'environments/environment';
+import { StoreService } from 'app/store/store.service';
+import { Settings } from 'app/settings';
+import { Account, composeApi, ApiSettings, Api, TransactionList, AliasList, Balance, UnconfirmedTransactionList } from '@burstjs/core';
+import { generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey } from '@burstjs/crypto';
+import { isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId, convertNumberToNQTString, convertNQTStringToNumber } from '@burstjs/util';
+import { environment } from 'environments/environment';
 
 
 @Injectable()
@@ -32,7 +32,7 @@ export class AccountService {
   }
 
   // FIXME: any as return type is shitty...will introduce a better execption handling
-  public getAccountTransactions(id: string): Promise<TransactionList|any> {
+  public getAccountTransactions(id: string): Promise<TransactionList | any> {
     return this.api.account.getAccountTransactions(id);
   }
 
@@ -44,12 +44,20 @@ export class AccountService {
     return this.api.account.getAliases(id);
   }
 
+  public getAccountBalance(id: string): Promise<Balance> {
+    return this.api.account.getAccountBalance(id);
+  }
+
+  public getUnconfirmedTransactions(id: string): Promise<UnconfirmedTransactionList> {
+    return this.api.account.getUnconfirmedAccountTransactions(id);
+  }
+
   /*
   * Method responsible for creating a new active account from a passphrase.
   * Generates keys for an account, encrypts them with the provided key and saves them.
   * TODO: error handling of asynchronous method calls
   */
-  public createActiveAccount({passphrase, pin = ''}): Promise<Account> {
+  public createActiveAccount({ passphrase, pin = '' }): Promise<Account> {
     return new Promise((resolve, reject) => {
       const account: Account = new Account();
       // import active account
@@ -127,6 +135,34 @@ export class AccountService {
         });
       this.setCurrentAccount(account);
       resolve(account);
+    });
+  }
+
+
+  /*
+  * Method responsible for synchronizing an account with the blockchain.
+  */
+  public synchronizeAccount(account: Account): Promise<Account> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const balance = await this.getAccountBalance(account.id);
+        // @ts-ignore
+        if (balance.errorCode) {
+          // @ts-ignore
+          throw new Error(balance.errorDescription);
+        }
+        account.balance = convertNQTStringToNumber(balance.balanceNQT);
+        account.unconfirmedBalance = convertNQTStringToNumber(balance.unconfirmedBalanceNQT);
+        const transactions = await this.getAccountTransactions(account.id);
+        account.transactions = transactions;
+        const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.id)
+        account.transactions = unconfirmedTransactionsResponse.unconfirmedTransactions
+          .concat(account.transactions);
+        this.storeService.saveAccount(account).catch(error => { reject(error) })
+        resolve(account);
+      } catch(e) {
+        console.log(e);
+      }
     });
   }
 }

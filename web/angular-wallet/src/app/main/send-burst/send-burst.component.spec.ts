@@ -6,17 +6,19 @@ import { MatCheckboxModule, MatGridListModule, MatIconModule, MatButtonModule, M
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { NotifierModule } from 'angular-notifier';
-import { SetupModule } from 'app/setup/setup.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { StoreService } from 'app/store/store.service';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BurstInputValidatorDirective } from './send-burst-validator.directive';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TransactionService } from '../transactions/transaction.service';
+import { AccountService } from 'app/setup/account/account.service';
 
-xdescribe('SendBurstComponent', () => {
+describe('SendBurstComponent', () => {
   let component: SendBurstComponent;
   let fixture: ComponentFixture<SendBurstComponent>;
 
@@ -25,19 +27,23 @@ xdescribe('SendBurstComponent', () => {
       imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        SetupModule,
         NotifierModule,
         NgxMaskModule,
         I18nModule,
         MatInputModule,
         MatButtonModule,
         MatIconModule,
+        MatFormFieldModule,
         MatCardModule,
         MatSelectModule,
         MatGridListModule,
         MatCheckboxModule,
+        FormsModule,
         NetworkModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        RouterTestingModule.withRoutes(
+          [{path: 'send', component: SendBurstComponent}]
+        )
       ],
       declarations: [ SendBurstComponent, BurstInputValidatorDirective ],
       providers: [ 
@@ -49,6 +55,22 @@ xdescribe('SendBurstComponent', () => {
               ready: new BehaviorSubject(true),
               getSettings: () => Promise.resolve({language:'en'}),
               saveSettings: () => Promise.resolve(true)
+            }
+          }
+        }, 
+        {
+          provide: TransactionService,
+          useFactory: () => {
+            return {
+              sendMoney: () => Promise.resolve({broadcasted:true})
+            }
+          }
+        }, 
+        {
+          provide: AccountService,
+          useFactory: () => {
+            return {
+              currentAccount: new BehaviorSubject(true)
             }
           }
         }, 
