@@ -20,6 +20,8 @@ import { StoreConfig, appConfigFactory } from './store/store.config';
 import { NetworkService } from './network/network.service';
 import { NetworkModule } from './network/network.module';
 import { NotifierModule } from 'angular-notifier';
+import { UtilService } from './util.service';
+import { I18nModule } from './layout/components/i18n/i18n.module';
 
 const appRoutes: Routes = [
   {
@@ -58,11 +60,13 @@ const appRoutes: Routes = [
     SetupModule,
     NetworkModule,
 
-    NotifierModule
+    NotifierModule,
+    I18nModule
   ],
   providers: [
     StoreService,
-    { provide: StoreConfig, useFactory: appConfigFactory }
+    { provide: StoreConfig, useFactory: appConfigFactory },
+    UtilService
   ],
   bootstrap: [
     AppComponent

@@ -23,6 +23,7 @@ import { TransactionsModule } from './transactions/transactions.module';
 import { SendBurstModule } from './send-burst/send-burst.module';
 import { AccountsModule } from './accounts/accounts.module';
 import { AliasesModule } from './aliases/aliases.module';
+import { BlocksModule } from './blocks/blocks.module';
 
 const mainRoutes: Routes = [
   {
@@ -66,7 +67,8 @@ const mainRoutes: Routes = [
     TransactionsModule,
     SendBurstModule,
     AccountsModule,
-    AliasesModule
+    AliasesModule,
+    BlocksModule
   ],
   exports: [
     MainComponent

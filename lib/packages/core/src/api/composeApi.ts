@@ -10,6 +10,7 @@ import {getBlockByTimestamp} from './factories/block/getBlockByTimestamp';
 import {getBlockByHeight} from './factories/block/getBlockByHeight';
 import {getBlockById} from './factories/block/getBlockById';
 import {getBlockId} from './factories/block/getBlockId';
+import {getBlocks} from './factories/block/getBlocks';
 
 import {getBlockchainStatus} from './factories/network/getBlockchainStatus';
 import {getServerStatus} from './factories/network/getServerStatus';
@@ -57,6 +58,7 @@ export function composeApi(settings: ApiSettings): Api {
             getBlockByHeight,
             getBlockById,
             getBlockId,
+            getBlocks,
         })
         .withNetworkApi({
             getBlockchainStatus,

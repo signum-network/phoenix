@@ -28,7 +28,7 @@
 
         <div class="h3 username">{{ account.address }}</div>
         <div class="h5 email hint-text mt-8">{{ getAccountName() }}</div>
-        <div class="avatar-container fuse-navy-700"><img class="avatar" [src]="getQRCode(account.address)"></div>
+        <div class="avatar-container fuse-navy-700"><img class="avatar" [src]="accountQRCode"></div>
     </div>
 
     <div class="navbar-content">

@@ -50,9 +50,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     ) {
 
         this.languages = constants.languages;
-
-        console.log(this.selectedAccount);
-
         this.navigation = navigation;
 
         // Set the private defaults
@@ -67,9 +64,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
-
-
-        console.log(this.selectedAccount);
         // Subscribe to the config changes
         this._fuseConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
@@ -79,6 +73,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
                 this.hiddenNavbar = settings.layout.navbar.hidden === true;
             });
 
+        this.selectedLanguage = this.i18nService.currentLanguage;
     }
 
     /**

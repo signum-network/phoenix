@@ -7,6 +7,7 @@ import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
 import { NotifierService } from 'angular-notifier';
 import { convertNQTStringToNumber } from '@burstjs/util';
+import { UtilService } from 'app/util.service';
 
 @Component({
     selector: 'app-transactions',
@@ -28,7 +29,8 @@ export class TransactionsComponent {
     constructor(
         private accountService: AccountService,
         private storeService: StoreService,
-        private notifierService: NotifierService
+        private notifierService: NotifierService,
+        private utilService: UtilService
     ) {}
 
     public async ngOnInit() {
@@ -76,7 +78,7 @@ export class TransactionsComponent {
         return Converter.convertTimestampToDate(timestamp);
     }
 
-    public getTransactionNameFromType() {
-        return `coming soon`;
+    public getTransactionNameFromType(transaction: Transaction) {
+        return this.utilService.getTransactionNameFromType(transaction, this.account);
     }
 }
