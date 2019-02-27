@@ -18,6 +18,8 @@ describe('[E2E] Transaction Api', () => {
         expect(transaction.confirmations).toBeGreaterThan(1);
         expect(transaction.height).toBeGreaterThan(1);
         expect(transaction.sender).toBeDefined();
+        expect(transaction.recipient).toBeDefined();
+        expect(transaction.recipientRS.startsWith('BURST-')).toBeTruthy();
         // ... more here, if you want :P
     });
 
