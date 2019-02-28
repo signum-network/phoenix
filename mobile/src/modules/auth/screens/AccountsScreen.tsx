@@ -1,23 +1,17 @@
 import { Account } from '@burstjs/core';
-import { isEmpty, toString } from 'lodash';
 import React from 'react';
-import { FlatList, ListRenderItemInfo, StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-import { Button } from '../../../core/components/base/Button';
-import { ListSeparator } from '../../../core/components/base/ListSeparator';
-import { Text, TextAlign } from '../../../core/components/base/Text';
+import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
+import { PlusHeaderButton } from '../../../core/components/header/PlusHeaderButton';
+import { i18n } from '../../../core/i18n';
 import { InjectedReduxProps } from '../../../core/interfaces';
 import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
-import { i18n } from '../../../core/localization/i18n';
 import { routes } from '../../../core/navigation/routes';
 import { ApplicationState } from '../../../core/store/initialState';
-import { defaultSideOffset, ESizes, SizeNames } from '../../../core/theme/sizes';
-import { AccountListItem } from '../components/AccountListItem';
-import { loadAccounts } from '../store/actions';
+import { AccountsList } from '../components/AccountsList';
 import { AuthReduxState } from '../store/reducer';
-import { setAccounts } from '../store/utils';
 import { auth } from '../translations';
 
 interface Props extends InjectedReduxProps {
@@ -26,101 +20,43 @@ interface Props extends InjectedReduxProps {
 
 type TProps = NavigationInjectedProps & Props;
 
-const stylesConfig = {
-  addAccountView: {
-    alignContent: 'flex-end'
-  },
-  header: {
-    flexGrow: 1
-  }
-};
-const styles = StyleSheet.create(stylesConfig as any);
-
 class Accounts extends React.PureComponent<TProps> {
-  static navigationOptions = {
-    title: i18n.t(auth.accounts.title)
-  };
+  static navigationOptions = ({ navigation }: NavigationInjectedProps) => {
+    const { params = {} } = navigation.state;
 
-  handleClear = async () => {
-    await setAccounts([]);
-    await this.props.dispatch(loadAccounts());
+    return {
+      headerTitle: <HeaderTitle>{i18n.t(auth.accounts.title)}</HeaderTitle>,
+      headerRight: <PlusHeaderButton onPress={params.handleAddAccountPress} />
+    };
   }
 
-  renderNewAccountButtons = () => {
-    return (
-      <View>
-        <Button onPress={this.handleCreateAccountPress}>{i18n.t(auth.accounts.createAccount)}</Button>
-        <Button onPress={this.handleAddAccountPress}>{i18n.t(auth.accounts.addAccount)}</Button>
-        <Button onPress={this.handleClear}>
-          Clear
-        </Button>
-      </View>
-    );
+  componentDidMount () {
+    this.props.navigation.setParams({
+      handleAddAccountPress: this.handleAddAccountPress
+    });
   }
 
-  renderNoData = () => {
-    return (
-      <FullHeightView>
-        <View style={styles.header}>
-          <Text
-            textAlign={TextAlign.center}
-            marginHor={defaultSideOffset}
-            marginTop={ESizes.l}
-            sizeName={SizeNames.l}
-            isHeader={true}
-          >
-            {i18n.t(auth.accounts.noAccounts)}
-          </Text>
-        </View>
-        <View style={styles.addAccountView}>
-          {this.renderNewAccountButtons()}
-        </View>
-      </FullHeightView>
-    );
-  }
-
-  handleAccountPress = (account: Account) => {
-    //
-  }
-
-  handleCreateAccountPress = () => {
-    this.props.navigation.navigate(routes.createAccount);
+  handleAccountPress = (_account: Account) => {
+    // TODO: do smthng
   }
 
   handleAddAccountPress = () => {
+    // TODO: check or set up global PIN here before navigating to the next screen
     this.props.navigation.navigate(routes.addAccount);
   }
 
-  keyExtractor = (item: Account, index: number): string => {
-    const key = item.id || index;
-    return toString(key);
-  }
-
-  renderAccount = (item: ListRenderItemInfo<Account>) => {
-    return <AccountListItem onPress={this.handleAccountPress} account={item.item} />;
-  }
-
-  renderAccounts = () => {
-    return (
-      <FullHeightView>
-        <FlatList
-          ListFooterComponent={this.renderNewAccountButtons}
-          data={this.props.auth.accounts}
-          renderItem={this.renderAccount}
-          keyExtractor={this.keyExtractor}
-          ItemSeparatorComponent={ListSeparator}
-        />
-      </FullHeightView>
-    );
-  }
-
   render () {
-    const hasAccounts = !isEmpty(this.props.auth.accounts);
-    const content = hasAccounts ? this.renderAccounts() : this.renderNoData();
+    const accounts: Account[] = this.props.auth.accounts || [];
 
     return (
       <Screen>
-        {content}
+        <FullHeightView withoutPaddings>
+          <AccountsList
+            accounts={accounts}
+            onAccountPress={this.handleAccountPress}
+            onAddAccountPress={this.handleAddAccountPress}
+          />
+        </FullHeightView>
       </Screen>
     );
   }

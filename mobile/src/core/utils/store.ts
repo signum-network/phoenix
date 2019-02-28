@@ -1,5 +1,5 @@
 import { isFunction } from 'lodash';
-import { AnyAction as ReduxAction, Dispatch, Reducer } from 'redux';
+import { AnyAction as ReduxAction, Reducer } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action, AnyAction, CustomAction, GetState, Reducers } from '../interfaces';
 import { ApplicationState } from '../store/initialState';

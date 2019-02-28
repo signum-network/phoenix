@@ -42,6 +42,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseNavigationService: FuseNavigationService,
         private _fuseSidebarService: FuseSidebarService,
+        private _storeService: StoreService,
         private _accountService: AccountService,
         private _router: Router
     )
@@ -105,7 +106,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
+    async ngOnInit()
     {
         this._router.events
             .pipe(
@@ -138,10 +139,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
             });
 
         // Get current user
-        this._accountService.currentAccount.subscribe(async (account) => {
-            this.selectedAccount = account;
-            this.selectedAccountQRCode = await this.getQRCode(account.address);
-        });
+        this.selectedAccount =  await this._storeService.getSelectedAccount();
+        this.selectedAccountQRCode = await this.getQRCode(this.selectedAccount.address);
     }
 
     /**

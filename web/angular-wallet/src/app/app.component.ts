@@ -112,7 +112,6 @@ export class AppComponent implements OnInit, OnDestroy {
         this.accountService.synchronizeAccount(account).catch(() => {});
       }, 1);
     });
-
   }
 
   ngOnDestroy(): void {
