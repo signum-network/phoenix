@@ -89,7 +89,7 @@
         <!-- REPLY FORM -->
         <div class="reply-form" fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="center center">
 
-            <form #replyForm="ngForm" (ngSubmit)="sendMessage($event)" (keydown.enter)="reply($event)" fxFlex fxLayout="row"
+            <form #replyForm="ngForm" (ngSubmit)="sendMessage($event)" (keydown.enter)="sendMessage($event)" fxFlex fxLayout="row"
                 fxLayoutAlign="start center">
 
                 <mat-form-field class="message-text" fxFlex floatLabel="never" appearance="standard">

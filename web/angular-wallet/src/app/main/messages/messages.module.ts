@@ -45,9 +45,8 @@ const routes: Routes = [
         MessageRightSidenavComponent,
         MessageOptionsSidenavComponent,
     ],
-    imports     : [
+    imports: [
         RouterModule.forChild(routes),
-
         MatButtonModule,
         MatCardModule,
         MatFormFieldModule,
@@ -60,7 +59,6 @@ const routes: Routes = [
         MatToolbarModule,
         MatSliderModule,
         SendBurstModule,
-
         LayoutModule,
         FuseSharedModule,
         I18nModule,

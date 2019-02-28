@@ -1,6 +1,6 @@
 <label class="pill">Suggested fee:</label>
-Standard: <em (click)="feeNQT=convertFeeToBurst(fees.standard)">{{ convertFeeToBurst(fees.standard) }}</em>
-Cheap: <em (click)="feeNQT=convertFeeToBurst(fees.cheap)">{{ convertFeeToBurst(fees.cheap) }}</em>
-Priority: <em (click)="feeNQT=convertFeeToBurst(fees.priority)">{{ convertFeeToBurst(fees.priority) }}</em><br /><br />
+Standard: <em (click)="feeNQT=convertFeeToBurst(fees.standard).toString()">{{ convertFeeToBurst(fees.standard) }}</em>
+Cheap: <em (click)="feeNQT=convertFeeToBurst(fees.cheap).toString()">{{ convertFeeToBurst(fees.cheap) }}</em>
+Priority: <em (click)="feeNQT=convertFeeToBurst(fees.priority).toString()">{{ convertFeeToBurst(fees.priority) }}</em><br /><br />
 
 <ng5-slider [(value)]="feeNQT" [options]="options"></ng5-slider>
