@@ -104,13 +104,15 @@ message-sidenav {
             }
         }
 
-        .no-results-message {
-            position: absolute;
-            width: 100%;
-            height: 88px;
+        .new-message {
             padding: 16px;
             font-size: 15px;
             font-weight: 400;
+            cursor:pointer;
+            text-align: center;
+            a {
+                color:#333;
+            }
         }
     }
 }

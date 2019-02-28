@@ -39,10 +39,9 @@
                 Messages
             </div>
 
-            <button mat-button class="contact"
-                    *ngFor="let message of messages | filter: searchText"
-                    (click)="getMessage(message)" ngClass="{'unread':contact.unread}"
-                    [@animate]="{value:'*',params:{y:'100%'}}">
+            <button mat-button class="contact" *ngFor="let message of messages | filter: searchText"
+                (click)="getMessage(message)" ngClass="{'unread':contact.unread}"
+                [@animate]="{value:'*',params:{y:'100%'}}">
 
                 <div fxLayout="row" fxLayoutAlign="start center">
 
@@ -57,7 +56,8 @@
                             <div class="contact-last-message-time">
                                 {{convertTimestampToDate(message.timestamp) | timeAgo}}
                             </div>
-                            <div *ngIf="message.unread" class="mt-4 unread-message-count accent">{{message.unread}}</div>
+                            <div *ngIf="message.unread" class="mt-4 unread-message-count accent">{{message.unread}}
+                            </div>
                         </div>
 
                     </div>
@@ -65,6 +65,14 @@
                 </div>
 
             </button>
+
+            <div *ngIf="(messages | filter: searchText).length === 0">
+                <div matSubheader>No results found.</div>
+
+                <div class="new-message">
+                    <a (click)="startMessage()">Compose a new message.</a>
+                </div>
+            </div>
 
         </div>
         <!-- / CHATS LIST-->

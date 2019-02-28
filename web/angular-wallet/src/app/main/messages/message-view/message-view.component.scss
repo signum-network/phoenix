@@ -27,6 +27,32 @@ message-view {
                     font-size:16px;
                 }
             }
+
+            .message-contact-name-input {
+                height: 36px;
+                line-height: 36px;
+                padding: 8px;
+                font-size: 13px;
+                border-radius: 18px;
+                border: 1px solid;
+                background: #fafafa;
+                border-color: rgba(0, 0, 0, 0.12);
+                .mat-form-field-infix {
+                    width:263px;
+                    margin:0 0 -10px 0;
+                    padding:0;
+                    border:none;
+                }
+                .mat-form-field-flex {
+                    padding:0;
+                    position: relative;
+                    top: -8px;
+                    left: 6px;
+                }
+                .mat-form-field-underline {
+                    display: none !important;
+                }
+            }
         }
 
         #message-content {

@@ -44,8 +44,8 @@ export class MessagesComponent implements OnInit, OnDestroy
     {
         this._messageService.onMessageSelected
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(messageData => {
-                this.selectedMessage = messageData;
+            .subscribe(({message}) => {
+                this.selectedMessage = message;
             });
     }
 

@@ -48,6 +48,9 @@ const routes = [
     NetworkModule,
     LayoutModule,
     RouterModule.forChild(routes)
+  ],
+  exports: [
+    BurstInputValidatorDirective
   ]
 })
 export class SendBurstModule { }

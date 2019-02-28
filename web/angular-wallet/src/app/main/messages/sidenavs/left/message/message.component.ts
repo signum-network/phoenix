@@ -7,7 +7,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { FuseMatSidenavHelperService } from '@fuse/directives/fuse-mat-sidenav/fuse-mat-sidenav.service';
 
 import { MessagesService } from '../../../messages.service';
-import { Converter } from '@burstjs/crypto/out/src';
+import { Converter } from '@burstjs/crypto';
 
 @Component({
     selector: 'message-sidenav',
@@ -22,6 +22,7 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
     contacts: any[];
     searchText: string;
     user: any;
+    isNewMessage = false;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -62,16 +63,9 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
 
         this._messageService.onMessagesUpdated
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(updatedMessages => {
-                this.messages = updatedMessages;
+            .subscribe((messages) => {
+                this.messages = messages;
             });
-
-        // this._messageService.onUserUpdated
-        //     .pipe(takeUntil(this._unsubscribeAll))
-        //     .subscribe(updatedUser => {
-        //         this.user = updatedUser;
-        //     });
-
     }
 
     /**
@@ -99,6 +93,15 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
             this._fuseMatSidenavHelperService.getSidenav('message-left-sidenav').toggle();
         }
     }
+    
+
+    startMessage() {
+        this._messageService.sendNewMessage(this.searchText);
+
+        if (!this._observableMedia.isActive('gt-md')) {
+            this._fuseMatSidenavHelperService.getSidenav('message-left-sidenav').toggle();
+        }
+    }
 
     /**
      * Change left sidenav view
@@ -107,13 +110,6 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
      */
     changeLeftSidenavView(view): void {
         this._messageService.onLeftSidenavViewChanged.next(view);
-    }
-
-    /**
-     * Logout
-     */
-    logout(): void {
-        console.log('logout triggered');
     }
 
     convertTimestampToDate(timestamp) {

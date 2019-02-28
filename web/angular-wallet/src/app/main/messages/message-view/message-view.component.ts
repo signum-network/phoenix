@@ -10,6 +10,7 @@ import { AccountService } from 'app/setup/account/account.service';
 import { Account } from '@burstjs/core';
 import { Router } from '@angular/router';
 import { Converter } from '@burstjs/crypto';
+import { burstAddressPattern, convertAddressToNumericId, isValid } from '@burstjs/util';
 
 @Component({
     selector: 'message-view',
@@ -24,6 +25,8 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     fee: number = 0.01; // todo: allow user to configure
     selectedUser: Account;
     selectedMessageQRCode: string;
+    isNewMessage = false;
+    burstAddressPatternRef = burstAddressPattern;
 
     @ViewChild(FusePerfectScrollbarDirective)
     directiveScroll: FusePerfectScrollbarDirective;
@@ -62,11 +65,11 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         this.selectedUser = this.messageService.user;
         this.messageService.onMessageSelected
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(async messageData => {
-                console.log(messageData);
-                if (messageData) {
-                    this.message = messageData;
-                    this.selectedMessageQRCode = await this.getQRCode(messageData.contactId);
+            .subscribe(async ({ message, isNewMessage }) => {
+                if (message) {
+                    this.message = message;
+                    this.isNewMessage = isNewMessage;
+                    // this.selectedMessageQRCode = await this.getQRCode(messageData.contactId);
                     this.readyToReply();
                 }
             });
@@ -181,11 +184,20 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
             return;
         }
 
+        if (this.isNewMessage) {
+            if (!isValid(this.message.senderRS)) {
+                return;
+            }
+            this.message.senderRS = `BURST-${this.message.senderRS}`;
+            this.message.contactId = convertAddressToNumericId(this.message.senderRS);
+            this.isNewMessage = false;
+        }
+
         // Message
         const message = {
             contactId: this.message.contactId,
             message: this.replyForm.form.value.message,
-            timestamp: new Date().toISOString()
+            timestamp: Converter.convertDateToTimestamp().toString()
         };
 
         // Add the message to the message
