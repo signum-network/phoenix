@@ -17,6 +17,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TransactionService } from '../transactions/transaction.service';
 import { AccountService } from 'app/setup/account/account.service';
+import { LayoutModule } from 'app/layout/layout.module';
+import { BurstFeeSelectorComponent } from 'app/layout/components/burst-fee-selector/burst-fee-selector.component';
+import { Ng5SliderModule } from 'ng5-slider';
 
 describe('SendBurstComponent', () => {
   let component: SendBurstComponent;
@@ -39,13 +42,14 @@ describe('SendBurstComponent', () => {
         MatGridListModule,
         MatCheckboxModule,
         FormsModule,
+        Ng5SliderModule,
         NetworkModule,
         HttpClientTestingModule,
         RouterTestingModule.withRoutes(
           [{path: 'send', component: SendBurstComponent}]
         )
       ],
-      declarations: [ SendBurstComponent, BurstInputValidatorDirective ],
+      declarations: [ SendBurstComponent, BurstInputValidatorDirective, BurstFeeSelectorComponent ],
       providers: [ 
         I18nService, 
         {
