@@ -29,7 +29,6 @@ describe('[E2E] Network Api', () => {
     it('should getTime', async () => {
         const status = await getTime(service)();
         expect(status.time).toBeGreaterThan(0);
-        expect(status.unixTime).toBeGreaterThanOrEqual(Math.floor(Date.now() / 1000));
     });
 
 });

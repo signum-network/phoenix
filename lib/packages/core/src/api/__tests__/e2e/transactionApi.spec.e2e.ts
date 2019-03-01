@@ -1,6 +1,8 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../burstService';
 import {getTransaction} from '../../factories/transaction/getTransaction';
+import {HttpError} from '@burstjs/http';
+
 
 const environment = loadEnvironment();
 
@@ -21,6 +23,23 @@ describe('[E2E] Transaction Api', () => {
         expect(transaction.recipient).toBeDefined();
         expect(transaction.recipientRS.startsWith('BURST-')).toBeTruthy();
         // ... more here, if you want :P
+    });
+
+    it('should fail getTransaction on unknown transaction', async () => {
+
+        try {
+            await getTransaction(service)('123');
+            expect('Should throw exception').toBeFalsy();
+        } catch (e) {
+            const httpError = <HttpError>e;
+            expect(httpError.message).toContain('Unknown transaction');
+            expect(httpError.message).toContain('5'); // error code
+            expect(httpError.data).toEqual(expect.objectContaining({
+                'errorCode': 5,
+                'errorDescription': 'Unknown transaction'
+            }));
+
+        }
     });
 
 });
