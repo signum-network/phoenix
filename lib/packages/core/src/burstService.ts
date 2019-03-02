@@ -1,3 +1,4 @@
+/** @ignore */
 /** @module core */
 
 import {Http, HttpImpl} from '@burstjs/http';
@@ -10,9 +11,7 @@ export interface ApiError {
 }
 
 /**
- * @ignore
  * Generic BRS Web Service class.
- * Extend and specific services here
  */
 export class BurstService {
 

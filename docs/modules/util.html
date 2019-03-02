@@ -77,6 +77,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#constructburstaddress" class="tsd-kind-icon">construct<wbr>Burst<wbr>Address</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertaddresstonumericid" class="tsd-kind-icon">convert<wbr>Address<wbr>ToNumeric<wbr>Id</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertbursttimetodate" class="tsd-kind-icon">convert<wbr>Burst<wbr>Time<wbr>ToDate</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertbursttimetoepochtime" class="tsd-kind-icon">convert<wbr>Burst<wbr>Time<wbr>ToEpoch<wbr>Time</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertnqtstringtonumber" class="tsd-kind-icon">convertNQTString<wbr>ToNumber</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertnumbertonqtstring" class="tsd-kind-icon">convert<wbr>Number<wbr>ToNQTString</a></li>
@@ -107,7 +108,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/util/src/constructBurstAddress.ts#L12">util/src/constructBurstAddress.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/util/src/constructBurstAddress.ts#L12">util/src/constructBurstAddress.ts:12</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -140,7 +141,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/util/src/convertAddressToNumericId.ts#L19">util/src/convertAddressToNumericId.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/util/src/convertAddressToNumericId.ts#L19">util/src/convertAddressToNumericId.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -165,6 +166,40 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="convertbursttimetodate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> convert<wbr>Burst<wbr>Time<wbr>ToDate</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">convert<wbr>Burst<wbr>Time<wbr>ToDate<span class="tsd-signature-symbol">(</span>burstTimestamp<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/util/src/convertBurstTimeToDate.ts#L13">util/src/convertBurstTimeToDate.ts:13</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts a Burst/Block Time (seconds since genesis block) into Date</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>burstTimestamp: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The numeric Id</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Date</span></h4>
+							<p>Date</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="convertbursttimetoepochtime" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> convert<wbr>Burst<wbr>Time<wbr>ToEpoch<wbr>Time</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
@@ -174,7 +209,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/util/src/convertBurstTimeToEpochTime.ts#L19">util/src/convertBurstTimeToEpochTime.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/util/src/convertBurstTimeToEpochTime.ts#L19">util/src/convertBurstTimeToEpochTime.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -208,7 +243,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/util/src/convertNQTStringToNumber.ts#L14">util/src/convertNQTStringToNumber.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/util/src/convertNQTStringToNumber.ts#L14">util/src/convertNQTStringToNumber.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -242,7 +277,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/util/src/convertNumberToNQTString.ts#L13">util/src/convertNumberToNQTString.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/util/src/convertNumberToNQTString.ts#L13">util/src/convertNumberToNQTString.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -276,7 +311,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/util/src/convertNumericIdToAddress.ts#L18">util/src/convertNumericIdToAddress.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/util/src/convertNumericIdToAddress.ts#L18">util/src/convertNumericIdToAddress.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -310,7 +345,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/util/src/isBurstAddress.ts#L75">util/src/isBurstAddress.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/util/src/isBurstAddress.ts#L75">util/src/isBurstAddress.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -344,7 +379,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/util/src/isBurstAddress.ts#L16">util/src/isBurstAddress.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/util/src/isBurstAddress.ts#L16">util/src/isBurstAddress.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -378,7 +413,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/util/src/splitBurstAddress.ts#L12">util/src/splitBurstAddress.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/util/src/splitBurstAddress.ts#L12">util/src/splitBurstAddress.ts:12</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -410,7 +445,7 @@
 					<div class="tsd-signature tsd-kind-icon">burst<wbr>Address<wbr>Pattern<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/util/src/index.ts#L13">util/src/index.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/util/src/index.ts#L14">util/src/index.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -424,7 +459,7 @@
 						<div class="tsd-signature tsd-kind-icon">_<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/util/src/index.ts#L14">util/src/index.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/util/src/index.ts#L15">util/src/index.ts:15</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -433,7 +468,7 @@
 							<div class="tsd-signature tsd-kind-icon">pattern<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x27;\[a-zA-Z0-9\]&#x27;)</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/88ffb47/lib/packages/util/src/index.ts#L14">util/src/index.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/util/src/index.ts#L15">util/src/index.ts:15</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -474,6 +509,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="util.html#convertaddresstonumericid" class="tsd-kind-icon">convert<wbr>Address<wbr>ToNumeric<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="util.html#convertbursttimetodate" class="tsd-kind-icon">convert<wbr>Burst<wbr>Time<wbr>ToDate</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="util.html#convertbursttimetoepochtime" class="tsd-kind-icon">convert<wbr>Burst<wbr>Time<wbr>ToEpoch<wbr>Time</a>
