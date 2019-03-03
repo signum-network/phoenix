@@ -54,9 +54,8 @@ import {EncryptedMessage} from "../typings/encryptedMessage";
 // };
 
 
-export function encryptMessage(text: string, recipientPublicKey: string, senderPrivateKeyEncrypted: string, senderPinHash: string): EncryptedMessage {
+export function encryptMessage(text: string, recipientPublicKey: string, senderPrivateKey: string): EncryptedMessage {
 
-    const senderPrivateKey = CryptoJS.AES.decrypt(senderPrivateKeyEncrypted, senderPinHash).toString(CryptoJS.enc.Utf8);
     const sharedKey =
         ECKCDSA.sharedkey(
             Converter.convertHexStringToByteArray(senderPrivateKey),

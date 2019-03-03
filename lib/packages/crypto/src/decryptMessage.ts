@@ -41,10 +41,8 @@ import {EncryptedMessage} from "../typings/encryptedMessage";
 // }
 
 
-export function decryptMessage(encryptedMessage: EncryptedMessage, senderPublicKey: string, recipientPrivateKeyEncrypted: string, recipientPinHash: string): string {
+export function decryptMessage(encryptedMessage: EncryptedMessage, senderPublicKey: string, recipientPrivateKey: string): string {
 
-
-    const recipientPrivateKey = CryptoJS.AES.decrypt(recipientPrivateKeyEncrypted, recipientPinHash).toString(CryptoJS.enc.Utf8);
     let sharedKey =
         ECKCDSA.sharedkey(
             Converter.convertHexStringToByteArray(recipientPrivateKey),
@@ -63,10 +61,9 @@ export function decryptMessage(encryptedMessage: EncryptedMessage, senderPublicK
     if (tokens.length !== 2) {
         throw new Error('Invalid message format');
     }
-    const iv = tokens[0];
     return CryptoJS.AES.decrypt(
         tokens[1],
         aeskey,
-        {iv: new Buffer(iv).toString('base64')}
+        {iv: Converter.convertBase64ToString(tokens[0])}
     ).toString(CryptoJS.enc.Utf8)
 }
