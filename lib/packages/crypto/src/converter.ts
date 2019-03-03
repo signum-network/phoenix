@@ -305,17 +305,6 @@ export class Converter {
     }
 
     /**
-     * @deprecated Use @burstjs/util/convertBurstTimeToEpochTime
-     */
-    public static convertTimestampToDate(timestamp: number) {
-        return new Date(Date.UTC(2014, 7, 11, 2, 0, 0, 0) + timestamp * 1000);
-    }
-
-    public static convertDateToTimestamp() {
-        return (new Date().getTime() - Date.UTC(2014, 7, 11, 2, 0, 0, 0))/1000;
-    }
-
-    /**
      * Converts a string to base64
      * @param text The string to be converted
      * @return the converted base64 string

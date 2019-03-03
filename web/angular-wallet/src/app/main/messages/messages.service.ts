@@ -8,6 +8,7 @@ import { environment } from 'environments/environment';
 import { decryptAES, hashSHA256, Converter } from '@burstjs/crypto/out/src';
 import { NetworkService } from 'app/network/network.service';
 import { convertAddressToNumericId } from '@burstjs/util/out';
+import {convertDateToBurstTime} from "@burstjs/util/src/convertDateToBurstTime";
 
 export interface ChatMessage {
     message: string;
@@ -72,7 +73,7 @@ export class MessagesService implements Resolve<any>
                 val.attachment.timestamp = val.timestamp;
                 val.attachment.contactId = val.sender;
                 const existingMessage = acc.find((item) => {
-                    return isSentMessage ? item.contactId === val.recipient : 
+                    return isSentMessage ? item.contactId === val.recipient :
                                            item.contactId === val.sender;
                 });
                 if (existingMessage) {
@@ -152,7 +153,7 @@ export class MessagesService implements Resolve<any>
             contactId: convertAddressToNumericId(recipient) || 'new',
             dialog: [],
             senderRS: recipient,
-            timestamp: Converter.convertDateToTimestamp().toString()
+            timestamp: convertDateToBurstTime(new Date()).toString()
         }
         this.messages.push(message);
         this.onMessagesUpdated.next(this.messages);
