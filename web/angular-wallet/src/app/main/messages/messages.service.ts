@@ -67,7 +67,7 @@ export class MessagesService implements Resolve<any>
 
             this.user = await this.accountService.currentAccount.getValue();
 
-            this.messages = messages.transactions.reduce((acc, val) => {
+            this.messages = messages.transactions && messages.transactions.reduce((acc, val) => {
                 const isSentMessage = this.user.account === val.sender;
                 val.attachment.timestamp = val.timestamp;
                 val.attachment.contactId = val.sender;
