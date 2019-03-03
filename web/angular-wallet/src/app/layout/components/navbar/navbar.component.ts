@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Account } from '@burstjs/core';
 
 @Component({
     selector     : 'navbar',
@@ -50,4 +51,6 @@ export class NavbarComponent
         // Add the new class name
         this._renderer.addClass(this._elementRef.nativeElement, value);
     }
+
+    @Input('selectedAccount') selectedAccount: Account;
 }

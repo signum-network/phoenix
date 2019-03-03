@@ -30,7 +30,7 @@ export class AliasesComponent {
 
     this.storeService.ready.subscribe(async (ready) => {
       this.selectedAccount = await this.storeService.getSelectedAccount();
-      const aliasesResponse = await this.accountService.getAliases(this.selectedAccount.id);
+      const aliasesResponse = await this.accountService.getAliases(this.selectedAccount.account);
       this.dataSource.data = aliasesResponse.aliases;
     });
   }

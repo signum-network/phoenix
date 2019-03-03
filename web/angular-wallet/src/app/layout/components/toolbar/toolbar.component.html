@@ -28,15 +28,15 @@
             <button mat-button [matMenuTriggerFor]="userMenu"
                     class="user-button">
                 <div fxLayout="row" fxLayoutAlign="center center">
-                    <span class="username mr-12" fxHide fxShow.gt-sm>{{selectedAccount.alias || selectedAccount.address}}</span>
+                    <span class="username mr-12" fxHide fxShow.gt-sm>{{selectedAccount.name || selectedAccount.accountRS}}</span>
                     <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
                 </div>
             </button>
 
             <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
 
-                <button *ngFor="let account of accounts" mat-menu-item class="">
-                    <span *ngIf="account" (click)="setAccount(account)">{{account.alias || account.address}}</span>
+                <button *ngFor="let account of accounts" mat-menu-item class="" (click)="setAccount(account)">
+                    <span *ngIf="account">{{account.name || account.accountRS}}</span>
                 </button>
 
                 <button mat-menu-item class="" routerLink="/accounts">

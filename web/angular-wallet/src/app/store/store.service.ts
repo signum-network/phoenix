@@ -31,7 +31,7 @@ export class StoreService {
         }
         let accounts = this.store.getCollection('accounts');
         if (accounts == null) {
-            accounts = this.store.addCollection('accounts', { unique: ['id'] });
+            accounts = this.store.addCollection('accounts', { unique: ['account'] });
         }
         let settings = this.store.getCollection('settings');
         if (settings == null) {
@@ -65,14 +65,15 @@ export class StoreService {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
                 const accounts = this.store.getCollection('accounts');
-                const rs = accounts.find({ id: account.id });
+                const rs = accounts.find({ account: account.account });
                 if (rs.length == 0) {
                     accounts.insert(account);
                 } else {
-                    accounts.chain().find({ id: account.id }).update(w => {
-                        w.balance = account.balance;
+                    accounts.chain().find({ account: account.account }).update(w => {
+                        w.balanceNQT = account.balanceNQT;
                         w.type = account.type;
                         w.selected = account.selected;
+                        w.name = account.name;
                         w.keys = account.keys;
                         w.transactions = account.transactions;
                     });
@@ -99,7 +100,7 @@ export class StoreService {
                 } else {
                     rs = accounts.find();
                     if (rs.length > 0) {
-                        accounts.chain().find({ id: rs[0].id }).update(w => {
+                        accounts.chain().find({ account: rs[0].account }).update(w => {
                             w.selected = true;
                         });
                         const w = new Account(rs[0]);
@@ -127,7 +128,7 @@ export class StoreService {
                 accounts.chain().find({ selected: true }).update(w => {
                     w.selected = false;
                 });
-                accounts.chain().find({ id: account.id }).update(w => {
+                accounts.chain().find({ account: account.account }).update(w => {
                     w.selected = true;
                 });
                 this.store.saveDatabase();
@@ -160,12 +161,12 @@ export class StoreService {
     /*
     * Method reponsible for finding an account by its numeric id from the database.
     */
-    public findAccount(id: string): Promise<Account> {
+    public findAccount(account: string): Promise<Account> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
                 const accounts = this.store.getCollection('accounts');
-                const rs = accounts.find({ id: id });
-                if (id && rs.length > 0) {
+                const rs = accounts.find({ account: account });
+                if (account && rs.length > 0) {
                     const account = new Account(rs[0]);
                     resolve(account);
                 } else {
@@ -184,7 +185,7 @@ export class StoreService {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
                 const accounts = this.store.getCollection('accounts');
-                const rs = accounts.chain().find({ id: account.id }).remove();
+                const rs = accounts.chain().find({ account: account.account }).remove();
                 this.store.saveDatabase();
                 resolve(true);
             } else {

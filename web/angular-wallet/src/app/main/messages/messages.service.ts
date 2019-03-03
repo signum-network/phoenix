@@ -67,8 +67,8 @@ export class MessagesService implements Resolve<any>
 
             this.user = await this.accountService.currentAccount.getValue();
 
-            this.messages = messages.transactions.reduce((acc, val) => {
-                const isSentMessage = this.user.id === val.sender;
+            this.messages = messages.transactions && messages.transactions.reduce((acc, val) => {
+                const isSentMessage = this.user.account === val.sender;
                 val.attachment.timestamp = val.timestamp;
                 val.attachment.contactId = val.sender;
                 const existingMessage = acc.find((item) => {
@@ -144,7 +144,7 @@ export class MessagesService implements Resolve<any>
      * @returns {Promise<any>}
      */
     getMessages(): Promise<any> {
-        return this.accountService.getAccountTransactions(this.accountService.currentAccount.getValue().id, 0, 74, 0, 1, 0);
+        return this.accountService.getAccountTransactions(this.accountService.currentAccount.getValue().account, 0, 74, 0, 1, 0);
     }
 
     sendNewMessage(recipient) {

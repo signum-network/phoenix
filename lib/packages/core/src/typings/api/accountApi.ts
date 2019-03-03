@@ -4,6 +4,7 @@ import {TransactionList} from '../transactionList';
 import {UnconfirmedTransactionList} from '../unconfirmedTransactionList';
 import {Balance} from '../balance';
 import {AliasList} from '../aliasList';
+import { Account } from '../account';
 
 /**
  * Account API
@@ -44,6 +45,15 @@ export interface AccountApi {
      * @return {Promise<Balance>} The account's balance
      */
     getAccountBalance: (accountId: string) => Promise<Balance>;
+
+
+    /**
+     * Get an account given an ID
+     * @param {string} accountId
+     * @return {Promise<Account>} The account from the backend, not including transactions
+     */
+    getAccount: (accountId: string) => Promise<Account>;
+
 
     /**
      * Get QR Code image for a given BURST address

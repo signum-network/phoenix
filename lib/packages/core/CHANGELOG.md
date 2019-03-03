@@ -2,7 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 
-## 0.1.0-rc1
+## Unreleased
+### Account
+- Modified `Account` type to better reflect what is returned from BRS API. This is a breaking change, please see the `Account` for the new property names.  
 
 ## 0.1.0-rc1
 ### Network
