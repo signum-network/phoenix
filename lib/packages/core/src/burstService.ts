@@ -1,8 +1,7 @@
 /** @ignore */
 /** @module core */
 
-import {Http, HttpImpl} from '@burstjs/http';
-import HttpError from '../../http/src/httpError';
+import {Http, HttpImpl, HttpError} from '@burstjs/http';
 
 
 export interface ApiError {
