@@ -306,4 +306,8 @@ export class Converter {
     public static convertTimestampToDate(timestamp: number) {
         return new Date(Date.UTC(2014, 7, 11, 2, 0, 0, 0) + timestamp * 1000);
     }
+
+    public static convertDateToTimestamp() {
+        return (new Date().getTime() - Date.UTC(2014, 7, 11, 2, 0, 0, 0))/1000;
+    }
 }

@@ -17,7 +17,7 @@ import { I18nService } from 'app/layout/components/i18n/i18n.service';
 })
 export class SendBurstComponent implements OnInit {
   @ViewChild('sendBurstForm') public sendBurstForm: NgForm;
-  @ViewChild('feeNQT') public feeNQT: string;
+  public feeNQT: string;
   @ViewChild('recipientAddress') public recipientAddress: string;
   @ViewChild('amountNQT') public amountNQT: string;
   @ViewChild('message') public message: string;
@@ -58,14 +58,6 @@ export class SendBurstComponent implements OnInit {
 
   getTotal() {
     return parseFloat(this.amountNQT) + parseFloat(this.feeNQT) || 0;
-  }
-
-  setFee(feeNQT: string) {
-    this.feeNQT = this.convertFeeToBurst(feeNQT).toString();
-  }
-
-  convertFeeToBurst(feeNQT: string) {
-    return convertNQTStringToNumber(feeNQT);
   }
 
   onSubmit(event) {

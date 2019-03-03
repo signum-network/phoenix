@@ -112,22 +112,6 @@ export class AppComponent implements OnInit, OnDestroy {
         this.accountService.synchronizeAccount(account).catch(() => {});
       }, 1);
     });
-
-  private updateAccounts() {
-    this.storeService.getSelectedAccount().then((account) => {
-      if (account) {
-        this.selectedAccount = account;
-        this.accountService.selectAccount(account);
-      }
-    });
-    this.storeService.getAllAccounts().then((accounts) => {
-      this.accounts = accounts;
-      accounts.map((account) => {
-        setTimeout(() => {
-          this.accountService.synchronizeAccount(account).catch(() => {});
-        }, 1);
-      });
-    });
   }
 
   ngOnDestroy(): void {
