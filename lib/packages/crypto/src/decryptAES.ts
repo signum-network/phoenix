@@ -10,5 +10,5 @@ import * as CryptoJS from 'crypto-js';
  */
 export const decryptAES = (encryptedBase64: string, key: string): string => {
     const decrypted = CryptoJS.AES.decrypt(encryptedBase64, key);
-    return decrypted.toString(CryptoJS.enc.Utf8);
+    return decrypted && decrypted.toString(CryptoJS.enc.Utf8);
 };
