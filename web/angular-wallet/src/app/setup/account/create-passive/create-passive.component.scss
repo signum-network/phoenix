@@ -1,7 +1,7 @@
 $media-querie-mobile: 0;
 $media-querie-tablet: 768px;
 
-.address-container mat-form-field {
+.accountRS-container mat-form-field {
   @media screen and (min-width: $media-querie-mobile) {
     margin-left: 3rem;
     width: 80%;

@@ -67,7 +67,7 @@ export class TransactionsComponent {
     }
 
     public isOwnAccount(address: string): boolean {
-        return address != undefined && address == this.account.address;
+        return address != undefined && address == this.account.accountRS;
     }
 
     public convertTimestamp(timestamp: number): Date {

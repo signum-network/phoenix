@@ -11,6 +11,6 @@ export class TransactionsResolver implements Resolve<Promise<Transaction>> {
   }
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.accountService.getAccountTransactions(this.accountService.currentAccount.getValue().id);
+    return this.accountService.getAccountTransactions(this.accountService.currentAccount.getValue().account);
   }
 }

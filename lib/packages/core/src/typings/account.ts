@@ -21,16 +21,17 @@ export class Account {
     public account: string;
     public accountRS: string;
     public assetBalances: AssetBalance[]
-    public balanceNQT: number;
+    public balanceNQT: string;
     public description: string;
-    public effectiveBalanceNQT: number;
+    public effectiveBalanceNQT: string;
     public keys: Keys;
+    public name: string;
     public pinHash: string;
     public selected: boolean;
     public transactions: Transaction[];
     public type: string;
     public unconfirmedAssetBalances: UnconfirmedAssetBalance[];
-    public unconfirmedBalanceNQT: number;
+    public unconfirmedBalanceNQT: string;
 
     constructor(data: any = {}) {
         this.account = data.account || undefined;
@@ -46,6 +47,7 @@ export class Account {
             this.keys.signPrivateKey = data.keys.signPrivateKey || undefined;
             this.keys.agreementPrivateKey = data.keys.agreementPrivateKey || undefined;
         }
+        this.name = data.name || undefined;
         this.selected = data.selected || false;
         if (data.transactions !== undefined && data.transactions.length > 0) {
             this.transactions = data.transactions;
