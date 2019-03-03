@@ -11,7 +11,7 @@ All notable changes to this project will be documented in this file.
     - Block: `getBlocks`
     
  
-  
+## 0.1.0-rc1
 ### Network
 - Added `suggestFees` for getting suggested fees.
 - Added `sendMoney` for generating the unsigned transaction, signing it, and broadcasting it.

@@ -1,0 +1,118 @@
+@import "src/@fuse/scss/fuse";
+
+message-sidenav {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    .sidenav-header {
+
+        mat-toolbar {
+            border-bottom: 1px solid;
+
+            .avatar-wrapper {
+
+                .avatar,
+                .status {
+                    cursor: pointer;
+                }
+            }
+
+            .search {
+                height: 36px;
+                line-height: 36px;
+                padding: 8px;
+                font-size: 13px;
+                border-radius: 18px;
+                border: 1px solid;
+                overflow: hidden;
+
+                .mat-icon {
+                    margin: 0;
+                }
+
+                input {
+                    padding: 0 12px 0 8px;
+                    height: 36px;
+                    border: none;
+                }
+            }
+        }
+    }
+
+    .sidenav-content {
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+
+        .contact-list,
+        .message-list {
+
+            .mat-subheader {
+                padding-left: 16px;
+                font-size: 20px;
+                font-weight: 300;
+                height: 88px;
+                line-height: 88px;
+            }
+
+            .contact {
+                white-space: normal;
+                text-align: left;
+                letter-spacing: .010em;
+                min-height: 88px;
+                border-bottom: 1px solid;
+                padding: 16px;
+                font-weight: 400;
+                border-radius: 0;
+
+                .avatar-wrapper {
+
+                    .avatar {
+                        margin-right: 16px;
+                    }
+                }
+
+                .contact-name {
+                    font-size: 16px;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+
+                .contact-last-message {
+                    line-height: normal;
+                    margin-top: 0;
+                }
+
+                .contact-last-message-time {
+                    font-size: 12px;
+                    margin-top: 4px;
+                }
+
+                .contact-mood {
+                    line-height: normal;
+                    margin: 0;
+                }
+
+                .unread-message-count {
+                    font-size: 12px;
+                    border-radius: 50%;
+                    text-align: center;
+                    width: 20px;
+                    height: 20px;
+                    line-height: 20px;
+                }
+            }
+        }
+
+        .new-message {
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 400;
+            cursor:pointer;
+            text-align: center;
+            a {
+                color:#333;
+            }
+        }
+    }
+}

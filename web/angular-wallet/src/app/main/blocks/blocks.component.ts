@@ -34,7 +34,6 @@ export class BlocksComponent {
     public async ngOnInit() {
         this.displayedColumns = ['block', 'height', 'numberOfTransactions', 'timestamp', 'totalAmountNQT', 'totalFeeNQT'];
         this.dataSource = new MatTableDataSource<Block>();
-        console.log(this.route.snapshot.data);
         this.dataSource.data = this.route.snapshot.data.blocks.blocks;
     }
 

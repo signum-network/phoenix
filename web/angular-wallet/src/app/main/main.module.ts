@@ -25,6 +25,7 @@ import { AccountsModule } from './accounts/accounts.module';
 import { AliasesModule } from './aliases/aliases.module';
 import { BlocksModule } from './blocks/blocks.module';
 import { PeersModule } from './peers/peers.module';
+import { MessagesModule } from './messages/messages.module';
 
 const mainRoutes: Routes = [
   {
@@ -70,7 +71,8 @@ const mainRoutes: Routes = [
     AccountsModule,
     AliasesModule,
     BlocksModule,
-    PeersModule
+    PeersModule,
+    MessagesModule
   ],
   exports: [
     MainComponent

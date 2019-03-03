@@ -1,0 +1,84 @@
+<!-- SIDENAV HEADER -->
+<div class="sidenav-header">
+    <!-- CHATS TOOLBAR -->
+    <mat-toolbar>
+
+        <!-- TOOLBAR BOTTOM -->
+        <mat-toolbar-row>
+
+            <!-- SEARCH -->
+            <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="start center">
+
+                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon class="s-16 secondary-text">search</mat-icon>
+                    <input [(ngModel)]="searchText" type="text" placeholder="Search or start new message" fxFlex>
+                </div>
+
+            </div>
+            <!-- / SEARCH -->
+
+        </mat-toolbar-row>
+        <!-- / TOOLBAR BOTTOM -->
+
+    </mat-toolbar>
+    <!-- / CHATS TOOLBAR -->
+
+</div>
+<!-- / SIDENAV HEADER -->
+
+<!-- SIDENAV CONTENT -->
+<div class="sidenav-content" fusePerfectScrollbar fxFlex>
+
+    <!-- CHATS CONTENT -->
+    <div *fuseIfOnDom [@animateStagger]="{value:'50'}">
+
+        <!-- CHATS LIST-->
+        <div class="message-list" fxLayout="column">
+
+            <div matSubheader *ngIf="(messages | filter: searchText).length > 0">
+                Messages
+            </div>
+
+            <button mat-button class="contact" *ngFor="let message of messages | filter: searchText"
+                (click)="getMessage(message)" ngClass="{'unread':contact.unread}"
+                [@animate]="{value:'*',params:{y:'100%'}}">
+
+                <div fxLayout="row" fxLayoutAlign="start center">
+
+                    <div fxLayout="row" fxFlex>
+
+                        <div class="pr-4" fxFlex fxLayout="column" fxLayoutAlign="center start">
+                            <div class="contact-name">{{contacts | getById:message.senderRS:'address'}}</div>
+                            <div class="contact-last-message">{{message.senderRS}}</div>
+                        </div>
+
+                        <div fxLayout="column" fxLayoutAlign="start end">
+                            <div class="contact-last-message-time">
+                                {{convertTimestampToDate(message.timestamp) | timeAgo}}
+                            </div>
+                            <div *ngIf="message.unread" class="mt-4 unread-message-count accent">{{message.unread}}
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </button>
+
+            <div *ngIf="(messages | filter: searchText).length === 0">
+                <div matSubheader>No results found.</div>
+
+                <div class="new-message">
+                    <a (click)="startMessage()">Compose a new message.</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- / CHATS LIST-->
+
+    </div>
+    <!-- / CHATS CONTENT -->
+
+</div>
+<!-- / SIDENAV CONTENT -->
