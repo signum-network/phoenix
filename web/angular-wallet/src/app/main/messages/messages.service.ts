@@ -5,10 +5,9 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Account, Api, ApiSettings, composeApi, SuggestedFees } from '@burstjs/core';
 import { AccountService } from 'app/setup/account/account.service';
 import { environment } from 'environments/environment';
-import { decryptAES, hashSHA256, Converter } from '@burstjs/crypto/out/src';
+import { decryptAES, hashSHA256} from '@burstjs/crypto';
 import { NetworkService } from 'app/network/network.service';
-import { convertAddressToNumericId } from '@burstjs/util/out';
-import {convertDateToBurstTime} from "@burstjs/util/src/convertDateToBurstTime";
+import { convertDateToBurstTime, convertAddressToNumericId } from '@burstjs/util';
 
 export interface ChatMessage {
     message: string;
