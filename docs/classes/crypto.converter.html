@@ -90,6 +90,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="crypto.converter.html#checkbytestointinput" class="tsd-kind-icon">check<wbr>Bytes<wbr>ToInt<wbr>Input</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="crypto.converter.html#convertbase64tostring" class="tsd-kind-icon">convert<wbr>Base64<wbr>ToString</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="crypto.converter.html#convertbinarystringtouint8array" class="tsd-kind-icon">convert<wbr>Binary<wbr>String<wbr>ToUint8<wbr>Array</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="crypto.converter.html#convertbytearraytobiginteger" class="tsd-kind-icon">convert<wbr>Byte<wbr>Array<wbr>ToBig<wbr>Integer</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="crypto.converter.html#convertbytearraytohexstring" class="tsd-kind-icon">convert<wbr>Byte<wbr>Array<wbr>ToHex<wbr>String</a></li>
@@ -102,6 +103,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="crypto.converter.html#converthexstringtostring" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToString</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="crypto.converter.html#convertshortarraytobytearray" class="tsd-kind-icon">convert<wbr>Short<wbr>Array<wbr>ToByte<wbr>Array</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="crypto.converter.html#convertshortarraytohexstring" class="tsd-kind-icon">convert<wbr>Short<wbr>Array<wbr>ToHex<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="crypto.converter.html#convertstringtobase64" class="tsd-kind-icon">convert<wbr>String<wbr>ToBase64</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="crypto.converter.html#convertstringtobytearray" class="tsd-kind-icon">convert<wbr>String<wbr>ToByte<wbr>Array</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="crypto.converter.html#convertstringtohexstring" class="tsd-kind-icon">convert<wbr>String<wbr>ToHex<wbr>String</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="crypto.converter.html#converttimestamptodate" class="tsd-kind-icon">convert<wbr>Timestamp<wbr>ToDate</a></li>
@@ -130,7 +132,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L73">crypto/src/converter.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L73">crypto/src/converter.ts:73</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -150,6 +152,38 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="convertbase64tostring" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> convert<wbr>Base64<wbr>ToString</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">convert<wbr>Base64<wbr>ToString<span class="tsd-signature-symbol">(</span>base64<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L334">crypto/src/converter.ts:334</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts a base64 string to clear text</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>base64: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The base64 string to be converted</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>the clear text string</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a name="convertbinarystringtouint8array" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> convert<wbr>Binary<wbr>String<wbr>ToUint8<wbr>Array</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
@@ -159,7 +193,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L250">crypto/src/converter.ts:250</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L250">crypto/src/converter.ts:250</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -182,7 +216,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L102">crypto/src/converter.ts:102</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L102">crypto/src/converter.ts:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -208,7 +242,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L47">crypto/src/converter.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L47">crypto/src/converter.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -231,7 +265,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L177">crypto/src/converter.ts:177</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L177">crypto/src/converter.ts:177</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -254,7 +288,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L92">crypto/src/converter.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L92">crypto/src/converter.ts:92</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -280,7 +314,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L85">crypto/src/converter.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L85">crypto/src/converter.ts:85</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -306,7 +340,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L163">crypto/src/converter.ts:163</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L163">crypto/src/converter.ts:163</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -335,7 +369,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L118">crypto/src/converter.ts:118</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L118">crypto/src/converter.ts:118</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -358,7 +392,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L41">crypto/src/converter.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L41">crypto/src/converter.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -381,7 +415,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L69">crypto/src/converter.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L69">crypto/src/converter.ts:69</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -404,7 +438,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L186">crypto/src/converter.ts:186</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L186">crypto/src/converter.ts:186</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -427,7 +461,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L197">crypto/src/converter.ts:197</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L197">crypto/src/converter.ts:197</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -441,6 +475,38 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="convertstringtobase64" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> convert<wbr>String<wbr>ToBase64</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">convert<wbr>String<wbr>ToBase64<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L319">crypto/src/converter.ts:319</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts a string to base64</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>text: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The string to be converted</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>the converted base64 string</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a name="convertstringtobytearray" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> convert<wbr>String<wbr>ToByte<wbr>Array</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
@@ -450,7 +516,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L55">crypto/src/converter.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L55">crypto/src/converter.ts:55</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -473,7 +539,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L65">crypto/src/converter.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L65">crypto/src/converter.ts:65</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -496,7 +562,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L310">crypto/src/converter.ts:310</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L310">crypto/src/converter.ts:310</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -526,7 +592,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L242">crypto/src/converter.ts:242</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L242">crypto/src/converter.ts:242</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -549,7 +615,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L224">crypto/src/converter.ts:224</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L224">crypto/src/converter.ts:224</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -574,7 +640,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L145">crypto/src/converter.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L145">crypto/src/converter.ts:145</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -600,7 +666,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L207">crypto/src/converter.ts:207</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L207">crypto/src/converter.ts:207</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -623,7 +689,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L129">crypto/src/converter.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L129">crypto/src/converter.ts:129</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -649,7 +715,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L24">crypto/src/converter.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L24">crypto/src/converter.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -666,7 +732,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L303">crypto/src/converter.ts:303</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L303">crypto/src/converter.ts:303</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -692,7 +758,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/865cb03/lib/packages/crypto/src/converter.ts#L264">crypto/src/converter.ts:264</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/2bd545e/lib/packages/crypto/src/converter.ts#L264">crypto/src/converter.ts:264</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -731,12 +797,6 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_core_src_typings_peer_.html">"core/src/typings/peer"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_core_src_typings_peeraddresslist_.html">"core/src/typings/peer<wbr>Address<wbr>List"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
 					</li>
 					<li class="current tsd-kind-external-module">
@@ -759,6 +819,9 @@
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="crypto.converter.html#checkbytestointinput" class="tsd-kind-icon">check<wbr>Bytes<wbr>ToInt<wbr>Input</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="crypto.converter.html#convertbase64tostring" class="tsd-kind-icon">convert<wbr>Base64<wbr>ToString</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="crypto.converter.html#convertbinarystringtouint8array" class="tsd-kind-icon">convert<wbr>Binary<wbr>String<wbr>ToUint8<wbr>Array</a>
@@ -795,6 +858,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="crypto.converter.html#convertshortarraytohexstring" class="tsd-kind-icon">convert<wbr>Short<wbr>Array<wbr>ToHex<wbr>String</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="crypto.converter.html#convertstringtobase64" class="tsd-kind-icon">convert<wbr>String<wbr>ToBase64</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="crypto.converter.html#convertstringtobytearray" class="tsd-kind-icon">convert<wbr>String<wbr>ToByte<wbr>Array</a>
@@ -838,6 +904,9 @@
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
 						<a href="crypto.passphrasegenerator.html" class="tsd-kind-icon">Pass<wbr>Phrase<wbr>Generator</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/crypto.encryptedmessage.html" class="tsd-kind-icon">Encrypted<wbr>Message</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="../modules/crypto.html#decryptaes" class="tsd-kind-icon">decryptAES</a>
