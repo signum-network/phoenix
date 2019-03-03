@@ -1,10 +1,8 @@
-<h2>
-    Enter your Passphrase
-</h2>
+<h2>{{ 'your_passphrase' | i18n }}</h2>
 <div class="passphrase-container">
   <mat-form-field class="input">
      <input matInput type="text" placeholder="Passphrase" required [(ngModel)]="passphrase">
-     <mat-hint>Campo obrigatório</mat-hint>
+     <mat-hint>{{ 'error_passphrase_required' | i18n }}</mat-hint>
   </mat-form-field>
 </div>
 <div class="text-center navigation">
