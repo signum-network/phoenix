@@ -53,6 +53,10 @@ export class AccountService {
     return this.api.account.getUnconfirmedAccountTransactions(id);
   }
 
+  public getAccount(id: string): Promise<Account> {
+    return this.api.account.getAccount(id);
+  }
+
   /*
   * Method responsible for creating a new active account from a passphrase.
   * Generates keys for an account, encrypts them with the provided key and saves them.
@@ -77,10 +81,10 @@ export class AccountService {
       account.pinHash = hashSHA256(pin + keys.publicKey);
 
       const id = getAccountIdFromPublicKey(keys.publicKey);
-      account.id = id;
+      account.account = id;
 
       const address = convertNumericIdToAddress(id);
-      account.address = address;
+      account.accountRS = address;
 
       await this.selectAccount(account);
       return this.storeService.saveAccount(account)
@@ -108,8 +112,8 @@ export class AccountService {
           if (found === undefined) {
             // import offline account
             account.type = 'offline';
-            account.address = address;
-            account.id = accountId;
+            account.accountRS = address;
+            account.account = accountId;
             await this.selectAccount(account);
             return this.storeService.saveAccount(account)
               .then(resolve);
@@ -148,19 +152,22 @@ export class AccountService {
   public synchronizeAccount(account: Account): Promise<Account> {
     return new Promise(async (resolve, reject) => {
       try {
-        const balance = await this.getAccountBalance(account.id);
-        // @ts-ignore
-        if (balance.errorCode) {
-          // @ts-ignore
-          throw new Error(balance.errorDescription);
-        }
-        account.balance = convertNQTStringToNumber(balance.balanceNQT);
-        account.unconfirmedBalance = convertNQTStringToNumber(balance.unconfirmedBalanceNQT);
-        const transactions = await this.getAccountTransactions(account.id);
+        
+        const remoteAccount = await this.getAccount(account.account);
+        account.name = remoteAccount.name;
+        account.description = remoteAccount.description;
+        account.assetBalances = remoteAccount.assetBalances;
+        account.unconfirmedAssetBalances = remoteAccount.unconfirmedAssetBalances;
+        account.balanceNQT = remoteAccount.balanceNQT;
+        account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
+        
+        const transactions = await this.getAccountTransactions(account.account);
         account.transactions = transactions;
-        const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.id)
+        
+        const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account)
         account.transactions = unconfirmedTransactionsResponse.unconfirmedTransactions
           .concat(account.transactions);
+
         this.storeService.saveAccount(account).catch(error => { reject(error) })
         resolve(account);
       } catch (e) {

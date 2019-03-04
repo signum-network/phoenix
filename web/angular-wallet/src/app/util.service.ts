@@ -259,7 +259,7 @@ export class UtilService {
             case 6:
                 if (transaction.attachment.priceNQT == "0") {
                     // @ts-ignore
-                    if (account && (transaction.senderRS === account.address) && (transaction.recipientRS === account.address)) {
+                    if (account && (transaction.senderRS === account.accountRS) && (transaction.recipientRS === account.accountRS)) {
                         transactionType = "alias_sale_cancellation";
                     }
                     else {

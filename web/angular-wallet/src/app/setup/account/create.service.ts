@@ -5,8 +5,8 @@ import { AccountService } from './account.service';
 export class CreateService {
     private passphrase: string[];
     private pin: string;
-    private id: string;
-    private address: string;
+    private account: string;
+    private accountRS: string;
     private stepIndex: number;
 
     constructor(private accountService: AccountService) {
@@ -38,20 +38,20 @@ export class CreateService {
         return this.passphrase.join(' ');
     }
 
-    public setId(id: string) {
-        this.id = id;
+    public setId(account: string) {
+        this.account = account;
     }
 
     public getId() {
-        return this.id;
+        return this.account;
     }
 
     public setAddress(address: string) {
-        this.address = address;
+        this.accountRS = address;
     }
 
     public getAddress(): string {
-        return this.address;
+        return this.accountRS;
     }
 
     public setStepIndex(index: number) {
@@ -64,8 +64,8 @@ export class CreateService {
 
     public isPassphraseGenerated(): boolean {
         return this.passphrase.length > 0 &&
-          this.address !== undefined &&
-          this.id !== undefined;
+          this.accountRS !== undefined &&
+          this.account !== undefined;
     }
 
     public createActiveAccount() {
@@ -73,12 +73,12 @@ export class CreateService {
     }
 
     public createPassiveAccount() {
-        return this.accountService.createOfflineAccount(`BURST-${this.address}`);
+        return this.accountService.createOfflineAccount(`BURST-${this.accountRS}`);
     }
 
     public reset() {
         this.passphrase = [];
-        this.id = undefined;
-        this.address = undefined;
+        this.account = undefined;
+        this.accountRS = undefined;
     }
 }

@@ -61,9 +61,9 @@ export class BlocksComponent {
     this.dataSource.filter = filterValue || 'burst';
   }
 
-  public isOwnAccount(address: string): boolean {
-    return address !== undefined && address === this.account.address;
-  }
+    public isOwnAccount(address: string): boolean {
+        return address != undefined && address == this.account.accountRS;
+    }
 
   public convertTimestamp(timestamp: number): Date {
     return convertBurstTimeToDate(timestamp);

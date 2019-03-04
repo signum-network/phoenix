@@ -117,7 +117,8 @@
                   [folded]="fuseConfig.layout.navbar.folded"
                   lockedOpen="gt-md"
                   *ngIf="!fuseConfig.layout.navbar.hidden">
-        <navbar [variant]="fuseConfig.layout.navbar.variant" class="left-navbar"></navbar>
+        <navbar [variant]="fuseConfig.layout.navbar.variant" class="left-navbar"
+                [selectedAccount]="selectedAccount"></navbar>
     </fuse-sidebar>
 </ng-template>
 <!-- / LEFT NAVBAR -->
