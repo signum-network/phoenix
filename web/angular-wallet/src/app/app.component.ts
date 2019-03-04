@@ -7,7 +7,7 @@ import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { AccountService } from './setup/account/account.service';
 import { StoreService } from './store/store.service';
-import { Account, ApiError, Block, BlockchainStatus } from '@burstjs/core';
+import { Account, Block, BlockchainStatus } from '@burstjs/core';
 import { NotifierService } from 'angular-notifier';
 import { NetworkService } from './network/network.service';
 import { I18nService } from './layout/components/i18n/i18n.service';
@@ -68,11 +68,6 @@ export class AppComponent implements OnInit, OnDestroy {
   private async checkBlockchainStatus() {
       try {
         const blockchainStatus = await this.networkService.getBlockchainStatus();
-        // @ts-ignore - todo: fix these
-        if (blockchainStatus.errorCode) {
-          // @ts-ignore
-          throw new Error(blockchainStatus.errorDescription);
-        }
         this.isScanning = !this.firstTime && (this.previousLastBlock != blockchainStatus.lastBlock);
         this.previousLastBlock = blockchainStatus.lastBlock;
         if (this.isScanning && !this.firstTime) {
@@ -89,11 +84,6 @@ export class AppComponent implements OnInit, OnDestroy {
   private async updateAccountsAndCheckBlockchainStatus(blockchainStatus: BlockchainStatus) {
     this.updateAccounts();
     const block = await this.networkService.getBlockById(blockchainStatus.lastBlock);
-    // @ts-ignore
-    if (block.errorCode) {
-      // @ts-ignore
-      throw new Error(block.errorDescription);
-    }
     this.storeService.saveBlock(block);
     this.checkBlockchainStatus();
   }
