@@ -5,6 +5,7 @@ import {UnconfirmedTransactionList} from '../unconfirmedTransactionList';
 import {Balance} from '../balance';
 import {AliasList} from '../aliasList';
 import { Account } from '../account';
+import { TransactionId } from '../transactionId';
 
 /**
  * Account API
@@ -88,4 +89,29 @@ export interface AccountApi {
      * @return {Promise<AliasList>} A list of aliases of given account
      */
     getAliases: (accountId: string) => Promise<AliasList>;
+
+    /**
+     * Sets account information for an account
+     *
+     * The transaction will be broadcasted in two steps.
+     * 1. Send the setAccountInfo call with public key to the network
+     * 2. Take the returned unsigned message and sign it, i.e. the private key won't be transmitted.
+     *
+     * @param name The name of the account
+     * @param description The description for the account
+     * @param feeNQT The fee to pay
+     * @param name The name of the account
+     * @param senderPublicKey The senders public key for sending an _unsigned_ message
+     * @param senderPrivateKey The senders private key to _sign_ the message
+     * @param deadline The deadline, in seconds, for the transaction
+     * @return The Transaction
+     */
+    setAccountInfo: (
+        name: string,
+        description: string,
+        feeNQT: string,
+        senderPublicKey: string,
+        senderPrivateKey: string,
+        deadline: number,
+    ) => Promise<TransactionId | Error>;
 }
