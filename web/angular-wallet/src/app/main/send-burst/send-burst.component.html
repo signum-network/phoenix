@@ -38,7 +38,7 @@
       <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
 
       <mat-form-field class="pin" appearance="outline">
-        <input matInput [(ngModel)]="pin" name="pin" placeholder="Your PIN">
+        <input matInput [(ngModel)]="pin" name="pin" type="password" placeholder="Your PIN">
       </mat-form-field>
 
       <mat-checkbox (click)="showMessage=!showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>

@@ -48,7 +48,7 @@
             <ng-container matColumnDef="transaction_id">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'transaction_id' | i18n }}</mat-header-cell>
                 <mat-cell *matCellDef="let transaction">
-                    <span class="link" [routerLink]="['/transaction', transaction.transaction]">{{ transaction.transaction }}</span>
+                    <a [routerLink]="['/transaction', transaction.transaction]">{{ transaction.transaction }}</a>
                 </mat-cell>
             </ng-container>
 
