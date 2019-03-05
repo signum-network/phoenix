@@ -93,6 +93,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.blockapi.html#getblockbyid" class="tsd-kind-icon">get<wbr>Block<wbr>ById</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.blockapi.html#getblockbytimestamp" class="tsd-kind-icon">get<wbr>Block<wbr>ByTimestamp</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.blockapi.html#getblockid" class="tsd-kind-icon">get<wbr>Block<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.blockapi.html#getblocks" class="tsd-kind-icon">get<wbr>Blocks</a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,7 +107,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Block<wbr>ByHeight<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/51cee22/lib/packages/core/src/typings/api/blockApi.ts#L28">core/src/typings/api/blockApi.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/api/blockApi.ts#L28">core/src/typings/api/blockApi.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -156,7 +157,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Block<wbr>ById<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/51cee22/lib/packages/core/src/typings/api/blockApi.ts#L36">core/src/typings/api/blockApi.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/api/blockApi.ts#L36">core/src/typings/api/blockApi.ts:36</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -206,7 +207,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Block<wbr>ByTimestamp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/51cee22/lib/packages/core/src/typings/api/blockApi.ts#L20">core/src/typings/api/blockApi.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/api/blockApi.ts#L20">core/src/typings/api/blockApi.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -256,7 +257,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Block<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/51cee22/lib/packages/core/src/typings/api/blockApi.ts#L43">core/src/typings/api/blockApi.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/api/blockApi.ts#L43">core/src/typings/api/blockApi.ts:43</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -288,6 +289,62 @@
 											</li>
 										</ul>
 										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.blockid.html" class="tsd-signature-type">BlockId</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="getblocks" class="tsd-anchor"></a>
+					<h3>get<wbr>Blocks</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Blocks<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/api/blockApi.ts#L52">core/src/typings/api/blockApi.ts:52</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get blocks from the blockchain in reverse block height order.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>first block to retrieve (optional, default is zero or the last block on the blockchain)</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>the last block to retrieve (optional, default is firstIndex + 99)</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p><em>true</em>, if transactions shall be included</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>the array of blocks retrieved</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>firstIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, lastIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, includeTransactions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.block.html" class="tsd-signature-type">Block</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> firstIndex: <span class="tsd-signature-type">number</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> lastIndex: <span class="tsd-signature-type">number</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> includeTransactions: <span class="tsd-signature-type">boolean</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.block.html" class="tsd-signature-type">Block</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -337,9 +394,6 @@
 						<a href="../classes/core.burstnode.html" class="tsd-kind-icon">Burst<wbr>Node</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/core.currency.html" class="tsd-kind-icon">Currency</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
 						<a href="../classes/core.encryptedmessage.html" class="tsd-kind-icon">Encrypted<wbr>Message</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
@@ -353,9 +407,6 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="core.aliaslist.html" class="tsd-kind-icon">Alias<wbr>List</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="core.apierror.html" class="tsd-kind-icon">Api<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="core.balance.html" class="tsd-kind-icon">Balance</a>
@@ -380,6 +431,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core.blockapi.html#getblockid" class="tsd-kind-icon">get<wbr>Block<wbr>Id</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.blockapi.html#getblocks" class="tsd-kind-icon">get<wbr>Blocks</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
@@ -391,10 +445,19 @@
 						<a href="core.blockchainstatus.html" class="tsd-kind-icon">Blockchain<wbr>Status</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.bursttime.html" class="tsd-kind-icon">Burst<wbr>Time</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="core.messageapi.html" class="tsd-kind-icon">Message<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="core.networkapi.html" class="tsd-kind-icon">Network<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.peer.html" class="tsd-kind-icon">Peer</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.peeraddresslist.html" class="tsd-kind-icon">Peer<wbr>Address<wbr>List</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="core.serverstatus.html" class="tsd-kind-icon">Server<wbr>Status</a>

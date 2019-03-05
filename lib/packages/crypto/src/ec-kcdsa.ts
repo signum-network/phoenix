@@ -58,7 +58,7 @@ export class ECKCDSA {
     public static sign(h, x, s) {
         // v = (x - h) s  mod q
         let w, i;
-        let h1 = new Array(32)
+        let h1 = new Array(32);
         let x1 = new Array(32);
         let tmp1 = new Array(64);
         let tmp2 = new Array(64);

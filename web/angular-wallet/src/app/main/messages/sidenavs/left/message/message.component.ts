@@ -7,7 +7,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { FuseMatSidenavHelperService } from '@fuse/directives/fuse-mat-sidenav/fuse-mat-sidenav.service';
 
 import { MessagesService } from '../../../messages.service';
-import { Converter } from '@burstjs/crypto';
+import {convertBurstTimeToDate} from "@burstjs/util";
 
 @Component({
     selector: 'message-sidenav',
@@ -93,7 +93,7 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
             this._fuseMatSidenavHelperService.getSidenav('message-left-sidenav').toggle();
         }
     }
-    
+
 
     startMessage() {
         this._messageService.sendNewMessage(this.searchText);
@@ -113,6 +113,6 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
     }
 
     convertTimestampToDate(timestamp) {
-        return Converter.convertTimestampToDate(timestamp);
+        return convertBurstTimeToDate(timestamp);
     }
 }

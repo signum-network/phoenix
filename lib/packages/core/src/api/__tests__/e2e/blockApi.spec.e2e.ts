@@ -4,6 +4,7 @@ import {getBlockByTimestamp} from '../../factories/block/getBlockByTimestamp';
 import {getBlockByHeight} from '../../factories/block/getBlockByHeight';
 import {getBlockById} from '../../factories/block/getBlockById';
 import {getBlockId} from '../../factories/block/getBlockId';
+import {HttpError} from '@burstjs/http';
 
 const environment = loadEnvironment();
 
@@ -39,4 +40,18 @@ describe(`[E2E] Block Api`, () => {
         expect(block.block).toBe('15105048788654004778');
     });
 
+    it(`should fail on unknown getBlockId`, async () => {
+        try {
+            await getBlockId(service)(99999999);
+            expect('Should throw exception').toBeFalsy();
+        } catch (e) {
+            const httpError = <HttpError>e;
+            expect(httpError.message).toContain('Incorrect "height"');
+            expect(httpError.message).toContain('4'); // error code
+            expect(httpError.data).toEqual(expect.objectContaining({
+                'errorCode': 4,
+                'errorDescription': 'Incorrect "height"'
+            }));
+        }
+    });
 });

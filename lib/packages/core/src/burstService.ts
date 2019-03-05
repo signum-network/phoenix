@@ -1,21 +1,44 @@
+/** @ignore */
 /** @module core */
 
-import {Http, HttpImpl} from '@burstjs/http';
+import {Http, HttpImpl, HttpError} from '@burstjs/http';
+
+
+export interface ApiError {
+    readonly errorCode: number;
+    readonly errorDescription: string;
+}
 
 /**
- * @ignore
  * Generic BRS Web Service class.
- * Extend and specific services here
  */
 export class BurstService {
-    private _http: Http;
-    private _relPath: string;
 
     /**
      * @returns {Http} The internal Http client
      */
     protected get http(): Http {
         return this._http;
+    }
+
+    /**
+     * Creates Service instance
+     * @param {string} baseUrl The host url of web service
+     * @param {string} relativePath The relative path will be prepended before each url created with toBRSEndpoint()
+     * @param {Http?} httpClient If passed an client instance, it will be used instead of default HttpImpl. Good for testing.
+     */
+    constructor(baseUrl: string, relativePath: string = '', httpClient?: Http) {
+        this._http = httpClient ? httpClient : new HttpImpl(baseUrl);
+        this._relPath = relativePath.endsWith('/') ? relativePath.substr(0, relativePath.length - 1) : relativePath;
+    }
+    private readonly _http: Http;
+    private readonly _relPath: string;
+
+    private static throwAsHttpError(url: string, apiError: ApiError) {
+        throw new HttpError(url,
+            400,
+            `${apiError.errorDescription} (Code: ${apiError.errorCode})`,
+            apiError);
     }
 
     /**
@@ -36,17 +59,6 @@ export class BurstService {
         return params ? `${request}&${params}` : request;
     }
 
-    /**
-     * Creates Service instance
-     * @param {string} baseUrl The host url of web service
-     * @param {string} relativePath The relative path will be prepended before each url created with toBRSEndpoint()
-     * @param {Http?} httpClient If passed an client instance, it will be used instead of default HttpImpl. Good for testing.
-     */
-    constructor(baseUrl: string, relativePath: string = '', httpClient?: Http) {
-        this._http = httpClient ? httpClient : new HttpImpl(baseUrl);
-        this._relPath = relativePath.endsWith('/') ? relativePath.substr(0, relativePath.length - 1) : relativePath;
-    }
-
 
     /**
      * Requests a query to BRS
@@ -57,8 +69,14 @@ export class BurstService {
      */
     public async query<T>(method: string, args: any = {}): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
-        const response = await this.http.get(brsUrl);
-        return Promise.resolve(response.response);
+        const {response} = await this.http.get(brsUrl);
+
+        if (response.errorCode) {
+            BurstService.throwAsHttpError(brsUrl, response);
+        }
+
+        return response;
+
     }
 
     /**
@@ -70,9 +88,12 @@ export class BurstService {
      * @return {Promise<T>} The response data of success
      * @throws HttpError in case of failure
      */
-    public async send<T>(method: string, args: any = {}, body: any= {}): Promise<T> {
+    public async send<T>(method: string, args: any = {}, body: any = {}): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
-        const response = await this.http.post(brsUrl, body);
-        return Promise.resolve(response.response);
+        const {response} = await this.http.post(brsUrl, body);
+        if (response.errorCode) {
+            BurstService.throwAsHttpError(brsUrl, response);
+        }
+        return response;
     }
 }

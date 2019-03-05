@@ -33,7 +33,8 @@ export class AccountService {
 
   // FIXME: any as return type is shitty...will introduce a better execption handling
   public getAccountTransactions(id: string, firstIndex?: number, lastIndex?: number, numberOfConfirmations?: number, type?: number, subtype?: number): Promise<TransactionList | any> {
-    return this.api.account.getAccountTransactions(id, firstIndex, lastIndex, numberOfConfirmations, type, subtype);
+    return this.api.account.getAccountTransactions(
+      id, firstIndex, lastIndex, numberOfConfirmations, type, subtype);
   }
 
   public generateSendTransactionQRCodeAddress(id: string): Promise<string> {
@@ -63,7 +64,7 @@ export class AccountService {
   */
   public createActiveAccount({ passphrase, pin = '' }): Promise<Account> {
     return new Promise(async (resolve, reject) => {
-      const account: Account = new Account(); 
+      const account: Account = new Account();
       // import active account
       account.type = 'active';
       const keys = generateMasterKeys(passphrase);

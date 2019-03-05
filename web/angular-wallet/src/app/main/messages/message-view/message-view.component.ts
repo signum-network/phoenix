@@ -9,8 +9,13 @@ import { MessagesService, Messages } from '../messages.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { Account } from '@burstjs/core';
 import { Router } from '@angular/router';
-import { Converter } from '@burstjs/crypto';
-import { burstAddressPattern, convertAddressToNumericId, isValid } from '@burstjs/util';
+import {
+  burstAddressPattern,
+  convertAddressToNumericId,
+  isValid,
+  convertDateToBurstTime,
+  convertBurstTimeToDate
+} from '@burstjs/util';
 
 @Component({
     selector: 'message-view',
@@ -22,7 +27,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     message: Messages;
     replyInput: any;
     pinInput: any;
-    fee: number = 0.01; // todo: allow user to configure
+    fee = 0.01; // todo: allow user to configure
     selectedUser: Account;
     selectedMessageQRCode: string;
     isNewMessage = false;
@@ -40,11 +45,6 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     // Private
     private _unsubscribeAll: Subject<any>;
 
-    /**
-     * Constructor
-     *
-     * @param {MessageService} messageService
-     */
     constructor(
         private messageService: MessagesService,
         private accountService: AccountService,
@@ -58,9 +58,6 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     // @ Lifecycle hooks
     // -----------------------------------------------------------------------------------------------------
 
-    /**
-     * On init
-     */
     ngOnInit(): void {
         this.selectedUser = this.messageService.user;
         this.messageService.onMessageSelected
@@ -136,7 +133,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
      * Select contact
      */
     selectContact(): void {
-        this.router.navigate(['/account', this.message.contactId])
+        this.router.navigate(['/account', this.message.contactId]);
     }
 
     /**
@@ -197,7 +194,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         const message = {
             contactId: this.message.contactId,
             message: this.replyForm.form.value.message,
-            timestamp: Converter.convertDateToTimestamp().toString()
+            timestamp: convertDateToBurstTime(new Date()).toString()
         };
 
         // Update the server
@@ -215,6 +212,6 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     convertTimestampToDate(timestamp) {
-        return Converter.convertTimestampToDate(timestamp);
+        return convertBurstTimeToDate(timestamp);
     }
 }

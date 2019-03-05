@@ -1,3 +1,4 @@
+/* tslint:disable */
 /** @module crypto */
 /** @ignore */
 
@@ -303,11 +304,34 @@ export class Converter {
         return Converter.intToBytes_(x, 4, 4294967295, opt_bigEndian);
     }
 
-    public static convertTimestampToDate(timestamp: number) {
-        return new Date(Date.UTC(2014, 7, 11, 2, 0, 0, 0) + timestamp * 1000);
+    /**
+     * Converts a string to base64
+     * @param text The string to be converted
+     * @return the converted base64 string
+     */
+    public static convertStringToBase64(text: string) : string{
+        if (global && global.Buffer) {
+            return new Buffer(text).toString('base64');
+        }
+        else {
+            // @ts-ignore
+            return btoa(text);
+        }
     }
 
-    public static convertDateToTimestamp() {
-        return (new Date().getTime() - Date.UTC(2014, 7, 11, 2, 0, 0, 0))/1000;
+    /**
+     * Converts a base64 string to clear text
+     * @param base64 The base64 string to be converted
+     * @return the clear text string
+     */
+    public static convertBase64ToString(base64: string): string{
+        if (global && global.Buffer) {
+            return new Buffer(base64, 'base64').toString();
+        }
+        else {
+            // @ts-ignore
+            return atob(base64)
+        }
     }
+
 }

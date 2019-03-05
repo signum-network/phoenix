@@ -2,6 +2,7 @@ import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../burstService';
 import {getBlockchainStatus} from '../../factories/network/getBlockchainStatus';
 import {getServerStatus} from '../../factories/network/getServerStatus';
+import {getTime} from '../../factories/network/getTime';
 
 const environment = loadEnvironment();
 
@@ -23,6 +24,11 @@ describe('[E2E] Network Api', () => {
         expect(status.application).toBe('BRS');
         expect(status.numberOfAccounts).toBeGreaterThan(1);
         expect(status.numberOfPeers).toBeGreaterThan(1);
+    });
+
+    it('should getTime', async () => {
+        const status = await getTime(service)();
+        expect(status.time).toBeGreaterThan(0);
     });
 
 });
