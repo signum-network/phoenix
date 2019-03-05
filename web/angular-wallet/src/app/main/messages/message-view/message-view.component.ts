@@ -183,7 +183,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
         if (this.isNewMessage) {
             if (!isValid(this.message.senderRS)) {
-                return;
+                return; // todo: show user invalid address warning
             }
             this.message.senderRS = `BURST-${this.message.senderRS}`;
             this.message.contactId = convertAddressToNumericId(this.message.senderRS);
@@ -196,9 +196,6 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
             message: this.replyForm.form.value.message,
             timestamp: convertDateToBurstTime(new Date()).toString()
         };
-
-        // Add the message to the message
-        this.message.dialog.push(message);
 
         // Update the server
         this.messageService.sendTextMessage(message, this.replyForm.form.value.pin, this.fee).then(response => {
