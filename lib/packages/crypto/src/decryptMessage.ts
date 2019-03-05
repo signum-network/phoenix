@@ -1,43 +1,46 @@
-/* tslint:disable */
-/** @module crypto */
-// TODO: remove ignore whene fixed
-/** @ignore */
+// tslint:disable:no-bitwise
 
-import {decryptAES} from "./decryptAES";
-import {ECKCDSA} from "./ec-kcdsa";
-import {Converter} from "./converter";
-import * as CryptoJS from "crypto-js";
+/** @module crypto */
 
 /**
- * Decrypt a message attached to transaction
- * FIXME: Fix en/decryption!
+ * Original work Copyright (c) 2018 PoC-Consortium
+ * Modified work Copyright (c) 2019 Burst Apps Team
  */
-export const decryptMessage = (
-    encryptedMessage: string,
-    nonce: string,
-    encryptedPrivateKey: string,
-    pinHash: string,
-    senderPublicKey: string
-): string => {
-    const privateKey = decryptAES(encryptedPrivateKey, pinHash);
-    // generate shared key
-    let sharedKey =
+
+import {ECKCDSA} from './ec-kcdsa';
+import {Converter} from './converter';
+import * as CryptoJS from 'crypto-js';
+import {EncryptedMessage} from '../typings/encryptedMessage';
+
+/**
+ * Decrypts an encrypted Message
+ * @param encryptedMessage The encrypted message
+ * @param senderPublicKey The senders public key
+ * @param recipientPrivateKey The recipients private (agreement) key
+ * @return The original message
+ */
+export function decryptMessage(encryptedMessage: EncryptedMessage, senderPublicKey: string, recipientPrivateKey: string): string {
+
+    const sharedKey =
         ECKCDSA.sharedkey(
-            Converter.convertHexStringToByteArray(privateKey),
+            Converter.convertHexStringToByteArray(recipientPrivateKey),
             Converter.convertHexStringToByteArray(senderPublicKey)
         );
-    // convert nonce to uint8array
-    let nonce_array = Converter.convertWordArrayToUint8Array(CryptoJS.enc.Hex.parse(nonce));
-    // combine
-    for (let i = 0; i < 32; i++) {
-        sharedKey[i] ^= nonce_array[i];
+
+    const SHARED_KEY_SIZE = sharedKey.length;
+    const nonceArray = Converter.convertWordArrayToUint8Array(CryptoJS.enc.Hex.parse(encryptedMessage.nonce));
+    for (let i = 0; i < SHARED_KEY_SIZE; i++) {
+        sharedKey[i] ^= nonceArray[i];
     }
-    // hash shared key
-    let key = CryptoJS.SHA256(Converter.convertByteArrayToWordArray(sharedKey))
-    // convert message hex back to base 64 due to limitation of node
-    let messageB64 = CryptoJS.enc.Hex.parse(encryptedMessage).toString(CryptoJS.enc.Base64);
-    // decrypt it
-    let message = CryptoJS.AES.decrypt(messageB64, key.toString()).toString(CryptoJS.enc.Utf8);
-    // return decrypted message
-    return message;
+
+    const aeskey = Converter.convertByteArrayToHexString(sharedKey);
+    const tokens = encryptedMessage.data.split(':');
+    if (tokens.length !== 2) {
+        throw new Error('Invalid message format');
+    }
+    return CryptoJS.AES.decrypt(
+        tokens[1],
+        aeskey,
+        {iv: Converter.convertBase64ToString(tokens[0])}
+    ).toString(CryptoJS.enc.Utf8);
 }

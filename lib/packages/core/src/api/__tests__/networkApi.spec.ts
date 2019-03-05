@@ -2,6 +2,7 @@ import {HttpMockBuilder, Http} from '@burstjs/http';
 import {BurstService} from '../../burstService';
 import {getBlockchainStatus} from '../factories/network/getBlockchainStatus';
 import {getServerStatus} from '../factories/network/getServerStatus';
+import {getTime} from "../factories/network/getTime";
 
 describe('Network Api', () => {
 
@@ -67,4 +68,15 @@ describe('Network Api', () => {
         });
     });
 
+    describe('getTime', () => {
+        it('should getTime', async () => {
+
+            httpMock = HttpMockBuilder.create().onGetReply(200, {
+                time: 100000000,
+            }).build();
+            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const status = await getTime(service)();
+            expect(status.time).toBe(100000000);
+        });
+    });
 });
