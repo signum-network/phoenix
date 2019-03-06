@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HttpResponse | burstjs</title>
+	<title>UnconfirmedAssetBalance | burstjs</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/http.html">http</a>
+					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="http.httpresponse.html">HttpResponse</a>
+					<a href="core.unconfirmedassetbalance.html">UnconfirmedAssetBalance</a>
 				</li>
 			</ul>
-			<h1>Class HttpResponse</h1>
+			<h1>Interface UnconfirmedAssetBalance</h1>
 		</div>
 	</div>
 </header>
@@ -70,16 +70,15 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Http Response</p>
+						<p>Original work Copyright (c) 2019 Burst Apps Team</p>
 					</div>
-					<p>Returned by Http request</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">HttpResponse</span>
+						<span class="target">UnconfirmedAssetBalance</span>
 					</li>
 				</ul>
 			</section>
@@ -88,69 +87,34 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="http.httpresponse.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="http.httpresponse.html#response" class="tsd-kind-icon">response</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="http.httpresponse.html#status" class="tsd-kind-icon">status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.unconfirmedassetbalance.html#asset" class="tsd-kind-icon">asset</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.unconfirmedassetbalance.html#unconfirmedbalanceqnt" class="tsd-kind-icon">unconfirmed<wbr>BalanceQNT</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Http<wbr>Response<span class="tsd-signature-symbol">(</span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.httpresponse.html" class="tsd-signature-type">HttpResponse</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/http/src/httpResponse.ts#L12">http/src/httpResponse.ts:12</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>status: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>response: <span class="tsd-signature-type">any</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="http.httpresponse.html" class="tsd-signature-type">HttpResponse</a></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="response" class="tsd-anchor"></a>
-					<h3>response</h3>
-					<div class="tsd-signature tsd-kind-icon">response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="asset" class="tsd-anchor"></a>
+					<h3>asset</h3>
+					<div class="tsd-signature tsd-kind-icon">asset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/http/src/httpResponse.ts#L13">http/src/httpResponse.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/unconfirmedAssetBalance.ts#L9">core/src/typings/unconfirmedAssetBalance.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="status" class="tsd-anchor"></a>
-					<h3>status</h3>
-					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="unconfirmedbalanceqnt" class="tsd-anchor"></a>
+					<h3>unconfirmed<wbr>BalanceQNT</h3>
+					<div class="tsd-signature tsd-kind-icon">unconfirmed<wbr>BalanceQNT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/http/src/httpResponse.ts#L13">http/src/httpResponse.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/unconfirmedAssetBalance.ts#L8">core/src/typings/unconfirmedAssetBalance.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -162,13 +126,13 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/crypto.html">crypto</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/http.html">http</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -179,34 +143,112 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="http.httperror.html" class="tsd-kind-icon">Http<wbr>Error</a>
+						<a href="../classes/core.account.html" class="tsd-kind-icon">Account</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="http.httpimpl.html" class="tsd-kind-icon">Http<wbr>Impl</a>
+						<a href="../classes/core.api.html" class="tsd-kind-icon">Api</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="http.httpmockbuilder.html" class="tsd-kind-icon">Http<wbr>Mock<wbr>Builder</a>
+						<a href="../classes/core.apicomposer.html" class="tsd-kind-icon">Api<wbr>Composer</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core.apisettings.html" class="tsd-kind-icon">Api<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core.attachment.html" class="tsd-kind-icon">Attachment</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core.burstnode.html" class="tsd-kind-icon">Burst<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core.encryptedmessage.html" class="tsd-kind-icon">Encrypted<wbr>Message</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core.message.html" class="tsd-kind-icon">Message</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.accountapi.html" class="tsd-kind-icon">Account<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.alias.html" class="tsd-kind-icon">Alias</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.aliaslist.html" class="tsd-kind-icon">Alias<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.assetbalance.html" class="tsd-kind-icon">Asset<wbr>Balance</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.balance.html" class="tsd-kind-icon">Balance</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.block.html" class="tsd-kind-icon">Block</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.blockapi.html" class="tsd-kind-icon">Block<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.blockid.html" class="tsd-kind-icon">Block<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.blockchainstatus.html" class="tsd-kind-icon">Blockchain<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.bursttime.html" class="tsd-kind-icon">Burst<wbr>Time</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.messageapi.html" class="tsd-kind-icon">Message<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.networkapi.html" class="tsd-kind-icon">Network<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.peer.html" class="tsd-kind-icon">Peer</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.peeraddresslist.html" class="tsd-kind-icon">Peer<wbr>Address<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.serverstatus.html" class="tsd-kind-icon">Server<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.suggestedfees.html" class="tsd-kind-icon">Suggested<wbr>Fees</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.transaction.html" class="tsd-kind-icon">Transaction</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.transactionapi.html" class="tsd-kind-icon">Transaction<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.transactionid.html" class="tsd-kind-icon">Transaction<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.transactionlist.html" class="tsd-kind-icon">Transaction<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.transactionresponse.html" class="tsd-kind-icon">Transaction<wbr>Response</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="http.httpresponse.html" class="tsd-kind-icon">Http<wbr>Response</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.unconfirmedassetbalance.html" class="tsd-kind-icon">Unconfirmed<wbr>Asset<wbr>Balance</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="http.httpresponse.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.unconfirmedassetbalance.html#asset" class="tsd-kind-icon">asset</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="http.httpresponse.html#response" class="tsd-kind-icon">response</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="http.httpresponse.html#status" class="tsd-kind-icon">status</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.unconfirmedassetbalance.html#unconfirmedbalanceqnt" class="tsd-kind-icon">unconfirmed<wbr>BalanceQNT</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/http.http-1.html" class="tsd-kind-icon">Http</a>
+						<a href="core.unconfirmedtransactionlist.html" class="tsd-kind-icon">Unconfirmed<wbr>Transaction<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/core.html#composeapi" class="tsd-kind-icon">compose<wbr>Api</a>
 					</li>
 				</ul>
 			</nav>

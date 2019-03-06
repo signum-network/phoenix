@@ -1,6 +1,9 @@
 // tslint:disable:no-bitwise
-
+/** @ignore */
 /** @module crypto */
+
+
+// FIXME: This implementation is not compatible with current BRS encryption
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium

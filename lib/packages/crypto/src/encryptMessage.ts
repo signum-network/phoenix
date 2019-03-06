@@ -1,6 +1,8 @@
 // tslint:disable:no-bitwise
-
+/** @ignore */
 /** @module crypto */
+
+// FIXME: This implementation is not compatible with current BRS encryption
 
 import * as CryptoJS from 'crypto-js';
 import {ECKCDSA} from './ec-kcdsa';

@@ -73,7 +73,8 @@
 						<p>Account class</p>
 					</div>
 					<p>The account class serves as a model for a Burstcoin account.
-					Each account contains its Burst address and numeric id.</p>
+						It&#39;s meant to model the response from BRS API, except publicKey
+					has been moved into the keys object.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -97,16 +98,20 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#address" class="tsd-kind-icon">address</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#alias" class="tsd-kind-icon">alias</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#balance" class="tsd-kind-icon">balance</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#account" class="tsd-kind-icon">account</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#accountrs" class="tsd-kind-icon">accountRS</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#assetbalances" class="tsd-kind-icon">asset<wbr>Balances</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#balancenqt" class="tsd-kind-icon">balanceNQT</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#effectivebalancenqt" class="tsd-kind-icon">effective<wbr>BalanceNQT</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#keys" class="tsd-kind-icon">keys</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#pinhash" class="tsd-kind-icon">pin<wbr>Hash</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#selected" class="tsd-kind-icon">selected</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#transactions" class="tsd-kind-icon">transactions</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#unconfirmedbalance" class="tsd-kind-icon">unconfirmed<wbr>Balance</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#unconfirmedassetbalances" class="tsd-kind-icon">unconfirmed<wbr>Asset<wbr>Balances</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.account.html#unconfirmedbalancenqt" class="tsd-kind-icon">unconfirmed<wbr>BalanceNQT</a></li>
 							</ul>
 						</section>
 					</div>
@@ -124,7 +129,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/account.ts#L27">core/src/typings/account.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L34">core/src/typings/account.ts:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -141,42 +146,62 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="address" class="tsd-anchor"></a>
-					<h3>address</h3>
-					<div class="tsd-signature tsd-kind-icon">address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="account" class="tsd-anchor"></a>
+					<h3>account</h3>
+					<div class="tsd-signature tsd-kind-icon">account<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/account.ts#L19">core/src/typings/account.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L21">core/src/typings/account.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="alias" class="tsd-anchor"></a>
-					<h3>alias</h3>
-					<div class="tsd-signature tsd-kind-icon">alias<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="accountrs" class="tsd-anchor"></a>
+					<h3>accountRS</h3>
+					<div class="tsd-signature tsd-kind-icon">accountRS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/account.ts#L20">core/src/typings/account.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L22">core/src/typings/account.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="balance" class="tsd-anchor"></a>
-					<h3>balance</h3>
-					<div class="tsd-signature tsd-kind-icon">balance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="assetbalances" class="tsd-anchor"></a>
+					<h3>asset<wbr>Balances</h3>
+					<div class="tsd-signature tsd-kind-icon">asset<wbr>Balances<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core.assetbalance.html" class="tsd-signature-type">AssetBalance</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/account.ts#L21">core/src/typings/account.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L23">core/src/typings/account.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="balancenqt" class="tsd-anchor"></a>
+					<h3>balanceNQT</h3>
+					<div class="tsd-signature tsd-kind-icon">balanceNQT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/account.ts#L18">core/src/typings/account.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L24">core/src/typings/account.ts:24</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="description" class="tsd-anchor"></a>
+					<h3>description</h3>
+					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L25">core/src/typings/account.ts:25</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="effectivebalancenqt" class="tsd-anchor"></a>
+					<h3>effective<wbr>BalanceNQT</h3>
+					<div class="tsd-signature tsd-kind-icon">effective<wbr>BalanceNQT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L26">core/src/typings/account.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -186,7 +211,17 @@
 					<div class="tsd-signature tsd-kind-icon">keys<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Keys</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/account.ts#L22">core/src/typings/account.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L27">core/src/typings/account.ts:27</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L28">core/src/typings/account.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -196,7 +231,7 @@
 					<div class="tsd-signature tsd-kind-icon">pin<wbr>Hash<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/account.ts#L23">core/src/typings/account.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L29">core/src/typings/account.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -206,7 +241,7 @@
 					<div class="tsd-signature tsd-kind-icon">selected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/account.ts#L24">core/src/typings/account.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L30">core/src/typings/account.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -216,7 +251,7 @@
 					<div class="tsd-signature tsd-kind-icon">transactions<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core.transaction.html" class="tsd-signature-type">Transaction</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/account.ts#L25">core/src/typings/account.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L31">core/src/typings/account.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -226,17 +261,27 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/account.ts#L26">core/src/typings/account.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L32">core/src/typings/account.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="unconfirmedbalance" class="tsd-anchor"></a>
-					<h3>unconfirmed<wbr>Balance</h3>
-					<div class="tsd-signature tsd-kind-icon">unconfirmed<wbr>Balance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="unconfirmedassetbalances" class="tsd-anchor"></a>
+					<h3>unconfirmed<wbr>Asset<wbr>Balances</h3>
+					<div class="tsd-signature tsd-kind-icon">unconfirmed<wbr>Asset<wbr>Balances<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core.unconfirmedassetbalance.html" class="tsd-signature-type">UnconfirmedAssetBalance</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5452763/lib/packages/core/src/typings/account.ts#L27">core/src/typings/account.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L33">core/src/typings/account.ts:33</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="unconfirmedbalancenqt" class="tsd-anchor"></a>
+					<h3>unconfirmed<wbr>BalanceNQT</h3>
+					<div class="tsd-signature tsd-kind-icon">unconfirmed<wbr>BalanceNQT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3d01c6e/lib/packages/core/src/typings/account.ts#L34">core/src/typings/account.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -273,19 +318,28 @@
 								<a href="core.account.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="core.account.html#address" class="tsd-kind-icon">address</a>
+								<a href="core.account.html#account" class="tsd-kind-icon">account</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="core.account.html#alias" class="tsd-kind-icon">alias</a>
+								<a href="core.account.html#accountrs" class="tsd-kind-icon">accountRS</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="core.account.html#balance" class="tsd-kind-icon">balance</a>
+								<a href="core.account.html#assetbalances" class="tsd-kind-icon">asset<wbr>Balances</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="core.account.html#id" class="tsd-kind-icon">id</a>
+								<a href="core.account.html#balancenqt" class="tsd-kind-icon">balanceNQT</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.account.html#description" class="tsd-kind-icon">description</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.account.html#effectivebalancenqt" class="tsd-kind-icon">effective<wbr>BalanceNQT</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="core.account.html#keys" class="tsd-kind-icon">keys</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.account.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="core.account.html#pinhash" class="tsd-kind-icon">pin<wbr>Hash</a>
@@ -300,7 +354,10 @@
 								<a href="core.account.html#type" class="tsd-kind-icon">type</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="core.account.html#unconfirmedbalance" class="tsd-kind-icon">unconfirmed<wbr>Balance</a>
+								<a href="core.account.html#unconfirmedassetbalances" class="tsd-kind-icon">unconfirmed<wbr>Asset<wbr>Balances</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.account.html#unconfirmedbalancenqt" class="tsd-kind-icon">unconfirmed<wbr>BalanceNQT</a>
 							</li>
 						</ul>
 					</li>
@@ -335,6 +392,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/core.aliaslist.html" class="tsd-kind-icon">Alias<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.assetbalance.html" class="tsd-kind-icon">Asset<wbr>Balance</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/core.balance.html" class="tsd-kind-icon">Balance</a>
@@ -386,6 +446,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/core.transactionresponse.html" class="tsd-kind-icon">Transaction<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.unconfirmedassetbalance.html" class="tsd-kind-icon">Unconfirmed<wbr>Asset<wbr>Balance</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/core.unconfirmedtransactionlist.html" class="tsd-kind-icon">Unconfirmed<wbr>Transaction<wbr>List</a>
