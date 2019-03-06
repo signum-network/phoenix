@@ -6,7 +6,6 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-import * as BN from 'bn.js';
 import { base32Length, cwmap, alphabet, initialCodeword } from './internal';
 import { isValid } from './isBurstAddress';
 
@@ -18,14 +17,12 @@ import { isValid } from './isBurstAddress';
     // @todo review, maybe better throwing exception
 export const convertAddressToNumericId = (address: string): string => {
 
-
     if (address === undefined ||
         address === null ||
         address.trim().length === 0) {
         return undefined;
     }
 
-    // remove Burst prefix
     if (address.indexOf('BURST-') === 0) {
         address = address.substr(6);
     } else {
@@ -84,5 +81,5 @@ export const convertAddressToNumericId = (address: string): string => {
         out += digit10;
     } while (length > 0);
 
-    return new BN(out.split('').reverse().join('')).toString();
+    return [...out].reverse().join('');
 };
