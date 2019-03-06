@@ -99,6 +99,7 @@ export class Converter {
         return value;
     }
 
+    /* @TODO: unused? if so remove me
     public static convertByteArrayToBigInteger(bytes, opt_startIndex) {
         let index = this.checkBytesToIntInput(bytes, 8, opt_startIndex);
 
@@ -114,6 +115,7 @@ export class Converter {
 
         return value;
     }
+    */
 
     public static convertByteArrayToWordArray(ba) {
         var wa = [],
