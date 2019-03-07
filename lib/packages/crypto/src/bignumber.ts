@@ -51,7 +51,7 @@ var groupBases = [
 function assert (val, msg = 'Assertion failed') {
     if (!val) throw new Error(msg);
 }
-
+// TODO reduce to what we really need for...address conversion
 export class BigNumber{
     negative = 0;
     words = null;
@@ -60,96 +60,26 @@ export class BigNumber{
     red = null;
 
 
-    constructor(number, base, endian = 'be'){
+    constructor(array, base, endian = 'be'){
 
-        if (number !== null) {
+        if (array !== null) {
             if (base === 'le' || base === 'be') {
                 endian = base;
                 base = 10;
             }
-
-            this._init(number || 0, base || 10, endian || 'be');
+            this._initArray(array, base, endian)
         }
 
     }
 
-    _init (number, base, endian) {
-        if (typeof number === 'number') {
-            return this._initNumber(number, base, endian);
-        }
-
-        if (typeof number === 'object') {
-            return this._initArray(number, base, endian);
-        }
-
-        if (base === 'hex') {
-            base = 16;
-        }
-        assert(base === (base | 0) && base >= 2 && base <= 36);
-
-        number = number.toString().replace(/\s+/g, '');
-        var start = 0;
-        if (number[0] === '-') {
-            start++;
-        }
-
-        if (base === 16) {
-            this._parseHex(number, start);
-        } else {
-            this._parseBase(number, base, start);
-        }
-
-        if (number[0] === '-') {
-            this.negative = 1;
-        }
-
-        this.strip();
-
-        if (endian !== 'le') return;
-
-        this._initArray(this.toArray(), base, endian);
-    };
-
-    _initNumber (number, base, endian) {
-        if (number < 0) {
-            this.negative = 1;
-            number = -number;
-        }
-        if (number < 0x4000000) {
-            this.words = [ number & 0x3ffffff ];
-            this.length = 1;
-        } else if (number < 0x10000000000000) {
-            this.words = [
-                number & 0x3ffffff,
-                (number / 0x4000000) & 0x3ffffff
-            ];
-            this.length = 2;
-        } else {
-            assert(number < 0x20000000000000); // 2 ^ 53 (unsafe)
-            this.words = [
-                number & 0x3ffffff,
-                (number / 0x4000000) & 0x3ffffff,
-                1
-            ];
-            this.length = 3;
-        }
-
-        if (endian !== 'le') return;
-
-        // Reverse the bytes
-        this._initArray(this.toArray(), base, endian);
-    };
-
-    _initArray (number, base, endian) {
-        // Perhaps a Uint8Array
-        assert(typeof number.length === 'number');
-        if (number.length <= 0) {
+    _initArray (array, base, endian) {
+        if (array.length <= 0) {
             this.words = [ 0 ];
             this.length = 1;
             return this;
         }
 
-        this.length = Math.ceil(number.length / 3);
+        this.length = Math.ceil(array.length / 3);
         this.words = new Array(this.length);
         for (var i = 0; i < this.length; i++) {
             this.words[i] = 0;
@@ -158,8 +88,8 @@ export class BigNumber{
         var j, w;
         var off = 0;
         if (endian === 'be') {
-            for (i = number.length - 1, j = 0; i >= 0; i -= 3) {
-                w = number[i] | (number[i - 1] << 8) | (number[i - 2] << 16);
+            for (i = array.length - 1, j = 0; i >= 0; i -= 3) {
+                w = array[i] | (array[i - 1] << 8) | (array[i - 2] << 16);
                 this.words[j] |= (w << off) & 0x3ffffff;
                 this.words[j + 1] = (w >>> (26 - off)) & 0x3ffffff;
                 off += 24;
@@ -169,8 +99,8 @@ export class BigNumber{
                 }
             }
         } else if (endian === 'le') {
-            for (i = 0, j = 0; i < number.length; i += 3) {
-                w = number[i] | (number[i + 1] << 8) | (number[i + 2] << 16);
+            for (i = 0, j = 0; i < array.length; i += 3) {
+                w = array[i] | (array[i + 1] << 8) | (array[i + 2] << 16);
                 this.words[j] |= (w << off) & 0x3ffffff;
                 this.words[j + 1] = (w >>> (26 - off)) & 0x3ffffff;
                 off += 24;
@@ -243,46 +173,12 @@ export class BigNumber{
         return this.length === 1 && this.words[0] === 0;
     };
 
-    toString (base = 10, padding = 1) {
-        base = base || 10;
-        padding = padding | 0 || 1;
-
-        var out;
-        if (base === 16 || base === 'hex') {
-            out = '';
-            var off = 0;
-            var carry = 0;
-            for (var i = 0; i < this.length; i++) {
-                var w = this.words[i];
-                var word = (((w << off) | carry) & 0xffffff).toString(16);
-                carry = (w >>> (24 - off)) & 0xffffff;
-                if (carry !== 0 || i !== this.length - 1) {
-                    out = zeros[6 - word.length] + word + out;
-                } else {
-                    out = word + out;
-                }
-                off += 2;
-                if (off >= 26) {
-                    off -= 26;
-                    i--;
-                }
-            }
-            if (carry !== 0) {
-                out = carry.toString(16) + out;
-            }
-            while (out.length % padding !== 0) {
-                out = '0' + out;
-            }
-            if (this.negative !== 0) {
-                out = '-' + out;
-            }
-            return out;
-        }
-
+    toString () {
+        const base = 10;
+        const padding = 0 || 1;
+        let out;
         if (base === (base | 0) && base >= 2 && base <= 36) {
-            // var groupSize = Math.floor(BN.wordSize * Math.LN2 / Math.log(base));
             var groupSize = groupSizes[base];
-            // var groupBase = Math.pow(base, groupSize);
             var groupBase = groupBases[base];
             out = '';
             var c = this.clone();
@@ -308,7 +204,5 @@ export class BigNumber{
             }
             return out;
         }
-
-        assert(false, 'Base should be between 2 and 36');
     };
 }

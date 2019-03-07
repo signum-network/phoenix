@@ -16,6 +16,9 @@ export const getAccountIdFromPublicKey = (publicKey: string): string => {
     const hash = CryptoJS.SHA256(CryptoJS.enc.Hex.parse(publicKey));
     const bytes = Converter.convertWordArrayToByteArray(hash);
     const slice = bytes.slice(0, 8).reverse();
+
+    // const result = slice.reduce( (acc, num, index) => acc + num * Math.pow(2, 56-(index*8) ), 0);
+    // return result + 39;
     const id = new BigNumber(slice, 256); // base 256 for byte
     return id.toString();
 };
