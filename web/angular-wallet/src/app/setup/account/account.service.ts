@@ -11,7 +11,9 @@ import { isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId, c
 import { environment } from 'environments/environment';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AccountService {
   private nodeUrl: string;
   private api: Api;

@@ -192,13 +192,13 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
         // Message
         const message = {
-            contactId: this.message.contactId,
+            contactId: this.selectedUser.account,
             message: this.replyForm.form.value.message,
-            timestamp: convertDateToBurstTime(new Date()).toString()
+            timestamp: parseInt(convertDateToBurstTime(new Date()).toString())
         };
 
         // Update the server
-        this.messageService.sendTextMessage(message, this.replyForm.form.value.pin, this.fee).then(response => {
+        this.messageService.sendTextMessage(message, this.message.contactId, this.replyForm.form.value.pin, this.fee).then(response => {
 
             // Reset the reply form
             this.replyForm.reset();

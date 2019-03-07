@@ -69,7 +69,6 @@ import { AccountResolver } from './account/account.resolver';
     ],
     providers: [
         CreateService,
-        AccountService,
         AccountResolver
     ],
     exports: [
