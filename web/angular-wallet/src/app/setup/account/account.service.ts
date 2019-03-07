@@ -65,12 +65,9 @@ export class AccountService {
     return this.api.account.getAccount(id);
   }
 
-  public setAccountInfo({ name, description, feeNQT, deadline, pin, keys }: SetAccountInfoRequest): Promise<Error | TransactionId> {
+  public setAccountInfo({ name, description, feeNQT, deadline, pin, keys }: SetAccountInfoRequest): Promise<TransactionId> {
     const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
-    return this.api.account.setAccountInfo(name, description, feeNQT, keys.publicKey, senderPrivateKey, deadline)
-        .catch((err) => {
-            throw new Error(`There was a problem submitting your transaction.`);
-        }); 
+    return this.api.account.setAccountInfo(name, description, feeNQT, keys.publicKey, senderPrivateKey, deadline); 
   }
 
   /*

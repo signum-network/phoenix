@@ -44,20 +44,21 @@ export class SetAccountInfoComponent implements OnInit {
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
   }
 
-  onSubmit(event) {
-    this.accountService.setAccountInfo({
-      name: this.name,
-      description: this.description,
-      feeNQT: this.feeNQT,
-      deadline: parseFloat(this.deadline),
-      pin: this.pin,
-      keys: this.account.keys,
-    }).then(() => {
-      this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
-    }).catch(() => {
-      this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
-    });
+  async onSubmit(event) {
     event.stopImmediatePropagation();
+    try {
+      await this.accountService.setAccountInfo({
+        name: this.name,
+        description: this.description,
+        feeNQT: this.feeNQT,
+        deadline: parseFloat(this.deadline),
+        pin: this.pin,
+        keys: this.account.keys,
+      });
+      this.notifierService.notify('success', this.i18nService.getTranslation('success_set_account_info'));
+    } catch (e) { 
+      this.notifierService.notify('error', this.i18nService.getTranslation('error_unknown'));
+    }
   }
-
 }
+ 

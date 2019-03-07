@@ -20,7 +20,7 @@ export const setAccountInfo = (service: BurstService): (
         senderPublicKey: string,
         senderPrivateKey: string,
         deadline: number,
-    ) => Promise<TransactionId | Error> =>
+    ) => Promise<TransactionId> =>
     async (
         name: string,
         description: string,
@@ -28,7 +28,7 @@ export const setAccountInfo = (service: BurstService): (
         senderPublicKey: string,
         senderPrivateKey: string,
         deadline: number,
-    ): Promise<TransactionId | Error> => {
+    ): Promise<TransactionId> => {
 
         let parameters = {
             name,

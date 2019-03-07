@@ -103,7 +103,7 @@ export interface AccountApi {
      * @param name The name of the account
      * @param senderPublicKey The senders public key for sending an _unsigned_ message
      * @param senderPrivateKey The senders private key to _sign_ the message
-     * @param deadline The deadline, in seconds, for the transaction
+     * @param deadline The deadline, in minutes, for the transaction to be confirmed
      * @return The Transaction
      */
     setAccountInfo: (
@@ -112,6 +112,6 @@ export interface AccountApi {
         feeNQT: string,
         senderPublicKey: string,
         senderPrivateKey: string,
-        deadline: number,
-    ) => Promise<TransactionId | Error>;
+        deadline?: number,
+    ) => Promise<TransactionId>;
 }
