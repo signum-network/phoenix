@@ -38,8 +38,6 @@ const routes = [
     CommonModule,
     FormsModule,
     FuseSharedModule,
-    BrowserModule,
-    BrowserAnimationsModule,
     SetupModule,
     NotifierModule,
     NgxMaskModule,

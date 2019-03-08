@@ -32,7 +32,7 @@ import { AccountResolver } from 'app/setup/account/account.resolver';
 
 const routes = [
     {
-        path     : 'transactions',
+        path     : '',
         component: TransactionsComponent,
         canActivate: [LoginGuard],
         resolve: {
@@ -87,8 +87,7 @@ const routes = [
     ],
     providers: [
         TransactionResolver,
-        TransactionsResolver,
-        TransactionService
+        TransactionsResolver
     ]
 })
 export class TransactionsModule { }

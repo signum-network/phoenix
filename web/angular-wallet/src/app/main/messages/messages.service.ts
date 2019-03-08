@@ -11,7 +11,7 @@ import { convertDateToBurstTime, convertAddressToNumericId } from '@burstjs/util
 
 export interface ChatMessage {
     message: string;
-    timestamp: string;
+    timestamp: number;
     contactId: string;
 }
 
@@ -104,15 +104,16 @@ export class MessagesService implements Resolve<any>
      *
      * @param messageId
      * @param {ChatMessage} message the message to send
+     * @param {string} recipientRS the recipient address
      * @param {string} pin the user's pin
      * @param {number} fee the fee to pay
      * @returns {ChatMessage}
      */
-    public sendTextMessage(message: ChatMessage, pin: string, fee: number) {
+    public sendTextMessage(message: ChatMessage, recipientRS: string, pin: string, fee: number) {
         // Check to see if existing chat session exists (ios-style), if so, merge it
-        this.mergeWithExistingChatSession(message);
+        this.mergeWithExistingChatSession(message, recipientRS);
         const senderPrivateKey = decryptAES(this.user.keys.signPrivateKey, hashSHA256(pin));
-        return this.api.message.sendTextMessage(message.message, message.contactId, this.user.keys.publicKey, senderPrivateKey, fee)
+        return this.api.message.sendTextMessage(message.message, recipientRS, this.user.keys.publicKey, senderPrivateKey, fee)
             .catch((err) => {
                 throw new Error(`There was a problem sending your message.`);
             });
@@ -163,10 +164,11 @@ export class MessagesService implements Resolve<any>
      * iOS-style feature that merges an existing chat session.
      * Covers the unlikely edge case where user searches for an address, modifies it, and then sends the msg.
      * @param message unsigned, unverified message to be added to the screen for immediate user satisfaction
+     * @param recipientRS the recipient to scan for
      */
-    mergeWithExistingChatSession(message) {
+    mergeWithExistingChatSession(message: ChatMessage, recipientRS: string) {
         const existingMessage = this.messages.find((existingMessage) => {
-            return (existingMessage.contactId === message.contactId);
+            return (existingMessage.contactId === recipientRS);
         });
         if (existingMessage) {
             existingMessage.dialog.push(message);

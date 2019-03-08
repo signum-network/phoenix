@@ -11,7 +11,7 @@ export class PeersResolver implements Resolve<Peer[]> {
 
     async resolve(route: ActivatedRouteSnapshot) {
         const peersResponse = await this.networkService.getPeers();
-        const peers = peersResponse.peers.map(this.networkService.getPeer);
+        const peers = peersResponse.peers.map(async (address) => await this.networkService.getPeer(address));
         return await Promise.all(peers);
     }
 }

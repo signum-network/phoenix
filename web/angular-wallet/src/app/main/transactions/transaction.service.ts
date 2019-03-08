@@ -21,7 +21,9 @@ interface SendMoneyRequest {
     recipientAddress: string;
 }
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class TransactionService {
     private api: any; // todo
 
