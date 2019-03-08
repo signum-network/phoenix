@@ -5,11 +5,19 @@ import 'rxjs/add/operator/timeout';
 
 import { StoreService } from 'app/store/store.service';
 import { Settings } from 'app/settings';
-import { Account, composeApi, ApiSettings, Api, TransactionList, AliasList, Balance, UnconfirmedTransactionList } from '@burstjs/core';
-import { generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey } from '@burstjs/crypto';
-import { isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId, convertNumberToNQTString, convertNQTStringToNumber } from '@burstjs/util';
+import { Account, composeApi, ApiSettings, Api, TransactionList, AliasList, Balance, UnconfirmedTransactionList, Transaction, TransactionId } from '@burstjs/core';
+import { generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey, decryptAES } from '@burstjs/crypto';
+import { isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId } from '@burstjs/util';
 import { environment } from 'environments/environment';
 
+interface SetAccountInfoRequest {
+  name: string,
+  description: string,
+  deadline: number,
+  feeNQT: string,
+  pin: string;
+  keys: Keys;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +65,11 @@ export class AccountService {
 
   public getAccount(id: string): Promise<Account> {
     return this.api.account.getAccount(id);
+  }
+
+  public setAccountInfo({ name, description, feeNQT, deadline, pin, keys }: SetAccountInfoRequest): Promise<TransactionId> {
+    const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    return this.api.account.setAccountInfo(name, description, feeNQT, keys.publicKey, senderPrivateKey, deadline); 
   }
 
   /*

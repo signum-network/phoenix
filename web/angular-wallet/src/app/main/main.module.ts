@@ -20,6 +20,10 @@ import { TransactionsModule } from './transactions/transactions.module';
 import { SendBurstModule } from './send-burst/send-burst.module';
 import { AccountsModule } from './accounts/accounts.module';
 import { AliasesModule } from './aliases/aliases.module';
+import { BlocksModule } from './blocks/blocks.module';
+import { PeersModule } from './peers/peers.module';
+import { MessagesModule } from './messages/messages.module';
+import { SetAccountInfoModule } from './set-account-info/set-account-info.module';
 
 const mainRoutes: Routes = [
   {
@@ -79,6 +83,11 @@ const mainRoutes: Routes = [
     DashboardModule,
     SendBurstModule,
     AccountsModule,
+    AliasesModule,
+    BlocksModule,
+    PeersModule,
+    MessagesModule,
+    SetAccountInfoModule
   ],
   exports: [
     MainComponent
