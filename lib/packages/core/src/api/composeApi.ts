@@ -31,6 +31,7 @@ import {sendMoney} from './factories/transaction/sendMoney';
 import {getAliases} from './factories/account/getAliases';
 import {getTime} from './factories/network/getTime';
 import {getAccount} from './factories/account/getAccount';
+import {setAccountInfo} from './factories/account/setAccountInfo';
 
 
 /**
@@ -87,6 +88,7 @@ export function composeApi(settings: ApiSettings): Api {
             generateSendTransactionQRCodeAddress,
             getAliases,
             getAccount,
+            setAccountInfo,
         })
         .compose();
 

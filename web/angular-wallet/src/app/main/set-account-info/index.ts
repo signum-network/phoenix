@@ -1,0 +1,1 @@
+export { SetAccountInfoComponent } from './set-account-info.component';

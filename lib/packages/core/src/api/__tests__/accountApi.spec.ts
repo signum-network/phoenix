@@ -6,9 +6,14 @@ import {getUnconfirmedAccountTransactions} from '../factories/account/getUnconfi
 import {getAccountBalance} from '../factories/account/getAccountBalance';
 import { generateSendTransactionQRCodeAddress } from '../factories/account/generateSendTransactionQRCodeAddress';
 import { generateSendTransactionQRCode } from '../factories/account/generateSendTransactionQRCode';
-import { getAliases} from '../factories/account/getAliases';
+import { getAliases } from '../factories/account/getAliases';
+import { setAccountInfo } from '../factories/account/setAccountInfo';
 import { Alias } from '../../typings/alias';
-import {AliasList} from "../../typings/aliasList";
+import { AliasList } from "../../typings/aliasList";
+import { generateSignature } from '@burstjs/crypto';
+import { verifySignature } from '@burstjs/crypto';
+import { generateSignedTransactionBytes } from '@burstjs/crypto';
+
 
 describe('Account Api', () => {
 
@@ -279,5 +284,58 @@ describe('Account Api', () => {
                 expect(e.message).toBe('Test Error');
             }
         });
+    });
+
+
+    describe('setAccountInfo', () => {
+        let service;
+
+        const mockBroadcastResponse = {
+            unsignedTransactionBytes: 'unsignedHexMessage'
+        };
+
+        beforeEach(() => {
+
+            jest.resetAllMocks();
+
+            // @ts-ignore
+            generateSignature = jest.fn(() => 'signature');
+            // @ts-ignore
+            verifySignature = jest.fn(() => true);
+            // @ts-ignore
+            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
+
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+            .onPostReply(200, mockBroadcastResponse,
+                'relPath?requestType=setAccountInfo&name=name&description=description&deadline=1440&feeNQT=12300000000&publicKey=senderPublicKey')
+            .onPostReply(200, 'fakeTransaction',
+                'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+            .build();
+
+            service = new BurstService('baseUrl', 'relPath', httpMock);
+        });
+
+        afterEach(() => {
+            // @ts-ignore
+            httpMock.reset();
+        });
+
+        it('should setAccountInfo', async () => {
+            const status = await setAccountInfo(service)(
+                'name',
+                'description',
+                '123',
+                'senderPublicKey',
+                'senderPrivateKey',
+                1440,
+            );
+            expect(status).toBe('fakeTransaction');
+            expect(generateSignature).toBeCalledTimes(1);
+            expect(verifySignature).toBeCalledTimes(1);
+            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+        });
+
+    
     });
 });
