@@ -55,7 +55,6 @@
     "build": "npm run tsc"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "bn.js": "^4.11.8"
+    "axios": "^0.18.0"
   }
 }

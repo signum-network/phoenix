@@ -1,9 +1,8 @@
 /** @ignore */
 /** @module crypto */
-/* tslint:disable:max-line-length */
 
 // taken from https://raw.githubusercontent.com/bitcoin/bips/master/bip-0039/english.txt
-// being prepared for hierarchical determenistic wallet
+// being prepared for hierarchical deterministic wallet
 export const words: string[] = [
     'abandon',
     'ability',

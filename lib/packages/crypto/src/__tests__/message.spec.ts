@@ -1,9 +1,8 @@
 import {generateMasterKeys} from '../generateMasterKeys';
 import {encryptMessage} from '../encryptMessage';
-import {encryptAES} from '../encryptAES';
 import {decryptMessage} from '../decryptMessage';
 
-describe('Encrypt and Decrypt messages', () => {
+describe.skip('Encrypt and Decrypt messages', () => {
 
     it('should decrypt an encrypted message successfully', () => {
 

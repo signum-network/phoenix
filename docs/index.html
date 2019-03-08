@@ -62,73 +62,116 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="-burstjs-http">@burstjs/http</h1>
-				<p>Generic HTTP client that is used as a network provider for @burst/core.</p>
+				<h1 id="-burstjs-core">@burstjs/core</h1>
+				<p>Burst-related functions and models for building Burstcoin applications.</p>
 				<h2 id="installation">Installation</h2>
 				<p>Install using <a href="https://www.npmjs.org/">npm</a>:</p>
-				<pre><code><span class="hljs-built_in">npm</span> install @burstjs/http</code></pre><p>or using <a href="https://yarnpkg.com/">yarn</a>:</p>
-				<pre><code class="language-yarn">yarn add @burstjs/http</code></pre>
+				<pre><code><span class="hljs-built_in">npm</span> install @burstjs/core</code></pre><p>or using <a href="https://yarnpkg.com/">yarn</a>:</p>
+				<pre><code class="language-yarn">yarn add @burstjs/core</code></pre>
 				<h2 id="api-reference">API Reference</h2>
 				<h2 id="classes">Classes</h2>
 				<dl>
-					<dt><a href="#HttpError">HttpError</a></dt>
-					<dd><p>HttpError class</p>
-					<p>Thrown on HTTP errors</p></dd>
-					<dt><a href="#HttpImpl">HttpImpl</a></dt>
-					<dd></dd>
-					<dt><a href="#HttpMock">HttpMock</a></dt>
-					<dd><p>Http Mocker for easy to http testing using Jest</p>
-						<p>When using this mocking helper you need to call <code>Http.onGet()</code>
-					before Http instance is created</p></dd>
+					<dt><a href="#BurstService">BurstService</a></dt>
+					<dd><p>Generic BRS Web Service class.
+					Extend and specific services here</p></dd>
 				</dl>
-				<p><a name="HttpError"></a></p>
-				<h2 id="httperror">HttpError</h2>
-				<p>HttpError class</p>
-				<p>Thrown on HTTP errors</p>
-				<p><strong>Kind</strong>: global class<br><a name="HttpImpl"></a></p>
-				<h2 id="httpimpl">HttpImpl</h2>
-				<p><strong>Kind</strong>: global class<br><a name="new_HttpImpl_new"></a></p>
-				<h3 id="new-httpimpl-baseurl-">new HttpImpl(baseURL)</h3>
-				<p>Creates your Http client</p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>baseURL</td>
-							<td><p>The baseUrl, i.e host url</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="HttpMock"></a></p>
-				<h2 id="httpmock">HttpMock</h2>
-				<p>Http Mocker for easy to http testing using Jest</p>
-				<p>When using this mocking helper you need to call <code>Http.onGet()</code>
-				before Http instance is created</p>
+				<h2 id="functions">Functions</h2>
+				<dl>
+					<dt><a href="#generateSendTransactionQRCode">generateSendTransactionQRCode(receiverId, amountNQT, feeSuggestionType)</a> ⇒ <code>Promise.&lt;ArrayBufferLike&gt;</code></dt>
+					<dd><p>Get QR Code image for a given BURST address</p></dd>
+					<dt><a href="#generateSendTransactionQRCodeAddress">generateSendTransactionQRCodeAddress(receiverId, amountNQT, feeSuggestionType)</a> ⇒ <code>Promise.&lt;string&gt;</code></dt>
+					<dd><p>Generate the URL for a QR Code for a given BURST address. Useful for IMG tags in HTML.</p></dd>
+					<dt><a href="#getAccountBalance">getAccountBalance()</a></dt>
+					<dd><p>Submits a getBalance query given an accountId</p></dd>
+					<dt><a href="#getAccountTransactions">getAccountTransactions(accountId, firstIndex, lastIndex, numberOfConfirmations)</a> ⇒ <code>Promise.&lt;TransactionList&gt;</code></dt>
+					<dd><p>Get transactions of given account</p></dd>
+					<dt><a href="#getAliases">getAliases(accountId)</a> ⇒ <code>Promise.&lt;AliasList&gt;</code></dt>
+					<dd><p>Gets the aliases of an account</p></dd>
+					<dt><a href="#getUnconfirmedAccountTransactions">getUnconfirmedAccountTransactions(accountId)</a> ⇒ <code>Promise.&lt;UnconfirmedTransactionList&gt;</code></dt>
+					<dd><p>Get <em>unconfirmed</em> transactions of given account</p></dd>
+					<dt><a href="#getBlockByHeight">getBlockByHeight(height, includeTransactions)</a> ⇒</dt>
+					<dd><p>Get a block by given height</p></dd>
+					<dt><a href="#getBlockById">getBlockById(id, includeTransactions)</a> ⇒</dt>
+					<dd><p>Get a block by given id</p></dd>
+					<dt><a href="#getBlockByTimestamp">getBlockByTimestamp()</a></dt>
+					<dd><p>Original work Copyright (c) 2019 Burst Apps Team</p></dd>
+					<dt><a href="#getBlockId">getBlockId(height)</a> ⇒ <code>Promise.&lt;BlockId&gt;</code></dt>
+					<dd><p>Get a block id by given height</p></dd>
+					<dt><a href="#constructAttachment">constructAttachment(transactions, params)</a> ⇒</dt>
+					<dd><p>Constructs an Attachment</p></dd>
+					<dt><a href="#sendTextMessage">sendTextMessage(message, recipientId, senderPublicKey, senderPrivateKey, fee)</a> ⇒</dt>
+					<dd><p><p>Broadcasts a text message to the network/blockchain</p></p>
+						<p><p>The message will be broadcasted in two steps.</p></p>
+						<ol>
+							<li>Send the message with public key to the network</li>
+							<li>Take the returned unsigned message and sign it, i.e. the private key won&#39;t be transmitted.</li>
+					</ol></dd>
+					<dt><a href="#getBlockchainStatus">getBlockchainStatus()</a> ⇒</dt>
+					<dd><p>Get the blockchain status.</p></dd>
+					<dt><a href="#getServerStatus">getServerStatus()</a> ⇒</dt>
+					<dd><p>Get the state of the server node and network</p></dd>
+					<dt><a href="#suggestFee">suggestFee()</a> ⇒ <code>Promise.&lt;SuggestedFees&gt;</code></dt>
+					<dd><p>Get the current suggested fees</p></dd>
+					<dt><a href="#broadcastTransaction">broadcastTransaction(signedTransactionPayload)</a> ⇒</dt>
+					<dd><p>Broadcasts a transaction to the network/blockchain</p></dd>
+					<dt><a href="#getTransaction">getTransaction(transactionId)</a> ⇒</dt>
+					<dd><p>Get a transaction from the network/blockchain</p></dd>
+					<dt><a href="#sendMoney">sendMoney(transaction, senderPublicKey, senderPrivateKey, recipientAddress)</a> ⇒</dt>
+					<dd><p><p>Sends burst to the blockchain</p></p>
+						<p><p>The message will be broadcasted in two steps.</p></p>
+						<ol>
+							<li>Send the sendMoney call with public key to the network</li>
+							<li>Take the returned unsigned message and sign it, i.e. the private key won&#39;t be transmitted.</li>
+					</ol></dd>
+				</dl>
+				<p><a name="BurstService"></a></p>
+				<h2 id="burstservice">BurstService</h2>
+				<p>Generic BRS Web Service class.
+				Extend and specific services here</p>
 				<p><strong>Kind</strong>: global class  </p>
 				<ul>
-					<li><a href="#HttpMock">HttpMock</a><ul>
-							<li><a href="#HttpMock.onGet">.onGet(endpoint?)</a></li>
-							<li><a href="#HttpMock.onPost">.onPost(endpoint?)</a></li>
-							<li><a href="#HttpMock.onPut">.onPut(endpoint?)</a></li>
-							<li><a href="#HttpMock.onDelete">.onDelete(endpoint?)</a></li>
-							<li><a href="#HttpMock.reset">.reset()</a></li>
+					<li><a href="#BurstService">BurstService</a><ul>
+							<li><a href="#new_BurstService_new">new BurstService(baseUrl, relativePath, httpClient)</a></li>
+							<li><a href="#BurstService+http">.http</a> ⇒</li>
+							<li><a href="#BurstService+toBRSEndpoint">.toBRSEndpoint(method, data)</a> ⇒</li>
+							<li><a href="#BurstService+query">.query(method, args)</a> ⇒</li>
+							<li><a href="#BurstService+send">.send(method, args, body)</a> ⇒</li>
 						</ul>
 					</li>
 				</ul>
-				<p><a name="HttpMock.onGet"></a></p>
-				<h3 id="httpmock-onget-endpoint-">HttpMock.onGet(endpoint?)</h3>
-				<p>Mocks responses for get methods
-					You may pass a specific endpoint as parameter to mock only selected endpoints.
-					This is very useful, when having methods that do several Http requests,
-				so you can mock them one on one.</p>
-				<p>The following code returns the same content on <em>every</em> get call</p>
-				<pre class="prettyprint source"><code>  HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);</code></pre><p> The next code returns the different content depending on the passed endpoint</p>
-				<pre class="prettyprint source"><code>  HttpMock.onGet('/foo').reply(200, {data: 'foo'});
-  HttpMock.onGet('/bar').reply(200, {data: 'bar'});</code></pre>
-				<p><strong>Kind</strong>: static method of <a href="#HttpMock"><code>HttpMock</code></a>  </p>
+				<p><a name="new_BurstService_new"></a></p>
+				<h3 id="new-burstservice-baseurl-relativepath-httpclient-">new BurstService(baseUrl, relativePath, httpClient)</h3>
+				<p>Creates Service instance</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>baseUrl</td>
+							<td>| <p>The host url of web service</p></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>relativePath</td>
+							<td>| <p>The relative path will be prepended before each url created with toBRSEndpoint()</p></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>httpClient</td>
+							<td><code>Http</code></td>
+							<td><p>If passed an client instance, it will be used instead of default HttpImpl. Good for testing.</p></td>
+						</tr>
+				</tbody></table>
+				<p><a name="BurstService+http"></a></p>
+				<h3 id="burstservice-http-">burstService.http ⇒</h3>
+				<p><strong>Kind</strong>: instance property of <a href="#BurstService"><code>BurstService</code></a><br><strong>Returns</strong>: <p>The internal Http client</p><br><a name="BurstService+toBRSEndpoint"></a></p>
+				<h3 id="burstservice-tobrsendpoint-method-data-">burstService.toBRSEndpoint(method, data) ⇒</h3>
+				<p>Mounts a BRS conform API endpoint of format <code>&lt;host&gt;?requestType=getBlock&amp;height=123</code></p>
+				<p><strong>Kind</strong>: instance method of <a href="#BurstService"><code>BurstService</code></a><br><strong>Returns</strong>: <p>The mounted url (without host)</p><br><strong>See</strong>: <a href="https://burstwiki.org/wiki/The_Burst_API">https://burstwiki.org/wiki/The_Burst_API</a>  </p>
 				<table>
 					<thead>
 						<tr>
@@ -137,14 +180,22 @@
 						</tr>
 					</thead>
 					<tbody><tr>
-							<td>endpoint?</td>
-							<td><p>An endpoint, to allow specific behavior on that endpoint</p></td>
+							<td>method</td>
+							<td><p>The method name for <code>requestType</code></p></td>
+						</tr>
+						<tr>
+							<td>data</td>
+							<td><p>A JSON object which will be mapped to url params</p></td>
 						</tr>
 				</tbody></table>
-				<p><a name="HttpMock.onPost"></a></p>
-				<h3 id="httpmock-onpost-endpoint-">HttpMock.onPost(endpoint?)</h3>
-				<p>Mocks responses for post methods</p>
-				<p><strong>Kind</strong>: static method of <a href="#HttpMock"><code>HttpMock</code></a>  </p>
+				<p><a name="BurstService+query"></a></p>
+				<h3 id="burstservice-query-method-args-">burstService.query(method, args) ⇒</h3>
+				<p>Requests a query to BRS</p>
+				<p><strong>Kind</strong>: instance method of <a href="#BurstService"><code>BurstService</code></a><br><strong>Returns</strong>: <p>The response data of success</p><br><strong>Throws</strong>:</p>
+				<ul>
+					<li><p>HttpError in case of failure</p>
+					</li>
+				</ul>
 				<table>
 					<thead>
 						<tr>
@@ -153,14 +204,22 @@
 						</tr>
 					</thead>
 					<tbody><tr>
-							<td>endpoint?</td>
-							<td><p>An endpoint, to allow specific behavior on that endpoint</p></td>
+							<td>method</td>
+							<td><p>The BRS method according <a href="https://burstwiki.org/wiki/The_Burst_API">https://burstwiki.org/wiki/The_Burst_API</a></p></td>
+						</tr>
+						<tr>
+							<td>args</td>
+							<td><p>A JSON object which will be mapped to url params</p></td>
 						</tr>
 				</tbody></table>
-				<p><a name="HttpMock.onPut"></a></p>
-				<h3 id="httpmock-onput-endpoint-">HttpMock.onPut(endpoint?)</h3>
-				<p>Mocks responses for put methods</p>
-				<p><strong>Kind</strong>: static method of <a href="#HttpMock"><code>HttpMock</code></a>  </p>
+				<p><a name="BurstService+send"></a></p>
+				<h3 id="burstservice-send-method-args-body-">burstService.send(method, args, body) ⇒</h3>
+				<p>Send data to BRS</p>
+				<p><strong>Kind</strong>: instance method of <a href="#BurstService"><code>BurstService</code></a><br><strong>Returns</strong>: <p>The response data of success</p><br><strong>Throws</strong>:</p>
+				<ul>
+					<li><p>HttpError in case of failure</p>
+					</li>
+				</ul>
 				<table>
 					<thead>
 						<tr>
@@ -169,14 +228,148 @@
 						</tr>
 					</thead>
 					<tbody><tr>
-							<td>endpoint?</td>
-							<td><p>An endpoint, to allow specific behavior on that endpoint</p></td>
+							<td>method</td>
+							<td><p>The BRS method according<a href="https://burstwiki.org/wiki/The_Burst_API#Create_Transaction">https://burstwiki.org/wiki/The_Burst_API#Create_Transaction</a>.        Note that there are only a few POST methods</p></td>
+						</tr>
+						<tr>
+							<td>args</td>
+							<td><p>A JSON object which will be mapped to url params</p></td>
+						</tr>
+						<tr>
+							<td>body</td>
+							<td><p>An object with key value pairs to submit as post body</p></td>
 						</tr>
 				</tbody></table>
-				<p><a name="HttpMock.onDelete"></a></p>
-				<h3 id="httpmock-ondelete-endpoint-">HttpMock.onDelete(endpoint?)</h3>
-				<p>Mocks responses for delete methods</p>
-				<p><strong>Kind</strong>: static method of <a href="#HttpMock"><code>HttpMock</code></a>  </p>
+				<p><a name="generateSendTransactionQRCode"></a></p>
+				<h2 id="generatesendtransactionqrcode-receiverid-amountnqt-feesuggestiontype-code-promise-arraybufferlike-code-">generateSendTransactionQRCode(receiverId, amountNQT, feeSuggestionType) ⇒ <code>Promise.&lt;ArrayBufferLike&gt;</code></h2>
+				<p>Get QR Code image for a given BURST address</p>
+				<p><strong>Kind</strong>: global function  </p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>receiverId</td>
+							<td><code>string</code></td>
+							<td><p>The recipient burst</p></td>
+						</tr>
+						<tr>
+							<td>amountNQT</td>
+							<td><code>string</code></td>
+							<td><p>The amount (in NQT) to request</p></td>
+						</tr>
+						<tr>
+							<td>feeSuggestionType</td>
+							<td><code>string</code></td>
+							<td><p>The fee suggestion type string</p></td>
+						</tr>
+				</tbody></table>
+				<p><a name="generateSendTransactionQRCodeAddress"></a></p>
+				<h2 id="generatesendtransactionqrcodeaddress-receiverid-amountnqt-feesuggestiontype-code-promise-string-code-">generateSendTransactionQRCodeAddress(receiverId, amountNQT, feeSuggestionType) ⇒ <code>Promise.&lt;string&gt;</code></h2>
+				<p>Generate the URL for a QR Code for a given BURST address. Useful for IMG tags in HTML.</p>
+				<p><strong>Kind</strong>: global function  </p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>receiverId</td>
+							<td><code>string</code></td>
+							<td><p>The recipient burst address</p></td>
+						</tr>
+						<tr>
+							<td>amountNQT</td>
+							<td><code>string</code></td>
+							<td><p>The amount (in NQT) to request</p></td>
+						</tr>
+						<tr>
+							<td>feeSuggestionType</td>
+							<td><code>string</code></td>
+							<td><p>The fee suggestion type string</p></td>
+						</tr>
+				</tbody></table>
+				<p><a name="getAccountBalance"></a></p>
+				<h2 id="getaccountbalance-">getAccountBalance()</h2>
+				<p>Submits a getBalance query given an accountId</p>
+				<p><strong>Kind</strong>: global function<br><a name="getAccountTransactions"></a></p>
+				<h2 id="getaccounttransactions-accountid-firstindex-lastindex-numberofconfirmations-code-promise-transactionlist-code-">getAccountTransactions(accountId, firstIndex, lastIndex, numberOfConfirmations) ⇒ <code>Promise.&lt;TransactionList&gt;</code></h2>
+				<p>Get transactions of given account</p>
+				<p><strong>Kind</strong>: global function  </p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>accountId</td>
+							<td><code>string</code></td>
+							<td><p>The numeric accountId</p></td>
+						</tr>
+						<tr>
+							<td>firstIndex</td>
+							<td><code>number</code></td>
+							<td><p>The first index of the transaction list, beginning at 0</p></td>
+						</tr>
+						<tr>
+							<td>lastIndex</td>
+							<td><code>number</code></td>
+							<td><p>The last index of the transaction list</p></td>
+						</tr>
+						<tr>
+							<td>numberOfConfirmations</td>
+							<td><code>number</code></td>
+							<td><p>The minimum required number of confirmations per transaction</p></td>
+						</tr>
+				</tbody></table>
+				<p><a name="getAliases"></a></p>
+				<h2 id="getaliases-accountid-code-promise-aliaslist-code-">getAliases(accountId) ⇒ <code>Promise.&lt;AliasList&gt;</code></h2>
+				<p>Gets the aliases of an account</p>
+				<p><strong>Kind</strong>: global function  </p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Type</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>accountId</td>
+							<td><code>string</code></td>
+						</tr>
+				</tbody></table>
+				<p><a name="getUnconfirmedAccountTransactions"></a></p>
+				<h2 id="getunconfirmedaccounttransactions-accountid-code-promise-unconfirmedtransactionlist-code-">getUnconfirmedAccountTransactions(accountId) ⇒ <code>Promise.&lt;UnconfirmedTransactionList&gt;</code></h2>
+				<p>Get <em>unconfirmed</em> transactions of given account</p>
+				<p><strong>Kind</strong>: global function  </p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>accountId</td>
+							<td><code>string</code></td>
+							<td><p>The numeric accountId</p></td>
+						</tr>
+				</tbody></table>
+				<p><a name="getBlockByHeight"></a></p>
+				<h2 id="getblockbyheight-height-includetransactions-">getBlockByHeight(height, includeTransactions) ⇒</h2>
+				<p>Get a block by given height</p>
+				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The Block</p>  </p>
 				<table>
 					<thead>
 						<tr>
@@ -185,14 +378,186 @@
 						</tr>
 					</thead>
 					<tbody><tr>
-							<td>endpoint?</td>
-							<td><p>An endpoint, to allow specific behavior on that endpoint</p></td>
+							<td>height</td>
+							<td><p>The block height</p></td>
+						</tr>
+						<tr>
+							<td>includeTransactions</td>
+							<td><p><em>true</em>, if transactions shall be included</p></td>
 						</tr>
 				</tbody></table>
-				<p><a name="HttpMock.reset"></a></p>
-				<h3 id="httpmock-reset-">HttpMock.reset()</h3>
-				<p>Resets all mocked behavior</p>
-				<p><strong>Kind</strong>: static method of <a href="#HttpMock"><code>HttpMock</code></a>  </p>
+				<p><a name="getBlockById"></a></p>
+				<h2 id="getblockbyid-id-includetransactions-">getBlockById(id, includeTransactions) ⇒</h2>
+				<p>Get a block by given id</p>
+				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The Block</p>  </p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>id</td>
+							<td><p>The block id</p></td>
+						</tr>
+						<tr>
+							<td>includeTransactions</td>
+							<td><p><em>true</em>, if transactions shall be included</p></td>
+						</tr>
+				</tbody></table>
+				<p><a name="getBlockByTimestamp"></a></p>
+				<h2 id="getblockbytimestamp-">getBlockByTimestamp()</h2>
+				<p>Original work Copyright (c) 2019 Burst Apps Team</p>
+				<p><strong>Kind</strong>: global function<br><a name="getBlockId"></a></p>
+				<h2 id="getblockid-height-code-promise-blockid-code-">getBlockId(height) ⇒ <code>Promise.&lt;BlockId&gt;</code></h2>
+				<p>Get a block id by given height</p>
+				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <code>Promise.&lt;BlockId&gt;</code> - <p>The Block Id</p>  </p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>height</td>
+							<td><code>number</code></td>
+							<td><p>The block height</p></td>
+						</tr>
+				</tbody></table>
+				<p><a name="constructAttachment"></a></p>
+				<h2 id="constructattachment-transactions-params-">constructAttachment(transactions, params) ⇒</h2>
+				<p>Constructs an Attachment</p>
+				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>HttpParams</p>  </p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>transactions</td>
+							<td><p>The transaction with the attachment</p></td>
+						</tr>
+						<tr>
+							<td>params</td>
+							<td><p>Some HttpParams</p></td>
+						</tr>
+				</tbody></table>
+				<p><a name="sendTextMessage"></a></p>
+				<h2 id="sendtextmessage-message-recipientid-senderpublickey-senderprivatekey-fee-">sendTextMessage(message, recipientId, senderPublicKey, senderPrivateKey, fee) ⇒</h2>
+				<p>Broadcasts a text message to the network/blockchain</p>
+				<p>The message will be broadcasted in two steps.</p>
+				<ol>
+					<li>Send the message with public key to the network</li>
+					<li>Take the returned unsigned message and sign it, i.e. the private key won't be transmitted.</li>
+				</ol>
+				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The Transaction Id</p>  </p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>message</td>
+							<td><p>The <em>text</em> message to be sent</p></td>
+						</tr>
+						<tr>
+							<td>recipientId</td>
+							<td><p>The recipients Id, not RS Address</p></td>
+						</tr>
+						<tr>
+							<td>senderPublicKey</td>
+							<td><p>The senders public key for sending an <em>unsigned</em> message</p></td>
+						</tr>
+						<tr>
+							<td>senderPrivateKey</td>
+							<td><p>The senders private key to <em>sign</em> the message</p></td>
+						</tr>
+						<tr>
+							<td>fee</td>
+							<td><p>The optional fee (expressed in Burst) for the message, default is 0.1 Burst.</p></td>
+						</tr>
+				</tbody></table>
+				<p><a name="getBlockchainStatus"></a></p>
+				<h2 id="getblockchainstatus-">getBlockchainStatus() ⇒</h2>
+				<p>Get the blockchain status.</p>
+				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The Blockchain Status</p><br><a name="getServerStatus"></a></p>
+				<h2 id="getserverstatus-">getServerStatus() ⇒</h2>
+				<p>Get the state of the server node and network</p>
+				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The server Status</p><br><a name="suggestFee"></a></p>
+				<h2 id="suggestfee-code-promise-suggestedfees-code-">suggestFee() ⇒ <code>Promise.&lt;SuggestedFees&gt;</code></h2>
+				<p>Get the current suggested fees</p>
+				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <code>Promise.&lt;SuggestedFees&gt;</code> - <p>The Suggested Fees</p><br><a name="broadcastTransaction"></a></p>
+				<h2 id="broadcasttransaction-signedtransactionpayload-">broadcastTransaction(signedTransactionPayload) ⇒</h2>
+				<p>Broadcasts a transaction to the network/blockchain</p>
+				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The Transaction Id</p>  </p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>signedTransactionPayload</td>
+							<td><p>The <em>signed</em> transaction payload encoded in base64</p></td>
+						</tr>
+				</tbody></table>
+				<p><a name="getTransaction"></a></p>
+				<h2 id="gettransaction-transactionid-">getTransaction(transactionId) ⇒</h2>
+				<p>Get a transaction from the network/blockchain</p>
+				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The Transaction</p>  </p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>transactionId</td>
+							<td><p>The transaction Id</p></td>
+						</tr>
+				</tbody></table>
+				<p><a name="sendMoney"></a></p>
+				<h2 id="sendmoney-transaction-senderpublickey-senderprivatekey-recipientaddress-">sendMoney(transaction, senderPublicKey, senderPrivateKey, recipientAddress) ⇒</h2>
+				<p>Sends burst to the blockchain</p>
+				<p>The message will be broadcasted in two steps.</p>
+				<ol>
+					<li>Send the sendMoney call with public key to the network</li>
+					<li>Take the returned unsigned message and sign it, i.e. the private key won't be transmitted.</li>
+				</ol>
+				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The Transaction</p>  </p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>transaction</td>
+							<td><p>The unsigned transaction</p></td>
+						</tr>
+						<tr>
+							<td>senderPublicKey</td>
+							<td><p>The senders public key for sending an <em>unsigned</em> message</p></td>
+						</tr>
+						<tr>
+							<td>senderPrivateKey</td>
+							<td><p>The senders private key to <em>sign</em> the message</p></td>
+						</tr>
+						<tr>
+							<td>recipientAddress</td>
+							<td><p>The recipients RS Address</p></td>
+						</tr>
+				</tbody></table>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

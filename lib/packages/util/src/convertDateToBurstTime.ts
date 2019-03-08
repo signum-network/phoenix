@@ -11,5 +11,5 @@ import {GenesisBlockTime} from './internal';
  * @return The Burst Timestamp
  */
 export const convertDateToBurstTime = (date: Date): number => {
-    return (date.getTime() / 1000) - GenesisBlockTime;
+    return Math.round(date.getTime() / 1000) - GenesisBlockTime;
 };

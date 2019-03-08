@@ -6,7 +6,6 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-import * as BN from 'bn.js';
 import { initialCodeword, base32Length, gmult, alphabet, cwmap } from './internal';
 
 
@@ -27,11 +26,10 @@ export const convertNumericIdToAddress = (numericId: string): string => {
         codeword = initialCodeword.slice();
     let pos = 0;
 
-    const plainString = new BN(numericId).toString();
-    let length = plainString.length;
+    let length = numericId.length;
 
     for (let i = 0; i < length; i++) {
-        plainString10[i] = plainString.charCodeAt(i) - '0'.charCodeAt(0);
+        plainString10[i] = numericId.charCodeAt(i) - '0'.charCodeAt(0);
     }
 
     let digit32 = 0,

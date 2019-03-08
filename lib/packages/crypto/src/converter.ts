@@ -7,7 +7,6 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-import * as BN from 'bn.js';
 import * as CryptoJS from 'crypto-js';
 
 declare function escape(s: string): string;
@@ -96,22 +95,6 @@ export class Converter {
         value += bytes[index + 1] << 8;
         value += bytes[index + 2] << 16;
         value += bytes[index + 3] << 24;
-        return value;
-    }
-
-    public static convertByteArrayToBigInteger(bytes, opt_startIndex) {
-        let index = this.checkBytesToIntInput(bytes, 8, opt_startIndex);
-
-        let value = new BN("0", 10);
-
-        let temp1, temp2;
-
-        for (let i = 7; i >= 0; i--) {
-            temp1 = value.multiply(new BN("256", 10));
-            temp2 = temp1.add(new BN(bytes[opt_startIndex + i].toString(10), 10));
-            value = temp2;
-        }
-
         return value;
     }
 
