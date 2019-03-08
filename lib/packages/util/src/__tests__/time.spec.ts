@@ -57,6 +57,20 @@ describe('time Functions', () => {
             expect(received).toEqual(expected);
         });
 
+        it('should convertDateToBurstTime() with millies - round down', () => {
+            const date = new Date('2019-02-19T10:42:15.250Z');
+            const received = convertDateToBurstTime(date);
+            const expected = 142850535;
+            expect(received).toEqual(expected);
+        });
+
+        it('should convertDateToBurstTime() with millies - round up', () => {
+            const date = new Date('2019-02-19T10:42:15.501Z');
+            const received = convertDateToBurstTime(date);
+            const expected = 142850536;
+            expect(received).toEqual(expected);
+        });
+
         it('should convertDateToBurstTime() of Genenis Date to Zero', () => {
             const date = new Date('2014-08-11T02:00:00.000Z');
             const received = convertDateToBurstTime(date);
