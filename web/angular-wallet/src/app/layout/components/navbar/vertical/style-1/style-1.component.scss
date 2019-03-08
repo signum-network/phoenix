@@ -146,6 +146,7 @@ navbar {
                 display: flex;
                 align-items: center;
             }
+
         }
 
         .navbar-scroll-container {
@@ -186,6 +187,13 @@ navbar {
                         margin: 0;
                         border-radius: 0;
                     }
+                }
+            }
+
+            .alias {
+                cursor: pointer;
+                &:hover {
+                    text-decoration: underline;
                 }
             }
 
