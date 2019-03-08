@@ -1,7 +1,5 @@
 /** @module crypto */
 
-// export * from './curve25519';
-// export * from './ec-kcdsa';
 export * from './converter';
 export * from './encryptAES';
 export * from './decryptAES';
