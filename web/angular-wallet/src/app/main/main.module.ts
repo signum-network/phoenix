@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatButtonModule, MatIconModule } from '@angular/material';
@@ -15,7 +13,6 @@ import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from
 import { fuseConfig } from 'app/fuse-config';
 
 import { LayoutModule } from 'app/layout/layout.module';
-import { SampleModule } from './sample/sample.module';
 import { MainComponent } from './main.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { LoginGuard } from 'app/login/login-guard.service';
@@ -33,6 +30,26 @@ const mainRoutes: Routes = [
     path: '*',
     canActivate: [LoginGuard],
     redirectTo: 'dashboard'
+  },
+  {
+    path: 'peers',
+    loadChildren: './peers/peers.module#PeersModule'
+  },
+  {
+    path: 'messages',
+    loadChildren: './messages/messages.module#MessagesModule'
+  },
+  {
+    path: 'blocks',
+    loadChildren: './blocks/blocks.module#BlocksModule'
+  },
+  {
+    path: 'aliases',
+    loadChildren: './aliases/aliases.module#AliasesModule'
+  },
+  {
+    path: 'transactions',
+    loadChildren: './transactions/transactions.module#TransactionsModule'
   }
 ];
 
@@ -41,8 +58,6 @@ const mainRoutes: Routes = [
     MainComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forChild(mainRoutes),
 
@@ -65,9 +80,7 @@ const mainRoutes: Routes = [
 
     // App modules
     LayoutModule,
-    SampleModule,
     DashboardModule,
-    TransactionsModule,
     SendBurstModule,
     AccountsModule,
     AliasesModule,

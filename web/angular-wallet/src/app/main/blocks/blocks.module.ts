@@ -26,7 +26,7 @@ import { BlocksComponent } from './blocks.component';
 
 const routes = [
   {
-    path: 'blocks',
+    path: '',
     component: BlocksComponent,
     canActivate: [LoginGuard],
     resolve: {

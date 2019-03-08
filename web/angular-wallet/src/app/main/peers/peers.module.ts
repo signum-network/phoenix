@@ -26,7 +26,7 @@ import { PeersComponent } from './peers.component';
 
 const routes = [
   {
-    path: 'peers',
+    path: '',
     component: PeersComponent,
     canActivate: [LoginGuard],
     resolve: {

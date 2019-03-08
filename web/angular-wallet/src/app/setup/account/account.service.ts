@@ -19,7 +19,9 @@ interface SetAccountInfoRequest {
   keys: Keys;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AccountService {
   private nodeUrl: string;
   private api: Api;
