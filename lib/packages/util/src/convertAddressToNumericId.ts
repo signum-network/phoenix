@@ -81,5 +81,5 @@ export const convertAddressToNumericId = (address: string): string => {
         out += digit10;
     } while (length > 0);
 
-    return [...out].reverse().join('');
+    return out.split('').reverse().join('');
 };
