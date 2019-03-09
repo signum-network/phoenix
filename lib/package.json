@@ -1,7 +1,7 @@
 {
-  "name": "burstjs",
-  "version": "0.1.0-rc.2",
-  "description": "Common BURST library",
+  "name": "@burstjs",
+  "version": "0.1.0-rc.3",
+  "description": "BurstCoin Reference Library",
   "contributors": [
     "ohager",
     "blankey"
