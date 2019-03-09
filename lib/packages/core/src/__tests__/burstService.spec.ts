@@ -1,4 +1,5 @@
 import {BurstService} from '../burstService';
+import {HttpMockBuilder, HttpError} from '@burstjs/http';
 
 describe('BurstService', () => {
 
@@ -38,6 +39,117 @@ describe('BurstService', () => {
             expect(url).toBe('/burst?requestType=getBlockByHeight&id=123&includeTransactions=true');
         });
 
+    });
+
+
+    describe('send()', () => {
+        it('should successfully send data', async () => {
+            const httpMock = HttpMockBuilder.create().onPostReply(200, {
+                foo: 'someData'
+            }).build();
+            const burstService = new BurstService('localhost', '', httpMock);
+            const result = await burstService.send('someMethod');
+
+            expect(result).toEqual({foo: 'someData'});
+
+        });
+
+        it('should throw normal Http error', async () => {
+            const httpMock = HttpMockBuilder.create().onPostThrowError(
+                500,
+                'error',
+                {data: 'any'}
+            ).build();
+
+            const burstService = new BurstService('localhost', '', httpMock);
+
+            try {
+                await burstService.send('someMethod');
+                expect('Expected exception').toBeFalsy();
+            } catch (e) {
+                const httpError = <HttpError>e;
+                expect(httpError.status).toBe(500);
+                expect(httpError.message).toBe('error');
+                expect(httpError.data).toEqual({data: 'any'});
+            }
+
+
+        });
+
+
+        it('should throw Http error due to BRS API error', async () => {
+            const httpMock = HttpMockBuilder.create().onPostReply(
+                200,
+                {errorCode: 123, errorDescription: 'BRS API Error'}
+            ).build();
+
+            const burstService = new BurstService('localhost', '', httpMock);
+
+            try {
+                await burstService.send('someMethod');
+                expect('Expected exception').toBeFalsy();
+            } catch (e) {
+                const httpError = <HttpError>e;
+                expect(httpError.status).toBe(400);
+                expect(httpError.message).toContain('BRS API Error');
+                expect(httpError.message).toContain('123');
+                expect(httpError.data).toEqual({errorCode: 123, errorDescription: 'BRS API Error'});
+            }
+        });
+    });
+
+    describe('query()', () => {
+        it('should successfully query data', async () => {
+            const httpMock = HttpMockBuilder.create().onGetReply(200, {
+                foo: 'someData'
+            }).build();
+            const burstService = new BurstService('localhost', '', httpMock);
+            const result = await burstService.query('someMethod');
+
+            expect(result).toEqual({foo: 'someData'});
+
+        });
+
+        it('should throw normal Http error', async () => {
+            const httpMock = HttpMockBuilder.create().onGetThrowError(
+                500,
+                'error',
+                {data: 'any'}
+            ).build();
+
+            const burstService = new BurstService('localhost', '', httpMock);
+
+            try {
+                await burstService.query('someMethod');
+                expect('Expected exception').toBeFalsy();
+            } catch (e) {
+                const httpError = <HttpError>e;
+                expect(httpError.status).toBe(500);
+                expect(httpError.message).toBe('error');
+                expect(httpError.data).toEqual({data: 'any'});
+            }
+        });
+
+
+        it('should throw Http error due to BRS API error', async () => {
+            const httpMock = HttpMockBuilder.create().onGetReply(
+                200,
+                {errorCode: 123, errorDescription: 'BRS API Error'}
+            ).build();
+
+            const burstService = new BurstService('localhost', '', httpMock);
+
+            try {
+                await burstService.query('someMethod');
+                expect('Expected exception').toBeFalsy();
+            } catch (e) {
+                const httpError = <HttpError>e;
+                expect(httpError.status).toBe(400);
+                expect(httpError.message).toContain('BRS API Error');
+                expect(httpError.message).toContain('123');
+                expect(httpError.data).toEqual({errorCode: 123, errorDescription: 'BRS API Error'});
+            }
+        });
     });
 
 });

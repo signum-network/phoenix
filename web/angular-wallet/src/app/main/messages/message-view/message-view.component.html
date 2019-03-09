@@ -1,0 +1,117 @@
+<!-- CHAT -->
+<div class="message" fxFlex fxLayout="column">
+
+    <!-- CHAT TOOLBAR -->
+    <mat-toolbar class="message-toolbar">
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <!-- RESPONSIVE CHATS BUTTON-->
+                <button mat-icon-button fxHide.gt-md class="responsive-messages-button mr-16"
+                    fuseMatSidenavToggler="message-left-sidenav" aria-label="messages button">
+                    <mat-icon>message</mat-icon>
+                </button>
+                <!-- / RESPONSIVE CHATS BUTTON-->
+
+                <!-- CHAT CONTACT-->
+                <div *ngIf="!isNewMessage" class="message-contact" fxLayout="row" fxLayoutAlign="start center"
+                    fuseMatSidenavToggler="message-right-sidenav">
+
+                    <div class="avatar-wrapper">
+                        <!-- <img [src]="selectedMessageQRCode" class="avatar" /> -->
+                    </div>
+
+                    <div class="message-contact-name">
+                        {{message.senderRS}}
+                    </div>
+                </div>
+                <!-- / CHAT CONTACT-->
+
+                <div *ngIf="isNewMessage" class="message-contact-name-input">
+                    <mat-form-field floatLabel="never" appearance="standard">
+                        <input matInput prefix="BURST-"  burstInputValidator [patterns]="burstAddressPatternRef"
+                        mask="____-____-____-_____" [dropSpecialCharacters]="false" [showMaskTyped]="true"
+                        [(ngModel)]="message.senderRS" name="message.senderRS" placeholder="{{ 'recipient' | i18n }}">
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <div>
+                <button mat-icon-button [matMenuTriggerFor]="contactMenu" aria-label="more">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+
+                <mat-menu #contactMenu="matMenu">
+                    <button mat-menu-item fuseMatSidenavToggler="message-right-sidenav">
+                        Options
+                    </button>
+                </mat-menu>
+            </div>
+
+        </div>
+    </mat-toolbar>
+    <!-- / CHAT TOOLBAR -->
+
+    <!-- CHAT CONTENT -->
+    <div id="message-content" fxFlex="1 1 auto" fusePerfectScrollbar>
+
+        <!-- CHAT MESSAGES -->
+        <div class="messages">
+
+            <!-- MESSAGE -->
+            <div *ngFor="let message of message.dialog; let i = index" class="message-row" [ngClass]="{
+                            'me': message.contactId === selectedUser.account,
+                            'contact': message.contactId !== selectedUser.account,
+                            'first-of-group': isFirstMessageOfGroup(message, i),
+                            'last-of-group': isLastMessageOfGroup(message, i)
+                            }">
+
+                <div class="bubble">
+                    <div class="message">{{message.message}}</div>
+                    <div class="time secondary-text">{{convertTimestampToDate(message.timestamp) | date:'short'}}</div>
+                </div>
+
+            </div>
+            <!-- / MESSAGE -->
+
+        </div>
+        <!-- CHAT MESSAGES -->
+
+    </div>
+    <!-- / CHAT CONTENT -->
+
+    <!-- CHAT FOOTER -->
+    <div class="message-footer" fxFlex="0 0 auto" fxLayout="column">
+
+        <!-- REPLY FORM -->
+        <div class="reply-form" fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="center center">
+
+            <form #replyForm="ngForm" (ngSubmit)="sendMessage($event)" (keydown.enter)="sendMessage($event)" fxFlex fxLayout="row"
+                fxLayoutAlign="start center">
+
+                <mat-form-field class="message-text" fxFlex floatLabel="never" appearance="standard">
+                    <textarea matInput #replyInput placeholder="Type your message" ngModel name="message" [rows]="1"
+                        [matTextareaAutosize]="true" required></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="message-text password-field" fxFlex floatLabel="never" appearance="standard">
+                    <input type="password" matInput required #pinInput placeholder="Enter PIN" ngModel name="pin">
+                </mat-form-field>
+
+                <button class="send-message-button" mat-icon-button type="submit" aria-label="Send message">
+                    <mat-icon class="secondary-text">send</mat-icon>
+                </button>
+
+            </form>
+
+        </div>
+        <!-- / REPLY FORM -->
+
+    </div>
+    <!-- / CHAT FOOTER-->
+
+</div>
+<!-- / CHAT -->

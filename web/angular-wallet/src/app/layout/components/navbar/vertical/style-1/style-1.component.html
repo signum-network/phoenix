@@ -1,18 +1,17 @@
 <div class="navbar-top" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
     <div class="logo">
-        <img src="assets/images/logos/logo_white.png">
+        <img src="assets/images/logos/logo_white.png" class="logo-unfolded">
+        <img src="assets/images/logos/icon_white.png" class="logo-folded">
     </div>
 
     <div class="buttons">
 
-        <button mat-icon-button class="toggle-sidebar-folded"
-                (click)="toggleSidebarFolded()" fxHide.lt-lg>
+        <button mat-icon-button class="toggle-sidebar-folded" (click)="toggleSidebarFolded()" fxHide.lt-lg>
             <mat-icon class="secondary-text">menu</mat-icon>
         </button>
 
-        <button mat-icon-button class="toggle-sidebar-opened"
-                (click)="toggleSidebarOpened()" fxHide.gt-md>
+        <button mat-icon-button class="toggle-sidebar-opened" (click)="toggleSidebarOpened()" fxHide.gt-md>
             <mat-icon class="secondary-text">arrow_back</mat-icon>
         </button>
 
@@ -21,14 +20,15 @@
 </div>
 
 
-<div class="navbar-scroll-container" [ngClass]="fuseConfig.layout.navbar.primaryBackground"
-     fusePerfectScrollbar [fusePerfectScrollbarOptions]="{suppressScrollX: true}">
+<div class="navbar-scroll-container" [ngClass]="fuseConfig.layout.navbar.primaryBackground" fusePerfectScrollbar
+    [fusePerfectScrollbarOptions]="{suppressScrollX: true}">
 
-    <div *ngIf="account" class="user" fxLayout="column" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
+    <div *ngIf="selectedAccount" class="user" fxLayout="column"
+        [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
-        <div class="h3 username">{{ account.address }}</div>
-        <div class="h5 email hint-text mt-8">{{ getAccountName() }}</div>
-        <div class="avatar-container fuse-navy-700"><img class="avatar" [src]="getQRCode(account.address)"></div>
+        <div class="h3 username">{{ selectedAccount.accountRS }}</div>
+        <div class="h5 alias hint-text mt-8"><span [routerLink]="['set-account-info']">{{ getAccountName() }}</span></div>
+        <div class="avatar-container fuse-navy-700"><img class="avatar" [routerLink]="['request']" [src]="selectedAccountQRCode"></div>
     </div>
 
     <div class="navbar-content">

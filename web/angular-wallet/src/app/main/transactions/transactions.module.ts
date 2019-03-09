@@ -26,15 +26,24 @@ import { RouterModule } from '@angular/router';
 import { TransactionDetailsComponent } from './transaction-details';
 import { TransactionResolver } from './transaction.resolver';
 import { TransactionService } from './transaction.service';
+import { LoginGuard } from 'app/login/login-guard.service';
+import { TransactionsResolver } from './transactions.resolver';
+import { AccountResolver } from 'app/setup/account/account.resolver';
 
 const routes = [
     {
-        path     : 'transactions',
-        component: TransactionsComponent
+        path     : '',
+        component: TransactionsComponent,
+        canActivate: [LoginGuard],
+        resolve: {
+            transactions: TransactionsResolver,
+            account: AccountResolver
+        }
     },
     {
         path     : 'transaction/:id',
         component: TransactionDetailsComponent,
+        canActivate: [LoginGuard],
         resolve: {
             transaction: TransactionResolver
         }
@@ -78,7 +87,7 @@ const routes = [
     ],
     providers: [
         TransactionResolver,
-        TransactionService
+        TransactionsResolver
     ]
 })
 export class TransactionsModule { }

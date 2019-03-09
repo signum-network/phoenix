@@ -1,7 +1,7 @@
 import { Account } from '@burstjs/core';
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Text } from '../../../core/components/base/Text';
+import { Text, TextAlign } from '../../../core/components/base/Text';
 import { Colors } from '../../../core/theme/colors';
 import { defaultSideOffset } from '../../../core/theme/sizes';
 
@@ -17,7 +17,7 @@ export class AccountListItem extends React.PureComponent<Props> {
     const styles = {
       view: {
         paddingHorizontal: defaultSideOffset,
-        backgroundColor: Colors.greyLight
+        backgroundColor: Colors.WHITE
       },
       address: {
 
@@ -55,7 +55,7 @@ export class AccountListItem extends React.PureComponent<Props> {
             <Text>{type}</Text>
           </View>
           <View style={styles.balance}>
-            <Text textAlign={'right'}>{balance.toString()}</Text>
+            <Text textAlign={TextAlign.RIGHT}>{balance.toString()}</Text>
           </View>
         </View>
       </TouchableOpacity>

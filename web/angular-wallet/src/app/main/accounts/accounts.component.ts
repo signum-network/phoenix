@@ -6,6 +6,7 @@ import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-acc
 import { StoreService } from 'app/store/store.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { Account } from '@burstjs/core';
+import { convertNQTStringToNumber } from '@burstjs/util/out';
 
 @Component({
     selector: 'app-accounts',
@@ -31,7 +32,7 @@ export class AccountsComponent {
     public ngOnInit() {
         this.accounts = [];
         this.selectedAccounts = {};
-        this.displayedColumns = ['id', 'address', 'balance', 'alias', 'delete'];
+        this.displayedColumns = ['account', 'accountRS', 'balanceNQT', 'name', 'delete'];
         this.dataSource = new MatTableDataSource<Account>();
   
         this.storeService.ready.subscribe((ready) => {
@@ -43,8 +44,8 @@ export class AccountsComponent {
     }
 
     public getSelectedAccounts() {
-        return this.accounts.filter(({id}) => {
-            return this.selectedAccounts[id]
+        return this.accounts.filter(({account}) => {
+            return this.selectedAccounts[account]
         });
     }
 
@@ -83,5 +84,9 @@ export class AccountsComponent {
         filterValue = filterValue.trim(); // Remove whitespace
         filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
         this.dataSource.filter = filterValue;
+    }
+
+    public convertNQTStringToNumber(balanceNQT) {
+        return convertNQTStringToNumber(balanceNQT);
     }
 }

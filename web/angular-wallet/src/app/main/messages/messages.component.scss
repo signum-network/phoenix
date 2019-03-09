@@ -1,0 +1,47 @@
+@import "src/@fuse/scss/fuse";
+
+#messages {
+
+    .center {
+        padding: 32px !important;
+        max-width: 1400px;
+        margin: 0 auto;
+
+        @include media-breakpoint('lt-lg') {
+            padding: 0 !important;
+        }
+
+        .content-card {
+            position: relative;
+            display: flex;
+            flex: 1;
+            border-radius: 8px;
+
+            .mat-sidenav-container {
+                display: flex;
+                flex: 1;
+                width: 100%;
+
+                > .mat-sidenav-content,
+                > .mat-drawer-content {
+                    display: flex;
+                    flex: 1 1 auto;
+                    min-height: 100%;
+                    height: auto;
+                }
+
+                > .mat-drawer-content {
+                    max-width: 100%;
+                }
+
+                mat-sidenav {
+                    display: flex;
+                    flex-direction: column;
+                    width: 400px;
+                    max-width: 90%;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}

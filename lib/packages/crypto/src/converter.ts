@@ -1,3 +1,4 @@
+/* tslint:disable */
 /** @module crypto */
 /** @ignore */
 
@@ -6,7 +7,6 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-import * as BN from 'bn.js';
 import * as CryptoJS from 'crypto-js';
 
 declare function escape(s: string): string;
@@ -95,22 +95,6 @@ export class Converter {
         value += bytes[index + 1] << 8;
         value += bytes[index + 2] << 16;
         value += bytes[index + 3] << 24;
-        return value;
-    }
-
-    public static convertByteArrayToBigInteger(bytes, opt_startIndex) {
-        let index = this.checkBytesToIntInput(bytes, 8, opt_startIndex);
-
-        let value = new BN("0", 10);
-
-        let temp1, temp2;
-
-        for (let i = 7; i >= 0; i--) {
-            temp1 = value.multiply(new BN("256", 10));
-            temp2 = temp1.add(new BN(bytes[opt_startIndex + i].toString(10), 10));
-            value = temp2;
-        }
-
         return value;
     }
 
@@ -303,7 +287,34 @@ export class Converter {
         return Converter.intToBytes_(x, 4, 4294967295, opt_bigEndian);
     }
 
-    public static convertTimestampToDate(timestamp: number) {
-        return new Date(Date.UTC(2014, 7, 11, 2, 0, 0, 0) + timestamp * 1000);
+    /**
+     * Converts a string to base64
+     * @param text The string to be converted
+     * @return the converted base64 string
+     */
+    public static convertStringToBase64(text: string) : string{
+        if (global && global.Buffer) {
+            return new Buffer(text).toString('base64');
+        }
+        else {
+            // @ts-ignore
+            return btoa(text);
+        }
     }
+
+    /**
+     * Converts a base64 string to clear text
+     * @param base64 The base64 string to be converted
+     * @return the clear text string
+     */
+    public static convertBase64ToString(base64: string): string{
+        if (global && global.Buffer) {
+            return new Buffer(base64, 'base64').toString();
+        }
+        else {
+            // @ts-ignore
+            return atob(base64)
+        }
+    }
+
 }

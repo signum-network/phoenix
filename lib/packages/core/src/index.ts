@@ -9,6 +9,8 @@ export * from './typings/block';
 export * from './typings/blockchainStatus';
 export * from './typings/blockId';
 export * from './typings/burstNode';
+export * from './typings/peer';
+export * from './typings/peerAddressList';
 export * from './typings/serverStatus';
 export * from './typings/suggestedFees';
 export * from './typings/transaction';
@@ -16,7 +18,7 @@ export * from './typings/transactionId';
 export * from './typings/transactionList';
 export * from './typings/transactionResponse';
 export * from './typings/unconfirmedTransactionList';
-export * from './typings/currency';
+export * from './typings/burstTime';
 export * from './api';
 
 

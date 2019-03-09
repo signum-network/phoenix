@@ -51,14 +51,14 @@ export class FuseSidebarService
             console.warn(`The sidebar with the key '${key}' doesn't exist in the registry.`);
         }
 
-        // Unregister the sidebar
+        // Unregister the sidebar 
         delete this._registry[key];
     }
 
     /**
      * Return the sidebar with the given key
      *
-     * @param key
+     * @param key 
      * @returns {FuseSidebarComponent}
      */
     getSidebar(key): FuseSidebarComponent

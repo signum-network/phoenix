@@ -1,17 +1,27 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 
-import {StoreService} from 'app/store/store.service';
-import {Settings} from 'app/settings';
-import {Account, composeApi, ApiSettings, Api, TransactionList, AliasList} from '@burstjs/core';
-import {generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey} from '@burstjs/crypto';
-import {isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId} from '@burstjs/util';
-import {environment} from 'environments/environment';
+import { StoreService } from 'app/store/store.service';
+import { Settings } from 'app/settings';
+import { Account, composeApi, ApiSettings, Api, TransactionList, AliasList, Balance, UnconfirmedTransactionList, Transaction, TransactionId } from '@burstjs/core';
+import { generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey, decryptAES } from '@burstjs/crypto';
+import { isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId } from '@burstjs/util';
+import { environment } from 'environments/environment';
 
+interface SetAccountInfoRequest {
+  name: string,
+  description: string,
+  deadline: number,
+  feeNQT: string,
+  pin: string;
+  keys: Keys;
+}
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AccountService {
   private nodeUrl: string;
   private api: Api;
@@ -32,16 +42,45 @@ export class AccountService {
   }
 
   // FIXME: any as return type is shitty...will introduce a better execption handling
-  public getAccountTransactions(id: string): Promise<TransactionList|any> {
-    return this.api.account.getAccountTransactions(id);
+  public getAccountTransactions(id: string, firstIndex?: number, lastIndex?: number, numberOfConfirmations?: number, type?: number, subtype?: number): Promise<TransactionList | any> {
+    return this.api.account.getAccountTransactions(
+      id, firstIndex, lastIndex, numberOfConfirmations, type, subtype);
   }
 
-  public generateSendTransactionQRCodeAddress(id: string): Promise<string> {
-    return this.api.account.generateSendTransactionQRCodeAddress(id);
+  public generateSendTransactionQRCodeAddress(
+    id: string,
+    amountNQT?: number,
+    feeSuggestionType?: string,
+    feeNQT?: number,
+    immutable?: boolean): Promise<string> {
+    return this.api.account.generateSendTransactionQRCodeAddress(
+      id,
+      amountNQT,
+      feeSuggestionType,
+      feeNQT,
+      immutable
+    );
   }
 
   public getAliases(id: string): Promise<AliasList> {
     return this.api.account.getAliases(id);
+  }
+
+  public getAccountBalance(id: string): Promise<Balance> {
+    return this.api.account.getAccountBalance(id);
+  }
+
+  public getUnconfirmedTransactions(id: string): Promise<UnconfirmedTransactionList> {
+    return this.api.account.getUnconfirmedAccountTransactions(id);
+  }
+
+  public getAccount(id: string): Promise<Account> {
+    return this.api.account.getAccount(id);
+  }
+
+  public setAccountInfo({ name, description, feeNQT, deadline, pin, keys }: SetAccountInfoRequest): Promise<TransactionId> {
+    const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    return this.api.account.setAccountInfo(name, description, feeNQT, keys.publicKey, senderPrivateKey, deadline);
   }
 
   /*
@@ -49,8 +88,8 @@ export class AccountService {
   * Generates keys for an account, encrypts them with the provided key and saves them.
   * TODO: error handling of asynchronous method calls
   */
-  public createActiveAccount({passphrase, pin = ''}): Promise<Account> {
-    return new Promise((resolve, reject) => {
+  public createActiveAccount({ passphrase, pin = '' }): Promise<Account> {
+    return new Promise(async (resolve, reject) => {
       const account: Account = new Account();
       // import active account
       account.type = 'active';
@@ -68,11 +107,12 @@ export class AccountService {
       account.pinHash = hashSHA256(pin + keys.publicKey);
 
       const id = getAccountIdFromPublicKey(keys.publicKey);
-      account.id = id;
+      account.account = id;
 
       const address = convertNumericIdToAddress(id);
-      account.address = address;
+      account.accountRS = address;
 
+      await this.selectAccount(account);
       return this.storeService.saveAccount(account)
         .then(acc => {
           resolve(acc);
@@ -94,12 +134,13 @@ export class AccountService {
       const account: Account = new Account();
       const accountId = convertAddressToNumericId(address);
       this.storeService.findAccount(accountId)
-        .then(found => {
+        .then(async found => {
           if (found === undefined) {
             // import offline account
             account.type = 'offline';
-            account.address = address;
-            account.id = accountId;
+            account.accountRS = address;
+            account.account = accountId;
+            await this.selectAccount(account);
             return this.storeService.saveAccount(account)
               .then(resolve);
           } else {
@@ -127,6 +168,37 @@ export class AccountService {
         });
       this.setCurrentAccount(account);
       resolve(account);
+    });
+  }
+
+
+  /*
+  * Method responsible for synchronizing an account with the blockchain.
+  */
+  public synchronizeAccount(account: Account): Promise<Account> {
+    return new Promise(async (resolve, reject) => {
+      try {
+
+        const remoteAccount = await this.getAccount(account.account);
+        account.name = remoteAccount.name;
+        account.description = remoteAccount.description;
+        account.assetBalances = remoteAccount.assetBalances;
+        account.unconfirmedAssetBalances = remoteAccount.unconfirmedAssetBalances;
+        account.balanceNQT = remoteAccount.balanceNQT;
+        account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
+
+        const transactions = await this.getAccountTransactions(account.account);
+        account.transactions = transactions;
+
+        const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account)
+        account.transactions = unconfirmedTransactionsResponse.unconfirmedTransactions
+          .concat(account.transactions);
+
+        this.storeService.saveAccount(account).catch(error => { reject(error) })
+        resolve(account);
+      } catch (e) {
+        console.log(e);
+      }
     });
   }
 }

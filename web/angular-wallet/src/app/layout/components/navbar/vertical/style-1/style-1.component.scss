@@ -22,7 +22,15 @@ fuse-sidebar {
                         .logo {
 
                             img {
-                                width: 100px;
+                                width: 40px;
+                            }
+
+                            .logo-unfolded {
+                                display:none;
+                            }
+
+                            .logo-folded {
+                                display:inline;
                             }
 
                         }
@@ -50,7 +58,7 @@ fuse-sidebar {
                             }
 
                             .username,
-                            .email {
+                            .alias {
                                 display: none;
                             }
                         }
@@ -124,6 +132,9 @@ navbar {
             .logo {
                 display: flex;
                 align-items: center;
+                .logo-folded { 
+                    display:none;
+                }
 
                 img {
                     width: 100px;
@@ -135,6 +146,7 @@ navbar {
                 display: flex;
                 align-items: center;
             }
+
         }
 
         .navbar-scroll-container {
@@ -174,7 +186,15 @@ navbar {
                         height: 72px;
                         margin: 0;
                         border-radius: 0;
+                        cursor: pointer;
                     }
+                }
+            }
+
+            .alias {
+                cursor: pointer;
+                &:hover {
+                    text-decoration: underline;
                 }
             }
 

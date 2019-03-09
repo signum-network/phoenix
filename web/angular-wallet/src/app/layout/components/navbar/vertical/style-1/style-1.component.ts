@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation, Input } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
@@ -21,7 +21,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
-    account: Account;
+    @Input('selectedAccount') selectedAccount: Account;
+    selectedAccountQRCode: string;
 
     // Private
     private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
@@ -41,8 +42,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseNavigationService: FuseNavigationService,
         private _fuseSidebarService: FuseSidebarService,
-        private _storeService: StoreService,
         private _accountService: AccountService,
+        private _storeService: StoreService,
         private _router: Router
     )
     {
@@ -105,7 +106,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
+    async ngOnInit()
     {
         this._router.events
             .pipe(
@@ -137,10 +138,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
                 this.navigation = this._fuseNavigationService.getCurrentNavigation();
             });
 
-        // Get current user
-        this._storeService.getSelectedAccount().then((account) => {
-            this.account = account;
-        });
+        // Get QR Code
+        this.selectedAccountQRCode = await this.getQRCode(this.selectedAccount.accountRS);
     }
 
     /**
@@ -178,6 +177,6 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     }
 
     getAccountName() {
-        return `No Account Name Set`;
+        return this.selectedAccount.name;
     }
 }

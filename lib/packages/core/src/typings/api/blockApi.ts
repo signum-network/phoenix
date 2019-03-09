@@ -41,4 +41,13 @@ export interface BlockApi {
      * @return The Block Id
      */
     getBlockId: (height: number) => Promise<BlockId>;
+
+    /**
+     * Get blocks from the blockchain in reverse block height order.
+     * @param firstIndex first block to retrieve (optional, default is zero or the last block on the blockchain)
+     * @param lastIndex the last block to retrieve (optional, default is firstIndex + 99)
+     * @param includeTransactions _true_, if transactions shall be included
+     * @return {Block[]} the array of blocks retrieved
+     */
+    getBlocks: (firstIndex?: number, lastIndex?: number, includeTransactions?: boolean) => Promise<Block[]>;
 }

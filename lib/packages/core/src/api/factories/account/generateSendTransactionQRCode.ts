@@ -10,15 +10,21 @@ export const generateSendTransactionQRCode = (service: BurstService):
     (
         receiverId: string,
         amountNQT?: number,
-        feeSuggestionType?: string
+        feeSuggestionType?: string,
+        feeNQT?: number,
+        immutable?: boolean
     ) => Promise<ArrayBufferLike> =>
     (
         receiverId: string,
         amountNQT: number = 0,
-        feeSuggestionType: string = 'standard'
+        feeSuggestionType: string = 'standard',
+        feeNQT: number,
+        immutable: boolean
     ): Promise<ArrayBufferLike> =>
         service.query('generateSendTransactionQRCode', {
             receiverId,
             amountNQT,
-            feeSuggestionType
+            feeSuggestionType,
+            feeNQT,
+            immutable
         });

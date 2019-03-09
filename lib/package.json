@@ -1,7 +1,7 @@
 {
   "name": "burstjs",
-  "version": "0.1.0-rc1",
-  "description": "Common BURST library",
+  "version": "0.1.0-rc.3",
+  "description": "BurstCoin Reference Library",
   "contributors": [
     "ohager",
     "blankey"
@@ -51,10 +51,10 @@
     "bootstrap": "lerna bootstrap && lerna exec npm install && lerna run tsc",
     "lint": "tslint -p tsconfig.json -t stylish -s node_modules/custom-tslint-formatters/formatters -t grouped",
     "publish": "lerna run tsc && lerna publish",
-    "tsc": "lerna run tsc"
+    "tsc": "lerna run tsc",
+    "build": "npm run tsc"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "bn.js": "^4.11.8"
+    "axios": "^0.18.0"
   }
 }

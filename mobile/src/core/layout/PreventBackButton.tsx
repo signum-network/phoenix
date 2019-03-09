@@ -4,7 +4,7 @@ import {
   HeaderBackButton,
   HeaderBackButtonProps
 } from 'react-navigation';
-import { i18n } from '../localization/i18n';
+import { i18n } from '../i18n';
 import { core } from '../translations';
 
 type Props = HeaderBackButtonProps;

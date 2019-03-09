@@ -35,15 +35,10 @@
         </mat-grid-tile>
       </mat-grid-list>
 
-
-      <label class="pill">Suggested fee:</label>
-      Standard: <em (click)="setFee(fees.standard)">{{ convertFeeToBurst(fees.standard) }}</em>
-      Cheap: <em (click)="setFee(fees.cheap)">{{ convertFeeToBurst(fees.cheap) }}</em>
-      Priority: <em (click)="setFee(fees.priority)">{{ convertFeeToBurst(fees.priority) }}</em><br /><br />
-
+      <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
 
       <mat-form-field class="pin" appearance="outline">
-        <input matInput [(ngModel)]="pin" name="pin" placeholder="Your PIN">
+        <input matInput [(ngModel)]="pin" name="pin" type="password" placeholder="Your PIN">
       </mat-form-field>
 
       <mat-checkbox (click)="showMessage=!showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>

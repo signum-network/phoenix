@@ -1,0 +1,20 @@
+<div fxFlex fxLayout="column" fxLayoutAlign="center center">
+
+    <div class="big-circle app-logo" fxLayout="column" fxLayoutAlign="center center"
+         [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+        <mat-icon class="s-64 s-md-128 mat-accent">message</mat-icon>
+    </div>
+
+    <span class="app-title mt-48 mb-8" [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">
+        {{ 'messages' | i18n }}
+    </span>
+
+    <span fxHide fxShow.gt-md class="app-message" [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+        Select a contact to start a message!
+    </span>
+
+    <button mat-raised-button fxHide.gt-md fuseMatSidenavToggler="message-left-sidenav">
+        Select a contact to start a message!
+    </button>
+
+</div>

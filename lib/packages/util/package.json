@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/util",
-  "version": "0.1.0-rc1",
+  "version": "0.1.0-rc.3",
   "description": "Useful utilities and tools for building Burstcoin applications",
   "keywords": [
     "burst",
@@ -52,9 +52,6 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "bn.js": "^4.11.8"
   },
   "gitHead": "d270043990cbfc28dd72c675499b4502eb7a1c40"
 }

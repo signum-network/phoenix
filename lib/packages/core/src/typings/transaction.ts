@@ -25,6 +25,8 @@ export interface Transaction {
     readonly blockTimestamp?: number;
     readonly deadline?: number;
     readonly transaction?: string;
-    readonly timestamp?: string;
+    readonly timestamp?: number;
     readonly height?: number;
+    readonly recipient?: string;
+    readonly recipientRS?: string;
 }

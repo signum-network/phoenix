@@ -22,36 +22,36 @@
             <button mat-button color="accent" class="delete" *ngIf="getSelectedAccounts().length"
                 (click)="deleteSelectedAccounts()">Delete Selected</button>
             <button mat-button color="primary" 
-                (click)="router.navigate(['/dashboard/setup/create'])">New Account</button>
+                (click)="router.navigate(['/login'])">New Account</button>
         </div>
 
         <mat-table #table [dataSource]="dataSource" matSort>
-            <ng-container matColumnDef="id">
+            <ng-container matColumnDef="account">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                     <mat-icon>bookmark</mat-icon> Id
                 </mat-header-cell>
-                <mat-cell *matCellDef="let account"> {{account.id}} </mat-cell>
+                <mat-cell *matCellDef="let account"> {{account.account}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="address">
+            <ng-container matColumnDef="accountRS">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                     <mat-icon>account_box</mat-icon> Address
                 </mat-header-cell>
-                <mat-cell *matCellDef="let account"> {{account.address}} </mat-cell>
+                <mat-cell *matCellDef="let account"> {{account.accountRS}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="alias">
+            <ng-container matColumnDef="name">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                     <mat-icon>account_box</mat-icon> Alias
                 </mat-header-cell>
-                <mat-cell *matCellDef="let account"> {{account.alias}} </mat-cell>
+                <mat-cell *matCellDef="let account"> {{account.name}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="balance">
+            <ng-container matColumnDef="balanceNQT">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                     <mat-icon>local_atm</mat-icon> Balance
                 </mat-header-cell>
-                <mat-cell *matCellDef="let account"> {{account.balance}} BURST</mat-cell>
+                <mat-cell *matCellDef="let account"> {{convertNQTStringToNumber(account.balanceNQT)}} BURST</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="selected">

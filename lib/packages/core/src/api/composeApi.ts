@@ -10,6 +10,7 @@ import {getBlockByTimestamp} from './factories/block/getBlockByTimestamp';
 import {getBlockByHeight} from './factories/block/getBlockByHeight';
 import {getBlockById} from './factories/block/getBlockById';
 import {getBlockId} from './factories/block/getBlockId';
+import {getBlocks} from './factories/block/getBlocks';
 
 import {getBlockchainStatus} from './factories/network/getBlockchainStatus';
 import {getServerStatus} from './factories/network/getServerStatus';
@@ -24,8 +25,13 @@ import {getAccountBalance} from './factories/account/getAccountBalance';
 import {generateSendTransactionQRCode} from './factories/account/generateSendTransactionQRCode';
 import {generateSendTransactionQRCodeAddress} from './factories/account/generateSendTransactionQRCodeAddress';
 import {suggestFee} from './factories/network/suggestFee';
+import {getPeer} from './factories/network/getPeer';
+import {getPeers} from './factories/network/getPeers';
 import {sendMoney} from './factories/transaction/sendMoney';
 import {getAliases} from './factories/account/getAliases';
+import {getTime} from './factories/network/getTime';
+import {getAccount} from './factories/account/getAccount';
+import {setAccountInfo} from './factories/account/setAccountInfo';
 
 
 /**
@@ -56,11 +62,15 @@ export function composeApi(settings: ApiSettings): Api {
             getBlockByHeight,
             getBlockById,
             getBlockId,
+            getBlocks,
         })
         .withNetworkApi({
             getBlockchainStatus,
             getServerStatus,
             suggestFee,
+            getPeers,
+            getPeer,
+            getTime,
         })
         .withTransactionApi({
             broadcastTransaction,
@@ -77,6 +87,8 @@ export function composeApi(settings: ApiSettings): Api {
             generateSendTransactionQRCode,
             generateSendTransactionQRCodeAddress,
             getAliases,
+            getAccount,
+            setAccountInfo,
         })
         .compose();
 

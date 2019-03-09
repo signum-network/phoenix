@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as Loki from 'lokijs';
 import { StoreConfig } from './store.config';
 import { Settings } from 'app/settings';
-import { Account } from '@burstjs/core';
+import { Account, Block } from '@burstjs/core';
 
 @Injectable()
 export class StoreService {
@@ -27,19 +27,19 @@ export class StoreService {
     public init() {
         let blocks = this.store.getCollection('blocks');
         if (blocks == null) {
-            blocks = this.store.addCollection('blocks', { unique : ['blockHeight']});
+            blocks = this.store.addCollection('blocks', { unique: ['blockHeight'] });
         }
         let accounts = this.store.getCollection('accounts');
         if (accounts == null) {
-            accounts = this.store.addCollection('accounts', { unique : ['id']});
+            accounts = this.store.addCollection('accounts', { unique: ['account'] });
         }
         let settings = this.store.getCollection('settings');
         if (settings == null) {
-            settings = this.store.addCollection('settings', { unique : ['currency', 'id', 'language', 'node', 'notification', 'patchnotes', 'theme']});
+            settings = this.store.addCollection('settings', { unique: ['currency', 'id', 'language', 'node', 'notification', 'patchnotes', 'theme'] });
             settings.insert(new Settings());
         }
 
-        this.store.saveDatabase(); 
+        this.store.saveDatabase();
         this.setReady(true);
         this.getSettings()
             .then(s => {
@@ -65,14 +65,15 @@ export class StoreService {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
                 const accounts = this.store.getCollection('accounts');
-                const rs = accounts.find({ id : account.id });
+                const rs = accounts.find({ account: account.account });
                 if (rs.length == 0) {
                     accounts.insert(account);
                 } else {
-                    accounts.chain().find({ id : account.id }).update(w => {
-                        w.balance = account.balance;
+                    accounts.chain().find({ account: account.account }).update(w => {
+                        w.balanceNQT = account.balanceNQT;
                         w.type = account.type;
                         w.selected = account.selected;
+                        w.name = account.name;
                         w.keys = account.keys;
                         w.transactions = account.transactions;
                     });
@@ -92,14 +93,14 @@ export class StoreService {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
                 const accounts = this.store.getCollection('accounts');
-                let rs = accounts.find({ selected : true });
+                let rs = accounts.find({ selected: true });
                 if (rs.length > 0) {
                     const account = new Account(rs[0]);
                     resolve(account);
                 } else {
                     rs = accounts.find();
                     if (rs.length > 0) {
-                        accounts.chain().find({ id : rs[0].id }).update(w => {
+                        accounts.chain().find({ account: rs[0].account }).update(w => {
                             w.selected = true;
                         });
                         const w = new Account(rs[0]);
@@ -124,10 +125,10 @@ export class StoreService {
             if (this.ready.value) {
                 account.selected = true;
                 const accounts = this.store.getCollection('accounts');
-                accounts.chain().find({ selected : true }).update(w => {
+                accounts.chain().find({ selected: true }).update(w => {
                     w.selected = false;
                 });
-                accounts.chain().find({ id : account.id }).update(w => {
+                accounts.chain().find({ account: account.account }).update(w => {
                     w.selected = true;
                 });
                 this.store.saveDatabase();
@@ -160,12 +161,12 @@ export class StoreService {
     /*
     * Method reponsible for finding an account by its numeric id from the database.
     */
-    public findAccount(id: string): Promise<Account> {
+    public findAccount(account: string): Promise<Account> {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
                 const accounts = this.store.getCollection('accounts');
-                const rs = accounts.find({ id : id });
-                if (id && rs.length > 0) {
+                const rs = accounts.find({ account: account });
+                if (account && rs.length > 0) {
                     const account = new Account(rs[0]);
                     resolve(account);
                 } else {
@@ -184,7 +185,7 @@ export class StoreService {
         return new Promise((resolve, reject) => {
             if (this.ready.value) {
                 const accounts = this.store.getCollection('accounts');
-                const rs = accounts.chain().find({ id : account.id }).remove();
+                const rs = accounts.chain().find({ account: account.account }).remove();
                 this.store.saveDatabase();
                 resolve(true);
             } else {
@@ -233,6 +234,49 @@ export class StoreService {
                 resolve(new Settings(rs[0]));
             } else {
                 resolve(new Settings());
+            }
+        });
+    }
+
+    /*
+    * Method reponsible for fetching block(s) from the database.
+    */
+    public getBlocks(blockHeight: number, count: number=1): Promise<Block[]> {
+        return new Promise((resolve, reject) => {
+            if (this.ready.value) {
+                const blocks = this.store.getCollection('blocks');
+                const block = blocks.find({ blockHeight: { '$lte': blockHeight } });
+                if (block.length) {
+                    resolve(block.slice(0, count));
+                }
+                resolve(undefined);
+            } else {
+                reject(undefined);
+            }
+        });
+    }
+    /*
+    * Method reponsible for saving/updating a block in the database.
+    */
+    public saveBlock(block: Block): Promise<Block> {
+        return new Promise((resolve, reject) => {
+            if (this.ready.value) {
+                const blocks = this.store.getCollection('blocks');
+                const existingBlocks = blocks.find({ blockHeight: block.height });
+                if (existingBlocks.length > 0) {
+                    existingBlocks.chain().find({ blockHeight: block.height }).update((existingBlock: Block) => { 
+                        return { 
+                            ...existingBlock, 
+                            ...block
+                        };
+                    });
+                } else {
+                    blocks.insert(block);
+                }
+                this.store.saveDatabase();
+                resolve(block);
+            } else {
+                reject(undefined);
             }
         });
     }

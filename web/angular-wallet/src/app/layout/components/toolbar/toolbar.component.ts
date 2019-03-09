@@ -12,6 +12,7 @@ import { constants } from 'app/constants';
 import { StoreService } from 'app/store/store.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { Account } from '@burstjs/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'toolbar',
@@ -46,13 +47,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
         private i18nService: I18nService,
-        private accountService: AccountService
+        private accountService: AccountService,
+        private router: Router
     ) {
 
         this.languages = constants.languages;
-
-        console.log(this.selectedAccount);
-
         this.navigation = navigation;
 
         // Set the private defaults
@@ -67,9 +66,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
-
-
-        console.log(this.selectedAccount);
         // Subscribe to the config changes
         this._fuseConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
@@ -79,6 +75,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
                 this.hiddenNavbar = settings.layout.navbar.hidden === true;
             });
 
+        this.selectedLanguage = this.i18nService.currentLanguage;
     }
 
     /**
@@ -130,5 +127,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     setAccount(account): void {
         this.selectedAccount = account;
         this.accountService.selectAccount(account);
+        this.router.navigate(['/']);
     }
 }

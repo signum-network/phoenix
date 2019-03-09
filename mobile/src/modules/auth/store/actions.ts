@@ -7,14 +7,13 @@ import {
   getBurstAddressFromAccountId,
   hashSHA256
 } from '@burstjs/crypto';
+import { isValid } from '@burstjs/util';
 import { some } from 'lodash';
-import { ThunkAction } from '../../../core/interfaces';
-import { i18n } from '../../../core/localization/i18n';
+import { i18n } from '../../../core/i18n';
 import { createAction, createActionFn } from '../../../core/utils/store';
 import { auth } from '../translations';
 import { actionTypes } from './actionTypes';
-import { getAccounts, setAccounts } from './utils';
-import { decode, isValid } from '@burstjs/util';
+import { getAccounts, isPassphraseCorrect, setAccounts } from './utils';
 
 const actions = {
   addAccount: createAction<Account>(actionTypes.addAccount),
@@ -27,10 +26,14 @@ export interface ActiveAccountGeneratorData {
   pin: string;
 }
 
-export const createActiveAccount = createActionFn<ActiveAccountGeneratorData, ThunkAction<Promise<Account>>>(
-  (dispatch, getState, { phrase, pin }) => {
-    const type = 'active';
-    const keys = generateMasterKeys(phrase.join(' '));
+export const createActiveAccount = createActionFn<ActiveAccountGeneratorData, Account>(
+  (_dispatch, getState, { phrase, pin }): Account => {
+    const passphrase = phrase.join(' ');
+    if (!isPassphraseCorrect(passphrase)) {
+      throw new Error(i18n.t(auth.errors.incorrectPassphrase));
+    }
+
+    const keys = generateMasterKeys(passphrase);
     const encryptedKeys = {
       publicKey: keys.publicKey,
       agreementPrivateKey: encryptAES(keys.agreementPrivateKey, hashSHA256(pin)),
@@ -43,38 +46,39 @@ export const createActiveAccount = createActionFn<ActiveAccountGeneratorData, Th
       throw new Error(i18n.t(auth.errors.accountExist));
     }
     const address = getBurstAddressFromAccountId(id);
+    const pinHash = hashSHA256(pin + keys.publicKey);
 
+    // TODO: make fields optional in @burst package
     // @ts-ignore
-    const account: Account = {
+    return {
       id,
       address,
-      type,
+      type: 'active', // TODO: make type enum in @burst package
       keys: encryptedKeys,
-      pinHash: hashSHA256(pin + keys.publicKey)
+      pinHash
     };
-    return dispatch(addAccount(account));
   }
 );
 
-export const createOfflineAccount = createActionFn<string, ThunkAction<Promise<Account>>>(
-  (dispatch, getState, address) => {
+export const createOfflineAccount = createActionFn<string, Account>(
+  (_dispatch, getState, address): Account => {
     if (!isValid(address)) {
       throw new Error(i18n.t(auth.errors.incorrectAddress));
     }
-    const id = decode(address);
+    const id = getAccountIdFromBurstAddress(address);
     const hasAccount = some(getState().auth.accounts, (item) => item.id === id);
 
     if (hasAccount) {
       throw new Error(i18n.t(auth.errors.accountExist));
     }
-    // @ts-ignore
-    const account: Account = {
-      type: 'offline',
-      address,
-      id: getAccountIdFromBurstAddress(address)
-    };
 
-    return dispatch(addAccount(account));
+    // TODO: make fields optional in @burst package
+    // @ts-ignore
+    return {
+      type: 'offline', // TODO: make type enum in @burst package
+      address,
+      id
+    };
   }
 );
 
@@ -95,7 +99,7 @@ export const removeAccount = createActionFn<Account, Promise<void>>(
 );
 
 export const loadAccounts = createActionFn<void, Promise<void>>(
-  async (dispatch, getState) => {
+  async (dispatch, _getState) => {
     const accounts: Account[] = await getAccounts();
     dispatch(actions.loadAccounts(accounts));
   }

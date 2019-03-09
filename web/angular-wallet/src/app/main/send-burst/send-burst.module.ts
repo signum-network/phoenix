@@ -15,6 +15,8 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { SuggestFeeResolver } from '../../network/suggest-fee.resolver';
 import { NetworkModule } from 'app/network/network.module';
 import { BurstInputValidatorDirective } from './send-burst-validator.directive';
+import { LayoutModule } from 'app/layout/layout.module';
+import { Ng5SliderModule } from 'ng5-slider';
 
 const routes = [
   {
@@ -28,13 +30,14 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [ SendBurstComponent, BurstInputValidatorDirective ],
+  declarations: [ 
+    SendBurstComponent, 
+    BurstInputValidatorDirective 
+  ],
   imports: [
     CommonModule,
     FormsModule,
     FuseSharedModule,
-    BrowserModule,
-    BrowserAnimationsModule,
     SetupModule,
     NotifierModule,
     NgxMaskModule,
@@ -45,7 +48,11 @@ const routes = [
     MatGridListModule,
     MatCheckboxModule,
     NetworkModule,
+    LayoutModule,
     RouterModule.forChild(routes)
+  ],
+  exports: [
+    BurstInputValidatorDirective
   ]
 })
 export class SendBurstModule { }

@@ -1,3 +1,15 @@
 :host {
   width: 100%;
 }
+
+.downloading {
+  display: inline;
+  position: fixed;
+  bottom: 0;
+  right:0;
+  background: rgba(#fff, .5);
+  padding:10px;
+  border-radius: 3px 0 0 3px;
+  z-index: 1;
+  color: #666;
+}

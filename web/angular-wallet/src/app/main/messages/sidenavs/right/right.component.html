@@ -1,0 +1,9 @@
+<div [ngSwitch]="view" class="views">
+
+    <message-options-sidenav class="view"
+                          *ngSwitchCase="'options'"
+                          [@slideInRight]
+                          fusePerfectScrollbar>
+    </message-options-sidenav>
+
+</div>

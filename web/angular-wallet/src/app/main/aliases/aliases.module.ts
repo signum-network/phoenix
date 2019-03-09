@@ -10,7 +10,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 const routes = [
   {
-    path: 'aliases',
+    path: '',
     component: AliasesComponent,
     resolve: {
       account: AccountsResolver

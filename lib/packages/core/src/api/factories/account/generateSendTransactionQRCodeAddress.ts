@@ -10,18 +10,24 @@ export const generateSendTransactionQRCodeAddress = (service: BurstService):
     (
         receiverId: string,
         amountNQT?: number,
-        feeSuggestionType?: string
+        feeSuggestionType?: string,
+        feeNQT?: number,
+        immutable?: boolean
     ) => Promise<string> =>
     (
         receiverId: string,
         amountNQT: number = 0,
-        feeSuggestionType: string = 'standard'
+        feeSuggestionType: string = 'standard',
+        feeNQT: number,
+        immutable
     ): Promise<string> =>
         Promise.resolve(
             service.toBRSEndpoint('generateSendTransactionQRCode', {
                     receiverId: receiverId,
                     amountNQT,
-                    feeSuggestionType
+                    feeSuggestionType,
+                    feeNQT,
+                    immutable
                 }
             )
         );
