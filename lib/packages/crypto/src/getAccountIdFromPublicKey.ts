@@ -2,7 +2,6 @@
 
 import {Converter} from './converter';
 import * as CryptoJS from 'crypto-js';
-import {Big} from 'big.js';
 
 /**
  * Convert hex string of the public key to the account id
@@ -12,11 +11,35 @@ import {Big} from 'big.js';
 export const getAccountIdFromPublicKey = (publicKey: string): string => {
     const hash = CryptoJS.SHA256(CryptoJS.enc.Hex.parse(publicKey));
     const bytes = Converter.convertWordArrayToByteArray(hash);
-    const slice = bytes.slice(0, 8);
-
-    const result = slice.reduce(
-        (acc, num, index) => acc.add(Big(num).mul(Big(2).pow(index * 8))),
-        Big(0)
-    );
-    return result.toFixed();
+    let result = '';
+    for (let i = 0; i < 8; i++) {
+        let byte = bytes[i].toString(16);
+        if (byte.length < 2) { byte = '0' + byte; }
+        result = byte + result;
+    }
+    return hexToDec(result);
 };
+
+/**
+ * Arbitrary length hexadecimal to decimal conversion
+ * https://stackoverflow.com/questions/21667377/javascript-hexadecimal-string-to-decimal-string
+ * @param s A hexadecimal string
+ * @return A decimal string
+ */
+function hexToDec(s) {
+    const digits = [0];
+    let i, j, carry;
+    for (i = 0; i < s.length; i += 1) {
+        carry = parseInt(s.charAt(i), 16);
+        for (j = 0; j < digits.length; j += 1) {
+            digits[j] = digits[j] * 16 + carry;
+            carry = digits[j] / 10 | 0;
+            digits[j] %= 10;
+        }
+        while (carry > 0) {
+            digits.push(carry % 10);
+            carry = carry / 10 | 0;
+        }
+    }
+    return digits.reverse().join('');
+}
