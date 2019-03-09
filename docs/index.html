@@ -3,12 +3,24 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>burstjs</title>
+	<title>burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/custom.css">
 </head>
 <body>
+<a href="https://https://github.com/burst-apps-team/phoenix/tree/master/lib" class="github-corner" aria-label="View source on GitHub">
+	<svg width="80" height="80" viewBox="0 0 250 250"
+	style="fill:rgba(3, 155, 229, 0.90); color:#fff; position: absolute; top: 0; border: 0; left: 0; z-index: 2; transform: scale(-1, 1);"
+	aria-hidden="true">
+	<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+	<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+	fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+	<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+	fill="currentColor" class="octo-body"></path>
+	</svg>
+</a>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
@@ -22,7 +34,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">burstjs</a>
+					<a href="index.html" class="title">burstjs - The Burstcoin Reference Library</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,7 +66,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> burstjs</h1>
+			<h1> burstjs - The Burstcoin Reference Library</h1>
 		</div>
 	</div>
 </header>
@@ -62,502 +74,56 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="-burstjs-core">@burstjs/core</h1>
-				<p>Burst-related functions and models for building Burstcoin applications.</p>
+				<h1 id="-burstjs">@burstjs</h1>
+				<blockquote>
+					<p>The BurstCoin Type/Javascript Reference Library</p>
+				</blockquote>
+				<hr>
+				<p><img src="https://img.shields.io/npm/v/@burstjs/core.svg?style=flat" alt="npm">
+					<a href="https://lernajs.io/"><img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" alt="lerna"></a>
+					<a href="https://www.codacy.com/app/ohager/phoenix?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=burst-apps-team/phoenix&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/81a6119af03d4a7e8a55c65999884709" alt="Codacy Badge"></a>
+					<a href="https://travis-ci.org/burst-apps-team/phoenix"><img src="https://travis-ci.org/burst-apps-team/phoenix.svg?branch=develop" alt="Build Status"></a>
+				<a href="https://snyk.io/test/github/burst-apps-team/phoenix?targetFile=lib%2Fpackage.json"><img src="https://snyk.io/test/github/burst-apps-team/phoenix/badge.svg?targetFile=lib%2Fpackage.json" alt="Known Vulnerabilities"></a></p>
+				<h2 id="codecov"><a href="https://codecov.io/gh/burst-apps-team/phoenix"><img src="https://codecov.io/gh/burst-apps-team/phoenix/branch/develop/graph/badge.svg" alt="codecov"></a></h2>
+				<p><code>@burstjs</code> is a modern library written in Typescript providing common functionalities for <em>browsers</em> and <em>nodejs</em> to interact with the <a href="https://burstcoin.community/">BurstCoin blockchain</a>,
+				an advanced community-driven blockchain technology.</p>
+				<p>This library is part of the Phoenix project, i.e. the new Burstcoin Wallet for Web, Desktop, Android, and iOS.</p>
+				<h2 id="packages">Packages</h2>
+				<p>The library is separated in the following packages</p>
+				<ul>
+					<li><a href="./modules/core.html">@burstjs/core</a> The main package providing an extense API for blockchain interaction</li>
+					<li><a href="./modules/crypto.html">@burstjs/crypto</a> A package providing BURST relevant crypto functions</li>
+					<li><a href="./modules/util.html">@burstjs/util</a> A package providing useful functions, e.g. common conversion functions </li>
+					<li><a href="./modules/http.html">@burstjs/http</a> A package providing a <em>simplified</em> Http layer, with consistent response types, and exception handling</li>
+				</ul>
 				<h2 id="installation">Installation</h2>
-				<p>Install using <a href="https://www.npmjs.org/">npm</a>:</p>
-				<pre><code><span class="hljs-built_in">npm</span> install @burstjs/core</code></pre><p>or using <a href="https://yarnpkg.com/">yarn</a>:</p>
-				<pre><code class="language-yarn">yarn add @burstjs/core</code></pre>
-				<h2 id="api-reference">API Reference</h2>
-				<h2 id="classes">Classes</h2>
-				<dl>
-					<dt><a href="#BurstService">BurstService</a></dt>
-					<dd><p>Generic BRS Web Service class.
-					Extend and specific services here</p></dd>
-				</dl>
-				<h2 id="functions">Functions</h2>
-				<dl>
-					<dt><a href="#generateSendTransactionQRCode">generateSendTransactionQRCode(receiverId, amountNQT, feeSuggestionType)</a> ⇒ <code>Promise.&lt;ArrayBufferLike&gt;</code></dt>
-					<dd><p>Get QR Code image for a given BURST address</p></dd>
-					<dt><a href="#generateSendTransactionQRCodeAddress">generateSendTransactionQRCodeAddress(receiverId, amountNQT, feeSuggestionType)</a> ⇒ <code>Promise.&lt;string&gt;</code></dt>
-					<dd><p>Generate the URL for a QR Code for a given BURST address. Useful for IMG tags in HTML.</p></dd>
-					<dt><a href="#getAccountBalance">getAccountBalance()</a></dt>
-					<dd><p>Submits a getBalance query given an accountId</p></dd>
-					<dt><a href="#getAccountTransactions">getAccountTransactions(accountId, firstIndex, lastIndex, numberOfConfirmations)</a> ⇒ <code>Promise.&lt;TransactionList&gt;</code></dt>
-					<dd><p>Get transactions of given account</p></dd>
-					<dt><a href="#getAliases">getAliases(accountId)</a> ⇒ <code>Promise.&lt;AliasList&gt;</code></dt>
-					<dd><p>Gets the aliases of an account</p></dd>
-					<dt><a href="#getUnconfirmedAccountTransactions">getUnconfirmedAccountTransactions(accountId)</a> ⇒ <code>Promise.&lt;UnconfirmedTransactionList&gt;</code></dt>
-					<dd><p>Get <em>unconfirmed</em> transactions of given account</p></dd>
-					<dt><a href="#getBlockByHeight">getBlockByHeight(height, includeTransactions)</a> ⇒</dt>
-					<dd><p>Get a block by given height</p></dd>
-					<dt><a href="#getBlockById">getBlockById(id, includeTransactions)</a> ⇒</dt>
-					<dd><p>Get a block by given id</p></dd>
-					<dt><a href="#getBlockByTimestamp">getBlockByTimestamp()</a></dt>
-					<dd><p>Original work Copyright (c) 2019 Burst Apps Team</p></dd>
-					<dt><a href="#getBlockId">getBlockId(height)</a> ⇒ <code>Promise.&lt;BlockId&gt;</code></dt>
-					<dd><p>Get a block id by given height</p></dd>
-					<dt><a href="#constructAttachment">constructAttachment(transactions, params)</a> ⇒</dt>
-					<dd><p>Constructs an Attachment</p></dd>
-					<dt><a href="#sendTextMessage">sendTextMessage(message, recipientId, senderPublicKey, senderPrivateKey, fee)</a> ⇒</dt>
-					<dd><p><p>Broadcasts a text message to the network/blockchain</p></p>
-						<p><p>The message will be broadcasted in two steps.</p></p>
-						<ol>
-							<li>Send the message with public key to the network</li>
-							<li>Take the returned unsigned message and sign it, i.e. the private key won&#39;t be transmitted.</li>
-					</ol></dd>
-					<dt><a href="#getBlockchainStatus">getBlockchainStatus()</a> ⇒</dt>
-					<dd><p>Get the blockchain status.</p></dd>
-					<dt><a href="#getServerStatus">getServerStatus()</a> ⇒</dt>
-					<dd><p>Get the state of the server node and network</p></dd>
-					<dt><a href="#suggestFee">suggestFee()</a> ⇒ <code>Promise.&lt;SuggestedFees&gt;</code></dt>
-					<dd><p>Get the current suggested fees</p></dd>
-					<dt><a href="#broadcastTransaction">broadcastTransaction(signedTransactionPayload)</a> ⇒</dt>
-					<dd><p>Broadcasts a transaction to the network/blockchain</p></dd>
-					<dt><a href="#getTransaction">getTransaction(transactionId)</a> ⇒</dt>
-					<dd><p>Get a transaction from the network/blockchain</p></dd>
-					<dt><a href="#sendMoney">sendMoney(transaction, senderPublicKey, senderPrivateKey, recipientAddress)</a> ⇒</dt>
-					<dd><p><p>Sends burst to the blockchain</p></p>
-						<p><p>The message will be broadcasted in two steps.</p></p>
-						<ol>
-							<li>Send the sendMoney call with public key to the network</li>
-							<li>Take the returned unsigned message and sign it, i.e. the private key won&#39;t be transmitted.</li>
-					</ol></dd>
-				</dl>
-				<p><a name="BurstService"></a></p>
-				<h2 id="burstservice">BurstService</h2>
-				<p>Generic BRS Web Service class.
-				Extend and specific services here</p>
-				<p><strong>Kind</strong>: global class  </p>
-				<ul>
-					<li><a href="#BurstService">BurstService</a><ul>
-							<li><a href="#new_BurstService_new">new BurstService(baseUrl, relativePath, httpClient)</a></li>
-							<li><a href="#BurstService+http">.http</a> ⇒</li>
-							<li><a href="#BurstService+toBRSEndpoint">.toBRSEndpoint(method, data)</a> ⇒</li>
-							<li><a href="#BurstService+query">.query(method, args)</a> ⇒</li>
-							<li><a href="#BurstService+send">.send(method, args, body)</a> ⇒</li>
-						</ul>
-					</li>
-				</ul>
-				<p><a name="new_BurstService_new"></a></p>
-				<h3 id="new-burstservice-baseurl-relativepath-httpclient-">new BurstService(baseUrl, relativePath, httpClient)</h3>
-				<p>Creates Service instance</p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Type</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>baseUrl</td>
-							<td>| <p>The host url of web service</p></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>relativePath</td>
-							<td>| <p>The relative path will be prepended before each url created with toBRSEndpoint()</p></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>httpClient</td>
-							<td><code>Http</code></td>
-							<td><p>If passed an client instance, it will be used instead of default HttpImpl. Good for testing.</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="BurstService+http"></a></p>
-				<h3 id="burstservice-http-">burstService.http ⇒</h3>
-				<p><strong>Kind</strong>: instance property of <a href="#BurstService"><code>BurstService</code></a><br><strong>Returns</strong>: <p>The internal Http client</p><br><a name="BurstService+toBRSEndpoint"></a></p>
-				<h3 id="burstservice-tobrsendpoint-method-data-">burstService.toBRSEndpoint(method, data) ⇒</h3>
-				<p>Mounts a BRS conform API endpoint of format <code>&lt;host&gt;?requestType=getBlock&amp;height=123</code></p>
-				<p><strong>Kind</strong>: instance method of <a href="#BurstService"><code>BurstService</code></a><br><strong>Returns</strong>: <p>The mounted url (without host)</p><br><strong>See</strong>: <a href="https://burstwiki.org/wiki/The_Burst_API">https://burstwiki.org/wiki/The_Burst_API</a>  </p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>method</td>
-							<td><p>The method name for <code>requestType</code></p></td>
-						</tr>
-						<tr>
-							<td>data</td>
-							<td><p>A JSON object which will be mapped to url params</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="BurstService+query"></a></p>
-				<h3 id="burstservice-query-method-args-">burstService.query(method, args) ⇒</h3>
-				<p>Requests a query to BRS</p>
-				<p><strong>Kind</strong>: instance method of <a href="#BurstService"><code>BurstService</code></a><br><strong>Returns</strong>: <p>The response data of success</p><br><strong>Throws</strong>:</p>
-				<ul>
-					<li><p>HttpError in case of failure</p>
-					</li>
-				</ul>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>method</td>
-							<td><p>The BRS method according <a href="https://burstwiki.org/wiki/The_Burst_API">https://burstwiki.org/wiki/The_Burst_API</a></p></td>
-						</tr>
-						<tr>
-							<td>args</td>
-							<td><p>A JSON object which will be mapped to url params</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="BurstService+send"></a></p>
-				<h3 id="burstservice-send-method-args-body-">burstService.send(method, args, body) ⇒</h3>
-				<p>Send data to BRS</p>
-				<p><strong>Kind</strong>: instance method of <a href="#BurstService"><code>BurstService</code></a><br><strong>Returns</strong>: <p>The response data of success</p><br><strong>Throws</strong>:</p>
-				<ul>
-					<li><p>HttpError in case of failure</p>
-					</li>
-				</ul>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>method</td>
-							<td><p>The BRS method according<a href="https://burstwiki.org/wiki/The_Burst_API#Create_Transaction">https://burstwiki.org/wiki/The_Burst_API#Create_Transaction</a>.        Note that there are only a few POST methods</p></td>
-						</tr>
-						<tr>
-							<td>args</td>
-							<td><p>A JSON object which will be mapped to url params</p></td>
-						</tr>
-						<tr>
-							<td>body</td>
-							<td><p>An object with key value pairs to submit as post body</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="generateSendTransactionQRCode"></a></p>
-				<h2 id="generatesendtransactionqrcode-receiverid-amountnqt-feesuggestiontype-code-promise-arraybufferlike-code-">generateSendTransactionQRCode(receiverId, amountNQT, feeSuggestionType) ⇒ <code>Promise.&lt;ArrayBufferLike&gt;</code></h2>
-				<p>Get QR Code image for a given BURST address</p>
-				<p><strong>Kind</strong>: global function  </p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Type</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>receiverId</td>
-							<td><code>string</code></td>
-							<td><p>The recipient burst</p></td>
-						</tr>
-						<tr>
-							<td>amountNQT</td>
-							<td><code>string</code></td>
-							<td><p>The amount (in NQT) to request</p></td>
-						</tr>
-						<tr>
-							<td>feeSuggestionType</td>
-							<td><code>string</code></td>
-							<td><p>The fee suggestion type string</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="generateSendTransactionQRCodeAddress"></a></p>
-				<h2 id="generatesendtransactionqrcodeaddress-receiverid-amountnqt-feesuggestiontype-code-promise-string-code-">generateSendTransactionQRCodeAddress(receiverId, amountNQT, feeSuggestionType) ⇒ <code>Promise.&lt;string&gt;</code></h2>
-				<p>Generate the URL for a QR Code for a given BURST address. Useful for IMG tags in HTML.</p>
-				<p><strong>Kind</strong>: global function  </p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Type</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>receiverId</td>
-							<td><code>string</code></td>
-							<td><p>The recipient burst address</p></td>
-						</tr>
-						<tr>
-							<td>amountNQT</td>
-							<td><code>string</code></td>
-							<td><p>The amount (in NQT) to request</p></td>
-						</tr>
-						<tr>
-							<td>feeSuggestionType</td>
-							<td><code>string</code></td>
-							<td><p>The fee suggestion type string</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="getAccountBalance"></a></p>
-				<h2 id="getaccountbalance-">getAccountBalance()</h2>
-				<p>Submits a getBalance query given an accountId</p>
-				<p><strong>Kind</strong>: global function<br><a name="getAccountTransactions"></a></p>
-				<h2 id="getaccounttransactions-accountid-firstindex-lastindex-numberofconfirmations-code-promise-transactionlist-code-">getAccountTransactions(accountId, firstIndex, lastIndex, numberOfConfirmations) ⇒ <code>Promise.&lt;TransactionList&gt;</code></h2>
-				<p>Get transactions of given account</p>
-				<p><strong>Kind</strong>: global function  </p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Type</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>accountId</td>
-							<td><code>string</code></td>
-							<td><p>The numeric accountId</p></td>
-						</tr>
-						<tr>
-							<td>firstIndex</td>
-							<td><code>number</code></td>
-							<td><p>The first index of the transaction list, beginning at 0</p></td>
-						</tr>
-						<tr>
-							<td>lastIndex</td>
-							<td><code>number</code></td>
-							<td><p>The last index of the transaction list</p></td>
-						</tr>
-						<tr>
-							<td>numberOfConfirmations</td>
-							<td><code>number</code></td>
-							<td><p>The minimum required number of confirmations per transaction</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="getAliases"></a></p>
-				<h2 id="getaliases-accountid-code-promise-aliaslist-code-">getAliases(accountId) ⇒ <code>Promise.&lt;AliasList&gt;</code></h2>
-				<p>Gets the aliases of an account</p>
-				<p><strong>Kind</strong>: global function  </p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Type</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>accountId</td>
-							<td><code>string</code></td>
-						</tr>
-				</tbody></table>
-				<p><a name="getUnconfirmedAccountTransactions"></a></p>
-				<h2 id="getunconfirmedaccounttransactions-accountid-code-promise-unconfirmedtransactionlist-code-">getUnconfirmedAccountTransactions(accountId) ⇒ <code>Promise.&lt;UnconfirmedTransactionList&gt;</code></h2>
-				<p>Get <em>unconfirmed</em> transactions of given account</p>
-				<p><strong>Kind</strong>: global function  </p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Type</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>accountId</td>
-							<td><code>string</code></td>
-							<td><p>The numeric accountId</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="getBlockByHeight"></a></p>
-				<h2 id="getblockbyheight-height-includetransactions-">getBlockByHeight(height, includeTransactions) ⇒</h2>
-				<p>Get a block by given height</p>
-				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The Block</p>  </p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>height</td>
-							<td><p>The block height</p></td>
-						</tr>
-						<tr>
-							<td>includeTransactions</td>
-							<td><p><em>true</em>, if transactions shall be included</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="getBlockById"></a></p>
-				<h2 id="getblockbyid-id-includetransactions-">getBlockById(id, includeTransactions) ⇒</h2>
-				<p>Get a block by given id</p>
-				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The Block</p>  </p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>id</td>
-							<td><p>The block id</p></td>
-						</tr>
-						<tr>
-							<td>includeTransactions</td>
-							<td><p><em>true</em>, if transactions shall be included</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="getBlockByTimestamp"></a></p>
-				<h2 id="getblockbytimestamp-">getBlockByTimestamp()</h2>
-				<p>Original work Copyright (c) 2019 Burst Apps Team</p>
-				<p><strong>Kind</strong>: global function<br><a name="getBlockId"></a></p>
-				<h2 id="getblockid-height-code-promise-blockid-code-">getBlockId(height) ⇒ <code>Promise.&lt;BlockId&gt;</code></h2>
-				<p>Get a block id by given height</p>
-				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <code>Promise.&lt;BlockId&gt;</code> - <p>The Block Id</p>  </p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Type</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>height</td>
-							<td><code>number</code></td>
-							<td><p>The block height</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="constructAttachment"></a></p>
-				<h2 id="constructattachment-transactions-params-">constructAttachment(transactions, params) ⇒</h2>
-				<p>Constructs an Attachment</p>
-				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>HttpParams</p>  </p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>transactions</td>
-							<td><p>The transaction with the attachment</p></td>
-						</tr>
-						<tr>
-							<td>params</td>
-							<td><p>Some HttpParams</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="sendTextMessage"></a></p>
-				<h2 id="sendtextmessage-message-recipientid-senderpublickey-senderprivatekey-fee-">sendTextMessage(message, recipientId, senderPublicKey, senderPrivateKey, fee) ⇒</h2>
-				<p>Broadcasts a text message to the network/blockchain</p>
-				<p>The message will be broadcasted in two steps.</p>
-				<ol>
-					<li>Send the message with public key to the network</li>
-					<li>Take the returned unsigned message and sign it, i.e. the private key won't be transmitted.</li>
-				</ol>
-				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The Transaction Id</p>  </p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>message</td>
-							<td><p>The <em>text</em> message to be sent</p></td>
-						</tr>
-						<tr>
-							<td>recipientId</td>
-							<td><p>The recipients Id, not RS Address</p></td>
-						</tr>
-						<tr>
-							<td>senderPublicKey</td>
-							<td><p>The senders public key for sending an <em>unsigned</em> message</p></td>
-						</tr>
-						<tr>
-							<td>senderPrivateKey</td>
-							<td><p>The senders private key to <em>sign</em> the message</p></td>
-						</tr>
-						<tr>
-							<td>fee</td>
-							<td><p>The optional fee (expressed in Burst) for the message, default is 0.1 Burst.</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="getBlockchainStatus"></a></p>
-				<h2 id="getblockchainstatus-">getBlockchainStatus() ⇒</h2>
-				<p>Get the blockchain status.</p>
-				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The Blockchain Status</p><br><a name="getServerStatus"></a></p>
-				<h2 id="getserverstatus-">getServerStatus() ⇒</h2>
-				<p>Get the state of the server node and network</p>
-				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The server Status</p><br><a name="suggestFee"></a></p>
-				<h2 id="suggestfee-code-promise-suggestedfees-code-">suggestFee() ⇒ <code>Promise.&lt;SuggestedFees&gt;</code></h2>
-				<p>Get the current suggested fees</p>
-				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <code>Promise.&lt;SuggestedFees&gt;</code> - <p>The Suggested Fees</p><br><a name="broadcastTransaction"></a></p>
-				<h2 id="broadcasttransaction-signedtransactionpayload-">broadcastTransaction(signedTransactionPayload) ⇒</h2>
-				<p>Broadcasts a transaction to the network/blockchain</p>
-				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The Transaction Id</p>  </p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>signedTransactionPayload</td>
-							<td><p>The <em>signed</em> transaction payload encoded in base64</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="getTransaction"></a></p>
-				<h2 id="gettransaction-transactionid-">getTransaction(transactionId) ⇒</h2>
-				<p>Get a transaction from the network/blockchain</p>
-				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The Transaction</p>  </p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>transactionId</td>
-							<td><p>The transaction Id</p></td>
-						</tr>
-				</tbody></table>
-				<p><a name="sendMoney"></a></p>
-				<h2 id="sendmoney-transaction-senderpublickey-senderprivatekey-recipientaddress-">sendMoney(transaction, senderPublicKey, senderPrivateKey, recipientAddress) ⇒</h2>
-				<p>Sends burst to the blockchain</p>
-				<p>The message will be broadcasted in two steps.</p>
-				<ol>
-					<li>Send the sendMoney call with public key to the network</li>
-					<li>Take the returned unsigned message and sign it, i.e. the private key won't be transmitted.</li>
-				</ol>
-				<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <p>The Transaction</p>  </p>
-				<table>
-					<thead>
-						<tr>
-							<th>Param</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>transaction</td>
-							<td><p>The unsigned transaction</p></td>
-						</tr>
-						<tr>
-							<td>senderPublicKey</td>
-							<td><p>The senders public key for sending an <em>unsigned</em> message</p></td>
-						</tr>
-						<tr>
-							<td>senderPrivateKey</td>
-							<td><p>The senders private key to <em>sign</em> the message</p></td>
-						</tr>
-						<tr>
-							<td>recipientAddress</td>
-							<td><p>The recipients RS Address</p></td>
-						</tr>
-				</tbody></table>
+				<p><code>@burstjs</code> aims modern browsers and nodejs &gt; v10 </p>
+				<blockquote>
+					<p>Usually, you won&#39;t need to install other packages than <code>@burstjs/core</code>, which uses the other packages.</p>
+				</blockquote>
+				<pre><code><span class="hljs-built_in">npm</span> install @burstjs/core
+<span class="hljs-built_in">npm</span> install @burstjs/crypto
+<span class="hljs-built_in">npm</span> install @burstjs/util
+<span class="hljs-built_in">npm</span> install @burstjs/http</code></pre><h2 id="usage">Usage</h2>
+				<p>The following example shows how to interact with the blockchain, i.e. getting the balance of a specific account</p>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> {composeApi} <span class="hljs-keyword">from</span> <span class="hljs-string">'@burstjs/core'</span>
+<span class="hljs-keyword">import</span> {convertNQTStringToNumber} <span class="hljs-keyword">from</span> <span class="hljs-string">'@burstjs/util'</span>
+
+<span class="hljs-keyword">const</span> api = composeApi({
+    <span class="hljs-attr">nodeHost</span>: <span class="hljs-string">'https://wallet1.burst-team.us:2083'</span>, <span class="hljs-comment">// one of the mainnet nodes</span>
+    apiRootUrl: <span class="hljs-string">'/burst'</span> <span class="hljs-comment">// endpoint to the BURST API</span>
+})
+
+(<span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">try</span>{
+    <span class="hljs-keyword">const</span> balanceNQT = <span class="hljs-keyword">await</span> api.account.getAccountBalance(<span class="hljs-string">'5810532812037266198'</span>) <span class="hljs-comment">// poloniex exchange account</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Account Balance: <span class="hljs-subst">${convertNQTStringToNumber(balanceNQT)}</span> BURST`</span>)  
+  }
+  <span class="hljs-keyword">catch</span>(e){ <span class="hljs-comment">// e is of type HttpError (as part of @burstjs/http)</span>
+    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`Whooops, something went wrong: <span class="hljs-subst">${e.message}</span>`</span>)      
+  }
+})()
+</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
