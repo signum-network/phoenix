@@ -1,6 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RequestBurstQrComponent } from './request-burst-qr.component';
+import {RequestBurstQrComponent} from './request-burst-qr.component';
+import {I18nModule} from 'app/layout/components/i18n/i18n.module';
+import {I18nService} from "../../../layout/components/i18n/i18n.service";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {StoreService} from "../../../store/store.service";
+import {BehaviorSubject} from "rxjs";
 
 describe('RequestBurstQrComponent', () => {
   let component: RequestBurstQrComponent;
@@ -8,9 +13,23 @@ describe('RequestBurstQrComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RequestBurstQrComponent ]
+      imports: [I18nModule, HttpClientTestingModule],
+      declarations: [RequestBurstQrComponent],
+      providers: [I18nService,
+        {
+          provide: StoreService,
+          useFactory: () => {
+            return {
+              ready: new BehaviorSubject(true),
+              getSettings: () => Promise.resolve({language: 'en'}),
+              saveSettings: () => Promise.resolve(true)
+            }
+          }
+        },
+
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
