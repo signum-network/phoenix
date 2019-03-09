@@ -47,8 +47,19 @@ export class AccountService {
       id, firstIndex, lastIndex, numberOfConfirmations, type, subtype);
   }
 
-  public generateSendTransactionQRCodeAddress(id: string): Promise<string> {
-    return this.api.account.generateSendTransactionQRCodeAddress(id);
+  public generateSendTransactionQRCodeAddress(
+    id: string,
+    amountNQT?: number,
+    feeSuggestionType?: string,
+    feeNQT?: number,
+    immutable?: boolean): Promise<string> {
+    return this.api.account.generateSendTransactionQRCodeAddress(
+      id,
+      amountNQT,
+      feeSuggestionType,
+      feeNQT,
+      immutable
+    );
   }
 
   public getAliases(id: string): Promise<AliasList> {
@@ -69,7 +80,7 @@ export class AccountService {
 
   public setAccountInfo({ name, description, feeNQT, deadline, pin, keys }: SetAccountInfoRequest): Promise<TransactionId> {
     const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
-    return this.api.account.setAccountInfo(name, description, feeNQT, keys.publicKey, senderPrivateKey, deadline); 
+    return this.api.account.setAccountInfo(name, description, feeNQT, keys.publicKey, senderPrivateKey, deadline);
   }
 
   /*
@@ -167,7 +178,7 @@ export class AccountService {
   public synchronizeAccount(account: Account): Promise<Account> {
     return new Promise(async (resolve, reject) => {
       try {
-        
+
         const remoteAccount = await this.getAccount(account.account);
         account.name = remoteAccount.name;
         account.description = remoteAccount.description;
@@ -175,10 +186,10 @@ export class AccountService {
         account.unconfirmedAssetBalances = remoteAccount.unconfirmedAssetBalances;
         account.balanceNQT = remoteAccount.balanceNQT;
         account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
-        
+
         const transactions = await this.getAccountTransactions(account.account);
         account.transactions = transactions;
-        
+
         const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account)
         account.transactions = unconfirmedTransactionsResponse.unconfirmedTransactions
           .concat(account.transactions);

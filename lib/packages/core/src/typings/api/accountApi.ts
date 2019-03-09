@@ -61,12 +61,16 @@ export interface AccountApi {
      * @param {string} receiverId The recipient burst
      * @param {number?} amountNQT The amount (in NQT) to request (Default = 0)
      * @param {string?} feeSuggestionType The fee suggestion type string (Default = 'standard')
+     * @param {number?} feeNQT The fee amount (in NQT)
+     * @param {immutable?} immutable Whether to allow this to be modified
      * @return {Promise<ArrayBufferLike>} QR code image data
      */
     generateSendTransactionQRCode: (
         receiverId: string,
         amountNQT?: number,
-        feeSuggestionType?: string
+        feeSuggestionType?: string,
+        feeNQT?: number,
+        immutable?: boolean
     ) => Promise<ArrayBufferLike>;
 
 
@@ -75,12 +79,16 @@ export interface AccountApi {
      * @param {string} receiverId The recipient burst address
      * @param {number?} amountNQT The amount (in NQT) to request (Default = 0)
      * @param {string?} feeSuggestionType The fee suggestion type string (Default = 'standard')
+     * @param {number?} feeNQT The fee amount (in NQT)
+     * @param {immutable?} immutable Whether to allow this to be modified
      * @return {Promise<string>} The url
      */
     generateSendTransactionQRCodeAddress: (
         receiverId: string,
         amountNQT?: number,
-        feeSuggestionType?: string
+        feeSuggestionType?: string,
+        feeNQT?: number,
+        immutable?: boolean
     ) => Promise<string>;
 
     /**
