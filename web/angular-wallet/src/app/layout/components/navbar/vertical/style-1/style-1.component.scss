@@ -58,7 +58,7 @@ fuse-sidebar {
                             }
 
                             .username,
-                            .email {
+                            .alias {
                                 display: none;
                             }
                         }
@@ -186,6 +186,7 @@ navbar {
                         height: 72px;
                         margin: 0;
                         border-radius: 0;
+                        cursor: pointer;
                     }
                 }
             }

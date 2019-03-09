@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SetAccountInfoComponent } from './set-account-info.component';
+import { RequestBurstComponent } from './request-burst.component';
 import { NetworkModule } from 'app/network/network.module';
-import { MatCheckboxModule, MatGridListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCardModule, MatSelectModule } from '@angular/material';
+import { MatCheckboxModule, MatGridListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCardModule, MatSelectModule, MatStepperModule } from '@angular/material';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { NotifierModule } from 'angular-notifier';
@@ -14,14 +14,14 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TransactionService } from '../transactions/transaction.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { BurstFeeSelectorComponent } from 'app/layout/components/burst-fee-selector/burst-fee-selector.component';
 import { Ng5SliderModule } from 'ng5-slider';
-import { TransactionService } from '../transactions/transaction.service';
 
-describe('SetAccountInfoComponent', () => {
-  let component: SetAccountInfoComponent;
-  let fixture: ComponentFixture<SetAccountInfoComponent>;
+describe('RequestBurstComponent', () => {
+  let component: RequestBurstComponent;
+  let fixture: ComponentFixture<RequestBurstComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -42,12 +42,13 @@ describe('SetAccountInfoComponent', () => {
         MatCheckboxModule,
         FormsModule,
         NetworkModule,
+        MatStepperModule,
         HttpClientTestingModule,
         RouterTestingModule.withRoutes(
-          [{path: 'set-account-info', component: SetAccountInfoComponent}]
+          [{path: 'request', component: RequestBurstComponent}]
         )
       ],
-      declarations: [ SetAccountInfoComponent, BurstFeeSelectorComponent ],
+      declarations: [ RequestBurstComponent, BurstFeeSelectorComponent ],
       providers: [ 
         I18nService, 
         {
@@ -82,7 +83,7 @@ describe('SetAccountInfoComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SetAccountInfoComponent);
+    fixture = TestBed.createComponent(RequestBurstComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

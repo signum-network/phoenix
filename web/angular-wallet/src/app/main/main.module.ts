@@ -50,6 +50,10 @@ const mainRoutes: Routes = [
   {
     path: 'transactions',
     loadChildren: './transactions/transactions.module#TransactionsModule'
+  },
+  {
+    path: 'request',
+    loadChildren: './request-burst/request-burst.module#RequestBurstModule'
   }
 ];
 
