@@ -13,6 +13,7 @@ export const getAccountIdFromPublicKey = (publicKey: string): string => {
     const hash = CryptoJS.SHA256(CryptoJS.enc.Hex.parse(publicKey));
     const bytes = Converter.convertWordArrayToByteArray(hash);
     const slice = bytes.slice(0, 8);
+
     const result = slice.reduce(
         (acc, num, index) => acc.add(Big(num).mul(Big(2).pow(index * 8))),
         Big(0)
