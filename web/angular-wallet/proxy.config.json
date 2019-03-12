@@ -6,7 +6,6 @@
       "port": 6876
     },
     "secure": false,
-    "changeOrigin": true,
     "logLevel": "info"
-  }
+  },
 }
