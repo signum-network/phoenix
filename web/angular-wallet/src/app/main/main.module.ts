@@ -87,7 +87,6 @@ const mainRoutes: Routes = [
     DashboardModule,
     SendBurstModule,
     AccountsModule,
-    MessagesModule,
     SetAccountInfoModule
   ],
   exports: [
