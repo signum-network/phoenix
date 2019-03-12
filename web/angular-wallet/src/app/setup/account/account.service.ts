@@ -201,12 +201,4 @@ export class AccountService {
       }
     });
   }
-
-  /**
-   * @param account the account to set
-   * @param count The number of transactions for this account
-   */
-  public setTransactionCount(account: Account, count: number) {
-
-  }
 }
