@@ -6,6 +6,9 @@ import 'rxjs/add/operator/timeout';
 import { composeApi, ApiSettings, Attachment } from '@burstjs/core';
 import { environment } from 'environments/environment.prod';
 import { Keys, decryptAES, hashSHA256 } from '@burstjs/crypto';
+import { HttpError } from '@burstjs/http/out';
+import { NotifierService } from 'angular-notifier';
+import { UtilService } from 'app/util.service';
 
 interface SendMoneyRequest {
     transaction: {
@@ -29,7 +32,9 @@ export class TransactionService {
 
     public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
-    constructor() {
+    constructor(private notifierService: NotifierService,
+        private utilService: UtilService) {
+        this.notifierService = notifierService;
         const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
         this.api = composeApi(apiSettings);
     }
@@ -54,9 +59,6 @@ export class TransactionService {
         //     };
         // }
         const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
-        return this.api.transaction.sendMoney(transaction, keys.publicKey, senderPrivateKey, recipientAddress)
-            .catch((err) => {
-                throw new Error(`There was a problem submitting your transaction.`);
-            });
+        return this.api.transaction.sendMoney(transaction, keys.publicKey, senderPrivateKey, recipientAddress);
     }
 }

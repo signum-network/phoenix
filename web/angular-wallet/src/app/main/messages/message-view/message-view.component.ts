@@ -16,6 +16,9 @@ import {
   convertDateToBurstTime,
   convertBurstTimeToDate
 } from '@burstjs/util';
+import { NotifierService } from 'angular-notifier';
+import { UtilService } from 'app/util.service';
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
 
 @Component({
     selector: 'message-view',
@@ -48,7 +51,10 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     constructor(
         private messageService: MessagesService,
         private accountService: AccountService,
-        private router: Router
+        private router: Router,
+        private notifierService: NotifierService,
+        private utilService: UtilService,
+        private i18nService: I18nService
     ) {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
@@ -174,7 +180,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     /**
      * sendMessage
      */
-    sendMessage(event): void {
+    async sendMessage(event) {
         event.preventDefault();
 
         if (!this.replyForm.form.value.message) {
@@ -183,7 +189,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
         if (this.isNewMessage) {
             if (!isValid(this.message.senderRS)) {
-                return; // todo: show user invalid address warning
+                return this.notifierService.notify('error', this.i18nService.getTranslation('error_invalid_account_id'));
             }
             this.message.senderRS = `BURST-${this.message.senderRS}`;
             this.message.contactId = convertAddressToNumericId(this.message.senderRS);
@@ -197,14 +203,15 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
             timestamp: parseInt(convertDateToBurstTime(new Date()).toString())
         };
 
-        // Update the server
-        this.messageService.sendTextMessage(message, this.message.contactId, this.replyForm.form.value.pin, this.fee).then(response => {
+        try {
+            await this.messageService.sendTextMessage(message, this.message.contactId, this.replyForm.form.value.pin, this.fee);
+        } catch (e) {
+            return this.notifierService.notify('error', this.utilService.translateServerError(e.data));
+        }
 
-            // Reset the reply form
-            this.replyForm.reset();
+        this.replyForm.reset();
+        this.readyToReply();
 
-            this.readyToReply();
-        });
     }
 
     getQRCode(id: string): Promise<string> {

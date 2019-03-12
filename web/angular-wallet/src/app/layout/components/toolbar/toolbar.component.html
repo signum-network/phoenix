@@ -48,10 +48,6 @@
 
             <div class="toolbar-separator"></div>
 
-            <fuse-search-bar (input)="search($event)"></fuse-search-bar>
-
-            <div class="toolbar-separator"></div>
-
             <button *ngIf="selectedLanguage" mat-button fxHide fxShow.gt-xs
                     class="language-button"
                     [matMenuTriggerFor]="languageMenu">
@@ -66,17 +62,7 @@
                         <span class="iso">{{lang.name}}</span>
                     </span>
                 </button>
-
             </mat-menu>
-
-            <div class="toolbar-separator" fxHide fxShow.gt-xs></div>
-
-            <button mat-icon-button
-                    class="quick-panel-toggle-button"
-                    (click)="toggleSidebarOpen('quickPanel')"
-                    aria-label="Toggle quick panel">
-                <mat-icon class="secondary-text">format_list_bulleted</mat-icon>
-            </button>
 
             <div class="toolbar-separator" *ngIf="!hiddenNavbar && rightNavbar" fxHide fxShow.gt-xs></div>
 
