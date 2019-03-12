@@ -7,3 +7,4 @@ docs/index.json
 docs/ast
 coverage
 out/
+*.key
