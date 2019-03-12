@@ -5,16 +5,24 @@ import 'rxjs/add/operator/timeout';
 
 import { StoreService } from 'app/store/store.service';
 import { Settings } from 'app/settings';
-import { Account, composeApi, ApiSettings, Api, TransactionList, AliasList, Balance, UnconfirmedTransactionList, Transaction, TransactionId } from '@burstjs/core';
+import {
+  Account,
+  TransactionList,
+  AliasList,
+  Balance,
+  UnconfirmedTransactionList,
+  TransactionId,
+  Api
+} from '@burstjs/core';
 import { generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey, decryptAES } from '@burstjs/crypto';
 import { isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId } from '@burstjs/util';
-import { environment } from 'environments/environment';
+import {ApiService} from '../../api.service';
 
 interface SetAccountInfoRequest {
-  name: string,
-  description: string,
-  deadline: number,
-  feeNQT: string,
+  name: string;
+  description: string;
+  deadline: number;
+  feeNQT: string;
   pin: string;
   keys: Keys;
 }
@@ -24,17 +32,15 @@ interface SetAccountInfoRequest {
 })
 export class AccountService {
   private nodeUrl: string;
-  private api: Api;
 
   public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
+  private api: Api;
 
-  constructor(private storeService: StoreService) {
+  constructor(private storeService: StoreService, private apiService: ApiService) {
     this.storeService.settings.subscribe((settings: Settings) => {
       this.nodeUrl = settings.node;
     });
-
-    const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
-    this.api = composeApi(apiSettings);
+    this.api = apiService.api;
   }
 
   public setCurrentAccount(account: Account): void {
@@ -42,7 +48,7 @@ export class AccountService {
   }
 
   // FIXME: any as return type is shitty...will introduce a better execption handling
-  public getAccountTransactions(id: string, firstIndex?: number, lastIndex?: number, numberOfConfirmations?: number, type?: number, subtype?: number): Promise<TransactionList | any> {
+  public getAccountTransactions(id: string, firstIndex?: number, lastIndex?: number, numberOfConfirmations?: number, type?: number, subtype?: number): Promise<TransactionList> {
     return this.api.account.getAccountTransactions(
       id, firstIndex, lastIndex, numberOfConfirmations, type, subtype);
   }
@@ -154,7 +160,7 @@ export class AccountService {
   * Method responsible for removing an existing account.
   */
   public removeAccount(account: Account): Promise<boolean> {
-    return this.storeService.removeAccount(account).catch(error => error)
+    return this.storeService.removeAccount(account).catch(error => error);
   }
 
   /*
@@ -187,14 +193,14 @@ export class AccountService {
         account.balanceNQT = remoteAccount.balanceNQT;
         account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
 
-        const transactions = await this.getAccountTransactions(account.account);
-        account.transactions = transactions;
+        const transactionList = await this.getAccountTransactions(account.account);
+        account.transactions = transactionList.transactions;
 
-        const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account)
+        const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account);
         account.transactions = unconfirmedTransactionsResponse.unconfirmedTransactions
           .concat(account.transactions);
 
-        this.storeService.saveAccount(account).catch(error => { reject(error) })
+        this.storeService.saveAccount(account).catch(error => { reject(error); });
         resolve(account);
       } catch (e) {
         console.log(e);

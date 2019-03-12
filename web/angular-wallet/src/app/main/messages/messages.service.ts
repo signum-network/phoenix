@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
-import { Account, Api, ApiSettings, composeApi, SuggestedFees } from '@burstjs/core';
+import { Account, Api, SuggestedFees } from '@burstjs/core';
 import { AccountService } from 'app/setup/account/account.service';
-import { environment } from 'environments/environment';
 import { decryptAES, hashSHA256} from '@burstjs/crypto';
 import { NetworkService } from 'app/network/network.service';
 import { convertDateToBurstTime, convertAddressToNumericId } from '@burstjs/util';
+import {ApiService} from '../../api.service';
 
 export interface ChatMessage {
     message: string;
@@ -42,9 +42,11 @@ export class MessagesService implements Resolve<any>
     onLeftSidenavViewChanged: Subject<any>;
     onRightSidenavViewChanged: Subject<any>;
 
-    constructor(private accountService: AccountService, private networkService: NetworkService) {
-        const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
-        this.api = composeApi(apiSettings);
+    constructor(private accountService: AccountService,
+                private networkService: NetworkService,
+                apiService: ApiService,
+                ) {
+        this.api = apiService.api;
         this.onMessageSelected = new BehaviorSubject({});
         this.onOptionsSelected = new BehaviorSubject({});
         this.onMessagesUpdated = new Subject();
