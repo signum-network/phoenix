@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class DashboardService implements Resolve<any> {
