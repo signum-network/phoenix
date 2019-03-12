@@ -3,16 +3,15 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 
 import {
-  composeApi,
   Api,
-  ApiSettings,
   Block,
   BlockchainStatus,
   SuggestedFees,
   Peer,
   PeerAddressList
 } from '@burstjs/core';
-import {environment} from 'environments/environment.prod';
+
+import {ApiService} from '../api.service';
 
 
 @Injectable()
@@ -20,9 +19,8 @@ export class NetworkService {
   private api: Api;
   blocks: Block[];
 
-  constructor() {
-    const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
-    this.api = composeApi(apiSettings);
+  constructor(apiService: ApiService) {
+    this.api = apiService.api;
   }
 
   public suggestFee(): Promise<SuggestedFees> {

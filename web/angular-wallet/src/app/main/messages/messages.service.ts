@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
-import { Account, Api, ApiSettings, composeApi, SuggestedFees } from '@burstjs/core';
+import { Account, Api, SuggestedFees } from '@burstjs/core';
 import { AccountService } from 'app/setup/account/account.service';
-import { environment } from 'environments/environment';
 import { decryptAES, hashSHA256} from '@burstjs/crypto';
 import { NetworkService } from 'app/network/network.service';
 import { convertDateToBurstTime, convertAddressToNumericId } from '@burstjs/util';
+import {ApiService} from '../../api.service';
 
 export interface ChatMessage {
     message: string;
@@ -27,13 +27,15 @@ export interface MessageOptions {
     encrypt: boolean;
 }
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class MessagesService implements Resolve<any>
 {
 
     private api: Api;
     contacts: Account[] = [];
-    messages: Messages[];
+    messages: Messages[] = [];
     user: any;
     onMessageSelected: BehaviorSubject<any>;
     onOptionsSelected: BehaviorSubject<any>;
@@ -42,9 +44,11 @@ export class MessagesService implements Resolve<any>
     onLeftSidenavViewChanged: Subject<any>;
     onRightSidenavViewChanged: Subject<any>;
 
-    constructor(private accountService: AccountService, private networkService: NetworkService) {
-        const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
-        this.api = composeApi(apiSettings);
+    constructor(private accountService: AccountService,
+                private networkService: NetworkService,
+                apiService: ApiService,
+                ) {
+        this.api = apiService.api;
         this.onMessageSelected = new BehaviorSubject({});
         this.onOptionsSelected = new BehaviorSubject({});
         this.onMessagesUpdated = new Subject();
@@ -62,36 +66,40 @@ export class MessagesService implements Resolve<any>
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         return new Promise(async (resolve, reject) => {
+            try {
+                this.user = await this.accountService.currentAccount.getValue();
 
-            const messages = await this.getMessages();
+                const fees = await this.networkService.suggestFee();
+                this.selectOptions({
+                    fees: fees,
+                    encrypted: false
+                })
 
-            this.user = await this.accountService.currentAccount.getValue();
-
-            this.messages = messages.transactions && messages.transactions.reduce((acc, val) => {
-                const isSentMessage = this.user.account === val.sender;
-                val.attachment.timestamp = val.timestamp;
-                val.attachment.contactId = val.sender;
-                const existingMessage = acc.find((item) => {
-                    return isSentMessage ? item.contactId === val.recipient :
-                                           item.contactId === val.sender;
-                });
-                if (existingMessage) {
-                    existingMessage.dialog.unshift(val.attachment);
-                    return acc;
-                }
-                return acc.concat({
-                    contactId: isSentMessage ? val.recipient : val.sender,
-                    dialog: [val.attachment],
-                    senderRS: isSentMessage ? val.recipientRS : val.senderRS,
-                    timestamp: val.timestamp // relies on default order being reverse chrono
-                });
-            }, []);
-            const fees = await this.networkService.suggestFee();
-            this.selectOptions({
-                fees: fees,
-                encrypted: false
-            })
+                const messages = await this.getMessages();
+                this.messages = messages.transactions && messages.transactions.reduce((acc, val) => {
+                    const isSentMessage = this.user.account === val.sender;
+                    val.attachment.timestamp = val.timestamp;
+                    val.attachment.contactId = val.sender;
+                    const existingMessage = acc.find((item) => {
+                        return isSentMessage ? item.contactId === val.recipient :
+                                               item.contactId === val.sender;
+                    });
+                    if (existingMessage) {
+                        existingMessage.dialog.unshift(val.attachment);
+                        return acc;
+                    }
+                    return acc.concat({
+                        contactId: isSentMessage ? val.recipient : val.sender,
+                        dialog: [val.attachment],
+                        senderRS: isSentMessage ? val.recipientRS : val.senderRS,
+                        timestamp: val.timestamp // relies on default order being reverse chrono
+                    });
+                }, []);
+            } catch (e) {
+                console.warn(e);
+            }
             resolve();
+            
         });
     }
 
@@ -113,10 +121,7 @@ export class MessagesService implements Resolve<any>
         // Check to see if existing chat session exists (ios-style), if so, merge it
         this.mergeWithExistingChatSession(message, recipientRS);
         const senderPrivateKey = decryptAES(this.user.keys.signPrivateKey, hashSHA256(pin));
-        return this.api.message.sendTextMessage(message.message, recipientRS, this.user.keys.publicKey, senderPrivateKey, fee)
-            .catch((err) => {
-                throw new Error(`There was a problem sending your message.`);
-            });
+        return this.api.message.sendTextMessage(message.message, recipientRS, this.user.keys.publicKey, senderPrivateKey, fee);
     }
 
     /**
@@ -135,7 +140,7 @@ export class MessagesService implements Resolve<any>
      */
     getContacts(): Promise<any> {
         return new Promise((resolve, reject) => {
-            resolve(['1234']);
+            resolve([]);
         });
     }
 

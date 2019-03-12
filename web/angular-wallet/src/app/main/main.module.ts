@@ -87,9 +87,6 @@ const mainRoutes: Routes = [
     DashboardModule,
     SendBurstModule,
     AccountsModule,
-    AliasesModule,
-    BlocksModule,
-    PeersModule,
     MessagesModule,
     SetAccountInfoModule
   ],

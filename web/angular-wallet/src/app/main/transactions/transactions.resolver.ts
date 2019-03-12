@@ -10,7 +10,12 @@ export class TransactionsResolver implements Resolve<Promise<Transaction>> {
   constructor(private accountService: AccountService) {
   }
 
-  resolve(route: ActivatedRouteSnapshot) {
-    return this.accountService.getAccountTransactions(this.accountService.currentAccount.getValue().account);
+  async resolve(route: ActivatedRouteSnapshot) {
+    try {
+      const transactions = await this.accountService.getAccountTransactions(this.accountService.currentAccount.getValue().account);
+      return transactions;
+    } catch (e) {
+      console.warn(e);
+    }
   }
 }

@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+##Unreleased
+
+- Export of Api Interface Types
+
+
 ## 0.1.0-rc.3
 ### General
 - BRS exceptions thrown as `HttpError` now

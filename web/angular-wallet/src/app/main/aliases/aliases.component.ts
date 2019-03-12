@@ -29,9 +29,13 @@ export class AliasesComponent {
     this.dataSource = new MatTableDataSource<Alias>();
 
     this.storeService.ready.subscribe(async (ready) => {
-      this.selectedAccount = await this.storeService.getSelectedAccount();
-      const aliasesResponse = await this.accountService.getAliases(this.selectedAccount.account);
-      this.dataSource.data = aliasesResponse.aliases;
+      try {
+        this.selectedAccount = await this.storeService.getSelectedAccount();
+        const aliasesResponse = await this.accountService.getAliases(this.selectedAccount.account);
+        this.dataSource.data = aliasesResponse.aliases;
+      } catch (e) {
+        console.warn(e);
+      }
     });
   }
 

@@ -6,6 +6,15 @@ import {TransactionApi} from './transactionApi';
 import {MessageApi} from './messageApi';
 import {AccountApi} from './accountApi';
 
+
+export {
+    BlockApi,
+    NetworkApi,
+    TransactionApi,
+    MessageApi,
+    AccountApi,
+};
+
 /**
  * API Interface used by [[composeApi]]
  *
