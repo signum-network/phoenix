@@ -19,18 +19,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
-import { TransactionRowValueCellComponent } from './transaction-row-value-cell/transaction-row-value-cell.component';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { RouterModule } from '@angular/router';
 import { TransactionDetailsComponent } from './transaction-details';
 import { TransactionResolver } from './transaction.resolver';
-import { TransactionService } from './transaction.service';
 import { LoginGuard } from 'app/login/login-guard.service';
 import { TransactionsResolver } from './transactions.resolver';
 import { AccountResolver } from 'app/setup/account/account.resolver';
 import { TransactionTableModule } from './transaction-table/transaction.module';
-import { TransactionTableComponent } from './transaction-table/transaction-table.component';
 
 const routes = [
     {
@@ -80,12 +77,11 @@ const routes = [
         ReactiveFormsModule,
         I18nModule,
         MatDialogModule,
-        RouterModule.forChild(routes),
-        TransactionTableModule
+        TransactionTableModule,
+        RouterModule.forChild(routes)
     ],
     declarations: [
         TransactionsComponent,
-        TransactionRowValueCellComponent,
         TransactionDetailsComponent
     ],
     providers: [

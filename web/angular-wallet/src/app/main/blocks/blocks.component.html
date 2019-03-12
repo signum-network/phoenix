@@ -20,7 +20,7 @@
           <ng-container matColumnDef="block">
               <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'block' | i18n }}</mat-header-cell>
               <mat-cell *matCellDef="let block">
-                  <span class="link" [routerLink]="['/block', block.block]">{{ block.block }}</span>
+                  <a [routerLink]="['block', block.block]">{{ block.block }}</a>
               </mat-cell>
           </ng-container>
 
