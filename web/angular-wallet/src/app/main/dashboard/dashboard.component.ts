@@ -4,8 +4,8 @@ import { DashboardService } from './dashboard.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { StoreService } from 'app/store/store.service';
-import { Account, Transaction, TransactionList } from '@burstjs/core';
-import { convertNumericIdToAddress, convertNQTStringToNumber } from '@burstjs/util';
+import { Account, Transaction} from '@burstjs/core';
+import { convertNQTStringToNumber } from '@burstjs/util';
 import { AccountService } from 'app/setup/account/account.service';
 import { MatTableDataSource } from '@angular/material';
 
@@ -21,13 +21,10 @@ export class DashboardComponent implements OnInit {
   navigationSubscription: Subscription;
   account: Account;
 
-  public dataSource: MatTableDataSource<Transaction>
+  public dataSource: MatTableDataSource<Transaction>;
+  private btc_burst = 0;
+  private usdc_btc = 0;
 
-  /**
-   * Constructor
-   *
-   * @param {dashboardService} _dashboardService
-   */
   constructor(private _dashboardService: DashboardService,
     private router: Router,
     private storeService: StoreService,
@@ -53,11 +50,8 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    // Get the widgets from the service
-    this.widgets = this._dashboardService.widgets;
+  async ngOnInit() {
     this.fetchTransactions();
-
     this.fetchBalanceInfos();
   }
 
@@ -67,12 +61,17 @@ export class DashboardComponent implements OnInit {
 
   private fetchBalanceInfos() {
     this.dashboardService.getBalanceInfo().subscribe((info: any) => {
-      const btc = parseFloat(info.BTC_BURST.last);
-      const usd = parseFloat(info.USDC_BTC.last);
-      console.log(btc);
-      console.log(usd);
+      this.btc_burst = parseFloat(info.BTC_BURST.last);
+      this.usdc_btc = parseFloat(info.USDC_BTC.last);
     });
   }
 
+  convertBalanceInBtc(balanceNQT: string) {
+    return this.convertNQTStringToNumber(balanceNQT) * this.btc_burst;
+  }
+
+  convertBalanceInUsDollar(balanceNQT: string) {
+    return this.convertNQTStringToNumber(balanceNQT) * this.btc_burst * this.usdc_btc;
+  }
 }
 

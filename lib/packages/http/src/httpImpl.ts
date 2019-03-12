@@ -32,9 +32,9 @@ export default class HttpImpl implements Http {
         return new HttpError(url, -1, 'Http Configuration error', null);
     }
 
-    async get(url: string): Promise<HttpResponse> {
+    async get(url: string, options: any = {}): Promise<HttpResponse> {
         try {
-            const {status, data} = await this._clientImpl.get(url);
+            const {status, data} = await this._clientImpl.get(url, options);
             return new HttpResponse(status, data);
         } catch (error) {
             throw HttpImpl.mountError(url, error);
