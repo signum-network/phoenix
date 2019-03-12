@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { burstAddressPattern, convertNQTStringToNumber } from '@burstjs/util';
 import { ActivatedRoute } from '@angular/router';
 import { TransactionService } from '../transactions/transaction.service';
-import { decryptAES } from '@burstjs/crypto';
 import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
 import { NotifierService } from 'angular-notifier';
@@ -79,14 +78,14 @@ export class SendBurstComponent implements OnInit {
       this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
     });
     event.stopImmediatePropagation();
-  }
+  } 
 
   getMessage() {
     if (this.message) {
       if (this.encrypt) {
         return {
           encryptedMessage: this.message
-        };
+        }; 
       } else {
         return {
           message: this.message,

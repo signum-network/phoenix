@@ -18,13 +18,13 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Transactions',
                 type     : 'item',
                 icon     : 'compare_arrows',
-                url      : '/transactions',
-                badge    : {
-                    title    : '5',
-                    translate: '5',
-                    bg       : '#F44336',
-                    fg       : '#FFFFFF'
-                }
+                url      : '/transactions'
+                // badge    : {
+                //     title    : '5',
+                //     translate: '5',
+                //     bg       : '#F44336',
+                //     fg       : '#FFFFFF'
+                // }
             },
             // {
             //     id       : 'escrow',

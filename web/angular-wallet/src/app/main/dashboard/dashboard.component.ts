@@ -22,11 +22,14 @@ export class DashboardComponent implements OnInit {
   account: Account;
 
   public dataSource: MatTableDataSource<Transaction>;
+  private btc_burst: number;
+  private usdc_btc: number;
 
   constructor(private _dashboardService: DashboardService,
     private router: Router,
     private storeService: StoreService,
-    private accountService: AccountService) {
+    private accountService: AccountService,
+    private dashboardService: DashboardService) {
 
     // handle route reloads (i.e. if user changes accounts)
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -34,7 +37,6 @@ export class DashboardComponent implements OnInit {
         this.fetchTransactions();
       }
     });
-
   }
 
   async fetchTransactions() {
@@ -49,25 +51,27 @@ export class DashboardComponent implements OnInit {
   }
 
   async ngOnInit() {
-    // Get the widgets from the service
-    this.widgets = this._dashboardService.widgets;
     this.fetchTransactions();
+    this.fetchBalanceInfos();
   }
 
   public convertNQTStringToNumber(balanceNQT) {
     return convertNQTStringToNumber(balanceNQT);
   }
 
+  private fetchBalanceInfos() {
+    this.dashboardService.getBalanceInfo().subscribe((info: any) => {
+      this.btc_burst = parseFloat(info.BTC_BURST.last);
+      this.usdc_btc = parseFloat(info.USDC_BTC.last);
+    });
+  }
+
   convertBalanceInSatoshi(balanceNQT: string) {
-    // TODO: get true value
-    const burst_btc = 0.00000103;
-    return this.convertNQTStringToNumber(balanceNQT) * burst_btc * 1E6;
+    return this.convertNQTStringToNumber(balanceNQT) * this.btc_burst * 1E6;
   }
 
   convertBalanceInUsCent(balanceNQT: string) {
-    const burst_btc = 0.00000102;
-    const btc_usd = 3800.00;
-    return this.convertNQTStringToNumber(balanceNQT) * burst_btc * btc_usd;
+    return this.convertNQTStringToNumber(balanceNQT) * this.btc_burst * this.usdc_btc;
   }
 }
 

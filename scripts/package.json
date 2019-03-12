@@ -2,7 +2,9 @@
   "name": "@bats/phoenix-scripts",
   "version": "1.0.0",
   "description": "Development scripts for Burst Cross-Platform Wallet UI",
-  "contributors":  ["ohager"],
+  "contributors": [
+    "ohager"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/burst-apps-team/phoenix"
