@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/timeout';
-
-import { composeApi, ApiSettings, Attachment } from '@burstjs/core';
+import { ApiSettings, Attachment, TransactionApi } from '@burstjs/core';
 import { environment } from 'environments/environment.prod';
 import { Keys, decryptAES, hashSHA256 } from '@burstjs/crypto';
+import {ApiService} from '../../api.service';
 
 interface SendMoneyRequest {
     transaction: {
-        amountNQT: number,
+        amountNQT: string,
         feeNQT: string,
         attachment: Attachment,
         deadline: number,
@@ -25,17 +23,17 @@ interface SendMoneyRequest {
     providedIn: 'root'
 })
 export class TransactionService {
-    private api: any; // todo
+    private transactionApi: TransactionApi;
 
     public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
-    constructor() {
+    constructor(apiService: ApiService) {
         const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
-        this.api = composeApi(apiSettings);
+        this.transactionApi = apiService.api.transaction;
     }
 
     public getTransaction(id: string) {
-        return this.api.transaction.getTransaction(id);
+        return this.transactionApi.getTransaction(id);
     }
 
     public async sendMoney({ transaction, pin, keys, recipientAddress }: SendMoneyRequest) {
@@ -54,6 +52,6 @@ export class TransactionService {
         //     };
         // }
         const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
-        return this.api.transaction.sendMoney(transaction, keys.publicKey, senderPrivateKey, recipientAddress);
+        return this.transactionApi.sendMoney(transaction, keys.publicKey, senderPrivateKey, recipientAddress);
     }
 }

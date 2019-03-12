@@ -27,8 +27,8 @@ export class SendBurstComponent implements OnInit {
   @ViewChild('deadline') public deadline: string;
 
   @Output() submit = new EventEmitter<any>();
-  advanced: boolean = false;
-  showMessage: boolean = false;
+  advanced = false;
+  showMessage = false;
   burstAddressPatternRef = burstAddressPattern;
 
   account: Account;
@@ -63,7 +63,7 @@ export class SendBurstComponent implements OnInit {
   onSubmit(event) {
     this.transactionService.sendMoney({
       transaction: {
-        amountNQT: parseFloat(this.amountNQT),
+        amountNQT: this.amountNQT,
         feeNQT: this.feeNQT,
         attachment: this.getMessage(),
         deadline: parseFloat(this.deadline),
@@ -86,13 +86,13 @@ export class SendBurstComponent implements OnInit {
       if (this.encrypt) {
         return {
           encryptedMessage: this.message
-        }
+        };
       } else {
         return {
           message: this.message,
           type: 'message',
           messageIsText: true
-        }
+        };
       }
     }
     return null;
