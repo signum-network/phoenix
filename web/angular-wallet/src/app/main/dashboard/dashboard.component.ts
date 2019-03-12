@@ -4,9 +4,10 @@ import { DashboardService } from './dashboard.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { StoreService } from 'app/store/store.service';
-import { Account } from '@burstjs/core';
+import { Account, Transaction, TransactionList } from '@burstjs/core';
 import { convertNumericIdToAddress, convertNQTStringToNumber } from '@burstjs/util';
 import { AccountService } from 'app/setup/account/account.service';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'dashboard-dashboard',
@@ -19,6 +20,8 @@ export class DashboardComponent implements OnInit {
   widgets: any;
   navigationSubscription: Subscription;
   account: Account;
+
+  public dataSource: MatTableDataSource<Transaction>
 
   /**
    * Constructor
@@ -43,6 +46,8 @@ export class DashboardComponent implements OnInit {
     try {
       this.account = await this.storeService.getSelectedAccount();
       const accountTransactions = await this.accountService.getAccountTransactions(this.account.account);
+      this.dataSource = new MatTableDataSource<Transaction>();
+      this.dataSource.data = accountTransactions.transactions;
     } catch (e) {
       console.log(e);
     }
