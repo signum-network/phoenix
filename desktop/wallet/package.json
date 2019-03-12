@@ -24,11 +24,11 @@
     "build": "node ../../scripts/build.js --target desktop",
     "start": "cross-env NODE_ENV=develop && npm run build && electron .",
     "start:fast": "cross-env NODE_ENV=develop && electron .",
-    "pack": "npm run build && electron-packager . @bats/phoenix-desktop-wallet --overwrite --asar=true --prune=true --out=release-builds",
+    "pack": "npm run build && electron-packager . @bats/phoenix-desktop-wallet --overwrite --asar --prune=true --out=release-builds",
     "release:all": "npm run pack -- --all",
     "release:linux": "npm run pack -- --platform=linux --arch=x64",
     "release:win32": "npm run pack -- --platform=win32 --arch=x64",
-    "release:macos": "npm run pack -- --platform=macos --arch=x64"
+    "release:macos": "npm run pack -- --platform=darwin --arch=x64"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",

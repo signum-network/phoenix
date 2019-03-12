@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AccountResolver } from 'app/setup/account/account.resolver';
 import { SendBurstComponent } from './send-burst.component';
-import { MatIconModule, MatInputModule, MatButtonModule, MatGridListModule, MatCheckboxModule } from '@angular/material';
+import { MatIconModule, MatInputModule, MatButtonModule, MatGridListModule, MatCheckboxModule, MatAutocompleteModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -49,6 +49,7 @@ const routes = [
     MatCheckboxModule,
     NetworkModule,
     LayoutModule,
+    MatAutocompleteModule,
     RouterModule.forChild(routes)
   ],
   exports: [
