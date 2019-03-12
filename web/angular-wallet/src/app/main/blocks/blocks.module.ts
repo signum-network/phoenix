@@ -42,7 +42,7 @@ const routes = [
       component: BlockDetailsComponent,
       canActivate: [LoginGuard],
       resolve: {
-          transaction: BlockResolver
+          block: BlockResolver
       }
   }
 ];

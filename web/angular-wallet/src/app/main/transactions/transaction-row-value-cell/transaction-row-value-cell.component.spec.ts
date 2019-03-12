@@ -6,6 +6,7 @@ import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { StoreService } from 'app/store/store.service';
 import { BehaviorSubject } from 'rxjs';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('TransactionRowValueCellComponent', () => {
   let component: TransactionRowValueCellComponent;
@@ -15,7 +16,7 @@ describe('TransactionRowValueCellComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [ TransactionRowValueCellComponent ],
-      imports: [ I18nModule, HttpClientTestingModule ],
+      imports: [ I18nModule, HttpClientTestingModule, RouterTestingModule ],
       providers: [ I18nService, {
         provide: StoreService,
         useFactory: () => {
