@@ -14,7 +14,11 @@ export class AccountResolver implements Resolve<Promise<void|Account>> {
     }
 
     resolve(route: ActivatedRouteSnapshot) {
-        return this.accountService.currentAccount.getValue();
+        if (route.params.id) {
+            return this.accountService.getAccount(route.params.id);
+        } else {
+            return this.accountService.currentAccount.getValue();
+        }
     }
 }
 
