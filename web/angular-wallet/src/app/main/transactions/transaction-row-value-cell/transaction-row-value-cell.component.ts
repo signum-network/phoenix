@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Attachment, EncryptedMessage, Message } from '@burstjs/core';
-import { isBurstAddress } from '@burstjs/util';
+import { isBurstAddress, convertAddressToNumericId } from '@burstjs/util';
 
 @Component({
   selector: 'app-transaction-row-value-cell',
@@ -12,8 +12,11 @@ export class TransactionRowValueCellComponent implements OnInit {
   @Input('value') value: string | Attachment | number;
   @Input('key') key: string;
   valueType = 'string';
+  public convertAddressToNumericId;
 
-  constructor() { }
+  constructor() {
+    this.convertAddressToNumericId = convertAddressToNumericId;
+  }
 
   ngOnInit() {
     switch (this.value && this.value.constructor) {
@@ -31,7 +34,6 @@ export class TransactionRowValueCellComponent implements OnInit {
         }
     }
   }
-
 
   public showPinPrompt() {
     console.log('show pin prompt');

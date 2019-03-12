@@ -5,7 +5,7 @@
     <span>{{decryptedMessage}}</span>
   </span>
   <span *ngSwitchCase="'BurstAddress'">
-    <a [routerLink]="['/accounts', value]">{{value}}</a>
+    <a [routerLink]="['/account', convertAddressToNumericId(value)]">{{value}}</a>
   </span>
   <span *ngSwitchDefault>{{value | i18n}}</span>
 </div>
