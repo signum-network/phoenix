@@ -27,7 +27,7 @@ export class LoginGuard implements CanActivate {
           this.accountService.setCurrentAccount(selectedAccount);
           return true;
         } else if (allAccounts && allAccounts.length) {
-          this.router.navigate(['/dashboard/accounts'])
+          this.router.navigate(['/dashboard'])
           return false;
         } else {
           this.router.navigate(['/login']);

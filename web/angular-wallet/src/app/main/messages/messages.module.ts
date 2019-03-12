@@ -24,7 +24,7 @@ import { SendBurstModule } from '../send-burst/send-burst.module';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'messages',
         component: MessagesComponent,
         canActivate: [LoginGuard],
         resolve: {
