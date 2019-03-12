@@ -32,7 +32,6 @@ export class SendBurstComponent implements OnInit {
 
   account: Account;
   fees: SuggestedFees;
-  suggestedRecipients: string[];
 
   constructor(private route: ActivatedRoute,
     private transactionService: TransactionService,
@@ -46,11 +45,6 @@ export class SendBurstComponent implements OnInit {
     this.account = this.route.snapshot.data.account as Account;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
 
-    this.suggestedRecipients = this.account.transactions.map((transaction) => {
-      return transaction.senderRS === this.account.accountRS ? 
-             transaction.recipientRS : transaction.senderRS;
-    });
-
     this.storeService.ready.subscribe((ready) => {
       if (ready) {
         this.accountService.currentAccount.subscribe((account) => {
@@ -59,11 +53,6 @@ export class SendBurstComponent implements OnInit {
       }
     });
 
-  }
-  private filterStates(value: string): Object[] {
-    const filterValue = value.toLowerCase();
-
-    return this.suggestedRecipients.filter(recipient => recipient.toLowerCase().indexOf(filterValue) === 0);
   }
 
   getTotal() {
