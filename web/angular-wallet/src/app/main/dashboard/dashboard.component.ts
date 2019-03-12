@@ -4,8 +4,8 @@ import { DashboardService } from './dashboard.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { StoreService } from 'app/store/store.service';
-import { Account, Transaction, TransactionList } from '@burstjs/core';
-import { convertNumericIdToAddress, convertNQTStringToNumber } from '@burstjs/util';
+import { Account, Transaction} from '@burstjs/core';
+import { convertNQTStringToNumber } from '@burstjs/util';
 import { AccountService } from 'app/setup/account/account.service';
 import { MatTableDataSource } from '@angular/material';
 
@@ -21,13 +21,8 @@ export class DashboardComponent implements OnInit {
   navigationSubscription: Subscription;
   account: Account;
 
-  public dataSource: MatTableDataSource<Transaction>
+  public dataSource: MatTableDataSource<Transaction>;
 
-  /**
-   * Constructor
-   *
-   * @param {dashboardService} _dashboardService
-   */
   constructor(private _dashboardService: DashboardService,
     private router: Router,
     private storeService: StoreService,
@@ -53,7 +48,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     // Get the widgets from the service
     this.widgets = this._dashboardService.widgets;
     this.fetchTransactions();
@@ -63,5 +58,16 @@ export class DashboardComponent implements OnInit {
     return convertNQTStringToNumber(balanceNQT);
   }
 
+  convertBalanceInSatoshi(balanceNQT: string) {
+    // TODO: get true value
+    const burst_btc = 0.00000103;
+    return this.convertNQTStringToNumber(balanceNQT) * burst_btc * 1E6;
+  }
+
+  convertBalanceInUsCent(balanceNQT: string) {
+    const burst_btc = 0.00000102;
+    const btc_usd = 3800.00;
+    return this.convertNQTStringToNumber(balanceNQT) * burst_btc * btc_usd;
+  }
 }
 

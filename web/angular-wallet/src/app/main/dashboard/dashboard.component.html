@@ -1,63 +1,83 @@
 <div id="dashboard" class="page-layout blank">
 
-    <div class="content">
+  <div class="content">
 
-        <div class="mr-lg-32" fxFlex="100" *ngIf="account">
+    <div class="mr-lg-32" fxFlex="100" *ngIf="account">
 
-            <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
+      <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
 
-                <div class="widget" fxFlex="100" fxFlex.gt-sm="40" fxFlex.gt-md="50">
-                    <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
-                        <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
-                            <div class="pr-16">
-                                <div class="h3 secondary-text">{{ 'balance' | i18n }}</div>
-                                <div [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1 mt-8">
-                                    {{ convertNQTStringToNumber(account.balanceNQT) }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="40" fxFlex.gt-md="50">
+          <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
+            <div class="p-16" fxLayout="row wrap" fxFlexAlign="center">
+              <div class="pr-16" fxFlex="60">
+                <div class="h3 secondary-text">{{ 'balance' | i18n }}</div>
+                <div [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1 mt-8">
+                  {{ convertNQTStringToNumber(account.balanceNQT).toFixed(3) }}
                 </div>
-
-                <div class="widget" fxFlex="100" fxFlex.gt-sm="30" fxFlex.gt-md="25">
-                    <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
-                        <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
-                            <div class="pr-16">
-                                <div class="h3 secondary-text">{{ 'assets_owned' | i18n }}</div>
-                                <div [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1 mt-8">
-                                    120
-                                </div>
-                            </div>
-                        </div>
+              </div>
+              <div class="pr-16" fxFlex="40">
+                <div fxLayout="column">
+                  <div fxLayout="row" fxLayoutAlign="start baseline">
+                    <div class="pr-16 secondary-text">
+                      SAT
                     </div>
+                    <div [ngClass.gt-md]="'font-size-24'" class="font-size-16 font-weight-300 mt-8">
+                      {{ convertBalanceInSatoshi('1733500000000').toFixed(3) }}
+                    </div>
+                  </div>
+                  <div fxLayout="row" fxLayoutAlign="start baseline">
+                    <div class="pr-16 secondary-text">
+                      USX
+                    </div>
+                    <div [ngClass.gt-md]="'font-size-24'" class="font-size-16 font-weight-300 mt-8">
+                      {{ convertBalanceInUsCent('1733500000000').toFixed(3) }}
+                    </div>
+                  </div>
                 </div>
-
+              </div>
             </div>
-
-            <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
-                <div class="widget" fxFlex="100" fxFlex.gt-sm="50">
-                    <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
-                        <div class="p-16" fxLayout="column wrap" fxLayoutAlign="start">
-                          <div class="h3 secondary-text">{{ 'recent_transactions' | i18n }}</div>
-                          <app-transaction-table
-                            [displayedColumns]="['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'account']"
-                            [dataSource]="dataSource"
-                            [paginationEnabled]="false"
-                          ></app-transaction-table>
-                        </div>
-                    </div>
-                </div>
-                <div class="widget" fxFlex="100" fxFlex.gt-sm="50">
-                    <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
-                        <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
-                            <div class="pr-16">
-                                <div class="h3 secondary-text">{{ 'recent_blocks' | i18n }}</div>
-                                Table goes here
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="30" fxFlex.gt-md="25">
+          <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
+            <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
+              <div class="pr-16">
+                <div class="h3 secondary-text">{{ 'assets_owned' | i18n }}</div>
+                <div [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1 mt-8">
+                  120
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="50">
+          <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
+            <div class="p-16" fxLayout="column wrap" fxLayoutAlign="start">
+              <div class="h3 secondary-text">{{ 'recent_transactions' | i18n }}</div>
+              <app-transaction-table
+                [displayedColumns]="['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'account']"
+                [dataSource]="dataSource"
+                [paginationEnabled]="false"
+              ></app-transaction-table>
+            </div>
+          </div>
+        </div>
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="50">
+          <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
+            <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
+              <div class="pr-16">
+                <div class="h3 secondary-text">{{ 'recent_blocks' | i18n }}</div>
+                Table goes here
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
