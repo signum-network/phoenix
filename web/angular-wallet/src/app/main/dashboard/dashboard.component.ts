@@ -22,8 +22,8 @@ export class DashboardComponent implements OnInit {
   account: Account;
 
   public dataSource: MatTableDataSource<Transaction>;
-  private btc_burst: number;
-  private usdc_btc: number;
+  private btc_burst = 0;
+  private usdc_btc = 0;
 
   constructor(private _dashboardService: DashboardService,
     private router: Router,
@@ -66,11 +66,11 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  convertBalanceInSatoshi(balanceNQT: string) {
-    return this.convertNQTStringToNumber(balanceNQT) * this.btc_burst * 1E6;
+  convertBalanceInBtc(balanceNQT: string) {
+    return this.convertNQTStringToNumber(balanceNQT) * this.btc_burst;
   }
 
-  convertBalanceInUsCent(balanceNQT: string) {
+  convertBalanceInUsDollar(balanceNQT: string) {
     return this.convertNQTStringToNumber(balanceNQT) * this.btc_burst * this.usdc_btc;
   }
 }
