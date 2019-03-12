@@ -10,6 +10,7 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { StoreService } from 'app/store/store.service';
 import { Account } from '@burstjs/core';
 import { AccountService } from 'app/setup/account/account.service';
+import { environment } from 'environments/environment';
 
 @Component({
     selector     : 'navbar-vertical-style-1',
@@ -140,6 +141,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
 
         // Get QR Code
         this.selectedAccountQRCode = await this.getQRCode(this.selectedAccount.accountRS);
+        this.selectedAccountQRCode = `${environment.defaultNode}/${this.selectedAccountQRCode}`;
     }
 
     /**

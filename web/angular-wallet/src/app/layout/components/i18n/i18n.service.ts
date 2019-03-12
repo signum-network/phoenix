@@ -37,7 +37,7 @@ export class I18nService {
   }
 
   private fetch(locale: any) {
-    this.http.get( `/locales/${locale}.json` )
+    this.http.get( `locales/${locale}.json` )
       .subscribe((data:any)=> {
         this.data = data;
         this.state.next(data);
