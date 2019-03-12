@@ -8,4 +8,10 @@
     "secure": false,
     "logLevel": "info"
   },
+  "/v1/ticker/burst": {
+    "target": "https://api.coinmarketcap.com",
+    "secure": false,
+    "logLevel": "debug",
+    "headers": {"host":"api.coinmarketcap.com"}
+  }
 }

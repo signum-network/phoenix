@@ -8,6 +8,8 @@ import { Account, Transaction} from '@burstjs/core';
 import { convertNQTStringToNumber } from '@burstjs/util';
 import { AccountService } from 'app/setup/account/account.service';
 import { MatTableDataSource } from '@angular/material';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'dashboard-dashboard',
@@ -29,7 +31,9 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private storeService: StoreService,
     private accountService: AccountService,
-    private dashboardService: DashboardService) {
+    private dashboardService: DashboardService,
+  private http: HttpClient
+              ) {
 
     // handle route reloads (i.e. if user changes accounts)
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -53,6 +57,10 @@ export class DashboardComponent implements OnInit {
   async ngOnInit() {
     this.fetchTransactions();
     this.fetchBalanceInfos();
+
+    this.http.get('/v1/ticker/burst').subscribe(console.log)
+
+
   }
 
   public convertNQTStringToNumber(balanceNQT) {

@@ -69,7 +69,7 @@ export class BurstService {
      */
     public async query<T>(method: string, args: any = {}): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
-        const {response} = await this.http.get(brsUrl, {});
+        const {response} = await this.http.get(brsUrl);
 
         if (response.errorCode) {
             BurstService.throwAsHttpError(brsUrl, response);
