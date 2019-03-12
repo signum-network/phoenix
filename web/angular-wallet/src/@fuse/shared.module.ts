@@ -7,6 +7,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FuseDirectivesModule } from '@fuse/directives/directives';
 import { FusePipesModule } from '@fuse/pipes/pipes.module';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { TransactionRowValueCellComponent } from 'app/main/transactions/transaction-row-value-cell/transaction-row-value-cell.component';
+import { RouterModule } from '@angular/router';
+import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 
 @NgModule({
     imports  : [
@@ -17,7 +20,9 @@ import { TimeAgoPipe } from 'time-ago-pipe';
         FlexLayoutModule,
 
         FuseDirectivesModule,
-        FusePipesModule
+        FusePipesModule,
+        I18nModule,
+        RouterModule.forChild([])
     ],
     exports  : [
         CommonModule,
@@ -28,10 +33,12 @@ import { TimeAgoPipe } from 'time-ago-pipe';
 
         FuseDirectivesModule,
         FusePipesModule,
-        TimeAgoPipe
+        TimeAgoPipe,
+        TransactionRowValueCellComponent
     ],
     declarations: [
-        TimeAgoPipe
+        TimeAgoPipe,
+        TransactionRowValueCellComponent
     ]
 })
 export class FuseSharedModule

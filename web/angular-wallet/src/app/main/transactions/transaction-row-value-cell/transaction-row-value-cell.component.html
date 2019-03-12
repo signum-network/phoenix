@@ -5,7 +5,7 @@
     <span>{{decryptedMessage}}</span>
   </span>
   <span *ngSwitchCase="'BurstAddress'">
-    <span class="link" (click)="showAccountDialog(value)">{{value}}</span>
+    <a [routerLink]="['/accounts', value]">{{value}}</a>
   </span>
   <span *ngSwitchDefault>{{value | i18n}}</span>
 </div>

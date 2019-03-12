@@ -21,9 +21,17 @@ async function copyDistFiles(cwd) {
     await fs.copy(src, dest);
 }
 
+// electron requires the base href to be relative, whereas most webservers assume a static root
+async function updateBaseHref(cwd) {
+    let indexText = await fs.readFile(path.join(__dirname, '../../desktop/wallet/dist/index.html'), 'utf8');
+    indexText = indexText.replace('href="/"', 'href="./"');
+    await fs.writeFile(path.join(__dirname, '../../desktop/wallet/dist/index.html'), indexText, 'utf8');
+}
+
 async function build({cwd}) {
     await buildAngularWallet(cwd);
     await copyDistFiles(cwd);
+    await updateBaseHref(cwd);
 }
 
 module.exports = build;

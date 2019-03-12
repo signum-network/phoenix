@@ -23,6 +23,10 @@ import { RouterModule } from '@angular/router';
 import { LoginGuard } from 'app/login/login-guard.service';
 import { BlocksResolver } from './blocks.resolver';
 import { BlocksComponent } from './blocks.component';
+import { BlockDetailsComponent } from './block-details/block-details.component';
+import { BlockResolver } from './block-details/block.resolver';
+import { TransactionRowValueCellComponent } from '../transactions/transaction-row-value-cell/transaction-row-value-cell.component';
+import { TransactionsModule } from '../transactions/transactions.module';
 
 const routes = [
   {
@@ -32,6 +36,14 @@ const routes = [
     resolve: {
       blocks: BlocksResolver
     }
+  },
+  {
+      path     : 'block/:id',
+      component: BlockDetailsComponent,
+      canActivate: [LoginGuard],
+      resolve: {
+          block: BlockResolver
+      }
   }
 ];
 
@@ -67,9 +79,11 @@ const routes = [
   ],
   declarations: [
     BlocksComponent,
+    BlockDetailsComponent
   ],
   providers: [
-    BlocksResolver
+    BlocksResolver,
+    BlockResolver
   ]
 })
 export class BlocksModule { }
