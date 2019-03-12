@@ -11,6 +11,8 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardService } from './dashboard.service';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { LoginGuard } from 'app/login/login-guard.service';
+import { TransactionTableModule } from '../transactions/transaction-table/transaction.module';
+import { AccountResolver } from 'app/setup/account/account.resolver';
 
 const routes: Routes = [
     {
@@ -18,7 +20,8 @@ const routes: Routes = [
         component: DashboardComponent,
         canActivate: [LoginGuard],
         resolve  : {
-            data: DashboardService
+            data: DashboardService,
+            account: AccountResolver
         },
     }
 ];
@@ -41,7 +44,8 @@ const routes: Routes = [
 
         FuseSharedModule,
         FuseWidgetModule,
-        I18nModule
+        I18nModule,
+        TransactionTableModule
     ],
     providers   : [
         DashboardService
