@@ -31,7 +31,8 @@ export class DashboardComponent implements OnInit {
   constructor(private _dashboardService: DashboardService,
     private router: Router,
     private storeService: StoreService,
-    private accountService: AccountService) {
+    private accountService: AccountService,
+    private dashboardService: DashboardService) {
 
     // handle route reloads (i.e. if user changes accounts)
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -39,7 +40,6 @@ export class DashboardComponent implements OnInit {
         this.fetchTransactions();
       }
     });
-
   }
 
   async fetchTransactions() {
@@ -57,10 +57,21 @@ export class DashboardComponent implements OnInit {
     // Get the widgets from the service
     this.widgets = this._dashboardService.widgets;
     this.fetchTransactions();
+
+    this.fetchBalanceInfos();
   }
 
   public convertNQTStringToNumber(balanceNQT) {
     return convertNQTStringToNumber(balanceNQT);
+  }
+
+  private fetchBalanceInfos() {
+    this.dashboardService.getBalanceInfo().subscribe((info: any) => {
+      const btc = parseFloat(info.BTC_BURST.last);
+      const usd = parseFloat(info.USDC_BTC.last);
+      console.log(btc);
+      console.log(usd);
+    });
   }
 
 }
