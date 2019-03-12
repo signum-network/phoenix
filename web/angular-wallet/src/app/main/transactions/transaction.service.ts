@@ -6,9 +6,6 @@ import 'rxjs/add/operator/timeout';
 import { composeApi, ApiSettings, Attachment } from '@burstjs/core';
 import { environment } from 'environments/environment.prod';
 import { Keys, decryptAES, hashSHA256 } from '@burstjs/crypto';
-import { HttpError } from '@burstjs/http/out';
-import { NotifierService } from 'angular-notifier';
-import { UtilService } from 'app/util.service';
 
 interface SendMoneyRequest {
     transaction: {
@@ -32,9 +29,7 @@ export class TransactionService {
 
     public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
-    constructor(private notifierService: NotifierService,
-        private utilService: UtilService) {
-        this.notifierService = notifierService;
+    constructor() {
         const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
         this.api = composeApi(apiSettings);
     }
