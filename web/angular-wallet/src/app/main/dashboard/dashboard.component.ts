@@ -4,9 +4,10 @@ import { DashboardService } from './dashboard.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { StoreService } from 'app/store/store.service';
-import { Account } from '@burstjs/core';
+import { Account, Transaction, TransactionList } from '@burstjs/core';
 import { convertNumericIdToAddress, convertNQTStringToNumber } from '@burstjs/util';
 import { AccountService } from 'app/setup/account/account.service';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'dashboard-dashboard',
@@ -20,6 +21,8 @@ export class DashboardComponent implements OnInit {
   navigationSubscription: Subscription;
   account: Account;
 
+  public dataSource: MatTableDataSource<Transaction>
+
   /**
    * Constructor
    *
@@ -28,7 +31,8 @@ export class DashboardComponent implements OnInit {
   constructor(private _dashboardService: DashboardService,
     private router: Router,
     private storeService: StoreService,
-    private accountService: AccountService) {
+    private accountService: AccountService,
+    private dashboardService: DashboardService) {
 
     // handle route reloads (i.e. if user changes accounts)
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -36,13 +40,14 @@ export class DashboardComponent implements OnInit {
         this.fetchTransactions();
       }
     });
-
   }
 
   async fetchTransactions() {
     try {
       this.account = await this.storeService.getSelectedAccount();
       const accountTransactions = await this.accountService.getAccountTransactions(this.account.account);
+      this.dataSource = new MatTableDataSource<Transaction>();
+      this.dataSource.data = accountTransactions.transactions;
     } catch (e) {
       console.log(e);
     }
@@ -52,10 +57,21 @@ export class DashboardComponent implements OnInit {
     // Get the widgets from the service
     this.widgets = this._dashboardService.widgets;
     this.fetchTransactions();
+
+    this.fetchBalanceInfos();
   }
 
   public convertNQTStringToNumber(balanceNQT) {
     return convertNQTStringToNumber(balanceNQT);
+  }
+
+  private fetchBalanceInfos() {
+    this.dashboardService.getBalanceInfo().subscribe((info: any) => {
+      const btc = parseFloat(info.BTC_BURST.last);
+      const usd = parseFloat(info.USDC_BTC.last);
+      console.log(btc);
+      console.log(usd);
+    });
   }
 
 }

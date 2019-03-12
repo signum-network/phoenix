@@ -17,8 +17,6 @@ import {ActivatedRoute} from '@angular/router';
 export class TransactionsComponent {
   public dataSource: MatTableDataSource<Transaction>;
   public convertNQTStringToNumber = convertNQTStringToNumber;
-  public displayedColumns: string[];
-  private account: Account;
   pickerFromField = new FormControl();
   pickerToField = new FormControl();
 
@@ -36,9 +34,7 @@ export class TransactionsComponent {
   }
 
   public async ngOnInit() {
-    this.displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmations'];
     this.dataSource = new MatTableDataSource<Transaction>();
-    this.account = this.route.snapshot.data.account;
     this.dataSource.data = this.route.snapshot.data.transactions.transactions;
   }
 
@@ -67,15 +63,7 @@ export class TransactionsComponent {
     this.dataSource.filter = filterValue || 'burst';
   }
 
-    public isOwnAccount(address: string): boolean {
-        return address != undefined && address == this.account.accountRS;
-    }
-
   public convertTimestamp(timestamp: number): Date {
     return convertBurstTimeToDate(timestamp);
-  }
-
-  public getTransactionNameFromType(transaction: Transaction) {
-    return this.utilService.getTransactionNameFromType(transaction, this.account);
   }
 }

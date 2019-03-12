@@ -29,6 +29,8 @@ import { TransactionService } from './transaction.service';
 import { LoginGuard } from 'app/login/login-guard.service';
 import { TransactionsResolver } from './transactions.resolver';
 import { AccountResolver } from 'app/setup/account/account.resolver';
+import { TransactionTableModule } from './transaction-table/transaction.module';
+import { TransactionTableComponent } from './transaction-table/transaction-table.component';
 
 const routes = [
     {
@@ -78,7 +80,8 @@ const routes = [
         ReactiveFormsModule,
         I18nModule,
         MatDialogModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        TransactionTableModule
     ],
     declarations: [
         TransactionsComponent,

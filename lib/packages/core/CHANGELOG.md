@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 ##Unreleased
 
 - Export of Api Interface Types
-
+- Entirely removed BigNumber
 
 ## 0.1.0-rc.3
 ### General
