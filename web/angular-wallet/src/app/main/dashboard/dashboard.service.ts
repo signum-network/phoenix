@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 @Injectable()
-export class DashboardService implements Resolve<any>
-{
+export class DashboardService implements Resolve<any> {
+
     widgets: any;
 
     /**
@@ -13,11 +13,7 @@ export class DashboardService implements Resolve<any>
      *
      * @param {HttpClient} _httpClient
      */
-    constructor(
-        private _httpClient: HttpClient
-    )
-    {
-    }
+    constructor(private _httpClient: HttpClient) { }
 
     /**
      * Resolver
@@ -58,7 +54,7 @@ export class DashboardService implements Resolve<any>
                                 label: 'Sales',
                                 data : [1.9, 3, 3.4, 2.2, 2.9, 3.9, 2.5, 3.8, 4.1, 3.8, 3.2, 2.9],
                                 fill : 'start'
-        
+
                             }
                         ],
                         '2017': [
@@ -66,7 +62,7 @@ export class DashboardService implements Resolve<any>
                                 label: 'Sales',
                                 data : [2.2, 2.9, 3.9, 2.5, 3.8, 3.2, 2.9, 1.9, 3, 3.4, 4.1, 3.8],
                                 fill : 'start'
-        
+
                             }
                         ],
                         '2018': [
@@ -74,10 +70,10 @@ export class DashboardService implements Resolve<any>
                                 label: 'Sales',
                                 data : [3.9, 2.5, 3.8, 4.1, 1.9, 3, 3.8, 3.2, 2.9, 3.4, 2.2, 2.9],
                                 fill : 'start'
-        
+
                             }
                         ]
-        
+
                     },
                     labels   : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
                     colors   : [
@@ -320,7 +316,7 @@ export class DashboardService implements Resolve<any>
                                 label: 'Visitors',
                                 data : [190, 300, 340, 220, 290, 390, 250, 380, 410, 380, 320, 290],
                                 fill : 'start'
-        
+
                             },
                             {
                                 label: 'Page views',
@@ -338,7 +334,7 @@ export class DashboardService implements Resolve<any>
                                 label: 'Page Views',
                                 data : [3000, 3400, 4100, 3800, 2200, 3200, 2900, 1900, 2900, 3900, 2500, 3800],
                                 fill : 'start'
-        
+
                             }
                         ]
                     },
@@ -658,5 +654,9 @@ export class DashboardService implements Resolve<any>
             //         resolve(response);
             //     }, reject);
         });
+    }
+
+    public getBalanceInfo() {
+      return this._httpClient.get('https://poloniex.com/public?command=returnTicker');
     }
 }
