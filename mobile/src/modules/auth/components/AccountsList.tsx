@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 
 export class AccountsList extends React.PureComponent<Props> {
   keyExtractor = (item: Account, index: number) => {
-    return toString(item.id || index);
+    return toString(item.account || index);
   }
 
   renderNoData = () => {
