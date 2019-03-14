@@ -22,7 +22,7 @@ const addAccount: Reducer<AuthReduxState, Account> = (state, action) => {
 };
 
 const removeAccount: Reducer<AuthReduxState, Account> = (state, action) => {
-  const accounts = state.accounts.filter((item: Account) => item.id === action.payload.id);
+  const accounts = state.accounts.filter((item: Account) => item.account === action.payload.account);
   return {
     ...state,
     accounts

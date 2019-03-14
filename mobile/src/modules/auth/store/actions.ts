@@ -2,12 +2,10 @@ import { Account } from '@burstjs/core';
 import {
   encryptAES,
   generateMasterKeys,
-  getAccountIdFromBurstAddress,
   getAccountIdFromPublicKey,
-  getBurstAddressFromAccountId,
   hashSHA256
 } from '@burstjs/crypto';
-import { isValid } from '@burstjs/util';
+import { convertAddressToNumericId, convertNumericIdToAddress, isValid } from '@burstjs/util';
 import { some } from 'lodash';
 import { i18n } from '../../../core/i18n';
 import { createAction, createActionFn } from '../../../core/utils/store';
@@ -39,20 +37,20 @@ export const createActiveAccount = createActionFn<ActiveAccountGeneratorData, Ac
       agreementPrivateKey: encryptAES(keys.agreementPrivateKey, hashSHA256(pin)),
       signPrivateKey: encryptAES(keys.signPrivateKey, hashSHA256(pin))
     };
-    const id = getAccountIdFromPublicKey(keys.publicKey);
-    const hasAccount = some(getState().auth.accounts, (item) => item.id === id);
+    const account = getAccountIdFromPublicKey(keys.publicKey);
+    const hasAccount = some(getState().auth.accounts, (item) => item.account === account);
 
     if (hasAccount) {
       throw new Error(i18n.t(auth.errors.accountExist));
     }
-    const address = getBurstAddressFromAccountId(id);
+    const accountRS = convertNumericIdToAddress(account);
     const pinHash = hashSHA256(pin + keys.publicKey);
 
     // TODO: make fields optional in @burst package
     // @ts-ignore
     return {
-      id,
-      address,
+      account,
+      accountRS,
       type: 'active', // TODO: make type enum in @burst package
       keys: encryptedKeys,
       pinHash
@@ -61,12 +59,12 @@ export const createActiveAccount = createActionFn<ActiveAccountGeneratorData, Ac
 );
 
 export const createOfflineAccount = createActionFn<string, Account>(
-  (_dispatch, getState, address): Account => {
-    if (!isValid(address)) {
+  (_dispatch, getState, accountRS): Account => {
+    if (!isValid(accountRS)) {
       throw new Error(i18n.t(auth.errors.incorrectAddress));
     }
-    const id = getAccountIdFromBurstAddress(address);
-    const hasAccount = some(getState().auth.accounts, (item) => item.id === id);
+    const account = convertAddressToNumericId(accountRS);
+    const hasAccount = some(getState().auth.accounts, (item) => item.account === account);
 
     if (hasAccount) {
       throw new Error(i18n.t(auth.errors.accountExist));
@@ -76,8 +74,8 @@ export const createOfflineAccount = createActionFn<string, Account>(
     // @ts-ignore
     return {
       type: 'offline', // TODO: make type enum in @burst package
-      address,
-      id
+      account,
+      accountRS
     };
   }
 );
