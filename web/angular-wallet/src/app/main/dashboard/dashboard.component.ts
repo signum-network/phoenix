@@ -1,14 +1,15 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {fuseAnimations} from '@fuse/animations';
 import {DashboardService} from './dashboard.service';
 import {Subscription} from 'rxjs';
+import {filter, takeWhile} from 'rxjs/operators';
 import {Router, NavigationEnd} from '@angular/router';
 import {StoreService} from 'app/store/store.service';
 import {Account, Transaction} from '@burstjs/core';
 import {convertNQTStringToNumber} from '@burstjs/util';
 import {AccountService} from 'app/setup/account/account.service';
 import {MatTableDataSource} from '@angular/material';
-import {MarketService} from "./market/market.service";
+import {MarketService} from './market/market.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ import {MarketService} from "./market/market.service";
   encapsulation: ViewEncapsulation.None,
   animations: fuseAnimations
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
   widgets: any;
   navigationSubscription: Subscription;
@@ -28,6 +29,7 @@ export class DashboardComponent implements OnInit {
 
   public dataSource: MatTableDataSource<Transaction>;
   public convertNQTStringToNumber = convertNQTStringToNumber;
+  _isActive = true;
 
   constructor(private _dashboardService: DashboardService,
               private router: Router,
@@ -37,12 +39,15 @@ export class DashboardComponent implements OnInit {
               private marketService: MarketService) {
 
     // handle route reloads (i.e. if user changes accounts)
-    this.navigationSubscription = this.router.events.subscribe((e: any) => {
-      if (e instanceof NavigationEnd) {
-        this.fetchTransactions();
-      }
+    this.navigationSubscription = this.router.events.pipe(
+      takeWhile(this.isActive),
+      filter(e => e instanceof NavigationEnd)
+    ).subscribe((_) => {
+      this.fetchTransactions();
     });
   }
+
+  isActive = () => this._isActive;
 
   fetchTransactions = async () => {
     try {
@@ -53,16 +58,24 @@ export class DashboardComponent implements OnInit {
     } catch (e) {
       console.log(e);
     }
-  };
+  }
 
   async ngOnInit() {
     this.fetchTransactions();
 
-    this.marketService.getBurstTicker().subscribe( ({price_btc, price_usd}) => {
-      this.priceBtc = parseFloat(price_btc);
-      this.priceUsd = parseFloat(price_usd);
-    });
+    this.marketService.ticker$
+      .pipe(
+        takeWhile(this.isActive)
+      )
+      .subscribe(({price_btc, price_usd}) => {
+        this.priceBtc = parseFloat(price_btc);
+        this.priceUsd = parseFloat(price_usd);
+      });
 
+  }
+
+  ngOnDestroy() {
+    this._isActive = false;
   }
 
   convertBalanceInBtc = (balanceNQT: string) => this.convertNQTStringToNumber(balanceNQT) * this.priceBtc;

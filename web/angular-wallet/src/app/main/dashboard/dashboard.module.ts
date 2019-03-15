@@ -10,17 +10,17 @@ import {
 } from '@angular/material';
 import {ChartsModule} from 'ng2-charts';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
-
 import {FuseSharedModule} from '@fuse/shared.module';
 import {FuseWidgetModule} from '@fuse/components/widget/widget.module';
-
-import {DashboardComponent} from './dashboard.component';
-import {DashboardService} from './dashboard.service';
 import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {LoginGuard} from 'app/login/login-guard.service';
-import {TransactionTableModule} from '../transactions/transaction-table/transaction.module';
 import {AccountResolver} from 'app/setup/account/account.resolver';
-import {MarketService} from "./market/market.service";
+
+import {TransactionTableModule} from '../transactions/transaction-table/transaction.module';
+
+import {DashboardService} from './dashboard.service';
+import {DashboardComponent} from './dashboard.component';
+import {MarketModule} from './market/market.module';
 
 const routes: Routes = [
   {
@@ -53,11 +53,11 @@ const routes: Routes = [
     FuseSharedModule,
     FuseWidgetModule,
     I18nModule,
-    TransactionTableModule
+    TransactionTableModule,
+    MarketModule
   ],
   providers: [
     DashboardService,
-    MarketService
   ]
 })
 export class DashboardModule {

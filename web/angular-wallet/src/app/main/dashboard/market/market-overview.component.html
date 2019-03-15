@@ -1,0 +1,105 @@
+<ng-container *ngIf="isLoading">
+  <div fxLayoutAlign="center">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!isLoading">
+  <mat-list>
+    <mat-list-item>
+      <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+        <h3 class="font-weight-700">
+          7d Price Graph
+        </h3>
+        <img class="sparkline" alt="sparkline"
+             src="https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/573.png">
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+        <h3 class="font-weight-700">
+          Price BTC
+        </h3>
+        <div>
+          {{getPriceBtc()}}
+        </div>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+        <h3 class="font-weight-700">
+          Price USD
+        </h3>
+        <div>
+          {{getPriceUsd()}}
+        </div>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+        <h3 class="font-weight-700">
+          24h Volume
+        </h3>
+        <div>
+          {{get24hVolume()}}
+        </div>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+        <h3 class="font-weight-700" fxLayoutAlign="center">
+          Available Supply
+        </h3>
+        <div fxLayout="row" fxLayoutAlign="start end">
+          <span>
+            {{getAvailableSupply()}}
+          </span>
+          <span class="font-size-10">
+            ({{getRelativeSupply()}})
+          </span>
+        </div>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+        <h3 class="font-weight-700">
+          Market Cap
+        </h3>
+        <div>
+          {{getMarketCap()}}
+        </div>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+        <h3 class="font-weight-700">
+          Yesterday's change
+        </h3>
+        <div [ngClass]="{fg_green: !isChangeNegative(), fg_red: isChangeNegative()}">
+          {{getYesterDaysChange()}}
+        </div>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+        <h3 class="font-weight-700">
+          Market Rank
+        </h3>
+        <div>
+          {{getMarketRank()}}
+        </div>
+      </div>
+    </mat-list-item>
+
+    <mat-list-item *ngFor="let data of tickerData">
+      <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+        <h3 class="font-weight-700">
+          {{data.key}}
+        </h3>
+        <div>
+          {{data.value}}
+        </div>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</ng-container>

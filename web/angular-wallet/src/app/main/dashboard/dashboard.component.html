@@ -51,11 +51,10 @@
             </div>
           </div>
         </div>
-
       </div>
 
       <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
-        <div class="widget" fxFlex="100" fxFlex.gt-sm="50">
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="60">
           <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
             <div class="p-16" fxLayout="column wrap" fxLayoutAlign="start">
               <div class="h3 secondary-text">{{ 'recent_transactions' | i18n }}</div>
@@ -67,12 +66,12 @@
             </div>
           </div>
         </div>
-        <div class="widget" fxFlex="100" fxFlex.gt-sm="50">
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="40">
           <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
             <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
-              <div class="pr-16">
-                <div class="h3 secondary-text">{{ 'recent_blocks' | i18n }}</div>
-                Table goes here
+              <div style="width: 100%">
+                <div class="h3 secondary-text">{{ 'market_info' | i18n }}</div>
+                <app-market-overview></app-market-overview>
               </div>
             </div>
           </div>
