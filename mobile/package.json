@@ -1,6 +1,6 @@
 {
   "name": "mobile",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "contributors": [
     "titanishu"
   ],
@@ -28,10 +28,10 @@
     "tsc": "tsc --init --pretty --jsx react"
   },
   "dependencies": {
-    "@burstjs/core": "^0.0.12",
-    "@burstjs/crypto": "^0.0.12",
-    "@burstjs/http": "^0.0.12",
-    "@burstjs/util": "^0.0.12",
+    "@burstjs/core": "^0.1.0-rc.3",
+    "@burstjs/crypto": "^0.1.0-rc.3",
+    "@burstjs/http": "^0.1.0-rc.3",
+    "@burstjs/util": "^0.1.0-rc.3",
     "@types/react-native-touch-id": "^4.0.1",
     "axios": "^0.18.0",
     "i18n-js": "^3.1.0",

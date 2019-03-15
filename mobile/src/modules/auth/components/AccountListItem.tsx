@@ -42,20 +42,20 @@ export class AccountListItem extends React.PureComponent<Props> {
   }
 
   render () {
-    const { address = '', balance = '', type = '' } = this.props.account;
+    const { accountRS = '', balanceNQT = '', type = '' } = this.props.account;
     const styles = this.getStyles();
 
     return (
       <TouchableOpacity style={styles.view} onPress={this.handlePress}>
         <View style={styles.address}>
-          <Text>{address} </Text>
+          <Text>{accountRS} </Text>
         </View>
         <View style={styles.info}>
           <View style={styles.accountType}>
             <Text>{type}</Text>
           </View>
           <View style={styles.balance}>
-            <Text textAlign={TextAlign.RIGHT}>{balance.toString()}</Text>
+            <Text textAlign={TextAlign.RIGHT}>{balanceNQT.toString()}</Text>
           </View>
         </View>
       </TouchableOpacity>

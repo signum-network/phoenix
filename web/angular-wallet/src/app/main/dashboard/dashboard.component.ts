@@ -1,13 +1,15 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { fuseAnimations } from '@fuse/animations';
-import { DashboardService } from './dashboard.service';
-import { Subscription } from 'rxjs';
-import { Router, NavigationEnd } from '@angular/router';
-import { StoreService } from 'app/store/store.service';
-import { Account, Transaction} from '@burstjs/core';
-import { convertNQTStringToNumber } from '@burstjs/util';
-import { AccountService } from 'app/setup/account/account.service';
-import { MatTableDataSource } from '@angular/material';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {fuseAnimations} from '@fuse/animations';
+import {DashboardService} from './dashboard.service';
+import {Subscription} from 'rxjs';
+import {Router, NavigationEnd} from '@angular/router';
+import {StoreService} from 'app/store/store.service';
+import {Account, Transaction} from '@burstjs/core';
+import {convertNQTStringToNumber} from '@burstjs/util';
+import {AccountService} from 'app/setup/account/account.service';
+import {MatTableDataSource} from '@angular/material';
+import {MarketService} from "./market/market.service";
+
 
 @Component({
   selector: 'dashboard-dashboard',
@@ -17,19 +19,22 @@ import { MatTableDataSource } from '@angular/material';
   animations: fuseAnimations
 })
 export class DashboardComponent implements OnInit {
+
   widgets: any;
   navigationSubscription: Subscription;
   account: Account;
+  priceBtc: number;
+  priceUsd: number;
 
   public dataSource: MatTableDataSource<Transaction>;
-  private btc_burst = 0;
-  private usdc_btc = 0;
+  public convertNQTStringToNumber = convertNQTStringToNumber;
 
   constructor(private _dashboardService: DashboardService,
-    private router: Router,
-    private storeService: StoreService,
-    private accountService: AccountService,
-    private dashboardService: DashboardService) {
+              private router: Router,
+              private storeService: StoreService,
+              private accountService: AccountService,
+              private dashboardService: DashboardService,
+              private marketService: MarketService) {
 
     // handle route reloads (i.e. if user changes accounts)
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -39,7 +44,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  async fetchTransactions() {
+  fetchTransactions = async () => {
     try {
       this.account = await this.storeService.getSelectedAccount();
       const accountTransactions = await this.accountService.getAccountTransactions(this.account.account);
@@ -48,30 +53,19 @@ export class DashboardComponent implements OnInit {
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   async ngOnInit() {
     this.fetchTransactions();
-    this.fetchBalanceInfos();
-  }
 
-  public convertNQTStringToNumber(balanceNQT) {
-    return convertNQTStringToNumber(balanceNQT);
-  }
-
-  private fetchBalanceInfos() {
-    this.dashboardService.getBalanceInfo().subscribe((info: any) => {
-      this.btc_burst = parseFloat(info.BTC_BURST.last);
-      this.usdc_btc = parseFloat(info.USDC_BTC.last);
+    this.marketService.getBurstTicker().subscribe( ({price_btc, price_usd}) => {
+      this.priceBtc = parseFloat(price_btc);
+      this.priceUsd = parseFloat(price_usd);
     });
+
   }
 
-  convertBalanceInBtc(balanceNQT: string) {
-    return this.convertNQTStringToNumber(balanceNQT) * this.btc_burst;
-  }
-
-  convertBalanceInUsDollar(balanceNQT: string) {
-    return this.convertNQTStringToNumber(balanceNQT) * this.btc_burst * this.usdc_btc;
-  }
+  convertBalanceInBtc = (balanceNQT: string) => this.convertNQTStringToNumber(balanceNQT) * this.priceBtc;
+  convertBalanceInUsDollar = (balanceNQT: string) => this.convertNQTStringToNumber(balanceNQT) * this.priceUsd;
 }
 

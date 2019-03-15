@@ -11,7 +11,7 @@ export default interface Http {
      * @param url The relative url
      * @returns request result in case of success or error
      */
-    get(url: string, options: any): Promise<HttpResponse>;
+    get(url: string): Promise<HttpResponse>;
 
     /**
      * Post Method
