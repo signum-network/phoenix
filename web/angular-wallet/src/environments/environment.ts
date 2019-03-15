@@ -8,7 +8,10 @@ export const environment = {
   hmr: false,
   version,
   defaultNode: 'http://localhost:4200',
-  marketUrl: 'http://localhost:4200/v1/ticker/burstjs/',
+  market: {
+    tickerUrl: '/v1/ticker/burst/',
+    tickerInterval: 30 * 1000
+  }
 };
 
 /*

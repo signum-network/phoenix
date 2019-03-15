@@ -655,8 +655,4 @@ export class DashboardService implements Resolve<any> {
             //     }, reject);
         });
     }
-
-    public getBalanceInfo() {
-      return this._httpClient.get('https://poloniex.com/public?command=returnTicker');
-    }
 }
