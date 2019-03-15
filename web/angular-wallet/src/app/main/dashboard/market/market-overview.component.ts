@@ -3,23 +3,45 @@ import {formatCurrency, formatPercent} from '@angular/common';
 import {MarketService} from './market.service';
 import {takeWhile} from 'rxjs/operators';
 import {MarketTicker} from './types';
+import {I18nService} from '../../../layout/components/i18n/i18n.service';
 
-interface TickerDataField {
-  key: string;
-  value: string;
+class MarketTickerImpl implements MarketTicker {
+  readonly '24h_volume_usd' = '';
+  readonly available_supply = '';
+  readonly id = '';
+  readonly last_updated = '';
+  readonly market_cap_usd = '';
+  readonly max_supply = '';
+  readonly name = '';
+  readonly percent_change_1h = '';
+  readonly percent_change_24h = '';
+  readonly percent_change_7d = '';
+  readonly price_btc = '';
+  readonly price_usd = '';
+  readonly rank = '';
+  readonly symbol = '';
+  readonly total_supply = '';
 }
+
 
 @Component({
   selector: 'app-market-overview',
-  templateUrl: './market-overview.component.html'
+  templateUrl: './market-overview.component.html',
+  styles: [
+    `.fg_green { color : green !important;}`,
+    `.fg_red { color : red !important;}`
+  ]
 })
+
 export class MarketOverviewComponent implements OnInit, OnDestroy {
-  private tickerData: TickerDataField[] = [];
   private _isActive = true;
 
   public isLoading = true;
+  private tickerData: MarketTicker = new MarketTickerImpl();
+  private locale: any;
 
-  constructor(private marketService: MarketService) {
+  constructor(private marketService: MarketService, private i18nService: I18nService) {
+    this.locale = i18nService.currentLanguage.code;
   }
 
   public ngOnInit(): void {
@@ -29,7 +51,7 @@ export class MarketOverviewComponent implements OnInit, OnDestroy {
       )
       .subscribe(tickerData => {
         this.isLoading = false;
-        this.mapTickerData(tickerData);
+        this.tickerData = tickerData;
       });
   }
 
@@ -39,54 +61,19 @@ export class MarketOverviewComponent implements OnInit, OnDestroy {
 
   isActive = () => this._isActive;
 
-  mapTickerData(tickerData: MarketTicker): any {
-
-    // TODO: need to fetch locale from i18n
-    const locale = 'en';
-    const dataFields = {
-      price_btc: {
-        label: 'Price BTC',
-        mapper: ({price_btc}: MarketTicker) => `${price_btc} BTC`
-      },
-      price_usd: {
-        label: 'Price USD',
-        mapper: ({price_usd}: MarketTicker) => `${price_usd} USD`
-      },
-      '24h_volume_usd': {
-        label: '24h Volume',
-        mapper: (data: MarketTicker) => `${formatCurrency(parseFloat(data['24h_volume_usd']), locale, '', )} USD`,
-      },
-      available_supply: {
-        label: 'Circulating Supply',
-        mapper: ({available_supply}: MarketTicker) => `${formatCurrency(parseFloat(available_supply), locale, '', )} BURST`
-      },
-      supply_relative: {
-        label: 'Relative Supply',
-        mapper: ({available_supply, max_supply}: MarketTicker) => {
-          const supply = parseFloat(available_supply);
-          const relative_supply = supply > 0 ? (supply / parseFloat(max_supply)) : 0;
-          return `${formatPercent(relative_supply, locale)}`;
-        }
-      },
-      market_cap_usd: {
-        label: 'Market Cap',
-        mapper: ({market_cap_usd}) => `${formatCurrency(parseFloat(market_cap_usd), 'en', '', )} USD`
-      },
-      percent_change_24h: {
-        label: 'Yesterday\'s change',
-        mapper: ({percent_change_24h}: MarketTicker) => `${parseFloat(percent_change_24h).toFixed(2)} %`
-      },
-      rank: {
-        label: 'Market Rank',
-        mapper: ({rank}: MarketTicker) => rank
-      },
-    };
-
-    this.tickerData = Object.keys(dataFields).map(k =>
-      ({
-        key: dataFields[k].label,
-        value: dataFields[k].mapper(tickerData)
-      })
-    );
+  public getPriceBtc = (): string => `${this.tickerData.price_btc} BTC`;
+  public getPriceUsd = (): string => `${this.tickerData.price_usd} USD`;
+  public get24hVolume = (): string => `${formatCurrency(parseFloat(this.tickerData['24h_volume_usd']), this.locale, '', )} USD`;
+  public getAvailableSupply = (): string => `${formatCurrency(parseFloat(this.tickerData.available_supply), this.locale, '', )} BURST`;
+  public getRelativeSupply = (): string => {
+    const supply = parseFloat(this.tickerData.available_supply);
+    const max_supply = parseFloat(this.tickerData.max_supply);
+    const relative_supply = supply > 0 ? (supply / max_supply) : 0;
+    return `${formatPercent(relative_supply, this.locale)}`;
   }
+  public getMarketCap = (): string => `${formatCurrency(parseFloat(this.tickerData.market_cap_usd), this.locale, '', )} USD`;
+  public getYesterDaysChange = (): string => `${parseFloat(this.tickerData.percent_change_24h).toFixed(2)} %`;
+  public isChangeNegative = (): boolean => this.tickerData.percent_change_24h.startsWith('-');
+  public getMarketRank = (): string => this.tickerData.rank;
+
 }

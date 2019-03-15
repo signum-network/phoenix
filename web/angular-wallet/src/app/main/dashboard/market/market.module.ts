@@ -34,7 +34,8 @@ import {MarketService} from './market.service';
     RouterModule
   ],
   providers: [
-    MarketService
+    MarketService,
+
   ]
 })
 export class MarketModule {
