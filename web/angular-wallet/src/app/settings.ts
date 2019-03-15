@@ -1,6 +1,6 @@
 
 /**
- * Original work Copyright (c) 2018 PoC-Consortium  
+ * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
@@ -32,7 +32,7 @@ export class Settings {
         this.currency = data.currency || constants.defaultCurrency;
         this.language = data.language || constants.defaultLanguage;
         this.node = data.node || environment.defaultNode;
-        this.marketUrl = data.marketUrl || environment.marketUrl;
+        this.marketUrl = data.marketUrl || environment.market.tickerUrl;
         this.theme = data.theme || constants.defaultTheme;
         this.version = data.version || constants.version;
     }

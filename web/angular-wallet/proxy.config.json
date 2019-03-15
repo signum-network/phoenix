@@ -9,9 +9,13 @@
     "logLevel": "info"
   },
   "/v1/ticker/burst": {
-    "target": "https://api.coinmarketcap.com",
+    "target": "https://api.coinmarketcap.com/",
     "secure": false,
     "logLevel": "debug",
-    "headers": {"host":"api.coinmarketcap.com"}
+    "headers": {
+      "Origin": "https://api.coinmarketcap.com",
+      "Host": "api.coinmarketcap.com",
+      "Content-type": "application/json"
+    }
   }
 }
