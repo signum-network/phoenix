@@ -4,16 +4,6 @@ $media-querie-desktop: 992px;
 $media-querie-screen:  1200px;
 
 .signup {
-  &__background {
-    background-image: url('/assets/images/backgrounds/signup-bg.jpg');
-    background-size: cover;
-    bottom: 5px;
-    height: 300px;
-    opacity: .5;
-    position: absolute;
-    right: 0;
-    width: 380px;
-  }
   &__header {
     background: darken(#f9f9f9, 3%);
     padding: 1rem;

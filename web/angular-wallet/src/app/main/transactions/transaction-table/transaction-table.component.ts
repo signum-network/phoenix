@@ -8,6 +8,7 @@ import {Account} from '@burstjs/core'
 
 @Component({
   selector: 'app-transaction-table',
+  styleUrls: ['./transaction-table.component.scss'],
   templateUrl: './transaction-table.component.html'
 })
 export class TransactionTableComponent implements OnInit {
