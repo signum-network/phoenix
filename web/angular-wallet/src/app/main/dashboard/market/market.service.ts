@@ -21,7 +21,7 @@ export class MarketService {
 
   createTicker(): Observable<MarketTicker> {
     const {tickerInterval, tickerUrl} = environment.market;
-    return interval(tickerInterval)
+    return interval(tickerInterval * 1000)
       .pipe(
         startWith(0),
         flatMap(_ => this.httpClient.get<Array<MarketTicker>>(tickerUrl)),

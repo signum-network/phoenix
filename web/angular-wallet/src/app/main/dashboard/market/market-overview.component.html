@@ -1,13 +1,20 @@
-<ng-container *ngIf="!isLoading">
+<ng-container *ngIf="isLoading">
   <div fxLayoutAlign="center">
     <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   </div>
 </ng-container>
 
-<ng-container *ngIf="isLoading">
+<ng-container *ngIf="!isLoading">
   <mat-list>
-    <mat-list-item> Pepper</mat-list-item>
-    <mat-list-item> Salt</mat-list-item>
-    <mat-list-item> Paprika</mat-list-item>
+    <mat-list-item *ngFor="let data of tickerData">
+      <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+          <h3 class="font-weight-700">
+            {{data.key}}
+          </h3>
+          <div>
+            {{data.value}}
+          </div>
+      </div>
+    </mat-list-item>
   </mat-list>
 </ng-container>
