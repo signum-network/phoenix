@@ -1,0 +1,13 @@
+<ng-container *ngIf="!isLoading">
+  <div fxLayoutAlign="center">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isLoading">
+  <mat-list>
+    <mat-list-item> Pepper</mat-list-item>
+    <mat-list-item> Salt</mat-list-item>
+    <mat-list-item> Paprika</mat-list-item>
+  </mat-list>
+</ng-container>

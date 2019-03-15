@@ -15,3 +15,4 @@ export interface MarketTicker {
   readonly symbol: string;
   readonly total_supply: string;
 }
+
