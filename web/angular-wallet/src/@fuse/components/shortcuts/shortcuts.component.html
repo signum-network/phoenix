@@ -1,13 +1,13 @@
 <div id="fuse-shortcuts" #shortcuts>
 
-    <div class="shortcuts-mobile-toggle" *ngIf="!mobileShortcutsPanelActive" fxLayout="row" fxLayoutAlign="start center"
+    <!-- <div class="shortcuts-mobile-toggle" *ngIf="!mobileShortcutsPanelActive" fxLayout="row" fxLayoutAlign="start center"
          fxHide fxShow.lt-md>
         <button mat-icon-button (click)="showMobileShortcutsPanel()">
             <mat-icon class="amber-600-fg">star</mat-icon>
         </button>
-    </div>
+    </div> -->
 
-    <div class="shortcuts" fxLayout="row" fxHide fxShow.gt-sm>
+    <div class="shortcuts" fxLayout="row">
 
         <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="0 1 auto">
 
@@ -25,18 +25,18 @@
 
                 </div>
 
-                <button mat-icon-button [matMenuTriggerFor]="addMenu" matTooltip="Click to add/remove shortcut"
+                <!-- <button mat-icon-button [matMenuTriggerFor]="addMenu" matTooltip="Click to add/remove shortcut"
                         (menuOpened)="onMenuOpen()">
                     <mat-icon class="amber-600-fg">star</mat-icon>
-                </button>
+                </button> -->
 
             </div>
 
-            <div class="shortcuts-mobile-close" fxLayout="row" fxLayoutAlign="start center" fxHide fxShow.lt-md>
+            <!-- <div class="shortcuts-mobile-close" fxLayout="row" fxLayoutAlign="start center" fxHide fxShow.lt-md>
                 <button mat-icon-button (click)="hideMobileShortcutsPanel()">
                     <mat-icon>close</mat-icon>
                 </button>
-            </div>
+            </div> -->
 
         </div>
 

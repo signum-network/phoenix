@@ -10,12 +10,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccountDetailsComponent } from './account-details.component';
-import { NetworkService } from 'app/network/network.service';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { NotifierModule } from 'angular-notifier';
-import { FuseSharedModule } from '@fuse/shared.module';
 import { TransactionRowValueCellComponent } from 'app/main/transactions/transaction-row-value-cell/transaction-row-value-cell.component';
-import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AccountService } from 'app/setup/account/account.service';
 import { TransactionTableModule } from 'app/main/transactions/transaction-table/transaction.module';
 

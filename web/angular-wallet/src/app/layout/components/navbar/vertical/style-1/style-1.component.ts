@@ -11,6 +11,7 @@ import { StoreService } from 'app/store/store.service';
 import { Account } from '@burstjs/core';
 import { AccountService } from 'app/setup/account/account.service';
 import { environment } from 'environments/environment';
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
 
 @Component({
     selector     : 'navbar-vertical-style-1',
@@ -37,6 +38,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
      * @param {FuseSidebarService} _fuseSidebarService
      * @param {StoreService} _storeService
      * @param {AccountService} _accountService
+     * @param {I18nService} I18nService
      * @param {Router} _router
      */
     constructor(
@@ -45,6 +47,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         private _fuseSidebarService: FuseSidebarService,
         private _accountService: AccountService,
         private _storeService: StoreService,
+        private i18nService: I18nService,
         private _router: Router
     )
     {
@@ -179,6 +182,6 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     }
 
     getAccountName() {
-        return this.selectedAccount.name;
+        return this.selectedAccount.name || this.i18nService.getTranslation('set_account_info');
     }
 }
