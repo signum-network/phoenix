@@ -33,7 +33,7 @@ interface SetAccountInfoRequest {
 export class AccountService {
   private nodeUrl: string;
 
-  public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
+  public currentAccount: BehaviorSubject<Account> = new BehaviorSubject(undefined);
   private api: Api;
 
   constructor(private storeService: StoreService, private apiService: ApiService) {
@@ -47,7 +47,6 @@ export class AccountService {
     this.currentAccount.next(account);
   }
 
-  // FIXME: any as return type is shitty...will introduce a better execption handling
   public getAccountTransactions(id: string, firstIndex?: number, lastIndex?: number, numberOfConfirmations?: number, type?: number, subtype?: number): Promise<TransactionList> {
     return this.api.account.getAccountTransactions(
       id, firstIndex, lastIndex, numberOfConfirmations, type, subtype);
@@ -82,6 +81,10 @@ export class AccountService {
 
   public getAccount(id: string): Promise<Account> {
     return this.api.account.getAccount(id);
+  }
+
+  public getCurrentAccount(): Promise<Account> {
+    return Promise.resolve(this.currentAccount.getValue());
   }
 
   public setAccountInfo({ name, description, feeNQT, deadline, pin, keys }: SetAccountInfoRequest): Promise<TransactionId> {

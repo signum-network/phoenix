@@ -21,7 +21,7 @@ import {TransactionTableModule} from '../transactions/transaction-table/transact
 import {DashboardService} from './dashboard.service';
 import {DashboardComponent} from './dashboard.component';
 import {MarketModule} from './market/market.module';
-import { BalanceDiagramComponent } from './balance-diagram/balance-diagram.component';
+import {BalanceDiagramComponent} from './balance-diagram/balance-diagram.component';
 
 const routes: Routes = [
   {
