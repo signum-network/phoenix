@@ -37,7 +37,9 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                     <mat-icon>account_box</mat-icon> Address
                 </mat-header-cell>
-                <mat-cell *matCellDef="let account"> {{account.accountRS}} </mat-cell>
+                <mat-cell *matCellDef="let account">
+                    <a [routerLink]="['/account', account.account]">{{account.accountRS}}</a>
+                </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="name">
@@ -66,7 +68,7 @@
                     <mat-icon>delete</mat-icon>
                 </mat-header-cell>
                 <mat-cell *matCellDef="let account" class="center">
-                    <mat-checkbox [(ngModel)]="selectedAccounts[account.id]"></mat-checkbox>
+                    <mat-checkbox [(ngModel)]="selectedAccounts[account.account]"></mat-checkbox>
                 </mat-cell>
             </ng-container>
 
