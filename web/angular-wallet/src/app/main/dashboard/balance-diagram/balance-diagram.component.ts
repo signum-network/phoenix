@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../../../setup/account/account.service';
 import {convertNQTStringToNumber} from '@burstjs/util';
 import {convertBurstTimeToDate} from '@burstjs/util/src';
-import {Transaction, Account} from '@burstjs/core';
+import {Transaction, Account, TransactionList} from '@burstjs/core';
 
 @Component({
   selector: 'app-balance-diagram',
@@ -14,6 +14,7 @@ export class BalanceDiagramComponent implements OnInit {
   private currentAccount: Account;
   public data: any[];
   public view: any[];
+  public showYAxis: boolean;
 
   constructor(private accountService: AccountService) {
 
@@ -29,9 +30,14 @@ export class BalanceDiagramComponent implements OnInit {
   async ngOnInit(): Promise<void>{
 
     this.currentAccount = await this.accountService.getCurrentAccount();
-    const {balanceNQT, account} = this.currentAccount;
+    const {account} = this.currentAccount;
     const {transactions} = await this.accountService.getAccountTransactions(account);
+    this.initializeDiagram(transactions);
+  }
 
+  private initializeDiagram(transactions: Transaction[]): void {
+
+    const {balanceNQT} = this.currentAccount;
     const recentTransactions = transactions.slice(0, 20);
 
     let balance = convertNQTStringToNumber(balanceNQT);
@@ -46,8 +52,6 @@ export class BalanceDiagramComponent implements OnInit {
       return deduced;
     });
 
-    this.view = [700, 400];
-
     this.data = [
       {
         name: 'Transactions',
@@ -59,8 +63,7 @@ export class BalanceDiagramComponent implements OnInit {
     ];
 
     // options
-    // showXAxis = true;
-    // showYAxis = true;
+    this.showYAxis = true;
     // gradient = false;
     // showLegend = true;
     // showXAxisLabel = true;
@@ -75,7 +78,7 @@ export class BalanceDiagramComponent implements OnInit {
 
   }
 
-  onSelect($event: UIEvent) {
+  onSelect($event: UIEvent): void {
     console.log('selected', $event);
   }
 }
