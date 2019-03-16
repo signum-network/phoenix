@@ -95,7 +95,7 @@
 
 <!-- TOOLBAR -->
 <ng-template #toolbar>
-    <toolbar *ngIf="!fuseConfig.layout.toolbar.hidden"
+    <toolbar *ngIf="!fuseConfig.layout.toolbar.hidden && selectedAccount"
              [ngClass]="fuseConfig.layout.toolbar.customBackgroundColor === true ? fuseConfig.layout.toolbar.position + ' ' + fuseConfig.layout.toolbar.background : fuseConfig.layout.toolbar.position"
              [accounts]="accounts"
              [selectedAccount]="selectedAccount">
@@ -116,7 +116,7 @@
     <fuse-sidebar name="navbar" class="navbar-fuse-sidebar"
                   [folded]="fuseConfig.layout.navbar.folded"
                   lockedOpen="gt-md"
-                  *ngIf="!fuseConfig.layout.navbar.hidden">
+                  *ngIf="!fuseConfig.layout.navbar.hidden && selectedAccount">
         <navbar [variant]="fuseConfig.layout.navbar.variant" class="left-navbar"
                 [selectedAccount]="selectedAccount"></navbar>
     </fuse-sidebar>

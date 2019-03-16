@@ -21,6 +21,7 @@ export class Settings {
     public theme: string;
     public version: string;
     public marketUrl: string;
+    public agree = false;
 
     constructor(data: any = {}) {
         this.id = "settings";
@@ -35,5 +36,6 @@ export class Settings {
         this.marketUrl = data.marketUrl || environment.market.tickerUrl;
         this.theme = data.theme || constants.defaultTheme;
         this.version = data.version || constants.version;
+        this.agree = data.agree || this.agree;
     }
 }

@@ -5,7 +5,9 @@ import { StoreConfig } from './store.config';
 import { Settings } from 'app/settings';
 import { Account, Block } from '@burstjs/core';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class StoreService {
 
     private store: any;
@@ -221,6 +223,7 @@ export class StoreService {
                             s.version = save.version;
                             s.theme = save.theme;
                             s.contacts = save.contacts;
+                            s.agree = save.agree;
                         });
                     } else {
                         settings.insert(save);
