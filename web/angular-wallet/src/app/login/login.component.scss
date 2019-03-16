@@ -3,8 +3,8 @@ $media-querie-tablet: 768px;
 $media-querie-desktop: 992px;
 $media-querie-screen:  1200px;
 
-$error-color: #ff8080;
-$success-color: #00cc99;
+$no-color: #002341;
+$yes-color: #039be5;
 $text-color: #333333;
 $text-alt-color: #b3b3b3;
 
@@ -69,20 +69,20 @@ $text-alt-color: #b3b3b3;
     &:last-child {
       margin-bottom: 0;
     }
-    &--success {
+    &--yes {
       @extend .login__link;
-      background: $success-color;
+      background: $yes-color;
       color: #fdfdfd;
       &:hover {
-        background: darken($success-color, 5%);
+        background: darken($yes-color, 5%);
       }
     }
-    &--error {
+    &--no {
       @extend .login__link;
-      background: $error-color;
+      background: $no-color;
       color: #fdfdfd;
       &:hover {
-        background: darken($error-color, 5%);
+        background: darken($no-color, 5%);
       }
     }
     &--default {

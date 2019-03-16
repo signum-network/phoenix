@@ -61,8 +61,8 @@
     <mat-cell *matCellDef="let transaction">
       {{
         convertNQTStringToNumber(transaction.feeNQT) | number: "1.0-8"
-      }}</mat-cell
-    >
+      }}
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="account">
@@ -70,12 +70,12 @@
       <mat-icon>account_box</mat-icon>&nbsp;{{ "account" | i18n }}
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
-      <span *ngIf="isOwnAccount(transaction.senderRS)">{{
+      <a [routerLink]="['/account', transaction.recipient]" *ngIf="isOwnAccount(transaction.senderRS)">{{
         transaction.recipientRS
-      }}</span>
-      <span *ngIf="!isOwnAccount(transaction.senderRS)">{{
+      }}</a>
+      <a [routerLink]="['/account', transaction.sender]" *ngIf="!isOwnAccount(transaction.senderRS)">{{
         transaction.senderRS
-      }}</span>
+      }}</a>
     </mat-cell>
   </ng-container>
 

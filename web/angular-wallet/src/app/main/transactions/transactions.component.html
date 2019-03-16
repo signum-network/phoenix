@@ -15,7 +15,7 @@
     </div>
     <!-- / HEADER -->
 
-    <div class="p-24">
+    <div class="p-24 content">
 
         <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="20px">
             <div fxFlex="50">
@@ -43,6 +43,8 @@
             </div>
         </div>
 
-        <app-transaction-table [dataSource]="dataSource"></app-transaction-table>
+        <div class="transactions-table">
+            <app-transaction-table [dataSource]="dataSource"></app-transaction-table>
+        </div>
     </div>
 </div>
