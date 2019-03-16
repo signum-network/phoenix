@@ -82,6 +82,7 @@
   "avg_amount_per_block": "Durchschnittlicher Betrag pro Block",
   "avg_fee_per_block": "Durchschnittliche Gebühr pro Block",
   "balance": "Guthaben",
+  "balance_history": "Guthaben Entwicklung",
   "base_target": "Base Target",
   "bid_order_cancellation": "Kauforder stornieren",
   "bid_order_id": "Kauforder-ID",
