@@ -81,6 +81,7 @@ $typography: mat-typography-config(
 @import "src/app/layout/components/chat-panel/chat-panel.theme";
 @import "src/app/layout/components/toolbar/toolbar.theme";
 @import "src/app/main/messages/messages.theme";
+@import "src/app/disclaimer/disclaimer.theme";
 
 // Define a mixin for easier access
 @mixin components-theme($theme) {
@@ -89,6 +90,7 @@ $typography: mat-typography-config(
     @include chat-panel-theme($theme);
     @include toolbar-theme($theme);
     @include messages-theme($theme);
+    @include disclaimer-theme($theme);
 }
 
 // -----------------------------------------------------------------------------------------------------

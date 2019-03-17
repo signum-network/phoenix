@@ -1,0 +1,22 @@
+@mixin disclaimer-theme($theme) {
+
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    disclaimer {
+
+        #disclaimer {
+
+            #disclaimer-form-wrapper {
+
+                #disclaimer-form {
+                    background: map-get($background, card);
+
+                    .subtitle {
+                        color: map-get($foreground, secondary-text);
+                    }
+                }
+            }
+        }
+    }
+}
