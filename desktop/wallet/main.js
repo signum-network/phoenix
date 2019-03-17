@@ -6,7 +6,9 @@ let win;
 const isDevelopment = process.env.development;
 
 function getBrowserWindowConfig() {
-    const commonConfig = {};
+    const commonConfig = {
+        icon: path.join(__dirname, 'assets/images/png/64x64.png')
+    };
     return isDevelopment ? {
         ...commonConfig ,
         fullscreen: false,
