@@ -1,8 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, Input, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { MessagesService } from '../../../messages.service';
+import { SuggestedFees } from '@burstjs/core/out';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector     : 'message-options-sidenav',
@@ -13,21 +15,19 @@ import { MessagesService } from '../../../messages.service';
 export class MessageOptionsSidenavComponent implements OnInit, OnDestroy
 {
     options: any;
+    @Input('fees') fees: SuggestedFees;
+    @Input('feeNQT') feeNQT: string;
 
-    // Private
     private _unsubscribeAll: Subject<any>;
 
-    /**
-     * Constructor
-     *
-     * @param {MessagesService} _messageService
-     */
     constructor(
-        private _messageService: MessagesService
+        private _messageService: MessagesService,
+        private route: ActivatedRoute
     )
     {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
+
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -43,7 +43,6 @@ export class MessageOptionsSidenavComponent implements OnInit, OnDestroy
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(options => {
                 this.options = options;
-                console.log(options);
             });
     }
 

@@ -22,13 +22,13 @@
                 <!-- CONTENT -->
                 <message-start *ngIf="!selectedMessage"></message-start>
 
-                <message-view *ngIf="selectedMessage"></message-view>
+                <message-view *ngIf="selectedMessage" [feeNQT]="rightSidenav && rightSidenav.options && rightSidenav.options.feeNQT"></message-view>
                 <!-- / CONTENT -->
 
                 <!-- RIGHT SIDENAV -->
                 <mat-sidenav class="sidenav" position="end" opened="false" mode="over"
                              fuseMatSidenavHelper="message-right-sidenav">
-                    <message-right-sidenav></message-right-sidenav>
+                    <message-right-sidenav [fees]="fees" [(feeNQT)]="feeNQT"></message-right-sidenav>
                 </mat-sidenav>
                 <!-- / RIGHT SIDENAV -->
 

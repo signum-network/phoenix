@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { convertNQTStringToNumber } from '@burstjs/util';
-import { SuggestedFees } from '@burstjs/core/out';
+import { SuggestedFees } from '@burstjs/core';
 import { EventEmitter } from '@angular/core';
 import { Options } from 'ng5-slider';
 

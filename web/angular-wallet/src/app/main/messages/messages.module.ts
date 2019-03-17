@@ -21,6 +21,7 @@ import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { LayoutModule } from 'app/layout/layout.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { SendBurstModule } from '../send-burst/send-burst.module';
+import { SuggestFeeResolver } from 'app/network/suggest-fee.resolver';
 
 const routes: Routes = [
     {
@@ -28,7 +29,8 @@ const routes: Routes = [
         component: MessagesComponent,
         canActivate: [LoginGuard],
         resolve: {
-            message: MessagesService
+            message: MessagesService,
+            fees: SuggestFeeResolver
         }
     }
 ];

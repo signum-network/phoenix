@@ -24,6 +24,11 @@
 <div class="sidenav-content py-32 px-24" fxFlex fxLayout="column" *ngIf="options">
 
     <label>Fee</label>
-    <mat-slider min="{{options.fees.cheap}}" max="{{options.fees.priority}}" step="0.05" value="{{options.fees.standard}}"></mat-slider>
+    
+    <mat-form-field appearance="outline">
+        <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
+        <label matSuffix>BURST</label>
+    </mat-form-field>
 
+    <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
 </div>

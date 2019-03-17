@@ -12,6 +12,13 @@
       </div>
       <div class="h1 mt-16">{{ 'aliases' | i18n }}</div>
     </div>
+
+    <a mat-raised-button 
+      class="reference-button mt-16 mt-sm-0" 
+      [routerLink]="['add']">
+      <mat-icon class="mr-8">add</mat-icon>
+      <span>{{ 'register_alias' | i18n }}</span>
+    </a>
   </div>
   <!-- / HEADER -->
 
@@ -40,14 +47,14 @@
         </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="actions">
+      <!-- <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let alias">
           <button>{{ 'edit' | i18n }}</button> 
           <button>{{ 'transfer' | i18n }}</button> 
           <button>{{ 'sell' | i18n }}</button>
         </mat-cell>
-      </ng-container>
+      </ng-container> -->
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

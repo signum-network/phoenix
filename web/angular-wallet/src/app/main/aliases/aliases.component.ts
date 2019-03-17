@@ -25,7 +25,7 @@ export class AliasesComponent {
   ) { }
 
   public ngOnInit() {
-    this.displayedColumns = ['aliasName', 'aliasURI', 'status', 'actions'];
+    this.displayedColumns = ['aliasName', 'aliasURI', 'status'];
     this.dataSource = new MatTableDataSource<Alias>();
 
     this.storeService.ready.subscribe(async (ready) => {
