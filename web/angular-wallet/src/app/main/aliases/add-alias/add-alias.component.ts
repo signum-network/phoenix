@@ -7,34 +7,33 @@ import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
 import { NotifierService } from 'angular-notifier';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
-import { TransactionService } from '../transactions/transaction.service';
 
 @Component({
-  selector: 'app-set-account-info',
-  templateUrl: './set-account-info.component.html',
-  styleUrls: ['./set-account-info.component.scss']
+  selector: 'app-add-alias',
+  templateUrl: './add-alias.component.html',
+  styleUrls: ['./add-alias.component.scss']
 })
-export class SetAccountInfoComponent implements OnInit {
+export class AddAliasComponent implements OnInit {
   @ViewChild('setAccountInfoForm') public setAccountInfoForm: NgForm;
-  public feeNQT: string;
-  @ViewChild('name') public name: string;
+  @ViewChild('alias') public alias: string;
   @ViewChild('description') public description: string;
   @ViewChild('fullHash') public fullHash: string;
   @ViewChild('pin') public pin: string;
-
+  @ViewChild('uri') public uri: string;
+  @ViewChild('accountAliasURI') public accountAliasURI: string;
   @Output() submit = new EventEmitter<any>();
+
+  public feeNQT: string;
   advanced: boolean = false;
   showMessage: boolean = false;
   burstAddressPatternRef = burstAddressPattern;
-  deadline = '24';
-
+  type = 'uri';
   account: Account;
+  deadline = '24';
   fees: SuggestedFees;
 
   constructor(private route: ActivatedRoute,
-    private transactionService: TransactionService,
     private accountService: AccountService,
-    private storeService: StoreService,
     private notifierService: NotifierService,
     private i18nService: I18nService) {
   }
@@ -42,23 +41,34 @@ export class SetAccountInfoComponent implements OnInit {
   ngOnInit() {
     this.account = this.route.snapshot.data.account as Account;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
+
+    this.accountAliasURI = this.account.accountRS;
   }
 
   async onSubmit(event) {
     event.stopImmediatePropagation();
     try {
-      await this.accountService.setAccountInfo({
-        name: this.name,
-        description: this.description,
+      await this.accountService.setAlias({
+        aliasName: this.alias,
+        aliasURI: this.getAliasURI(),
         feeNQT: this.feeNQT,
         deadline: parseFloat(this.deadline) * 60,
         pin: this.pin,
         keys: this.account.keys,
       });
-      this.notifierService.notify('success', this.i18nService.getTranslation('success_set_account_info'));
+      this.notifierService.notify('success', this.i18nService.getTranslation('success_alias_register'));
       this.setAccountInfoForm.resetForm();
     } catch (e) { 
       this.notifierService.notify('error', this.i18nService.getTranslation('error_unknown'));
+    }
+  }
+
+  private getAliasURI(): string {
+    switch (this.type) {
+      case 'acct':
+        return `${this.type}:${this.accountAliasURI.toLowerCase()}@burst`;
+      default:
+        return this.uri;
     }
   }
 }

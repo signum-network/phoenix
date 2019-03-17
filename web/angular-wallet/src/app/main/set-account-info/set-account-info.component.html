@@ -37,8 +37,8 @@
 
       <div *ngIf="advanced">
         <mat-form-field appearance="outline">
-          <input matInput [(ngModel)]="deadline" value="24" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}"
-            disabled>
+          <label>{{ 'deadline_hours' | i18n }}</label>
+          <input matInput [(ngModel)]="deadline" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -60,7 +60,7 @@
       </div>
     </form>
 
-    <em (click)="advanced=!advanced">{{ advanced ? "basic" : "advanced" | i18n }}</em>
+    <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
     <br /><br />
 
     <button type="submit" class="mr-8" mat-raised-button mat-button color="primary" (click)="onSubmit($event)">{{ "send_burst" | i18n }}</button>

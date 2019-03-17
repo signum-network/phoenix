@@ -23,13 +23,13 @@ export class SendBurstComponent implements OnInit {
   @ViewChild('fullHash') public fullHash: string;
   @ViewChild('encrypt') public encrypt: string;
   @ViewChild('pin') public pin: string;
-  @ViewChild('deadline') public deadline: string;
 
   @Output() submit = new EventEmitter<any>();
   advanced = false;
   showMessage = false;
   burstAddressPatternRef = burstAddressPattern;
 
+  deadline = '24';
   account: Account;
   fees: SuggestedFees;
 
@@ -65,7 +65,7 @@ export class SendBurstComponent implements OnInit {
         amountNQT: this.amountNQT,
         feeNQT: this.feeNQT,
         attachment: this.getMessage(),
-        deadline: parseFloat(this.deadline),
+        deadline: parseFloat(this.deadline) * 60,
         fullHash: this.fullHash,
         type: 1
       },
@@ -74,6 +74,7 @@ export class SendBurstComponent implements OnInit {
       recipientAddress: `BURST-${this.recipientAddress}`,
     }).then(() => {
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
+      this.sendBurstForm.resetForm();
     }).catch(() => {
       this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
     });

@@ -27,6 +27,15 @@ interface SetAccountInfoRequest {
   keys: Keys;
 }
 
+interface SetAliasRequest {
+  aliasName: string;
+  aliasURI: string;
+  deadline: number;
+  feeNQT: string;
+  pin: string;
+  keys: Keys;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -71,6 +80,11 @@ export class AccountService {
   public getAliases(id: string): Promise<AliasList> {
     return this.api.account.getAliases(id);
   }
+
+  public setAlias({ aliasName, aliasURI, feeNQT, deadline, pin, keys }: SetAliasRequest): Promise<TransactionId> {
+    const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    return this.api.account.setAlias(aliasName, aliasURI, feeNQT, keys.publicKey, senderPrivateKey, deadline);
+  } 
 
   public getAccountBalance(id: string): Promise<Balance> {
     return this.api.account.getAccountBalance(id);
