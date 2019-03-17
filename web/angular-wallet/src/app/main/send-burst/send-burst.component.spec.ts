@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SendBurstComponent } from './send-burst.component';
 import { NetworkModule } from 'app/network/network.module';
-import { MatCheckboxModule, MatGridListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCardModule, MatSelectModule } from '@angular/material';
+import { MatCheckboxModule, MatGridListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCardModule, MatSelectModule, MatTabsModule } from '@angular/material';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { NotifierModule } from 'angular-notifier';
@@ -19,6 +19,8 @@ import { TransactionService } from '../transactions/transaction.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { BurstFeeSelectorComponent } from 'app/layout/components/burst-fee-selector/burst-fee-selector.component';
 import { Ng5SliderModule } from 'ng5-slider';
+import { SendBurstFormComponent } from './send-burst-form/send-burst-form.component';
+import { SendMultiOutFormComponent } from './send-multi-out-form/send-multi-out-form.component';
 
 describe('SendBurstComponent', () => {
   let component: SendBurstComponent;
@@ -37,6 +39,7 @@ describe('SendBurstComponent', () => {
         MatIconModule,
         MatFormFieldModule,
         MatCardModule,
+        MatTabsModule,
         MatSelectModule,
         Ng5SliderModule,
         MatGridListModule,
@@ -48,7 +51,7 @@ describe('SendBurstComponent', () => {
           [{path: 'send', component: SendBurstComponent}]
         )
       ],
-      declarations: [ SendBurstComponent, BurstInputValidatorDirective, BurstFeeSelectorComponent ],
+      declarations: [ SendBurstComponent, BurstInputValidatorDirective, BurstFeeSelectorComponent, SendBurstFormComponent, SendMultiOutFormComponent ],
       providers: [ 
         I18nService, 
         {
