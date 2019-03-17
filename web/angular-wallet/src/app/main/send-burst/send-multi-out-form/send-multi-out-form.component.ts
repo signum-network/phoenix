@@ -79,6 +79,10 @@ export class SendMultiOutFormComponent implements OnInit {
     }
   }
 
+  trackByIndex(index) {
+    return index;
+  }
+
   createRecipient() {
     return { 
       amountNQT:'', 
