@@ -1,0 +1,11 @@
+<div id="balance-diagram-charts-wrapper" >
+  <ngx-charts-area-chart [results]="data"
+                         [yAxis]="showYAxis"
+                         [yAxisLabel]="yAxisLabel"
+                         [showYAxisLabel]="showYAxisLabel"
+                          [scheme] = "colorScheme"
+                         [curve]="curve"
+                         (select)="onSelect($event)"
+  >
+  </ngx-charts-area-chart>
+</div>
