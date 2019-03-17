@@ -82,6 +82,7 @@
   "avg_amount_per_block": "Avg. Amount Per Block",
   "avg_fee_per_block": "Avg. Fee Per Block",
   "balance": "Balance",
+  "balance_history": "Balance History",
   "base_target": "Base Target",
   "bid_order_cancellation": "Bid Order Cancellation",
   "bid_order_id": "Bid Order ID",

@@ -21,6 +21,7 @@ import {TransactionTableModule} from '../transactions/transaction-table/transact
 import {DashboardService} from './dashboard.service';
 import {DashboardComponent} from './dashboard.component';
 import {MarketModule} from './market/market.module';
+import {BalanceDiagramComponent} from './balance-diagram/balance-diagram.component';
 
 const routes: Routes = [
   {
@@ -36,7 +37,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    BalanceDiagramComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -54,7 +56,7 @@ const routes: Routes = [
     FuseWidgetModule,
     I18nModule,
     TransactionTableModule,
-    MarketModule
+    MarketModule,
   ],
   providers: [
     DashboardService,

@@ -30,7 +30,7 @@ export class TransactionTableComponent implements OnInit {
     return convertBurstTimeToDate(timestamp);
   }
 
-  public getTransactionNameFromType(transaction: Transaction) {
+  public getTransactionNameFromType(transaction: Transaction): string {
     return this.utilService.getTransactionNameFromType(transaction, this.account);
   }
 
