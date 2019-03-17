@@ -1,3 +1,8 @@
-<div id="balance-diagram-charts-wrapper">
-  <ngx-charts-area-chart [results]="data" [yAxis]="showYAxis" (select)="onSelect($event)"></ngx-charts-area-chart>
+<div #chart id="balance-diagram-charts-wrapper" (resize)="onResize($event)" >
+  <ngx-charts-area-chart [results]="data"
+                         [yAxis]="showYAxis"
+                         [yAxisLabel]="yAxisLabel"
+                         [showYAxisLabel]="showYAxisLabel"
+                         (select)="onSelect($event)">
+  </ngx-charts-area-chart>
 </div>

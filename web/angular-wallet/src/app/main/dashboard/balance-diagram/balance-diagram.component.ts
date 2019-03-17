@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {AccountService} from '../../../setup/account/account.service';
 import {convertNQTStringToNumber} from '@burstjs/util';
 import {convertBurstTimeToDate} from '@burstjs/util/src';
@@ -12,14 +12,18 @@ import {Transaction, Account, TransactionList} from '@burstjs/core';
 export class BalanceDiagramComponent implements OnInit {
 
   private currentAccount: Account;
+  @ViewChild('chart') chartWrapper: ElementRef;
+
+  // diagram options
   public data: any[];
   public view: any[];
-  public showYAxis: boolean;
+  public showYAxis = true;
+  public yAxisLabel = 'BURST';
+  public showYAxisLabel = false;
+  public width: string;
+  public height: '280px';
 
-  constructor(private accountService: AccountService) {
-
-
-  }
+  constructor(private accountService: AccountService) {}
 
   private getTransactionValue(transaction: Transaction): number{
     const isNegative = transaction.sender === this.currentAccount.account;
@@ -34,6 +38,8 @@ export class BalanceDiagramComponent implements OnInit {
     const {transactions} = await this.accountService.getAccountTransactions(account);
     this.initializeDiagram(transactions);
   }
+
+  private getWrapperWidth = (): number => this.chartWrapper.nativeElement.clientWidth;
 
   private initializeDiagram(transactions: Transaction[]): void {
 
@@ -62,14 +68,15 @@ export class BalanceDiagramComponent implements OnInit {
       },
     ];
 
+
+   // this.view = [this.getWrapperWidth(), 240];
+
     // options
-    this.showYAxis = true;
     // gradient = false;
     // showLegend = true;
     // showXAxisLabel = true;
     // xAxisLabel = 'Number';
     // showYAxisLabel = true;
-    // yAxisLabel = 'Color Value';
     // timeline = true;
     //
     // colorScheme = {
@@ -80,5 +87,13 @@ export class BalanceDiagramComponent implements OnInit {
 
   onSelect($event: UIEvent): void {
     console.log('selected', $event);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize($event: UIEvent): void {
+    //this.view[0] = this.getWrapperWidth();
+    this.width =  `${this.getWrapperWidth()}px`;
+
+    console.log(this.width);
   }
 }

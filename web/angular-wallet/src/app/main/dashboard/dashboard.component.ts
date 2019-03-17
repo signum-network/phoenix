@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.fetchTransactions();
 
     this.marketService.ticker$
@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this._isActive = false;
   }
 
