@@ -39,7 +39,8 @@ describe('AliasesComponent', () => {
           return {
             ready: new BehaviorSubject(true),
             getSettings: () => Promise.resolve({language: 'en'}),
-            saveSettings: () => Promise.resolve(true)
+            saveSettings: () => Promise.resolve(true),
+            getSelectedAccount: () => Promise.resolve({})
           };
         }
       },

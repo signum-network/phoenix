@@ -10,18 +10,17 @@ import 'hammerjs';
 
 import { AppComponent } from 'app/app.component';
 import { MainModule } from './main/main.module';
-import { MainComponent } from './main/main.component';
 import { LoginModule } from './login/login.module';
 import { LoginComponent } from './login/login.component';
 import { SetupModule } from './setup/setup.module';
 import { LoginGuard } from './login/login-guard.service';
 import { StoreService } from './store/store.service';
 import { StoreConfig, appConfigFactory } from './store/store.config';
-import { NetworkService } from './network/network.service';
 import { NetworkModule } from './network/network.module';
 import { NotifierModule } from 'angular-notifier';
 import { UtilService } from './util.service';
 import { I18nModule } from './layout/components/i18n/i18n.module';
+import { DisclaimerModule } from './disclaimer/disclaimer.module';
 
 const appRoutes: Routes = [
   {
@@ -61,7 +60,8 @@ const appRoutes: Routes = [
     NetworkModule,
 
     NotifierModule,
-    I18nModule
+    I18nModule,
+    DisclaimerModule
   ],
   providers: [
     StoreService,
