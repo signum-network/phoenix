@@ -14,7 +14,7 @@ import { I18nService } from 'app/layout/components/i18n/i18n.service';
   styleUrls: ['./add-alias.component.scss']
 })
 export class AddAliasComponent implements OnInit {
-  @ViewChild('setAccountInfoForm') public setAccountInfoForm: NgForm;
+  @ViewChild('setAliasForm') public setAliasForm: NgForm;
   @ViewChild('alias') public alias: string;
   @ViewChild('description') public description: string;
   @ViewChild('fullHash') public fullHash: string;
@@ -57,7 +57,7 @@ export class AddAliasComponent implements OnInit {
         keys: this.account.keys,
       });
       this.notifierService.notify('success', this.i18nService.getTranslation('success_alias_register'));
-      this.setAccountInfoForm.resetForm();
+      this.setAliasForm.resetForm();
     } catch (e) { 
       this.notifierService.notify('error', this.i18nService.getTranslation('error_unknown'));
     }
