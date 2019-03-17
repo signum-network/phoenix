@@ -22,7 +22,7 @@
                 <!-- CONTENT -->
                 <message-start *ngIf="!selectedMessage"></message-start>
 
-                <message-view *ngIf="selectedMessage" [feeNQT]="rightSidenav.options.feeNQT"></message-view>
+                <message-view *ngIf="selectedMessage" [feeNQT]="rightSidenav && rightSidenav.options && rightSidenav.options.feeNQT"></message-view>
                 <!-- / CONTENT -->
 
                 <!-- RIGHT SIDENAV -->
