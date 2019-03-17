@@ -3,7 +3,9 @@
     <message-options-sidenav class="view"
                           *ngSwitchCase="'options'"
                           [@slideInRight]
-                          fusePerfectScrollbar>
+                          fusePerfectScrollbar
+                          [fees]="fees"
+                          [(feeNQT)]="feeNQT">
     </message-options-sidenav>
 
 </div>

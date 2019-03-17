@@ -1,10 +1,12 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, Input, Output, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { fuseAnimations } from '@fuse/animations';
 
 import { MessagesService } from '../../messages.service';
+import { SuggestedFees } from '@burstjs/core/out';
+import { MessageOptionsSidenavComponent } from './options/options.component';
 
 @Component({
     selector     : 'message-right-sidenav',
@@ -16,6 +18,9 @@ import { MessagesService } from '../../messages.service';
 export class MessageRightSidenavComponent implements OnInit, OnDestroy
 {
     view: string;
+    @Input('fees') fees: SuggestedFees;
+    @Input('feeNQT') feeNQT: string;
+    @ViewChild(MessageOptionsSidenavComponent) options;
 
     // Private
     private _unsubscribeAll: Subject<any>;

@@ -1,10 +1,14 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { fuseAnimations } from '@fuse/animations';
 
 import { MessagesService } from './messages.service';
+import { SuggestedFees } from '@burstjs/core/out';
+import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import { MessageRightSidenavComponent } from './sidenavs/right/right.component';
+import { convertNQTStringToNumber } from '@burstjs/util/out';
 
 @Component({
     selector     : 'messages',
@@ -16,6 +20,9 @@ import { MessagesService } from './messages.service';
 export class MessagesComponent implements OnInit, OnDestroy
 {
     selectedMessage: any;
+    fees: SuggestedFees;
+    feeNQT: number;
+    @ViewChild(MessageRightSidenavComponent) rightSidenav;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -26,11 +33,16 @@ export class MessagesComponent implements OnInit, OnDestroy
      * @param {MessagesService} _messageService
      */
     constructor(
-        private _messageService: MessagesService
+        private _messageService: MessagesService,
+        private route: ActivatedRoute
     )
     {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
+
+        this.fees = this.route.snapshot.data.fees as SuggestedFees;
+        this.feeNQT = convertNQTStringToNumber(this.fees.standard.toString());
+
     }
 
     // -----------------------------------------------------------------------------------------------------

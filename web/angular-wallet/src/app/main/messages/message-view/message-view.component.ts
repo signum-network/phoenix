@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewChildren, ViewEncapsulation, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -27,10 +27,11 @@ import { I18nService } from 'app/layout/components/i18n/i18n.service';
     encapsulation: ViewEncapsulation.None
 })
 export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
+    @Input('feeNQT') feeNQT: number;
+
     message: Messages;
     replyInput: any;
     pinInput: any;
-    fee = 0.01; // todo: allow user to configure
     selectedUser: Account;
     selectedMessageQRCode: string;
     isNewMessage = false;
@@ -204,7 +205,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         };
 
         try {
-            await this.messageService.sendTextMessage(message, this.message.contactId, this.replyForm.form.value.pin, this.fee);
+            await this.messageService.sendTextMessage(message, this.message.contactId, this.replyForm.form.value.pin, this.feeNQT);
         } catch (e) {
             return this.notifierService.notify('error', this.utilService.translateServerError(e.data));
         }
