@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BalanceDiagramComponent } from './balance-diagram.component';
 
-describe('BalanceDiagramComponent', () => {
+xdescribe('BalanceDiagramComponent', () => {
   let component: BalanceDiagramComponent;
   let fixture: ComponentFixture<BalanceDiagramComponent>;
 

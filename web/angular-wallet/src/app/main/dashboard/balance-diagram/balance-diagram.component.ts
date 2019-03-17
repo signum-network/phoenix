@@ -1,8 +1,9 @@
-import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../../setup/account/account.service';
 import {convertNQTStringToNumber} from '@burstjs/util';
 import {convertBurstTimeToDate} from '@burstjs/util/src';
-import {Transaction, Account, TransactionList} from '@burstjs/core';
+import {Transaction, Account} from '@burstjs/core';
+import * as shape from 'd3-shape';
 
 @Component({
   selector: 'app-balance-diagram',
@@ -12,26 +13,30 @@ import {Transaction, Account, TransactionList} from '@burstjs/core';
 export class BalanceDiagramComponent implements OnInit {
 
   private currentAccount: Account;
-  @ViewChild('chart') chartWrapper: ElementRef;
 
-  // diagram options
+  // TODO: organize better diagram options
   public data: any[];
-  public view: any[];
+  public curve = shape.curveBasis;
   public showYAxis = true;
   public yAxisLabel = 'BURST';
   public showYAxisLabel = false;
-  public width: string;
-  public height: '280px';
+  public colorScheme = {
+    name: 'coolthree',
+    selectable: true,
+    group: 'Linear',
+    domain: ['#448aff']
+  };
 
-  constructor(private accountService: AccountService) {}
-
-  private getTransactionValue(transaction: Transaction): number{
-    const isNegative = transaction.sender === this.currentAccount.account;
-    const amountBurst = convertNQTStringToNumber(transaction.amountNQT);
-    return isNegative ? - amountBurst : amountBurst;
+  constructor(private accountService: AccountService) {
   }
 
-  async ngOnInit(): Promise<void>{
+  private getTransactionValue(transaction: Transaction): number {
+    const isNegative = transaction.sender === this.currentAccount.account;
+    const amountBurst = convertNQTStringToNumber(transaction.amountNQT);
+    return isNegative ? -amountBurst : amountBurst;
+  }
+
+  async ngOnInit(): Promise<void> {
 
     this.currentAccount = await this.accountService.getCurrentAccount();
     const {account} = this.currentAccount;
@@ -39,16 +44,14 @@ export class BalanceDiagramComponent implements OnInit {
     this.initializeDiagram(transactions);
   }
 
-  private getWrapperWidth = (): number => this.chartWrapper.nativeElement.clientWidth;
-
-  private initializeDiagram(transactions: Transaction[]): void {
-
+  // @TODO unit tests - extract as helper
+  private deduceBalances(transactions: Transaction[]): any[] {
     const {balanceNQT} = this.currentAccount;
     const recentTransactions = transactions.slice(0, 20);
 
     let balance = convertNQTStringToNumber(balanceNQT);
 
-    const deducedBalances = recentTransactions.map((t: Transaction) => {
+    return recentTransactions.map((t: Transaction) => {
       const deduced = {
         name: t.transaction,
         value: balance,
@@ -57,43 +60,25 @@ export class BalanceDiagramComponent implements OnInit {
       balance = balance - this.getTransactionValue(t) + convertNQTStringToNumber(t.feeNQT);
       return deduced;
     });
+  }
+
+  private initializeDiagram(transactions: Transaction[]): void {
+
+    const balanceHistory = this.deduceBalances(transactions).reverse();
 
     this.data = [
       {
-        name: 'Transactions',
-        series: deducedBalances.reverse().map(b => ({
+        name: 'Balance',
+        series: balanceHistory.map(b => ({
           name: b.name,
           value: b.value
         }))
       },
     ];
-
-
-   // this.view = [this.getWrapperWidth(), 240];
-
-    // options
-    // gradient = false;
-    // showLegend = true;
-    // showXAxisLabel = true;
-    // xAxisLabel = 'Number';
-    // showYAxisLabel = true;
-    // timeline = true;
-    //
-    // colorScheme = {
-    //   domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-    // };
-
   }
 
   onSelect($event: UIEvent): void {
+    // TODO: redirect to transaction details page
     console.log('selected', $event);
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize($event: UIEvent): void {
-    //this.view[0] = this.getWrapperWidth();
-    this.width =  `${this.getWrapperWidth()}px`;
-
-    console.log(this.width);
   }
 }
