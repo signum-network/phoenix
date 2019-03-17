@@ -7,16 +7,29 @@ import {ApiService} from '../../api.service';
 
 interface SendMoneyRequest {
     transaction: {
-        amountNQT: string,
-        feeNQT: string,
-        attachment: Attachment,
-        deadline: number,
-        fullHash: string,
-        type: number,
+        amountNQT: string;
+        feeNQT: string;
+        attachment: Attachment;
+        deadline: number;
+        fullHash: string;
+        type: number;
     };
     pin: string;
     keys: Keys;
     recipientAddress: string;
+}
+
+interface SendMoneyMultiOutRequest {
+    transaction: {
+        feeNQT: string;
+        recipients: string;
+        deadline: number;
+        amountNQT?: string;
+        fullHash?: string;
+    };
+    pin: string;
+    sameAmount: boolean;
+    keys: Keys;
 }
 
 @Injectable({
@@ -53,5 +66,9 @@ export class TransactionService {
         // }
         const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
         return this.transactionApi.sendMoney(transaction, keys.publicKey, senderPrivateKey, recipientAddress);
+    }
+    public async sendMoneyMultiOut({ transaction, pin, keys, sameAmount }: SendMoneyMultiOutRequest) {
+        const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+        return this.transactionApi.sendMoneyMultiOut(transaction, keys.publicKey, senderPrivateKey, transaction.recipients, sameAmount);
     }
 }
