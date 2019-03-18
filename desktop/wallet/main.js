@@ -41,7 +41,7 @@ function createWindow () {
         submenu: [
             { label: 'About Phoenix', selector: 'orderFrontStandardAboutPanel:' },
             { type: 'separator' },
-            { label: 'Quit', accelerator: 'Command+Q', click: function() { app.quit(); }}
+            { label: 'Quit', accelerator: 'Command+Q', click: () => { app.quit(); }}
         ]}, {
         label: 'Edit',
         submenu: [
