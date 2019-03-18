@@ -19,3 +19,12 @@ $media-querie-tablet: 768px;
     position: relative;
     cursor: pointer;
 }
+
+.address-container {
+  text-align:center;
+}
+
+mat-form-field {
+  width: 100%;
+  display: block;
+}

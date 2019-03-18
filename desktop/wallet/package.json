@@ -1,6 +1,6 @@
 {
-  "name": "@bats/phoenix-desktop-wallet",
-  "productName": "BURST Phoenix Desktop Wallet",
+  "name": "phoenix",
+  "productName": "Phoenix BURST Wallet",
   "version": "1.0.0",
   "contributors": [
     "ohager"

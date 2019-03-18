@@ -4,6 +4,7 @@ $media-querie-desktop: 992px;
 $media-querie-screen:  1200px;
 
 .signup {
+  margin: 40px auto;
   &__header {
     background: darken(#f9f9f9, 3%);
     padding: 1rem;
