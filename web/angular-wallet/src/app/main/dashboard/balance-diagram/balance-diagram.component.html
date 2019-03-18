@@ -1,11 +1,18 @@
-<div id="balance-diagram-charts-wrapper" >
+<div id="balance-diagram-charts-wrapper">
   <ngx-charts-area-chart [results]="data"
                          [yAxis]="showYAxis"
                          [yAxisLabel]="yAxisLabel"
                          [showYAxisLabel]="showYAxisLabel"
-                          [scheme] = "colorScheme"
+                         [scheme]="colorScheme"
                          [curve]="curve"
                          (select)="onSelect($event)"
   >
+    <ng-template #tooltipTemplate let-model="model">
+      <app-balance-diagram-tooltip
+        [currentAccount]="currentAccount"
+        [history]="balanceHistory"
+        [transactionId]="model.name">
+      </app-balance-diagram-tooltip>
+    </ng-template>
   </ngx-charts-area-chart>
 </div>

@@ -22,6 +22,7 @@ import {DashboardService} from './dashboard.service';
 import {DashboardComponent} from './dashboard.component';
 import {MarketModule} from './market/market.module';
 import {BalanceDiagramComponent} from './balance-diagram/balance-diagram.component';
+import { TooltipComponent } from './balance-diagram/tooltip/tooltip.component';
 
 const routes: Routes = [
   {
@@ -38,7 +39,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     DashboardComponent,
-    BalanceDiagramComponent
+    BalanceDiagramComponent,
+    TooltipComponent
   ],
   imports: [
     RouterModule.forChild(routes),
