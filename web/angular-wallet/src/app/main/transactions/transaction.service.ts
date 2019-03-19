@@ -67,7 +67,7 @@ export class TransactionService {
         const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
         return this.transactionApi.sendMoney(transaction, keys.publicKey, senderPrivateKey, recipientAddress);
     }
-    public async sendMoneyMultiOut({ transaction, pin, keys, sameAmount }: SendMoneyMultiOutRequest) {
+    public async sendMoneyMultiOut({ transaction, pin, keys, sameAmount }: SendMoneyMultiOutRequest) : Promise<TransactionId> {
         const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
         return this.transactionApi.sendMoneyMultiOut(transaction, keys.publicKey, senderPrivateKey, transaction.recipients, sameAmount);
     }
