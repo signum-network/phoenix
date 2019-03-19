@@ -1,10 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Transaction, Account} from '@burstjs/core';
 import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
 import {AccountService} from '../../../setup/account/account.service';
 import * as shape from 'd3-shape';
-import {getBalanceHistoryFromTransactions} from "../../../util/balance/getBalanceHistoryFromTransactions";
-import {BalanceHistoryItem} from "../../../util/balance/typings";
+import {getBalanceHistoryFromTransactions} from '../../../util/balance/getBalanceHistoryFromTransactions';
+import {BalanceHistoryItem} from '../../../util/balance/typings';
 
 
 @Component({
@@ -31,10 +32,9 @@ export class BalanceDiagramComponent implements OnInit {
   };
   private balanceHistory: BalanceHistoryItem[];
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private router: Router) {
     this.transactionCount = 20;
   }
-
 
   async ngOnInit(): Promise<void> {
 
@@ -65,9 +65,9 @@ export class BalanceDiagramComponent implements OnInit {
 
   }
 
-  onSelect($event: UIEvent): void {
-    // TODO: redirect to transaction details page
-    console.log('selected', $event);
+  onSelect($event: any): void {
+    const transactionId = $event.name;
+    this.router.navigateByUrl(`/transactions/transaction/${transactionId}`);
   }
 
 
