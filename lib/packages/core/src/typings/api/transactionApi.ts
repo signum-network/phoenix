@@ -67,5 +67,5 @@ export interface TransactionApi {
         senderPrivateKey: string,
         recipients: string,
         sameAmount: boolean
-    ) => Promise<TransactionId | Error>;
+    ) => Promise<TransactionId>;
 }
