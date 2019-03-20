@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ApiSettings, Attachment, TransactionApi } from '@burstjs/core';
+import { ApiSettings, Attachment, TransactionApi, TransactionId } from '@burstjs/core';
 import { environment } from 'environments/environment.prod';
 import { Keys, decryptAES, hashSHA256 } from '@burstjs/crypto';
-import {ApiService} from '../../api.service';
+import { ApiService } from '../../api.service';
 
 interface SendMoneyRequest {
     transaction: {
