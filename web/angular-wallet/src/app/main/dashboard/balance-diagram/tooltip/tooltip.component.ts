@@ -2,8 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Transaction, Account} from '@burstjs/core';
 import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
 import {BalanceHistoryItem} from '../../../../util/balance/typings';
-import {UtilService} from "../../../../util.service";
-import {AccountService} from "../../../../setup/account/account.service";
+import {UtilService} from '../../../../util.service';
 
 @Component({
   selector: 'app-balance-diagram-tooltip',

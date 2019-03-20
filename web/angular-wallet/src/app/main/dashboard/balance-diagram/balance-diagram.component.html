@@ -1,15 +1,16 @@
 <div id="balance-diagram-charts-wrapper">
   <ngx-charts-area-chart [results]="data"
-                         [yAxis]="showYAxis"
-                         [yAxisLabel]="yAxisLabel"
-                         [showYAxisLabel]="showYAxisLabel"
-                         [scheme]="colorScheme"
-                         [curve]="curve"
+                         [yAxis]="options.showYAxis"
+                         [yAxisLabel]="options.yAxisLabel"
+                         [showYAxisLabel]="options.showYAxisLabel"
+                         [scheme]="options.colorScheme"
+                         [curve]="options.curve"
+                         [gradient]="options.gradient"
                          (select)="onSelect($event)"
   >
     <ng-template #tooltipTemplate let-model="model">
       <app-balance-diagram-tooltip
-        [currentAccount]="currentAccount"
+        [currentAccount]="account"
         [history]="balanceHistory"
         [transactionId]="model.name">
       </app-balance-diagram-tooltip>
