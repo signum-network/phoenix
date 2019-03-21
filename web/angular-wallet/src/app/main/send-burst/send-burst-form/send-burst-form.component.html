@@ -1,0 +1,66 @@
+<form (ngSubmit)="onSubmit($event);" #sendBurstForm="ngForm">
+  <mat-form-field appearance="outline">
+    <input matInput prefix="BURST-" burstInputValidator [patterns]="burstAddressPatternRef" mask="____-____-____-_____"
+      [dropSpecialCharacters]="false" [showMaskTyped]="true" [(ngModel)]="recipientAddress" name="recipientAddress"
+      placeholder="{{ 'recipient' | i18n }}">
+  </mat-form-field>
+
+  <mat-grid-list cols="2" rowHeight="85px" gutterSize="10px">
+    <mat-grid-tile>
+      <mat-form-field appearance="outline">
+        <input matInput [(ngModel)]="amountNQT" name="amountNQT" placeholder="{{ 'amount' | i18n }}">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile *ngIf="feeNQT">
+      <mat-form-field appearance="outline">
+        <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
+
+  <mat-form-field class="pin" appearance="outline">
+    <input matInput [(ngModel)]="pin" name="pin" type="password" placeholder="Your PIN">
+  </mat-form-field>
+
+  <mat-checkbox (click)="showMessage=!showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>
+
+  <div *ngIf="showMessage">
+    <mat-form-field appearance="outline">
+      <textarea matInput [(ngModel)]="message" name="message" placeholder="{{ 'message' | i18n }}"></textarea>
+    </mat-form-field>
+    <mat-checkbox [(ngModel)]="encrypt" name="encrypt">{{ "encrypt_message" | i18n }}</mat-checkbox>
+  </div>
+
+  <div *ngIf="advanced">
+    <mat-form-field appearance="outline">
+      <label>{{ 'deadline_hours' | i18n }}</label>
+      <input matInput [(ngModel)]="deadline" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input matInput [(ngModel)]="fullHash" name="fullHash"
+        placeholder="{{ 'referenced_transaction_full_hash' | i18n }}" disabled>
+    </mat-form-field>
+
+    <mat-checkbox [(ngModel)]="broadcast" name="broadcast" disabled>{{ "do_not_broadcast" | i18n }}</mat-checkbox>
+    <br />
+
+    <mat-checkbox [(ngModel)]="note" name="note" disabled>{{ "add_note_to_self_q" | i18n }}</mat-checkbox>
+
+    <div *ngIf="note">
+      <mat-form-field appearance="outline">
+        <textarea matInput [(ngModel)]="note_text" name="note_text" placeholder="{{ 'note' | i18n }}"></textarea>
+      </mat-form-field>
+    </div>
+
+  </div>
+</form>
+
+<strong>Total:</strong> {{ getTotal() }} BURST -
+<a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
+<br /><br />
+
+<button type="submit" class="mr-8" mat-raised-button mat-button color="primary"
+  (click)="onSubmit($event)">{{ "send_burst" | i18n }}</button>

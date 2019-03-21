@@ -3,6 +3,7 @@ import { BurstService } from '../../burstService';
 import { broadcastTransaction } from '../factories/transaction/broadcastTransaction';
 import { getTransaction } from '../factories/transaction/getTransaction';
 import { sendMoney } from '../factories/transaction/sendMoney';
+import { sendMoneyMultiOut } from '../factories/transaction/sendMoneyMultiOut';
 import { Transaction } from '../../typings/transaction';
 import { generateSignature } from '@burstjs/crypto';
 import { verifySignature } from '@burstjs/crypto';
@@ -70,7 +71,7 @@ describe('Transaction Api', () => {
             httpMock = HttpMockBuilder.create()
             // tslint:disable:max-line-length
             .onPostReply(200, mockBroadcastResponse,
-                'relPath?requestType=sendMoney&requestType=sendMoney&amountNQT=100000000&publicKey=recipientId&recipient=senderPrivateKey&deadline=1440&feeNQT=100000000')
+                'relPath?requestType=sendMoney&amountNQT=100000000&publicKey=senderPublicKey&recipient=recipientId&deadline=1440&feeNQT=100000000')
             .onPostReply(200, mockTransaction.transaction,
                 'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
             .build();
@@ -86,9 +87,120 @@ describe('Transaction Api', () => {
         it('should sendMoney', async () => {
             const status = await sendMoney(service)(
                 mockTransaction,
-                'recipientId',
                 'senderPublicKey',
-                'senderPrivateKey'
+                'senderPrivateKey',
+                'recipientId'
+            );
+            expect(status).toBe('transactionId');
+            expect(generateSignature).toBeCalledTimes(1);
+            expect(verifySignature).toBeCalledTimes(1);
+            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+        });
+
+    });
+    describe('sendMoneyMultiOut', () => {
+        let service;
+
+        let mockTransaction: Transaction = {
+            transaction: 'transactionId',
+            requestProcessingTime: 4,
+            feeNQT: '1',
+            amountNQT: '1',
+            fullHash: '808d5c32b12f4d4b963404c19523b6391ddf7a04a96ec4a495703aeead76c6ff',
+        };
+
+        const mockBroadcastResponse = {
+            unsignedTransactionBytes: 'unsignedHexMessage'
+        };
+
+        beforeEach(() => {
+
+            jest.resetAllMocks();
+
+            // @ts-ignore
+            generateSignature = jest.fn(() => 'signature');
+            // @ts-ignore
+            verifySignature = jest.fn(() => true);
+            // @ts-ignore
+            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
+
+
+        });
+
+        afterEach(() => {
+            // @ts-ignore
+            httpMock.reset();
+        });
+
+        it('should sendMoneyMulti', async () => {
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+            .onPostReply(200, mockBroadcastResponse,
+                'relPath?requestType=sendMoneyMulti&publicKey=senderPublicKey&recipients=thisIsAStringRepresentingAMultiOutPayload&deadline=1440&feeNQT=100000000')
+            .onPostReply(200, mockTransaction.transaction,
+                'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+            .build();
+
+            service = new BurstService('baseUrl', 'relPath', httpMock);
+            const status = await sendMoneyMultiOut(service)(
+                mockTransaction,
+                'senderPublicKey',
+                'senderPrivateKey',
+                'thisIsAStringRepresentingAMultiOutPayload',
+                false
+            );
+            expect(status).toBe('transactionId');
+            expect(generateSignature).toBeCalledTimes(1);
+            expect(verifySignature).toBeCalledTimes(1);
+            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+        });
+
+
+        it('should sendMoneyMultiSame', async () => {
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+            .onPostReply(200, mockBroadcastResponse,
+                'relPath?requestType=sendMoneyMultiSame&publicKey=senderPublicKey&recipients=thisIsAStringRepresentingAMultiOutSamePayload&deadline=1440&feeNQT=100000000&amountNQT=100000000')
+            .onPostReply(200, mockTransaction.transaction,
+                'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+            .build();
+
+            service = new BurstService('baseUrl', 'relPath', httpMock);
+            const status = await sendMoneyMultiOut(service)(
+                mockTransaction,
+                'senderPublicKey',
+                'senderPrivateKey',
+                'thisIsAStringRepresentingAMultiOutSamePayload',
+                true
+            );
+            expect(status).toBe('transactionId');
+            expect(generateSignature).toBeCalledTimes(1);
+            expect(verifySignature).toBeCalledTimes(1);
+            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+        });
+
+
+        it('should support deadlines', async () => {
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+            .onPostReply(200, mockBroadcastResponse,
+                'relPath?requestType=sendMoneyMultiSame&publicKey=senderPublicKey&recipients=thisIsAStringRepresentingAMultiOutSamePayload&deadline=720&feeNQT=100000000&amountNQT=100000000')
+            .onPostReply(200, mockTransaction.transaction,
+                'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+            .build();
+
+            let mockTransaction2: Transaction = {
+                deadline: 720, // 12 hrs instead of default 24
+                ...mockTransaction
+            }; 
+
+            service = new BurstService('baseUrl', 'relPath', httpMock);
+            const status = await sendMoneyMultiOut(service)(
+                mockTransaction2,
+                'senderPublicKey',
+                'senderPrivateKey',
+                'thisIsAStringRepresentingAMultiOutSamePayload',
+                true
             );
             expect(status).toBe('transactionId');
             expect(generateSignature).toBeCalledTimes(1);

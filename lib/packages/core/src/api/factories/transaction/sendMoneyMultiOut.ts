@@ -8,36 +8,35 @@ import { BurstService } from '../../../burstService';
 import { TransactionId } from '../../../typings/transactionId';
 import { TransactionResponse } from '../../../typings/transactionResponse';
 import { Transaction } from '../../../typings/transaction';
-import { generateSignature, decryptAES, Keys } from '@burstjs/crypto';
+import { generateSignature } from '@burstjs/crypto';
 import { verifySignature } from '@burstjs/crypto';
 import { generateSignedTransactionBytes } from '@burstjs/crypto';
-import { convertNumberToNQTString, convertNQTStringToNumber } from '@burstjs/util';
-import { constructAttachment } from '../../../constructAttachment';
-import {broadcastTransaction} from './broadcastTransaction';
+import { convertNumberToNQTString } from '@burstjs/util';
+import { broadcastTransaction } from './broadcastTransaction';
 
-export const sendMoney = (service: BurstService):
+export const sendMoneyMultiOut = (service: BurstService):
     (transaction: Transaction,
      senderPublicKey: string,
      senderPrivateKey: string,
-     recipientAddress: string) => Promise<TransactionId | Error> =>
+     recipients: string,
+     sameAmount: boolean) => Promise<TransactionId | Error> =>
     async (
         transaction: Transaction,
         senderPublicKey: string,
         senderPrivateKey: string,
-        recipientAddress: string,
+        recipients: string,
+        sameAmount: boolean
     ): Promise<TransactionId | Error> => {
 
         let parameters = {
-            amountNQT: convertNumberToNQTString(parseFloat(transaction.amountNQT)),
             publicKey: senderPublicKey,
-            recipient: recipientAddress,
-            deadline: 1440,
+            recipients: recipients,
+            deadline: transaction.deadline || '1440',
             feeNQT: convertNumberToNQTString(parseFloat(transaction.feeNQT)),
+            amountNQT: sameAmount ? convertNumberToNQTString(parseFloat(transaction.amountNQT)) : undefined
         };
-        if (transaction.attachment) {
-            parameters = constructAttachment(transaction, parameters);
-        }
-        const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('sendMoney', parameters);
+
+        const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>(sameAmount ? "sendMoneyMultiSame" : "sendMoneyMulti", parameters);
         const signature = generateSignature(unsignedHexMessage, senderPrivateKey);
         if (!verifySignature(signature, unsignedHexMessage, senderPublicKey)) {
             throw new Error('The signed message could not be verified! Transaction not broadcasted!');

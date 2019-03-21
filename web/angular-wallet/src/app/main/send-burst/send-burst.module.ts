@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AccountResolver } from 'app/setup/account/account.resolver';
 import { SendBurstComponent } from './send-burst.component';
-import { MatIconModule, MatInputModule, MatButtonModule, MatGridListModule, MatCheckboxModule, MatAutocompleteModule } from '@angular/material';
+import { MatIconModule, MatInputModule, MatButtonModule, MatGridListModule, MatCheckboxModule, MatAutocompleteModule, MatTabsModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +17,8 @@ import { NetworkModule } from 'app/network/network.module';
 import { BurstInputValidatorDirective } from './send-burst-validator.directive';
 import { LayoutModule } from 'app/layout/layout.module';
 import { Ng5SliderModule } from 'ng5-slider';
+import { SendBurstFormComponent } from './send-burst-form/send-burst-form.component';
+import { SendMultiOutFormComponent } from './send-multi-out-form/send-multi-out-form.component';
 
 const routes = [
   {
@@ -32,7 +34,7 @@ const routes = [
 @NgModule({
   declarations: [ 
     SendBurstComponent, 
-    BurstInputValidatorDirective 
+    BurstInputValidatorDirective, SendBurstFormComponent, SendMultiOutFormComponent 
   ],
   imports: [
     CommonModule,
@@ -45,6 +47,7 @@ const routes = [
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    MatTabsModule,
     MatGridListModule,
     MatCheckboxModule,
     NetworkModule,

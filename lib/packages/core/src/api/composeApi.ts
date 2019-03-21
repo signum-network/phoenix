@@ -28,6 +28,7 @@ import {suggestFee} from './factories/network/suggestFee';
 import {getPeer} from './factories/network/getPeer';
 import {getPeers} from './factories/network/getPeers';
 import {sendMoney} from './factories/transaction/sendMoney';
+import {sendMoneyMultiOut} from './factories/transaction/sendMoneyMultiOut';
 import {getAliases} from './factories/account/getAliases';
 import {setAlias} from './factories/account/setAlias';
 import {getTime} from './factories/network/getTime';
@@ -77,6 +78,7 @@ export function composeApi(settings: ApiSettings): Api {
             broadcastTransaction,
             getTransaction,
             sendMoney,
+            sendMoneyMultiOut,
         })
         .withMessageApi({
             sendTextMessage
