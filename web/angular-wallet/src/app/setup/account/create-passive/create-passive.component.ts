@@ -12,8 +12,8 @@ import { burstAddressPattern } from '@burstjs/util';
 })
 export class CreatePassiveAccountComponent implements OnInit {
 
-  @Input('address') address: string;
-
+  address = '';
+  
   burstAddressPattern = burstAddressPattern;
 
   constructor(private createService: CreateService,
