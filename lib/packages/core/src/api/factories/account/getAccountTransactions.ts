@@ -6,7 +6,7 @@
  */
 import {BurstService} from '../../../burstService';
 import {TransactionList} from '../../../typings/transactionList';
-
+// TODO: maybe split in several getAccountTransactions like getBlocks
 export const getAccountTransactions = (service: BurstService):
     (
         accountId: string,
@@ -24,7 +24,7 @@ export const getAccountTransactions = (service: BurstService):
         numberOfConfirmations?: number,
         type?: number,
         subtype?: number,
-        includeIndirect: boolean = true
+        includeIndirect?: boolean
     ): Promise<TransactionList> =>
         service.query('getAccountTransactions', {
             account: accountId,

@@ -33,7 +33,14 @@ describe(`[E2E] Account Api`, () => {
         });
 
         it('should getAccountTransactions with MultiOut', async () => {
-            const transactionList = await getAccountTransactions(service)(accountId);
+            const transactionList = await getAccountTransactions(service)(accountId,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                true
+                );
             expect(transactionList).not.toBeUndefined();
             const {transactions} = transactionList;
             expect(transactions.length).toBeGreaterThan(1);
