@@ -11,6 +11,8 @@
 * The attachment class is used to appended to transaction where appropriate.
 * It is a super class for Message and EncryptedMessage.
 */
+
+// TODO: review attachment, as this applies only for sending messages
 export class Attachment {
     public type?: string;
 
