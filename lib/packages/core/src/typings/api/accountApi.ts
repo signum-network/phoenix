@@ -20,6 +20,7 @@ export interface AccountApi {
      * @param {number?} numberOfConfirmations The minimum required number of confirmations per transaction
      * @param {number?} type The type of transactions to fetch
      * @param {number?} subtype The subtype of transactions to fetch
+     * @param {boolean?} includeIndirect Includes indirect transaction, i.e. multi out payments. Default is `true`
      * @return {Promise<TransactionList>} List of transactions
      */
     getAccountTransactions: (
@@ -28,7 +29,8 @@ export interface AccountApi {
         lastIndex?: number,
         numberOfConfirmations?: number,
         type?: number,
-        subtype?: number
+        subtype?: number,
+        includeIndirect?: boolean
     ) => Promise<TransactionList>;
 
 

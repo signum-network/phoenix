@@ -30,3 +30,4 @@ export interface Transaction {
     readonly recipient?: string;
     readonly recipientRS?: string;
 }
+

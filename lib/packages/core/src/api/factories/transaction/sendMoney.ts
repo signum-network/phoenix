@@ -12,7 +12,7 @@ import { generateSignature, decryptAES, Keys } from '@burstjs/crypto';
 import { verifySignature } from '@burstjs/crypto';
 import { generateSignedTransactionBytes } from '@burstjs/crypto';
 import { convertNumberToNQTString, convertNQTStringToNumber } from '@burstjs/util';
-import { constructAttachment } from '../../../constructAttachment';
+import { constructAttachment } from '../../../attachment/constructAttachment';
 import {broadcastTransaction} from './broadcastTransaction';
 
 export const sendMoney = (service: BurstService):

@@ -27,6 +27,7 @@ export class BurstService {
      * @param {string} relativePath The relative path will be prepended before each url created with toBRSEndpoint()
      * @param {Http?} httpClient If passed an client instance, it will be used instead of default HttpImpl. Good for testing.
      */
+    // TODO: introduce a Service Context class, substituting the parameter list by a single object
     constructor(baseUrl: string, relativePath: string = '', httpClient?: Http) {
         this._http = httpClient ? httpClient : new HttpImpl(baseUrl);
         this._relPath = relativePath.endsWith('/') ? relativePath.substr(0, relativePath.length - 1) : relativePath;

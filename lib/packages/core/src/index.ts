@@ -18,7 +18,10 @@ export * from './typings/transactionId';
 export * from './typings/transactionList';
 export * from './typings/transactionResponse';
 export * from './typings/unconfirmedTransactionList';
+export * from './typings/multioutRecipientAmount';
 export * from './typings/burstTime';
 export * from './api';
+export * from './attachment';
+export * from './constants';
 
 

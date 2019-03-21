@@ -5,6 +5,8 @@ import {BurstService} from '../../../burstService';
 import {getAccountTransactions} from '../../factories/account/getAccountTransactions';
 import {getUnconfirmedAccountTransactions} from '../../factories/account/getUnconfirmedAccountTransactions';
 import {getAccountBalance} from '../../factories/account/getAccountBalance';
+import {TransactionType} from '../../../constants/transactionType';
+import {TransactionPaymentSubtype} from '../../../constants';
 
 const environment = loadEnvironment();
 
@@ -28,6 +30,20 @@ describe(`[E2E] Account Api`, () => {
             expect(testTransaction).toBeDefined();
             expect(testTransaction.sender).toBe(accountId);
 
+        });
+
+        it('should getAccountTransactions with MultiOut', async () => {
+            const transactionList = await getAccountTransactions(service)(accountId);
+            expect(transactionList).not.toBeUndefined();
+            const {transactions} = transactionList;
+            expect(transactions.length).toBeGreaterThan(1);
+
+            const testTransaction = transactions.filter(
+                ({type, subtype}) => type === TransactionType.Payment
+                    && (subtype === TransactionPaymentSubtype.MultiOut
+                        || subtype === TransactionPaymentSubtype.MultiOutSameAmount)
+            );
+            expect(testTransaction).toBeDefined();
         });
 
         it('should getAccountTransactions paged', async () => {

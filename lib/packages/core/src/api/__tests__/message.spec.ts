@@ -3,7 +3,7 @@ import {BurstService} from '../../burstService';
 import {generateSignature} from '@burstjs/crypto';
 import {verifySignature} from '@burstjs/crypto';
 import {generateSignedTransactionBytes} from '@burstjs/crypto';
-import {constructAttachment} from '../../constructAttachment';
+import {constructAttachment} from '../../attachment/constructAttachment';
 import {sendTextMessage} from '../factories/message/sendTextMessage';
 import {broadcastTransaction} from '../factories/transaction/broadcastTransaction';
 

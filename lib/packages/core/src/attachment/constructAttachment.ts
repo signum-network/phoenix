@@ -1,7 +1,7 @@
 /** @module core */
 
-import { EncryptedMessage, Message } from './typings/attachment';
-import { Transaction } from './typings/transaction';
+import { EncryptedMessage, Message } from '../typings/attachment';
+import { Transaction } from '../typings/transaction';
 
 /**
  * @ignore
