@@ -1,52 +1,48 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Transaction, Account} from '@burstjs/core';
 import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
 import {AccountService} from '../../../setup/account/account.service';
 import * as shape from 'd3-shape';
-import {getBalanceHistoryFromTransactions} from "../../../util/balance/getBalanceHistoryFromTransactions";
-import {BalanceHistoryItem} from "../../../util/balance/typings";
+import {getBalanceHistoryFromTransactions} from '../../../util/balance/getBalanceHistoryFromTransactions';
+import {BalanceHistoryItem} from '../../../util/balance/typings';
 
+class ChartOptions {
+  public curve = shape.curveCatmullRom.alpha('1.0');
+  public gradient = true;
+  public showYAxis = true;
+  public yAxisLabel = 'BURST';
+  public showYAxisLabel = false;
+  public colorScheme = {
+    domain: ['#448aff', '#A6C6FF']
+  };
+}
 
 @Component({
   selector: 'app-balance-diagram',
   templateUrl: './balance-diagram.component.html',
   styleUrls: ['./balance-diagram.component.scss']
 })
-export class BalanceDiagramComponent implements OnInit {
+export class BalanceDiagramComponent implements OnChanges {
 
-  @Input() public transactionCount?: number;
-  public currentAccount: Account;
-
-  // TODO: organize better diagram options
+  @Input() public account: Account;
+  @Input() public transactionCountLimit?: number;
+  public options = new ChartOptions();
   public data: any[];
-  public curve = shape.curveBasis;
-  public showYAxis = true;
-  public yAxisLabel = 'BURST';
-  public showYAxisLabel = false;
-  public colorScheme = {
-    name: 'coolthree',
-    selectable: true,
-    group: 'Linear',
-    domain: ['#448aff']
-  };
+
   private balanceHistory: BalanceHistoryItem[];
 
-  constructor(private accountService: AccountService) {
-    this.transactionCount = 20;
+  constructor(private router: Router) {
+    this.transactionCountLimit = 20;
   }
 
-
-  async ngOnInit(): Promise<void> {
-
-    this.currentAccount = await this.accountService.getCurrentAccount();
-    const {account} = this.currentAccount;
-    const {transactions} = await this.accountService.getAccountTransactions(account);
-    this.initializeDiagram(transactions.slice(0, this.transactionCount));
+  async ngOnChanges(): Promise<void> {
+    this.updateDiagram(this.account.transactions.slice(0, this.transactionCountLimit));
   }
 
-  private initializeDiagram(transactions: Transaction[]): void {
+  private updateDiagram(transactions: Transaction[]): void {
 
-    const {account, balanceNQT} = this.currentAccount;
+    const {account, balanceNQT} = this.account;
 
     this.balanceHistory = getBalanceHistoryFromTransactions(
       account,
@@ -62,12 +58,11 @@ export class BalanceDiagramComponent implements OnInit {
         }))
       },
     ];
-
   }
 
-  onSelect($event: UIEvent): void {
-    // TODO: redirect to transaction details page
-    console.log('selected', $event);
+  onSelect($event: any): void {
+    const transactionId = $event.name;
+    this.router.navigateByUrl(`/transactions/transaction/${transactionId}`);
   }
 
 

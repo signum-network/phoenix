@@ -61,7 +61,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(): Promise<void> {
+
     this.fetchTransactions();
+    this.accountService.currentAccount
+      .pipe(
+        takeWhile(this.isActive)
+      )
+      .subscribe(this.fetchTransactions);
 
     this.marketService.ticker$
       .pipe(
