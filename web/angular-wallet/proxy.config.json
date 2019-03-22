@@ -1,10 +1,7 @@
 {
   "/burst": {
-    "target": {
-      "host": "75.100.126.226",
-      "protocol": "http:",
-      "port": 6876
-    },
+    "target": "https://testnet.burst.fun/",
+    "changeOrigin": true,
     "secure": false,
     "logLevel": "info"
   },
