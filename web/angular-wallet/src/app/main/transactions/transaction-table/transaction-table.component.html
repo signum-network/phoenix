@@ -48,10 +48,17 @@
       <mat-icon>local_atm</mat-icon>&nbsp;{{ "amount" | i18n }}
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
+      <ng-container  *ngIf="!isOwnAccount(transaction.senderRS)">
       {{
         convertNQTStringToNumber(transaction.amountNQT) | number: "1.0-8"
-      }}</mat-cell
-    >
+      }}
+      </ng-container>
+      <ng-container  *ngIf="isOwnAccount(transaction.senderRS)">
+      {{
+        -convertNQTStringToNumber(transaction.amountNQT) | number: "1.0-8"
+      }}
+      </ng-container>
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="fee">

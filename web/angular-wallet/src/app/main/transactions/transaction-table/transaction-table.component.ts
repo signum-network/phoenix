@@ -1,10 +1,9 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { MatTableDataSource } from "@angular/material";
-import {Transaction} from '@burstjs/core';
-import { convertBurstTimeToDate, convertNQTStringToNumber } from "@burstjs/util";
-import { UtilService } from "app/util.service";
-import { ActivatedRoute } from "@angular/router";
-import {Account} from '@burstjs/core'
+import {Component, Input, OnInit} from '@angular/core';
+import {MatTableDataSource} from '@angular/material';
+import {ActivatedRoute} from '@angular/router';
+import {Transaction, Account} from '@burstjs/core';
+import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
+import {UtilService} from 'app/util.service';
 
 @Component({
   selector: 'app-transaction-table',
@@ -20,7 +19,8 @@ export class TransactionTableComponent implements OnInit {
   @Input() public displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
 
-  constructor(private utilService: UtilService, private route: ActivatedRoute) { }
+  constructor(private utilService: UtilService, private route: ActivatedRoute) {
+  }
 
   public ngOnInit(): void {
     this.account = this.route.snapshot.data.account;
@@ -35,7 +35,7 @@ export class TransactionTableComponent implements OnInit {
   }
 
   public isOwnAccount(address: string): boolean {
-    return address != undefined && address == this.account.accountRS;
-}
+    return address && address === this.account.accountRS;
+  }
 
 }
