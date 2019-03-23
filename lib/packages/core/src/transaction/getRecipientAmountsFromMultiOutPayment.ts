@@ -1,28 +1,25 @@
 /** @module core */
 
 import {Transaction, MultioutRecipientAmount} from '..';
-import {TransactionType} from '../constants/transactionType';
-import {TransactionPaymentSubtype} from '../constants';
-import {assertAttachmentVersion} from './assertAttachmentVersion';
+import {isMultiOutSameTransaction} from './isMultiOutSameTransaction';
+import {isMultiOutTransaction} from './isMultiOutTransaction';
 
 /**
  * Tries to extract recipients and its amounts for multi out payments (different and same amount)
  * @param transaction The transaction
- * @return A list of recipients and payed amount
+ * @return A list of recipients and their payed amount (in NQT)
  * @throws An exception in case of wrong transaction types
  */
-export function getRecipientsFromMultiOutPayment(transaction: Transaction): Array<MultioutRecipientAmount> {
+export function getRecipientAmountsFromMultiOutPayment(transaction: Transaction): Array<MultioutRecipientAmount> {
 
-    if (transaction.type === TransactionType.Payment
-        && transaction.subtype === TransactionPaymentSubtype.MultiOutSameAmount) {
+    if (isMultiOutSameTransaction(transaction)) {
         return transaction.attachment.recipients.map(r => ({
             recipient: r,
             amountNQT: transaction.amountNQT,
         }));
     }
 
-    if (transaction.type === TransactionType.Payment
-        && transaction.subtype === TransactionPaymentSubtype.MultiOut) {
+    if (isMultiOutTransaction(transaction)) {
         return transaction.attachment.recipients.map(r => ({
             recipient: r[0],
             amountNQT: r[1],

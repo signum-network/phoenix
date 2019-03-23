@@ -22,6 +22,7 @@ export * from './typings/multioutRecipientAmount';
 export * from './typings/burstTime';
 export * from './api';
 export * from './attachment';
+export * from './transaction';
 export * from './constants';
 
 

@@ -1,8 +1,8 @@
 import {constructAttachment} from './constructAttachment';
-import {getRecipientsFromMultiOutPayment} from './getRecipientsFromMultiOutPayment';
+import {getRecipientAmountsFromMultiOutPayment} from '../transaction/getRecipientAmountsFromMultiOutPayment';
 
 export {
   constructAttachment,
-  getRecipientsFromMultiOutPayment
+  getRecipientAmountsFromMultiOutPayment
 };
 
