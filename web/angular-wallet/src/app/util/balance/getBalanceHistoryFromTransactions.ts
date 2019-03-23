@@ -7,13 +7,15 @@ import {BalanceHistoryItem} from './typings';
 
 const isOwnTransaction = (accountId: string, transaction: Transaction): boolean => transaction.sender === accountId;
 
-function getRelativeTransactionCosts(accountId: string, transaction: Transaction): number {
-  const amountBurst = getRecipientsAmount(accountId, transaction);
+function getRelativeTransactionAmount(accountId: string, transaction: Transaction): number {
+
   if (isOwnTransaction(accountId, transaction)) {
+    const amountBurst = convertNQTStringToNumber(transaction.amountNQT);
     const feeBurst = convertNQTStringToNumber(transaction.feeNQT);
     return -(amountBurst + feeBurst);
   }
-  return amountBurst;
+
+  return getRecipientsAmount(accountId, transaction);
 }
 
 
@@ -32,12 +34,16 @@ export function getBalanceHistoryFromTransactions(
   let balance = currentBalance;
 
   return transactions.map((t: Transaction) => {
+    const relativeAmount = getRelativeTransactionAmount(accountId, t);
+
+    console.log(t.type, t.subtype, relativeAmount)
+
     const deducedBalances = {
       transactionId: t.transaction,
       balance,
       transaction: t
     };
-    balance = balance - getRelativeTransactionCosts(accountId, t);
+    balance = balance - relativeAmount;
     return deducedBalances;
   });
 }

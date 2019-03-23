@@ -53,8 +53,8 @@ export class TransactionTableComponent implements OnInit {
       return -this.convertNQTStringToNumber(transaction.amountNQT);
     }
 
-    if (this.isMultiOutPayment(transaction)) {
-      return getRecipientsAmount(this.account.account, transaction)
-    }
+    return this.isMultiOutPayment(transaction)
+      ? getRecipientsAmount(this.account.account, transaction)
+      : this.convertNQTStringToNumber(transaction.amountNQT);
   }
 }

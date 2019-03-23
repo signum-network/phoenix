@@ -3,6 +3,7 @@
 import {Transaction, MultioutRecipientAmount} from '..';
 import {isMultiOutSameTransaction} from './isMultiOutSameTransaction';
 import {isMultiOutTransaction} from './isMultiOutTransaction';
+import {convertNQTStringToNumber, convertNumberToNQTString} from '@burstjs/util';
 
 /**
  * Tries to extract recipients and its amounts for multi out payments (different and same amount)
@@ -13,9 +14,14 @@ import {isMultiOutTransaction} from './isMultiOutTransaction';
 export function getRecipientAmountsFromMultiOutPayment(transaction: Transaction): Array<MultioutRecipientAmount> {
 
     if (isMultiOutSameTransaction(transaction)) {
-        return transaction.attachment.recipients.map(r => ({
-            recipient: r,
-            amountNQT: transaction.amountNQT,
+
+        const recipients = transaction.attachment.recipients;
+
+        const amount = recipients.length ? convertNQTStringToNumber(transaction.amountNQT) / recipients.length : 0;
+        const amountNQT = convertNumberToNQTString(amount);
+        return transaction.attachment.recipients.map(recipient => ({
+            recipient,
+            amountNQT
         }));
     }
 

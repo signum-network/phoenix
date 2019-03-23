@@ -45,7 +45,7 @@ describe('getRecipientsAmount', () => {
 
         const transaction = {
             transaction: '1',
-            amountNQT: nqt(100),
+            amountNQT: nqt(150),
             type: TransactionType.Payment,
             subtype: TransactionPaymentSubtype.MultiOutSameAmount,
             attachment: {
@@ -55,7 +55,7 @@ describe('getRecipientsAmount', () => {
         };
 
         const amount = getRecipientsAmount(recipientId, transaction);
-        expect(amount).toBe(200);
+        expect(amount).toBe((2 / 3) * 150);
 
     });
 
