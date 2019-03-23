@@ -529,6 +529,8 @@
   "min_nr_of_options": "Minimální počet možností",
   "minimum_nr_choices": "Nejmenší počet voleb",
   "more_info": "Více informací",
+  "multi_out_payment": "Multi Out Platba",
+  "multi_out_same_payment": "Multi Out Stejná částka Platba",
   "multiple_assets_differences": "Nekolik různých aktiv bylo prodáno anebo koupeno.",
   "my_assets": "Má aktiva",
   "my_completed_orders": "Mé dokončené objednávky",

@@ -529,6 +529,8 @@
   "min_nr_of_options": "Minimum Nr of Options",
   "minimum_nr_choices": "Minimum Nr Of Choices",
   "more_info": "More Info",
+  "multi_out_payment": "Çoklu Ödeme",
+  "multi_out_same_payment": "Çoklu Ödeme Aynı Miktarda Ödeme",
   "multiple_assets_differences": "Multiple different assets have been sold and/or bought.",
   "my_assets": "My Assets",
   "my_completed_orders": "My Completed Orders",

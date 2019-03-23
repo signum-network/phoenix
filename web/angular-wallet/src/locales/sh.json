@@ -529,6 +529,8 @@
   "min_nr_of_options": "Minimalni broj opcija",
   "minimum_nr_choices": "Minimalan broj pokušaja",
   "more_info": "Opširnije",
+  "multi_out_payment": "Multi Out Plaćanje",
+  "multi_out_same_payment": "Multi Out Same isplata iznosa",
   "multiple_assets_differences": "Više različitih asseta je prodano i/ili kupljeno.",
   "my_assets": "Moji asseti",
   "my_completed_orders": "Moje izvršene narudžbe",

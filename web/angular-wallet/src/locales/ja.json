@@ -529,6 +529,8 @@
   "min_nr_of_options": "オプションの最小数",
   "minimum_nr_choices": "選択肢の最小数",
   "more_info": "情報をもっと見る",
+  "multi_out_payment": "マルチアウト支払い",
+  "multi_out_same_payment": "同額の支払い",
   "multiple_assets_differences": "複数の異なる資産を売却または購入、もしくはその両方をしました。",
   "my_assets": "自己資産",
   "my_completed_orders": "完了した自分の注文",

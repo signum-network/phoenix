@@ -538,6 +538,8 @@
   "min_nr_of_options": "Minimalna ilość opcji",
   "minimum_nr_choices": "Minimalna ilość do wyboru",
   "more_info": "Więcej informacji",
+  "multi_out_payment": "Płatność wielostanowiskowa",
+  "multi_out_same_payment": "Multi Out Ta sama kwota płatności",
   "multiple_assets_differences": "Różniące się aktywa zostały sprzedane i/lub kupione.",
   "my_assets": "Moje aktywa",
   "my_completed_orders": "Moje wykonane zlecenia",

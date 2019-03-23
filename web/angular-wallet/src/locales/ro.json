@@ -529,6 +529,8 @@
   "min_nr_of_options": "Nr minim de opţiuni",
   "minimum_nr_choices": "Nr Minim Alegeri",
   "more_info": "Mai multe informaţii",
+  "multi_out_payment": "Plata multiplă",
+  "multi_out_same_payment": "Plățile multiple pentru aceeași sumă",
   "multiple_assets_differences": "Mai multe active diferite au fost vândute și/sau cumpărate.",
   "my_assets": "Activele Mele",
   "my_completed_orders": "Tranzacțiile mele Efectuate",
