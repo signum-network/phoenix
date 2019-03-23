@@ -32,5 +32,9 @@ export class TransactionType {
      * @see TransactionLeasingSubtype
      */
     public static readonly Leasing = 4;
+
+    public static readonly RewardRecipient = 20;
+    public static readonly Escrow = 21;
+    public static readonly AT = 22;
 }
 

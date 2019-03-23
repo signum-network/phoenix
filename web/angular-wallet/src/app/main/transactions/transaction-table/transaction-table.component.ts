@@ -31,7 +31,7 @@ export class TransactionTableComponent implements OnInit {
   }
 
   public getTransactionNameFromType(transaction: Transaction): string {
-    return this.utilService.getTransactionNameFromType(transaction, this.account);
+    return this.utilService.translateTransactionType(transaction, this.account);
   }
 
   public isOwnAccount(address: string): boolean {

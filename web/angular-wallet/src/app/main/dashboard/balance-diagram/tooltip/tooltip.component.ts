@@ -51,7 +51,7 @@ export class TooltipComponent implements OnInit {
   }
   private getFee = () => convertNQTStringToNumber(this.transaction.feeNQT);
   private getHasReceived = () => this.transaction.recipient === this.currentAccount.account;
-  private getTransactionType = () => this.utilService.getTransactionNameFromType(this.transaction, this.currentAccount);
+  private getTransactionType = () => this.utilService.translateTransactionType(this.transaction, this.currentAccount);
   private getSenderAddress = () => this.transaction.senderRS;
   private getRecipientAddress = () => this.transaction.recipientRS;
 }
