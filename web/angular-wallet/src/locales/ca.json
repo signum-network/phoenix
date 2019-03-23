@@ -529,6 +529,8 @@
   "min_nr_of_options": "Nr mínim d'opcions",
   "minimum_nr_choices": "Mínim Nº d'Opcions",
   "more_info": "Més informació",
+  "multi_out_payment": "Pagament de sortida múltiple",
+  "multi_out_same_payment": "Pagament de la mateixa quantitat de distribució múltiple",
   "multiple_assets_differences": "Diversos actius han estat venuts i/o comprats.",
   "my_assets": "Els Meus actius",
   "my_completed_orders": "Les Meves Ordres Completades",

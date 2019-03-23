@@ -1,10 +1,15 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { MatTableDataSource } from "@angular/material";
-import {Transaction} from '@burstjs/core';
-import { convertBurstTimeToDate, convertNQTStringToNumber } from "@burstjs/util";
-import { UtilService } from "app/util.service";
-import { ActivatedRoute } from "@angular/router";
-import {Account} from '@burstjs/core'
+import {Component, Input, OnInit} from '@angular/core';
+import {MatTableDataSource} from '@angular/material';
+import {ActivatedRoute} from '@angular/router';
+import {
+  Transaction,
+  Account,
+  TransactionPaymentSubtype,
+  getRecipientsFromMultiOutPayment,
+  TransactionType
+} from '@burstjs/core';
+import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
+import {UtilService} from 'app/util.service';
 
 @Component({
   selector: 'app-transaction-table',
@@ -13,6 +18,9 @@ import {Account} from '@burstjs/core'
 })
 export class TransactionTableComponent implements OnInit {
 
+  constructor(private utilService: UtilService, private route: ActivatedRoute) {
+  }
+
   public convertNQTStringToNumber = convertNQTStringToNumber;
   private account: Account;
 
@@ -20,7 +28,12 @@ export class TransactionTableComponent implements OnInit {
   @Input() public displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
 
-  constructor(private utilService: UtilService, private route: ActivatedRoute) { }
+  // Todo: this could be an utility function in burstjs
+  public isMultiOutPayment(transaction: Transaction): boolean {
+    return transaction.type === TransactionType.Payment
+      && (transaction.subtype === TransactionPaymentSubtype.MultiOutSameAmount
+        || transaction.subtype === TransactionPaymentSubtype.MultiOut);
+  }
 
   public ngOnInit(): void {
     this.account = this.route.snapshot.data.account;
@@ -31,11 +44,24 @@ export class TransactionTableComponent implements OnInit {
   }
 
   public getTransactionNameFromType(transaction: Transaction): string {
-    return this.utilService.getTransactionNameFromType(transaction, this.account);
+    return this.utilService.translateTransactionType(transaction, this.account);
   }
 
   public isOwnAccount(address: string): boolean {
-    return address != undefined && address == this.account.accountRS;
-}
+    return address && address === this.account.accountRS;
+  }
 
+  public getAmount(transaction: Transaction): number {
+
+    if (this.isOwnAccount(transaction.senderRS)) {
+      return -this.convertNQTStringToNumber(transaction.amountNQT);
+    }
+
+    let amountNQT = transaction.amountNQT;
+    if (this.isMultiOutPayment(transaction)) {
+      const recipientAmounts = getRecipientsFromMultiOutPayment(transaction);
+      amountNQT = recipientAmounts.filter(ra => ra.recipient === this.account.account)[0].amountNQT;
+    }
+    return this.convertNQTStringToNumber(amountNQT);
+  }
 }

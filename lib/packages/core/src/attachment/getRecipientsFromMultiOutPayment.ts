@@ -13,11 +13,9 @@ import {assertAttachmentVersion} from './assertAttachmentVersion';
  */
 export function getRecipientsFromMultiOutPayment(transaction: Transaction): Array<MultioutRecipientAmount> {
 
-    assertAttachmentVersion(transaction, 'MultiOutCreation');
-
     if (transaction.type === TransactionType.Payment
         && transaction.subtype === TransactionPaymentSubtype.MultiOutSameAmount) {
-        return transaction.attachment.recipients.map( r => ({
+        return transaction.attachment.recipients.map(r => ({
             recipient: r,
             amountNQT: transaction.amountNQT,
         }));
@@ -25,10 +23,10 @@ export function getRecipientsFromMultiOutPayment(transaction: Transaction): Arra
 
     if (transaction.type === TransactionType.Payment
         && transaction.subtype === TransactionPaymentSubtype.MultiOut) {
-        return transaction.attachment.recipients.map( r => ({
+        return transaction.attachment.recipients.map(r => ({
             recipient: r[0],
             amountNQT: r[1],
-        }) );
+        }));
     }
 
     throw new Error(`Transaction ${transaction.transaction} is not of type 'Multi Out Payment'`);

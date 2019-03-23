@@ -530,6 +530,8 @@
   "min_nr_of_options": "Mindestanzahl an Optionen",
   "minimum_nr_choices": "Mindestanzahl an Auswahlmöglichkeiten",
   "more_info": "Weitere Infos",
+  "multi_out_payment": "Multi Out Zahlung",
+  "multi_out_same_payment": "Multi Out gleicher Betrag",
   "multiple_assets_differences": "Mehrere verschiedene Assets wurden verkauft und/oder gekauft.",
   "my_assets": "Meine Assets",
   "my_completed_orders": "Abgeschlossene Bestellungen",

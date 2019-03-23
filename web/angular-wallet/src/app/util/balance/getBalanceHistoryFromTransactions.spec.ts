@@ -1,4 +1,3 @@
-import {Transaction} from '@burstjs/core';
 import {getBalanceHistoryFromTransactions} from './getBalanceHistoryFromTransactions';
 
 

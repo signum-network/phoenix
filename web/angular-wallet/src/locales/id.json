@@ -529,6 +529,8 @@
   "min_nr_of_options": "Jumlah minimal Pilihan",
   "minimum_nr_choices": "Jumlah Minimum Of Pilihan",
   "more_info": "Informasi Selengkapnya",
+  "multi_out_payment": "Pembayaran Multi Out",
+  "multi_out_same_payment": "Pembayaran Jumlah Yang Sama Banyaknya",
   "multiple_assets_differences": "Beberapa aset yang berbeda telah dijual dan/atau dibeli.",
   "my_assets": "Aset saya",
   "my_completed_orders": "Saya Menyelesaikan Pesanan",

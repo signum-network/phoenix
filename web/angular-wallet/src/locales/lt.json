@@ -529,6 +529,8 @@
   "min_nr_of_options": "Minimalus pasirinkimų kiekis",
   "minimum_nr_choices": "Minimalus pasirinkimų kiekis",
   "more_info": "Daugiau informacijos",
+  "multi_out_payment": "Daugkartinis mokėjimas",
+  "multi_out_same_payment": "Mokėjimas už tą pačią sumą",
   "multiple_assets_differences": "Keletas aktyvų buvo įsigyta ir/arba parduota.",
   "my_assets": "Mano aktyvai",
   "my_completed_orders": "Mano atlikti užsakymai",

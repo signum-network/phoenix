@@ -529,6 +529,8 @@
   "min_nr_of_options": "Мінімальна кількість варіантів",
   "minimum_nr_choices": "Мінімальна кількість варіантів",
   "more_info": "Детальніше",
+  "multi_out_payment": "Multi Out Оплата",
+  "multi_out_same_payment": "Багаторазове ж оплата суми",
   "multiple_assets_differences": "Декілька різних активів було продано або куплено.",
   "my_assets": "Мої активи",
   "my_completed_orders": "Мої завершені замовлення",

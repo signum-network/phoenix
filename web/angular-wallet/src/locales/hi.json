@@ -529,6 +529,8 @@
   "min_nr_of_options": "Minimum Nr of Options",
   "minimum_nr_choices": "न्यूनतम पसंदें",
   "more_info": "अधिक जानकारी",
+  "multi_out_payment": "मल्टी आउट भुगतान",
+  "multi_out_same_payment": "मल्टी आउट एक ही राशि का भुगतान",
   "multiple_assets_differences": "एकाधिक अलग सम्पत्तियां बेची खरीदी गई हैं।",
   "my_assets": "मेरी संपत्तिआं",
   "my_completed_orders": "मेरे पूर्ण आदेश",

@@ -529,6 +529,8 @@
   "min_nr_of_options": "Valintojen minimimäärä",
   "minimum_nr_choices": "Valintojen minimimäärä",
   "more_info": "Lisätietoja",
+  "multi_out_payment": "Multi-maksu",
+  "multi_out_same_payment": "Multi Out sama summa maksu",
   "multiple_assets_differences": "Useita eri arvopapereita on myyty ja/tai ostettu.",
   "my_assets": "Omat arvopaperit",
   "my_completed_orders": "Omat toteutuneet toimeksiannot",

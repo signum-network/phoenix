@@ -529,6 +529,8 @@
   "min_nr_of_options": "Nº Mínimo de Escolhas",
   "minimum_nr_choices": "Número Mínimo de Escolhas",
   "more_info": "Mais Informações",
+  "multi_out_payment": "Pagamento Multi Out",
+  "multi_out_same_payment": "Pagamento múltiplo com a mesma quantia",
   "multiple_assets_differences": "Compraram-se e/ou venderam-se múltiplos ativos distintos.",
   "my_assets": "Os meus Ativos",
   "my_completed_orders": "As Minhas Ordens Concluídas",

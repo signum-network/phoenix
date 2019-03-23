@@ -529,6 +529,8 @@
   "min_nr_of_options": "選項的最小值",
   "minimum_nr_choices": "選擇的最小數目",
   "more_info": "更多信息",
+  "multi_out_payment": "多付款",
+  "multi_out_same_payment": "多出相同金额付款",
   "multiple_assets_differences": "多個不同的資產已經被出售或購買。",
   "my_assets": "我的資產",
   "my_completed_orders": "我的已完成訂單",

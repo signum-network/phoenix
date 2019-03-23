@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
-import { EncryptedMessage, Message, Account, Transaction } from '@burstjs/core';
-import { StoreService } from 'app/store/store.service';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {MatDialogRef} from '@angular/material';
+import {EncryptedMessage, Message, Account, Transaction} from '@burstjs/core';
+import {StoreService} from 'app/store/store.service';
+import {ActivatedRoute} from '@angular/router';
+import {UtilService} from '../../../util.service';
 
 type TransactionDetailsCellValue = string | Message | EncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
@@ -19,15 +20,16 @@ export class TransactionDetailsComponent implements OnInit {
   infoData: Map<string, TransactionDetailsCellValue>;
   detailsData: Map<string, TransactionDetailsCellValue>;
   account: Account;
-  transaction: Transaction
+  transaction: Transaction;
 
   constructor(
     private storeService: StoreService,
-    private route: ActivatedRoute) { 
+    private utilService: UtilService,
+    private route: ActivatedRoute) {
   }
 
-  getTransactionNameFromType(arg1, arg2) {
-    return `coming soon`;
+  private getNameFromTransactionSubtype(): string {
+    return this.utilService.translateTransactionType(this.transaction, this.account);
   }
 
   closeDialog(): void {
@@ -35,23 +37,39 @@ export class TransactionDetailsComponent implements OnInit {
 
   public getInfoData(): TransactionDetailsCellValueMap[] {
     return Array.from(this.infoData.entries());
-  } 
+  }
 
   public getDetailsData(): TransactionDetailsCellValueMap[] {
     return Array.from(this.detailsData.entries());
-  } 
+  }
 
-  ngOnInit() {
+  private mapCellValue(key: string): TransactionDetailsCellValueMap {
+    let value;
+    switch (key){
+      // TODO: make type translation
+      case 'subtype':
+        value = this.getNameFromTransactionSubtype();
+        break;
+      default:
+        value = this.transaction[key];
+    }
+
+    return [key, value];
+  }
+
+  ngOnInit(): void {
     this.transaction = this.route.snapshot.data.transaction as Transaction;
-    const transactionDetails = Object.keys(this.transaction).map((key:string): TransactionDetailsCellValueMap => [ key, this.transaction[key]]);
+    const transactionDetails = Object
+      .keys(this.transaction)
+      .map( key => this.mapCellValue(key) );
     this.detailsData = new Map(transactionDetails);
     this.infoData = new Map(transactionDetails.filter((row) => this.infoRows.indexOf(row[0]) > -1));
-      
+
     this.storeService.getSelectedAccount()
       .then((account) => {
-          this.account = account;
-          // @ts-ignore
-          this.transaction.transactionType = this.getTransactionNameFromType(this.transaction, this.account);
+        this.account = account;
+        // @ts-ignore
+        this.transaction.transactionType = this.getNameFromTransactionSubtype(this.transaction, this.account);
       });
   }
 

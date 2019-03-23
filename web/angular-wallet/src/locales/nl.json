@@ -529,6 +529,8 @@
   "min_nr_of_options": "Minimum aantal opties",
   "minimum_nr_choices": "Minimum Aantal Keuzes",
   "more_info": "Meer informatie",
+  "multi_out_payment": "Multi-uitbetaling",
+  "multi_out_same_payment": "Meerdere uitbetalingen gelijk bedrag",
   "multiple_assets_differences": "Een of meer van verschillende activa zijn verkocht en/of gekocht.",
   "my_assets": "Mijn activa",
   "my_completed_orders": "Mijn Voltooide Bestellingen",

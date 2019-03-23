@@ -58,7 +58,7 @@ export class AccountService {
 
   public getAccountTransactions(id: string, firstIndex?: number, lastIndex?: number, numberOfConfirmations?: number, type?: number, subtype?: number): Promise<TransactionList> {
     return this.api.account.getAccountTransactions(
-      id, firstIndex, lastIndex, numberOfConfirmations, type, subtype);
+      id, firstIndex, lastIndex, numberOfConfirmations, type, subtype, true);
   }
 
   public generateSendTransactionQRCodeAddress(
@@ -83,7 +83,7 @@ export class AccountService {
   public setAlias({ aliasName, aliasURI, feeNQT, deadline, pin, keys }: SetAliasRequest): Promise<TransactionId> {
     const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
     return this.api.account.setAlias(aliasName, aliasURI, feeNQT, keys.publicKey, senderPrivateKey, deadline);
-  } 
+  }
 
   public getAccountBalance(id: string): Promise<Balance> {
     return this.api.account.getAccountBalance(id);

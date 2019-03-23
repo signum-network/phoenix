@@ -529,6 +529,8 @@
   "min_nr_of_options": "Minimum Nr of Options",
   "minimum_nr_choices": "Ελάχιστος αριθμός επιλογών",
   "more_info": "Περισσότερες Πληροφορίες",
+  "multi_out_payment": "Πολλαπλή Πληρωμή",
+  "multi_out_same_payment": "Πολλαπλή εξόφληση του ίδιου ποσού",
   "multiple_assets_differences": "Πολλαπλές διαφορετικές μετοχές έχουν πωληθεί ή/και αγοράστει.",
   "my_assets": "Οι μετοχές μου",
   "my_completed_orders": "Οι εκτελεσμένες παραγγελίες μου",
