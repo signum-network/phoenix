@@ -1,24 +1,28 @@
-import {getRecipientsFromMultiOutPayment} from '../getRecipientsFromMultiOutPayment';
+import {getRecipientAmountsFromMultiOutPayment} from '../getRecipientAmountsFromMultiOutPayment';
 import {TransactionType} from '../../constants/transactionType';
 import {TransactionPaymentSubtype} from '../../constants';
+import {convertNumberToNQTString} from '@burstjs/util';
 
-describe('getRecipientsFromMultiOutPayment', () => {
+
+const nqt = convertNumberToNQTString;
+
+describe('getRecipientAmountsFromMultiOutPayment', () => {
 
     it('returns recipients for Multi Out Same Amount Payment', () => {
         const transaction = {
             transaction: '123',
-            amountNQT: 'amount',
+            amountNQT: nqt(100),
             type: TransactionType.Payment,
             subtype: TransactionPaymentSubtype.MultiOutSameAmount,
             attachment: {'version.MultiOutCreation': 1, recipients: ['123', '456']}
         };
 
-        const recipientAmounts = getRecipientsFromMultiOutPayment(transaction);
+        const recipientAmounts = getRecipientAmountsFromMultiOutPayment(transaction);
         expect(recipientAmounts).toHaveLength(2);
         expect(recipientAmounts[0].recipient).toBe('123');
-        expect(recipientAmounts[0].amountNQT).toBe('amount');
+        expect(recipientAmounts[0].amountNQT).toBe(nqt(50));
         expect(recipientAmounts[1].recipient).toBe('456');
-        expect(recipientAmounts[1].amountNQT).toBe('amount');
+        expect(recipientAmounts[1].amountNQT).toBe(nqt(50));
     });
 
     it('returns recipients for Multi Out Different Amount Payment', () => {
@@ -29,7 +33,7 @@ describe('getRecipientsFromMultiOutPayment', () => {
             attachment: {'version.MultiOutCreation': 1, recipients: [['123', 'amountA'], ['456', 'amountB']]}
         };
 
-        const recipientAmounts = getRecipientsFromMultiOutPayment(transaction);
+        const recipientAmounts = getRecipientAmountsFromMultiOutPayment(transaction);
         expect(recipientAmounts).toHaveLength(2);
         expect(recipientAmounts[0].recipient).toBe('123');
         expect(recipientAmounts[0].amountNQT).toBe('amountA');
@@ -45,7 +49,7 @@ describe('getRecipientsFromMultiOutPayment', () => {
         };
 
         try {
-            getRecipientsFromMultiOutPayment(transaction);
+            getRecipientAmountsFromMultiOutPayment(transaction);
             expect(false).toBe('Expected Exception');
         } catch (e) {
             expect(e.message).toContain('Transaction 123 is not of type \'Multi Out Payment\'');
@@ -61,7 +65,7 @@ describe('getRecipientsFromMultiOutPayment', () => {
         };
 
         try {
-            getRecipientsFromMultiOutPayment(transaction);
+            getRecipientAmountsFromMultiOutPayment(transaction);
             expect(false).toBe('Expected Exception');
         } catch (e) {
             expect(e.message).toContain('Transaction 123 is not of type \'Multi Out Payment\'');

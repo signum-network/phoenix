@@ -4,9 +4,8 @@ import {ActivatedRoute} from '@angular/router';
 import {
   Transaction,
   Account,
-  TransactionPaymentSubtype,
-  getRecipientsFromMultiOutPayment,
-  TransactionType
+  isMultiOutSameTransaction,
+  isMultiOutTransaction, getRecipientsAmount
 } from '@burstjs/core';
 import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
 import {UtilService} from 'app/util.service';
@@ -28,11 +27,8 @@ export class TransactionTableComponent implements OnInit {
   @Input() public displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
 
-  // Todo: this could be an utility function in burstjs
   public isMultiOutPayment(transaction: Transaction): boolean {
-    return transaction.type === TransactionType.Payment
-      && (transaction.subtype === TransactionPaymentSubtype.MultiOutSameAmount
-        || transaction.subtype === TransactionPaymentSubtype.MultiOut);
+    return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction)
   }
 
   public ngOnInit(): void {
@@ -57,11 +53,8 @@ export class TransactionTableComponent implements OnInit {
       return -this.convertNQTStringToNumber(transaction.amountNQT);
     }
 
-    let amountNQT = transaction.amountNQT;
-    if (this.isMultiOutPayment(transaction)) {
-      const recipientAmounts = getRecipientsFromMultiOutPayment(transaction);
-      amountNQT = recipientAmounts.filter(ra => ra.recipient === this.account.account)[0].amountNQT;
-    }
-    return this.convertNQTStringToNumber(amountNQT);
+    return this.isMultiOutPayment(transaction)
+      ? getRecipientsAmount(this.account.account, transaction)
+      : this.convertNQTStringToNumber(transaction.amountNQT);
   }
 }

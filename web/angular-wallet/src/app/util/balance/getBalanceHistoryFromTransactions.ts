@@ -1,15 +1,21 @@
-import {Transaction} from '@burstjs/core';
-import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
+import {
+  Transaction,
+  getRecipientsAmount
+} from '@burstjs/core';
+import {convertNQTStringToNumber} from '@burstjs/util';
 import {BalanceHistoryItem} from './typings';
 
-function getRelativeTransactionCosts(accountId: string, transaction: Transaction): number {
-  const isMyTransaction = transaction.sender === accountId;
-  const amountBurst = convertNQTStringToNumber(transaction.amountNQT);
-  if ( isMyTransaction ){
+const isOwnTransaction = (accountId: string, transaction: Transaction): boolean => transaction.sender === accountId;
+
+function getRelativeTransactionAmount(accountId: string, transaction: Transaction): number {
+
+  if (isOwnTransaction(accountId, transaction)) {
+    const amountBurst = convertNQTStringToNumber(transaction.amountNQT);
     const feeBurst = convertNQTStringToNumber(transaction.feeNQT);
     return -(amountBurst + feeBurst);
   }
-  return amountBurst;
+
+  return getRecipientsAmount(accountId, transaction);
 }
 
 
@@ -28,12 +34,13 @@ export function getBalanceHistoryFromTransactions(
   let balance = currentBalance;
 
   return transactions.map((t: Transaction) => {
+    const relativeAmount = getRelativeTransactionAmount(accountId, t);
     const deducedBalances = {
       transactionId: t.transaction,
       balance,
       transaction: t
     };
-    balance = balance - getRelativeTransactionCosts(accountId, t);
+    balance = balance - relativeAmount;
     return deducedBalances;
   });
 }
