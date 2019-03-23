@@ -1,7 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import {ActivatedRoute} from '@angular/router';
-import {Transaction, Account} from '@burstjs/core';
+import {
+  Transaction,
+  Account,
+  TransactionPaymentSubtype,
+  getRecipientsFromMultiOutPayment,
+  TransactionType
+} from '@burstjs/core';
 import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
 import {UtilService} from 'app/util.service';
 
@@ -12,6 +18,9 @@ import {UtilService} from 'app/util.service';
 })
 export class TransactionTableComponent implements OnInit {
 
+  constructor(private utilService: UtilService, private route: ActivatedRoute) {
+  }
+
   public convertNQTStringToNumber = convertNQTStringToNumber;
   private account: Account;
 
@@ -19,7 +28,11 @@ export class TransactionTableComponent implements OnInit {
   @Input() public displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
 
-  constructor(private utilService: UtilService, private route: ActivatedRoute) {
+  // Todo: this could be an utility function in burstjs
+  public isMultiOutPayment(transaction: Transaction): boolean {
+    return transaction.type === TransactionType.Payment
+      && (transaction.subtype === TransactionPaymentSubtype.MultiOutSameAmount
+        || transaction.subtype === TransactionPaymentSubtype.MultiOut);
   }
 
   public ngOnInit(): void {
@@ -38,4 +51,17 @@ export class TransactionTableComponent implements OnInit {
     return address && address === this.account.accountRS;
   }
 
+  public getAmount(transaction: Transaction): number {
+
+    if (this.isOwnAccount(transaction.senderRS)) {
+      return -this.convertNQTStringToNumber(transaction.amountNQT);
+    }
+
+    let amountNQT = transaction.amountNQT;
+    if (this.isMultiOutPayment(transaction)) {
+      const recipientAmounts = getRecipientsFromMultiOutPayment(transaction);
+      amountNQT = recipientAmounts.filter(ra => ra.recipient === this.account.account)[0].amountNQT;
+    }
+    return this.convertNQTStringToNumber(amountNQT);
+  }
 }
