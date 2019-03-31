@@ -1,21 +1,21 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 
-import { StoreService } from 'app/store/store.service';
-import { Settings } from 'app/settings';
+import {StoreService} from 'app/store/store.service';
+import {Settings} from 'app/settings';
 import {
   Account,
-  TransactionList,
   AliasList,
+  Api,
   Balance,
-  UnconfirmedTransactionList,
   TransactionId,
-  Api
+  TransactionList,
+  UnconfirmedTransactionList
 } from '@burstjs/core';
-import { generateMasterKeys, Keys, encryptAES, hashSHA256, getAccountIdFromPublicKey, decryptAES } from '@burstjs/crypto';
-import { isBurstAddress, convertNumericIdToAddress, convertAddressToNumericId } from '@burstjs/util';
+import {decryptAES, encryptAES, generateMasterKeys, getAccountIdFromPublicKey, hashSHA256, Keys} from '@burstjs/crypto';
+import {convertAddressToNumericId, convertNumericIdToAddress, isBurstAddress} from '@burstjs/util';
 import {ApiService} from '../../api.service';
 
 interface SetAccountInfoRequest {
@@ -117,23 +117,19 @@ export class AccountService {
       // import active account
       account.type = 'active';
       const keys = generateMasterKeys(passphrase);
-
-      const newKeys = new Keys();
-      newKeys.publicKey = keys.publicKey;
-
       const encryptedKey = encryptAES(keys.signPrivateKey, hashSHA256(pin));
-      newKeys.signPrivateKey = encryptedKey;
-
       const encryptedSignKey = encryptAES(keys.agreementPrivateKey, hashSHA256(pin));
-      newKeys.agreementPrivateKey = encryptedSignKey;
-      account.keys = newKeys;
+
+      account.keys = {
+        publicKey: keys.publicKey,
+        signPrivateKey: encryptedKey,
+        agreementPrivateKey: encryptedSignKey
+      };
       account.pinHash = hashSHA256(pin + keys.publicKey);
 
       const id = getAccountIdFromPublicKey(keys.publicKey);
       account.account = id;
-
-      const address = convertNumericIdToAddress(id);
-      account.accountRS = address;
+      account.accountRS = convertNumericIdToAddress(id);
 
       await this.selectAccount(account);
       return this.storeService.saveAccount(account)

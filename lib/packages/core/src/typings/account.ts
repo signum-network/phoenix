@@ -20,7 +20,7 @@ import { UnconfirmedAssetBalance } from './unconfirmedAssetBalance';
 export class Account {
     public account: string;
     public accountRS: string;
-    public assetBalances: AssetBalance[]
+    public assetBalances: AssetBalance[];
     public balanceNQT: string;
     public description: string;
     public effectiveBalanceNQT: string;
@@ -41,7 +41,6 @@ export class Account {
         this.description = data.description || undefined;
         this.effectiveBalanceNQT = data.effectiveBalanceNQT || 0;
         if (data.publicKey || data.keys !== undefined) {
-            this.keys = new Keys();
             this.pinHash = data.pinHash || undefined;
             this.keys.publicKey = data.publicKey || data.keys.publicKey || undefined;
             this.keys.signPrivateKey = data.keys.signPrivateKey || undefined;
