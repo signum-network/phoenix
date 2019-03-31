@@ -128,8 +128,8 @@ describe('getBalanceHistoryFromTransactions', () => {
 
       expect(historyItems).toHaveLength(3);
       expect(historyItems[0].balance).toBe(1000);
-      expect(historyItems[1].balance).toBe(900);
-      expect(historyItems[2].balance).toBe(1101);
+      expect(historyItems[1].balance).toBe(950);
+      expect(historyItems[2].balance).toBe(1151);
     });
 
     it('should create a correct balance history with multi out diff payments', () => {
