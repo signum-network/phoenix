@@ -88,6 +88,24 @@ describe('Encrypt and Decrypt', () => {
             expect(message).toEqual(originalMessage);
         });
 
+
+        it('should decrypt a text message sent with BRS successfully', () => {
+
+            const encrypted = {
+                data: '8abb9c7b9c61edf877eb4576b1f19486cb7c5d5770b4d5e2ea14a0d5175ef46cd6a40c95925fc1e015bea65dc4b57d3c547bfd31a6889e3d4c33e34964a08427',
+                nonce: '2983562ee782cd71bcb6d24ee8b0f25aa557fa2c54ba5890ebf0208bb1c35efe',
+                isText: true
+            };
+
+            const message = decryptMessage(
+                encrypted,
+                '7210b8941929030324540238450e985899989a7ad0267e0c76f668fde3b1016b',
+                '5014cb242b904cb75d86bcc23bf73d9f91471a578d22d0fb5633361cfb6a7865'
+            );
+
+            expect(message).toEqual('Test Encrypted BRS Message');
+        });
+
         it('should not decrypt a text message, when key is wrong', () => {
 
             const recipientKeys = generateMasterKeys('testSecret_Recipient');
