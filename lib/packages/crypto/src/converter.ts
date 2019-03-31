@@ -1,6 +1,6 @@
 /* tslint:disable */
 /** @module crypto */
-/** @ignore */
+/** @ignore */ // internal - shouldn't be used externally
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
@@ -11,6 +11,9 @@ import * as CryptoJS from 'crypto-js';
 
 declare function escape(s: string): string;
 declare function unescape(s: string): string;
+
+
+// FIXME: test coverage
 
 /**
  * A set of useful converter methods for crypto operations.

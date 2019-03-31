@@ -1,22 +1,24 @@
-// tslint:disable:no-bitwise
-/** @ignore */
 /** @module crypto */
+
+/**
+ * Original work Copyright (c) 2019 Burst Apps Team
+ */
 
 import {Converter} from './converter';
 import {encryptData} from './encryptData';
 import {EncryptedMessage} from '../typings/encryptedMessage';
 
 /**
- * Encrypts a message
+ * Encrypts a message (UTF-8 compatible)
  * @param plaintext Message to be encrypted
- * @param recipientPublicKey The recipients public key
- * @param senderPrivateKey The senders private (agreement) key
+ * @param recipientPublicKeyHex The recipients public key hexadecimal format
+ * @param senderPrivateKeyHex The senders private (agreement) key hexadecimal format
  * @return The encrypted Message
  */
-export function encryptMessage(plaintext: string, recipientPublicKey: string, senderPrivateKey: string): EncryptedMessage {
+export function encryptMessage(plaintext: string, recipientPublicKeyHex: string, senderPrivateKeyHex: string): EncryptedMessage {
 
     const data = new Uint8Array(Converter.convertStringToByteArray(plaintext));
-    const encryptedData = encryptData(data, recipientPublicKey, senderPrivateKey);
+    const encryptedData = encryptData(data, recipientPublicKeyHex, senderPrivateKeyHex);
 
     return {
         data: Converter.convertByteArrayToHexString(encryptedData.data),

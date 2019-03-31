@@ -1,6 +1,4 @@
-/** @ignore */
 /** @module crypto */
-
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
@@ -51,7 +49,7 @@ function decrypt(ivCiphertext: Uint8Array, nonce: Uint8Array, sharedKeyOrig: any
  * @param encryptedData The encrypted data
  * @param senderPublicKeyHex The senders public key in hex format
  * @param recipientPrivateKeyHex The recipients private (agreement) key in hex format
- * @return The original plain texr
+ * @return The original plain text
  */
 export function decryptData(
     encryptedData: EncryptedData,

@@ -1,4 +1,3 @@
-/** @ignore */
 /** @module crypto */
 
 /**
@@ -40,8 +39,8 @@ function encrypt(plaintext: Uint8Array, nonce: Uint8Array, sharedKeyOrig: any[])
 /**
  * Encrypts arbitrary data
  * @param plaintext Data to be encrypted
- * @param recipientPublicKeyHex The recipients public key
- * @param senderPrivateKeyHex The senders private (agreement) key
+ * @param recipientPublicKeyHex The recipients public key in hexadecimal format
+ * @param senderPrivateKeyHex The senders private (agreement) key hexadecimal format
  * @return The encrypted Data
  */
 export function encryptData(
