@@ -47,11 +47,11 @@ function decrypt(ivCiphertext: Uint8Array, nonce: Uint8Array, sharedKeyOrig: any
 }
 
 /**
- * Decrypts an encrypted Message
- * @param encryptedData The encrypted message
+ * Decrypts an encrypted cipher text
+ * @param encryptedData The encrypted data
  * @param senderPublicKeyHex The senders public key in hex format
  * @param recipientPrivateKeyHex The recipients private (agreement) key in hex format
- * @return The original message
+ * @return The original plain texr
  */
 export function decryptData(
     encryptedData: EncryptedData,
@@ -65,6 +65,5 @@ export function decryptData(
         );
 
     const compressedPlaintext = decrypt(encryptedData.data, encryptedData.nonce, sharedKey);
-    //return compressedPlaintext;
     return inflate(compressedPlaintext);
 }
