@@ -12,12 +12,15 @@ import {verifySignature, generateSignedTransactionBytes, encryptMessage} from '@
 import {convertNumberToNQTString} from '@burstjs/util';
 import {broadcastTransaction} from '../transaction/broadcastTransaction';
 
+const MAX_MESSAGE_LENGTH = 1024;
+
 export const sendEncryptedTextMessage = (service: BurstService):
     (message: string,
      recipientId: string,
      recipientPublicKey: string,
      senderPublicKey: string,
      senderPrivateKey: string,
+     deadline?: number,
      fee?: number) => Promise<TransactionId> =>
     async (
         message: string,
@@ -25,12 +28,15 @@ export const sendEncryptedTextMessage = (service: BurstService):
         recipientPublicKey: string,
         senderPublicKey: string,
         senderPrivateKey: string,
+        deadline: number = 1440,
         fee: number = 0.1,
     ): Promise<TransactionId> => {
 
         const encryptedMessage = encryptMessage(message, recipientPublicKey, senderPrivateKey);
 
-        // todo implement a message limit to be checked
+        if ( encryptedMessage.data.length > MAX_MESSAGE_LENGTH ) {
+            throw new Error(`The encrypted message exceeds allowed limit of ${MAX_MESSAGE_LENGTH} bytes`);
+        }
 
         const parameters = {
             recipient: recipientId,
@@ -39,7 +45,7 @@ export const sendEncryptedTextMessage = (service: BurstService):
             encryptedMessageNonce: encryptedMessage.nonce,
             encryptedMessageIsText: true,
             broadcast: true,
-            deadline: 1440, // which deadline?
+            deadline,
             feeNQT: convertNumberToNQTString(fee),
         };
 

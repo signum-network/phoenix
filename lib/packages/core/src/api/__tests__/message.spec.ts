@@ -1,11 +1,11 @@
 import {HttpMockBuilder, Http} from '@burstjs/http';
 import {BurstService} from '../../burstService';
-import {generateSignature} from '@burstjs/crypto';
+import {generateSignedTransactionBytes, generateSignature, encryptMessage} from '@burstjs/crypto';
 import {verifySignature} from '@burstjs/crypto';
-import {generateSignedTransactionBytes} from '@burstjs/crypto';
 import {constructAttachment} from '../../attachment/constructAttachment';
 import {sendTextMessage} from '../factories/message/sendTextMessage';
 import {broadcastTransaction} from '../factories/transaction/broadcastTransaction';
+import {sendEncryptedTextMessage} from '../factories/message/sendEncryptedTextMessage';
 
 describe('Message Api', () => {
 
@@ -54,6 +54,7 @@ describe('Message Api', () => {
                 'recipientId',
                 'senderPublicKey',
                 'senderPrivateKey',
+                1440,
                 0.2
             );
 
@@ -117,5 +118,103 @@ describe('Message Api', () => {
             expect(output.messageIsText).toBe('true');
             expect(output.requestType).toBe(params.requestType);
         });
+    });
+
+    describe('sendEncryptedTextMessage', () => {
+        let httpMock: Http;
+        let service: BurstService;
+
+        beforeEach(() => {
+            jest.resetAllMocks();
+
+            // @ts-ignore
+            broadcastTransaction = jest.fn().mockImplementation(s => (_) => Promise.resolve({
+                fullHash: 'fullHash',
+                transaction: 'transaction'
+            }));
+
+            // @ts-ignore
+            encryptMessage = jest.fn(
+                () =>
+                    ({
+                        data: 'encryptedMessage',
+                        nonce: 'nonce'
+                    })
+            );
+
+            // @ts-ignore
+            generateSignature = jest.fn(() => 'signature');
+            // @ts-ignore
+            verifySignature = jest.fn(() => true);
+            // @ts-ignore
+            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
+
+            httpMock = HttpMockBuilder.create().onPostReply(200, {
+                unsignedTransactionBytes: 'unsignedHexMessage'
+            }).build();
+
+            service = new BurstService('baseUrl', 'relPath', httpMock);
+
+        });
+
+        afterEach(() => {
+            // @ts-ignore
+            httpMock.reset();
+        });
+
+        it('should sendEncryptedTextMessage', async () => {
+            const {fullHash, transaction} = await sendEncryptedTextMessage(service)(
+                'Message Text',
+                'recipientId',
+                'recipientPublicKey',
+                'senderPublicKey',
+                'senderPrivateKey',
+                1440,
+                0.2
+            );
+
+            expect(fullHash).toBe('fullHash');
+            expect(transaction).toBe('transaction');
+            expect(broadcastTransaction).toBeCalledTimes(1);
+            expect(encryptMessage).toBeCalledTimes(1);
+            expect(generateSignature).toBeCalledTimes(1);
+            expect(verifySignature).toBeCalledTimes(1);
+            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+        });
+
+        it('should throw error for sendEncryptedTextMessage, when encrypted message is too large', async () => {
+
+            // @ts-ignore
+            encryptMessage = jest.fn(
+                () =>
+                    ({
+                        data: new Array(1100).fill('a').join(''),
+                        nonce: 'nonce'
+                    })
+            );
+
+
+            try {
+                await sendEncryptedTextMessage(service)(
+                    'Plaintext message',
+                    'recipientId',
+                    'recipientPublicKey',
+                    'senderPublicKey',
+                    'senderPrivateKey',
+                    1440,
+                    0.2
+                );
+                expect(false).toBe('Expected error');
+            } catch (e) {
+                expect(e.message).toContain('The encrypted message exceeds allowed limit of 1024 bytes');
+            }
+
+            expect(encryptMessage).toBeCalledTimes(1);
+            expect(broadcastTransaction).not.toBeCalled();
+            expect(generateSignature).not.toBeCalled();
+            expect(verifySignature).not.toBeCalled();
+            expect(generateSignedTransactionBytes).not.toBeCalled();
+        });
+
     });
 });
