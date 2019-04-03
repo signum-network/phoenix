@@ -163,12 +163,17 @@ describe('Message Api', () => {
         });
 
         it('should sendEncryptedTextMessage', async () => {
+            const senderKeys = {
+                publicKey: 'publicKey',
+                signPrivateKey: 'signPrivateKey',
+                agreementPrivateKey: 'agreementPrivateKey',
+            };
+
             const {fullHash, transaction} = await sendEncryptedTextMessage(service)(
                 'Message Text',
                 'recipientId',
                 'recipientPublicKey',
-                'senderPublicKey',
-                'senderPrivateKey',
+                senderKeys,
                 1440,
                 0.2
             );
@@ -193,14 +198,18 @@ describe('Message Api', () => {
                     })
             );
 
+            const senderKeys = {
+                publicKey: 'publicKey',
+                signPrivateKey: 'signPrivateKey',
+                agreementPrivateKey: 'agreementPrivateKey',
+            };
 
             try {
                 await sendEncryptedTextMessage(service)(
                     'Plaintext message',
                     'recipientId',
                     'recipientPublicKey',
-                    'senderPublicKey',
-                    'senderPrivateKey',
+                    senderKeys,
                     1440,
                     0.2
                 );
