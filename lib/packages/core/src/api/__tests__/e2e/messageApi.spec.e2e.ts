@@ -4,6 +4,7 @@ import {decryptMessage, generateMasterKeys} from '@burstjs/crypto';
 import {sendTextMessage} from '../../factories/message/sendTextMessage';
 import {sendEncryptedTextMessage} from '../../factories/message/sendEncryptedTextMessage';
 import {getTransaction} from '../../factories/transaction/getTransaction';
+import {assertAttachmentVersion} from '../../../attachment/assertAttachmentVersion';
 
 
 describe('[E2E] Message Api', () => {
@@ -52,18 +53,19 @@ describe('[E2E] Message Api', () => {
 
     });
 
-
-    // FIXME: using
     it('should get a transaction from BRS with encrypted message and decrypt successfully', async () => {
-        const keys = generateMasterKeys(environment.testRecipientPassPhrase);
+        const senderKeys = generateMasterKeys(environment.testPassphrase);
+        const recipientKeys = generateMasterKeys(environment.testRecipientPassphrase);
 
-        const transaction = await getTransaction(service)('16687770235948514357');
+        const transaction = await getTransaction(service)(environment.testEncryptedMessageTransactionId);
         expect(transaction).not.toBeUndefined();
+        assertAttachmentVersion(transaction, 'EncryptedMessage');
+        const {encryptedMessage} = transaction.attachment;
 
-        const encryptedMessage = transaction.attachment;
-
-        const message = decryptMessage(encryptedMessage, transaction.senderPublicKey, keys.signPrivateKey);
-        expect(message).toBeDefined();
+        const recipientsMessage = decryptMessage(encryptedMessage, transaction.senderPublicKey, recipientKeys.agreementPrivateKey);
+        const sendersMessage = decryptMessage(encryptedMessage, recipientKeys.publicKey, senderKeys.agreementPrivateKey);
+        expect(recipientsMessage).toEqual('[E2E] sendEncryptedTextMessage TEST (encrypted)');
+        expect(recipientsMessage).toEqual(sendersMessage);
 
     });
 
