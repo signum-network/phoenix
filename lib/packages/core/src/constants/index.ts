@@ -1,3 +1,5 @@
+/** @module core */
+
 import {TransactionType} from './transactionType';
 import {TransactionArbitrarySubtype} from './transactionArbitrarySubtype';
 import {TransactionAssetSubtype} from './transactionAssetSubtype';

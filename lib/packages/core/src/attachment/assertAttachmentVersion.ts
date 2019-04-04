@@ -1,3 +1,5 @@
+/** @module core */
+
 import {Transaction} from '../typings/transaction';
 
 /**
