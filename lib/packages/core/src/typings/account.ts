@@ -42,9 +42,11 @@ export class Account {
         this.effectiveBalanceNQT = data.effectiveBalanceNQT || 0;
         if (data.publicKey || data.keys !== undefined) {
             this.pinHash = data.pinHash || undefined;
-            this.keys.publicKey = data.publicKey || data.keys.publicKey || undefined;
-            this.keys.signPrivateKey = data.keys.signPrivateKey || undefined;
-            this.keys.agreementPrivateKey = data.keys.agreementPrivateKey || undefined;
+            this.keys = {
+                publicKey: data.publicKey || data.keys.publicKey,
+                signPrivateKey: data.keys.signPrivateKey,
+                agreementPrivateKey: data.keys.agreementPrivateKey,
+            };
         }
         this.name = data.name || undefined;
         this.selected = data.selected || false;

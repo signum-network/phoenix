@@ -6,10 +6,12 @@ import { StoreService } from 'app/store/store.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { Settings } from 'app/settings';
 
+const errorHandler = console.error;
+
+
 @Injectable({
   providedIn: 'root',
 })
-
 export class LoginGuard implements CanActivate {
   authorized: boolean = false;
   constructor(private storeService: StoreService,
@@ -21,9 +23,9 @@ export class LoginGuard implements CanActivate {
     return this.storeService.ready.pipe(
       filter(Boolean),
       switchMap(async (ready) => {
-        const settings = await this.storeService.getSettings().catch(() => {});
-        const selectedAccount = await this.storeService.getSelectedAccount().catch(() => {});
-        const allAccounts = await this.storeService.getAllAccounts().catch(() => {});
+        const settings = await this.storeService.getSettings().catch(errorHandler);
+        const selectedAccount = await this.storeService.getSelectedAccount().catch(errorHandler);
+        const allAccounts = await this.storeService.getAllAccounts().catch(errorHandler);
         // User must agree to disclaimer
         if (!(settings && settings.agree)) {
           this.router.navigate(['/disclaimer']);
