@@ -473,6 +473,7 @@
   "info": "Informacja",
   "info_merchant_message_required": "Konto odbiorcy wymaga żeby wiadomość była odpowiednio sformatowana.",
   "info_referenced_transaction_hash": "Ponieważ używasz referenced hash transakcji, 50 BURST będzie w zastawie dopóki transakcja nie zostanie potwierdzona lub wygaśnie.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Pomoc w obsłudze programu",
   "is_scanning": "W trakcie skanowania",
   "issue_asset": "Wystawianie aktywa",

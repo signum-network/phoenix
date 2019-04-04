@@ -473,6 +473,7 @@
   "info": "Informácie",
   "info_merchant_message_required": "Účet príjemcu vyžaduje zadanie špeciálne formátovanej správy.",
   "info_referenced_transaction_hash": "Pretože používate odkazovaný hash transakcie, 50 BURST je zadržaných v úschove zatiaľ kým nebude transakcia potvrdená alebo kým nevyprší.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Pomocník rozhrania",
   "is_scanning": "Prehľadávam",
   "issue_asset": "Vydať majetok",

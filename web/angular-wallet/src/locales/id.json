@@ -473,6 +473,7 @@
   "info": "Info",
   "info_merchant_message_required": "The recipient account requires you to supply a specially formatted message.",
   "info_referenced_transaction_hash": "Karena Anda telah menggunakan hash transaksi direferensikan, 50 BURST diadakan dalam tahanan sampai transaksi dikonfirmasi atau kedaluwarsa.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Tutorial Antarmuka",
   "is_scanning": "Pemindaian",
   "issue_asset": "Masalah Aset",

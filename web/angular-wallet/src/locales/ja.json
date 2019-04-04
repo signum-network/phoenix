@@ -473,6 +473,7 @@
   "info": "情報",
   "info_merchant_message_required": "The recipient account requires you to supply a specially formatted message.",
   "info_referenced_transaction_hash": "あなたが参照先のトランザクションのハッシュを使用するために、トランザクションが確定または期限切れになるまで50 BURSTが一時的に預かりおかれます。",
+  "input_pin": "Input PIN",
   "interface_tutorial": "インターフェイスのチュートリアル",
   "is_scanning": "スキャン中",
   "issue_asset": "資産発行",

@@ -473,6 +473,7 @@
   "info": "Info",
   "info_merchant_message_required": "Le compte du destinataire vous oblige à fournir un message spécialement formaté.",
   "info_referenced_transaction_hash": "Étant donné que vous avez utilisé un hachage de transaction déjà référencé, 50 BURST seront détenus jusqu'à ce que la transaction soit confirmée ou expirée.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Tutoriel sur l'interface",
   "is_scanning": "Analyse en cours",
   "issue_asset": "Émettre un actif",

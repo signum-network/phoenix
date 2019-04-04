@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { SuggestedFees, Account } from '@burstjs/core';
+import { SuggestedFees, Account, EncryptedMessage } from '@burstjs/core';
 import { burstAddressPattern } from '@burstjs/util';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -75,7 +75,9 @@ export class SendBurstFormComponent implements OnInit {
     if (this.message) {
       if (this.encrypt) {
         return {
-          encryptedMessage: this.message
+          data: this.message,
+          nonce: null,
+          isText: true
         }; 
       } else {
         return {

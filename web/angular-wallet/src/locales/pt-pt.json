@@ -473,6 +473,7 @@
   "info": "Informações",
   "info_merchant_message_required": "The recipient account requires you to supply a specially formatted message.",
   "info_referenced_transaction_hash": "Devido ao uso do hash de uma transação referenciada, 50 BURST é mantido sob custódia até que a transação é confirmada ou expirada.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Tutorial do interface",
   "is_scanning": "Escaneando",
   "issue_asset": "Emitir Ativo",

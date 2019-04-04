@@ -473,6 +473,7 @@
   "info": "Informace",
   "info_merchant_message_required": "Účet příjemce vyžaduje, abyste speciálně formátovali zprávy.",
   "info_referenced_transaction_hash": "Due to you using a referenced transaction hash, 50 BURST is held in custody until the transaction is confirmed or expired.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Interface Tutorial",
   "is_scanning": "Skenování",
   "issue_asset": "Issue Asset",

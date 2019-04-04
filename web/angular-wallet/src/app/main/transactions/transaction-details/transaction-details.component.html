@@ -21,10 +21,10 @@
 
   <div class=" p-24">
     <table class="info table">
-      <tr *ngFor="let row of getDetailsData()">
+      <tr *ngFor="let row of getDetailsData(); trackBy: trackRows">
         <th>{{ row[0] | i18n }}</th>
         <td>
-          <app-transaction-row-value-cell [key]="row[0]" [value]="row[1]"></app-transaction-row-value-cell>
+          <app-transaction-row-value-cell [key]="row[0]" [value]="row[1]" [senderPublicKeyHex]="transaction.senderPublicKey"></app-transaction-row-value-cell>
         </td>
       </tr>
     </table>

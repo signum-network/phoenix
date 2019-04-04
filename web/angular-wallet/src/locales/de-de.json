@@ -474,6 +474,7 @@
   "info": "Info",
   "info_merchant_message_required": "Für das Empfängerkonto müssen Sie eine speziell formatierte Nachricht angeben.",
   "info_referenced_transaction_hash": "Da Sie den Hash einer Referenztransaktion angeben haben, werden 50 BURST in Verwahrung genommen, bis die Transaktion bestätigt oder abgelaufen ist.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Anleitung zur Benutzeroberfläche",
   "is_scanning": "Es wird gescannt.",
   "issue_asset": "Asset ausgeben",

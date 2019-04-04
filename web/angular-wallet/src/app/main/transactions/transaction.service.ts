@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ApiSettings, Attachment, TransactionApi, TransactionId } from '@burstjs/core';
+import { ApiSettings, Attachment, TransactionApi, TransactionId, EncryptedMessage, Message } from '@burstjs/core';
 import { environment } from 'environments/environment.prod';
-import { Keys, decryptAES, hashSHA256 } from '@burstjs/crypto';
+import { Keys, decryptAES, hashSHA256, getAccountIdFromPublicKey, encryptMessage } from '@burstjs/crypto';
 import { ApiService } from '../../api.service';
+import { AccountService } from 'app/setup/account/account.service';
+import { convertAddressToNumericId } from '@burstjs/util/out';
 
 interface SendMoneyRequest {
     transaction: {
         amountNQT: string;
         feeNQT: string;
-        attachment: Attachment;
+        attachment: EncryptedMessage | Message;
         deadline: number;
         fullHash: string;
         type: number;
@@ -18,6 +20,7 @@ interface SendMoneyRequest {
     keys: Keys;
     recipientAddress: string;
 }
+
 
 interface SendMoneyMultiOutRequest {
     transaction: {
@@ -40,7 +43,7 @@ export class TransactionService {
 
     public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
-    constructor(apiService: ApiService) {
+    constructor(apiService: ApiService, private accountService: AccountService) {
         const apiSettings = new ApiSettings(environment.defaultNode, 'burst');
         this.transactionApi = apiService.api.transaction;
     }
@@ -50,20 +53,18 @@ export class TransactionService {
     }
 
     public async sendMoney({ transaction, pin, keys, recipientAddress }: SendMoneyRequest) {
-        // todo
-        // if (transactionToSend.attachment && transactionToSend.attachment.encryptedMessage) {
-        //     const recipientPublicKey = await getAccountIdFromPublicKey(transaction.recipientAddress);
-        //     const encryptedMessage = await encryptMessage(transactionToSend.attachment.encryptedMessage,
-        //         keys.agreementPrivateKey, this.accountService.hashPinEncryption(pin), recipientPublicKey);
-        //     transactionToSend = {
-        //         attachment: new EncryptedMessage({
-        //             data: encryptedMessage.m,
-        //             nonce: encryptedMessage.n,
-        //             isText: true
-        //         }),
-        //         ...transactionToSend
-        //     };
-        // }
+        if (transaction.attachment && (<EncryptedMessage>transaction.attachment).data) {
+
+            const recipientAccountId = await convertAddressToNumericId(recipientAddress); 
+            const recipient = await this.accountService.getAccount(recipientAccountId);
+            const agreementPrivateKey = decryptAES(keys.agreementPrivateKey, hashSHA256(pin));
+            const encryptedMessage = await encryptMessage((<EncryptedMessage>transaction.attachment).data,
+            // @ts-ignore
+            recipient.publicKey, 
+            agreementPrivateKey);
+            transaction.attachment =  encryptedMessage;
+            transaction.attachment.type = 'encrypted_message'; 
+        }
         const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
         return this.transactionApi.sendMoney(transaction, keys.publicKey, senderPrivateKey, recipientAddress);
     }
