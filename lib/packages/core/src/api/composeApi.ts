@@ -19,6 +19,8 @@ import {broadcastTransaction} from './factories/transaction/broadcastTransaction
 import {getTransaction} from './factories/transaction/getTransaction';
 
 import {sendTextMessage} from './factories/message/sendTextMessage';
+import {sendEncryptedTextMessage} from './factories/message/sendEncryptedTextMessage';
+
 import {getAccountTransactions} from './factories/account/getAccountTransactions';
 import {getUnconfirmedAccountTransactions} from './factories/account/getUnconfirmedAccountTransactions';
 import {getAccountBalance} from './factories/account/getAccountBalance';
@@ -81,7 +83,8 @@ export function composeApi(settings: ApiSettings): Api {
             sendMoneyMultiOut,
         })
         .withMessageApi({
-            sendTextMessage
+            sendTextMessage,
+            sendEncryptedTextMessage,
         })
         .withAccountApi({
             getAccountTransactions,

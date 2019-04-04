@@ -7,41 +7,49 @@
 import {BurstService} from '../../../burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
-import {generateSignature} from '@burstjs/crypto';
-import {verifySignature} from '@burstjs/crypto';
-import {generateSignedTransactionBytes} from '@burstjs/crypto';
+import {generateSignature, Keys} from '@burstjs/crypto';
+import {verifySignature, generateSignedTransactionBytes, encryptMessage} from '@burstjs/crypto';
 import {convertNumberToNQTString} from '@burstjs/util';
 import {broadcastTransaction} from '../transaction/broadcastTransaction';
 
-export const sendTextMessage = (service: BurstService):
+const MAX_MESSAGE_LENGTH = 1024;
+
+export const sendEncryptedTextMessage = (service: BurstService):
     (message: string,
      recipientId: string,
-     senderPublicKey: string,
-     senderPrivateKey: string,
+     recipientPublicKey: string,
+     senderKeys: Keys,
      deadline?: number,
      fee?: number) => Promise<TransactionId> =>
     async (
         message: string,
         recipientId: string,
-        senderPublicKey: string,
-        senderPrivateKey: string,
+        recipientPublicKey: string,
+        senderKeys: Keys,
         deadline: number = 1440,
         fee: number = 0.1,
     ): Promise<TransactionId> => {
 
+        const encryptedMessage = encryptMessage(message, recipientPublicKey, senderKeys.agreementPrivateKey);
+
+        if ( encryptedMessage.data.length > MAX_MESSAGE_LENGTH ) {
+            throw new Error(`The encrypted message exceeds allowed limit of ${MAX_MESSAGE_LENGTH} bytes`);
+        }
+
         const parameters = {
             recipient: recipientId,
-            publicKey: senderPublicKey,
-            message,
-            messageIsText: true,
-            broadcast: true,
-            deadline: 1440, // which deadline?
+            publicKey: senderKeys.publicKey,
+            encryptedMessageData: encryptedMessage.data,
+            encryptedMessageNonce: encryptedMessage.nonce,
+            messageToEncryptIsText: true,
+            deadline,
             feeNQT: convertNumberToNQTString(fee),
         };
 
+
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('sendMessage', parameters);
-        const signature = generateSignature(unsignedHexMessage, senderPrivateKey);
-        if (!verifySignature(signature, unsignedHexMessage, senderPublicKey)) {
+        const signature = generateSignature(unsignedHexMessage, senderKeys.signPrivateKey);
+        if (!verifySignature(signature, unsignedHexMessage, senderKeys.publicKey)) {
             throw new Error('The signed message could not be verified! Message not broadcasted!');
         }
 

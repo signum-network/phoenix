@@ -30,7 +30,10 @@ export const loadEnvironment = () => {
     testNetApiPath:  process.env.TEST_NET_API_PATH,
     testPassphrase:  process.env.TEST_PASSPHRASE,
     testRecipientId:  process.env.TEST_RECIPIENT_ID,
-    testTransactionId:  process.env.TEST_TRANSACTION_ID
+    testRecipientPassphrase:  process.env.TEST_RECIPIENT_PASSPHRASE,
+    testTransactionId:  process.env.TEST_TRANSACTION_ID,
+    testEncryptedMessageTransactionId: process.env.TEST_ENCRYPTED_MESSAGE_TRANSACTION_ID
+
     // .. add more variables here
   };
 
