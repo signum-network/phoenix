@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSortModule, MatTableModule, MatPaginatorModule  } from '@angular/material';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { BehaviorSubject } from 'rxjs';
 import { StoreService } from 'app/store/store.service';
@@ -25,6 +25,7 @@ describe('BlockDetailsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        FormsModule,
         MatFormFieldModule,
         MatInputModule,
         MatSortModule,
@@ -47,7 +48,8 @@ describe('BlockDetailsComponent', () => {
           return {
             ready: new BehaviorSubject(true),
             getSettings: () => Promise.resolve({language: 'en'}),
-            saveSettings: () => Promise.resolve(true)
+            saveSettings: () => Promise.resolve(true),
+            settings: new BehaviorSubject({})
           };
         }
       },
