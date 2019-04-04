@@ -4,7 +4,7 @@ import * as CryptoJS from 'crypto-js';
 
 /**
  * Decrypt an encrypted message
- * @param encryptedBase64 encryprts data in base64 format
+ * @param encryptedBase64 encrypted data in base64 format
  * @param key The secret key
  * @return The decrypted content
  */

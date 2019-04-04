@@ -1,7 +1,7 @@
 /** @module crypto */
 
-import { Keys } from '../typings/keys';
 import * as CryptoJS from 'crypto-js';
+import { Keys } from '../typings/keys';
 import { ECKCDSA } from './ec-kcdsa';
 import { Converter } from './converter';
 
@@ -13,9 +13,9 @@ import { Converter } from './converter';
 export const generateMasterKeys = (passPhrase: string): Keys => {
     const hashedPassPhrase = CryptoJS.SHA256(passPhrase);
     const keys = ECKCDSA.keygen(Converter.convertWordArrayToByteArray(hashedPassPhrase));
-    return new Keys({
+    return {
         publicKey: Converter.convertByteArrayToHexString(keys.p),
         signPrivateKey: Converter.convertByteArrayToHexString(keys.s),
         agreementPrivateKey: Converter.convertByteArrayToHexString(keys.k)
-    });
+    };
 };

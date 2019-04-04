@@ -1,11 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
-import { Account } from '@burstjs/core';
-import { Converter } from '@burstjs/crypto';
 import { FormControl } from '@angular/forms';
-import { NotifierService } from 'angular-notifier';
 import { convertNQTStringToNumber } from '@burstjs/util';
-import { NetworkService } from 'app/network/network.service';
 import { ActivatedRoute } from '@angular/router';
 import { Peer } from '@burstjs/core/out/typings/peer';
 
