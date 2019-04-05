@@ -1,5 +1,4 @@
 /** @module core */
-/** @ignore */
 
 /**
  * Copyright (c) 2019 Burst Apps Team
@@ -11,7 +10,7 @@ import {AccountApi} from '../typings/api/accountApi';
 import {MessageApi} from '../typings/api/messageApi';
 import {NetworkApi} from '../typings/api/networkApi';
 import {TransactionApi} from '../typings/api/transactionApi';
-import {BurstService} from '../burstService';
+import {BurstService} from '../service/burstService';
 
 
 class ApiImpl implements Api {

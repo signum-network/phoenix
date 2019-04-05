@@ -5,7 +5,7 @@
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../burstService';
+import {BurstService} from '../../../service/burstService';
 import {ServerStatus} from '../../../typings/serverStatus';
 
 export const getServerStatus = (service: BurstService): () => Promise<ServerStatus> =>

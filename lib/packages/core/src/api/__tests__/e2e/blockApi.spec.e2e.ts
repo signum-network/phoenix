@@ -1,5 +1,5 @@
 import {loadEnvironment} from './helpers/environment';
-import {BurstService} from '../../../burstService';
+import {BurstService} from '../../../service/burstService';
 import {getBlockByTimestamp} from '../../factories/block/getBlockByTimestamp';
 import {getBlockByHeight} from '../../factories/block/getBlockByHeight';
 import {getBlockById} from '../../factories/block/getBlockById';
@@ -12,7 +12,10 @@ jest.setTimeout(environment.timeout);
 
 describe(`[E2E] Block Api`, () => {
 
-    const service = new BurstService(environment.testNetHost, environment.testNetApiPath);
+    const service = new BurstService({
+        nodeHost: environment.testNetHost,
+        apiRootUrl: environment.testNetApiPath
+    });
 
     it('should getBlockByTimestamp', async () => {
         const block = await getBlockByTimestamp(service)(1000, false);

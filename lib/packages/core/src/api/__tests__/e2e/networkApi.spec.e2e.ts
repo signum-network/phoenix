@@ -1,5 +1,5 @@
 import {loadEnvironment} from './helpers/environment';
-import {BurstService} from '../../../burstService';
+import {BurstService} from '../../../service/burstService';
 import {getBlockchainStatus} from '../../factories/network/getBlockchainStatus';
 import {getServerStatus} from '../../factories/network/getServerStatus';
 import {getTime} from '../../factories/network/getTime';
@@ -10,7 +10,10 @@ jest.setTimeout(environment.timeout);
 
 describe('[E2E] Network Api', () => {
 
-    const service = new BurstService(environment.testNetHost, environment.testNetApiPath);
+    const service = new BurstService({
+        nodeHost: environment.testNetHost,
+        apiRootUrl: environment.testNetApiPath
+    });
 
     it('should getBlockchainStatus', async () => {
         const status = await getBlockchainStatus(service)();

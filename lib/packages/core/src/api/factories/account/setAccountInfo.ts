@@ -4,7 +4,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import { BurstService } from '../../../burstService';
+import { BurstService } from '../../../service/burstService';
 import { TransactionId } from '../../../typings/transactionId';
 import { TransactionResponse } from '../../../typings/transactionResponse';
 import { generateSignature, decryptAES, Keys } from '@burstjs/crypto';
@@ -36,7 +36,7 @@ export const setAccountInfo = (service: BurstService): (
             deadline: 1440,
             feeNQT: convertNumberToNQTString(parseFloat(feeNQT)),
             publicKey: senderPublicKey
-        }; 
+        };
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('setAccountInfo', parameters);
         const signature = generateSignature(unsignedHexMessage, senderPrivateKey);
         if (!verifySignature(signature, unsignedHexMessage, senderPublicKey)) {

@@ -1,10 +1,10 @@
-/** @ignore */
 /** @module core */
 
 import {Http, HttpImpl, HttpError} from '@burstjs/http';
+import {BurstServiceSettings} from './burstServiceSettings';
 
 
-export interface ApiError {
+interface ApiError {
     readonly errorCode: number;
     readonly errorDescription: string;
 }
@@ -23,14 +23,12 @@ export class BurstService {
 
     /**
      * Creates Service instance
-     * @param {string} baseUrl The host url of web service
-     * @param {string} relativePath The relative path will be prepended before each url created with toBRSEndpoint()
-     * @param {Http?} httpClient If passed an client instance, it will be used instead of default HttpImpl. Good for testing.
+     * @param settings The settings for the service
      */
-    // TODO: introduce a Service Context class, substituting the parameter list by a single object
-    constructor(baseUrl: string, relativePath: string = '', httpClient?: Http) {
-        this._http = httpClient ? httpClient : new HttpImpl(baseUrl);
-        this._relPath = relativePath.endsWith('/') ? relativePath.substr(0, relativePath.length - 1) : relativePath;
+    constructor(settings: BurstServiceSettings) {
+        const {apiRootUrl, nodeHost, httpClient} = settings;
+        this._http = httpClient ? httpClient : new HttpImpl(nodeHost);
+        this._relPath = apiRootUrl.endsWith('/') ? apiRootUrl.substr(0, apiRootUrl.length - 1) : apiRootUrl;
     }
     private readonly _http: Http;
     private readonly _relPath: string;
@@ -71,18 +69,16 @@ export class BurstService {
     public async query<T>(method: string, args: any = {}): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
         const {response} = await this.http.get(brsUrl);
-
         if (response.errorCode) {
             BurstService.throwAsHttpError(brsUrl, response);
         }
-
         return response;
 
     }
 
     /**
      * Send data to BRS
-     * @param {string} method The BRS method accordinghttps://burstwiki.org/wiki/The_Burst_API#Create_Transaction.
+     * @param {string} method The BRS method according https://burstwiki.org/wiki/The_Burst_API.
      *        Note that there are only a few POST methods
      * @param {any} args A JSON object which will be mapped to url params
      * @param {any} body An object with key value pairs to submit as post body

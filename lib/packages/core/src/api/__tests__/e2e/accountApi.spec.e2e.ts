@@ -1,7 +1,7 @@
 import {convertNQTStringToNumber} from '@burstjs/util';
 import {loadEnvironment} from './helpers/environment';
 import {getAccountIdFromPassphrase} from './helpers/account';
-import {BurstService} from '../../../burstService';
+import {BurstService} from '../../../service/burstService';
 import {getAccountTransactions} from '../../factories/account/getAccountTransactions';
 import {getUnconfirmedAccountTransactions} from '../../factories/account/getUnconfirmedAccountTransactions';
 import {getAccountBalance} from '../../factories/account/getAccountBalance';
@@ -14,7 +14,10 @@ jest.setTimeout(environment.timeout);
 
 describe(`[E2E] Account Api`, () => {
 
-    const service = new BurstService(environment.testNetHost, environment.testNetApiPath);
+    const service = new BurstService({
+        nodeHost: environment.testNetHost,
+        apiRootUrl: environment.testNetApiPath
+    });
     const accountId = getAccountIdFromPassphrase(environment.testPassphrase);
 
     describe('getAccountTransactions', () => {

@@ -4,7 +4,7 @@
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../burstService';
+import {BurstService} from '../../../service/burstService';
 import {TransactionList} from '../../../typings/transactionList';
 // TODO: maybe split in several getAccountTransactions like getBlocks
 export const getAccountTransactions = (service: BurstService):

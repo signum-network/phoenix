@@ -8,7 +8,7 @@
  /**
  * Submits a getAccount query given an accountId
  */
-import {BurstService} from '../../../burstService';
+import {BurstService} from '../../../service/burstService';
 import { Account } from '../../../typings/account';
 
 export const getAccount = (service: BurstService):

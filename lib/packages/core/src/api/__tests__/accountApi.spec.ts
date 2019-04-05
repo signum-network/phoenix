@@ -1,18 +1,19 @@
 import {HttpMockBuilder, Http} from '@burstjs/http';
 
-import {BurstService} from '../../burstService';
+import {BurstService} from '../../service/burstService';
 import {getAccountTransactions} from '../factories/account/getAccountTransactions';
 import {getUnconfirmedAccountTransactions} from '../factories/account/getUnconfirmedAccountTransactions';
 import {getAccountBalance} from '../factories/account/getAccountBalance';
-import { generateSendTransactionQRCodeAddress } from '../factories/account/generateSendTransactionQRCodeAddress';
-import { generateSendTransactionQRCode } from '../factories/account/generateSendTransactionQRCode';
-import { getAliases } from '../factories/account/getAliases';
-import { setAccountInfo } from '../factories/account/setAccountInfo';
-import { Alias } from '../../typings/alias';
-import { AliasList } from "../../typings/aliasList";
-import { generateSignature } from '@burstjs/crypto';
-import { verifySignature } from '@burstjs/crypto';
-import { generateSignedTransactionBytes } from '@burstjs/crypto';
+import {generateSendTransactionQRCodeAddress} from '../factories/account/generateSendTransactionQRCodeAddress';
+import {generateSendTransactionQRCode} from '../factories/account/generateSendTransactionQRCode';
+import {getAliases} from '../factories/account/getAliases';
+import {setAccountInfo} from '../factories/account/setAccountInfo';
+import {Alias} from '../../typings/alias';
+import {AliasList} from '../../typings/aliasList';
+import {generateSignature} from '@burstjs/crypto';
+import {verifySignature} from '@burstjs/crypto';
+import {generateSignedTransactionBytes} from '@burstjs/crypto';
+import {createBurstService} from '../../__tests__/helpers/createBurstService';
 
 
 describe('Account Api', () => {
@@ -91,7 +92,7 @@ describe('Account Api', () => {
 
         it('should getAccountTransaction without paging', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock);
             const transactions = await getAccountTransactions(service)('accountId');
             expect(transactions.requestProcessingTime).not.toBeNull();
             expect(transactions.transactions).toHaveLength(2);
@@ -101,7 +102,7 @@ describe('Account Api', () => {
 
         it('should fail on getAccountTransaction', async () => {
             httpMock = HttpMockBuilder.create().onGetThrowError(404, 'Test Error').build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock);
             try {
                 await getAccountTransactions(service)('accountId');
             } catch (e) {
@@ -112,7 +113,7 @@ describe('Account Api', () => {
 
         it('should getAccountTransaction with paging', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock);
             const transactions = await getAccountTransactions(service)('accountId', 0, 10);
             expect(transactions.requestProcessingTime).not.toBeNull();
             expect(transactions.transactions).toHaveLength(2);
@@ -122,7 +123,7 @@ describe('Account Api', () => {
 
         it('should getAccountTransaction with number of confirmations', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock);
             const transactions = await getAccountTransactions(service)('accountId', undefined, undefined, 10);
             expect(transactions.requestProcessingTime).not.toBeNull();
             expect(transactions.transactions).toHaveLength(2);
@@ -168,7 +169,7 @@ describe('Account Api', () => {
 
         it('should getUnconfirmedAccountTransactions', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock);
             const transactions = await getUnconfirmedAccountTransactions(service)('accountId');
             expect(transactions.requestProcessingTime).not.toBeNull();
             expect(transactions.unconfirmedTransactions).toHaveLength(1);
@@ -176,7 +177,7 @@ describe('Account Api', () => {
 
         it('should fail on getUnconfirmedAccountTransactions', async () => {
             httpMock = HttpMockBuilder.create().onGetThrowError(404, 'Test Error').build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock);
             try {
                 await getUnconfirmedAccountTransactions(service)('accountId');
             } catch (e) {
@@ -199,7 +200,7 @@ describe('Account Api', () => {
             };
 
             httpMock = HttpMockBuilder.create().onGetReply(200, mockedBalance).build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock);
             const balance = await getAccountBalance(service)('accountId');
             expect(balance.requestProcessingTime).toBe(0);
             expect(balance.unconfirmedBalanceNQT).toBe('100000000000');
@@ -211,7 +212,7 @@ describe('Account Api', () => {
 
         it('should fail getAccountBalance', async () => {
             httpMock = HttpMockBuilder.create().onGetThrowError(404, 'Test Error').build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock);
             try {
                 await getAccountBalance(service)('accountId');
             } catch (e) {
@@ -227,7 +228,7 @@ describe('Account Api', () => {
         it('should expose a method for constructing the URL', async () => {
             // tslint:disable-next-line
             const expected = 'relPath?requestType=generateSendTransactionQRCode&receiverId=BURST-K8MA-U2JT-R6DJ-FVQLC&amountNQT=0&feeSuggestionType=standard';
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock, 'relPath');
             const generatedImageUrl = await generateSendTransactionQRCodeAddress(service)(mockAddress);
             expect(generatedImageUrl).toBe(expected);
         });
@@ -235,14 +236,14 @@ describe('Account Api', () => {
         it('should fetch the QR image', async () => {
             const mockedImage = new ArrayBuffer(1337);
             httpMock = HttpMockBuilder.create().onGetReply(200, mockedImage).build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock);
             const generatedImage = await generateSendTransactionQRCode(service)(mockAddress);
             expect(generatedImage.byteLength).toBe(1337);
         });
 
         it('should fail generateSendTransactionQRCode', async () => {
             httpMock = HttpMockBuilder.create().onGetThrowError(404, 'Test Error').build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock);
             try {
                 await generateSendTransactionQRCode(service)(mockAddress);
             } catch (e) {
@@ -256,11 +257,11 @@ describe('Account Api', () => {
 
         it('should getAliases', async () => {
             const mockAlias: Alias = {
-                account: "12345",
-                accountRS: "BURST-K8MA-U2JT-R6DJ-FVQLC`",
-                alias: "12345",
-                aliasName: "test",
-                aliasURI: "acct:burst-K8MA-U2JT-R6DJ-FVQLC@burst",
+                account: '12345',
+                accountRS: 'BURST-K8MA-U2JT-R6DJ-FVQLC`',
+                alias: '12345',
+                aliasName: 'test',
+                aliasURI: 'acct:burst-K8MA-U2JT-R6DJ-FVQLC@burst',
                 timestamp: 131932255
             };
             const mockResponse: AliasList = {
@@ -269,14 +270,14 @@ describe('Account Api', () => {
             };
 
             httpMock = HttpMockBuilder.create().onGetReply(200, mockResponse).build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock);
             const aliasesResponse = await getAliases(service)('accountId');
             expect(aliasesResponse.aliases).toHaveLength(1);
         });
 
         it('should fail getAliases', async () => {
             httpMock = HttpMockBuilder.create().onGetThrowError(404, 'Test Error').build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock);
             try {
                 await getAliases(service)('accountId');
             } catch (e) {
@@ -307,13 +308,13 @@ describe('Account Api', () => {
 
             httpMock = HttpMockBuilder.create()
             // tslint:disable:max-line-length
-            .onPostReply(200, mockBroadcastResponse,
-                'relPath?requestType=setAccountInfo&name=name&description=description&deadline=1440&feeNQT=12300000000&publicKey=senderPublicKey')
-            .onPostReply(200, 'fakeTransaction',
-                'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
-            .build();
+                .onPostReply(200, mockBroadcastResponse,
+                    'relPath?requestType=setAccountInfo&name=name&description=description&deadline=1440&feeNQT=12300000000&publicKey=senderPublicKey')
+                .onPostReply(200, 'fakeTransaction',
+                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+                .build();
 
-            service = new BurstService('baseUrl', 'relPath', httpMock);
+            service = createBurstService(httpMock, 'relPath');
         });
 
         afterEach(() => {
@@ -335,7 +336,5 @@ describe('Account Api', () => {
             expect(verifySignature).toBeCalledTimes(1);
             expect(generateSignedTransactionBytes).toBeCalledTimes(1);
         });
-
-    
     });
 });
