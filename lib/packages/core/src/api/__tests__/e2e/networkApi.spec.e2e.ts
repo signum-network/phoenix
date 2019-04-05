@@ -11,8 +11,8 @@ jest.setTimeout(environment.timeout);
 describe('[E2E] Network Api', () => {
 
     const service = new BurstService({
-        baseUrl: environment.testNetHost,
-        relativePath: environment.testNetApiPath
+        nodeHost: environment.testNetHost,
+        apiRootUrl: environment.testNetApiPath
     });
 
     it('should getBlockchainStatus', async () => {

@@ -18,8 +18,8 @@ describe('[E2E] Message Api', () => {
     beforeAll(() => {
         environment = loadEnvironment();
         service = new BurstService({
-            baseUrl: environment.testNetHost,
-            relativePath: environment.testNetApiPath
+            nodeHost: environment.testNetHost,
+            apiRootUrl: environment.testNetApiPath
         });
         jest.setTimeout(environment.timeout);
 

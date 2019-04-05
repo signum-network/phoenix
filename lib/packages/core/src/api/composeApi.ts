@@ -36,6 +36,7 @@ import {setAlias} from './factories/account/setAlias';
 import {getTime} from './factories/network/getTime';
 import {getAccount} from './factories/account/getAccount';
 import {setAccountInfo} from './factories/account/setAccountInfo';
+import {BurstServiceSettings} from '../service/burstServiceSettings';
 
 
 /**
@@ -57,7 +58,8 @@ export class ApiSettings {
  */
 export function composeApi(settings: ApiSettings): Api {
 
-    const service = new BurstService(settings.nodeHost, settings.apiRootUrl);
+    const serviceSettings: BurstServiceSettings = {...settings};
+    const service = new BurstService(serviceSettings);
 
     return ApiComposer
         .create(service)

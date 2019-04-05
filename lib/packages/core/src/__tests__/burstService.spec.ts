@@ -10,8 +10,8 @@ describe('BurstService', () => {
     describe('toBRSEndpoint() relative Path', () => {
 
         const settings: BurstServiceSettings = {
-            baseUrl: 'localhost',
-            relativePath: '',
+            nodeHost: 'localhost',
+            apiRootUrl: '',
         };
 
         let service = new BurstService(settings);
@@ -44,8 +44,8 @@ describe('BurstService', () => {
 
         it('should create BRS BURST url with many parameters and relative Url', () => {
             service = new BurstService({
-                    baseUrl: 'localhost',
-                    relativePath: '/burst/' // chopps trailing slash
+                    nodeHost: 'localhost',
+                    apiRootUrl: '/burst/' // chopps trailing slash
                 }
             );
             const url = service.toBRSEndpoint('getBlockByHeight', {id: 123, includeTransactions: true});

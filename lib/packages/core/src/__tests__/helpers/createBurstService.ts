@@ -3,8 +3,8 @@ import {BurstService} from '../../service';
 
 export const createBurstService = (httpClient: Http = undefined, relativePath: string = '', baseUrl: string = 'localhost'): BurstService => {
     return new BurstService({
-        baseUrl,
-        relativePath,
+        nodeHost: baseUrl,
+        apiRootUrl: relativePath,
         httpClient,
     });
 };

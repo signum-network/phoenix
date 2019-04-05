@@ -26,9 +26,9 @@ export class BurstService {
      * @param settings The settings for the service
      */
     constructor(settings: BurstServiceSettings) {
-        const {relativePath, baseUrl, httpClient} = settings;
-        this._http = httpClient ? httpClient : new HttpImpl(baseUrl);
-        this._relPath = relativePath.endsWith('/') ? relativePath.substr(0, relativePath.length - 1) : relativePath;
+        const {apiRootUrl, nodeHost, httpClient} = settings;
+        this._http = httpClient ? httpClient : new HttpImpl(nodeHost);
+        this._relPath = apiRootUrl.endsWith('/') ? apiRootUrl.substr(0, apiRootUrl.length - 1) : apiRootUrl;
     }
     private readonly _http: Http;
     private readonly _relPath: string;

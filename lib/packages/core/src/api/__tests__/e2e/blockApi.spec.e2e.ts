@@ -13,8 +13,8 @@ jest.setTimeout(environment.timeout);
 describe(`[E2E] Block Api`, () => {
 
     const service = new BurstService({
-        baseUrl: environment.testNetHost,
-        relativePath: environment.testNetApiPath
+        nodeHost: environment.testNetHost,
+        apiRootUrl: environment.testNetApiPath
     });
 
     it('should getBlockByTimestamp', async () => {
