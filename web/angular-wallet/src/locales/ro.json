@@ -473,6 +473,7 @@
   "info": "Informaţii",
   "info_merchant_message_required": "Contul destinatarului îți  solicită trimiterea unui mesaj în format special.",
   "info_referenced_transaction_hash": "Datorită folosinței unui hash de tranzacţii referenţiat, valoarea de 50 burst este poprită până când tranzacţia este confirmată sau expiră.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Tutorial Interfață",
   "is_scanning": "Scanează",
   "issue_asset": "Emitere Activă",

@@ -473,6 +473,7 @@
   "info": "Info",
   "info_merchant_message_required": "The recipient account requires you to supply a specially formatted message.",
   "info_referenced_transaction_hash": "Zbog korištenja hasha referentne transakcije, 50 burst-a je zadržano dok se transakcija ne potvrdi ili istekne.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Priručnik za sučelje",
   "is_scanning": "Pretražuje se",
   "issue_asset": "Izdaj asset",

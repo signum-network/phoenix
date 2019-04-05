@@ -473,6 +473,7 @@
   "info": "Tiedot",
   "info_merchant_message_required": "The recipient account requires you to supply a specially formatted message.",
   "info_referenced_transaction_hash": "Koska käytit viitatun tapahtuman tarkistetta, 50 BURST pidetään pidätettynä kunnes tapahtuma on vahvistettu tai vanhentunut.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Käyttöliittymän opastus",
   "is_scanning": "Skannataan",
   "issue_asset": "Arvopaperin liikkeellelasku",

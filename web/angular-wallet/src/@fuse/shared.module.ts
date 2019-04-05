@@ -10,6 +10,7 @@ import { TimeAgoPipe } from 'time-ago-pipe';
 import { TransactionRowValueCellComponent } from 'app/main/transactions/transaction-row-value-cell/transaction-row-value-cell.component';
 import { RouterModule } from '@angular/router';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
+import { MatInputModule, MatIconModule, MatButtonModule } from '@angular/material';
 
 @NgModule({
     imports  : [
@@ -21,6 +22,9 @@ import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 
         FuseDirectivesModule,
         FusePipesModule,
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
         I18nModule,
         RouterModule.forChild([])
     ],

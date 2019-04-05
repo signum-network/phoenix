@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
-import { Account, Api, SuggestedFees } from '@burstjs/core';
+import { Account, Api, SuggestedFees, EncryptedMessage } from '@burstjs/core';
 import { AccountService } from 'app/setup/account/account.service';
-import { decryptAES, hashSHA256} from '@burstjs/crypto';
+import { decryptAES, hashSHA256, Keys} from '@burstjs/crypto';
 import { NetworkService } from 'app/network/network.service';
 import { convertDateToBurstTime, convertAddressToNumericId } from '@burstjs/util';
 import {ApiService} from '../../api.service';
@@ -13,6 +13,7 @@ export interface ChatMessage {
     message: string;
     timestamp: number;
     contactId: string;
+    encryptedMessage?: EncryptedMessage;
 }
 
 export interface Messages {
@@ -23,8 +24,8 @@ export interface Messages {
 }
 
 export interface MessageOptions {
-    fees: SuggestedFees;
     encrypt: boolean;
+    fees?: SuggestedFees;
 }
 
 @Injectable({
@@ -38,7 +39,7 @@ export class MessagesService implements Resolve<any>
     messages: Messages[] = [];
     user: any;
     onMessageSelected: BehaviorSubject<any>;
-    onOptionsSelected: BehaviorSubject<any>;
+    onOptionsSelected: BehaviorSubject<MessageOptions>;
     onMessagesUpdated: Subject<any>;
     onUserUpdated: Subject<any>;
     onLeftSidenavViewChanged: Subject<any>;
@@ -50,7 +51,9 @@ export class MessagesService implements Resolve<any>
                 ) {
         this.api = apiService.api;
         this.onMessageSelected = new BehaviorSubject({});
-        this.onOptionsSelected = new BehaviorSubject({});
+        this.onOptionsSelected = new BehaviorSubject({
+            encrypt: true
+        });
         this.onMessagesUpdated = new Subject();
         this.onLeftSidenavViewChanged = new Subject();
         this.onRightSidenavViewChanged = new Subject();
@@ -72,7 +75,7 @@ export class MessagesService implements Resolve<any>
                 const fees = await this.networkService.suggestFee();
                 this.selectOptions({
                     fees: fees,
-                    encrypted: false
+                    encrypt: true
                 })
 
                 const messages = await this.getMessages();
@@ -112,16 +115,28 @@ export class MessagesService implements Resolve<any>
      *
      * @param messageId
      * @param {ChatMessage} message the message to send
-     * @param {string} recipientRS the recipient address
+     * @param {string} recipientId the recipient address
      * @param {string} pin the user's pin
      * @param {number} fee the fee to pay
      * @returns {ChatMessage}
      */
-    public sendTextMessage(message: ChatMessage, recipientRS: string, pin: string, fee: number) {
+    public async sendTextMessage(message: ChatMessage, recipientId: string, pin: string, fee: number) {
         // Check to see if existing chat session exists (ios-style), if so, merge it
-        this.mergeWithExistingChatSession(message, recipientRS);
-        const senderPrivateKey = decryptAES(this.user.keys.signPrivateKey, hashSHA256(pin));
-        return this.api.message.sendTextMessage(message.message, recipientRS, this.user.keys.publicKey, senderPrivateKey, fee);
+        this.mergeWithExistingChatSession(message, recipientId);
+        const recipient = await this.accountService.getAccount(recipientId);
+
+        const senderKeys = {
+            agreementPrivateKey: decryptAES(this.user.keys.agreementPrivateKey, hashSHA256(pin)),
+            signPrivateKey: decryptAES(this.user.keys.signPrivateKey, hashSHA256(pin)),
+            publicKey: this.user.keys.publicKey
+        }
+
+        if (this.onOptionsSelected.value.encrypt) {
+            // @ts-ignore
+            return this.api.message.sendEncryptedTextMessage(message.message, recipientId, recipient.publicKey, senderKeys, 1440, fee);
+        } else {
+            return this.api.message.sendTextMessage(message.message, recipientId, this.user.keys.publicKey, senderKeys.signPrivateKey, 1440, fee);
+        }
     }
 
     /**

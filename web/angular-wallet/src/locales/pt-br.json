@@ -473,6 +473,7 @@
   "info": "Informações",
   "info_merchant_message_required": "A conta do destinatário exige que você forneça uma mensagem especialmente formatada.",
   "info_referenced_transaction_hash": "Devido ao uso do hash de uma transação referenciada, 100 burst é mantido sob custódia até que a transação seja confirmada ou expire.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Tutorial de interface",
   "is_scanning": "Escaneando",
   "issue_asset": "Emitir ativo",

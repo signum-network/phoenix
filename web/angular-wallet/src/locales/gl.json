@@ -473,6 +473,7 @@
   "info": "Info",
   "info_merchant_message_required": "The recipient account requires you to supply a specially formatted message.",
   "info_referenced_transaction_hash": "Debido a que está usando un hash de transacción referenciado, 50 BURST se manterán baixo custodia ata que a transacción sexa confirmada ou caducada.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Tutorial do interfaz",
   "is_scanning": "Está Escaneando",
   "issue_asset": "Emitir activo",

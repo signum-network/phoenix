@@ -31,4 +31,7 @@
     </mat-form-field>
 
     <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
+
+    <mat-checkbox [(ngModel)]="options.encrypt">{{ "encrypt_message" | i18n }}</mat-checkbox>
+
 </div>

@@ -1,11 +1,18 @@
 <div [ngSwitch]="valueType">
-  <span *ngSwitchCase="'Message'">{{value.message}}</span>
-  <span *ngSwitchCase="'EncryptedMessage'">
-    <span class="link" (click)="showPinPrompt()">Enter PIN</span>
-    <span>{{decryptedMessage}}</span>
-  </span>
-  <span *ngSwitchCase="'BurstAddress'">
+  <div *ngSwitchCase="'Message'">{{value.message}}</div>
+  <div *ngSwitchCase="'EncryptedMessage'">
+    <mat-icon class="s-16 lock">lock</mat-icon>
+    <div *ngIf="decryptedMessage">{{decryptedMessage}}</div>
+    <div *ngIf="!decryptedMessage">
+      <mat-form-field>
+        <input matInput [(ngModel)]="pin" name="pin" placeholder="{{ 'input_pin' | i18n }}">
+      </mat-form-field> 
+      <button type="submit" class="mr-8" mat-button color="primary"
+      (click)="submitPinPrompt($event)">{{ "submit" | i18n }}</button>
+    </div>
+  </div>
+  <div *ngSwitchCase="'BurstAddress'">
     <a [routerLink]="['/account', convertAddressToNumericId(value)]">{{value}}</a>
-  </span>
-  <span *ngSwitchDefault>{{value | i18n}}</span>
+  </div>
+  <div *ngSwitchDefault>{{value | i18n}}</div>
 </div>

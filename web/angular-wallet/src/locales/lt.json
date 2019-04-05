@@ -473,6 +473,7 @@
   "info": "Informacija",
   "info_merchant_message_required": "Reikia pateikti specialiai suformatuotą žinutę gavėjo sąskaitai.",
   "info_referenced_transaction_hash": "Due to you using a referenced transaction hash, 50 BURST is held in custody until the transaction is confirmed or expired.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Sąsaja naudotojo vadovas",
   "is_scanning": "Vyksta skenavimas",
   "issue_asset": "Išleisti aktyvą",

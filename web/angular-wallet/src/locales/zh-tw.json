@@ -473,6 +473,7 @@
   "info": "信息",
   "info_merchant_message_required": "The recipient account requires you to supply a specially formatted message.",
   "info_referenced_transaction_hash": "由於您使用參考交易哈希，將抵押50個 BURST 直到交易確認或過期。",
+  "input_pin": "Input PIN",
   "interface_tutorial": "界面教程",
   "is_scanning": "正在掃描",
   "issue_asset": "發行資產",

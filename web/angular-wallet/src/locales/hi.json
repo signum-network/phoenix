@@ -473,6 +473,7 @@
   "info": "जानकारी",
   "info_merchant_message_required": "The recipient account requires you to supply a specially formatted message.",
   "info_referenced_transaction_hash": "Due to you using a referenced transaction hash, 50 BURST is held in custody until the transaction is confirmed or expired.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "इंटरफ़ेस ट्यूटोरियल",
   "is_scanning": "स्कैन कर रहा है",
   "issue_asset": "मुद्दा परिसंपत्ति",

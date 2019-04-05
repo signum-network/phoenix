@@ -473,6 +473,7 @@
   "info": "Info",
   "info_merchant_message_required": "The recipient account requires you to supply a specially formatted message.",
   "info_referenced_transaction_hash": "Debido al uso del hash de una transacción de referencia, se guardan 50 BURST en depósito hasta que la transacción sea confirmada o expire.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Tutorial del Interfaz",
   "is_scanning": "Está Escaneando",
   "issue_asset": "Emitir Activo",

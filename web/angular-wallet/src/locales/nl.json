@@ -473,6 +473,7 @@
   "info": "Info",
   "info_merchant_message_required": "Voor het ontvangende account moet u een speciaal formaat bericht gebruiken.",
   "info_referenced_transaction_hash": "Omdat u een gerefereerde transaction hash gebruikte, wordt 50 BURST gereserveerd totdat de transactie is bevestigd of is verlopen.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Interface handleiding",
   "is_scanning": "Bezig met scannen",
   "issue_asset": "Asset uitgeven",

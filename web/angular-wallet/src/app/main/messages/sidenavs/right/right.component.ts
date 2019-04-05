@@ -20,6 +20,7 @@ export class MessageRightSidenavComponent implements OnInit, OnDestroy
     view: string;
     @Input('fees') fees: SuggestedFees;
     @Input('feeNQT') feeNQT: string;
+    @Input('encrypt') encrypt: boolean;
     @ViewChild(MessageOptionsSidenavComponent) options;
 
     // Private

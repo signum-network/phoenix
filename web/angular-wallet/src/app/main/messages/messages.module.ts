@@ -2,7 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import {
-    MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatRadioModule, MatSidenavModule, MatToolbarModule, MatSliderModule
+    MatButtonModule, 
+    MatCardModule, 
+    MatFormFieldModule, 
+    MatIconModule, 
+    MatInputModule, 
+    MatListModule, 
+    MatMenuModule, 
+    MatRadioModule, 
+    MatSidenavModule, 
+    MatToolbarModule, 
+    MatSliderModule, 
+    MatCheckboxModule
 } from '@angular/material';
 
 import { FuseSharedModule } from '@fuse/shared.module';
@@ -55,6 +66,7 @@ const routes: Routes = [
         MatInputModule,
         MatListModule,
         MatMenuModule,
+        MatCheckboxModule,
         MatRadioModule,
         MatSidenavModule,
         MatToolbarModule,

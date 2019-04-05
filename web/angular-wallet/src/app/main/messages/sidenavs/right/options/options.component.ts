@@ -15,8 +15,11 @@ import { ActivatedRoute } from '@angular/router';
 export class MessageOptionsSidenavComponent implements OnInit, OnDestroy
 {
     options: any;
+
     @Input('fees') fees: SuggestedFees;
+    @Input('encrypt') encrypt: boolean;
     @Input('feeNQT') feeNQT: string;
+
 
     private _unsubscribeAll: Subject<any>;
 

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {EncryptedMessage, Message, Account, Transaction} from '@burstjs/core';
 import {StoreService} from 'app/store/store.service';
@@ -55,6 +55,11 @@ export class TransactionDetailsComponent implements OnInit {
     }
 
     return [key, value];
+  }
+
+
+  trackRows(index, row) {
+    return row ? row.id : undefined;
   }
 
   ngOnInit(): void {

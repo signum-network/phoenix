@@ -24,7 +24,6 @@ export class BlockDetailsComponent implements OnInit {
   } 
 
   ngOnInit() {
-    console.log(this.route);
     this.block = this.route.snapshot.data.block as Block;
     const blockDetails = Object.keys(this.block).map((key:string): TransactionDetailsCellValueMap => [ key, this.block[key]]);
     this.detailsData = new Map(blockDetails);

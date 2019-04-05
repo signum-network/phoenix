@@ -473,6 +473,7 @@
   "info": "Info",
   "info_merchant_message_required": "El compte del destinatari requereix que vostè adjunti un missatge en un format especial.",
   "info_referenced_transaction_hash": "Donat que vostè està utilitzant un Hash d'una transacció de referència, 50 burst son retinguts en custòdia fins que la transacció sigui confirmada o expiri.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Tutorial de la Interfícia",
   "is_scanning": "Està Escannejant",
   "issue_asset": "Emetre un Actiu",

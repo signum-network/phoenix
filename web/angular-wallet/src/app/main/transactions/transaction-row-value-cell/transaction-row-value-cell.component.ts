@@ -1,6 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Attachment, EncryptedMessage, Message } from '@burstjs/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { EncryptedMessage, Message } from '@burstjs/core';
 import { isBurstAddress, convertAddressToNumericId } from '@burstjs/util';
+import { decryptMessage, decryptAES, hashSHA256 } from '@burstjs/crypto';
+import { AccountService } from 'app/setup/account/account.service';
+import { Event } from '@angular/router';
 
 @Component({
   selector: 'app-transaction-row-value-cell',
@@ -9,39 +12,37 @@ import { isBurstAddress, convertAddressToNumericId } from '@burstjs/util';
 })
 export class TransactionRowValueCellComponent implements OnInit {
 
-  @Input('value') value: string | Attachment | number;
+  @Input('value') value: EncryptedMessage | Message | any;
   @Input('key') key: string;
+   // the hex value of the sender public key, for encrypted message decoding
+  @Input('senderPublicKeyHex') senderPublicKeyHex: string;
+  @ViewChild('pin') pin: string;
+  decryptedMessage = '';
+  
   valueType = 'string';
   public convertAddressToNumericId;
 
-  constructor() {
+  constructor(private accountService: AccountService) {
     this.convertAddressToNumericId = convertAddressToNumericId;
   }
 
   ngOnInit() {
-    switch (this.value && this.value.constructor) {
-      case Message: {
-        this.valueType = 'Message';
-        break;
-      }
-      case EncryptedMessage: {
-        this.valueType = 'EncryptedMessage';
-        break;
-      }
-      case String:
-        if (isBurstAddress(this.value as string)) {
-          this.valueType = 'BurstAddress';
-        }
+    if (isBurstAddress(this.value as string)) {
+      this.valueType = 'BurstAddress';
+      //@ts-ignore
+    } else if (this.value && this.value.message) {
+      this.valueType = 'Message';
+      //@ts-ignore
+    } else if (this.value && this.value.encryptedMessage) {
+      this.valueType = 'EncryptedMessage';
     }
   }
 
-  public showPinPrompt() {
-    console.log('show pin prompt');
-    // return this.cryptoService.decryptMessage(this.value.data, this.value.nonce, encryptedPrivateKey, pinHash, )
-  }
-
-  public showAccountDialog(address: string) {
-    console.log('show account dialog', address);
+  public async submitPinPrompt(event) {
+    event.stopImmediatePropagation();
+    const account = await this.accountService.currentAccount.getValue();
+    const privateKey = decryptAES(account.keys.agreementPrivateKey, hashSHA256(this.pin));
+    this.decryptedMessage = decryptMessage(<EncryptedMessage>this.value.encryptedMessage, this.senderPublicKeyHex, privateKey);
   }
 }
  

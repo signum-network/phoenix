@@ -473,6 +473,7 @@
   "info": "Инфо",
   "info_merchant_message_required": "The recipient account requires you to supply a specially formatted message.",
   "info_referenced_transaction_hash": "Пошто користите Hash референтне трансакције, 50 BURST-а је замрзнуто док трансакција није потврђена или истекла.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Упутство за Интерфејс",
   "is_scanning": "Претражује се",
   "issue_asset": "Издајте Ассет",

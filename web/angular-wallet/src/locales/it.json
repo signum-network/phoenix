@@ -473,6 +473,7 @@
   "info": "Informazioni",
   "info_merchant_message_required": "The recipient account requires you to supply a specially formatted message.",
   "info_referenced_transaction_hash": "Poiché stai usando un hash di transazione referenziato, 50 BURST sono trattenuti finché la transazione è confermata o scaduta.",
+  "input_pin": "Input PIN",
   "interface_tutorial": "Tutorial interfaccia",
   "is_scanning": "E' in scansione",
   "issue_asset": "Rilascia Asset",
