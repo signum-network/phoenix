@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2019 Burst Apps Team
+ */
+
+
 import {Http} from '@burstjs/http';
 
 /**
@@ -13,7 +18,8 @@ export interface BurstServiceSettings {
      */
     readonly apiRootUrl: string;
     /**
-     * If passed an client instance, it will be used instead of default HttpImpl. Good for testing.
+     * If passed an client instance, it will be used instead of default HttpImpl.
+     * Good for testing, but usually you won't need this
      */
     readonly httpClient?: Http;
 }

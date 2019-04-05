@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ##Unreleased
 
+- changed BurstService creation parameter
 - added sendEncryptedTextMessage 
 - Export of Api Interface Types
 - Entirely removed BigNumber
