@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TransactionRowValueCellComponent } from './transaction-row-value-cell.component';
-import { Message } from '@burstjs/core';
+import { Message, EncryptedMessage } from '@burstjs/core';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { StoreService } from 'app/store/store.service';
@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatInputModule, MatButtonModule, MatIconModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TransactionRowValueCellComponent', () => {
   let component: TransactionRowValueCellComponent;
@@ -18,7 +19,7 @@ describe('TransactionRowValueCellComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [ TransactionRowValueCellComponent ],
-      imports: [ I18nModule, FormsModule, HttpClientTestingModule, RouterTestingModule, MatInputModule, MatButtonModule, MatIconModule ],
+      imports: [ I18nModule, FormsModule, BrowserAnimationsModule, HttpClientTestingModule, RouterTestingModule, MatInputModule, MatButtonModule, MatIconModule ],
       providers: [ I18nService, {
         provide: StoreService,
         useFactory: () => {
@@ -53,5 +54,14 @@ describe('TransactionRowValueCellComponent', () => {
     component.senderPublicKeyHex = '1';
     fixture.detectChanges();
     expect(component.valueType).toBe('Message');
+  });
+
+  test('should render encrypted messages', () => {
+    component.value = {
+      encryptedMessage: new EncryptedMessage({ data: 'test' })
+    };
+    component.senderPublicKeyHex = '1';
+    fixture.detectChanges();
+    expect(component.valueType).toBe('EncryptedMessage');
   });
 });
