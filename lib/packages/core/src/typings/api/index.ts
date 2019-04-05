@@ -16,8 +16,7 @@ export {
 };
 
 /**
- * API Interface used by [[composeApi]]
- *
+ * API Interface used by composeApi() and apiComposer class
  */
 export class Api {
     readonly block: BlockApi;

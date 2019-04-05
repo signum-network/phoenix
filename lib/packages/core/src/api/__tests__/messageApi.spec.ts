@@ -1,11 +1,12 @@
 import {HttpMockBuilder, Http} from '@burstjs/http';
-import {BurstService} from '../../burstService';
+import {BurstService} from '../../service/burstService';
 import {generateSignedTransactionBytes, generateSignature, encryptMessage} from '@burstjs/crypto';
 import {verifySignature} from '@burstjs/crypto';
 import {constructAttachment} from '../../attachment/constructAttachment';
 import {sendTextMessage} from '../factories/message/sendTextMessage';
 import {broadcastTransaction} from '../factories/transaction/broadcastTransaction';
 import {sendEncryptedTextMessage} from '../factories/message/sendEncryptedTextMessage';
+import {createBurstService} from '../../__tests__/helpers/createBurstService';
 
 describe('Message Api', () => {
 
@@ -36,8 +37,7 @@ describe('Message Api', () => {
             httpMock = HttpMockBuilder.create().onPostReply(200, {
                 unsignedTransactionBytes: 'unsignedHexMessage'
             }).build();
-
-            service = new BurstService('baseUrl', 'relPath', httpMock);
+            service = createBurstService(httpMock, 'relPath');
 
         });
 
@@ -152,9 +152,7 @@ describe('Message Api', () => {
             httpMock = HttpMockBuilder.create().onPostReply(200, {
                 unsignedTransactionBytes: 'unsignedHexMessage'
             }).build();
-
-            service = new BurstService('baseUrl', 'relPath', httpMock);
-
+            service = createBurstService(httpMock, 'relPath');
         });
 
         afterEach(() => {

@@ -4,7 +4,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import { BurstService } from '../../../burstService';
+import { BurstService } from '../../../service/burstService';
 import { PeerAddressList } from '../../../typings/peerAddressList';
 
 export const getPeers = (service: BurstService):

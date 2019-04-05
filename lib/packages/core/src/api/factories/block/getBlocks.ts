@@ -4,7 +4,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../burstService';
+import {BurstService} from '../../../service/burstService';
 import {Block} from '../../../typings/block';
 
 export const getBlocks = (service: BurstService):

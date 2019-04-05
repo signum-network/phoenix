@@ -1,5 +1,4 @@
 import {ApiComposer} from '../apiComposer';
-import {BurstService} from '../../burstService';
 import {getBlockById} from '../factories/block/getBlockById';
 import {getBlockByHeight} from '../factories/block/getBlockByHeight';
 import {getBlockId} from '../factories/block/getBlockId';
@@ -16,10 +15,11 @@ import {getUnconfirmedAccountTransactions} from '../factories/account/getUnconfi
 import {generateSendTransactionQRCode} from '../factories/account/generateSendTransactionQRCode';
 import {getAccountBalance} from '../factories/account/getAccountBalance';
 import {generateSendTransactionQRCodeAddress} from '../factories/account/generateSendTransactionQRCodeAddress';
+import {createBurstService} from '../../__tests__/helpers/createBurstService';
 
 
 describe('ApiComposer', () => {
-    const burstService = new BurstService('nodeHose', 'apiRootUrl');
+    const burstService = createBurstService();
     let apiComposer;
 
     beforeEach(() => {

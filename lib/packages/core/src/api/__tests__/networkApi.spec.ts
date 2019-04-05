@@ -1,8 +1,8 @@
 import {HttpMockBuilder, Http} from '@burstjs/http';
-import {BurstService} from '../../burstService';
 import {getBlockchainStatus} from '../factories/network/getBlockchainStatus';
 import {getServerStatus} from '../factories/network/getServerStatus';
-import {getTime} from "../factories/network/getTime";
+import {getTime} from '../factories/network/getTime';
+import {createBurstService} from '../../__tests__/helpers/createBurstService';
 
 describe('Network Api', () => {
 
@@ -21,7 +21,7 @@ describe('Network Api', () => {
                 application: 'BRS',
                 numberOfBlocks: 100
             }).build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock, 'relPath');
             const status = await getBlockchainStatus(service)();
             expect(status.application).toBe('BRS');
             expect(status.numberOfBlocks).toBe(100);
@@ -31,7 +31,7 @@ describe('Network Api', () => {
         it('should fail on getBlockchainStatus', async () => {
             try {
                 httpMock = HttpMockBuilder.create().onGetThrowError(500, 'Internal Server Error').build();
-                const service = new BurstService('baseUrl', 'relPath', httpMock);
+                const service = createBurstService(httpMock, 'relPath');
                 await getBlockchainStatus(service)();
                 expect(true).toBe('Exception expected');
             } catch (error) {
@@ -48,7 +48,7 @@ describe('Network Api', () => {
                 numberOfPeers: 100,
                 numberOfAccounts: 10,
             }).build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock, 'relPath');
             const status = await getServerStatus(service)();
             expect(status.application).toBe('BRS');
             expect(status.numberOfAccounts).toBe(10);
@@ -59,7 +59,7 @@ describe('Network Api', () => {
         it('should fail on getNetworkState', async () => {
             try {
                 httpMock = HttpMockBuilder.create().onGetThrowError(500, 'Internal Server Error').build();
-                const service = new BurstService('baseUrl', 'relPath', httpMock);
+                const service = createBurstService(httpMock, 'relPath');
                 await getServerStatus(service)();
                 expect(true).toBe('Exception expected');
             } catch (error) {
@@ -74,7 +74,7 @@ describe('Network Api', () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, {
                 time: 100000000,
             }).build();
-            const service = new BurstService('baseUrl', 'relPath', httpMock);
+            const service = createBurstService(httpMock, 'relPath');
             const status = await getTime(service)();
             expect(status.time).toBe(100000000);
         });

@@ -4,7 +4,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../burstService';
+import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {generateSignature} from '@burstjs/crypto';

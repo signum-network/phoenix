@@ -21,6 +21,8 @@ export * from './typings/transactionResponse';
 export * from './typings/unconfirmedTransactionList';
 export * from './typings/multioutRecipientAmount';
 export * from './typings/burstTime';
+
+export * from './service';
 export * from './api';
 export * from './attachment';
 export * from './transaction';

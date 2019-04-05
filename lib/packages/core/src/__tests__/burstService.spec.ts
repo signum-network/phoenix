@@ -1,11 +1,20 @@
-import {BurstService} from '../burstService';
-import {HttpMockBuilder, HttpError} from '@burstjs/http';
+import {BurstService} from '../service/burstService';
+import {HttpMockBuilder, HttpError, Http} from '@burstjs/http';
+import {BurstServiceSettings} from '../service/burstServiceSettings';
+import {createBurstService} from './helpers/createBurstService';
+
 
 describe('BurstService', () => {
 
+
     describe('toBRSEndpoint() relative Path', () => {
 
-        let service = new BurstService('localhost');
+        const settings: BurstServiceSettings = {
+            baseUrl: 'localhost',
+            relativePath: '',
+        };
+
+        let service = new BurstService(settings);
 
         it('should create BRS BURST url without any parameter', () => {
             const url = service.toBRSEndpoint('getBlockByHeight');
@@ -34,7 +43,11 @@ describe('BurstService', () => {
         });
 
         it('should create BRS BURST url with many parameters and relative Url', () => {
-            service = new BurstService('localhost', '/burst/'); // chopps trailing slash
+            service = new BurstService({
+                    baseUrl: 'localhost',
+                    relativePath: '/burst/' // chopps trailing slash
+                }
+            );
             const url = service.toBRSEndpoint('getBlockByHeight', {id: 123, includeTransactions: true});
             expect(url).toBe('/burst?requestType=getBlockByHeight&id=123&includeTransactions=true');
         });
@@ -43,11 +56,12 @@ describe('BurstService', () => {
 
 
     describe('send()', () => {
+
         it('should successfully send data', async () => {
             const httpMock = HttpMockBuilder.create().onPostReply(200, {
                 foo: 'someData'
             }).build();
-            const burstService = new BurstService('localhost', '', httpMock);
+            const burstService = createBurstService(httpMock);
             const result = await burstService.send('someMethod');
 
             expect(result).toEqual({foo: 'someData'});
@@ -61,9 +75,8 @@ describe('BurstService', () => {
                 {data: 'any'}
             ).build();
 
-            const burstService = new BurstService('localhost', '', httpMock);
-
             try {
+                const burstService = createBurstService(httpMock);
                 await burstService.send('someMethod');
                 expect('Expected exception').toBeFalsy();
             } catch (e) {
@@ -72,8 +85,6 @@ describe('BurstService', () => {
                 expect(httpError.message).toBe('error');
                 expect(httpError.data).toEqual({data: 'any'});
             }
-
-
         });
 
 
@@ -83,9 +94,8 @@ describe('BurstService', () => {
                 {errorCode: 123, errorDescription: 'BRS API Error'}
             ).build();
 
-            const burstService = new BurstService('localhost', '', httpMock);
-
             try {
+                const burstService = createBurstService(httpMock);
                 await burstService.send('someMethod');
                 expect('Expected exception').toBeFalsy();
             } catch (e) {
@@ -103,7 +113,7 @@ describe('BurstService', () => {
             const httpMock = HttpMockBuilder.create().onGetReply(200, {
                 foo: 'someData'
             }).build();
-            const burstService = new BurstService('localhost', '', httpMock);
+            const burstService = createBurstService(httpMock);
             const result = await burstService.query('someMethod');
 
             expect(result).toEqual({foo: 'someData'});
@@ -117,9 +127,9 @@ describe('BurstService', () => {
                 {data: 'any'}
             ).build();
 
-            const burstService = new BurstService('localhost', '', httpMock);
 
             try {
+                const burstService = createBurstService(httpMock);
                 await burstService.query('someMethod');
                 expect('Expected exception').toBeFalsy();
             } catch (e) {
@@ -137,9 +147,8 @@ describe('BurstService', () => {
                 {errorCode: 123, errorDescription: 'BRS API Error'}
             ).build();
 
-            const burstService = new BurstService('localhost', '', httpMock);
-
             try {
+                const burstService = createBurstService(httpMock);
                 await burstService.query('someMethod');
                 expect('Expected exception').toBeFalsy();
             } catch (e) {

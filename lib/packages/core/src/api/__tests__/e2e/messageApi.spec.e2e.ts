@@ -1,5 +1,5 @@
 import {loadEnvironment} from './helpers/environment';
-import {BurstService} from '../../../burstService';
+import {BurstService} from '../../../service/burstService';
 import {decryptMessage, generateMasterKeys, getAccountIdFromPublicKey} from '@burstjs/crypto';
 import {sendTextMessage} from '../../factories/message/sendTextMessage';
 import {sendEncryptedTextMessage} from '../../factories/message/sendEncryptedTextMessage';
@@ -17,7 +17,10 @@ describe('[E2E] Message Api', () => {
 
     beforeAll(() => {
         environment = loadEnvironment();
-        service = new BurstService(environment.testNetHost, environment.testNetApiPath);
+        service = new BurstService({
+            baseUrl: environment.testNetHost,
+            relativePath: environment.testNetApiPath
+        });
         jest.setTimeout(environment.timeout);
 
         senderKeys = generateMasterKeys(environment.testPassphrase);
