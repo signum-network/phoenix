@@ -21,7 +21,6 @@ export class TransactionRowValueCellComponent implements OnInit {
   
   valueType = 'string';
   public convertAddressToNumericId;
-  public showPin = false;
 
   constructor(private accountService: AccountService) {
     this.convertAddressToNumericId = convertAddressToNumericId;
@@ -39,11 +38,6 @@ export class TransactionRowValueCellComponent implements OnInit {
       this.valueType = 'EncryptedMessage';
       console.log('found encryptedMessage', this.value);
     }
-  }
-
-  public showPinPrompt() {
-    console.log('show pin prompt');
-    this.showPin = true;
   }
 
   public async submitPinPrompt(event) {

@@ -19,6 +19,7 @@ import {
 import { NotifierService } from 'angular-notifier';
 import { UtilService } from 'app/util.service';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { decryptAES, hashSHA256, decryptMessage } from '@burstjs/crypto/out/src';
 
 @Component({
     selector: 'message-view',
@@ -28,6 +29,9 @@ import { I18nService } from 'app/layout/components/i18n/i18n.service';
 })
 export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     @Input('feeNQT') feeNQT: number;
+    @Input('encrypt') encrypt: boolean;
+
+    @ViewChild('pin') pin: string;
 
     message: Messages;
     replyInput: any;
@@ -214,6 +218,19 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         this.readyToReply();
 
     }
+
+
+    public async submitPinPrompt(event) {
+        event.stopImmediatePropagation();
+        const account = await this.accountService.currentAccount.getValue();
+        const sender = await this.accountService.getAccount(this.message.contactId);
+        const privateKey = decryptAES(account.keys.agreementPrivateKey, hashSHA256(this.pin));
+        this.message.dialog = this.message.dialog.map((message) => {
+            if (message.encryptedMessage) message.message = decryptMessage(message.encryptedMessage, sender.publicKey, privateKey);
+            return message;
+        })
+    }
+
 
     getQRCode(id: string): Promise<string> {
         return this.accountService.generateSendTransactionQRCodeAddress(id);

@@ -70,6 +70,18 @@
                             }">
 
                 <div class="bubble">
+                    <div class="message encrypted" *ngIf="message.encryptedMessage && !message.message">
+                        <div *ngIf="!showPin">
+                            <mat-icon class="s-16 lock" (click)="showPin=true">lock</mat-icon>
+                        </div>
+                        <div *ngIf="showPin">
+                            <mat-form-field>
+                                <input matInput type="password" [(ngModel)]="pin" name="pin" placeholder="{{ 'input_pin' | i18n }}">
+                            </mat-form-field> 
+                            <button type="submit" class="mr-8" mat-button color="primary"
+                            (click)="submitPinPrompt($event)">{{ "submit" | i18n }}</button>
+                        </div>
+                    </div>
                     <div class="message">{{message.message}}</div>
                     <div class="time secondary-text">{{convertTimestampToDate(message.timestamp) | date:'short'}}</div>
                 </div>

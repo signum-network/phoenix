@@ -78,6 +78,10 @@ message-view {
                         margin: 0;
                     }
 
+                    .lock {
+                        cursor: pointer;
+                    }
+
                     .bubble {
                         position: relative;
                         display: flex;

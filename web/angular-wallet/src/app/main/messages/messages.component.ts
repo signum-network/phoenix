@@ -21,6 +21,7 @@ export class MessagesComponent implements OnInit, OnDestroy
 {
     selectedMessage: any;
     fees: SuggestedFees;
+    encrypt: boolean;
     feeNQT: number;
     @ViewChild(MessageRightSidenavComponent) rightSidenav;
 
@@ -41,6 +42,7 @@ export class MessagesComponent implements OnInit, OnDestroy
         this._unsubscribeAll = new Subject();
 
         this.fees = this.route.snapshot.data.fees as SuggestedFees;
+        this.encrypt = true;
         this.feeNQT = convertNQTStringToNumber(this.fees.standard.toString());
 
     }
