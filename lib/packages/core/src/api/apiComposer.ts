@@ -22,12 +22,23 @@ class ApiImpl implements Api {
 }
 
 /**
- * The API composer mounts the API with given service
+ * The API composer mounts the API for given service and selected methods
  *
+ * Usually you would use [[composeApi]], which gives you _all_ available API methods.
+ * Unfortunately, this will import almost all dependencies, even if you need only a fraction
+ * of the methods. To take advantage of tree-shaking (dead code elimination) you can
+ * compose your own API with the methods you need. This can reduce your final bundle significantly.
  *
  * Usage:
  * ```typescript
+ *
+ * const burstService = new BurstService({
+ *     nodeHost: 'https://testnet.burst.fun',
+ *     apiRootUrl: '/burst'
+ * })
+ *
  * const api = apiComposer
+ * .create(burstService)
  * .withMessageApi({
  *                sendTextMessage
  *            })
@@ -66,7 +77,7 @@ export class ApiComposer {
     }
 
     /**
-     * Adds the [[BlockAPI]] to be composed
+     * Adds the [[BlockApi]] to be composed
      * @param creatorMap A map of creator/factory functions for the endpoints
      */
     public withBlockApi(creatorMap: any): ApiComposer {
@@ -75,7 +86,7 @@ export class ApiComposer {
     }
 
     /**
-     * Adds the [[AccountAPI]]  to be composed
+     * Adds the [[AccountApi]]  to be composed
      * @param creatorMap A map of creator/factory functions for the endpoints
      */
     public withAccountApi(creatorMap: any): ApiComposer {
@@ -84,7 +95,7 @@ export class ApiComposer {
     }
 
     /**
-     * Adds the [[NetworkAPI]]  to be composed
+     * Adds the [[NetworkApi]]  to be composed
      * @param creatorMap A map of creator/factory functions for the endpoints
      */
     public withNetworkApi(creatorMap: any): ApiComposer {
@@ -93,7 +104,7 @@ export class ApiComposer {
     }
 
     /**
-     * Adds the [[MessageAPI]]  to be composed
+     * Adds the [[MessageApi]]  to be composed
      * @param creatorMap A map of creator/factory functions for the endpoints
      */
     public withMessageApi(creatorMap: any): ApiComposer {
@@ -102,7 +113,7 @@ export class ApiComposer {
     }
 
     /**
-     * Adds the [[TransactionAPI]]  to be composed
+     * Adds the [[TransactionApi]]  to be composed
      * @param creatorMap A map of creator/factory functions for the endpoints
      */
     public withTransactionApi(creatorMap: any): ApiComposer {

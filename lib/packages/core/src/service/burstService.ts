@@ -1,5 +1,9 @@
 /** @module core */
 
+/**
+ * Original work Copyright (c) 2019 Burst Apps Team
+ */
+
 import {Http, HttpImpl, HttpError} from '@burstjs/http';
 import {BurstServiceSettings} from './burstServiceSettings';
 
