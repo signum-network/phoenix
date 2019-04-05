@@ -132,6 +132,7 @@ export class MessagesService implements Resolve<any>
         }
 
         if (this.onOptionsSelected.value.encrypt) {
+            // @ts-ignore
             return this.api.message.sendEncryptedTextMessage(message.message, recipientId, recipient.publicKey, senderKeys, 1440, fee);
         } else {
             return this.api.message.sendTextMessage(message.message, recipientId, this.user.keys.publicKey, senderKeys.signPrivateKey, 1440, fee);

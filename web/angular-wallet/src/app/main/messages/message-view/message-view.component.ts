@@ -226,6 +226,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         const sender = await this.accountService.getAccount(this.message.contactId);
         const privateKey = decryptAES(account.keys.agreementPrivateKey, hashSHA256(this.pin));
         this.message.dialog = this.message.dialog.map((message) => {
+            // @ts-ignore
             if (message.encryptedMessage) message.message = decryptMessage(message.encryptedMessage, sender.publicKey, privateKey);
             return message;
         })
