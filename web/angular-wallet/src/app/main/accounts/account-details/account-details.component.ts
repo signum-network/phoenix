@@ -26,7 +26,6 @@ export class AccountDetailsComponent implements OnInit {
   } 
 
   ngOnInit() {
-    console.log(this.route);
     this.account = this.route.snapshot.data.account as Account;
     const blockDetails = Object.keys(this.account).map((key:string): TransactionDetailsCellValueMap => [ key, this.account[key]]);
     this.detailsData = new Map(blockDetails);

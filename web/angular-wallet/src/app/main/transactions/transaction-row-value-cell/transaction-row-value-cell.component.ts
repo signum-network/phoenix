@@ -31,12 +31,10 @@ export class TransactionRowValueCellComponent implements OnInit {
       this.valueType = 'BurstAddress';
       //@ts-ignore
     } else if (this.value && this.value.message) {
-      console.log('found message', this.value);
       this.valueType = 'Message';
       //@ts-ignore
     } else if (this.value && this.value.encryptedMessage) {
       this.valueType = 'EncryptedMessage';
-      console.log('found encryptedMessage', this.value);
     }
   }
 
@@ -45,10 +43,6 @@ export class TransactionRowValueCellComponent implements OnInit {
     const account = await this.accountService.currentAccount.getValue();
     const privateKey = decryptAES(account.keys.agreementPrivateKey, hashSHA256(this.pin));
     this.decryptedMessage = decryptMessage(<EncryptedMessage>this.value.encryptedMessage, this.senderPublicKeyHex, privateKey);
-  }
-
-  public showAccountDialog(address: string) {
-    console.log('show account dialog', address);
   }
 }
  

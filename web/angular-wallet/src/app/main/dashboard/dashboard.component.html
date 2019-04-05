@@ -62,7 +62,7 @@
             <div class="p-16" fxLayout="column wrap" fxLayoutAlign="start">
               <div class="h3 secondary-text">{{ 'recent_transactions' | i18n }}</div>
               <app-transaction-table
-                [displayedColumns]="['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'account']"
+                [displayedColumns]="['transaction_id', 'attachment', 'timestamp', 'amount', 'account']"
                 [dataSource]="dataSource"
                 [paginationEnabled]="false"
               ></app-transaction-table>
