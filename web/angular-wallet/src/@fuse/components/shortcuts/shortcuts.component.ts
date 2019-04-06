@@ -96,12 +96,12 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
                 //     'icon' : 'account_box',
                 //     'url'  : '/contacts'
                 // },
-                // {
-                //     'title': 'Settings',
-                //     'type' : 'item',
-                //     'icon' : 'settings',
-                //     'url'  : '/settings'
-                // }
+                {
+                    'title': 'Settings',
+                    'type' : 'item',
+                    'icon' : 'settings',
+                    'url'  : '/setup'
+                }
             ];
         }
 

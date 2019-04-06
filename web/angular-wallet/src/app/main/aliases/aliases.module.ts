@@ -21,6 +21,7 @@ const routes = [
   {
     path: '',
     component: AliasesComponent,
+    canActivate: [LoginGuard],
     resolve: {
       account: AccountsResolver
     }

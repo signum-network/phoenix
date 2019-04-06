@@ -48,6 +48,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         private _fuseSidebarService: FuseSidebarService,
         private i18nService: I18nService,
         private accountService: AccountService,
+        private storeService: StoreService,
         private router: Router
     ) {
 
@@ -75,7 +76,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
                 this.hiddenNavbar = settings.layout.navbar.hidden === true;
             });
 
-        this.selectedLanguage = this.i18nService.currentLanguage;
+        this.storeService.settings.subscribe(() => {
+            this.selectedLanguage = this.i18nService.currentLanguage;
+        })
     }
 
     /**

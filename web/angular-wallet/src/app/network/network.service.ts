@@ -12,6 +12,8 @@ import {
 } from '@burstjs/core';
 
 import {ApiService} from '../api.service';
+import { StoreService } from 'app/store/store.service';
+import { Settings } from 'app/settings';
 
 
 @Injectable()
@@ -19,8 +21,10 @@ export class NetworkService {
   private api: Api;
   blocks: Block[];
 
-  constructor(apiService: ApiService) {
-    this.api = apiService.api;
+  constructor(apiService: ApiService, private storeService: StoreService) {
+    this.storeService.settings.subscribe(() => {
+      this.api = apiService.api;
+    });
   }
 
   public suggestFee(): Promise<SuggestedFees> {

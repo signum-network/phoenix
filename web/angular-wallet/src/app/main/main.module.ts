@@ -16,13 +16,8 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { MainComponent } from './main.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { LoginGuard } from 'app/login/login-guard.service';
-import { TransactionsModule } from './transactions/transactions.module';
 import { SendBurstModule } from './send-burst/send-burst.module';
 import { AccountsModule } from './accounts/accounts.module';
-import { AliasesModule } from './aliases/aliases.module';
-import { BlocksModule } from './blocks/blocks.module';
-import { PeersModule } from './peers/peers.module';
-import { MessagesModule } from './messages/messages.module';
 import { SetAccountInfoModule } from './set-account-info/set-account-info.module';
 
 const mainRoutes: Routes = [
