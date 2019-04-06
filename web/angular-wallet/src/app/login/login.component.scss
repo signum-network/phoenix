@@ -1,63 +1,93 @@
-$media-querie-mobile: 0;
-$media-querie-tablet: 768px;
-$media-querie-desktop: 992px;
-$media-querie-screen:  1200px;
+@import "src/@fuse/scss/fuse";
+
+$media-query-mobile: 0;
+$media-query-tablet: 768px;
+$media-query-desktop: 992px;
+$media-query-screen: 1200px;
 
 $no-color: #002341;
-$yes-color: #039be5;
+$yes-color: #00579D;
 $text-color: #333333;
 $text-alt-color: #b3b3b3;
 
 .login {
   display: flex;
   height: 100vh;
+  max-height: 100%;
   width: 100vw;
+  align-items: center;
+
+  background: linear-gradient(60deg, #003D6E, #00579D);
+  -webkit-animation: bg 30s ease infinite;
+  -moz-animation: bg 30s ease infinite;
+  animation: bg 30s ease infinite;
+
   &__panel {
+    @include mat-elevation(16);
     background: #ffffff;
     padding: 3rem 2rem;
-    width: 720px;
+    justify-self: center;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: auto;
+    @media screen and (min-width: $media-query-tablet) {
+      left: 25%;
+      width: 50%;
+    }
   }
+
   &__logo {
     width: 150px;
   }
+
   &__version {
     display: block;
     padding-left: 45px;
   }
+
   &__body {
     display: flex;
     flex-direction: column;
     height: calc(100% - 6rem);
     justify-content: center;
-    @media screen and (min-width: $media-querie-mobile) {
+    @media screen and (min-width: $media-query-mobile) {
       padding: 0 2rem;
     }
-    @media screen and (min-width: $media-querie-tablet) {
-      padding: 0 15rem;
+    @media screen and (min-width: $media-query-tablet) {
+      padding: 0 4rem;
+    }
+    @media screen and (min-width: $media-query-desktop) {
+      padding: 0 6rem;
     }
   }
+
   &__title {
     color: $text-color;
     font-weight: 700;
     margin: 0;
-    @media screen and (min-width: $media-querie-mobile) {
+    @media screen and (min-width: $media-query-mobile) {
       font-size: 3rem;
     }
-    @media screen and (min-width: $media-querie-tablet) {
+    @media screen and (min-width: $media-query-tablet) {
       font-size: 4rem;
     }
   }
+
   &__info {
     color: $text-alt-color;
     font-size: 1.75rem;
     text-align: justify;
   }
+
   &__actions {
     align-items: center;
     display: flex;
     flex-direction: column;
     margin: 2rem 0;
+    text-align: center;
   }
+
   &__link {
     border-radius: 50px;
     font-size: 2rem;
@@ -66,42 +96,47 @@ $text-alt-color: #b3b3b3;
     text-decoration: none !important;
     transition: background .15s ease-in;
     width: 75%;
+
     &:last-child {
       margin-bottom: 0;
     }
+
     &--yes {
       @extend .login__link;
       background: $yes-color;
       color: #fdfdfd;
+
       &:hover {
         background: darken($yes-color, 5%);
       }
     }
+
     &--no {
       @extend .login__link;
       background: $no-color;
       color: #fdfdfd;
+
       &:hover {
         background: darken($no-color, 5%);
       }
     }
+
     &--default {
       color: $text-color;
     }
   }
+
   &__divider {
     color: $text-alt-color;
+
     &::before {
       content: '-';
       margin-right: .5rem;
     }
+
     &::after {
       content: '-';
       margin-left: .5rem;
     }
-  }
-  &__background {
-    background-color: #00579D;
-    width: calc(100% - 720px);
   }
 }
