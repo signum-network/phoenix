@@ -4,6 +4,7 @@ import {EncryptedMessage, Message, Account, Transaction} from '@burstjs/core';
 import {StoreService} from 'app/store/store.service';
 import {ActivatedRoute} from '@angular/router';
 import {UtilService} from '../../../util.service';
+import { AccountService } from 'app/setup/account/account.service';
 
 type TransactionDetailsCellValue = string | Message | EncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
@@ -21,11 +22,13 @@ export class TransactionDetailsComponent implements OnInit {
   detailsData: Map<string, TransactionDetailsCellValue>;
   account: Account;
   transaction: Transaction;
+  recipient: Account;
 
   constructor(
     private storeService: StoreService,
     private utilService: UtilService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private accountService: AccountService) {
   }
 
   private getNameFromTransactionSubtype(): string {
@@ -62,13 +65,17 @@ export class TransactionDetailsComponent implements OnInit {
     return row ? row.id : undefined;
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.transaction = this.route.snapshot.data.transaction as Transaction;
     const transactionDetails = Object
       .keys(this.transaction)
       .map( key => this.mapCellValue(key) );
     this.detailsData = new Map(transactionDetails);
     this.infoData = new Map(transactionDetails.filter((row) => this.infoRows.indexOf(row[0]) > -1));
+    try {
+      this.recipient = await this.accountService.getAccount(this.transaction.recipient);
+    } catch (e) {
+    }
 
     this.storeService.getSelectedAccount()
       .then((account) => {
@@ -76,6 +83,10 @@ export class TransactionDetailsComponent implements OnInit {
         // @ts-ignore
         this.transaction.transactionType = this.getNameFromTransactionSubtype(this.transaction, this.account);
       });
+  }
+
+  currentAccountIsSender() {
+    return this.account && this.transaction.senderRS === this.account.accountRS;
   }
 
 }

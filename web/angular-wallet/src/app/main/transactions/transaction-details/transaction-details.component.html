@@ -24,7 +24,7 @@
       <tr *ngFor="let row of getDetailsData(); trackBy: trackRows">
         <th>{{ row[0] | i18n }}</th>
         <td>
-          <app-transaction-row-value-cell [key]="row[0]" [value]="row[1]" [senderPublicKeyHex]="transaction.senderPublicKey"></app-transaction-row-value-cell>
+          <app-transaction-row-value-cell [key]="row[0]" [value]="row[1]" [senderPublicKeyHex]="(currentAccountIsSender()) ? recipient.publicKey : transaction.senderPublicKey"></app-transaction-row-value-cell>
         </td>
       </tr>
     </table>
