@@ -21,6 +21,7 @@ import { NotifierModule } from 'angular-notifier';
 import { UtilService } from './util.service';
 import { I18nModule } from './layout/components/i18n/i18n.module';
 import { DisclaimerModule } from './disclaimer/disclaimer.module';
+import { SettingsResolver } from './store/settings.resolver';
 
 const appRoutes: Routes = [
   {
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
   providers: [
     StoreService,
     { provide: StoreConfig, useFactory: appConfigFactory },
-    UtilService
+    UtilService,
+    SettingsResolver
   ],
   bootstrap: [
     AppComponent

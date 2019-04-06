@@ -47,9 +47,8 @@ export class AccountService {
 
   constructor(private storeService: StoreService, private apiService: ApiService) {
     this.storeService.settings.subscribe((settings: Settings) => {
-      this.nodeUrl = settings.node;
+      this.api = apiService.api;
     });
-    this.api = apiService.api;
   }
 
   public setCurrentAccount(account: Account): void {

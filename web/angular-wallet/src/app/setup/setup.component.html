@@ -1,23 +1,36 @@
-<mat-card class="content">
-    <mat-card-header>
-        <mat-card-title>{{ 'settings' | i18n }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <mat-card class="form">
-            <mat-card-header>
-                <mat-card-title>{{ 'general' | i18n }}</mat-card-title>
-            </mat-card-header>
+<div class="page-layout blank simple" fusePerfectScrollbar>
 
-            <mat-card-content>
-                <mat-form-field>
-                    <mat-select placeholder="{{ 'language' | i18n }}" (selectionChange)="setLanguage($event)">
-                        <mat-option *ngFor="let language of languages" [value]="language">
-                        {{language.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-        
-            </mat-card-content>
-        </mat-card>
-    </mat-card-content>
-</mat-card>
+    <!-- HEADER -->
+    <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+    fxLayoutAlign.gt-xs="space-between center">
+
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="secondary-text s-18" routerLink="/dashboard">home</mat-icon>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">{{ 'settings' | i18n }}</span>
+            </div>
+            <div class="h1 mt-16">{{ 'settings' | i18n }}</div>
+        </div>
+    </div>
+    <!-- / HEADER -->
+  
+    <div class="p-24">
+        <mat-form-field>
+            <mat-select placeholder="{{ 'language' | i18n }}" (selectionChange)="setLanguage($event)">
+                <mat-option *ngFor="let language of languages" [value]="language">
+                {{language.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" placeholder="{{ 'select_node' | i18n }}" matInput 
+            [formControl]="selectedNode" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let node of nodes" [value]="node">
+                {{node}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+</div>

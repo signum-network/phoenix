@@ -37,7 +37,7 @@ export class StoreService {
         }
         let settings = this.store.getCollection('settings');
         if (settings == null) {
-            settings = this.store.addCollection('settings', { unique: ['currency', 'id', 'language', 'node', 'notification', 'patchnotes', 'theme'] });
+            settings = this.store.addCollection('settings', { unique: ['id', 'language', 'node', 'notification', 'patchnotes', 'theme'] });
             settings.insert(new Settings());
         }
 
@@ -215,6 +215,7 @@ export class StoreService {
                 this.store.loadDatabase({}, () => {
                     const settings = this.store.getCollection('settings');
                     const rs = settings.find({ id: save.id });
+
                     if (rs.length > 0) {
                         settings.chain().find({ id: save.id }).update(s => {
                             s.currency = save.currency;

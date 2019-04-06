@@ -21,7 +21,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule, MatSelectModule } from '@angular/material';
+import { MatInputModule, MatSelectModule, MatAutocompleteModule } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -29,9 +29,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatStepperModule } from '@angular/material/stepper';
 import { I18nModule } from '../layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
-import { AccountService } from './account/account.service';
 import { AccountCreateExistingComponent } from './account/create-active/existing/existing.component';
 import { AccountResolver } from './account/account.resolver';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
     imports: [
@@ -51,6 +51,8 @@ import { AccountResolver } from './account/account.resolver';
         MatProgressSpinnerModule,
         MatSlideToggleModule,
         MatStepperModule,
+        FlexLayoutModule,
+        MatAutocompleteModule,
         ReactiveFormsModule,
         SetupRouting,
         FormsModule,
