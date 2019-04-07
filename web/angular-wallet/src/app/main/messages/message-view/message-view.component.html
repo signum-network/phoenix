@@ -99,7 +99,7 @@
     <div class="message-footer" fxFlex="0 0 auto" fxLayout="column">
 
         <!-- REPLY FORM -->
-        <div class="reply-form" fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="center center">
+        <div class="reply-form" fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="center center" *ngIf="selectedUser.type !== 'offline'">
 
             <form #replyForm="ngForm" (ngSubmit)="sendMessage($event)" (keydown.enter)="sendMessage($event)" fxFlex fxLayout="row"
                 fxLayoutAlign="start center">

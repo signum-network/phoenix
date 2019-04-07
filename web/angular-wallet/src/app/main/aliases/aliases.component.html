@@ -13,7 +13,7 @@
       <div class="h1 mt-16">{{ 'aliases' | i18n }}</div>
     </div>
 
-    <a mat-raised-button 
+    <a *ngIf="selectedAccount && selectedAccount.type !== 'offline'" mat-raised-button 
       class="reference-button mt-16 mt-sm-0" 
       [routerLink]="['add']">
       <mat-icon class="mr-8">add</mat-icon>

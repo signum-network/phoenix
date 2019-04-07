@@ -6,6 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { FuseMatchMediaService } from '@fuse/services/match-media.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
+import { AccountService } from 'app/setup/account/account.service';
 
 @Component({
     selector   : 'fuse-shortcuts',
@@ -46,7 +47,8 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
         private _fuseMatchMediaService: FuseMatchMediaService,
         private _fuseNavigationService: FuseNavigationService,
         private _observableMedia: ObservableMedia,
-        private _renderer: Renderer2
+        private _renderer: Renderer2,
+        private accountService: AccountService
     )
     {
         // Set the defaults
@@ -70,39 +72,32 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
         // Get the navigation items and flatten them
         this.filteredNavigationItems = this.navigationItems = this._fuseNavigationService.getFlatNavigation(this.navigation);
 
-        if ( this._cookieService.check('FUSE2.shortcuts') )
-        {
+        if (this._cookieService.check('FUSE2.shortcuts')) {
             this.shortcutItems = JSON.parse(this._cookieService.get('FUSE2.shortcuts'));
-        }
-        else
-        {
-            // User's shortcut items
-            this.shortcutItems = [
-                {
-                    'title': 'New Transaction',
-                    'type' : 'item',
-                    'icon' : 'send',
-                    'url'  : '/send'
-                },
-                {
+        } else {
+            this.accountService.currentAccount.subscribe((account) => {
+                this.shortcutItems = [];
+                if (account && account.type !== 'offline') {
+                    this.shortcutItems.push({
+                        'title': 'New Transaction',
+                        'type' : 'item',
+                        'icon' : 'send',
+                        'url'  : '/send'
+                    });
+                }
+                this.shortcutItems.push({
                     'title': 'Messages',
                     'type' : 'item',
                     'icon' : 'email',
                     'url'  : '/messages'
                 },
-                // {
-                //     'title': 'Contacts',
-                //     'type' : 'item',
-                //     'icon' : 'account_box',
-                //     'url'  : '/contacts'
-                // },
                 {
                     'title': 'Settings',
                     'type' : 'item',
                     'icon' : 'settings',
                     'url'  : '/setup'
-                }
-            ];
+                });
+            });
         }
 
         // Subscribe to media changes
