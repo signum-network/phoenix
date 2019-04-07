@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-// import { AccountService } from '../../lib/services';
-// import { CreateService } from '../dashboard/setup/account/create.service';
-// import { NotifierService } from 'angular-notifier';
-import { Router } from '@angular/router';
+import 'particles.js';
+import {Component, OnInit} from '@angular/core';
 import {environment} from '../../environments/environment';
+
+declare const particlesJS: any;
 
 @Component({
   selector: 'login',
@@ -12,10 +11,12 @@ import {environment} from '../../environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() {}
+  constructor() {
+  }
 
   version = environment.version;
 
   ngOnInit() {
+    particlesJS.load('login-particles', 'assets/particles.json');
   }
 }
