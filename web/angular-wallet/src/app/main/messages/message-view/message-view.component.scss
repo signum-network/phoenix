@@ -119,6 +119,11 @@ message-view {
                             .time {
                                 margin-left: 12px;
                             }
+
+                            button, input, .mat-form-field.mat-focused .mat-form-field-label {
+                                color: #fff;
+                            }
+
                         }
 
                         &.first-of-group {
