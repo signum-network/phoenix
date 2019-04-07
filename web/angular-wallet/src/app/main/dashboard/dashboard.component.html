@@ -61,11 +61,12 @@
           <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
             <div class="p-16" fxLayout="column wrap" fxLayoutAlign="start">
               <div class="h3 secondary-text">{{ 'recent_transactions' | i18n }}</div>
-              <app-transaction-table
+              <app-transaction-table *ngIf="dataSource && dataSource.data.length"
                 [displayedColumns]="['transaction_id', 'attachment', 'timestamp', 'amount', 'account']"
                 [dataSource]="dataSource"
                 [paginationEnabled]="false"
               ></app-transaction-table>
+              <p *ngIf="!dataSource" class="text-center">{{ 'no_transactions_yet' | i18n }}</p>
             </div>
           </div>
         </div>
