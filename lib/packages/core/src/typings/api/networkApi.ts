@@ -1,4 +1,4 @@
-/** @module core */
+/** @module core.api */
 
 import {BlockchainStatus} from '../blockchainStatus';
 import {ServerStatus} from '../serverStatus';

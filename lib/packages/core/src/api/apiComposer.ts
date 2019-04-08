@@ -1,4 +1,4 @@
-/** @module core */
+/** @module core.api */
 
 /**
  * Copyright (c) 2019 Burst Apps Team
@@ -52,6 +52,7 @@ class ApiImpl implements Api {
  * .compose();
  * ```
  *
+ * The `with<section>Api` uses factory methods from the [api.core.factories](/phoenix/docs/modules/core_api_factories.html) package
  */
 export class ApiComposer {
     private api: Api = new ApiImpl();

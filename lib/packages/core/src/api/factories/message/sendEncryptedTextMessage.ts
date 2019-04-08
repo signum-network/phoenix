@@ -1,5 +1,4 @@
-/** @ignore */
-/** @module core */
+/** @module core.api.factories */
 
 /**
  * Copyright (c) 2019 Burst Apps Team
@@ -14,6 +13,11 @@ import {broadcastTransaction} from '../transaction/broadcastTransaction';
 
 const MAX_MESSAGE_LENGTH = 1024;
 
+/**
+ * Use with [[ApiComposer]] and belongs to [[MessageApi]].
+ *
+ * See details at [[MessageApi.sendEncryptedTextMessage]]
+ */
 export const sendEncryptedTextMessage = (service: BurstService):
     (message: string,
      recipientId: string,

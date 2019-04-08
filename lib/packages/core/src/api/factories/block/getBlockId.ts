@@ -1,5 +1,4 @@
-/** @ignore */
-/** @module core */
+/** @module core.api.factories */
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
@@ -8,6 +7,11 @@
 import {BurstService} from '../../../service/burstService';
 import {BlockId} from '../../..';
 
+/**
+ * Use with [[ApiComposer]] and belongs to [[BlockApi]].
+ *
+ * See details at [[BlockApi.getBlockId]]
+ */
 export const getBlockId = (service: BurstService):
     (height: number) => Promise<BlockId> =>
     (height: number): Promise<BlockId> =>

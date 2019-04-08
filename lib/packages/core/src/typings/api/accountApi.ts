@@ -1,4 +1,4 @@
-/** @module core */
+/** @module core.api */
 
 import {TransactionList} from '../transactionList';
 import {UnconfirmedTransactionList} from '../unconfirmedTransactionList';

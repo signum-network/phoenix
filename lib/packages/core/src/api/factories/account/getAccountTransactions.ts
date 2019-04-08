@@ -1,12 +1,16 @@
-/** @ignore */
-/** @module core */
+/** @module core.api.factories */
 
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
  */
 import {BurstService} from '../../../service/burstService';
 import {TransactionList} from '../../../typings/transactionList';
-// TODO: maybe split in several getAccountTransactions like getBlocks
+
+/**
+ * Use with [[ApiComposer]] and belongs to [[AccountApi]].
+ *
+ * See details at [[AccountApi.getAccountTransactions]]
+ */
 export const getAccountTransactions = (service: BurstService):
     (
         accountId: string,

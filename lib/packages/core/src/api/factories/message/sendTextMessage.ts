@@ -1,5 +1,4 @@
-/** @ignore */
-/** @module core */
+/** @module core.api.factories */
 
 /**
  * Copyright (c) 2019 Burst Apps Team
@@ -13,6 +12,11 @@ import {generateSignedTransactionBytes} from '@burstjs/crypto';
 import {convertNumberToNQTString} from '@burstjs/util';
 import {broadcastTransaction} from '../transaction/broadcastTransaction';
 
+/**
+ * Use with [[ApiComposer]] and belongs to [[MessageApi]].
+ *
+ * See details at [[MessageApi.sendTextMessage]]
+ */
 export const sendTextMessage = (service: BurstService):
     (message: string,
      recipientId: string,
