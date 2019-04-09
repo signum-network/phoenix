@@ -1,4 +1,4 @@
-/** @module core */
+/** @module core.api */
 
 import {TransactionId} from '../transactionId';
 import {Keys} from '@burstjs/crypto';

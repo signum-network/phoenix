@@ -1,11 +1,15 @@
-/** @ignore */
-/** @module core */
+/** @module core.api.factories */
 
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
  */
 import {BurstService} from '../../../service/burstService';
 
+/**
+ * Use with [[ApiComposer]] and belongs to [[AccountApi]].
+ *
+ * See details at [[AccountApi.generateSendTransactionQRCodeAddress]]
+ */
 export const generateSendTransactionQRCodeAddress = (service: BurstService):
     (
         receiverId: string,

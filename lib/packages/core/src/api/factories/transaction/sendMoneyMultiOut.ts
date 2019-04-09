@@ -1,5 +1,4 @@
-/** @ignore */
-/** @module core */
+/** @module core.api.factories */
 
 /**
  * Copyright (c) 2019 Burst Apps Team
@@ -14,6 +13,11 @@ import { generateSignedTransactionBytes } from '@burstjs/crypto';
 import { convertNumberToNQTString } from '@burstjs/util';
 import { broadcastTransaction } from './broadcastTransaction';
 
+/**
+ * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
+ *
+ * See details at [[TransactionApi.sendMoneyMultiOut]]
+ */
 export const sendMoneyMultiOut = (service: BurstService):
     (transaction: Transaction,
      senderPublicKey: string,
@@ -28,7 +32,7 @@ export const sendMoneyMultiOut = (service: BurstService):
         sameAmount: boolean
     ): Promise<TransactionId | Error> => {
 
-        let parameters = {
+        const parameters = {
             publicKey: senderPublicKey,
             recipients: recipients,
             deadline: transaction.deadline || '1440',
@@ -36,7 +40,8 @@ export const sendMoneyMultiOut = (service: BurstService):
             amountNQT: sameAmount ? convertNumberToNQTString(parseFloat(transaction.amountNQT)) : undefined
         };
 
-        const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>(sameAmount ? "sendMoneyMultiSame" : "sendMoneyMulti", parameters);
+        const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>(
+            sameAmount ? 'sendMoneyMultiSame' : 'sendMoneyMulti', parameters);
         const signature = generateSignature(unsignedHexMessage, senderPrivateKey);
         if (!verifySignature(signature, unsignedHexMessage, senderPublicKey)) {
             throw new Error('The signed message could not be verified! Transaction not broadcasted!');

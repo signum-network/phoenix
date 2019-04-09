@@ -1,5 +1,4 @@
-/** @ignore */
-/** @module core */
+/** @module core.api.factories */
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
@@ -8,5 +7,11 @@
 import {BurstService} from '../../../service/burstService';
 import {BlockchainStatus} from '../../../typings/blockchainStatus';
 
+
+/**
+ * Use with [[ApiComposer]] and belongs to [[NetworkApi]].
+ *
+ * See details at [[NetworkApi.getBlockchainStatus]]
+ */
 export const getBlockchainStatus = (service: BurstService): () => Promise<BlockchainStatus> =>
     (): Promise<BlockchainStatus> => service.query('getBlockchainStatus');

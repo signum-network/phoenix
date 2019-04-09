@@ -1,5 +1,4 @@
-/** @ignore */
-/** @module core */
+/** @module core.api.factories */
 
 /**
  * Copyright (c) 2019 Burst Apps Team
@@ -15,6 +14,11 @@ import { convertNumberToNQTString, convertNQTStringToNumber } from '@burstjs/uti
 import { constructAttachment } from '../../../attachment/constructAttachment';
 import {broadcastTransaction} from './broadcastTransaction';
 
+/**
+ * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
+ *
+ * See details at [[TransactionApi.sendMoney]]
+ */
 export const sendMoney = (service: BurstService):
     (transaction: Transaction,
      senderPublicKey: string,

@@ -1,4 +1,4 @@
-/** @module core */
+/** @module core.api */
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -53,8 +53,19 @@ export class ApiSettings {
 /**
  * Composes the API, i.e. setup the environment and mounts the API structure
  * with its functions.
+ *
+ * ```ts
+ * const api = composeApi({
+ *   nodeHost: 'https://wallet1.burst-team.us:2083', // one of the mainnet nodes
+ *   apiRootUrl: '/burst' // endpoint to the BURST API
+ * })
+ * ```
+ *
+ * > Note, that this method mounts the __entire__ API, i.e. all available methods. One may also customize the API composition
+ * using [[ApiComposer]].
+ *
  * @param settings necessary execution context
- * @return The configured BURST API object
+ * @return The _complete_ API
  */
 export function composeApi(settings: ApiSettings): Api {
 

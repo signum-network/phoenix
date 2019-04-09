@@ -1,5 +1,4 @@
-/** @ignore */
-/** @module core */
+/** @module core.api.factories */
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
@@ -8,6 +7,11 @@
 import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 
+/**
+ * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
+ *
+ * See details at [[TransactionApi.broadcastTransaction]]
+ */
 export const broadcastTransaction = (service: BurstService):
     (signedTransactionPayload: string) => Promise<TransactionId> =>
     (signedTransactionPayload: string): Promise<TransactionId> =>
