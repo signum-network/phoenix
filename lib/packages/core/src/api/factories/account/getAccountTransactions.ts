@@ -5,7 +5,6 @@
  */
 import {BurstService} from '../../../service/burstService';
 import {TransactionList} from '../../../typings/transactionList';
-import {BrsVersion} from '../../../constants/brsVersion';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
@@ -38,5 +37,5 @@ export const getAccountTransactions = (service: BurstService):
             numberOfConfirmations,
             type,
             subtype,
-            includeIndirect: service.settings.brsVersion === BrsVersion.BEFORE_V2_3 ? undefined : includeIndirect
+            includeIndirect
         });

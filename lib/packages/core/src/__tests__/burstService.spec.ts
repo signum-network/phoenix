@@ -2,7 +2,6 @@ import {BurstService} from '../service/burstService';
 import {Http, HttpError, HttpImpl, HttpMockBuilder, HttpResponse} from '@burstjs/http';
 import {BurstServiceSettings} from '../service/burstServiceSettings';
 import {createBurstService} from './helpers/createBurstService';
-import {BrsVersion} from '../constants/brsVersion';
 
 class TestHttpClient implements Http {
     delete(url: string): Promise<HttpResponse> {
@@ -23,10 +22,7 @@ class TestHttpClient implements Http {
 
 }
 
-
 describe('BurstService', () => {
-
-
     describe('constructor', () => {
         it('should create with least required parameters', () => {
             const {settings} = new BurstService({
@@ -35,19 +31,6 @@ describe('BurstService', () => {
             });
             expect(settings.nodeHost).toBe('nodeHost');
             expect(settings.apiRootUrl).toBe('apiRootUrl');
-            expect(settings.brsVersion).toBe(BrsVersion.LATEST);
-            expect(settings.httpClient instanceof HttpImpl).toBeTruthy();
-        });
-
-        it('should create with other version', () => {
-            const {settings} = new BurstService({
-                nodeHost: 'nodeHost',
-                apiRootUrl: 'apiRootUrl',
-                brsVersion: BrsVersion.BEFORE_V2_3
-            });
-            expect(settings.nodeHost).toBe('nodeHost');
-            expect(settings.apiRootUrl).toBe('apiRootUrl');
-            expect(settings.brsVersion).toBe(BrsVersion.BEFORE_V2_3);
             expect(settings.httpClient instanceof HttpImpl).toBeTruthy();
         });
 
@@ -59,7 +42,6 @@ describe('BurstService', () => {
             });
             expect(settings.nodeHost).toBe('nodeHost');
             expect(settings.apiRootUrl).toBe('apiRootUrl');
-            expect(settings.brsVersion).toBe(BrsVersion.LATEST);
             expect(settings.httpClient instanceof TestHttpClient).toBeTruthy();
         });
     });

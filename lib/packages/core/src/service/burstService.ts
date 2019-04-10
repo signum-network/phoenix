@@ -6,7 +6,6 @@
 
 import {Http, HttpError, HttpImpl} from '@burstjs/http';
 import {BurstServiceSettings} from './burstServiceSettings';
-import {BrsVersion} from '../constants/brsVersion';
 
 
 interface ApiError {
@@ -18,12 +17,11 @@ class SettingsImpl implements BurstServiceSettings {
     constructor(settings: BurstServiceSettings) {
         this.apiRootUrl = settings.apiRootUrl;
         this.nodeHost = settings.nodeHost;
-        this.brsVersion = settings.brsVersion || BrsVersion.LATEST;
         this.httpClient = settings.httpClient || new HttpImpl(settings.nodeHost);
     }
 
     readonly apiRootUrl: string;
-    readonly brsVersion: BrsVersion;
+    readonly brsVersion: ApiVersion;
     readonly httpClient: Http;
     readonly nodeHost: string;
 }

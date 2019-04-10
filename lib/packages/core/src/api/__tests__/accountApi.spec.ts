@@ -10,7 +10,6 @@ import {Alias} from '../../typings/alias';
 import {AliasList} from '../../typings/aliasList';
 import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
-import {BrsVersion} from '../../constants/brsVersion';
 
 
 describe('Account Api', () => {
@@ -86,7 +85,6 @@ describe('Account Api', () => {
             }]
         };
 
-
         it('should getAccountTransaction without paging', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
             const service = createBurstService(httpMock);
@@ -126,47 +124,6 @@ describe('Account Api', () => {
             expect(transactions.transactions).toHaveLength(2);
             expect(transactions.transactions[0].height).toBe(20);
             expect(transactions.transactions[1].height).toBe(30);
-        });
-
-        it('should getAccountTransaction with multi-out included for BrsVersion.LATEST', async () => {
-            httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
-            const service = createBurstService(httpMock);
-            service.query = jest.fn();
-            await getAccountTransactions(service)(
-                'accountId',
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                true);
-            expect(service.query).toHaveBeenCalledWith(
-                'getAccountTransactions',
-                expect.objectContaining({includeIndirect: true})
-            );
-        });
-
-        it('should getAccountTransaction without multi-out included for BrsVersion.BEFORE_V2_3', async () => {
-            httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
-            const service = createBurstService(
-                httpMock,
-                'apiRootUrl',
-                'nodeHost',
-                BrsVersion.BEFORE_V2_3
-            );
-            service.query = jest.fn();
-            await getAccountTransactions(service)(
-                'accountId',
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                true);
-            expect(service.query).toHaveBeenCalledWith(
-                'getAccountTransactions',
-                expect.objectContaining({includeIndirect: undefined})
-            );
         });
     });
 

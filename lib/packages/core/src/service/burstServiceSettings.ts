@@ -6,7 +6,6 @@
 
 
 import {Http} from '@burstjs/http';
-import {BrsVersion} from '../constants/brsVersion';
 
 /**
  * The settings interface for the BurstService class
@@ -20,11 +19,6 @@ export interface BurstServiceSettings {
      * The relative path the Burst API endpoint, usually '/burst' - must begin with slash
      */
     readonly apiRootUrl: string;
-
-    /**
-     * The target version, per default is [[BrsVersion.LATEST]]
-     */
-    readonly brsVersion?: BrsVersion;
     /**
      * If passed an client instance, it will be used instead of default HttpImpl.
      * Good for testing, but usually you won't need this
