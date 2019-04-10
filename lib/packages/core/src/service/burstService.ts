@@ -21,7 +21,6 @@ class SettingsImpl implements BurstServiceSettings {
     }
 
     readonly apiRootUrl: string;
-    readonly brsVersion: ApiVersion;
     readonly httpClient: Http;
     readonly nodeHost: string;
 }

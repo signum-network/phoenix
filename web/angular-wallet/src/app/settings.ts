@@ -4,8 +4,8 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-import { constants } from "./constants";
-import { environment } from "../environments/environment";
+import { constants } from './constants';
+import { environment } from '../environments/environment';
 
 /*
 * Settings class
@@ -18,14 +18,15 @@ export class Settings {
     public currency: string;
     public language: string;
     public node: string;
+    public nodeVersion: string;
     public theme: string;
     public version: string;
     public marketUrl: string;
     public agree = false;
 
     constructor(data: any = {}) {
-        this.id = "settings";
-        if (data.contacts != undefined && data.contacts.length > 0) {
+        this.id = 'settings';
+        if (data.contacts !== undefined && data.contacts.length > 0) {
             this.contacts = data.contacts;
         } else {
             this.contacts = [];
@@ -33,6 +34,7 @@ export class Settings {
         this.currency = data.currency || constants.defaultCurrency;
         this.language = data.language || constants.defaultLanguage;
         this.node = data.node || environment.defaultNode;
+        this.nodeVersion = data.nodeVersion || 'latest';
         this.marketUrl = data.marketUrl || environment.market.tickerUrl;
         this.theme = data.theme || constants.defaultTheme;
         this.version = data.version || constants.version;

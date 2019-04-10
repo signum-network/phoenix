@@ -14,7 +14,7 @@
         </div>
     </div>
     <!-- / HEADER -->
-  
+
     <div class="p-24">
         <mat-form-field>
             <mat-select placeholder="{{ 'language' | i18n }}" (selectionChange)="setLanguage($event)">
@@ -24,11 +24,12 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <input type="text" placeholder="{{ 'select_node' | i18n }}" matInput 
+            <input type="text" placeholder="{{ 'select_node' | i18n }}" matInput
             [formControl]="selectedNode" [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayNodeUrl">
                 <mat-option *ngFor="let node of nodes" [value]="node">
-                {{node}}
+                {{node.url}}
+                  <small>{{node.version}}</small>
                 </mat-option>
             </mat-autocomplete>
         </mat-form-field>
