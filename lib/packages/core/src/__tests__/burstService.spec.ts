@@ -55,7 +55,8 @@ describe('BurstService', () => {
             const {settings} = new BurstService({
                 nodeHost: 'nodeHost',
                 apiRootUrl: 'apiRootUrl',
-                httpClient: new TestHttpClient());
+                httpClient: new TestHttpClient()
+            });
             expect(settings.nodeHost).toBe('nodeHost');
             expect(settings.apiRootUrl).toBe('apiRootUrl');
             expect(settings.brsVersion).toBe(BrsVersion.LATEST);
