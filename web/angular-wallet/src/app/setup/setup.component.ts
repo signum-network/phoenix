@@ -34,7 +34,7 @@ export class SetupComponent implements OnInit {
       })
     ).concat({
         url: environment.defaultNode,
-        version: 'latest'
+        version: '*'
       });
   }
 
@@ -53,8 +53,7 @@ export class SetupComponent implements OnInit {
     this.selectedNode.valueChanges.subscribe(this.setNode());
   }
 
-  displayNodeUrl = (value: NodeDescriptor): string  => value.url
-
+  displayNodeUrl = (value: NodeDescriptor): string  => value.url;
 
   private setNode(): (value: NodeDescriptor) => void {
     return async (value) => {
@@ -71,5 +70,4 @@ export class SetupComponent implements OnInit {
     this.currentLanguage = event.value;
     this.i18n.setLanguage(event.value);
   }
-
 }
