@@ -68,7 +68,7 @@ export class AccountService {
   }
 
   public getAccountTransactions(id: string, firstIndex?: number, lastIndex?: number, numberOfConfirmations?: number, type?: number, subtype?: number): Promise<TransactionList> {
-    const includeTransactions = semver.satisfies(this.selectedNode.version, '>=2.3') || undefined;
+    const includeTransactions = semver.satisfies(this.selectedNode.version, '>=2.3.1') || undefined;
     return this.api.account.getAccountTransactions(
       id, firstIndex, lastIndex, numberOfConfirmations, type, subtype, includeTransactions);
   }

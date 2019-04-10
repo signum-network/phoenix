@@ -21,7 +21,7 @@ export interface AccountApi {
      * @param {number?} type The type of transactions to fetch
      * @param {number?} subtype The subtype of transactions to fetch
      * @param {boolean?} includeIndirect Includes indirect transaction, i.e. multi out payments.
-     * For BRS Versions before 2.3 this must be `undefined`
+     * For BRS Versions before 2.3.1 this must be `undefined`
      * @return {Promise<TransactionList>} List of transactions
      */
     getAccountTransactions: (
