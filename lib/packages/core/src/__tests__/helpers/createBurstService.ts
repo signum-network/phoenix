@@ -6,7 +6,7 @@ export const createBurstService = (
     httpClient: Http = undefined,
     apiRootUrl: string = '',
     nodeHost: string = 'localhost',
-    brsVersion: BrsVersion = undefined,
+    brsVersion: BrsVersion = BrsVersion.LATEST,
 ): BurstService => {
     return new BurstService({
         nodeHost,

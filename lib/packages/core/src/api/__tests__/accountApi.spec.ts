@@ -1,6 +1,4 @@
-import {HttpMockBuilder, Http} from '@burstjs/http';
-
-import {BurstService} from '../../service/burstService';
+import {Http, HttpMockBuilder} from '@burstjs/http';
 import {getAccountTransactions} from '../factories/account/getAccountTransactions';
 import {getUnconfirmedAccountTransactions} from '../factories/account/getUnconfirmedAccountTransactions';
 import {getAccountBalance} from '../factories/account/getAccountBalance';
@@ -10,10 +8,9 @@ import {getAliases} from '../factories/account/getAliases';
 import {setAccountInfo} from '../factories/account/setAccountInfo';
 import {Alias} from '../../typings/alias';
 import {AliasList} from '../../typings/aliasList';
-import {generateSignature} from '@burstjs/crypto';
-import {verifySignature} from '@burstjs/crypto';
-import {generateSignedTransactionBytes} from '@burstjs/crypto';
+import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
+import {BrsVersion} from '../../constants/brsVersion';
 
 
 describe('Account Api', () => {
@@ -129,6 +126,47 @@ describe('Account Api', () => {
             expect(transactions.transactions).toHaveLength(2);
             expect(transactions.transactions[0].height).toBe(20);
             expect(transactions.transactions[1].height).toBe(30);
+        });
+
+        it('should getAccountTransaction with multi-out included for BrsVersion.LATEST', async () => {
+            httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
+            const service = createBurstService(httpMock);
+            service.query = jest.fn();
+            await getAccountTransactions(service)(
+                'accountId',
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                true);
+            expect(service.query).toHaveBeenCalledWith(
+                'getAccountTransactions',
+                expect.objectContaining({includeIndirect: true})
+            );
+        });
+
+        it('should getAccountTransaction without multi-out included for BrsVersion.BEFORE_V2_3', async () => {
+            httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
+            const service = createBurstService(
+                httpMock,
+                'apiRootUrl',
+                'nodeHost',
+                BrsVersion.BEFORE_V2_3
+            );
+            service.query = jest.fn();
+            await getAccountTransactions(service)(
+                'accountId',
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                true);
+            expect(service.query).toHaveBeenCalledWith(
+                'getAccountTransactions',
+                expect.objectContaining({includeIndirect: undefined})
+            );
         });
     });
 
