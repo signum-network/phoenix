@@ -8,8 +8,8 @@
  * Constants for smart contract (aka AT) subtypes
  *
  */
-export class TransactionSmartContractSubtype {
-    public static readonly SmartContractCreation = 0;
-    public static readonly SmartContractPayment = 1;
+export enum TransactionSmartContractSubtype {
+    SmartContractCreation = 0,
+    SmartContractPayment
 }
 

@@ -11,30 +11,30 @@
  * and used to distinguish block data. Additionally, to the transaction type
  * a subtype is sent, that specifies the kind of transaction more detailly.
  */
-export class TransactionType {
+export enum TransactionType {
     /**
      * @see TransactionPaymentSubtype
      */
-    public static readonly Payment = 0;
+    Payment = 0,
     /**
      * @see TransactionArbitrarySubtype
      */
-    public static readonly Arbitrary = 1;
+    Arbitrary,
     /**
      * @see TransactionAssetSubtype
      */
-    public static readonly Asset = 2;
+    Asset,
     /**
      * @see TransactionMarketplaceSubtype
      */
-    public static readonly Marketplace = 3;
+    Marketplace,
     /**
      * @see TransactionLeasingSubtype
      */
-    public static readonly Leasing = 4;
+    Leasing,
 
-    public static readonly RewardRecipient = 20;
-    public static readonly Escrow = 21;
-    public static readonly AT = 22;
+    RewardRecipient = 20,
+    Escrow = 21,
+    AT = 22,
 }
 
