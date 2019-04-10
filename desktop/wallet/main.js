@@ -75,11 +75,11 @@ function createWindow() {
             submenu: [
                 {
                     label: 'Burst Wiki',
-                    click() { shell.openExternal('https://burstwiki.org/') }
+                    click() { shell.openExternal('https://burstwiki.org/'); }
                 },
                 {
                     label: 'Report An Issue',
-                    click() { shell.openExternal('https://github.com/burst-apps-team/phoenix/issues/new') }
+                    click() { shell.openExternal('https://github.com/burst-apps-team/phoenix/issues/new'); }
                 },
                 {
                     label: 'Credits',
@@ -126,9 +126,8 @@ function createWindow() {
             { role: 'zoom' },
             { type: 'separator' },
             { role: 'front' }
-        ]
+        ];
     }
-
 
     Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 }
@@ -139,8 +138,8 @@ app.on('ready', createWindow);
 app.setAboutPanelOptions({
     applicationName: app.getName(),
     applicationVersion: app.getVersion(),
-    copyright: `Burst Apps Team`,
-    credits: `ohager, blankey1337, Matheus Castiglioni`,
+    copyright: 'Burst Apps Team',
+    credits: 'ohager, blankey1337, Matheus Castiglioni',
     version: process.versions.electron
 })
 
