@@ -1,10 +1,17 @@
 import {Http} from '@burstjs/http';
+import {BrsVersion} from '../../constants/brsVersion';
 import {BurstService} from '../../service';
 
-export const createBurstService = (httpClient: Http = undefined, relativePath: string = '', baseUrl: string = 'localhost'): BurstService => {
+export const createBurstService = (
+    httpClient: Http = undefined,
+    apiRootUrl: string = '',
+    nodeHost: string = 'localhost',
+    brsVersion: BrsVersion = undefined,
+): BurstService => {
     return new BurstService({
-        nodeHost: baseUrl,
-        apiRootUrl: relativePath,
+        nodeHost,
+        apiRootUrl,
         httpClient,
+        brsVersion
     });
 };
