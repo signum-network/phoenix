@@ -87,7 +87,7 @@ function createWindow() {
                 }
             ]
         }
-    ]
+    ];
 
     if (process.platform === 'darwin') {
         template.unshift({
@@ -117,7 +117,7 @@ function createWindow() {
                     { role: 'stopspeaking' }
                 ]
             }
-        )
+        );
 
         // Window menu
         template[3].submenu = [
