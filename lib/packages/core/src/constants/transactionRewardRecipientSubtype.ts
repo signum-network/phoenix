@@ -8,7 +8,7 @@
  * Constants for reward recipient subtypes (Pool Operation)
  *
  */
-export class TransactionRewardRecipientSubtype {
-    public static readonly RewardRecipientAssignment = 0;
+export enum TransactionRewardRecipientSubtype {
+    RewardRecipientAssignment = 0
 }
 

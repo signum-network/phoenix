@@ -8,7 +8,7 @@
  * Constants for leasing subtypes
  *
  */
-export class TransactionLeasingSubtype {
-    public static readonly Ordinary = 0;
+export enum TransactionLeasingSubtype {
+    Ordinary = 0
 }
 
