@@ -4,7 +4,7 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 
-import {Http, HttpImpl, HttpError} from '@burstjs/http';
+import {Http, HttpError, HttpImpl} from '@burstjs/http';
 import {BurstServiceSettings} from './burstServiceSettings';
 
 
@@ -13,28 +13,34 @@ interface ApiError {
     readonly errorDescription: string;
 }
 
+class SettingsImpl implements BurstServiceSettings {
+    constructor(settings: BurstServiceSettings) {
+        this.apiRootUrl = settings.apiRootUrl;
+        this.nodeHost = settings.nodeHost;
+        this.httpClient = settings.httpClient || new HttpImpl(settings.nodeHost);
+    }
+
+    readonly apiRootUrl: string;
+    readonly httpClient: Http;
+    readonly nodeHost: string;
+}
+
 /**
  * Generic BRS Web Service class.
  */
 export class BurstService {
-
-    /**
-     * @returns {Http} The internal Http client
-     */
-    protected get http(): Http {
-        return this._http;
-    }
-
     /**
      * Creates Service instance
      * @param settings The settings for the service
      */
     constructor(settings: BurstServiceSettings) {
-        const {apiRootUrl, nodeHost, httpClient} = settings;
-        this._http = httpClient ? httpClient : new HttpImpl(nodeHost);
+
+        this.settings = new SettingsImpl(settings);
+        const {apiRootUrl} = this.settings;
         this._relPath = apiRootUrl.endsWith('/') ? apiRootUrl.substr(0, apiRootUrl.length - 1) : apiRootUrl;
     }
-    private readonly _http: Http;
+
+    public readonly settings: BurstServiceSettings;
     private readonly _relPath: string;
 
     private static throwAsHttpError(url: string, apiError: ApiError) {
@@ -72,7 +78,7 @@ export class BurstService {
      */
     public async query<T>(method: string, args: any = {}): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
-        const {response} = await this.http.get(brsUrl);
+        const {response} = await this.settings.httpClient.get(brsUrl);
         if (response.errorCode) {
             BurstService.throwAsHttpError(brsUrl, response);
         }
@@ -91,7 +97,7 @@ export class BurstService {
      */
     public async send<T>(method: string, args: any = {}, body: any = {}): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
-        const {response} = await this.http.post(brsUrl, body);
+        const {response} = await this.settings.httpClient.post(brsUrl, body);
         if (response.errorCode) {
             BurstService.throwAsHttpError(brsUrl, response);
         }

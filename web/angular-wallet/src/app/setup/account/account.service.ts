@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
+import semver from 'semver';
 
 import {StoreService} from 'app/store/store.service';
 import {Settings} from 'app/settings';
@@ -36,6 +37,12 @@ interface SetAliasRequest {
   keys: Keys;
 }
 
+interface NodeDescriptor {
+  url: string;
+  version: string;
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,10 +51,15 @@ export class AccountService {
 
   public currentAccount: BehaviorSubject<Account> = new BehaviorSubject(undefined);
   private api: Api;
+  private selectedNode: NodeDescriptor;
 
   constructor(private storeService: StoreService, private apiService: ApiService) {
     this.storeService.settings.subscribe((settings: Settings) => {
       this.api = apiService.api;
+      this.selectedNode = {
+        url: settings.node,
+        version: settings.nodeVersion
+      };
     });
   }
 
@@ -56,8 +68,9 @@ export class AccountService {
   }
 
   public getAccountTransactions(id: string, firstIndex?: number, lastIndex?: number, numberOfConfirmations?: number, type?: number, subtype?: number): Promise<TransactionList> {
+    const includeTransactions = semver.satisfies(this.selectedNode.version, '>=2.3.1') || undefined;
     return this.api.account.getAccountTransactions(
-      id, firstIndex, lastIndex, numberOfConfirmations, type, subtype, true);
+      id, firstIndex, lastIndex, numberOfConfirmations, type, subtype, includeTransactions);
   }
 
   public generateSendTransactionQRCodeAddress(

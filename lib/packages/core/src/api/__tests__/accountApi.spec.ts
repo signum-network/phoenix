@@ -1,6 +1,4 @@
-import {HttpMockBuilder, Http} from '@burstjs/http';
-
-import {BurstService} from '../../service/burstService';
+import {Http, HttpMockBuilder} from '@burstjs/http';
 import {getAccountTransactions} from '../factories/account/getAccountTransactions';
 import {getUnconfirmedAccountTransactions} from '../factories/account/getUnconfirmedAccountTransactions';
 import {getAccountBalance} from '../factories/account/getAccountBalance';
@@ -10,9 +8,7 @@ import {getAliases} from '../factories/account/getAliases';
 import {setAccountInfo} from '../factories/account/setAccountInfo';
 import {Alias} from '../../typings/alias';
 import {AliasList} from '../../typings/aliasList';
-import {generateSignature} from '@burstjs/crypto';
-import {verifySignature} from '@burstjs/crypto';
-import {generateSignedTransactionBytes} from '@burstjs/crypto';
+import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 
 
@@ -88,7 +84,6 @@ describe('Account Api', () => {
                 'height': 30
             }]
         };
-
 
         it('should getAccountTransaction without paging', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();

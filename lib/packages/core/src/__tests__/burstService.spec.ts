@@ -1,11 +1,50 @@
 import {BurstService} from '../service/burstService';
-import {HttpMockBuilder, HttpError, Http} from '@burstjs/http';
+import {Http, HttpError, HttpImpl, HttpMockBuilder, HttpResponse} from '@burstjs/http';
 import {BurstServiceSettings} from '../service/burstServiceSettings';
 import {createBurstService} from './helpers/createBurstService';
 
+class TestHttpClient implements Http {
+    delete(url: string): Promise<HttpResponse> {
+        return undefined;
+    }
+
+    get(url: string): Promise<HttpResponse> {
+        return undefined;
+    }
+
+    post(url: string, payload: any): Promise<HttpResponse> {
+        return undefined;
+    }
+
+    put(url: string, payload: any): Promise<HttpResponse> {
+        return undefined;
+    }
+
+}
 
 describe('BurstService', () => {
+    describe('constructor', () => {
+        it('should create with least required parameters', () => {
+            const {settings} = new BurstService({
+                nodeHost: 'nodeHost',
+                apiRootUrl: 'apiRootUrl',
+            });
+            expect(settings.nodeHost).toBe('nodeHost');
+            expect(settings.apiRootUrl).toBe('apiRootUrl');
+            expect(settings.httpClient instanceof HttpImpl).toBeTruthy();
+        });
 
+        it('should create with other HttpClient', () => {
+            const {settings} = new BurstService({
+                nodeHost: 'nodeHost',
+                apiRootUrl: 'apiRootUrl',
+                httpClient: new TestHttpClient()
+            });
+            expect(settings.nodeHost).toBe('nodeHost');
+            expect(settings.apiRootUrl).toBe('apiRootUrl');
+            expect(settings.httpClient instanceof TestHttpClient).toBeTruthy();
+        });
+    });
 
     describe('toBRSEndpoint() relative Path', () => {
 

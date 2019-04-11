@@ -37,6 +37,7 @@ import {getTime} from './factories/network/getTime';
 import {getAccount} from './factories/account/getAccount';
 import {setAccountInfo} from './factories/account/setAccountInfo';
 import {BurstServiceSettings} from '../service/burstServiceSettings';
+import {ApiVersion} from '../constants/apiVersion';
 
 
 /**
@@ -46,6 +47,7 @@ export class ApiSettings {
     constructor(
         public nodeHost: string,
         public apiRootUrl: string,
+        public apiVersion: ApiVersion = ApiVersion.V1
     ) {
     }
 }

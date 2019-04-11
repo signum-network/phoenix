@@ -16,7 +16,7 @@ export interface BurstServiceSettings {
      */
     readonly nodeHost: string;
     /**
-     * The the relative path the Burst API endpoint, usually '/burst' - must begin with slash
+     * The relative path the Burst API endpoint, usually '/burst' - must begin with slash
      */
     readonly apiRootUrl: string;
     /**
