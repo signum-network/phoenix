@@ -34,7 +34,7 @@ export class SetupComponent implements OnInit {
       })
     ).concat({
         url: environment.defaultNode,
-        version: '*'
+        version: ''
       });
   }
 

@@ -56,9 +56,12 @@
     }
 
     .mat-column-transaction_id {
-        min-width: 200px;
+        min-width: 250px;
     }
     .mat-column-account {
-        min-width:200px;
+        min-width: 275px;
+    }
+    .mat-column-amount {
+        text-align: center;
     }
 }

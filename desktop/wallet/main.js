@@ -135,7 +135,7 @@ function createWindow() {
 // Create window on electron intialization
 app.on('ready', createWindow);
 
-if (process.platform !== 'darwin') {
+if (process.platform === 'darwin') {
     app.setAboutPanelOptions({
         applicationName: app.getName(),
         applicationVersion: app.getVersion(),
