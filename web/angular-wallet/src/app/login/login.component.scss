@@ -103,6 +103,10 @@ $text-alt-color: #b3b3b3;
     transition: background .15s ease-in;
     width: 85%;
 
+    @media screen and (min-width: $media-query-tablet) {
+      width: 75%;
+    }
+
     &:last-child {
       margin-bottom: 0;
     }
