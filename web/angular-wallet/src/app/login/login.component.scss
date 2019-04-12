@@ -37,12 +37,18 @@ $text-alt-color: #b3b3b3;
     }
   }
 
+  &__header {
+    text-align: center;
+  }
+
   &__logo {
     width: 150px;
+    margin:0 auto;
   }
 
   &__version {
     display: block;
+    text-align: center;
     padding-left: 45px;
   }
 
@@ -65,19 +71,19 @@ $text-alt-color: #b3b3b3;
   &__title {
     color: $text-color;
     font-weight: 700;
-    margin: 0;
+    margin: 20px 0 0;
+    line-height: 3rem;
     @media screen and (min-width: $media-query-mobile) {
-      font-size: 3rem;
+      font-size: 2rem;
     }
     @media screen and (min-width: $media-query-tablet) {
-      font-size: 4rem;
+      font-size: 3rem;
     }
   }
 
   &__info {
     color: $text-alt-color;
     font-size: 1.75rem;
-    text-align: justify;
   }
 
   &__actions {
