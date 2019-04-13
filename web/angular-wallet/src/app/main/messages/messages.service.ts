@@ -1,14 +1,13 @@
-import { Injectable, ApplicationRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 import { Account, Api, SuggestedFees, EncryptedMessage } from '@burstjs/core';
 import { AccountService } from 'app/setup/account/account.service';
-import { decryptAES, hashSHA256, Keys} from '@burstjs/crypto';
+import { decryptAES, hashSHA256 } from '@burstjs/crypto';
 import { NetworkService } from 'app/network/network.service';
 import { convertDateToBurstTime, convertAddressToNumericId } from '@burstjs/util';
-import {ApiService} from '../../api.service';
-import { NotifierService } from 'angular-notifier';
+import { ApiService } from '../../api.service';
 
 export interface ChatMessage {
     message: string;
@@ -48,9 +47,7 @@ export class MessagesService implements Resolve<any>
 
     constructor(private accountService: AccountService,
                 private networkService: NetworkService,
-                apiService: ApiService,
-                private notifierService: NotifierService,
-                private app: ApplicationRef
+                apiService: ApiService
                 ) {
         this.api = apiService.api;
         this.onMessageSelected = new BehaviorSubject({});

@@ -50,8 +50,6 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild('replyForm')
     replyForm: NgForm;
 
-	@ViewChild('customNotification') customNotificationTmpl;
-
     // Private
     private _unsubscribeAll: Subject<any>;
 
