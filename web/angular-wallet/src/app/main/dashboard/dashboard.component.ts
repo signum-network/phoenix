@@ -57,6 +57,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.dataSource.data = accountTransactions.transactions.slice(0, 10);
     } catch (e) {
       console.log(e);
+      this.dataSource = undefined;
     }
   }
 

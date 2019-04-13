@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource, MatPaginator} from '@angular/material';
 import {ActivatedRoute} from '@angular/router';
 import {
@@ -13,8 +13,7 @@ import {UtilService} from 'app/util.service';
 @Component({
   selector: 'app-transaction-table',
   styleUrls: ['./transaction-table.component.scss'],
-  templateUrl: './transaction-table.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './transaction-table.component.html'
 })
 export class TransactionTableComponent implements OnInit {
 
