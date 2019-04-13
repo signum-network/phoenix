@@ -45,7 +45,7 @@
 
   <ng-container matColumnDef="amount">
     <mat-header-cell *matHeaderCellDef mat-sort-header>
-      <mat-icon>local_atm</mat-icon>&nbsp;{{ "amount" | i18n }}
+      <mat-icon>local_atm</mat-icon>
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
       {{getAmount(transaction) | number: "1.0-8" }}

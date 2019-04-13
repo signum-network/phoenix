@@ -55,13 +55,7 @@
         }
     }
 
-    .mat-column-transaction_id {
-        min-width: 250px;
-    }
-    .mat-column-account {
-        min-width: 275px;
-    }
-    .mat-column-amount {
-        text-align: center;
+    .recent-transactions {
+        overflow-y: auto;
     }
 }
