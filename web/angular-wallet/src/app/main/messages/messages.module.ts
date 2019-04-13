@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import {
     MatButtonModule, 
     MatCardModule, 
@@ -15,9 +14,7 @@ import {
     MatSliderModule, 
     MatCheckboxModule
 } from '@angular/material';
-
 import { FuseSharedModule } from '@fuse/shared.module';
-
 import { MessagesService } from './messages.service';
 import { MessagesComponent } from './messages.component';
 import { MessageStartComponent } from './message-start/message-start.component';
@@ -33,6 +30,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { SendBurstModule } from '../send-burst/send-burst.module';
 import { SuggestFeeResolver } from 'app/network/suggest-fee.resolver';
+import { NotifierModule } from 'angular-notifier';
 
 const routes: Routes = [
     {
@@ -71,6 +69,7 @@ const routes: Routes = [
         MatSidenavModule,
         MatToolbarModule,
         MatSliderModule,
+        NotifierModule,
         SendBurstModule,
         LayoutModule,
         FuseSharedModule,

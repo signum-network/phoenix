@@ -211,7 +211,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         try {
             await this.messageService.sendTextMessage(message, this.message.contactId, this.replyForm.form.value.pin, this.feeNQT);
         } catch (e) {
-            return this.notifierService.notify('error', this.utilService.translateServerError(e.data));
+            return this.notifierService.notify('error', this.utilService.translateServerError(e.data || e));
         }
 
         this.replyForm.reset();

@@ -1,4 +1,4 @@
-import {Component, ViewChild, ChangeDetectionStrategy} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 import {Transaction} from '@burstjs/core';
 import {FormControl} from '@angular/forms';
@@ -8,8 +8,7 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'app-transactions',
   styleUrls: ['./transactions.component.scss'],
-  templateUrl: './transactions.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './transactions.component.html'
 })
 export class TransactionsComponent {
   public dataSource: MatTableDataSource<Transaction>;

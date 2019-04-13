@@ -8,6 +8,7 @@ import { decryptAES, hashSHA256, Keys} from '@burstjs/crypto';
 import { NetworkService } from 'app/network/network.service';
 import { convertDateToBurstTime, convertAddressToNumericId } from '@burstjs/util';
 import {ApiService} from '../../api.service';
+import { NotifierService } from 'angular-notifier';
 
 export interface ChatMessage {
     message: string;
@@ -48,6 +49,7 @@ export class MessagesService implements Resolve<any>
     constructor(private accountService: AccountService,
                 private networkService: NetworkService,
                 apiService: ApiService,
+                private notifierService: NotifierService
                 ) {
         this.api = apiService.api;
         this.onMessageSelected = new BehaviorSubject({});
@@ -132,6 +134,11 @@ export class MessagesService implements Resolve<any>
         }
 
         if (this.onOptionsSelected.value.encrypt) {
+            // @ts-ignore
+            if (!recipient.publicKey) {
+                // todo: figure out why notifier service isnt working!
+                return this.notifierService.notify('error', 'error_recipient_no_public_key');
+            }
             // @ts-ignore
             return this.api.message.sendEncryptedTextMessage(message.message, recipientId, recipient.publicKey, senderKeys, 1440, fee);
         } else {
