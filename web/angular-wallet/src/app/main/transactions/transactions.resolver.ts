@@ -8,7 +8,7 @@ import { AccountService } from 'app/setup/account/account.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TransactionsResolver implements Resolve<Promise<Transaction>> {
+export class TransactionsResolver implements Resolve<Promise<Transaction[]>> {
   constructor(private accountService: AccountService) {
   }
 
@@ -17,7 +17,7 @@ export class TransactionsResolver implements Resolve<Promise<Transaction>> {
     try {
       const unconfirmedTransactions = await this.accountService.getUnconfirmedTransactions(account);
       const transactions = await this.accountService.getAccountTransactions(account);
-      return unconfirmedTransactions.unconfirmedTransactions.concat(transactions);
+      return unconfirmedTransactions.unconfirmedTransactions.concat(transactions.transactions);
     } catch (e) {
       console.warn(e);
     }
