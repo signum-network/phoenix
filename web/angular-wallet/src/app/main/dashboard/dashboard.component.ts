@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.account = await this.storeService.getSelectedAccount();
       const accountTransactions = await this.accountService.getAccountTransactions(this.account.account);
       this.dataSource = new MatTableDataSource<Transaction>();
-      this.dataSource.data = accountTransactions.transactions.slice(0, 10);
+      this.dataSource.data = accountTransactions.transactions.slice(0, 30);
     } catch (e) {
       console.log(e);
       this.dataSource = undefined;
