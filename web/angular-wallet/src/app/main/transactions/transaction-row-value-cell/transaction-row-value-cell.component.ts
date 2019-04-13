@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EncryptedMessage, Message } from '@burstjs/core';
-import { isBurstAddress, convertAddressToNumericId } from '@burstjs/util';
+import { isBurstAddress, convertAddressToNumericId, convertNQTStringToNumber } from '@burstjs/util';
 import { decryptMessage, decryptAES, hashSHA256 } from '@burstjs/crypto';
 import { AccountService } from 'app/setup/account/account.service';
 import { Event } from '@angular/router';
@@ -35,6 +35,9 @@ export class TransactionRowValueCellComponent implements OnInit {
       //@ts-ignore
     } else if (this.value && this.value.encryptedMessage) {
       this.valueType = 'EncryptedMessage';
+      //@ts-ignore
+    } else if (this.value && typeof this.value === 'object') {
+      this.valueType = 'Asset';
     }
   }
 
