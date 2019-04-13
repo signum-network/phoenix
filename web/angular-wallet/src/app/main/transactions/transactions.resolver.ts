@@ -15,8 +15,9 @@ export class TransactionsResolver implements Resolve<Promise<Transaction>> {
   async resolve(route: ActivatedRouteSnapshot) {
     const account = route.params.id || this.accountService.currentAccount.getValue().account;
     try {
+      const unconfirmedTransactions = await this.accountService.getUnconfirmedTransactions(account);
       const transactions = await this.accountService.getAccountTransactions(account);
-      return transactions;
+      return unconfirmedTransactions.unconfirmedTransactions.concat(transactions);
     } catch (e) {
       console.warn(e);
     }
