@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
+import {Component, Input, OnInit, ViewChild, ChangeDetectionStrategy} from '@angular/core';
+import {MatTableDataSource, MatPaginator} from '@angular/material';
 import {ActivatedRoute} from '@angular/router';
 import {
   Transaction,
@@ -13,7 +13,8 @@ import {UtilService} from 'app/util.service';
 @Component({
   selector: 'app-transaction-table',
   styleUrls: ['./transaction-table.component.scss'],
-  templateUrl: './transaction-table.component.html'
+  templateUrl: './transaction-table.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TransactionTableComponent implements OnInit {
 
@@ -26,6 +27,7 @@ export class TransactionTableComponent implements OnInit {
   @Input() dataSource: MatTableDataSource<Transaction>;
   @Input() public displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   public isMultiOutPayment(transaction: Transaction): boolean {
     return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction)
@@ -33,6 +35,7 @@ export class TransactionTableComponent implements OnInit {
 
   public ngOnInit(): void {
     this.account = this.route.snapshot.data.account;
+    this.dataSource.paginator = this.paginator;
   }
 
   public convertTimestamp(timestamp: number): Date {

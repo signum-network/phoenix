@@ -97,7 +97,6 @@
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
 <mat-paginator
-  *ngIf="paginationEnabled"
   #paginator
   [pageSize]="10"
   [pageSizeOptions]="[10, 20, 500]"

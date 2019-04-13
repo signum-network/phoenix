@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EncryptedMessage, Message, Account, Block, Transaction } from '@burstjs/core';
-import { ActivatedRoute } from '@angular/router';
+import { EncryptedMessage, Message, Account, Transaction } from '@burstjs/core';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { MatTableDataSource } from '@angular/material';
 
 type TransactionDetailsCellValue = string | Message | EncryptedMessage | number;
@@ -18,7 +18,12 @@ export class AccountDetailsComponent implements OnInit {
   transactions: Transaction[];
   dataSource: MatTableDataSource<Transaction>;
 
-  constructor(private route: ActivatedRoute) { 
+  constructor(private route: ActivatedRoute, private router: Router) {
+    router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        this.loadAccountAndSetData();
+      }
+    }) 
   }
 
   public getDetailsData(): TransactionDetailsCellValueMap[] {
@@ -26,6 +31,10 @@ export class AccountDetailsComponent implements OnInit {
   } 
 
   ngOnInit() {
+    this.loadAccountAndSetData();
+  }
+
+  loadAccountAndSetData() {
     this.account = this.route.snapshot.data.account as Account;
     const blockDetails = Object.keys(this.account).map((key:string): TransactionDetailsCellValueMap => [ key, this.account[key]]);
     this.detailsData = new Map(blockDetails);
