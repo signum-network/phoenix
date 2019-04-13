@@ -1,0 +1,23 @@
+.mat-column-timestamp {
+    flex: 0 0 100px;
+}
+
+.mat-column-type {
+    flex: 0 0 150px;
+}
+
+.mat-column-transaction_id {
+    flex: 0 0 200px;
+    font-size: 1.2rem;
+}
+
+.mat-column-account {
+    flex: 0 0 225px;
+    font-size: 1.2rem;
+}
+
+.mat-cell {
+    word-wrap: normal;
+    white-space: nowrap;
+    overflow: default;
+}
