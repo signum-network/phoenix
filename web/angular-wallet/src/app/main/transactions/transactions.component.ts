@@ -1,18 +1,15 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild, ChangeDetectionStrategy} from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
-import {Transaction, Account} from '@burstjs/core';
+import {Transaction} from '@burstjs/core';
 import {FormControl} from '@angular/forms';
-import {AccountService} from 'app/setup/account/account.service';
-import {StoreService} from 'app/store/store.service';
-import {NotifierService} from 'angular-notifier';
 import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
-import {UtilService} from 'app/util.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-transactions',
   styleUrls: ['./transactions.component.scss'],
-  templateUrl: './transactions.component.html'
+  templateUrl: './transactions.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TransactionsComponent {
   public dataSource: MatTableDataSource<Transaction>;
@@ -20,15 +17,10 @@ export class TransactionsComponent {
   pickerFromField = new FormControl();
   pickerToField = new FormControl();
 
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private accountService: AccountService,
-    private storeService: StoreService,
-    private notifierService: NotifierService,
-    private utilService: UtilService,
     private route: ActivatedRoute
   ) {
   }
@@ -40,7 +32,7 @@ export class TransactionsComponent {
 
   public ngAfterViewInit() {
     const defaultFilterPredicate = this.dataSource.filterPredicate;
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.dataSource.filterPredicate = (data, filterValue: string) => {
       const date = this.convertTimestamp(data.timestamp);

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild, ChangeDetectionStrategy, AfterViewInit} from '@angular/core';
 import {MatTableDataSource, MatPaginator} from '@angular/material';
 import {ActivatedRoute} from '@angular/router';
 import {
@@ -15,7 +15,7 @@ import {UtilService} from 'app/util.service';
   styleUrls: ['./transaction-table.component.scss'],
   templateUrl: './transaction-table.component.html'
 })
-export class TransactionTableComponent implements OnInit {
+export class TransactionTableComponent implements OnInit, AfterViewInit {
 
   constructor(private utilService: UtilService, private route: ActivatedRoute) {
   }
@@ -34,6 +34,9 @@ export class TransactionTableComponent implements OnInit {
 
   public ngOnInit(): void {
     this.account = this.route.snapshot.data.account;
+  }
+
+  public ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
