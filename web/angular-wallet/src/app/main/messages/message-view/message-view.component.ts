@@ -50,6 +50,8 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild('replyForm')
     replyForm: NgForm;
 
+	@ViewChild('customNotification') customNotificationTmpl;
+
     // Private
     private _unsubscribeAll: Subject<any>;
 
@@ -211,7 +213,9 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         try {
             await this.messageService.sendTextMessage(message, this.message.contactId, this.replyForm.form.value.pin, this.feeNQT);
         } catch (e) {
-            return this.notifierService.notify('error', this.utilService.translateServerError(e.data || e));
+            return this.notifierService.notify('error', 
+                this.i18nService.getTranslation(e.message) || 
+                this.utilService.translateServerError(e.data || e));
         }
 
         this.replyForm.reset();

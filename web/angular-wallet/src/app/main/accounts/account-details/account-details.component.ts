@@ -41,7 +41,7 @@ export class AccountDetailsComponent implements OnInit {
     const blockDetails = Object.keys(this.account).map((key:string): TransactionDetailsCellValueMap => [ key, this.account[key]]);
     this.detailsData = new Map(blockDetails);
     this.dataSource = new MatTableDataSource<Transaction>();
-    this.dataSource.data = this.route.snapshot.data.transactions.transactions;
+    this.dataSource.data = this.route.snapshot.data.transactions;
     this.accountQRCodeURL = this.getAccountQRCodeUrl();
   }
 

@@ -5,7 +5,7 @@
     <div *ngIf="decryptedMessage">{{decryptedMessage}}</div>
     <div *ngIf="!decryptedMessage">
       <mat-form-field>
-        <input matInput [(ngModel)]="pin" name="pin" placeholder="{{ 'input_pin' | i18n }}">
+        <input matInput [(ngModel)]="pin" type="password" name="pin" placeholder="{{ 'input_pin' | i18n }}">
       </mat-form-field> 
       <button type="submit" class="mr-8" mat-button color="primary"
       (click)="submitPinPrompt($event)">{{ "submit" | i18n }}</button>

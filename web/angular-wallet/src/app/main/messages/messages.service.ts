@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ApplicationRef } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
@@ -49,7 +49,8 @@ export class MessagesService implements Resolve<any>
     constructor(private accountService: AccountService,
                 private networkService: NetworkService,
                 apiService: ApiService,
-                private notifierService: NotifierService
+                private notifierService: NotifierService,
+                private app: ApplicationRef
                 ) {
         this.api = apiService.api;
         this.onMessageSelected = new BehaviorSubject({});
@@ -137,7 +138,7 @@ export class MessagesService implements Resolve<any>
             // @ts-ignore
             if (!recipient.publicKey) {
                 // todo: figure out why notifier service isnt working!
-                return this.notifierService.notify('error', 'error_recipient_no_public_key');
+                throw new ErrorEvent('error_recipient_no_public_key');
             }
             // @ts-ignore
             return this.api.message.sendEncryptedTextMessage(message.message, recipientId, recipient.publicKey, senderKeys, 1440, fee);

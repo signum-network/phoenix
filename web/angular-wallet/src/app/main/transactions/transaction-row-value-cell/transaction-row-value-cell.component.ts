@@ -1,9 +1,8 @@
-import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { EncryptedMessage, Message } from '@burstjs/core';
-import { isBurstAddress, convertAddressToNumericId, convertNQTStringToNumber } from '@burstjs/util';
+import { isBurstAddress, convertAddressToNumericId } from '@burstjs/util';
 import { decryptMessage, decryptAES, hashSHA256 } from '@burstjs/crypto';
 import { AccountService } from 'app/setup/account/account.service';
-import { Event } from '@angular/router';
 
 @Component({
   selector: 'app-transaction-row-value-cell',
