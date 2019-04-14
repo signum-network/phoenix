@@ -186,7 +186,7 @@ export class MessagesService implements Resolve<any> {
 
     const getConfirmedMessages = this.accountService.getAccountTransactions(
       accountId,
-      0, maxNumberMessages / 2,
+      0, maxNumberMessages,
       0,
       TransactionType.Arbitrary,
       TransactionArbitrarySubtype.Message);
