@@ -13,7 +13,8 @@ import {
   MatToolbarModule,
   MatSliderModule,
   MatCheckboxModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatTooltipModule
 } from '@angular/material';
 import {FuseSharedModule} from '@fuse/shared.module';
 import {MessagesService} from './messages.service';
@@ -32,6 +33,8 @@ import {NgxMaskModule} from 'ngx-mask';
 import {SendBurstModule} from '../send-burst/send-burst.module';
 import {SuggestFeeResolver} from 'app/network/suggest-fee.resolver';
 import {NotifierModule} from 'angular-notifier';
+import {FormsModule} from '@angular/forms';
+
 
 const routes: Routes = [
   {
@@ -77,7 +80,9 @@ const routes: Routes = [
     I18nModule,
     NgxMaskModule,
     MatProgressSpinnerModule,
-  ],
+    FormsModule,
+    MatTooltipModule
+],
   providers: [
     MessagesService
   ]

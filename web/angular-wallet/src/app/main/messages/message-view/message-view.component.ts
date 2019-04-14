@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import {map, takeUntil} from 'rxjs/operators';
 
 import {FusePerfectScrollbarDirective} from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 
@@ -56,6 +56,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   isNewMessage = false;
   burstAddressPatternRef = burstAddressPattern;
   isSending = false;
+  isOptionEncryptionEnabled = true;
 
 
   private _unsubscribeAll: Subject<any>;
@@ -83,6 +84,12 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         this.isNewMessage = isNewMessage;
         this.readyToReply();
       });
+
+    this.messageService.onOptionsSelected.pipe(
+      takeUntil(this._unsubscribeAll),
+    ).subscribe(({encrypt}) => {
+      this.isOptionEncryptionEnabled = encrypt;
+    });
   }
 
   ngAfterViewInit(): void {
@@ -203,5 +210,9 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     const {pin, message} = this.replyForm.form.value;
     return (pin && pin.length > 0) &&
       (message && message.length) > 0;
+  }
+
+  getIconStyle(): string {
+    return this.isOptionEncryptionEnabled ? 'green-300-fg' : 'warn-300-fg';
   }
 }

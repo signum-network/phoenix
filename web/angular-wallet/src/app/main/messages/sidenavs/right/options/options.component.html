@@ -1,37 +1,48 @@
 <!-- SIDENAV HEADER -->
 <div class="sidenav-header" *ngIf="options">
 
-    <!-- CONTACT TOOLBAR -->
-    <mat-toolbar class="accent">
+  <!-- CONTACT TOOLBAR -->
+  <mat-toolbar class="accent">
 
-        <!-- TOOLBAR TOP -->
-        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+    <!-- TOOLBAR TOP -->
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
 
-            <div>Options</div>
+      <div>Options</div>
 
-            <button mat-icon-button fuseMatSidenavToggler="message-right-sidenav" aria-label="close">
-                <mat-icon>close</mat-icon>
-            </button>
+      <button mat-icon-button fuseMatSidenavToggler="message-right-sidenav" aria-label="close">
+        <mat-icon>close</mat-icon>
+      </button>
 
-        </mat-toolbar-row>
-        <!-- / TOOLBAR TOP -->
+    </mat-toolbar-row>
+    <!-- / TOOLBAR TOP -->
 
-    </mat-toolbar>
-    <!-- / CONTACT TOOLBAR -->
+  </mat-toolbar>
+  <!-- / CONTACT TOOLBAR -->
 </div>
 
 <!-- SIDENAV CONTENT -->
 <div class="sidenav-content py-32 px-24" fxFlex fxLayout="column" *ngIf="options">
 
-    <label>Fee</label>
-    
+
+  <label>Fee</label>
+  <div class="mat-form-field">
     <mat-form-field appearance="outline">
-        <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
-        <label matSuffix>BURST</label>
+      <input matInput
+             [(ngModel)]="feeNQT"
+             name="feeNQT"
+             placeholder="{{ 'fee' | i18n }}">
+      <label matSuffix>BURST</label>
     </mat-form-field>
+  </div>
 
+  <div class="mat-form-field">
     <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
+  </div>
 
-    <mat-checkbox [(ngModel)]="options.encrypt">{{ "encrypt_message" | i18n }}</mat-checkbox>
+
+  <div class="mat-form-field mt-16">
+    <mat-checkbox [(ngModel)]="encrypt"
+                  (ngModelChange)="onEncryptionChange($event)">{{ "encrypt_message" | i18n }}</mat-checkbox>
+  </div>
 
 </div>

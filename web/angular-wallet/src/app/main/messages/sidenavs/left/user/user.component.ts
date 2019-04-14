@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Subject} from 'rxjs';
-import {debounceTime, distinctUntilChanged, takeUntil} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, map, takeUntil} from 'rxjs/operators';
 import {MessagesService} from 'app/main/messages/messages.service';
 
 
@@ -20,7 +20,6 @@ export class MessageUserSidenavComponent implements OnInit, OnDestroy {
   constructor(
     private _messageService: MessagesService
   ) {
-    // Set the private defaults
     this._unsubscribeAll = new Subject();
   }
 

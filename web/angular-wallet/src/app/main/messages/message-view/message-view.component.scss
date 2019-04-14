@@ -1,278 +1,289 @@
 @import "src/@fuse/scss/fuse";
 
 message-view {
-    display: flex;
-    flex: 1 0 auto;
-    overflow: hidden;
-    max-width: 100%;
+  display: flex;
+  flex: 1 0 auto;
+  overflow: hidden;
+  max-width: 100%;
 
-    .message {
+  .message {
 
-        .message-toolbar {
-            min-height: 64px;
-            border-bottom: 1px solid;
+    .message-toolbar {
+      min-height: 64px;
+      border-bottom: 1px solid;
 
-            .responsive-messages-button {
-                padding: 0;
-            }
+      .encryption-icon {
+        margin-left: 16px;
+      }
 
-            .message-contact {
-                cursor: pointer;
 
-                .avatar {
-                    margin-right: 16px;
-                }
+      .responsive-messages-button {
+        padding: 0;
+      }
 
-                .message-contact-name {
-                    font-size:16px;
-                }
-            }
+      .message-contact {
+        cursor: pointer;
 
-            .message-contact-name-input {
-                height: 36px;
-                line-height: 36px;
-                padding: 8px;
-                font-size: 13px;
-                border-radius: 18px;
-                border: 1px solid;
-                background: #fafafa;
-                border-color: rgba(0, 0, 0, 0.12);
-                .mat-form-field-infix {
-                    width:263px;
-                    margin:0 0 -10px 0;
-                    padding:0;
-                    border:none;
-                }
-                .mat-form-field-flex {
-                    padding:0;
-                    position: relative;
-                    top: -8px;
-                    left: 6px;
-                }
-                .mat-form-field-underline {
-                    display: none !important;
-                }
-            }
+        .avatar {
+          margin-right: 16px;
         }
 
-        #message-content {
-            background: transparent;
-            overflow: auto;
-            -webkit-overflow-scrolling: touch;
+        .message-contact-name {
+          font-size: 16px;
+        }
+      }
 
-            .messages {
-                position: relative;
-                padding: 16px 0 40px 0;
+      .message-contact-name-input {
+        height: 36px;
+        line-height: 36px;
+        padding: 8px;
+        font-size: 13px;
+        border-radius: 18px;
+        background: #fafafa;
+        border: 1px solid rgba(0, 0, 0, 0.12);
 
-                .message-row {
-                    position: relative;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    justify-content: flex-end;
-                    padding: 0 16px 4px 16px;
-
-                    .avatar {
-                        position: absolute;
-                        left: -32px;
-                        margin: 0;
-                    }
-
-                    .lock {
-                        cursor: pointer;
-                    }
-
-                    .bubble {
-                        position: relative;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        padding: 12px;
-                        max-width: 100%;
-
-                        .message {
-                            white-space: pre-wrap;
-                            line-height: 1.2;
-                        }
-
-                        .time {
-                            position: absolute;
-                            display: none;
-                            width: 100%;
-                            font-size: 11px;
-                            margin-top: 8px;
-                            top: 100%;
-                            left: 0;
-                            white-space: nowrap;
-                        }
-                    }
-
-                    &.contact {
-
-                        .bubble {
-                            border-top-left-radius: 5px;
-                            border-bottom-left-radius: 5px;
-
-                            border-top-right-radius: 20px;
-                            border-bottom-right-radius: 20px;
-
-                            .time {
-                                margin-left: 12px;
-                            }
-
-                            button, input, .mat-form-field.mat-focused .mat-form-field-label {
-                                color: #fff;
-                            }
-
-                        }
-
-                        &.first-of-group {
-
-                            .bubble {
-                                border-top-left-radius: 20px;
-                            }
-                        }
-
-                        &.last-of-group {
-
-                            .bubble {
-                                border-bottom-left-radius: 20px;
-                            }
-                        }
-                    }
-
-                    &.me {
-                        padding-left: 40px;
-
-                        .avatar {
-                            order: 2;
-                            margin: 0 0 0 16px;
-                        }
-
-                        .bubble {
-                            margin-left: auto;
-
-                            border-top-left-radius: 20px;
-                            border-bottom-left-radius: 20px;
-
-                            border-top-right-radius: 5px;
-                            border-bottom-right-radius: 5px;
-
-                            .time {
-                                justify-content: flex-end;
-                                right: 0;
-                                margin-right: 12px;
-                            }
-                        }
-
-                        &.first-of-group {
-
-                            .bubble {
-                                border-top-right-radius: 20px;
-                            }
-                        }
-
-                        &.last-of-group {
-
-                            .bubble {
-                                border-bottom-right-radius: 20px;
-                            }
-                        }
-                    }
-
-                    &.contact + .me,
-                    &.me + .contact {
-                        padding-top: 20px;
-                        margin-top: 20px;
-                    }
-
-                    &.first-of-group {
-
-                        .bubble {
-                            border-top-left-radius: 20px;
-                            padding-top: 13px;
-                        }
-                    }
-
-                    &.last-of-group {
-
-                        .bubble {
-                            border-bottom-left-radius: 20px;
-                            padding-bottom: 13px;
-
-                            .time {
-                                display: flex;
-                            }
-                        }
-                    }
-                }
-            }
+        .mat-form-field-infix {
+          width: 263px;
+          margin: 0 0 -10px 0;
+          padding: 0;
+          border: none;
         }
 
-        .message-footer {
-            border-top: 1px solid;
-            padding: 8px 8px 8px 16px;
-
-            .reply-form {
-                position: relative;
-
-                .message-text {
-                    padding: 16px 8px;
-                    font-size:12px;
-                    @include media-breakpoint('gt-sm') {
-                        font-size: 16px;
-                    }
-
-                    .mat-form-field-wrapper {
-                        padding: 0;
-
-                        .mat-form-field-flex {
-                            padding: 0;
-
-                            .mat-form-field-infix {
-                                padding: 0;
-                                border: none;
-                                border-radius: 20px;
-                                border: 1px solid;
-                                width: auto;
-
-                                textarea {
-                                    overflow: hidden;
-                                    margin: 16px;
-                                    width: calc(100% - 64px);
-                                    padding: 0;
-                                }
-                            }
-                        }
-
-                        .mat-form-field-underline {
-                            display: none !important;
-                        }
-                    }
-                }
-
-                .send-message-button {
-                    position: absolute;
-                    right: 16px;
-                    bottom: 21px;
-                    &:disabled{
-                      opacity: 0.2;
-                    }
-                    mat-icon {
-                      &.enabled {
-                        color: #039be5;
-                      }
-                    }
-                }
-
-                .password-field {
-                    max-width:25%;
-                    min-width: 135px;
-                    input {
-                        padding:16px 50px 16px 16px;
-                    }
-                }
-            }
+        .mat-form-field-flex {
+          padding: 0;
+          position: relative;
+          top: -8px;
+          left: 6px;
         }
+
+        .mat-form-field-underline {
+          display: none !important;
+        }
+      }
     }
+
+    #message-content {
+      background: transparent;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+
+      .messages {
+        position: relative;
+        padding: 16px 0 40px 0;
+
+        .message-row {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-end;
+          padding: 0 16px 4px 16px;
+
+          .avatar {
+            position: absolute;
+            left: -32px;
+            margin: 0;
+          }
+
+          .lock {
+            cursor: pointer;
+          }
+
+          .bubble {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            max-width: 100%;
+
+            .message {
+              white-space: pre-wrap;
+              line-height: 1.2;
+            }
+
+            .time {
+              position: absolute;
+              display: none;
+              width: 100%;
+              font-size: 11px;
+              margin-top: 8px;
+              top: 100%;
+              left: 0;
+              white-space: nowrap;
+            }
+          }
+
+          &.contact {
+
+            .bubble {
+              border-top-left-radius: 5px;
+              border-bottom-left-radius: 5px;
+
+              border-top-right-radius: 20px;
+              border-bottom-right-radius: 20px;
+
+              .time {
+                margin-left: 12px;
+              }
+
+              button, input, .mat-form-field.mat-focused .mat-form-field-label {
+                color: #fff;
+              }
+
+            }
+
+            &.first-of-group {
+
+              .bubble {
+                border-top-left-radius: 20px;
+              }
+            }
+
+            &.last-of-group {
+
+              .bubble {
+                border-bottom-left-radius: 20px;
+              }
+            }
+          }
+
+          &.me {
+            padding-left: 40px;
+
+            .avatar {
+              order: 2;
+              margin: 0 0 0 16px;
+            }
+
+            .bubble {
+              margin-left: auto;
+
+              border-top-left-radius: 20px;
+              border-bottom-left-radius: 20px;
+
+              border-top-right-radius: 5px;
+              border-bottom-right-radius: 5px;
+
+              .time {
+                justify-content: flex-end;
+                right: 0;
+                margin-right: 12px;
+              }
+            }
+
+            &.first-of-group {
+
+              .bubble {
+                border-top-right-radius: 20px;
+              }
+            }
+
+            &.last-of-group {
+
+              .bubble {
+                border-bottom-right-radius: 20px;
+              }
+            }
+          }
+
+          &.contact + .me,
+          &.me + .contact {
+            padding-top: 20px;
+            margin-top: 20px;
+          }
+
+          &.first-of-group {
+
+            .bubble {
+              border-top-left-radius: 20px;
+              padding-top: 13px;
+            }
+          }
+
+          &.last-of-group {
+
+            .bubble {
+              border-bottom-left-radius: 20px;
+              padding-bottom: 13px;
+
+              .time {
+                display: flex;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .message-footer {
+      border-top: 1px solid;
+      padding: 8px 8px 8px 16px;
+
+      .reply-form {
+        position: relative;
+
+        .message-text {
+          padding: 16px 8px;
+          font-size: 12px;
+          @include media-breakpoint('gt-sm') {
+            font-size: 16px;
+          }
+
+          .mat-form-field-wrapper {
+            padding: 0;
+
+            .mat-form-field-flex {
+              padding: 0;
+
+              .mat-form-field-infix {
+                padding: 0;
+                border: none;
+                border-radius: 20px;
+                border: 1px solid;
+                width: auto;
+
+                textarea {
+                  overflow: hidden;
+                  margin: 16px;
+                  width: calc(100% - 64px);
+                  padding: 0;
+                }
+              }
+            }
+
+            .mat-form-field-underline {
+              display: none !important;
+            }
+          }
+        }
+
+        .send-message-button {
+          position: absolute;
+          right: 16px;
+          bottom: 21px;
+
+          &:disabled {
+            opacity: 0.2;
+          }
+
+          mat-icon {
+            &.enabled {
+              color: #039be5;
+            }
+          }
+        }
+
+        .password-field {
+          max-width: 25%;
+          min-width: 135px;
+
+          input {
+            padding: 16px 50px 16px 16px;
+          }
+        }
+
+      }
+    }
+  }
 }

@@ -26,6 +26,13 @@
           <div class="message-contact-name">
             {{message.senderRS}}
           </div>
+
+          <mat-icon class="encryption-icon"
+                    [ngClass]="getIconStyle()"
+                    matTooltip="{{isOptionEncryptionEnabled ? 'Messages will be encrypted' : 'Messages will be plain text'}}">
+            {{isOptionEncryptionEnabled ? 'lock' : 'lock_open'}}
+          </mat-icon>
+
         </div>
         <!-- / CHAT CONTACT-->
 
