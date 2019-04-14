@@ -3,13 +3,14 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 
 import {
-  Account,
   Api,
+  Account,
   SuggestedFees,
   EncryptedMessage,
+  Transaction,
   TransactionId,
+  TransactionType,
   TransactionArbitrarySubtype,
-  TransactionType, UnconfirmedTransactionList, Transaction
 } from '@burstjs/core';
 import {AccountService} from 'app/setup/account/account.service';
 import {decryptAES, hashSHA256} from '@burstjs/crypto';
@@ -181,6 +182,7 @@ export class MessagesService implements Resolve<any> {
    */
   async getMessages(): Promise<any> {
 
+    // TODO: in the future we should allow scrolling to older messages (if > maxNumberMessages)
     const maxNumberMessages = 100;
     const accountId = this.accountService.currentAccount.getValue().account;
 
@@ -203,16 +205,16 @@ export class MessagesService implements Resolve<any> {
     return Promise.resolve(allMessages);
   }
 
-  sendNewMessage(recipient) {
+  sendNewMessage(recipient): void{
     const message = {
       contactId: convertAddressToNumericId(recipient) || 'new',
       dialog: [],
       senderRS: recipient,
       timestamp: convertDateToBurstTime(new Date()).toString()
-    }
+    };
     this.messages.push(message);
     this.onMessagesUpdated.next(this.messages);
-    return this.getMessage(message, true);
+    this.getMessage(message, true);
   }
 
   /**
@@ -221,17 +223,14 @@ export class MessagesService implements Resolve<any> {
    * @param message unsigned, unverified message to be added to the screen for immediate user satisfaction
    * @param recipientRS the recipient to scan for
    */
-  mergeWithExistingChatSession(message: ChatMessage, recipientRS: string) {
-    const existingMessage = this.messages.find((existingMessage) => {
-      return (existingMessage.contactId === recipientRS);
-    });
-    if (existingMessage) {
-      existingMessage.dialog.push(message);
-      this.messages = this.messages.filter((msg) => {
-        return msg.dialog[0] != message;
-      })
-      this.onMessagesUpdated.next(this.messages);
-      return this.getMessage(existingMessage);
+  mergeWithExistingChatSession(message: ChatMessage, recipientRS: string): void {
+    const existingMessage = this.messages.find(({contactId}) => contactId === recipientRS);
+    if (!existingMessage) {
+      return;
     }
+    existingMessage.dialog.push(message);
+    this.messages = this.messages.filter(({dialog}) => dialog[0] !== message);
+    this.onMessagesUpdated.next(this.messages);
+    this.getMessage(existingMessage);
   }
 }
