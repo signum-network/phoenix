@@ -16,7 +16,7 @@ export class BurstFeeSelectorComponent implements OnInit {
   options: Options;
 
   @Input()
-  get feeNQT() {
+  get feeNQT(): string {
     return this.feeNQTValue;
   }
 
@@ -30,13 +30,13 @@ export class BurstFeeSelectorComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // avoids ExpressionChangedAfterItHasBeenCheckedError
     setTimeout(() => {
       this.feeNQT = this.convertFeeToBurst(this.fees.standard).toString();
     });
     this.options = {
-      step:0.0000001,
+      step: 0.0000001,
       floor: this.convertFeeToBurst(this.fees.cheap),
       ceil: this.convertFeeToBurst(this.fees.priority),
       showSelectionBar: true,
@@ -53,7 +53,7 @@ export class BurstFeeSelectorComponent implements OnInit {
 
   }
 
-  convertFeeToBurst(feeNQT: number) {
+  convertFeeToBurst(feeNQT: number): number {
     return convertNQTStringToNumber(feeNQT.toString());
   }
 

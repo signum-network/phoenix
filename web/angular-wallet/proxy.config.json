@@ -1,6 +1,6 @@
 {
   "/burst": {
-    "target": "https://wallet1.burst-team.us:2083/",
+    "target": "http://testnet.getburst.net:6876",
     "changeOrigin": true,
     "secure": false,
     "logLevel": "info"
