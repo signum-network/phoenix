@@ -77,7 +77,7 @@
                         <div *ngIf="showPin">
                             <mat-form-field>
                                 <input matInput type="password" [(ngModel)]="pin" name="pin" placeholder="{{ 'input_pin' | i18n }}">
-                            </mat-form-field> 
+                            </mat-form-field>
                             <button type="submit" class="mr-8" mat-button color="primary"
                             (click)="submitPinPrompt($event)">{{ "submit" | i18n }}</button>
                         </div>
@@ -113,7 +113,7 @@
                     <input type="password" matInput required #pinInput placeholder="Enter PIN" ngModel name="pin">
                 </mat-form-field>
 
-                <button class="send-message-button" mat-icon-button type="submit" aria-label="Send message">
+                <button class="send-message-button" mat-icon-button type="submit" aria-label="Send message" [disabled]="!canSubmitReply()">
                     <mat-icon class="secondary-text">send</mat-icon>
                 </button>
 

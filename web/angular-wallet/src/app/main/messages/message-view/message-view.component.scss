@@ -255,6 +255,9 @@ message-view {
                     position: absolute;
                     right: 16px;
                     bottom: 21px;
+                    &:disabled{
+                      opacity: 0.2;
+                    }
                 }
 
                 .password-field {
