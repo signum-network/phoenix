@@ -14,7 +14,7 @@ import {takeUntil} from 'rxjs/operators';
 
 import {FusePerfectScrollbarDirective} from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 
-import {MessagesService, Messages, ChatMessage} from '../messages.service';
+import {MessagesService, Messages} from '../messages.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {Account} from '@burstjs/core';
 import {Router} from '@angular/router';
@@ -40,24 +40,23 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input('feeNQT') feeNQT: number;
   @Input('encrypt') encrypt: boolean;
 
-  @ViewChild('pin') pin: string;
+  @ViewChild('pin')
+  pin: string;
+  @ViewChild(FusePerfectScrollbarDirective)
+  directiveScroll: FusePerfectScrollbarDirective;
+  @ViewChildren('replyInput')
+  replyInputField;
+  @ViewChild('replyForm')
+  replyForm: NgForm;
 
   message: Messages;
   replyInput: any;
   pinInput: any;
   selectedUser: Account;
-  selectedMessageQRCode: string;
   isNewMessage = false;
   burstAddressPatternRef = burstAddressPattern;
+  isSending: boolean = false;
 
-  @ViewChild(FusePerfectScrollbarDirective)
-  directiveScroll: FusePerfectScrollbarDirective;
-
-  @ViewChildren('replyInput')
-  replyInputField;
-
-  @ViewChild('replyForm')
-  replyForm: NgForm;
 
   private _unsubscribeAll: Subject<any>;
 
@@ -164,13 +163,14 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     };
 
     try {
+      this.isSending = true;
       await this.messageService.sendTextMessage(message, this.message.contactId, this.replyForm.form.value.pin, this.feeNQT);
       this.replyForm.reset();
       this.readyToReply();
     } catch (e) {
       this.notifierService.notify('error', this.utilService.translateServerError(e.data || e));
     }
-
+    this.isSending = false;
   }
 
 

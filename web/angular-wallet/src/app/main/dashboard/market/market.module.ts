@@ -4,8 +4,6 @@ import {
   MatTableModule,
   MatIconModule,
   MatPaginatorModule,
-  MatList,
-  MatListItem,
   MatListModule,
   MatProgressSpinnerModule
 } from '@angular/material';

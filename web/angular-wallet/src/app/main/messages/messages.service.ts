@@ -121,16 +121,15 @@ export class MessagesService implements Resolve<any>
      * @returns {ChatMessage}
      */
     public async sendTextMessage(message: ChatMessage, recipientId: string, pin: string, fee: number): Promise<TransactionId> {
-        // Check to see if existing chat session exists (ios-style), if so, merge it
-        this.mergeWithExistingChatSession(message, recipientId);
-        const recipient = await this.accountService.getAccount(recipientId);
 
+        const recipient = await this.accountService.getAccount(recipientId);
         const senderKeys = {
             agreementPrivateKey: decryptAES(this.user.keys.agreementPrivateKey, hashSHA256(pin)),
             signPrivateKey: decryptAES(this.user.keys.signPrivateKey, hashSHA256(pin)),
             publicKey: this.user.keys.publicKey
-        }
+        };
 
+        let transactionId;
         if (this.onOptionsSelected.value.encrypt) {
             // @ts-ignore
             if (!recipient.publicKey) {
@@ -138,10 +137,14 @@ export class MessagesService implements Resolve<any>
                 throw new ErrorEvent('error_recipient_no_public_key');
             }
             // @ts-ignore
-            return this.api.message.sendEncryptedTextMessage(message.message, recipientId, recipient.publicKey, senderKeys, 1440, fee);
+            transactionId = await this.api.message.sendEncryptedTextMessage(message.message, recipientId, recipient.publicKey, senderKeys, 1440, fee);
         } else {
-            return this.api.message.sendTextMessage(message.message, recipientId, this.user.keys.publicKey, senderKeys.signPrivateKey, 1440, fee);
+            transactionId = await this.api.message.sendTextMessage(message.message, recipientId, this.user.keys.publicKey, senderKeys.signPrivateKey, 1440, fee);
         }
+
+        // Check to see if existing chat session exists (ios-style), if so, merge it
+        this.mergeWithExistingChatSession(message, recipientId);
+        return transactionId;
     }
 
     /**
