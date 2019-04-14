@@ -117,11 +117,7 @@ message-view {
           &.contact {
 
             .bubble {
-              border-top-left-radius: 5px;
-              border-bottom-left-radius: 5px;
-
-              border-top-right-radius: 20px;
-              border-bottom-right-radius: 20px;
+              border-radius: 5px 20px 20px 5px;
 
               .time {
                 margin-left: 12px;
@@ -158,12 +154,7 @@ message-view {
 
             .bubble {
               margin-left: auto;
-
-              border-top-left-radius: 20px;
-              border-bottom-left-radius: 20px;
-
-              border-top-right-radius: 5px;
-              border-bottom-right-radius: 5px;
+              border-radius: 20px 5px 5px 20px;
 
               .time {
                 justify-content: flex-end;
