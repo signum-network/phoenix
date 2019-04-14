@@ -8,15 +8,16 @@ import { AccountService } from 'app/setup/account/account.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TransactionsResolver implements Resolve<Promise<Transaction>> {
+export class TransactionsResolver implements Resolve<Promise<Transaction[]>> {
   constructor(private accountService: AccountService) {
   }
 
   async resolve(route: ActivatedRouteSnapshot) {
     const account = route.params.id || this.accountService.currentAccount.getValue().account;
     try {
+      const unconfirmedTransactions = await this.accountService.getUnconfirmedTransactions(account);
       const transactions = await this.accountService.getAccountTransactions(account);
-      return transactions;
+      return unconfirmedTransactions.unconfirmedTransactions.concat(transactions.transactions);
     } catch (e) {
       console.warn(e);
     }

@@ -37,8 +37,8 @@ import {decryptAES, hashSHA256, decryptMessage} from '@burstjs/crypto/out/src';
   encapsulation: ViewEncapsulation.None
 })
 export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
-  @Input() feeNQT: number;
-  @Input() encrypt: boolean;
+  @Input('feeNQT') feeNQT: number;
+  @Input('encrypt') encrypt: boolean;
 
   @ViewChild('pin') pin: string;
 

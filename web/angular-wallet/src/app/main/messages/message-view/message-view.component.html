@@ -114,7 +114,7 @@
                 </mat-form-field>
 
                 <button class="send-message-button" mat-icon-button type="submit" aria-label="Send message" [disabled]="!canSubmitReply()">
-                    <mat-icon class="secondary-text">send</mat-icon>
+                    <mat-icon [class.enabled]="canSubmitReply() || false">send</mat-icon>
                 </button>
 
             </form>

@@ -94,7 +94,7 @@
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns" [class]="row.confirmations ? 'confirmed': 'unconfirmed'"></mat-row>
 </mat-table>
 <mat-paginator
   #paginator

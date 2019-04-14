@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {fuseAnimations} from '@fuse/animations';
-import {DashboardService} from './dashboard.service';
 import {Subscription} from 'rxjs';
 import {filter, takeWhile} from 'rxjs/operators';
 import {Router, NavigationEnd} from '@angular/router';
@@ -31,11 +30,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public convertNQTStringToNumber = convertNQTStringToNumber;
   _isActive = true;
 
-  constructor(private _dashboardService: DashboardService,
-              private router: Router,
+  constructor(private router: Router,
               private storeService: StoreService,
               private accountService: AccountService,
-              private dashboardService: DashboardService,
               private marketService: MarketService) {
 
     // handle route reloads (i.e. if user changes accounts)
@@ -53,8 +50,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     try {
       this.account = await this.storeService.getSelectedAccount();
       const accountTransactions = await this.accountService.getAccountTransactions(this.account.account);
+      const unconfirmedTransactions = await this.accountService.getUnconfirmedTransactions(this.account.account);
       this.dataSource = new MatTableDataSource<Transaction>();
-      this.dataSource.data = accountTransactions.transactions.slice(0, 10);
+      this.dataSource.data = unconfirmedTransactions.unconfirmedTransactions.concat(accountTransactions.transactions).slice(0, 10);
     } catch (e) {
       console.log(e);
       this.dataSource = undefined;

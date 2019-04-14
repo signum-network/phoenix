@@ -258,6 +258,11 @@ message-view {
                     &:disabled{
                       opacity: 0.2;
                     }
+                    mat-icon {
+                      &.enabled {
+                        color: #039be5;
+                      }
+                    }
                 }
 
                 .password-field {

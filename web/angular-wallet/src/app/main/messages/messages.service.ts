@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
-import { Account, Api, SuggestedFees, EncryptedMessage } from '@burstjs/core';
+import {Account, Api, SuggestedFees, EncryptedMessage, TransactionId} from '@burstjs/core';
 import { AccountService } from 'app/setup/account/account.service';
-import { decryptAES, hashSHA256, Keys} from '@burstjs/crypto';
+import { decryptAES, hashSHA256 } from '@burstjs/crypto';
 import { NetworkService } from 'app/network/network.service';
 import { convertDateToBurstTime, convertAddressToNumericId } from '@burstjs/util';
-import {ApiService} from '../../api.service';
-import { NotifierService } from 'angular-notifier';
+import { ApiService } from '../../api.service';
 
 export interface ChatMessage {
     message: string;
@@ -48,8 +47,7 @@ export class MessagesService implements Resolve<any>
 
     constructor(private accountService: AccountService,
                 private networkService: NetworkService,
-                apiService: ApiService,
-                private notifierService: NotifierService
+                apiService: ApiService
                 ) {
         this.api = apiService.api;
         this.onMessageSelected = new BehaviorSubject({});
@@ -104,7 +102,7 @@ export class MessagesService implements Resolve<any>
                 console.warn(e);
             }
             resolve();
-            
+
         });
     }
 
@@ -122,7 +120,7 @@ export class MessagesService implements Resolve<any>
      * @param {number} fee the fee to pay
      * @returns {ChatMessage}
      */
-    public async sendTextMessage(message: ChatMessage, recipientId: string, pin: string, fee: number) {
+    public async sendTextMessage(message: ChatMessage, recipientId: string, pin: string, fee: number): Promise<TransactionId> {
         // Check to see if existing chat session exists (ios-style), if so, merge it
         this.mergeWithExistingChatSession(message, recipientId);
         const recipient = await this.accountService.getAccount(recipientId);
@@ -137,7 +135,7 @@ export class MessagesService implements Resolve<any>
             // @ts-ignore
             if (!recipient.publicKey) {
                 // todo: figure out why notifier service isnt working!
-                return this.notifierService.notify('error', 'error_recipient_no_public_key');
+                throw new ErrorEvent('error_recipient_no_public_key');
             }
             // @ts-ignore
             return this.api.message.sendEncryptedTextMessage(message.message, recipientId, recipient.publicKey, senderKeys, 1440, fee);
