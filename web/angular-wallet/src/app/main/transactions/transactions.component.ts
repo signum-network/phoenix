@@ -26,7 +26,7 @@ export class TransactionsComponent {
 
   public async ngOnInit() {
     this.dataSource = new MatTableDataSource<Transaction>();
-    this.dataSource.data = this.route.snapshot.data.transactions.transactions;
+    this.dataSource.data = this.route.snapshot.data.transactions;
   }
 
   public ngAfterViewInit() {
