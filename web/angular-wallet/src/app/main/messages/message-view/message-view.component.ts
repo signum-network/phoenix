@@ -55,7 +55,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   selectedUser: Account;
   isNewMessage = false;
   burstAddressPatternRef = burstAddressPattern;
-  isSending: boolean = false;
+  isSending = false;
 
 
   private _unsubscribeAll: Subject<any>;
@@ -91,7 +91,6 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy(): void {
-    // Unsubscribe from all subscriptions
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
   }
