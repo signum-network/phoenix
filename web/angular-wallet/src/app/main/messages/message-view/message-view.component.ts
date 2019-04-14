@@ -37,8 +37,8 @@ import {decryptAES, hashSHA256, decryptMessage} from '@burstjs/crypto/out/src';
   encapsulation: ViewEncapsulation.None
 })
 export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
-  @Input('feeNQT') feeNQT: number;
-  @Input('encrypt') encrypt: boolean;
+  @Input() feeNQT: number;
+  @Input() encrypt: boolean;
 
   @ViewChild('pin') pin: string;
 
@@ -59,7 +59,6 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('replyForm')
   replyForm: NgForm;
 
-  // Private
   private _unsubscribeAll: Subject<any>;
 
   constructor(
@@ -70,56 +69,34 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     private utilService: UtilService,
     private i18nService: I18nService
   ) {
-    // Set the private defaults
     this._unsubscribeAll = new Subject();
   }
-
-  // -----------------------------------------------------------------------------------------------------
-  // @ Lifecycle hooks
-  // -----------------------------------------------------------------------------------------------------
 
   ngOnInit(): void {
     this.selectedUser = this.messageService.user;
     this.messageService.onMessageSelected
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(async ({message, isNewMessage}) => {
-        if (message) {
-          this.message = message;
-          this.isNewMessage = isNewMessage;
-          // this.selectedMessageQRCode = await this.getQRCode(messageData.contactId);
-          this.readyToReply();
+        if (!message) {
+          return;
         }
+        this.message = message;
+        this.isNewMessage = isNewMessage;
+        this.readyToReply();
       });
   }
 
-  /**
-   * After view init
-   */
   ngAfterViewInit(): void {
     this.replyInput = this.replyInputField.first.nativeElement;
     this.readyToReply();
   }
 
-  /**
-   * On destroy
-   */
   ngOnDestroy(): void {
     // Unsubscribe from all subscriptions
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
   }
 
-  // -----------------------------------------------------------------------------------------------------
-  // @ Public methods
-  // -----------------------------------------------------------------------------------------------------
-
-  /**
-   * Decide whether to show or not the contact's avatar in the message row
-   *
-   * @param message
-   * @param i
-   * @returns {boolean}
-   */
   shouldShowContactAvatar(message, i): boolean {
     return (
       message.contactId === this.message.contactId &&
@@ -127,38 +104,18 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     );
   }
 
-  /**
-   * Check if the given message is the first message of a group
-   *
-   * @param message
-   * @param i
-   * @returns {boolean}
-   */
   isFirstMessageOfGroup(message, i): boolean {
     return (i === 0 || this.message.dialog[i - 1] && this.message.dialog[i - 1].contactId !== message.contactId);
   }
 
-  /**
-   * Check if the given message is the last message of a group
-   *
-   * @param message
-   * @param i
-   * @returns {boolean}
-   */
   isLastMessageOfGroup(message, i): boolean {
     return (i === this.message.dialog.length - 1 || this.message.dialog[i + 1] && this.message.dialog[i + 1].contactId !== message.contactId);
   }
 
-  /**
-   * Select contact
-   */
   selectContact(): void {
     this.router.navigate(['/account', this.message.contactId]);
   }
 
-  /**
-   * Ready to reply
-   */
   readyToReply(): void {
     setTimeout(() => {
       this.focusReplyInput();
@@ -166,35 +123,25 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  /**
-   * Focus to the reply input
-   */
   focusReplyInput(): void {
     setTimeout(() => {
       this.replyInput.focus();
     });
   }
 
-  /**
-   * Scroll to the bottom
-   *
-   * @param {number} speed
-   */
   scrollToBottom(speed?: number): void {
-    speed = speed || 400;
-    if (this.directiveScroll) {
-      this.directiveScroll.update();
-
-      setTimeout(() => {
-        this.directiveScroll.scrollToBottom(0, speed);
-      });
+    if (!this.directiveScroll) {
+      return;
     }
+
+    speed = speed || 400;
+    this.directiveScroll.update();
+    setTimeout(() => {
+      this.directiveScroll.scrollToBottom(0, speed);
+    });
   }
 
-  /**
-   * sendMessage
-   */
-  async sendMessage(event) {
+  async sendMessage(event): Promise<void> {
     event.preventDefault();
 
     if (!this.replyForm.form.value.message) {
@@ -210,7 +157,6 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
       this.isNewMessage = false;
     }
 
-    // Message
     const message = {
       contactId: this.selectedUser.account,
       message: this.replyForm.form.value.message,
@@ -219,17 +165,16 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
     try {
       await this.messageService.sendTextMessage(message, this.message.contactId, this.replyForm.form.value.pin, this.feeNQT);
+      this.replyForm.reset();
+      this.readyToReply();
     } catch (e) {
-      return this.notifierService.notify('error', this.utilService.translateServerError(e.data || e));
+      this.notifierService.notify('error', this.utilService.translateServerError(e.data || e));
     }
-
-    this.replyForm.reset();
-    this.readyToReply();
 
   }
 
 
-  public async submitPinPrompt(event) {
+  public async submitPinPrompt(event): Promise<void> {
     event.stopImmediatePropagation();
     const account = await this.accountService.currentAccount.getValue();
     const sender = await this.accountService.getAccount(this.message.contactId);
@@ -248,13 +193,15 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     return this.accountService.generateSendTransactionQRCodeAddress(id);
   }
 
-  convertTimestampToDate(timestamp) {
+  convertTimestampToDate(timestamp): Date {
     return convertBurstTimeToDate(timestamp);
   }
 
   canSubmitReply(): boolean {
-    if (!this.replyForm) { return false; }
-    const {pin, message = ''} = this.replyForm.form.value;
+    if (!this.replyForm) {
+      return false;
+    }
+    const {pin, message} = this.replyForm.form.value;
     return (pin && pin.length > 0) &&
       (message && message.length) > 0;
   }
