@@ -272,6 +272,11 @@ message-view {
               color: #039be5;
             }
           }
+
+          mat-spinner{
+            top: 1px;
+            left: 10px;
+          }
         }
 
         .password-field {
