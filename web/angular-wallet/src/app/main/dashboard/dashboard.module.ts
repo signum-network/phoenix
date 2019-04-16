@@ -23,6 +23,7 @@ import {DashboardComponent} from './dashboard.component';
 import {MarketModule} from './market/market.module';
 import {BalanceDiagramComponent} from './balance-diagram/balance-diagram.component';
 import {TooltipComponent} from './balance-diagram/tooltip/tooltip.component';
+import { BalanceComponent } from './balance/balance.component';
 
 const routes: Routes = [
   {
@@ -40,7 +41,8 @@ const routes: Routes = [
   declarations: [
     DashboardComponent,
     BalanceDiagramComponent,
-    TooltipComponent
+    TooltipComponent,
+    BalanceComponent
   ],
   imports: [
     RouterModule.forChild(routes),

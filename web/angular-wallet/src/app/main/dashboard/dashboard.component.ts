@@ -27,7 +27,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   priceUsd: number;
 
   public dataSource: MatTableDataSource<Transaction>;
-  public convertNQTStringToNumber = convertNQTStringToNumber;
   _isActive = true;
 
   constructor(private router: Router,
@@ -82,8 +81,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this._isActive = false;
   }
-
-  convertBalanceInBtc = (balanceNQT: string) => this.convertNQTStringToNumber(balanceNQT) * this.priceBtc;
-  convertBalanceInUsDollar = (balanceNQT: string) => this.convertNQTStringToNumber(balanceNQT) * this.priceUsd;
 }
 

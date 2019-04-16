@@ -4,43 +4,20 @@
 
     <div class="mr-lg-32" fxFlex="100" *ngIf="account">
 
+
       <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
         <div class="widget" fxFlex="100" fxFlex.gt-sm="40" fxFlex.gt-md="60">
-          <!-- TODO: to extract as own component -->
           <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
-            <div class="p-16" fxLayout="row wrap" fxFlexAlign="center">
-              <div class="pr-16" fxFlex="60">
-                <div class="h3 secondary-text">{{ 'balance' | i18n }}</div>
-                <div [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1 mt-8">
-                  {{ convertNQTStringToNumber(account.balanceNQT).toFixed(3) }}
-                </div>
-              </div>
-              <div class="pr-16" fxFlex="40">
-                <div fxLayout="column">
-                  <div fxLayout="row" fxLayoutAlign="start baseline">
-                    <div class="pr-16 secondary-text">
-                      BTC
-                    </div>
-                    <div [ngClass.gt-md]="'font-size-24'" class="font-size-16 font-weight-300 mt-8">
-                      {{ convertBalanceInBtc(account.balanceNQT).toFixed(6) }}
-                    </div>
-                  </div>
-                  <div fxLayout="row" fxLayoutAlign="start baseline">
-                    <div class="pr-16 secondary-text">
-                      USD
-                    </div>
-                    <div [ngClass.gt-md]="'font-size-24'" class="font-size-16 font-weight-300 mt-8">
-                      {{ convertBalanceInUsDollar(account.balanceNQT).toFixed(2) }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <app-balance
+              [account]="account"
+              [priceBtc]="priceBtc"
+              [priceUsd]="priceUsd"
+            ></app-balance>
           </div>
         </div>
 
-        <div class="widget" fxFlex="100" fxFlex.gt-sm="100">
-          <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="60">
+          <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0'">
             <div class="p-16" fxLayout="column wrap" fxLayoutAlign="center">
               <div style="width: 100%">
                 <div class="h3 secondary-text">{{ 'balance_history' | i18n }}</div>
@@ -62,16 +39,16 @@
             <div class="p-16 recent-transactions" fxLayout="column wrap" fxLayoutAlign="start">
               <div class="h3 secondary-text">{{ 'recent_transactions' | i18n }}</div>
               <app-transaction-table *ngIf="dataSource && dataSource.data.length"
-                [displayedColumns]="['transaction_id', 'attachment', 'timestamp', 'amount', 'account']"
-                [dataSource]="dataSource"
-                [paginationEnabled]="false"
+                                     [displayedColumns]="['transaction_id', 'attachment', 'timestamp', 'amount', 'account']"
+                                     [dataSource]="dataSource"
+                                     [paginationEnabled]="false"
               ></app-transaction-table>
               <p *ngIf="!dataSource" class="text-center">{{ 'no_transactions_yet' | i18n }}</p>
             </div>
           </div>
         </div>
         <div class="widget" fxFlex="100" fxFlex.gt-sm="40">
-          <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
+          <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0'">
             <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
               <div style="width: 100%">
                 <div class="h3 secondary-text">{{ 'market_info' | i18n }}</div>
