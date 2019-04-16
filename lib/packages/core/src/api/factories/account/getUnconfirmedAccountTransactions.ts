@@ -12,6 +12,16 @@ import {UnconfirmedTransactionList} from '../../../typings/unconfirmedTransactio
  * See details at [[AccountApi.getUnconfirmedAccountTransactions]]
  */
 export const getUnconfirmedAccountTransactions = (service: BurstService):
-    (accountId: string) => Promise<UnconfirmedTransactionList> =>
-    (accountId: string): Promise<UnconfirmedTransactionList> =>
-        service.query('getUnconfirmedTransactions', {account: accountId});
+    (
+        accountId: string,
+        includeIndirect?: boolean
+    ) => Promise<UnconfirmedTransactionList> =>
+    (
+        accountId: string,
+        includeIndirect ?: boolean
+    ): Promise<UnconfirmedTransactionList> =>
+        service.query('getUnconfirmedTransactions', {
+                account: accountId,
+                includeIndirect
+            }
+        );
