@@ -37,9 +37,14 @@ export interface AccountApi {
     /**
      * Get _unconfirmed_ transactions of given account
      * @param {string} accountId The numeric accountId
+     * @param {boolean?} includeIndirect Includes indirect transaction, i.e. multi out payments.
+     * For BRS Versions before 2.3.2 this must be `undefined`
      * @return {Promise<UnconfirmedTransactionList>} List of unconfirmed transactions
      */
-    getUnconfirmedAccountTransactions: (accountId: string) => Promise<UnconfirmedTransactionList>;
+    getUnconfirmedAccountTransactions: (
+        accountId: string,
+        includeIndirect?: boolean
+    ) => Promise<UnconfirmedTransactionList>;
 
     /**
      * Get the balance of an account
