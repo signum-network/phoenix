@@ -36,7 +36,7 @@ export class TransactionTableComponent implements OnInit, AfterViewInit {
     this.account = this.route.snapshot.data.account;
   }
 
-  public ngAfterViewInit() {
+  public ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
 
