@@ -31,8 +31,8 @@
     ]
   },
   "devDependencies": {
-    "@types/jest": "^23.3.12",
-    "dotenv": "^6.2.0"
+    "@types/jest": "^24.0.11",
+    "dotenv": "^7.0.0"
   },
   "scripts": {
     "test": "jest",
