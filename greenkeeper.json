@@ -1,0 +1,17 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "desktop/wallet/package.json",
+        "lib/package.json",
+        "lib/packages/core/package.json",
+        "lib/packages/crypto/package.json",
+        "lib/packages/http/package.json",
+        "lib/packages/util/package.json",
+        "mobile/package.json",
+        "scripts/package.json",
+        "web/angular-wallet/package.json"
+      ]
+    }
+  }
+}
