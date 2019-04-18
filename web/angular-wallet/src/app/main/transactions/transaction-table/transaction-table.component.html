@@ -69,7 +69,8 @@
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
       <ng-container *ngIf="isOwnAccount(transaction.senderRS)">
-        <a [routerLink]="['/account', transaction.recipient]" *ngIf="!isMultiOutPayment(transaction)">{{
+        <a *ngIf="!isMultiOutPayment(transaction)"
+          [routerLink]="['/account', transaction.recipient]">{{
           transaction.recipientRS
           }}</a>
         <div *ngIf="isMultiOutPayment(transaction)">
@@ -96,7 +97,9 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns" [class]="row.confirmations ? 'confirmed': 'unconfirmed'"></mat-row>
 </mat-table>
+
 <mat-paginator
+  *ngIf="paginationEnabled"
   #paginator
   [pageSize]="10"
   [pageSizeOptions]="[10, 20, 500]"
