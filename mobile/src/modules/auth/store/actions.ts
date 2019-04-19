@@ -11,12 +11,22 @@ import { i18n } from '../../../core/i18n';
 import { createAction, createActionFn } from '../../../core/utils/store';
 import { auth } from '../translations';
 import { actionTypes } from './actionTypes';
-import { getAccounts, isPassphraseCorrect, setAccounts } from './utils';
+import {
+  getAccounts, getPasscode,
+  getPasscodeEnteredTime,
+  isPassphraseCorrect, savePasscode,
+  savePasscodeEnteredTime,
+  setAccounts
+} from './utils';
 
 const actions = {
   addAccount: createAction<Account>(actionTypes.addAccount),
   removeAccount: createAction<Account>(actionTypes.removeAccount),
-  loadAccounts: createAction<Account[]>(actionTypes.loadAccounts)
+  loadAccounts: createAction<Account[]>(actionTypes.loadAccounts),
+  loadPasscodeEnteredTime: createAction<number>(actionTypes.loadPasscodeEnteredTime),
+  setPasscodeEnteredTime: createAction<number>(actionTypes.setPasscodeEnteredTime),
+  setPasscode: createAction<string>(actionTypes.setPasscode),
+  loadPasscode: createAction<string>(actionTypes.loadPasscode)
 };
 
 export interface ActiveAccountGeneratorData {
@@ -100,5 +110,33 @@ export const loadAccounts = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) => {
     const accounts: Account[] = await getAccounts();
     dispatch(actions.loadAccounts(accounts));
+  }
+);
+
+export const loadPasscodeEnteredTime = createActionFn<void, Promise<void>>(
+  async (dispatch, _getState) => {
+    const time = await getPasscodeEnteredTime();
+    dispatch(actions.loadPasscodeEnteredTime(time));
+  }
+);
+
+export const setPasscodeEnteredTime = createActionFn<number, Promise<void>>(
+  async (dispatch, _getState, time) => {
+    dispatch(actions.setPasscodeEnteredTime(time));
+    await savePasscodeEnteredTime(time);
+  }
+);
+
+export const setPasscode = createActionFn<string, Promise<void>>(
+  async (dispatch, _getState, passcode) => {
+    dispatch(actions.setPasscode(passcode));
+    await savePasscode(passcode);
+  }
+);
+
+export const loadPasscode = createActionFn<void, Promise<void>>(
+  async (dispatch, _getState) => {
+    const passcode = await getPasscode();
+    dispatch(actions.loadPasscode(passcode));
   }
 );

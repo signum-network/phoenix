@@ -5,11 +5,15 @@ import { actionTypes } from './actionTypes';
 
 export interface AuthReduxState {
   accounts: Account[];
+  passcodeEnteredTime: number;
+  passcode: string;
 }
 
 export const authState = (): AuthReduxState => {
   return {
-    accounts: []
+    accounts: [],
+    passcodeEnteredTime: 0,
+    passcode: ''
   };
 };
 
@@ -37,10 +41,37 @@ const loadAccounts: Reducer<AuthReduxState, Account[]> = (state, action) => {
   };
 };
 
+const loadPasscodeEnteredTime: Reducer<AuthReduxState, number> = (state, action) => {
+  const time = action.payload;
+  return {
+    ...state,
+    passcodeEnteredTime: time
+  };
+};
+
+const setPasscodeEnteredTime: Reducer<AuthReduxState, number> = (state, action) => {
+  const time = action.payload;
+  return {
+    ...state,
+    passcodeEnteredTime: time
+  };
+};
+
+const loadPasscode: Reducer<AuthReduxState, string> = (state, action) => {
+  const passcode = action.payload;
+  return {
+    ...state,
+    passcode
+  };
+};
+
 const reducers = {
   [actionTypes.addAccount]: addAccount,
   [actionTypes.removeAccount]: removeAccount,
-  [actionTypes.loadAccounts]: loadAccounts
+  [actionTypes.loadAccounts]: loadAccounts,
+  [actionTypes.loadPasscodeEnteredTime]: loadPasscodeEnteredTime,
+  [actionTypes.setPasscodeEnteredTime]: setPasscodeEnteredTime,
+  [actionTypes.loadPasscode]: loadPasscode
 };
 
 export const auth = createReducers(authState(), reducers);

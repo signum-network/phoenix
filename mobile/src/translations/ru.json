@@ -3,8 +3,21 @@
     "errors": {
       "accountExist": "Аккаунт уже импортирован",
       "incorrectAddress": "Некорректный BURST-адрес",
+      "incorrectPasscode": "Неверный код",
       "incorrectPassphrase": "Некорректная кодовая фраза",
       "insecurePin": "Небезопасный ПИН, рекомендуется не менее {{chars}} символов"
+    },
+    "modals": {
+      "enterPasscode": {
+        "passcodeHint": "Введите код"
+      },
+      "setPasscode": {
+        "enterAgain": "Введите код еще раз",
+        "passcodeHint": "Сначала необходимо установить код для защиты устройства"
+      }
+    },
+    "passcode": {
+      "passcode": "Код"
     },
     "screens": {
       "accounts": {
