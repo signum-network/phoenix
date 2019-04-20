@@ -94,7 +94,7 @@ export class SendBurstFormComponent implements OnInit {
 
 
   canSubmit(): boolean {
-    return isBurstAddress('BURST-' + this.recipientAddress) &&
+    return isBurstAddress(`BURST-${this.recipientAddress}`) &&
       isNotEmpty(this.amountNQT) &&
       isNotEmpty(this.pin);
   }

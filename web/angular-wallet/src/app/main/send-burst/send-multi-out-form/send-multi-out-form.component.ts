@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { TransactionService } from 'app/main/transactions/transaction.service';
-import { convertNumberToNQTString, burstAddressPattern, convertAddressToNumericId } from '@burstjs/util';
-import { NgForm } from '@angular/forms';
-import { SuggestedFees, Account } from '@burstjs/core';
-import { NotifierService } from 'angular-notifier';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import {Component, OnInit, ViewChild, Input} from '@angular/core';
+import {TransactionService} from 'app/main/transactions/transaction.service';
+import {convertNumberToNQTString, burstAddressPattern, convertAddressToNumericId, isBurstAddress} from '@burstjs/util';
+import {NgForm} from '@angular/forms';
+import {SuggestedFees, Account} from '@burstjs/core';
+import {NotifierService} from 'angular-notifier';
+import {I18nService} from 'app/layout/components/i18n/i18n.service';
+
+
+const isNotEmpty = (value: string) => value && value.length > 0;
 
 @Component({
   selector: 'app-send-multi-out-form',
@@ -33,18 +36,20 @@ export class SendMultiOutFormComponent implements OnInit {
   burstAddressPatternRef = burstAddressPattern;
 
   deadline = '24';
+  isSending = false;
 
   constructor(private transactionService: TransactionService,
-    private notifierService: NotifierService,
-    private i18nService: I18nService) { }
+              private notifierService: NotifierService,
+              private i18nService: I18nService) {
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.recipients = [this.createRecipient(), this.createRecipient()];
   }
 
-  async onSubmit(event) {
+  async onSubmit(event): Promise<void> {
+    this.isSending = true;
     event.stopImmediatePropagation();
-
     const multiOutString = this.getMultiOutString();
 
     try {
@@ -52,7 +57,7 @@ export class SendMultiOutFormComponent implements OnInit {
         transaction: {
           recipients: multiOutString,
           feeNQT: this.feeNQT,
-          deadline: parseInt(this.deadline) * 60,
+          deadline: parseInt(this.deadline, 10) * 60,
           amountNQT: this.getTotal().toString()
         },
         pin: this.pin,
@@ -65,47 +70,62 @@ export class SendMultiOutFormComponent implements OnInit {
     } catch (e) {
       this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
     }
+    this.isSending = false;
   }
 
-  getMultiOutString() {
-    if (this.sameAmount) {
-      return this.recipients.map((recipient) => 
-        `${(`BURST-${recipient.addressRS}`)}`)
-        .join(';');
-    } else {
-      return this.recipients.map((recipient) => 
-        `${convertAddressToNumericId(`BURST-${recipient.addressRS}`)}:${convertNumberToNQTString(parseFloat(recipient.amountNQT))}`)
-        .join(';');
-    }
+  getMultiOutString(): string {
+    return this.recipients.map(recipient =>
+      this.sameAmount
+        ? `${(`BURST-${recipient.addressRS}`)}`
+        : `${convertAddressToNumericId(`BURST-${recipient.addressRS}`)}:${convertNumberToNQTString(parseFloat(recipient.amountNQT))}`
+    ).join(';');
   }
 
-  trackByIndex(index) {
+  trackByIndex(index): number {
     return index;
   }
 
-  createRecipient() {
-    return { 
-      amountNQT:'', 
-      addressRS:''
+  createRecipient(): any {
+    return {
+      amountNQT: '',
+      addressRS: ''
     };
   }
 
-  toggleSameAmount() {
+  toggleSameAmount(): void {
     this.sameAmount = !this.sameAmount;
   }
 
-  addRecipient(event) {
+  addRecipient(event): void {
     this.recipients.push(this.createRecipient());
     event.stopImmediatePropagation();
     event.preventDefault();
   }
 
-  getTotal() {
+  getTotal(): number {
     const calculateMultiOutTotal = this.recipients.map((recipient) => {
       return parseFloat(recipient.amountNQT) || 0;
     }).reduce((acc, curr) => acc + curr, 0);
 
     return this.sameAmount ? parseFloat(this.amountNQT) + parseFloat(this.feeNQT) || 0
       : calculateMultiOutTotal + parseFloat(this.feeNQT) || 0;
+  }
+
+  canSubmit(): boolean {
+
+    const validRecipients = this.recipients
+      .filter(
+        r => r.amountNQT !== '' || r.addressRS !== ''
+      )
+      .reduce(
+        (isValid, recipient) => isValid
+          && isBurstAddress(`BURST-${recipient.addressRS}`)
+          && (!this.sameAmount ? recipient.amountNQT && recipient.amountNQT.length > 0 : true)
+      , true);
+
+    return validRecipients &&
+      isNotEmpty(this.pin) &&
+      (this.sameAmount ? isNotEmpty(this.amountNQT) : true);
+
   }
 }
