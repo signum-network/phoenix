@@ -54,7 +54,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.storeService.ready.subscribe((ready) => {
       if (ready) {
-        this.checkBlockchainStatus();
         this.updateAccounts();
         setInterval(this.checkBlockchainStatus.bind(this), this.BLOCKCHAIN_STATUS_INTERVAL);
       }

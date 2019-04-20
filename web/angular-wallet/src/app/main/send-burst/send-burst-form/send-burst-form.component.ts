@@ -1,13 +1,13 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { SuggestedFees, Account, EncryptedMessage } from '@burstjs/core';
-import { burstAddressPattern } from '@burstjs/util';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { TransactionService } from 'app/main/transactions/transaction.service';
-import { AccountService } from 'app/setup/account/account.service';
-import { StoreService } from 'app/store/store.service';
-import { NotifierService } from 'angular-notifier';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import {Component, OnInit, ViewChild, Input} from '@angular/core';
+import {SuggestedFees, Account, EncryptedMessage} from '@burstjs/core';
+import {burstAddressPattern, isBurstAddress} from '@burstjs/util';
+import {NgForm} from '@angular/forms';
+import {TransactionService} from 'app/main/transactions/transaction.service';
+import {NotifierService} from 'angular-notifier';
+import {I18nService} from 'app/layout/components/i18n/i18n.service';
+
+
+const isNotEmpty = (value: string) => value && value.length > 0;
 
 @Component({
   selector: 'app-send-burst-form',
@@ -32,6 +32,7 @@ export class SendBurstFormComponent implements OnInit {
   deadline = '24';
 
   public feeNQT: string;
+  isSending = false;
 
   constructor(
     private transactionService: TransactionService,
@@ -39,16 +40,18 @@ export class SendBurstFormComponent implements OnInit {
     private i18nService: I18nService) {
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {
+  }
 
-  getTotal() {
+  getTotal(): number {
     return parseFloat(this.amountNQT) + parseFloat(this.feeNQT) || 0;
   }
 
-  async onSubmit(event) {
+  async onSubmit(event): Promise<void> {
     event.stopImmediatePropagation();
 
     try {
+      this.isSending = true;
       await this.transactionService.sendMoney({
         transaction: {
           amountNQT: this.amountNQT,
@@ -65,29 +68,34 @@ export class SendBurstFormComponent implements OnInit {
 
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
       this.sendBurstForm.resetForm();
-    } catch(e) {
+    } catch (e) {
       this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
-    } 
-  }
-
-
-  getMessage() {
-    if (this.message) {
-      if (this.encrypt) {
-        return {
-          data: this.message,
-          nonce: null,
-          isText: true
-        }; 
-      } else {
-        return {
-          message: this.message,
-          type: 'message',
-          messageIsText: true
-        };
-      }
     }
-    return null;
+    this.isSending = false;
   }
 
+
+  getMessage(): any {
+
+    if (!this.message) {
+      return null;
+    }
+
+    return this.encrypt ? {
+      data: this.message,
+      nonce: null,
+      isText: true
+    } : {
+      message: this.message,
+      type: 'message',
+      messageIsText: true
+    };
+  }
+
+
+  canSubmit(): boolean {
+    return isBurstAddress(`BURST-${this.recipientAddress}`) &&
+      isNotEmpty(this.amountNQT) &&
+      isNotEmpty(this.pin);
+  }
 }

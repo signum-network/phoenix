@@ -41,6 +41,7 @@ const routes: Routes = [
     path: '',
     component: MessagesComponent,
     canActivate: [LoginGuard],
+    runGuardsAndResolvers: "always",
     resolve: {
       message: MessagesService,
       fees: SuggestFeeResolver

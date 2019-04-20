@@ -6,7 +6,7 @@
 Run the following commands to start the wallet as [electron](https://electronjs.org/) app
 
 1. `npm install`
-2. `cd ../../scripts`
+2. `cd ../../lib`
 3. `npm install` 
 4. `cd ../web/angular-wallet`
 5. `npm install` 
