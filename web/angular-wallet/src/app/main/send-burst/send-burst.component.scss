@@ -1,3 +1,15 @@
-.content {
-    max-width:600px;
+.content-container {
+  position: relative;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+
+  .content {
+    max-width: 600px;
+    background: white;
+    border-radius: 8px;
+    height: fit-content;
+    width: 100%;
+    margin-top: 2em;
+  }
 }

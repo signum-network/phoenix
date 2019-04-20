@@ -1,7 +1,8 @@
 <div class="page-layout blank simple" fusePerfectScrollbar *ngIf="fees">
 
+
   <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-    fxLayoutAlign.gt-xs="space-between center">
+       fxLayoutAlign.gt-xs="space-between center">
 
     <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
       <div fxLayout="row" fxLayoutAlign="start center">
@@ -13,7 +14,9 @@
     </div>
   </div>
 
-  <div class="p-24 content">
+  <!-- CENTER -->
+  <div class="content-container">
+    <div class="p-24 content">
       <mat-tab-group>
         <mat-tab label="{{ 'ordinary_payment' | i18n }}">
           <app-send-burst-form [fees]="fees" [account]="account"></app-send-burst-form>
@@ -22,5 +25,6 @@
           <app-send-multi-out-form [fees]="fees" [account]="account"></app-send-multi-out-form>
         </mat-tab>
       </mat-tab-group>
+    </div>
   </div>
 </div>

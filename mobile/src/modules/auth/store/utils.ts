@@ -1,4 +1,5 @@
 import { Account } from '@burstjs/core';
+import { isEmpty } from 'lodash';
 import { KeyChainKeys } from '../../../core/enums';
 import { KeychainCredentials } from '../../../core/interfaces';
 import { getCredentials, setCredentials } from '../../../core/utils/keychain';
@@ -8,16 +9,17 @@ export function isPassphraseCorrect (passphrase: string): boolean {
   return passphrase.split(' ').length === 12;
 }
 
-export function setPasscode (passcode: string): Promise<boolean> {
-  return setCredentials({ username: KeyChainKeys.passcode, password: passcode }, KeyChainKeys.passcode);
+export function savePasscode (passcode: string): Promise<boolean> {
+  const data = JSON.stringify(passcode);
+  return setCredentials({ username: KeyChainKeys.passcode, password: data }, KeyChainKeys.passcode);
 }
 
-export async function getPasscode (): Promise<string | null> {
+export async function getPasscode (): Promise<string> {
   const credentials: KeychainCredentials = await getCredentials(KeyChainKeys.passcode) as KeychainCredentials;
   if (credentials && credentials.password) {
-    return credentials.password;
+    return JSON.parse(credentials.password);
   } else {
-    return null;
+    return '';
   }
 }
 
@@ -33,4 +35,30 @@ export async function getAccounts (): Promise<Account[]> {
   } else {
     return [];
   }
+}
+
+export function savePasscodeEnteredTime (time: number): Promise<boolean> {
+  const data = JSON.stringify(time);
+  return setCredentials(
+    { username: KeyChainKeys.passcodeEnteredTime, password: data },
+    KeyChainKeys.passcodeEnteredTime
+  );
+}
+
+export async function getPasscodeEnteredTime (): Promise<number> {
+  const credentials: KeychainCredentials =
+    await getCredentials(KeyChainKeys.passcodeEnteredTime) as KeychainCredentials;
+  if (credentials && credentials.password) {
+    return JSON.parse(credentials.password);
+  } else {
+    return 0;
+  }
+}
+
+export function shouldEnterPIN (passcodeTime: number, lastTimeEntered: number): boolean {
+  return lastTimeEntered + passcodeTime <= Date.now();
+}
+
+export function isPasscodeSet (passcode: string): boolean {
+  return !isEmpty(passcode);
 }

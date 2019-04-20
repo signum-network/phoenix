@@ -2,7 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SendBurstComponent } from './send-burst.component';
 import { NetworkModule } from 'app/network/network.module';
-import { MatCheckboxModule, MatGridListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCardModule, MatSelectModule, MatTabsModule } from '@angular/material';
+import { MatCheckboxModule, MatGridListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCardModule, MatSelectModule, MatTabsModule,
+  MatProgressSpinnerModule } from '@angular/material';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { NotifierModule } from 'angular-notifier';
@@ -49,11 +50,12 @@ describe('SendBurstComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule.withRoutes(
           [{path: 'send', component: SendBurstComponent}]
-        )
+        ),
+        MatProgressSpinnerModule
       ],
       declarations: [ SendBurstComponent, BurstInputValidatorDirective, BurstFeeSelectorComponent, SendBurstFormComponent, SendMultiOutFormComponent ],
-      providers: [ 
-        I18nService, 
+      providers: [
+        I18nService,
         {
           provide: StoreService,
           useFactory: () => {
@@ -63,7 +65,7 @@ describe('SendBurstComponent', () => {
               saveSettings: () => Promise.resolve(true)
             }
           }
-        }, 
+        },
         {
           provide: TransactionService,
           useFactory: () => {
@@ -71,7 +73,7 @@ describe('SendBurstComponent', () => {
               sendMoney: () => Promise.resolve({broadcasted:true})
             }
           }
-        }, 
+        },
         {
           provide: AccountService,
           useFactory: () => {
@@ -79,8 +81,8 @@ describe('SendBurstComponent', () => {
               currentAccount: new BehaviorSubject(true)
             }
           }
-        }, 
-        BurstInputValidatorDirective 
+        },
+        BurstInputValidatorDirective
       ]
     })
     .compileComponents();

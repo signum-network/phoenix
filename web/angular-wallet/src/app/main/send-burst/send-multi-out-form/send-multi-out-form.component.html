@@ -1,68 +1,83 @@
 <form (ngSubmit)="onSubmit($event);" #sendBurstForm="ngForm">
 
-    <mat-checkbox (click)="toggleSameAmount()" class="same-amount">{{ "same_out" | i18n }}</mat-checkbox>
+  <mat-checkbox (click)="toggleSameAmount()" class="same-amount">{{ "same_out" | i18n }}</mat-checkbox>
 
-    <mat-form-field *ngIf="sameAmount">
-        <input matInput [(ngModel)]="amountNQT" name="amountNQT" placeholder="{{ 'amount' | i18n }}">
-    </mat-form-field>
-  
-    <mat-grid-list cols="2" rowHeight="65px" gutterSize="10px">
-      <ng-container *ngFor="let recipient of recipients; let i = index; trackBy: trackByIndex;" [attr.data-index]="i">
-        <mat-grid-tile>
-          <mat-form-field>
-            <input matInput prefix="BURST-" burstInputValidator [patterns]="burstAddressPatternRef" mask="____-____-____-_____"
-              [dropSpecialCharacters]="false" [showMaskTyped]="true" [(ngModel)]="recipients[i].addressRS" name="recipientAddress{{i}}"
-              placeholder="{{ 'recipient' | i18n }}">
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile *ngIf="!sameAmount">
-          <mat-form-field>
-            <input matInput [(ngModel)]="recipients[i].amountNQT" name="amountNQT{{i}}" placeholder="{{ 'amount' | i18n }}">
-          </mat-form-field>
-        </mat-grid-tile>
-      </ng-container>
-    </mat-grid-list>
-  
-    <button mat-button class="add-recipient" (click)="addRecipient($event)">{{ "add_recipient" | i18n }}</button>
-  
-    <mat-form-field> 
-      <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
-    </mat-form-field>
+  <mat-form-field *ngIf="sameAmount">
+    <input matInput [(ngModel)]="amountNQT" name="amountNQT" placeholder="{{ 'amount' | i18n }}">
+  </mat-form-field>
 
-    <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
-  
-    <mat-form-field class="pin" appearance="outline">
-      <input matInput [(ngModel)]="pin" name="pin" type="password" placeholder="Your PIN">
-    </mat-form-field>
-  
-    <div *ngIf="advanced">
-      <mat-form-field appearance="outline">
-        <label>{{ 'deadline_hours' | i18n }}</label>
-        <input matInput [(ngModel)]="deadline" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}">
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <input matInput [(ngModel)]="fullHash" name="fullHash"
-          placeholder="{{ 'referenced_transaction_full_hash' | i18n }}" disabled>
-      </mat-form-field>
-  
-      <mat-checkbox [(ngModel)]="broadcast" name="broadcast" disabled>{{ "do_not_broadcast" | i18n }}</mat-checkbox>
-      <br />
-  
-      <mat-checkbox [(ngModel)]="note" name="note" disabled>{{ "add_note_to_self_q" | i18n }}</mat-checkbox>
-  
-      <div *ngIf="note">
-        <mat-form-field appearance="outline">
-          <textarea matInput [(ngModel)]="note_text" name="note_text" placeholder="{{ 'note' | i18n }}"></textarea>
+  <mat-grid-list cols="2" rowHeight="65px" gutterSize="10px">
+    <ng-container *ngFor="let recipient of recipients; let i = index; trackBy: trackByIndex;" [attr.data-index]="i">
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput prefix="BURST-" burstInputValidator [patterns]="burstAddressPatternRef"
+                 mask="____-____-____-_____"
+                 [dropSpecialCharacters]="false" [showMaskTyped]="true" [(ngModel)]="recipients[i].addressRS"
+                 name="recipientAddress{{i}}"
+                 placeholder="{{ 'recipient' | i18n }}">
         </mat-form-field>
-      </div>
-  
-    </div>
-  </form>
-  
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="!sameAmount">
+        <mat-form-field>
+          <input matInput [(ngModel)]="recipients[i].amountNQT" name="amountNQT{{i}}"
+                 placeholder="{{ 'amount' | i18n }}">
+        </mat-form-field>
+      </mat-grid-tile>
+    </ng-container>
+  </mat-grid-list>
+
+  <button mat-button class="add-recipient" (click)="addRecipient($event)">{{ "add_recipient" | i18n }}</button>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
+  </mat-form-field>
+
+  <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
+
+  <div *ngIf="advanced">
+    <mat-form-field appearance="outline">
+      <label>{{ 'deadline_hours' | i18n }}</label>
+      <input matInput [(ngModel)]="deadline" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}">
+    </mat-form-field>
+
+    <!--WILL BE A FUTURE FEATURE-->
+    <!--
+        <mat-form-field appearance="outline">
+          <input matInput [(ngModel)]="fullHash" name="fullHash"
+                 placeholder="{{ 'referenced_transaction_full_hash' | i18n }}" disabled>
+        </mat-form-field>
+
+        <mat-checkbox [(ngModel)]="broadcast" name="broadcast" disabled>{{ "do_not_broadcast" | i18n }}</mat-checkbox>
+        <br/>
+
+        <mat-checkbox [(ngModel)]="note" name="note" disabled>{{ "add_note_to_self_q" | i18n }}</mat-checkbox>
+
+        <div *ngIf="note">
+          <mat-form-field appearance="outline">
+            <textarea matInput [(ngModel)]="note_text" name="note_text" placeholder="{{ 'note' | i18n }}"></textarea>
+          </mat-form-field>
+        </div>
+    -->
+
+  </div>
+  <div class="send-button-wrapper">
+    <mat-form-field class="message-text password-field" floatLabel="never" appearance="standard">
+      <input type="password" matInput required placeholder="Enter PIN" [(ngModel)]="pin" name="pin">
+    </mat-form-field>
+
+    <button class="send-button" mat-icon-button type="submit" aria-label="Send message"
+            [disabled]="!canSubmit()">
+      <ng-container *ngIf="!isSending">
+        <mat-icon [class.enabled]="canSubmit() || false">send</mat-icon>
+      </ng-container>
+      <ng-container *ngIf="isSending">
+        <mat-spinner diameter="20"></mat-spinner>
+      </ng-container>
+    </button>
+  </div>
+
   <strong>Total:</strong> {{ getTotal() }} BURST -
   <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
-  <br /><br />
-  
-  <button type="submit" class="mr-8" mat-raised-button mat-button color="primary"
-    (click)="onSubmit($event)">{{ "send_burst" | i18n }}</button>
+  <br/><br/>
+
+</form>

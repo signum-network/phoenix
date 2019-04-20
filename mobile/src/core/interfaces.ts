@@ -53,5 +53,9 @@ export interface Reducers<State> {
   [key: string]: (state: State, action: AnyAction<any>) => State;
 }
 
+export interface AppSettings {
+  passcodeTime: number; // Time, after then we should ask passcode again, msec.
+}
+
 export type StorageKey = AuthStorageKeys;
 export type KeyChainKey = KeyChainKeys;

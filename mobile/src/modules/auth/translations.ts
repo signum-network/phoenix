@@ -1,4 +1,14 @@
 export const auth = {
+  passcode: {
+    passcode: 'auth.passcode.passcode'
+  },
+  setPasscodeModal: {
+    enterAgain: 'auth.modals.setPasscode.enterAgain',
+    passcodeHint: 'auth.modals.setPasscode.passcodeHint'
+  },
+  enterPasscodeModal: {
+    passcodeHint: 'auth.modals.enterPasscode.passcodeHint'
+  },
   accounts: {
     title: 'auth.screens.accounts.title',
     noAccounts: {
@@ -39,7 +49,8 @@ export const auth = {
     accountExist: 'auth.errors.accountExist',
     incorrectAddress: 'auth.errors.incorrectAddress',
     incorrectPassphrase: 'auth.errors.incorrectPassphrase',
-    insecurePin: 'auth.errors.insecurePin'
+    insecurePin: 'auth.errors.insecurePin',
+    incorrectPasscode: 'auth.errors.incorrectPasscode'
   },
   models: {
     account: {
@@ -47,6 +58,9 @@ export const auth = {
       address: 'models.account.address',
       pin: 'models.account.pin',
       passphrase: 'models.account.passphrase'
+    },
+    passcode: {
+      passcode: 'auth.models.passcode.passcode'
     }
   }
 };
