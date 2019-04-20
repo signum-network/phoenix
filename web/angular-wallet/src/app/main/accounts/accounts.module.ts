@@ -21,6 +21,7 @@ import { LoginGuard } from 'app/login/login-guard.service';
 import { AccountResolver } from 'app/setup/account/account.resolver';
 import { TransactionsResolver } from '../transactions/transactions.resolver';
 import { TransactionTableModule } from '../transactions/transaction-table/transaction.module';
+import { AddNodeUrlPipe } from './account-details/add-node-url.pipe';
 
 
 const routes = [
@@ -68,7 +69,8 @@ const routes = [
     declarations: [
         AccountsComponent,
         DeleteAccountDialogComponent,
-        AccountDetailsComponent
+        AccountDetailsComponent,
+        AddNodeUrlPipe
     ],
     providers: [
         AccountsResolver
