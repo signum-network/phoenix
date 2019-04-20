@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NetworkModule } from 'app/network/network.module';
-import { MatCheckboxModule, MatGridListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCardModule, MatSelectModule } from '@angular/material';
+import { MatCheckboxModule, MatGridListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCardModule, MatSelectModule,
+  MatProgressSpinnerModule } from '@angular/material';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { NotifierModule } from 'angular-notifier';
@@ -45,11 +46,12 @@ describe('SendMultiOutFormComponent', () => {
         MatCheckboxModule,
         FormsModule,
         NetworkModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        MatProgressSpinnerModule
       ],
       declarations: [ SendMultiOutFormComponent, BurstInputValidatorDirective, BurstFeeSelectorComponent ],
-      providers: [ 
-        I18nService, 
+      providers: [
+        I18nService,
         {
           provide: StoreService,
           useFactory: () => {
@@ -59,7 +61,7 @@ describe('SendMultiOutFormComponent', () => {
               saveSettings: () => Promise.resolve(true)
             }
           }
-        }, 
+        },
         {
           provide: TransactionService,
           useFactory: () => {
@@ -67,7 +69,7 @@ describe('SendMultiOutFormComponent', () => {
               sendMoney: () => Promise.resolve({broadcasted:true})
             }
           }
-        }, 
+        },
         {
           provide: AccountService,
           useFactory: () => {
@@ -75,8 +77,8 @@ describe('SendMultiOutFormComponent', () => {
               currentAccount: new BehaviorSubject(true)
             }
           }
-        }, 
-        BurstInputValidatorDirective 
+        },
+        BurstInputValidatorDirective
       ]
     })
     .compileComponents();
