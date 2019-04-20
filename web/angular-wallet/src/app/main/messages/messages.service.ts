@@ -108,6 +108,8 @@ export class MessagesService implements Resolve<any> {
         }, []);
       } catch (e) {
         console.warn(e);
+        this.messages = [];
+        this.contacts = [];
       }
       resolve();
 
