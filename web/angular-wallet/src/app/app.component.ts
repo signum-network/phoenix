@@ -70,7 +70,7 @@ export class AppComponent implements OnInit, OnDestroy {
         const blockchainStatus = await this.networkService.getBlockchainStatus();
         this.isScanning = !this.firstTime && (this.previousLastBlock != blockchainStatus.lastBlock);
         this.previousLastBlock = blockchainStatus.lastBlock;
-        if (this.isScanning && !this.firstTime) {
+        if (this.isScanning) {
           await this.updateAccountsAndCheckBlockchainStatus(blockchainStatus);
         } else if (this.selectedAccount) {
           this.accountService.synchronizeAccount(this.selectedAccount).catch(() => { });
@@ -84,7 +84,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private async updateAccountsAndCheckBlockchainStatus(blockchainStatus: BlockchainStatus) {
     this.updateAccounts();
     const block = await this.networkService.getBlockById(blockchainStatus.lastBlock);
-    this.storeService.saveBlock(block);
+    this.networkService.addBlock(block);
     this.checkBlockchainStatus();
   }
 
