@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as Loki from 'lokijs';
 import { StoreConfig } from './store.config';
 import { Settings } from 'app/settings';
-import { Account, Block } from '@burstjs/core';
+import { Account } from '@burstjs/core';
 
 @Injectable({
     providedIn: 'root'
@@ -27,10 +27,6 @@ export class StoreService {
     * Called on db start
     */
     public init() {
-        let blocks = this.store.getCollection('blocks');
-        if (blocks == null) {
-            blocks = this.store.addCollection('blocks', { unique: ['blockHeight'] });
-        }
         let accounts = this.store.getCollection('accounts');
         if (accounts == null) {
             accounts = this.store.addCollection('accounts', { unique: ['account'] });
@@ -250,51 +246,6 @@ export class StoreService {
                 resolve(new Settings(rs[0]));
             } else {
                 resolve(new Settings());
-            }
-        });
-    }
-
-    /*
-    * Method reponsible for fetching block(s) from the database.
-    */
-    public getBlocks(blockHeight: number, count: number=1): Promise<Block[]> {
-        return new Promise((resolve, reject) => {
-            if (this.ready.value) {
-                const blocks = this.store.getCollection('blocks');
-                const block = blocks.find({ blockHeight: { '$lte': blockHeight } });
-                if (block.length) {
-                    resolve(block.slice(0, count));
-                }
-                resolve(undefined);
-            } else {
-                reject(undefined);
-            }
-        });
-    }
-    /*
-    * Method reponsible for saving/updating a block in the database.
-    */
-    public saveBlock(block: Block): Promise<Block> {
-        return new Promise((resolve, reject) => {
-            if (this.ready.value) {
-                this.store.loadDatabase({}, () => {
-                    const blocks = this.store.getCollection('blocks');
-                    const existingBlocks = blocks.find({ blockHeight: block.height });
-                    if (existingBlocks.length > 0) {
-                        existingBlocks.chain().find({ blockHeight: block.height }).update((existingBlock: Block) => { 
-                            return { 
-                                ...existingBlock, 
-                                ...block
-                            };
-                        });
-                    } else {
-                        blocks.insert(block);
-                    }
-                    this.store.saveDatabase();
-                    resolve(block);
-                });
-            } else {
-                reject(undefined);
             }
         });
     }
