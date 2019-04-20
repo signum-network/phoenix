@@ -9,18 +9,30 @@ import { InjectedReduxProps } from '../../../core/interfaces';
 import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
 import { routes } from '../../../core/navigation/routes';
+import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { AccountsList } from '../components/AccountsList';
+import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
 import { AuthReduxState } from '../store/reducer';
+import { shouldEnterPIN } from '../store/utils';
 import { auth } from '../translations';
 
 interface Props extends InjectedReduxProps {
+  app: AppReduxState,
   auth: AuthReduxState,
 }
 
 type TProps = NavigationInjectedProps & Props;
 
-class Accounts extends React.PureComponent<TProps> {
+interface State {
+  isPINModalVisible: boolean
+}
+
+class Accounts extends React.PureComponent<TProps, State> {
+  state = {
+    isPINModalVisible: false
+  };
+
   static navigationOptions = ({ navigation }: NavigationInjectedProps) => {
     const { params = {} } = navigation.state;
 
@@ -36,13 +48,36 @@ class Accounts extends React.PureComponent<TProps> {
     });
   }
 
+  setModalVisible = (isPINModalVisible: boolean) => {
+    this.setState({ isPINModalVisible });
+  }
+
   handleAccountPress = (_account: Account) => {
     // TODO: do smthng
   }
 
-  handleAddAccountPress = () => {
-    // TODO: check or set up global PIN here before navigating to the next screen
+  handleAddAccountPress = async () => {
+    const { passcodeEnteredTime } = this.props.auth;
+    const { passcodeTime } = this.props.app.appSettings;
+
+    if (shouldEnterPIN(passcodeTime, passcodeEnteredTime)) {
+      this.setModalVisible(true);
+    } else {
+      this.handleAddAccount();
+    }
+  }
+
+  handlePINEntered = () => {
+    this.setModalVisible(false);
+    this.handleAddAccount();
+  }
+
+  handleAddAccount = () => {
     this.props.navigation.navigate(routes.addAccount);
+  }
+
+  handlePINCancel = () => {
+    this.setModalVisible(false);
   }
 
   render () {
@@ -56,6 +91,11 @@ class Accounts extends React.PureComponent<TProps> {
             onAccountPress={this.handleAccountPress}
             onAddAccountPress={this.handleAddAccountPress}
           />
+          <EnterPasscodeModal
+            visible={this.state.isPINModalVisible}
+            onSuccess={this.handlePINEntered}
+            onCancel={this.handlePINCancel}
+          />
         </FullHeightView>
       </Screen>
     );
@@ -64,6 +104,7 @@ class Accounts extends React.PureComponent<TProps> {
 
 function mapStateToProps (state: ApplicationState) {
   return {
+    app: state.app,
     auth: state.auth
   };
 }

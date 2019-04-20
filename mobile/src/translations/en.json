@@ -3,8 +3,21 @@
     "errors": {
       "accountExist": "Account already imported",
       "incorrectAddress": "Incorrect BURST-address",
+      "incorrectPasscode": "Incorrect passcode",
       "incorrectPassphrase": "Incorrect passphrase",
       "insecurePin": "Insecure PIN, recommended {{length}} chars minimum"
+    },
+    "modals": {
+      "enterPasscode": {
+        "passcodeHint": "Enter passcode"
+      },
+      "setPasscode": {
+        "enterAgain": "Enter passcode again",
+        "passcodeHint": "Before continue, you must set up a passcode to secure your device"
+      }
+    },
+    "passcode": {
+      "passcode": "Passcode"
     },
     "screens": {
       "accounts": {
