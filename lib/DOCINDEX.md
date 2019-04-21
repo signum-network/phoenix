@@ -43,13 +43,11 @@ npm install @burstjs/http
 The following example shows how to interact with the blockchain, i.e. getting the balance of a specific account
 
 ```js
-import {composeApi} from '@burstjs/core'
+import {composeApi, ApiSettings} from '@burstjs/core'
 import {convertNQTStringToNumber} from '@burstjs/util'
 
-const api = composeApi({
-    nodeHost: 'https://wallet1.burst-team.us:2083', // one of the mainnet nodes
-    apiRootUrl: '/burst' // endpoint to the BURST API
-})
+const apiSettings = new ApiSettings('https://wallet1.burst-team.us:2083', 'burst');
+const api = composeApi(apiSettings);
 
 (async () => {
   try{

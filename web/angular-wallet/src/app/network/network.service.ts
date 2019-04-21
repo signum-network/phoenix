@@ -13,13 +13,13 @@ import {
 
 import {ApiService} from '../api.service';
 import { StoreService } from 'app/store/store.service';
-import { Settings } from 'app/settings';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable()
 export class NetworkService {
   private api: Api;
-  blocks: Block[];
+  public blocks: BehaviorSubject<any> = new BehaviorSubject([]);
 
   constructor(apiService: ApiService, private storeService: StoreService) {
     this.storeService.settings.subscribe(() => {
@@ -49,5 +49,13 @@ export class NetworkService {
 
   public getPeers(): Promise<PeerAddressList> {
     return this.api.network.getPeers();
+  }
+
+  public setBlocks(blocks: Block[]) {
+    this.blocks.next(blocks);
+  }
+
+  public addBlock(block: Block) {
+    this.setBlocks([block].concat(this.blocks.value));
   }
 }
