@@ -141,8 +141,9 @@ export class AccountService {
       account.account = id;
       account.accountRS = convertNumericIdToAddress(id);
 
+
       await this.selectAccount(account);
-      return this.storeService.saveAccount(account)
+      return this.synchronizeAccount(account)
         .then(acc => {
           resolve(acc);
         });
