@@ -51,4 +51,12 @@ toolbar {
             height: 56px;
         }
     }
+
+    .username mat-icon {
+        position: relative;
+        top:5px;
+        left:-2px;
+        color:#c2c2c2;
+        line-height: 12px;
+    }
 }
