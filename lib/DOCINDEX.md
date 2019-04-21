@@ -1,4 +1,4 @@
-# @burstjs
+<img src="../assets/burstjs.png" alt="burstjs" width="600" align="middle" />
 
 > The BurstCoin Type/Javascript Reference Library
 

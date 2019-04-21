@@ -1,4 +1,4 @@
-# @burstjs
+<img src="../assets/burstjs.png" alt="burstjs" width="600" align="middle" />
 
 > The BurstCoin Type/Javascript Reference Library
 
@@ -10,12 +10,13 @@
 [![codecov](https://codecov.io/gh/burst-apps-team/phoenix/branch/develop/graph/badge.svg)](https://codecov.io/gh/burst-apps-team/phoenix)
 
 
+
+
 `@burstjs` is a modern library written in Typescript providing common functionalities for _browsers_ and _nodejs_ to interact with the [BurstCoin blockchain](https://burstcoin.community/), 
 an advanced community-driven blockchain technology.
 
 ## Installation
 
-### For app development:
 ```
 npm install @burstjs/core
 npm install @burstjs/crypto
@@ -24,8 +25,11 @@ npm install @burstjs/util
 
 Then import the methods you need, e.g. `import { generateSignature } from '@burstjs/crypto'`.
 
+Go to [BurstJS Online Documentation](https://burst-apps-team.github.io/phoenix/) to discover what's possible!
 
-### For Phoenix wallet development:
+## Development
+
+When contributing to the Phoenix wallet and updates in burstjs are necessary, simply do
 
 ```
 npm install && npm run bootstrap

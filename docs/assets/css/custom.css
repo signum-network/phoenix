@@ -14,17 +14,48 @@ a {
     box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.75);
 }
 
-.tsd-page-toolbar #tsd-npm-badge {
+.tsd-page-toolbar .table-wrap {
+    margin-left: 1em;
+}
+
+.tsd-page-toolbar .container {
+    display: flex;
+    flex-flow: row;
+}
+
+.tsd-page-toolbar .tsd-logo-wrapper {
+    margin-left: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.tsd-logo-wrapper #tsd-npm-badge {
     height: 24px;
-    position: absolute;
     padding: 8px;
+}
+
+@media (max-width: 400px) {
+    .tsd-page-toolbar .tsd-logo-wrapper #tsd-npm-badge,
+    .github-corner
+    {
+        display: none;
+    }
+
+    .tsd-page-toolbar .tsd-logo-wrapper {
+        margin-left: 0;
+        align-items: flex-end;
+    }
+}
+
+.tsd-logo-wrapper #tsd-burstjs-logo {
+    max-height: 48px;
 }
 
 .github-corner {
     position: fixed;
     z-index: 2;
 }
-
 
 .github-corner:hover .octo-arm {
     animation: octocat-wave 560ms ease-in-out
