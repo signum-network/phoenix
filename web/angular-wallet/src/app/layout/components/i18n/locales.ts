@@ -34,8 +34,8 @@ import localeNl from '@angular/common/locales/nl';
 import localeNlExtra from '@angular/common/locales/extra/nl';
 import localePl from '@angular/common/locales/pl';
 import localePlExtra from '@angular/common/locales/extra/pl';
-import localePtBr from '@angular/common/locales/pt-AO';
-import localePtBrExtra from '@angular/common/locales/extra/pt-AO';
+import localePtBr from '@angular/common/locales/pt';
+import localePtBrExtra from '@angular/common/locales/extra/pt';
 import localePt from '@angular/common/locales/pt-PT';
 import localePtExtra from '@angular/common/locales/extra/pt-PT';
 import localeRo from '@angular/common/locales/ro';
@@ -54,10 +54,10 @@ import localeTr from '@angular/common/locales/tr';
 import localeTrExtra from '@angular/common/locales/extra/tr';
 import localeUk from '@angular/common/locales/uk';
 import localeUkExtra from '@angular/common/locales/extra/uk';
-import localeZhCn from '@angular/common/locales/zh-Hans-SG';
-import localeZhCnExtra from '@angular/common/locales/extra/zh-Hans-SG';
-import localeZhTw from '@angular/common/locales/zh';
-import localeZhTwExtra from '@angular/common/locales/extra/zh';
+import localeZhCn from '@angular/common/locales/zh-Hans';
+import localeZhCnExtra from '@angular/common/locales/extra/zh-Hans';
+import localeZhTw from '@angular/common/locales/zh-Hant';
+import localeZhTwExtra from '@angular/common/locales/extra/zh-Hant';
 
 export const registerLocales = () => {
     registerLocaleData(localeBg, 'bg', localeBgExtra);
