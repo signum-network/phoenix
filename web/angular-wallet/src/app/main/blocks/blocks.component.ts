@@ -6,6 +6,7 @@ import {NotifierService} from 'angular-notifier';
 import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
 import {NetworkService} from 'app/network/network.service';
 import {ActivatedRoute} from '@angular/router';
+import { StoreService } from 'app/store/store.service';
 
 @Component({
   selector: 'app-blocks',
@@ -27,6 +28,7 @@ export class BlocksComponent {
   constructor(
     private networkService: NetworkService,
     private notifierService: NotifierService,
+    private storeService: StoreService,
     private route: ActivatedRoute
   ) {
   }
@@ -35,6 +37,10 @@ export class BlocksComponent {
     this.displayedColumns = ['block', 'height', 'numberOfTransactions', 'timestamp', 'totalAmountNQT', 'totalFeeNQT'];
     this.dataSource = new MatTableDataSource<Block>();
     this.dataSource.data = this.route.snapshot.data.blocks.blocks;
+    this.networkService.setBlocks(this.dataSource.data);
+    this.networkService.blocks.subscribe((blocks) => {
+      this.dataSource.data = blocks;
+    });
   }
 
   public ngAfterViewInit() {
@@ -67,9 +73,5 @@ export class BlocksComponent {
 
   public convertTimestamp(timestamp: number): Date {
     return convertBurstTimeToDate(timestamp);
-  }
-
-  public getTransactionNameFromType() {
-    return `coming soon`;
   }
 }

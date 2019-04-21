@@ -47,15 +47,13 @@ interface NodeDescriptor {
   providedIn: 'root'
 })
 export class AccountService {
-  private nodeUrl: string;
-
   public currentAccount: BehaviorSubject<Account> = new BehaviorSubject(undefined);
   private api: Api;
   private selectedNode: NodeDescriptor;
 
   constructor(private storeService: StoreService, private apiService: ApiService) {
     this.storeService.settings.subscribe((settings: Settings) => {
-      this.api = apiService.api;
+      this.api = this.apiService.api;
       this.selectedNode = {
         url: settings.node,
         version: settings.nodeVersion
