@@ -83,7 +83,7 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<img src="../assets/burstjs.png" alt="burstjs" width="600" align="middle" />
+				<img src="./assets/images/burstjs.png" alt="burstjs" width="600" align="middle" />
 				<blockquote>
 					<p>The BurstCoin Type/Javascript Reference Library</p>
 				</blockquote>
@@ -114,15 +114,13 @@
 <span class="hljs-built_in">npm</span> install @burstjs/util
 <span class="hljs-built_in">npm</span> install @burstjs/http</code></pre><h2 id="usage">Usage</h2>
 				<p>The following example shows how to interact with the blockchain, i.e. getting the balance of a specific account</p>
-				<pre><code class="language-js"><span class="hljs-keyword">import</span> {composeApi} <span class="hljs-keyword">from</span> <span class="hljs-string">'@burstjs/core'</span>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> {composeApi, ApiSettings} <span class="hljs-keyword">from</span> <span class="hljs-string">'@burstjs/core'</span>
 <span class="hljs-keyword">import</span> {convertNQTStringToNumber} <span class="hljs-keyword">from</span> <span class="hljs-string">'@burstjs/util'</span>
 
-<span class="hljs-keyword">const</span> api = composeApi({
-    <span class="hljs-attr">nodeHost</span>: <span class="hljs-string">'https://wallet1.burst-team.us:2083'</span>, <span class="hljs-comment">// one of the mainnet nodes</span>
-    apiRootUrl: <span class="hljs-string">'/burst'</span> <span class="hljs-comment">// endpoint to the BURST API</span>
-})
+<span class="hljs-keyword">const</span> apiSettings = <span class="hljs-keyword">new</span> ApiSettings(<span class="hljs-string">'https://wallet1.burst-team.us:2083'</span>, <span class="hljs-string">'burst'</span>);
+<span class="hljs-keyword">const</span> api = composeApi(apiSettings);
 
-(<span class="hljs-keyword">async</span> () =&gt; {
+<span class="hljs-function">(<span class="hljs-params"><span class="hljs-keyword">async</span> (</span>) =&gt;</span> {
   <span class="hljs-keyword">try</span>{
     <span class="hljs-keyword">const</span> balanceNQT = <span class="hljs-keyword">await</span> api.account.getAccountBalance(<span class="hljs-string">'5810532812037266198'</span>) <span class="hljs-comment">// poloniex exchange account</span>
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Account Balance: <span class="hljs-subst">${convertNQTStringToNumber(balanceNQT)}</span> BURST`</span>)  
