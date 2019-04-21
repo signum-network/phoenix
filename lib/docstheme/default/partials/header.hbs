@@ -1,11 +1,23 @@
 <header>
     <div class="tsd-page-toolbar">
         <div class="container">
+
+            <div class="tsd-logo-wrapper">
+                <a href="{{relativeURL "index.html"}}" class="title">
+                    <img id="tsd-burstjs-logo" alt="burstjs" src="{{relativeURL "assets/images/burstjs.png"}}">
+                </a>
+                <a href="https://www.npmjs.com/package/@burstjs/core">
+                    <img id="tsd-npm-badge" alt="npm"
+                         src="https://img.shields.io/npm/v/@burstjs/core.svg?style=for-the-badge">
+                </a>
+            </div>
+
             <div class="table-wrap">
-                <div class="table-cell" id="tsd-search" data-index="{{relativeURL "assets/js/search.js"}}" data-base="{{relativeURL "./"}}">
+                <div class="table-cell" id="tsd-search" data-index="{{relativeURL "assets/js/search.js"}}"
+                     data-base="{{relativeURL "./"}}">
                     <div class="field">
                         <label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-                        <input id="tsd-search-field" type="text" />
+                        <input id="tsd-search-field" type="text"/>
                     </div>
 
                     <ul class="results">
@@ -13,10 +25,6 @@
                         <li class="state failure">The search index is not available</li>
                     </ul>
 
-                    <a href="{{relativeURL "index.html"}}" class="title">{{project.name}}</a>
-                    <a href="https://www.npmjs.com/package/@burstjs/core">
-                        <img id="tsd-npm-badge" alt="npm" src="https://img.shields.io/npm/v/@burstjs/core.svg?style=for-the-badge">
-                    </a>
                 </div>
 
                 <div class="table-cell" id="tsd-widgets">
@@ -32,16 +40,16 @@
                                 </ul>
                             </div>
 
-                            <input type="checkbox" id="tsd-filter-inherited" checked />
+                            <input type="checkbox" id="tsd-filter-inherited" checked/>
                             <label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 
                             {{#unless settings.excludeExternals}}
-                                <input type="checkbox" id="tsd-filter-externals" checked />
+                                <input type="checkbox" id="tsd-filter-externals" checked/>
                                 <label class="tsd-widget" for="tsd-filter-externals">Externals</label>
                             {{/unless}}
 
                             {{#unless settings.excludeNotExported}}
-                                <input type="checkbox" id="tsd-filter-only-exported" />
+                                <input type="checkbox" id="tsd-filter-only-exported"/>
                                 <label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
                             {{/unless}}
                         </div>
