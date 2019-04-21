@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TransactionArbitrarySubtype
+	<title>TransactionType
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -73,10 +73,10 @@
 					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="core.transactionarbitrarysubtype.html">TransactionArbitrarySubtype</a>
+					<a href="core.transactiontype.html">TransactionType</a>
 				</li>
 			</ul>
-			<h1>Class TransactionArbitrarySubtype</h1>
+			<h1>Enumeration TransactionType</h1>
 		</div>
 	</div>
 </header>
@@ -86,117 +86,147 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Constants for arbitrary subtypes</p>
+						<p>Constants for transaction types</p>
 					</div>
+					<p>The transaction type is part of every <a href="../interfaces/core.transaction.html">Transaction</a> object
+						and used to distinguish block data. Additionally, to the transaction type
+					a subtype is sent, that specifies the kind of transaction more detailly.</p>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">TransactionArbitrarySubtype</span>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="core.transactionarbitrarysubtype.html#accountinfo" class="tsd-kind-icon">Account<wbr>Info</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="core.transactionarbitrarysubtype.html#aliasassignment" class="tsd-kind-icon">Alias<wbr>Assignment</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="core.transactionarbitrarysubtype.html#aliasbuy" class="tsd-kind-icon">Alias<wbr>Buy</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="core.transactionarbitrarysubtype.html#aliassale" class="tsd-kind-icon">Alias<wbr>Sale</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="core.transactionarbitrarysubtype.html#hubannouncement" class="tsd-kind-icon">Hub<wbr>Announcement</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="core.transactionarbitrarysubtype.html#message" class="tsd-kind-icon">Message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="core.transactionarbitrarysubtype.html#pollcreation" class="tsd-kind-icon">Poll<wbr>Creation</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="core.transactionarbitrarysubtype.html#votecasting" class="tsd-kind-icon">Vote<wbr>Casting</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactiontype.html#at" class="tsd-kind-icon">AT</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactiontype.html#arbitrary" class="tsd-kind-icon">Arbitrary</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactiontype.html#asset" class="tsd-kind-icon">Asset</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactiontype.html#escrow" class="tsd-kind-icon">Escrow</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactiontype.html#leasing" class="tsd-kind-icon">Leasing</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactiontype.html#marketplace" class="tsd-kind-icon">Marketplace</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactiontype.html#payment" class="tsd-kind-icon">Payment</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactiontype.html#rewardrecipient" class="tsd-kind-icon">Reward<wbr>Recipient</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="accountinfo" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Account<wbr>Info</h3>
-					<div class="tsd-signature tsd-kind-icon">Account<wbr>Info<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">5</span><span class="tsd-signature-symbol"> =&nbsp;5</span></div>
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="at" class="tsd-anchor"></a>
+					<h3>AT</h3>
+					<div class="tsd-signature tsd-kind-icon">AT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;22</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/48f584f/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L17">core/src/constants/transactionArbitrarySubtype.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3174141/lib/packages/core/src/constants/transactionType.ts#L38">core/src/constants/transactionType.ts:38</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="aliasassignment" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Alias<wbr>Assignment</h3>
-					<div class="tsd-signature tsd-kind-icon">Alias<wbr>Assignment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">1</span><span class="tsd-signature-symbol"> =&nbsp;1</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="arbitrary" class="tsd-anchor"></a>
+					<h3>Arbitrary</h3>
+					<div class="tsd-signature tsd-kind-icon">Arbitrary<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/48f584f/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L13">core/src/constants/transactionArbitrarySubtype.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3174141/lib/packages/core/src/constants/transactionType.ts#L22">core/src/constants/transactionType.ts:22</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p>TransactionArbitrarySubtype</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="asset" class="tsd-anchor"></a>
+					<h3>Asset</h3>
+					<div class="tsd-signature tsd-kind-icon">Asset<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3174141/lib/packages/core/src/constants/transactionType.ts#L26">core/src/constants/transactionType.ts:26</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p>TransactionAssetSubtype</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="escrow" class="tsd-anchor"></a>
+					<h3>Escrow</h3>
+					<div class="tsd-signature tsd-kind-icon">Escrow<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;21</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3174141/lib/packages/core/src/constants/transactionType.ts#L37">core/src/constants/transactionType.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="aliasbuy" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Alias<wbr>Buy</h3>
-					<div class="tsd-signature tsd-kind-icon">Alias<wbr>Buy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">7</span><span class="tsd-signature-symbol"> =&nbsp;7</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="leasing" class="tsd-anchor"></a>
+					<h3>Leasing</h3>
+					<div class="tsd-signature tsd-kind-icon">Leasing<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/48f584f/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L19">core/src/constants/transactionArbitrarySubtype.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3174141/lib/packages/core/src/constants/transactionType.ts#L34">core/src/constants/transactionType.ts:34</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p>TransactionLeasingSubtype</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="aliassale" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Alias<wbr>Sale</h3>
-					<div class="tsd-signature tsd-kind-icon">Alias<wbr>Sale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">6</span><span class="tsd-signature-symbol"> =&nbsp;6</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="marketplace" class="tsd-anchor"></a>
+					<h3>Marketplace</h3>
+					<div class="tsd-signature tsd-kind-icon">Marketplace<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/48f584f/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L18">core/src/constants/transactionArbitrarySubtype.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3174141/lib/packages/core/src/constants/transactionType.ts#L30">core/src/constants/transactionType.ts:30</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p>TransactionMarketplaceSubtype</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="hubannouncement" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Hub<wbr>Announcement</h3>
-					<div class="tsd-signature tsd-kind-icon">Hub<wbr>Announcement<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">4</span><span class="tsd-signature-symbol"> =&nbsp;4</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="payment" class="tsd-anchor"></a>
+					<h3>Payment</h3>
+					<div class="tsd-signature tsd-kind-icon">Payment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/48f584f/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L16">core/src/constants/transactionArbitrarySubtype.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3174141/lib/packages/core/src/constants/transactionType.ts#L18">core/src/constants/transactionType.ts:18</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p>TransactionPaymentSubtype</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="message" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Message</h3>
-					<div class="tsd-signature tsd-kind-icon">Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">0</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="rewardrecipient" class="tsd-anchor"></a>
+					<h3>Reward<wbr>Recipient</h3>
+					<div class="tsd-signature tsd-kind-icon">Reward<wbr>Recipient<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;20</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/48f584f/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L12">core/src/constants/transactionArbitrarySubtype.ts:12</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="pollcreation" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Poll<wbr>Creation</h3>
-					<div class="tsd-signature tsd-kind-icon">Poll<wbr>Creation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">2</span><span class="tsd-signature-symbol"> =&nbsp;2</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/48f584f/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L14">core/src/constants/transactionArbitrarySubtype.ts:14</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="votecasting" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Vote<wbr>Casting</h3>
-					<div class="tsd-signature tsd-kind-icon">Vote<wbr>Casting<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">3</span><span class="tsd-signature-symbol"> =&nbsp;3</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/48f584f/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L15">core/src/constants/transactionArbitrarySubtype.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3174141/lib/packages/core/src/constants/transactionType.ts#L36">core/src/constants/transactionType.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -207,6 +237,9 @@
 				<ul>
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_src_constants_apiversion_.html">"core/src/constants/api<wbr>Version"</a>
 					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
@@ -230,80 +263,80 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.account.html" class="tsd-kind-icon">Account</a>
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="core.transactionarbitrarysubtype.html" class="tsd-kind-icon">Transaction<wbr>Arbitrary<wbr>Subtype</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.attachment.html" class="tsd-kind-icon">Attachment</a>
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="core.transactionassetsubtype.html" class="tsd-kind-icon">Transaction<wbr>Asset<wbr>Subtype</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.burstnode.html" class="tsd-kind-icon">Burst<wbr>Node</a>
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="core.transactionescrowsubtype.html" class="tsd-kind-icon">Transaction<wbr>Escrow<wbr>Subtype</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.burstservice.html" class="tsd-kind-icon">Burst<wbr>Service</a>
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="core.transactionleasingsubtype.html" class="tsd-kind-icon">Transaction<wbr>Leasing<wbr>Subtype</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.encryptedmessage.html" class="tsd-kind-icon">Encrypted<wbr>Message</a>
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="core.transactionmarketplacesubtype.html" class="tsd-kind-icon">Transaction<wbr>Marketplace<wbr>Subtype</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.message.html" class="tsd-kind-icon">Message</a>
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="core.transactionpaymentsubtype.html" class="tsd-kind-icon">Transaction<wbr>Payment<wbr>Subtype</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="core.transactionrewardrecipientsubtype.html" class="tsd-kind-icon">Transaction<wbr>Reward<wbr>Recipient<wbr>Subtype</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="core.transactionsmartcontractsubtype.html" class="tsd-kind-icon">Transaction<wbr>Smart<wbr>Contract<wbr>Subtype</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.transactionarbitrarysubtype.html" class="tsd-kind-icon">Transaction<wbr>Arbitrary<wbr>Subtype</a>
+					<li class="current tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="core.transactiontype.html" class="tsd-kind-icon">Transaction<wbr>Type</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="core.transactionarbitrarysubtype.html#accountinfo" class="tsd-kind-icon">Account<wbr>Info</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="core.transactiontype.html#at" class="tsd-kind-icon">AT</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="core.transactionarbitrarysubtype.html#aliasassignment" class="tsd-kind-icon">Alias<wbr>Assignment</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="core.transactiontype.html#arbitrary" class="tsd-kind-icon">Arbitrary</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="core.transactionarbitrarysubtype.html#aliasbuy" class="tsd-kind-icon">Alias<wbr>Buy</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="core.transactiontype.html#asset" class="tsd-kind-icon">Asset</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="core.transactionarbitrarysubtype.html#aliassale" class="tsd-kind-icon">Alias<wbr>Sale</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="core.transactiontype.html#escrow" class="tsd-kind-icon">Escrow</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="core.transactionarbitrarysubtype.html#hubannouncement" class="tsd-kind-icon">Hub<wbr>Announcement</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="core.transactiontype.html#leasing" class="tsd-kind-icon">Leasing</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="core.transactionarbitrarysubtype.html#message" class="tsd-kind-icon">Message</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="core.transactiontype.html#marketplace" class="tsd-kind-icon">Marketplace</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="core.transactionarbitrarysubtype.html#pollcreation" class="tsd-kind-icon">Poll<wbr>Creation</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="core.transactiontype.html#payment" class="tsd-kind-icon">Payment</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="core.transactionarbitrarysubtype.html#votecasting" class="tsd-kind-icon">Vote<wbr>Casting</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="core.transactiontype.html#rewardrecipient" class="tsd-kind-icon">Reward<wbr>Recipient</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.transactionassetsubtype.html" class="tsd-kind-icon">Transaction<wbr>Asset<wbr>Subtype</a>
+						<a href="../classes/core.account.html" class="tsd-kind-icon">Account</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.transactionescrowsubtype.html" class="tsd-kind-icon">Transaction<wbr>Escrow<wbr>Subtype</a>
+						<a href="../classes/core.attachment.html" class="tsd-kind-icon">Attachment</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.transactionleasingsubtype.html" class="tsd-kind-icon">Transaction<wbr>Leasing<wbr>Subtype</a>
+						<a href="../classes/core.burstnode.html" class="tsd-kind-icon">Burst<wbr>Node</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.transactionmarketplacesubtype.html" class="tsd-kind-icon">Transaction<wbr>Marketplace<wbr>Subtype</a>
+						<a href="../classes/core.burstservice.html" class="tsd-kind-icon">Burst<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.transactionpaymentsubtype.html" class="tsd-kind-icon">Transaction<wbr>Payment<wbr>Subtype</a>
+						<a href="../classes/core.encryptedmessage.html" class="tsd-kind-icon">Encrypted<wbr>Message</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.transactionrewardrecipientsubtype.html" class="tsd-kind-icon">Transaction<wbr>Reward<wbr>Recipient<wbr>Subtype</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.transactionsmartcontractsubtype.html" class="tsd-kind-icon">Transaction<wbr>Smart<wbr>Contract<wbr>Subtype</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.transactiontype.html" class="tsd-kind-icon">Transaction<wbr>Type</a>
+						<a href="../classes/core.message.html" class="tsd-kind-icon">Message</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/core.alias.html" class="tsd-kind-icon">Alias</a>
