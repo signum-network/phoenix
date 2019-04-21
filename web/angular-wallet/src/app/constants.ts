@@ -77,28 +77,36 @@ export const constants = {
   ],
   nodes: [
     {
-      'name': 'burst-team.us',
-      'region': 'Global',
-      'location': 'USA',
-      'address': 'https://wallet1.burst-team.us',
-      'port': 2083,
-      'selected': true,
-      'ping': -1,
+      name: 'burst-team.us',
+      region: 'Global',
+      location: 'USA',
+      address: 'https://wallet1.burst-team.us',
+      port: 2083,
+      selected: true,
+      ping: -1,
       version: '2.3.0'
     },
     {
-      'name': 'starburst.pink',
-      'region': 'Global',
-      'location': 'USA',
-      'address': 'https://wallet.starburst.pink',
-      'port': 443,
-      'selected': false,
-      'ping': -1,
+      name: 'burst-alliance.org',
+      region: 'Global',
+      location: 'Europe',
+      address: 'https://wallet.burst-alliance.org',
+      port: 8125,
+      selected: false,
+      ping: -1,
+      version: '2.3.0'
+    },
+    {
+      name: 'starburst.pink',
+      region: 'Global',
+      location: 'USA',
+      address: 'https://wallet.starburst.pink',
+      port: 443,
+      selected: false,
+      ping: -1,
       version: '2.2.7'
     }
   ],
   supportUrl: 'https://github.com/burst-apps-team/phoenix/issues',
-  transactionCount: '100',
-  transactionUrl: 'https://explore.burst.cryptoguru.org/transaction/',
-  version: '0.2.1'
+  transactionCount: '100'
 };

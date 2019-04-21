@@ -6,6 +6,7 @@
 
 import { constants } from './constants';
 import { environment } from '../environments/environment';
+import { version } from '../../package.json';
 
 /*
 * Settings class
@@ -37,7 +38,7 @@ export class Settings {
         this.nodeVersion = data.nodeVersion || '';
         this.marketUrl = data.marketUrl || environment.market.tickerUrl;
         this.theme = data.theme || constants.defaultTheme;
-        this.version = data.version || constants.version;
+        this.version = data.version || version;
         this.agree = data.agree || this.agree;
     }
 }
