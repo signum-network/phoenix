@@ -26,5 +26,10 @@
       </tr>
     </table>
   </div>
+  <div *ngSwitchCase="'Transactions'">
+      <span *ngFor="let row of value" class="transaction chip">
+        <a [routerLink]="['/transactions/transaction', row]">{{row}}</a>
+      </span>
+  </div>
   <div *ngSwitchDefault>{{value | i18n}}</div>
 </div>
