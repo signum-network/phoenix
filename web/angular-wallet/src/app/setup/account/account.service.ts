@@ -141,12 +141,9 @@ export class AccountService {
       account.account = id;
       account.accountRS = convertNumericIdToAddress(id);
 
-
       await this.selectAccount(account);
-      return this.synchronizeAccount(account)
-        .then(acc => {
-          resolve(acc);
-        });
+      const savedAccount = await this.synchronizeAccount(account);
+      resolve(savedAccount);
     });
   }
 
@@ -155,7 +152,7 @@ export class AccountService {
   * Creates an account object with no keys attached.
   */
   public createOfflineAccount(address: string): Promise<Account> {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
 
       if (!isBurstAddress(address)) {
         reject('Invalid Burst Address');
@@ -163,20 +160,18 @@ export class AccountService {
 
       const account: Account = new Account();
       const accountId = convertAddressToNumericId(address);
-      this.storeService.findAccount(accountId)
-        .then(async found => {
-          if (found === undefined) {
-            // import offline account
-            account.type = 'offline';
-            account.accountRS = address;
-            account.account = accountId;
-            await this.selectAccount(account);
-            return this.storeService.saveAccount(account)
-              .then(resolve);
-          } else {
-            reject('Burstcoin address already imported!');
-          }
-        });
+      const existingAccount = await this.storeService.findAccount(accountId);
+      if (existingAccount === undefined) {
+        // import offline account
+        account.type = 'offline';
+        account.accountRS = address;
+        account.account = accountId;
+        await this.selectAccount(account);
+        const savedAccount = await this.synchronizeAccount(account);
+        resolve(savedAccount);
+      } else {
+        reject('Burstcoin address already imported!');
+      }
     });
   }
 
