@@ -22,6 +22,9 @@ import { UtilService } from './util.service';
 import { I18nModule } from './layout/components/i18n/i18n.module';
 import { DisclaimerModule } from './disclaimer/disclaimer.module';
 import { SettingsResolver } from './store/settings.resolver';
+import { registerLocales } from '../app/layout/components/i18n/locales';
+
+registerLocales();
 
 const appRoutes: Routes = [
   {
