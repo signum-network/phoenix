@@ -95,16 +95,6 @@ export const constants = {
       selected: false,
       ping: -1,
       version: '2.3.0'
-    },
-    {
-      name: 'starburst.pink',
-      region: 'Global',
-      location: 'USA',
-      address: 'https://wallet.starburst.pink',
-      port: 443,
-      selected: false,
-      ping: -1,
-      version: '2.2.7'
     }
   ],
   supportUrl: 'https://github.com/burst-apps-team/phoenix/issues',
