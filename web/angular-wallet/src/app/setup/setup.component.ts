@@ -58,10 +58,16 @@ export class SetupComponent implements OnInit {
   private setNode(): (value: NodeDescriptor) => void {
     return async (value) => {
       const settings = await this.storeService.getSettings();
+      let url = value.url;
+      let version = value.version;
+      if (typeof value === 'string') {
+        url = value;
+        version = '';
+      }
       this.storeService.saveSettings({
         ...settings,
-        node: value.url,
-        nodeVersion: value.version
+        node: url,
+        nodeVersion: version
       });
     };
   }
