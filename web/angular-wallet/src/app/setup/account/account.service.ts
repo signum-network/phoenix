@@ -220,11 +220,11 @@ export class AccountService {
           .concat(account.transactions);
 
         this.storeService.saveAccount(account).catch(error => { reject(error); });
-        resolve(account);
       } catch (e) {
         console.log(e);
-        resolve(account);
       }
+      resolve(account);
+
     });
   }
 }
