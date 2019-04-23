@@ -35,6 +35,9 @@ export class TransactionRowValueCellComponent implements OnInit {
     } else if (this.value && this.value.encryptedMessage) {
       this.valueType = 'EncryptedMessage';
       //@ts-ignore
+    } else if (this.key === 'transactions') {
+      this.valueType = 'Transactions';
+      //@ts-ignore
     } else if (this.value && typeof this.value === 'object') {
       this.valueType = 'Asset';
     }
