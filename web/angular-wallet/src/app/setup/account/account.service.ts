@@ -219,12 +219,12 @@ export class AccountService {
         account.transactions = unconfirmedTransactionsResponse.unconfirmedTransactions
           .concat(account.transactions);
 
-        this.storeService.saveAccount(account).catch(error => { reject(error); });
       } catch (e) {
         console.log(e);
       }
-      resolve(account);
 
+      this.storeService.saveAccount(account).catch(error => { reject(error); });
+      resolve(account);
     });
   }
 }

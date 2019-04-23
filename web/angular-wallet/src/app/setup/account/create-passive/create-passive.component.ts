@@ -27,6 +27,7 @@ export class CreatePassiveAccountComponent implements OnInit {
       this.createService.setAddress(address);
       this.createService.createPassiveAccount().then((success) => {
         this.notificationService.notify('success', `Account added: ${address}`);
+        this.createService.reset();
         this.router.navigate(['/']);
       },
       (error) => {
