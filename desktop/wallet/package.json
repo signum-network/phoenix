@@ -1,9 +1,11 @@
 {
   "name": "phoenix",
+  "author": "Burst Apps Team (BAT)",
   "productName": "Phoenix BURST Wallet",
   "version": "1.0.0-beta.2",
   "contributors": [
-    "ohager"
+    "ohager",
+    "blankey1337"
   ],
   "repository": {
     "type": "git",
@@ -26,13 +28,49 @@
     "start:fast": "cross-env NODE_ENV=develop && electron .",
     "pack": "npm run build && electron-packager . Phoenix --overwrite --asar --prune=true --out=release-builds",
     "release:all": "npm run pack -- --all",
-    "release:linux": "npm run pack -- --platform=linux --arch=x64 --icon=assets/images/png/1024x1024.png",
+    "release:linux": "npm run pack -- --platform=linux --arch=x64 --icon=assets/images/png/256x256.png",
     "release:win32": "npm run pack -- --platform=win32 --arch=x64 --icon=assets/images/win/128x128_icon.ico",
-    "release:macos": "npm run pack -- --platform=darwin --arch=x64 --icon=assets/images/mac/icon.icns"
+    "release:macos": "npm run pack -- --platform=darwin --arch=x64 --icon=assets/images/mac/icon.icns",
+    "release:builder": "electron-builder -wml",
+    "postinstall": "electron-builder install-app-deps"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
     "electron": "^4.0.1",
+    "electron-builder": "^20.39.0",
     "electron-packager": "^13.0.1"
+  },
+  "build": {
+    "productName": "Phoenix Burst Wallet",
+    "appId": "org.burst.phoenix",
+    "directories": {
+      "output": "release-builds",
+      "buildResources": "dist"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*",
+      "assets/**/*",
+      "package.json",
+      "main.js"
+    ],
+    "icon": "./assets/images/png/512x512.png",
+    "mac": {
+      "publish": [
+        "github"
+      ],
+      "category": "public.app-category.finance"
+    },
+    "linux": {
+      "publish": [
+        "github"
+      ],
+      "category": "Finance"
+    },
+    "win": {
+      "publish": [
+        "github"
+      ]
+    }
   }
 }
