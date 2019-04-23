@@ -223,6 +223,7 @@ export class AccountService {
         resolve(account);
       } catch (e) {
         console.log(e);
+        resolve(account);
       }
     });
   }
