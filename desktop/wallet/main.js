@@ -78,8 +78,12 @@ function createWindow() {
                     click() { shell.openExternal('https://burstwiki.org/'); }
                 },
                 {
+                    label: 'Report A Suggestion',
+                    click() { shell.openExternal('https://github.com/burst-apps-team/phoenix/issues/new?assignees=&labels=enhancement,web,desktop&template=feature_request.md&title='); }
+                },
+                {
                     label: 'Report An Issue',
-                    click() { shell.openExternal('https://github.com/burst-apps-team/phoenix/issues/new'); }
+                    click() { shell.openExternal('https://github.com/burst-apps-team/phoenix/issues/new?assignees=&labels=bug,web,desktop&template=bug_report.md&title='); }
                 },
                 {
                     label: 'Credits',
