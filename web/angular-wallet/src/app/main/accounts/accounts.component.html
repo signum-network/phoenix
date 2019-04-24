@@ -21,14 +21,28 @@
             </mat-form-field>
             <button mat-button color="accent" class="delete" *ngIf="getSelectedAccounts().length"
                 (click)="deleteSelectedAccounts()">Delete Selected</button>
-            <button mat-button color="primary" 
+            <button mat-button color="primary"
                 (click)="router.navigate(['/login'])">New Account</button>
         </div>
 
         <mat-table #table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="type">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>bookmark_border</mat-icon>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let account">
+                    <ng-container *ngIf="account.type === 'offline'">
+                      <mat-icon class="account-type-icon" matTooltip="{{'hint_offline_account' | i18n}}">remove_red_eye</mat-icon>
+                    </ng-container>
+                    <ng-container *ngIf="account.type !== 'offline'">
+                      <mat-icon class="account-type-icon" matTooltip="{{'hint_online_account' | i18n}}">verified_user</mat-icon>
+                    </ng-container>
+                </mat-cell>
+            </ng-container>
+
             <ng-container matColumnDef="account">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    <mat-icon>bookmark</mat-icon> Id
+                    <mat-icon>perm_identity</mat-icon> Id
                 </mat-header-cell>
                 <mat-cell *matCellDef="let account"> {{account.account}} </mat-cell>
             </ng-container>
@@ -42,6 +56,13 @@
                 </mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="balanceNQT">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>local_atm</mat-icon> Balance
+                </mat-header-cell>
+                <mat-cell *matCellDef="let account"> {{convertNQTStringToNumber(account.balanceNQT)}} BURST</mat-cell>
+            </ng-container>
+
             <ng-container matColumnDef="name">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                     <mat-icon>account_box</mat-icon> Alias
@@ -49,12 +70,6 @@
                 <mat-cell *matCellDef="let account"> {{account.name}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="balanceNQT">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    <mat-icon>local_atm</mat-icon> Balance
-                </mat-header-cell>
-                <mat-cell *matCellDef="let account"> {{convertNQTStringToNumber(account.balanceNQT)}} BURST</mat-cell>
-            </ng-container>
 
             <ng-container matColumnDef="selected">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
