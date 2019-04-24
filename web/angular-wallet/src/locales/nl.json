@@ -463,6 +463,8 @@
   "header": "Koptekst",
   "height": "Hoogte",
   "highest_bid": "Hoogste Bod",
+  "hint_offline_account": "U bekijkt dit account",
+  "hint_online_account": "U kunt transacties uitvoeren met dit account",
   "host": "Host",
   "hub_announcement": "Hub aankondiging",
   "immutable": "Immutable",

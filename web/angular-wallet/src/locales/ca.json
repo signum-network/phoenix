@@ -463,6 +463,8 @@
   "header": "Capçalera",
   "height": "Alçada",
   "highest_bid": "Oferta més alta",
+  "hint_offline_account": "Esteu veient aquest compte",
+  "hint_online_account": "Podeu executar transaccions amb aquest compte",
   "host": "Host",
   "hub_announcement": "Anunci de Hub",
   "immutable": "Immutable",

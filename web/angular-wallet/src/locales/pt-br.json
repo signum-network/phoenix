@@ -463,6 +463,8 @@
   "header": "Cabeçalho",
   "height": "Altura",
   "highest_bid": "Lance mais alto",
+  "hint_offline_account": "Você está assistindo esta conta",
+  "hint_online_account": "Você pode executar transações com esta conta",
   "host": "Servidor",
   "hub_announcement": "Anúncio de Hub",
   "immutable": "Immutable",

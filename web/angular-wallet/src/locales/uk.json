@@ -463,6 +463,8 @@
   "header": "Заголовок",
   "height": "Висота",
   "highest_bid": "Максимальна ціна купівлі",
+  "hint_offline_account": "Ви переглядаєте цей обліковий запис",
+  "hint_online_account": "Ви можете виконувати транзакції за допомогою цього облікового запису",
   "host": "Хост",
   "hub_announcement": "Оголошення Хаба",
   "immutable": "Immutable",

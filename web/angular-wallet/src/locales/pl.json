@@ -463,6 +463,8 @@
   "header": "Nagłówek",
   "height": "Wielkość",
   "highest_bid": "Najlepsza oferta kupna",
+  "hint_offline_account": "Oglądasz to konto",
+  "hint_online_account": "Możesz wykonywać transakcje za pomocą tego konta",
   "host": "Host",
   "hub_announcement": "Ogłoszenie huba",
   "immutable": "Immutable",

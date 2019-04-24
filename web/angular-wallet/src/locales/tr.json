@@ -463,6 +463,8 @@
   "header": "Header",
   "height": "Height",
   "highest_bid": "Highest Bid",
+  "hint_offline_account": "Bu hesabı izliyorsun",
+  "hint_online_account": "Bu hesapla işlem yapabilirsiniz",
   "host": "Sunucu",
   "hub_announcement": "Hub Announcement",
   "immutable": "Immutable",
