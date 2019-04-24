@@ -33,7 +33,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   public ngOnInit(): void {
     this.accounts = [];
     this.selectedAccounts = {};
-    this.displayedColumns = ['type', 'account', 'accountRS', 'balanceNQT', 'name', 'delete'];
+    this.displayedColumns = ['type', 'account', 'accountRS', 'name', 'balanceNQT', 'delete'];
     this.dataSource = new MatTableDataSource<Account>();
 
     this.storeService.ready.subscribe((ready) => {
