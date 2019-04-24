@@ -463,6 +463,8 @@
   "header": "Záhlaví",
   "height": "Výška",
   "highest_bid": "Nejvyšší nabídka",
+  "hint_offline_account": "Sledujete tento účet",
+  "hint_online_account": "S tímto účtem můžete provádět transakce",
   "host": "Hostitel",
   "hub_announcement": "Oznámení Hubu",
   "immutable": "Immutable",

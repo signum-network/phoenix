@@ -463,6 +463,8 @@
   "header": "शीर्ष लेख",
   "height": "ऊँचाई",
   "highest_bid": "उच्चतम बोली",
+  "hint_offline_account": "आप इस खाते को देख रहे हैं",
+  "hint_online_account": "आप इस खाते से लेनदेन निष्पादित कर सकते हैं",
   "host": "Host",
   "hub_announcement": "हब की घोषणा",
   "immutable": "Immutable",

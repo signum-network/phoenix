@@ -463,6 +463,8 @@
   "header": "Заглавље",
   "height": "Позиција",
   "highest_bid": "Највиша Понуда",
+  "hint_offline_account": "Гледате овај налог",
+  "hint_online_account": "Можете извршити трансакције са овим рачуном",
   "host": "Домаћин",
   "hub_announcement": "Хуб Објава",
   "immutable": "Immutable",
