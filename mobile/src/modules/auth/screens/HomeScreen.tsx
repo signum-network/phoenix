@@ -46,10 +46,10 @@ class Home extends React.PureComponent<Props> {
               {selectedAccount.accountRS}
             </Text>
             <Text>
-              {this.props.auth.accounts[0].balanceNQT || '0'} BURST
+              {selectedAccount.balanceNQT || '0'} BURST
             </Text>
             <Text>
-              {this.props.auth.accounts[0].balanceNQT || '0'} USD
+              {selectedAccount.balanceNQT || '0'} USD
             </Text>
             <Text>{i18n.t(core.screens.home.recentTransactions)}</Text>
             <Button onPress={this.changeAccount} title={i18n.t(core.screens.home.accountsList)} />
