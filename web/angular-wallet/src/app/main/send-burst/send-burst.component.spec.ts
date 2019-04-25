@@ -2,8 +2,19 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SendBurstComponent } from './send-burst.component';
 import { NetworkModule } from 'app/network/network.module';
-import { MatCheckboxModule, MatGridListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCardModule, MatSelectModule, MatTabsModule,
-  MatProgressSpinnerModule } from '@angular/material';
+import {
+  MatCheckboxModule,
+  MatGridListModule,
+  MatIconModule,
+  MatButtonModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatCardModule,
+  MatSelectModule,
+  MatTabsModule,
+  MatProgressSpinnerModule,
+  MatTooltipModule
+} from '@angular/material';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { NotifierModule } from 'angular-notifier';
@@ -41,6 +52,7 @@ describe('SendBurstComponent', () => {
         MatFormFieldModule,
         MatCardModule,
         MatTabsModule,
+        MatTooltipModule,
         MatSelectModule,
         Ng5SliderModule,
         MatGridListModule,

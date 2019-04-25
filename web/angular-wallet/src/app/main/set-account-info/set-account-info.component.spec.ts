@@ -2,7 +2,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SetAccountInfoComponent } from './set-account-info.component';
 import { NetworkModule } from 'app/network/network.module';
-import { MatCheckboxModule, MatGridListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCardModule, MatSelectModule } from '@angular/material';
+import {
+  MatCheckboxModule,
+  MatGridListModule,
+  MatIconModule,
+  MatButtonModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatCardModule,
+  MatSelectModule,
+  MatTooltipModule
+} from '@angular/material';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { NotifierModule } from 'angular-notifier';
@@ -45,11 +55,12 @@ describe('SetAccountInfoComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule.withRoutes(
           [{path: 'set-account-info', component: SetAccountInfoComponent}]
-        )
+        ),
+        MatTooltipModule
       ],
       declarations: [ SetAccountInfoComponent, BurstFeeSelectorComponent ],
-      providers: [ 
-        I18nService, 
+      providers: [
+        I18nService,
         {
           provide: StoreService,
           useFactory: () => {
@@ -59,7 +70,7 @@ describe('SetAccountInfoComponent', () => {
               saveSettings: () => Promise.resolve(true)
             }
           }
-        }, 
+        },
         {
           provide: TransactionService,
           useFactory: () => {
@@ -67,7 +78,7 @@ describe('SetAccountInfoComponent', () => {
               sendMoney: () => Promise.resolve({broadcasted:true})
             }
           }
-        }, 
+        },
         {
           provide: AccountService,
           useFactory: () => {
@@ -75,7 +86,7 @@ describe('SetAccountInfoComponent', () => {
               currentAccount: new BehaviorSubject(true)
             }
           }
-        } 
+        }
       ]
     })
     .compileComponents();

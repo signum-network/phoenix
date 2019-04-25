@@ -222,7 +222,7 @@
   "encrypted_note_no_permission": "Not şifrelelidir ve sizin tarafından okunamaz.",
   "encrypted_note_nonce": "Encrypted Note Nonce",
   "enter_a_description": " Açıklama yazın",
-  "enter_pin": "PIN girin",
+  "enter_pin": "P girin",
   "error": "Hata",
   "error_account_id": "Geçersiz hesap ID.",
   "error_account_id_not_specified": "Hesap ID belirlenemedi.",

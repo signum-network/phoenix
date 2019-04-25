@@ -222,7 +222,7 @@
   "encrypted_note_no_permission": "Catatan dienkripsi dan tidak dapat dibaca oleh Anda.",
   "encrypted_note_nonce": "Kesempatan ini dienkripsi catatan",
   "enter_a_description": "Masukkan deskripsi",
-  "enter_pin": "Masukkan PIN",
+  "enter_pin": "Masukkan pin",
   "error": "Kesalahan",
   "error_account_id": "ID account tidak valid.",
   "error_account_id_not_specified": "ID account tidak ditentukan.",

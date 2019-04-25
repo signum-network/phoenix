@@ -222,7 +222,7 @@
   "encrypted_note_no_permission": "Der Hinweis ist verschlüsselt und kann von Ihnen nicht gelesen werden.",
   "encrypted_note_nonce": "Nonce des verschlüsselten Hinweises",
   "enter_a_description": "Geben Sie eine Beschreibung ein.",
-  "enter_pin": "Pin eingeben",
+  "enter_pin": "PIN eingeben",
   "error": "Fehler",
   "error_account_id": "Ungültige Konto-ID.",
   "error_account_id_not_specified": "Konto-ID nicht angegeben.",

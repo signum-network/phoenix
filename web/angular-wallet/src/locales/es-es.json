@@ -222,7 +222,7 @@
   "encrypted_note_no_permission": "La nota está cifrada, usted no puede leerla.",
   "encrypted_note_nonce": "Valor de Seguridad de la Nota Cifrada",
   "enter_a_description": "Introducir Descripción",
-  "enter_pin": "Ingrese su PIN",
+  "enter_pin": "Entrar pin",
   "error": "Error",
   "error_account_id": "ID de cuenta inválido.",
   "error_account_id_not_specified": "ID de cuenta no especificado.",

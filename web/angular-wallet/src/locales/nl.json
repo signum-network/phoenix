@@ -222,7 +222,7 @@
   "encrypted_note_no_permission": "Het bericht is gecodeerd en kan door u niet worden gelezen.",
   "encrypted_note_nonce": "Gecodeerde Opmerking Nonce",
   "enter_a_description": "Voer een beschrijving in",
-  "enter_pin": "Voer Pin-code in",
+  "enter_pin": "Voer pin in",
   "error": "Fout",
   "error_account_id": "Ongeldig account-ID.",
   "error_account_id_not_specified": "Account-ID niet opgegeven.",

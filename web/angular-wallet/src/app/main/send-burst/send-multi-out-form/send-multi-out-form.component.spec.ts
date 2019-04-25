@@ -1,8 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NetworkModule } from 'app/network/network.module';
-import { MatCheckboxModule, MatGridListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCardModule, MatSelectModule,
-  MatProgressSpinnerModule } from '@angular/material';
+import {
+  MatCheckboxModule,
+  MatGridListModule,
+  MatIconModule,
+  MatButtonModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatCardModule,
+  MatSelectModule,
+  MatProgressSpinnerModule,
+  MatTooltipModule
+} from '@angular/material';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { NotifierModule } from 'angular-notifier';
@@ -47,7 +57,8 @@ describe('SendMultiOutFormComponent', () => {
         FormsModule,
         NetworkModule,
         HttpClientTestingModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatTooltipModule
       ],
       declarations: [ SendMultiOutFormComponent, BurstInputValidatorDirective, BurstFeeSelectorComponent ],
       providers: [
@@ -88,6 +99,7 @@ describe('SendMultiOutFormComponent', () => {
     fixture = TestBed.createComponent(SendMultiOutFormComponent);
     component = fixture.componentInstance;
     component.fees = {
+      minimum: 123,
       standard: 123,
       cheap: 123,
       priority: 123,

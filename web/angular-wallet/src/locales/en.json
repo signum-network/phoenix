@@ -224,7 +224,7 @@
   "encrypted_note_no_permission": "Note is encrypted and cannot be read by you.",
   "encrypted_note_nonce": "Encrypted Note Nonce",
   "enter_a_description": "Enter a description",
-  "enter_pin": "Enter pin",
+  "enter_pin": "Enter PIN",
   "error": "Error",
   "error_account_id": "Invalid account ID.",
   "error_account_id_not_specified": "Account ID not specified.",
