@@ -1,8 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-##Unreleased
+## 0.1.1
+- added FeeQuant for `suggestFees`
 
+## 0.1.0
 - changed BurstService creation parameter
 - added sendEncryptedTextMessage 
 - Export of Api Interface Types

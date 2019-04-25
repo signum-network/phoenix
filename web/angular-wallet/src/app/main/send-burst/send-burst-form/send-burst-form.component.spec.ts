@@ -10,7 +10,7 @@ import {
   MatFormFieldModule,
   MatCardModule,
   MatSelectModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule, MatTooltipModule
 } from '@angular/material';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
@@ -47,6 +47,7 @@ describe('SendBurstFormComponent', () => {
         MatInputModule,
         MatButtonModule,
         MatIconModule,
+        MatTooltipModule,
         MatFormFieldModule,
         MatCardModule,
         MatSelectModule,
@@ -66,17 +67,17 @@ describe('SendBurstFormComponent', () => {
           useFactory: () => {
             return {
               ready: new BehaviorSubject(true),
-              getSettings: () => Promise.resolve({language:'en'}),
+              getSettings: () => Promise.resolve({language: 'en'}),
               saveSettings: () => Promise.resolve(true)
-            }
+            };
           }
         },
         {
           provide: TransactionService,
           useFactory: () => {
             return {
-              sendMoney: () => Promise.resolve({broadcasted:true})
-            }
+              sendMoney: () => Promise.resolve({broadcasted: true})
+            };
           }
         },
         {
@@ -84,7 +85,7 @@ describe('SendBurstFormComponent', () => {
           useFactory: () => {
             return {
               currentAccount: new BehaviorSubject(true)
-            }
+            };
           }
         },
         BurstInputValidatorDirective
@@ -97,14 +98,15 @@ describe('SendBurstFormComponent', () => {
     fixture = TestBed.createComponent(SendBurstFormComponent);
     component = fixture.componentInstance;
     component.fees = {
+      minimum: 123,
       standard: 123,
       cheap: 123,
       priority: 123,
       requestProcessingTime: 1
-    }
+    };
     component.account = new Account({
       account: '123'
-    })
+    });
     fixture.detectChanges();
   });
 

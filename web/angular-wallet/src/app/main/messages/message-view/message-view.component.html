@@ -119,7 +119,7 @@
         </mat-form-field>
 
         <mat-form-field class="message-text password-field" fxFlex floatLabel="never" appearance="standard">
-          <input type="password" matInput required #pinInput placeholder="Enter PIN" ngModel name="pin">
+          <input type="password" matInput required #pinInput placeholder="{{'enter_pin' | i18n}}" ngModel name="pin">
         </mat-form-field>
 
         <button class="send-message-button" mat-icon-button type="submit" aria-label="Send message"

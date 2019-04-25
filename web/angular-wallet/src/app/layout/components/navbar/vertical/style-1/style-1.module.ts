@@ -6,20 +6,22 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 import { NavbarVerticalStyle1Component } from 'app/layout/components/navbar/vertical/style-1/style-1.component';
 import { RouterModule } from '@angular/router';
+import {I18nModule} from '../../../i18n/i18n.module';
 
 @NgModule({
     declarations: [
         NavbarVerticalStyle1Component
     ],
-    imports     : [
-        MatButtonModule,
-        MatIconModule,
+  imports: [
+    MatButtonModule,
+    MatIconModule,
 
-        RouterModule,
+    RouterModule,
 
-        FuseSharedModule,
-        FuseNavigationModule
-    ],
+    FuseSharedModule,
+    FuseNavigationModule,
+    I18nModule
+  ],
     exports     : [
         NavbarVerticalStyle1Component
     ]

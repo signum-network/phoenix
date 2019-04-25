@@ -18,18 +18,19 @@
     margin-right:10px;
 }
 
-.mat-column-address {
-    flex: 0 0 270px;
-}
-.mat-column-id {
-    flex: 0 0 200px;
-}
-.mat-column-balance {
-    flex: 0 0 200px;
-}
-.mat-column-delete {
+.mat-column{
+
+  &-type {
+    flex: 0 0 80px;
+    justify-content: end;
+  }
+
+  &-delete {
     flex: 0 0 50px;
-}
-.center {
+  }
+
+  .center {
     justify-content: center
+  }
+
 }
