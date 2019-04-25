@@ -1,8 +1,13 @@
 <div class="p-16" fxLayout="column wrap" fxFlexAlign="center">
   <div class="pb-16" fxFlex="60">
     <div class="h3 secondary-text">{{ 'balance' | i18n }}</div>
-    <div [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1">
-      {{ convertNQTStringToNumber(account.balanceNQT).toFixed(3) }}
+    <div fxLayout="row" fxLayoutAlign="start baseline">
+      <div class="pr-16 secondary-text">
+        BURST
+      </div>
+      <div [ngClass.gt-md]="'font-size-50'" class="font-size-30 font-weight-300 line-height-1">
+        {{ convertNQTStringToNumber(account.balanceNQT) | number: '1.0-6':this.language }}
+      </div>
     </div>
   </div>
   <div fxFlex="40" fxLayout="column">
@@ -11,7 +16,7 @@
         BTC
       </div>
       <div [ngClass.gt-md]="'font-size-24'" class="font-size-16 font-weight-300 mt-8">
-        {{ convertBalanceInBtc(account.balanceNQT).toFixed(6) }}
+        {{ convertBalanceInBtc(account.balanceNQT) | number: '1.0-6':this.language }}
       </div>
     </div>
     <div fxLayout="row" fxLayoutAlign="start baseline">
@@ -19,7 +24,7 @@
         USD
       </div>
       <div [ngClass.gt-md]="'font-size-24'" class="font-size-16 font-weight-300 mt-8">
-        {{ convertBalanceInUsDollar(account.balanceNQT).toFixed(2) }}
+        {{ convertBalanceInUsDollar(account.balanceNQT) | number: '1.2-2':this.language }}
       </div>
     </div>
   </div>

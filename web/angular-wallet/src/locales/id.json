@@ -463,6 +463,8 @@
   "header": "Data Header",
   "height": "Tinggi badan",
   "highest_bid": "Tawaran Tertinggi",
+  "hint_offline_account": "Anda sedang menonton akun ini",
+  "hint_online_account": "Anda dapat melakukan transaksi dengan akun ini",
   "host": "Tuan rumah",
   "hub_announcement": "Pusat Pengumuman",
   "immutable": "Immutable",

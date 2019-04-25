@@ -463,6 +463,8 @@
   "header": "Encabezado",
   "height": "Altura",
   "highest_bid": "Oferta Más Alta",
+  "hint_offline_account": "Estas viendo esta cuenta",
+  "hint_online_account": "Puede ejecutar transacciones con esta cuenta.",
   "host": "Host",
   "hub_announcement": "Anuncio de Hub",
   "immutable": "Immutable",

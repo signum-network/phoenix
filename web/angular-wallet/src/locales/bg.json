@@ -463,6 +463,8 @@
   "header": "Заглавка",
   "height": "Височина",
   "highest_bid": "Най-висока купува",
+  "hint_offline_account": "Гледате този профил",
+  "hint_online_account": "Можете да извършвате транзакции с този профил",
   "host": "Сървър",
   "hub_announcement": "Обявяване на Хъб",
   "immutable": "Immutable",

@@ -463,6 +463,8 @@
   "header": "Otsikko",
   "height": "Korkeus",
   "highest_bid": "Korkein ostotarjous",
+  "hint_offline_account": "Katsot tätä tiliä",
+  "hint_online_account": "Voit suorittaa liiketoimet tällä tilillä",
   "host": "Isäntä",
   "hub_announcement": "Hub tiedote",
   "immutable": "Immutable",

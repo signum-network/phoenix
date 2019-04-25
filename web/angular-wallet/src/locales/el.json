@@ -463,6 +463,8 @@
   "header": "Επικεφαλίδα",
   "height": "Ύψος",
   "highest_bid": "Υψηλότερη προσφορά",
+  "hint_offline_account": "Παρακολουθείτε αυτόν τον λογαριασμό",
+  "hint_online_account": "Μπορείτε να εκτελέσετε συναλλαγές με αυτόν τον λογαριασμό",
   "host": "Διακομιστής",
   "hub_announcement": "Ανακοίνωση του διανομέα",
   "immutable": "Immutable",

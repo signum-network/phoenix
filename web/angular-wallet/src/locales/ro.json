@@ -463,6 +463,8 @@
   "header": "Antet",
   "height": "Culme",
   "highest_bid": "Cea mai mare ofertă",
+  "hint_offline_account": "Vă uitați la acest cont",
+  "hint_online_account": "Puteți efectua tranzacții cu acest cont",
   "host": "Server gazdă",
   "hub_announcement": "Anunț Hub",
   "immutable": "Immutable",

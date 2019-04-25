@@ -467,6 +467,8 @@
   "header": "Header",
   "height": "Height",
   "highest_bid": "Highest Bid",
+  "hint_offline_account": "You are watching this account",
+  "hint_online_account": "You can execute transactions with this account",
   "host": "Host",
   "hub_announcement": "Hub Announcement",
   "immutable": "Immutable",

@@ -463,6 +463,8 @@
   "header": "Antraštė",
   "height": "Bloko numeris",
   "highest_bid": "Didžiausia pasiūlyta kaina",
+  "hint_offline_account": "Jūs žiūrite šią paskyrą",
+  "hint_online_account": "Sandorius galite atlikti su šia paskyra",
   "host": "Host",
   "hub_announcement": "Centro skelbimas",
   "immutable": "Immutable",

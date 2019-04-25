@@ -463,6 +463,8 @@
   "header": "ヘッダー",
   "height": "高さ",
   "highest_bid": "最も高い入札",
+  "hint_offline_account": "あなたはこのアカウントを見ています",
+  "hint_online_account": "このアカウントで取引を実行できます",
   "host": "ホスト",
   "hub_announcement": "ハブの発表",
   "immutable": "Immutable",

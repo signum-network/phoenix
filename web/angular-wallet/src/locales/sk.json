@@ -463,6 +463,8 @@
   "header": "Hlavička",
   "height": "Výška",
   "highest_bid": "Najvyšší nákup",
+  "hint_offline_account": "Sledujete tento účet",
+  "hint_online_account": "S týmto účtom môžete vykonávať transakcie",
   "host": "Hostiteľ",
   "hub_announcement": "Oznámenie Hubu",
   "immutable": "Immutable",

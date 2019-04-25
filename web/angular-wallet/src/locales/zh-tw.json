@@ -463,6 +463,8 @@
   "header": "標題",
   "height": "高度",
   "highest_bid": "最高買單",
+  "hint_offline_account": "你正在看这个帐号",
+  "hint_online_account": "您可以使用此帐户执行交易",
   "host": "主機",
   "hub_announcement": "公告",
   "immutable": "Immutable",

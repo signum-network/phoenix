@@ -464,6 +464,8 @@
   "header": "Kopfzeile",
   "height": "Weite",
   "highest_bid": "Höchstes Kaufangebot",
+  "hint_offline_account": "Sie beobachten diesen Account",
+  "hint_online_account": "Sie können Transaktionen mit diesem Konto ausführen",
   "host": "Host",
   "hub_announcement": "Hub-Ankündigung",
   "immutable": "Immutable",
