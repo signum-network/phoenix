@@ -3,6 +3,8 @@ import {getBlockchainStatus} from '../factories/network/getBlockchainStatus';
 import {getServerStatus} from '../factories/network/getServerStatus';
 import {getTime} from '../factories/network/getTime';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
+import {suggestFee} from '../factories/network';
+import {FeeQuantumNQT} from '../../constants';
 
 describe('Network Api', () => {
 
@@ -40,7 +42,7 @@ describe('Network Api', () => {
         });
     });
 
-    describe('getNetworkState', () => {
+    describe('getServerStatus', () => {
         it('should getNetworkState', async () => {
 
             httpMock = HttpMockBuilder.create().onGetReply(200, {
@@ -56,7 +58,7 @@ describe('Network Api', () => {
             expect(status.numberOfAskOrders).toBeUndefined(); // not mapped
         });
 
-        it('should fail on getNetworkState', async () => {
+        it('should fail on getServerStatus', async () => {
             try {
                 httpMock = HttpMockBuilder.create().onGetThrowError(500, 'Internal Server Error').build();
                 const service = createBurstService(httpMock, 'relPath');
@@ -77,6 +79,27 @@ describe('Network Api', () => {
             const service = createBurstService(httpMock, 'relPath');
             const status = await getTime(service)();
             expect(status.time).toBe(100000000);
+        });
+    });
+
+
+    describe('suggestFee', () => {
+        it('should get suggested fees with minimum fee', async () => {
+            httpMock = HttpMockBuilder.create().onGetReply(200, {
+                standard: 1,
+                cheap: 2,
+                priority: 3,
+                requestProcessingTime: 100
+            }).build();
+            const service = createBurstService(httpMock, 'relPath');
+            const status = await suggestFee(service)();
+            expect(status).toEqual({
+                minimum: FeeQuantumNQT,
+                standard: 1,
+                cheap: 2,
+                priority: 3,
+                requestProcessingTime: 100
+            });
         });
     });
 });

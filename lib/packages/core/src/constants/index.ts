@@ -10,7 +10,13 @@ import {TransactionRewardRecipientSubtype} from './transactionRewardRecipientSub
 import {TransactionEscrowSubtype} from './transactionEscrowSubtype';
 import {TransactionSmartContractSubtype} from './transactionSmartContractSubtype';
 
+/**
+ * The smallest possible fee
+ */
+const FeeQuantumNQT = 73500;
+
 export {
+    FeeQuantumNQT,
     TransactionType,
     TransactionPaymentSubtype,
     TransactionMarketplaceSubtype,
