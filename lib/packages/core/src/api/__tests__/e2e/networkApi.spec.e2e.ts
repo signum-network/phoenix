@@ -1,8 +1,7 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
-import {getBlockchainStatus} from '../../factories/network/getBlockchainStatus';
-import {getServerStatus} from '../../factories/network/getServerStatus';
-import {getTime} from '../../factories/network/getTime';
+import {getBlockchainStatus, getServerStatus, getTime, suggestFee} from '../../factories/network';
+import {FeeQuantNQT} from '../../../constants';
 
 const environment = loadEnvironment();
 
@@ -32,6 +31,14 @@ describe('[E2E] Network Api', () => {
     it('should getTime', async () => {
         const status = await getTime(service)();
         expect(status.time).toBeGreaterThan(0);
+    });
+
+    it('should suggestFee', async () => {
+        const status = await suggestFee(service)();
+        expect(status.minimum).toBe(FeeQuantNQT);
+        expect(status.cheap).toBeGreaterThanOrEqual(FeeQuantNQT);
+        expect(status.standard).toBeGreaterThanOrEqual(FeeQuantNQT);
+        expect(status.priority).toBeGreaterThanOrEqual(FeeQuantNQT);
     });
 
 });
