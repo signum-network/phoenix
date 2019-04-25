@@ -37,7 +37,7 @@ export class BurstFeeSelectorComponent implements OnInit {
     });
     this.options = {
       step: 0.0000001,
-      floor: this.convertFeeToBurst(this.fees.cheap),
+      floor: this.convertFeeToBurst(this.fees.minimum),
       ceil: this.convertFeeToBurst(this.fees.priority),
       showSelectionBar: true,
       getSelectionBarColor: (value: number): string => {
