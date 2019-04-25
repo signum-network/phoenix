@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from 'app/layout/components/i18n/language-selector/node_modules/@angular/core';
 import { constants } from '../../../../constants'
 import { I18nService } from "../i18n.service";
 

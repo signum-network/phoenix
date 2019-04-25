@@ -31,7 +31,6 @@ class Send extends React.PureComponent<Props> {
     headerTitle: <HeaderTitle>{i18n.t(core.screens.send.title)}</HeaderTitle>
   };
 
-
   handleCreateAccount = () => {
     this.props.navigation.navigate(routes.createAccount);
   }
@@ -41,16 +40,12 @@ class Send extends React.PureComponent<Props> {
   }
 
   render () {
-     const currentAccount = {
-         accountRS: 'BURST-BURST-8JJY-TJYY-3PQY-DYLAN',
-         balanceNQT: '1,000'
-     }
     return (
       <Screen>
         <FullHeightView>
           <View style={styles.hintView}>
             <Text theme={TextThemes.HEADER}>
-                {i18n.t(core.screens.send.title)}
+              {i18n.t(core.screens.send.title)}
             </Text>
           </View>
           <View>

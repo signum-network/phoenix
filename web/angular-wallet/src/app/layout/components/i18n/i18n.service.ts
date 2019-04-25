@@ -1,7 +1,7 @@
-import {Injectable, ApplicationRef} from '@angular/core';
+import {Injectable, ApplicationRef} from 'app/layout/components/i18n/node_modules/@angular/core';
 
-import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { HttpClient } from 'app/layout/components/i18n/node_modules/@angular/common/http';
+import { Subject } from 'app/layout/components/i18n/node_modules/rxjs';
 import { constants } from '../../../constants';
 import { StoreService } from 'app/store/store.service';
 import { Settings } from 'app/settings';

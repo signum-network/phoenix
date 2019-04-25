@@ -31,7 +31,6 @@ class Receive extends React.PureComponent<Props> {
   };
 
   render () {
-     
     return (
       <Screen>
         <FullHeightView>
