@@ -26,7 +26,7 @@ class Home extends React.PureComponent<Props> {
     super(props);
     this.changeAccount = this.changeAccount.bind(this);
   }
-  
+
   static navigationOptions = {
     headerTitle: <HeaderTitle>{i18n.t(core.screens.home.title)}</HeaderTitle>
   };
