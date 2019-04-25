@@ -1,20 +1,20 @@
 <div class="fee-selector">
   <div class="__info">
-    <label class="pill">Suggested fees:</label>
+    <label class="pill">{{'suggested_fee' | i18n}}</label>
     <a class="--help"
        href="https://burst-apps-team.github.io/burst-wiki/en/transaction-and-fee-types/#fee-types"
        target="_blank"
-       matTooltip="Click here to know more about it"
+       matTooltip="{{'click_here_for_help' | i18n}}"
     >
       <mat-icon class="primary-100-fg font-size-20">help_outline</mat-icon>
     </a>
   </div>
   <div class="__fees">
-    Minimum: <em (click)="feeNQT=convertFeeToBurst(fees.minimum).toString()">{{ convertFeeToBurst(fees.minimum) }}</em>
-    Cheap: <em (click)="feeNQT=convertFeeToBurst(fees.cheap).toString()">{{ convertFeeToBurst(fees.cheap) }}</em>
-    Standard: <em
+    {{'minimum_fee' | i18n}}:<em (click)="feeNQT=convertFeeToBurst(fees.minimum).toString()">{{ convertFeeToBurst(fees.minimum) }}</em>
+    {{'cheap_fee' | i18n}}:<em (click)="feeNQT=convertFeeToBurst(fees.cheap).toString()">{{ convertFeeToBurst(fees.cheap) }}</em>
+    {{'standard_fee' | i18n}}: <em
     (click)="feeNQT=convertFeeToBurst(fees.standard).toString()">{{ convertFeeToBurst(fees.standard) }}</em>
-    Priority: <em
+    {{'priority_fee' | i18n}}: <em
     (click)="feeNQT=convertFeeToBurst(fees.priority).toString()">{{ convertFeeToBurst(fees.priority) }}</em>
   </div>
 </div>

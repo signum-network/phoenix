@@ -8,6 +8,7 @@ import { HorizontalLayout1Module } from 'app/layout/horizontal/layout-1/layout-1
 import { BurstFeeSelectorComponent } from './components/burst-fee-selector/burst-fee-selector.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import {MatIconModule, MatTooltipModule} from '@angular/material';
+import {I18nModule} from './components/i18n/i18n.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import {MatIconModule, MatTooltipModule} from '@angular/material';
     HorizontalLayout1Module,
     Ng5SliderModule,
     MatTooltipModule,
-    MatIconModule
+    MatIconModule,
+    I18nModule
   ],
     exports: [
         VerticalLayout1Module,
