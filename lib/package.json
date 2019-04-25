@@ -50,7 +50,7 @@
     "doc": "typedoc --options tsdoc.json --listInvalidSymbolLinks",
     "bootstrap": "lerna bootstrap && lerna exec npm install && lerna run tsc",
     "lint": "tslint -p tsconfig.json -t stylish -s node_modules/custom-tslint-formatters/formatters -t grouped",
-    "publish": "lerna run tsc && lerna publish -- --force-publish",
+    "publish": "lerna run tsc && lerna publish --force-publish",
     "tsc": "lerna run tsc",
     "build": "npm run tsc"
   },
