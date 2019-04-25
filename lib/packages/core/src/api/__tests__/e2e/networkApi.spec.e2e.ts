@@ -1,7 +1,7 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
 import {getBlockchainStatus, getServerStatus, getTime, suggestFee} from '../../factories/network';
-import {FeeQuantumNQT} from '../../../constants';
+import {FeeQuantNQT} from '../../../constants';
 
 const environment = loadEnvironment();
 
@@ -35,10 +35,10 @@ describe('[E2E] Network Api', () => {
 
     it('should suggestFee', async () => {
         const status = await suggestFee(service)();
-        expect(status.minimum).toBe(FeeQuantumNQT);
-        expect(status.cheap).toBeGreaterThanOrEqual(FeeQuantumNQT);
-        expect(status.standard).toBeGreaterThanOrEqual(FeeQuantumNQT);
-        expect(status.priority).toBeGreaterThanOrEqual(FeeQuantumNQT);
+        expect(status.minimum).toBe(FeeQuantNQT);
+        expect(status.cheap).toBeGreaterThanOrEqual(FeeQuantNQT);
+        expect(status.standard).toBeGreaterThanOrEqual(FeeQuantNQT);
+        expect(status.priority).toBeGreaterThanOrEqual(FeeQuantNQT);
     });
 
 });

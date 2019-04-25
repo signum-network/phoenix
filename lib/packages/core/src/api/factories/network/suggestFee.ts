@@ -5,7 +5,7 @@
  */
 import {BurstService} from '../../../service/burstService';
 import {SuggestedFees} from '../../../typings/suggestedFees';
-import {FeeQuantumNQT} from '../../../constants';
+import {FeeQuantNQT} from '../../../constants';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[NetworkApi]].
@@ -17,7 +17,7 @@ export const suggestFee = (service: BurstService): () => Promise<SuggestedFees> 
         const suggestedFees: SuggestedFees = await service.query('suggestFee');
         return {
             ...suggestedFees,
-            minimum: FeeQuantumNQT
+            minimum: FeeQuantNQT
         };
     };
 };
