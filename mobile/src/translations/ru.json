@@ -64,7 +64,8 @@
       "create": "Создать",
       "next": "Далее",
       "ok": "ОК",
-      "save": "Сохранить"
+      "save": "Сохранить",
+      "submit": "Submit"
     },
     "layout": {
       "preventBackButton": {
@@ -82,7 +83,9 @@
         "accountsList": "Accounts List"
       },
       "send": {
-        "title": "Send"
+        "title": "Send",
+        "amountNQT": "Amount",
+        "feeNQT": "Fee"
       },
       "receive": {
         "title": "Receive"

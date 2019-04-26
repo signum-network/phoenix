@@ -65,7 +65,8 @@
       "create": "Create",
       "next": "Next",
       "ok": "OK",
-      "save": "Save"
+      "save": "Save",
+      "submit": "Submit"
     },
     "layout": {
       "preventBackButton": {
@@ -83,7 +84,9 @@
         "accountsList": "Accounts List"
       },
       "send": {
-        "title": "Send"
+        "title": "Send",
+        "amountNQT": "Amount",
+        "feeNQT": "Fee"
       },
       "receive": {
         "title": "Receive"
