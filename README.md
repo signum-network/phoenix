@@ -24,7 +24,7 @@ Phoenix was proposed in [CIP-18](https://github.com/burst-apps-team/CIPs/blob/ma
 - Improved security - Private keys are encrypted with a hashed PIN, securing them in the event of data breach. That PIN is then used for locally signing transactions and decrypting messages. Passphrases are not stored locally, and never sent to the server. 
 - Multi-account support - Manage multiple BURST accounts within your wallet.
 - Offline account support - Add an account using just a BURST address for maximum security.
-- Cross-platform - Runs on Windows, OSX, and Linux without any additional software requirements.
+- Cross-platform - Runs on all popular platforms without any additional software requirements.
 - Dashboard - with Market Information and Interactive Balance History Diagram.
 
 ### Screenshots:
