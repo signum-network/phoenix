@@ -26,7 +26,7 @@ class Home extends React.PureComponent<Props> {
     headerTitle: <HeaderTitle>{i18n.t(core.screens.home.title)}</HeaderTitle>
   };
 
-  changeAccount = () => {
+  handleChangeAccount = () => {
     this.props.navigation.navigate(routes.accounts);
   }
 
@@ -47,7 +47,7 @@ class Home extends React.PureComponent<Props> {
               {selectedAccount.balanceNQT || '0'} USD
             </Text>
             <Text>{i18n.t(core.screens.home.recentTransactions)}</Text>
-            <Button onPress={this.changeAccount} title={i18n.t(core.screens.home.accountsList)} />
+            <Button onPress={this.handleChangeAccount} title={i18n.t(core.screens.home.accountsList)} />
           </View>
         </FullHeightView>
       </Screen>
