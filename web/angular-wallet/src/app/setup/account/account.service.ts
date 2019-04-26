@@ -250,7 +250,7 @@ export class AccountService {
     this.transactionsSeenInNotifications[transaction.transaction] = true;
     const incoming = transaction.recipientRS === this.currentAccount.value.accountRS;
     // @ts-ignore
-    return new window.Notification(incoming ? 
+    return window.Notification && new window.Notification(incoming ? 
       this.i18nService.getTranslation('youve_got_burst') :
       this.i18nService.getTranslation('you_sent_burst'), 
       { 
