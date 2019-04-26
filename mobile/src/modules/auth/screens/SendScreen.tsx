@@ -10,8 +10,8 @@ import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
 import { ApplicationState } from '../../../core/store/initialState';
 import { Sizes } from '../../../core/theme/sizes';
-import { AuthReduxState } from '../store/reducer';
 import { core } from '../../../core/translations';
+import { AuthReduxState } from '../store/reducer';
 
 interface IProps extends InjectedReduxProps {
   auth: AuthReduxState,
