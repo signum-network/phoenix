@@ -8,11 +8,10 @@ import { i18n } from '../../../core/i18n';
 import { InjectedReduxProps } from '../../../core/interfaces';
 import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
-import { routes } from '../../../core/navigation/routes';
 import { ApplicationState } from '../../../core/store/initialState';
 import { Sizes } from '../../../core/theme/sizes';
 import { AuthReduxState } from '../store/reducer';
-import { core } from '../translations';
+import { core } from '../../../core/translations';
 
 interface IProps extends InjectedReduxProps {
   auth: AuthReduxState,
@@ -30,14 +29,6 @@ class Send extends React.PureComponent<Props> {
   static navigationOptions = {
     headerTitle: <HeaderTitle>{i18n.t(core.screens.send.title)}</HeaderTitle>
   };
-
-  handleCreateAccount = () => {
-    this.props.navigation.navigate(routes.createAccount);
-  }
-
-  handleImportAccount = () => {
-    this.props.navigation.navigate(routes.importAccount);
-  }
 
   render () {
     return (
