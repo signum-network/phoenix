@@ -75,6 +75,17 @@
     "screens": {
       "loading": {
         "loadingText": "Загрузка..."
+      },
+      "home": {
+        "title": "BURST",
+        "recentTransactions": "Recent Transactions",
+        "accountsList": "Accounts List"
+      },
+      "send": {
+        "title": "Send"
+      },
+      "receive": {
+        "title": "Receive"
       }
     }
   },

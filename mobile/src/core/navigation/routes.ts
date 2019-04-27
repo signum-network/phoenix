@@ -6,6 +6,9 @@ export interface Routes {
   addAccount: string;
   createAccount: string;
   importAccount: string;
+  home: string;
+  send: string;
+  receive: string;
 }
 
 export type RoutesMap = {
@@ -19,5 +22,8 @@ export const routes: Routes = {
   accounts: 'accounts',
   addAccount: 'addAccount',
   createAccount: 'createAccount',
-  importAccount: 'importAccount'
+  importAccount: 'importAccount',
+  home: 'home',
+  send: 'send',
+  receive: 'receive'
 };
