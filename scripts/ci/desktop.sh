@@ -8,11 +8,14 @@ docker run --rm \
     electronuserland/builder:wine \
 /bin/bash -c "
 npm install -g @angular/cli && \
-cd lib && \
+echo Installing script runner deps
+cd scripts && \
+npm install && \
+echo Building BurstJS
+cd ../lib && \
 npm install && \
 npm run bootstrap && \
-cd ../scripts && \
-npm install && \
+echo Building Desktop Wallet
 cd ../desktop/wallet && \
 npm install && \
 npm run release:all"
