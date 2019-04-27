@@ -212,7 +212,7 @@ export class AccountService {
         account.balanceNQT = remoteAccount.balanceNQT;
         account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
 
-        const transactionList = await this.getAccountTransactions(account.account);
+        const transactionList = await this.getAccountTransactions(account.account, 0, 500);
         account.transactions = transactionList.transactions;
 
         const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account);
