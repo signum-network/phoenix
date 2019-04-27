@@ -227,7 +227,7 @@ export class AccountService {
         if (window.Notification) {
           unconfirmedTransactionsResponse.unconfirmedTransactions
             .filter(({transaction}) => this.isNewTransaction(transaction))
-            .map((transaction) => this.sendNewTransactionNotification(transaction));
+            .map(this.sendNewTransactionNotification);
         }
        
         account.transactions = unconfirmedTransactionsResponse.unconfirmedTransactions
