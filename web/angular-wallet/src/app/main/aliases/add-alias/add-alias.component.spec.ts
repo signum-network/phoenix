@@ -1,7 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddAliasComponent } from './add-alias.component';
-import { MatFormFieldModule, MatInputModule, MatSortModule, MatTableModule, MatIconModule, MatButtonModule, MatCardModule, MatSelectModule, MatGridListModule, MatCheckboxModule } from '@angular/material';
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatSortModule,
+  MatTableModule,
+  MatIconModule,
+  MatButtonModule,
+  MatCardModule,
+  MatSelectModule,
+  MatGridListModule,
+  MatCheckboxModule,
+  MatTooltipModule
+} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotifierModule } from 'angular-notifier';
@@ -39,6 +51,7 @@ describe('AddAliasComponent', () => {
         MatFormFieldModule,
         MatCardModule,
         MatSelectModule,
+        MatTooltipModule,
         Ng5SliderModule,
         MatGridListModule,
         MatCheckboxModule,
@@ -50,8 +63,8 @@ describe('AddAliasComponent', () => {
         )
       ],
       declarations: [ AddAliasComponent, BurstInputValidatorDirective, BurstFeeSelectorComponent ],
-      providers: [ 
-        I18nService, 
+      providers: [
+        I18nService,
         {
           provide: StoreService,
           useFactory: () => {
@@ -61,7 +74,7 @@ describe('AddAliasComponent', () => {
               saveSettings: () => Promise.resolve(true)
             }
           }
-        }, 
+        },
         {
           provide: AccountService,
           useFactory: () => {
@@ -70,7 +83,7 @@ describe('AddAliasComponent', () => {
               setAlias: () => Promise.resolve({broadcasted:true})
             }
           }
-        }, 
+        },
         {
           provide: ActivatedRoute,
           useValue: {
@@ -82,7 +95,7 @@ describe('AddAliasComponent', () => {
             }
           }
         },
-        BurstInputValidatorDirective 
+        BurstInputValidatorDirective
       ]
     })
     .compileComponents();

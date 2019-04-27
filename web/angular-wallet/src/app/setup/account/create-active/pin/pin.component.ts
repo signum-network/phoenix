@@ -35,6 +35,10 @@ export class AccountCreatePinComponent implements OnInit {
         this.createService.createActiveAccount().then((success) => {
             this.notificationService.notify('success', `Account added successfully`);
             this.createService.reset();
+            // Angular Stepper hack
+            setTimeout(x => {
+                this.createService.setStepIndex(0);
+            }, 0);
             this.router.navigate(['/']);
           },
           (error) => {

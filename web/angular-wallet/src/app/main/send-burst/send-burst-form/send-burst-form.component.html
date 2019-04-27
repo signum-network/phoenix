@@ -57,7 +57,7 @@
 
   <div class="send-button-wrapper">
     <mat-form-field class="message-text password-field" floatLabel="never" appearance="standard">
-      <input type="password" matInput required placeholder="Enter PIN" [(ngModel)]="pin" name="pin">
+      <input type="password" matInput required placeholder="{{'enter_pin' | i18n}}" [(ngModel)]="pin" name="pin">
     </mat-form-field>
 
     <button class="send-button" mat-icon-button type="submit" aria-label="Send message"

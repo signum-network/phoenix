@@ -4,14 +4,29 @@ matrix:
   fast_finish: true
   include:
   - name: "Build BurstJS"
+    os: "linux"
     node_js: "10"
     env: JOB=burstjs
   - name: "Build Web Wallet"
+    os: "linux"
     node_js: "10"
     env: JOB=web
+  - name: "Build Desktop Wallet"
+    if: branch = test-deploy
+    os: linux
+    node_js: "10"
+    services:
+      - docker
+    env: JOB=desktop
+
+before_cache:
+  - rm -rf $HOME/.cache/electron-builder/wine
 
 cache:
   directories:
     - node_modules
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
+
 script:
   - ./scripts/ci/$JOB.sh

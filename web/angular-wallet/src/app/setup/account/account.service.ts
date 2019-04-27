@@ -208,34 +208,10 @@ export class AccountService {
   */
   public synchronizeAccount(account: Account): Promise<Account> {
     return new Promise(async (resolve, reject) => {
-      try {
-
-        const remoteAccount = await this.getAccount(account.account);
-        account.name = remoteAccount.name;
-        account.description = remoteAccount.description;
-        account.assetBalances = remoteAccount.assetBalances;
-        account.unconfirmedAssetBalances = remoteAccount.unconfirmedAssetBalances;
-        account.balanceNQT = remoteAccount.balanceNQT;
-        account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
-
-        const transactionList = await this.getAccountTransactions(account.account);
-        account.transactions = transactionList.transactions;
-
-        const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account);
-        
-        // @ts-ignore - Send notifications for new transactions
-        if (window.Notification) {
-          unconfirmedTransactionsResponse.unconfirmedTransactions
-            .filter(({transaction}) => this.isNewTransaction(transaction))
-            .map((transaction) => this.sendNewTransactionNotification(transaction));
-        }
-       
-        account.transactions = unconfirmedTransactionsResponse.unconfirmedTransactions
-          .concat(account.transactions);
-
-      } catch (e) {
-        console.log(e);
-      }
+      // todo: parallelize
+      await this.syncAccountDetails(account);
+      await this.syncAccountTransactions(account);
+      await this.syncAccountUnconfirmedTransactions(account);
 
       this.storeService.saveAccount(account).catch(error => { reject(error); });
       resolve(account);
@@ -257,5 +233,49 @@ export class AccountService {
         body: `${convertNQTStringToNumber(transaction.amountNQT)} BURST`, 
         title: 'Phoenix'
       });
+
+  }
+
+  private async syncAccountUnconfirmedTransactions(account: Account): Promise<void> {
+    try {
+      const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account);
+      account.transactions = unconfirmedTransactionsResponse.unconfirmedTransactions
+        .concat(account.transactions);
+                
+      // @ts-ignore - Send notifications for new transactions
+      if (window.Notification) {
+        unconfirmedTransactionsResponse.unconfirmedTransactions
+          .filter(({transaction}) => this.isNewTransaction(transaction))
+          .map((transaction) => this.sendNewTransactionNotification(transaction));
+      }
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
+
+  private async syncAccountTransactions(account: Account): Promise<void> {
+    try {
+      const transactionList = await this.getAccountTransactions(account.account, 0, 500);
+      account.transactions = transactionList.transactions;
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
+
+  private async syncAccountDetails(account: Account): Promise<void> {
+    try {
+      const remoteAccount = await this.getAccount(account.account);
+      account.name = remoteAccount.name;
+      account.description = remoteAccount.description;
+      account.assetBalances = remoteAccount.assetBalances;
+      account.unconfirmedAssetBalances = remoteAccount.unconfirmedAssetBalances;
+      account.balanceNQT = remoteAccount.balanceNQT;
+      account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 }

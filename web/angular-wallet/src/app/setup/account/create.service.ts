@@ -77,7 +77,6 @@ export class CreateService {
     }
 
     public reset() {
-        this.setStepIndex(0);
         this.passphrase = [];
         this.account = undefined;
         this.accountRS = undefined;
