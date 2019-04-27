@@ -222,6 +222,7 @@ export class StoreService {
                             s.theme = save.theme;
                             s.contacts = save.contacts;
                             s.agree = save.agree;
+                            s.welcomeMessageHiddenFrom = save.welcomeMessageHiddenFrom;
                         });
                     } else {
                         settings.insert(save);

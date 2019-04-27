@@ -6,7 +6,8 @@ import {
   MatIconModule,
   MatMenuModule,
   MatSelectModule,
-  MatTabsModule
+  MatTabsModule,
+  MatToolbarModule
 } from '@angular/material';
 import {ChartsModule} from 'ng2-charts';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
@@ -53,6 +54,7 @@ const routes: Routes = [
     MatMenuModule,
     MatSelectModule,
     MatTabsModule,
+    MatToolbarModule,
     ChartsModule,
     NgxChartsModule,
 
