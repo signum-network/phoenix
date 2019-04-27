@@ -634,7 +634,7 @@
   "passphrase_length_warning": "Sua senha deve ter pelo menos 35 caracteres.",
   "passphrase_remote_warning": "Sua senha será enviada para o servidor!",
   "passphrase_required_to_decrypt_data": "Sua senha é necessária para descriptografar estes dados.",
-  "passphrase_warning": "<strong>Attention</strong>: The passphrase is everything that stands between your account and the rest of the world. Do not use any meaningful sentence, especially any that appears in song or literature.<br /><br />Don't ever disclose your passphrase. If you lose it you lose access to your account!",
+  "passphrase_warning": "Attention: The passphrase is everything that stands between your account and the rest of the world. Do not use any meaningful sentence, especially any that appears in song or literature.<br /><br />Don't ever disclose your passphrase. If you lose it you lose access to your account!",
   "passphrase_write_below": "Sua senha é muito importante! Para ter certeza de que você a salvou, por favor, escreva sua senha abaixo: ",
   "password_required_for_decryption": "Sua senha é necessária para descriptografar esta mensagem.",
   "payload": "Carga útil",

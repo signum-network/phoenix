@@ -634,7 +634,7 @@
   "passphrase_length_warning": "Паролата трябва да бъде най-малко 35 знака.",
   "passphrase_remote_warning": "Паролата ще бъде изпратена към сървъра!",
   "passphrase_required_to_decrypt_data": "Изисква се вашата паролата за да дешифрирате тези данни.",
-  "passphrase_warning": "<strong>Attention</strong>: The passphrase is everything that stands between your account and the rest of the world. Do not use any meaningful sentence, especially any that appears in song or literature.<br /><br />Don't ever disclose your passphrase. If you lose it you lose access to your account!",
+  "passphrase_warning": "Attention: The passphrase is everything that stands between your account and the rest of the world. Do not use any meaningful sentence, especially any that appears in song or literature.<br /><br />Don't ever disclose your passphrase. If you lose it you lose access to your account!",
   "passphrase_write_below": "Фразата на паролата е много важна! За да сте сигурни, че сте я запазили, моля напишете фразата по-долу: ",
   "password_required_for_decryption": "Необходима е вашата парола, за да дешифрирате тези съобщения.",
   "payload": "Съдържание",
