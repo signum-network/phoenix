@@ -11,10 +11,7 @@ npm install -g @angular/cli && \
 echo Installing script runner deps
 cd scripts && \
 npm install && \
-echo Building BurstJS
-cd ../lib && \
-npm install && \
-npm run bootstrap && \
+./ci/web.sh && \
 echo Building Desktop Wallet
 cd ../desktop/wallet && \
 npm install && \
