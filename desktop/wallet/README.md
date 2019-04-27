@@ -27,6 +27,8 @@ and then run
 
 The executable will be written into `./release-builds`
 
+| To build win32 on linux you need wine installed, additionally rpm must be installed, too
+
 _Example_:
 
 `npm release:win32` creates an .exe for windows (x86/x64)

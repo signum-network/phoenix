@@ -1,6 +1,9 @@
 {
   "name": "phoenix",
-  "author": "Burst Apps Team (BAT)",
+  "author": {
+    "name": "Burst Apps Team (BAT)",
+    "email": "contact@burstcoin.org"
+  },
   "productName": "Phoenix BURST Wallet",
   "version": "1.0.0-beta.2",
   "contributors": [
