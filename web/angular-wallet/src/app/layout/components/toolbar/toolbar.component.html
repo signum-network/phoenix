@@ -29,12 +29,15 @@
                     class="user-button">
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <span class="username mr-12" fxHide fxShow.gt-sm>
-                      <ng-container *ngIf="selectedAccount.type === 'offline'">
-                        <mat-icon class="account-type-icon" matTooltip="{{'hint_offline_account' | i18n}}">remove_red_eye</mat-icon>
-                      </ng-container>
-                      <ng-container *ngIf="selectedAccount.type !== 'offline'">
-                        <mat-icon class="account-type-icon" matTooltip="{{'hint_online_account' | i18n}}">verified_user</mat-icon>
-                      </ng-container>
+                        <ng-container *ngIf="selectedAccount.type === 'offline'">
+                            <mat-icon class="account-type-icon" matTooltip="{{'hint_offline_account' | i18n}}">remove_red_eye</mat-icon>
+                        </ng-container>
+                        <ng-container *ngIf="selectedAccount.type !== 'offline' && selectedAccount.confirmed">
+                            <mat-icon class="account-type-icon" matTooltip="{{'hint_online_account' | i18n}}">verified_user</mat-icon>
+                        </ng-container>
+                        <ng-container *ngIf="selectedAccount.type !== 'offline' && !selectedAccount.confirmed">
+                            <mat-icon class="account-type-icon" matTooltip="{{'error_no_public_key' | i18n}}">lock_open</mat-icon>
+                        </ng-container>
                         {{selectedAccount.name || selectedAccount.accountRS}}
                     </span>
                     <mat-icon class="s-16">keyboard_arrow_down</mat-icon>
@@ -44,14 +47,17 @@
             <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
 
                 <button *ngFor="let account of accounts" mat-menu-item class="" (click)="setAccount(account)">
-                  <span *ngIf="account" class="username mr-12">
-                      <ng-container *ngIf="account.type === 'offline'">
-                        <mat-icon class="account-type-icon" matTooltip="{{'hint_offline_account' | i18n}}">remove_red_eye</mat-icon>
-                      </ng-container>
-                      <ng-container *ngIf="account.type !== 'offline'">
-                        <mat-icon class="account-type-icon" matTooltip="{{'hint_online_account' | i18n}}">verified_user</mat-icon>
-                      </ng-container>
-                    {{account.name || account.accountRS}}
+                    <span *ngIf="account" class="username mr-12">
+                        <ng-container *ngIf="account.type === 'offline'">
+                            <mat-icon class="account-type-icon" matTooltip="{{'hint_offline_account' | i18n}}">remove_red_eye</mat-icon>
+                        </ng-container>
+                        <ng-container *ngIf="account.type !== 'offline' && account.confirmed">
+                            <mat-icon class="account-type-icon" matTooltip="{{'hint_online_account' | i18n}}">verified_user</mat-icon>
+                        </ng-container>
+                        <ng-container *ngIf="account.type !== 'offline' && !account.confirmed">
+                            <mat-icon class="account-type-icon" matTooltip="{{'error_no_public_key' | i18n}}">lock_open</mat-icon>
+                        </ng-container>
+                        {{account.name || account.accountRS}}
                     </span>
                 </button>
 

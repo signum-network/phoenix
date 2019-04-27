@@ -126,6 +126,7 @@ export class AccountService {
       const account: Account = new Account();
       // import active account
       account.type = 'active';
+      account.confirmed = false;
       const keys = generateMasterKeys(passphrase);
       const encryptedKey = encryptAES(keys.signPrivateKey, hashSHA256(pin));
       const encryptedSignKey = encryptAES(keys.agreementPrivateKey, hashSHA256(pin));
@@ -164,6 +165,7 @@ export class AccountService {
       if (existingAccount === undefined) {
         // import offline account
         account.type = 'offline';
+        account.confirmed = false;
         account.accountRS = address;
         account.account = accountId;
         await this.selectAccount(account);
@@ -242,8 +244,10 @@ export class AccountService {
       account.unconfirmedAssetBalances = remoteAccount.unconfirmedAssetBalances;
       account.balanceNQT = remoteAccount.balanceNQT;
       account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
+      account.confirmed = true;
     }
     catch (e) {
+      account.confirmed = false;
       console.log(e);
     }
   }
