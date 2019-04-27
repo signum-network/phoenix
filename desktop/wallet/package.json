@@ -40,8 +40,7 @@
     "ajv": "^6.10.0",
     "cross-env": "^5.2.0",
     "electron": "^5.0.0",
-    "electron-builder": "^20.39.0",
-    "electron-packager": "^13.0.1"
+    "electron-builder": "^20.39.0"
   },
   "build": {
     "productName": "Phoenix Burst Wallet",
