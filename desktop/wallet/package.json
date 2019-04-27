@@ -26,17 +26,17 @@
     "build": "node ../../scripts/build.js --target desktop",
     "start": "cross-env NODE_ENV=develop && npm run build && electron .",
     "start:fast": "cross-env NODE_ENV=develop && electron .",
-    "pack": "npm run build && electron-packager . Phoenix --overwrite --asar --prune=true --out=release-builds",
-    "release:all": "npm run pack -- --all",
-    "release:linux": "npm run pack -- --platform=linux --arch=x64 --icon=assets/images/png/256x256.png",
-    "release:win32": "npm run pack -- --platform=win32 --arch=x64 --icon=assets/images/win/128x128_icon.ico",
-    "release:macos": "npm run pack -- --platform=darwin --arch=x64 --icon=assets/images/mac/icon.icns",
-    "release:builder": "electron-builder -wml",
+    "pack": "npm run build && electron-builder",
+    "release:all": "npm run pack -- -wml",
+    "release:linux": "npm run pack -- -l",
+    "release:win32": "npm run pack -- -w",
+    "release:macos": "npm run pack -- -m",
     "postinstall": "electron-builder install-app-deps"
   },
   "devDependencies": {
+    "ajv": "^6.10.0",
     "cross-env": "^5.2.0",
-    "electron": "^4.0.1",
+    "electron": "^5.0.0",
     "electron-builder": "^20.39.0",
     "electron-packager": "^13.0.1"
   },
@@ -68,6 +68,10 @@
       "category": "Finance"
     },
     "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
       "publish": [
         "github"
       ]
