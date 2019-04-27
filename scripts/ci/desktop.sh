@@ -11,6 +11,8 @@ npm install -g @angular/cli && \
 cd lib && \
 npm install && \
 npm run bootstrap && \
+cd ../scripts && \
+npm install && \
 cd ../desktop/wallet && \
 npm install && \
 npm run release:all"
