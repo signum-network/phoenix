@@ -20,6 +20,7 @@ and then run
 
 `npm run release:<platform>`, where `platform` can be one of 
 
+- all (builds for all platforms)
 - win32
 - linux
 - macos
