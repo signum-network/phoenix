@@ -244,7 +244,8 @@ export class AccountService {
       account.unconfirmedAssetBalances = remoteAccount.unconfirmedAssetBalances;
       account.balanceNQT = remoteAccount.balanceNQT;
       account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
-      account.confirmed = true;
+      // @ts-ignore
+      account.confirmed = !!remoteAccount.publicKey;
     }
     catch (e) {
       account.confirmed = false;
