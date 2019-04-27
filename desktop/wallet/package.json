@@ -42,7 +42,7 @@
   },
   "build": {
     "productName": "Phoenix Burst Wallet",
-    "appId": "org.burst.phoenix",
+    "appId": "org.burstcoin.phoenix",
     "directories": {
       "output": "release-builds",
       "buildResources": "dist"
@@ -62,6 +62,12 @@
       "category": "public.app-category.finance"
     },
     "linux": {
+      "target": [
+        "AppImage",
+        "snap",
+        "deb",
+        "rpm"
+      ],
       "publish": [
         "github"
       ],
