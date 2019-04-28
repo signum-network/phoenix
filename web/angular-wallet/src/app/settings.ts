@@ -23,8 +23,13 @@ export class Settings {
     public theme: string;
     public version: string;
     public marketUrl: string;
+    
+    // user agreed to disclaimer
     public agree = false;
 
+    // user collapsed welcome message for these accounts
+    public welcomeMessageHiddenFrom: string[];
+    
     constructor(data: any = {}) {
         this.id = 'settings';
         if (data.contacts !== undefined && data.contacts.length > 0) {
@@ -40,5 +45,6 @@ export class Settings {
         this.theme = data.theme || constants.defaultTheme;
         this.version = data.version || version;
         this.agree = data.agree || this.agree;
+        this.welcomeMessageHiddenFrom = data.welcomeMessageHiddenFrom || [];
     }
 }

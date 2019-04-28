@@ -65,7 +65,7 @@ export class StoreService {
                 this.store.loadDatabase({}, () => {
                     const accounts = this.store.getCollection('accounts');
                     const rs = accounts.find({ account: account.account });
-                    if (rs.length == 0) {
+                    if (rs.length === 0) {
                         accounts.insert(account);
                     } else {
                         accounts.chain().find({ account: account.account }).update(w => {
@@ -75,6 +75,7 @@ export class StoreService {
                             w.name = account.name;
                             w.keys = account.keys;
                             w.transactions = account.transactions;
+                            w.confirmed = account.confirmed;
                         });
                     }
                     this.store.saveDatabase();
@@ -221,6 +222,7 @@ export class StoreService {
                             s.theme = save.theme;
                             s.contacts = save.contacts;
                             s.agree = save.agree;
+                            s.welcomeMessageHiddenFrom = save.welcomeMessageHiddenFrom;
                         });
                     } else {
                         settings.insert(save);
