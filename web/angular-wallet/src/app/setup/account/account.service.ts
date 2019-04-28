@@ -13,11 +13,13 @@ import {
   Balance,
   TransactionId,
   TransactionList,
-  UnconfirmedTransactionList
+  UnconfirmedTransactionList,
+  Transaction
 } from '@burstjs/core';
 import {decryptAES, encryptAES, generateMasterKeys, getAccountIdFromPublicKey, hashSHA256, Keys} from '@burstjs/crypto';
-import {convertAddressToNumericId, convertNumericIdToAddress, isBurstAddress} from '@burstjs/util';
+import {convertAddressToNumericId, convertNumericIdToAddress, isBurstAddress, convertNQTStringToNumber} from '@burstjs/util';
 import {ApiService} from '../../api.service';
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -51,7 +53,11 @@ export class AccountService {
   private api: Api;
   private selectedNode: NodeDescriptor;
 
-  constructor(private storeService: StoreService, private apiService: ApiService) {
+  // a simple string cache of transaction ids for which the user 
+  // has already received a push notification
+  private transactionsSeenInNotifications: string[] = [];
+
+  constructor(private storeService: StoreService, private apiService: ApiService, private i18nService: I18nService) {
     this.storeService.settings.subscribe((settings: Settings) => {
       this.api = this.apiService.api;
       this.selectedNode = {
@@ -212,11 +218,36 @@ export class AccountService {
     });
   }
 
+  public isNewTransaction(transactionId: string): boolean {
+    return (!this.transactionsSeenInNotifications[transactionId]);
+  }
+
+  public sendNewTransactionNotification(transaction: Transaction): void {
+    this.transactionsSeenInNotifications[transaction.transaction] = true;
+    const incoming = transaction.recipientRS === this.currentAccount.value.accountRS;
+    // @ts-ignore
+    return window.Notification && new window.Notification(incoming ? 
+      this.i18nService.getTranslation('youve_got_burst') :
+      this.i18nService.getTranslation('you_sent_burst'), 
+      { 
+        body: `${convertNQTStringToNumber(transaction.amountNQT)} BURST`, 
+        title: 'Phoenix'
+      });
+
+  }
+
   private async syncAccountUnconfirmedTransactions(account: Account): Promise<void> {
     try {
       const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account);
       account.transactions = unconfirmedTransactionsResponse.unconfirmedTransactions
         .concat(account.transactions);
+                
+      // @ts-ignore - Send notifications for new transactions
+      if (window.Notification) {
+        unconfirmedTransactionsResponse.unconfirmedTransactions
+          .filter(({transaction}) => this.isNewTransaction(transaction))
+          .map((transaction) => this.sendNewTransactionNotification(transaction));
+      }
     }
     catch (e) {
       console.log(e);
