@@ -83,9 +83,13 @@
         "accountsList": "Accounts List"
       },
       "send": {
+<<<<<<< HEAD
         "title": "Send",
         "amountNQT": "Amount",
         "feeNQT": "Fee"
+=======
+        "title": "Send"
+>>>>>>> 665eabb86958d57aa6142cf9bfd7fefb570a390e
       },
       "receive": {
         "title": "Receive"

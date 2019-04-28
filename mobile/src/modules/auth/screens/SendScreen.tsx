@@ -48,7 +48,7 @@ class Send extends React.PureComponent<Props> {
   };
 
   private handleSubmit = () => {
-    console.log(this.state.recipientAddress, this.state.amountNQT, this.state.feeNQT);
+    // console.log(this.state.recipientAddress, this.state.amountNQT, this.state.feeNQT);
   }
   private handleInputChange (key: keyof SendBurstFormState): ((text: string) => void) {
     return (text) => this.setState({ [key]: text });
