@@ -67,7 +67,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private async checkBlockchainStatus() {
       try {
         const blockchainStatus = await this.networkService.getBlockchainStatus();
-        this.isScanning = !this.firstTime && (this.previousLastBlock != blockchainStatus.lastBlock);
+        this.isScanning = !this.firstTime && (this.previousLastBlock !== blockchainStatus.lastBlock);
         this.previousLastBlock = blockchainStatus.lastBlock;
         if (this.isScanning) {
           await this.updateAccountsAndCheckBlockchainStatus(blockchainStatus);
