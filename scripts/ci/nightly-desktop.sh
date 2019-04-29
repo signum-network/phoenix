@@ -1,15 +1,8 @@
 #!/bin/bash
 
 echo ===============================
-echo Releasing Desktop Wallet
+echo Nightly Release Desktop Wallet
 echo ===============================
-
-if [[ $1 = "--force" ]]
-then
-echo ===============================
-echo  FORCED DEPLOY
-echo ===============================
-fi
 
 npm i @angular/cli -g
 
@@ -31,13 +24,10 @@ npm i
 cd ../../desktop/wallet
 npm install
 
-if [[ $1 = "--force" ]]
-then
-    npm run build
-    electron-builder -p "always" -w
-else
-#    npm run release:all
-    npm run release:win32
-fi
+git tag nightly-desktop --force
+git push --tags --force
+
+npm run release:all
+electron-builder -p "always"
 
 
