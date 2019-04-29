@@ -133,6 +133,7 @@
   "choose_own_passphrase": "Искате ли да изберете своя собствена парола-фраза? Щракнете тук.",
   "clear_results": "Изчисти резултатите",
   "clear_search_results": "Изчисти резултата от търсенето",
+  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Кликнете тук, за да научите повече за него",
   "click_here_to_enable": "Натиснете тук за разрешаване.",
   "close": "Затвори",
@@ -633,7 +634,7 @@
   "passphrase_length_warning": "Паролата трябва да бъде най-малко 35 знака.",
   "passphrase_remote_warning": "Паролата ще бъде изпратена към сървъра!",
   "passphrase_required_to_decrypt_data": "Изисква се вашата паролата за да дешифрирате тези данни.",
-  "passphrase_warning": "<strong>Attention</strong>: The passphrase is everything that stands between your account and the rest of the world. Do not use any meaningful sentence, especially any that appears in song or literature.<br /><br />Don't ever disclose your passphrase. If you lose it you lose access to your account!",
+  "passphrase_warning": "Attention: The passphrase is everything that stands between your account and the rest of the world. Do not use any meaningful sentence, especially any that appears in song or literature.<br /><br />Don't ever disclose your passphrase. If you lose it you lose access to your account!",
   "passphrase_write_below": "Фразата на паролата е много важна! За да сте сигурни, че сте я запазили, моля напишете фразата по-долу: ",
   "password_required_for_decryption": "Необходима е вашата парола, за да дешифрирате тези съобщения.",
   "payload": "Съдържание",
@@ -899,7 +900,7 @@
   "warning": "Предупреждение",
   "website": "Уебсайт",
   "website_or_text": "Уебсайт или текст",
-  "welcome_to_burst": "Welcome to Burst",
+  "welcome_to_burst": "Welcome to Burst!",
   "with_burst": "With BURST",
   "x_confirmations": "__x__ потвърждения",
   "yes": "Да",
@@ -912,5 +913,7 @@
   "your_address": "Your Address",
   "your_alias_sale_offer": "Вие предлагате този псевдоним за продажба.",
   "your_name": "Вашето име",
-  "your_passphrase": "Вашата парола"
+  "your_passphrase": "Вашата парола",
+  "youve_got_burst": "You've got Burst!",
+  "you_sent_burst": "You sent Burst"
 }

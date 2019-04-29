@@ -133,6 +133,7 @@
   "choose_own_passphrase": "Voleu triar la vostra contrasenya? Feu clic aquí.",
   "clear_results": "Netejar Resultats",
   "clear_search_results": "Netejar Resultats de Cerca",
+  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Feu clic aquí per saber-ne més",
   "click_here_to_enable": "Feu clic aquí per habilitar-lo.",
   "close": "Tancar",
@@ -633,7 +634,7 @@
   "passphrase_length_warning": "La seva Contrasenya ha de tenir com a mínim 35 caràcters de longitud.",
   "passphrase_remote_warning": "La seva Contrasenya s'enviarà al servidor!",
   "passphrase_required_to_decrypt_data": "Es requereix la vostre Contrasenya per desxifrar aquestes dades.",
-  "passphrase_warning": "<strong>Attention</strong>: The passphrase is everything that stands between your account and the rest of the world. Do not use any meaningful sentence, especially any that appears in song or literature.<br /><br />Don't ever disclose your passphrase. If you lose it you lose access to your account!",
+  "passphrase_warning": "Attention: The passphrase is everything that stands between your account and the rest of the world. Do not use any meaningful sentence, especially any that appears in song or literature.<br /><br />Don't ever disclose your passphrase. If you lose it you lose access to your account!",
   "passphrase_write_below": "La contrasenya és molt important! Per estar segurs de que la heu guardat, si us plau escrigui la contrasenya sota: ",
   "password_required_for_decryption": "Es necessita la vostre Contrasenya per desxifrar aquests missatges.",
   "payload": "Càrrega",
@@ -899,7 +900,7 @@
   "warning": "Avís",
   "website": "Pàgina Web",
   "website_or_text": "Pàgina Web o Text",
-  "welcome_to_burst": "Benvinguts a burst",
+  "welcome_to_burst": "Benvinguts a burst!",
   "with_burst": "Amb burst",
   "x_confirmations": "__x__ confirmacions",
   "yes": "Si",
@@ -912,5 +913,7 @@
   "your_address": "Your Address",
   "your_alias_sale_offer": "Has posat aquest Àlies a la venta.",
   "your_name": "El vostre nom",
-  "your_passphrase": "La vostre Contrasenya"
+  "your_passphrase": "La vostre Contrasenya",
+  "youve_got_burst": "You've got Burst!",
+  "you_sent_burst": "You sent Burst"
 }

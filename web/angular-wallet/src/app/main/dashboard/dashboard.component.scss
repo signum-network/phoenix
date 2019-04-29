@@ -58,4 +58,44 @@
     .recent-transactions {
         overflow-y: auto;
     }
+
+    mat-toolbar-row {
+
+        background-color: #5CB85C;
+        color: #FFF;
+        border-radius: 3px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        cursor: default;
+        padding-top: 11px;
+        padding-right: 16px;
+        padding-bottom: 10px;
+        padding-left: 16px;
+        margin-bottom:20px;
+        white-space: normal;
+
+        &.warning {
+            background:#F0AD4E;
+        }
+
+        a { 
+            color:#fff;
+            text-decoration: underline;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        .spacer {
+            flex: 1 1 auto;
+        }
+    
+        mat-icon {
+            padding:0 35px 0 0;
+        }
+
+        .close {
+            cursor: pointer;
+        }
+    }
+
 }

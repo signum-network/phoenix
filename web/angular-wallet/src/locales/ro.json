@@ -133,6 +133,7 @@
   "choose_own_passphrase": "Dorești să alegi propria parolă? Fă clic aici.",
   "clear_results": "Șterge rezultate",
   "clear_search_results": "Șterge Rezultate Căutare",
+  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Faceți clic aici pentru a afla mai multe despre el",
   "click_here_to_enable": "Click aici pentru activare.",
   "close": "Închidere",
@@ -633,7 +634,7 @@
   "passphrase_length_warning": "Parola ta de acces trebuie să aibă cel puţin 35 de caractere.",
   "passphrase_remote_warning": "Parola ta de autentificare va fi trimisă la server!",
   "passphrase_required_to_decrypt_data": "Parola ta de acces este necesară pentru a decripta aceste date.",
-  "passphrase_warning": "<strong>Attention</strong>: The passphrase is everything that stands between your account and the rest of the world. Do not use any meaningful sentence, especially any that appears in song or literature.<br /><br />Don't ever disclose your passphrase. If you lose it you lose access to your account!",
+  "passphrase_warning": "Attention: The passphrase is everything that stands between your account and the rest of the world. Do not use any meaningful sentence, especially any that appears in song or literature.<br /><br />Don't ever disclose your passphrase. If you lose it you lose access to your account!",
   "passphrase_write_below": "Parloa ta este foarte importantă! Pentru a fi sigur că ai salvat-o, te rugăm să o scrii din nou mai jos: ",
   "password_required_for_decryption": "Este necesară parola ta de acces pentru a decripta aceste mesaje.",
   "payload": "Capacitate utilă",
@@ -899,7 +900,7 @@
   "warning": "Atenţie",
   "website": "Pagină Web",
   "website_or_text": "Pagină Web sau text",
-  "welcome_to_burst": "Bine ai venit la burst",
+  "welcome_to_burst": "Bine ai venit la burst!",
   "with_burst": "Cu burst",
   "x_confirmations": "__x__ confirmări",
   "yes": "Da",
@@ -912,5 +913,7 @@
   "your_address": "Your Address",
   "your_alias_sale_offer": "Ai pus acest alias la vânzare.",
   "your_name": "Numele tău",
-  "your_passphrase": "Parola ta"
+  "your_passphrase": "Parola ta",
+  "youve_got_burst": "You've got Burst!",
+  "you_sent_burst": "You sent Burst"
 }
