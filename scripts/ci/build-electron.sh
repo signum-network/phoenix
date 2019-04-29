@@ -1,18 +1,22 @@
 #!/usr/bin/env bash
 echo
 echo ==================================
-echo Building Ng Wallet
+echo Building Electron Wallet
 echo ==================================
 echo
 
+# install script deps
+cd scripts
+npm install
+
 # build burstjs
-cd lib
+cd ../lib
 npm install
 npm run bootstrap
 
 # now build ng
-cd ../web/angular-wallet
+cd ../desktop/wallet
 npm install
-npm run build:ci
+npm run build
 
 

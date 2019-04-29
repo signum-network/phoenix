@@ -2,20 +2,18 @@
 
 echo
 echo ==================================
-echo Building BurstJS
+echo Testing Ng Wallet
 echo ==================================
 echo
+
+# building burstjs
 cd lib
 npm install
 npm run bootstrap
 
-echo
-echo ==================================
-echo Buildung Ng Wallet
-echo ==================================
-echo
+# testing ng
 cd ../web/angular-wallet
 npm install
-npm run build:ci
+npm run test
 
 
