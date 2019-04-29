@@ -1,7 +1,7 @@
 import { AuthenticateConfig } from 'react-native-touch-id';
 import { AnyAction as ReduxAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { AuthStorageKeys, KeyChainKeys } from './enums';
+import { AsyncParticleStates, AuthStorageKeys, KeyChainKeys } from './enums';
 import { ApplicationState } from './store/initialState';
 
 export interface InjectedReduxProps {
@@ -10,6 +10,12 @@ export interface InjectedReduxProps {
 
 export interface AnyAction<T> extends ReduxAction {
   payload: T;
+}
+
+export interface AsyncParticle<T = any> {
+  data: T | null;
+  state: AsyncParticleStates;
+  error: Error | null;
 }
 
 /**
@@ -53,8 +59,14 @@ export interface Reducers<State> {
   [key: string]: (state: State, action: AnyAction<any>) => State;
 }
 
+export interface BurstSettings {
+  nodeHost: string;
+  apiRootUrl: string;
+}
+
 export interface AppSettings {
   passcodeTime: number; // Time, after then we should ask passcode again, msec.
+  burstSettings: BurstSettings;
 }
 
 export type StorageKey = AuthStorageKeys;

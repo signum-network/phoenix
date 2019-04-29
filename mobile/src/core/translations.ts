@@ -16,14 +16,6 @@ export const core = {
       title: 'core.screens.home.title',
       recentTransactions: 'core.screens.home.recentTransactions',
       accountsList: 'core.screens.home.accountsList'
-    },
-    send: {
-      title: 'core.screens.send.title',
-      amountNQT: 'core.screens.send.amountNQT',
-      feeNQT: 'core.screens.send.feeNQT'
-    },
-    receive: {
-      title: 'core.screens.receive.title'
     }
   }
 };

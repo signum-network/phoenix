@@ -10,8 +10,8 @@ import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
 import { ApplicationState } from '../../../core/store/initialState';
 import { Sizes } from '../../../core/theme/sizes';
-import { core } from '../../../core/translations';
-import { AuthReduxState } from '../store/reducer';
+import { AuthReduxState } from '../../auth/store/reducer';
+import { transactions } from '../translations';
 
 interface IProps extends InjectedReduxProps {
   auth: AuthReduxState,
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
 class Receive extends React.PureComponent<Props> {
   static navigationOptions = {
-    headerTitle: <HeaderTitle>{i18n.t(core.screens.receive.title)}</HeaderTitle>
+    headerTitle: <HeaderTitle>{i18n.t(transactions.screens.receive.title)}</HeaderTitle>
   };
 
   render () {
@@ -36,7 +36,7 @@ class Receive extends React.PureComponent<Props> {
         <FullHeightView>
           <View style={styles.hintView}>
             <Text theme={TextThemes.HEADER}>
-                {i18n.t(core.screens.receive.title)}
+                {i18n.t(transactions.screens.receive.title)}
             </Text>
           </View>
           <View>

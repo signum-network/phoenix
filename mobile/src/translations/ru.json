@@ -65,7 +65,7 @@
       "next": "Далее",
       "ok": "ОК",
       "save": "Сохранить",
-      "submit": "Submit"
+      "submit": "Отправить"
     },
     "layout": {
       "preventBackButton": {
@@ -74,21 +74,13 @@
       }
     },
     "screens": {
+      "home": {
+        "accountsList": "Список аккаунтов",
+        "recentTransactions": "Последние транзакции",
+        "title": "BURST"
+      },
       "loading": {
         "loadingText": "Загрузка..."
-      },
-      "home": {
-        "title": "BURST",
-        "recentTransactions": "Recent Transactions",
-        "accountsList": "Accounts List"
-      },
-      "send": {
-        "title": "Send",
-        "amountNQT": "Amount",
-        "feeNQT": "Fee"
-      },
-      "receive": {
-        "title": "Receive"
       }
     }
   },
@@ -99,6 +91,19 @@
       "passphrase": "Кодовая фраза",
       "pin": "ПИН",
       "title": "Учетная запись"
+    }
+  },
+  "transactions": {
+    "screens": {
+      "receive": {
+        "title": "Получить"
+      },
+      "send": {
+        "amountNQT": "Количество",
+        "feeNQT": "Комиссия",
+        "sent": "Отправлено!",
+        "title": "Отправить"
+      }
     }
   }
 }
