@@ -28,11 +28,10 @@
     "tsc": "tsc --init --pretty --jsx react"
   },
   "dependencies": {
-    "@burstjs/core": "^0.1.0-rc.3",
-    "@burstjs/crypto": "^0.1.0-rc.3",
-    "@burstjs/http": "^0.1.0-rc.3",
-    "@burstjs/util": "^0.1.0-rc.3",
-    "@types/react-native-touch-id": "^4.0.1",
+    "@burstjs/core": "^0.1.1",
+    "@burstjs/crypto": "^0.1.1",
+    "@burstjs/http": "^0.1.1",
+    "@burstjs/util": "^0.1.1",
     "axios": "^0.18.0",
     "i18n-js": "^3.1.0",
     "lodash": "^4.17.11",
@@ -58,6 +57,7 @@
     "@types/lodash": "^4.14.120",
     "@types/react": "^16.7.20",
     "@types/react-native": "^0.57.29",
+    "@types/react-native-touch-id": "^4.0.1",
     "@types/react-navigation": "^3.0.1",
     "@types/react-redux": "^7.0.0",
     "@types/react-test-renderer": "^16.0.3",
