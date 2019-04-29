@@ -1,4 +1,7 @@
 #!/bin/bash
+
+echo ${GH_TOKEN}
+
 echo ===============================
 echo Installing Scripts Dependencies
 echo ===============================
