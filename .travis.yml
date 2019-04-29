@@ -1,7 +1,4 @@
 language: node_js
-global:
-  env:
-    secure: GQnK33wQHPEaydOMFNueVS2DnGHsv83vZypbwdGrTPQjFWZ8bvWHPzFkRmxpLfEecrIEFf+R96fjlmT44eJgryY1lPV9L/jFGC6RRB78YQDFYzxV/ucpghYht8K5yMPq80TNyVtdrnVF2RaeYGAa3KK691nwTh/KQSbQTQ2RClVgkIBkwD1AfiBsSDhzDfqjwEFgZzIG2PSA1QpFcLjTumKcEW0ZDcpwUW60O0BZ+7eaiLa8sqjMkDEgvpXf6X52fMhwfaQf7X4DNPAVGuGD/mO8qNpNC3pqWh9zSV5/YtWA+xMrVKyKm+1EvRtLIo6MJwAqUfGSD/5zsaUjHbqpF+fbmnqPycCzZHaAqITL/Y/BGjh61t8Q/LJuOeZ6Qpw/INn48jSTyQsyGR6huH9WwAlwIg4ZH7HyNhPTUtxkXU1/vDy2g1iDdgROiWK2Xr+IOlnJE8hWadxclfXmSzlaBqdkjNXUVb7ecY58vBuEMPOuMZzTAIyqIEOyG80PG9LoYTCTsgFQtVxQGh4DRT4M9gUhBZAPHYY9ilLgLHw7CMJ3ta4xW59tvuOHJRaqqSybBv79SqOzJ58k+M9zV0sM4So7NbnPK+ZliV4LFsuajo6XVrULEF4UcnF1wpoMnCOjZVulSMxcJzbXWwHZDxlCCxs4a7DrzDoiokWAh9HPrrc=
 matrix:
   fast_finish: true
   include:
@@ -20,7 +17,7 @@ matrix:
     env: JOB=desktop-osx
   - name: Build Desktop Wallet Staged
     - stage: Run BurstJS Tests
-      script: echo BurstJS Tests
+      script: echo ${GH_PAGES} && echo BurstJS Tests
     - stage: Run Build Web Wallet
       script: echo Web Wallet Build
     - stage: Deploy
