@@ -4,6 +4,7 @@ echo ===============================
 echo Nightly Release Desktop Wallet
 echo ===============================
 
+brew install rpm
 npm i @angular/cli -g
 
 # install script deps

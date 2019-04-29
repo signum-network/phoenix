@@ -11,6 +11,7 @@ echo  FORCED DEPLOY
 echo ===============================
 fi
 
+brew install rpm
 npm i @angular/cli -g
 
 # install script deps
@@ -34,7 +35,8 @@ npm install
 if [[ $1 = "--force" ]]
 then
     npm run build
-    electron-builder -p "always" -wml
+#    electron-builder -p "always" -wml
+    electron-builder -p "always" -l
 else
     npm run release:all
 fi
