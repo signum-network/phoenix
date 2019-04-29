@@ -58,6 +58,10 @@
     ],
     "icon": "./assets/images/png/512x512.png",
     "mac": {
+      "target" : [
+        "zip",
+        "tar.gz"
+      ],
       "publish": [
         "github"
       ],
@@ -80,9 +84,17 @@
         "nsis",
         "portable"
       ],
+
       "publish": [
         "github"
       ]
+    },
+    "nsis": {
+      "multiLanguageInstaller": true,
+      "oneClick": true,
+      "allowElevation": false,
+      "packElevateHelper": false,
+      "perMachine": false
     }
   }
 }
