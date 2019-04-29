@@ -70,9 +70,9 @@
     "linux": {
       "target": [
         "AppImage",
-        "snap",
         "deb",
-        "rpm"
+        "rpm",
+        "tar.gz"
       ],
       "publish": [
         "github"

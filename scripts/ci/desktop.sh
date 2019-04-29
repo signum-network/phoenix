@@ -1,4 +1,6 @@
 #!/bin/bash
 
-docker build --tag=devtest --file=./scripts/docker/desktop/Dockerfile  .
-docker run devtest
+ImageName=phoenix-desktop
+
+docker build --tag=${ImageName} --file=./scripts/docker/desktop/Dockerfile  .
+docker run ${ImageName}
