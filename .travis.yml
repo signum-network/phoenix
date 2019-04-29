@@ -18,6 +18,14 @@ matrix:
     os: osx
     node_js: '10'
     env: JOB=desktop-osx
+  - name: Build Desktop Wallet Staged
+    - stage: Run BurstJS Tests
+      script: echo BurstJS Tests
+    - stage: Run Build Web Wallet
+      script: echo Web Wallet Build
+    - stage: Deploy
+      script: echo Desktop Wallet
+
 before_cache:
 - rm -rf $HOME/.cache/electron-builder/wine
 cache:
