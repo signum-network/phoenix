@@ -10,21 +10,26 @@ cache:
 jobs:
   include:
     - stage: build
-      name: "Build App"
       os: linux
+      name: "Build Angular App"
       script: './scripts/ci/build-ng.sh'
     - # parallel run
-      script: './scripts/ci/build-desktop.sh'
-    - # parallel run
+      name: "Build Electron App"
       script: './scripts/ci/build-electron.sh'
     - stage: test
-      name: "Running Tests"
       os: linux
+      name: "Run BurstJS Tests"
       script: './scripts/ci/test-burstjs.sh'
     - # parallel run
+      name: "Run Angular Tests"
       script: './scripts/ci/test-ng.sh'
     - stage: deploy
-      name: "Build and Deploy Desktop App"
-      if: branch=/^force-deploy/
       os: osx
+      name: "Build and Deploy Desktop App"
       script: './scripts/ci/release-desktop.sh'
+
+stages:
+  - build
+  - test
+  - name: deploy
+    if: branch=/^force-deploy/

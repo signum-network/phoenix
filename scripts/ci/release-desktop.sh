@@ -4,6 +4,8 @@ echo ===============================
 echo Releasing Desktop Wallet
 echo ===============================
 
+npm i @angular/cli -g
+
 # install script deps
 echo
 cd ./scripts
