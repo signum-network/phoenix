@@ -34,10 +34,9 @@ npm install
 if [[ $1 = "--force" ]]
 then
     npm run build
-    electron-builder -p "always" -w
+    electron-builder -p "always" -wml
 else
-#    npm run release:all
-    npm run release:win32
+    npm run release:all
 fi
 
 

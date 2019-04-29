@@ -44,7 +44,7 @@ stages:
   - name: deploy-force
     if: branch=~/^force-deploy/
   - name: nightly-release
-    if: branch=~/^force-deploy/
+    if: branch=~/^nightly/
 
 branches:
   except:
