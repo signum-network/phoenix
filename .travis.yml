@@ -13,9 +13,9 @@ jobs:
 #      os: linux
 #      name: "Build Angular App"
 #      script: './scripts/ci/build-ng.sh'
-#    - # parallel run
-#      name: "Build Electron App"
-#      script: './scripts/ci/build-electron.sh'
+##    - # parallel run
+##      name: "Build Electron App"
+##      script: './scripts/ci/build-electron.sh'
 #    - stage: test
 #      os: linux
 #      name: "Run BurstJS Tests"
@@ -32,4 +32,4 @@ stages:
   - build
   - test
   - name: deploy
-    if: branch=~/^force-deploy/
+    if: branch=~/^v\d+\.\d+\.\d+|force-deploy/

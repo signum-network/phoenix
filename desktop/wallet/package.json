@@ -34,7 +34,8 @@
     "release:linux": "npm run pack -- -l",
     "release:win32": "npm run pack -- -w",
     "release:macos": "npm run pack -- -m",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "release":"build"
   },
   "devDependencies": {
     "ajv": "^6.10.0",
