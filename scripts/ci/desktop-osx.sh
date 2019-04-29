@@ -1,13 +1,9 @@
 #!/bin/bash
-
-# Root of docker image is /app
-
-
 echo ===============================
 echo Installing Scripts Dependencies
 echo ===============================
 echo
-cd /app/scripts
+cd ./scripts
 npm i
 
 echo
@@ -15,7 +11,7 @@ echo ==================================
 echo Building newest version of BurstJS
 echo ==================================
 echo
-cd /app/lib
+cd ../lib
 npm install
 npm run bootstrap
 
@@ -23,7 +19,7 @@ echo ======================================
 echo Installing Angular Wallet Dependencies
 echo ======================================
 echo
-cd /app/web/angular-wallet
+cd ../web/angular-wallet
 npm i
 
 echo
@@ -31,7 +27,7 @@ echo =====================================
 echo Installing Desktop Wallet Dependencies
 echo =====================================
 echo
-cd /app/desktop/wallet
+cd ../../desktop/wallet
 npm install
 
 echo
@@ -41,4 +37,3 @@ echo ==============================================
 echo
 # npm run release:all
 npm run release:win32
-npm run publish

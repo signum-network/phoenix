@@ -1,5 +1,9 @@
 language: node_js
 
+global:
+  env:
+    secure: gjSV8sxtojuyLNcu2f6htmdIrrs/nkCTUBd39stQj6MYV176E9b9fz4i/aiodsGpqh2wl76TFhnY587e5pQBALHoMxMi79Um6f+EeL9nLOze37A5vRCptwsZyQkUIVjIuUFzYLpJ4MxuSHe5NJEMIgdLRanvYamY9yMPoz58mZkxmeE9M6YdN6tZsFyK6gjaogNGFY4oq8YyjF1cgXq8qQKOArqLmG3bEAc3dodZ0gXPdkXu5S+0BI1g/9P5DET97Q0KFvCqs6BB5tp59Xtv+7rfs7Pp5Qc2eMmBGyPOR0Dyh5gUjBCBB7Z8qY3KB2faxS/c2VgEYwcepMx06b3Fb2KHNbJi2sAj+rAIxaeYS7zwgfeviXIwtRf2Lol/XZ0Z0FGjRqP5BDP0PipyChlUGy2gO+OPRep9434kh3sdurQj176Mz/tvQTwRLP22/yfALVib7YtwJyCqZs/2e5yXbrfgTuXMuMf87W2oZ/9zT1XRWlkoAmBgEo0/Z3Slu8P2a1kwCA8YkCB9jkLJyx7VtP9ee5ShP2YbT2hqJ1dcnquR7Hk5R8Jn9PmxqRtiLSAblrJ2WWsRQVwFH2nalojeSV9HDmgjssGhiaCQKBSsrfGQMqZjpj40dfRCVajaRA/Fwx/AHkYMPqQs2f5K1WaYvmXSw5uBuhsVo2ndTA5Lo/0=
+
 matrix:
   fast_finish: true
   include:
@@ -12,12 +16,10 @@ matrix:
     node_js: "10"
     env: JOB=web
   - name: "Build Desktop Wallet"
-    if: branch=stable-desktop
-    os: "linux"
+    if: branch=/^test-/
+    os: "osx"
     node_js: "10"
-    services:
-      - docker
-    env: JOB=desktop
+    env: JOB=desktop-osx
 
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
