@@ -10,6 +10,11 @@
         <mat-icon (click)="closeWelcomeNotification()" class="close">close</mat-icon>
       </mat-toolbar-row>
 
+      <mat-toolbar-row class="warning" *ngIf="!account.confirmed && account.balanceNQT">
+        <mat-icon>warning</mat-icon>
+        <span>{{ 'no_public_key_warning' | i18n }}</span>
+      </mat-toolbar-row>
+
       <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
         <div class="widget" fxFlex="100" fxFlex.gt-sm="40" fxFlex.gt-md="60">
           <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">

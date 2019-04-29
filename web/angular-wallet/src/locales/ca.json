@@ -634,7 +634,7 @@
   "passphrase_length_warning": "La seva Contrasenya ha de tenir com a mínim 35 caràcters de longitud.",
   "passphrase_remote_warning": "La seva Contrasenya s'enviarà al servidor!",
   "passphrase_required_to_decrypt_data": "Es requereix la vostre Contrasenya per desxifrar aquestes dades.",
-  "passphrase_warning": "<strong>Attention</strong>: The passphrase is everything that stands between your account and the rest of the world. Do not use any meaningful sentence, especially any that appears in song or literature.<br /><br />Don't ever disclose your passphrase. If you lose it you lose access to your account!",
+  "passphrase_warning": "Attention: The passphrase is everything that stands between your account and the rest of the world. Do not use any meaningful sentence, especially any that appears in song or literature.<br /><br />Don't ever disclose your passphrase. If you lose it you lose access to your account!",
   "passphrase_write_below": "La contrasenya és molt important! Per estar segurs de que la heu guardat, si us plau escrigui la contrasenya sota: ",
   "password_required_for_decryption": "Es necessita la vostre Contrasenya per desxifrar aquests missatges.",
   "payload": "Càrrega",

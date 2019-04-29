@@ -69,9 +69,13 @@
         padding-top: 11px;
         padding-right: 16px;
         padding-bottom: 10px;
-        padding-left: 26px;
+        padding-left: 16px;
         margin-bottom:20px;
         white-space: normal;
+
+        &.warning {
+            background:#F0AD4E;
+        }
 
         a { 
             color:#fff;
@@ -86,7 +90,7 @@
         }
     
         mat-icon {
-            padding:0 30px 0 0;
+            padding:0 35px 0 0;
         }
 
         .close {
