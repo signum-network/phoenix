@@ -29,6 +29,12 @@ export type ThunkAction<Result> = (dispatch: ThunkDispatch<ApplicationState, any
 export type CustomAction<Payload, Result> =
   (dispatch: ThunkDispatch<ApplicationState, any, any>, getState: GetState, payload: Payload) => Result;
 
+export interface AsyncParticleReducers<State, Begin = any, Success = any, Failed = any> {
+  begin: Reducer<State, Begin>;
+  success: Reducer<State, Success>;
+  failed: Reducer<State, Failed>;
+}
+
 export interface KeychainCredentials {
   username: string;
   password: string;

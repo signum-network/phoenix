@@ -6,8 +6,8 @@ import { actionTypes } from './actionTypes';
 
 const actions = {
   sendMoney: createAction<SendMoneyPayload>(actionTypes.sendMoney),
-  sendMoneySuccess: createAction<any>(actionTypes.sendMoneySuccess),
-  sendMoneyFailed: createAction<any>(actionTypes.sendMoneyFailed)
+  sendMoneySuccess: createAction<TransactionId>(actionTypes.sendMoneySuccess),
+  sendMoneyFailed: createAction<Error>(actionTypes.sendMoneyFailed)
 };
 
 export interface SendMoneyPayload {
