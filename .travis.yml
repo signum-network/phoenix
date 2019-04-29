@@ -16,7 +16,7 @@ matrix:
     node_js: "10"
     env: JOB=web
   - name: "Build Desktop Wallet"
-    if: branch=/^test-/
+    if: branch=~ /^force-deploy-/
     os: "osx"
     node_js: "10"
     env: JOB=desktop-osx
