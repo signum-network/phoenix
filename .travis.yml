@@ -12,14 +12,14 @@ matrix:
     node_js: "10"
     env: JOB=web
   - name: "Build Desktop Wallet"
-    if: branch = test-desktop*
+    if: branch = test-desktop-deploy
     os: linux
-    node_js: "10"
+    node_js: "10":
     services:
       - docker
     env: JOB=desktop
 
-before_cache:
+before_cache::
   - rm -rf $HOME/.cache/electron-builder/wine
 
 cache:
