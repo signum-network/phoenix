@@ -1,34 +1,29 @@
 language: node_js
-
 global:
   env:
-    secure: gjSV8sxtojuyLNcu2f6htmdIrrs/nkCTUBd39stQj6MYV176E9b9fz4i/aiodsGpqh2wl76TFhnY587e5pQBALHoMxMi79Um6f+EeL9nLOze37A5vRCptwsZyQkUIVjIuUFzYLpJ4MxuSHe5NJEMIgdLRanvYamY9yMPoz58mZkxmeE9M6YdN6tZsFyK6gjaogNGFY4oq8YyjF1cgXq8qQKOArqLmG3bEAc3dodZ0gXPdkXu5S+0BI1g/9P5DET97Q0KFvCqs6BB5tp59Xtv+7rfs7Pp5Qc2eMmBGyPOR0Dyh5gUjBCBB7Z8qY3KB2faxS/c2VgEYwcepMx06b3Fb2KHNbJi2sAj+rAIxaeYS7zwgfeviXIwtRf2Lol/XZ0Z0FGjRqP5BDP0PipyChlUGy2gO+OPRep9434kh3sdurQj176Mz/tvQTwRLP22/yfALVib7YtwJyCqZs/2e5yXbrfgTuXMuMf87W2oZ/9zT1XRWlkoAmBgEo0/Z3Slu8P2a1kwCA8YkCB9jkLJyx7VtP9ee5ShP2YbT2hqJ1dcnquR7Hk5R8Jn9PmxqRtiLSAblrJ2WWsRQVwFH2nalojeSV9HDmgjssGhiaCQKBSsrfGQMqZjpj40dfRCVajaRA/Fwx/AHkYMPqQs2f5K1WaYvmXSw5uBuhsVo2ndTA5Lo/0=
-
+    secure: GQnK33wQHPEaydOMFNueVS2DnGHsv83vZypbwdGrTPQjFWZ8bvWHPzFkRmxpLfEecrIEFf+R96fjlmT44eJgryY1lPV9L/jFGC6RRB78YQDFYzxV/ucpghYht8K5yMPq80TNyVtdrnVF2RaeYGAa3KK691nwTh/KQSbQTQ2RClVgkIBkwD1AfiBsSDhzDfqjwEFgZzIG2PSA1QpFcLjTumKcEW0ZDcpwUW60O0BZ+7eaiLa8sqjMkDEgvpXf6X52fMhwfaQf7X4DNPAVGuGD/mO8qNpNC3pqWh9zSV5/YtWA+xMrVKyKm+1EvRtLIo6MJwAqUfGSD/5zsaUjHbqpF+fbmnqPycCzZHaAqITL/Y/BGjh61t8Q/LJuOeZ6Qpw/INn48jSTyQsyGR6huH9WwAlwIg4ZH7HyNhPTUtxkXU1/vDy2g1iDdgROiWK2Xr+IOlnJE8hWadxclfXmSzlaBqdkjNXUVb7ecY58vBuEMPOuMZzTAIyqIEOyG80PG9LoYTCTsgFQtVxQGh4DRT4M9gUhBZAPHYY9ilLgLHw7CMJ3ta4xW59tvuOHJRaqqSybBv79SqOzJ58k+M9zV0sM4So7NbnPK+ZliV4LFsuajo6XVrULEF4UcnF1wpoMnCOjZVulSMxcJzbXWwHZDxlCCxs4a7DrzDoiokWAh9HPrrc=
 matrix:
   fast_finish: true
   include:
-  - name: "Build BurstJS"
-    os: "linux"
-    node_js: "10"
+  - name: Build BurstJS
+    os: linux
+    node_js: '10'
     env: JOB=burstjs
-  - name: "Build Web Wallet"
-    os: "linux"
-    node_js: "10"
+  - name: Build Web Wallet
+    os: linux
+    node_js: '10'
     env: JOB=web
-  - name: "Build Desktop Wallet"
+  - name: Build Desktop Wallet
     if: branch=~ /^force-deploy-/
-    os: "osx"
-    node_js: "10"
+    os: osx
+    node_js: '10'
     env: JOB=desktop-osx
-
 before_cache:
-  - rm -rf $HOME/.cache/electron-builder/wine
-
+- rm -rf $HOME/.cache/electron-builder/wine
 cache:
   directories:
-    - node_modules
-    - $HOME/.cache/electron
-    - $HOME/.cache/electron-builder
-
+  - node_modules
+  - "$HOME/.cache/electron"
+  - "$HOME/.cache/electron-builder"
 script:
-  - ./scripts/ci/$JOB.sh
+- "./scripts/ci/$JOB.sh"
