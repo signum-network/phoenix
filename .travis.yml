@@ -12,8 +12,8 @@ matrix:
     node_js: "10"
     env: JOB=web
   - name: "Build Desktop Wallet"
-    if: branch = test-deploy
-    os: linux
+    if: branch=stable-desktop
+    os: "linux"
     node_js: "10"
     services:
       - docker
