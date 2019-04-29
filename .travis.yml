@@ -27,9 +27,15 @@ jobs:
       os: osx
       name: "Build and Deploy Desktop App"
       script: './scripts/ci/release-desktop.sh'
+    - stage: deploy-force
+      os: osx
+      name: "Forced Build and Deploy Desktop App"
+      script: './scripts/ci/release-desktop.sh --force'
 
 stages:
   - build
   - test
   - name: deploy
-    if: branch=~/^v\d+\.\d+\.\d+|force-deploy/
+    if: branch=~/^v\d+\.\d+\.\d+/
+  - name: deploy-force
+    if: branch=~/^force-deploy/

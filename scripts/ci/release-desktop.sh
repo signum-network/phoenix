@@ -26,3 +26,10 @@ npm install
 
 # npm run release:all
 npm run release:win32
+
+if [[ $1 = "--force" ]]
+then
+    electron-builder -p "always"
+fi
+
+
