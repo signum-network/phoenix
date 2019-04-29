@@ -1,20 +1,21 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo
 echo ==================================
-echo Testing Ng Wallet
+echo Building BurstJS
 echo ==================================
 echo
-
-# pre-built lib to resolve deps
 cd lib
 npm install
 npm run bootstrap
 
-# run angular build
+echo
+echo ==================================
+echo Buildung Ng Wallet
+echo ==================================
+echo
 cd ../web/angular-wallet
 npm install
-npm run test
 npm run build:ci
 
-cd ../..
+
