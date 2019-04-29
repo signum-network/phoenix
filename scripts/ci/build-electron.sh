@@ -16,8 +16,12 @@ cd ../lib
 npm install
 npm run bootstrap
 
+# install angular deps
+cd ../web/angular-wallet
+npm install
+
 # now build ng
-cd ../desktop/wallet
+cd ../../desktop/wallet
 npm install
 npm run build
 
