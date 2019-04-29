@@ -34,7 +34,7 @@
     "jest": "^24.1.0",
     "jsdoc-babel": "^0.5.0",
     "jsdoc-to-markdown": "^4.0.1",
-    "lerna": "^3.13.3",
+    "lerna": "^3.13.4",
     "regenerator-runtime": "^0.13.1",
     "ts-jest": "^23.10.5",
     "tslint": "^5.12.1",
