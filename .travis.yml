@@ -1,50 +1,54 @@
 language: node_js
 node_js: '10'
+os: osx
+
+before_cache:
+  - brew cleanup
 
 cache:
   directories:
     - node_modules
     - "$HOME/.cache/electron"
     - "$HOME/.cache/electron-builder"
+    - "$HOME/Library/Caches/Homebrew"
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install graphviz; fi
 
 jobs:
   include:
 #    - stage: build
-#      os: linux
 #      name: "Build Angular App"
 #      script: './scripts/ci/build-ng.sh'
-##    - # parallel run
-##      name: "Build Electron App"
-##      script: './scripts/ci/build-electron.sh'
+#    - # parallel run
+#      name: "Build Electron App"
+#      script: './scripts/ci/build-electron.sh'
 #    - stage: test
-#      os: linux
 #      name: "Run BurstJS Tests"
 #      script: './scripts/ci/test-burstjs.sh'
 #    - # parallel run
 #      name: "Run Angular Tests"
 #      script: './scripts/ci/test-ng.sh'
-    - stage: deploy
-      os: osx
-      name: "Build and Deploy Desktop App"
-      script: './scripts/ci/release-desktop.sh'
-    - stage: deploy-force
-      os: osx
-      name: "Forced Build and Deploy Desktop App"
-      script: './scripts/ci/release-desktop.sh --force'
+#    - stage: deploy
+#      name: "Build and Deploy Desktop App"
+#      script: './scripts/ci/release-desktop.sh'
+#    - stage: deploy-force
+#      name: "Forced Build and Deploy Desktop App"
+#      script: './scripts/ci/release-desktop.sh --force'
     - stage: nightly-release
-      os: osx
       name: "Nightly Release of Desktop App"
-      script: './scripts/ci/nightly-release.sh'
+      script: './scripts/ci/nightly-desktop.sh'
 
 stages:
   - build
   - test
   - name: deploy
     if: branch=~/^v\d+\.\d+\.\d+/
-  - name: deploy-force
-    if: branch=~/^force-deploy/
+#  - name: deploy-force
+#    if: branch=~/^force-deploy/
   - name: nightly-release
-    if: branch=~/^nightly/
+    if: (branch=/^force-deploy/) AND (tag != nightly)
 
 branches:
   except:

@@ -25,7 +25,10 @@ npm i
 cd ../../desktop/wallet
 npm install
 
-git tag nightly-desktop --force
+git checkout develop
+git pull
+git checkout nightly
+git tag nightly --force
 git push --tags --force
 
 npm run release:all
