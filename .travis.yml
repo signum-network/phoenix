@@ -34,7 +34,6 @@ jobs:
 #      script: './scripts/ci/release-desktop.sh --force'
     - stage: nightly-release
       name: "Nightly Release of Desktop App"
-      before_install: echo "Before install"
       install: echo "install"
       script: './scripts/ci/nightly-desktop.sh'
       before_deploy:
@@ -48,14 +47,15 @@ jobs:
         api_key: $GH_TOKEN
         file_glob: true
         file:
+          - /**/README.md
           - /desktop/wallet/release-builds/latest*
           - /desktop/wallet/release-builds/Phoenix*
           - /desktop/wallet/release-builds/phoenix*
         skip_cleanup: true
         overwrite: true
-#        on:
-#          branch: nig
-#          condition: $TRAVIS_TAG=nightly
+        on:
+          branch: nightly
+          condition: $TRAVIS_TAG=nightly
 
 stages:
   - build
