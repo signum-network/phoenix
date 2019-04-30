@@ -1,4 +1,5 @@
 import { BurstService } from '@burstjs/core';
+import { defaultSettings } from '../../environment';
 import { AppSettings, BurstSettings, Reducer } from '../../interfaces';
 import { createReducers } from '../../utils/store';
 import { actionTypes } from './actionTypes';
@@ -11,15 +12,17 @@ export interface AppReduxState {
 
 export function getDefaultAppSettings (): AppSettings {
   return {
-    passcodeTime: 600000, // 10 min,
+    passcodeTime: defaultSettings.passcodeTime, // 10 min,
     burstSettings: getDefaultBurstSettings()
   };
 }
 
 export function getDefaultBurstSettings (): BurstSettings {
+  const { nodeHost, apiRootUrl } = defaultSettings;
+
   return {
-    nodeHost: 'https://wallet1.burst-team.us:2083',
-    apiRootUrl: '/burst'
+    nodeHost,
+    apiRootUrl
   };
 }
 
