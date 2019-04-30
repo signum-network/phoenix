@@ -29,19 +29,19 @@ jobs:
 #    - stage: deploy
 #      name: "Build and Deploy Desktop App"
 #      script: './scripts/ci/release-desktop.sh'
-    - stage: deploy-force
-      name: "Forced Build and Deploy Desktop App"
-      script: './scripts/ci/release-desktop.sh --force'
-#    - stage: nightly-release
-#      name: "Nightly Release of Desktop App"
-#      script: './scripts/ci/nightly-desktop.sh'
+#    - stage: deploy-force
+#      name: "Forced Build and Deploy Desktop App"
+#      script: './scripts/ci/release-desktop.sh --force'
+    - stage: nightly-release
+      name: "Nightly Release of Desktop App"
+      script: './scripts/ci/nightly-desktop.sh'
 
 stages:
   - build
   - test
-  - name: deploy
-    if: branch=~/^v\d+\.\d+\.\d+/
-  - name: deploy-force
-    if: branch=~/^force-deploy/
-#  - name: nightly-release
-#    if: (branch=/^force-deploy/) AND (tag != nightly)
+#  - name: deploy
+#    if: branch=~/^v\d+\.\d+\.\d+/
+#  - name: deploy-force
+#    if: branch=~/^force-deploy/
+  - name: nightly-release
+    if: (branch=nightly) AND (tag IS empty)
