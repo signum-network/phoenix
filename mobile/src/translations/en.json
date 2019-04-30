@@ -75,21 +75,13 @@
       }
     },
     "screens": {
+      "home": {
+        "accountsList": "Accounts List",
+        "recentTransactions": "Recent Transactions",
+        "title": "BURST"
+      },
       "loading": {
         "loadingText": "Loading..."
-      },
-      "home": {
-        "title": "BURST",
-        "recentTransactions": "Recent Transactions",
-        "accountsList": "Accounts List"
-      },
-      "send": {
-        "title": "Send",
-        "amountNQT": "Amount",
-        "feeNQT": "Fee"
-      },
-      "receive": {
-        "title": "Receive"
       }
     }
   },
@@ -100,6 +92,19 @@
       "passphrase": "Passphrase",
       "pin": "PIN",
       "title": "Account"
+    }
+  },
+  "transactions": {
+    "screens": {
+      "receive": {
+        "title": "Receive"
+      },
+      "send": {
+        "amountNQT": "Amount",
+        "feeNQT": "Fee",
+        "sent": "Sent!",
+        "title": "Send"
+      }
     }
   }
 }

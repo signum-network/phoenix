@@ -4,8 +4,8 @@ import {
   NavigationContainer
 } from 'react-navigation';
 import { mainStack } from '../../modules/auth/navigation/mainStack';
-import { receiveStack } from '../../modules/auth/navigation/receiveStack';
-import { sendStack } from '../../modules/auth/navigation/sendStack';
+import { receiveStack } from '../../modules/transactions/navigation/receiveStack';
+import { sendStack } from '../../modules/transactions/navigation/sendStack';
 import { routes, RoutesMap } from './routes';
 
 const routesMap: RoutesMap = {
