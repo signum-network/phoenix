@@ -4,8 +4,13 @@ echo ===============================
 echo Nightly Release Desktop Wallet
 echo ===============================
 
-brew install rpm
 npm i @angular/cli -g
+
+# sync nightly with latest stuff
+git checkout develop
+git pull
+git checkout nightly
+git merge develop
 
 # install script deps
 echo
@@ -25,13 +30,16 @@ npm i
 cd ../../desktop/wallet
 npm install
 
-git checkout develop
-git pull
-git checkout nightly
 git tag nightly --force
 git push --tags --force
 
+# only builds, but not publish
 npm run release:all
-electron-builder -p "always"
+
+# electron builder bumps version of package.json - this is no good for nightly builds
+#electron-builder -p "always"
+
+# need to run a current release
+echo "TODO: release the artifacts manually"
 
 
