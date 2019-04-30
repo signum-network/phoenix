@@ -1,6 +1,6 @@
+os: osx
 language: node_js
 node_js: '10'
-os: osx
 
 before_cache:
   - brew cleanup
@@ -11,10 +11,6 @@ cache:
     - "$HOME/.cache/electron"
     - "$HOME/.cache/electron-builder"
     - "$HOME/Library/Caches/Homebrew"
-
-before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install graphviz; fi
 
 jobs:
   include:
@@ -49,7 +45,3 @@ stages:
     if: branch=~/^force-deploy/
 #  - name: nightly-release
 #    if: (branch=/^force-deploy/) AND (tag != nightly)
-
-branches:
-  except:
-    - nightly-desktop
