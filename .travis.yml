@@ -34,7 +34,6 @@ jobs:
 #      script: './scripts/ci/release-desktop.sh --publish'
     - stage: nightly-release
       name: "Nightly Release of Desktop App"
-      before_install: echo $GIT_NAME $GH_TOKEN $GIT_EMAIL
       script: './scripts/ci/nightly-desktop.sh'
       before_deploy:
         # Set up git user name and tag this commit
@@ -47,10 +46,10 @@ jobs:
         api_key: $GH_TOKEN
         file_glob: true
         file:
-          - /**/README.md
-          - /desktop/wallet/release-builds/latest*
-          - /desktop/wallet/release-builds/Phoenix*
-          - /desktop/wallet/release-builds/phoenix*
+          - ./README.md
+#          - /desktop/wallet/release-builds/latest*
+#          - /desktop/wallet/release-builds/Phoenix*
+#          - /desktop/wallet/release-builds/phoenix*
         skip_cleanup: true
         overwrite: true
         on:
