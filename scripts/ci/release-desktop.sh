@@ -30,7 +30,7 @@ then
     echo ===============================
     echo  RELEASING ARTIFACTS
     echo ===============================
-    npm run publish -- -wml
+    npm run publish
 fi
 
 

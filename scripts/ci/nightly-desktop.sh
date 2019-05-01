@@ -4,6 +4,7 @@ echo ===============================
 echo Nightly Release Desktop Wallet
 echo ===============================
 
+
 npm i @angular/cli -g
 
 # install script deps
@@ -24,6 +25,10 @@ npm i
 cd ../../desktop/wallet
 npm install
 
+echo Need to bump version to nightly
+
 # only builds, but not publish
-npm run release:macos
+#npm run release:all
+#npm run publish
+
 
