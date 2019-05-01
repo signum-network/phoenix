@@ -44,7 +44,7 @@ export class SendMultiOutFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.recipients = [this.createRecipient(), this.createRecipient()];
+    this.recipients = [this.createRecipient()];
   }
 
   async onSubmit(event): Promise<void> {
@@ -102,13 +102,19 @@ export class SendMultiOutFormComponent implements OnInit {
     event.preventDefault();
   }
 
-  getTotal(): number {
-    const calculateMultiOutTotal = this.recipients.map((recipient) => {
-      return parseFloat(recipient.amountNQT) || 0;
-    }).reduce((acc, curr) => acc + curr, 0);
+  private getTotalForMultiOut(): number{
+    return this.recipients
+      .map(({amountNQT}) => parseFloat(amountNQT) || 0)
+      .reduce((acc, curr) => acc + curr, 0);
+  }
 
-    return this.sameAmount ? parseFloat(this.amountNQT) + parseFloat(this.feeNQT) || 0
-      : calculateMultiOutTotal + parseFloat(this.feeNQT) || 0;
+  private getTotalForSameAmount(): number {
+    return parseFloat(this.amountNQT) * this.recipients.length;
+  }
+
+  getTotal(): number {
+    const calculateAmount = this.sameAmount ? this.getTotalForSameAmount() : this.getTotalForMultiOut();
+    return calculateAmount + parseFloat(this.feeNQT) || 0;
   }
 
   canSubmit(): boolean {
