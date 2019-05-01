@@ -46,7 +46,7 @@ jobs:
         api_key: $GH_TOKEN
         file_glob: true
         file:
-          - ./README.md
+          - README.md
 #          - /desktop/wallet/release-builds/latest*
 #          - /desktop/wallet/release-builds/Phoenix*
 #          - /desktop/wallet/release-builds/phoenix*
