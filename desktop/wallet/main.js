@@ -5,9 +5,15 @@ let win;
 
 const isDevelopment = process.env.development;
 
+const isLinux = () => process.platform === 'linux';
+const isMacOS = () => process.platform === 'darwin';
+const isWindows = () => process.platform === 'win32';
+
 function getBrowserWindowConfig() {
     const commonConfig = {
-        icon: path.join(__dirname, 'assets/images/png/64x64.png')
+        icon: path.join(__dirname, 'assets/images/png/64x64.png'),
+        center: true,
+        show: false,
     };
     return isDevelopment ? {
         ...commonConfig,
@@ -15,26 +21,22 @@ function getBrowserWindowConfig() {
         width: 800,
         height: 600
     } :
-        {
-            ...commonConfig,
-            fullscreen: true,
-        }
+    {
+        ...commonConfig,
+    }
 }
 
 function createWindow() {
 
     const distPath = path.join(__dirname, "./dist");
-    // Create the browser window.
     win = new BrowserWindow(getBrowserWindowConfig());
-
     win.loadURL(`file://${distPath}/index.html`);
+    win.maximize();
+    win.show();
 
-    // win.webContents.openDevTools();
-
-    // Event when the window is closed.
     win.on('closed', function () {
         win = null
-    })
+    });
 
     const template = [
         {
@@ -97,7 +99,7 @@ function createWindow() {
         }
     ];
 
-    if (process.platform === 'darwin') {
+    if (isMacOS()) {
         template.unshift({
             label: app.getName(),
 
@@ -113,7 +115,7 @@ function createWindow() {
                 { type: 'separator' },
                 { role: 'quit', accelerator: 'Command+Q', click: () => { app.quit(); } }
             ]
-        })
+        });
 
         // Edit menu
         template[1].submenu.push(
@@ -143,7 +145,8 @@ function createWindow() {
 // Create window on electron intialization
 app.on('ready', createWindow);
 
-if (process.platform === 'darwin') {
+// TODO: need this for other OSes
+if (isMacOS()) {
     app.setAboutPanelOptions({
         applicationName: app.getName(),
         applicationVersion: app.getVersion(),
@@ -155,9 +158,8 @@ if (process.platform === 'darwin') {
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
-
     // On macOS specific close process
-    if (process.platform !== 'darwin') {
+    if (!isMacOS()) {
         app.quit()
     }
 });
