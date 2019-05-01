@@ -14,18 +14,18 @@ cache:
 
 jobs:
   include:
-#    - stage: build
-#      name: "Build Angular App"
-#      script: './scripts/ci/build-ng.sh'
-#    - # parallel run
-#      name: "Build Electron App"
-#      script: './scripts/ci/build-electron.sh'
-#    - stage: test
-#      name: "Run BurstJS Tests"
-#      script: './scripts/ci/test-burstjs.sh'
-#    - # parallel run
-#      name: "Run Angular Tests"
-#      script: './scripts/ci/test-ng.sh'
+    - stage: build
+      name: "Build Angular App"
+      script: './scripts/ci/build-ng.sh'
+    - # parallel run
+      name: "Build Electron App"
+      script: './scripts/ci/build-electron.sh'
+    - stage: test
+      name: "Run BurstJS Tests"
+      script: './scripts/ci/test-burstjs.sh'
+    - # parallel run
+      name: "Run Angular Tests"
+      script: './scripts/ci/test-ng.sh'
     - stage: deploy
       name: "Build and Deploy Desktop App"
       script: './scripts/ci/release-desktop.sh'
@@ -46,11 +46,11 @@ jobs:
         api_key: $GH_TOKEN
         file_glob: true
         file:
-#          - /desktop/wallet/release-builds/latest*
+          - /desktop/wallet/release-builds/latest*
           - /desktop/wallet/release-builds/Phoenix*
           - /desktop/wallet/release-builds/phoenix*
         skip_cleanup: true
-        overwrite: false
+        overwrite: true
         on:
           branch: develop
           condition: $TRAVIS_TAG=nightly
