@@ -64,4 +64,4 @@ stages:
 #  - name: deploy-force
 #    if: branch=~/^force-deploy/
   - name: nightly-release
-    if: (branch=develop) AND (tag IS blank)
+    if: (branch=nightly) AND (tag IS blank)
