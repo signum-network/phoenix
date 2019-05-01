@@ -6,13 +6,6 @@ echo ===============================
 
 npm i @angular/cli -g
 
-git status
-
-git checkout origin/develop
-git pull
-git checkout -
-git merge origin/develop
-
 # install script deps
 echo
 cd ./scripts

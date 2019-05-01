@@ -28,7 +28,7 @@ npm run release:all
 if [[ $1 = "--publish" ]]
 then
     echo ===============================
-    echo  FORCED DEPLOY
+    echo  RELEASING ARTIFACTS
     echo ===============================
     npm run publish
 fi
