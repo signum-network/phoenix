@@ -133,9 +133,9 @@
   "choose_own_passphrase": "Искате ли да изберете своя собствена парола-фраза? Щракнете тук.",
   "clear_results": "Изчисти резултатите",
   "clear_search_results": "Изчисти резултата от търсенето",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Кликнете тук, за да научите повече за него",
   "click_here_to_enable": "Натиснете тук за разрешаване.",
+  "click_to_claim": "Кликнете тук, за да поискате безплатния Burst.",
   "close": "Затвори",
   "comment": "Коментар",
   "complete": "Завърши",
@@ -908,12 +908,12 @@
   "you_received_assets": "Получихте един __name__ актив.",
   "you_received_assets_plural": "Вие получихте __count__ __name__ активи.",
   "you_received_message": "Получихте съобщение от __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "Вие продадохте, прехвърлихте или изтрихте един __name__ актив.",
   "you_sold_assets_plural": "Вие продадохте, прехвърлихте или изтрихте __count__ __name__ активи.",
   "your_address": "Your Address",
   "your_alias_sale_offer": "Вие предлагате този псевдоним за продажба.",
   "your_name": "Вашето име",
   "your_passphrase": "Вашата парола",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }

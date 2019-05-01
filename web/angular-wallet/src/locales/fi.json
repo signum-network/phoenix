@@ -133,9 +133,9 @@
   "choose_own_passphrase": "Haluatko valita oman tunnuslauseen? Klikkaa tästä.",
   "clear_results": "Tyhjennä  tulokset",
   "clear_search_results": "Tyhjennä hakutulokset",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Saat lisätietoja siitä napsauttamalla tätä",
   "click_here_to_enable": "Klikkaa tästä ottaaksesi sen käyttöön.",
+  "click_to_claim": "Klikkaa tästä väittääksesi vapaan purskeen.",
   "close": "Sulje",
   "comment": "Kommentti",
   "complete": "Valmis",
@@ -908,12 +908,12 @@
   "you_received_assets": "You received <a href='#' data-goto-asset='__asset__'>1 __name__ asset</a>.",
   "you_received_assets_plural": "You received <a href='#' data-goto-asset='__asset__'>__count__ __name__ assets</a>.",
   "you_received_message": "You received a <a href='#' data-goto-messages-account='__account__'>message</a> from __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "You sold or transferred <a href='#' data-goto-asset='__asset__'>1 __name__ asset</a>.",
   "you_sold_assets_plural": "You sold or transferred <a href='#' data-goto-asset='__asset__'>__count__ __name__ assets</a>.",
   "your_address": "Your Address",
   "your_alias_sale_offer": "Tarjoat tätä aliasta myytäväksi.",
   "your_name": "Nimesi",
   "your_passphrase": "Tunnuslauseesi",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }

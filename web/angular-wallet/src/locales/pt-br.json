@@ -133,9 +133,9 @@
   "choose_own_passphrase": "Quer escolher sua própria senha? Clique aqui.",
   "clear_results": "Limpar Resultados",
   "clear_search_results": "Limpar os Resultados da Pesquisa",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Clique aqui para saber mais sobre isso",
   "click_here_to_enable": "Clique aqui para ativá-lo.",
+  "click_to_claim": "Clique aqui para ganhar seu Burst grátis.",
   "close": "Fechar",
   "comment": "Comentar",
   "complete": "Completo",
@@ -908,12 +908,12 @@
   "you_received_assets": "Você recebeu 1 ativo __name__.",
   "you_received_assets_plural": "Você recebeu __count__ ativos __name__.",
   "you_received_message": "Você recebeu uma mensagem de __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "Você vendeu, transferiu ou excluíu 1 __name__ ativos.",
   "you_sold_assets_plural": "Você vendeu, transferiu ou excluíu __count__ ativos __name__.",
   "your_address": "Your Address",
   "your_alias_sale_offer": "Você está oferecendo este pseudônimo para venda.",
   "your_name": "Seu nome",
   "your_passphrase": "Sua senha",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }

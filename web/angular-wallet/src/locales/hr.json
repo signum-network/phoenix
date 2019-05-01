@@ -133,9 +133,9 @@
   "choose_own_passphrase": "Želite odabrati vlastitu lozinku? Kliknite ovdje.",
   "clear_results": "Obriši Rezultate",
   "clear_search_results": "Obriši rezultate pretraživanja",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Kliknite ovdje da biste saznali više o tome",
   "click_here_to_enable": "Kliknite ovdje za omogućavanje.",
+  "click_to_claim": "Kliknite ovdje da biste zatražili vaš besplatni Burst.",
   "close": "Zatvori",
   "comment": "Komentirajte",
   "complete": "Gotovo",
@@ -908,12 +908,12 @@
   "you_received_assets": "Primili ste <a href='#' data-goto-asset='__asset__'>1 __name__ asset-a</a>.",
   "you_received_assets_plural": "Primili ste <a href='#' data-goto-asset='__asset__'>__count__ __name__ asset-a</a>.",
   "you_received_message": "You received a <a href='#' data-goto-messages-account='__account__'>message</a> from __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "Prodali ste ili transferirali <a href='#' data-goto-asset='__asset__'>1 __name__ asset-a</a>.",
   "you_sold_assets_plural": "Prodali ste ili transferirali <a href='#' data-goto-asset='__asset__'>__count__ __name__asset-a</a>.",
   "your_address": "Your Address",
   "your_alias_sale_offer": "Ponudili ste ovaj pseudonim na prodaju.",
   "your_name": "Vaše ime",
   "your_passphrase": "Vaša lozinka",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }

@@ -133,9 +133,9 @@
   "choose_own_passphrase": "Θέλετε να επιλέξετε τη δική σας φράση πρόσβασης; Κάντε κλικ εδώ.",
   "clear_results": "Διαγραφή αποτελέσματων",
   "clear_search_results": "διαγραφή αποτελεσμάτων αναζήτησης",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Κάντε κλικ εδώ για να μάθετε περισσότερα για αυτό",
   "click_here_to_enable": "Κάντε κλικ εδώ για να το ενεργοποιήσετε.",
+  "click_to_claim": "Κάντε κλικ εδώ για να διεκδικήσετε τη δωρεάν έκρηξη.",
   "close": "Κλείσιμο",
   "comment": "Σχόλιο",
   "complete": "Ολοκλήρωση",
@@ -908,12 +908,12 @@
   "you_received_assets": "You received <a href='#' data-goto-asset='__asset__'>1 __name__ asset</a>.",
   "you_received_assets_plural": "You received <a href='#' data-goto-asset='__asset__'>__count__ __name__ assets</a>.",
   "you_received_message": "You received a <a href='#' data-goto-messages-account='__account__'>message</a> from __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "You sold or transferred <a href='#' data-goto-asset='__asset__'>1 __name__ asset</a>.",
   "you_sold_assets_plural": "You sold or transferred <a href='#' data-goto-asset='__asset__'>__count__ __name__ assets</a>.",
   "your_address": "Your Address",
   "your_alias_sale_offer": "Προσφέρετε προς πώληση αυτό το ψευδώνυμο.",
   "your_name": "Το όνομά σου",
   "your_passphrase": "Η φράση πρόσβασης σας",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }

@@ -133,9 +133,9 @@
   "choose_own_passphrase": "Хочете вибрати свій власний пароль? Натисніть тут.",
   "clear_results": "Очистити результати",
   "clear_search_results": "Очистка результатів пошуку",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Натисніть тут, щоб дізнатися більше про це",
   "click_here_to_enable": "Натисніть тут, щоб ввімкнути.",
+  "click_to_claim": "Натисніть тут, щоб одержати безкоштовний Burst.",
   "close": "Закрити",
   "comment": "Коментар",
   "complete": "Завершено",
@@ -908,12 +908,12 @@
   "you_received_assets": "Ви отримали <a href='#' data-goto-asset='__asset__'>1 __name__ активів</a>.",
   "you_received_assets_plural": "Ви отримали <a href='#' data-goto-asset='__asset__'>__count__ __name__ активів</a>.",
   "you_received_message": "You received a <a href='#' data-goto-messages-account='__account__'>message</a> from __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "Ви продали або передали  <a href='#' data-goto-asset='__asset__'>1 __name__  активів</a>.",
   "you_sold_assets_plural": "Ви продали або передали <a href='#' data-goto-asset='__asset__'>__count__ __name__ активів</a>.",
   "your_address": "Your Address",
   "your_alias_sale_offer": "Ви пропонуєте цей псевдонім для продажу.",
   "your_name": "Твоє ім’я",
   "your_passphrase": "Ваша парольна фраза",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }

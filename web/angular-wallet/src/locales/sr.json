@@ -133,9 +133,9 @@
   "choose_own_passphrase": "Желите одабрати властиту лозинку? Кликните овде.",
   "clear_results": "Обриши Резултате",
   "clear_search_results": "Обришите Резултате Претраге",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Кликните овде да бисте сазнали више о томе",
   "click_here_to_enable": "Кликните овде да га омогућите.",
+  "click_to_claim": "Кликните овде да бисте затражили ваш бесплатни Бурст.",
   "close": "Затвори",
   "comment": "Коментариши",
   "complete": "Завршено",
@@ -908,12 +908,12 @@
   "you_received_assets": "Примили сте <a href='#' data-goto-asset='__asset__'>1 __name__ ассет-а</a>.",
   "you_received_assets_plural": "Примили сте <a href='#' data-goto-asset='__asset__'>__count__ __name__ ассет-а</a>.",
   "you_received_message": "You received a <a href='#' data-goto-messages-account='__account__'>message</a> from __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "Продали сте или трансферовали <a href='#' data-goto-asset='__asset__'>1 __name__ ассет-а</a>.",
   "you_sold_assets_plural": "Продали сте или трансферовали <a href='#' data-goto-asset='__asset__'>__count__ __name__ассет-а</a>.",
   "your_address": "Your Address",
   "your_alias_sale_offer": "Ви нудите овај алиас на продају.",
   "your_name": "Ваше Име",
   "your_passphrase": "Ваша Лозинка",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }

@@ -133,9 +133,9 @@
   "choose_own_passphrase": "Хотите выбрать свой собственный пароль? Нажмите здесь.",
   "clear_results": "Очистить результаты",
   "clear_search_results": "Очистить результаты поиска",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Нажмите здесь, чтобы узнать больше об этом",
   "click_here_to_enable": "Нажмите здесь, чтобы включить.",
+  "click_to_claim": "Нажмите здесь, чтобы получить бесплатный взрыв.",
   "close": "Закрыть",
   "comment": "Комментарий",
   "complete": "Завершено",
@@ -908,12 +908,12 @@
   "you_received_assets": "Вы получили <a href='#' data-goto-asset='__asset__'> 1 __name__ активов</a>.",
   "you_received_assets_plural": "Вы получили <a href='#' data-goto-asset='__asset__'> __count__ __name__ активов</a>.",
   "you_received_message": "You received a <a href='#' data-goto-messages-account='__account__'>message</a> from __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "Вы продали или передали  <a href='#' data-goto-asset='__asset__'> 1 __name__  активов</a>.",
   "you_sold_assets_plural": "Вы продали или передали <a href='#' data-goto-asset='__asset__'>__count__ __name__ активов</a>.",
   "your_address": "Your Address",
   "your_alias_sale_offer": "Вы предлагаете этот псевдоним для продажи.",
   "your_name": "Ваше имя",
   "your_passphrase": "Ваш пароль",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }

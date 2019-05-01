@@ -133,9 +133,9 @@
   "choose_own_passphrase": "अपने खुद का passphrase चयन करना चाहते हैं? यहाँ क्लिक करें।",
   "clear_results": "परिणामों को साफ़ करें",
   "clear_search_results": "खोज परिणामों को साफ़ करें",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "इसके बारे में अधिक जानने के लिए यहां क्लिक करें",
   "click_here_to_enable": "इसे सक्षम करने के लिए यहाँ क्लिक करें।",
+  "click_to_claim": "अपने निःशुल्क बर्स्ट का दावा करने के लिए यहां क्लिक करें।",
   "close": "बंद करें",
   "comment": "Comment",
   "complete": "पूरा",
@@ -908,12 +908,12 @@
   "you_received_assets": "You received <a href='#' data-goto-asset='__asset__'>1 __name__ asset</a>.",
   "you_received_assets_plural": "You received <a href='#' data-goto-asset='__asset__'>__count__ __name__ assets</a>.",
   "you_received_message": "You received a <a href='#' data-goto-messages-account='__account__'>message</a> from __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "You sold or transferred <a href='#' data-goto-asset='__asset__'>1 __name__ asset</a>.",
   "you_sold_assets_plural": "You sold or transferred <a href='#' data-goto-asset='__asset__'>__count__ __name__ assets</a>.",
   "your_address": "Your Address",
   "your_alias_sale_offer": "You are offering this alias for sale.",
   "your_name": "Your Name",
   "your_passphrase": "Your Passphrase",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }
