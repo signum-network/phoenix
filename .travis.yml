@@ -25,7 +25,7 @@ jobs:
       script: './scripts/ci/build-electron.sh'
     - stage: deploy
       name: "Build and Deploy Desktop App"
-      script: './scripts/ci/release-desktop.sh'
+      script: './scripts/ci/release-desktop.sh --publish'
     - stage: force-deploy
       name: "Forced Build and Deploy Desktop App"
       script: './scripts/ci/release-desktop.sh --publish'
