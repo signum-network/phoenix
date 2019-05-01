@@ -35,7 +35,6 @@ jobs:
     - stage: nightly-release
       name: "Nightly Release of Desktop App"
       before_install: echo $GIT_NAME $GH_TOKEN $GIT_EMAIL
-      install: npm i @angular/cli -g
       script: './scripts/ci/nightly-desktop.sh'
       before_deploy:
         # Set up git user name and tag this commit
