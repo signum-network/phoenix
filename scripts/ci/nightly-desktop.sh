@@ -5,6 +5,9 @@ echo Nightly Release Desktop Wallet
 echo ===============================
 
 npm i @angular/cli -g
+
+git status
+
 git checkout origin/develop
 git pull
 git checkout -
