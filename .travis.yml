@@ -53,7 +53,7 @@ jobs:
         skip_cleanup: true
         overwrite: true
         on:
-          branch: nightly
+          branch: develop
           condition: $TRAVIS_TAG=nightly
 
 stages:
@@ -64,4 +64,4 @@ stages:
 #  - name: deploy-force
 #    if: branch=~/^force-deploy/
   - name: nightly-release
-    if: (branch=nightly) AND (tag IS blank)
+    if: (branch=develop) AND (tag IS blank)

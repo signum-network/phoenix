@@ -5,10 +5,10 @@ echo Nightly Release Desktop Wallet
 echo ===============================
 
 npm i @angular/cli -g
-git checkout develop
+git checkout origin/develop
 git pull
 git checkout -
-git merge develop
+git merge origin/develop
 
 # install script deps
 echo
