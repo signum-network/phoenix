@@ -5,7 +5,8 @@
     <div class="mr-lg-32" fxFlex="100" *ngIf="account">
       <mat-toolbar-row *ngIf="!account.confirmed && settings.welcomeMessageHiddenFrom.indexOf(account.account) === -1">
         <mat-icon>card_giftcard</mat-icon>
-        <span>{{ 'welcome_to_burst' | i18n }} <a href="http://faucet.burst-alliance.org:8080" target="_blank">{{ 'click_to_claim' | i18n }}</a></span>
+        <span>{{ 'welcome_to_burst' | i18n }} <a href="http://faucet.burst-alliance.org:8080"
+                                                 target="_blank">{{ 'click_to_claim' | i18n }}</a></span>
         <span class="spacer"></span>
         <mat-icon (click)="closeWelcomeNotification()" class="close">close</mat-icon>
       </mat-toolbar-row>
@@ -53,7 +54,14 @@
                                      [dataSource]="dataSource"
                                      [paginationEnabled]="false"
               ></app-transaction-table>
-              <p *ngIf="!dataSource" class="text-center">{{ 'no_transactions_yet' | i18n }}</p>
+              <div *ngIf="!dataSource" class="text-center">
+                <div>
+                  {{ 'no_transactions_yet' | i18n }}
+                </div>
+                  <a href="http://faucet.burst-alliance.org:8080" target="_blank">
+                    {{ 'click_to_claim' | i18n }}
+                  </a>
+              </div>
             </div>
             <a *ngIf="dataSource && dataSource.data.length"
                class="p-16" fxLayoutAlign="end"
