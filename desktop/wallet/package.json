@@ -29,12 +29,13 @@
     "build": "node ../../scripts/build.js --target desktop",
     "start": "cross-env NODE_ENV=develop && npm run build && electron .",
     "start:fast": "cross-env NODE_ENV=develop && electron .",
-    "pack": "npm run build && electron-builder",
+    "pack": "npm run build && electron-builder -p 'never'",
     "release:all": "npm run pack -- -wml",
     "release:linux": "npm run pack -- -l",
     "release:win32": "npm run pack -- -w",
     "release:macos": "npm run pack -- -m",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "publish": "electron-builder -p 'always'"
   },
   "devDependencies": {
     "ajv": "^6.10.0",

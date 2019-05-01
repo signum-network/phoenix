@@ -4,14 +4,6 @@ echo ===============================
 echo Releasing Desktop Wallet
 echo ===============================
 
-if [[ $1 = "--force" ]]
-then
-echo ===============================
-echo  FORCED DEPLOY
-echo ===============================
-fi
-
-brew install rpm
 npm i @angular/cli -g
 
 # install script deps
@@ -31,14 +23,14 @@ npm i
 # install/update desktop wallet deps
 cd ../../desktop/wallet
 npm install
+npm run release:all
 
-if [[ $1 = "--force" ]]
+if [[ $1 = "--publish" ]]
 then
-    npm run build
-#    electron-builder -p "always" -wml
-    electron-builder -p "always" -l
-else
-    npm run release:all
+    echo ===============================
+    echo  FORCED DEPLOY
+    echo ===============================
+    npm run publish
 fi
 
 

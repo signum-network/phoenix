@@ -31,15 +31,16 @@ jobs:
 #      script: './scripts/ci/release-desktop.sh'
 #    - stage: deploy-force
 #      name: "Forced Build and Deploy Desktop App"
-#      script: './scripts/ci/release-desktop.sh --force'
+#      script: './scripts/ci/release-desktop.sh --publish'
     - stage: nightly-release
       name: "Nightly Release of Desktop App"
-      install: echo "install"
+      before_install: echo $GIT_NAME $GH_TOKEN $GIT_EMAIL
+      install: npm i @angular/cli -g
       script: './scripts/ci/nightly-desktop.sh'
       before_deploy:
         # Set up git user name and tag this commit
-        - git config --local user.name $GH_NAME
-        - git config --local user.email $GH_EMAIL
+        - git config --local user.name $GIT_NAME
+        - git config --local user.email $GIT_EMAIL
         - export TRAVIS_TAG=nightly
         - git tag $TRAVIS_TAG --force
       deploy:
