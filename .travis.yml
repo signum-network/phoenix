@@ -29,7 +29,7 @@ jobs:
     - stage: deploy
       name: "Build and Deploy Desktop App"
       script: './scripts/ci/release-desktop.sh'
-    - stage: deploy-force
+    - stage: force-deploy
       name: "Forced Build and Deploy Desktop App"
       script: './scripts/ci/release-desktop.sh --publish'
     - stage: nightly-release
@@ -60,7 +60,7 @@ stages:
   - test
   - name: deploy
     if: tag=~/^v\d+\.\d+\.\d+/
-  - name: deploy-force
+  - name: force-deploy
     if: branch=~/^force-deploy/
   - name: nightly-release
     if: (branch=develop) AND (tag IS blank)
