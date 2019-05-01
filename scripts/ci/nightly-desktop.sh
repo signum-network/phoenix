@@ -25,5 +25,5 @@ cd ../../desktop/wallet
 npm install
 
 # only builds, but not publish
-#npm run release:macos
+npm run release:macos
 

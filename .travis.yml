@@ -26,12 +26,12 @@ jobs:
 #    - # parallel run
 #      name: "Run Angular Tests"
 #      script: './scripts/ci/test-ng.sh'
-#    - stage: deploy
-#      name: "Build and Deploy Desktop App"
-#      script: './scripts/ci/release-desktop.sh'
-#    - stage: deploy-force
-#      name: "Forced Build and Deploy Desktop App"
-#      script: './scripts/ci/release-desktop.sh --publish'
+    - stage: deploy
+      name: "Build and Deploy Desktop App"
+      script: './scripts/ci/release-desktop.sh'
+    - stage: deploy-force
+      name: "Forced Build and Deploy Desktop App"
+      script: './scripts/ci/release-desktop.sh --publish'
     - stage: nightly-release
       name: "Nightly Release of Desktop App"
       script: './scripts/ci/nightly-desktop.sh'
@@ -45,12 +45,12 @@ jobs:
         provider: releases
         api_key: $GH_TOKEN
         file_glob: true
-        file: README.md
+        file:
 #          - /desktop/wallet/release-builds/latest*
-#          - /desktop/wallet/release-builds/Phoenix*
-#          - /desktop/wallet/release-builds/phoenix*
+          - /desktop/wallet/release-builds/Phoenix*
+          - /desktop/wallet/release-builds/phoenix*
         skip_cleanup: true
-        overwrite: true
+        overwrite: false
         on:
           branch: develop
           condition: $TRAVIS_TAG=nightly
@@ -58,9 +58,9 @@ jobs:
 stages:
   - build
   - test
-#  - name: deploy
-#    if: branch=~/^v\d+\.\d+\.\d+/
-#  - name: deploy-force
-#    if: branch=~/^force-deploy/
+  - name: deploy
+    if: tag=~/^v\d+\.\d+\.\d+/
+  - name: deploy-force
+    if: branch=~/^force-deploy/
   - name: nightly-release
     if: (branch=develop) AND (tag IS blank)
