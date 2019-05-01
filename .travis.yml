@@ -1,34 +1,66 @@
+os: osx
 language: node_js
-
-global:
-  env:
-    secure: gjSV8sxtojuyLNcu2f6htmdIrrs/nkCTUBd39stQj6MYV176E9b9fz4i/aiodsGpqh2wl76TFhnY587e5pQBALHoMxMi79Um6f+EeL9nLOze37A5vRCptwsZyQkUIVjIuUFzYLpJ4MxuSHe5NJEMIgdLRanvYamY9yMPoz58mZkxmeE9M6YdN6tZsFyK6gjaogNGFY4oq8YyjF1cgXq8qQKOArqLmG3bEAc3dodZ0gXPdkXu5S+0BI1g/9P5DET97Q0KFvCqs6BB5tp59Xtv+7rfs7Pp5Qc2eMmBGyPOR0Dyh5gUjBCBB7Z8qY3KB2faxS/c2VgEYwcepMx06b3Fb2KHNbJi2sAj+rAIxaeYS7zwgfeviXIwtRf2Lol/XZ0Z0FGjRqP5BDP0PipyChlUGy2gO+OPRep9434kh3sdurQj176Mz/tvQTwRLP22/yfALVib7YtwJyCqZs/2e5yXbrfgTuXMuMf87W2oZ/9zT1XRWlkoAmBgEo0/Z3Slu8P2a1kwCA8YkCB9jkLJyx7VtP9ee5ShP2YbT2hqJ1dcnquR7Hk5R8Jn9PmxqRtiLSAblrJ2WWsRQVwFH2nalojeSV9HDmgjssGhiaCQKBSsrfGQMqZjpj40dfRCVajaRA/Fwx/AHkYMPqQs2f5K1WaYvmXSw5uBuhsVo2ndTA5Lo/0=
-
-matrix:
-  fast_finish: true
-  include:
-  - name: "Build BurstJS"
-    os: "linux"
-    node_js: "10"
-    env: JOB=burstjs
-  - name: "Build Web Wallet"
-    os: "linux"
-    node_js: "10"
-    env: JOB=web
-  - name: "Build Desktop Wallet"
-    if: branch=/^test-/
-    os: "osx"
-    node_js: "10"
-    env: JOB=desktop-osx
-
-before_cache:
-  - rm -rf $HOME/.cache/electron-builder/wine
+node_js: '10'
+addons:
+  homebrew:
+    packages:
+      - rpm
 
 cache:
   directories:
     - node_modules
-    - $HOME/.cache/electron
-    - $HOME/.cache/electron-builder
+    - "$HOME/.cache/electron"
+    - "$HOME/.cache/electron-builder"
 
-script:
-  - ./scripts/ci/$JOB.sh
+jobs:
+  include:
+#    - stage: build
+#      name: "Build Angular App"
+#      script: './scripts/ci/build-ng.sh'
+#    - # parallel run
+#      name: "Build Electron App"
+#      script: './scripts/ci/build-electron.sh'
+#    - stage: test
+#      name: "Run BurstJS Tests"
+#      script: './scripts/ci/test-burstjs.sh'
+#    - # parallel run
+#      name: "Run Angular Tests"
+#      script: './scripts/ci/test-ng.sh'
+#    - stage: deploy
+#      name: "Build and Deploy Desktop App"
+#      script: './scripts/ci/release-desktop.sh'
+#    - stage: deploy-force
+#      name: "Forced Build and Deploy Desktop App"
+#      script: './scripts/ci/release-desktop.sh --publish'
+    - stage: nightly-release
+      name: "Nightly Release of Desktop App"
+      script: './scripts/ci/nightly-desktop.sh'
+      before_deploy:
+        # Set up git user name and tag this commit
+        - git config --local user.name $GIT_NAME
+        - git config --local user.email $GIT_EMAIL
+        - export TRAVIS_TAG=nightly
+        - git tag $TRAVIS_TAG --force
+      deploy:
+        provider: releases
+        api_key: $GH_TOKEN
+        file_glob: true
+        file: README.md
+#          - /desktop/wallet/release-builds/latest*
+#          - /desktop/wallet/release-builds/Phoenix*
+#          - /desktop/wallet/release-builds/phoenix*
+        skip_cleanup: true
+        overwrite: true
+        on:
+          branch: develop
+          condition: $TRAVIS_TAG=nightly
+
+stages:
+  - build
+  - test
+#  - name: deploy
+#    if: branch=~/^v\d+\.\d+\.\d+/
+#  - name: deploy-force
+#    if: branch=~/^force-deploy/
+  - name: nightly-release
+    if: (branch=develop) AND (tag IS blank)
