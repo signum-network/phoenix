@@ -1,17 +1,61 @@
+os: osx
 language: node_js
-
-matrix:
-  fast_finish: true
-  include:
-  - name: "Build BurstJS"
-    node_js: "10"
-    env: JOB=burstjs
-  - name: "Build Web Wallet"
-    node_js: "10"
-    env: JOB=web
+node_js: '10'
+addons:
+  homebrew:
+    packages:
+      - rpm
 
 cache:
   directories:
     - node_modules
-script:
-  - ./scripts/ci/$JOB.sh
+    - "$HOME/.cache/electron"
+    - "$HOME/.cache/electron-builder"
+
+jobs:
+  include:
+    - stage: prepare
+      name: "Run BurstJS Tests"
+      script: './scripts/ci/test-burstjs.sh'
+    - # parallel run
+      name: "Run Angular Tests"
+      script: './scripts/ci/test-ng.sh'
+    - # parallel run
+      name: "Build App"
+      script: './scripts/ci/build-electron.sh'
+    - stage: deploy
+      name: "Build and Deploy Desktop App"
+      script: './scripts/ci/release-desktop.sh'
+    - stage: force-deploy
+      name: "Forced Build and Deploy Desktop App"
+      script: './scripts/ci/release-desktop.sh --publish'
+#    - stage: nightly-release
+#      name: "Nightly Release of Desktop App"
+#      script: './scripts/ci/nightly-desktop.sh'
+#      before_deploy:
+#        - git config --local user.name $GIT_NAME
+#        - git config --local user.email $GIT_EMAIL
+#        - export TRAVIS_TAG=nightly
+#        - git tag $TRAVIS_TAG --force
+#      deploy:
+#        provider: releases
+#        api_key: $GH_TOKEN
+#        file_glob: true
+#        file:
+#          - /desktop/wallet/release-builds/latest*
+#          - /desktop/wallet/release-builds/Phoenix*
+#          - /desktop/wallet/release-builds/phoenix*
+#        skip_cleanup: true
+#        overwrite: true
+#        on:
+#          branch: develop
+#          condition: $TRAVIS_TAG=nightly
+
+stages:
+  - prepare
+  - name: deploy
+    if: tag=~/^v\d+\.\d+\.\d+/
+  - name: force-deploy
+    if: branch=~/^force-deploy/
+#  - name: nightly-release
+#    if: (branch=develop) AND (tag IS blank)

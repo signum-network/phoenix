@@ -20,11 +20,14 @@ and then run
 
 `npm run release:<platform>`, where `platform` can be one of 
 
+- all (builds for all platforms)
 - win32
 - linux
 - macos
 
 The executable will be written into `./release-builds`
+
+| To build win32 on linux you need wine installed, additionally rpm must be installed, too
 
 _Example_:
 

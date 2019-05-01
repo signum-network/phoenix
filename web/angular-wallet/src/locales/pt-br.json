@@ -133,6 +133,7 @@
   "choose_own_passphrase": "Quer escolher sua própria senha? Clique aqui.",
   "clear_results": "Limpar Resultados",
   "clear_search_results": "Limpar os Resultados da Pesquisa",
+  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Clique aqui para saber mais sobre isso",
   "click_here_to_enable": "Clique aqui para ativá-lo.",
   "close": "Fechar",
@@ -633,7 +634,7 @@
   "passphrase_length_warning": "Sua senha deve ter pelo menos 35 caracteres.",
   "passphrase_remote_warning": "Sua senha será enviada para o servidor!",
   "passphrase_required_to_decrypt_data": "Sua senha é necessária para descriptografar estes dados.",
-  "passphrase_warning": "<strong>Attention</strong>: The passphrase is everything that stands between your account and the rest of the world. Do not use any meaningful sentence, especially any that appears in song or literature.<br /><br />Don't ever disclose your passphrase. If you lose it you lose access to your account!",
+  "passphrase_warning": "Attention: The passphrase is everything that stands between your account and the rest of the world. Do not use any meaningful sentence, especially any that appears in song or literature.<br /><br />Don't ever disclose your passphrase. If you lose it you lose access to your account!",
   "passphrase_write_below": "Sua senha é muito importante! Para ter certeza de que você a salvou, por favor, escreva sua senha abaixo: ",
   "password_required_for_decryption": "Sua senha é necessária para descriptografar esta mensagem.",
   "payload": "Carga útil",
@@ -899,7 +900,7 @@
   "warning": "Aviso",
   "website": "Sítio da Web",
   "website_or_text": "Site ou texto",
-  "welcome_to_burst": "Bem vindo a burst",
+  "welcome_to_burst": "Bem vindo a burst!",
   "with_burst": "Com burst",
   "x_confirmations": "__x__ confirmações",
   "yes": "Sim",
@@ -912,5 +913,7 @@
   "your_address": "Your Address",
   "your_alias_sale_offer": "Você está oferecendo este pseudônimo para venda.",
   "your_name": "Seu nome",
-  "your_passphrase": "Sua senha"
+  "your_passphrase": "Sua senha",
+  "youve_got_burst": "You've got Burst!",
+  "you_sent_burst": "You sent Burst"
 }

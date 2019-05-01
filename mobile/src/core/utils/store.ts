@@ -1,7 +1,8 @@
 import { isFunction } from 'lodash';
 import { AnyAction as ReduxAction, Reducer } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { Action, AnyAction, CustomAction, GetState, Reducers } from '../interfaces';
+import { AsyncParticleStates } from '../enums';
+import { Action, AnyAction, AsyncParticleReducers, CustomAction, GetState, Reducers } from '../interfaces';
 import { ApplicationState } from '../store/initialState';
 
 /**
@@ -41,4 +42,45 @@ export function createActionFn<Payload, Result>
  */
 export function createAction<Payload> (type: string): (payload: Payload) => AnyAction<Payload> {
   return (payload) => ({ type, payload });
+}
+
+/**
+ * Creates begin, success and failed reducers for standard async request
+ *
+ * @param {keyof State} key Async particle key.
+ */
+export function createAsyncParticleReducers<State, B = any, S = any, F = any>
+(key: keyof State): AsyncParticleReducers<State, B, S, F> {
+  return {
+    begin: (state: State, _action: AnyAction<B>): State => {
+      return {
+        ...state,
+        [key]: {
+          ...state[key],
+          state: AsyncParticleStates.LOADING
+        }
+      };
+    },
+    success: (state: State, action: AnyAction<S>): State => {
+      return {
+        ...state,
+        [key]: {
+          ...state[key],
+          data: action.payload,
+          state: AsyncParticleStates.SUCCESS,
+          error: null
+        }
+      };
+    },
+    failed: (state: State, action: AnyAction<F>): State => {
+      return {
+        ...state,
+        [key]: {
+          ...state[key],
+          state: AsyncParticleStates.FAILED,
+          error: action.payload
+        }
+      };
+    }
+  };
 }

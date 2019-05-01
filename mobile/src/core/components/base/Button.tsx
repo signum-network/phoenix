@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicatorComponent, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Colors } from '../../theme/colors';
 import { BorderRadiusSizes, FontSizes, Sizes } from '../../theme/sizes';
 import { Text, TextAlign } from './Text';
@@ -67,9 +67,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.BLUE,
     borderColor: Colors.BLUE_DARK
   },
+  loader: {
+    margin: Sizes.SMALL
+  },
   buttonDisabled: {
-    backgroundColor: Colors.GREY,
-    borderColor: Colors.GREY_DARK
+    opacity: 0.5
   }
 });
 
@@ -101,7 +103,7 @@ export const Button: React.FunctionComponent<Props> = (props) => {
 
   const renderLoader = () => {
     return (
-      <ActivityIndicatorComponent animating={true} color={childrenColor} size={'small'} />
+      <ActivityIndicator style={styles.loader} animating={true} color={childrenColor} />
     );
   };
 

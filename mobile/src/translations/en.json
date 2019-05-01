@@ -65,7 +65,8 @@
       "create": "Create",
       "next": "Next",
       "ok": "OK",
-      "save": "Save"
+      "save": "Save",
+      "submit": "Submit"
     },
     "layout": {
       "preventBackButton": {
@@ -74,6 +75,11 @@
       }
     },
     "screens": {
+      "home": {
+        "accountsList": "Accounts List",
+        "recentTransactions": "Recent Transactions",
+        "title": "BURST"
+      },
       "loading": {
         "loadingText": "Loading..."
       }
@@ -86,6 +92,19 @@
       "passphrase": "Passphrase",
       "pin": "PIN",
       "title": "Account"
+    }
+  },
+  "transactions": {
+    "screens": {
+      "receive": {
+        "title": "Receive"
+      },
+      "send": {
+        "amountNQT": "Amount",
+        "feeNQT": "Fee",
+        "sent": "Sent!",
+        "title": "Send"
+      }
     }
   }
 }

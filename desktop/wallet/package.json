@@ -1,9 +1,14 @@
 {
   "name": "phoenix",
+  "author": {
+    "name": "Burst Apps Team (BAT)",
+    "email": "contact@burst-coin.org"
+  },
   "productName": "Phoenix BURST Wallet",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "contributors": [
-    "ohager"
+    "ohager",
+    "blankey1337"
   ],
   "repository": {
     "type": "git",
@@ -24,15 +29,68 @@
     "build": "node ../../scripts/build.js --target desktop",
     "start": "cross-env NODE_ENV=develop && npm run build && electron .",
     "start:fast": "cross-env NODE_ENV=develop && electron .",
-    "pack": "npm run build && electron-packager . Phoenix --overwrite --asar --prune=true --out=release-builds",
-    "release:all": "npm run pack -- --all",
-    "release:linux": "npm run pack -- --platform=linux --arch=x64 --icon=assets/images/png/1024x1024.png",
-    "release:win32": "npm run pack -- --platform=win32 --arch=x64 --icon=assets/images/win/128x128_icon.ico",
-    "release:macos": "npm run pack -- --platform=darwin --arch=x64 --icon=assets/images/mac/icon.icns"
+    "pack": "npm run build && electron-builder -p 'never'",
+    "release:all": "npm run pack -- -wml",
+    "release:linux": "npm run pack -- -l",
+    "release:win32": "npm run pack -- -w",
+    "release:macos": "npm run pack -- -m",
+    "postinstall": "electron-builder install-app-deps",
+    "publish": "electron-builder -p 'always'"
   },
   "devDependencies": {
+    "ajv": "^6.10.0",
     "cross-env": "^5.2.0",
-    "electron": "^4.0.1",
-    "electron-packager": "^13.0.1"
+    "electron": "^5.0.0",
+    "electron-builder": "^20.39.0"
+  },
+  "build": {
+    "productName": "Phoenix Burst Wallet",
+    "appId": "org.burstcoin.phoenix",
+    "directories": {
+      "output": "release-builds",
+      "buildResources": "dist"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*",
+      "assets/**/*",
+      "package.json",
+      "main.js"
+    ],
+    "icon": "./assets/images/png/512x512.png",
+    "mac": {
+      "publish": [
+        "github"
+      ],
+      "category": "public.app-category.finance"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm",
+        "tar.gz"
+      ],
+      "publish": [
+        "github"
+      ],
+      "category": "Finance"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "publish": [
+        "github"
+      ]
+    },
+    "nsis": {
+      "multiLanguageInstaller": true,
+      "oneClick": true,
+      "allowElevation": false,
+      "packElevateHelper": false,
+      "perMachine": false
+    }
   }
 }
