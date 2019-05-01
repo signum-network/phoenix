@@ -21,7 +21,7 @@ jobs:
       name: "Run Angular Tests"
       script: './scripts/ci/test-ng.sh'
     - # parallel run
-      name: "Build Electron App"
+      name: "Build App"
       script: './scripts/ci/build-electron.sh'
     - stage: deploy
       name: "Build and Deploy Desktop App"
@@ -33,7 +33,6 @@ jobs:
       name: "Nightly Release of Desktop App"
       script: './scripts/ci/nightly-desktop.sh'
       before_deploy:
-        # Set up git user name and tag this commit
         - git config --local user.name $GIT_NAME
         - git config --local user.email $GIT_EMAIL
         - export TRAVIS_TAG=nightly
@@ -53,11 +52,10 @@ jobs:
           condition: $TRAVIS_TAG=nightly
 
 stages:
-  - build
-  - test
+  - prepare
   - name: deploy
     if: tag=~/^v\d+\.\d+\.\d+/
   - name: force-deploy
     if: branch=~/^force-deploy/
-  - name: nightly-release
-    if: (branch=develop) AND (tag IS blank)
+#  - name: nightly-release
+#    if: (branch=develop) AND (tag IS blank)
