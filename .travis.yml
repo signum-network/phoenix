@@ -43,4 +43,4 @@ stages:
   - name: force-deploy
     if: branch=~/^force-deploy/
   - name: nightly-release
-    if: (branch=develop) AND (env(TRAVIS_EVENT_TYPE)=cron)
+    if: (branch=develop) AND (env($TRAVIS_EVENT_TYPE)="cron")
