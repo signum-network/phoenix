@@ -12,6 +12,9 @@ cache:
     - "$HOME/.cache/electron"
     - "$HOME/.cache/electron-builder"
 
+before_script:
+  - npm i @angular/cli -g
+
 jobs:
   include:
     - stage: prepare

@@ -5,8 +5,6 @@ echo Building Electron Wallet
 echo ==================================
 echo
 
-npm i @angular/cli -g
-
 # install script deps
 cd scripts
 npm install
@@ -20,7 +18,7 @@ npm run bootstrap
 cd ../web/angular-wallet
 npm install
 
-# now build ng
+# now build
 cd ../../desktop/wallet
 npm install
 npm run build

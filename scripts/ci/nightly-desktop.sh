@@ -4,13 +4,11 @@ echo ===============================
 echo Nightly Release Desktop Wallet
 echo ===============================
 
-
-npm i @angular/cli -g
-
 # install script deps
 echo
 cd ./scripts
 npm i
+npm run version:nightly
 
 # install/update version of burstjs
 cd ../lib
@@ -25,10 +23,8 @@ npm i
 cd ../../desktop/wallet
 npm install
 
-echo Need to bump version to nightly
-
-# only builds, but not publish
-#npm run release:all
-#npm run publish
+# only builds and publish
+npm run release:all
+npm run publish
 
 
