@@ -13,7 +13,7 @@ import {TransactionSmartContractSubtype} from './transactionSmartContractSubtype
 /**
  * The smallest possible fee
  */
-const FeeQuantNQT = 73500;
+const FeeQuantNQT = 735000;
 
 export {
     FeeQuantNQT,
