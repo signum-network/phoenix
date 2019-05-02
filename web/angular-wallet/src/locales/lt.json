@@ -133,9 +133,9 @@
   "choose_own_passphrase": "Norite pasirinkti savo slaptažodį? Spauskite čia.",
   "clear_results": "Išvalyti rezultatus",
   "clear_search_results": "Išvalyti paieškos rezultatus",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Spauskite čia norėdami sužinoti daugiau apie tai",
   "click_here_to_enable": "Spauskite čia tam, kad įgalinti.",
+  "click_to_claim": "Spauskite čia norėdami pareikšti savo nemokamą sprogimą.",
   "close": "Uždaryti",
   "comment": "Komentaras",
   "complete": "Pabaigta",
@@ -908,12 +908,12 @@
   "you_received_assets": "Jūs gavote <a href='#' data-goto-asset='__asset__'> 1 __name__ aktyvą</a>.",
   "you_received_assets_plural": "Jūs gavote <a href='#' data-goto-asset='__asset__'> __count__ __name__ aktyvus</a>.",
   "you_received_message": "You received a <a href='#' data-goto-messages-account='__account__'>message</a> from __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "Jūs pardavėte ar persiuntėte <a href='#' data-goto-asset='__asset__'> 1 __name__ aktyvą</a>.",
   "you_sold_assets_plural": "Jūs pardavėte ar persiuntėte <a href='#' data-goto-asset='__asset__'> __count__ __name__ aktyvus</a>.",
   "your_address": "Your Address",
   "your_alias_sale_offer": "Jūs siūlote ši pseudonimą pardavimui.",
   "your_name": "Jūsų vardas",
   "your_passphrase": "Jūsų slaptažodis",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }

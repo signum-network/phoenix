@@ -133,9 +133,9 @@
   "choose_own_passphrase": "Chcete si vybrat vlastní heslo? Klikněte sem.",
   "clear_results": "Smazat výsledky",
   "clear_search_results": "Vymazat Výsledky Hledání",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Chcete-li se o tom dozvědět více, klikněte zde",
   "click_here_to_enable": "Klikněte na tlačítko povolit obsah.",
+  "click_to_claim": "Klikněte zde pro uplatnění nároku zdarma.",
   "close": "Zavřít",
   "comment": "Komentář",
   "complete": "Hotovo",
@@ -908,12 +908,12 @@
   "you_received_assets": "You received <a href='#' data-goto-asset='__asset__'>1 __name__ asset</a>.",
   "you_received_assets_plural": "You received <a href='#' data-goto-asset='__asset__'>__count__ __name__ assets</a>.",
   "you_received_message": "You received a <a href='#' data-goto-messages-account='__account__'>message</a> from __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "You sold or transferred <a href='#' data-goto-asset='__asset__'>1 __name__ asset</a>.",
   "you_sold_assets_plural": "You sold or transferred <a href='#' data-goto-asset='__asset__'>__count__ __name__ assets</a>.",
   "your_address": "Your Address",
   "your_alias_sale_offer": "Nabízíte tento alias na prodej.",
   "your_name": "Vaše jméno",
   "your_passphrase": "Vaše heslo",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }

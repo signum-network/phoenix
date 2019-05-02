@@ -133,9 +133,9 @@
   "choose_own_passphrase": "Voleu triar la vostra contrasenya? Feu clic aquí.",
   "clear_results": "Netejar Resultats",
   "clear_search_results": "Netejar Resultats de Cerca",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Feu clic aquí per saber-ne més",
   "click_here_to_enable": "Feu clic aquí per habilitar-lo.",
+  "click_to_claim": "Feu clic aquí per reclamar la vostra explosió gratuïta.",
   "close": "Tancar",
   "comment": "Comentari",
   "complete": "Complet",
@@ -908,12 +908,12 @@
   "you_received_assets": "Ha rebut 1 Actiu de __name__ .",
   "you_received_assets_plural": "Ha rebut Actius de __count__ __name__ .",
   "you_received_message": "Heu rebut un missatge de __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "Heu venut o transferit 1 Actiu de __name__ .",
   "you_sold_assets_plural": "Vostè ha venuts o transferits Actius de __count__ __name__ .",
   "your_address": "Your Address",
   "your_alias_sale_offer": "Has posat aquest Àlies a la venta.",
   "your_name": "El vostre nom",
   "your_passphrase": "La vostre Contrasenya",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }

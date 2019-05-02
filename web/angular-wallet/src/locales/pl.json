@@ -133,9 +133,9 @@
   "choose_own_passphrase": "Chcesz wprowadzić swoje hasło? Naciśnij tutaj.",
   "clear_results": "Wyczyść wyniki",
   "clear_search_results": "Wyczyść wyniki wyszukiwania",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Kliknij tutaj, aby dowiedzieć się więcej na ten temat",
   "click_here_to_enable": "Kliknij tutaj, aby włączyć.",
+  "click_to_claim": "Kliknij tutaj, aby odebrać darmowy Burst.",
   "close": "Zamknij",
   "comment": "Komentarz",
   "complete": "Zakończono",
@@ -918,12 +918,12 @@
   "you_received_assets": "Otrezymałeś <a href='#' data-goto-asset='__asset__'>1 __name__ asset</a>.",
   "you_received_assets_plural": "Otrzymałeś <a href='#' data-goto-asset='__asset__'>__count__ __name__ assets</a>.",
   "you_received_message": "Otrzymałeś <a href='#' data-goto-messages-account='__account__'>wiadomość</a> od __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "Sprzedałeś lub wytransferowałeś <a href='#' data-goto-asset='__asset__'>1 __name__ asset</a>.",
   "you_sold_assets_plural": "Sprzedałeś lub wytransferowałeś <a href='#' data-goto-asset='__asset__'>__count__ __name__ assets</a>.",
   "your_address": "Your Address",
   "your_alias_sale_offer": "Ten alias został przez Ciebie wystawiony na sprzedaż.",
   "your_name": "Twoje imię",
   "your_passphrase": "Twoje hasło",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }

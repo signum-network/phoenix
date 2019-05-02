@@ -133,9 +133,9 @@
   "choose_own_passphrase": "Wilt u uw eigen wachtwoord aanmaken? Klik dan hier.",
   "clear_results": "Resultaten wissen",
   "clear_search_results": "Zoekresultaten wissen",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Klik hier om er meer over te weten",
   "click_here_to_enable": "Klik hier om het in te schakelen.",
+  "click_to_claim": "Klik hier om uw gratis Burst te claimen.",
   "close": "Sluiten",
   "comment": "Opmerking",
   "complete": "Compleet",
@@ -908,12 +908,12 @@
   "you_received_assets": "Je hebt <a href='#' data-goto-asset='__asset__'> 1 __name__ asset</a> ontvangen.",
   "you_received_assets_plural": "Je hebt <a href='#' data-goto-asset='__asset__'> __count__ __name__ assets</a> ontvangen.",
   "you_received_message": "U ontving een <a href='#' data-goto-messages-account='__account__'>bericht</a> van __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "Je hebt <a href='#' data-goto-asset='__asset__'> 1 __name__ asset</a> verkocht of overgedragen.",
   "you_sold_assets_plural": "Je hebt <a href='#' data-goto-asset='__asset__'> __count__ __name__ assets</a> verkocht of overgedragen.",
   "your_address": "Your Address",
   "your_alias_sale_offer": "U biedt deze alias te koop aan.",
   "your_name": "Uw naam",
   "your_passphrase": "Uw wachtwoord/passphrase",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }

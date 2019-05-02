@@ -133,9 +133,9 @@
   "choose_own_passphrase": "Dorești să alegi propria parolă? Fă clic aici.",
   "clear_results": "Șterge rezultate",
   "clear_search_results": "Șterge Rezultate Căutare",
-  "click_to_claim": "Click here to claim your free Burst.",
   "click_here_for_help": "Faceți clic aici pentru a afla mai multe despre el",
   "click_here_to_enable": "Click aici pentru activare.",
+  "click_to_claim": "Faceți clic aici pentru a revendica explozia liberă.",
   "close": "Închidere",
   "comment": "Comentariu",
   "complete": "Complet",
@@ -908,12 +908,12 @@
   "you_received_assets": "Ai primit 1 __name__ activă.",
   "you_received_assets_plural": "Ai primit __count__ __name__ active.",
   "you_received_message": "Ai primit un mesaj de la __name__.",
+  "you_sent_burst": "You sent Burst",
   "you_sold_assets": "Ai vândut sau transferat 1 __name__ activă.",
   "you_sold_assets_plural": "Ai vândut sau transferat __count__ __name__ active.",
   "your_address": "Your Address",
   "your_alias_sale_offer": "Ai pus acest alias la vânzare.",
   "your_name": "Numele tău",
   "your_passphrase": "Parola ta",
-  "youve_got_burst": "You've got Burst!",
-  "you_sent_burst": "You sent Burst"
+  "youve_got_burst": "You've got Burst!"
 }
