@@ -17,8 +17,8 @@ export class MessageOptionsSidenavComponent implements OnInit, OnDestroy {
 
   public encrypt: boolean;
   public feeNQT: string;
+  public options: any;
 
-  private options: any;
   private _unsubscribeAll: Subject<any>;
 
   constructor(
