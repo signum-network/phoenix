@@ -15,7 +15,7 @@
 
         <div fxLayout="row" fxLayoutAlign="start center">
 
-          <div *ngIf="!isNewMessage" class="message-contact" fuseMatSidenavToggler="message-right-sidenav">
+          <div *ngIf="!isNewMessage" class="message-contact">
 
             <div class="avatar-wrapper">
               <!-- <img [src]="selectedMessageQRCode" class="avatar" /> -->
@@ -37,9 +37,16 @@
 
           <mat-icon class="encryption-icon"
                     [ngClass]="getIconStyle()"
-                    matTooltip="{{isOptionEncryptionEnabled ? 'Messages will be encrypted' : 'Messages will be plain text'}}">
-            {{isOptionEncryptionEnabled ? 'lock' : 'lock_open'}}
+                    fuseMatSidenavToggler="message-right-sidenav"
+                    matTooltip="{{encrypt ? 'Messages will be encrypted' : 'Messages will be plain text'}}"
+          >
+            {{encrypt ? 'lock' : 'lock_open'}}
           </mat-icon>
+
+          <div class="fee-hint"
+               fuseMatSidenavToggler="message-right-sidenav"
+               matTooltip="{{'fee' | i18n}}"
+          >{{feeNQT}}</div>
         </div>
       </div>
 

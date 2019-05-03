@@ -56,7 +56,6 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   isNewMessage = false;
   burstAddressPatternRef = burstAddressPattern;
   isSending = false;
-  isOptionEncryptionEnabled = true;
 
 
   private _unsubscribeAll: Subject<any>;
@@ -84,12 +83,6 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         this.isNewMessage = isNewMessage;
         this.readyToReply();
       });
-
-    this.messageService.onOptionsSelected.pipe(
-      takeUntil(this._unsubscribeAll),
-    ).subscribe(({encrypt}) => {
-      this.isOptionEncryptionEnabled = encrypt;
-    });
   }
 
   ngAfterViewInit(): void {
@@ -213,6 +206,6 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   getIconStyle(): string {
-    return this.isOptionEncryptionEnabled ? 'green-300-fg' : 'warn-300-fg';
+    return this.encrypt ? 'green-300-fg' : 'warn-300-fg';
   }
 }

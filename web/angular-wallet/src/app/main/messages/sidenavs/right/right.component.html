@@ -1,11 +1,11 @@
 <div [ngSwitch]="view" class="views">
 
-    <message-options-sidenav class="view"
-                          *ngSwitchCase="'options'"
-                          [@slideInRight]
-                          fusePerfectScrollbar
-                          [fees]="fees"
-                          [(feeNQT)]="feeNQT">
-    </message-options-sidenav>
+  <message-options-sidenav class="view"
+                           *ngSwitchCase="'options'"
+                           [@slideInRight]
+                           fusePerfectScrollbar
+                           [fees]="fees"
+  >
+  </message-options-sidenav>
 
 </div>

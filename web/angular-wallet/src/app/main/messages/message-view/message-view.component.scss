@@ -14,15 +14,21 @@ message-view {
 
       .encryption-icon {
         margin-left: 16px;
+        cursor: pointer;
       }
 
+      .fee-hint {
+        font-size: 14px;
+        margin-left: 8px;
+        cursor: pointer;
+        color: gray;
+      }
 
       .responsive-messages-button {
         padding: 0;
       }
 
       .message-contact {
-        cursor: pointer;
 
         .avatar {
           margin-right: 16px;
@@ -229,7 +235,6 @@ message-view {
 
               .mat-form-field-infix {
                 padding: 0;
-                border: none;
                 border-radius: 20px;
                 border: 1px solid;
                 width: auto;

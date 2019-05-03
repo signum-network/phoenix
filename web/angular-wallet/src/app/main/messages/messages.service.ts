@@ -34,6 +34,7 @@ export interface Messages {
 
 export interface MessageOptions {
   encrypt: boolean;
+  feeNQT: string;
   fees?: SuggestedFees;
 }
 
@@ -60,7 +61,8 @@ export class MessagesService implements Resolve<any> {
     this.api = apiService.api;
     this.onMessageSelected = new BehaviorSubject({});
     this.onOptionsSelected = new BehaviorSubject({
-      encrypt: true
+      encrypt: true,
+      feeNQT: ''
     });
     this.onMessagesUpdated = new Subject();
     this.onLeftSidenavViewChanged = new Subject();

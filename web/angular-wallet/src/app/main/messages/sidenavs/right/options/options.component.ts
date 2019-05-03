@@ -13,13 +13,12 @@ import {ActivatedRoute} from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class MessageOptionsSidenavComponent implements OnInit, OnDestroy {
-  options: any;
-
   @Input('fees') fees: SuggestedFees;
-  @Input('encrypt') encrypt: boolean;
-  @Input('feeNQT') feeNQT: string;
 
+  public encrypt: boolean;
+  public feeNQT: string;
 
+  private options: any;
   private _unsubscribeAll: Subject<any>;
 
   constructor(
@@ -54,11 +53,5 @@ export class MessageOptionsSidenavComponent implements OnInit, OnDestroy {
     // Unsubscribe from all subscriptions
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
-  }
-
-  onEncryptionChange($event: any): void {
-    this._messageService.selectOptions({
-      ...this.options,
-      encrypt: this.encrypt });
   }
 }
