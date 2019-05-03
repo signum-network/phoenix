@@ -8,23 +8,31 @@
 
       <div fxLayout="row" fxLayoutAlign="start center">
 
-        <!-- RESPONSIVE CHATS BUTTON-->
         <button mat-icon-button fxHide.gt-md class="responsive-messages-button mr-16"
                 fuseMatSidenavToggler="message-left-sidenav" aria-label="messages button">
           <mat-icon>message</mat-icon>
         </button>
-        <!-- / RESPONSIVE CHATS BUTTON-->
 
-        <!-- CHAT CONTACT-->
-        <div *ngIf="!isNewMessage" class="message-contact" fxLayout="row" fxLayoutAlign="start center"
-             fuseMatSidenavToggler="message-right-sidenav">
+        <div fxLayout="row" fxLayoutAlign="start center">
 
-          <div class="avatar-wrapper">
-            <!-- <img [src]="selectedMessageQRCode" class="avatar" /> -->
+          <div *ngIf="!isNewMessage" class="message-contact" fuseMatSidenavToggler="message-right-sidenav">
+
+            <div class="avatar-wrapper">
+              <!-- <img [src]="selectedMessageQRCode" class="avatar" /> -->
+            </div>
+
+            <div class="message-contact-name">
+              {{message.senderRS}}
+            </div>
           </div>
 
-          <div class="message-contact-name">
-            {{message.senderRS}}
+          <div *ngIf="isNewMessage" class="message-contact-name-input">
+            <mat-form-field floatLabel="never" appearance="standard">
+              <input matInput prefix="BURST-" burstInputValidator [patterns]="burstAddressPatternRef"
+                     mask="____-____-____-_____" [dropSpecialCharacters]="false" [showMaskTyped]="true"
+                     [(ngModel)]="message.senderRS" name="message.senderRS" placeholder="{{ 'recipient' | i18n }}">
+            </mat-form-field>
+
           </div>
 
           <mat-icon class="encryption-icon"
@@ -32,18 +40,7 @@
                     matTooltip="{{isOptionEncryptionEnabled ? 'Messages will be encrypted' : 'Messages will be plain text'}}">
             {{isOptionEncryptionEnabled ? 'lock' : 'lock_open'}}
           </mat-icon>
-
         </div>
-        <!-- / CHAT CONTACT-->
-
-        <div *ngIf="isNewMessage" class="message-contact-name-input">
-          <mat-form-field floatLabel="never" appearance="standard">
-            <input matInput prefix="BURST-" burstInputValidator [patterns]="burstAddressPatternRef"
-                   mask="____-____-____-_____" [dropSpecialCharacters]="false" [showMaskTyped]="true"
-                   [(ngModel)]="message.senderRS" name="message.senderRS" placeholder="{{ 'recipient' | i18n }}">
-          </mat-form-field>
-        </div>
-
       </div>
 
       <div>
@@ -60,7 +57,6 @@
 
     </div>
   </mat-toolbar>
-  <!-- / CHAT TOOLBAR -->
 
   <!-- CHAT CONTENT -->
   <div id="message-content" fxFlex="1 1 auto" fusePerfectScrollbar>
