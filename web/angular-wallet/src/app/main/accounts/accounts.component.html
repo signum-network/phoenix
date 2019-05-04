@@ -34,8 +34,11 @@
                     <ng-container *ngIf="account.type === 'offline'">
                       <mat-icon class="account-type-icon" matTooltip="{{'hint_offline_account' | i18n}}">remove_red_eye</mat-icon>
                     </ng-container>
-                    <ng-container *ngIf="account.type !== 'offline'">
+                    <ng-container *ngIf="account.type !== 'offline' && account.confirmed">
                       <mat-icon class="account-type-icon" matTooltip="{{'hint_online_account' | i18n}}">verified_user</mat-icon>
+                    </ng-container>
+                    <ng-container *ngIf="account.type !== 'offline' && !account.confirmed">
+                      <mat-icon class="account-type-icon" matTooltip="{{'error_no_public_key' | i18n}}">lock_open</mat-icon>
                     </ng-container>
                 </mat-cell>
             </ng-container>
