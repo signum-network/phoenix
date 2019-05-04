@@ -7,8 +7,12 @@ import { VerticalLayout3Module } from 'app/layout/vertical/layout-3/layout-3.mod
 import { HorizontalLayout1Module } from 'app/layout/horizontal/layout-1/layout-1.module';
 import { BurstFeeSelectorComponent } from './components/burst-fee-selector/burst-fee-selector.component';
 import { Ng5SliderModule } from 'ng5-slider';
-import {MatIconModule, MatTooltipModule} from '@angular/material';
+import {MatFormFieldModule, MatIconModule, MatInputModule, MatTooltipModule} from '@angular/material';
 import {I18nModule} from './components/i18n/i18n.module';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {FlexModule} from '@angular/flex-layout';
+import {BurstRecipientInputComponent} from './components/burst-recipient-input/burst-recipient-input.component';
 
 @NgModule({
   imports: [
@@ -20,7 +24,12 @@ import {I18nModule} from './components/i18n/i18n.module';
     Ng5SliderModule,
     MatTooltipModule,
     MatIconModule,
-    I18nModule
+    I18nModule,
+    FormsModule,
+    MatFormFieldModule,
+    CommonModule,
+    FlexModule,
+    MatInputModule
   ],
     exports: [
         VerticalLayout1Module,
@@ -28,9 +37,10 @@ import {I18nModule} from './components/i18n/i18n.module';
         VerticalLayout3Module,
 
         HorizontalLayout1Module,
-        BurstFeeSelectorComponent
+        BurstFeeSelectorComponent,
+        BurstRecipientInputComponent
     ],
-    declarations: [BurstFeeSelectorComponent]
+    declarations: [BurstFeeSelectorComponent, BurstRecipientInputComponent]
 })
 export class LayoutModule
 {

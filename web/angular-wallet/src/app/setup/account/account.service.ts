@@ -53,7 +53,7 @@ export class AccountService {
   private api: Api;
   private selectedNode: NodeDescriptor;
 
-  // a simple string cache of transaction ids for which the user 
+  // a simple string cache of transaction ids for which the user
   // has already received a push notification
   private transactionsSeenInNotifications: string[] = [];
 
@@ -90,6 +90,9 @@ export class AccountService {
       feeNQT,
       immutable
     );
+  }
+  public getAlias(name: string): Promise<any>{
+    return this.api.alias.getAliasByName(name);
   }
 
   public getAliases(id: string): Promise<AliasList> {
@@ -228,11 +231,11 @@ export class AccountService {
     this.transactionsSeenInNotifications[transaction.transaction] = true;
     const incoming = transaction.recipientRS === this.currentAccount.value.accountRS;
     // @ts-ignore
-    return window.Notification && new window.Notification(incoming ? 
+    return window.Notification && new window.Notification(incoming ?
       this.i18nService.getTranslation('youve_got_burst') :
-      this.i18nService.getTranslation('you_sent_burst'), 
-      { 
-        body: `${convertNQTStringToNumber(transaction.amountNQT)} BURST`, 
+      this.i18nService.getTranslation('you_sent_burst'),
+      {
+        body: `${convertNQTStringToNumber(transaction.amountNQT)} BURST`,
         title: 'Phoenix'
       });
 
@@ -243,7 +246,7 @@ export class AccountService {
       const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account);
       account.transactions = unconfirmedTransactionsResponse.unconfirmedTransactions
         .concat(account.transactions);
-                
+
       // @ts-ignore - Send notifications for new transactions
       if (window.Notification) {
         unconfirmedTransactionsResponse.unconfirmedTransactions

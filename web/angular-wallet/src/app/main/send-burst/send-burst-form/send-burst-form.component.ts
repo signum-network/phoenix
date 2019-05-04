@@ -1,10 +1,11 @@
 import {Component, OnInit, ViewChild, Input} from '@angular/core';
-import {SuggestedFees, Account, EncryptedMessage} from '@burstjs/core';
-import {burstAddressPattern, isBurstAddress} from '@burstjs/util';
+import {SuggestedFees, Account} from '@burstjs/core';
+import {burstAddressPattern} from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
+import {AccountService} from '../../../setup/account/account.service';
 
 
 const isNotEmpty = (value: string) => value && value.length > 0;
@@ -16,7 +17,6 @@ const isNotEmpty = (value: string) => value && value.length > 0;
 })
 export class SendBurstFormComponent implements OnInit {
   @ViewChild('sendBurstForm') public sendBurstForm: NgForm;
-  @ViewChild('recipientAddress') public recipientAddress: string;
   @ViewChild('amountNQT') public amountNQT: string;
   @ViewChild('message') public message: string;
   @ViewChild('fullHash') public fullHash: string;
@@ -31,11 +31,13 @@ export class SendBurstFormComponent implements OnInit {
   burstAddressPatternRef = burstAddressPattern;
   deadline = '24';
 
+  public recipient: string;
   public feeNQT: string;
   isSending = false;
 
   constructor(
     private transactionService: TransactionService,
+    private accountService: AccountService,
     private notifierService: NotifierService,
     private i18nService: I18nService) {
   }
@@ -63,7 +65,7 @@ export class SendBurstFormComponent implements OnInit {
         },
         pin: this.pin,
         keys: this.account.keys,
-        recipientAddress: `BURST-${this.recipientAddress}`
+        recipientAddress: this.recipient
       });
 
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
@@ -92,10 +94,15 @@ export class SendBurstFormComponent implements OnInit {
     };
   }
 
-
   canSubmit(): boolean {
-    return isBurstAddress(`BURST-${this.recipientAddress}`) &&
+    return isNotEmpty(this.recipient) &&
       isNotEmpty(this.amountNQT) &&
       isNotEmpty(this.pin);
+  }
+
+
+  onRecipientChange(recipientRS: string): void {
+    console.log(recipientRS);
+    this.recipient = recipientRS;
   }
 }
