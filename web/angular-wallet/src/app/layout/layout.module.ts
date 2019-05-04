@@ -12,6 +12,7 @@ import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {BurstRecipientInputComponent} from './components/burst-recipient-input/burst-recipient-input.component';
 import {BurstFeeSelectorComponent} from './components/burst-fee-selector/burst-fee-selector.component';
+import {FlexModule} from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import {BurstFeeSelectorComponent} from './components/burst-fee-selector/burst-f
     FormsModule,
     MatFormFieldModule,
     CommonModule,
-    MatInputModule
+    MatInputModule,
+    FlexModule
   ],
   exports: [
     VerticalLayout1Module,
