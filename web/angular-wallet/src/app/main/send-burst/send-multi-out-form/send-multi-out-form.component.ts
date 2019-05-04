@@ -134,4 +134,15 @@ export class SendMultiOutFormComponent implements OnInit {
       (this.sameAmount ? isNotEmpty(this.amountNQT) : true);
 
   }
+
+  onRecipientChange($event: string, i: number) {
+    console.log($event, i)
+  }
+
+  onDeleteRecipient(i: number) {
+    if(this.recipients.length > 1)
+    {
+      this.recipients = this.recipients.splice(i, 1)
+    }
+  }
 }

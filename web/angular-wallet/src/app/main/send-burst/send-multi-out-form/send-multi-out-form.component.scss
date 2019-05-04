@@ -7,6 +7,25 @@ form {
     margin:20px 0;
 }
 
+.recipients-item{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+
+  burst-recipient-input{
+    margin-right: 8px;
+    width: 70%;
+  }
+
+  mat-form-field{
+    width:30%
+  }
+
+  mat-icon {
+    cursor: pointer;
+  }
+}
+
 .add-recipient {
     width:100%;
 }
