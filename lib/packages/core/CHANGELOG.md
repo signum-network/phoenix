@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 - added `confirmed` property to `Account` model
+- added `alias` api
 
 ## 0.1.1
 - added FeeQuant for `suggestFees`

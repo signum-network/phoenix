@@ -5,6 +5,7 @@
  */
 
 import {Api} from '../typings/api';
+import {AliasApi} from '../typings/api/aliasApi';
 import {BlockApi} from '../typings/api/blockApi';
 import {AccountApi} from '../typings/api/accountApi';
 import {MessageApi} from '../typings/api/messageApi';
@@ -14,6 +15,7 @@ import {BurstService} from '../service/burstService';
 
 
 class ApiImpl implements Api {
+    alias: AliasApi;
     account: AccountApi;
     block: BlockApi;
     message: MessageApi;
@@ -119,6 +121,15 @@ export class ApiComposer {
      */
     public withTransactionApi(creatorMap: any): ApiComposer {
         this.mapCreators('transaction', creatorMap);
+        return this;
+    }
+
+    /**
+     * Adds the [[AliasApi]]  to be composed
+     * @param creatorMap A map of creator/factory functions for the endpoints
+     */
+    public withAliasApi(creatorMap: any): ApiComposer {
+        this.mapCreators('alias', creatorMap);
         return this;
     }
 

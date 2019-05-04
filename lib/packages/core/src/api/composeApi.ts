@@ -38,6 +38,8 @@ import {getAccount} from './factories/account/getAccount';
 import {setAccountInfo} from './factories/account/setAccountInfo';
 import {BurstServiceSettings} from '../service/burstServiceSettings';
 import {ApiVersion} from '../constants/apiVersion';
+import {getAliasById} from './factories/alias/getAliasById';
+import {getAliasByName} from './factories/alias/getAliasByName';
 
 
 /**
@@ -111,6 +113,10 @@ export function composeApi(settings: ApiSettings): Api {
             setAlias,
             getAccount,
             setAccountInfo,
+        }).withAliasApi({
+            getAliasByName,
+            getAliasById,
+            setAlias
         })
         .compose();
 
