@@ -48,7 +48,7 @@
       <mat-icon>local_atm</mat-icon>
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
-      {{getAmount(transaction) | number: "1.0-8" }}
+      {{getAmount(transaction) | number: "1.0-4":this.locale }}
     </mat-cell>
   </ng-container>
 
@@ -58,7 +58,7 @@
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
       {{
-      convertNQTStringToNumber(transaction.feeNQT) | number: "1.0-8"
+      convertNQTStringToNumber(transaction.feeNQT) | number: "1.0-4":this.locale
       }}
     </mat-cell>
   </ng-container>
@@ -70,7 +70,7 @@
     <mat-cell *matCellDef="let transaction">
       <ng-container *ngIf="isOwnAccount(transaction.senderRS)">
         <a *ngIf="!isMultiOutPayment(transaction)"
-          [routerLink]="['/account', transaction.recipient]">{{
+           [routerLink]="['/account', transaction.recipient]">{{
           transaction.recipientRS
           }}</a>
         <div *ngIf="isMultiOutPayment(transaction)">
@@ -95,7 +95,8 @@
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns" [class]="row.confirmations ? 'confirmed': 'unconfirmed'"></mat-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"
+           [class]="row.confirmations ? 'confirmed': 'unconfirmed'"></mat-row>
 </mat-table>
 
 <mat-paginator
