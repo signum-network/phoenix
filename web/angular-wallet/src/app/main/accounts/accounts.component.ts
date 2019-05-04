@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, ViewChild, AfterViewInit} from '@angular/core';
+import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatTableDataSource, MatSort, MatDialog} from '@angular/material';
 import {NotifierService} from 'angular-notifier';
@@ -7,8 +7,7 @@ import {StoreService} from 'app/store/store.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {Account} from '@burstjs/core';
 import {convertNQTStringToNumber} from '@burstjs/util/out';
-import {takeUntil, takeWhile} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 
 @Component({
@@ -21,6 +20,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   private displayedColumns: string[];
   public accounts: Account[];
   public selectedAccounts: object;
+  public locale: string;
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -50,6 +50,15 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
           this.dataSource.data = this.accounts;
         });
       });
+
+    this.storeService.settings
+      .pipe(
+        takeUntil(this.unsubscribeAll)
+      )
+      .subscribe(({language}) => {
+        this.locale = language;
+      });
+
   }
 
   public getSelectedAccounts(): Array<Account> {

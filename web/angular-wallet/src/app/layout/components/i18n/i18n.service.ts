@@ -6,20 +6,20 @@ import { constants } from '../../../constants';
 import { StoreService } from 'app/store/store.service';
 import { Settings } from 'app/settings';
 export interface Language {
-    name: string,
-    code: string
+    name: string;
+    code: string;
 }
 
 @Injectable()
 export class I18nService {
 
   public state;
-  public data:{};
-  public currentLanguage:any;
+  public data: {};
+  public currentLanguage: any;
 
 
   constructor(
-      private http: HttpClient, 
+      private http: HttpClient,
       private ref: ApplicationRef,
       private storeService: StoreService
     ) {
@@ -38,16 +38,16 @@ export class I18nService {
 
   private fetch(locale: any) {
     this.http.get( `locales/${locale}.json` )
-      .subscribe((data:any)=> {
+      .subscribe((data: any) => {
         this.data = data;
         this.state.next(data);
-        this.ref.tick()
-      })
+        this.ref.tick();
+      });
   }
 
-  private initLanguage(locale:string) {
-    let language = constants.languages.find((it)=> {
-      return it.code == locale
+  private initLanguage(locale: string) {
+    const language = constants.languages.find((it) => {
+      return it.code === locale;
     });
     if (language) {
       this.setLanguage(language);
@@ -65,12 +65,12 @@ export class I18nService {
     this.fetch(language.code);
   }
 
-  subscribe(sub:any, err:any) {
-    return this.state.subscribe(sub, err)
+  subscribe(sub: any, err: any) {
+    return this.state.subscribe(sub, err);
   }
 
-  public getTranslation(phrase:string, opts?:object):string {
-    return this.data && this.data[phrase] ? this.data[phrase] : phrase
+  public getTranslation(phrase: string, opts?: object): string {
+    return this.data && this.data[phrase] ? this.data[phrase] : phrase;
   }
 
 }

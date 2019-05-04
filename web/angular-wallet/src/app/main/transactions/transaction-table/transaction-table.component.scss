@@ -1,31 +1,45 @@
-.mat-column-timestamp {
-    flex: 0 0 100px;
+.mat-column-transaction_id {
+  flex: 0 0 200px;
+  font-size: 1.2rem;
+}
+
+.mat-column-attachment {
+  flex: 0 0 50px;
 }
 
 .mat-column-type {
-    flex: 0 0 150px;
+  flex: 0 0 150px;
 }
 
-.mat-column-transaction_id {
-    flex: 0 0 200px;
-    font-size: 1.2rem;
+.mat-column-timestamp {
+  flex: 0 0 100px;
 }
 
 .mat-column-account {
-    flex: 0 0 225px;
-    font-size: 1.2rem;
+  flex: 0 0 225px;
+  font-size: 1.2rem;
 }
 
 .mat-column-amount {
-    flex: 0 0 80px;
+  flex: 0 1 200px;
+  justify-content: center;
 }
 
 .mat-cell {
-    word-wrap: normal;
-    white-space: nowrap;
-    overflow: default;
+  word-wrap: normal;
+  white-space: nowrap;
+  overflow: auto;
 }
 
 .unconfirmed {
-    opacity: .5;
+  opacity: .5;
 }
+
+.fg_green {
+  color: green !important;
+}
+
+.fg_red {
+  color: red !important;
+}
+

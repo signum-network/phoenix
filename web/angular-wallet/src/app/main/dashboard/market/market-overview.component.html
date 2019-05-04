@@ -9,7 +9,7 @@
     <mat-list-item>
       <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
         <h3 class="font-weight-700">
-          7d Price Graph
+          7d Price Chart
         </h3>
         <img class="sparkline" alt="sparkline"
              src="https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/573.png">
@@ -18,17 +18,17 @@
     <mat-list-item>
       <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
         <h3 class="font-weight-700">
-          Price BTC
+          {{"price" | i18n}} SATS
         </h3>
         <div>
-          {{getPriceBtc()}}
+          {{getPriceSats()}}
         </div>
       </div>
     </mat-list-item>
     <mat-list-item>
       <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
         <h3 class="font-weight-700">
-          Price USD
+          {{"price" | i18n}} USD
         </h3>
         <div>
           {{getPriceUsd()}}
