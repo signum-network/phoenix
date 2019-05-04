@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NetworkModule } from 'app/network/network.module';
+import {NetworkModule} from 'app/network/network.module';
 import {
   MatCheckboxModule,
   MatGridListModule,
@@ -12,25 +12,26 @@ import {
   MatSelectModule,
   MatProgressSpinnerModule, MatTooltipModule
 } from '@angular/material';
-import { I18nModule } from 'app/layout/components/i18n/i18n.module';
-import { NgxMaskModule } from 'ngx-mask';
-import { NotifierModule } from 'angular-notifier';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
-import { StoreService } from 'app/store/store.service';
-import { BehaviorSubject } from 'rxjs';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FormsModule } from '@angular/forms';
-import { BurstFeeSelectorComponent } from 'app/layout/components/burst-fee-selector/burst-fee-selector.component';
-import { Ng5SliderModule } from 'ng5-slider';
+import {I18nModule} from 'app/layout/components/i18n/i18n.module';
+import {NgxMaskModule} from 'ngx-mask';
+import {NotifierModule} from 'angular-notifier';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserModule} from '@angular/platform-browser';
+import {I18nService} from 'app/layout/components/i18n/i18n.service';
+import {StoreService} from 'app/store/store.service';
+import {BehaviorSubject} from 'rxjs';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {FormsModule} from '@angular/forms';
+import {BurstFeeSelectorComponent} from 'app/layout/components/burst-fee-selector/burst-fee-selector.component';
+import {BurstRecipientInputComponent} from 'app/layout/components/burst-recipient-input/burst-recipient-input.component';
+import {Ng5SliderModule} from 'ng5-slider';
 
 
-import { SendBurstFormComponent } from './send-burst-form.component';
-import { BurstInputValidatorDirective } from '../send-burst-validator.directive';
-import { TransactionService } from 'app/main/transactions/transaction.service';
-import { AccountService } from 'app/setup/account/account.service';
-import { Account } from '@burstjs/core';
+import {SendBurstFormComponent} from './send-burst-form.component';
+import {BurstInputValidatorDirective} from '../send-burst-validator.directive';
+import {TransactionService} from 'app/main/transactions/transaction.service';
+import {AccountService} from 'app/setup/account/account.service';
+import {Account} from '@burstjs/core';
 
 describe('SendBurstFormComponent', () => {
   let component: SendBurstFormComponent;
@@ -59,7 +60,12 @@ describe('SendBurstFormComponent', () => {
         HttpClientTestingModule,
         MatProgressSpinnerModule
       ],
-      declarations: [ SendBurstFormComponent, BurstInputValidatorDirective, BurstFeeSelectorComponent ],
+      declarations: [
+        SendBurstFormComponent,
+        BurstInputValidatorDirective,
+        BurstFeeSelectorComponent,
+        BurstRecipientInputComponent
+      ],
       providers: [
         I18nService,
         {
@@ -91,7 +97,7 @@ describe('SendBurstFormComponent', () => {
         BurstInputValidatorDirective
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

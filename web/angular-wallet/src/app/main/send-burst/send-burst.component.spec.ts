@@ -30,6 +30,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TransactionService } from '../transactions/transaction.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { BurstFeeSelectorComponent } from 'app/layout/components/burst-fee-selector/burst-fee-selector.component';
+import { BurstRecipientInputComponent } from 'app/layout/components/burst-recipient-input/burst-recipient-input.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { SendBurstFormComponent } from './send-burst-form/send-burst-form.component';
 import { SendMultiOutFormComponent } from './send-multi-out-form/send-multi-out-form.component';
@@ -65,7 +66,14 @@ describe('SendBurstComponent', () => {
         ),
         MatProgressSpinnerModule
       ],
-      declarations: [ SendBurstComponent, BurstInputValidatorDirective, BurstFeeSelectorComponent, SendBurstFormComponent, SendMultiOutFormComponent ],
+      declarations: [
+        SendBurstComponent,
+        BurstInputValidatorDirective,
+        BurstFeeSelectorComponent,
+        SendBurstFormComponent,
+        SendMultiOutFormComponent,
+        BurstRecipientInputComponent
+      ],
       providers: [
         I18nService,
         {
