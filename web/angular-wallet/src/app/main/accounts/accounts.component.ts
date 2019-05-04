@@ -7,13 +7,16 @@ import {StoreService} from 'app/store/store.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {Account} from '@burstjs/core';
 import {convertNQTStringToNumber} from '@burstjs/util/out';
+import {takeUntil, takeWhile} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 
 @Component({
   selector: 'app-accounts',
   styleUrls: ['./accounts.component.scss'],
   templateUrl: './accounts.component.html'
 })
-export class AccountsComponent implements OnInit, AfterViewInit {
+export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
   private dataSource: MatTableDataSource<Account>;
   private displayedColumns: string[];
   public accounts: Account[];
@@ -28,6 +31,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     private deleteDialog: MatDialog,
     public router: Router
   ) {
+    super();
   }
 
   public ngOnInit(): void {
@@ -36,12 +40,16 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     this.displayedColumns = ['type', 'account', 'accountRS', 'name', 'balanceNQT', 'delete'];
     this.dataSource = new MatTableDataSource<Account>();
 
-    this.storeService.ready.subscribe((ready) => {
-      this.storeService.getAllAccounts().then((accounts) => {
-        this.accounts = accounts;
-        this.dataSource.data = this.accounts;
+    this.storeService.ready
+      .pipe(
+        takeUntil(this.unsubscribeAll)
+      )
+      .subscribe((ready) => {
+        this.storeService.getAllAccounts().then((accounts) => {
+          this.accounts = accounts;
+          this.dataSource.data = this.accounts;
+        });
       });
-    });
   }
 
   public getSelectedAccounts(): Array<Account> {
@@ -57,7 +65,11 @@ export class AccountsComponent implements OnInit, AfterViewInit {
       data: selectedAccounts
     });
 
-    dialogRef.afterClosed().subscribe(confirm => {
+    dialogRef.afterClosed()
+      .pipe(
+        takeUntil(this.unsubscribeAll)
+      )
+      .subscribe(confirm => {
       if (!confirm) {
         return;
       }
@@ -78,7 +90,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   openDialog(): void {
   }
 
-  public ngAfterViewInit(): void{
+  public ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
   }
 
@@ -91,4 +103,5 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   public convertNQTStringToNumber(balanceNQT): number {
     return convertNQTStringToNumber(balanceNQT);
   }
+
 }
