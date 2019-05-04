@@ -16,7 +16,7 @@ import {StoreService} from '../../../store/store.service';
 @Component({
   selector: 'app-transaction-table',
   styleUrls: ['./transaction-table.component.scss'],
-  templateUrl: './transaction-table.component.html'
+  templateUrl: './transaction-table.component.html',
 })
 export class TransactionTableComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
 
@@ -77,5 +77,9 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements O
     return this.isMultiOutPayment(transaction)
       ? getRecipientsAmount(this.account.account, transaction)
       : this.convertNQTStringToNumber(transaction.amountNQT);
+  }
+
+  public isAmountNegative(transaction: Transaction): boolean {
+    return this.isOwnAccount(transaction.senderRS);
   }
 }

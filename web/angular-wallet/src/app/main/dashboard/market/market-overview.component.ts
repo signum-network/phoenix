@@ -82,7 +82,7 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
     return `${formatPercent(relative_supply, this.locale)}`;
   }
   public getMarketCap = (): string => `${this.asCurrency(this.tickerData.market_cap_usd)} USD`;
-  public getYesterDaysChange = (): string => `${parseFloat(this.tickerData.percent_change_24h).toFixed(2)} %`;
+  public getYesterDaysChange = (): string => `${this.asCurrency(this.tickerData.percent_change_24h)} %`;
   public isChangeNegative = (): boolean => this.tickerData.percent_change_24h.startsWith('-');
   public getMarketRank = (): string => this.tickerData.rank;
 
