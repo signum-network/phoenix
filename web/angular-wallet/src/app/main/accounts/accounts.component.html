@@ -65,9 +65,10 @@
 
             <ng-container matColumnDef="balanceNQT">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    <mat-icon>local_atm</mat-icon> Balance
+                    <mat-icon>local_atm</mat-icon>
+                  {{'balance' | i18n }}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let account">{{convertNQTStringToNumber(account.balanceNQT) | number:'1.0-3' }}</mat-cell>
+                <mat-cell *matCellDef="let account">{{convertNQTStringToNumber(account.balanceNQT) | number:'1.0-3':this.locale }}</mat-cell>
             </ng-container>
 
 

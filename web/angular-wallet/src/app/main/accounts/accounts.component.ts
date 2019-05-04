@@ -10,6 +10,7 @@ import {convertNQTStringToNumber} from '@burstjs/util/out';
 import {takeUntil, takeWhile} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
+import {languages} from 'prismjs';
 
 @Component({
   selector: 'app-accounts',
@@ -21,6 +22,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   private displayedColumns: string[];
   public accounts: Account[];
   public selectedAccounts: object;
+  public locale: string;
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -50,6 +52,15 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
           this.dataSource.data = this.accounts;
         });
       });
+
+    this.storeService.settings
+      .pipe(
+        takeUntil(this.unsubscribeAll)
+      )
+      .subscribe(({language}) => {
+        this.locale = language;
+      });
+
   }
 
   public getSelectedAccounts(): Array<Account> {
@@ -70,21 +81,21 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
         takeUntil(this.unsubscribeAll)
       )
       .subscribe(confirm => {
-      if (!confirm) {
-        return;
-      }
-      selectedAccounts.forEach((account) => {
-        this.accountService
-          .removeAccount(account)
-          .then(() => {
-            this.notificationService.notify('success', `Account(s) Deleted`);
-            this.storeService.getAllAccounts().then((accounts) => {
-              this.accounts = accounts;
-              this.dataSource.data = this.accounts;
+        if (!confirm) {
+          return;
+        }
+        selectedAccounts.forEach((account) => {
+          this.accountService
+            .removeAccount(account)
+            .then(() => {
+              this.notificationService.notify('success', `Account(s) Deleted`);
+              this.storeService.getAllAccounts().then((accounts) => {
+                this.accounts = accounts;
+                this.dataSource.data = this.accounts;
+              });
             });
-          });
+        });
       });
-    });
   }
 
   openDialog(): void {
