@@ -181,7 +181,11 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         return this._accountService.generateSendTransactionQRCodeAddress(id);
     }
 
-    getAccountName() {
+    getAccountName(): string {
         return this.selectedAccount.name || this.i18nService.getTranslation('set_account_info');
+    }
+
+    getVersion(): string {
+      return environment.version;
     }
 }
