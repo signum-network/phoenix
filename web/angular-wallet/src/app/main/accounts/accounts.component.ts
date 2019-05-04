@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, ViewChild, AfterViewInit} from '@angular/core';
+import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatTableDataSource, MatSort, MatDialog} from '@angular/material';
 import {NotifierService} from 'angular-notifier';
@@ -7,10 +7,8 @@ import {StoreService} from 'app/store/store.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {Account} from '@burstjs/core';
 import {convertNQTStringToNumber} from '@burstjs/util/out';
-import {takeUntil, takeWhile} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
-import {languages} from 'prismjs';
 
 @Component({
   selector: 'app-accounts',
@@ -81,21 +79,21 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
         takeUntil(this.unsubscribeAll)
       )
       .subscribe(confirm => {
-        if (!confirm) {
-          return;
-        }
-        selectedAccounts.forEach((account) => {
-          this.accountService
-            .removeAccount(account)
-            .then(() => {
-              this.notificationService.notify('success', `Account(s) Deleted`);
-              this.storeService.getAllAccounts().then((accounts) => {
-                this.accounts = accounts;
-                this.dataSource.data = this.accounts;
-              });
+      if (!confirm) {
+        return;
+      }
+      selectedAccounts.forEach((account) => {
+        this.accountService
+          .removeAccount(account)
+          .then(() => {
+            this.notificationService.notify('success', `Account(s) Deleted`);
+            this.storeService.getAllAccounts().then((accounts) => {
+              this.accounts = accounts;
+              this.dataSource.data = this.accounts;
             });
-        });
+          });
       });
+    });
   }
 
   openDialog(): void {
