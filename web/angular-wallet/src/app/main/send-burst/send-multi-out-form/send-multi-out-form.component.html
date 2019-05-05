@@ -11,11 +11,14 @@
 
     <div class="recipients-item">
       <burst-recipient-input (recipientChange)="onRecipientChange($event, i)"></burst-recipient-input>
-      <mat-form-field>
+      <mat-form-field *ngIf="!sameAmount">
         <input matInput [(ngModel)]="recipients[i].amountNQT" name="amountNQT{{i}}"
                placeholder="{{ 'amount' | i18n }}">
       </mat-form-field>
+<!--
+      FUTURE FEATURE
       <mat-icon *ngIf="recipients.length > 1" matTooltip="{{'delete' | i18n}}" (click)="onDeleteRecipient(i)" >delete</mat-icon>
+-->
     </div>
 
   </ng-container>
