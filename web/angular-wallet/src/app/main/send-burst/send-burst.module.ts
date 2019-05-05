@@ -11,7 +11,7 @@ import {
   MatCheckboxModule,
   MatAutocompleteModule,
   MatTabsModule,
-  MatProgressSpinnerModule, MatChipsModule, MatBadgeModule, MatTooltipModule
+  MatProgressSpinnerModule, MatChipsModule, MatBadgeModule, MatTooltipModule, MatDialogModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { SetupModule } from 'app/setup/setup.module';
@@ -25,6 +25,7 @@ import { BurstInputValidatorDirective } from './send-burst-validator.directive';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SendBurstFormComponent } from './send-burst-form/send-burst-form.component';
 import { SendMultiOutFormComponent } from './send-multi-out-form/send-multi-out-form.component';
+import { WarnSendDialogComponent } from './warn-send-dialog/warn-send-dialog.component';
 
 const routes = [
   {
@@ -40,7 +41,10 @@ const routes = [
 @NgModule({
   declarations: [
     SendBurstComponent,
-    BurstInputValidatorDirective, SendBurstFormComponent, SendMultiOutFormComponent
+    BurstInputValidatorDirective,
+    SendBurstFormComponent,
+    SendMultiOutFormComponent,
+    WarnSendDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -63,7 +67,11 @@ const routes = [
     RouterModule.forChild(routes),
     MatChipsModule,
     MatBadgeModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    WarnSendDialogComponent
   ],
   exports: [
     BurstInputValidatorDirective

@@ -34,7 +34,8 @@ export class BurstRecipientInputComponent implements OnInit {
     this.recipientValue = r;
   }
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService) {
+  }
 
   ngOnInit(): void {
   }
@@ -76,16 +77,20 @@ export class BurstRecipientInputComponent implements OnInit {
       return;
     }
 
-    accountFetchFn.call(this.accountService, id).then( ({accountRS}) => {
+    accountFetchFn.call(this.accountService, id).then(({accountRS}) => {
       this.recipientRS = accountRS;
       this.recipientTypeValidationStatus = ValidationStatus.VALID;
-      this.recipientChange.emit(this.recipientRS);
     }).catch(() => {
       this.recipientRS = '';
       this.recipientTypeValidationStatus = ValidationStatus.INVALID;
-      this.recipientChange.emit(this.recipientRS);
-    });
-
+    }).finally(() => {
+        this.recipientChange.emit({
+          status: this.recipientTypeValidationStatus,
+          accountRS: this.recipientRS,
+          accountRaw: this.recipientValue
+        });
+      }
+    );
 
   }
 
@@ -93,7 +98,7 @@ export class BurstRecipientInputComponent implements OnInit {
 
   getValidationHint(): string {
     // TODO: localization
-    switch (this.recipientTypeValidationStatus){
+    switch (this.recipientTypeValidationStatus) {
       case ValidationStatus.UNKNOWN:
         return 'The address was not validated yet';
       case ValidationStatus.VALID:
@@ -104,7 +109,7 @@ export class BurstRecipientInputComponent implements OnInit {
   }
 
   getValidationIcon(): string {
-    switch (this.recipientTypeValidationStatus){
+    switch (this.recipientTypeValidationStatus) {
       case ValidationStatus.UNKNOWN:
         return 'help_outline';
       case ValidationStatus.VALID:
