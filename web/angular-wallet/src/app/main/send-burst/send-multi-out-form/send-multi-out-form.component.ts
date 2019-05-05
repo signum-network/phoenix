@@ -9,6 +9,11 @@ import {I18nService} from 'app/layout/components/i18n/i18n.service';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
+interface MultioutRecipient {
+  amountNQT: string;
+  addressRS: string;
+}
+
 @Component({
   selector: 'app-send-multi-out-form',
   templateUrl: './send-multi-out-form.component.html',
@@ -25,7 +30,7 @@ export class SendMultiOutFormComponent implements OnInit {
   @ViewChild('encrypt') public encrypt: string;
   @ViewChild('pin') public pin: string;
 
-  @ViewChild('recipients') public recipients: any[];
+  @ViewChild('recipients') public recipients: MultioutRecipient[];
 
   @Input('account') account: Account;
   @Input('fees') fees: SuggestedFees;
@@ -74,18 +79,20 @@ export class SendMultiOutFormComponent implements OnInit {
   }
 
   getMultiOutString(): string {
-    return this.recipients.map(recipient =>
-      this.sameAmount
-        ? `${(`BURST-${recipient.addressRS}`)}`
-        : `${convertAddressToNumericId(`BURST-${recipient.addressRS}`)}:${convertNumberToNQTString(parseFloat(recipient.amountNQT))}`
-    ).join(';');
+    return this
+      .pruneRecipients()
+      .map(recipient =>
+        this.sameAmount
+          ? convertAddressToNumericId(recipient.addressRS)
+          : `${convertAddressToNumericId(recipient.addressRS)}:${convertNumberToNQTString(parseFloat(recipient.amountNQT))}`
+      ).join(';');
   }
 
   trackByIndex(index): number {
     return index;
   }
 
-  createRecipient(): any {
+  createRecipient(): MultioutRecipient {
     return {
       amountNQT: '',
       addressRS: ''
@@ -102,8 +109,8 @@ export class SendMultiOutFormComponent implements OnInit {
     event.preventDefault();
   }
 
-  private getTotalForMultiOut(): number{
-    return this.recipients
+  private getTotalForMultiOut(): number {
+    return this.pruneRecipients()
       .map(({amountNQT}) => parseFloat(amountNQT) || 0)
       .reduce((acc, curr) => acc + curr, 0);
   }
@@ -117,21 +124,39 @@ export class SendMultiOutFormComponent implements OnInit {
     return calculateAmount + parseFloat(this.feeNQT) || 0;
   }
 
+  private pruneRecipients(): Array<MultioutRecipient>{
+    return this.recipients.filter(
+        r => r.amountNQT !== '' || r.addressRS !== ''
+    );
+  }
+
   canSubmit(): boolean {
 
-    const validRecipients = this.recipients
-      .filter(
-        r => r.amountNQT !== '' || r.addressRS !== ''
-      )
+    const validRecipients = this
+      .pruneRecipients()
       .reduce(
         (isValid, recipient) => isValid
-          && isBurstAddress(`BURST-${recipient.addressRS}`)
+          && isBurstAddress(recipient.addressRS)
           && (!this.sameAmount ? recipient.amountNQT && recipient.amountNQT.length > 0 : true)
-      , true);
+        , true);
 
     return validRecipients &&
       isNotEmpty(this.pin) &&
       (this.sameAmount ? isNotEmpty(this.amountNQT) : true);
 
   }
+
+  onRecipientChange($event: string, i: number): void {
+    this.recipients[i].addressRS = $event;
+  }
+  // todo: make it work
+  // onDeleteRecipient(i: number) {
+  //   if (this.recipients.length > 1) {
+  //
+  //     this.recipients = this.recipients.filter((r, x) => x !== i)
+  //     event.stopImmediatePropagation();
+  //     event.preventDefault();
+  //
+  //   }
+  // }
 }

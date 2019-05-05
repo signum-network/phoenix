@@ -6,25 +6,22 @@
     <input matInput [(ngModel)]="amountNQT" name="amountNQT" placeholder="{{ 'amount' | i18n }}">
   </mat-form-field>
 
-  <mat-grid-list cols="2" rowHeight="65px" gutterSize="10px">
-    <ng-container *ngFor="let recipient of recipients; let i = index; trackBy: trackByIndex;" [attr.data-index]="i">
-      <mat-grid-tile>
-        <mat-form-field>
-          <input matInput prefix="BURST-" burstInputValidator [patterns]="burstAddressPatternRef"
-                 mask="____-____-____-_____"
-                 [dropSpecialCharacters]="false" [showMaskTyped]="true" [(ngModel)]="recipients[i].addressRS"
-                 name="recipientAddress{{i}}"
-                 placeholder="{{ 'recipient' | i18n }}">
-        </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile *ngIf="!sameAmount">
-        <mat-form-field>
-          <input matInput [(ngModel)]="recipients[i].amountNQT" name="amountNQT{{i}}"
-                 placeholder="{{ 'amount' | i18n }}">
-        </mat-form-field>
-      </mat-grid-tile>
-    </ng-container>
-  </mat-grid-list>
+
+  <ng-container *ngFor="let recipient of recipients; let i = index; trackBy: trackByIndex;" [attr.data-index]="i">
+
+    <div class="recipients-item">
+      <burst-recipient-input (recipientChange)="onRecipientChange($event, i)"></burst-recipient-input>
+      <mat-form-field *ngIf="!sameAmount">
+        <input matInput [(ngModel)]="recipients[i].amountNQT" name="amountNQT{{i}}"
+               placeholder="{{ 'amount' | i18n }}">
+      </mat-form-field>
+<!--
+      FUTURE FEATURE
+      <mat-icon *ngIf="recipients.length > 1" matTooltip="{{'delete' | i18n}}" (click)="onDeleteRecipient(i)" >delete</mat-icon>
+-->
+    </div>
+
+  </ng-container>
 
   <button mat-button class="add-recipient" (click)="addRecipient($event)">{{ "add_recipient" | i18n }}</button>
 
@@ -35,7 +32,7 @@
   <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
 
   <div *ngIf="advanced">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <label>{{ 'deadline_hours' | i18n }}</label>
       <input matInput [(ngModel)]="deadline" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}">
     </mat-form-field>
