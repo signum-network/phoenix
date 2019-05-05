@@ -11,7 +11,6 @@ import {Recipient} from '../typings';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
-
 @Component({
   selector: 'app-send-multi-out-form',
   templateUrl: './send-multi-out-form.component.html',
@@ -52,7 +51,6 @@ export class SendMultiOutFormComponent implements OnInit {
     this.recipients = new Array<Recipient>();
     this.recipients.push(new Recipient());
   }
-
 
   onSubmit(event): void {
     event.stopImmediatePropagation();
@@ -172,7 +170,6 @@ export class SendMultiOutFormComponent implements OnInit {
     this.recipients[i].status = recipient.status;
     this.recipients[i].addressRaw = recipient.accountRaw;
   }
-
 
   // todo: make it work
   // onDeleteRecipient(i: number) {
