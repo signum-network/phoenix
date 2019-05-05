@@ -11,7 +11,7 @@ import {
   MatCheckboxModule,
   MatAutocompleteModule,
   MatTabsModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule, MatChipsModule, MatBadgeModule, MatTooltipModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { SetupModule } from 'app/setup/setup.module';
@@ -60,7 +60,10 @@ const routes = [
     NetworkModule,
     LayoutModule,
     MatAutocompleteModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MatChipsModule,
+    MatBadgeModule,
+    MatTooltipModule
   ],
   exports: [
     BurstInputValidatorDirective

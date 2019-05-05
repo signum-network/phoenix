@@ -1,0 +1,45 @@
+mat-form-field {
+  width: 100%;
+
+  .badge {
+    font-size: 12px;
+    border-radius: 4px;
+    padding: 2px 8px;
+    align-items: center;
+    justify-content: center;
+
+    &.invalid {
+      background: darkorange;
+    }
+
+    &.valid {
+      color: white;
+      background: #00b386;
+    }
+
+    &.unknown {
+      background: lightgray;
+    }
+
+    mat-icon {
+      margin: 0;
+      padding: 0 0 0 4px;
+      min-height: 8px;
+      min-width: 8px;
+      width: 16px;
+      height: 16px;
+      font-size: 16px;
+    }
+  }
+
+  .recipient-address {
+    position: relative;
+    color: darkgray;
+    font-size: 10px;
+    margin: 0;
+    width: 50%
+  }
+}
+
+
+
