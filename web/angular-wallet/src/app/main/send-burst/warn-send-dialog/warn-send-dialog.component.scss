@@ -1,0 +1,12 @@
+.warn-dialog{
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+
+ul.recipient-list {
+  list-style: none;
+  font-family: monospace;
+  font-size: 16px;
+  padding: 0 0.5em;
+}

@@ -1,18 +1,15 @@
 import {Component, OnInit, ViewChild, Input} from '@angular/core';
-import {TransactionService} from 'app/main/transactions/transaction.service';
-import {convertNumberToNQTString, burstAddressPattern, convertAddressToNumericId, isBurstAddress} from '@burstjs/util';
 import {NgForm} from '@angular/forms';
-import {SuggestedFees, Account} from '@burstjs/core';
 import {NotifierService} from 'angular-notifier';
+import {convertNumberToNQTString, burstAddressPattern, convertAddressToNumericId} from '@burstjs/util';
+import {SuggestedFees, Account} from '@burstjs/core';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-
+import {TransactionService} from 'app/main/transactions/transaction.service';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
+import {Recipient} from '../typings';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
-
-interface MultioutRecipient {
-  amountNQT: string;
-  addressRS: string;
-}
 
 @Component({
   selector: 'app-send-multi-out-form',
@@ -30,7 +27,7 @@ export class SendMultiOutFormComponent implements OnInit {
   @ViewChild('encrypt') public encrypt: string;
   @ViewChild('pin') public pin: string;
 
-  @ViewChild('recipients') public recipients: MultioutRecipient[];
+  @ViewChild('recipients') public recipients: Array<Recipient>;
 
   @Input('account') account: Account;
   @Input('fees') fees: SuggestedFees;
@@ -43,16 +40,35 @@ export class SendMultiOutFormComponent implements OnInit {
   deadline = '24';
   isSending = false;
 
-  constructor(private transactionService: TransactionService,
-              private notifierService: NotifierService,
-              private i18nService: I18nService) {
+  constructor(
+    private warnDialog: MatDialog,
+    private transactionService: TransactionService,
+    private notifierService: NotifierService,
+    private i18nService: I18nService) {
   }
 
   ngOnInit(): void {
-    this.recipients = [this.createRecipient()];
+    this.recipients = new Array<Recipient>();
+    this.recipients.push(new Recipient());
   }
 
-  async onSubmit(event): Promise<void> {
+  onSubmit(event): void {
+    event.stopImmediatePropagation();
+
+    const nonValidAccounts = this.getNonValidAccounts();
+    if (nonValidAccounts.length > 0) {
+      const dialogRef = this.openWarningDialog(nonValidAccounts);
+      dialogRef.afterClosed().subscribe(ok => {
+        if (ok) {
+          this.sendBurst();
+        }
+      });
+    } else {
+      this.sendBurst();
+    }
+  }
+
+  private async sendBurst(): Promise<void> {
     this.isSending = true;
     event.stopImmediatePropagation();
     const multiOutString = this.getMultiOutString();
@@ -78,9 +94,9 @@ export class SendMultiOutFormComponent implements OnInit {
     this.isSending = false;
   }
 
-  getMultiOutString(): string {
+  private getMultiOutString(): string {
     return this
-      .pruneRecipients()
+      .nonEmptyRecipients()
       .map(recipient =>
         this.sameAmount
           ? convertAddressToNumericId(recipient.addressRS)
@@ -88,15 +104,15 @@ export class SendMultiOutFormComponent implements OnInit {
       ).join(';');
   }
 
-  trackByIndex(index): number {
-    return index;
+  private openWarningDialog(recipients: Array<Recipient>): MatDialogRef<any> {
+    return this.warnDialog.open(WarnSendDialogComponent, {
+      width: '400px',
+      data: recipients
+    });
   }
 
-  createRecipient(): MultioutRecipient {
-    return {
-      amountNQT: '',
-      addressRS: ''
-    };
+  trackByIndex(index): number {
+    return index;
   }
 
   toggleSameAmount(): void {
@@ -104,13 +120,13 @@ export class SendMultiOutFormComponent implements OnInit {
   }
 
   addRecipient(event): void {
-    this.recipients.push(this.createRecipient());
+    this.recipients.push(new Recipient());
     event.stopImmediatePropagation();
     event.preventDefault();
   }
 
   private getTotalForMultiOut(): number {
-    return this.pruneRecipients()
+    return this.nonEmptyRecipients()
       .map(({amountNQT}) => parseFloat(amountNQT) || 0)
       .reduce((acc, curr) => acc + curr, 0);
   }
@@ -124,31 +140,37 @@ export class SendMultiOutFormComponent implements OnInit {
     return calculateAmount + parseFloat(this.feeNQT) || 0;
   }
 
-  private pruneRecipients(): Array<MultioutRecipient>{
+  private nonEmptyRecipients(): Array<Recipient> {
     return this.recipients.filter(
-        r => r.amountNQT !== '' || r.addressRS !== ''
+      r => r.amountNQT !== '' || r.addressRS !== ''
     );
+  }
+
+  getNonValidAccounts(): Array<Recipient> {
+    return this.nonEmptyRecipients().filter(({status}) => status !== 'valid');
   }
 
   canSubmit(): boolean {
 
-    const validRecipients = this
-      .pruneRecipients()
+    const hasCompletedRecipients = this
+      .nonEmptyRecipients()
       .reduce(
-        (isValid, recipient) => isValid
-          && isBurstAddress(recipient.addressRS)
+        (isComplete, recipient) => isComplete
           && (!this.sameAmount ? recipient.amountNQT && recipient.amountNQT.length > 0 : true)
         , true);
 
-    return validRecipients &&
+    return hasCompletedRecipients &&
       isNotEmpty(this.pin) &&
       (this.sameAmount ? isNotEmpty(this.amountNQT) : true);
 
   }
 
-  onRecipientChange($event: string, i: number): void {
-    this.recipients[i].addressRS = $event;
+  onRecipientChange(recipient: any, i: number): void {
+    this.recipients[i].addressRS = recipient.accountRS;
+    this.recipients[i].status = recipient.status;
+    this.recipients[i].addressRaw = recipient.accountRaw;
   }
+
   // todo: make it work
   // onDeleteRecipient(i: number) {
   //   if (this.recipients.length > 1) {

@@ -10,7 +10,7 @@ import {
   MatFormFieldModule,
   MatCardModule,
   MatSelectModule,
-  MatProgressSpinnerModule, MatTooltipModule
+  MatProgressSpinnerModule, MatTooltipModule, MatDialogModule
 } from '@angular/material';
 import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {NgxMaskModule} from 'ngx-mask';
@@ -32,6 +32,7 @@ import {BurstInputValidatorDirective} from '../send-burst-validator.directive';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {Account} from '@burstjs/core';
+import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 
 describe('SendBurstFormComponent', () => {
   let component: SendBurstFormComponent;
@@ -58,13 +59,15 @@ describe('SendBurstFormComponent', () => {
         FormsModule,
         NetworkModule,
         HttpClientTestingModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatDialogModule
       ],
       declarations: [
         SendBurstFormComponent,
         BurstInputValidatorDirective,
         BurstFeeSelectorComponent,
-        BurstRecipientInputComponent
+        BurstRecipientInputComponent,
+        WarnSendDialogComponent
       ],
       providers: [
         I18nService,
