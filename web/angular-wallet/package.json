@@ -72,7 +72,7 @@
     "ngrx-store-freeze": "0.2.4",
     "ngx-color-picker": "7.0.2",
     "ngx-cookie-service": "2.0.0",
-    "ngx-mask": "^7.3.3",
+    "ngx-mask": "^7.9.6",
     "particles.js": "^2.0.0",
     "perfect-scrollbar": "1.4.0",
     "prismjs": "1.15.0",
