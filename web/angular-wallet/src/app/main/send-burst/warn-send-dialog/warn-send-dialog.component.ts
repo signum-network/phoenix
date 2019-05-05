@@ -6,6 +6,7 @@ import {Recipient} from '../typings';
 @Component({
   selector: 'warn-send-dialog',
   templateUrl: 'warn-send-dialog.component.html',
+  styleUrls: ['warn-send-dialog.component.scss']
 })
 export class WarnSendDialogComponent {
 
@@ -14,8 +15,12 @@ export class WarnSendDialogComponent {
     @Inject(MAT_DIALOG_DATA) public recipients: Array<Recipient>) {
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  trackByIndex(index): number {
+    return index;
+  }
+
+  getValidationClass(index: number): string {
+    return 'badge ' + this.recipients[index].status.toString().toLocaleLowerCase();
   }
 
 }
