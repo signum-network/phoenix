@@ -13,7 +13,7 @@ import {
   MatSelectModule,
   MatTabsModule,
   MatProgressSpinnerModule,
-  MatTooltipModule
+  MatTooltipModule, MatDialogModule, MatDialogClose
 } from '@angular/material';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
@@ -34,6 +34,7 @@ import { BurstRecipientInputComponent } from 'app/layout/components/burst-recipi
 import { Ng5SliderModule } from 'ng5-slider';
 import { SendBurstFormComponent } from './send-burst-form/send-burst-form.component';
 import { SendMultiOutFormComponent } from './send-multi-out-form/send-multi-out-form.component';
+import {WarnSendDialogComponent} from './warn-send-dialog/warn-send-dialog.component';
 
 describe('SendBurstComponent', () => {
   let component: SendBurstComponent;
@@ -64,7 +65,8 @@ describe('SendBurstComponent', () => {
         RouterTestingModule.withRoutes(
           [{path: 'send', component: SendBurstComponent}]
         ),
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatDialogModule
       ],
       declarations: [
         SendBurstComponent,
@@ -72,7 +74,8 @@ describe('SendBurstComponent', () => {
         BurstFeeSelectorComponent,
         SendBurstFormComponent,
         SendMultiOutFormComponent,
-        BurstRecipientInputComponent
+        BurstRecipientInputComponent,
+        WarnSendDialogComponent
       ],
       providers: [
         I18nService,
