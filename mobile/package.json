@@ -73,7 +73,7 @@
     "tslint": "^5.12.1",
     "tslint-config-standard": "^8.0.1",
     "tslint-react": "^3.6.0",
-    "typescript": "^3.2.4"
+    "typescript": "^3.4.5"
   },
   "gitHooks": {
     "pre-commit": "lint-staged && npm run translations:sort && npm run check"
