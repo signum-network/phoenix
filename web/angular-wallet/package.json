@@ -47,7 +47,7 @@
     "@ngrx/store-devtools": "7.0.0",
     "@ngx-translate/core": "11.0.1",
     "@swimlane/dragula": "3.7.3",
-    "@swimlane/ngx-charts": "10.0.0",
+    "@swimlane/ngx-charts": "10.1.0",
     "@swimlane/ngx-datatable": "14.0.0",
     "@swimlane/ngx-dnd": "6.0.0",
     "@types/bn.js": "^4.11.4",
