@@ -1,6 +1,10 @@
 mat-form-field {
   width: 100%;
 
+  .container {
+    width: fit-content;
+  }
+
   .badge {
     font-size: 12px;
     border-radius: 4px;
@@ -36,8 +40,9 @@ mat-form-field {
     position: relative;
     color: darkgray;
     font-size: 10px;
-    margin: 0;
-    width: 50%
+    margin: 0 2px 0 0;
+    word-break: normal;
+    hyphenate-character: "-";
   }
 }
 
