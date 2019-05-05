@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NetworkModule } from 'app/network/network.module';
+import {NetworkModule} from 'app/network/network.module';
 import {
   MatCheckboxModule,
   MatGridListModule,
@@ -13,25 +13,26 @@ import {
   MatProgressSpinnerModule,
   MatTooltipModule
 } from '@angular/material';
-import { I18nModule } from 'app/layout/components/i18n/i18n.module';
-import { NgxMaskModule } from 'ngx-mask';
-import { NotifierModule } from 'angular-notifier';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
-import { StoreService } from 'app/store/store.service';
-import { BehaviorSubject } from 'rxjs';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FormsModule } from '@angular/forms';
-import { BurstFeeSelectorComponent } from 'app/layout/components/burst-fee-selector/burst-fee-selector.component';
-import { Ng5SliderModule } from 'ng5-slider';
+import {I18nModule} from 'app/layout/components/i18n/i18n.module';
+import {NgxMaskModule} from 'ngx-mask';
+import {NotifierModule} from 'angular-notifier';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserModule} from '@angular/platform-browser';
+import {I18nService} from 'app/layout/components/i18n/i18n.service';
+import {StoreService} from 'app/store/store.service';
+import {BehaviorSubject} from 'rxjs';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {FormsModule} from '@angular/forms';
+import {BurstFeeSelectorComponent} from 'app/layout/components/burst-fee-selector/burst-fee-selector.component';
+import {BurstRecipientInputComponent} from 'app/layout/components/burst-recipient-input/burst-recipient-input.component';
+import {Ng5SliderModule} from 'ng5-slider';
 
 
-import { SendMultiOutFormComponent } from './send-multi-out-form.component';
-import { BurstInputValidatorDirective } from '../send-burst-validator.directive';
-import { TransactionService } from 'app/main/transactions/transaction.service';
-import { AccountService } from 'app/setup/account/account.service';
-import { Account } from '@burstjs/core';
+import {SendMultiOutFormComponent} from './send-multi-out-form.component';
+import {BurstInputValidatorDirective} from '../send-burst-validator.directive';
+import {TransactionService} from 'app/main/transactions/transaction.service';
+import {AccountService} from 'app/setup/account/account.service';
+import {Account} from '@burstjs/core';
 
 describe('SendMultiOutFormComponent', () => {
   let component: SendMultiOutFormComponent;
@@ -60,7 +61,12 @@ describe('SendMultiOutFormComponent', () => {
         MatProgressSpinnerModule,
         MatTooltipModule
       ],
-      declarations: [ SendMultiOutFormComponent, BurstInputValidatorDirective, BurstFeeSelectorComponent ],
+      declarations: [
+        SendMultiOutFormComponent,
+        BurstInputValidatorDirective,
+        BurstFeeSelectorComponent,
+        BurstRecipientInputComponent
+      ],
       providers: [
         I18nService,
         {
@@ -68,7 +74,7 @@ describe('SendMultiOutFormComponent', () => {
           useFactory: () => {
             return {
               ready: new BehaviorSubject(true),
-              getSettings: () => Promise.resolve({language:'en'}),
+              getSettings: () => Promise.resolve({language: 'en'}),
               saveSettings: () => Promise.resolve(true)
             }
           }
@@ -77,7 +83,7 @@ describe('SendMultiOutFormComponent', () => {
           provide: TransactionService,
           useFactory: () => {
             return {
-              sendMoney: () => Promise.resolve({broadcasted:true})
+              sendMoney: () => Promise.resolve({broadcasted: true})
             }
           }
         },
@@ -92,7 +98,7 @@ describe('SendMultiOutFormComponent', () => {
         BurstInputValidatorDirective
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
