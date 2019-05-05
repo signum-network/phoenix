@@ -70,7 +70,7 @@
     "ng2-charts": "1.6.0",
     "ng5-slider": "^1.1.13",
     "ngrx-store-freeze": "0.2.4",
-    "ngx-color-picker": "7.0.2",
+    "ngx-color-picker": "7.5.0",
     "ngx-cookie-service": "2.0.0",
     "ngx-mask": "^7.3.3",
     "particles.js": "^2.0.0",
