@@ -17,7 +17,7 @@ const isNotEmpty = (value: string) => value && value.length > 0;
   templateUrl: './send-multi-out-form.component.html',
   styleUrls: ['./send-multi-out-form.component.scss']
 })
-export class SendMultiOutFormComponent implements OnInit{
+export class SendMultiOutFormComponent implements OnInit {
 
   @ViewChild('sendBurstForm') public sendBurstForm: NgForm;
   public feeNQT: string;
@@ -50,11 +50,12 @@ export class SendMultiOutFormComponent implements OnInit{
 
   ngOnInit(): void {
     this.recipients = new Array<Recipient>();
-    this.recipients.push( new Recipient() );
+    this.recipients.push(new Recipient());
   }
 
 
-  async onSubmit(): Promise<void> {
+  onSubmit(event): void {
+    event.stopImmediatePropagation();
 
     const nonValidAccounts = this.getNonValidAccounts();
     if (nonValidAccounts.length > 0) {
@@ -65,9 +66,8 @@ export class SendMultiOutFormComponent implements OnInit{
         }
       });
     } else {
-      await this.sendBurst();
+      this.sendBurst();
     }
-
   }
 
   private async sendBurst(): Promise<void> {

@@ -6,6 +6,9 @@ import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {AccountService} from '../../../setup/account/account.service';
+import {Recipient} from '../typings';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 
 
 const isNotEmpty = (value: string) => value && value.length > 0;
@@ -31,11 +34,12 @@ export class SendBurstFormComponent implements OnInit {
   burstAddressPatternRef = burstAddressPattern;
   deadline = '24';
 
-  public recipient: string;
+  public recipient = new Recipient();
   public feeNQT: string;
   isSending = false;
 
   constructor(
+    private warnDialog: MatDialog,
     private transactionService: TransactionService,
     private accountService: AccountService,
     private notifierService: NotifierService,
@@ -49,8 +53,22 @@ export class SendBurstFormComponent implements OnInit {
     return parseFloat(this.amountNQT) + parseFloat(this.feeNQT) || 0;
   }
 
-  async onSubmit(event): Promise<void> {
+  onSubmit(event): void {
     event.stopImmediatePropagation();
+
+    if (this.recipient.status !== 'valid') {
+      const dialogRef = this.openWarningDialog([this.recipient]);
+      dialogRef.afterClosed().subscribe(ok => {
+        if (ok) {
+          this.sendBurst();
+        }
+      });
+    } else {
+      this.sendBurst();
+    }
+  }
+
+  async sendBurst(): Promise<void> {
 
     try {
       this.isSending = true;
@@ -65,7 +83,7 @@ export class SendBurstFormComponent implements OnInit {
         },
         pin: this.pin,
         keys: this.account.keys,
-        recipientAddress: this.recipient
+        recipientAddress: this.recipient.addressRS
       });
 
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
@@ -76,6 +94,13 @@ export class SendBurstFormComponent implements OnInit {
     this.isSending = false;
   }
 
+
+  private openWarningDialog(recipients: Array<Recipient>): MatDialogRef<any> {
+    return this.warnDialog.open(WarnSendDialogComponent, {
+      width: '400px',
+      data: recipients
+    });
+  }
 
   getMessage(): any {
 
@@ -95,14 +120,15 @@ export class SendBurstFormComponent implements OnInit {
   }
 
   canSubmit(): boolean {
-    return isNotEmpty(this.recipient) &&
+    return isNotEmpty(this.recipient.addressRaw) &&
       isNotEmpty(this.amountNQT) &&
       isNotEmpty(this.pin);
   }
 
 
-  onRecipientChange(recipientRS: string): void {
-    console.log(recipientRS);
-    this.recipient = recipientRS;
+  onRecipientChange(recipient: any): void {
+    this.recipient.addressRS = recipient.accountRS;
+    this.recipient.status = recipient.status;
+    this.recipient.addressRaw = recipient.accountRaw;
   }
 }
