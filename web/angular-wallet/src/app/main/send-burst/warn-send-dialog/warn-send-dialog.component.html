@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Non-valid Recipients Detected</h1>
+<div mat-dialog-content>
+  <p>The following recipients could not be validated:</p>
+  <ul>
+    <li *ngFor="let recipient of recipients">{{recipient.addressRaw}}</li>
+  </ul>
+  <p>Do you you really want to send Burst to them?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]>No, Thanks</button>
+  <button mat-button [mat-dialog-close]="true">Yes, I'm sure!</button>
+</div>
