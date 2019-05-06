@@ -26,22 +26,22 @@ class ChartOptions {
 export class BalanceDiagramComponent implements OnChanges{
 
   @Input() public account: Account;
-  @Input() public transactionCountLimit?: number;
+  @Input() public transactionCount?: number;
   public options = new ChartOptions();
   public data: any[];
   private balanceHistory: BalanceHistoryItem[];
 
-  itemCountOptions = [25, 50, 100, 250].map(i => ({
+  itemCountOptions = [25, 50, 100, 250, 500].map(i => ({
       value: i, viewValue: i
     })
   );
 
   constructor(private router: Router) {
-    this.transactionCountLimit = 20;
+    this.transactionCount = 20;
   }
 
   async ngOnChanges(): Promise<void> {
-    this.updateDiagram(this.account.transactions.slice(0, this.transactionCountLimit));
+    this.updateDiagram(this.account.transactions.slice(0, this.transactionCount));
   }
 
   private updateDiagram(transactions: Transaction[]): void {
@@ -64,8 +64,7 @@ export class BalanceDiagramComponent implements OnChanges{
   }
 
   onItemCountSelected(): void {
-    console.log(this.transactionCountLimit);
-    this.updateDiagram(this.account.transactions.slice(0, this.transactionCountLimit));
+    this.updateDiagram(this.account.transactions.slice(0, this.transactionCount));
   }
 
   onSelect($event: any): void {

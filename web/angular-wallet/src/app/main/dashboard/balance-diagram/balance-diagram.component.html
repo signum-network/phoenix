@@ -24,7 +24,7 @@
   <div class="controls">
     <mat-form-field >
       <mat-label>No. Transactions</mat-label>
-      <mat-select [(value)]="transactionCountLimit" (selectionChange)="onItemCountSelected()">
+      <mat-select [(value)]="transactionCount" (selectionChange)="onItemCountSelected()">
         <mat-option *ngFor="let option of itemCountOptions" [value]="option.value">
           {{option.viewValue}}
         </mat-option>
