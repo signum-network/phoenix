@@ -1,14 +1,14 @@
 import {Router} from '@angular/router';
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {Transaction, Account} from '@burstjs/core';
-import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
-import {AccountService} from '../../../setup/account/account.service';
+import {convertNQTStringToNumber} from '@burstjs/util';
 import * as shape from 'd3-shape';
 import {getBalanceHistoryFromTransactions} from '../../../util/balance/getBalanceHistoryFromTransactions';
 import {BalanceHistoryItem} from '../../../util/balance/typings';
 
 class ChartOptions {
-  public curve = shape.curveCatmullRom.alpha('1.0');
+  // public curve = shape.curveCatmullRom.alpha('1.0');
+  public curve = shape.natural;
   public gradient = true;
   public showYAxis = true;
   public yAxisLabel = 'BURST';
@@ -23,14 +23,18 @@ class ChartOptions {
   templateUrl: './balance-diagram.component.html',
   styleUrls: ['./balance-diagram.component.scss']
 })
-export class BalanceDiagramComponent implements OnChanges {
+export class BalanceDiagramComponent implements OnChanges{
 
   @Input() public account: Account;
   @Input() public transactionCountLimit?: number;
   public options = new ChartOptions();
   public data: any[];
-
   private balanceHistory: BalanceHistoryItem[];
+
+  itemCountOptions = [25, 50, 100, 250].map(i => ({
+      value: i, viewValue: i
+    })
+  );
 
   constructor(private router: Router) {
     this.transactionCountLimit = 20;
@@ -41,7 +45,6 @@ export class BalanceDiagramComponent implements OnChanges {
   }
 
   private updateDiagram(transactions: Transaction[]): void {
-
     const {account, balanceNQT} = this.account;
 
     this.balanceHistory = getBalanceHistoryFromTransactions(
@@ -60,10 +63,14 @@ export class BalanceDiagramComponent implements OnChanges {
     ];
   }
 
+  onItemCountSelected(): void {
+    console.log(this.transactionCountLimit);
+    this.updateDiagram(this.account.transactions.slice(0, this.transactionCountLimit));
+  }
+
   onSelect($event: any): void {
     const transactionId = $event.name;
     this.router.navigateByUrl(`/transactions/transaction/${transactionId}`);
   }
-
 
 }
