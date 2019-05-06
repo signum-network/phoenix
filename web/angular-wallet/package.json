@@ -71,7 +71,7 @@
     "ng5-slider": "^1.1.13",
     "ngrx-store-freeze": "0.2.4",
     "ngx-color-picker": "7.5.0",
-    "ngx-cookie-service": "2.0.0",
+    "ngx-cookie-service": "2.1.0",
     "ngx-mask": "^7.9.6",
     "particles.js": "^2.0.0",
     "perfect-scrollbar": "1.4.0",
