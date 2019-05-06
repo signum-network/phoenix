@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@types/i18n-js": "^3.0.1",
-    "@types/jest": "^23.3.13",
+    "@types/jest": "^24.0.12",
     "@types/lodash": "^4.14.120",
     "@types/react": "^16.7.20",
     "@types/react-native": "^0.57.29",
