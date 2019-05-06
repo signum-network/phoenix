@@ -40,9 +40,9 @@
     "react-native-gesture-handler": "^1.0.12",
     "react-native-keychain": "^3.1.2",
     "react-native-languages": "^3.0.2",
-    "react-native-touch-id": "^4.3.0",
+    "react-native-touch-id": "^4.4.1",
     "react-navigation": "^3.9.1",
-    "react-redux": "^6.0.0",
+    "react-redux": "^6.0.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   },
