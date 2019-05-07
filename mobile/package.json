@@ -61,7 +61,7 @@
     "@types/react-native-touch-id": "^4.0.1",
     "@types/react-navigation": "^3.0.1",
     "@types/react-redux": "^7.0.0",
-    "@types/react-test-renderer": "^16.0.3",
+    "@types/react-test-renderer": "^16.8.1",
     "babel-jest": "24.8.0",
     "jest": "24.8.0",
     "metro-react-native-babel-preset": "0.51.1",
