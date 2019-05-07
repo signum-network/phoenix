@@ -3,15 +3,17 @@
 
 ## Build and Start Desktop Wallet
 
+You need installed globally angular-cli: `npm i @angular/cli -g`
+
 Run the following commands to start the wallet as [electron](https://electronjs.org/) app
 
-1. `npm install`
-2. `cd lib`
-3. `npm install` 
+1. `cd lib`
+2. `npm install`
+3. `npm run bootstrap`
 4. `cd ../web/angular-wallet`
-5. `npm install` 
+5. `npm install`
 6. `cd ../../scripts`
-7. `npm install` 
+7. `npm install`
 8. `cd ../desktop/wallet`
 9. `npm install`
 10. `npm start`
