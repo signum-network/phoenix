@@ -43,6 +43,13 @@ export class AccountCreateSeedComponent {
     }
   }
 
+  // speed up for mobile users
+  public handleClick(e) {
+    for (let i = 0; i < 20; i++) {
+      this.movement(e);
+    }
+  }
+
   public setPassphraseAndGenerateMasterKeys(phrase: string[]) {
     this.createService.setPassphrase(phrase);
     const keys = generateMasterKeys(this.createService.getCompletePassphrase());
