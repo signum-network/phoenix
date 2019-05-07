@@ -1,19 +1,36 @@
 <div id="balance-diagram-charts-wrapper">
-  <ngx-charts-area-chart [results]="data"
-                         [yAxis]="options.showYAxis"
-                         [yAxisLabel]="options.yAxisLabel"
-                         [showYAxisLabel]="options.showYAxisLabel"
-                         [scheme]="options.colorScheme"
-                         [curve]="options.curve"
-                         [gradient]="options.gradient"
-                         (select)="onSelect($event)"
-  >
-    <ng-template #tooltipTemplate let-model="model">
-      <app-balance-diagram-tooltip
-        [currentAccount]="account"
-        [history]="balanceHistory"
-        [transactionId]="model.name">
-      </app-balance-diagram-tooltip>
-    </ng-template>
-  </ngx-charts-area-chart>
+  <div class="header">
+  </div>
+
+  <div class="chart">
+    <ngx-charts-area-chart [results]="data"
+                           [yAxis]="options.showYAxis"
+                           [yAxisLabel]="options.yAxisLabel"
+                           [showYAxisLabel]="options.showYAxisLabel"
+                           [scheme]="options.colorScheme"
+                           [gradient]="options.gradient"
+                           [curve]="options.curve"
+                           (select)="onSelect($event)"
+
+    >
+      <ng-template #tooltipTemplate let-model="model">
+        <app-balance-diagram-tooltip
+          [currentAccount]="account"
+          [history]="balanceHistory"
+          [transactionId]="model.name">
+        </app-balance-diagram-tooltip>
+      </ng-template>
+    </ngx-charts-area-chart>
+  </div>
+
+  <div class="controls">
+    <mat-form-field >
+      <mat-label>No. Transactions</mat-label>
+      <mat-select [(value)]="transactionCount" (selectionChange)="onItemCountSelected()">
+        <mat-option *ngFor="let option of itemCountOptions" [value]="option.value">
+          {{option.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 </div>

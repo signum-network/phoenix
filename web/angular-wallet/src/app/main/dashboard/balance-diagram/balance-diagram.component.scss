@@ -1,3 +1,24 @@
 #balance-diagram-charts-wrapper {
   display: flex;
+  flex-direction: column;
+
+  .header {
+
+  }
+
+  .chart{
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    mat-form-field{
+      width: 80px;
+      font-size: 12px
+    };
+  }
 }
