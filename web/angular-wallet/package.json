@@ -49,7 +49,7 @@
     "@swimlane/dragula": "3.8.0",
     "@swimlane/ngx-charts": "10.1.0",
     "@swimlane/ngx-datatable": "14.0.0",
-    "@swimlane/ngx-dnd": "6.0.0",
+    "@swimlane/ngx-dnd": "7.0.0",
     "@types/bn.js": "^4.11.4",
     "@types/prismjs": "1.9.0",
     "angular-calendar": "0.26.4",
