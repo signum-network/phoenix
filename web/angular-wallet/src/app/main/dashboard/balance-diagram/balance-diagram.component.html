@@ -9,7 +9,9 @@
                            [showYAxisLabel]="options.showYAxisLabel"
                            [scheme]="options.colorScheme"
                            [gradient]="options.gradient"
+                           [curve]="options.curve"
                            (select)="onSelect($event)"
+
     >
       <ng-template #tooltipTemplate let-model="model">
         <app-balance-diagram-tooltip

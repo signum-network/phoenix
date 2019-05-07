@@ -7,8 +7,7 @@ import {getBalanceHistoryFromTransactions} from '../../../util/balance/getBalanc
 import {BalanceHistoryItem} from '../../../util/balance/typings';
 
 class ChartOptions {
-  // public curve = shape.curveCatmullRom.alpha('1.0');
-  public curve = shape.natural;
+  public curve = shape.curveBasis;
   public gradient = true;
   public showYAxis = true;
   public yAxisLabel = 'BURST';
