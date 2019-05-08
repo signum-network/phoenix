@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Upamtite: Kontakti su pohranjeni lokalno, ne nalaze se u blockchainu.",
   "contacts_no_db_warning": "Vaš preglednik ne podržava pristup bazama podataka, bez njih kontakti ne mogu biti kreirani.",
   "continue_forging": "Nastavi kovanje",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Kopiraj račun ID",
   "copy_asset_id": "Kopiraj ID asseta",
   "copy_asset_link": "Kopiraj poveznicu asseta",

@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "记住： 联系人存储在本地，而不在 blockchain上。",
   "contacts_no_db_warning": "您的浏览器不支持数据库访问，不能创建联系人。",
   "continue_forging": "继续锻造",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "复制帐户 ID",
   "copy_asset_id": "复制资产 ID",
   "copy_asset_link": "复制资产链接",

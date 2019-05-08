@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Kontakty jsou uloženy lokálně, ne na blockchainu.",
   "contacts_no_db_warning": "Váš prohlížeč nepodporuje přístup k databázi, bez něhož nelze vytvořit kontakty.",
   "continue_forging": "Pokračovat v kování",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Kopírovat ID účtu",
   "copy_asset_id": "Kopírovat ID aktiva",
   "copy_asset_link": "Kopírovat odkaz na aktivum",

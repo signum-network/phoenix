@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Contactes estan emmagatzemats localment, no en el Blockchain.",
   "contacts_no_db_warning": "El seu navegador no admet accés a base de dades, sense la qual no es possible crear contactes.",
   "continue_forging": "Continuar Forjant",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Còpia la ID del compte",
   "copy_asset_id": "Còpia la ID de l'Actiu",
   "copy_asset_link": "Còpia l'Enllaç de l'Actiu",

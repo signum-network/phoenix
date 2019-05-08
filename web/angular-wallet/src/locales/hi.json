@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "संपर्क स्थानीय स्तर पर संग्रहीत होते हैं, blockchain पर नहीं।",
   "contacts_no_db_warning": "आपका ब्राउज़र डेटाबेस से नहीं जुड़ता है, जिसके बिना संपर्क नहीं बनाया जा सकता।",
   "continue_forging": "फोर्जिंग जारी रखें",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "खाता ID कापी करें",
   "copy_asset_id": "परिसंपत्ति ID कापी करें",
   "copy_asset_link": "परिसंपत्ति लिंक कापी करें",

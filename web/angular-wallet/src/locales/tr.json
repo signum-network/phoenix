@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Remember: Contacts are stored locally, not on the blockchain.",
   "contacts_no_db_warning": "Your browser does not support database access, without which contacts cannot be created.",
   "continue_forging": "Katkıya devam",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Hesap ID'sini kopyalayın",
   "copy_asset_id": "Varlık ID'sini kopyala",
   "copy_asset_link": "Varlık bağlantısını kopyala",

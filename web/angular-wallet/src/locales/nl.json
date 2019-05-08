@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Onthoud!: Contactpersonen zijn alleen lokaal te vinden, deze worden niet op de blockchain opgeslagen.",
   "contacts_no_db_warning": "Uw browser ondersteunt de toegang tot de database niet, contacten kunnen niet gemaakt worden.",
   "continue_forging": "Doorgaan met Blokken genereren",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Account-ID kopiëren",
   "copy_asset_id": "Kopieer Asset ID",
   "copy_asset_link": "Link van het activa kopieren",
