@@ -7,7 +7,7 @@ import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
-import {Recipient} from '../typings';
+import {Recipient} from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -165,11 +165,8 @@ export class SendMultiOutFormComponent implements OnInit {
 
   }
 
-  onRecipientChange(recipient: any, i: number): void {
-    this.recipients[i].addressRS = recipient.accountRS;
-    this.recipients[i].status = recipient.status;
-    this.recipients[i].addressRaw = recipient.accountRaw;
-    this.recipients[i].type = recipient.type;
+  onRecipientChange(recipient: Recipient, i: number): void {
+    this.recipients[i] = recipient;
   }
 
   // todo: make it work

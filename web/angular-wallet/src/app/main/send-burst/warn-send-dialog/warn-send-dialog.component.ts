@@ -1,8 +1,8 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {Recipient} from '../typings';
 import some from 'lodash/some';
 import {
+  Recipient,
   RecipientType,
   RecipientValidationStatus
 } from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
