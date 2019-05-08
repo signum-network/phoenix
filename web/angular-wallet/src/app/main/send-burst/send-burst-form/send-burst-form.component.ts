@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild, Input} from '@angular/core';
-import {SuggestedFees, Account} from '@burstjs/core';
-import {burstAddressPattern} from '@burstjs/util';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Account, SuggestedFees} from '@burstjs/core';
+import {burstAddressPattern, convertNumericIdToAddress} from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
@@ -9,7 +9,7 @@ import {AccountService} from '../../../setup/account/account.service';
 import {Recipient} from '../typings';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
-import {convertNumericIdToAddress} from '@burstjs/util';
+import {RecipientValidationStatus} from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
 
 
 const isNotEmpty = (value: string) => value && value.length > 0;
@@ -57,7 +57,7 @@ export class SendBurstFormComponent implements OnInit {
   onSubmit(event): void {
     event.stopImmediatePropagation();
 
-    if (this.recipient.status !== 'valid') {
+    if (this.recipient.status !== RecipientValidationStatus.VALID) {
       const dialogRef = this.openWarningDialog([this.recipient]);
       dialogRef.afterClosed().subscribe(ok => {
         if (ok) {

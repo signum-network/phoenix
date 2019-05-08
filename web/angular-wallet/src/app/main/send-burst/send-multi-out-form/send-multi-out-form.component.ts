@@ -169,6 +169,7 @@ export class SendMultiOutFormComponent implements OnInit {
     this.recipients[i].addressRS = recipient.accountRS;
     this.recipients[i].status = recipient.status;
     this.recipients[i].addressRaw = recipient.accountRaw;
+    this.recipients[i].type = recipient.type;
   }
 
   // todo: make it work
