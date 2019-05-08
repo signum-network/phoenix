@@ -18,7 +18,7 @@ export class SendBurstComponent implements OnInit {
     private storeService: StoreService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.account = this.route.snapshot.data.account as Account;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
 

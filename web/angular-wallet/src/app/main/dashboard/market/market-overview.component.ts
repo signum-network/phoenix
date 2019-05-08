@@ -28,10 +28,7 @@ class MarketTickerImpl implements MarketTicker {
 @Component({
   selector: 'app-market-overview',
   templateUrl: './market-overview.component.html',
-  styles: [
-    `.fg_green { color : green !important;}`,
-    `.fg_red { color : red !important;}`
-  ]
+  styleUrls: ['market-overview.component.scss']
 })
 
 export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnInit{

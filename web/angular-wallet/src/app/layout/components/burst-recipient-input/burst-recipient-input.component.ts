@@ -2,17 +2,30 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {convertAddressToNumericId} from '@burstjs/util';
 import {AccountService} from '../../../setup/account/account.service';
 
-enum RecipientType {
+export enum RecipientType {
   UNKNOWN = 0,
   ADDRESS = 1,
   ID,
   ALIAS,
 }
 
-enum ValidationStatus {
+export enum RecipientValidationStatus {
   UNKNOWN = 'unknown',
   INVALID = 'invalid',
   VALID = 'valid',
+}
+
+export class Recipient {
+
+  constructor(
+    public addressRaw = '',
+    public amountNQT = '',
+    public addressRS = '',
+    public status = RecipientValidationStatus.UNKNOWN,
+    public type = RecipientType.UNKNOWN,
+  ) {
+
+  }
 }
 
 
@@ -22,17 +35,10 @@ enum ValidationStatus {
   styleUrls: ['./burst-recipient-input.component.scss']
 })
 export class BurstRecipientInputComponent implements OnInit {
-  recipientTypeValidationStatus = ValidationStatus.UNKNOWN;
-  recipientType = RecipientType.UNKNOWN;
-  recipientValue = '';
-  recipientRS = '';
 
+  recipient = new Recipient();
   @Output()
   recipientChange = new EventEmitter();
-
-  set recipient(r: string) {
-    this.recipientValue = r;
-  }
 
   constructor(private accountService: AccountService) {
   }
@@ -41,25 +47,25 @@ export class BurstRecipientInputComponent implements OnInit {
   }
 
   applyRecipientType(recipient: string): void {
-    this.recipientRS = '';
-    this.recipientTypeValidationStatus = ValidationStatus.UNKNOWN;
+    this.recipient.addressRS = '';
+    this.recipient.status = RecipientValidationStatus.UNKNOWN;
     const r = recipient.trim();
     if (r.length === 0) {
-      this.recipientType = RecipientType.UNKNOWN;
+      this.recipient.type = RecipientType.UNKNOWN;
     } else if (r.startsWith('BURST-')) {
-      this.recipientType = RecipientType.ADDRESS;
+      this.recipient.type = RecipientType.ADDRESS;
     } else if (/^\d+$/.test(r)) {
-      this.recipientType = RecipientType.ID;
+      this.recipient.type = RecipientType.ID;
     } else {
-      this.recipientType = RecipientType.ALIAS;
+      this.recipient.type = RecipientType.ALIAS;
     }
   }
 
 
   validateRecipient(): void {
     let accountFetchFn;
-    let id = this.recipientValue.trim();
-    switch (this.recipientType) {
+    let id = this.recipient.addressRaw.trim();
+    switch (this.recipient.type) {
       case RecipientType.ALIAS:
         accountFetchFn = this.accountService.getAlias;
         break;
@@ -78,48 +84,52 @@ export class BurstRecipientInputComponent implements OnInit {
     }
 
     accountFetchFn.call(this.accountService, id).then(({accountRS}) => {
-      this.recipientRS = accountRS;
-      this.recipientTypeValidationStatus = ValidationStatus.VALID;
+      this.recipient.addressRS = accountRS;
+      this.recipient.status = RecipientValidationStatus.VALID;
     }).catch(() => {
-      this.recipientRS = '';
-      this.recipientTypeValidationStatus = ValidationStatus.INVALID;
+      this.recipient.addressRS = '';
+      this.recipient.status = RecipientValidationStatus.INVALID;
     }).finally(() => {
-        this.recipientChange.emit({
-          status: this.recipientTypeValidationStatus,
-          accountRS: this.recipientRS,
-          accountRaw: this.recipientValue
-        });
+        // TODO: use Recipient class
+        this.recipientChange.emit(this.recipient);
+
+        // this.recipientChange.emit({
+        //   status: this.recipientTypeValidationStatus,
+        //   accountRS: this.recipientRS,
+        //   accountRaw: this.recipientValue,
+        //   type: this.recipientType
+        // });
       }
     );
 
   }
 
-  getRecipientTypeName = (): string => RecipientType[this.recipientType];
+  getRecipientTypeName = (): string => RecipientType[this.recipient.type];
 
   getValidationHint(): string {
     // TODO: localization
-    switch (this.recipientTypeValidationStatus) {
-      case ValidationStatus.UNKNOWN:
+    switch (this.recipient.status) {
+      case RecipientValidationStatus.UNKNOWN:
         return 'The address was not validated yet';
-      case ValidationStatus.VALID:
+      case RecipientValidationStatus.VALID:
         return 'Address was successfully verified';
-      case ValidationStatus.INVALID:
+      case RecipientValidationStatus.INVALID:
         return 'This address does not seem valid. Verify if it really exists!';
     }
   }
 
   getValidationIcon(): string {
-    switch (this.recipientTypeValidationStatus) {
-      case ValidationStatus.UNKNOWN:
+    switch (this.recipient.status) {
+      case RecipientValidationStatus.UNKNOWN:
         return 'help_outline';
-      case ValidationStatus.VALID:
+      case RecipientValidationStatus.VALID:
         return 'check_circle';
-      case ValidationStatus.INVALID:
+      case RecipientValidationStatus.INVALID:
         return 'error_outline';
     }
   }
 
   getValidationClass(): string {
-    return 'badge ' + this.recipientTypeValidationStatus.toString().toLocaleLowerCase();
+    return 'badge ' + this.recipient.status.toString().toLocaleLowerCase();
   }
 }

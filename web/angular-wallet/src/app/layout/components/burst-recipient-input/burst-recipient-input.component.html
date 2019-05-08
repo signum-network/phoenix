@@ -1,20 +1,20 @@
 <mat-form-field>
   <div class="container" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
     <input matInput
-           [(ngModel)]="recipient"
+           [(ngModel)]="recipient.addressRaw"
            (ngModelChange)="applyRecipientType($event)"
            (blur)="validateRecipient()"
            name="recipient"
            placeholder="{{ 'recipient' | i18n }}">
 
-    <div *ngIf="recipientType!==1" class="recipient-address">{{recipientRS}}</div>
+    <div *ngIf="recipient.type!==1" class="recipient-address">{{ recipient.addressRS}}</div>
     <div fxFlex fxLayout="row"
-         *ngIf="recipientType>0"
+         *ngIf="recipient.type>0"
          [ngClass]="getValidationClass()"
          matTooltip="{{getValidationHint()}}"
     >
       <div>{{getRecipientTypeName()}}</div>
-      <mat-icon [ngClass]="recipientTypeValidationStatus === 'valid' ? '' : 'fuse-black-500-fg'">
+      <mat-icon [ngClass]="recipient.status === 'valid' ? '' : 'fuse-black-500-fg'">
         {{getValidationIcon()}}
       </mat-icon>
     </div>
