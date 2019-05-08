@@ -42,7 +42,7 @@ export class AccountCreateSeedComponent {
         });
     }
   }
-
+  
   public setPassphraseAndGenerateMasterKeys(phrase: string[]) {
     this.createService.setPassphrase(phrase);
     const keys = generateMasterKeys(this.createService.getCompletePassphrase());
