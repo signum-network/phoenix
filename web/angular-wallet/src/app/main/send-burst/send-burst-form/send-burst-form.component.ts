@@ -9,6 +9,7 @@ import {AccountService} from '../../../setup/account/account.service';
 import {Recipient} from '../typings';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
+import {convertNumericIdToAddress} from '@burstjs/util';
 
 
 const isNotEmpty = (value: string) => value && value.length > 0;
@@ -60,15 +61,15 @@ export class SendBurstFormComponent implements OnInit {
       const dialogRef = this.openWarningDialog([this.recipient]);
       dialogRef.afterClosed().subscribe(ok => {
         if (ok) {
-          this.sendBurst();
+          this.sendBurst(convertNumericIdToAddress(this.recipient.addressRaw));
         }
       });
     } else {
-      this.sendBurst();
+      this.sendBurst(this.recipient.addressRS);
     }
   }
 
-  async sendBurst(): Promise<void> {
+  async sendBurst(addressRS: string): Promise<void> {
 
     try {
       this.isSending = true;
@@ -83,7 +84,7 @@ export class SendBurstFormComponent implements OnInit {
         },
         pin: this.pin,
         keys: this.account.keys,
-        recipientAddress: this.recipient.addressRS
+        recipientAddress: addressRS,
       });
 
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
@@ -125,10 +126,10 @@ export class SendBurstFormComponent implements OnInit {
       isNotEmpty(this.pin);
   }
 
-
   onRecipientChange(recipient: any): void {
     this.recipient.addressRS = recipient.accountRS;
     this.recipient.status = recipient.status;
     this.recipient.addressRaw = recipient.accountRaw;
+    this.recipient.type = recipient.type;
   }
 }
