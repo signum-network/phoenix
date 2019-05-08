@@ -15,8 +15,7 @@ import {
   MatButtonModule,
   MatDialogModule,
   MatTabsModule,
-  MatTooltipModule,
-  MatMenuModule
+  MatTooltipModule
 } from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
 import {DeleteAccountDialogComponent} from './delete-account-dialog/delete-account-dialog.component';
@@ -73,7 +72,6 @@ const routes = [
     MatTooltipModule,
     MatDialogModule,
     NotifierModule,
-    MatMenuModule,
     I18nModule,
     RouterModule.forChild(routes),
     TransactionTableModule

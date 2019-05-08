@@ -3,6 +3,7 @@ import { EncryptedMessage, Message, Account, Transaction } from '@burstjs/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { MatTableDataSource } from '@angular/material';
 import { AccountService } from 'app/setup/account/account.service';
+import { StoreService } from 'app/store/store.service';
 
 type TransactionDetailsCellValue = string | Message | EncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
@@ -19,13 +20,17 @@ export class AccountDetailsComponent implements OnInit {
   transactions: Transaction[];
   dataSource: MatTableDataSource<Transaction>;
   accountQRCodeURL: Promise<string>;
+  language: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService) {
+  constructor(private route: ActivatedRoute, 
+    private router: Router, 
+    private accountService: AccountService,
+    private storeService: StoreService) {
     router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this.loadAccountAndSetData();
       }
-    }) 
+    });
   }
 
   public getDetailsData(): TransactionDetailsCellValueMap[] {
@@ -43,6 +48,7 @@ export class AccountDetailsComponent implements OnInit {
     this.dataSource = new MatTableDataSource<Transaction>();
     this.dataSource.data = this.route.snapshot.data.transactions;
     this.accountQRCodeURL = this.getAccountQRCodeUrl();
+    this.language = this.storeService.settings.value.language;
   }
 
   async getAccountQRCodeUrl() {
