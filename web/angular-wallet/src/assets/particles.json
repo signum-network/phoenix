@@ -1,10 +1,11 @@
 {
+  "fps_limit": 30,
   "particles": {
     "number": {
-      "value": 80,
+      "value": 100,
       "density": {
-        "enable": true,
-        "value_area": 400
+        "enable": false,
+        "value_area": 1280
       }
     },
     "color": {
@@ -36,7 +37,7 @@
       }
     },
     "size": {
-      "value": 5,
+      "value": 2,
       "random": true,
       "anim": {
         "enable": true,
@@ -58,7 +59,7 @@
       "direction": "none",
       "random": false,
       "straight": false,
-      "out_mode": "out",
+      "out_mode": "bounce",
       "attract": {
         "enable": false,
         "rotateX": 600,
@@ -70,11 +71,11 @@
     "detect_on": "canvas",
     "events": {
       "onhover": {
-        "enable": true,
+        "enable": false,
         "mode": "repulse"
       },
       "onclick": {
-        "enable": true,
+        "enable": false,
         "mode": "push"
       },
       "resize": true
