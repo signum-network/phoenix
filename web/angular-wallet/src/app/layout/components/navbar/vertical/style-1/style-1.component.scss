@@ -148,7 +148,6 @@ navbar {
         display: flex;
         align-items: center;
       }
-
     }
 
     .navbar-scroll-container {
@@ -198,6 +197,12 @@ navbar {
 
         &:hover {
           text-decoration: underline;
+        }
+
+        mat-icon {
+          position: relative;
+          top: 4px;
+          font-size: 16px;
         }
       }
 

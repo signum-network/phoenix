@@ -11,7 +11,34 @@ th, td {
     min-width: 200px;
 }
 
+
+h2 button {
+    padding: 0;
+    min-width:35px;
+}
+h2 mat-icon {
+    font-size:19px;
+}
+
 .qr {
-    margin:20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.5);
+    min-width:170px;
+    img {
+        margin:0 20px 20px 0;
+        box-shadow: 0 1px 3px rgba(0,0,0,.5);
+        width:150px;
+    }
+}
+
+.account-details {
+  display:flex;
+  h2 {
+      margin-top:20px;
+  }
+  h3 button {
+      padding: 0;
+      min-width:35px;
+  }
+  h3 mat-icon {
+      font-size:19px;
+  }
 }

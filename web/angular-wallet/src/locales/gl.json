@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Remember: Os contactos están gardados de forma local, e non na blockchain.",
   "contacts_no_db_warning": "O seu navegador non soporta aceso á base de datos, sen o cal non é posible crear contactos.",
   "continue_forging": "Continuala forxa",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Copialo ID da conta",
   "copy_asset_id": "Copiar ID do activo",
   "copy_asset_link": "Copialo enlace do activo",

@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Ingat: Kontak disimpan secara lokal, bukan pada blockchain.",
   "contacts_no_db_warning": "Browser Anda tidak mendukung akses database, tanpa fungsi ini, kontak tidak dapat dibuat.",
   "continue_forging": "Lanjutkan Forging",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Salin ID catatan",
   "copy_asset_id": "Salinan aset ID",
   "copy_asset_link": "Salin Link aset",

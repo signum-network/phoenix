@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Persoanele de contact sunt stocate local, nu pe blockchain.",
   "contacts_no_db_warning": "Browserul nu suportă accesul la baza de date, fără de care nu pot fi create contacte.",
   "continue_forging": "Continuați Forjare",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Copiați ID Cont",
   "copy_asset_id": "Copiați ID Activă",
   "copy_asset_link": "Copiaţi Link Activă",

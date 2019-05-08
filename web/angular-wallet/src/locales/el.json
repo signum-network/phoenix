@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Οι επαφές αποθηκεύονται τοπικά, και όχι στη blockchain.",
   "contacts_no_db_warning": "O broswer σας δεν υποστηρίζει τη πρόσβαση σε βάσεις δεδομένων, χωρίς την οποία δεν μπορούν να δημιουργηθούν επαφές.",
   "continue_forging": "Συνεχίσει της εξόριξης",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Αντιγραφή ID λογαριασμού",
   "copy_asset_id": "Αντιγραφή ID μετοχής",
   "copy_asset_link": "Αντιγραφή του σύνδεσμου μετοχής",

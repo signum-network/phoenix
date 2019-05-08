@@ -52,7 +52,8 @@
     "lint": "tslint -p tsconfig.json -t stylish -s node_modules/custom-tslint-formatters/formatters -t grouped",
     "publish": "lerna run tsc && lerna publish --force-publish",
     "tsc": "lerna run tsc",
-    "build": "npm run tsc"
+    "build": "npm run tsc",
+    "clearPackages": "rm -rf node_modules && lerna exec rm -rf node_modules"
   },
   "dependencies": {
     "axios": "^0.18.0"

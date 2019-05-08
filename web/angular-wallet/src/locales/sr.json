@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Запамтите: Контакти су сачувани локално, не на blockchain-у.",
   "contacts_no_db_warning": "Ваш претраживач не подржава приступ базама података, без којих контакти не могу бити креирани.",
   "continue_forging": "Настави Ковање",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Копирајте ID Налога",
   "copy_asset_id": "Копирајте ID Асет-а",
   "copy_asset_link": "Копирајте Линк Ассет-а",

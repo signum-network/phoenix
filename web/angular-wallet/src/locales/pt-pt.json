@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Lembre: Os contatos armazenam-se localmente, não na corrente de blocos.",
   "contacts_no_db_warning": "Seu navegador não suporta acesso ao banco de dados, sem o qual não é possível criar contatos.",
   "continue_forging": "Continuar a Forjar",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Copiar ID da Conta",
   "copy_asset_id": "Copiar ID de Ativo",
   "copy_asset_link": "Copiar Enlace do Ativo",

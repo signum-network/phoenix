@@ -20,20 +20,33 @@
   <!-- / HEADER -->
 
   <div class=" p-24">
+
+    <div class="row account-details">
+      <div class="qr">
+        <img [src]="accountQRCodeURL | async | addNodeUrl" />
+      </div>
+      <div class="details">
+        <h2>{{ account.name || account.accountRS }}</h2>
+        <h3>{{ account.account }}</h3>
+        <h4>{{ account.balanceNQT | convertNQTString | number: '1.0-6': this.language }} BURST</h4>
+      </div>
+    </div>
+
     <mat-tab-group>
-      <mat-tab label="{{ 'account_details' | i18n }}">
-        <img [src]="accountQRCodeURL | async | addNodeUrl" class="qr" />
-        <table class="info table">
-          <tr *ngFor="let row of getDetailsData()">
-            <th>{{ row[0] | i18n }}</th>
-            <td>
-              <app-transaction-row-value-cell [value]="row[1]" [key]="row[0]"></app-transaction-row-value-cell>
-            </td>
-          </tr>
-        </table>
-      </mat-tab>
       <mat-tab label="{{ 'transactions' | i18n }}">
         <app-transaction-table [dataSource]="dataSource"></app-transaction-table>
+      </mat-tab>
+      <mat-tab label="{{ 'assets' | i18n }}">
+        <table>
+          <tr>
+            <th>{{ 'asset_name' | i18n }}</th>
+            <th>{{ 'quantity' | i18n }} (NQT)</th>
+          </tr>
+          <tr *ngFor="let row of account['assetBalances']">
+            <td>{{row.asset}}</td>
+            <td>{{row.balanceQNT || row.unconfirmedBalanceQNT}}</td>
+          </tr>
+        </table>
       </mat-tab>
     </mat-tab-group>
   </div>
