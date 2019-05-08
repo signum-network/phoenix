@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Muista: Yhteystiedot säilytetään vain paikallisesti, ei lohkoketjussa.",
   "contacts_no_db_warning": "Selaimesi ei tue tietokantaan pääsyä joka tarvitaan yhteystietojen luomiseen.",
   "continue_forging": "Jatka takomista",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Kopioi tilinumero",
   "copy_asset_id": "Kopioi arvopaperin ID",
   "copy_asset_link": "Kopioi arvopaperin linkki",

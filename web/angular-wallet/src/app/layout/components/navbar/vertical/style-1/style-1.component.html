@@ -28,15 +28,28 @@
        [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
     <div class="h3 username">{{ selectedAccount.accountRS }}</div>
-    <div class="h5 alias hint-text mt-8" *ngIf="selectedAccount.type !== 'offline'">
-      <span [routerLink]="['set-account-info']">{{ getAccountName() }}</span>
+    <div class="h5 alias hint-text mt-8" *ngIf="selectedAccount.type !== 'offline'" [matMenuTriggerFor]="menu">
+      <span>{{ getAccountName() }} <mat-icon>keyboard_arrow_down</mat-icon></span>
     </div>
     <div class="h5 alias hint-text mt-8" *ngIf="selectedAccount.type === 'offline'">
       <span>{{'hint_offline_account' | i18n}}</span>
     </div>
-    <div class="avatar-container fuse-navy-700"><img class="avatar" [routerLink]="['request']"
-                                                     [src]="selectedAccountQRCode"></div>
+    <div class="avatar-container fuse-navy-700">
+      <img class="avatar" [routerLink]="['request']" [src]="selectedAccountQRCode">
+    </div>
   </div>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="copy(selectedAccount.accountRS)">
+      <span>{{ 'copy_account_address' | i18n }}</span>
+    </button>
+    <button mat-menu-item (click)="copy(selectedAccount.account)">
+      <span>{{ 'copy_account_id' | i18n }}</span>
+    </button>
+    <button mat-menu-item [routerLink]="['set-account-info']">
+      <span>{{ 'set_account_info' | i18n }}</span>
+    </button>
+  </mat-menu>
 
   <div class="navbar-content">
     <fuse-navigation class="material2" layout="vertical"></fuse-navigation>
