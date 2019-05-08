@@ -36,6 +36,7 @@ export function getBalanceHistoryFromTransactions(
   return transactions.map((t: Transaction) => {
     const relativeAmount = getRelativeTransactionAmount(accountId, t);
     const deducedBalances = {
+      timestamp: t.blockTimestamp,
       transactionId: t.transaction,
       balance,
       transaction: t
