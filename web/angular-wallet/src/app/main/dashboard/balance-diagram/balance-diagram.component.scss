@@ -15,7 +15,8 @@
   .controls {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-between;
+
     mat-form-field{
       width: 80px;
       font-size: 12px

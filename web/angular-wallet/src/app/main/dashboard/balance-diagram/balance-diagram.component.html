@@ -24,6 +24,7 @@
   </div>
 
   <div class="controls">
+    <p class="font-size-14 secondary-text pr-16">Recent transactions since {{firstDate | date:'MMM d, y, h:mm:ss'}}</p>
     <mat-form-field >
       <mat-label>No. Transactions</mat-label>
       <mat-select [(value)]="transactionCount" (selectionChange)="onItemCountSelected()">
