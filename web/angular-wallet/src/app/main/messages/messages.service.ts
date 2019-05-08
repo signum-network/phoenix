@@ -81,13 +81,6 @@ export class MessagesService implements Resolve<any> {
     return new Promise(async (resolve, reject) => {
       try {
         this.user = await this.accountService.currentAccount.getValue();
-
-        const fees = await this.networkService.suggestFee();
-        this.selectOptions({
-          fees: fees,
-          encrypt: true
-        });
-
         const messages = await this.getMessages();
         this.messages = messages.reduce((acc, val) => {
           const isSentMessage = this.user.account === val.sender;
@@ -122,17 +115,12 @@ export class MessagesService implements Resolve<any> {
     this.onMessageSelected.next({message, isNewMessage});
   }
 
-  /**
-   * Send message then update the dialog
-   *
-   * @param messageId
-   * @param {ChatMessage} message the message to send
-   * @param {string} recipientId the recipient address
-   * @param {string} pin the user's pin
-   * @param {number} fee the fee to pay
-   * @returns {ChatMessage}
-   */
-  public async sendTextMessage(message: ChatMessage, recipientId: string, pin: string, fee: number): Promise<TransactionId> {
+  public async sendTextMessage(
+    message: ChatMessage,
+    isEncrypted: boolean,
+    recipientId: string,
+    pin: string,
+    fee: number): Promise<TransactionId> {
 
     const recipient = await this.accountService.getAccount(recipientId);
     const senderKeys = {
@@ -142,7 +130,7 @@ export class MessagesService implements Resolve<any> {
     };
 
     let transactionId;
-    if (this.onOptionsSelected.value.encrypt) {
+    if (isEncrypted) {
       // @ts-ignore
       if (!recipient.publicKey) {
         // todo: figure out why notifier service isnt working!
@@ -157,26 +145,6 @@ export class MessagesService implements Resolve<any> {
     // Check to see if existing chat session exists (ios-style), if so, merge it
     this.mergeWithExistingChatSession(message, recipientId);
     return transactionId;
-  }
-
-  /**
-   * Select options
-   *
-   * @param options
-   */
-  selectOptions(options): void {
-    this.onOptionsSelected.next(options);
-  }
-
-  /**
-   * Get contacts
-   *
-   * @returns {Promise<any>}
-   */
-  getContacts(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      resolve([]);
-    });
   }
 
   /**
