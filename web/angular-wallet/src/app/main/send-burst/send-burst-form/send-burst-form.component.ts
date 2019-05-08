@@ -1,14 +1,17 @@
-import {Component, OnInit, ViewChild, Input} from '@angular/core';
-import {SuggestedFees, Account} from '@burstjs/core';
-import {burstAddressPattern} from '@burstjs/util';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Account, SuggestedFees} from '@burstjs/core';
+import {burstAddressPattern, convertNumericIdToAddress} from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {AccountService} from '../../../setup/account/account.service';
-import {Recipient} from '../typings';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
+import {
+  Recipient,
+  RecipientValidationStatus
+} from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
 
 
 const isNotEmpty = (value: string) => value && value.length > 0;
@@ -56,19 +59,19 @@ export class SendBurstFormComponent implements OnInit {
   onSubmit(event): void {
     event.stopImmediatePropagation();
 
-    if (this.recipient.status !== 'valid') {
+    if (this.recipient.status !== RecipientValidationStatus.VALID) {
       const dialogRef = this.openWarningDialog([this.recipient]);
       dialogRef.afterClosed().subscribe(ok => {
         if (ok) {
-          this.sendBurst();
+          this.sendBurst(convertNumericIdToAddress(this.recipient.addressRaw));
         }
       });
     } else {
-      this.sendBurst();
+      this.sendBurst(this.recipient.addressRS);
     }
   }
 
-  async sendBurst(): Promise<void> {
+  async sendBurst(addressRS: string): Promise<void> {
 
     try {
       this.isSending = true;
@@ -83,7 +86,7 @@ export class SendBurstFormComponent implements OnInit {
         },
         pin: this.pin,
         keys: this.account.keys,
-        recipientAddress: this.recipient.addressRS
+        recipientAddress: addressRS,
       });
 
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
@@ -125,10 +128,7 @@ export class SendBurstFormComponent implements OnInit {
       isNotEmpty(this.pin);
   }
 
-
-  onRecipientChange(recipient: any): void {
-    this.recipient.addressRS = recipient.accountRS;
-    this.recipient.status = recipient.status;
-    this.recipient.addressRaw = recipient.accountRaw;
+  onRecipientChange(recipient: Recipient): void {
+    this.recipient = recipient;
   }
 }
