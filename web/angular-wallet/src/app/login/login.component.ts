@@ -1,4 +1,4 @@
-import 'particles.js';
+import '../../particles';
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {environment} from '../../environments/environment';
 
