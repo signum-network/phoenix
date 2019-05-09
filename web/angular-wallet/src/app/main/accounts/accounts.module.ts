@@ -30,6 +30,7 @@ import {AccountResolver} from 'app/setup/account/account.resolver';
 import {TransactionsResolver} from '../transactions/transactions.resolver';
 import {TransactionTableModule} from '../transactions/transaction-table/transaction.module';
 import {AddNodeUrlPipe} from './account-details/add-node-url.pipe';
+import { ConvertNQTStringPipe } from './account-details/convert-nqt-string';
 
 
 const routes = [
@@ -79,7 +80,8 @@ const routes = [
     AccountsComponent,
     DeleteAccountDialogComponent,
     AccountDetailsComponent,
-    AddNodeUrlPipe
+    AddNodeUrlPipe,
+    ConvertNQTStringPipe
   ],
   providers: [
     AccountsResolver

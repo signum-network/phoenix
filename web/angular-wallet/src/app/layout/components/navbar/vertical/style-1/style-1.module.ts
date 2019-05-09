@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatMenuModule } from '@angular/material';
 
 import { FuseNavigationModule } from '@fuse/components';
 import { FuseSharedModule } from '@fuse/shared.module';
@@ -15,6 +15,7 @@ import {I18nModule} from '../../../i18n/i18n.module';
   imports: [
     MatButtonModule,
     MatIconModule,
+    MatMenuModule,
 
     RouterModule,
 

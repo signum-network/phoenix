@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Denken Sie daran: Kontakte werden lokal gespeichert, nicht in der Blockchain.",
   "contacts_no_db_warning": "Ihr Browser unterstützt keinen Datenbank-Zugriff, ohne den die Kontakte nicht erstellt werden können.",
   "continue_forging": "Blockgenerierung fortsetzen",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Konto-ID kopieren",
   "copy_asset_id": "Asset-ID kopieren",
   "copy_asset_link": "Asset-Link kopieren",

@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "注意: 連絡先はブロックチェーンではなくローカルに格納されます。",
   "contacts_no_db_warning": "お使いのブラウザは、データベースへのアクセスをサポートしていません。それがなくては連絡先を作成ことはできません。",
   "continue_forging": "鋳造を続行",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "アカウントID をコピー",
   "copy_asset_id": "資産IDをコピー",
   "copy_asset_link": "アセットのリンクをコピー",

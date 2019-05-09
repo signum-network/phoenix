@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Запомните: контакты хранятся локально, а не в blockchain.",
   "contacts_no_db_warning": "Ваш браузер не поддерживает доступ к базе данных, без чего не могут создаваться контакты.",
   "continue_forging": "Продолжить форжинг",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Скопировать ID аккаунта",
   "copy_asset_id": "Копировать ID актива",
   "copy_asset_link": "Скопировать ссылку актива",

@@ -27,8 +27,7 @@
 
 .mat-cell {
   word-wrap: normal;
-  white-space: nowrap;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .unconfirmed {

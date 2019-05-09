@@ -158,6 +158,7 @@
   "contacts_local_storage_help": "Контактите се съхраняват локално, не в блокверигата.",
   "contacts_no_db_warning": "Вашият браузър не поддържа достъп до база данни, без който контакти не могат да бъдат създадени.",
   "continue_forging": "Продължи коване",
+  "copy_account_address": "Copy Address",
   "copy_account_id": "Copy Account ID",
   "copy_asset_id": "Copy Asset ID",
   "copy_asset_link": "Copy Asset Link",
