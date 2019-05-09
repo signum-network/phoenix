@@ -39,7 +39,7 @@ jobs:
 stages:
   - prepare
   - name: deploy
-    if: tag=~/^\d+\.\d+\.\d+/
+    if: tag=~/^v\d+\.\d+\.\d+/
   - name: force-deploy
     if: branch=~/^force-deploy/
   - name: nightly-release
