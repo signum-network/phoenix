@@ -10,6 +10,7 @@ import { StoreService } from 'app/store/store.service';
 import { NotifierService } from 'angular-notifier';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { MatStepper } from '@angular/material';
+import { environment } from 'environments/environment.hmr';
 
 @Component({
   selector: 'app-request-burst',
@@ -21,11 +22,11 @@ export class RequestBurstComponent implements OnInit, OnDestroy {
   @ViewChild('requestBurstForm') public requestBurstForm: NgForm;
   @ViewChild('amountNQT') public amountNQT: string;
   @ViewChild('feeNQT') public feeNQT: string;
-  @ViewChild('immutable') public immutable: boolean = false;
+  @ViewChild('immutable') public immutable = false;
   @Output() submit = new EventEmitter<any>();
   
-  advanced: boolean = false;
-  showMessage: boolean = false;
+  advanced = false;
+  showMessage = false;
   account: Account;
   fees: SuggestedFees;
   imgSrc: string;
@@ -63,6 +64,8 @@ export class RequestBurstComponent implements OnInit, OnDestroy {
       parseFloat(convertNumberToNQTString(parseFloat(this.feeNQT))),
       this.immutable
     );
+
+    this.imgSrc = `${environment.defaultNode}/${this.imgSrc}`;
     event.stopImmediatePropagation();
     this.stepper.selectedIndex = 1;
     // "Instant Payment" via unconfirmed transactions
