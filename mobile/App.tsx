@@ -1,5 +1,5 @@
 import React from 'react';
-import * as RNLocalize from 'react-native-localize';
+import { addEventListener, removeEventListener } from 'react-native-localize';
 import { createAppContainer, NavigationContainer } from 'react-navigation';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
@@ -14,11 +14,11 @@ const store: Store = getStore();
 
 export default class App extends React.Component<{}, {}> {
   componentDidMount (): void {
-    RNLocalize.addEventListener('change', this.handleLanguagesChange);
+    addEventListener('change', this.handleLanguagesChange);
   }
 
   componentWillUnmount (): void {
-    RNLocalize.removeEventListener('change', this.handleLanguagesChange);
+    removeEventListener('change', this.handleLanguagesChange);
   }
 
   handleLanguagesChange = (event: ChangeLanguageEvent) => {
