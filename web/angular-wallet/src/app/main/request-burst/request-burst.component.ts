@@ -10,7 +10,7 @@ import { StoreService } from 'app/store/store.service';
 import { NotifierService } from 'angular-notifier';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { MatStepper } from '@angular/material';
-import { environment } from 'environments/environment.hmr';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-request-burst',
