@@ -37,16 +37,19 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
-		B8247ADCFC7F4E7690954843 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB5282E92004AC99B940AC6 /* libRNGestureHandler.a */; };
-		D9D18385BA6649A1AF198518 /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B60CC666D0405B8B27A67D /* libRNKeychain.a */; };
-		C967AEE050554AC69E8E1436 /* libRNLanguages.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4A3B5216981422F8BF8EAAF /* libRNLanguages.a */; };
-		C32605AB0F1C42F6B8080405 /* libRNLanguages-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA271B04CBE41E4952465FE /* libRNLanguages-tvOS.a */; };
-		4082CFA3E53440E0B09EFF37 /* libTouchID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F400F036AE48728542E695 /* libTouchID.a */; };
-		B0076064573044FD8CF6D419 /* BebasNeueBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 782488032A1F438B973F7B23 /* BebasNeueBold.ttf */; };
-		7D6221304AD548F984295E68 /* BebasNeueRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DE7BF963CF9453EBBF1567B /* BebasNeueRegular.ttf */; };
-		6C905C5863E649EA88CC941F /* NotoSansBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C2068ED12DF4064A25E3E74 /* NotoSansBold.ttf */; };
-		A63E0E16C8864422BC6F2773 /* NotoSansItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F44CB64F7FA24C19A7ABCB00 /* NotoSansItalic.ttf */; };
-		529B4334AA25462C99EDE4B5 /* NotoSansRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 209FB22F0BF24B42A3E473DC /* NotoSansRegular.ttf */; };
+		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
+		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
+		735AF1797E754608A4C6A203 /* BebasNeueBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3863D84E9D524342A2A09BDD /* BebasNeueBold.ttf */; };
+		D5E25AAD66504269A21F59C9 /* BebasNeueRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61AC4B2CC99C4B6199A61D52 /* BebasNeueRegular.ttf */; };
+		DD3B014DCABE4A839349A6D8 /* NotoSansBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 208B9D6B1DA1461DA6571640 /* NotoSansBold.ttf */; };
+		F801827E6B67435FB1A1FD68 /* NotoSansItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C68C88D8B1584259A9F6A327 /* NotoSansItalic.ttf */; };
+		BBEE6210DCC6461A98C7D2CF /* NotoSansRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B32E8249209443988812476 /* NotoSansRegular.ttf */; };
+		E065FB5B8C7244F48F33380C /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57254E1F3C3543F986D9EF8B /* libRNGestureHandler.a */; };
+		7A772338768E42CE96CF74DF /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EC6C1E5E67429AAA1EC248 /* libRNGestureHandler-tvOS.a */; };
+		9E83DB2219A24D1E86E6BBED /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD42D1B2A7264B93ABD11D00 /* libRNKeychain.a */; };
+		F805058258BA4CC2BE7D2D6A /* libRNLocalize.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCA47CDB31F4986B77292F6 /* libRNLocalize.a */; };
+		4EF8129A6EFC4515AF5EAA7D /* libRNLocalize-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 624BB8ECC2E04DB0A5902645 /* libRNLocalize-tvOS.a */; };
+		8046952F7D0F4071BA0746F7 /* libTouchID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 199DDEAAB7164980844BDFA1 /* libTouchID.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -352,20 +355,23 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
-		A5B28A2331EE4B30BDB9FC67 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; name = "RNGestureHandler.xcodeproj"; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		6CB5282E92004AC99B940AC6 /* libRNGestureHandler.a */ = {isa = PBXFileReference; name = "libRNGestureHandler.a"; path = "libRNGestureHandler.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		F14B92C5A7A14DE9A3C0F58E /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; name = "RNKeychain.xcodeproj"; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		22B60CC666D0405B8B27A67D /* libRNKeychain.a */ = {isa = PBXFileReference; name = "libRNKeychain.a"; path = "libRNKeychain.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		D5C111D71F7D4DA5816728C4 /* RNLanguages.xcodeproj */ = {isa = PBXFileReference; name = "RNLanguages.xcodeproj"; path = "../node_modules/react-native-languages/ios/RNLanguages.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		D4A3B5216981422F8BF8EAAF /* libRNLanguages.a */ = {isa = PBXFileReference; name = "libRNLanguages.a"; path = "libRNLanguages.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		1CA271B04CBE41E4952465FE /* libRNLanguages-tvOS.a */ = {isa = PBXFileReference; name = "libRNLanguages-tvOS.a"; path = "libRNLanguages-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		89B36A56E3CA4D0696A43CB4 /* TouchID.xcodeproj */ = {isa = PBXFileReference; name = "TouchID.xcodeproj"; path = "../node_modules/react-native-touch-id/TouchID.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		52F400F036AE48728542E695 /* libTouchID.a */ = {isa = PBXFileReference; name = "libTouchID.a"; path = "libTouchID.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		782488032A1F438B973F7B23 /* BebasNeueBold.ttf */ = {isa = PBXFileReference; name = "BebasNeueBold.ttf"; path = "../assets/fonts/BebasNeueBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		1DE7BF963CF9453EBBF1567B /* BebasNeueRegular.ttf */ = {isa = PBXFileReference; name = "BebasNeueRegular.ttf"; path = "../assets/fonts/BebasNeueRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		3C2068ED12DF4064A25E3E74 /* NotoSansBold.ttf */ = {isa = PBXFileReference; name = "NotoSansBold.ttf"; path = "../assets/fonts/NotoSansBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F44CB64F7FA24C19A7ABCB00 /* NotoSansItalic.ttf */ = {isa = PBXFileReference; name = "NotoSansItalic.ttf"; path = "../assets/fonts/NotoSansItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		209FB22F0BF24B42A3E473DC /* NotoSansRegular.ttf */ = {isa = PBXFileReference; name = "NotoSansRegular.ttf"; path = "../assets/fonts/NotoSansRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		3863D84E9D524342A2A09BDD /* BebasNeueBold.ttf */ = {isa = PBXFileReference; name = "BebasNeueBold.ttf"; path = "../assets/fonts/BebasNeueBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		61AC4B2CC99C4B6199A61D52 /* BebasNeueRegular.ttf */ = {isa = PBXFileReference; name = "BebasNeueRegular.ttf"; path = "../assets/fonts/BebasNeueRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		208B9D6B1DA1461DA6571640 /* NotoSansBold.ttf */ = {isa = PBXFileReference; name = "NotoSansBold.ttf"; path = "../assets/fonts/NotoSansBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C68C88D8B1584259A9F6A327 /* NotoSansItalic.ttf */ = {isa = PBXFileReference; name = "NotoSansItalic.ttf"; path = "../assets/fonts/NotoSansItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2B32E8249209443988812476 /* NotoSansRegular.ttf */ = {isa = PBXFileReference; name = "NotoSansRegular.ttf"; path = "../assets/fonts/NotoSansRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B6DFE4F6F2AF44FC9D0C372E /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; name = "RNGestureHandler.xcodeproj"; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		57254E1F3C3543F986D9EF8B /* libRNGestureHandler.a */ = {isa = PBXFileReference; name = "libRNGestureHandler.a"; path = "libRNGestureHandler.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		61EC6C1E5E67429AAA1EC248 /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; name = "libRNGestureHandler-tvOS.a"; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		3BD74A520DBD4CD6A3F89A89 /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; name = "RNKeychain.xcodeproj"; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		BD42D1B2A7264B93ABD11D00 /* libRNKeychain.a */ = {isa = PBXFileReference; name = "libRNKeychain.a"; path = "libRNKeychain.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		F41A8C9F2E1B44CC8CC5BBAA /* RNLocalize.xcodeproj */ = {isa = PBXFileReference; name = "RNLocalize.xcodeproj"; path = "../node_modules/react-native-localize/ios/RNLocalize.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		BFCA47CDB31F4986B77292F6 /* libRNLocalize.a */ = {isa = PBXFileReference; name = "libRNLocalize.a"; path = "libRNLocalize.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		624BB8ECC2E04DB0A5902645 /* libRNLocalize-tvOS.a */ = {isa = PBXFileReference; name = "libRNLocalize-tvOS.a"; path = "libRNLocalize-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		3F6C3FA8B8264950B588BB10 /* TouchID.xcodeproj */ = {isa = PBXFileReference; name = "TouchID.xcodeproj"; path = "../node_modules/react-native-touch-id/TouchID.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		199DDEAAB7164980844BDFA1 /* libTouchID.a */ = {isa = PBXFileReference; name = "libTouchID.a"; path = "libTouchID.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,6 +387,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -393,10 +400,10 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				B8247ADCFC7F4E7690954843 /* libRNGestureHandler.a in Frameworks */,
-				D9D18385BA6649A1AF198518 /* libRNKeychain.a in Frameworks */,
-				C967AEE050554AC69E8E1436 /* libRNLanguages.a in Frameworks */,
-				4082CFA3E53440E0B09EFF37 /* libTouchID.a in Frameworks */,
+				E065FB5B8C7244F48F33380C /* libRNGestureHandler.a in Frameworks */,
+				9E83DB2219A24D1E86E6BBED /* libRNKeychain.a in Frameworks */,
+				F805058258BA4CC2BE7D2D6A /* libRNLocalize.a in Frameworks */,
+				8046952F7D0F4071BA0746F7 /* libTouchID.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +411,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */,
 				2D02E4C21E0B4AEC006451C7 /* libRCTAnimation.a in Frameworks */,
 				2D02E4C31E0B4AEC006451C7 /* libRCTImage-tvOS.a in Frameworks */,
@@ -412,7 +420,8 @@
 				2D02E4C61E0B4AEC006451C7 /* libRCTSettings-tvOS.a in Frameworks */,
 				2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */,
 				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
-				C32605AB0F1C42F6B8080405 /* libRNLanguages-tvOS.a in Frameworks */,
+				7A772338768E42CE96CF74DF /* libRNGestureHandler-tvOS.a in Frameworks */,
+				4EF8129A6EFC4515AF5EAA7D /* libRNLocalize-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +555,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 			);
 			name = Frameworks;
@@ -584,10 +595,10 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				A5B28A2331EE4B30BDB9FC67 /* RNGestureHandler.xcodeproj */,
-				F14B92C5A7A14DE9A3C0F58E /* RNKeychain.xcodeproj */,
-				D5C111D71F7D4DA5816728C4 /* RNLanguages.xcodeproj */,
-				89B36A56E3CA4D0696A43CB4 /* TouchID.xcodeproj */,
+				B6DFE4F6F2AF44FC9D0C372E /* RNGestureHandler.xcodeproj */,
+				3BD74A520DBD4CD6A3F89A89 /* RNKeychain.xcodeproj */,
+				F41A8C9F2E1B44CC8CC5BBAA /* RNLocalize.xcodeproj */,
+				3F6C3FA8B8264950B588BB10 /* TouchID.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -609,7 +620,7 @@
 				00E356EF1AD99517003FC87E /* mobileTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				D647ADE8D632463AAC80E011 /* Resources */,
+				5BDC9A2041A2406E91CDC6DD /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -636,14 +647,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D647ADE8D632463AAC80E011 /* Resources */ = {
+		5BDC9A2041A2406E91CDC6DD /* Resources */ = {
 			isa = "PBXGroup";
 			children = (
-				782488032A1F438B973F7B23 /* BebasNeueBold.ttf */,
-				1DE7BF963CF9453EBBF1567B /* BebasNeueRegular.ttf */,
-				3C2068ED12DF4064A25E3E74 /* NotoSansBold.ttf */,
-				F44CB64F7FA24C19A7ABCB00 /* NotoSansItalic.ttf */,
-				209FB22F0BF24B42A3E473DC /* NotoSansRegular.ttf */,
+				3863D84E9D524342A2A09BDD /* BebasNeueBold.ttf */,
+				61AC4B2CC99C4B6199A61D52 /* BebasNeueRegular.ttf */,
+				208B9D6B1DA1461DA6571640 /* NotoSansBold.ttf */,
+				C68C88D8B1584259A9F6A327 /* NotoSansItalic.ttf */,
+				2B32E8249209443988812476 /* NotoSansRegular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1095,11 +1106,11 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				B0076064573044FD8CF6D419 /* BebasNeueBold.ttf in Resources */,
-				7D6221304AD548F984295E68 /* BebasNeueRegular.ttf in Resources */,
-				6C905C5863E649EA88CC941F /* NotoSansBold.ttf in Resources */,
-				A63E0E16C8864422BC6F2773 /* NotoSansItalic.ttf in Resources */,
-				529B4334AA25462C99EDE4B5 /* NotoSansRegular.ttf in Resources */,
+				735AF1797E754608A4C6A203 /* BebasNeueBold.ttf in Resources */,
+				D5E25AAD66504269A21F59C9 /* BebasNeueRegular.ttf in Resources */,
+				DD3B014DCABE4A839349A6D8 /* NotoSansBold.ttf in Resources */,
+				F801827E6B67435FB1A1FD68 /* NotoSansItalic.ttf in Resources */,
+				BBEE6210DCC6461A98C7D2CF /* NotoSansRegular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1239,12 +1250,13 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
-					"$(SRCROOT)/../node_modules/react-native-languages/ios",
+					"$(SRCROOT)/../node_modules/react-native-localize/ios",
 					"$(SRCROOT)/../node_modules/react-native-touch-id",
 				);
 			};
@@ -1272,12 +1284,13 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
-					"$(SRCROOT)/../node_modules/react-native-languages/ios",
+					"$(SRCROOT)/../node_modules/react-native-localize/ios",
 					"$(SRCROOT)/../node_modules/react-native-touch-id",
 				);
 			};
@@ -1303,7 +1316,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
-					"$(SRCROOT)/../node_modules/react-native-languages/ios",
+					"$(SRCROOT)/../node_modules/react-native-localize/ios",
 					"$(SRCROOT)/../node_modules/react-native-touch-id",
 				);
 			};
@@ -1328,7 +1341,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
-					"$(SRCROOT)/../node_modules/react-native-languages/ios",
+					"$(SRCROOT)/../node_modules/react-native-localize/ios",
 					"$(SRCROOT)/../node_modules/react-native-touch-id",
 				);
 			};
@@ -1364,12 +1377,13 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
-					"$(SRCROOT)/../node_modules/react-native-languages/ios",
+					"$(SRCROOT)/../node_modules/react-native-localize/ios",
 					"$(SRCROOT)/../node_modules/react-native-touch-id",
 				);
 			};
@@ -1405,12 +1419,13 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
-					"$(SRCROOT)/../node_modules/react-native-languages/ios",
+					"$(SRCROOT)/../node_modules/react-native-localize/ios",
 					"$(SRCROOT)/../node_modules/react-native-touch-id",
 				);
 			};
@@ -1445,12 +1460,13 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
-					"$(SRCROOT)/../node_modules/react-native-languages/ios",
+					"$(SRCROOT)/../node_modules/react-native-localize/ios",
 					"$(SRCROOT)/../node_modules/react-native-touch-id",
 				);
 			};
@@ -1485,12 +1501,13 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
-					"$(SRCROOT)/../node_modules/react-native-languages/ios",
+					"$(SRCROOT)/../node_modules/react-native-localize/ios",
 					"$(SRCROOT)/../node_modules/react-native-touch-id",
 				);
 			};
