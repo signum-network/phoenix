@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Colors } from '../../theme/colors';
-import { FontSizes, Sizes } from '../../theme/sizes';
+import { defaultSideOffset, FontSizes, Sizes } from '../../theme/sizes';
+import { isIOS } from '../../utils/platform';
 import { Text } from '../base/Text';
 
 interface Props {
@@ -11,7 +12,8 @@ interface Props {
 
 const styles = StyleSheet.create({
   view: {
-    paddingTop: Sizes.SMALL
+    paddingTop: isIOS ? Sizes.SMALL : 0,
+    paddingLeft: isIOS ? 0 : defaultSideOffset * 1
   }
 });
 
