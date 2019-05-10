@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.rnfingerprint.FingerprintAuthPackage;
-import com.reactcommunity.rnlanguages.RNLanguagesPackage;
+import com.reactcommunity.rnlocalize.RNLocalizePackage;
 import com.oblador.keychain.KeychainPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
@@ -28,7 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new FingerprintAuthPackage(),
-            new RNLanguagesPackage(),
+            new RNLocalizePackage(),
             new KeychainPackage(),
             new RNGestureHandlerPackage()
       );

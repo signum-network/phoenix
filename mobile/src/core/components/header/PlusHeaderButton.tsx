@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Colors } from '../../theme/colors';
 import { FontSizes, Sizes } from '../../theme/sizes';
+import { isIOS } from '../../utils/platform';
 import { Text, TextAlign } from '../base/Text';
 
 interface Props {
@@ -11,8 +12,9 @@ interface Props {
 const styles = StyleSheet.create({
   view: {
     marginBottom: Sizes.SMALL,
-    paddingLeft: Sizes.MEDIUM,
-    paddingRight: Sizes.MEDIUM
+    paddingLeft: Sizes.LARGE,
+    paddingRight: Sizes.MEDIUM,
+    paddingTop: isIOS ? 0 : Sizes.SMALL
   }
 });
 
