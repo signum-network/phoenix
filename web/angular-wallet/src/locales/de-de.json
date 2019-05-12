@@ -916,5 +916,17 @@
   "your_alias_sale_offer": "Sie bieten diesen Alias zum Kauf an.",
   "your_name": "Ihr Name",
   "your_passphrase": "Ihre Passphrase",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "You've got Burst!",
+  "update_burst_account": "Update your burst account",
+  "record": "Record",
+  "verify": "Verify",
+  "unknown_recipients": "Unknown Recipients Detected",
+  "unknown_recipients_text": "The following recipient(s) could not be validated:",
+  "are_you_sure": "Do you you really want to send Burst to them?",
+  "get_burst_account": "Get your free Burst account now.",
+  "new_user_text": "Are you a new user? Create a new account and became a new Burst member.",
+  "new_user_yes": "Yes, I'm a new user",
+  "new_user_no": "No, I have an account",
+  "create_passive": "Create a new account without passphrase",
+  "or": "or"
 }

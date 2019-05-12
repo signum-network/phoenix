@@ -7,13 +7,13 @@
       <small class="login__version">"Phoenix" Wallet ({{version}})</small>
     </div>
     <div class="login__body">
-      <h1 class="login__title">Get your free Burst account now.</h1>
-      <p class="login__info">Are you a new user? Create a new account and became a new Burst member.</p>
+      <h1 class="login__title">{{ 'get_burst_account' | i18n }}</h1>
+      <p class="login__info">{{ 'new_user_text' | i18n }}</p>
       <div class="login__actions">
-        <a class="login__link--yes" [routerLink]="[ '/login/active' ]" [queryParams]="{ newUser: true }">Yes, I'm a new user</a>
-        <a class="login__link--no" [routerLink]="[ '/login/active' ]" >No, I have an account</a>
-        <p class="login__divider">or</p>
-        <a class="login__link--default" [routerLink]="[ '/login/passive' ]" >Create a new account without passphrase</a>
+        <a class="login__link--yes" [routerLink]="[ '/login/active' ]" [queryParams]="{ newUser: true }">{{ 'new_user_yes' | i18n }}</a>
+        <a class="login__link--no" [routerLink]="[ '/login/active' ]" >{{ 'new_user_no' | i18n }}</a>
+        <p class="login__divider">{{ 'or' | i18n }}</p>
+        <a class="login__link--default" [routerLink]="[ '/login/passive' ]" >{{ 'create_passive' | i18n }}</a>
       </div>
     </div>
   </div>

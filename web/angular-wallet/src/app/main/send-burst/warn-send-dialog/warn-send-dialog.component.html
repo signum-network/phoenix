@@ -1,7 +1,7 @@
 <div class="warn-dialog">
-  <h1 mat-dialog-title>Non-valid Recipients Detected</h1>
+  <h1 mat-dialog-title>{{ 'unknown_recipients' | i18n }}</h1>
   <div mat-dialog-content>
-    <p>The following recipient(s) could not be validated:</p>
+    <p>{{ 'unknown_recipients_text' | i18n }}</p>
     <ul class="recipient-list">
       <li *ngFor="let recipient of recipients">
         <div>
@@ -9,11 +9,11 @@
         </div>
       </li>
     </ul>
-    <p *ngIf="!hasUnknownAliasAccount">Do you you really want to send Burst to them?</p>
+    <p *ngIf="!hasUnknownAliasAccount">{{ 'are_you_sure' | i18n }}</p>
   </div>
   <div mat-dialog-actions>
-    <button *ngIf="hasUnknownAliasAccount" mat-button [mat-dialog-close]>Ok, Thanks</button>
-    <button *ngIf="!hasUnknownAliasAccount" mat-button [mat-dialog-close]>No, Thanks</button>
-    <button *ngIf="!hasUnknownAliasAccount" mat-button [mat-dialog-close]="true" color="accent">Yes, I'm sure!</button>
+    <button *ngIf="hasUnknownAliasAccount" mat-button [mat-dialog-close]>{{ 'close' | i18n }}</button>
+    <button *ngIf="!hasUnknownAliasAccount" mat-button [mat-dialog-close]>{{ 'cancel' | i18n }}</button>
+    <button *ngIf="!hasUnknownAliasAccount" mat-button [mat-dialog-close]="true" color="accent">{{ 'submit' | i18n }}</button>
   </div>
 </div>
