@@ -1,6 +1,6 @@
 <mat-horizontal-stepper #stepper [linear]="true" [selectedIndex]="this.createService.getStepIndex()" labelPosition="bottom">
     <mat-step [completed]="this.createService.isPassphraseGenerated()" [editable]="!this.createService.isPassphraseGenerated()">
-        <ng-template matStepLabel>Seed</ng-template>
+        <ng-template matStepLabel>{{ 'generate' | i18n }}</ng-template>
         <div class="step-container">
             <ng-container *ngIf="newUser">
                 <app-account-create-seed></app-account-create-seed>
@@ -11,13 +11,13 @@
         </div>
     </mat-step>
     <mat-step [completed]="this.createService.getAddress() != undefined && this.createService.getId() != undefined">
-        <ng-template matStepLabel>Record</ng-template>
+        <ng-template matStepLabel>{{ 'record' | i18n }}</ng-template>
         <div class="step-container">
             <app-account-create-record></app-account-create-record>
         </div>
     </mat-step>
     <mat-step>
-        <ng-template matStepLabel>Verify</ng-template>
+        <ng-template matStepLabel>{{ 'verify' | i18n }}</ng-template>
         <div class="step-container">
             <app-account-create-pin></app-account-create-pin>
         </div>

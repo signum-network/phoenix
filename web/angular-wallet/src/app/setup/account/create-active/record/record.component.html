@@ -12,7 +12,7 @@
     </tr>
     <tr>
         <td class="table__label">
-            Address:
+            {{ 'address' | i18n }}:
         </td>
         <td class="table__text">
             {{ this.createService.getAddress() }}
@@ -20,7 +20,7 @@
     </tr>
     <tr>
         <td class="table__label">
-            Passphrase:
+            {{ 'passphrase' | i18n }}:
         </td>
         <td class="table__text unselectable">
             {{ this.createService.getCompletePassphrase() }}
@@ -31,9 +31,7 @@
     </tr>
 </table>
 <hr class="divider">
-<small>
-    Note down your passphrase. The passphrase is the master key to your account. Therefore, keep your passphrase always safe and private!
-</small>
+<small>{{ 'memorize_passphrase_help' | i18n }}</small>
 <div class="text-center navigation">
     <button class="btn-danger" mat-raised-button (click)="reset()">Back</button>
     <button class="btn-success" mat-raised-button (click)="next()">Next</button>

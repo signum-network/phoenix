@@ -5,11 +5,11 @@
       </a>
   </header>
   <div class="signup__container">
-      <h1 *ngIf="newUser | async; else updateTitle" class="signup__title">Create a new burst account</h1>
+      <h1 *ngIf="newUser | async; else updateTitle" class="signup__title">{{ 'create_your_account' | i18n }}</h1>
       <app-account-create [newUser]="newUser | async"></app-account-create>
   </div>
 </div>
 
 <ng-template #updateTitle>
-  <h1 class="signup__title">Update your burst account</h1>
+  <h1 class="signup__title">{{ 'update_burst_account' | i18n }}</h1>
 </ng-template>

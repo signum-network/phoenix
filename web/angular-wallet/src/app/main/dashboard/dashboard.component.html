@@ -3,7 +3,7 @@
   <div class="content">
 
     <div class="mr-lg-32" fxFlex="100" *ngIf="account">
-      <mat-toolbar-row *ngIf="!account.confirmed && settings.welcomeMessageHiddenFrom.indexOf(account.account) === -1">
+      <mat-toolbar-row *ngIf="!account.confirmed && settings.welcomeMessageHiddenFrom.indexOf(account.account) === -1 && !account.balanceNQT">
         <mat-icon>card_giftcard</mat-icon>
         <span>{{ 'welcome_to_burst' | i18n }} <a href="http://faucet.burst-alliance.org:8080"
                                                  target="_blank">{{ 'click_to_claim' | i18n }}</a></span>
@@ -32,7 +32,10 @@
             <div class="p-16" fxLayout="column wrap" fxLayoutAlign="center">
               <div style="width: 100%">
                 <div class="h3 secondary-text">{{ 'balance_history' | i18n }}</div>
-                <div [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1 mt-8">
+                <div *ngIf="!account.transactions.length">
+                  {{ 'no_transactions_yet' | i18n }}
+                </div>
+                <div *ngIf="account.transactions.length" [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1 mt-8">
                   <app-balance-diagram
                     [account]="account"
                     [transactionCount]="50"

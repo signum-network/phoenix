@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Account, SuggestedFees} from '@burstjs/core';
-import {burstAddressPattern, convertNumericIdToAddress} from '@burstjs/util';
+import {burstAddressPattern} from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
@@ -63,7 +63,7 @@ export class SendBurstFormComponent implements OnInit {
       const dialogRef = this.openWarningDialog([this.recipient]);
       dialogRef.afterClosed().subscribe(ok => {
         if (ok) {
-          this.sendBurst(convertNumericIdToAddress(this.recipient.addressRaw));
+          this.sendBurst(this.recipient.addressRaw);
         }
       });
     } else {

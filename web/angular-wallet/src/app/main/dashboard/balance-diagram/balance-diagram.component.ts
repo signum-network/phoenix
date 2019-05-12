@@ -67,7 +67,7 @@ export class BalanceDiagramComponent implements OnChanges {
       convertNQTStringToNumber(balanceNQT),
       transactions).reverse();
 
-    this.firstDate = convertBurstTimeToDate(this.balanceHistory[0].timestamp);
+    this.firstDate = this.balanceHistory.length && convertBurstTimeToDate(this.balanceHistory[0].timestamp);
 
     this.data = [
       {
