@@ -17,7 +17,7 @@
   "devDependencies": {
     "args": "^5.0.1",
     "chalk": "^2.4.2",
-    "fs-extra": "^7.0.1"
+    "fs-extra": "^8.0.0"
   },
   "engines": {
     "node": ">=10"
