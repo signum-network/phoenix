@@ -14,6 +14,9 @@ function getBrowserWindowConfig() {
         icon: path.join(__dirname, 'assets/images/png/64x64.png'),
         center: true,
         show: false,
+        webPreferences: {
+            nodeIntegration: true
+        }
     };
     return isDevelopment ? {
         ...commonConfig,
@@ -92,6 +95,10 @@ function createWindow() {
                     click() { shell.openExternal('https://github.com/burst-apps-team/phoenix/issues/new?assignees=&labels=bug,web,desktop&template=bug_report.md&title='); }
                 },
                 {
+                    label: 'Check for update',
+                    click() { updateService.checkForLatestRelease(handleLatestUpdate) }
+                },
+                {
                     label: 'Credits',
                     selector: 'orderFrontStandardAboutPanel:'
                 }
@@ -142,12 +149,14 @@ function createWindow() {
     Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 }
 
+function handleLatestUpdate(newVersion){
+  win.webContents.send('new-version', newVersion)
+}
+
 function onReady() {
     createWindow();
     win.webContents.on('did-finish-load', () => {
-        updateService.start(newVersion => {
-            console.log(newVersion);
-        });
+        updateService.start(handleLatestUpdate);
     })
 }
 

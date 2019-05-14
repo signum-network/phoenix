@@ -1,17 +1,18 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { Platform } from '@angular/cdk/platform';
-import { Subject, throwError } from 'rxjs';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {DOCUMENT} from '@angular/common';
+import {Platform} from '@angular/cdk/platform';
+import {Subject, throwError} from 'rxjs';
 
-import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
-import { FuseConfigService } from '@fuse/services/config.service';
-import { AccountService } from './setup/account/account.service';
-import { StoreService } from './store/store.service';
-import { Account, Block, BlockchainStatus } from '@burstjs/core';
-import { NotifierService } from 'angular-notifier';
-import { NetworkService } from './network/network.service';
-import { I18nService } from './layout/components/i18n/i18n.service';
-import { UtilService } from './util.service';
+import {FuseSplashScreenService} from '@fuse/services/splash-screen.service';
+import {FuseConfigService} from '@fuse/services/config.service';
+import {AccountService} from './setup/account/account.service';
+import {StoreService} from './store/store.service';
+import {Account, Block, BlockchainStatus} from '@burstjs/core';
+import {NotifierService} from 'angular-notifier';
+import {NetworkService} from './network/network.service';
+import {I18nService} from './layout/components/i18n/i18n.service';
+import {UtilService} from './util.service';
+import {ElectronService} from 'ngx-electron';
 
 @Component({
   selector: 'app',
@@ -39,7 +40,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private accountService: AccountService,
     private networkService: NetworkService,
     private notifierService: NotifierService,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private electronService: ElectronService
   ) {
 
     // Add is-mobile class to the body if the platform is mobile
@@ -62,32 +64,40 @@ export class AppComponent implements OnInit, OnDestroy {
         this.accounts = await this.storeService.getAllAccounts();
       });
     });
+
+    if (this.electronService.isElectronApp){
+      console.log('is Electron app')
+      this.electronService.ipcRenderer.on('new-version', (newVersion) => {
+        console.log('teste', newVersion )
+      });
+    }
   }
 
   private async checkBlockchainStatus() {
-      try {
-        const blockchainStatus = await this.networkService.getBlockchainStatus();
-        this.isScanning = !this.firstTime && (this.previousLastBlock !== blockchainStatus.lastBlock);
-        this.previousLastBlock = blockchainStatus.lastBlock;
-        if (this.isScanning) {
-          await this.updateAccountsAndCheckBlockchainStatus(blockchainStatus);
-        } else if (this.selectedAccount) {
-          this.accountService.synchronizeAccount(this.selectedAccount).catch(() => { });
-        }
-        this.firstTime = false;
-      } catch (e) {
-        return this.notifierService.notify('error', this.utilService.translateServerError(e));
+    try {
+      const blockchainStatus = await this.networkService.getBlockchainStatus();
+      this.isScanning = !this.firstTime && (this.previousLastBlock !== blockchainStatus.lastBlock);
+      this.previousLastBlock = blockchainStatus.lastBlock;
+      if (this.isScanning) {
+        await this.updateAccountsAndCheckBlockchainStatus(blockchainStatus);
+      } else if (this.selectedAccount) {
+        this.accountService.synchronizeAccount(this.selectedAccount).catch(() => {
+        });
       }
+      this.firstTime = false;
+    } catch (e) {
+      return this.notifierService.notify('error', this.utilService.translateServerError(e));
+    }
   }
 
-  private async updateAccountsAndCheckBlockchainStatus(blockchainStatus: BlockchainStatus) {
+  private async updateAccountsAndCheckBlockchainStatus(blockchainStatus: BlockchainStatus): Promise<void> {
     this.updateAccounts();
     const block = await this.networkService.getBlockById(blockchainStatus.lastBlock);
     this.networkService.addBlock(block);
     this.checkBlockchainStatus();
   }
 
-  private async updateAccounts() {
+  private async updateAccounts(): Promise<void> {
     this.storeService.getSelectedAccount().then((account) => {
       if (account !== this.selectedAccount) {
         this.selectedAccount = account;
@@ -98,7 +108,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.accounts = await this.storeService.getAllAccounts();
     this.accounts.map((account) => {
       setTimeout(() => {
-        this.accountService.synchronizeAccount(account).catch(() => {});
+        this.accountService.synchronizeAccount(account).catch(() => {
+        });
       }, 1);
     });
   }

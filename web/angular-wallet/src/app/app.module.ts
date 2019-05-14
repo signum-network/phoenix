@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatButtonModule, MatIconModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgxElectronModule } from 'ngx-electron';
+
 import 'hammerjs';
 
 import { AppComponent } from 'app/app.component';
@@ -65,7 +67,8 @@ const appRoutes: Routes = [
 
     NotifierModule,
     I18nModule,
-    DisclaimerModule
+    DisclaimerModule,
+    NgxElectronModule
   ],
   providers: [
     StoreService,

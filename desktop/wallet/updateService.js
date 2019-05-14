@@ -8,7 +8,7 @@ class UpdateService {
     this.http = new HttpImpl(update.repositoryRootUrl)
   }
 
-  _checkForLatestRelease(callback) {
+  checkForLatestRelease(callback) {
     this.http.get('/releases/latest').then(
       ({response}) => {
         const {assets, tag_name: releaseVersion} = response;
@@ -22,8 +22,8 @@ class UpdateService {
 
   start(callback) {
     console.info('Update Service started - current version:', version);
-    this._checkForLatestRelease(callback);
-    setInterval(this._checkForLatestRelease.bind(this, callback), update.checkIntervalMins * 60 * 1000)
+    this.checkForLatestRelease(callback);
+    setInterval(this.checkForLatestRelease.bind(this, callback), update.checkIntervalMins * 60 * 1000)
   }
 }
 

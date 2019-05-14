@@ -45,7 +45,7 @@
   },
   "update": {
     "repositoryRootUrl": "https://api.github.com/repos/burst-apps-team/phoenix",
-    "checkIntervalMins": "30"
+    "checkIntervalMins": "1"
   },
   "build": {
     "productName": "Phoenix Burst Wallet",
