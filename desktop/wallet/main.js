@@ -1,6 +1,6 @@
 const path = require('path');
 const { app, BrowserWindow, Menu, shell } = require('electron');
-
+const updateService = require('./updateService');
 let win;
 
 const isDevelopment = process.env.development;
@@ -142,8 +142,16 @@ function createWindow() {
     Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 }
 
-// Create window on electron intialization
-app.on('ready', createWindow);
+function onReady() {
+    createWindow();
+    win.webContents.on('did-finish-load', () => {
+        updateService.start(newVersion => {
+            console.log(newVersion);
+        });
+    })
+}
+
+app.on('ready', onReady);
 
 // TODO: need this for other OSes
 if (isMacOS()) {
