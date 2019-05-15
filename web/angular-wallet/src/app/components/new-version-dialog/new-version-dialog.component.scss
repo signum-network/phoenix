@@ -1,0 +1,20 @@
+:host {
+
+  .card {
+    display: flex;
+    align-items: flex-start;
+
+    .card-preview {
+      display: flex;
+      min-width: 320px;
+
+      img {
+        width: 100%
+      }
+    }
+
+    .card-source {
+      display: none;
+    }
+  }
+}

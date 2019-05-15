@@ -1,18 +1,20 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {Platform} from '@angular/cdk/platform';
-import {Subject, throwError} from 'rxjs';
+import {Subject} from 'rxjs';
 
 import {FuseSplashScreenService} from '@fuse/services/splash-screen.service';
 import {FuseConfigService} from '@fuse/services/config.service';
 import {AccountService} from './setup/account/account.service';
 import {StoreService} from './store/store.service';
-import {Account, Block, BlockchainStatus} from '@burstjs/core';
+import {Account, BlockchainStatus} from '@burstjs/core';
 import {NotifierService} from 'angular-notifier';
 import {NetworkService} from './network/network.service';
 import {I18nService} from './layout/components/i18n/i18n.service';
 import {UtilService} from './util.service';
 import {ElectronService} from 'ngx-electron';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {NewVersionDialogComponent, UpdateInfo} from './components/new-version-dialog/new-version-dialog.component';
 
 @Component({
   selector: 'app',
@@ -22,6 +24,8 @@ import {ElectronService} from 'ngx-electron';
 export class AppComponent implements OnInit, OnDestroy {
   firstTime = true;
   isScanning = false;
+  newVersionAvailable = true;
+  updateInfo: UpdateInfo;
   downloadingBlockchain = false;
   previousLastBlock = '0';
   lastBlock = '0';
@@ -41,7 +45,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private networkService: NetworkService,
     private notifierService: NotifierService,
     private utilService: UtilService,
-    private electronService: ElectronService
+    private electronService: ElectronService,
+    private newVersionDialog: MatDialog,
   ) {
 
     // Add is-mobile class to the body if the platform is mobile
@@ -67,7 +72,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
     if (this.electronService.isElectronApp) {
       this.electronService.ipcRenderer.on('new-version', (event, newVersion) => {
-        console.log('teste', newVersion)
+        this.newVersionAvailable = true;
+        this.updateInfo = new UpdateInfo(
+          '1.0.0-beta.5',
+          '1.0.0-beta.6',
+          [],
+          'https://github.com/burst-apps-team/phoenix/releases/tag/v1.0.0-beta.6'
+        );
       });
     }
   }
@@ -117,5 +128,29 @@ export class AppComponent implements OnInit, OnDestroy {
     // Unsubscribe from all subscriptions
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
+  }
+
+
+  private openNewVersionDialog(): MatDialogRef<NewVersionDialogComponent> {
+
+    this.updateInfo = new UpdateInfo(
+      '1.0.0-beta.5',
+      '1.0.0-beta.6',
+      [],
+      'https://github.com/burst-apps-team/phoenix/releases/tag/v1.0.0-beta.6'
+    );
+
+    return this.newVersionDialog.open(NewVersionDialogComponent, {
+      width: '400px',
+      data: this.updateInfo
+    });
+  }
+
+  onClickedNewVersion(): void {
+    const dialogRef = this.openNewVersionDialog();
+    dialogRef.afterClosed().subscribe(ok => {
+        console.log('ok - new version closed');
+      }
+    );
   }
 }
