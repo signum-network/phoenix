@@ -1,0 +1,54 @@
+{
+  "productName": "Phoenix Burst Wallet",
+  "appId": "org.burstcoin.phoenix",
+  "directories": {
+    "output": "release-builds",
+    "buildResources": "dist"
+  },
+  "files": [
+    "dist/**/*",
+    "node_modules/**/*",
+    "assets/**/*",
+    "package.json",
+    "main.js"
+  ],
+  "icon": "./assets/images/png/512x512.png",
+  "mac": {
+    "artifactName": "${os}-phoenix-burst-wallet.${version}.${ext}",
+    "publish": [
+      "github"
+    ],
+    "category": "public.app-category.finance"
+  },
+  "linux": {
+    "artifactName": "${os}-phoenix-burst-wallet.${version}.${ext}",
+    "target": [
+      "AppImage",
+      "deb",
+      "rpm",
+      "tar.gz"
+    ],
+    "publish": [
+      "github"
+    ],
+    "category": "Finance"
+  },
+  "win": {
+    "artifactName": "${os}-phoenix-burst-wallet.${version}.${ext}",
+    "target": [
+      "nsis",
+      "portable"
+    ],
+    "publish": [
+      "github"
+    ]
+  },
+  "nsis": {
+    "multiLanguageInstaller": true,
+    "oneClick": true,
+    "allowElevation": false,
+    "packElevateHelper": false,
+    "perMachine": false,
+    "artifactName": "${os}-phoenix-burst-wallet-setup.${version}.${ext}"
+  }
+}
