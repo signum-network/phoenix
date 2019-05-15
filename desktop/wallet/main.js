@@ -1,5 +1,5 @@
 const path = require('path');
-const { app, BrowserWindow, Menu, shell } = require('electron');
+const { app, BrowserWindow, Menu, shell, session } = require('electron');
 const updateService = require('./updateService');
 let win;
 

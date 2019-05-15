@@ -65,15 +65,14 @@ export class AppComponent implements OnInit, OnDestroy {
       });
     });
 
-    if (this.electronService.isElectronApp){
-      console.log('is Electron app')
-      this.electronService.ipcRenderer.on('new-version', (newVersion) => {
-        console.log('teste', newVersion )
+    if (this.electronService.isElectronApp) {
+      this.electronService.ipcRenderer.on('new-version', (event, newVersion) => {
+        console.log('teste', newVersion)
       });
     }
   }
 
-  private async checkBlockchainStatus() {
+  private async checkBlockchainStatus(): Promise<void> {
     try {
       const blockchainStatus = await this.networkService.getBlockchainStatus();
       this.isScanning = !this.firstTime && (this.previousLastBlock !== blockchainStatus.lastBlock);
@@ -86,7 +85,7 @@ export class AppComponent implements OnInit, OnDestroy {
       }
       this.firstTime = false;
     } catch (e) {
-      return this.notifierService.notify('error', this.utilService.translateServerError(e));
+      this.notifierService.notify('error', this.utilService.translateServerError(e));
     }
   }
 
