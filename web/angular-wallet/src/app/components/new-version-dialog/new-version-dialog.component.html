@@ -1,37 +1,43 @@
 <div class="card">
 
+  <div class="card-header">
+    <img src="assets/images/logos/phoenix_banner.jpg">
+    <div class="h1 title">
+      Update available
+    </div>
+  </div>
+
   <!-- PREVIEW -->
-  <div class="card-preview">
+  <div class="card-content">
     <div>
-
-      <img src="assets/images/cards/card1.jpg">
-
-      <div class="p-16">
-        <div class="h1">
-          Update available
-          <a href="{{updateInfo.releaseUrl}}"
-             target="_blank"
-             class="h5 secondary-text"
-             matTooltip="Click here to see what has changed">
-            <mat-icon>help_outline</mat-icon>
-          </a>
-        </div>
-        <div class="h4 secondary-text">Current Version: {{updateInfo.currentVersion}} </div>
-        <div class="h4 secondary-text">New Version: {{updateInfo.newVersion}} </div>
+      <div class="h4 secondary-text">Current Version: {{updateInfo.currentVersion}}</div>
+      <div class="h4 secondary-text new-version">
+        <div>New Version: {{updateInfo.newVersion}}</div>
+        <a href="{{updateInfo.releaseUrl}}"
+           target="_blank"
+           class="font-size-12 secondary-text"
+           matTooltip="Click here to see what has changed">
+          <mat-icon class="pl-4 s-16">help_outline</mat-icon>
+        </a>
       </div>
+    </div>
 
-      <mat-form-field class="p-16">
-        <mat-select placeholder="Choose file for {{platform}} to download">
-          <mat-option *ngFor="let assetUrl of updateInfo.assets" [value]="assetUrl">
-            {{assetUrl}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field class="mt-16">
+      <mat-select placeholder="Choose file for {{platform}} to download">
+        <mat-option *ngFor="let assetUrl of updateInfo.assets" [value]="assetUrl">
+          {{assetUrl}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-      <div mat-dialog-actions>
-        <button mat-button [mat-dialog-close]>{{ 'cancel' | i18n }}</button>
-        <button mat-button [mat-dialog-close] color="accent">{{ 'download' | i18n }}</button>
-      </div>
+  </div>
+
+  <div class="card-footer">
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]>{{ 'cancel' | i18n }}</button>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close] color="accent">{{ 'download' | i18n }}</button>
     </div>
   </div>
 </div>

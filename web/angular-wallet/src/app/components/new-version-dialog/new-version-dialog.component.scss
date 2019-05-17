@@ -1,24 +1,43 @@
 :host {
 
   .card {
-    display: flex;
-    align-items: flex-start;
+    display: block;
 
-    .card-preview {
-      display: flex;
-      min-width: 320px;
+    .card-header {
+      position: relative;
 
-      img {
-        width: 100%
+      .title {
+        position: absolute;
+        color: whitesmoke;
+        bottom: 0;
+        padding: 16px 24px;
+        user-select: none;
+        cursor: default;
       }
     }
 
-    .card-source {
-      display: none;
+    .card-content {
+      padding: 24px;
+      display: block;
+      min-width: 320px;
+      width: 100%;
+
+      .new-version {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+      }
     }
 
     mat-form-field {
       width: 100%
+    }
+
+    .card-footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 24px;
     }
   }
 }
