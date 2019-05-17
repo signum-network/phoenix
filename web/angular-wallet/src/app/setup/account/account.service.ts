@@ -230,12 +230,14 @@ export class AccountService {
   public sendNewTransactionNotification(transaction: Transaction): void {
     this.transactionsSeenInNotifications[transaction.transaction] = true;
     const incoming = transaction.recipientRS === this.currentAccount.value.accountRS;
+    const totalAmountBurst = convertNQTStringToNumber(transaction.amountNQT) + convertNQTStringToNumber(transaction.feeNQT)
+
     // @ts-ignore
     return window.Notification && new window.Notification(incoming ?
       this.i18nService.getTranslation('youve_got_burst') :
       this.i18nService.getTranslation('you_sent_burst'),
       {
-        body: `${convertNQTStringToNumber(transaction.amountNQT + transaction.feeNQT)} BURST`,
+        body: `${totalAmountBurst} BURST`,
         title: 'Phoenix'
       });
 
