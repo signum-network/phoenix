@@ -1,5 +1,16 @@
 # The Phoenix Desktop Wallet
 
+## Running the latest release (Linux)
+```console
+$ wget https://github.com/burst-apps-team/phoenix/releases/download/v1.0.0-beta.6/phoenix-1.0.0-beta.6.tar.gz
+$ tar zxvf phoenix-1.0.0-beta.6.tar.gz
+$ cd phoenix-1.0.0-beta.6/
+```
+```console
+$ sudo chown root:root ./chrome-sandbox
+$ sudo chmod 4755 ./chrome-sandbox
+$ ./phoenix
+```
 
 ## Build and Start Desktop Wallet
 
