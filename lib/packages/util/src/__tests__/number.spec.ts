@@ -35,45 +35,4 @@ describe('convertNumberToNQTString/convertNQTStringToNumber', () => {
 
     });
 
-
-    describe('convertNQTStringToNumber', () => {
-
-        it('should convertNQTStringToNumber()', () => {
-            let burst = convertNQTStringToNumber('000000000');
-            expect(burst).toBe(0);
-            burst = convertNQTStringToNumber('12300000000');
-            expect(burst).toBe(123);
-            burst = convertNQTStringToNumber('-100000000');
-            expect(burst).toBe(-1);
-            burst = convertNQTStringToNumber('123000000');
-            expect(burst).toBe(1.23);
-
-        });
-
-
-        it('should fail convertNQTStringToNumber() on invalid input', () => {
-            try {
-                const nqt = convertNQTStringToNumber('');
-                expect(nqt).toBe('Expected exception');
-            } catch (e) {
-                expect(e.message).toBe('Invalid argument');
-            }
-
-            try {
-                const nqt = convertNQTStringToNumber(null);
-                expect(nqt).toBe('Expected exception');
-            } catch (e) {
-                expect(e.message).toBe('Invalid argument');
-            }
-
-            try {
-                const nqt = convertNQTStringToNumber(undefined);
-                expect(nqt).toBe('Expected exception');
-            } catch (e) {
-                expect(e.message).toBe('Invalid argument');
-            }
-        });
-
-    });
-
 });
