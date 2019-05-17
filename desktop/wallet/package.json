@@ -29,7 +29,7 @@
     "build": "node ../../scripts/build.js --target desktop",
     "start": "cross-env NODE_ENV=develop && npm run build && electron .",
     "start:fast": "cross-env NODE_ENV=develop && electron .",
-    "pack": "npm run build && electron-builder -p 'never'",
+    "pack": "rimraf -rf ./release-builds && npm run build && electron-builder -p 'never'",
     "release:all": "npm run pack -- -wml",
     "release:linux": "npm run pack -- -l",
     "release:win32": "npm run pack -- -w",
@@ -42,7 +42,8 @@
     "cross-env": "^5.2.0",
     "electron": "^5.0.1",
     "electron-builder": "^20.40.2",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "rimraf": "^2.6.3"
   },
   "update": {
     "repositoryRootUrl": "https://api.github.com/repos/burst-apps-team/phoenix",
@@ -100,8 +101,10 @@
   },
   "dependencies": {
     "@burstjs/http": "^0.1.1",
+    "get-ssl-certificate": "^2.3.2",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.11",
-    "semver": "^6.0.0"
+    "semver": "^6.0.0",
+    "ssl-validator": "^1.0.4"
   }
 }

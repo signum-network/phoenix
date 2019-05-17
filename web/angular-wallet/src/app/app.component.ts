@@ -76,6 +76,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.updateInfo = new UpdateInfo(
           '1.0.0-beta.5',
           '1.0.0-beta.6',
+          'win',
           [],
           'https://github.com/burst-apps-team/phoenix/releases/tag/v1.0.0-beta.6'
         );
@@ -136,12 +137,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.updateInfo = new UpdateInfo(
       '1.0.0-beta.5',
       '1.0.0-beta.6',
-      [],
+      'win',
+      ['asset1.exe', 'asset2-setup.exe'],
       'https://github.com/burst-apps-team/phoenix/releases/tag/v1.0.0-beta.6'
     );
 
     return this.newVersionDialog.open(NewVersionDialogComponent, {
-      width: '400px',
       data: this.updateInfo
     });
   }

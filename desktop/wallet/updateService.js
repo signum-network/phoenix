@@ -1,6 +1,9 @@
 const flatten = require('lodash/flatten');
 const semver = require('semver');
 const {HttpImpl} = require("@burstjs/http");
+const getSSL = require('get-ssl-certificate');
+import {validateSSL} from "ssl-validator";
+
 const {version, update} = require("./package.json");
 
 const PlatformFilePatterns = {
@@ -19,6 +22,10 @@ const PlatformFilePatterns = {
   ],
 };
 
+function getRepositoryDomain() {
+  const url = new URL(update.repositoryRootUrl);
+  return url.host.substr(url.host.indexOf('.') + 1)
+}
 
 class UpdateService {
 
@@ -37,15 +44,39 @@ class UpdateService {
     )
   }
 
+  async validateCertificate() {
+    const domain = getRepositoryDomain();
+    const repositoryCertificate = await getSSL.get(domain);
+
+    const cert = repositoryCertificate.pemEncoded;
+
+    try {
+      await validateSSL(cert, {domain});
+      return {
+        isValid: true,
+        issuer: cert.issuer.commonName,
+        domain: cert.commonName,
+        validThru: cert.validity.end
+      }
+    } catch (e) {
+      console.warn("Certificate check failed");
+      return {
+        isValid: false
+      }
+    }
+  }
+
   checkForLatestRelease(callback) {
     this.http.get('/releases/latest').then(
-      ({response}) => {
+      async ({response}) => {
         const {assets, tag_name: releaseVersion, published_at} = response;
         if (semver.lt(version, releaseVersion)) {
+          const validCert = await this.validateCertificate();
           callback({
             assets: this._getPlatformSpecificAssets(assets),
             releaseVersion,
-            published_at
+            published_at,
+            validCert
           })
         }
       }

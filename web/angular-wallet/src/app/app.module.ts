@@ -4,7 +4,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
-import {MatButtonModule, MatCardModule, MatDialogModule, MatIconModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule, MatSelectModule,
+  MatTooltipModule
+} from '@angular/material';
 import {TranslateModule} from '@ngx-translate/core';
 
 import 'hammerjs';
@@ -67,7 +74,10 @@ const appRoutes: Routes = [
     I18nModule,
     DisclaimerModule,
     NgxElectronModule,
-    MatCardModule
+    MatCardModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [
     StoreService,
