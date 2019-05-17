@@ -1,16 +1,13 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
-import { Subject, throwError } from 'rxjs';
+import { Subject } from 'rxjs';
 
-import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
-import { FuseConfigService } from '@fuse/services/config.service';
 import { AccountService } from './setup/account/account.service';
 import { StoreService } from './store/store.service';
-import { Account, Block, BlockchainStatus } from '@burstjs/core';
+import { Account, BlockchainStatus } from '@burstjs/core';
 import { NotifierService } from 'angular-notifier';
 import { NetworkService } from './network/network.service';
-import { I18nService } from './layout/components/i18n/i18n.service';
 import { UtilService } from './util.service';
 
 @Component({
@@ -27,13 +24,11 @@ export class AppComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   selectedAccount: Account;
   accounts: Account[];
-  BLOCKCHAIN_STATUS_INTERVAL = 10000; // 10 secs
+  BLOCKCHAIN_STATUS_INTERVAL = 30000; // 30 secs
   private _unsubscribeAll: Subject<any>;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
-    private _fuseConfigService: FuseConfigService,
-    private _fuseSplashScreenService: FuseSplashScreenService,
     private _platform: Platform,
     private storeService: StoreService,
     private accountService: AccountService,
@@ -72,7 +67,8 @@ export class AppComponent implements OnInit, OnDestroy {
         if (this.isScanning) {
           await this.updateAccountsAndCheckBlockchainStatus(blockchainStatus);
         } else if (this.selectedAccount) {
-          this.accountService.synchronizeAccount(this.selectedAccount).catch(() => { });
+          await this.accountService.synchronizeAccount(this.selectedAccount).catch(() => { });
+          this.accountService.setCurrentAccount(this.selectedAccount);
         }
         this.firstTime = false;
       } catch (e) {

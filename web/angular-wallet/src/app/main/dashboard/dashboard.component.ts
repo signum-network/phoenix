@@ -4,7 +4,7 @@ import {Subscription} from 'rxjs';
 import {filter, takeWhile} from 'rxjs/operators';
 import {Router, NavigationEnd} from '@angular/router';
 import {StoreService} from 'app/store/store.service';
-import {Account, Transaction} from '@burstjs/core';
+import {Account, Transaction, TransactionList, UnconfirmedTransactionList} from '@burstjs/core';
 import {convertNQTStringToNumber} from '@burstjs/util';
 import {AccountService} from 'app/setup/account/account.service';
 import {MatTableDataSource} from '@angular/material';
@@ -39,29 +39,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.storeService.settings.subscribe((settings) => {
       this.settings = settings;
     });
-
-    // handle route reloads (i.e. if user changes accounts)
-    this.navigationSubscription = this.router.events.pipe(
-      takeWhile(this.isActive),
-      filter(e => e instanceof NavigationEnd)
-    ).subscribe((_) => {
-      this.fetchTransactions();
-    });
   }
 
   isActive = () => this._isActive;
 
-  fetchTransactions = async () => {
-    try {
-      this.account = await this.storeService.getSelectedAccount();
-      const accountTransactions = await this.accountService.getAccountTransactions(this.account.account);
-      const unconfirmedTransactions = await this.accountService.getUnconfirmedTransactions(this.account.account);
-      this.dataSource = new MatTableDataSource<Transaction>();
-      this.dataSource.data = unconfirmedTransactions.unconfirmedTransactions.concat(accountTransactions.transactions).slice(0, 10);
-    } catch (e) {
-      console.log(e);
-      this.dataSource = undefined;
-    }
+  setTransactions = async (account) => {
+    this.account = account;
+    this.dataSource = new MatTableDataSource<Transaction>();
+    this.dataSource.data = account.transactions;
   }
 
   closeWelcomeNotification = async () => {
@@ -71,12 +56,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
 
-    this.fetchTransactions();
     this.accountService.currentAccount
       .pipe(
         takeWhile(this.isActive)
       )
-      .subscribe(this.fetchTransactions);
+      .subscribe(this.setTransactions);
 
     this.marketService.ticker$
       .pipe(

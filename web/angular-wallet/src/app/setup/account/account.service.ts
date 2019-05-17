@@ -235,7 +235,7 @@ export class AccountService {
       this.i18nService.getTranslation('youve_got_burst') :
       this.i18nService.getTranslation('you_sent_burst'),
       {
-        body: `${convertNQTStringToNumber(transaction.amountNQT)} BURST`,
+        body: `${convertNQTStringToNumber(transaction.amountNQT + transaction.feeNQT)} BURST`,
         title: 'Phoenix'
       });
 
