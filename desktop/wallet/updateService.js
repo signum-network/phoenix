@@ -97,7 +97,7 @@ class UpdateService {
 
   checkForLatestRelease(callback) {
     this.getLatestRelease().then(async release => {
-          if (!release.length) return callback(null);
+          if (!release) return callback(null);
 
           const {
             assets,
@@ -105,7 +105,6 @@ class UpdateService {
             published_at: publishedAt,
             html_url: htmlUrl
           } = release;
-
 
           if (semver.lt(this.config.currentVersion, releaseVersion)) {
             const domain = this._getRepositoryDomain();
