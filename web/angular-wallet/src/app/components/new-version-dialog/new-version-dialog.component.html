@@ -3,33 +3,51 @@
   <div class="card-header">
     <img src="assets/images/logos/phoenix_banner.jpg">
     <div class="h1 title">
-      Update available
+      {{'update_available' | i18n}}
     </div>
   </div>
 
-  <!-- PREVIEW -->
   <div class="card-content">
-    <div>
-      <div class="h4 secondary-text">Current Version: {{updateInfo.currentVersion}}</div>
-      <div class="h4 secondary-text new-version">
-        <div>New Version: {{updateInfo.newVersion}}</div>
-        <a href="{{updateInfo.releaseUrl}}"
-           target="_blank"
-           class="font-size-12 secondary-text"
-           matTooltip="Click here to see what has changed">
-          <mat-icon class="pl-4 s-16">help_outline</mat-icon>
-        </a>
+    <div class="card-content-grid">
+      <div class="item">
+        <div class="h4 secondary-text">{{'current_version' | i18n }}: {{updateInfo.currentVersion}}</div>
+        <div class="h4 secondary-text new-version">
+          <div>{{'new_version' | i18n }}: {{updateInfo.newVersion}}</div>
+          <a href="{{updateInfo.releaseUrl}}"
+             target="_blank"
+             class="font-size-12 secondary-text"
+             matTooltip="{{'click_for_changes' | i18n }}">
+            <mat-icon class="pl-4 s-16">help_outline</mat-icon>
+          </a>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-info">
+          <span class="font-size-10 grey-500-fg">{{'domain' | i18n}}: {{updateInfo.certInfo.domain}}</span>
+          <span class="font-size-10 grey-500-fg">{{'issuer' | i18n}}: {{updateInfo.certInfo.issuerName}}</span>
+          <span class="font-size-10 grey-500-fg">{{'valid_thru' | i18n}}
+            : {{updateInfo.certInfo.validThru | date:'MMM d, y, h:mm:ss'}}</span>
+        </div>
+        <mat-icon *ngIf="updateInfo.certInfo.isValid"
+                  class='cert-valid s-48 green-800-fg'
+                  matTooltip="{{'verified_source' | i18n}}">verified_user
+        </mat-icon>
+        <mat-icon *ngIf="!updateInfo.certInfo.isValid"
+                  class='cert-invalid s-48 warn-700-fg'
+                  matTooltip="{{'non_verified_source' | i18n}}">remove_circle
+        </mat-icon>
       </div>
     </div>
 
-    <mat-form-field class="mt-16">
-      <mat-select placeholder="Choose file for {{platform}} to download">
-        <mat-option *ngFor="let assetUrl of updateInfo.assets" [value]="assetUrl">
-          {{assetUrl}}
+    <mat-form-field class="mt-24">
+      <mat-select placeholder="Choose file for {{platform}} to download" [(value)]="selectedAssetIndex">
+        <mat-option *ngFor="let asset of assets" [value]="asset.value">
+          {{asset.viewValue}}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
+    <a #hiddenLink href="{{this.updateInfo.assets[this.selectedAssetIndex]}}" class="invisible"></a>
   </div>
 
   <div class="card-footer">
@@ -37,7 +55,12 @@
       <button mat-button [mat-dialog-close]>{{ 'cancel' | i18n }}</button>
     </div>
     <div mat-dialog-actions>
-      <button mat-button [mat-dialog-close] color="accent">{{ 'download' | i18n }}</button>
+      <button mat-button
+              [mat-dialog-close]
+              color="accent"
+              (click)="download()"
+              disabled="{{!updateInfo.certInfo.isValid}}"
+      >{{ 'download' | i18n }}</button>
     </div>
   </div>
 </div>

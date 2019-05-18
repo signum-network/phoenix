@@ -1,15 +1,9 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 export class CertificationInfo {
-  constructor(public domain: string, public issuerName: string, public validThru: Date) {
+  constructor(public isValid: boolean, public domain: string, public issuerName: string, public validThru: Date) {
 
-  }
-
-  public isValid(): boolean {
-    return (this.domain && this.domain.length > 0) &&
-      (this.issuerName && this.issuerName.length > 0) &&
-      (new Date() > this.validThru);
   }
 }
 
@@ -24,17 +18,31 @@ export class UpdateInfo {
   }
 }
 
+interface AssetOption {
+  value: number;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-new-version-dialog',
   templateUrl: './new-version-dialog.component.html',
   styleUrls: ['./new-version-dialog.component.scss']
 })
 export class NewVersionDialogComponent implements OnInit {
-  asset: string;
+  public selectedAssetIndex: string;
+  assets: AssetOption[];
+  @ViewChild('hiddenLink') hiddenLink;
 
   constructor(
     public dialogRef: MatDialogRef<NewVersionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public updateInfo: UpdateInfo) {
+
+    this.assets = this.updateInfo.assets.map((url, index) => ({
+        viewValue: this.getViewValue(url),
+        value: index
+      })
+    );
+
   }
 
   ngOnInit(): void {
@@ -54,4 +62,12 @@ export class NewVersionDialogComponent implements OnInit {
   }
 
 
+  download(): void {
+    this.hiddenLink.nativeElement.click();
+  }
+
+  private getViewValue(url: string): string {
+    const u = new URL(url);
+    return u.pathname.substr(u.pathname.lastIndexOf('/') + 1);
+  }
 }

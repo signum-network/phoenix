@@ -10,7 +10,6 @@ import {StoreService} from './store/store.service';
 import {Account, BlockchainStatus} from '@burstjs/core';
 import {NotifierService} from 'angular-notifier';
 import {NetworkService} from './network/network.service';
-import {I18nService} from './layout/components/i18n/i18n.service';
 import {UtilService} from './util.service';
 import {ElectronService} from 'ngx-electron';
 import {MatDialog, MatDialogRef} from '@angular/material';
@@ -20,6 +19,8 @@ import {
   UpdateInfo
 } from './components/new-version-dialog/new-version-dialog.component';
 
+import {version} from '../../package.json';
+
 @Component({
   selector: 'app',
   templateUrl: './app.component.html',
@@ -28,7 +29,7 @@ import {
 export class AppComponent implements OnInit, OnDestroy {
   firstTime = true;
   isScanning = false;
-  newVersionAvailable = true;
+  newVersionAvailable = false;
   updateInfo: UpdateInfo;
   downloadingBlockchain = false;
   previousLastBlock = '0';
@@ -77,13 +78,19 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.electronService.isElectronApp) {
       this.electronService.ipcRenderer.on('new-version', (event, newVersion) => {
         this.newVersionAvailable = true;
+
+        const {assets, releaseVersion, platform, validCert, htmlUrl} = newVersion;
+        const {domain, issuer, validThru, isValid} = validCert;
+
+        const certInfo = new CertificationInfo(isValid, domain, issuer, validThru);
+
         this.updateInfo = new UpdateInfo(
-          '1.0.0-beta.5',
-          '1.0.0-beta.6',
-          'win',
-          [],
-          'https://github.com/burst-apps-team/phoenix/releases/tag/v1.0.0-beta.6',
-          new CertificationInfo('github.com', 'DigiCerts', new Date())
+          version,
+          releaseVersion,
+          platform,
+          assets,
+          htmlUrl,
+          certInfo
         );
       });
     }
@@ -138,16 +145,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   private openNewVersionDialog(): MatDialogRef<NewVersionDialogComponent> {
-
-    this.updateInfo = new UpdateInfo(
-      '1.0.0-beta.5',
-      '1.0.0-beta.6',
-      'win',
-      ['asset1.exe', 'asset2-setup.exe'],
-      'https://github.com/burst-apps-team/phoenix/releases/tag/v1.0.0-beta.6',
-      new CertificationInfo('github.com', 'DigiCerts', new Date())
-    );
-
     return this.newVersionDialog.open(NewVersionDialogComponent, {
       data: this.updateInfo
     });
@@ -155,9 +152,5 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onClickedNewVersion(): void {
     const dialogRef = this.openNewVersionDialog();
-    dialogRef.afterClosed().subscribe(ok => {
-        console.log('ok - new version closed');
-      }
-    );
   }
 }
