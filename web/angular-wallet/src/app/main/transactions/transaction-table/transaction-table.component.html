@@ -48,7 +48,7 @@
       <mat-icon>local_atm</mat-icon>
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
-      <div [ngClass]="">
+      <div [ngClass]="{fg_green: !isAmountNegative(transaction), fg_red: isAmountNegative(transaction)}">
         {{getAmount(transaction) | number: "1.0-4":this.locale }}
       </div>
     </mat-cell>
