@@ -12,6 +12,7 @@ import {UtilService} from 'app/util.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {StoreService} from '../../../store/store.service';
+import { AccountService } from 'app/setup/account/account.service';
 
 @Component({
   selector: 'app-transaction-table',
@@ -24,7 +25,8 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements O
 
   constructor(private utilService: UtilService,
               private storeService: StoreService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private accountService: AccountService) {
     super();
     this.storeService.settings
       .pipe(
@@ -49,7 +51,18 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements O
   }
 
   public ngOnInit(): void {
-    this.account = this.route.snapshot.data.account;
+    this.setAccount(this.route.snapshot.data.account);
+    this.accountService.currentAccount
+    .pipe(
+      takeUntil(this.unsubscribeAll)
+    )
+    .subscribe((account) => {
+      this.setAccount(account);
+    });
+  }
+
+  public setAccount(account: Account): void {
+    this.account = account;
   }
 
   public ngAfterViewInit(): void {

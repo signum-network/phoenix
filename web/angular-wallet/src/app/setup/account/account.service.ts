@@ -200,7 +200,7 @@ export class AccountService {
     return new Promise((resolve, reject) => {
       this.storeService.selectAccount(account)
         .then(account => {
-          // this.synchronizeAccount(account);
+          this.synchronizeAccount(account);
         });
       this.setCurrentAccount(account);
       resolve(account);
@@ -267,6 +267,7 @@ export class AccountService {
       account.transactions = transactionList.transactions;
     }
     catch (e) {
+      account.transactions = [];
       console.log(e);
     }
   }

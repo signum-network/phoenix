@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, ViewEncapsulation, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { Router } from '@angular/router';
 import { CreateService } from '../../create.service';
 import { NotifierService } from 'angular-notifier';
@@ -8,7 +8,7 @@ import { NotifierService } from 'angular-notifier';
     styleUrls: ['./pin.component.scss'],
     templateUrl: './pin.component.html'
 })
-export class AccountCreatePinComponent implements OnInit {
+export class AccountCreatePinComponent {
 
   @Input('pin') pin: string;
 
@@ -17,20 +17,14 @@ export class AccountCreatePinComponent implements OnInit {
         private createService: CreateService,
         private notificationService: NotifierService,
     ) { }
-
-    public ngOnInit() {
-
-    }
-
-    public ngOnDestroy() {
-
-    }
-
-    public back() {
+    public back(): void {
         this.createService.setStepIndex(1);
     }
 
-    public finish(pin: string) {
+    public finish(pin: string): void {
+        if (!pin || !pin.length) {
+            return;
+        }
         this.createService.setPin(pin);
         this.createService.createActiveAccount().then((success) => {
             this.notificationService.notify('success', `Account added successfully`);
