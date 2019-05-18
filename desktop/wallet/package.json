@@ -47,7 +47,8 @@
   },
   "update": {
     "repositoryRootUrl": "https://api.github.com/repos/burst-apps-team/phoenix",
-    "checkIntervalMins": "1"
+    "checkIntervalMins": "1",
+    "tagPrefix": "desktop-"
   },
   "build": {
     "productName": "Phoenix Burst Wallet",
@@ -104,6 +105,7 @@
     "get-ssl-certificate": "^2.3.2",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.11",
+    "prop-types": "^15.7.2",
     "semver": "^6.0.0",
     "ssl-validator": "^1.0.4"
   }

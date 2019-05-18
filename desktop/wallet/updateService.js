@@ -1,10 +1,9 @@
-const flatten = require('lodash/flatten');
+const PropTypes = require("prop-types");
+const _ = require('lodash');
 const semver = require('semver');
 const {HttpImpl} = require("@burstjs/http");
 const getSSL = require('get-ssl-certificate');
 const {validateSSL} = require("ssl-validator");
-
-const {version, update} = require("./package.json");
 
 const PlatformFilePatterns = {
   darwin: [
@@ -22,20 +21,40 @@ const PlatformFilePatterns = {
   ],
 };
 
-function getRepositoryDomain() {
-  const url = new URL(update.repositoryRootUrl);
-  return url.host.substr(url.host.indexOf('.') + 1)
-}
+
+const ConfigPropTypes = {
+  currentVersion: PropTypes.string.isRequired,
+  repositoryRootUrl: PropTypes.string.isRequired,
+  checkIntervalMins: PropTypes.number.isRequired,
+  tagRegex: PropTypes.string.isRequired
+};
 
 class UpdateService {
 
+  /**
+   * Constructs the service
+   * @param config Configuration object of scheme
+   *
+   * ```
+   *
+   * ```
+   * @param httpImpl
+   */
+  constructor(config, httpImpl = null) {
 
-  constructor() {
-    this.http = new HttpImpl(update.repositoryRootUrl)
+    PropTypes.checkPropTypes(ConfigPropTypes, config);
+
+    this.config = config;
+    this.http = httpImpl ? httpImpl : new HttpImpl(config.repositoryRootUrl);
+  }
+
+  _getRepositoryDomain() {
+    const url = new URL(this.config.repositoryRootUrl);
+    return url.host.substr(url.host.indexOf('.') + 1)
   }
 
   _getPlatformSpecificAssets(assets, platform = process.platform) {
-    return flatten(
+    return _.flatten(
       PlatformFilePatterns[platform]
         .map(p => assets
           .filter(({browser_download_url: url}) => url.endsWith(p))
@@ -65,36 +84,50 @@ class UpdateService {
     }
   }
 
+  getLatestRelease() {
+    return this.http.get('/releases')
+      .then(({response : releases}) => {
+        return _.chain(releases)
+          .filter(release => !release.draft && release.tag_name.startsWith(this.config.tagPrefix))
+          .sortBy('published_at')
+          .head()
+          .value()
+      })
+  }
+
   checkForLatestRelease(callback) {
-    this.http.get('/releases/latest').then(
-      async ({response}) => {
-        const {
-          assets,
-          tag_name: releaseVersion,
-          published_at: publishedAt,
-          html_url: htmlUrl
-        } = response;
-        if (semver.lt(version, releaseVersion)) {
-          const domain = getRepositoryDomain();
-          const validCert = await this.validateCertificate(domain);
-          callback({
-            platform: process.platform,
-            assets: this._getPlatformSpecificAssets(assets),
-            htmlUrl,
-            releaseVersion,
-            publishedAt,
-            validCert
-          })
+    this.getLatestRelease().then(async release => {
+          if (!release.length) return callback(null);
+
+          const {
+            assets,
+            tag_name: releaseVersion,
+            published_at: publishedAt,
+            html_url: htmlUrl
+          } = release;
+
+
+          if (semver.lt(this.config.currentVersion, releaseVersion)) {
+            const domain = this._getRepositoryDomain();
+            const validCert = await this.validateCertificate(domain);
+            callback({
+              platform: process.platform,
+              assets: this._getPlatformSpecificAssets(assets),
+              htmlUrl,
+              releaseVersion,
+              publishedAt,
+              validCert
+            })
+          }
         }
-      }
-    )
+      )
   }
 
   start(callback) {
     console.info('Update Service started - current version:', version);
     this.checkForLatestRelease(callback);
-    setInterval(this.checkForLatestRelease.bind(this, callback), update.checkIntervalMins * 60 * 1000)
+    setInterval(this.checkForLatestRelease.bind(this, callback), this.config.checkIntervalMins * 60 * 1000)
   }
 }
 
-module.exports = new UpdateService();
+module.exports = UpdateService;

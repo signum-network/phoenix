@@ -1,8 +1,14 @@
 const path = require('path');
 const { app, BrowserWindow, Menu, shell, session } = require('electron');
-const updateService = require('./updateService');
+const UpdateService = require('./updateService');
+
+const {version, update} = require('./package.json');
 let win;
 
+const updateService = new UpdateService({
+    currentVersion: version,
+    ...update
+});
 const isDevelopment = process.env.development;
 
 const isLinux = () => process.platform === 'linux';
