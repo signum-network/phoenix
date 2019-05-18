@@ -10,12 +10,19 @@ const config = {
   currentVersion: "1.0.0-beta.5",
   repositoryRootUrl: "https://api.github.com/repos/burst-apps-team/phoenix",
   checkIntervalMins: 1,
-  tagRegex: "^desktop-"
+  tagPrefix: "desktop-"
 };
 
 describe('Update Service', () => {
 
-  describe('_getPlatformSpecificAssets ', () => {
+  describe('_getRepositoryDomain', () => {
+    const updateService = new UpdateService(config);
+    it('returns the correct domain', () => {
+      expect(updateService._getRepositoryDomain()).toBe('github.com');
+    })
+  });
+
+  describe('_getPlatformSpecificAssets', () => {
 
     const updateService = new UpdateService(config);
 
@@ -70,7 +77,7 @@ describe('Update Service', () => {
         currentVersion: "1.0.0-beta.6",
         repositoryRootUrl: "https://api.github.com/repos/burst-apps-team/phoenix",
         checkIntervalMins: 1,
-        tagRegex: "^desktop-"
+        tagPrefix: "unknown-prefix-"
       };
 
       const httpMock = HttpMockBuilder.create().onGetReply(200, releasesMock).build();
@@ -85,15 +92,12 @@ describe('Update Service', () => {
 
       const newVersion = await updateService.getLatestRelease();
       expect(newVersion).toBeUndefined();
-    })
-
-  });
+    });
 
 
-  describe('checkForLatestRelease', () => {
+    it('error on invocation', async () => {
 
-    it('get the latest desktop release', (done) => {
-      const httpMock = HttpMockBuilder.create().onGetReply(200, releasesMock).build();
+      const httpMock = HttpMockBuilder.create().onGetThrowError(404, "error message").build();
       const updateService = new UpdateService(config, httpMock);
 
       updateService.validateCertificate = jest.fn(() => ({
@@ -103,12 +107,79 @@ describe('Update Service', () => {
         validThru: new Date()
       }));
 
+      try {
+        await updateService.getLatestRelease();
+        expect(false).toBe('Expects and error');
+      } catch (e) {
+        expect(e).toBeDefined();
+      }
+
+    })
+
+  });
+
+
+  describe('checkForLatestRelease', () => {
+
+    it('calls callback with newest version info', (done) => {
+      const httpMock = HttpMockBuilder.create().onGetReply(200, releasesMock).build();
+      const updateService = new UpdateService(config, httpMock);
+
+      const validThruDate = new Date();
+      updateService.validateCertificate = jest.fn(() => ({
+        isValid: true,
+        issuer: 'issuer',
+        domain: 'domain',
+        validThru: validThruDate
+      }));
+
       updateService.checkForLatestRelease((newVersion) => {
-        console.log(newVersion)
+        expect(updateService.validateCertificate).toBeCalledWith('github.com');
+        expect(newVersion).toEqual({
+          platform: process.platform,
+          assets:
+            ['https://github.com/burst-apps-team/phoenix/releases/download/v1.0.0-beta.6/phoenix-1.0.0-beta.6.tar.gz',
+              'https://github.com/burst-apps-team/phoenix/releases/download/v1.0.0-beta.6/phoenix_1.0.0-beta.6_amd64.deb',
+              'https://github.com/burst-apps-team/phoenix/releases/download/v1.0.0-beta.6/phoenix-1.0.0-beta.6.x86_64.rpm',
+              'https://github.com/burst-apps-team/phoenix/releases/download/v1.0.0-beta.6/phoenix-1.0.0-beta.6-x86_64.AppImage'],
+          htmlUrl: 'https://github.com/burst-apps-team/phoenix/releases/tag/v1.0.0-beta.6',
+          releaseVersion: '1.0.0-beta.6',
+          publishedAt: '2019-05-09T14:23:17Z',
+          validCert:
+            {
+              isValid: true,
+              issuer: 'issuer',
+              domain: 'domain',
+              validThru: validThruDate
+            }
+        });
+        done()
+      })
+    });
+
+    it('calls callback with null, as no newer version is available', (done) => {
+      const httpMock = HttpMockBuilder.create().onGetReply(200, releasesMock).build();
+      const _config = {
+        currentVersion: "1.0.0-beta.6", // <<< already on newest version
+        repositoryRootUrl: "https://api.github.com/repos/burst-apps-team/phoenix",
+        checkIntervalMins: 1,
+        tagPrefix: "desktop-"
+      };
+      const updateService = new UpdateService(_config, httpMock);
+
+      const validThruDate = new Date();
+      updateService.validateCertificate = jest.fn(() => ({
+        isValid: true,
+        issuer: 'issuer',
+        domain: 'domain',
+        validThru: validThruDate
+      }));
+
+      updateService.checkForLatestRelease((newVersion) => {
+        expect(updateService.validateCertificate).not.toBeCalled();
+        expect(newVersion).toBeNull();
         done()
       })
     })
-
   })
-
 });

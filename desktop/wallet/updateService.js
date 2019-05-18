@@ -26,20 +26,11 @@ const ConfigPropTypes = {
   currentVersion: PropTypes.string.isRequired,
   repositoryRootUrl: PropTypes.string.isRequired,
   checkIntervalMins: PropTypes.number.isRequired,
-  tagRegex: PropTypes.string.isRequired
+  tagPrefix: PropTypes.string.isRequired
 };
 
 class UpdateService {
 
-  /**
-   * Constructs the service
-   * @param config Configuration object of scheme
-   *
-   * ```
-   *
-   * ```
-   * @param httpImpl
-   */
   constructor(config, httpImpl = null) {
 
     PropTypes.checkPropTypes(ConfigPropTypes, config);
@@ -86,40 +77,42 @@ class UpdateService {
 
   getLatestRelease() {
     return this.http.get('/releases')
-      .then(({response : releases}) => {
+      .then(({response: releases}) => {
         return _.chain(releases)
           .filter(release => !release.draft && release.tag_name.startsWith(this.config.tagPrefix))
           .sortBy('published_at')
+          .reverse()
           .head()
           .value()
       })
   }
 
-  checkForLatestRelease(callback) {
-    this.getLatestRelease().then(async release => {
-          if (!release) return callback(null);
+  async checkForLatestRelease(callback) {
+    const release = await this.getLatestRelease();
+    if (!release) return callback(null);
 
-          const {
-            assets,
-            tag_name: releaseVersion,
-            published_at: publishedAt,
-            html_url: htmlUrl
-          } = release;
+    const {
+      assets,
+      tag_name,
+      published_at: publishedAt,
+      html_url: htmlUrl
+    } = release;
 
-          if (semver.lt(this.config.currentVersion, releaseVersion)) {
-            const domain = this._getRepositoryDomain();
-            const validCert = await this.validateCertificate(domain);
-            callback({
-              platform: process.platform,
-              assets: this._getPlatformSpecificAssets(assets),
-              htmlUrl,
-              releaseVersion,
-              publishedAt,
-              validCert
-            })
-          }
-        }
-      )
+    const releaseVersion= tag_name.replace(this.config.tagPrefix, '');
+    if (!semver.lt(this.config.currentVersion, releaseVersion)) {
+      return callback(null);
+    }
+
+    const domain = this._getRepositoryDomain();
+    const validCert = await this.validateCertificate(domain);
+    callback({
+      platform: process.platform,
+      assets: this._getPlatformSpecificAssets(assets),
+      htmlUrl,
+      releaseVersion,
+      publishedAt,
+      validCert
+    })
   }
 
   start(callback) {
