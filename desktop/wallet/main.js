@@ -1,9 +1,11 @@
 const path = require('path');
-const {app, BrowserWindow, Menu, shell, session} = require('electron');
+const {app, BrowserWindow, Menu, shell, ipcMain} = require('electron');
 const UpdateService = require('./updateService');
+const {download} = require('electron-dl');
 
 const {version, update} = require('./package.json');
 let win;
+let downloadHandle;
 
 const updateService = new UpdateService({
   currentVersion: version,
@@ -175,11 +177,29 @@ function handleLatestUpdate(newVersion) {
   }
 }
 
+function downloadUpdate($event, assetUrl){
+  download(win, assetUrl, {
+    openFolderWhenDone: true,
+    saveAs: true,
+    onStarted: (handle) => {
+      downloadHandle = handle;
+      win.webContents.send('new-version-download-started')
+    },
+    onProgress: (progress) => {
+      if(progress === 1){
+        downloadHandle = null;
+        win.webContents.send('new-version-download-finished')
+      }
+    }
+  })
+}
+
 function onReady() {
   createWindow();
   win.webContents.on('did-finish-load', () => {
     updateService.start(handleLatestUpdate);
-  })
+  });
+  ipcMain.on('new-version-asset-selected', downloadUpdate)
 }
 
 app.on('ready', onReady);
@@ -197,6 +217,11 @@ if (isMacOS()) {
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
+
+  if(downloadHandle){
+    downloadHandle.cancel()
+  }
+
   // On macOS specific close process
   if (!isMacOS()) {
     app.quit()

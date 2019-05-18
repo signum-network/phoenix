@@ -88,35 +88,42 @@ class UpdateService {
   }
 
   async checkForLatestRelease(callback) {
-    const release = await this.getLatestRelease();
-    if (!release) return callback(null);
+    try {
 
-    const {
-      assets,
-      tag_name,
-      published_at: publishedAt,
-      html_url: htmlUrl
-    } = release;
+      const release = await this.getLatestRelease();
+      console.log('release', release)
+      if (!release) return callback(null);
 
-    const releaseVersion= tag_name.replace(this.config.tagPrefix, '');
-    if (!semver.lt(this.config.currentVersion, releaseVersion)) {
-      return callback(null);
+      const {
+        assets,
+        tag_name,
+        published_at: publishedAt,
+        html_url: htmlUrl
+      } = release;
+
+      const releaseVersion = tag_name.replace(this.config.tagPrefix, '');
+      if (!semver.lt(this.config.currentVersion, releaseVersion)) {
+        return callback(null);
+      }
+
+      console.info(`Found a new version: ${releaseVersion}`);
+      const domain = this._getRepositoryDomain();
+      const validCert = await this.validateCertificate(domain);
+      callback({
+        platform: process.platform,
+        assets: this._getPlatformSpecificAssets(assets),
+        htmlUrl,
+        releaseVersion,
+        publishedAt,
+        validCert
+      })
+    } catch (e) {
+      console.log(e);
     }
-
-    const domain = this._getRepositoryDomain();
-    const validCert = await this.validateCertificate(domain);
-    callback({
-      platform: process.platform,
-      assets: this._getPlatformSpecificAssets(assets),
-      htmlUrl,
-      releaseVersion,
-      publishedAt,
-      validCert
-    })
   }
 
   start(callback) {
-    console.info('Update Service started - current version:', version);
+    console.info('Update Service started - current version:', this.config.currentVersion);
     this.checkForLatestRelease(callback);
     setInterval(this.checkForLatestRelease.bind(this, callback), this.config.checkIntervalMins * 60 * 1000)
   }

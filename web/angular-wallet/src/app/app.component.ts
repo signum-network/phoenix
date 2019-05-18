@@ -20,6 +20,8 @@ import {
 } from './components/new-version-dialog/new-version-dialog.component';
 
 import {version} from '../../package.json';
+import {convertNQTStringToNumber} from '@burstjs/util';
+import {I18nService} from './layout/components/i18n/i18n.service';
 
 @Component({
   selector: 'app',
@@ -50,8 +52,9 @@ export class AppComponent implements OnInit, OnDestroy {
     private networkService: NetworkService,
     private notifierService: NotifierService,
     private utilService: UtilService,
+    private i18nService: I18nService,
     private electronService: ElectronService,
-    private newVersionDialog: MatDialog,
+    private newVersionDialog: MatDialog
   ) {
 
     // Add is-mobile class to the body if the platform is mobile
@@ -92,6 +95,17 @@ export class AppComponent implements OnInit, OnDestroy {
           htmlUrl,
           certInfo
         );
+      });
+      this.electronService.ipcRenderer.on('new-version-download-started', () => {
+        // @ts-ignore
+        // tslint:disable-next-line:no-unused-expression
+        new window.Notification(
+          this.i18nService.getTranslation('download_started'),
+          {
+            body: this.i18nService.getTranslation('downloading_update'),
+            title: 'Phoenix'
+          });
+
       });
     }
   }
@@ -151,6 +165,13 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   onClickedNewVersion(): void {
-    const dialogRef = this.openNewVersionDialog();
+    this.openNewVersionDialog()
+      .afterClosed()
+      .subscribe(assetUrl => {
+        if (assetUrl && this.electronService.isElectronApp) {
+          this.electronService.ipcRenderer.send('new-version-asset-selected', assetUrl);
+        }
+      });
+
   }
 }

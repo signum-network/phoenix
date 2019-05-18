@@ -31,7 +31,6 @@ interface AssetOption {
 export class NewVersionDialogComponent implements OnInit {
   public selectedAssetIndex: string;
   assets: AssetOption[];
-  @ViewChild('hiddenLink') hiddenLink;
 
   constructor(
     public dialogRef: MatDialogRef<NewVersionDialogComponent>,
@@ -59,11 +58,6 @@ export class NewVersionDialogComponent implements OnInit {
       default:
         return 'Unknown Platform';
     }
-  }
-
-
-  download(): void {
-    this.hiddenLink.nativeElement.click();
   }
 
   private getViewValue(url: string): string {

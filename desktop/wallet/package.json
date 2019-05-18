@@ -5,7 +5,7 @@
     "email": "contact@burst-coin.org"
   },
   "productName": "Phoenix BURST Wallet",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.5",
   "contributors": [
     "ohager",
     "blankey1337"
@@ -47,8 +47,8 @@
   },
   "update": {
     "repositoryRootUrl": "https://api.github.com/repos/burst-apps-team/phoenix",
-    "checkIntervalMins": "1",
-    "tagPrefix": "desktop-"
+    "checkIntervalMins": 1,
+    "tagPrefix": ""
   },
   "build": {
     "productName": "Phoenix Burst Wallet",
@@ -102,6 +102,7 @@
   },
   "dependencies": {
     "@burstjs/http": "^0.1.1",
+    "electron-dl": "^1.14.0",
     "get-ssl-certificate": "^2.3.2",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.11",

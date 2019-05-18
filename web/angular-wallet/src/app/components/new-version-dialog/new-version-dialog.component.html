@@ -46,8 +46,6 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
-    <a #hiddenLink href="{{this.updateInfo.assets[this.selectedAssetIndex]}}" class="invisible"></a>
   </div>
 
   <div class="card-footer">
@@ -56,9 +54,8 @@
     </div>
     <div mat-dialog-actions>
       <button mat-button
-              [mat-dialog-close]
+              [mat-dialog-close]="this.updateInfo.assets[this.selectedAssetIndex]"
               color="accent"
-              (click)="download()"
               disabled="{{!updateInfo.certInfo.isValid}}"
       >{{ 'download' | i18n }}</button>
     </div>
