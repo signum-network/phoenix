@@ -19,6 +19,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   private dataSource: MatTableDataSource<Account>;
   private displayedColumns: string[];
   public accounts: Account[];
+  public selectedAccount: Account;
   public selectedAccounts: object;
   public locale: string;
 
@@ -49,6 +50,8 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
           this.accounts = accounts;
           this.dataSource.data = this.accounts;
         });
+
+        this.selectedAccount = this.accountService.currentAccount.value;
       });
 
     this.storeService.settings
@@ -90,6 +93,13 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
             this.storeService.getAllAccounts().then((accounts) => {
               this.accounts = accounts;
               this.dataSource.data = this.accounts;
+              
+              if (!accounts || !accounts.length) {
+                this.router.navigate(['/']);
+                this.accountService.selectAccount(null);
+              } else if (accounts.map(({ account }) => account).indexOf(this.selectedAccount.account) < 0) {
+                this.accountService.selectAccount(accounts[0]);
+              }
             });
           });
       });

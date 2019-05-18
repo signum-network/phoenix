@@ -15,7 +15,7 @@
     "url": "https://github.com/burst-apps-team/phoenix"
   },
   "license": "GPL-3.0",
-  "description": "The BURST coin desktop wallet",
+  "description": "The BurstCoin desktop wallet",
   "keywords": [
     "burst",
     "burstcoin",
@@ -29,7 +29,7 @@
     "build": "node ../../scripts/build.js --target desktop",
     "start": "cross-env NODE_ENV=develop && npm run build && electron .",
     "start:fast": "cross-env NODE_ENV=develop && electron .",
-    "pack": "rimraf -rf ./release-builds && npm run build && electron-builder -p 'never'",
+    "pack": "rimraf -rf ./release-builds && npm run build && electron-builder -p 'never' --config electron-builder.json",
     "release:all": "npm run pack -- -wml",
     "release:linux": "npm run pack -- -l",
     "release:win32": "npm run pack -- -w",
@@ -49,56 +49,6 @@
     "repositoryRootUrl": "https://api.github.com/repos/burst-apps-team/phoenix",
     "checkIntervalMins": 1,
     "tagPrefix": ""
-  },
-  "build": {
-    "productName": "Phoenix Burst Wallet",
-    "appId": "org.burstcoin.phoenix",
-    "directories": {
-      "output": "release-builds",
-      "buildResources": "dist"
-    },
-    "files": [
-      "dist/**/*",
-      "node_modules/**/*",
-      "assets/**/*",
-      "package.json",
-      "main.js"
-    ],
-    "icon": "./assets/images/png/512x512.png",
-    "mac": {
-      "publish": [
-        "github"
-      ],
-      "category": "public.app-category.finance"
-    },
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb",
-        "rpm",
-        "tar.gz"
-      ],
-      "publish": [
-        "github"
-      ],
-      "category": "Finance"
-    },
-    "win": {
-      "target": [
-        "nsis",
-        "portable"
-      ],
-      "publish": [
-        "github"
-      ]
-    },
-    "nsis": {
-      "multiLanguageInstaller": true,
-      "oneClick": true,
-      "allowElevation": false,
-      "packElevateHelper": false,
-      "perMachine": false
-    }
   },
   "dependencies": {
     "@burstjs/http": "^0.1.1",
