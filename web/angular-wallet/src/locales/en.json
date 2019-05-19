@@ -760,6 +760,7 @@
   "sender_public_key": "Sender Public Key",
   "server_error_unknown": "An unknown error occured.",
   "set_account_info": "Set Account Info",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Settings",
   "share_address": "Share Address",
   "show_console_log_button": "Show Console Log Button",

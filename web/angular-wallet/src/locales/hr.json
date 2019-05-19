@@ -749,6 +749,7 @@
   "sender_public_key": "Javni ključ pošiljatelja",
   "server_error_unknown": "Pojavila se nepoznata greška.",
   "set_account_info": "Postavi Info računa",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Postavke",
   "share_address": "Dijeljene adrese",
   "show_console_log_button": "Prikaži Log gumb konzole",

@@ -749,6 +749,7 @@
   "sender_public_key": "发送者公钥",
   "server_error_unknown": "出现未知错误。",
   "set_account_info": "设置帐户信息",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "设置",
   "share_address": "共享地址",
   "show_console_log_button": "显示控制台日志按钮",

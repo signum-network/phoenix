@@ -749,6 +749,7 @@
   "sender_public_key": "Lähettäjän julkinen avain",
   "server_error_unknown": "Tuntematon virhe.",
   "set_account_info": "Määritä tilin tiedot",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Asetukset",
   "share_address": "Jaa tilinumero",
   "show_console_log_button": "Näytä Konsoli Loki-painike",

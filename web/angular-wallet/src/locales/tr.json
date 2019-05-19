@@ -749,6 +749,7 @@
   "sender_public_key": "Sender Public Key",
   "server_error_unknown": "Bilinmeyen bir hata oluştu.",
   "set_account_info": "Hesap bilgileri ekle",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Ayarlar",
   "share_address": "Share Address",
   "show_console_log_button": "Show Console Log Button",

@@ -749,6 +749,7 @@
   "sender_public_key": "Clé publique de l'expéditeur",
   "server_error_unknown": "Une erreur inconnue est survenue.",
   "set_account_info": "Paramétrer les infos liées au compte",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Paramètres",
   "share_address": "Partager l'adresse",
   "show_console_log_button": "Afficher le bouton de la console de log",

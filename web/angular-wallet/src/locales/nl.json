@@ -749,6 +749,7 @@
   "sender_public_key": "Openbare sleutel van de afzender",
   "server_error_unknown": "Er is een onbekende fout opgetreden.",
   "set_account_info": "Accountgegevens instellen",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Instellingen",
   "share_address": "Deel Adres",
   "show_console_log_button": "Console Log knop weergeven",

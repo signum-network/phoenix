@@ -749,6 +749,7 @@
   "sender_public_key": "Sender Public Key",
   "server_error_unknown": "कोई अज्ञात त्रुटि उत्पन्न हुई।",
   "set_account_info": "खाता जानकारी भरें",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "सेटिंग्स",
   "share_address": "Share Address",
   "show_console_log_button": "कंसोल लॉग बटन दिखाएँ",

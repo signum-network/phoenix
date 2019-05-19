@@ -749,6 +749,7 @@
   "sender_public_key": "Открытый ключ отправителя",
   "server_error_unknown": "Произошла неизвестная ошибка.",
   "set_account_info": "Установить информацию аккаунта",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Настройки",
   "share_address": "Поделиться Адресом",
   "show_console_log_button": "Показать кнопку Журнал консоли",

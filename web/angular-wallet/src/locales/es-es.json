@@ -749,6 +749,7 @@
   "sender_public_key": "Clave Pública del Remitente",
   "server_error_unknown": "Se ha producido un error desconocido.",
   "set_account_info": "Establecer la Información de Cuenta",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Configuración",
   "share_address": "Compartir Dirección",
   "show_console_log_button": "Mostrar Botón de Registro de Consola",

@@ -40,6 +40,8 @@ export class BurstRecipientInputComponent implements OnInit {
   @Output()
   recipientChange = new EventEmitter();
 
+  @Input('appearance') appearance: string = '';
+
   constructor(private accountService: AccountService) {
   }
 

@@ -749,6 +749,7 @@
   "sender_public_key": "Siuntėjo viešasis raktas",
   "server_error_unknown": "Įvyko nežinoma klaida.",
   "set_account_info": "Nustatyti sąskaitos informaciją",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Nustatymai",
   "share_address": "Pasidalinti adresą",
   "show_console_log_button": "Rodyti konsolės pranešimų mygtuką",

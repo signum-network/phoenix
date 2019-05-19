@@ -6,6 +6,7 @@ import {generateSendTransactionQRCodeAddress} from '../factories/account/generat
 import {generateSendTransactionQRCode} from '../factories/account/generateSendTransactionQRCode';
 import {getAliases} from '../factories/account/getAliases';
 import {setAccountInfo} from '../factories/account/setAccountInfo';
+import {setRewardRecipient} from '../factories/account/setRewardRecipient';
 import {Alias} from '../../typings/alias';
 import {AliasList} from '../../typings/aliasList';
 import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
@@ -321,6 +322,55 @@ describe('Account Api', () => {
             const status = await setAccountInfo(service)(
                 'name',
                 'description',
+                '123',
+                'senderPublicKey',
+                'senderPrivateKey',
+                1440,
+            );
+            expect(status).toBe('fakeTransaction');
+            expect(generateSignature).toBeCalledTimes(1);
+            expect(verifySignature).toBeCalledTimes(1);
+            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+        });
+    });
+
+    describe('setRewardRecipient', () => {
+        let service;
+
+        const mockBroadcastResponse = {
+            unsignedTransactionBytes: 'unsignedHexMessage'
+        };
+
+        beforeEach(() => {
+
+            jest.resetAllMocks();
+
+            // @ts-ignore
+            generateSignature = jest.fn(() => 'signature');
+            // @ts-ignore
+            verifySignature = jest.fn(() => true);
+            // @ts-ignore
+            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
+
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+                .onPostReply(200, mockBroadcastResponse,
+                    'relPath?requestType=setRewardRecipient&recipient=recipient&deadline=1440&feeNQT=12300000000&publicKey=senderPublicKey')
+                .onPostReply(200, 'fakeTransaction',
+                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+                .build();
+
+            service = createBurstService(httpMock, 'relPath');
+        });
+
+        afterEach(() => {
+            // @ts-ignore
+            httpMock.reset();
+        });
+
+        it('should setRewardRecipient', async () => {
+            const status = await setRewardRecipient(service)(
+                'recipient',
                 '123',
                 'senderPublicKey',
                 'senderPrivateKey',

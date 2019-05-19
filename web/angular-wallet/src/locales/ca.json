@@ -749,6 +749,7 @@
   "sender_public_key": "Clau Pública del remitent",
   "server_error_unknown": "S'ha produït un error desconegut.",
   "set_account_info": "Establiu la Informació del Compte",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Configuració",
   "share_address": "Compartir Adreça",
   "show_console_log_button": "Mostrar el botó per Iniciar la Consola",

@@ -749,6 +749,7 @@
   "sender_public_key": "Јавни Кључ Пошиљаоца",
   "server_error_unknown": "Појавила се непозната грешка.",
   "set_account_info": "Поставите Информације Налога",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Подешавања",
   "share_address": "Подели Адресу",
   "show_console_log_button": "Прикажи Лог Дугме Конзоле",

@@ -749,6 +749,7 @@
   "sender_public_key": "Public Key Pengirim",
   "server_error_unknown": "Terjadi kesalahan yang tidak dikenal.",
   "set_account_info": "Mengatur Catatan Info",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Pengaturan",
   "share_address": "Berbagi alamat",
   "show_console_log_button": "Tampilkan tombol Log konsol",

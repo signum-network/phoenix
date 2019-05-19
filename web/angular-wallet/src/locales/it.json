@@ -749,6 +749,7 @@
   "sender_public_key": "Chiave pubblica del mittente",
   "server_error_unknown": "Ci scusi. C'è stato un errore.",
   "set_account_info": "Impostare Info Account",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Impostazioni",
   "share_address": "Condividi indirizzo",
   "show_console_log_button": "Visualizza il pulsante Log Console",

@@ -749,6 +749,7 @@
   "sender_public_key": "Öffentlicher Schlüssel des Absenders",
   "server_error_unknown": "Ein unbekannter Fehler ist aufgetreten.",
   "set_account_info": "Kontoinformationen angeben",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Einstellungen",
   "share_address": "Adresse weitergeben",
   "show_console_log_button": "Schaltfläche für Konsole anzeigen",

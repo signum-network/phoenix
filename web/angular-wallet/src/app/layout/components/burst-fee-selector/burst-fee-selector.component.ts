@@ -12,18 +12,23 @@ import { Options } from 'ng5-slider';
 export class BurstFeeSelectorComponent implements OnInit {
   @Input('fees') fees: SuggestedFees;
 
-  feeNQTValue = '';
+  feeNQTValue = 0;
   options: Options;
 
   @Input()
-  get feeNQT(): string {
+  get feeNQT(): number {
     return this.feeNQTValue;
   }
 
   @Output()
   feeNQTChange = new EventEmitter();
-  set feeNQT(feeNQT: string) {
-    this.feeNQTValue = feeNQT;
+
+  set feeNQT(feeNQT: number) {
+    if (!feeNQT) {
+      this.feeNQTValue = 0;
+      return;
+    }
+    this.feeNQTValue = parseFloat(feeNQT.toString());
     this.feeNQTChange.emit(this.feeNQTValue);
   }
 
@@ -33,7 +38,7 @@ export class BurstFeeSelectorComponent implements OnInit {
   ngOnInit(): void {
     // avoids ExpressionChangedAfterItHasBeenCheckedError
     setTimeout(() => {
-      this.feeNQT = this.convertFeeToBurst(this.fees.standard).toString();
+      this.feeNQT = this.convertFeeToBurst(this.fees.standard);
     });
     this.options = {
       step: 0.0000001,
@@ -50,7 +55,6 @@ export class BurstFeeSelectorComponent implements OnInit {
         return '#2AE02A';
       }
     };
-
   }
 
   convertFeeToBurst(feeNQT: number): number {
