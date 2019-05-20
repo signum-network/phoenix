@@ -18,17 +18,19 @@ import {
 
 import {version} from '../../package.json';
 import {AppService} from './app.service';
+import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDestroy {
   firstTime = true;
   isScanning = false;
 
-  newVersionAvailable = true;
+  newVersionAvailable = false;
   updateInfo: UpdateInfo;
   downloadingBlockchain = false;
   previousLastBlock = '0';
@@ -37,7 +39,6 @@ export class AppComponent implements OnInit, OnDestroy {
   selectedAccount: Account;
   accounts: Account[];
   BLOCKCHAIN_STATUS_INTERVAL = 30000; // 30 secs
-  private _unsubscribeAll: Subject<any>;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -51,27 +52,31 @@ export class AppComponent implements OnInit, OnDestroy {
     private appService: AppService,
     private newVersionDialog: MatDialog
   ) {
-
-    // Add is-mobile class to the body if the platform is mobile
+    super();
     if (this._platform.ANDROID || this._platform.IOS) {
       this.document.body.classList.add('is-mobile');
     }
-
-    // Set the private defaults
-    this._unsubscribeAll = new Subject();
   }
 
   ngOnInit(): void {
-    this.storeService.ready.subscribe((ready) => {
-      if (ready) {
-        this.updateAccounts();
-        setInterval(this.checkBlockchainStatus.bind(this), this.BLOCKCHAIN_STATUS_INTERVAL);
-      }
-      this.accountService.currentAccount.subscribe(async (account) => {
-        this.selectedAccount = account;
-        this.accounts = await this.storeService.getAllAccounts();
+    this.storeService.ready
+      .pipe(
+        takeUntil(this.unsubscribeAll)
+      )
+      .subscribe((ready) => {
+        if (ready) {
+          this.updateAccounts();
+          setInterval(this.checkBlockchainStatus.bind(this), this.BLOCKCHAIN_STATUS_INTERVAL);
+        }
+        this.accountService.currentAccount
+          .pipe(
+            takeUntil(this.unsubscribeAll)
+          )
+          .subscribe(async (account) => {
+            this.selectedAccount = account;
+            this.accounts = await this.storeService.getAllAccounts();
+          });
       });
-    });
 
     if (this.appService.isDesktop()) {
       this.initDesktopUpdater();
@@ -154,24 +159,8 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    // Unsubscribe from all subscriptions
-    this._unsubscribeAll.next();
-    this._unsubscribeAll.complete();
-  }
-
 
   private openNewVersionDialog(): MatDialogRef<NewVersionDialogComponent> {
-
-    this.updateInfo =  new UpdateInfo(
-      'v1.0.0-beta.5',
-      'v1.0.0-beta.6',
-      'linux',
-      [],
-      'releaseUrl',
-      new CertificationInfo(true, 'domain', 'issuer', new Date())
-    );
-
     return this.newVersionDialog.open(NewVersionDialogComponent, {
       data: this.updateInfo
     });
