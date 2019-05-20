@@ -35,7 +35,9 @@
     "release:win32": "npm run pack -- -w",
     "release:macos": "npm run pack -- -m",
     "postinstall": "electron-builder install-app-deps",
-    "publish": "electron-builder -p 'always' -wml"
+    "publish": "electron-builder -p 'always' -wml",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "devDependencies": {
     "ajv": "^6.10.0",
@@ -58,6 +60,8 @@
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "semver": "^6.0.0",
-    "ssl-validator": "^1.0.4"
-  }
+    "ssl-validator": "^1.0.4",
+    "snyk": "^1.165.1"
+  },
+  "snyk": true
 }
