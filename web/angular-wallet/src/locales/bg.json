@@ -749,6 +749,7 @@
   "sender_public_key": "Публичен ключ на подателя",
   "server_error_unknown": "Възникна неизвестна грешка.",
   "set_account_info": "Задайте информация за сметка",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Настройки",
   "share_address": "Сподели адрес",
   "show_console_log_button": "Показване на бутон дневник конзола",

@@ -1,0 +1,1 @@
+export { SetRewardRecipientComponent } from './set-reward-recipient.component';

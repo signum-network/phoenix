@@ -749,6 +749,7 @@
   "sender_public_key": "Chave Publica do remetente",
   "server_error_unknown": "Ocorreu um erro desconhecido.",
   "set_account_info": "Definir a informação da conta",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Configurações",
   "share_address": "Compartilhar endereço",
   "show_console_log_button": "Mostrar botão de Log do Console",

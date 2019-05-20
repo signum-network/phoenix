@@ -749,6 +749,7 @@
   "sender_public_key": "Verejný kľúč odosielateľa",
   "server_error_unknown": "Vyskytla sa neznáma chyba.",
   "set_account_info": "Nastaviť info účtu",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Nastavenia",
   "share_address": "Zdieľať adresu",
   "show_console_log_button": "Ukázať tlačidlo Log konzoly",

@@ -9,3 +9,4 @@ export * from './getAliases';
 export * from './getUnconfirmedAccountTransactions';
 export * from './setAccountInfo';
 export * from './setAlias';
+export * from './setRewardRecipient';

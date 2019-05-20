@@ -758,6 +758,7 @@
   "sender_public_key": "Klucz publiczny nadawcy",
   "server_error_unknown": "Wystąpił nieznany błąd.",
   "set_account_info": "Ustaw informacje o koncie",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Ustawienia",
   "share_address": "Udostępnij adres",
   "show_console_log_button": "Pokaż przycisk do wyświetlenia konsoli",

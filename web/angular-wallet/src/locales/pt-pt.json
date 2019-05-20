@@ -749,6 +749,7 @@
   "sender_public_key": "Chave Pública do Remetente",
   "server_error_unknown": "Ocorreu um erro desconhecido.",
   "set_account_info": "Estabelecer a Informação de Conta",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Configuração",
   "share_address": "Compartilhar Endereço",
   "show_console_log_button": "Mostrar Botom de Registro de Consola",

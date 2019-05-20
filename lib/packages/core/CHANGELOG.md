@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 - added `confirmed` property to `Account` model
 - added `alias` api
+- added `setRewardRecipient` for assigning reward recipients for miners
 
 ## 0.1.1
 - added FeeQuant for `suggestFees`

@@ -749,6 +749,7 @@
   "sender_public_key": "Δημόσιο κλειδί αποστολέα",
   "server_error_unknown": "Παρουσιάστηκε ένα άγνωστο σφάλμα.",
   "set_account_info": "Θέτω πληροφορίες λογαριασμού",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Ρυθμίσεις",
   "share_address": "Μοιραστείτε τη διεύθυνση",
   "show_console_log_button": "Show Console Log Button",

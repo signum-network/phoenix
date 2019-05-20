@@ -36,6 +36,7 @@ import {setAlias} from './factories/account/setAlias';
 import {getTime} from './factories/network/getTime';
 import {getAccount} from './factories/account/getAccount';
 import {setAccountInfo} from './factories/account/setAccountInfo';
+import {setRewardRecipient} from './factories/account/setRewardRecipient';
 import {BurstServiceSettings} from '../service/burstServiceSettings';
 import {ApiVersion} from '../constants/apiVersion';
 import {getAliasById} from './factories/alias/getAliasById';
@@ -113,6 +114,7 @@ export function composeApi(settings: ApiSettings): Api {
             setAlias,
             getAccount,
             setAccountInfo,
+            setRewardRecipient,
         }).withAliasApi({
             getAliasByName,
             getAliasById,

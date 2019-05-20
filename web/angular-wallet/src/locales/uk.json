@@ -749,6 +749,7 @@
   "sender_public_key": "Відправник відкритого ключа",
   "server_error_unknown": "Сталася невідома помилка.",
   "set_account_info": "Встановити інформацію аккаунта",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "Параметри",
   "share_address": "Поділитися Адресою",
   "show_console_log_button": "Відображати кнопку \"консолі  журналу",

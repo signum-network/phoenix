@@ -749,6 +749,7 @@
   "sender_public_key": "送信者の公開キー",
   "server_error_unknown": "不明なエラーが発生しました。",
   "set_account_info": "アカウント情報を設定",
+  "set_reward_recipient": "Set Reward Recipient",
   "settings": "設定",
   "share_address": "アドレスを共有",
   "show_console_log_button": "コンソールのログボタンを表示",

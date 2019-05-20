@@ -30,6 +30,14 @@ interface SetAccountInfoRequest {
   keys: Keys;
 }
 
+interface SetRewardRecipientRequest {
+  recipient: string;
+  deadline: number;
+  feeNQT: string;
+  pin: string;
+  keys: Keys;
+}
+
 interface SetAliasRequest {
   aliasName: string;
   aliasURI: string;
@@ -123,6 +131,11 @@ export class AccountService {
   public setAccountInfo({ name, description, feeNQT, deadline, pin, keys }: SetAccountInfoRequest): Promise<TransactionId> {
     const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
     return this.api.account.setAccountInfo(name, description, feeNQT, keys.publicKey, senderPrivateKey, deadline);
+  }
+
+  public setRewardRecipient({ recipient, feeNQT, deadline, pin, keys }: SetRewardRecipientRequest): Promise<TransactionId> {
+    const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    return this.api.account.setRewardRecipient(recipient, feeNQT, keys.publicKey, senderPrivateKey, deadline);
   }
 
   /*
