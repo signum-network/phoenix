@@ -10,7 +10,8 @@ const config = {
   currentVersion: "1.0.0-beta.5",
   repositoryRootUrl: "https://api.github.com/repos/burst-apps-team/phoenix",
   checkIntervalMins: 1,
-  tagPrefix: "desktop-"
+  tagPrefix: "desktop-",
+  certFingerprint: "fingerprint"
 };
 
 describe('Update Service', () => {
@@ -134,7 +135,7 @@ describe('Update Service', () => {
       }));
 
       updateService.checkForLatestRelease((newVersion) => {
-        expect(updateService.validateCertificate).toBeCalledWith('github.com');
+        expect(updateService.validateCertificate).toBeCalledWith('github.com', "fingerprint");
         expect(newVersion).toEqual({
           platform: process.platform,
           assets:
