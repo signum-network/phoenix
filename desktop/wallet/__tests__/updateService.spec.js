@@ -1,5 +1,5 @@
 const {HttpMockBuilder} = require("@burstjs/http");
-const UpdateService = require('../updateService');
+const UpdateService = require('../src/updateService');
 
 const releaseMock = require('./releaseMock.json');
 const releasesMock = require('./releasesMock.json');

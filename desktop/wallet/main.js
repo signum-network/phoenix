@@ -1,9 +1,10 @@
 const path = require('path');
 const {app, BrowserWindow, Menu, shell, ipcMain} = require('electron');
-const UpdateService = require('./updateService');
 const {download} = require('electron-dl');
 
 const {version, update} = require('./package.json');
+const UpdateService = require('./src/updateService');
+
 let win;
 let downloadHandle;
 
