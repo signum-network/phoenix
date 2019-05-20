@@ -26,7 +26,7 @@ jobs:
     - # parallel run
       name: "Run Angular Tests"
       script: './scripts/ci/test-ng.sh'
-    - stage: deploy
+    - stage: desktop-deploy
       name: "Build and Deploy Desktop App"
       script: './scripts/ci/release-desktop.sh --publish'
     - stage: force-deploy
@@ -38,8 +38,8 @@ jobs:
 
 stages:
   - prepare
-  - name: deploy
-    if: tag=~/^v\d+\.\d+\.\d+/
+  - name: desktop-deploy
+    if: tag=~/^desktop-\d+\.\d+\.\d+/
   - name: force-deploy
     if: branch=~/^force-deploy/
   - name: nightly-release
