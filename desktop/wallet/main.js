@@ -19,9 +19,7 @@ const isMacOS = () => process.platform === 'darwin';
 const isWindows = () => process.platform === 'win32';
 
 function handleLatestUpdate(newVersion) {
-  if (newVersion){
-    win.webContents.send('new-version', newVersion);
-  }
+  win.webContents.send('new-version', newVersion);
 }
 
 function getBrowserWindowConfig() {
@@ -121,7 +119,7 @@ function createWindow() {
           label: 'Check for update',
           click() {
             updateService.checkForLatestRelease((newVersion) => {
-              if(!newVersion){
+              if (!newVersion) {
                 win.webContents.send('new-version-check-noupdate');
                 return;
               }
@@ -184,7 +182,7 @@ function createWindow() {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 }
 
-function downloadUpdate($event, assetUrl){
+function downloadUpdate($event, assetUrl) {
   download(win, assetUrl, {
     openFolderWhenDone: true,
     saveAs: true,
@@ -193,7 +191,7 @@ function downloadUpdate($event, assetUrl){
       win.webContents.send('new-version-download-started');
     },
     onProgress: (progress) => {
-      if(progress === 1){
+      if (progress === 1) {
         downloadHandle = null;
         win.webContents.send('new-version-download-finished');
       }
@@ -204,7 +202,11 @@ function downloadUpdate($event, assetUrl){
 function onReady() {
   createWindow();
   win.webContents.on('did-finish-load', () => {
-    updateService.start(handleLatestUpdate);
+    updateService.start((newVersion) => {
+      if (newVersion) {
+        handleLatestUpdate(newVersion)
+      }
+    });
   });
   ipcMain.on('new-version-asset-selected', downloadUpdate);
 }
@@ -225,7 +227,7 @@ if (isMacOS()) {
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
 
-  if(downloadHandle){
+  if (downloadHandle) {
     downloadHandle.cancel()
   }
 
