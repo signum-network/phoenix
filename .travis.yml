@@ -18,14 +18,14 @@ before_script:
 jobs:
   include:
     - stage: prepare
+      name: "Build App"
+      script: './scripts/ci/build-electron.sh'
+    - # parallel run
       name: "Run BurstJS Tests"
       script: './scripts/ci/test-burstjs.sh'
     - # parallel run
       name: "Run Angular Tests"
       script: './scripts/ci/test-ng.sh'
-    - stage: build
-      name: "Build App"
-      script: './scripts/ci/build-electron.sh'
     - stage: desktop-deploy
       name: "Build and Deploy Desktop App"
       script: './scripts/ci/release-desktop.sh --publish'
@@ -38,7 +38,6 @@ jobs:
 
 stages:
   - prepare
-  - build
   - name: desktop-deploy
     if: tag=~/^desktop-\d+\.\d+\.\d+/
   - name: force-deploy
