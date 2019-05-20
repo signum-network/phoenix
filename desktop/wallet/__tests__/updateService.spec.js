@@ -1,4 +1,4 @@
-const {HttpMockBuilder} = require("@burstjs/http");
+const {HttpMockBuilder} = require('@burstjs/http');
 const UpdateService = require('../src/updateService');
 
 const releaseMock = require('./releaseMock.json');
@@ -7,11 +7,11 @@ const releasesMock = require('./releasesMock.json');
 const containsUrlThatEndsWith = urls => suffix => urls.filter(url => url.endsWith(suffix)).length > 0;
 
 const config = {
-  currentVersion: "1.0.0-beta.5",
-  repositoryRootUrl: "https://api.github.com/repos/burst-apps-team/phoenix",
+  currentVersion: '1.0.0-beta.5',
+  repositoryRootUrl: 'https://api.github.com/repos/burst-apps-team/phoenix',
   checkIntervalMins: 1,
-  tagPrefix: "desktop-",
-  certFingerprint: "fingerprint"
+  tagPrefix: 'desktop-',
+  certFingerprint: 'fingerprint'
 };
 
 describe('Update Service', () => {
@@ -161,10 +161,10 @@ describe('Update Service', () => {
     it('calls callback with null, as no newer version is available', (done) => {
       const httpMock = HttpMockBuilder.create().onGetReply(200, releasesMock).build();
       const _config = {
-        currentVersion: "1.0.0-beta.6", // <<< already on newest version
-        repositoryRootUrl: "https://api.github.com/repos/burst-apps-team/phoenix",
+        currentVersion: '1.0.0-beta.6', // <<< already on newest version
+        repositoryRootUrl: 'https://api.github.com/repos/burst-apps-team/phoenix',
         checkIntervalMins: 1,
-        tagPrefix: "desktop-"
+        tagPrefix: 'desktop-'
       };
       const updateService = new UpdateService(_config, httpMock);
 

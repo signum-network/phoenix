@@ -18,6 +18,12 @@ const isLinux = () => process.platform === 'linux';
 const isMacOS = () => process.platform === 'darwin';
 const isWindows = () => process.platform === 'win32';
 
+function handleLatestUpdate(newVersion) {
+  if (newVersion){
+    win.webContents.send('new-version', newVersion);
+  }
+}
+
 function getBrowserWindowConfig() {
   const commonConfig = {
     icon: path.join(__dirname, 'assets/images/png/64x64.png'),
@@ -40,7 +46,7 @@ function getBrowserWindowConfig() {
 
 function createWindow() {
 
-  const distPath = path.join(__dirname, "./dist");
+  const distPath = path.join(__dirname, './dist');
   win = new BrowserWindow(getBrowserWindowConfig());
   win.loadURL(`file://${distPath}/index.html`);
   win.maximize();
@@ -117,9 +123,9 @@ function createWindow() {
             updateService.checkForLatestRelease((newVersion) => {
               if(!newVersion){
                 win.webContents.send('new-version-check-noupdate');
-                return
+                return;
               }
-              handleLatestUpdate(newVersion)
+              handleLatestUpdate(newVersion);
             })
           }
         },
@@ -178,24 +184,18 @@ function createWindow() {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 }
 
-function handleLatestUpdate(newVersion) {
-  if (newVersion){
-    win.webContents.send('new-version', newVersion)
-  }
-}
-
 function downloadUpdate($event, assetUrl){
   download(win, assetUrl, {
     openFolderWhenDone: true,
     saveAs: true,
     onStarted: (handle) => {
       downloadHandle = handle;
-      win.webContents.send('new-version-download-started')
+      win.webContents.send('new-version-download-started');
     },
     onProgress: (progress) => {
       if(progress === 1){
         downloadHandle = null;
-        win.webContents.send('new-version-download-finished')
+        win.webContents.send('new-version-download-finished');
       }
     }
   })
@@ -206,7 +206,7 @@ function onReady() {
   win.webContents.on('did-finish-load', () => {
     updateService.start(handleLatestUpdate);
   });
-  ipcMain.on('new-version-asset-selected', downloadUpdate)
+  ipcMain.on('new-version-asset-selected', downloadUpdate);
 }
 
 app.on('ready', onReady);

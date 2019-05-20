@@ -1,7 +1,7 @@
-const PropTypes = require("prop-types");
+const PropTypes = require('prop-types');
 const _ = require('lodash');
 const semver = require('semver');
-const {HttpImpl} = require("@burstjs/http/out/index");
+const {HttpImpl} = require('@burstjs/http/out/index');
 const getSSL = require('get-ssl-certificate');
 const {validateSSL} = require("ssl-validator");
 
@@ -60,7 +60,7 @@ class UpdateService {
       await validateSSL(cert.pemEncoded, {domain});
 
       if(cert.fingerprint256 !== fingerprint){
-        throw new Error("invalid fingerprint");
+        throw new Error('invalid fingerprint');
       }
 
       return {
@@ -70,7 +70,7 @@ class UpdateService {
         validThru: cert.valid_to
       }
     } catch (e) {
-      console.warn("Certificate check failed:", e);
+      console.error('Certificate check failed:', e);
       return {
         isValid: false,
         issuer: cert.issuer.O,
@@ -129,7 +129,6 @@ class UpdateService {
   }
 
   start(callback) {
-    console.info('Update Service started - current version:', this.config.currentVersion);
     this.checkForLatestRelease(callback);
     setInterval(this.checkForLatestRelease.bind(this, callback), this.config.checkIntervalMins * 60 * 1000)
   }
