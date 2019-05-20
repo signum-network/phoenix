@@ -1,7 +1,7 @@
-const PropTypes = require("prop-types");
+const PropTypes = require('prop-types');
 const _ = require('lodash');
 const semver = require('semver');
-const {HttpImpl} = require("@burstjs/http");
+const {HttpImpl} = require('@burstjs/http/out/index');
 const getSSL = require('get-ssl-certificate');
 const {validateSSL} = require("ssl-validator");
 
@@ -54,10 +54,15 @@ class UpdateService {
     )
   }
 
-  async validateCertificate(domain) {
+  async validateCertificate(domain, fingerprint) {
     const cert = await getSSL.get(domain);
     try {
       await validateSSL(cert.pemEncoded, {domain});
+
+      if(cert.fingerprint256 !== fingerprint){
+        throw new Error('invalid fingerprint');
+      }
+
       return {
         isValid: true,
         issuer: cert.issuer.O,
@@ -65,7 +70,8 @@ class UpdateService {
         validThru: cert.valid_to
       }
     } catch (e) {
-      console.warn("Certificate check failed");
+      /* eslint-disable no-console */
+      console.error('Certificate check failed:', e);
       return {
         isValid: false,
         issuer: cert.issuer.O,
@@ -79,6 +85,7 @@ class UpdateService {
     return this.http.get('/releases')
       .then(({response: releases}) => {
         return _.chain(releases)
+          /* eslint-disable camelcase */
           .filter(release => !release.draft && release.tag_name.startsWith(this.config.tagPrefix))
           .sortBy('published_at')
           .reverse()
@@ -91,7 +98,6 @@ class UpdateService {
     try {
 
       const release = await this.getLatestRelease();
-      console.log('release', release)
       if (!release) return callback(null);
 
       const {
@@ -101,14 +107,16 @@ class UpdateService {
         html_url: htmlUrl
       } = release;
 
-      const releaseVersion = tag_name.replace(this.config.tagPrefix, '');
-      if (!semver.lt(this.config.currentVersion, releaseVersion)) {
+      const { tagPrefix, currentVersion, certFingerprint } = this.config;
+
+      const releaseVersion = tag_name.replace(tagPrefix, '');
+      if (!semver.lt(currentVersion, releaseVersion)) {
         return callback(null);
       }
 
       console.info(`Found a new version: ${releaseVersion}`);
       const domain = this._getRepositoryDomain();
-      const validCert = await this.validateCertificate(domain);
+      const validCert = await this.validateCertificate(domain, certFingerprint);
       callback({
         platform: process.platform,
         assets: this._getPlatformSpecificAssets(assets),
@@ -123,7 +131,6 @@ class UpdateService {
   }
 
   start(callback) {
-    console.info('Update Service started - current version:', this.config.currentVersion);
     this.checkForLatestRelease(callback);
     setInterval(this.checkForLatestRelease.bind(this, callback), this.config.checkIntervalMins * 60 * 1000)
   }

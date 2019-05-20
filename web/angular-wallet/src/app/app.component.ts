@@ -8,7 +8,6 @@ import {Account, BlockchainStatus} from '@burstjs/core';
 import {NotifierService} from 'angular-notifier';
 import {NetworkService} from './network/network.service';
 import {UtilService} from './util.service';
-import {ElectronService} from 'ngx-electron';
 import {I18nService} from './layout/components/i18n/i18n.service';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {
@@ -18,15 +17,19 @@ import {
 } from './components/new-version-dialog/new-version-dialog.component';
 
 import {version} from '../../package.json';
+import {AppService} from './app.service';
+import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDestroy {
   firstTime = true;
   isScanning = false;
+
   newVersionAvailable = false;
   updateInfo: UpdateInfo;
   downloadingBlockchain = false;
@@ -36,7 +39,6 @@ export class AppComponent implements OnInit, OnDestroy {
   selectedAccount: Account;
   accounts: Account[];
   BLOCKCHAIN_STATUS_INTERVAL = 30000; // 30 secs
-  private _unsubscribeAll: Subject<any>;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -47,61 +49,72 @@ export class AppComponent implements OnInit, OnDestroy {
     private notifierService: NotifierService,
     private utilService: UtilService,
     private i18nService: I18nService,
-    private electronService: ElectronService,
+    private appService: AppService,
     private newVersionDialog: MatDialog
   ) {
-
-    // Add is-mobile class to the body if the platform is mobile
+    super();
     if (this._platform.ANDROID || this._platform.IOS) {
       this.document.body.classList.add('is-mobile');
     }
-
-    // Set the private defaults
-    this._unsubscribeAll = new Subject();
   }
 
   ngOnInit(): void {
-    this.storeService.ready.subscribe((ready) => {
-      if (ready) {
-        this.updateAccounts();
-        setInterval(this.checkBlockchainStatus.bind(this), this.BLOCKCHAIN_STATUS_INTERVAL);
-      }
-      this.accountService.currentAccount.subscribe(async (account) => {
-        this.selectedAccount = account;
-        this.accounts = await this.storeService.getAllAccounts();
+    this.storeService.ready
+      .pipe(
+        takeUntil(this.unsubscribeAll)
+      )
+      .subscribe((ready) => {
+        if (ready) {
+          this.updateAccounts();
+          setInterval(this.checkBlockchainStatus.bind(this), this.BLOCKCHAIN_STATUS_INTERVAL);
+        }
+        this.accountService.currentAccount
+          .pipe(
+            takeUntil(this.unsubscribeAll)
+          )
+          .subscribe(async (account) => {
+            this.selectedAccount = account;
+            this.accounts = await this.storeService.getAllAccounts();
+          });
       });
+
+    if (this.appService.isDesktop()) {
+      this.initDesktopUpdater();
+    }
+  }
+
+  private initDesktopUpdater(): void {
+    this.appService.onIpcMessage('new-version', (newVersion) => {
+      this.newVersionAvailable = true;
+
+      const {assets, releaseVersion, platform, validCert, htmlUrl} = newVersion;
+      const {domain, issuer, validThru, isValid} = validCert;
+
+      const certInfo = new CertificationInfo(isValid, domain, issuer, validThru);
+
+      this.updateInfo = new UpdateInfo(
+        version,
+        releaseVersion,
+        platform,
+        assets,
+        htmlUrl,
+        certInfo
+      );
     });
 
-    if (this.electronService.isElectronApp) {
-      this.electronService.ipcRenderer.on('new-version', (event, newVersion) => {
-        this.newVersionAvailable = true;
+    this.appService.onIpcMessage('new-version-download-started', () => {
+      this.appService.showDesktopMessage(
+        this.i18nService.getTranslation('download_started'),
+        this.i18nService.getTranslation('downloading_update')
+      );
+    });
 
-        const {assets, releaseVersion, platform, validCert, htmlUrl} = newVersion;
-        const {domain, issuer, validThru, isValid} = validCert;
-
-        const certInfo = new CertificationInfo(isValid, domain, issuer, validThru);
-
-        this.updateInfo = new UpdateInfo(
-          version,
-          releaseVersion,
-          platform,
-          assets,
-          htmlUrl,
-          certInfo
-        );
-      });
-      this.electronService.ipcRenderer.on('new-version-download-started', () => {
-        // @ts-ignore
-        // tslint:disable-next-line:no-unused-expression
-        new window.Notification(
-          this.i18nService.getTranslation('download_started'),
-          {
-            body: this.i18nService.getTranslation('downloading_update'),
-            title: 'Phoenix'
-          });
-
-      });
-    }
+    this.appService.onIpcMessage('new-version-check-noupdate', () => {
+      this.appService.showDesktopMessage(
+        this.i18nService.getTranslation('update_check'),
+        this.i18nService.getTranslation('update_up_to_date')
+      );
+    });
   }
 
   private async checkBlockchainStatus(): Promise<void> {
@@ -146,12 +159,6 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    // Unsubscribe from all subscriptions
-    this._unsubscribeAll.next();
-    this._unsubscribeAll.complete();
-  }
-
 
   private openNewVersionDialog(): MatDialogRef<NewVersionDialogComponent> {
     return this.newVersionDialog.open(NewVersionDialogComponent, {
@@ -163,8 +170,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.openNewVersionDialog()
       .afterClosed()
       .subscribe(assetUrl => {
-        if (assetUrl && this.electronService.isElectronApp) {
-          this.electronService.ipcRenderer.send('new-version-asset-selected', assetUrl);
+        if (assetUrl) {
+          this.appService.sendIpcMessage('new-version-asset-selected', assetUrl);
         }
       });
 

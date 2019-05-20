@@ -23,4 +23,3 @@ cd ../../desktop/wallet
 npm install
 npm run build
 
-

@@ -1,9 +1,10 @@
 const path = require('path');
 const {app, BrowserWindow, Menu, shell, ipcMain} = require('electron');
-const UpdateService = require('./updateService');
 const {download} = require('electron-dl');
 
 const {version, update} = require('./package.json');
+const UpdateService = require('./src/updateService');
+
 let win;
 let downloadHandle;
 
@@ -16,6 +17,10 @@ const isDevelopment = process.env.development;
 const isLinux = () => process.platform === 'linux';
 const isMacOS = () => process.platform === 'darwin';
 const isWindows = () => process.platform === 'win32';
+
+function handleLatestUpdate(newVersion) {
+  win.webContents.send('new-version', newVersion);
+}
 
 function getBrowserWindowConfig() {
   const commonConfig = {
@@ -39,7 +44,7 @@ function getBrowserWindowConfig() {
 
 function createWindow() {
 
-  const distPath = path.join(__dirname, "./dist");
+  const distPath = path.join(__dirname, './dist');
   win = new BrowserWindow(getBrowserWindowConfig());
   win.loadURL(`file://${distPath}/index.html`);
   win.maximize();
@@ -113,7 +118,13 @@ function createWindow() {
         {
           label: 'Check for update',
           click() {
-            updateService.checkForLatestRelease(handleLatestUpdate)
+            updateService.checkForLatestRelease((newVersion) => {
+              if (!newVersion) {
+                win.webContents.send('new-version-check-noupdate');
+                return;
+              }
+              handleLatestUpdate(newVersion);
+            })
           }
         },
         {
@@ -171,24 +182,18 @@ function createWindow() {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 }
 
-function handleLatestUpdate(newVersion) {
-  if (newVersion){
-    win.webContents.send('new-version', newVersion)
-  }
-}
-
-function downloadUpdate($event, assetUrl){
+function downloadUpdate($event, assetUrl) {
   download(win, assetUrl, {
     openFolderWhenDone: true,
     saveAs: true,
     onStarted: (handle) => {
       downloadHandle = handle;
-      win.webContents.send('new-version-download-started')
+      win.webContents.send('new-version-download-started');
     },
     onProgress: (progress) => {
-      if(progress === 1){
+      if (progress === 1) {
         downloadHandle = null;
-        win.webContents.send('new-version-download-finished')
+        win.webContents.send('new-version-download-finished');
       }
     }
   })
@@ -197,9 +202,13 @@ function downloadUpdate($event, assetUrl){
 function onReady() {
   createWindow();
   win.webContents.on('did-finish-load', () => {
-    updateService.start(handleLatestUpdate);
+    updateService.start((newVersion) => {
+      if (newVersion) {
+        handleLatestUpdate(newVersion);
+      }
+    });
   });
-  ipcMain.on('new-version-asset-selected', downloadUpdate)
+  ipcMain.on('new-version-asset-selected', downloadUpdate);
 }
 
 app.on('ready', onReady);
@@ -218,7 +227,7 @@ if (isMacOS()) {
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
 
-  if(downloadHandle){
+  if (downloadHandle) {
     downloadHandle.cancel()
   }
 

@@ -20,6 +20,16 @@
             <mat-icon class="pl-4 s-16">help_outline</mat-icon>
           </a>
         </div>
+
+        <div class="h4 secondary-text new-version">
+          <div>{{'platform' | i18n }}: {{platform}}</div>
+          <a href="{{updateInfo.releaseUrl}}"
+             target="_blank"
+             class="font-size-12 secondary-text"
+             matTooltip="{{'click_for_other_platforms' | i18n }}">
+            <mat-icon class="pl-4 s-16">help_outline</mat-icon>
+          </a>
+        </div>
       </div>
       <div class="cert">
         <div class="cert-info">
@@ -40,7 +50,7 @@
     </div>
 
     <mat-form-field class="mt-24">
-      <mat-select placeholder="Choose file for {{platform}} to download" [(value)]="selectedAssetIndex">
+      <mat-select placeholder="Choose file to download" [(value)]="selectedAssetIndex">
         <mat-option *ngFor="let asset of assets" [value]="asset.value">
           {{asset.viewValue}}
         </mat-option>
