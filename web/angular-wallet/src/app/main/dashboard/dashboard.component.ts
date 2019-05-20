@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   setTransactions = async (account) => {
     this.account = account;
     this.dataSource = new MatTableDataSource<Transaction>();
-    this.dataSource.data = account.transactions;
+    this.dataSource.data = account.transactions.concat().splice(0, 20);
   }
 
   closeWelcomeNotification = async () => {
