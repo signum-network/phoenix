@@ -8,7 +8,6 @@ import {Account, BlockchainStatus} from '@burstjs/core';
 import {NotifierService} from 'angular-notifier';
 import {NetworkService} from './network/network.service';
 import {UtilService} from './util.service';
-import {ElectronService} from 'ngx-electron';
 import {I18nService} from './layout/components/i18n/i18n.service';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {
@@ -18,6 +17,7 @@ import {
 } from './components/new-version-dialog/new-version-dialog.component';
 
 import {version} from '../../package.json';
+import {AppService} from './app.service';
 
 @Component({
   selector: 'app',
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private notifierService: NotifierService,
     private utilService: UtilService,
     private i18nService: I18nService,
-    private electronService: ElectronService,
+    private appService: AppService,
     private newVersionDialog: MatDialog
   ) {
 
@@ -72,36 +72,43 @@ export class AppComponent implements OnInit, OnDestroy {
       });
     });
 
-    if (this.electronService.isElectronApp) {
-      this.electronService.ipcRenderer.on('new-version', (event, newVersion) => {
-        this.newVersionAvailable = true;
-
-        const {assets, releaseVersion, platform, validCert, htmlUrl} = newVersion;
-        const {domain, issuer, validThru, isValid} = validCert;
-
-        const certInfo = new CertificationInfo(isValid, domain, issuer, validThru);
-
-        this.updateInfo = new UpdateInfo(
-          version,
-          releaseVersion,
-          platform,
-          assets,
-          htmlUrl,
-          certInfo
-        );
-      });
-      this.electronService.ipcRenderer.on('new-version-download-started', () => {
-        // @ts-ignore
-        // tslint:disable-next-line:no-unused-expression
-        new window.Notification(
-          this.i18nService.getTranslation('download_started'),
-          {
-            body: this.i18nService.getTranslation('downloading_update'),
-            title: 'Phoenix'
-          });
-
-      });
+    if (this.appService.isDesktop()) {
+      this.initDesktopUpdater();
     }
+  }
+
+  private initDesktopUpdater(): void {
+    this.appService.onIpcMessage('new-version', (newVersion) => {
+      this.newVersionAvailable = true;
+
+      const {assets, releaseVersion, platform, validCert, htmlUrl} = newVersion;
+      const {domain, issuer, validThru, isValid} = validCert;
+
+      const certInfo = new CertificationInfo(isValid, domain, issuer, validThru);
+
+      this.updateInfo = new UpdateInfo(
+        version,
+        releaseVersion,
+        platform,
+        assets,
+        htmlUrl,
+        certInfo
+      );
+    });
+
+    this.appService.onIpcMessage('new-version-download-started', () => {
+      this.appService.showDesktopMessage(
+        this.i18nService.getTranslation('download_started'),
+        this.i18nService.getTranslation('downloading_update')
+      );
+    });
+
+    this.appService.onIpcMessage('new-version-check-noupdate', () => {
+      this.appService.showDesktopMessage(
+        this.i18nService.getTranslation('update_check'),
+        this.i18nService.getTranslation('update_up_to_date')
+      );
+    });
   }
 
   private async checkBlockchainStatus(): Promise<void> {
@@ -163,8 +170,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.openNewVersionDialog()
       .afterClosed()
       .subscribe(assetUrl => {
-        if (assetUrl && this.electronService.isElectronApp) {
-          this.electronService.ipcRenderer.send('new-version-asset-selected', assetUrl);
+        if (assetUrl) {
+          this.appService.sendIpcMessage('new-version-asset-selected', assetUrl);
         }
       });
 
