@@ -27,7 +27,8 @@ import {AppService} from './app.service';
 export class AppComponent implements OnInit, OnDestroy {
   firstTime = true;
   isScanning = false;
-  newVersionAvailable = false;
+
+  newVersionAvailable = true;
   updateInfo: UpdateInfo;
   downloadingBlockchain = false;
   previousLastBlock = '0';
@@ -161,6 +162,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   private openNewVersionDialog(): MatDialogRef<NewVersionDialogComponent> {
+
+    this.updateInfo =  new UpdateInfo(
+      'v1.0.0-beta.5',
+      'v1.0.0-beta.6',
+      'linux',
+      [],
+      'releaseUrl',
+      new CertificationInfo(true, 'domain', 'issuer', new Date())
+    );
+
     return this.newVersionDialog.open(NewVersionDialogComponent, {
       data: this.updateInfo
     });

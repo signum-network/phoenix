@@ -20,6 +20,7 @@ npm install
 
 # now build
 cd ../../desktop/wallet
+free -h
 npm install
 npm run build
 
