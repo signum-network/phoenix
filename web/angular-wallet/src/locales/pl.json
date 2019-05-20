@@ -904,6 +904,7 @@
   "update_beta_available": "Dostępna jest nowa eksperymentalna wersja oprogramowania. Nie rekomendowana jest instalacja chyba że wiesz co robisz.",
   "update_blockchain_downloading": "Blockchain jest jeszcze pobierane, sprawdź później gdy pobieranie się zakończy.",
   "update_burst_account": "Update your burst account",
+  "update_check": "Aktualizuj czek",
   "update_contact": "Uaktualnij kontakt",
   "update_multiple_available": "Dostępne są nowe wersje oprogramowania, eksperymentalna i normalna. Nie rekomendowana jest instalacja wersji eksperymentalnej chyba że wiesz co robisz.",
   "update_testnet": "BRS nie może być uaktualniony w trakcie podłączenia do TestNetu.",

@@ -894,6 +894,7 @@
   "update_beta_available": "Yra nauja eksperimentinė versija. Tai nėra rekomenduojama įdiegti, jei žinote, ką darote.",
   "update_blockchain_downloading": "Blokai vis dar siunčiasi, patikrinkite dar kartą po to, kai jie atsinaujins.",
   "update_burst_account": "Update your burst account",
+  "update_check": "Atnaujinimo patikrinimas",
   "update_contact": "Atnaujinti kontaktą",
   "update_multiple_available": "Yra tiek ir pagrindinė, tiek ir eksperimentinė versijos. Nerekomenduojame įdiegti eksperimentinės versijos, nebent jei žinote, ką darote.",
   "update_testnet": "BRS negalima atnaujinti, kol esate prisijungę prie testinio tinklo.",

@@ -894,6 +894,7 @@
   "update_beta_available": "A new experimental release is available. It is not recommended that you install this unless you know what you're doing.",
   "update_blockchain_downloading": "Blockchain se stále stahuje. Zkontrolujte jej prosím znovu, až bude aktuální.",
   "update_burst_account": "Update your burst account",
+  "update_check": "Kontrola aktualizace",
   "update_contact": "Aktualizovat kontakt",
   "update_multiple_available": "K dispozici je jak hlavní tak experimentální verze. Není doporučeno instalovat experimentální verzi, pokud nevíte, co děláte.",
   "update_testnet": "BRS cannot be updated whilst connected to the testnet.",

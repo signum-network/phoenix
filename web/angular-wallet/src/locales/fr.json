@@ -894,6 +894,7 @@
   "update_beta_available": "Une nouvelle version bêta est disponible. Nous ne vous recommandons pas de l'installer, excepté si vous êtes absolument certain de savoir ce que vous faites.",
   "update_blockchain_downloading": "La blockchain est toujours en cours de téléchargement, vérifiez à nouveau lorsque celle-ci sera complètement synchronisée.",
   "update_burst_account": "Update your burst account",
+  "update_check": "Vérification de la mise à jour",
   "update_contact": "Mettre à jour le contact",
   "update_multiple_available": "Une version bêta et une version stable sont disponibles. Il n'est pas recommandé d'installer la version bêta à moins que vous soyez absolument certain de savoir ce que vous faites.",
   "update_testnet": "Le client BRS ne peut pas être mis à jour tant qu'il est connecté au testnet.",

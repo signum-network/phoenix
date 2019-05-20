@@ -894,6 +894,7 @@
   "update_beta_available": "Está dispoñible unha nova versión experimental. Non se recomenda a súa instalación se non sabe ben o que se está facendo.",
   "update_blockchain_downloading": "A cadea de bloques aínda se está descarregando, volva a probar cando esté actualizada.",
   "update_burst_account": "Update your burst account",
+  "update_check": "Comprobar actualización",
   "update_contact": "Actualizar contacto",
   "update_multiple_available": "Hai unha versión xeral e unha experimental dispoñible. Non se recomenda que instale a versión experimental salvo que saiba o que está facendo.",
   "update_testnet": "BRS non pode ser actualizado durante a conexión á red de probas.",

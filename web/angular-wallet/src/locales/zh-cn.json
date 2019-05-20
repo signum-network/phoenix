@@ -894,6 +894,7 @@
   "update_beta_available": "一个新的测试版本可用。推荐您不要安装，除非您知道您在做什么。",
   "update_blockchain_downloading": "Blockchain 仍在下载，请更新之后再检查。",
   "update_burst_account": "Update your burst account",
+  "update_check": "更新检查",
   "update_contact": "更新联系人",
   "update_multiple_available": "通用版本和测试版本均可用。建议您不要安装测试版本，除非您知道在做什么。",
   "update_testnet": "当连接到测试网络时，不能更新 BRS 。",

@@ -894,6 +894,7 @@
   "update_beta_available": "Eine neue experimentelle Version ist verfügbar. Verwenden Sie diese Version nur, wenn Sie wissen, was Sie tun.",
   "update_blockchain_downloading": "Die Blockchain wird derzeit heruntergeladen. Versuchen Sie es noch einmal, sobald die Blockchain heruntergeladen wurde.",
   "update_burst_account": "Update your burst account",
+  "update_check": "Update Überprüfung",
   "update_contact": "Kontakt aktualisieren",
   "update_multiple_available": "Es sind sowohl eine stabile als auch eine experimentelle Version verfügbar. Verwenden Sie die experimentelle Version nur, wenn Sie wissen, was Sie tun.",
   "update_testnet": "BRS kann nicht aktualisiert werden, während es mit dem Testnet verbunden ist.",

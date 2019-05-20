@@ -894,6 +894,7 @@
   "update_beta_available": "Percobaan rilis baru tersedia. Hal ini tidak dianjurkan bahwa Anda menginstal ini kecuali Anda adalah seorang ahli.",
   "update_blockchain_downloading": "Blockchain masih mengunduh, periksa kembali setelah selesai.",
   "update_burst_account": "Update your burst account",
+  "update_check": "Perbarui Periksa",
   "update_contact": "Memperbarui Kontak",
   "update_multiple_available": "Seorang jenderal dan versi percobaan tersedia. Hal ini tidak dianjurkan bahwa Anda menginstal versi percobaan kecuali Anda adalah seorang ahli.",
   "update_testnet": "BRS tidak dapat diperbarui sementara terhubung ke testnet.",

@@ -894,6 +894,7 @@
   "update_beta_available": "Uusi kokeellinen versio on saatavilla. Sen käyttöä ei suositella, ellet tiedä mitä olet tekemässä.",
   "update_blockchain_downloading": "Lohkoketjua ladataan edelleen, tarkista uudelleen kun se on ajan tasalla.",
   "update_burst_account": "Update your burst account",
+  "update_check": "Päivitystarkistus",
   "update_contact": "Päivitä yhteystieto",
   "update_multiple_available": "Sekä yleinen julkaisu- että testiversio on saatavilla. Testiversion käyttö on suositeltavaa vain jos todella tiedät mitä teet.",
   "update_testnet": "BRS:ää ei voi päivittää kun ollaan yhdistetty testiverkkoon.",
