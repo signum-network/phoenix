@@ -1,14 +1,52 @@
 :host {
   width: 100%;
+
+
+  .announcement-hint {
+    position: absolute;
+    top: 160px;
+    right: 0;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 2px 0 0 2px;
+    margin: 0;
+    pointer-events: auto;
+    opacity: .90;
+    z-index: 998;
+
+    mat-icon {
+      animation: pulse 5s linear infinite;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .downloading {
   display: inline;
   position: fixed;
   bottom: 0;
-  right:0;
+  right: 0;
   background: rgba(#fff, .5);
-  padding:10px;
+  padding: 10px;
   border-radius: 3px 0 0 3px;
   z-index: 1;
   color: #666;

@@ -1,0 +1,77 @@
+:host {
+
+  .card {
+    display: block;
+
+    .card-header {
+      position: relative;
+
+      .title {
+        position: absolute;
+        color: whitesmoke;
+        bottom: 0;
+        padding: 16px 24px;
+        user-select: none;
+        cursor: default;
+      }
+    }
+
+    .card-content {
+      padding: 24px;
+      display: block;
+      min-width: 320px;
+      width: 100%;
+
+      .new-version {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+      }
+
+      &-grid {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .cert{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          &-info{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+        }
+
+        mat-icon.cert-valid{
+          cursor: pointer;
+          color: green;
+        }
+        mat-icon.cert-invalid{
+          cursor: pointer;
+          color: darkred;
+        }
+      }
+    }
+
+    mat-form-field {
+      width: 100%
+    }
+
+    .card-footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 24px;
+    }
+
+    .invisible{
+      display: none;
+      height: 0;
+      width: 0;
+      opacity: 0;
+    }
+  }
+}
