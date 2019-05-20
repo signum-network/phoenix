@@ -70,7 +70,7 @@ class UpdateService {
         validThru: cert.valid_to
       }
     } catch (e) {
-      console.warn("Certificate check failed");
+      console.warn("Certificate check failed:", e);
       return {
         isValid: false,
         issuer: cert.issuer.O,

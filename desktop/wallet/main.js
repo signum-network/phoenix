@@ -113,7 +113,13 @@ function createWindow() {
         {
           label: 'Check for update',
           click() {
-            updateService.checkForLatestRelease(handleLatestUpdate)
+            updateService.checkForLatestRelease((newVersion) => {
+              if(!newVersion){
+                win.webContents.send('new-version-check-noupdate');
+                return
+              }
+              handleLatestUpdate(newVersion)
+            })
           }
         },
         {
