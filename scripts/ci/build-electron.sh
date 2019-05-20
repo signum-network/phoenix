@@ -4,6 +4,7 @@ echo ==================================
 echo Building Electron Wallet
 echo ==================================
 echo
+
 # install script deps
 cd scripts
 npm install
