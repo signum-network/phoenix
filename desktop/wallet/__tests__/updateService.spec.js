@@ -98,7 +98,7 @@ describe('Update Service', () => {
 
     it('error on invocation', async () => {
 
-      const httpMock = HttpMockBuilder.create().onGetThrowError(404, "error message").build();
+      const httpMock = HttpMockBuilder.create().onGetThrowError(404, 'error message').build();
       const updateService = new UpdateService(config, httpMock);
 
       updateService.validateCertificate = jest.fn(() => ({
@@ -135,7 +135,7 @@ describe('Update Service', () => {
       }));
 
       updateService.checkForLatestRelease((newVersion) => {
-        expect(updateService.validateCertificate).toBeCalledWith('github.com', "fingerprint");
+        expect(updateService.validateCertificate).toBeCalledWith('github.com', 'fingerprint');
         expect(newVersion).toEqual({
           platform: process.platform,
           assets:

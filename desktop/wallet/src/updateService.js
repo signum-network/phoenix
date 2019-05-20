@@ -70,6 +70,7 @@ class UpdateService {
         validThru: cert.valid_to
       }
     } catch (e) {
+      /* eslint-disable no-console */
       console.error('Certificate check failed:', e);
       return {
         isValid: false,
@@ -84,6 +85,7 @@ class UpdateService {
     return this.http.get('/releases')
       .then(({response: releases}) => {
         return _.chain(releases)
+          /* eslint-disable camelcase */
           .filter(release => !release.draft && release.tag_name.startsWith(this.config.tagPrefix))
           .sortBy('published_at')
           .reverse()
