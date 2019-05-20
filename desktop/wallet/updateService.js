@@ -54,10 +54,15 @@ class UpdateService {
     )
   }
 
-  async validateCertificate(domain) {
+  async validateCertificate(domain, fingerprint) {
     const cert = await getSSL.get(domain);
     try {
       await validateSSL(cert.pemEncoded, {domain});
+
+      if(cert.fingerprint256 !== fingerprint){
+        throw new Error("invalid fingerprint");
+      }
+
       return {
         isValid: true,
         issuer: cert.issuer.O,
@@ -91,7 +96,6 @@ class UpdateService {
     try {
 
       const release = await this.getLatestRelease();
-      console.log('release', release)
       if (!release) return callback(null);
 
       const {
@@ -101,14 +105,16 @@ class UpdateService {
         html_url: htmlUrl
       } = release;
 
-      const releaseVersion = tag_name.replace(this.config.tagPrefix, '');
-      if (!semver.lt(this.config.currentVersion, releaseVersion)) {
+      const { tagPrefix, currentVersion, certFingerprint } = this.config;
+
+      const releaseVersion = tag_name.replace(tagPrefix, '');
+      if (!semver.lt(currentVersion, releaseVersion)) {
         return callback(null);
       }
 
       console.info(`Found a new version: ${releaseVersion}`);
       const domain = this._getRepositoryDomain();
-      const validCert = await this.validateCertificate(domain);
+      const validCert = await this.validateCertificate(domain, certFingerprint);
       callback({
         platform: process.platform,
         assets: this._getPlatformSpecificAssets(assets),

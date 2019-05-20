@@ -47,6 +47,7 @@
   },
   "update": {
     "repositoryRootUrl": "https://api.github.com/repos/burst-apps-team/phoenix",
+    "certFingerprint": "31:11:50:0C:4A:66:01:2C:DA:E3:33:EC:3F:CA:1C:9D:DE:45:C9:54:44:0E:7E:E4:13:71:6B:FF:36:63:C0:74",
     "checkIntervalMins": 1,
     "tagPrefix": ""
   },
