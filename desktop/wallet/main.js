@@ -204,7 +204,7 @@ function onReady() {
   win.webContents.on('did-finish-load', () => {
     updateService.start((newVersion) => {
       if (newVersion) {
-        handleLatestUpdate(newVersion)
+        handleLatestUpdate(newVersion);
       }
     });
   });
