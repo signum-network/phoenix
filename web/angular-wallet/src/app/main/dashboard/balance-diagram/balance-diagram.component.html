@@ -10,7 +10,9 @@
                            [scheme]="options.colorScheme"
                            [gradient]="options.gradient"
                            [curve]="options.curve"
+                           [autoScale]="true"
                            (select)="onSelect($event)"
+
 
     >
       <ng-template #tooltipTemplate let-model="model">

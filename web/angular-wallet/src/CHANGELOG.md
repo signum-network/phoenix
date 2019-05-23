@@ -4,6 +4,7 @@
 
 ### New Features:
 - Update checker
+- Auto Scaling of Balance Chart
 
 ### Bug Fixes:
 
