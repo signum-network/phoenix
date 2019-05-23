@@ -20,7 +20,7 @@
           <ng-container matColumnDef="announcedAddress">
               <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'address' | i18n }}</mat-header-cell>
               <mat-cell *matCellDef="let peer">
-                  <span class="link" [routerLink]="['/peer', peer.announcedAddress]">{{ peer.announcedAddress }}</span>
+                  {{ peer.announcedAddress }}
               </mat-cell>
           </ng-container>
 
