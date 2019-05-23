@@ -2,7 +2,7 @@
 
 check () {
     if [ $? -ne 0 ]; then
-        echo "$1: $error"
+        echo "Damn, did not work!"
         exit 1
     fi
 }
