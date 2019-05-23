@@ -5,9 +5,9 @@
   
         <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
             <div fxLayout="row" fxLayoutAlign="start center">
-                <a routerLink="/dashboard"><mat-icon class="secondary-text s-18">home</mat-icon></a>
+                <a [routerLink]="['/dashboard']"><mat-icon class="secondary-text s-18">home</mat-icon></a>
                 <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-                <a class="secondary-text" routerLink="/aliases">{{ 'aliases' | i18n }}</a>
+                <a [routerLink]="['/aliases']" class="secondary-text">{{ 'aliases' | i18n }}</a>
                 <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
                 <span class="secondary-text">{{ 'register_alias' | i18n }}</span>
             </div>

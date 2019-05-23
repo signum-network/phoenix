@@ -6,7 +6,7 @@
 
     <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
       <div fxLayout="row" fxLayoutAlign="start center">
-        <mat-icon class="secondary-text s-18" routerLink="/dashboard">home</mat-icon>
+        <a [routerLink]="['/dashboard']"><mat-icon class="secondary-text s-18">home</mat-icon></a>
         <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
         <span class="secondary-text">{{ 'send_burst' | i18n }}</span>
       </div>
