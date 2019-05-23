@@ -10,8 +10,10 @@
     </a>
   </div>
   <div class="__fees">
-    {{'minimum_fee' | i18n}}:<em (click)="feeNQT=convertFeeToBurst(fees.minimum)">{{ convertFeeToBurst(fees.minimum) }}</em>
-    {{'cheap_fee' | i18n}}:<em (click)="feeNQT=convertFeeToBurst(fees.cheap)">{{ convertFeeToBurst(fees.cheap) }}</em>
+    {{'minimum_fee' | i18n}}: <em
+    (click)="feeNQT=convertFeeToBurst(fees.minimum)">{{ convertFeeToBurst(fees.minimum) }}</em>
+    {{'cheap_fee' | i18n}}: <em
+    (click)="feeNQT=convertFeeToBurst(fees.cheap)">{{ convertFeeToBurst(fees.cheap) }}</em>
     {{'standard_fee' | i18n}}: <em
     (click)="feeNQT=convertFeeToBurst(fees.standard)">{{ convertFeeToBurst(fees.standard) }}</em>
     {{'priority_fee' | i18n}}: <em
