@@ -1,38 +1,53 @@
 <h2 class="title">
-        Account has been created!
+  {{"account_created" |i18n }}
 </h2>
+<div class="passphrase-hint amber-600-bg">
+  <div class="hint" fxHide fxShow.gt-sm>
+    <mat-icon>notification_important</mat-icon>
+  </div>
+  <div class="hint-help-text">
+    <h3 class="font-weight-700">
+      {{ 'memorize_passphrase_help' | i18n }}
+    </h3>
+    <small>
+      {{ 'memorize_passphrase_help_addon' | i18n }}
+    </small>
+  </div>
+</div>
 <table cellspacing="10" class="table">
-    <tr>
-        <td class="table__label">
-            ID:
-        </td>
-        <td class="table__text">
-            {{ this.createService.getId() }}
-        </td>
-    </tr>
-    <tr>
-        <td class="table__label">
-            {{ 'address' | i18n }}:
-        </td>
-        <td class="table__text">
-            {{ this.createService.getAddress() }}
-        </td>
-    </tr>
-    <tr>
-        <td class="table__label">
-            {{ 'passphrase' | i18n }}:
-        </td>
-        <td class="table__text unselectable">
-            {{ this.createService.getCompletePassphrase() }}
-        </td>
-        <td>
-            <button class="copy-button" mat-raised-button (click)="copy()"><mat-icon>file_copy</mat-icon></button>
-        </td>
-    </tr>
+  <tr>
+    <td class="table__label">
+      ID:
+    </td>
+    <td class="table__text">
+      {{ this.createService.getId() }}
+    </td>
+  </tr>
+  <tr>
+    <td class="table__label">
+      {{ 'address' | i18n }}:
+    </td>
+    <td class="table__text">
+      {{ this.createService.getAddress() }}
+    </td>
+  </tr>
+  <tr>
+    <td class="table__label">
+      {{ 'passphrase' | i18n }}:
+    </td>
+    <td class="table__text unselectable">
+      {{ this.createService.getCompletePassphrase() }}
+    </td>
+    <td>
+      <button class="copy-button" matTooltip="{{'click_to_copy_passphrase' | i18n}}" mat-raised-button (click)="copy()">
+        <mat-icon>file_copy</mat-icon>
+      </button>
+    </td>
+  </tr>
 </table>
 <hr class="divider">
-<small>{{ 'memorize_passphrase_help' | i18n }}</small>
+<small>{{"account_is_not_public_yet" |i18n }}</small>
 <div class="text-center navigation">
-    <button class="btn-danger" mat-raised-button (click)="reset()">Back</button>
-    <button class="btn-success" mat-raised-button (click)="next()">Next</button>
+  <button class="btn-danger" mat-raised-button (click)="reset()">{{"back" | i18n}}</button>
+  <button class="btn-success" mat-raised-button (click)="next()">{{"next" | i18n}}</button>
 </div>

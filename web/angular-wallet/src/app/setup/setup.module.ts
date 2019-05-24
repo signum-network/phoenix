@@ -21,7 +21,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule, MatSelectModule, MatAutocompleteModule } from '@angular/material';
+import {MatInputModule, MatSelectModule, MatAutocompleteModule, MatTooltipModule} from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -34,31 +34,32 @@ import { AccountResolver } from './account/account.resolver';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        MatButtonModule,
-        MatCardModule,
-        MatChipsModule,
-        MatDividerModule,
-        MatExpansionModule,
-        MatFormFieldModule,
-        MatGridListModule,
-        MatIconModule,
-        MatInputModule,
-        MatListModule,
-        MatSelectModule,
-        MatProgressBarModule,
-        MatProgressSpinnerModule,
-        MatSlideToggleModule,
-        MatStepperModule,
-        FlexLayoutModule,
-        MatAutocompleteModule,
-        ReactiveFormsModule,
-        SetupRouting,
-        FormsModule,
-        I18nModule,
-        NgxMaskModule.forRoot()
-    ],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatCardModule,
+    MatChipsModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatSelectModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSlideToggleModule,
+    MatStepperModule,
+    FlexLayoutModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    SetupRouting,
+    FormsModule,
+    I18nModule,
+    NgxMaskModule.forRoot(),
+    MatTooltipModule
+  ],
     declarations: [
         SetupComponent,
         CreateActiveAccountComponent,

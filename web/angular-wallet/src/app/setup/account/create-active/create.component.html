@@ -1,4 +1,4 @@
-<mat-horizontal-stepper #stepper [linear]="true" [selectedIndex]="this.createService.getStepIndex()" labelPosition="bottom">
+<mat-horizontal-stepper #stepper linear [linear]="true" [selectedIndex]="this.createService.getStepIndex()" labelPosition="bottom">
     <mat-step [completed]="this.createService.isPassphraseGenerated()" [editable]="!this.createService.isPassphraseGenerated()">
         <ng-template matStepLabel>{{ 'generate' | i18n }}</ng-template>
         <div class="step-container">
@@ -17,7 +17,7 @@
         </div>
     </mat-step>
     <mat-step>
-        <ng-template matStepLabel>{{ 'verify' | i18n }}</ng-template>
+        <ng-template matStepLabel>{{ 'secure' | i18n }}</ng-template>
         <div class="step-container">
             <app-account-create-pin></app-account-create-pin>
         </div>

@@ -1,16 +1,15 @@
 <h2>
-    Set your PIN!
+    {{"define_your_pin" | i18n}}
 </h2>
 <div class="pin-container">
     <mat-form-field class="example-full-width">
-        <input matInput type="password" placeholder="PIN" [(ngModel)]="pin">
-        <mat-hint>Required</mat-hint>
+        <input matInput type="password" placeholder="{{'enter_pin' | i18n}}" [(ngModel)]="pin">
     </mat-form-field>
 </div>
 <small>
-    Enter a PIN to secure your account. The PIN is used to verify actions made with your account.
+   {{"pin_hint" | i18n }}
 </small>
 <div class="text-center navigation">
-    <button class="btn-danger" mat-raised-button (click)="back()">Back</button>
-    <button class="btn-success" mat-raised-button (click)="finish(pin)">Finish</button>
+    <button class="btn-danger" mat-raised-button (click)="back()">{{"back" | i18n }}</button>
+    <button class="btn-success" mat-raised-button (click)="finish()" disabled="{{!isValid}}">{{"finish" | i18n }}</button>
 </div>
