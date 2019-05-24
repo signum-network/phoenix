@@ -11,19 +11,20 @@
     border-radius: 4px;
 
     .hint {
-      padding: 8px;
+      padding: 8px 0 8px 8px;
 
       mat-icon {
         width: 48px;
         height: 48px;
         font-size: 48px;
       }
+
     }
 
     .hint-help-text {
       display: flex;
       flex-direction: column;
-      padding: 0 8px 16px 0
+      padding: 0 16px 16px 16px
     }
 
   }
