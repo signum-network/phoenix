@@ -95,6 +95,26 @@ export const constants = {
       selected: false,
       ping: -1,
       version: '2.3.0'
+    },
+    {
+      name: 'burstcoin.ro #1',
+      region: 'Global',
+      location: 'Europe',
+      address: 'https://wallet.burstcoin.ro',
+      port: 443,
+      selected: false,
+      ping: -1,
+      version: '2.3.0'
+    },
+    {
+      name: 'burstcoin.ro #2',
+      region: 'Global',
+      location: 'Europe',
+      address: 'https://wallet2.burstcoin.ro',
+      port: 443,
+      selected: false,
+      ping: -1,
+      version: '2.3.0'
     }
   ],
   supportUrl: 'https://github.com/burst-apps-team/phoenix/issues',
