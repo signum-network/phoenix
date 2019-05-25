@@ -1,14 +1,24 @@
 # Changelog
 
-##unreleased
+##1.0.0-beta.7
 
 ### New Features:
 - Update checker
 - Auto Scaling of Balance Chart
+- Improved Account Creation Flow
+- More Translations
+- New nodes
+- Copy Address/Id
+- Several layout tweaks
 
 ### Bug Fixes:
 
-
+- Slider for Fee Selection
+- CPU usage on particle screen
+- "always encrypted" issue for messages
+- Performance issues while loading accounts with many Tx
+- Delete current account issue
+- Several minor fixes
 
 ##1.0.0-beta.6
 
