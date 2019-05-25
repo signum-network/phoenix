@@ -1,63 +1,48 @@
-<div class="page-layout blank simple" fusePerfectScrollbar>
+<app-page title="{{ 'aliases' | i18n }}">
 
-  <!-- HEADER -->
-  <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-    fxLayoutAlign.gt-xs="space-between center">
-
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <a [routerLink]="['/dashboard']"><mat-icon class="secondary-text s-18">home</mat-icon></a>
-        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-        <span class="secondary-text">{{ 'aliases' | i18n }}</span>
-      </div>
-      <div class="h1 mt-16">{{ 'aliases' | i18n }}</div>
-    </div>
-
-    <a *ngIf="selectedAccount && selectedAccount.type !== 'offline'" mat-raised-button 
-      class="reference-button mt-16 mt-sm-0" 
-      [routerLink]="['add']">
-      <mat-icon class="mr-8">add</mat-icon>
-      <span>{{ 'register_alias' | i18n }}</span>
+  <div class="action-bar">
+    <a *ngIf="selectedAccount && selectedAccount.type !== 'offline'" mat-raised-button
+       class="reference-button mt-16 mt-sm-0"
+       [routerLink]="['add']"
+       matTooltip="{{ 'register_alias' | i18n }}"
+    >
+      <mat-icon>add</mat-icon>
     </a>
   </div>
-  <!-- / HEADER -->
 
-  <div class="p-24">
+  <mat-table [dataSource]="dataSource" matSort>
 
-    <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="aliasName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_name' | i18n }}</mat-header-cell>
+      <mat-cell *matCellDef="let alias">
+        <span>{{ alias.aliasName }}</span>
+      </mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="aliasName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_name' | i18n }}</mat-header-cell>
-        <mat-cell *matCellDef="let alias">
-          <span>{{ alias.aliasName }}</span>
-        </mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="aliasURI">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let alias">
+        <span>{{ alias.aliasURI }}</span>
+      </mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="aliasURI">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let alias">
-          <span>{{ alias.aliasURI }}</span>
-        </mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let alias">
+        <span>/</span> <!-- ?? -->
+      </mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let alias">
-          <span>/</span> <!-- ?? -->
-        </mat-cell>
-      </ng-container>
+    <!-- <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let alias">
+        <button>{{ 'edit' | i18n }}</button>
+        <button>{{ 'transfer' | i18n }}</button>
+        <button>{{ 'sell' | i18n }}</button>
+      </mat-cell>
+    </ng-container> -->
 
-      <!-- <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let alias">
-          <button>{{ 'edit' | i18n }}</button> 
-          <button>{{ 'transfer' | i18n }}</button> 
-          <button>{{ 'sell' | i18n }}</button>
-        </mat-cell>
-      </ng-container> -->
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  </div>
-</div>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</app-page>
