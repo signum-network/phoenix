@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {I18nModule} from '../../layout/components/i18n/i18n.module';
 import {MatIconModule} from '@angular/material';
 import {PageComponent} from './page.component';
@@ -17,4 +17,5 @@ import {RouterModule} from '@angular/router';
     RouterModule
   ]
 })
-export class PageModule { }
+export class PageModule {
+}

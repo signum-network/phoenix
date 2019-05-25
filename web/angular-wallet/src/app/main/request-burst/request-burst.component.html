@@ -1,75 +1,55 @@
-<div class="page-layout blank simple" fusePerfectScrollbar *ngIf="fees">
+<app-page title="{{'request_burst' | i18n}}">
 
-  <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-    fxLayoutAlign.gt-xs="space-between center">
+  <mat-horizontal-stepper #stepper [linear]="true" labelPosition="bottom">
+    <mat-step>
+      <ng-template matStepLabel>{{ 'qr_code_data' | i18n }}</ng-template>
+      <div class="step-container">
 
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <a [routerLink]="['/dashboard']"><mat-icon class="secondary-text s-18">home</mat-icon></a>
-        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-        <span class="secondary-text">{{ 'request_burst' | i18n }}</span>
+        <form (ngSubmit)="onSubmit($event);" #requestBurstForm="ngForm">
+          <mat-form-field>
+            <input matInput [(ngModel)]="account.accountRS" name="recipientRS" disabled>
+            <label matSuffix class="font-size-14">{{ 'your_address' | i18n }}</label>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [(ngModel)]="amountNQT" name="amountNQT" placeholder="{{ 'amount' | i18n }}">
+            <label matSuffix>BURST</label>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
+            <label matSuffix>BURST</label>
+          </mat-form-field>
+
+          <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
+
+          <mat-checkbox [(ngModel)]="immutable" name="immutable">{{ "immutable" | i18n }}</mat-checkbox>
+
+        </form>
+        <strong>Total:</strong> {{ getTotal() }} BURST
+        <br/><br/>
+
+        <button type="submit"
+                class="mr-8"
+                mat-raised-button
+                mat-button color="primary"
+                (click)="onSubmit($event)"
+                disabled="{{getAmount()===0}}"
+        >{{ "generate_qr" | i18n }}</button>
       </div>
-      <div class="h1 mt-16">{{ 'request_burst' | i18n }}</div>
-    </div>
-  </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>{{ 'qr_code' | i18n }}</ng-template>
+      <div class="step-container">
+        <app-request-burst-qr
+          [imgSrc]="imgSrc"
+          [recipientRS]="account.accountRS"
+          [amountNQT]="amountNQT || '0'"
+          [feeNQT]="feeNQT"
+          [immutable]="immutable"
+        ></app-request-burst-qr>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
 
-  <div class="p-24 w-600">
-
-    <mat-horizontal-stepper #stepper [linear]="true" labelPosition="bottom">
-      <mat-step>
-        <ng-template matStepLabel>{{ 'generate_qr' | i18n }}</ng-template>
-        <div class="step-container">
-
-          <form (ngSubmit)="onSubmit($event);" #requestBurstForm="ngForm">
-            <mat-form-field appearance="outline">
-              <input matInput [(ngModel)]="account.accountRS" name="recipientRS" disabled>
-              <label matSuffix>{{ 'your_address' | i18n }}</label>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <input matInput [(ngModel)]="amountNQT" name="amountNQT" placeholder="{{ 'amount' | i18n }}">
-              <label matSuffix>BURST</label>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
-              <label matSuffix>BURST</label>
-            </mat-form-field>
-
-            <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
-
-            <mat-checkbox [(ngModel)]="immutable" name="immutable">{{ "immutable" | i18n }}</mat-checkbox>
-
-          </form>
-          <strong>Total:</strong> {{ getTotal() }} BURST
-          <br /><br />
-
-          <button type="submit" class="mr-8" mat-raised-button mat-button color="primary"
-            (click)="onSubmit($event)">{{ "generate_qr" | i18n }}</button>
-        </div> 
-      </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>{{ 'qr_code' | i18n }}</ng-template>
-        <div class="step-container">
-          <app-request-burst-qr 
-            [imgSrc]="imgSrc"
-            [recipientRS]="account.accountRS"
-            [amountNQT]="amountNQT || 0"
-            [feeNQT]="feeNQT"
-            [immutable]="immutable"
-          ></app-request-burst-qr>
-        </div>
-      </mat-step>
-      <!-- <mat-step>
-        <ng-template matStepLabel>{{ 'complete' | i18n }}</ng-template>
-        <div class="step-container">
-          <h2>Payment Complete</h2>
-          <p>{{ 'amount' | i18n }}: {{ amountNQT }}</p>
-          <p>{{ 'fee' | i18n }}: {{ feeNQT }}</p>
-          <p>{{ 'sender' | i18n }}: {{ senderRS }}</p>
-        </div>
-      </mat-step> -->
-    </mat-horizontal-stepper>
-
-  </div>
-</div>
+</app-page>
