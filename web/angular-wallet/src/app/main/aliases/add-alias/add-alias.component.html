@@ -1,6 +1,7 @@
 <app-page
   title="{{ 'register_alias' | i18n }}"
   [breadcrumbs]="[{label:'aliases' | i18n, path: '/aliases'}]"
+  *ngIf="fees"
 >
 
   <form (ngSubmit)="onSubmit($event);" #setAliasForm="ngForm">

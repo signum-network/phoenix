@@ -32,6 +32,7 @@ import { BehaviorSubject } from 'rxjs';
 import { TransactionService } from 'app/main/transactions/transaction.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { ActivatedRoute } from '@angular/router';
+import {PageModule} from '../../../components/page/page.module';
 
 describe('AddAliasComponent', () => {
   let component: AddAliasComponent;
@@ -60,7 +61,8 @@ describe('AddAliasComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule.withRoutes(
           [{path: 'add', component: AddAliasComponent}]
-        )
+        ),
+        PageModule
       ],
       declarations: [ AddAliasComponent, BurstInputValidatorDirective, BurstFeeSelectorComponent ],
       providers: [
