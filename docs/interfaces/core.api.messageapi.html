@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TransactionApi
+	<title>MessageApi
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -76,13 +76,16 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/core_api.html">core.api</a>
+					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="core_api.transactionapi.html">TransactionApi</a>
+					<a href="../modules/core.api.html">api</a>
+				</li>
+				<li>
+					<a href="core.api.messageapi.html">MessageApi</a>
 				</li>
 			</ul>
-			<h1>Interface TransactionApi</h1>
+			<h1>Interface MessageApi</h1>
 		</div>
 	</div>
 </header>
@@ -92,16 +95,15 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Transaction API</p>
+						<p>The Message API</p>
 					</div>
-					<p>This module provides methods related to blockchain transactions</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">TransactionApi</span>
+						<span class="target">MessageApi</span>
 					</li>
 				</ul>
 			</section>
@@ -112,10 +114,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.transactionapi.html#broadcasttransaction" class="tsd-kind-icon">broadcast<wbr>Transaction</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.transactionapi.html#gettransaction" class="tsd-kind-icon">get<wbr>Transaction</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.transactionapi.html#sendmoney" class="tsd-kind-icon">send<wbr>Money</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.transactionapi.html#sendmoneymultiout" class="tsd-kind-icon">send<wbr>Money<wbr>Multi<wbr>Out</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.messageapi.html#sendencryptedtextmessage" class="tsd-kind-icon">send<wbr>Encrypted<wbr>Text<wbr>Message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.messageapi.html#sendtextmessage" class="tsd-kind-icon">send<wbr>Text<wbr>Message</a></li>
 							</ul>
 						</section>
 					</div>
@@ -124,21 +124,34 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="broadcasttransaction" class="tsd-anchor"></a>
-					<h3>broadcast<wbr>Transaction</h3>
-					<div class="tsd-signature tsd-kind-icon">broadcast<wbr>Transaction<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<a name="sendencryptedtextmessage" class="tsd-anchor"></a>
+					<h3>send<wbr>Encrypted<wbr>Text<wbr>Message</h3>
+					<div class="tsd-signature tsd-kind-icon">send<wbr>Encrypted<wbr>Text<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/28a7aff/lib/packages/core/src/typings/api/transactionApi.ts#L19">core/src/typings/api/transactionApi.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e696a0e/lib/packages/core/src/typings/api/messageApi.ts#L47">core/src/typings/api/messageApi.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Broadcasts a transaction to the network/blockchain</p>
+							<p>Broadcasts an <em>encrypted</em> text message to the network/blockchain
+							It&#39;s analogous to sendTextMessage but encrypts the message priorly</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>param</dt>
-							<dd><p>The <em>signed</em> transaction payload encoded in base64</p>
+							<dd><p>The <em>text</em> message to be encrypted and sent</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>The recipients Id, not RS Address</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>The senders key set for encryption and signing</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>The optional deadline (in minutes) for the transaction to be confirmed, 1440 minutes maximum</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>The optional fee (expressed in Burst) for the message, default is 0.1 Burst.</p>
 							</dd>
 							<dt>returns</dt>
 							<dd><p>The Transaction Id</p>
@@ -150,14 +163,29 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>signedTransactionPayload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderKeys<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Keys</span>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, fee<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>signedTransactionPayload: <span class="tsd-signature-type">string</span></h5>
+												<h5>message: <span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li>
+												<h5>recipientId: <span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li>
+												<h5>recipientPublicKey: <span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li>
+												<h5>senderKeys: <span class="tsd-signature-type">Keys</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> deadline: <span class="tsd-signature-type">number</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> fee: <span class="tsd-signature-type">number</span></h5>
 											</li>
 										</ul>
 										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -168,70 +196,29 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="gettransaction" class="tsd-anchor"></a>
-					<h3>get<wbr>Transaction</h3>
-					<div class="tsd-signature tsd-kind-icon">get<wbr>Transaction<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<a name="sendtextmessage" class="tsd-anchor"></a>
+					<h3>send<wbr>Text<wbr>Message</h3>
+					<div class="tsd-signature tsd-kind-icon">send<wbr>Text<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/28a7aff/lib/packages/core/src/typings/api/transactionApi.ts#L27">core/src/typings/api/transactionApi.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e696a0e/lib/packages/core/src/typings/api/messageApi.ts#L26">core/src/typings/api/messageApi.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Get a transaction and its details from the network/blockchain</p>
+							<p>Broadcasts a text message to the network/blockchain</p>
 						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The transaction Id</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction</p>
-							</dd>
-						</dl>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>transactionId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transaction.html" class="tsd-signature-type">Transaction</a><span class="tsd-signature-symbol">&gt;</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>transactionId: <span class="tsd-signature-type">string</span></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transaction.html" class="tsd-signature-type">Transaction</a><span class="tsd-signature-symbol">&gt;</span></h4>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="sendmoney" class="tsd-anchor"></a>
-					<h3>send<wbr>Money</h3>
-					<div class="tsd-signature tsd-kind-icon">send<wbr>Money<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/28a7aff/lib/packages/core/src/typings/api/transactionApi.ts#L42">core/src/typings/api/transactionApi.ts:42</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Sends burst to the blockchain</p>
-						</div>
-						<p>The transaction will be broadcasted in two steps.</p>
+						<p>The message will be broadcasted in two steps.</p>
 						<ol>
-							<li>Send the sendMoney call with public key to the network</li>
+							<li>Send the message with public key to the network</li>
 							<li>Take the returned unsigned message and sign it, i.e. the private key won&#39;t be transmitted.</li>
 						</ol>
 						<dl class="tsd-comment-tags">
 							<dt>param</dt>
-							<dd><p>The unsigned transaction</p>
+							<dd><p>The <em>text</em> message to be sent</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>The recipients Id, not RS Address</p>
 							</dd>
 							<dt>param</dt>
 							<dd><p>The senders public key for sending an <em>unsigned</em> message</p>
@@ -240,10 +227,13 @@
 							<dd><p>The senders private key to <em>sign</em> the message</p>
 							</dd>
 							<dt>param</dt>
-							<dd><p>The recipients RS Address</p>
+							<dd><p>The optional deadline (in minutes) for the transaction to be confirmed, 1440 minutes maximum</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>The optional fee (expressed in Burst) for the message, default is 0.1 Burst.</p>
 							</dd>
 							<dt>returns</dt>
-							<dd><p>The Transaction</p>
+							<dd><p>The Transaction Id</p>
 							</dd>
 						</dl>
 					</div>
@@ -252,14 +242,17 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="core.transaction.html" class="tsd-signature-type">Transaction</a>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientAddress<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, fee<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>transaction: <a href="core.transaction.html" class="tsd-signature-type">Transaction</a></h5>
+												<h5>message: <span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li>
+												<h5>recipientId: <span class="tsd-signature-type">string</span></h5>
 											</li>
 											<li>
 												<h5>senderPublicKey: <span class="tsd-signature-type">string</span></h5>
@@ -268,80 +261,10 @@
 												<h5>senderPrivateKey: <span class="tsd-signature-type">string</span></h5>
 											</li>
 											<li>
-												<h5>recipientAddress: <span class="tsd-signature-type">string</span></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">&gt;</span></h4>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="sendmoneymultiout" class="tsd-anchor"></a>
-					<h3>send<wbr>Money<wbr>Multi<wbr>Out</h3>
-					<div class="tsd-signature tsd-kind-icon">send<wbr>Money<wbr>Multi<wbr>Out<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/28a7aff/lib/packages/core/src/typings/api/transactionApi.ts#L64">core/src/typings/api/transactionApi.ts:64</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Sends a multi-out request to the blockchain</p>
-						</div>
-						<p>The transaction will be broadcasted in two steps.</p>
-						<ol>
-							<li>If sameAmount is true. &quot;sendMoneyMultiSame&quot; is called, otherwise &quot;sendMoneyMulti&quot; is called</li>
-							<li>Take the returned unsigned message and sign it, i.e. the private key won&#39;t be transmitted.</li>
-						</ol>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The unsigned transaction</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders public key for sending an <em>unsigned</em> message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders private key to <em>sign</em> the message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The multi-out string of recipient-&gt;amount key value pairs</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>Whether all recipients will receive the same amount</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction</p>
-							</dd>
-						</dl>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="core.transaction.html" class="tsd-signature-type">Transaction</a>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipients<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, sameAmount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>transaction: <a href="core.transaction.html" class="tsd-signature-type">Transaction</a></h5>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> deadline: <span class="tsd-signature-type">number</span></h5>
 											</li>
 											<li>
-												<h5>senderPublicKey: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5>senderPrivateKey: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5>recipients: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5>sameAmount: <span class="tsd-signature-type">boolean</span></h5>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> fee: <span class="tsd-signature-type">number</span></h5>
 											</li>
 										</ul>
 										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -359,72 +282,51 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/core.html">core</a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/core_api.html">core.api</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/core_api_factories.html">core.api.factories</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/crypto.html">crypto</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/http.html">http</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/util.html">util</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/core_api.api.html" class="tsd-kind-icon">Api</a>
+						<a href="../classes/core.api.api.html" class="tsd-kind-icon">Api</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/core_api.apicomposer.html" class="tsd-kind-icon">Api<wbr>Composer</a>
+						<a href="../classes/core.api.apicomposer.html" class="tsd-kind-icon">Api<wbr>Composer</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/core_api.apisettings.html" class="tsd-kind-icon">Api<wbr>Settings</a>
+						<a href="../classes/core.api.apisettings.html" class="tsd-kind-icon">Api<wbr>Settings</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="core_api.accountapi.html" class="tsd-kind-icon">Account<wbr>Api</a>
+						<a href="core.api.accountapi.html" class="tsd-kind-icon">Account<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="core_api.blockapi.html" class="tsd-kind-icon">Block<wbr>Api</a>
+						<a href="core.api.aliasapi.html" class="tsd-kind-icon">Alias<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="core_api.messageapi.html" class="tsd-kind-icon">Message<wbr>Api</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="core_api.networkapi.html" class="tsd-kind-icon">Network<wbr>Api</a>
+						<a href="core.api.blockapi.html" class="tsd-kind-icon">Block<wbr>Api</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="core_api.transactionapi.html" class="tsd-kind-icon">Transaction<wbr>Api</a>
+						<a href="core.api.messageapi.html" class="tsd-kind-icon">Message<wbr>Api</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core_api.transactionapi.html#broadcasttransaction" class="tsd-kind-icon">broadcast<wbr>Transaction</a>
+								<a href="core.api.messageapi.html#sendencryptedtextmessage" class="tsd-kind-icon">send<wbr>Encrypted<wbr>Text<wbr>Message</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core_api.transactionapi.html#gettransaction" class="tsd-kind-icon">get<wbr>Transaction</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core_api.transactionapi.html#sendmoney" class="tsd-kind-icon">send<wbr>Money</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core_api.transactionapi.html#sendmoneymultiout" class="tsd-kind-icon">send<wbr>Money<wbr>Multi<wbr>Out</a>
+								<a href="core.api.messageapi.html#sendtextmessage" class="tsd-kind-icon">send<wbr>Text<wbr>Message</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.api.networkapi.html" class="tsd-kind-icon">Network<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.api.transactionapi.html" class="tsd-kind-icon">Transaction<wbr>Api</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/core_api.html#composeapi" class="tsd-kind-icon">compose<wbr>Api</a>
+						<a href="../modules/core.api.html#composeapi" class="tsd-kind-icon">compose<wbr>Api</a>
 					</li>
 				</ul>
 			</nav>
