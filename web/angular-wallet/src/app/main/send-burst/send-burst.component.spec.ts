@@ -35,6 +35,7 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { SendBurstFormComponent } from './send-burst-form/send-burst-form.component';
 import { SendMultiOutFormComponent } from './send-multi-out-form/send-multi-out-form.component';
 import {WarnSendDialogComponent} from './warn-send-dialog/warn-send-dialog.component';
+import {PageModule} from '../../components/page/page.module';
 
 describe('SendBurstComponent', () => {
   let component: SendBurstComponent;
@@ -66,7 +67,8 @@ describe('SendBurstComponent', () => {
           [{path: 'send', component: SendBurstComponent}]
         ),
         MatProgressSpinnerModule,
-        MatDialogModule
+        MatDialogModule,
+        PageModule
       ],
       declarations: [
         SendBurstComponent,

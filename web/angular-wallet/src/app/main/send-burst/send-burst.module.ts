@@ -26,6 +26,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { SendBurstFormComponent } from './send-burst-form/send-burst-form.component';
 import { SendMultiOutFormComponent } from './send-multi-out-form/send-multi-out-form.component';
 import { WarnSendDialogComponent } from './warn-send-dialog/warn-send-dialog.component';
+import {PageModule} from '../../components/page/page.module';
 
 const routes = [
   {
@@ -68,7 +69,8 @@ const routes = [
     MatChipsModule,
     MatBadgeModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    PageModule
   ],
   entryComponents: [
     WarnSendDialogComponent
