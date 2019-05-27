@@ -5,29 +5,28 @@
 ## Project Status:
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/81a6119af03d4a7e8a55c65999884709)](https://www.codacy.com/app/ohager/phoenix?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=burst-apps-team/phoenix&amp;utm_campaign=Badge_Grade)
-
-
-#### BurstJS 
-
 [![Build Status](https://travis-ci.org/burst-apps-team/phoenix.svg?branch=develop)](https://travis-ci.org/burst-apps-team/phoenix) 
 [![Known Vulnerabilities](https://snyk.io/test/github/burst-apps-team/phoenix/badge.svg?targetFile=lib%2Fpackage.json)](https://snyk.io/test/github/burst-apps-team/phoenix?targetFile=lib%2Fpackage.json)
 [![codecov](https://codecov.io/gh/burst-apps-team/phoenix/branch/develop/graph/badge.svg)](https://codecov.io/gh/burst-apps-team/phoenix)
+
 
 ---
 
 ## About Phoenix
 
+<img src="./assets/burstjs.png" width="120" />
 
 Phoenix was proposed in [CIP-18](https://github.com/burst-apps-team/CIPs/blob/master/cip-0018.md) and is designed to be a cross-platform wallet for the BURST blockchain.
 
 ![image](assets/beta.7/phoenix_1_beta.7.jpg)
+
 ### Key features:
 - Improved security - Private keys are encrypted with a hashed PIN, securing them in the event of data breach. That PIN is then used for locally signing transactions and decrypting messages. Passphrases are not stored locally, and never sent to the server. 
 - Multi-account support - Manage multiple BURST accounts within your wallet.
 - Offline account support - Add an account using just a BURST address for maximum security.
 - Cross-platform - Runs on all popular platforms without any additional software requirements.
 - Dashboard - with Market Information and Interactive Balance History Diagram.
-
+- Powered by BurstJS
 
 (Mobile coming soon)
 
