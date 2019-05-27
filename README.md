@@ -1,20 +1,17 @@
 # Phoenix
 
-<img src="./assets/phoenix.png" width="400" />
-
-## Project Status:
+---
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/81a6119af03d4a7e8a55c65999884709)](https://www.codacy.com/app/ohager/phoenix?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=burst-apps-team/phoenix&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.org/burst-apps-team/phoenix.svg?branch=develop)](https://travis-ci.org/burst-apps-team/phoenix) 
 [![Known Vulnerabilities](https://snyk.io/test/github/burst-apps-team/phoenix/badge.svg?targetFile=lib%2Fpackage.json)](https://snyk.io/test/github/burst-apps-team/phoenix?targetFile=lib%2Fpackage.json)
 [![codecov](https://codecov.io/gh/burst-apps-team/phoenix/branch/develop/graph/badge.svg)](https://codecov.io/gh/burst-apps-team/phoenix)
 
-
 ---
 
-## About Phoenix
+## About
 
-<img src="./assets/burstjs.png" width="120" />
+<img src="./assets/phoenix.png" width="120" />
 
 Phoenix was proposed in [CIP-18](https://github.com/burst-apps-team/CIPs/blob/master/cip-0018.md) and is designed to be a cross-platform wallet for the BURST blockchain.
 
@@ -26,7 +23,7 @@ Phoenix was proposed in [CIP-18](https://github.com/burst-apps-team/CIPs/blob/ma
 - Offline account support - Add an account using just a BURST address for maximum security.
 - Cross-platform - Runs on all popular platforms without any additional software requirements.
 - Dashboard - with Market Information and Interactive Balance History Diagram.
-- Powered by BurstJS
+- Powered by <img src="./assets/burstjs.png" width="80" />
 
 (Mobile coming soon)
 
