@@ -1,6 +1,4 @@
-# Phoenix
-
----
+# Phoenix <img src="./assets/phoenix.png" width="100" />
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/81a6119af03d4a7e8a55c65999884709)](https://www.codacy.com/app/ohager/phoenix?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=burst-apps-team/phoenix&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.org/burst-apps-team/phoenix.svg?branch=develop)](https://travis-ci.org/burst-apps-team/phoenix) 
@@ -10,8 +8,6 @@
 ---
 
 ## About
-
-<img src="./assets/phoenix.png" width="120" />
 
 Phoenix was proposed in [CIP-18](https://github.com/burst-apps-team/CIPs/blob/master/cip-0018.md) and is designed to be a cross-platform wallet for the BURST blockchain.
 
