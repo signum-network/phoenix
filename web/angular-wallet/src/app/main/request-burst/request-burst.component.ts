@@ -1,48 +1,50 @@
 import { Component, OnInit, ViewChild, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { SuggestedFees, Account } from '@burstjs/core';
 import { NgForm } from '@angular/forms';
-import { burstAddressPattern, convertNQTStringToNumber, convertNumberToNQTString } from '@burstjs/util';
+import { convertNumberToNQTString } from '@burstjs/util';
 import { ActivatedRoute } from '@angular/router';
-import { TransactionService } from '../transactions/transaction.service';
-import { decryptAES } from '@burstjs/crypto';
 import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
-import { NotifierService } from 'angular-notifier';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { MatStepper } from '@angular/material';
 import { environment } from 'environments/environment';
+import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-request-burst',
   templateUrl: './request-burst.component.html',
   styleUrls: ['./request-burst.component.scss']
 })
-export class RequestBurstComponent implements OnInit, OnDestroy {
+export class RequestBurstComponent extends UnsubscribeOnDestroy implements OnInit {
   @ViewChild(MatStepper) stepper: MatStepper;
   @ViewChild('requestBurstForm') public requestBurstForm: NgForm;
-  @ViewChild('amountNQT') public amountNQT: string;
+  @ViewChild('amountNQT') public amountNQT = '0';
   @ViewChild('feeNQT') public feeNQT: string;
   @ViewChild('immutable') public immutable = false;
   @Output() submit = new EventEmitter<any>();
-  
+
   advanced = false;
   showMessage = false;
   account: Account;
   fees: SuggestedFees;
   imgSrc: string;
-  poller;
   senderRS: string;
+  poller;
 
   constructor(private route: ActivatedRoute,
     private accountService: AccountService,
     private storeService: StoreService) {
+    super();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.account = this.route.snapshot.data.account as Account;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
 
-    this.storeService.ready.subscribe((ready) => {
+    this.storeService
+      .ready
+      .pipe( takeUntil(this.unsubscribeAll) )
+      .subscribe((ready) => {
       if (ready) {
         this.accountService.currentAccount.subscribe((account) => {
           this.account = account;
@@ -52,13 +54,17 @@ export class RequestBurstComponent implements OnInit, OnDestroy {
 
   }
 
-  getTotal() {
-    return parseFloat(this.amountNQT) + parseFloat(this.feeNQT) || 0;
+  getAmount(): number {
+    return parseFloat(this.amountNQT) || 0;
   }
 
-  async onSubmit(event) {
+  getTotal(): number {
+    return this.getAmount() + parseFloat(this.feeNQT) || 0;
+  }
+
+  async onSubmit(event): Promise<void> {
     this.imgSrc = await this.accountService.generateSendTransactionQRCodeAddress(
-      this.account.account, 
+      this.account.account,
       parseFloat(convertNumberToNQTString(parseFloat(this.amountNQT))) || 0,
       undefined,
       parseFloat(convertNumberToNQTString(parseFloat(this.feeNQT))),
@@ -73,6 +79,7 @@ export class RequestBurstComponent implements OnInit, OnDestroy {
   }
 
   startPollingForPayment() {
+    this.clearPollInterval();
     this.poller = setInterval(async () => {
       try {
         const transactions = await this.accountService.getUnconfirmedTransactions(this.account.account);
@@ -81,17 +88,22 @@ export class RequestBurstComponent implements OnInit, OnDestroy {
             this.stepper.selectedIndex = 2;
             this.senderRS = transaction.senderRS;
           }
-        })
+        });
       } catch (e) {
         console.log(e);
       }
     }, 5000); // 5 secs
   }
 
-  ngOnDestroy() {
-    if (this.poller) {
+  clearPollInterval(): void {
+    if (this.poller){
       clearInterval(this.poller);
     }
+  }
+
+  ngOnDestroy(): void {
+    super.ngOnDestroy();
+    this.clearPollInterval();
   }
 
 }

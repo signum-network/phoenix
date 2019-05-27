@@ -24,7 +24,7 @@ import {DashboardComponent} from './dashboard.component';
 import {MarketModule} from './market/market.module';
 import {BalanceDiagramComponent} from './balance-diagram/balance-diagram.component';
 import {TooltipComponent} from './balance-diagram/tooltip/tooltip.component';
-import { BalanceComponent } from './balance/balance.component';
+import {BalanceComponent} from './balance/balance.component';
 
 const routes: Routes = [
   {

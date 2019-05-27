@@ -1,10 +1,11 @@
-<h2>{{ 'qr_code' | i18n }}</h2>
+<div class="request-container">
 
-<img src="{{imgSrc}}" />
+  <img src="{{imgSrc}}"/>
 
-<ul>
-  <li><strong>{{ 'recipient' | i18n }}</strong>: {{ recipientRS }}</li>
-  <li><strong>{{ 'amount' | i18n }}</strong>: {{ amountNQT }} BURST</li>
-  <li><strong>{{ 'fee' | i18n }}</strong>: {{ feeNQT }}</li>
-  <li><strong>{{ 'immutable' | i18n }}</strong>: {{ !!immutable }}</li>
-</ul>
+  <ul>
+    <li><strong>{{ 'recipient' | i18n }}</strong>: {{ recipientRS }}</li>
+    <li><strong>{{ 'amount' | i18n }}</strong>: {{ amountNQT }} BURST</li>
+    <li><strong>{{ 'fee' | i18n }}</strong>: {{ feeNQT }}</li>
+    <li><strong>{{ 'immutable' | i18n }}</strong>: {{ !!immutable }}</li>
+  </ul>
+</div>
