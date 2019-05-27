@@ -20,6 +20,7 @@
 
 Phoenix was proposed in [CIP-18](https://github.com/burst-apps-team/CIPs/blob/master/cip-0018.md) and is designed to be a cross-platform wallet for the BURST blockchain.
 
+![image](assets/beta.7/phoenix_1_beta.7.jpg)
 ### Key features:
 - Improved security - Private keys are encrypted with a hashed PIN, securing them in the event of data breach. That PIN is then used for locally signing transactions and decrypting messages. Passphrases are not stored locally, and never sent to the server. 
 - Multi-account support - Manage multiple BURST accounts within your wallet.
@@ -27,10 +28,6 @@ Phoenix was proposed in [CIP-18](https://github.com/burst-apps-team/CIPs/blob/ma
 - Cross-platform - Runs on all popular platforms without any additional software requirements.
 - Dashboard - with Market Information and Interactive Balance History Diagram.
 
-### Screenshots:
-![image](https://user-images.githubusercontent.com/42594751/56260794-73be0900-608d-11e9-8532-c41a02f383d8.png)
-![image](https://user-images.githubusercontent.com/42594751/56260204-32c4f500-608b-11e9-940a-c807f050436b.png)
-![image](https://user-images.githubusercontent.com/42594751/56260226-4bcda600-608b-11e9-8794-c13ac9ffa493.png)
 
 (Mobile coming soon)
 
@@ -41,10 +38,25 @@ Phoenix was proposed in [CIP-18](https://github.com/burst-apps-team/CIPs/blob/ma
 - Messages support - Send and receive encrypted and unencrypted messages.
 - View peers, blocks, and transactions.
 - Node Configuration - Select from a predefined list of nodes or use your own.
+- Update Notification - Be up-to-date with inbuilt update download
 - Localized in 30 languages.
 - Responsive UI
 
 *Some features not available on mobile.*
+
+#Screenshots
+![image](assets/beta.7/phoenix_2_beta.7.jpg)
+
+![image](assets/beta.7/phoenix_3_beta.7.jpg)
+
+![image](assets/beta.7/phoenix_4_beta.7.jpg)
+
+![image](assets/beta.7/phoenix_5_beta.7.jpg)
+
+![image](assets/beta.7/phoenix_6_beta.7.jpg)
+
+![image](assets/beta.7/phoenix_7_beta.7.png)
+
 
 ## Application Architecture
 
