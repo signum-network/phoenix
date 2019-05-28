@@ -24,8 +24,8 @@ export class AddAliasComponent implements OnInit {
   @Output() submit = new EventEmitter<any>();
 
   public feeNQT: string;
-  advanced: boolean = false;
-  showMessage: boolean = false;
+  advanced = false;
+  showMessage = false;
   burstAddressPatternRef = burstAddressPattern;
   type = 'uri';
   account: Account;
@@ -58,7 +58,7 @@ export class AddAliasComponent implements OnInit {
       });
       this.notifierService.notify('success', this.i18nService.getTranslation('success_alias_register'));
       this.setAliasForm.resetForm();
-    } catch (e) { 
+    } catch (e) {
       this.notifierService.notify('error', this.i18nService.getTranslation('error_unknown'));
     }
   }
@@ -72,4 +72,3 @@ export class AddAliasComponent implements OnInit {
     }
   }
 }
- 

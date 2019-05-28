@@ -1,15 +1,20 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input} from '@angular/core';
+
+export interface BreadcrumbInfo {
+  path: string;
+  label: string;
+}
 
 @Component({
   selector: 'app-page',
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.scss']
 })
-export class PageComponent {
+export class PageComponent{
 
   @Input()
   title: string;
 
-  constructor() { }
-
+  @Input()
+  breadcrumbs: BreadcrumbInfo[];
 }

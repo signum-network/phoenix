@@ -3,7 +3,28 @@ import { CommonModule } from '@angular/common';
 import { AliasesComponent } from './aliases.component';
 import { AccountsResolver } from '../accounts/accounts.resolver';
 import { RouterModule } from '@angular/router';
-import { MatDialogModule, MatButtonModule, MatFormFieldModule, MatTableModule, MatTabsModule, MatSortModule, MatSelectModule, MatPaginatorModule, MatNativeDateModule, MatInputModule, MatIconModule, MatGridListModule, MatExpansionModule, MatDividerModule, MatDatepickerModule, MatChipsModule, MatCheckboxModule, MatCardModule, MatAutocompleteModule } from '@angular/material';
+import {
+  MatDialogModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatTableModule,
+  MatTabsModule,
+  MatSortModule,
+  MatSelectModule,
+  MatPaginatorModule,
+  MatNativeDateModule,
+  MatInputModule,
+  MatIconModule,
+  MatGridListModule,
+  MatExpansionModule,
+  MatDividerModule,
+  MatDatepickerModule,
+  MatChipsModule,
+  MatCheckboxModule,
+  MatCardModule,
+  MatAutocompleteModule,
+  MatTooltipModule
+} from '@angular/material';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FuseSharedModule } from '@fuse/shared.module';
@@ -16,6 +37,7 @@ import { LoginGuard } from 'app/login/login-guard.service';
 import { AccountResolver } from 'app/setup/account/account.resolver';
 import { SuggestFeeResolver } from 'app/network/suggest-fee.resolver';
 import { LayoutModule } from 'app/layout/layout.module';
+import {PageModule} from '../../components/page/page.module';
 
 const routes = [
   {
@@ -31,7 +53,7 @@ const routes = [
     component: AddAliasComponent,
     canActivate: [LoginGuard],
     resolve: {
-      account: AccountResolver, 
+      account: AccountResolver,
       suggestedFees: SuggestFeeResolver
     }
   }
@@ -64,10 +86,12 @@ const routes = [
     MatTabsModule,
     MatTableModule,
     MatButtonModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     I18nModule,
     MatDialogModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    PageModule
   ]
 })
 export class AliasesModule { }

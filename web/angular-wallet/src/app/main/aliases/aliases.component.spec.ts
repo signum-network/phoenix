@@ -1,16 +1,26 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AliasesComponent } from './aliases.component';
-import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSortModule, MatTableModule, MatDialogModule  } from '@angular/material';
-import { ReactiveFormsModule } from '@angular/forms';
-import { I18nModule } from 'app/layout/components/i18n/i18n.module';
-import { BehaviorSubject } from 'rxjs';
-import { StoreService } from 'app/store/store.service';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
-import { AccountService } from 'app/setup/account/account.service';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AliasesComponent} from './aliases.component';
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatSortModule,
+  MatTableModule,
+  MatDialogModule,
+  MatTooltipModule
+} from '@angular/material';
+import {ReactiveFormsModule} from '@angular/forms';
+import {I18nModule} from 'app/layout/components/i18n/i18n.module';
+import {BehaviorSubject} from 'rxjs';
+import {StoreService} from 'app/store/store.service';
+import {I18nService} from 'app/layout/components/i18n/i18n.service';
+import {AccountService} from 'app/setup/account/account.service';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {PageModule} from '../../components/page/page.module';
 
 describe('AliasesComponent', () => {
   let component: AliasesComponent;
@@ -26,14 +36,16 @@ describe('AliasesComponent', () => {
         MatIconModule,
         MatButtonModule,
         HttpClientTestingModule,
-        ReactiveFormsModule, 
+        ReactiveFormsModule,
         I18nModule,
         BrowserAnimationsModule,
         RouterTestingModule.withRoutes(
           [{path: 'aliases', component: AliasesComponent}]
-        )
+        ),
+        MatTooltipModule,
+        PageModule,
       ],
-      providers: [ I18nService, {
+      providers: [I18nService, {
         provide: StoreService,
         useFactory: () => {
           return {
@@ -44,17 +56,16 @@ describe('AliasesComponent', () => {
           };
         }
       },
-      {
-        provide: AccountService,
-        useFactory: () => {
-          return {
-            getAliases: () => Promise.resolve({aliases: [{aliasName: '123'}]})
-          }
-        }
-      }],
-      declarations: [ AliasesComponent ]
+        {
+          provide: AccountService,
+          useFactory: () => ({
+              getAliases: () => Promise.resolve({aliases: [{aliasName: '123'}]})
+            }
+          )
+        }],
+      declarations: [AliasesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
