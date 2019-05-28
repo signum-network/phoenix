@@ -6,8 +6,15 @@
 
     <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
       <div fxLayout="row" fxLayoutAlign="start center">
+
         <a [routerLink]="['/dashboard']"><mat-icon class="secondary-text s-18">home</mat-icon></a>
         <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+
+        <ng-container *ngFor="let breadcrumb of breadcrumbs">
+          <a class="secondary-text" [routerLink]="[breadcrumb.path]">{{breadcrumb.label}}</a>
+          <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+        </ng-container>
+
         <span class="secondary-text">{{title}}</span>
       </div>
       <div class="h1 mt-16">{{title}}</div>
@@ -16,7 +23,7 @@
 
   <!-- CENTER -->
   <div class="content-container">
-    <div class="p-24 content">
+    <div class="content">
       <ng-content></ng-content>
     </div>
   </div>

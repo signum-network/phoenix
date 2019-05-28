@@ -1,5 +1,13 @@
 # Changelog
 
+## unreleased
+
+### New Features:
+
+
+### Bug Fixes:
+- Corrected incomings/outgoings in Account Details
+
 ##1.0.0-beta.7
 
 ### New Features:

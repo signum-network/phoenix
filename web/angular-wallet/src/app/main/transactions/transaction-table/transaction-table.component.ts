@@ -1,4 +1,13 @@
-import {Component, Input, OnInit, ViewChild, ChangeDetectionStrategy, AfterViewInit} from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+  ChangeDetectionStrategy,
+  AfterViewInit,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import {MatTableDataSource, MatPaginator} from '@angular/material';
 import {ActivatedRoute} from '@angular/router';
 import {
@@ -12,15 +21,14 @@ import {UtilService} from 'app/util.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {StoreService} from '../../../store/store.service';
-import { AccountService } from 'app/setup/account/account.service';
+import {AccountService} from 'app/setup/account/account.service';
 
 @Component({
   selector: 'app-transaction-table',
   styleUrls: ['./transaction-table.component.scss'],
   templateUrl: './transaction-table.component.html',
 })
-export class TransactionTableComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
-
+export class TransactionTableComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit, OnChanges {
   public locale: string;
 
   constructor(private utilService: UtilService,
@@ -42,23 +50,35 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements O
   private account: Account;
 
   @Input() dataSource: MatTableDataSource<Transaction>;
+  @Input() relatedAccount: Account;
   @Input() public displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   public isMultiOutPayment(transaction: Transaction): boolean {
-    return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction)
+    return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction);
   }
 
   public ngOnInit(): void {
-    this.setAccount(this.route.snapshot.data.account);
+
+    const referencedAccount = this.route.snapshot.data.account;
+    if (referencedAccount) {
+      this.setAccount(referencedAccount);
+      return;
+    }
+
     this.accountService.currentAccount
-    .pipe(
-      takeUntil(this.unsubscribeAll)
-    )
-    .subscribe((account) => {
-      this.setAccount(account);
-    });
+      .pipe(
+        takeUntil(this.unsubscribeAll)
+      )
+      .subscribe((account) => {
+        this.setAccount(account);
+      });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const referencedAccount = this.route.snapshot.data.account;
+    this.setAccount(referencedAccount);
   }
 
   public setAccount(account: Account): void {

@@ -1,5 +1,5 @@
 <app-page title="{{ 'send_burst' | i18n }}" *ngIf="fees">
-  <mat-tab-group>
+  <mat-tab-group class="p-20">
     <mat-tab label="{{ 'ordinary_payment' | i18n }}">
       <app-send-burst-form [fees]="fees" [account]="account"></app-send-burst-form>
     </mat-tab>

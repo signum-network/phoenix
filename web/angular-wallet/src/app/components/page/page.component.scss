@@ -1,3 +1,5 @@
+@import "src/@fuse/scss/fuse";
+
 :host {
 
   width: 100%;
@@ -7,14 +9,26 @@
     display: flex;
     flex: 1;
     justify-content: center;
+    @include media-breakpoint('xs') {
+      height: 100%;
+      background: white;
+    }
 
     .content {
       max-width: 600px;
       background: white;
       border-radius: 8px;
       height: fit-content;
+      padding: 16px;
       width: 100%;
-      margin-top: 2em;
+      margin: 2em 0;
+      box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+      @include media-breakpoint('xs') {
+        margin: 0;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+      }
     }
   }
 }
