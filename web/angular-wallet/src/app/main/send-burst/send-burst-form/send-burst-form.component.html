@@ -5,7 +5,7 @@
   <mat-grid-list cols="2" rowHeight="85px" gutterSize="10px">
     <mat-grid-tile>
       <mat-form-field>
-        <input matInput [(ngModel)]="amountNQT"  name="amountNQT" placeholder="{{ 'amount' | i18n }}" [disabled]="immutable">
+        <input matInput [(ngModel)]="amountNQT" name="amountNQT" placeholder="{{ 'amount' | i18n }}" [disabled]="immutable">
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile *ngIf="feeNQT">

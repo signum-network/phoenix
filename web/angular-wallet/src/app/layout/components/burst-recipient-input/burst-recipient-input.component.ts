@@ -168,7 +168,7 @@ export class BurstRecipientInputComponent implements OnInit {
               }
             };
 
-            window.URL.revokeObjectURL( img.src );
+            window.URL.revokeObjectURL(img.src);
             reader.readAsDataURL(file);
         };
     }

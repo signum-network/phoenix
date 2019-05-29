@@ -3,7 +3,7 @@
 ## unreleased
 
 ### New Features:
-
+- Added ability to scan QR codes when sending BURST
 
 ### Bug Fixes:
 - Corrected incomings/outgoings in Account Details
