@@ -1,6 +1,6 @@
 <form (ngSubmit)="onSubmit($event);" #sendBurstForm="ngForm">
 
-  <mat-checkbox (click)="toggleSameAmount()" class="same-amount">{{ "same_out" | i18n }}</mat-checkbox>
+  <mat-checkbox labelPosition="before" (click)="toggleSameAmount()" class="same-amount">{{ "same_out" | i18n }}?</mat-checkbox>
 
   <mat-form-field *ngIf="sameAmount">
     <input matInput [(ngModel)]="amountNQT" name="amountNQT" placeholder="{{ 'amount' | i18n }}">
