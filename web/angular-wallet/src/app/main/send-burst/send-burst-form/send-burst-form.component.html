@@ -17,13 +17,13 @@
 
   <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
 
-  <mat-checkbox (click)="showMessage=!showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>
+  <mat-checkbox labelPosition="before" (click)="showMessage=!showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>
 
   <div *ngIf="showMessage">
     <mat-form-field>
       <textarea matInput [(ngModel)]="message" name="message" placeholder="{{ 'message' | i18n }}"></textarea>
     </mat-form-field>
-    <mat-checkbox [(ngModel)]="encrypt" name="encrypt">{{ "encrypt_message" | i18n }}</mat-checkbox>
+    <mat-checkbox  labelPosition="before" [(ngModel)]="encrypt" name="encrypt">{{ "encrypt_message" | i18n }}?</mat-checkbox>
   </div>
 
   <div *ngIf="advanced">
