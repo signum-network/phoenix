@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Account, SuggestedFees} from '@burstjs/core';
-import {burstAddressPattern} from '@burstjs/util';
+import {burstAddressPattern, convertNQTStringToNumber} from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
@@ -13,6 +13,13 @@ import {
   RecipientValidationStatus
 } from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
 
+
+interface QRData {
+  recipient: Recipient;
+  amountNQT: string;
+  feeNQT: string;
+  immutable: boolean;
+}
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -36,6 +43,7 @@ export class SendBurstFormComponent implements OnInit {
   showMessage = false;
   burstAddressPatternRef = burstAddressPattern;
   deadline = '24';
+  immutable = false;
 
   public recipient = new Recipient();
   public feeNQT: string;
@@ -94,6 +102,7 @@ export class SendBurstFormComponent implements OnInit {
     } catch (e) {
       this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
     }
+    this.immutable = false;
     this.isSending = false;
   }
 
@@ -131,4 +140,11 @@ export class SendBurstFormComponent implements OnInit {
   onRecipientChange(recipient: Recipient): void {
     this.recipient = recipient;
   }
+
+  onQRUpload(qrData: QRData): void {
+    this.amountNQT = convertNQTStringToNumber(qrData.amountNQT).toString();
+    this.feeNQT = convertNQTStringToNumber(qrData.feeNQT).toString();
+    this.immutable = qrData.immutable;
+  }
+
 }

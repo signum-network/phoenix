@@ -44,7 +44,37 @@ mat-form-field {
     word-break: normal;
     hyphenate-character: "-";
   }
+
 }
 
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
 
+.inputfile + .camera-icon {
+  margin-left:10px;
+  font-size: 1.25em;
+  font-weight: 700;
+  color: #666;
+  display: inline-block;
+  cursor: pointer; 
+}
 
+.inputfile:focus + .camera-icon,
+.inputfile + .camera-icon:hover {
+  color: black;
+}
+
+.inputfile:focus + .camera-icon {
+  outline: 1px dotted #666;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + .camera-icon * {
+  pointer-events: none;
+}

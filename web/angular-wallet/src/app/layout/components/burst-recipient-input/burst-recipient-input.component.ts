@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef} from '@angular/core';
 import {convertAddressToNumericId} from '@burstjs/util';
 import {AccountService} from '../../../setup/account/account.service';
+import jsQR from 'jsqr';
 
 export enum RecipientType {
   UNKNOWN = 0,
@@ -39,8 +40,13 @@ export class BurstRecipientInputComponent implements OnInit {
   recipient = new Recipient();
   @Output()
   recipientChange = new EventEmitter();
+  @Output()
+  qrCodeUpload = new EventEmitter();
 
   @Input('appearance') appearance: string = '';
+  @Input('disabled') disabled: boolean = false;
+
+  @ViewChild('file') file: ElementRef;
 
   constructor(private accountService: AccountService) {
   }
@@ -94,13 +100,6 @@ export class BurstRecipientInputComponent implements OnInit {
     }).finally(() => {
         // TODO: use Recipient class
         this.recipientChange.emit(this.recipient);
-
-        // this.recipientChange.emit({
-        //   status: this.recipientTypeValidationStatus,
-        //   accountRS: this.recipientRS,
-        //   accountRaw: this.recipientValue,
-        //   type: this.recipientType
-        // });
       }
     );
 
@@ -133,5 +132,45 @@ export class BurstRecipientInputComponent implements OnInit {
 
   getValidationClass(): string {
     return 'badge ' + this.recipient.status.toString().toLocaleLowerCase();
+  }
+
+  parseQR(): void {
+    const file = this.file.nativeElement.files[0];
+
+    if (file) {
+        const img = new Image();
+        img.src = window.URL.createObjectURL(file);
+        img.onload = () => {
+            const width = img.naturalWidth,
+                  height = img.naturalHeight;
+
+            const reader = new FileReader();
+            reader.onload = (e: ProgressEvent): void => {
+
+              const canvas = document.createElement('canvas');
+              canvas.width = width;
+              canvas.height = height;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0);
+              const { data }  = ctx.getImageData(0, 0, width, height);
+              const qr = jsQR(data, width, height);
+              if (qr) {
+                const url = new URLSearchParams(qr.data);
+                this.applyRecipientType(url.get('receiver'));
+                this.recipient.addressRaw = url.get('receiver');
+                this.validateRecipient();
+                this.qrCodeUpload.emit({
+                  recipient: this.recipient,
+                  amountNQT: url.get('amountNQT'),
+                  feeNQT: url.get('feeNQT'),
+                  immutable: url.get('immutable') === 'true'
+                });
+              }
+            };
+
+            window.URL.revokeObjectURL( img.src );
+            reader.readAsDataURL(file);
+        };
+    }
   }
 }
