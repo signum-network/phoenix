@@ -50,7 +50,6 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements O
   private account: Account;
 
   @Input() dataSource: MatTableDataSource<Transaction>;
-  @Input() relatedAccount: Account;
   @Input() public displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
