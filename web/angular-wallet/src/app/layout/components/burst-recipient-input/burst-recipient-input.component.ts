@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef} f
 import {convertAddressToNumericId} from '@burstjs/util';
 import {AccountService} from '../../../setup/account/account.service';
 import jsQR from 'jsqr';
+import { NotifierService } from 'angular-notifier';
 
 export enum RecipientType {
   UNKNOWN = 0,
@@ -48,7 +49,8 @@ export class BurstRecipientInputComponent implements OnInit {
 
   @ViewChild('file') file: ElementRef;
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService,
+    private notifierService: NotifierService) {
   }
 
   ngOnInit(): void {
@@ -141,8 +143,9 @@ export class BurstRecipientInputComponent implements OnInit {
         const img = new Image();
         img.src = window.URL.createObjectURL(file);
         img.onload = () => {
-            const width = img.naturalWidth,
-                  height = img.naturalHeight;
+            // reduce the image by 1/4 to make it more reliable 
+            const width = Math.round(img.naturalWidth / 4), 
+                  height = Math.round(img.naturalHeight / 4); 
 
             const reader = new FileReader();
             reader.onload = (e: ProgressEvent): void => {
@@ -151,7 +154,7 @@ export class BurstRecipientInputComponent implements OnInit {
               canvas.width = width;
               canvas.height = height;
               const ctx = canvas.getContext('2d');
-              ctx.drawImage(img, 0, 0);
+              ctx.drawImage(img, 0, 0, width * 4, height * 4, 0, 0, width, height);
               const { data }  = ctx.getImageData(0, 0, width, height);
               const qr = jsQR(data, width, height);
               if (qr) {
@@ -165,6 +168,9 @@ export class BurstRecipientInputComponent implements OnInit {
                   feeNQT: url.get('feeNQT'),
                   immutable: url.get('immutable') === 'true'
                 });
+                this.notifierService.notify('success', 'QR parsed successfully');
+              } else {
+                this.notifierService.notify('error', 'Error parsing QR code');
               }
             };
 
