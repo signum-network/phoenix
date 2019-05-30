@@ -1,21 +1,21 @@
 <form (ngSubmit)="onSubmit($event);" #sendBurstForm="ngForm">
 
-  <burst-recipient-input (recipientChange)="onRecipientChange($event)"></burst-recipient-input>
+  <burst-recipient-input (qrCodeUpload)="onQRUpload($event)" (recipientChange)="onRecipientChange($event)" [disabled]="immutable" ></burst-recipient-input>
 
   <mat-grid-list cols="2" rowHeight="85px" gutterSize="10px">
     <mat-grid-tile>
       <mat-form-field>
-        <input matInput [(ngModel)]="amountNQT" name="amountNQT" placeholder="{{ 'amount' | i18n }}">
+        <input matInput [(ngModel)]="amountNQT" name="amountNQT" placeholder="{{ 'amount' | i18n }}" [disabled]="immutable">
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile *ngIf="feeNQT">
       <mat-form-field>
-        <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
+        <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}" [disabled]="immutable">
       </mat-form-field>
     </mat-grid-tile>
   </mat-grid-list>
 
-  <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
+  <burst-fee-selector *ngIf="!immutable" [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
 
   <mat-checkbox labelPosition="before" (click)="showMessage=!showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>
 
