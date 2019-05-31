@@ -32,6 +32,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { AccountCreateExistingComponent } from './account/create-active/existing/existing.component';
 import { AccountResolver } from './account/account.resolver';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {PageModule} from '../components/page/page.module';
 
 @NgModule({
   imports: [
@@ -58,7 +59,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormsModule,
     I18nModule,
     NgxMaskModule.forRoot(),
-    MatTooltipModule
+    MatTooltipModule,
+    PageModule
   ],
     declarations: [
         SetupComponent,
