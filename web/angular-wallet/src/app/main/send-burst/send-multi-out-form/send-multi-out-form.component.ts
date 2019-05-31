@@ -8,6 +8,9 @@ import {TransactionService} from 'app/main/transactions/transaction.service';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 import {Recipient} from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
+import {takeUntil} from 'rxjs/operators';
+import {StoreService} from '../../../store/store.service';
+import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -16,7 +19,7 @@ const isNotEmpty = (value: string) => value && value.length > 0;
   templateUrl: './send-multi-out-form.component.html',
   styleUrls: ['./send-multi-out-form.component.scss']
 })
-export class SendMultiOutFormComponent implements OnInit {
+export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements OnInit {
 
   @ViewChild('sendBurstForm') public sendBurstForm: NgForm;
   public feeNQT: string;
@@ -39,12 +42,24 @@ export class SendMultiOutFormComponent implements OnInit {
 
   deadline = '24';
   isSending = false;
+  language: string;
 
   constructor(
     private warnDialog: MatDialog,
     private transactionService: TransactionService,
     private notifierService: NotifierService,
-    private i18nService: I18nService) {
+    private i18nService: I18nService,
+    private storeService: StoreService,
+  ) {
+    super();
+    this.storeService.settings
+      .pipe(
+        takeUntil(this.unsubscribeAll)
+      )
+      .subscribe(async ({language}) => {
+          this.language = language;
+        }
+      );
   }
 
   ngOnInit(): void {

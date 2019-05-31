@@ -73,7 +73,7 @@
     </button>
   </div>
 
-  <strong>Total:</strong> {{ getTotal() }} BURST -
+  <strong>Total:</strong> {{ getTotal()  | number: '1.0-6': this.language }} BURST -
   <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
   <br/><br/>
 
