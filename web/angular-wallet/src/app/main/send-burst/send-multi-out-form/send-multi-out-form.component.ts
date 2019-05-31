@@ -53,9 +53,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   ) {
     super();
     this.storeService.settings
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
+      .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(async ({language}) => {
           this.language = language;
         }

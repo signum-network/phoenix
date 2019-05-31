@@ -1,5 +1,15 @@
 <app-page title="{{ 'send_burst' | i18n }}" *ngIf="fees">
-  <mat-tab-group class="p-20">
+  <div class="account-info pl-20 pr-20 mb-8">
+    <div class="account-info__field">
+      <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>
+      <p class="pb-8">{{account.accountRS}}</p>
+    </div>
+    <div class="account-info__field">
+      <small class="secondary-text text-uppercase">{{'balance'| i18n}}</small>
+      <p>{{getBalance() | number : '1.0-4' : language}}</p>
+    </div>
+  </div>
+  <mat-tab-group class="pl-20 pr-20">
     <mat-tab label="{{ 'ordinary_payment' | i18n }}">
       <app-send-burst-form [fees]="fees" [account]="account"></app-send-burst-form>
     </mat-tab>
