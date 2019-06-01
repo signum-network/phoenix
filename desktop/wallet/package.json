@@ -54,7 +54,7 @@
     "tagPrefix": "desktop-"
   },
   "dependencies": {
-    "@burstjs/http": "^0.1.1",
+    "@burstjs/http": "^0.1.2",
     "electron-dl": "^1.14.0",
     "get-ssl-certificate": "^2.3.2",
     "js-yaml": "^3.13.1",
