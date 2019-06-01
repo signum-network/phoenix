@@ -76,8 +76,7 @@ describe('SendBurstFormComponent', () => {
           useFactory: () => {
             return {
               ready: new BehaviorSubject(true),
-              getSettings: () => Promise.resolve({language: 'en'}),
-              saveSettings: () => Promise.resolve(true)
+              settings: new BehaviorSubject(true)
             };
           }
         },
