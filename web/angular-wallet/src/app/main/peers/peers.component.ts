@@ -18,8 +18,8 @@ export class PeersComponent {
     pickerToField = new FormControl();
 
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+    @ViewChild(MatSort, { static: true }) sort: MatSort;
 
     constructor(
         private route: ActivatedRoute

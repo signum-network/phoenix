@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
     templateUrl: './create.component.html'
 })
 export class CreateActiveAccountComponent implements OnInit {
-    @ViewChild(MatStepper) stepper: MatStepper;
+    @ViewChild(MatStepper, { static: true }) stepper: MatStepper;
     @Input('newUser') newUser: boolean;
 
     constructor(public createService: CreateService) {}

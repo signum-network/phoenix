@@ -26,16 +26,16 @@ const isNotEmpty = (value: string) => value && value.length > 0;
 })
 export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements OnInit {
 
-  @ViewChild('sendBurstForm') public sendBurstForm: NgForm;
+  @ViewChild('sendBurstForm', { static: true }) public sendBurstForm: NgForm;
   public feeNQT: string;
-  @ViewChild('recipientAddress') public recipientAddress: string;
-  @ViewChild('amountNQT') public amountNQT: string;
-  @ViewChild('message') public message: string;
-  @ViewChild('fullHash') public fullHash: string;
-  @ViewChild('encrypt') public encrypt: string;
-  @ViewChild('pin') public pin: string;
+  @ViewChild('recipientAddress', { static: false }) public recipientAddress: string;
+  @ViewChild('amountNQT', { static: false }) public amountNQT: string;
+  @ViewChild('message', { static: false }) public message: string;
+  @ViewChild('fullHash', { static: false }) public fullHash: string;
+  @ViewChild('encrypt', { static: false }) public encrypt: string;
+  @ViewChild('pin', { static: false }) public pin: string;
 
-  @ViewChild('recipients') public recipients: Array<Recipient>;
+  @ViewChild('recipients', { static: false }) public recipients: Array<Recipient>;
 
   @Input('account') account: Account;
   @Input('fees') fees: SuggestedFees;

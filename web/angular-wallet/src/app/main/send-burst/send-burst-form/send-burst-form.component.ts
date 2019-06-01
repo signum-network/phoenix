@@ -32,12 +32,12 @@ const isNotEmpty = (value: string) => value && value.length > 0;
   styleUrls: ['./send-burst-form.component.scss']
 })
 export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnInit {
-  @ViewChild('sendBurstForm') public sendBurstForm: NgForm;
-  @ViewChild('amountNQT') public amountNQT: string;
-  @ViewChild('message') public message: string;
-  @ViewChild('fullHash') public fullHash: string;
-  @ViewChild('encrypt') public encrypt: string;
-  @ViewChild('pin') public pin: string;
+  @ViewChild('sendBurstForm', { static: true }) public sendBurstForm: NgForm;
+  @ViewChild('amountNQT', { static: false }) public amountNQT: string;
+  @ViewChild('message', { static: false }) public message: string;
+  @ViewChild('fullHash', { static: false }) public fullHash: string;
+  @ViewChild('encrypt', { static: false }) public encrypt: string;
+  @ViewChild('pin', { static: false }) public pin: string;
 
   @Input('account') account: Account;
   @Input('fees') fees: SuggestedFees;

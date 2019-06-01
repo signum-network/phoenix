@@ -46,7 +46,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
     this._unsubscribeAll = new Subject();
   }
 
-  @ViewChild(FusePerfectScrollbarDirective)
+  @ViewChild(FusePerfectScrollbarDirective, { static: true })
   set directive(theDirective: FusePerfectScrollbarDirective) {
     if (!theDirective) {
       return;

@@ -23,7 +23,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   public selectedAccounts: object;
   public locale: string;
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
 
   constructor(
     private storeService: StoreService,

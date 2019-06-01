@@ -14,11 +14,11 @@ import { Recipient } from 'app/layout/components/burst-recipient-input/burst-rec
   styleUrls: ['./set-reward-recipient.component.scss']
 })
 export class SetRewardRecipientComponent implements OnInit {
-  @ViewChild('setRewardRecipientForm') public setRewardRecipientForm: NgForm;
+  @ViewChild('setRewardRecipientForm', { static: false }) public setRewardRecipientForm: NgForm;
   public feeNQT: string;
-  @ViewChild('recipient') public recipient: Recipient;
-  @ViewChild('fullHash') public fullHash: string;
-  @ViewChild('pin') public pin: string;
+  @ViewChild('recipient', { static: false }) public recipient: Recipient;
+  @ViewChild('fullHash', { static: false }) public fullHash: string;
+  @ViewChild('pin', { static: false }) public pin: string;
 
   @Output() submit = new EventEmitter<any>();
   advanced: boolean = false;

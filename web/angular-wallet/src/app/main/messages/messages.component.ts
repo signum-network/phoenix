@@ -18,7 +18,7 @@ import {convertNQTStringToNumber} from '@burstjs/util/out';
   animations: fuseAnimations
 })
 export class MessagesComponent implements OnInit, OnDestroy {
-  @ViewChild(MessageRightSidenavComponent) rightSidenav;
+  @ViewChild(MessageRightSidenavComponent, { static: true }) rightSidenav;
 
   selectedMessage: any;
   fees: SuggestedFees;

@@ -16,7 +16,7 @@ export class AliasesComponent {
   public displayedColumns: string[];
   public selectedAccount: Account;
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     private storeService: StoreService,
