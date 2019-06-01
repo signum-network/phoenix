@@ -12,6 +12,9 @@ import {
   Recipient,
   RecipientValidationStatus
 } from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
+import {StoreService} from '../../../store/store.service';
+import {takeUntil} from 'rxjs/operators';
+import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 
 
 interface QRData {
@@ -28,7 +31,7 @@ const isNotEmpty = (value: string) => value && value.length > 0;
   templateUrl: './send-burst-form.component.html',
   styleUrls: ['./send-burst-form.component.scss']
 })
-export class SendBurstFormComponent implements OnInit {
+export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnInit {
   @ViewChild('sendBurstForm') public sendBurstForm: NgForm;
   @ViewChild('amountNQT') public amountNQT: string;
   @ViewChild('message') public message: string;
@@ -48,13 +51,25 @@ export class SendBurstFormComponent implements OnInit {
   public recipient = new Recipient();
   public feeNQT: string;
   isSending = false;
+  language: string;
 
   constructor(
     private warnDialog: MatDialog,
     private transactionService: TransactionService,
     private accountService: AccountService,
     private notifierService: NotifierService,
-    private i18nService: I18nService) {
+    private i18nService: I18nService,
+    private storeService: StoreService
+  ) {
+    super();
+    this.storeService.settings
+      .pipe(
+        takeUntil(this.unsubscribeAll)
+      )
+      .subscribe(async ({language}) => {
+          this.language = language;
+        }
+      );
   }
 
   ngOnInit(): void {
@@ -85,6 +100,7 @@ export class SendBurstFormComponent implements OnInit {
       this.isSending = true;
       await this.transactionService.sendMoney({
         transaction: {
+          // FIX: amountNQT is actually in burst
           amountNQT: this.amountNQT,
           feeNQT: this.feeNQT,
           attachment: this.getMessage(),
@@ -131,10 +147,15 @@ export class SendBurstFormComponent implements OnInit {
     };
   }
 
+  hasSufficientBalance(): boolean {
+    return convertNQTStringToNumber(this.account.balanceNQT) - this.getTotal() > Number.EPSILON;
+  }
+
   canSubmit(): boolean {
     return isNotEmpty(this.recipient.addressRaw) &&
       isNotEmpty(this.amountNQT) &&
-      isNotEmpty(this.pin);
+      isNotEmpty(this.pin) &&
+      this.hasSufficientBalance();
   }
 
   onRecipientChange(recipient: Recipient): void {

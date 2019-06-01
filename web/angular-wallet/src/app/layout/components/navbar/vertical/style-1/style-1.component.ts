@@ -13,6 +13,7 @@ import {AccountService} from 'app/setup/account/account.service';
 import {environment} from 'environments/environment';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {NotifierService} from 'angular-notifier';
+import {convertNQTStringToNumber} from '@burstjs/util';
 
 @Component({
   selector: 'navbar-vertical-style-1',
@@ -25,6 +26,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
   navigation: any;
   @Input('selectedAccount') selectedAccount: Account;
   selectedAccountQRCode: string;
+  language: string;
 
   // Private
   private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
@@ -97,6 +99,14 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
         }
       );
 
+    this._storeService.settings
+      .pipe(
+        takeUntil(this._unsubscribeAll)
+      )
+      .subscribe(async ({language}) => {
+          this.language = language;
+        }
+      );
     // Subscribe to the config changes
     this._fuseConfigService.config
       .pipe(takeUntil(this._unsubscribeAll))
@@ -180,5 +190,9 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
         this.i18nService.getTranslation('error_clipboard_copy')
       );
     }
+  }
+
+  getBalance(): number {
+    return convertNQTStringToNumber(this.selectedAccount.balanceNQT);
   }
 }

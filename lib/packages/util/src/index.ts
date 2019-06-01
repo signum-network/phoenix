@@ -9,6 +9,7 @@ export * from './convertDateToBurstTime';
 export * from './convertAddressToNumericId';
 export * from './isBurstAddress';
 export * from './splitBurstAddress';
+export * from './sumNQTStringToNumber';
 
 /**
  * A useful regex for matching burst addresses

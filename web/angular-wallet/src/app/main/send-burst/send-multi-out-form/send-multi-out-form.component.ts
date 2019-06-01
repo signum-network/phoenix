@@ -1,13 +1,21 @@
 import {Component, OnInit, ViewChild, Input} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {NotifierService} from 'angular-notifier';
-import {convertNumberToNQTString, burstAddressPattern, convertAddressToNumericId} from '@burstjs/util';
+import {
+  convertNumberToNQTString,
+  burstAddressPattern,
+  convertAddressToNumericId,
+  convertNQTStringToNumber
+} from '@burstjs/util';
 import {SuggestedFees, Account} from '@burstjs/core';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 import {Recipient} from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
+import {takeUntil} from 'rxjs/operators';
+import {StoreService} from '../../../store/store.service';
+import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -16,7 +24,7 @@ const isNotEmpty = (value: string) => value && value.length > 0;
   templateUrl: './send-multi-out-form.component.html',
   styleUrls: ['./send-multi-out-form.component.scss']
 })
-export class SendMultiOutFormComponent implements OnInit {
+export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements OnInit {
 
   @ViewChild('sendBurstForm') public sendBurstForm: NgForm;
   public feeNQT: string;
@@ -39,12 +47,22 @@ export class SendMultiOutFormComponent implements OnInit {
 
   deadline = '24';
   isSending = false;
+  language: string;
 
   constructor(
     private warnDialog: MatDialog,
     private transactionService: TransactionService,
     private notifierService: NotifierService,
-    private i18nService: I18nService) {
+    private i18nService: I18nService,
+    private storeService: StoreService,
+  ) {
+    super();
+    this.storeService.settings
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(async ({language}) => {
+          this.language = language;
+        }
+      );
   }
 
   ngOnInit(): void {
@@ -150,6 +168,11 @@ export class SendMultiOutFormComponent implements OnInit {
     return this.nonEmptyRecipients().filter(({status}) => status !== 'valid');
   }
 
+  hasSufficientBalance(): boolean {
+    return convertNQTStringToNumber(this.account.balanceNQT) - this.getTotal() > Number.EPSILON;
+  }
+
+
   canSubmit(): boolean {
 
     const hasCompletedRecipients = this
@@ -159,9 +182,10 @@ export class SendMultiOutFormComponent implements OnInit {
           && (!this.sameAmount ? recipient.amountNQT && recipient.amountNQT.length > 0 : true)
         , true);
 
-    return hasCompletedRecipients &&
-      isNotEmpty(this.pin) &&
-      (this.sameAmount ? isNotEmpty(this.amountNQT) : true);
+    return hasCompletedRecipients
+      && this.hasSufficientBalance()
+      && isNotEmpty(this.pin)
+      && (this.sameAmount ? isNotEmpty(this.amountNQT) : true);
 
   }
 

@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+# unreleased
+
+- patched `sumNQTStringToNumber` to be accessible
+
+
 ## 0.1.2
 - added `sumNQTStringToNumber`
 
