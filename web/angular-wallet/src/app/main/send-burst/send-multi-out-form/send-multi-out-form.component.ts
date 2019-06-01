@@ -35,7 +35,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   @ViewChild('encrypt', { static: false }) public encrypt: string;
   @ViewChild('pin', { static: false }) public pin: string;
 
-  @ViewChild('recipients', { static: false }) public recipients: Array<Recipient>;
+  @ViewChild('recipients', { static: true }) public recipients: Array<Recipient> = [];
 
   @Input('account') account: Account;
   @Input('fees') fees: SuggestedFees;
