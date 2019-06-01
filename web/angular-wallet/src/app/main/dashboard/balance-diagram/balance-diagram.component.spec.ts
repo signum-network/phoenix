@@ -10,7 +10,7 @@ import {TooltipComponent} from './tooltip/tooltip.component';
 import {I18nModule} from '../../../layout/components/i18n/i18n.module';
 import {MockComponent} from 'ng-mocks';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatSelectModule} from '@angular/material';
+import { MatSelectModule } from '@angular/material/select';
 
 describe('BalanceDiagramComponent', () => {
   let component: BalanceDiagramComponent;

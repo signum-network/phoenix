@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MatSidenavModule } from '@angular/material';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
 import { FuseSharedModule } from '@fuse/shared.module';

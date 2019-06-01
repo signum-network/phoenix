@@ -2,7 +2,8 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
-import {MatButtonModule, MatIconModule} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import {TranslateModule} from '@ngx-translate/core';
 import 'hammerjs';
 
@@ -29,27 +30,27 @@ const mainRoutes: Routes = [
   },
   {
     path: 'peers',
-    loadChildren: () => import('./peers/peers.module#PeersModule').then(p => p.PeersModule)
+    loadChildren: () => import('./peers/peers.module').then(p => p.PeersModule)
   },
   {
     path: 'messages',
-    loadChildren: () => import('./messages/messages.module#MessagesModule').then(m => m.MessagesModule)
+    loadChildren: () => import('./messages/messages.module').then(m => m.MessagesModule)
   },
   {
     path: 'blocks',
-    loadChildren: () => import('./blocks/blocks.module#BlocksModule').then(b => b.BlocksModule)
+    loadChildren: () => import('./blocks/blocks.module').then(b => b.BlocksModule)
   },
   {
     path: 'aliases',
-    loadChildren: () => import('./aliases/aliases.module#AliasesModule').then(a => a.AliasesModule)
+    loadChildren: () => import('./aliases/aliases.module').then(a => a.AliasesModule)
   },
   {
     path: 'transactions',
-    loadChildren: () => import('./transactions/transactions.module#TransactionsModule').then(t => t.TranslateModule)
+    loadChildren: () => import('./transactions/transactions.module').then(t => t.TransactionsModule)
   },
   {
     path: 'request',
-    loadChildren: () => import('./request-burst/request-burst.module#RequestBurstModule').then(r => r.RequestBurstModule)
+    loadChildren: () => import('./request-burst/request-burst.module').then(r => r.RequestBurstModule)
   }
 ];
 

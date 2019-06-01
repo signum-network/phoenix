@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { DisclaimerComponent } from './disclaimer.component';
 import { StoreService } from 'app/store/store.service';
-import { MatButtonModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
 
 
 const routes = [

@@ -1,4 +1,4 @@
-import { MediaChange, ObservableMedia } from '@angular/flex-layout';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class FuseMatchMediaService
      * @param {ObservableMedia} _observableMedia
      */
     constructor(
-        private _observableMedia: ObservableMedia
+        private _observableMedia: MediaObserver
     )
     {
         // Set the defaults
@@ -44,6 +44,7 @@ export class FuseMatchMediaService
                 debounceTime(500),
                 distinctUntilChanged()
             )
+            // @ts-ignore
             .subscribe((change: MediaChange) => {
                 if ( this.activeMediaQuery !== change.mqAlias )
                 {

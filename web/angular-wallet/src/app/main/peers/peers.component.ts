@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
 import { convertNQTStringToNumber } from '@burstjs/util';
 import { ActivatedRoute } from '@angular/router';

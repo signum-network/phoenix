@@ -3,14 +3,12 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {AccountResolver} from 'app/setup/account/account.resolver';
 import {RequestBurstComponent} from './request-burst.component';
-import {
-  MatIconModule,
-  MatInputModule,
-  MatButtonModule,
-  MatGridListModule,
-  MatCheckboxModule,
-  MatStepperModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatStepperModule } from '@angular/material/stepper';
 import {FormsModule} from '@angular/forms';
 import {SetupModule} from 'app/setup/setup.module';
 import {NotifierModule} from 'angular-notifier';

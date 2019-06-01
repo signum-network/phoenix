@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {MatTableDataSource, MatSort, MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import {NotifierService} from 'angular-notifier';
 import {DeleteAccountDialogComponent} from './delete-account-dialog/delete-account-dialog.component';
 import {StoreService} from 'app/store/store.service';

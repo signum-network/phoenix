@@ -6,7 +6,10 @@ import {VerticalLayout3Module} from 'app/layout/vertical/layout-3/layout-3.modul
 
 import {HorizontalLayout1Module} from 'app/layout/horizontal/layout-1/layout-1.module';
 import {Ng5SliderModule} from 'ng5-slider';
-import {MatFormFieldModule, MatIconModule, MatInputModule, MatTooltipModule} from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import {I18nModule} from './components/i18n/i18n.module';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';

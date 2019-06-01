@@ -2,19 +2,18 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SendBurstComponent } from './send-burst.component';
 import { NetworkModule } from 'app/network/network.module';
-import {
-  MatCheckboxModule,
-  MatGridListModule,
-  MatIconModule,
-  MatButtonModule,
-  MatInputModule,
-  MatFormFieldModule,
-  MatCardModule,
-  MatSelectModule,
-  MatTabsModule,
-  MatProgressSpinnerModule,
-  MatTooltipModule, MatDialogModule, MatDialogClose
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule, MatDialogClose } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { NotifierModule } from 'angular-notifier';

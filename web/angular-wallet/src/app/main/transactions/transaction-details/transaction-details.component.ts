@@ -1,5 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import {EncryptedMessage, Message, Account, Transaction} from '@burstjs/core';
 import {StoreService} from 'app/store/store.service';
 import {ActivatedRoute} from '@angular/router';
