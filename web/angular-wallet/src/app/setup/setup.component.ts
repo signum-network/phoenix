@@ -21,8 +21,6 @@ interface NodeDescriptor {
 export class SetupComponent implements OnInit {
 
   public selectedNode = new FormControl();
-  public languages: Array<any>;
-  public currentLanguage: any;
   public settings: Settings;
 
   public nodes = SetupComponent.createNodeList();
@@ -33,18 +31,17 @@ export class SetupComponent implements OnInit {
         version
       })
     ).concat({
-        url: environment.defaultNode,
-        version: ''
-      });
+      url: environment.defaultNode,
+      version: ''
+    });
   }
 
-  constructor(private i18n: I18nService, private storeService: StoreService,
+  constructor(private i18n: I18nService,
+              private storeService: StoreService,
               private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.languages = constants.languages;
-    this.currentLanguage = this.i18n.currentLanguage;
     this.settings = this.route.snapshot.data.settings as Settings;
     this.selectedNode.setValue({
       url: this.settings.node,
@@ -53,7 +50,7 @@ export class SetupComponent implements OnInit {
     this.selectedNode.valueChanges.subscribe(this.setNode());
   }
 
-  displayNodeUrl = (value: NodeDescriptor): string  => value.url;
+  displayNodeUrl = (value: NodeDescriptor): string => value.url;
 
   private setNode(): (value: NodeDescriptor) => void {
     return async (value) => {
@@ -70,10 +67,5 @@ export class SetupComponent implements OnInit {
         nodeVersion: version
       });
     };
-  }
-
-  setLanguage(event: MatSelectChange): void {
-    this.currentLanguage = event.value;
-    this.i18n.setLanguage(event.value);
   }
 }
