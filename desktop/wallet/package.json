@@ -62,7 +62,7 @@
     "prop-types": "^15.7.2",
     "semver": "^6.0.0",
     "ssl-validator": "^1.0.4",
-    "snyk": "^1.165.1"
+    "snyk": "^1.170.0"
   },
   "snyk": true
 }
