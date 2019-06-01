@@ -1,7 +1,12 @@
 import {Component, OnInit, ViewChild, Input} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {NotifierService} from 'angular-notifier';
-import {convertNumberToNQTString, burstAddressPattern, convertAddressToNumericId} from '@burstjs/util';
+import {
+  convertNumberToNQTString,
+  burstAddressPattern,
+  convertAddressToNumericId,
+  convertNQTStringToNumber
+} from '@burstjs/util';
 import {SuggestedFees, Account} from '@burstjs/core';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {TransactionService} from 'app/main/transactions/transaction.service';
@@ -163,6 +168,11 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     return this.nonEmptyRecipients().filter(({status}) => status !== 'valid');
   }
 
+  hasSufficientBalance(): boolean {
+    return convertNQTStringToNumber(this.account.balanceNQT) - this.getTotal() > Number.EPSILON;
+  }
+
+
   canSubmit(): boolean {
 
     const hasCompletedRecipients = this
@@ -172,9 +182,10 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
           && (!this.sameAmount ? recipient.amountNQT && recipient.amountNQT.length > 0 : true)
         , true);
 
-    return hasCompletedRecipients &&
-      isNotEmpty(this.pin) &&
-      (this.sameAmount ? isNotEmpty(this.amountNQT) : true);
+    return hasCompletedRecipients
+      && this.hasSufficientBalance()
+      && isNotEmpty(this.pin)
+      && (this.sameAmount ? isNotEmpty(this.amountNQT) : true);
 
   }
 

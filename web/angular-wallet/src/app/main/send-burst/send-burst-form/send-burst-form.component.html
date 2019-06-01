@@ -68,7 +68,9 @@
     </button>
   </div>
 
-  <strong>Total:</strong> {{ getTotal() | number: '1.0-6': this.language }} BURST -
+
+  <strong>Total:&nbsp;</strong>
+  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal() | number: '1.0-6': this.language }} BURST</span> -
   <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
 
 </form>

@@ -4,10 +4,12 @@
   .account-info {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 
     @include media-breakpoint('xs') {
       flex-direction: column;
       margin-top: 20px;
+      justify-content: normal;
     }
 
     &__field {

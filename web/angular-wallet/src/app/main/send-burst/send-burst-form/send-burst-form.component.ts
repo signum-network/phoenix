@@ -100,6 +100,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
       this.isSending = true;
       await this.transactionService.sendMoney({
         transaction: {
+          // FIX: amountNQT is actually in burst
           amountNQT: this.amountNQT,
           feeNQT: this.feeNQT,
           attachment: this.getMessage(),
@@ -146,10 +147,15 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
     };
   }
 
+  hasSufficientBalance(): boolean {
+    return convertNQTStringToNumber(this.account.balanceNQT) - this.getTotal() > Number.EPSILON;
+  }
+
   canSubmit(): boolean {
     return isNotEmpty(this.recipient.addressRaw) &&
       isNotEmpty(this.amountNQT) &&
-      isNotEmpty(this.pin);
+      isNotEmpty(this.pin) &&
+      this.hasSufficientBalance();
   }
 
   onRecipientChange(recipient: Recipient): void {
