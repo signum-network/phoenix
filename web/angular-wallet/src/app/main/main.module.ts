@@ -29,27 +29,27 @@ const mainRoutes: Routes = [
   },
   {
     path: 'peers',
-    loadChildren: './peers/peers.module#PeersModule'
+    loadChildren: () => import('./peers/peers.module#PeersModule').then(p => p.PeersModule)
   },
   {
     path: 'messages',
-    loadChildren: './messages/messages.module#MessagesModule'
+    loadChildren: () => import('./messages/messages.module#MessagesModule').then(m => m.MessagesModule)
   },
   {
     path: 'blocks',
-    loadChildren: './blocks/blocks.module#BlocksModule'
+    loadChildren: () => import('./blocks/blocks.module#BlocksModule').then(b => b.BlocksModule)
   },
   {
     path: 'aliases',
-    loadChildren: './aliases/aliases.module#AliasesModule'
+    loadChildren: () => import('./aliases/aliases.module#AliasesModule').then(a => a.AliasesModule)
   },
   {
     path: 'transactions',
-    loadChildren: './transactions/transactions.module#TransactionsModule'
+    loadChildren: () => import('./transactions/transactions.module#TransactionsModule').then(t => t.TranslateModule)
   },
   {
     path: 'request',
-    loadChildren: './request-burst/request-burst.module#RequestBurstModule'
+    loadChildren: () => import('./request-burst/request-burst.module#RequestBurstModule').then(r => r.RequestBurstModule)
   }
 ];
 
