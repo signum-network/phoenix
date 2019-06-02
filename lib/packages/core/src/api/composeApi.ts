@@ -3,24 +3,21 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 import {BurstService} from '../service/burstService';
+import {BurstServiceSettings} from '../service/burstServiceSettings';
 import {Api} from '../typings/api';
+import {ApiVersion} from '../constants/apiVersion';
 import {ApiComposer} from './apiComposer';
-
 import {getBlockByTimestamp} from './factories/block/getBlockByTimestamp';
 import {getBlockByHeight} from './factories/block/getBlockByHeight';
 import {getBlockById} from './factories/block/getBlockById';
 import {getBlockId} from './factories/block/getBlockId';
 import {getBlocks} from './factories/block/getBlocks';
-
 import {getBlockchainStatus} from './factories/network/getBlockchainStatus';
 import {getServerStatus} from './factories/network/getServerStatus';
-
 import {broadcastTransaction} from './factories/transaction/broadcastTransaction';
 import {getTransaction} from './factories/transaction/getTransaction';
-
 import {sendTextMessage} from './factories/message/sendTextMessage';
 import {sendEncryptedTextMessage} from './factories/message/sendEncryptedTextMessage';
-
 import {getAccountTransactions} from './factories/account/getAccountTransactions';
 import {getUnconfirmedAccountTransactions} from './factories/account/getUnconfirmedAccountTransactions';
 import {getAccountBalance} from './factories/account/getAccountBalance';
@@ -37,10 +34,10 @@ import {getTime} from './factories/network/getTime';
 import {getAccount} from './factories/account/getAccount';
 import {setAccountInfo} from './factories/account/setAccountInfo';
 import {setRewardRecipient} from './factories/account/setRewardRecipient';
-import {BurstServiceSettings} from '../service/burstServiceSettings';
-import {ApiVersion} from '../constants/apiVersion';
 import {getAliasById} from './factories/alias/getAliasById';
 import {getAliasByName} from './factories/alias/getAliasByName';
+import {getContractsByAccount} from './factories/contract/getContractsByAccount';
+import {getContract} from './factories/contract/getContract';
 
 
 /**
@@ -119,6 +116,9 @@ export function composeApi(settings: ApiSettings): Api {
             getAliasByName,
             getAliasById,
             setAlias
+        }).withContractApi({
+            getContract,
+            getContractsByAccount
         })
         .compose();
 
