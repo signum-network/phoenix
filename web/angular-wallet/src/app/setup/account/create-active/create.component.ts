@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { MatStepper } from '@angular/material';
+import { MatStepper } from '@angular/material/stepper';
 import { CreateService } from '../create.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
     templateUrl: './create.component.html'
 })
 export class CreateActiveAccountComponent implements OnInit {
-    @ViewChild(MatStepper) stepper: MatStepper;
+    @ViewChild(MatStepper, { static: true }) stepper: MatStepper;
     @Input('newUser') newUser: boolean;
 
     constructor(public createService: CreateService) {}

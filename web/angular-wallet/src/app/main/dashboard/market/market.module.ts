@@ -1,12 +1,10 @@
 import {NgModule} from '@angular/core';
 import {MarketOverviewComponent} from './market-overview.component';
-import {
-  MatTableModule,
-  MatIconModule,
-  MatPaginatorModule,
-  MatListModule,
-  MatProgressSpinnerModule
-} from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
 import {CommonModule} from '@angular/common';
 import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {RouterModule} from '@angular/router';

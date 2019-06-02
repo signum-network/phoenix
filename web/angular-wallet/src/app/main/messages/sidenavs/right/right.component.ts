@@ -18,7 +18,7 @@ import {MessageOptionsSidenavComponent} from './options/options.component';
 export class MessageRightSidenavComponent implements OnInit, OnDestroy {
   view: string;
   @Input('fees') fees: SuggestedFees;
-  @ViewChild(MessageOptionsSidenavComponent) options;
+  @ViewChild(MessageOptionsSidenavComponent, { static: false }) options;
 
   private _unsubscribeAll: Subject<any>;
 

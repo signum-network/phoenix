@@ -10,7 +10,7 @@ import {
 import {SuggestedFees, Account} from '@burstjs/core';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {TransactionService} from 'app/main/transactions/transaction.service';
-import {MatDialog, MatDialogRef} from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 import {Recipient} from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
 import {takeUntil} from 'rxjs/operators';
@@ -26,16 +26,16 @@ const isNotEmpty = (value: string) => value && value.length > 0;
 })
 export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements OnInit {
 
-  @ViewChild('sendBurstForm') public sendBurstForm: NgForm;
+  @ViewChild('sendBurstForm', { static: true }) public sendBurstForm: NgForm;
   public feeNQT: string;
-  @ViewChild('recipientAddress') public recipientAddress: string;
-  @ViewChild('amountNQT') public amountNQT: string;
-  @ViewChild('message') public message: string;
-  @ViewChild('fullHash') public fullHash: string;
-  @ViewChild('encrypt') public encrypt: string;
-  @ViewChild('pin') public pin: string;
+  @ViewChild('recipientAddress', { static: false }) public recipientAddress: string;
+  @ViewChild('amountNQT', { static: false }) public amountNQT: string;
+  @ViewChild('message', { static: false }) public message: string;
+  @ViewChild('fullHash', { static: false }) public fullHash: string;
+  @ViewChild('encrypt', { static: false }) public encrypt: string;
+  @ViewChild('pin', { static: false }) public pin: string;
 
-  @ViewChild('recipients') public recipients: Array<Recipient>;
+  @ViewChild('recipients', { static: true }) public recipients: Array<Recipient> = [];
 
   @Input('account') account: Account;
   @Input('fees') fees: SuggestedFees;

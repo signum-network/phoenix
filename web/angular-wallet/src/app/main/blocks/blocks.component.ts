@@ -1,5 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
-import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import {Account, Block} from '@burstjs/core';
 import {FormControl} from '@angular/forms';
 import {NotifierService} from 'angular-notifier';
@@ -22,8 +24,8 @@ export class BlocksComponent {
   pickerToField = new FormControl();
 
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     private networkService: NetworkService,

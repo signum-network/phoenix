@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {constants} from '../constants';
 import {I18nService} from '../layout/components/i18n/i18n.service';
-import {MatSelectChange} from '@angular/material';
+import { MatSelectChange } from '@angular/material/select';
 import {StoreService} from 'app/store/store.service';
 import {environment} from 'environments/environment.hmr';
 import {FormControl} from '@angular/forms';

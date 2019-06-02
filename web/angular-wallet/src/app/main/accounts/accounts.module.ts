@@ -8,15 +8,13 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
-import {
-  MatInputModule,
-  MatSortModule,
-  MatCheckboxModule,
-  MatButtonModule,
-  MatDialogModule,
-  MatTabsModule,
-  MatTooltipModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatTableModule} from '@angular/material/table';
 import {DeleteAccountDialogComponent} from './delete-account-dialog/delete-account-dialog.component';
 import {RouterModule} from '@angular/router';

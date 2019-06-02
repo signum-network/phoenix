@@ -15,7 +15,7 @@ export class TransactionRowValueCellComponent implements OnInit {
   @Input('key') key: string;
    // the hex value of the sender public key, for encrypted message decoding
   @Input('senderPublicKeyHex') senderPublicKeyHex: string;
-  @ViewChild('pin') pin: string;
+  @ViewChild('pin', { static: false }) pin: string;
   decryptedMessage = '';
   
   valueType = 'string';

@@ -1,6 +1,6 @@
 os: osx
 language: node_js
-node_js: '10'
+node_js: '12'
 addons:
   homebrew:
     packages:
@@ -13,7 +13,7 @@ cache:
     - "$HOME/.cache/electron-builder"
 
 before_script:
-  - npm i @angular/cli@7.3.9 -g
+  - npm i @angular/cli -g
 
 jobs:
   include:

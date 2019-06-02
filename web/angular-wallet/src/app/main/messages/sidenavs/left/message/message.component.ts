@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { ObservableMedia } from '@angular/flex-layout';
+import { MediaObserver } from '@angular/flex-layout';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -7,7 +7,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { FuseMatSidenavHelperService } from '@fuse/directives/fuse-mat-sidenav/fuse-mat-sidenav.service';
 
 import { MessagesService } from '../../../messages.service';
-import {convertBurstTimeToDate} from "@burstjs/util";
+import {convertBurstTimeToDate} from '@burstjs/util';
 
 @Component({
     selector: 'message-sidenav',
@@ -37,7 +37,7 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
     constructor(
         private _messageService: MessagesService,
         private _fuseMatSidenavHelperService: FuseMatSidenavHelperService,
-        public _observableMedia: ObservableMedia
+        public _observableMedia: MediaObserver
     ) {
         // Set the defaults
         this.messageSearch = {

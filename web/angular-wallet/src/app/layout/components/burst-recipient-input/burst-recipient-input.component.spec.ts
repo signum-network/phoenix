@@ -2,7 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BurstRecipientInputComponent } from './recipient-input.component';
 import {Ng5SliderModule} from 'ng5-slider';
-import {MatIconModule, MatTooltipModule} from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import {I18nModule} from '../i18n/i18n.module';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BurstFeeSelectorComponent} from '../burst-fee-selector/burst-fee-selector.component';

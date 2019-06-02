@@ -5,7 +5,7 @@ import { convertNumberToNQTString } from '@burstjs/util';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
-import { MatStepper } from '@angular/material';
+import { MatStepper } from '@angular/material/stepper';
 import { environment } from 'environments/environment';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
@@ -16,11 +16,11 @@ import {takeUntil} from 'rxjs/operators';
   styleUrls: ['./request-burst.component.scss']
 })
 export class RequestBurstComponent extends UnsubscribeOnDestroy implements OnInit {
-  @ViewChild(MatStepper) stepper: MatStepper;
-  @ViewChild('requestBurstForm') public requestBurstForm: NgForm;
-  @ViewChild('amountNQT') public amountNQT = '0';
-  @ViewChild('feeNQT') public feeNQT: string;
-  @ViewChild('immutable') public immutable = false;
+  @ViewChild(MatStepper, { static: true }) stepper: MatStepper;
+  @ViewChild('requestBurstForm', { static: true }) public requestBurstForm: NgForm;
+  @ViewChild('amountNQT', { static: false }) public amountNQT = '0';
+  @ViewChild('feeNQT', { static: false }) public feeNQT: string;
+  @ViewChild('immutable', { static: false }) public immutable = false;
   @Output() submit = new EventEmitter<any>();
 
   advanced = false;

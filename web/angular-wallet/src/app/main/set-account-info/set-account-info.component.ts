@@ -15,12 +15,12 @@ import { TransactionService } from '../transactions/transaction.service';
   styleUrls: ['./set-account-info.component.scss']
 })
 export class SetAccountInfoComponent implements OnInit {
-  @ViewChild('setAccountInfoForm') public setAccountInfoForm: NgForm;
+  @ViewChild('setAccountInfoForm', { static: false }) public setAccountInfoForm: NgForm;
   public feeNQT: string;
-  @ViewChild('name') public name: string;
-  @ViewChild('description') public description: string;
-  @ViewChild('fullHash') public fullHash: string;
-  @ViewChild('pin') public pin: string;
+  @ViewChild('name', { static: false }) public name: string;
+  @ViewChild('description', { static: false }) public description: string;
+  @ViewChild('fullHash', { static: false }) public fullHash: string;
+  @ViewChild('pin', { static: false }) public pin: string;
 
   @Output() submit = new EventEmitter<any>();
   advanced: boolean = false;

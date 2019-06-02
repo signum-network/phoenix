@@ -8,7 +8,8 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import {MatTableDataSource, MatPaginator} from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import {ActivatedRoute} from '@angular/router';
 import {
   Transaction,
@@ -52,7 +53,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements O
   @Input() dataSource: MatTableDataSource<Transaction>;
   @Input() public displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   public isMultiOutPayment(transaction: Transaction): boolean {
     return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction);

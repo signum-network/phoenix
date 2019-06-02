@@ -14,13 +14,13 @@ import { I18nService } from 'app/layout/components/i18n/i18n.service';
   styleUrls: ['./add-alias.component.scss']
 })
 export class AddAliasComponent implements OnInit {
-  @ViewChild('setAliasForm') public setAliasForm: NgForm;
-  @ViewChild('alias') public alias: string;
-  @ViewChild('description') public description: string;
-  @ViewChild('fullHash') public fullHash: string;
-  @ViewChild('pin') public pin: string;
-  @ViewChild('uri') public uri: string;
-  @ViewChild('accountAliasURI') public accountAliasURI: string;
+  @ViewChild('setAliasForm', { static: false }) public setAliasForm: NgForm;
+  @ViewChild('alias', { static: false }) public alias: string;
+  @ViewChild('description', { static: false }) public description: string;
+  @ViewChild('fullHash', { static: false }) public fullHash: string;
+  @ViewChild('pin', { static: false }) public pin: string;
+  @ViewChild('uri', { static: false }) public uri: string;
+  @ViewChild('accountAliasURI', { static: false }) public accountAliasURI: string;
   @Output() submit = new EventEmitter<any>();
 
   public feeNQT: string;

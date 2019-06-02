@@ -7,7 +7,7 @@ import {StoreService} from 'app/store/store.service';
 import {Account, Transaction, TransactionList, UnconfirmedTransactionList} from '@burstjs/core';
 import {convertNQTStringToNumber} from '@burstjs/util';
 import {AccountService} from 'app/setup/account/account.service';
-import {MatTableDataSource} from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import {MarketService} from './market/market.service';
 import { Settings } from 'app/settings';
 

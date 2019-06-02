@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EncryptedMessage, Message, Account, Transaction } from '@burstjs/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
 

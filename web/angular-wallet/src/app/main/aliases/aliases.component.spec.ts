@@ -1,16 +1,14 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {AliasesComponent} from './aliases.component';
-import {
-  MatButtonModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatSortModule,
-  MatTableModule,
-  MatDialogModule,
-  MatTooltipModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import {ReactiveFormsModule} from '@angular/forms';
 import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {BehaviorSubject} from 'rxjs';

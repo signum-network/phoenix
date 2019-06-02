@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatTableDataSource, MatSort, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { NotifierService } from 'angular-notifier';
 import { StoreService } from 'app/store/store.service';
 import { AccountService } from 'app/setup/account/account.service';
@@ -16,7 +18,7 @@ export class AliasesComponent {
   public displayedColumns: string[];
   public selectedAccount: Account;
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     private storeService: StoreService,
