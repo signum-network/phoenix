@@ -1,6 +1,6 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
-import {getContract} from '../../factories/contract';
+import {getContract, getContractsByAccount} from '../../factories/contract';
 
 const environment = loadEnvironment();
 
@@ -17,5 +17,10 @@ describe('[E2E] Contract Api', () => {
         const contract = await getContract(service)(environment.testContractId);
         expect(contract).toBeDefined();
         expect(contract.at).toBe(environment.testContractId);
+    });
+
+    it('should getContractsByAccount', async () => {
+        const contract = await getContractsByAccount(service)(environment.testContractCreatorId);
+        expect(contract.ats.length).toBeGreaterThanOrEqual(1);
     });
 });
