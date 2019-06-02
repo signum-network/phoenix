@@ -44,12 +44,13 @@ export class AccountListItem extends React.PureComponent<Props> {
   render () {
     const { accountRS = '', balanceNQT = '', type = '' } = this.props.account;
     const styles = this.getStyles();
+    console.log(this.props.account);
 
     return (
       <TouchableOpacity style={styles.view} onPress={this.handlePress}>
-        <View style={styles.address}>
-          <Text>{accountRS} </Text>
-        </View>
+      <View style={styles.address}>
+        <Text>{accountRS}</Text>
+      </View>
         <View style={styles.info}>
           <View style={styles.accountType}>
             <Text>{type}</Text>
