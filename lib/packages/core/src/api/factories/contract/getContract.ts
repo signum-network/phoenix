@@ -9,7 +9,7 @@ import {Contract} from '../../../typings/contract';
 /**
  * Use with [[ApiComposer]] and belongs to [[NetworkApi]].
  *
- * See details at [[ContractApi.getContractById]]
+ * See details at [[ContractApi.getContract]]
  */
 export const getContract = (service: BurstService):
     (id: string) => Promise<Contract> =>
