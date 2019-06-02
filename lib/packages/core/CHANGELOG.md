@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+
+# unreleased
+
+- introduced first Contract API functions
+
 ## 0.1.2
 - added `confirmed` property to `Account` model
 - added `alias` api

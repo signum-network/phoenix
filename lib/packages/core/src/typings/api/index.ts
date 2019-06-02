@@ -6,6 +6,7 @@ import {TransactionApi} from './transactionApi';
 import {MessageApi} from './messageApi';
 import {AccountApi} from './accountApi';
 import {AliasApi} from './aliasApi';
+import {ContractApi} from './contractApi';
 
 
 export {
@@ -14,7 +15,8 @@ export {
     TransactionApi,
     MessageApi,
     AccountApi,
-    AliasApi
+    AliasApi,
+    ContractApi
 };
 
 /**
@@ -44,4 +46,5 @@ export class Api {
     readonly message: MessageApi;
     readonly account: AccountApi;
     readonly alias: AliasApi;
+    readonly contract: ContractApi;
 }

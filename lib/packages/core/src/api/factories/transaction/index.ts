@@ -1,4 +1,4 @@
-/** @module core */
+/** @module core.api.factories */
 
 export * from './broadcastTransaction';
 export * from './getTransaction';
