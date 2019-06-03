@@ -16,6 +16,7 @@
     "build:ci": "npm run build -- --aot --source-map=false --stats-json",
     "build:stats": "npm run build -- --dev --stats-json",
     "build:prod": "npm run build -- --prod",
+    "build:web": "npm run build -- --configuration=web",
     "build:prod-stats": "npm run build -- --prod --stats-json",
     "test": "jest",
     "lint": "ng lint",
