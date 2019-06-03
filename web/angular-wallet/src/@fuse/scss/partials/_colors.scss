@@ -225,11 +225,11 @@ $matHues: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, A100, A200, A400, A70
 // -----------------------------------------------------------------------------------------------------
 @mixin generate-color-classes($colorName, $color, $contrastColor, $hue) {
 
-    .#{$colorName}#{$hue}-bg {
+    .#{"" + $colorName}#{"" + $hue}-bg {
         background-color: $color !important;
     }
 
-    .#{$colorName}#{$hue} {
+    .#{"" + $colorName}#{"" + $hue} {
         background-color: $color !important;
         color: $contrastColor !important;
 
@@ -239,27 +239,27 @@ $matHues: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, A100, A200, A400, A70
         }
     }
 
-    .#{$colorName}#{$hue}-fg {
+    .#{"" + $colorName}#{"" + $hue}-fg {
         color: $color !important;
     }
 
-    .#{$colorName}#{$hue}-border {
+    .#{"" + $colorName}#{"" + $hue}-border {
         border-color: $color !important;
     }
 
-    .#{$colorName}#{$hue}-border-top {
+    .#{"" + $colorName}#{"" + $hue}-border-top {
         border-top-color: $color !important;
     }
 
-    .#{$colorName}#{$hue}-border-right {
+    .#{"" + $colorName}#{"" + $hue}-border-right {
         border-right-color: $color !important;
     }
 
-    .#{$colorName}#{$hue}-border-bottom {
+    .#{"" + $colorName}#{"" + $hue}-border-bottom {
         border-bottom-color: $color !important;
     }
 
-    .#{$colorName}#{$hue}-border-left {
+    .#{"" + $colorName}#{"" + $hue}-border-left {
         border-left-color: $color !important;
     }
 }
