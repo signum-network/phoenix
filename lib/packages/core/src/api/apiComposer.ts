@@ -120,7 +120,7 @@ export class ApiComposer {
     /**
      * Adds the [[TransactionApi]]  to be composed
      * @param creatorMap A map of creator/factory functions for the endpoints
-     */getContractById
+     */
     public withTransactionApi(creatorMap: any): ApiComposer {
         this.mapCreators('transaction', creatorMap);
         return this;

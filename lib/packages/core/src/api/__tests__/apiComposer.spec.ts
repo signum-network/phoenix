@@ -16,6 +16,8 @@ import {generateSendTransactionQRCode} from '../factories/account/generateSendTr
 import {getAccountBalance} from '../factories/account/getAccountBalance';
 import {generateSendTransactionQRCodeAddress} from '../factories/account/generateSendTransactionQRCodeAddress';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
+import {getContract} from '../factories/contract';
+import {getContractsByAccount} from '../../../out/api/factories/contract';
 
 
 describe('ApiComposer', () => {
@@ -148,7 +150,24 @@ describe('ApiComposer', () => {
 
     });
 
-   it('should compose account Api with multiple modules', () => {
+    it('should compose contract Api', () => {
+
+        const api = apiComposer
+            .withContractApi({
+                getContract,
+                getContractsByAccount
+            })
+            .compose();
+
+        expect(api).toBeDefined();
+        expect(api.contract).toBeDefined();
+        expect(api.contract.getContract).toBeDefined();
+        expect(api.contract.getContractsByAccount).toBeDefined();
+
+    });
+
+
+    it('should compose account Api with multiple modules', () => {
 
         const api = apiComposer
             .withMessageApi({
