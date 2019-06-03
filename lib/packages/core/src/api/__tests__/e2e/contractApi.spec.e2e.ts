@@ -1,6 +1,7 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
-import {getContract, getContractsByAccount} from '../../factories/contract';
+import {getContractsByAccount} from '../../factories/contract/getContractsByAccount';
+import {getContract} from '../../factories/contract/getContract';
 
 const environment = loadEnvironment();
 
