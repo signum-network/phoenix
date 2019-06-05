@@ -45,11 +45,13 @@ export class FuseMatchMediaService
                 distinctUntilChanged()
             )
             // @ts-ignore
-            .subscribe((change: MediaChange) => {
-                if ( this.activeMediaQuery !== change.mqAlias )
-                {
-                    this.activeMediaQuery = change.mqAlias;
-                    this.onMediaChange.next(change.mqAlias);
+            .subscribe((change: MediaChange[]) => {
+                if (!change || !change.length) {
+                    return;
+                }
+                if (this.activeMediaQuery !== change[0].mqAlias) {
+                    this.activeMediaQuery = change[0].mqAlias;
+                    this.onMediaChange.next(change[0].mqAlias);
                 }
             });
     }
