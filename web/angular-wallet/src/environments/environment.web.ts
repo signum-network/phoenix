@@ -1,10 +1,10 @@
 import {version} from '../../package.json';
 
 export const environment = {
-  production: false,
-  hmr: true,
+  production: true,
+  hmr: false,
   version,
-  defaultNode: 'http://localhost:4200',
+  defaultNode: '',
   market: {
     tickerUrl: 'https://api.coinmarketcap.com/v1/ticker/burst/',
     tickerInterval: 30 * 1000
