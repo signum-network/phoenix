@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+# unreleased
+- now available as standalone bundle (iife)
+
 ## 0.1.1
 - Encryption/Decryption compatible with BRS
 - removed big.js 
