@@ -63,10 +63,10 @@ Due to the way a package is imported following global variables are provided
 
 | Package | Variable |
 |---------|----------|
-|  core   |   `b$`   |
-|  crypto |   `b$crypto`   |
-|  http   |   `b$http`   |
-|  util   |   `b$util`   |
+|  core   |`b$`      |
+|  crypto |`b$crypto`|
+|  http   |`b$http`  |
+|  util   |`b$util`  |
 
 Examples:
 
