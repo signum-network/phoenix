@@ -21,6 +21,9 @@ jobs:
       name: "Build App"
       script: './scripts/ci/build-electron.sh'
     - # parallel run
+      name: "Bundle BurstJS"
+      script: './scripts/ci/bundle-burstjs.sh'
+    - # parallel run
       name: "Run BurstJS Tests"
       script: './scripts/ci/test-burstjs.sh'
     - # parallel run
