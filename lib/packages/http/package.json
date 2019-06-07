@@ -44,7 +44,7 @@
     "readme": "jsdoc2md  --files ./src/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.19.0"
   },
   "husky": {
     "hooks": {
