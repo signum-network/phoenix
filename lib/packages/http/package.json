@@ -31,7 +31,10 @@
     ]
   },
   "devDependencies": {
-    "@types/jest": "^24.0.12"
+    "@types/jest": "^24.0.12",
+    "bili": "^4.8.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-resolve": "^5.0.1"
   },
   "scripts": {
     "test": "jest",
