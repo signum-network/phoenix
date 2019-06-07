@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Keys
+	<title>ContractApi
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,13 +77,16 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/crypto.html">crypto</a>
+					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="crypto.keys.html">Keys</a>
+					<a href="../modules/core.api.html">api</a>
+				</li>
+				<li>
+					<a href="core.api.contractapi.html">ContractApi</a>
 				</li>
 			</ul>
-			<h1>Interface Keys</h1>
+			<h1>Interface ContractApi</h1>
 		</div>
 	</div>
 </header>
@@ -93,16 +96,16 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Original work Copyright (c) 2018 PoC-Consortium
-						Modified work Copyright (c) 2019 Burst Apps Team</p>
+						<p>Contract API</p>
 					</div>
+					<p>This module provides methods about the smart contracts</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Keys</span>
+						<span class="target">ContractApi</span>
 					</li>
 				</ul>
 			</section>
@@ -113,9 +116,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crypto.keys.html#agreementprivatekey" class="tsd-kind-icon">agreement<wbr>Private<wbr>Key</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crypto.keys.html#publickey" class="tsd-kind-icon">public<wbr>Key</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crypto.keys.html#signprivatekey" class="tsd-kind-icon">sign<wbr>Private<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.contractapi.html#getcontract" class="tsd-kind-icon">get<wbr>Contract</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.contractapi.html#getcontractsbyaccount" class="tsd-kind-icon">get<wbr>Contracts<wbr>ByAccount</a></li>
 							</ul>
 						</section>
 					</div>
@@ -124,34 +126,92 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="agreementprivatekey" class="tsd-anchor"></a>
-					<h3>agreement<wbr>Private<wbr>Key</h3>
-					<div class="tsd-signature tsd-kind-icon">agreement<wbr>Private<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="getcontract" class="tsd-anchor"></a>
+					<h3>get<wbr>Contract</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Contract<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/9275f51/lib/packages/crypto/typings/keys.ts#L14">crypto/typings/keys.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/9275f51/lib/packages/core/src/typings/api/contractApi.ts#L17">core/src/typings/api/contractApi.ts:17</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get a contract by its Id</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The ID of the contract</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>The contract</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.contract.html" class="tsd-signature-type">Contract</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>id: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.contract.html" class="tsd-signature-type">Contract</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="publickey" class="tsd-anchor"></a>
-					<h3>public<wbr>Key</h3>
-					<div class="tsd-signature tsd-kind-icon">public<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="getcontractsbyaccount" class="tsd-anchor"></a>
+					<h3>get<wbr>Contracts<wbr>ByAccount</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Contracts<wbr>ByAccount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/9275f51/lib/packages/crypto/typings/keys.ts#L15">crypto/typings/keys.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/9275f51/lib/packages/core/src/typings/api/contractApi.ts#L24">core/src/typings/api/contractApi.ts:24</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="signprivatekey" class="tsd-anchor"></a>
-					<h3>sign<wbr>Private<wbr>Key</h3>
-					<div class="tsd-signature tsd-kind-icon">sign<wbr>Private<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/9275f51/lib/packages/crypto/typings/keys.ts#L16">crypto/typings/keys.ts:16</a></li>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get all contracts of given account</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The account id (not RS address)</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>A list of contracts</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accountId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.contractlist.html" class="tsd-signature-type">ContractList</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>accountId: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.contractlist.html" class="tsd-signature-type">ContractList</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
 						</ul>
-					</aside>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -161,87 +221,54 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/core.html">core</a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/crypto.html">crypto</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/http.html">http</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/util.html">util</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/crypto.converter.html" class="tsd-kind-icon">Converter</a>
+						<a href="../classes/core.api.api.html" class="tsd-kind-icon">Api</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/crypto.passphrasegenerator.html" class="tsd-kind-icon">Pass<wbr>Phrase<wbr>Generator</a>
+						<a href="../classes/core.api.apicomposer.html" class="tsd-kind-icon">Api<wbr>Composer</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core.api.apisettings.html" class="tsd-kind-icon">Api<wbr>Settings</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="crypto.encrypteddata.html" class="tsd-kind-icon">Encrypted<wbr>Data</a>
+						<a href="core.api.accountapi.html" class="tsd-kind-icon">Account<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="crypto.encryptedmessage.html" class="tsd-kind-icon">Encrypted<wbr>Message</a>
+						<a href="core.api.aliasapi.html" class="tsd-kind-icon">Alias<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.api.blockapi.html" class="tsd-kind-icon">Block<wbr>Api</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="crypto.keys.html" class="tsd-kind-icon">Keys</a>
+						<a href="core.api.contractapi.html" class="tsd-kind-icon">Contract<wbr>Api</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="crypto.keys.html#agreementprivatekey" class="tsd-kind-icon">agreement<wbr>Private<wbr>Key</a>
+								<a href="core.api.contractapi.html#getcontract" class="tsd-kind-icon">get<wbr>Contract</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="crypto.keys.html#publickey" class="tsd-kind-icon">public<wbr>Key</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="crypto.keys.html#signprivatekey" class="tsd-kind-icon">sign<wbr>Private<wbr>Key</a>
+								<a href="core.api.contractapi.html#getcontractsbyaccount" class="tsd-kind-icon">get<wbr>Contracts<wbr>ByAccount</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#decryptaes" class="tsd-kind-icon">decryptAES</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.api.messageapi.html" class="tsd-kind-icon">Message<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.api.networkapi.html" class="tsd-kind-icon">Network<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.api.transactionapi.html" class="tsd-kind-icon">Transaction<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#decryptdata" class="tsd-kind-icon">decrypt<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#decryptmessage" class="tsd-kind-icon">decrypt<wbr>Message</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#encryptaes" class="tsd-kind-icon">encryptAES</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#encryptdata" class="tsd-kind-icon">encrypt<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#encryptmessage" class="tsd-kind-icon">encrypt<wbr>Message</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#generatemasterkeys" class="tsd-kind-icon">generate<wbr>Master<wbr>Keys</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#generatesignature" class="tsd-kind-icon">generate<wbr>Signature</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#generatesignedtransactionbytes" class="tsd-kind-icon">generate<wbr>Signed<wbr>Transaction<wbr>Bytes</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#getaccountidfrompublickey" class="tsd-kind-icon">get<wbr>Account<wbr>IdFrom<wbr>Public<wbr>Key</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#hashsha256" class="tsd-kind-icon">hashSHA256</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#verifysignature" class="tsd-kind-icon">verify<wbr>Signature</a>
+						<a href="../modules/core.api.html#composeapi" class="tsd-kind-icon">compose<wbr>Api</a>
 					</li>
 				</ul>
 			</nav>

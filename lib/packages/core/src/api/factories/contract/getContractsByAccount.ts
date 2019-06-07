@@ -8,7 +8,7 @@ import {Contract} from '../../../typings/contract';
 import {ContractList} from '../../../typings/contractList';
 
 /**
- * Use with [[ApiComposer]] and belongs to [[NetworkApi]].
+ * Use with [[ApiComposer]] and belongs to [[ContractApi]].
  *
  * See details at [[ContractApi.getContractsByAccount]]
  */
