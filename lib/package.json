@@ -53,7 +53,7 @@
     "publish": "npm run build && lerna publish --force-publish",
     "tsc": "lerna run tsc",
     "build": "npm run tsc && lerna exec npm run bundle",
-    "clearPackages": "lerna exec rm -rf node_modules && rm -rf node_modules"
+    "clearPackages": "lerna exec 'rm -rf node_modules' && rm -rf node_modules"
   },
   "dependencies": {
     "axios": "^0.18.0"
