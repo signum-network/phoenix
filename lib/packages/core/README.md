@@ -4,6 +4,10 @@ Burst-related functions and models for building Burstcoin applications.
 
 ## Installation
 
+burstJS can be used with NodeJS or Web. Two formats are available
+
+### Using with NodeJS and/or modern web frameworks
+
 Install using [npm](https://www.npmjs.org/):
 
 ```
@@ -14,6 +18,20 @@ or using [yarn](https://yarnpkg.com/):
 
 ``` yarn
 yarn add @burstjs/core
+```
+
+### Using in classic `<script>`
+
+
+
+```js
+// using core
+const api = b$.composeApi({
+  nodeHost: "http://at-testnet.burst-alliance.org:6876",
+  apiRootUrl: "/burst"
+});
+
+api.network.getBlockchainStatus().then(console.log);
 ```
 
 ## API Reference

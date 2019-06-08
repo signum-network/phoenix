@@ -17,10 +17,10 @@ export interface ContractApi {
     getContract: (id: string) => Promise<Contract>;
 
     /**
-     * Gets all contract of given account
-     * @param accountId The account id (not RS addres)
+     * Get all contracts of given account
+     * @param accountId The account id (not RS address)
      * @returns {ContractList} A list of contracts
      */
-    getContractByAccount: (accountId: string) => Promise<ContractList>;
+    getContractsByAccount: (accountId: string) => Promise<ContractList>;
 
 }

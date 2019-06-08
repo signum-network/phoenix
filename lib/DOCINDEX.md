@@ -29,7 +29,6 @@ The library is separated in the following packages
 
 `@burstjs` aims modern browsers and nodejs > v10 
 
-> Usually, you won't need to install other packages than `@burstjs/core`, which uses the other packages.
 
 ```
 npm install @burstjs/core
@@ -37,6 +36,65 @@ npm install @burstjs/crypto
 npm install @burstjs/util
 npm install @burstjs/http
 ```
+> Usually, you won't need to install other packages than `@burstjs/core`, which uses the other packages.
+
+### Using with NodeJS and/or modern web frameworks
+
+Install using [npm](https://www.npmjs.org/):
+
+```
+npm install @burstjs/core
+```
+
+or using [yarn](https://yarnpkg.com/):
+
+``` yarn
+yarn add @burstjs/core
+```
+
+### Using in classic `<script>`
+
+Each package is available as bundled standalone library using IIFE. 
+This way _burstJS_ can be used also within `<script>`-Tags. 
+This might be useful for Wordpress and/or other PHP applications.
+
+Due to the way a package is imported following global variables are provided
+
+
+| Package | Variable |
+|---------|----------|
+|  core   |`b$`      |
+|  crypto |`b$crypto`|
+|  http   |`b$http`  |
+|  util   |`b$util`  |
+
+Examples:
+
+```js
+// using core
+const api = b$.composeApi({
+  nodeHost: "http://at-testnet.burst-alliance.org:6876",
+  apiRootUrl: "/burst"
+});
+
+api.network.getBlockchainStatus().then(console.log);
+```
+
+```js
+// using crypto
+console.log(b$crypto.hashSHA256("test"))
+```
+
+```js
+// using util
+const value = b$util.convertNumberToNQTString(1000)
+```
+
+```js
+// using http
+const client = new b$http.HttpImpl('https://jsonplaceholder.typicode.com/');
+client.get('/todos/1').then(console.log)
+
 
 ## Usage
 
