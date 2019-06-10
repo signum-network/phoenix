@@ -2,6 +2,12 @@
 
 ## unreleased
 
+# Bug Fixes
+- Fixed green/red transactions on dashboard
+
+
+##1.0.0-beta.8
+
 ### New Features:
 - Added ability to scan QR codes when sending BURST
 
