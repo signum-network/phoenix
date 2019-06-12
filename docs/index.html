@@ -106,21 +106,34 @@
 					<li><a href="./modules/http.html">@burstjs/http</a> A package providing a <em>simplified</em> Http layer, with consistent response types, and exception handling</li>
 				</ul>
 				<h2 id="installation">Installation</h2>
-				<p><code>@burstjs</code> aims modern browsers and nodejs &gt; v10 </p>
-				<pre><code><span class="hljs-built_in">npm</span> install @burstjs/core
-<span class="hljs-built_in">npm</span> install @burstjs/crypto
-<span class="hljs-built_in">npm</span> install @burstjs/util
-<span class="hljs-built_in">npm</span> install @burstjs/http</code></pre><blockquote>
-					<p>Usually, you won&#39;t need to install other packages than <code>@burstjs/core</code>, which uses the other packages.</p>
-				</blockquote>
+				<p><code>@burstjs</code> aims modern browsers and nodejs &gt; v10, but can also be used as bundled JavaScript using <code>&lt;script&gt;</code> </p>
 				<h3 id="using-with-nodejs-and-or-modern-web-frameworks">Using with NodeJS and/or modern web frameworks</h3>
 				<p>Install using <a href="https://www.npmjs.org/">npm</a>:</p>
-				<pre><code><span class="hljs-built_in">npm</span> install @burstjs/core</code></pre><p>or using <a href="https://yarnpkg.com/">yarn</a>:</p>
-				<pre><code class="language-yarn">yarn add @burstjs/core</code></pre>
+				<pre><code><span class="hljs-built_in">npm</span> install @burstjs/core
+<span class="hljs-built_in">npm</span> install @burstjs/crypto (optional)
+<span class="hljs-built_in">npm</span> install @burstjs/util (optional)
+<span class="hljs-built_in">npm</span> install @burstjs/http (optional)</code></pre><p>or using <a href="https://yarnpkg.com/">yarn</a>:</p>
+				<pre><code class="language-yarn">yarn add @burstjs/core
+yarn add @burstjs/crypto (optional)
+yarn add @burstjs/util (optional)
+yarn add @burstjs/http (optional)</code></pre>
+				<blockquote>
+					<p>Usually, you won&#39;t need to install other packages than <code>@burstjs/core</code>, which uses the other packages.</p>
+				</blockquote>
+				<p>or using <a href="https://yarnpkg.com/">yarn</a>:</p>
+				<pre><code class="language-yarn">yarn add @burstjs/core
+yarn add @burstjs/crypto (optional)
+yarn add @burstjs/util (optional)
+yarn add @burstjs/http (optional)</code></pre>
 				<h3 id="using-in-classic-script">Using in classic <code>&lt;script&gt;</code></h3>
 				<p>Each package is available as bundled standalone library using IIFE.
 					This way <em>burstJS</em> can be used also within <code>&lt;script&gt;</code>-Tags.
 				This might be useful for Wordpress and/or other PHP applications.</p>
+				<p>Just import one of the packages using the HTML <code>&lt;script&gt;</code> tag.</p>
+				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@burstjs/core/dist/burstjs.min.js&#39;&gt;&lt;/script&gt;</code></p>
+				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@burstjs/crypto/dist/burstjs.crypto.min.js&#39;&gt;&lt;/script&gt;</code></p>
+				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@burstjs/http/dist/burstjs.http.min.js&#39;&gt;&lt;/script&gt;</code></p>
+				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@burstjs/util/dist/burstjs.util.min.js&#39;&gt;&lt;/script&gt;</code></p>
 				<p>Due to the way a package is imported following global variables are provided</p>
 				<table>
 					<thead>
@@ -158,31 +171,44 @@ api.network.getBlockchainStatus().then(<span class="hljs-built_in">console</span
 <span class="hljs-built_in">console</span>.log(b$crypto.hashSHA256(<span class="hljs-string">"test"</span>))</code></pre>
 				<pre><code class="language-js"><span class="hljs-comment">// using util</span>
 <span class="hljs-keyword">const</span> value = b$util.convertNumberToNQTString(<span class="hljs-number">1000</span>)</code></pre>
-				<pre><code class="language-js">// using http
-const client = new b$http.HttpImpl('https://jsonplaceholder.typicode.com/');
-client.get('/todos/1').then(console.log)
+				<pre><code class="language-js"><span class="hljs-comment">// using http</span>
+<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> b$http.HttpImpl(<span class="hljs-string">'https://jsonplaceholder.typicode.com/'</span>);
+client.get(<span class="hljs-string">'/todos/1'</span>).then(<span class="hljs-built_in">console</span>.log)</code></pre>
+				<h2 id="usage">Usage</h2>
+				<p>The following example shows how to interact with the blockchain, i.e. getting the balance of a specific account</p>
+				<h3 id="es6-nodejs-style">ES6/NodeJS style</h3>
+				<p>In a separate file, preferribly <code>index.js</code> or <code>main.js</code> write your entry point like this:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> {composeApi, ApiSettings} <span class="hljs-keyword">from</span> <span class="hljs-string">'@burstjs/core'</span>
+<span class="hljs-keyword">import</span> {convertNQTStringToNumber} <span class="hljs-keyword">from</span> <span class="hljs-string">'@burstjs/util'</span>
 
+<span class="hljs-keyword">const</span> apiSettings = <span class="hljs-keyword">new</span> ApiSettings(<span class="hljs-string">'http://at-testnet.burst-alliance.org:6876'</span>, <span class="hljs-string">'burst'</span>);
+<span class="hljs-keyword">const</span> api = composeApi(apiSettings);
 
-## Usage
+<span class="hljs-comment">// this self-executing file makes turns this file into a starting point of your app</span>
 
-The following example shows how to interact with the blockchain, i.e. getting the balance of a specific account
-
-```js
-import {composeApi, ApiSettings} from '@burstjs/core'
-import {convertNQTStringToNumber} from '@burstjs/util'
-
-const apiSettings = new ApiSettings('https://wallet1.burst-team.us:2083', 'burst');
-const api = composeApi(apiSettings);
-
-(async () =&gt; {
-  try{
-    const balanceNQT = await api.account.getAccountBalance('5810532812037266198') // poloniex exchange account
-    console.log(`Account Balance: ${convertNQTStringToNumber(balanceNQT)} BURST`)  
+(<span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">try</span>{
+    <span class="hljs-keyword">const</span> {balanceNQT} = <span class="hljs-keyword">await</span> api.account.getAccountBalance(<span class="hljs-string">'13036514135565182944'</span>)
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Account Balance: <span class="hljs-subst">${convertNQTStringToNumber(balanceNQT)}</span> BURST`</span>)  
   }
-  catch(e){ // e is of type HttpError (as part of @burstjs/http)
-    console.error(`Whooops, something went wrong: ${e.message}`)      
+  <span class="hljs-keyword">catch</span>(e){ <span class="hljs-comment">// e is of type HttpError (as part of @burstjs/http)</span>
+    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`Whooops, something went wrong: <span class="hljs-subst">${e.message}</span>`</span>)      
   }
 })()
+</code></pre>
+				<h3 id="script-style"><code>&lt;script&gt;</code> style</h3>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> apiSettings = <span class="hljs-keyword">new</span> b$.ApiSettings(<span class="hljs-string">'http://at-testnet.burst-alliance.org:6876'</span>, <span class="hljs-string">'burst'</span>);
+<span class="hljs-keyword">const</span> api = b$.composeApi(apiSettings);
+
+
+api.account.getAccountBalance(<span class="hljs-string">'13036514135565182944'</span>)
+    .then( <span class="hljs-function"><span class="hljs-params">balance</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Account Balance: <span class="hljs-subst">${b$util.convertNQTStringToNumber(balance.balanceNQT)}</span> BURST`</span>)  
+
+    })
+    .catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> { <span class="hljs-comment">// e is of type HttpError (as part of @burstjs/http)</span>
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`Whooops, something went wrong: <span class="hljs-subst">${e.message}</span>`</span>)      
+    })
 </code></pre>
 			</div>
 		</div>
