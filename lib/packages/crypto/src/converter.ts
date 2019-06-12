@@ -40,6 +40,7 @@ export class Converter {
         }
     }
 
+    // @deprecated Use util.convertHexStringToByteArray instead
     public static convertHexStringToByteArray(hex): number[] {
         for (var bytes = [], c = 0; c < hex.length; c += 2)
             bytes.push(parseInt(hex.substr(c, 2), 16));

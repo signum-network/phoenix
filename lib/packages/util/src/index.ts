@@ -10,6 +10,8 @@ export * from './convertAddressToNumericId';
 export * from './isBurstAddress';
 export * from './splitBurstAddress';
 export * from './sumNQTStringToNumber';
+export * from './convertByteArrayToHexString';
+export * from './convertHexStringToByteArray';
 
 /**
  * A useful regex for matching burst addresses
