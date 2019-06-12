@@ -27,16 +27,7 @@ The library is separated in the following packages
 
 ## Installation
 
-`@burstjs` aims modern browsers and nodejs > v10 
-
-
-```
-npm install @burstjs/core
-npm install @burstjs/crypto
-npm install @burstjs/util
-npm install @burstjs/http
-```
-> Usually, you won't need to install other packages than `@burstjs/core`, which uses the other packages.
+`@burstjs` aims modern browsers and nodejs > v10, but can also be used as bundled JavaScript using `<script>` 
 
 ### Using with NodeJS and/or modern web frameworks
 
@@ -44,12 +35,30 @@ Install using [npm](https://www.npmjs.org/):
 
 ```
 npm install @burstjs/core
+npm install @burstjs/crypto (optional)
+npm install @burstjs/util (optional)
+npm install @burstjs/http (optional)
 ```
+
 
 or using [yarn](https://yarnpkg.com/):
 
 ``` yarn
 yarn add @burstjs/core
+yarn add @burstjs/crypto (optional)
+yarn add @burstjs/util (optional)
+yarn add @burstjs/http (optional)
+```
+
+> Usually, you won't need to install other packages than `@burstjs/core`, which uses the other packages.
+
+or using [yarn](https://yarnpkg.com/):
+
+``` yarn
+yarn add @burstjs/core
+yarn add @burstjs/crypto (optional)
+yarn add @burstjs/util (optional)
+yarn add @burstjs/http (optional)
 ```
 
 ### Using in classic `<script>`
@@ -57,6 +66,16 @@ yarn add @burstjs/core
 Each package is available as bundled standalone library using IIFE. 
 This way _burstJS_ can be used also within `<script>`-Tags. 
 This might be useful for Wordpress and/or other PHP applications.
+
+Just import one of the packages using the HTML `<script>` tag.
+
+`<script src='https://cdn.jsdelivr.net/npm/@burstjs/core/dist/burstjs.min.js'></script>`
+
+`<script src='https://cdn.jsdelivr.net/npm/@burstjs/crypto/dist/burstjs.crypto.min.js'></script>`
+
+`<script src='https://cdn.jsdelivr.net/npm/@burstjs/http/dist/burstjs.http.min.js'></script>`
+
+`<script src='https://cdn.jsdelivr.net/npm/@burstjs/util/dist/burstjs.util.min.js'></script>`
 
 Due to the way a package is imported following global variables are provided
 
@@ -94,28 +113,55 @@ const value = b$util.convertNumberToNQTString(1000)
 // using http
 const client = new b$http.HttpImpl('https://jsonplaceholder.typicode.com/');
 client.get('/todos/1').then(console.log)
+```
 
 
 ## Usage
 
 The following example shows how to interact with the blockchain, i.e. getting the balance of a specific account
 
+
+### ES6/NodeJS style
+
+In a separate file, preferribly `index.js` or `main.js` write your entry point like this:
+
 ```js
 import {composeApi, ApiSettings} from '@burstjs/core'
 import {convertNQTStringToNumber} from '@burstjs/util'
 
-const apiSettings = new ApiSettings('https://wallet1.burst-team.us:2083', 'burst');
+const apiSettings = new ApiSettings('http://at-testnet.burst-alliance.org:6876', 'burst');
 const api = composeApi(apiSettings);
+
+// this self-executing file makes turns this file into a starting point of your app
 
 (async () => {
   try{
-    const balanceNQT = await api.account.getAccountBalance('5810532812037266198') // poloniex exchange account
+    const {balanceNQT} = await api.account.getAccountBalance('13036514135565182944')
     console.log(`Account Balance: ${convertNQTStringToNumber(balanceNQT)} BURST`)  
   }
   catch(e){ // e is of type HttpError (as part of @burstjs/http)
     console.error(`Whooops, something went wrong: ${e.message}`)      
   }
 })()
+
+```
+
+
+### `<script>` style
+
+```js
+const apiSettings = new b$.ApiSettings('http://at-testnet.burst-alliance.org:6876', 'burst');
+const api = b$.composeApi(apiSettings);
+
+
+api.account.getAccountBalance('13036514135565182944')
+    .then( balance => {
+        console.log(`Account Balance: ${b$util.convertNQTStringToNumber(balance.balanceNQT)} BURST`)  
+    
+    })
+    .catch(e => { // e is of type HttpError (as part of @burstjs/http)
+        console.error(`Whooops, something went wrong: ${e.message}`)      
+    })
 
 ```
 
