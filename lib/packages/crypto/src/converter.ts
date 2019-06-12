@@ -89,6 +89,7 @@ export class Converter {
         return startIndex;
     }
 
+    // unused!
     public static convertByteArrayToSignedShort(bytes, opt_startIndex) {
         let index = this.checkBytesToIntInput(bytes, 2, opt_startIndex);
         let value = bytes[index];
@@ -96,6 +97,7 @@ export class Converter {
         return value;
     }
 
+    // unused!
     public static convertByteArrayToSignedInt32(bytes, opt_startIndex) {
         let value;
         let index = this.checkBytesToIntInput(bytes, 4, opt_startIndex);
@@ -186,7 +188,7 @@ export class Converter {
         return byteArray;
     }
 
-    public static convertShortArrayToHexString(ary) {
+        public static convertShortArrayToHexString(ary) {
         let res = "";
         for (let i = 0; i < ary.length; i++) {
             res += Converter.nibbleToChar[(ary[i] >> 4) & 0x0f] + Converter.nibbleToChar[ary[i] & 0x0f] + Converter.nibbleToChar[(ary[i] >> 12) & 0x0f] + Converter.nibbleToChar[(ary[i] >> 8) & 0x0f];
