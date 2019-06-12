@@ -4,6 +4,10 @@ Cryptographic functions for building Burstcoin apps.
 
 ## Installation
 
+burstJS can be used with NodeJS or Web. Two formats are available
+
+### Using with NodeJS and/or modern web frameworks
+
 Install using [npm](https://www.npmjs.org/):
 
 ```
@@ -15,6 +19,44 @@ or using [yarn](https://yarnpkg.com/):
 ``` yarn
 yarn add @burstjs/crypto
 ```
+
+#### Example
+
+```js
+import {encryptAES, decryptAES, hashSHA256} from '@burstjs/crypto'
+
+const encrypted = encryptAES('test', 'key')
+const decrypted = decryptAES(encrypted, 'key')
+console.log(hashSHA256('test'))
+console.log(decrypted)
+```
+
+
+### Using in classic `<script>`
+
+Each package is available as bundled standalone library using IIFE.
+This way _burstJS_ can be used also within `<script>`-Tags.
+This might be useful for Wordpress and/or other PHP applications.
+
+Just import the package using the HTML `<script>` tag.
+
+`<script src='https://cdn.jsdelivr.net/npm/@burstjs/crypto/dist/burstjs.crypto.min.js'></script>`
+
+
+#### Example
+
+```js
+const encrypted = b$crypto.encryptAES("test", "key");
+const decrypted = b$crypto.decryptAES(encrypted, "key");
+console.log(b$crypto.hashSHA256("test"));
+console.log(decrypted);
+```
+
+See more here:
+
+[@burstjs/crypto Online Documentation](https://burstappsteam.org/phoenix/modules/crypto.html)
+
+---
 
 ## API Reference
 {{>main}}
