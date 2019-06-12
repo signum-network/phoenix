@@ -9,7 +9,7 @@
  * Inverse operation of [[convertHexStringToByteArray]]
  * @param bytes The byte array to be converted
  * @param uppercase If _true_, converts hex string with uppercase characters (Default: false)
- * @return {number[]} An byte array representing the hexadecimal input
+ * @return {string} A hex string representing the byte array input
  */
 export const convertByteArrayToHexString = (bytes: number[], uppercase = false): string => {
     const hex = [];

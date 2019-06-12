@@ -47,6 +47,7 @@ export class Converter {
         return bytes;
     }
 
+    // @deprecated Use util.convertByteArrayToHexString instead
     public static convertByteArrayToHexString(bytes) {
         for (var hex = [], i = 0; i < bytes.length; i++) {
             hex.push((bytes[i] >>> 4).toString(16));
