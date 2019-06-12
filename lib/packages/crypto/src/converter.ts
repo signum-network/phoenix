@@ -56,6 +56,7 @@ export class Converter {
         return hex.join("");
     }
 
+    // @deprecated use util.convertStringToByteArray
     public static convertStringToByteArray(str) {
         str = unescape(encodeURIComponent(str)); //temporary
 
@@ -66,10 +67,12 @@ export class Converter {
         return bytes;
     }
 
+    // @deprecate use util.convertStringToHexString
     public static convertStringToHexString(str) {
         return Converter.convertByteArrayToHexString(Converter.convertStringToByteArray(str));
     }
 
+    // @deprecated use util.convertHexStringToString
     public static convertHexStringToString(hex) {
         return Converter.convertByteArrayToString(Converter.convertHexStringToByteArray(hex));
     }
@@ -148,6 +151,7 @@ export class Converter {
         return [].concat.apply([], result);
     }
 
+    // @deprecated use util.convertByteArrayToString
     public static convertByteArrayToString(bytes, opt_startIndex = 0, length = 0) {
         if (length == 0) {
             return "";
