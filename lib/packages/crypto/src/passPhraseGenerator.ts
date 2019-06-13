@@ -6,8 +6,9 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-import * as seedrandom from "seedrandom";
-import { words } from "./words";
+// @ts-ignore
+import seedrandom from 'seedrandom';
+import { words } from './words';
 
 export class PassPhraseGenerator {
 

@@ -55,6 +55,7 @@
               <app-transaction-table *ngIf="dataSource && dataSource.data.length"
                                      [displayedColumns]="['transaction_id', 'attachment', 'timestamp', 'amount', 'account']"
                                      [dataSource]="dataSource"
+                                     [account]="account"
                                      [paginationEnabled]="false"
               ></app-transaction-table>
               <div *ngIf="!dataSource" class="text-center">

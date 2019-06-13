@@ -5,7 +5,7 @@
     "email": "contact@burst-coin.org"
   },
   "productName": "Phoenix BURST Wallet",
-  "version": "1.0.0-beta.7",
+  "version": "1.0.0-beta.8",
   "contributors": [
     "ohager",
     "blankey1337"
@@ -23,7 +23,7 @@
   ],
   "main": "main.js",
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--max_old_space_size=4096 node ../../scripts/build.js --target desktop",
@@ -42,7 +42,7 @@
   "devDependencies": {
     "ajv": "^6.10.0",
     "cross-env": "^5.2.0",
-    "electron": "^5.0.1",
+    "electron": "^5.0.2",
     "electron-builder": "^20.41.0",
     "jest": "^24.8.0",
     "rimraf": "^2.6.3"
@@ -54,13 +54,13 @@
     "tagPrefix": "desktop-"
   },
   "dependencies": {
-    "@burstjs/http": "^0.1.1",
+    "@burstjs/http": "^0.1.2",
     "electron-dl": "^1.14.0",
     "get-ssl-certificate": "^2.3.2",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
-    "semver": "^6.0.0",
+    "semver": "^6.1.1",
     "ssl-validator": "^1.0.4",
     "snyk": "^1.170.0"
   },

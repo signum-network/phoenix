@@ -4,6 +4,10 @@ Useful utilities and tools for building Burstcoin applications
 
 ## Installation
 
+`@burstjs/http` can be used with NodeJS or Web. Two formats are available
+
+### Using with NodeJS and/or modern web frameworks
+
 Install using [npm](https://www.npmjs.org/):
 
 ```
@@ -15,6 +19,38 @@ or using [yarn](https://yarnpkg.com/):
 ``` yarn
 yarn add @burstjs/util
 ```
+
+#### Example
+
+```js
+import {convertNumberToNQTString} from '@burstjs/util'
+
+const value = convertNumberToNQTString(1000)
+console.log(value)
+```
+
+### Using in classic `<script>`
+
+Each package is available as bundled standalone library using IIFE.
+This way _burstJS_ can be used also within `<script>`-Tags.
+This might be useful for Wordpress and/or other PHP applications.
+
+Just import the package using the HTML `<script>` tag.
+
+`<script src='https://cdn.jsdelivr.net/npm/@burstjs/util/dist/util.crypto.min.js'></script>`
+
+#### Example
+
+```js
+const value = b$util.convertNumberToNQTString(1000)
+console.log(value)
+```
+
+See more here:
+
+[@burstjs/util Online Documentation](https://burstappsteam.org/phoenix/modules/util.html)
+
+---
 
 ## API Reference
 {{>main}}

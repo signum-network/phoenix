@@ -1,6 +1,6 @@
 os: osx
 language: node_js
-node_js: '10'
+node_js: '12'
 addons:
   homebrew:
     packages:
@@ -13,13 +13,16 @@ cache:
     - "$HOME/.cache/electron-builder"
 
 before_script:
-  - npm i @angular/cli@7.3.9 -g
+  - npm i @angular/cli -g
 
 jobs:
   include:
     - stage: prepare
       name: "Build App"
       script: './scripts/ci/build-electron.sh'
+    - # parallel run
+      name: "Bundle BurstJS"
+      script: './scripts/ci/bundle-burstjs.sh'
     - # parallel run
       name: "Run BurstJS Tests"
       script: './scripts/ci/test-burstjs.sh'

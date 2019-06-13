@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+# unreleased
+- now available as standalone bundle (iife)
+- introduced first Contract API functions
+    - `getContract`
+    - `getContractsByAccount`
+
 ## 0.1.2
 - added `confirmed` property to `Account` model
 - added `alias` api

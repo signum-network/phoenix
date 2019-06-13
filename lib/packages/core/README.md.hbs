@@ -4,6 +4,10 @@ Burst-related functions and models for building Burstcoin applications.
 
 ## Installation
 
+burstJS can be used with NodeJS or Web. Two formats are available
+
+### Using with NodeJS and/or modern web frameworks
+
 Install using [npm](https://www.npmjs.org/):
 
 ```
@@ -12,9 +16,63 @@ npm install @burstjs/core
 
 or using [yarn](https://yarnpkg.com/):
 
-``` yarn
+```
 yarn add @burstjs/core
 ```
+
+#### Example
+
+```js
+import {composeApi, ApiSettings} from '@burstjs/core'
+import {convertNQTStringToNumber} from '@burstjs/util'
+
+const apiSettings = new ApiSettings('http://at-testnet.burst-alliance.org:6876', 'burst');
+const api = composeApi(apiSettings);
+
+// this self-executing file makes turns this file into a starting point of your app
+
+(async () => {
+try{
+const {balanceNQT} = await api.account.getAccountBalance('13036514135565182944')
+console.log(`Account Balance: ${convertNQTStringToNumber(balanceNQT)} BURST`)
+}
+catch(e){ // e is of type HttpError (as part of @burstjs/http)
+console.error(`Whooops, something went wrong: ${e.message}`)
+}
+})()
+```
+
+
+### Using in classic `<script>`
+
+Each package is available as bundled standalone library using IIFE.
+This way _burstJS_ can be used also within `<script>`-Tags.
+This might be useful for Wordpress and/or other PHP applications.
+
+Just import the package using the HTML `<script>` tag.
+
+`<script src='https://cdn.jsdelivr.net/npm/@burstjs/core/dist/burstjs.min.js'></script>`
+
+
+#### Example
+
+```js
+(function(){
+const api = b$.composeApi({
+nodeHost: "http://at-testnet.burst-alliance.org:6876",
+apiRootUrl: "/burst"
+});
+
+api.network.getBlockchainStatus().then(console.log).catch(console.error);
+})()
+```
+
+
+See more here:
+
+[@burstjs/core Online Documentation](https://burstappsteam.org/phoenix/modules/core.html)
+
+---
 
 ## API Reference
 {{>main}}

@@ -9,7 +9,7 @@
     <mat-list-item>
       <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
         <h3 class="font-weight-700">
-          7d Price Chart
+          {{"price_chart_7d" | i18n}}
         </h3>
         <img class="sparkline" alt="sparkline"
              src="https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/573.png">
@@ -38,7 +38,7 @@
     <mat-list-item>
       <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
         <h3 class="font-weight-700">
-          24h Volume
+          {{"volume_24h" | i18n}}
         </h3>
         <div>
           {{get24hVolume()}}
@@ -48,7 +48,7 @@
     <mat-list-item>
       <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
         <h3 class="font-weight-700" fxLayoutAlign="center">
-          Available Supply
+          {{"available_supply" | i18n}}
         </h3>
         <div fxLayout="row" fxLayoutAlign="start end">
           <span>
@@ -63,7 +63,7 @@
     <mat-list-item>
       <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
         <h3 class="font-weight-700">
-          Market Cap
+          {{"market_capitalization" | i18n}}
         </h3>
         <div>
           {{getMarketCap()}}
@@ -73,7 +73,7 @@
     <mat-list-item>
       <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
         <h3 class="font-weight-700">
-          Yesterday's change
+          {{"yesterdays_change" | i18n}}
         </h3>
         <div [ngClass]="{fg_green: !isChangeNegative(), fg_red: isChangeNegative()}">
           {{getYesterDaysChange()}}
@@ -83,7 +83,7 @@
     <mat-list-item>
       <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
         <h3 class="font-weight-700">
-          Market Rank
+          {{"market_rank" | i18n}}
         </h3>
         <div>
           {{getMarketRank()}}

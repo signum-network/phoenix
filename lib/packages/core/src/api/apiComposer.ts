@@ -12,6 +12,7 @@ import {MessageApi} from '../typings/api/messageApi';
 import {NetworkApi} from '../typings/api/networkApi';
 import {TransactionApi} from '../typings/api/transactionApi';
 import {BurstService} from '../service/burstService';
+import {ContractApi} from '../typings/api/contractApi';
 
 
 class ApiImpl implements Api {
@@ -21,6 +22,7 @@ class ApiImpl implements Api {
     message: MessageApi;
     network: NetworkApi;
     transaction: TransactionApi;
+    contract: ContractApi;
 }
 
 /**
@@ -130,6 +132,15 @@ export class ApiComposer {
      */
     public withAliasApi(creatorMap: any): ApiComposer {
         this.mapCreators('alias', creatorMap);
+        return this;
+    }
+
+    /**
+     * Adds the [[ContractApi]]  to be composed
+     * @param creatorMap A map of creator/factory functions for the endpoints
+     */
+    public withContractApi(creatorMap: any): ApiComposer {
+        this.mapCreators('contract', creatorMap);
         return this;
     }
 

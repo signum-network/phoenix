@@ -1,10 +1,10 @@
 /** @module core */
 
 import {constructAttachment} from './constructAttachment';
-import {getRecipientAmountsFromMultiOutPayment} from '../transaction/getRecipientAmountsFromMultiOutPayment';
+import {assertAttachmentVersion} from './assertAttachmentVersion';
 
 export {
   constructAttachment,
-  getRecipientAmountsFromMultiOutPayment
+  assertAttachmentVersion
 };
 

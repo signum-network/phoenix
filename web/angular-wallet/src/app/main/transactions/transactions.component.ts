@@ -1,39 +1,40 @@
-import {Component, ViewChild} from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import {Transaction} from '@burstjs/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 import {FormControl} from '@angular/forms';
-import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
 import {ActivatedRoute} from '@angular/router';
+import {Transaction, Account} from '@burstjs/core';
+import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
 
 @Component({
   selector: 'app-transactions',
   styleUrls: ['./transactions.component.scss'],
   templateUrl: './transactions.component.html'
 })
-export class TransactionsComponent {
+export class TransactionsComponent implements OnInit, AfterViewInit{
   public dataSource: MatTableDataSource<Transaction>;
   public convertNQTStringToNumber = convertNQTStringToNumber;
+  public account: Account;
   pickerFromField = new FormControl();
   pickerToField = new FormControl();
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(
     private route: ActivatedRoute
   ) {
   }
 
-  public async ngOnInit() {
+  public ngOnInit(): void {
     this.dataSource = new MatTableDataSource<Transaction>();
     this.dataSource.data = this.route.snapshot.data.transactions;
+    this.account = this.route.snapshot.data.account;
   }
 
-  public ngAfterViewInit() {
+  public ngAfterViewInit(): void {
     const defaultFilterPredicate = this.dataSource.filterPredicate;
-    // this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.dataSource.filterPredicate = (data, filterValue: string) => {
       const date = this.convertTimestamp(data.timestamp);
@@ -50,7 +51,7 @@ export class TransactionsComponent {
     };
   }
 
-  public applyFilter(filterValue: string) {
+  public applyFilter(filterValue: string): void {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue || 'burst';

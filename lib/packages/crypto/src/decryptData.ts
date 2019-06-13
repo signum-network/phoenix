@@ -6,7 +6,7 @@
  */
 
 import * as CryptoJS from 'crypto-js';
-import {inflate} from 'pako';
+import {inflate} from 'pako/lib/inflate';
 import {ECKCDSA} from './ec-kcdsa';
 import {Converter} from './converter';
 import {EncryptedData} from '../typings/encryptedData';

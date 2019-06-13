@@ -48,14 +48,15 @@
     "test:ci": "jest --coverage && codecov",
     "test:e2e": "jest --config jest.config.e2e.js --runInBand --detectOpenHandles --forceExit",
     "doc": "typedoc --options tsdoc.json --listInvalidSymbolLinks",
+    "readme": "lerna exec 'npm run readme'",
     "bootstrap": "lerna bootstrap && lerna exec npm install && lerna run tsc",
     "lint": "tslint -p tsconfig.json -t stylish -s node_modules/custom-tslint-formatters/formatters -t grouped",
-    "publish": "lerna run tsc && lerna publish --force-publish",
+    "publish": "npm run build && lerna publish --force-publish",
     "tsc": "lerna run tsc",
-    "build": "npm run tsc",
-    "clearPackages": "lerna exec rm -rf node_modules && rm -rf node_modules"
+    "build": "npm run tsc && lerna exec npm run bundle",
+    "clearPackages": "lerna exec 'rm -rf node_modules' && rm -rf node_modules"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.19.0"
   }
 }

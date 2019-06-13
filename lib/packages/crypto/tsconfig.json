@@ -7,8 +7,8 @@
             "node"
         ]
     },
-    "typeRoots": [ 
-        "typings", 
+    "typeRoots": [
+        "typings",
         "node_modules/@types"
     ],
     "include": [

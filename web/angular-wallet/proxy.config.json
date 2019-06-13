@@ -4,15 +4,5 @@
     "changeOrigin": true,
     "secure": false,
     "logLevel": "info"
-  },
-  "/v1/ticker/burst": {
-    "target": "https://api.coinmarketcap.com/",
-    "secure": false,
-    "logLevel": "debug",
-    "headers": {
-      "Origin": "https://api.coinmarketcap.com",
-      "Host": "api.coinmarketcap.com",
-      "Content-type": "application/json"
-    }
   }
 }
