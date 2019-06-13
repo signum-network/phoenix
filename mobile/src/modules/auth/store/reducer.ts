@@ -25,8 +25,23 @@ const addAccount: Reducer<AuthReduxState, Account> = (state, action) => {
   };
 };
 
+const updateAccount: Reducer<AuthReduxState, Account> = (state, action) => {
+  const account = action.payload;
+  const accounts = state.accounts.map((existingAccount) => {
+    if (existingAccount.account === account.account) {
+      return account;
+    } else {
+      return existingAccount;
+    }
+  });
+  return {
+    ...state,
+    accounts
+  };
+};
+
 const removeAccount: Reducer<AuthReduxState, Account> = (state, action) => {
-  const accounts = state.accounts.filter((item: Account) => item.account === action.payload.account);
+  const accounts = state.accounts.filter((item: Account) => item.account !== action.payload.account);
   return {
     ...state,
     accounts
@@ -67,6 +82,7 @@ const loadPasscode: Reducer<AuthReduxState, string> = (state, action) => {
 
 const reducers = {
   [actionTypes.addAccount]: addAccount,
+  [actionTypes.updateAccount]: updateAccount,
   [actionTypes.removeAccount]: removeAccount,
   [actionTypes.loadAccounts]: loadAccounts,
   [actionTypes.loadPasscodeEnteredTime]: loadPasscodeEnteredTime,

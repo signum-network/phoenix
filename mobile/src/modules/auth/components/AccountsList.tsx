@@ -10,6 +10,7 @@ interface Props {
   accounts: Account[];
   onAccountPress: (account: Account) => void;
   onAddAccountPress: () => void;
+  onDelete: (account: Account) => void;
 }
 
 const styles = StyleSheet.create({
@@ -31,7 +32,7 @@ export class AccountsList extends React.PureComponent<Props> {
 
   renderAccountItem = ({ item }: ListRenderItemInfo<Account>) => {
     return (
-      <AccountListItem onPress={this.props.onAccountPress} account={item}/>
+      <AccountListItem onDelete={this.props.onDelete} onPress={this.props.onAccountPress} account={item}/>
     );
   }
 

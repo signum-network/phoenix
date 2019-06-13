@@ -1,3 +1,4 @@
+import { Account } from '@burstjs/core';
 import React, { Props } from 'react';
 
 import { Button, View } from 'react-native';
@@ -7,18 +8,18 @@ import { AuthReduxState } from '../store/reducer';
 
 import { Text } from '../../../core/components/base/Text';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
+import { PlusHeaderButton } from '../../../core/components/header/PlusHeaderButton';
 import { i18n } from '../../../core/i18n';
 import { InjectedReduxProps } from '../../../core/interfaces';
 import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
 import { routes } from '../../../core/navigation/routes';
+import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { core } from '../../../core/translations';
 import { AccountsList } from '../components/AccountsList';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
-import { Account } from '@burstjs/core';
-import { PlusHeaderButton } from '../../../core/components/header/PlusHeaderButton';
-import { AppReduxState } from '../../../core/store/app/reducer';
+import { removeAccount } from '../store/actions';
 import { shouldEnterPIN } from '../store/utils';
 
 interface Props extends InjectedReduxProps {
@@ -62,7 +63,9 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   handleAccountPress = (_account: Account) => {
-    // TODO: do smthng
+    this.props.navigation.navigate(routes.accountDetails, {
+      account: _account
+    });
   }
 
   handleAddAccountPress = async () => {
@@ -89,6 +92,10 @@ class Home extends React.PureComponent<TProps, State> {
     this.setModalVisible(false);
   }
 
+  handleDelete = (account: Account) => {
+    this.props.dispatch(removeAccount(account));
+  }
+
   render () {
     const accounts: Account[] = this.props.auth.accounts || [];
     const selectedAccount = this.props.auth.accounts.length &&
@@ -97,19 +104,20 @@ class Home extends React.PureComponent<TProps, State> {
       <Screen>
         <FullHeightView>
           <View>
-            <Text>
+            {/* <Text>
               {selectedAccount.accountRS}
-            </Text>
-            <Text>
+            </Text> */}
+            {/* <Text>
               {selectedAccount.balanceNQT || '0'} BURST
             </Text>
             <Text>
               {selectedAccount.balanceNQT || '0'} USD
-            </Text>
+            </Text> */}
             <AccountsList
               accounts={accounts}
               onAccountPress={this.handleAccountPress}
               onAddAccountPress={this.handleAddAccountPress}
+              onDelete={this.handleDelete}
             />
             <EnterPasscodeModal
               visible={this.state.isPINModalVisible}

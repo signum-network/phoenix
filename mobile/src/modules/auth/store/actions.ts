@@ -1,4 +1,4 @@
-import { Account } from '@burstjs/core';
+import { Account, getAccount, composeApi, ApiSettings } from '@burstjs/core';
 import {
   encryptAES,
   generateMasterKeys,
@@ -21,6 +21,7 @@ import {
 
 const actions = {
   addAccount: createAction<Account>(actionTypes.addAccount),
+  updateAccount: createAction<Account>(actionTypes.updateAccount),
   removeAccount: createAction<Account>(actionTypes.removeAccount),
   loadAccounts: createAction<Account[]>(actionTypes.loadAccounts),
   loadPasscodeEnteredTime: createAction<number>(actionTypes.loadPasscodeEnteredTime),
@@ -35,7 +36,8 @@ export interface ActiveAccountGeneratorData {
 }
 
 export const createActiveAccount = createActionFn<ActiveAccountGeneratorData, Account>(
-  (_dispatch, getState, { phrase, pin }): Account => {
+  // @ts-ignore
+  async (_dispatch, getState, { phrase, pin }): Promise<Account> => {
     const passphrase = phrase.join(' ');
     if (!isPassphraseCorrect(passphrase)) {
       throw new Error(i18n.t(auth.errors.incorrectPassphrase));
@@ -57,14 +59,13 @@ export const createActiveAccount = createActionFn<ActiveAccountGeneratorData, Ac
     const pinHash = hashSHA256(pin + keys.publicKey);
 
     // TODO: make fields optional in @burst package
-    // @ts-ignore
-    return {
+    return new Account({
       account,
       accountRS,
       type: 'active', // TODO: make type enum in @burst package
       keys: encryptedKeys,
       pinHash
-    };
+    });
   }
 );
 
@@ -81,12 +82,26 @@ export const createOfflineAccount = createActionFn<string, Account>(
     }
 
     // TODO: make fields optional in @burst package
-    // @ts-ignore
-    return {
+    return new Account({
       type: 'offline', // TODO: make type enum in @burst package
       account,
       accountRS
-    };
+    });
+  }
+);
+
+export const hydrateAccount = createActionFn<Account, Promise<Account>>(
+  async (dispatch, getState, account) => {
+
+    const api = composeApi(new ApiSettings('https://wallet1.burst-team.us:2083', 'burst'));
+    try {
+      const accountDetails = await api.account.getAccount(account.account);
+      dispatch(actions.updateAccount(accountDetails));
+    // @ts-ignore
+    } catch (e) { }
+
+    await setAccounts(getState().auth.accounts);
+    return account;
   }
 );
 

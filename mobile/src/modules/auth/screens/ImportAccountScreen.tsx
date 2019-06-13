@@ -13,7 +13,7 @@ import { ApplicationState } from '../../../core/store/initialState';
 import { Sizes } from '../../../core/theme/sizes';
 import { ActiveAccountData, ImportActiveAccount } from '../components/import/ImportActiveAccount';
 import { ImportOfflineAccount } from '../components/import/ImportOfflineAccount';
-import { addAccount, createActiveAccount, createOfflineAccount } from '../store/actions';
+import { addAccount, createActiveAccount, createOfflineAccount, hydrateAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
 
@@ -51,7 +51,8 @@ class ImportAccount extends React.PureComponent<Props, State> {
           pin
         }));
       this.props.dispatch(addAccount(account));
-      this.props.navigation.navigate(routes.accounts);
+      this.props.dispatch(hydrateAccount(account));
+      this.props.navigation.navigate(routes.home);
     } catch (error) {
       Alert.alert(error.message);
     }
@@ -61,6 +62,7 @@ class ImportAccount extends React.PureComponent<Props, State> {
     try {
       const account = await this.props.dispatch(createOfflineAccount(address));
       this.props.dispatch(addAccount(account));
+      this.props.dispatch(hydrateAccount(account));
       this.props.navigation.navigate(routes.accounts);
     } catch (error) {
       Alert.alert(error.message);

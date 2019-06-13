@@ -2,6 +2,7 @@ export const PATH = 'AUTH_';
 
 export const actionTypes = {
   addAccount: `${PATH}_ADD_ACCOUNT`,
+  updateAccount: `${PATH}_UPDATE_ACCOUNT`,
   removeAccount: `${PATH}_REMOVE_ACCOUNT`,
   loadAccounts: `${PATH}_LOAD_ACCOUNTS`,
   loadPasscodeEnteredTime: `${PATH}_LOAD_PASSCODE_ENTERED_TIME`,
