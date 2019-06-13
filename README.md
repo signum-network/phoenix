@@ -34,7 +34,7 @@ Phoenix was proposed in [CIP-18](https://github.com/burst-apps-team/CIPs/blob/ma
 
 *Some features not available on mobile.*
 
-#Screenshots
+## Screenshots
 ![image](assets/beta.7/phoenix_2_beta.7.jpg)
 
 ![image](assets/beta.7/phoenix_3_beta.7.jpg)
