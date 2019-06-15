@@ -2,9 +2,13 @@
 All notable changes to this project will be documented in this file.
 
 # unreleased
+- added several conversion functions
+    - namely byteArray x string x hex
+    - `convertHexStringtoDecString`
+
+## 0.1.3
 - now available as standalone bundle (iife)
 - patched `sumNQTStringToNumber` to be accessible
-
 
 ## 0.1.2
 - added `sumNQTStringToNumber`

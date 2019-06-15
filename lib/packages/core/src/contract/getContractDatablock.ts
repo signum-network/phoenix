@@ -1,10 +1,16 @@
+/** @module core */
+
+/**
+ * Copyright (c) 2019 Burst Apps Team
+ */
+
+import {Contract} from '../typings/contract';
 /**
  * Extracts a variables value as hexadecimal string from a contract's machine data
  * @param position The variables position
  * @param length The length of data to be extracted
  * @return The value as hexadecimal string (already considering endianness)
  */
-import {Contract} from '../typings/contract';
 
 export function getContractDatablock(contract: Contract, position: number, length: number = 16): string {
 

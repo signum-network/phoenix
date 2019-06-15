@@ -1,8 +1,12 @@
 /** @module core */
 
-import {convertHexStringToDec, convertHexStringToString} from '@burstjs/util';
+/**
+ * Copyright (c) 2019 Burst Apps Team
+ */
+
+import {convertHexStringToDecString, convertHexStringToString} from '@burstjs/util';
 import {Contract} from '../typings/contract';
-import {getContractDatablock} from './index';
+import {getContractDatablock} from './getContractDatablock';
 
 /**
  * Helper class for contracts
@@ -51,7 +55,7 @@ export class ContractHelper {
      * @return The data as a decimal string sequence
      */
     public getVariableAsDecimal(index: number): string {
-        return convertHexStringToDec(this.getVariable(index));
+        return convertHexStringToDecString(this.getVariable(index));
     }
 
     /**

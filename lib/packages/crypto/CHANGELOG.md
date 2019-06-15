@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 
 # unreleased
+- cleaned up internal converter functions
+    - remove unused functions
+- fixed seedrandom import issue
+
+## 0.1.3
 - now available as standalone bundle (iife)
 
 ## 0.1.1
