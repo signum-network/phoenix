@@ -8,9 +8,10 @@ export * from './convertDateToBurstTime';
 export * from './convertAddressToNumericId';
 export * from './isBurstAddress';
 export * from './sumNQTStringToNumber';
+export * from './convertByteArrayToString';
 export * from './convertByteArrayToHexString';
 export * from './convertHexStringToByteArray';
-export * from './convertHexStringToDec';
+export * from './convertHexStringToDecString';
 export * from './convertHexStringToString';
 
 /**

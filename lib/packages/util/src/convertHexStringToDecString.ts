@@ -1,10 +1,8 @@
 /** @module util */
 
 /**
- * Original work Copyright (c) 2018 PoC-Consortium
- * Modified work Copyright (c) 2019 Burst Apps Team
+ Original work Copyright (c) 2019 Burst Apps Team
  */
-
 
 /**
  * Arbitrary length hexadecimal to decimal conversion
@@ -12,7 +10,7 @@
  * @param hexStr A hexadecimal string
  * @return A decimal string
  */
-export const convertHexStringToDec = (hexStr: string): string => {
+export const convertHexStringToDecString = (hexStr: string): string => {
     const digits = [0];
     let i, j, carry;
     for (i = 0; i < hexStr.length; i += 1) {

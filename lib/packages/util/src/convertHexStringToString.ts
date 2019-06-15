@@ -1,12 +1,12 @@
 /** @module util */
-import {convertByteArrayToString} from './convertByteArrayToString';
-import {convertHexStringToByteArray} from './convertHexStringToByteArray';
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
+import {convertByteArrayToString} from './convertByteArrayToString';
+import {convertHexStringToByteArray} from './convertHexStringToByteArray';
 
 /**
  * Converts a Hexadecimally encoded string into String
