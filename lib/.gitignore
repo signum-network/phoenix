@@ -1,7 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
 
 .rpt2_cache
-packages/core/dist/**/*.d.ts
-packages/util/dist/**/*.d.ts
-packages/http/dist/**/*.d.ts
-packages/crypto/dist/src
+#packages/core/dist/**/*.d.ts
+#packages/util/dist/**/*.d.ts
+#packages/http/dist/**/*.d.ts
+#packages/crypto/dist/src
+
+packages/**/dist
