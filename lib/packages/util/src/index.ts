@@ -25,3 +25,12 @@ export * from './convertStringToHexString';
 export const burstAddressPattern = {
     '_': {pattern: new RegExp('\[a-zA-Z0-9\]')}
 };
+
+
+- convertByteArrayToString
+- convertByteArrayToHexString
+- convertHexStringToByteArray
+- convertHexStringToDecString
+- convertHexStringToString
+- convertStringToByteArray
+- convertStringToHexString
