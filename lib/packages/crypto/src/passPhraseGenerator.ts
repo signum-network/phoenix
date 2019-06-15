@@ -6,9 +6,10 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-// @ts-ignore
-import seedrandom from 'seedrandom';
+import * as _seedrandom from 'seedrandom';
 import { words } from './words';
+
+const seedrandom = (_seedrandom as any).default || _seedrandom;
 
 export class PassPhraseGenerator {
 
