@@ -5,7 +5,6 @@ import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {AccountService} from '../../../setup/account/account.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 import {
@@ -56,7 +55,6 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   constructor(
     private warnDialog: MatDialog,
     private transactionService: TransactionService,
-    private accountService: AccountService,
     private notifierService: NotifierService,
     private i18nService: I18nService,
     private storeService: StoreService
@@ -76,7 +74,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   getTotal(): number {
-    // return parseFloat(this.amountNQT) + parseFloat(this.feeNQT) || 0;
+    return parseFloat(this.amountNQT) + parseFloat(this.feeNQT) || 0;
   }
 
   onSubmit(event): void {
@@ -152,7 +150,10 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   canSubmit(): boolean {
-    return this.hasSufficientBalance();
+    return isNotEmpty(this.recipient.addressRaw) &&
+      isNotEmpty(this.amountNQT) &&
+      isNotEmpty(this.pin) &&
+      this.hasSufficientBalance();
   }
 
   onRecipientChange(recipient: Recipient): void {
