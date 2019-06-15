@@ -32,13 +32,20 @@ export const setRewardRecipient = (service: BurstService): (
         deadline: number,
     ): Promise<TransactionId> => {
 
-        let parameters = {
+        const parameters = {
             recipient,
             deadline: 1440,
             feeNQT: convertNumberToNQTString(parseFloat(feeNQT)),
             publicKey: senderPublicKey
         };
-        const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('setRewardRecipient', parameters);
+        const {
+            unsignedTransactionBytes: unsignedHexMessage,
+            error,
+            errorDescription
+        } = await service.send<TransactionResponse>('setRewardRecipient', parameters);
+        if (error || errorDescription) {
+            throw new Error(error || errorDescription);
+        }
         const signature = generateSignature(unsignedHexMessage, senderPrivateKey);
         if (!verifySignature(signature, unsignedHexMessage, senderPublicKey)) {
             throw new Error('The signed message could not be verified! Transaction not broadcasted!');
