@@ -83,6 +83,17 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         this.isNewMessage = isNewMessage;
         this.readyToReply();
       });
+
+    this.messageService.onMessagesUpdated
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((messages) => {
+          messages.map((message) => {
+            if (message.contactId === this.message.contactId) {
+              this.message = message;
+              this.scrollToBottom();
+            }
+          });
+      });
   }
 
   ngAfterViewInit(): void {
