@@ -33,7 +33,7 @@ const isNotEmpty = (value: string) => value && value.length > 0;
 })
 export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnInit {
   @ViewChild('sendBurstForm', { static: true }) public sendBurstForm: NgForm;
-  @ViewChild('amountNQT', { static: false }) public amountNQT: string;
+  @ViewChild('amountNQT', { static: true }) public amountNQT: string;
   @ViewChild('message', { static: false }) public message: string;
   @ViewChild('fullHash', { static: false }) public fullHash: string;
   @ViewChild('encrypt', { static: false }) public encrypt: string;
@@ -76,7 +76,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   getTotal(): number {
-    return parseFloat(this.amountNQT) + parseFloat(this.feeNQT) || 0;
+    // return parseFloat(this.amountNQT) + parseFloat(this.feeNQT) || 0;
   }
 
   onSubmit(event): void {
@@ -152,10 +152,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   canSubmit(): boolean {
-    return isNotEmpty(this.recipient.addressRaw) &&
-      isNotEmpty(this.amountNQT) &&
-      isNotEmpty(this.pin) &&
-      this.hasSufficientBalance();
+    return this.hasSufficientBalance();
   }
 
   onRecipientChange(recipient: Recipient): void {
