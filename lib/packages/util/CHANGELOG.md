@@ -5,7 +5,6 @@ All notable changes to this project will be documented in this file.
 - now available as standalone bundle (iife)
 - patched `sumNQTStringToNumber` to be accessible
 
-
 ## 0.1.2
 - added `sumNQTStringToNumber`
 
