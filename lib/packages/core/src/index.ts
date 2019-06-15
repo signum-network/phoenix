@@ -26,6 +26,7 @@ export * from './service';
 export * from './api';
 export * from './attachment';
 export * from './transaction';
+export * from './contract';
 export * from './constants';
 
 
