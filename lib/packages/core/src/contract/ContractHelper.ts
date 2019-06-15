@@ -1,9 +1,15 @@
+/** @module core */
+
+import {convertHexStringToDec, convertHexStringToString} from '@burstjs/util';
 import {Contract} from '../typings/contract';
 import {getContractDatablock} from './index';
-import {convertHexStringToDec, convertHexStringToString} from '../../../util/src';
 
 /**
  * Helper class for contracts
+ *
+ * A contract owns additional data, which is splitted in 8 byte blocks.
+ * The content is encoded in hexadecimal representation and big endianness.
+ * This helper class facilitates access to these data
  */
 export class ContractHelper {
 
@@ -14,21 +20,33 @@ export class ContractHelper {
     }
 
     /**
-     * @return Gets the contract
+     * @return Get the contract
      */
     get contract() { return this._contract; }
 
     /**
-     * Gets a variable as string
+     * Get a variable as string
      * @param index The index of variable (starting at 0)
      * @return The data as string (Utf-8)
      */
     public getVariableAsString(index: number): string {
-        return convertHexStringToString(this.getVariable(index));
+        const hexData = this.getHexDataAt(index, ContractHelper.VARIABLE_LENGTH);
+        return convertHexStringToString(hexData.replace(/00/g, ''));
     }
 
     /**
-     * Gets a variable as decimal (string)
+     * Get multiple data blocks as string
+     * @param index The index of variable (starting at 0)
+     * @param count Number of blocks
+     * @return The data as string (Utf-8)
+     */
+    public getDataBlocksAsString(index: number, count?: number): string {
+        const hexData = this.getHexDataAt(index, count * ContractHelper.VARIABLE_LENGTH);
+        return convertHexStringToString(hexData.replace(/00/g, ''));
+    }
+
+    /**
+     * Get a variable as decimal (string)
      * @param index The index of variable (starting at 0)
      * @return The data as a decimal string sequence
      */
@@ -37,7 +55,7 @@ export class ContractHelper {
     }
 
     /**
-     * Gets a variable at given position/index
+     * Get a variable at given position/index
      * @param index The index of variable (starting at 0)
      * @return The data as hexadecimal string (in little endianness)
      */
@@ -46,13 +64,14 @@ export class ContractHelper {
     }
 
     /**
-     * Gets a hexadecimal data block of arbitrary length at given position/index
+     * Get a hexadecimal data block of arbitrary length at given position/index
      * @param index The index of variable (starting at 0)
      * @param length The length of the data block (must be a multiple of 2)
      * @return The data as hexadecimal string (in little endianness)
      */
-    public getHexDataAt(index: number, length: number): string {
-        return getContractDatablock(this.contract, index, length);
+    public getHexDataAt(index: number, length?: number): string {
+        const l = length ? length : this.contract.machineData.length - ContractHelper.VARIABLE_LENGTH * index;
+        return getContractDatablock(this.contract, index, l);
     }
 
 }
