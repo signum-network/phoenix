@@ -13,6 +13,9 @@ export * from './convertByteArrayToHexString';
 export * from './convertHexStringToByteArray';
 export * from './convertHexStringToDecString';
 export * from './convertHexStringToString';
+export * from './convertStringToByteArray';
+export * from './convertStringToHexString';
+
 
 /**
  * A useful regex for matching burst addresses
