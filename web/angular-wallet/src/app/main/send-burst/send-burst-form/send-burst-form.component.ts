@@ -5,7 +5,6 @@ import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {AccountService} from '../../../setup/account/account.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 import {
@@ -33,11 +32,11 @@ const isNotEmpty = (value: string) => value && value.length > 0;
 })
 export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnInit {
   @ViewChild('sendBurstForm', { static: true }) public sendBurstForm: NgForm;
-  @ViewChild('amountNQT', { static: false }) public amountNQT: string;
+  @ViewChild('amountNQT', { static: true }) public amountNQT: string;
   @ViewChild('message', { static: false }) public message: string;
   @ViewChild('fullHash', { static: false }) public fullHash: string;
   @ViewChild('encrypt', { static: false }) public encrypt: string;
-  @ViewChild('pin', { static: false }) public pin: string;
+  @ViewChild('pin', { static: true }) public pin: string;
 
   @Input('account') account: Account;
   @Input('fees') fees: SuggestedFees;
@@ -56,7 +55,6 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   constructor(
     private warnDialog: MatDialog,
     private transactionService: TransactionService,
-    private accountService: AccountService,
     private notifierService: NotifierService,
     private i18nService: I18nService,
     private storeService: StoreService
