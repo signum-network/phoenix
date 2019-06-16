@@ -184,8 +184,10 @@ export class MessagesService implements Resolve<any> {
       senderRS: recipient,
       timestamp: convertDateToBurstTime(new Date()).toString()
     };
-    this.messages.push(message);
-    this.onMessagesUpdated.next(this.messages);
+    if (recipient) {
+      this.messages.push(message);
+      this.onMessagesUpdated.next(this.messages);
+    }
     this.getMessage(message, true);
   }
 

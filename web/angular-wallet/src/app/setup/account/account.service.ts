@@ -265,6 +265,7 @@ export class AccountService {
       // @ts-ignore - Send notifications for new transactions
       if (window.Notification) {
         unconfirmedTransactionsResponse.unconfirmedTransactions
+          .sort((a, b) => a.timestamp > b.timestamp ? -1 : 1)
           .filter(({transaction}) => this.isNewTransaction(transaction))
           .map((transaction) => this.sendNewTransactionNotification(transaction));
       }

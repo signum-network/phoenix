@@ -5,6 +5,8 @@ import { Keys, decryptAES, hashSHA256, encryptMessage } from '@burstjs/crypto';
 import { ApiService } from '../../api.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { convertAddressToNumericId } from '@burstjs/util/out';
+import { StoreService } from 'app/store/store.service';
+import { Settings } from 'app/settings';
 
 interface SendMoneyRequest {
     transaction: {
@@ -42,8 +44,11 @@ export class TransactionService {
 
     public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
-    constructor(apiService: ApiService, private accountService: AccountService) {
+    constructor(apiService: ApiService, private accountService: AccountService, private storeService: StoreService) {
         this.transactionApi = apiService.api.transaction;
+        this.storeService.settings.subscribe((settings: Settings) => {
+            this.transactionApi = apiService.api.transaction;
+        });
     }
 
     public getTransaction(id: string) {
