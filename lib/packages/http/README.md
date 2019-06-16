@@ -60,6 +60,16 @@ See more here:
 ---
 
 ## API Reference
+## Modules
+
+<dl>
+<dt><a href="#module_http">http</a></dt>
+<dd></dd>
+<dt><a href="#module_http">http</a></dt>
+<dd></dd>
+<dt><a href="#module_http">http</a></dt>
+<dd></dd>
+</dl>
 
 ## Classes
 
