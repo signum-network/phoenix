@@ -13,6 +13,4 @@ export interface TransactionResponse {
     readonly broadcasted: boolean;
     readonly requestProcessingTime: number;
     readonly transactionBytes: string;
-    readonly error?: string;
-    readonly errorDescription?: string;
 }

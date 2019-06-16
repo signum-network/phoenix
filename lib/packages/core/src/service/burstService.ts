@@ -7,10 +7,11 @@
 import {Http, HttpError, HttpImpl} from '@burstjs/http';
 import {BurstServiceSettings} from './burstServiceSettings';
 
-
+// BRS is inconsistent in it's error responses
 interface ApiError {
-    readonly errorCode: number;
-    readonly errorDescription: string;
+    readonly errorCode?: number;
+    readonly errorDescription?: string;
+    readonly error?: string;
 }
 
 class SettingsImpl implements BurstServiceSettings {
@@ -44,9 +45,10 @@ export class BurstService {
     private readonly _relPath: string;
 
     private static throwAsHttpError(url: string, apiError: ApiError) {
+        const errorCode = apiError.errorCode && ` (Code: ${apiError.errorCode})` || '';
         throw new HttpError(url,
             400,
-            `${apiError.errorDescription} (Code: ${apiError.errorCode})`,
+            `${apiError.errorDescription || apiError.error}${errorCode}`,
             apiError);
     }
 
@@ -98,7 +100,7 @@ export class BurstService {
     public async send<T>(method: string, args: any = {}, body: any = {}): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
         const {response} = await this.settings.httpClient.post(brsUrl, body);
-        if (response.errorCode) {
+        if (response.errorCode || response.error || response.errorDescription) {
             BurstService.throwAsHttpError(brsUrl, response);
         }
         return response;
