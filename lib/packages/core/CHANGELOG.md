@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 0.2.1
+
+- fixed missing contract imports
+- adjusted error response for inconsistent BRS error responses
+
 ## 0.2.0
 - introduced first Contract API functions
     - `getContract`
