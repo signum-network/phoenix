@@ -601,7 +601,7 @@
   "no_contacts_yet": "Пока что отсутствуют контакты <a href='#'' data-toggle='modal' data-target='#add_contact_modal'> можно добавить один.</a>",
   "no_do_not_cancel": "Нет, не отменять",
   "no_longer_for_sale": "Больше не продается.",
-  "no_messages_available": "Нет доступных сообщений, <a href='#'' data-toggle='modal' data-target='#send_message_modal'>отправить одно</a>.",
+  "no_messages_available": "Нет доступных сообщений.",
   "no_name_set": "Не установлено Имя",
   "no_open_buy_orders": "Нет открытых ордеров на покупку.",
   "no_open_sell_orders": "Нет открытых ордеров на продажу.",

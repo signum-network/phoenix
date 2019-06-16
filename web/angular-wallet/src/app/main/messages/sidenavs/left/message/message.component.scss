@@ -53,6 +53,9 @@ message-sidenav {
                 font-weight: 300;
                 height: 88px;
                 line-height: 88px;
+                button {
+                    margin-left:auto;
+                }
             }
 
             .contact {

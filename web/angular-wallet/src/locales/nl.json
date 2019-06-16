@@ -601,7 +601,7 @@
   "no_contacts_yet": "Geen contactpersonen nog, <a href='#'' data-toggle='modal' data-target='#add_contact_modal'> toevoegen. </a>",
   "no_do_not_cancel": "Nee, Annuleer Niet",
   "no_longer_for_sale": "Niet meer te koop.",
-  "no_messages_available": "Er zijn geen berichten, <a href='#'' data-toggle='modal' data-target='#send_message_modal'> Maak een bericht</a>.",
+  "no_messages_available": "Er zijn geen berichten.",
   "no_name_set": "Geen naam ingevoerd",
   "no_open_buy_orders": "Geen open aankoop orders.",
   "no_open_sell_orders": "Geen open verkooporders.",

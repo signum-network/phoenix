@@ -601,7 +601,7 @@
   "no_contacts_yet": "Herhangi bir kişiniz henuz yoktur",
   "no_do_not_cancel": "Hayır, iptal etme",
   "no_longer_for_sale": "Artık satılık değildir.",
-  "no_messages_available": "No messages available, <a href='#'' data-toggle='modal' data-target='#send_message_modal'>send one</a>.",
+  "no_messages_available": "No messages available.",
   "no_name_set": "Ad henüz tanımlanmadı",
   "no_open_buy_orders": "No open buy orders.",
   "no_open_sell_orders": "No open sell orders.",

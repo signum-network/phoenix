@@ -601,7 +601,7 @@
   "no_contacts_yet": "Kontaktų dar nėra, <a href='#'' data-toggle='modal' data-target='#add_contact_modal'> pridėti jį.</a>",
   "no_do_not_cancel": "Ne, nepanaikinti",
   "no_longer_for_sale": "Pardavime nebėra.",
-  "no_messages_available": "Jokių žinučių nėra, <a href='#'' data-toggle='modal' data-target='#send_message_modal'> siųsti vieną</a>.",
+  "no_messages_available": "Jokių žinučių nėra.",
   "no_name_set": "Pavadinimas nesukurtas",
   "no_open_buy_orders": "Nėra galiojančių pirkimo užsakymų.",
   "no_open_sell_orders": "Nėra pardavimų užsakymų.",

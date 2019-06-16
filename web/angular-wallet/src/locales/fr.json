@@ -601,7 +601,7 @@
   "no_contacts_yet": "Aucun contacts, <a href='#'' data-toggle='modal' data-target='#add_contact_modal'>ajoutez-en un.</a>",
   "no_do_not_cancel": "Ne pas annuler",
   "no_longer_for_sale": "Ce produit n'est plus disponible à la vente.",
-  "no_messages_available": "Aucun message disponible, <a href='#'' data-toggle='modal' data-target='#send_message_modal'>envoyez-en un</a>.",
+  "no_messages_available": "Aucun message disponible",
   "no_name_set": "Aucun nom spécifié",
   "no_open_buy_orders": "Aucun ordre d'achat.",
   "no_open_sell_orders": "Aucun ordre de vente.",

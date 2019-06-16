@@ -601,7 +601,7 @@
   "no_contacts_yet": "Nessun contatto ancora, <a href='#'' data-toggle='modal' data-target='#add_contact_modal'> aggiungine uno.</a>",
   "no_do_not_cancel": "No, non cancellare",
   "no_longer_for_sale": "No longer for sale.",
-  "no_messages_available": "Nessun messaggio disponibile, <a href='#'' data-toggle='modal' data-target='#send_message_modal'>Mandane uno</a>.",
+  "no_messages_available": "Nessun messaggio disponibile.",
   "no_name_set": "Nessun nome impostato",
   "no_open_buy_orders": "Nessun ordine di acquisto aperto.",
   "no_open_sell_orders": "Nessun ordine di vendita aperto.",

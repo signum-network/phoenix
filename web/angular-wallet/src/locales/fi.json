@@ -601,7 +601,7 @@
   "no_contacts_yet": "Ei yhteystietoja, <a href='#'' data-toggle='modal' data-target='#add_contact_modal'>lisää yksi.</a>",
   "no_do_not_cancel": "Ei, älä peruuta",
   "no_longer_for_sale": "No longer for sale.",
-  "no_messages_available": "Ei viestejä saatavilla,<a href='#'' data-toggle='modal' data-target='#send_message_modal'>lähetä yksi</a>.",
+  "no_messages_available": "Ei viestejä saatavilla",
   "no_name_set": "Ei nimeä asetettu",
   "no_open_buy_orders": "Ei avoimia ostotoimeksiantoja.",
   "no_open_sell_orders": "Ei avoimia myyntitoimeksiantoja.",
