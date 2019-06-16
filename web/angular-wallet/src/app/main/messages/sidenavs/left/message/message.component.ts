@@ -94,8 +94,7 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
         }
     }
 
-
-    startMessage() {
+    startMessage(): void {
         this._messageService.sendNewMessage(this.searchText);
 
         if (!this._observableMedia.isActive('gt-md')) {

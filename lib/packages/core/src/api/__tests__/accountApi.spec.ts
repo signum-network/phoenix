@@ -381,5 +381,25 @@ describe('Account Api', () => {
             expect(verifySignature).toBeCalledTimes(1);
             expect(generateSignedTransactionBytes).toBeCalledTimes(1);
         });
+
+        it('should throw error if response contains one', async() => {
+            mockBroadcastResponse.unsignedTransactionBytes = undefined;
+            // @ts-ignore
+            mockBroadcastResponse.error = 'error';
+            try {
+                await setRewardRecipient(service)(
+                    'recipient',
+                    '123',
+                    'senderPublicKey',
+                    'senderPrivateKey',
+                    1440,
+                );
+            } catch (e) {
+                expect(e.message).toBe('error');
+                expect(generateSignature).toBeCalledTimes(0);
+                expect(verifySignature).toBeCalledTimes(0);
+                expect(generateSignedTransactionBytes).toBeCalledTimes(0);
+            }
+        })
     });
 });

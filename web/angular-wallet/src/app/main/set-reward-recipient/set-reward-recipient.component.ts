@@ -53,7 +53,7 @@ export class SetRewardRecipientComponent implements OnInit {
       this.notifierService.notify('success', this.i18nService.getTranslation('success_set_reward_recipient'));
       this.setRewardRecipientForm.resetForm();
     } catch (e) { 
-      this.notifierService.notify('error', this.i18nService.getTranslation('error_set_reward_recipient'));
+      this.notifierService.notify('error', e.message || this.i18nService.getTranslation('error_set_reward_recipient'));
     }
   }
 
