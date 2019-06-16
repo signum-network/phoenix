@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-# unreleased
+## 0.2.0
 - added several conversion functions
     - namely byteArray x string x hex
     - `convertHexStringtoDecString`

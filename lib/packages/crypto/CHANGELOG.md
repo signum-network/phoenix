@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-# unreleased
+## 0.2.0
 - cleaned up internal converter functions
     - remove unused functions
 - fixed seedrandom import issue
