@@ -601,7 +601,7 @@
   "no_contacts_yet": "まだ連絡先がありません。<a href='#'' data-toggle='modal' data-target='#add_contact_modal'> 追加してください。</a>。",
   "no_do_not_cancel": "いいえ、キャンセルしないでください",
   "no_longer_for_sale": "No longer for sale.",
-  "no_messages_available": "利用可能なメッセージはありません。<a href='#'' data-toggle='modal' data-target='#send_message_modal'> 送信する</a>",
+  "no_messages_available": "利用可能なメッセージはありません.",
   "no_name_set": "名前が未設定",
   "no_open_buy_orders": "オープンな買い注文はありません。",
   "no_open_sell_orders": "オープンな売り注文はありません。",

@@ -601,7 +601,7 @@
   "no_contacts_yet": "Ainda não há contatos, <a href='#'' data-toggle='modal' data-target='#add_contact_modal'> adicione um.</a>",
   "no_do_not_cancel": "Não, Não Cancelar",
   "no_longer_for_sale": "Não está mais à venda.",
-  "no_messages_available": "Não há mensagens disponíveis, <a href='#'' data-toggle='modal' data-target='#send_message_modal'> enviar um</a>.",
+  "no_messages_available": "Não há mensagens disponíveis.",
   "no_name_set": "Sem Nome Definido",
   "no_open_buy_orders": "Não há ordens de compra.",
   "no_open_sell_orders": "Não há ordens de venda pendentes.",

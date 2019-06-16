@@ -601,7 +601,7 @@
   "no_contacts_yet": "沒有聯絡人， <a href='#'' data-toggle='modal' data-target='#add_contact_modal'> 添加一個。</a>",
   "no_do_not_cancel": "不，請不要取消",
   "no_longer_for_sale": "停止銷售。",
-  "no_messages_available": "沒有信息，<a href='#'' data-toggle='modal' data-target='#send_message_modal'> 发送一條</a>。",
+  "no_messages_available": "沒有信息。",
   "no_name_set": "未設置名稱",
   "no_open_buy_orders": "沒有開放的買單。",
   "no_open_sell_orders": "沒有開放的賣單。",

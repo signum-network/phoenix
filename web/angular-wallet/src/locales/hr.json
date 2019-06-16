@@ -601,7 +601,7 @@
   "no_contacts_yet": "Još uvijek bez kontakta, <a href='#'' data-toggle='modal' data-target='#add_contact_modal'>dodajte jedan.</a>",
   "no_do_not_cancel": "Ne odjavljuj",
   "no_longer_for_sale": "Više nije na prodaju.",
-  "no_messages_available": "Poruke nisu dostupne, <a href='#'' data-toggle='modal' data-target='#send_message_modal'>pošaljite jednu</a>.",
+  "no_messages_available": "Poruke nisu dostupne.",
   "no_name_set": "Ime nije odabrano",
   "no_open_buy_orders": "Nema otvorenih naloga na kupnji.",
   "no_open_sell_orders": "Nema otvorenih prodajnih naloga.",

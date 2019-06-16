@@ -601,7 +601,7 @@
   "no_contacts_yet": "Kontak tidak Namun, <a href='#'' data-toggle='modal' data-target='#add_contact_modal'> menambahkan satu.</a>",
   "no_do_not_cancel": "Tidak, tidak membatalkan",
   "no_longer_for_sale": "No longer for sale.",
-  "no_messages_available": "Tidak tersedia, pesan <a href='#'' data-toggle='modal' data-target='#send_message_modal'> mengirim satu</a>.",
+  "no_messages_available": "Tidak tersedia, pesan.",
   "no_name_set": "Tidak ada nama Set",
   "no_open_buy_orders": "Tidak membeli pesanan.",
   "no_open_sell_orders": "Tak ada penjualan terbuka perintah.",

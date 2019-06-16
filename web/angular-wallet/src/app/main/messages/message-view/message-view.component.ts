@@ -56,7 +56,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   isNewMessage = false;
   burstAddressPatternRef = burstAddressPattern;
   isSending = false;
-
+  showPin = [];
 
   private _unsubscribeAll: Subject<any>;
 

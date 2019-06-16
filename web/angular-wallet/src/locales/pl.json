@@ -610,7 +610,7 @@
   "no_contacts_yet": "Nie ma jeszcze kontaktów, <a href='#'' data-toggle='modal' data-target='#add_contact_modal'>dodaj kontakt.</a>",
   "no_do_not_cancel": "Nie, nie anuluj",
   "no_longer_for_sale": "Nie jest już na sprzedaż.",
-  "no_messages_available": "Brak wiadomości, <a href='#'' data-toggle='modal' data-target='#send_message_modal'>wyslij wiadomość</a>.",
+  "no_messages_available": "Brak wiadomości.",
   "no_name_set": "Nazwa nie jest ustawiona",
   "no_open_buy_orders": "Brak otwartch zleceń kupna.",
   "no_open_sell_orders": "Brak otwartych zleceń sprzedaży.",

@@ -601,7 +601,7 @@
   "no_contacts_yet": "Zatiaľ žiadne kontakty, <a href='#'' data-toggle='modal' data-target='#add_contact_modal'> pridať jeden.</a>",
   "no_do_not_cancel": "Nie, nezrušiť",
   "no_longer_for_sale": "Už nie je na predaj.",
-  "no_messages_available": "Žiadne správy nie sú k dispozícii, <a href='#'' data-toggle='modal' data-target='#send_message_modal'>pošlite jednu</a>.",
+  "no_messages_available": "Žiadne správy nie sú k dispozícii.",
   "no_name_set": "Nie je nastavený žiadny názov",
   "no_open_buy_orders": "Nie sú otvorené žiadne príkazy na nákup.",
   "no_open_sell_orders": "Nie sú otvorené žiadne príkazy na predaj.",
