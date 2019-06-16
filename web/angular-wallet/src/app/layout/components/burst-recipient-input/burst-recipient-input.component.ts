@@ -47,7 +47,7 @@ export class BurstRecipientInputComponent implements OnInit {
   @Input('appearance') appearance: string = '';
   @Input('disabled') disabled: boolean = false;
 
-  @ViewChild('file', { static: true }) file: ElementRef;
+  @ViewChild('file', { static: false }) file: ElementRef;
 
   constructor(private accountService: AccountService,
     private notifierService: NotifierService) {
