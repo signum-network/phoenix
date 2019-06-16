@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/util",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Useful utilities and tools for building Burstcoin applications",
   "keywords": [
     "burst",

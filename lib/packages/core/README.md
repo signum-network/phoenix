@@ -81,6 +81,7 @@ See more here:
 <dt><a href="#core.module_api">api</a></dt>
 <dd></dd>
 <dt><a href="#module_core">core</a></dt>
+<dd></dd>
 </dl>
 
 ## Classes
@@ -88,6 +89,11 @@ See more here:
 <dl>
 <dt><a href="#ApiSettings">ApiSettings</a></dt>
 <dd><p>Context for API used in [[composeApi]]</p></dd>
+<dt><a href="#ContractHelper">ContractHelper</a></dt>
+<dd><p>Helper class for contracts</p>
+<p>A contract owns additional data, which is splitted in 8 byte blocks.
+The content is encoded in hexadecimal representation and big endianness.
+This helper class facilitates access to these data</p></dd>
 <dt><a href="#BurstService">BurstService</a></dt>
 <dd><p>Generic BRS Web Service class.</p></dd>
 </dl>
@@ -294,6 +300,7 @@ Note: As of being a builder pattern, this need to call this method as last</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -393,6 +400,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -465,6 +485,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -564,6 +585,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -636,6 +670,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -735,6 +770,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -807,6 +855,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -906,6 +955,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -978,6 +1040,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -1077,6 +1140,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -1149,6 +1225,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -1248,6 +1325,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -1320,6 +1410,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -1419,6 +1510,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -1491,6 +1595,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -1590,6 +1695,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -1662,6 +1780,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -1761,6 +1880,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -1833,6 +1965,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -1932,6 +2065,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -2004,6 +2150,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -2103,6 +2250,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -2175,6 +2335,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -2274,6 +2435,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -2346,6 +2520,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -2445,6 +2620,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -2517,6 +2705,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -2616,6 +2805,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -2688,6 +2890,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -2787,6 +2990,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -2859,6 +3075,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -2958,6 +3175,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -3030,6 +3260,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -3129,6 +3360,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -3201,6 +3445,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -3300,6 +3545,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -3372,6 +3630,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -3471,6 +3730,19 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -3543,6 +3815,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [~TransactionType](#module_core..TransactionType)
     * [~FeeQuantNQT](#module_core..FeeQuantNQT)
     * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
     * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
     * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
     * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
@@ -3642,6 +3915,204 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
+
+### core~getRecipientAmountsFromMultiOutPayment(transaction) ⇒
+<p>Tries to extract recipients and its amounts for multi out payments (different and same amount)</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>A list of recipients and their payed amount (in NQT)</p>  
+**Throws**:
+
+- <p>An exception in case of wrong transaction types</p>
+
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction</p> |
+
+<a name="module_core..getRecipientsAmount"></a>
+
+### core~getRecipientsAmount(recipientId, transaction) ⇒
+<p>Gets the amount from a transaction, considering ordinary and multi out transactions (with same and different payments)</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>the amount in BURST (not NQT)</p>  
+
+| Param | Description |
+| --- | --- |
+| recipientId | <p>The numeric id of the recipient</p> |
+| transaction | <p>The payment transaction</p> |
+
+<a name="module_core..isMultiOutSameTransaction"></a>
+
+### core~isMultiOutSameTransaction(transaction) ⇒
+<p>Checks if a transaction is a multi out transaction with same amounts for each recipient</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>true, if is a multi out transaction</p>  
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>Transaction to be checked</p> |
+
+<a name="module_core..isMultiOutTransaction"></a>
+
+### core~isMultiOutTransaction(transaction) ⇒
+<p>Checks if a transaction is a multi out transaction (with different amounts)</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>true, if is a multi out transaction</p>  
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>Transaction to be checked</p> |
+
+<a name="module_core"></a>
+
+## core
+
+* [core](#module_core)
+    * [~Account](#module_core..Account)
+    * [~BurstNode](#module_core..BurstNode)
+    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+    * [~TransactionType](#module_core..TransactionType)
+    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
+    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+
+<a name="module_core..Account"></a>
+
+### core~Account
+<p>Account class</p>
+<p>The account class serves as a model for a Burstcoin account.
+It's meant to model the response from BRS API, except publicKey
+has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..BurstNode"></a>
+
+### core~BurstNode
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionArbitrarySubtype"></a>
+
+### core~TransactionArbitrarySubtype
+<p>Constants for arbitrary subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionAssetSubtype"></a>
+
+### core~TransactionAssetSubtype
+<p>Constants for asset subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionEscrowSubtype"></a>
+
+### core~TransactionEscrowSubtype
+<p>Constants for escrow subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionLeasingSubtype"></a>
+
+### core~TransactionLeasingSubtype
+<p>Constants for leasing subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionMarketplaceSubtype"></a>
+
+### core~TransactionMarketplaceSubtype
+<p>Constants for marketplace subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionPaymentSubtype"></a>
+
+### core~TransactionPaymentSubtype
+<p>Constants for payment subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionRewardRecipientSubtype"></a>
+
+### core~TransactionRewardRecipientSubtype
+<p>Constants for reward recipient subtypes (Pool Operation)</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionSmartContractSubtype"></a>
+
+### core~TransactionSmartContractSubtype
+<p>Constants for smart contract (aka AT) subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionType"></a>
+
+### core~TransactionType
+<p>Constants for transaction types</p>
+<p>The transaction type is part of every [[Transaction]] object
+and used to distinguish block data. Additionally, to the transaction type
+a subtype is sent, that specifies the kind of transaction more detailly.</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..FeeQuantNQT"></a>
+
+### core~FeeQuantNQT
+<p>The smallest possible fee</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
+<a name="module_core..assertAttachmentVersion"></a>
+
+### core~assertAttachmentVersion(transaction, versionIdentifier)
+<p>Asserts a specific version of a transactions attachment</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Throws**:
+
+- <p>An exception in case of wrong version</p>
+
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
+| versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -3702,6 +4173,91 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>Context for API used in [[composeApi]]</p>
 
 **Kind**: global class  
+<a name="ContractHelper"></a>
+
+## ContractHelper
+<p>Helper class for contracts</p>
+<p>A contract owns additional data, which is splitted in 8 byte blocks.
+The content is encoded in hexadecimal representation and big endianness.
+This helper class facilitates access to these data</p>
+
+**Kind**: global class  
+
+* [ContractHelper](#ContractHelper)
+    * [.contract](#ContractHelper+contract) ⇒
+    * [.getVariableAsString(index)](#ContractHelper+getVariableAsString) ⇒
+    * [.getDataBlocksAsString(index, count)](#ContractHelper+getDataBlocksAsString) ⇒
+    * [.getVariableAsDecimal(index)](#ContractHelper+getVariableAsDecimal) ⇒
+    * [.getVariable(index)](#ContractHelper+getVariable) ⇒
+    * [.getHexDataAt(index, length)](#ContractHelper+getHexDataAt) ⇒
+
+<a name="ContractHelper+contract"></a>
+
+### contractHelper.contract ⇒
+**Kind**: instance property of [<code>ContractHelper</code>](#ContractHelper)  
+**Returns**: <p>Get the contract</p>  
+<a name="ContractHelper+getVariableAsString"></a>
+
+### contractHelper.getVariableAsString(index) ⇒
+<p>Get a variable as string</p>
+
+**Kind**: instance method of [<code>ContractHelper</code>](#ContractHelper)  
+**Returns**: <p>The data as string (Utf-8)</p>  
+
+| Param | Description |
+| --- | --- |
+| index | <p>The index of variable (starting at 0)</p> |
+
+<a name="ContractHelper+getDataBlocksAsString"></a>
+
+### contractHelper.getDataBlocksAsString(index, count) ⇒
+<p>Get multiple data blocks as string</p>
+
+**Kind**: instance method of [<code>ContractHelper</code>](#ContractHelper)  
+**Returns**: <p>The data as string (Utf-8)</p>  
+
+| Param | Description |
+| --- | --- |
+| index | <p>The index of variable (starting at 0)</p> |
+| count | <p>Number of blocks</p> |
+
+<a name="ContractHelper+getVariableAsDecimal"></a>
+
+### contractHelper.getVariableAsDecimal(index) ⇒
+<p>Get a variable as decimal (string)</p>
+
+**Kind**: instance method of [<code>ContractHelper</code>](#ContractHelper)  
+**Returns**: <p>The data as a decimal string sequence</p>  
+
+| Param | Description |
+| --- | --- |
+| index | <p>The index of variable (starting at 0)</p> |
+
+<a name="ContractHelper+getVariable"></a>
+
+### contractHelper.getVariable(index) ⇒
+<p>Get a variable at given position/index</p>
+
+**Kind**: instance method of [<code>ContractHelper</code>](#ContractHelper)  
+**Returns**: <p>The data as hexadecimal string (in little endianness)</p>  
+
+| Param | Description |
+| --- | --- |
+| index | <p>The index of variable (starting at 0)</p> |
+
+<a name="ContractHelper+getHexDataAt"></a>
+
+### contractHelper.getHexDataAt(index, length) ⇒
+<p>Get a hexadecimal data block of arbitrary length at given position/index</p>
+
+**Kind**: instance method of [<code>ContractHelper</code>](#ContractHelper)  
+**Returns**: <p>The data as hexadecimal string (in little endianness)</p>  
+
+| Param | Description |
+| --- | --- |
+| index | <p>The index of variable (starting at 0)</p> |
+| length | <p>The length of the data block (must be a multiple of 2)</p> |
+
 <a name="BurstService"></a>
 
 ## BurstService
