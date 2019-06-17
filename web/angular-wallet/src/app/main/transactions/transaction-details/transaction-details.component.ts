@@ -1,10 +1,18 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import {EncryptedMessage, Message, Account, Transaction} from '@burstjs/core';
+import {MatDialogRef} from '@angular/material/dialog';
+import {
+  EncryptedMessage,
+  Message,
+  Account,
+  Transaction,
+  TransactionType,
+  TransactionSmartContractSubtype, assertAttachmentVersion
+} from '@burstjs/core';
 import {StoreService} from 'app/store/store.service';
 import {ActivatedRoute} from '@angular/router';
 import {UtilService} from '../../../util.service';
-import { AccountService } from 'app/setup/account/account.service';
+import {AccountService} from 'app/setup/account/account.service';
+import {convertHexStringToString} from '@burstjs/util';
 
 type TransactionDetailsCellValue = string | Message | EncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
@@ -32,7 +40,11 @@ export class TransactionDetailsComponent implements OnInit {
   }
 
   private getNameFromTransactionSubtype(): string {
-    return this.utilService.translateTransactionType(this.transaction, this.account);
+    return this.utilService.translateTransactionSubtype(this.transaction, this.account);
+  }
+
+  private getNameFromTransactionType(): string {
+    return this.utilService.translateTransactionType(this.transaction);
   }
 
   closeDialog(): void {
@@ -48,10 +60,15 @@ export class TransactionDetailsComponent implements OnInit {
 
   private mapCellValue(key: string): TransactionDetailsCellValueMap {
     let value;
-    switch (key){
-      // TODO: make type translation
+    switch (key) {
+      case 'type':
+        value = this.getNameFromTransactionType();
+        break;
       case 'subtype':
         value = this.getNameFromTransactionSubtype();
+        break;
+      case 'attachment':
+        value = this.getAttachmentValue(key);
         break;
       default:
         value = this.transaction[key];
@@ -61,15 +78,15 @@ export class TransactionDetailsComponent implements OnInit {
   }
 
 
-  trackRows(index, row) {
+  trackRows(index, row): any {
     return row ? row.id : undefined;
   }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.transaction = this.route.snapshot.data.transaction as Transaction;
     const transactionDetails = Object
       .keys(this.transaction)
-      .map( key => this.mapCellValue(key) );
+      .map(key => this.mapCellValue(key));
     this.detailsData = new Map(transactionDetails);
     this.infoData = new Map(transactionDetails.filter((row) => this.infoRows.indexOf(row[0]) > -1));
     try {
@@ -85,8 +102,20 @@ export class TransactionDetailsComponent implements OnInit {
       });
   }
 
-  currentAccountIsSender() {
+  currentAccountIsSender(): boolean {
     return this.account && this.transaction.senderRS === this.account.accountRS;
   }
 
+  private getAttachmentValue(key: string): string {
+    if (this.transaction.type === TransactionType.AT &&
+      this.transaction.subtype === TransactionSmartContractSubtype.SmartContractPayment) {
+      try {
+        assertAttachmentVersion(this.transaction, 'Message');
+        return convertHexStringToString(this.transaction.attachment.message.replace(/00/g, ''));
+      } catch (e) {
+        // ignore
+      }
+    }
+    return this.transaction[key];
+  }
 }

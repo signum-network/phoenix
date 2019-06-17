@@ -60,7 +60,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   }
 
   public getTransactionNameFromType(transaction: Transaction): string {
-    return this.utilService.translateTransactionType(transaction, this.account);
+    return this.utilService.translateTransactionSubtype(transaction, this.account);
   }
 
   public isOwnAccount(address: string): boolean {
