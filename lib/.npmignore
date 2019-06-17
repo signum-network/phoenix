@@ -57,13 +57,11 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-packages/core/src/api/__tests__/e2e/helpers/.env
-
 # next.js build output
 .next
 
-__tests__
-
-# source code
-src
+# package exlusions
+packages/**/src
+packages/**/.rpt2_cache
+packages/**/.bilirc.js
+packages/**/README.md.hbs
