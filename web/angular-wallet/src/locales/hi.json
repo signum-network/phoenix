@@ -670,6 +670,7 @@
   "payload": "पेलोड",
   "payload_hash": "Payload Hash",
   "payload_length": "Payload Length",
+  "payment": "भुगतान",
   "payment_with_message": "Payment With Message",
   "peer": "Peer",
   "peers": "सहकर्मी",

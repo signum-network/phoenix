@@ -670,6 +670,7 @@
   "payload": "Payload",
   "payload_hash": "Payload Hash",
   "payload_length": "Payload Lenght",
+  "payment": "Mokėjimas",
   "payment_with_message": "Mokėjimas su žinute",
   "peer": "Peer'as",
   "peers": "Peer'ai",

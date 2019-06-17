@@ -670,6 +670,7 @@
   "payload": "Charge",
   "payload_hash": "Hachage de la charge",
   "payload_length": "Longueur de la charge",
+  "payment": "Paiement",
   "payment_with_message": "Paiement avec message",
   "peer": "Pair",
   "peers": "Pairs",

@@ -670,6 +670,7 @@
   "payload": "Membayar beban",
   "payload_hash": "membayar beban Hash",
   "payload_length": "membayar beban panjang",
+  "payment": "Pembayaran",
   "payment_with_message": "Pembayaran dengan pesan",
   "peer": "Sesama",
   "peers": "Sesama",

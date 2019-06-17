@@ -670,6 +670,7 @@
   "payload": "Datová část",
   "payload_hash": "Hash datové části",
   "payload_length": "Velikost datové části",
+  "payment": "Platba",
   "payment_with_message": "Platba se zprávou",
   "peer": "Protějšek",
   "peers": "Peeři",

@@ -679,6 +679,7 @@
   "payload": "Ładunek",
   "payload_hash": "Hash ładunku",
   "payload_length": "Długość ładunku",
+  "payment": "Zapłata",
   "payment_with_message": "Płatność z wiadomością",
   "peer": "Peer",
   "peers": "Peers",

@@ -670,6 +670,7 @@
   "payload": "Carico",
   "payload_hash": "Hash del carico",
   "payload_length": "Lunghezza del carico",
+  "payment": "Pagamento",
   "payment_with_message": "Pagamento con messaggio",
   "peer": "Peer",
   "peers": "Peer",

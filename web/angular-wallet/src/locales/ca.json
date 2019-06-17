@@ -670,6 +670,7 @@
   "payload": "Càrrega",
   "payload_hash": "Hash de la Càrrega",
   "payload_length": "Longitud de la Càrrega",
+  "payment": "Pagament",
   "payment_with_message": "Pagament amb Missatge",
   "peer": "Parell",
   "peers": "Parells",

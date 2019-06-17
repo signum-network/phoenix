@@ -670,6 +670,7 @@
   "payload": "Yükü",
   "payload_hash": "Payload Hash",
   "payload_length": "Payload Length",
+  "payment": "",
   "payment_with_message": "Mesaj ile ödeme",
   "peer": "Eş",
   "peers": "Peers",

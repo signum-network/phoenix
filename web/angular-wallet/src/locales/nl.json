@@ -670,6 +670,7 @@
   "payload": "Belading",
   "payload_hash": "Hash belading",
   "payload_length": "Lengte van de lading",
+  "payment": "Betaling",
   "payment_with_message": "Betaling met bericht",
   "peer": "Peer",
   "peers": "Peers",

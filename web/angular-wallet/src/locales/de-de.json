@@ -670,6 +670,7 @@
   "payload": "Nutzdaten",
   "payload_hash": "Nutzdatenhash",
   "payload_length": "Nutzdatenlänge",
+  "payment": "Zahlung",
   "payment_with_message": "Zahlung mit Nachricht",
   "peer": "Peer",
   "peers": "Peers",

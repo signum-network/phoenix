@@ -670,6 +670,7 @@
   "payload": "載荷",
   "payload_hash": "載荷哈希",
   "payload_length": "載荷長度",
+  "payment": "",
   "payment_with_message": "付款附加信息",
   "peer": "節點",
   "peers": "節點",

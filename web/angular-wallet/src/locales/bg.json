@@ -670,6 +670,7 @@
   "payload": "Съдържание",
   "payload_hash": "Съдържание хеш",
   "payload_length": "Съдържание дължина",
+  "payment": "плащане",
   "payment_with_message": "Плащане и съобщение",
   "peer": "Партньор",
   "peers": "Партньори",

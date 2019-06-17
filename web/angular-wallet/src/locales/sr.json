@@ -670,6 +670,7 @@
   "payload": "Плаћени Терет",
   "payload_hash": "Тежина Hash-а",
   "payload_length": "Payload Length",
+  "payment": "",
   "payment_with_message": "Плаћање са Поруком",
   "peer": "Пеер",
   "peers": "Peers",

@@ -670,6 +670,7 @@
   "payload": "Payload",
   "payload_hash": "Hash πληρωμής",
   "payload_length": "Payload Length",
+  "payment": "Πληρωμή",
   "payment_with_message": "Payment With Message",
   "peer": "Κόμβος",
   "peers": "Κόμβοι",

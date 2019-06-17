@@ -670,6 +670,7 @@
   "payload": "Hyötykuorma",
   "payload_hash": "Hyötykuorman tarkiste",
   "payload_length": "Hyötykuorman pituus",
+  "payment": "maksu",
   "payment_with_message": "Maksu viestin kanssa",
   "peer": "Vertaiskäyttäjä",
   "peers": "Käyttäjät",

@@ -670,6 +670,7 @@
   "payload": "ペイロード",
   "payload_hash": "ペイロードのハッシュ",
   "payload_length": "ペイロードの長さ",
+  "payment": "支払い",
   "payment_with_message": "メッセージをつけて購入",
   "peer": "ピア",
   "peers": "ピア",
