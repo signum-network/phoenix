@@ -17,7 +17,7 @@ export class TransactionRowValueCellComponent implements OnInit {
   @Input('senderPublicKeyHex') senderPublicKeyHex: string;
   @ViewChild('pin', { static: false }) pin: string;
   decryptedMessage = '';
-  
+
   valueType = 'string';
   public convertAddressToNumericId;
 
@@ -50,4 +50,4 @@ export class TransactionRowValueCellComponent implements OnInit {
     this.decryptedMessage = decryptMessage(<EncryptedMessage>this.value.encryptedMessage, this.senderPublicKeyHex, privateKey);
   }
 }
- 
+
