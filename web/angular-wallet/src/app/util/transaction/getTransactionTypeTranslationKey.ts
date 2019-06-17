@@ -125,17 +125,40 @@ function getKeyForEscrowSubtype(transaction: Transaction): string {
   }
 }
 
-// FIXME: complete the translations
 function getKeyForATSubtype(transaction: Transaction): string {
   switch (transaction.subtype) {
     case TransactionSmartContractSubtype.SmartContractCreation:
-      return 'AT Creation';
+      return 'smart_contract_creation';
     case TransactionSmartContractSubtype.SmartContractPayment:
-      return 'AT Payment';
+      return 'smart_contract_payment';
   }
 }
 
-export function getTransactionTypeTranslationKey(transaction: Transaction, account: Account): string {
+export function getTransactionTypeTranslationKey(transaction: Transaction): string {
+  switch (transaction.type) {
+    case TransactionType.Payment:
+      return 'payment';
+    case TransactionType.Arbitrary:
+      return 'arbitrary_message';
+    case TransactionType.Asset:
+      return 'asset';
+    case TransactionType.Marketplace:
+      return 'marketplace';
+    case TransactionType.Leasing:
+      return 'leasing';
+    case TransactionType.RewardRecipient:
+      return 'reward_recipient';
+    case TransactionType.Escrow:
+      return 'escrow';
+    case TransactionType.AT:
+      return 'smart_contract';
+    default:
+      return 'unknown';
+  }
+}
+
+
+export function getTransactionSubtypeTranslationKey(transaction: Transaction, account: Account): string {
   let translationKey;
 
   switch (transaction.type) {
