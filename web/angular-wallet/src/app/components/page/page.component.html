@@ -23,7 +23,8 @@
 
   <!-- CENTER -->
   <div class="content-container">
-    <div class="content">
+    <div [ngClass]="{content: true, wide:wide===true}">
+<!--    <div [ngClass]="'content ' + (wide ? 'wide': '')">-->
       <ng-content></ng-content>
     </div>
   </div>

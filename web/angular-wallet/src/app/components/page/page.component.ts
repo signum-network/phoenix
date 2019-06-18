@@ -17,4 +17,7 @@ export class PageComponent{
 
   @Input()
   breadcrumbs: BreadcrumbInfo[];
+
+  @Input()
+  wide: boolean;
 }
