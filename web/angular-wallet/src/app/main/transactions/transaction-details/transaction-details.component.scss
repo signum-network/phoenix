@@ -1,0 +1,31 @@
+@import "src/@fuse/scss/fuse";
+
+:host {
+
+  div.table {
+    .row{
+      display: flex;
+      flex-direction: row;
+      justify-content: stretch;
+      padding: 4px;
+      @include media-breakpoint('xs') {
+        padding: 8px;
+        flex-direction: column;
+      }
+      .label {
+        font-weight: bold;
+        width: 30%;
+        @include media-breakpoint('xs') {
+          font-size: smaller;
+        }
+      }
+      .value{
+        word-break: break-word;
+        width: 70%;
+        @include media-breakpoint('xs') {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

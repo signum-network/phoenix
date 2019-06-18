@@ -1,32 +1,13 @@
-<div class="page-layout blank simple" fusePerfectScrollbar>
-
-  <!-- HEADER -->
-  <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-    fxLayoutAlign.gt-xs="space-between center">
-
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <a [routerLink]="['/dashboard']"><mat-icon class="secondary-text s-18">home</mat-icon></a>
-        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-        <a [routerLink]="['/transactions']" class="secondary-text">{{ 'transactions' | i18n }}</a>
-        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-        <span class="secondary-text">{{ transaction.transaction }}</span>
-      </div>
-      <div class="h1 mt-16">
-        <h2>{{ 'transaction_details' | i18n }}</h2>
+<app-page [title]="'transaction_details' | i18n"
+          [breadcrumbs]="[{label:'transactions' | i18n, path: '/transactions'}]"
+          [wide]="true"
+          >
+    <div class="info table">
+      <div class="row" *ngFor="let row of getDetailsData(); trackBy: trackRows">
+        <div class="label">{{ row[0] | i18n }}</div>
+        <div class="value">
+          <app-transaction-row-value-cell [key]="row[0]" [value]="row[1]" [senderPublicKeyHex]="(currentAccountIsSender()) ? recipient.publicKey : transaction.senderPublicKey"></app-transaction-row-value-cell>
+        </div>
       </div>
     </div>
-  </div>
-  <!-- / HEADER -->
-
-  <div class=" p-24">
-    <table class="info table">
-      <tr *ngFor="let row of getDetailsData(); trackBy: trackRows">
-        <th>{{ row[0] | i18n }}</th>
-        <td>
-          <app-transaction-row-value-cell [key]="row[0]" [value]="row[1]" [senderPublicKeyHex]="(currentAccountIsSender()) ? recipient.publicKey : transaction.senderPublicKey"></app-transaction-row-value-cell>
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
+</app-page>

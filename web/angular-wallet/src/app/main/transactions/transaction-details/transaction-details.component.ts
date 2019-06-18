@@ -1,5 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {MatDialogRef} from '@angular/material/dialog';
+import {Component, OnInit} from '@angular/core';
 import {
   EncryptedMessage,
   Message,
@@ -20,7 +19,7 @@ type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
 @Component({
   selector: 'app-transaction-details',
   templateUrl: './transaction-details.component.html',
-  styleUrls: ['./transaction-details.component.css']
+  styleUrls: ['./transaction-details.component.scss']
 })
 export class TransactionDetailsComponent implements OnInit {
 
