@@ -1,13 +1,19 @@
 <app-page [title]="'transaction_details' | i18n"
           [breadcrumbs]="[{label:'transactions' | i18n, path: '/transactions'}]"
           [wide]="true"
-          >
-    <div class="info table">
-      <div class="row" *ngFor="let row of getDetailsData(); trackBy: trackRows">
-        <div class="label">{{ row[0] | i18n }}</div>
-        <div class="value">
-          <app-transaction-row-value-cell [key]="row[0]" [value]="row[1]" [senderPublicKeyHex]="(currentAccountIsSender()) ? recipient.publicKey : transaction.senderPublicKey"></app-transaction-row-value-cell>
-        </div>
+>
+  <div class="info table">
+    <div class="row" *ngFor="let row of detailsData; trackBy: trackRows">
+      <div class="label">{{ getFieldNameFromField(row.k) | i18n }}</div>
+      <div class="value">
+        <app-transaction-row-value-cell
+          [key]="row.k"
+          [value]="row.v"
+          [senderPublicKeyHex]="(currentAccountIsSender())
+            ? recipient.publicKey
+            : transaction.senderPublicKey">
+        </app-transaction-row-value-cell>
       </div>
     </div>
+  </div>
 </app-page>

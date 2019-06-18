@@ -19,7 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccountDetailsComponent } from './account-details.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { NotifierModule } from 'angular-notifier';
-import { TransactionRowValueCellComponent } from 'app/main/transactions/transaction-row-value-cell/transaction-row-value-cell.component';
+import { TransactionRowValueCellComponent } from 'app/main/transactions/transaction-details/transaction-row-value-cell/transaction-row-value-cell.component';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from 'app/setup/account/account.service';
 import { TransactionTableModule } from 'app/main/transactions/transaction-table/transaction.module';

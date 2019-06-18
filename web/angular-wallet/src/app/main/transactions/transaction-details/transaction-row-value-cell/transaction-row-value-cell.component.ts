@@ -3,6 +3,7 @@ import { EncryptedMessage, Message } from '@burstjs/core';
 import { isBurstAddress, convertAddressToNumericId } from '@burstjs/util';
 import { decryptMessage, decryptAES, hashSHA256 } from '@burstjs/crypto';
 import { AccountService } from 'app/setup/account/account.service';
+import {CellValue} from '../cell-value-mapper';
 
 @Component({
   selector: 'app-transaction-row-value-cell',
@@ -11,7 +12,7 @@ import { AccountService } from 'app/setup/account/account.service';
 })
 export class TransactionRowValueCellComponent implements OnInit {
 
-  @Input('value') value: EncryptedMessage | Message | any;
+  @Input('value') value: any;
   @Input('key') key: string;
    // the hex value of the sender public key, for encrypted message decoding
   @Input('senderPublicKeyHex') senderPublicKeyHex: string;
@@ -25,20 +26,20 @@ export class TransactionRowValueCellComponent implements OnInit {
     this.convertAddressToNumericId = convertAddressToNumericId;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (isBurstAddress(this.value as string)) {
       this.valueType = 'BurstAddress';
-      //@ts-ignore
-    } else if (this.value && this.value.message) {
+    }
+    else if (this.value && this.value.message) {
       this.valueType = 'Message';
-      //@ts-ignore
-    } else if (this.value && this.value.encryptedMessage) {
+    }
+    else if (this.value && this.value.encryptedMessage) {
       this.valueType = 'EncryptedMessage';
-      //@ts-ignore
-    } else if (this.key === 'transactions') {
+    }
+    else if (this.key === 'transactions') {
       this.valueType = 'Transactions';
-      //@ts-ignore
-    } else if (this.value && typeof this.value === 'object') {
+    }
+    else if (this.value && typeof this.value === 'object') {
       this.valueType = 'Asset';
     }
   }
