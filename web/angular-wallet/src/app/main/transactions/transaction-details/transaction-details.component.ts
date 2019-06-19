@@ -41,8 +41,7 @@ export class TransactionDetailsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.transaction = this.route.snapshot.data.transaction as Transaction;
-    this.accountService.getAccount(this.transaction.recipient).then(recipient => this.recipient = recipient);
-
+    // this.recipient = await this.accountService.getAccount(this.transaction.recipient || this.transaction.sender);
     this.account = await this.storeService.getSelectedAccount();
     this.cellValueMapper = new CellValueMapper(this.transaction, this.account, this.utilService);
 
@@ -67,10 +66,6 @@ export class TransactionDetailsComponent implements OnInit {
 
   getFieldNameFromField(field: string): string {
     return this.utilService.translateTransactionField(field);
-  }
-
-  currentAccountIsSender(): boolean {
-    return this.account && this.transaction.senderRS === this.account.accountRS;
   }
 
 }

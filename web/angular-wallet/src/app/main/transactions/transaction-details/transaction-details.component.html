@@ -8,11 +8,12 @@
       <div class="value">
         <app-transaction-row-value-cell
           [value]="row.v"
-          [senderPublicKeyHex]="(currentAccountIsSender())
-            ? recipient.publicKey
-            : transaction.senderPublicKey">
+          [transaction]="transaction">
         </app-transaction-row-value-cell>
       </div>
     </div>
   </div>
 </app-page>
+<!--          [senderPublicKeyHex]="(currentAccountIsSender())-->
+<!--            ? recipient.publicKey-->
+<!--            : transaction.senderPublicKey">-->

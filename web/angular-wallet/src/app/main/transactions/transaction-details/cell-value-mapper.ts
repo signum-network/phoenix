@@ -3,7 +3,7 @@ import {
   Account,
   Transaction,
   TransactionSmartContractSubtype,
-  TransactionType
+  TransactionType, TransactionArbitrarySubtype
 } from '@burstjs/core';
 import {UtilService} from '../../../util.service';
 import {convertBurstTimeToDate, convertHexStringToString, convertNQTStringToNumber} from '@burstjs/util';
@@ -16,7 +16,9 @@ export enum CellValueType {
   BlockId = 'BlockId',
   Date = 'Date',
   Default = 'Default',
-  EncryptedMessage = 'EncryptedMessage'
+  EncryptedMessage = 'EncryptedMessage',
+  Message = 'Message',
+  AccountInfo = 'AccountInfo',
 }
 
 export class CellValue {
@@ -75,6 +77,26 @@ export class CellValueMapper {
       try {
         assertAttachmentVersion(this.transaction, 'Message');
         return new CellValue(convertHexStringToString(this.transaction.attachment.message.replace(/00/g, '')));
+      } catch (e) {
+        // ignore
+      }
+    }
+
+  if (this.transaction.type === TransactionType.Arbitrary &&
+      this.transaction.subtype === TransactionArbitrarySubtype.AccountInfo) {
+      try {
+        assertAttachmentVersion(this.transaction, 'AccountInfo');
+        return new CellValue(this.transaction.attachment, CellValueType.AccountInfo);
+      } catch (e) {
+        // ignore
+      }
+    }
+
+  if (this.transaction.type === TransactionType.Arbitrary &&
+      this.transaction.subtype === TransactionArbitrarySubtype.Message) {
+      try {
+        assertAttachmentVersion(this.transaction, 'EncryptedMessage');
+        return new CellValue(this.transaction.attachment, CellValueType.EncryptedMessage);
       } catch (e) {
         // ignore
       }
