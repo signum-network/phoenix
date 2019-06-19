@@ -1,18 +1,18 @@
 <div [ngSwitch]="valueType">
-  <div *ngSwitchCase="'Message'">{{value.message}}</div>
+  <div *ngSwitchCase="'Message'">{{value.data.message}}</div>
   <div *ngSwitchCase="'EncryptedMessage'">
     <mat-icon class="s-16 lock">lock</mat-icon>
     <div *ngIf="decryptedMessage">{{decryptedMessage}}</div>
     <div *ngIf="!decryptedMessage">
       <mat-form-field>
         <input matInput [(ngModel)]="pin" type="password" name="pin" placeholder="{{ 'input_pin' | i18n }}">
-      </mat-form-field> 
+      </mat-form-field>
       <button type="submit" class="mr-8" mat-button color="primary"
       (click)="submitPinPrompt($event)">{{ "submit" | i18n }}</button>
     </div>
   </div>
   <div *ngSwitchCase="'BurstAddress'">
-    <a [routerLink]="['/account', convertAddressToNumericId(value)]">{{value}}</a>
+    <a [routerLink]="['/account', convertAddressToNumericId(value.data)]">{{value.data}}</a>
   </div>
   <div *ngSwitchCase="'Asset'">
     <table>
@@ -20,16 +20,16 @@
         <th>{{ 'asset_name' | i18n }}</th>
         <th>{{ 'quantity' | i18n }} (NQT)</th>
       </tr>
-      <tr *ngFor="let row of value">
-        <td>{{row.asset}}</td>
-        <td>{{row.balanceQNT || row.unconfirmedBalanceQNT}}</td>
+      <tr *ngFor="let v of value.data">
+        <td>{{v.asset}}</td>
+        <td>{{v.balanceQNT || v.unconfirmedBalanceQNT}}</td>
       </tr>
     </table>
   </div>
   <div *ngSwitchCase="'Transactions'">
-      <span *ngFor="let row of value" class="transaction chip">
-        <a [routerLink]="['/transactions/transaction', row]">{{row}}</a>
+      <span *ngFor="let v of value.data" class="transaction chip">
+        <a [routerLink]="['/transactions/transaction', v]">{{v}}</a>
       </span>
   </div>
-  <div *ngSwitchDefault>{{value | i18n}}</div>
+  <div *ngSwitchDefault>{{value.data | i18n}}</div>
 </div>

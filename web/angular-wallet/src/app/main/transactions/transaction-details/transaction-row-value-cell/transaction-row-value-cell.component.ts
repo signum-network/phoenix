@@ -12,7 +12,7 @@ import {CellValue} from '../cell-value-mapper';
 })
 export class TransactionRowValueCellComponent implements OnInit {
 
-  @Input('value') value: any;
+  @Input('value') value: CellValue;
   @Input('key') key: string;
    // the hex value of the sender public key, for encrypted message decoding
   @Input('senderPublicKeyHex') senderPublicKeyHex: string;
@@ -27,28 +27,31 @@ export class TransactionRowValueCellComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (isBurstAddress(this.value as string)) {
-      this.valueType = 'BurstAddress';
-    }
-    else if (this.value && this.value.message) {
-      this.valueType = 'Message';
-    }
-    else if (this.value && this.value.encryptedMessage) {
-      this.valueType = 'EncryptedMessage';
-    }
-    else if (this.key === 'transactions') {
-      this.valueType = 'Transactions';
-    }
-    else if (this.value && typeof this.value === 'object') {
-      this.valueType = 'Asset';
-    }
+
+    const {data} = this.value;
+
+    // if (isBurstAddress(value as string)) {
+    //   this.valueType = 'BurstAddress';
+    // }
+    // else if (v && value.message) {
+    //   this.valueType = 'Message';
+    // }
+    // else if (v && value.encryptedMessage) {
+    //   this.valueType = 'EncryptedMessage';
+    // }
+    // else if (this.key === 'transactions') {
+    //   this.valueType = 'Transactions';
+    // }
+    // // else if (value && typeof value === 'object') {
+    // //   this.valueType = 'Asset';
+    // // }
   }
 
-  public async submitPinPrompt(event) {
+  public async submitPinPrompt(event): Promise<void> {
     event.stopImmediatePropagation();
     const account = await this.accountService.currentAccount.getValue();
     const privateKey = decryptAES(account.keys.agreementPrivateKey, hashSHA256(this.pin));
-    this.decryptedMessage = decryptMessage(<EncryptedMessage>this.value.encryptedMessage, this.senderPublicKeyHex, privateKey);
+    this.decryptedMessage = decryptMessage(<EncryptedMessage>this.value.data.encryptedMessage, this.senderPublicKeyHex, privateKey);
   }
 }
 

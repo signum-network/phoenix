@@ -8,9 +8,14 @@ import {
 import {UtilService} from '../../../util.service';
 import {convertHexStringToString} from '@burstjs/util';
 
+
+export enum CellValueType {
+  TEST
+}
+
 export interface CellValue {
-  value: string;
-  templateUrl?: string;
+  data: any;
+  type: CellValueType;
 }
 
 export class CellValueMapper {
@@ -27,20 +32,21 @@ export class CellValueMapper {
 
   public getValue(key: string): CellValue {
     return this.map[key] || {
-      value: this.transaction[key],
+      data: this.transaction[key],
+      type: CellValueType.TEST
     };
   }
 
   private initializeMap(): void {
     this.map = {
       type: {
-        value: this.utilService.translateTransactionType(this.transaction),
+        data: this.utilService.translateTransactionType(this.transaction),
       },
       subtype: {
-        value: this.utilService.translateTransactionSubtype(this.transaction, this.account)
+        data: this.utilService.translateTransactionSubtype(this.transaction, this.account)
       },
       attachment: {
-        value: this.getAttachmentValue()
+        data: this.getAttachmentValue()
       }
       // add more mappings here
     };

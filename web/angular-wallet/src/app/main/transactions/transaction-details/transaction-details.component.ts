@@ -6,11 +6,11 @@ import {StoreService} from 'app/store/store.service';
 import {ActivatedRoute} from '@angular/router';
 import {UtilService} from '../../../util.service';
 import {AccountService} from 'app/setup/account/account.service';
-import {CellValueMapper} from './cell-value-mapper';
+import {CellValue, CellValueMapper} from './cell-value-mapper';
 
-interface TransactionDetailRow {
+export interface TransactionDetailRow {
   k: string;
-  v: string;
+  v: CellValue;
 }
 
 @Component({
@@ -51,7 +51,7 @@ export class TransactionDetailsComponent implements OnInit {
 
     this.detailsData = Object
       .keys(this.transaction)
-      .map(k => ({k, v: this.cellValueMapper.getValue(k).value}));
+      .map(k => ({k, v: this.cellValueMapper.getValue(k)}));
   }
 
   currentAccountIsSender(): boolean {
