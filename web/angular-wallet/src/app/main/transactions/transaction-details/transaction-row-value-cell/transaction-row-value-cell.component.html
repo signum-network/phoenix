@@ -11,8 +11,14 @@
       (click)="submitPinPrompt($event)">{{ "submit" | i18n }}</button>
     </div>
   </div>
-  <div *ngSwitchCase="'BurstAddress'">
+  <div *ngSwitchCase="'AccountAddress'">
     <a [routerLink]="['/account', convertAddressToNumericId(value.data)]">{{value.data}}</a>
+  </div>
+  <div *ngSwitchCase="'AccountId'">
+    <a [routerLink]="['/account', value.data]">{{value.data}}</a>
+  </div>
+  <div *ngSwitchCase="'BlockId'">
+    <a [routerLink]="['/blocks/block', value.data]">{{value.data}}</a>
   </div>
   <div *ngSwitchCase="'Asset'">
     <table>
@@ -31,5 +37,6 @@
         <a [routerLink]="['/transactions/transaction', v]">{{v}}</a>
       </span>
   </div>
+  <div *ngSwitch="'Date'">{{value.data | date:'MMM d, y, h:mm:ss'}}</div>
   <div *ngSwitchDefault>{{value.data | i18n}}</div>
 </div>

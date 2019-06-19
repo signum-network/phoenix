@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { EncryptedMessage, Message } from '@burstjs/core';
-import { isBurstAddress, convertAddressToNumericId } from '@burstjs/util';
-import { decryptMessage, decryptAES, hashSHA256 } from '@burstjs/crypto';
-import { AccountService } from 'app/setup/account/account.service';
+import {Component, OnInit, Input, ViewChild} from '@angular/core';
+import {EncryptedMessage} from '@burstjs/core';
+import {convertAddressToNumericId} from '@burstjs/util';
+import {decryptMessage, decryptAES, hashSHA256} from '@burstjs/crypto';
+import {AccountService} from 'app/setup/account/account.service';
 import {CellValue} from '../cell-value-mapper';
 
 @Component({
@@ -14,9 +14,9 @@ export class TransactionRowValueCellComponent implements OnInit {
 
   @Input('value') value: CellValue;
   @Input('key') key: string;
-   // the hex value of the sender public key, for encrypted message decoding
+  // the hex value of the sender public key, for encrypted message decoding
   @Input('senderPublicKeyHex') senderPublicKeyHex: string;
-  @ViewChild('pin', { static: false }) pin: string;
+  @ViewChild('pin', {static: false}) pin: string;
   decryptedMessage = '';
 
   valueType = 'string';
@@ -27,24 +27,7 @@ export class TransactionRowValueCellComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    const {data} = this.value;
-
-    // if (isBurstAddress(value as string)) {
-    //   this.valueType = 'BurstAddress';
-    // }
-    // else if (v && value.message) {
-    //   this.valueType = 'Message';
-    // }
-    // else if (v && value.encryptedMessage) {
-    //   this.valueType = 'EncryptedMessage';
-    // }
-    // else if (this.key === 'transactions') {
-    //   this.valueType = 'Transactions';
-    // }
-    // // else if (value && typeof value === 'object') {
-    // //   this.valueType = 'Asset';
-    // // }
+    this.valueType = this.value.type;
   }
 
   public async submitPinPrompt(event): Promise<void> {

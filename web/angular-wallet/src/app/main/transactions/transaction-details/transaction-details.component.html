@@ -4,7 +4,7 @@
 >
   <div class="info table">
     <div class="row" *ngFor="let row of detailsData; trackBy: trackRows">
-      <div class="label">{{ getFieldNameFromField(row.k) | i18n }}</div>
+      <div class="label">{{row.l | i18n}}</div>
       <div class="value">
         <app-transaction-row-value-cell
           [value]="row.v"
