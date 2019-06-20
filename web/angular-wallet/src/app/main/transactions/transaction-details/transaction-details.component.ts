@@ -6,11 +6,7 @@ import {
 import {StoreService} from 'app/store/store.service';
 import {ActivatedRoute} from '@angular/router';
 import {UtilService} from '../../../util.service';
-import {AccountService} from 'app/setup/account/account.service';
 import {CellValue, CellValueMapper} from './cell-value-mapper';
-import {I18nService} from '../../../layout/components/i18n/i18n.service';
-import {takeUntil} from 'rxjs/operators';
-import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 
 export interface TransactionDetailRow {
   k: string;
@@ -25,7 +21,6 @@ export interface TransactionDetailRow {
 })
 export class TransactionDetailsComponent implements OnInit {
 
-  infoRows = ['transactionType', 'attachment', 'amountNQT', 'feeNQT', 'senderAddress', 'recipientAddress'];
   public detailsData: TransactionDetailRow[] = [];
   account: Account;
   transaction: Transaction;
@@ -36,12 +31,10 @@ export class TransactionDetailsComponent implements OnInit {
     private storeService: StoreService,
     private utilService: UtilService,
     private route: ActivatedRoute,
-    private accountService: AccountService,
   ) {}
 
   async ngOnInit(): Promise<void> {
     this.transaction = this.route.snapshot.data.transaction as Transaction;
-    // this.recipient = await this.accountService.getAccount(this.transaction.recipient || this.transaction.sender);
     this.account = await this.storeService.getSelectedAccount();
     this.cellValueMapper = new CellValueMapper(this.transaction, this.account, this.utilService);
 
