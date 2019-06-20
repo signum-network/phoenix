@@ -1,9 +1,9 @@
 import {
-  assertAttachmentVersion,
   Account,
   Transaction,
   TransactionSmartContractSubtype,
-  TransactionType, TransactionArbitrarySubtype
+  TransactionType,
+  getAttachmentVersion
 } from '@burstjs/core';
 import {UtilService} from '../../../util.service';
 import {convertBurstTimeToDate, convertHexStringToString, convertNQTStringToNumber} from '@burstjs/util';
@@ -12,13 +12,14 @@ import {convertBurstTimeToDate, convertHexStringToString, convertNQTStringToNumb
 export enum CellValueType {
   AccountAddress = 'AccountAddress',
   AccountId = 'AccountId',
+  AccountInfo = 'AccountInfo',
   Asset = 'Asset',
   BlockId = 'BlockId',
   Date = 'Date',
   Default = 'Default',
   EncryptedMessage = 'EncryptedMessage',
   Message = 'Message',
-  AccountInfo = 'AccountInfo',
+  MultiSameOutCreation = 'MultiSameOutCreation',
 }
 
 export class CellValue {
@@ -72,39 +73,25 @@ export class CellValueMapper {
   }
 
   private getAttachment(): CellValue {
-    if (this.transaction.type === TransactionType.AT &&
-      this.transaction.subtype === TransactionSmartContractSubtype.SmartContractPayment) {
-      try {
-        assertAttachmentVersion(this.transaction, 'Message');
-        return new CellValue(convertHexStringToString(this.transaction.attachment.message.replace(/00/g, '')));
-      } catch (e) {
-        // ignore
-      }
+
+    const {attachment} = this.transaction;
+
+    const versionIdentifier = getAttachmentVersion(this.transaction);
+    switch (versionIdentifier) {
+      case 'AccountInfo':
+        return new CellValue(attachment, CellValueType.AccountInfo);
+      case 'EncryptedMessage':
+        return new CellValue(attachment, CellValueType.EncryptedMessage);
+      case 'Message':
+        return this.getMessageAttachment(this.transaction);
+      case 'Asset':
+        return new CellValue(attachment, CellValueType.Asset);
+      case 'MultiSameOutCreation':
+        return new CellValue(attachment, CellValueType.MultiSameOutCreation)
+      default:
+        return this.transaction['attachment'];
     }
 
-  if (this.transaction.type === TransactionType.Arbitrary &&
-      this.transaction.subtype === TransactionArbitrarySubtype.AccountInfo) {
-      try {
-        assertAttachmentVersion(this.transaction, 'AccountInfo');
-        return new CellValue(this.transaction.attachment, CellValueType.AccountInfo);
-      } catch (e) {
-        // ignore
-      }
-    }
-
-  if (this.transaction.type === TransactionType.Arbitrary &&
-      this.transaction.subtype === TransactionArbitrarySubtype.Message) {
-      try {
-        assertAttachmentVersion(this.transaction, 'EncryptedMessage');
-        return new CellValue(this.transaction.attachment, CellValueType.EncryptedMessage);
-      } catch (e) {
-        // ignore
-      }
-    }
-
-    // more mappings
-
-    return this.transaction['attachment'];
   }
 
   private getAmount(nqt: string): CellValue {
@@ -119,5 +106,18 @@ export class CellValueMapper {
   private getTime(blockTimestamp: number): CellValue {
     const date = convertBurstTimeToDate(blockTimestamp);
     return new CellValue(date, CellValueType.Date);
+  }
+
+  private getMessageAttachment(transaction: Transaction): CellValue {
+    const {type, subtype, attachment} = transaction;
+
+    if (
+      type === TransactionType.AT &&
+      subtype === TransactionSmartContractSubtype.SmartContractPayment
+    ) {
+      return new CellValue(convertHexStringToString(attachment.message.replace(/00/g, '')));
+    }
+
+    return new CellValue(attachment.message);
   }
 }

@@ -737,6 +737,7 @@
   "recipient_public_key_already_announced": "Šios sąskaitos viešasis raktas jau paskelbtas. Naudokite sąskaitos ID.",
   "recipient_unknown": "Gavėjo sąskaita yra nežinomą sąskaita, tai reiškia, niekada neturėjo jokios transakcijos. Prašome patikrinkite savo gavėjo adresą prieš pateikdami.",
   "recipient_unknown_pka": "Gavėjo sąskaita yra nežinoma, tai reiškia, ji niekada neturėjo įeinančios ar išeinančios transakcijos. Norint pateikti šį prašymą, turite taip pat pateikti gavėjo viešąjį raktą.",
+  "recipients": "Gavėjai",
   "record": "Įrašai",
   "referenced_transaction_full_hash": "Nurodytos transakcijos pilnas \"hash",
   "referenced_transaction_hash": "Nurodytos transakcijos \"hash",

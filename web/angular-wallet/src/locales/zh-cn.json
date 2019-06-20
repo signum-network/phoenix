@@ -737,6 +737,7 @@
   "recipient_public_key_already_announced": "该账户的公钥已经公布。使用帐户 ID 来代替。",
   "recipient_unknown": "接收者帐户是未知帐户，意味着它没有转入或转出的交易。请在提交之前再次确认您的接收者地址。",
   "recipient_unknown_pka": "接收者帐户是未知帐户，意味着它从来没有转入或转出的交易记录。为了提交该请求，您还必须提供接收者的公钥。",
+  "recipients": "收件人",
   "record": "记录",
   "referenced_transaction_full_hash": "参考交易完整哈希",
   "referenced_transaction_hash": "参考交易哈希",

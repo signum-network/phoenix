@@ -746,6 +746,7 @@
   "recipient_public_key_already_announced": "This account's public key is already announced. Use the account ID instead.",
   "recipient_unknown": "The recipient account is an unknown account, meaning it has never had an incoming or outgoing transaction. Please double check your recipient address before submitting.",
   "recipient_unknown_pka": "The recipient account is an unknown account, meaning it has never had an incoming or outgoing transaction.",
+  "recipients": "Recipients",
   "record": "Record",
   "referenced_transaction_full_hash": "Referenced Transaction Full Hash",
   "referenced_transaction_hash": "Referenced Transaction Hash",

@@ -737,6 +737,7 @@
   "recipient_public_key_already_announced": "Javni ključ ovog računa je već oglašen. Koristite ID računa umjesto javnog ključa.",
   "recipient_unknown": "Račun primatelja je nepoznat, što znači da nikada nije imao dolazeću ili odlazeću transakciju. Molimo provjerite još jednom adresu primatelja prije slanja.",
   "recipient_unknown_pka": "The recipient account is an unknown account, meaning it has never had an incoming or outgoing transaction.",
+  "recipients": "Primatelji",
   "record": "Record",
   "referenced_transaction_full_hash": "Referentna transakcija kompletan hash",
   "referenced_transaction_hash": "Hash upućene transakcije",

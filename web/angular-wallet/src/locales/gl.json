@@ -737,6 +737,7 @@
   "recipient_public_key_already_announced": "This account's public key is already announced. Use the account ID instead.",
   "recipient_unknown": "A conta de destino é descoñecida, o que significa que nunca ten recibido ou emitido ninguna transacción. Por favor confirme a conta de destino antes de facelo envío.",
   "recipient_unknown_pka": "The recipient account is an unknown account, meaning it has never had an incoming or outgoing transaction. To submit this request you must supply the recipient public key also.",
+  "recipients": "Destinatarios",
   "record": "Grava",
   "referenced_transaction_full_hash": "Hash completo da transacción de referencia",
   "referenced_transaction_hash": "Transacción de Hash referenciada",

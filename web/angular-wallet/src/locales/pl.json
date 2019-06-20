@@ -746,6 +746,7 @@
   "recipient_public_key_already_announced": "Klucz publiczny tego konta już został ogłoszony. Użyj ID konta.",
   "recipient_unknown": "Konto odbiorcy jest nieznane czyli nie przeprowadzono z niego transakcji wychodzącej ani przychodzącej. Upewnij się że adres odbiorcy jest poprawny przed wysłaniem.",
   "recipient_unknown_pka": "Konto odbiorcy jest nieznane czyli nie przeprowadzono z niego transakcji wychodzącej ani przychodzącej.",
+  "recipients": "Odbiorcy",
   "record": "Rekord",
   "referenced_transaction_full_hash": "Pełny Hash transakcji",
   "referenced_transaction_hash": "Hash transakcji",

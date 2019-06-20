@@ -10,18 +10,15 @@ import {I18nService} from '../../../../layout/components/i18n/i18n.service';
 @Component({
   selector: 'app-transaction-row-value-cell',
   templateUrl: './transaction-row-value-cell.component.html',
-  styleUrls: ['./transaction-row-value-cell.component.css']
+  styleUrls: ['./transaction-row-value-cell.component.scss']
 })
-export class TransactionRowValueCellComponent implements OnInit {
+export class TransactionRowValueCellComponent {
 
-  @Input('value') value: CellValue;
+  @Input() value: CellValue;
   @Input() transaction: Transaction;
-  // the hex value of the sender public key, for encrypted message decoding
-  // @Input('senderPublicKeyHex') senderPublicKeyHex: string;
   @ViewChild('pin', {static: false}) pin: string;
-  decryptedMessage = '';
 
-  valueType = 'string';
+  decryptedMessage = '';
   public convertAddressToNumericId;
 
   constructor(
@@ -32,11 +29,8 @@ export class TransactionRowValueCellComponent implements OnInit {
     this.convertAddressToNumericId = convertAddressToNumericId;
   }
 
-  ngOnInit(): void {
-    this.valueType = this.value.type;
-  }
 
-  public async submitPinPrompt(event): Promise<void> {
+  public async decrypt(event): Promise<void> {
     event.stopImmediatePropagation();
     const account = await this.accountService.currentAccount.getValue();
     let senderPublicKey = this.transaction.senderPublicKey;

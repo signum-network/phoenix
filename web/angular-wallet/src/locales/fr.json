@@ -737,6 +737,7 @@
   "recipient_public_key_already_announced": "La clé publique de ce compte est déjà annoncée. Utilisez l'ID de compte à la place.",
   "recipient_unknown": "Le compte bénéficiaire est un compte inconnu, ce qui signifie qu'il n'a jamais émis ou reçu de transaction. Veuillez vérifier l’adresse du bénéficiaire avant de soumettre.",
   "recipient_unknown_pka": "Le compte bénéficiaire est un compte inconnu, ce qui signifie qu'il n'a jamais reçu de transaction entrante ou envoyé de transaction sortante. Pour soumettre cette demande vous devez également fournir la clé publique du bénéficiaire.",
+  "recipients": "Destinataires",
   "record": "Record",
   "referenced_transaction_full_hash": "Hachage complet de la transaction référencée",
   "referenced_transaction_hash": "Hachage de transaction référencée",

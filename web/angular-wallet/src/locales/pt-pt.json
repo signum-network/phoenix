@@ -737,6 +737,7 @@
   "recipient_public_key_already_announced": "A chave pública desta conta já foi declarada. Empregue a ID de conta no seu lugar.",
   "recipient_unknown": "A conta de destino é desconhecida, o que significa que nunca recebeu nem enviou nenhuma transação. Por favor, confirme a conta de destino antes de enviar.",
   "recipient_unknown_pka": "A conta de destino é uma conta desconhecida, o que significa que nunca recebeu nem enviou transação nenhuma. Para fazer este envio, deve fornecer também a chave pública da conta de destino.",
+  "recipients": "Destinatários",
   "record": "Registro",
   "referenced_transaction_full_hash": "Hash Completo da Transação Referenciada",
   "referenced_transaction_hash": "Hash da Transação de Referência",

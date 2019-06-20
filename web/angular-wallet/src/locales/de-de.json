@@ -737,6 +737,7 @@
   "recipient_public_key_already_announced": "Der öffentliche Schlüssel dieses Kontos wurde bereits angekündigt. Verwenden Sie stattdessen die Konto-ID.",
   "recipient_unknown": "Das Empfängerkonto ist ein unbekanntes Konto. Das bedeutet, es verfügt über keine eingehenden oder ausgehenden Transaktionen. Bitte überprüfen Sie noch einmal die Empfängeradresse vor dem Absenden.",
   "recipient_unknown_pka": "Das Empfänger-Konto ist ein unbekanntes Konto, was bedeutet, dass es weder eingehende noch ausgehende Transaktion gehabt hat. Um diese Anforderung zu senden, müssen Sie den öffentlichen Schlüssel des Empfängers mit angeben.",
+  "recipients": "Empfänger",
   "record": "Aufzeichnen",
   "referenced_transaction_full_hash": "Vollständiger Hash der Referenztransaktion",
   "referenced_transaction_hash": "Hash der Referenztransaktion",

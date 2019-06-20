@@ -737,6 +737,7 @@
   "recipient_public_key_already_announced": "Cheia publică a acestui cont a fost anunţată deja. Utilizează ID-ul tău de cont.",
   "recipient_unknown": "Contul destinatarului este un cont necunoscut, ceea ce înseamnă că nu a avut niciodată o tranzacţie de intrare sau ieşire. Te rugăm să verifici adresa destinatarului înainte de a tranzacționa.",
   "recipient_unknown_pka": "Contul destinatarului este un cont de necunoscut, ceea ce înseamnă că nu a avut niciodată o tranzacţie de intrare sau ieşire. Puteţi mări securitatea prin furnizarea cheii publice a destinatarului.",
+  "recipients": "destinatarii",
   "record": "Record",
   "referenced_transaction_full_hash": "Hash-ul complet al tranzacției referențiate",
   "referenced_transaction_hash": "Hash-ul tranzacției referențiate",

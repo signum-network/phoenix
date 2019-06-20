@@ -737,6 +737,7 @@
   "recipient_public_key_already_announced": "Ja s'ha anunciat la clau pública d'aquest compte. Utilitzeu el ID del Compte.",
   "recipient_unknown": "El compte del destinatari és un compte desconegut, és a dir, que mai ha fet una transacció. Si us plau torneu a comprovar si el seu destinatari és correcte abans d'enviar.",
   "recipient_unknown_pka": "El compte del destinatari és un compte desconegut, és a dir, que no ha fet mai una transacció. Vostè pot augmentar la seguretat proporcionant la clau pública del destinatari.",
+  "recipients": "Destinataris",
   "record": "Registre",
   "referenced_transaction_full_hash": "Hash complert de la transacció de referència",
   "referenced_transaction_hash": "Transacció de Hash referenciada",

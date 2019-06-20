@@ -737,6 +737,7 @@
   "recipient_public_key_already_announced": "De public key van dit account is al bekend. Gebruik in plaats daarvan de account-ID.",
   "recipient_unknown": "De ontvangende rekening is onbekend, wat betekent dat het nooit een inkomende of uitgaande transactie heeft gehad. Controleer het ontvangst adres.",
   "recipient_unknown_pka": "Het ontvangende account is een onbekend account, wat betekent dat het nooit een inkomende of uitgaande transactie heeft gehad. Om deze actie te doen slagen, moet ook de openbare sleutel van de ontvanger worden opgeven.",
+  "recipients": "ontvangers",
   "record": "Record",
   "referenced_transaction_full_hash": "Referenced Transaction Full Hash",
   "referenced_transaction_hash": "Verwijzende Transactie Hash",

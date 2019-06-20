@@ -737,6 +737,7 @@
   "recipient_public_key_already_announced": "Public key rekening ini telah diumumkan. Gunakan ID rekening.",
   "recipient_unknown": "Akun penerima adalah rekening yang tidak diketahui. Ini tidak pernah memiliki transaksi masuk atau keluar. Silahkan mengecek alamat penerima sebelum mengirimkan.",
   "recipient_unknown_pka": "Rekening penerima tidak diketahui, yang berarti rekening tersebut belum pernah memiliki transaksi masuk atau keluar. Untuk mengirimkan permintaan ini anda diharuskan menyediakan juga public key penerima.",
+  "recipients": "Penerima",
   "record": "Merekam",
   "referenced_transaction_full_hash": "Direferensikan transaksi penuh Hash",
   "referenced_transaction_hash": "Hash transaksi tereferensi",

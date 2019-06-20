@@ -737,6 +737,7 @@
   "recipient_public_key_already_announced": "Veřejný klíč tohoto účtu je již oznámen. Použijte místo toho ID účtu.",
   "recipient_unknown": "Účet příjemce je neznámý účet, což znamená, že na něm nikdy neproběhly příchozí nebo odchozí transakce. Prosím zkontrolujte adresu příjemce před odesláním.",
   "recipient_unknown_pka": "Účet příjemce je neznámý účet, což znamená, že na něm nikdy neproběhly příchozí nebo odchozí transakce. Můžete zvýšit zabezpečení tím, že poskytnete veřejný klíč příjemce.",
+  "recipients": "Příjemci",
   "record": "Záznam",
   "referenced_transaction_full_hash": "Referenced Transaction Full Hash",
   "referenced_transaction_hash": "Referenced Transaction Hash",

@@ -737,6 +737,7 @@
   "recipient_public_key_already_announced": "Tämän tilin julkinen avain on jo ilmoitettu. Käytä tilinumeroa sen sijaan.",
   "recipient_unknown": "Vastaanottajan tili on tuntematon, eli sillä ei ole yhtään lähtevää tai saapuvaa tilitapahtumaa. Tarkista vielä vastaanottajan tilin oikeellisuus.",
   "recipient_unknown_pka": "Vastaanottajan tili on tuntematon, eli sillä ei ole yhtään saapuvaa tai lähtevää tilitapahtumaa. Jotta voit lähettää tämän pyynnön, sinun täytyy antaa myös vastaanottajan julkinen avain.",
+  "recipients": "vastaanottajat",
   "record": "Ennätys",
   "referenced_transaction_full_hash": "Viitatun tapahtuman koko tarkiste",
   "referenced_transaction_hash": "Viitatun tapahtuman tarkiste",
