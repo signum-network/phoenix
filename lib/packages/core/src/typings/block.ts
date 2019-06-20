@@ -6,28 +6,28 @@
  */
 
 export interface Block {
-    readonly block: number ;
-    readonly version: number ;
-    readonly timestamp: number ;
-    readonly height: number ;
-    readonly previousBlockId: number ;
-    readonly previousBlockHash: number[] ;
-    readonly generatorPublicKey: number[] ;
-    readonly totalAmountNQT: number ;
-    readonly totalFeeNQT: number ;
-    readonly payloadLength: number ;
-    readonly generatorId: number ;
-    readonly generatorRS: string ;
-    readonly generationSignature: number[] ;
-    readonly payloadHash: number[] ;
-    readonly blockSignature: number[] ;
-    readonly cumulativeDifficulty: number ;
-    readonly baseTarget: number ;
-    readonly nextBlockId: number ;
-    readonly nonce: number ;
-    readonly byteLength: number ;
-    readonly pocTime: number ;
-    readonly blockAts: number[] ;
+    readonly baseTarget: number;
+    readonly block: string;
+    readonly blockReward: string;
+    readonly blockSignature: string;
+    readonly generator: string;
+    readonly generatorRS: string;
+    readonly generationSignature: string;
+    readonly generatorPublicKey: string;
+    readonly height: number;
+    readonly nextBlock: string;
+    readonly nonce: string;
+    readonly numberOfTransactions: number;
+    readonly payloadHash: string;
+    readonly payloadLength: number;
+    readonly previousBlock: string;
+    readonly previousBlockHash: string;
+    readonly requestProcessingTime: number;
+    readonly scoopNum: number;
+    readonly timestamp: number;
+    readonly totalAmountNQT: string;
+    readonly totalFeeNQT: string;
     readonly transactions: string[] ;
-    readonly numberOfTransactions: number ;
+    readonly version: number;
 }
+

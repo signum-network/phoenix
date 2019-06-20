@@ -24,10 +24,13 @@
     color: #fff;
   }
 
-  .address-list {
-    max-height: 200px;
+  .chip-list {
+    max-height: 120px;
+    overflow-y: auto;
     flex-wrap: wrap;
     display: flex;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding: 0 4px 4px 4px;
   }
-
 }

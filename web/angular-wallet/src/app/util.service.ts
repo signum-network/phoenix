@@ -16,6 +16,7 @@ import {
   getTransactionTypeTranslationKey
 } from './util/transaction/getTransactionTypeTranslationKey';
 import {getTransactionFieldTranslationKey} from './util/transaction/getTransactionFieldTranslationKey';
+import {getBlockFieldTranslationKey} from './util/block/getBlockFieldTranslationKey';
 
 
 @Injectable()
@@ -263,6 +264,11 @@ export class UtilService {
 
   public translateTransactionField(txFieldKey: string): string {
     const translationKey = getTransactionFieldTranslationKey(txFieldKey);
+    return this.i18nService.getTranslation(translationKey);
+  }
+
+  public translateBlockField(txFieldKey: string): string {
+    const translationKey = getBlockFieldTranslationKey(txFieldKey);
     return this.i18nService.getTranslation(translationKey);
   }
 }

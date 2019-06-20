@@ -88,9 +88,9 @@ export class CellValueMapper {
       case 'Asset':
         return new CellValue(attachment, CellValueType.Asset);
       case 'MultiSameOutCreation':
-        return new CellValue(attachment, CellValueType.MultiSameOutCreation)
+        return new CellValue(attachment, CellValueType.MultiSameOutCreation);
       case 'MultiOutCreation':
-        return new CellValue(attachment, CellValueType.MultiOutCreation)
+        return new CellValue(attachment, CellValueType.MultiOutCreation);
       default:
         return this.transaction['attachment'];
     }

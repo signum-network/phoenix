@@ -1,20 +1,17 @@
 import {
   Block
 } from '@burstjs/core';
+import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
+import {CellValue, CellValueType} from '../../transactions/transaction-details/cell-value-mapper';
 
 
 export enum BlockCellValueType {
   AccountAddress = 'AccountAddress',
   AccountId = 'AccountId',
-  AccountInfo = 'AccountInfo',
-  Asset = 'Asset',
   BlockId = 'BlockId',
   Date = 'Date',
   Default = 'Default',
-  EncryptedMessage = 'EncryptedMessage',
-  Message = 'Message',
-  MultiSameOutCreation = 'MultiSameOutCreation',
-  MultiOutCreation = 'MultiOutCreation',
+  Transactions = 'Transactions',
 }
 
 export class BlockCellValue {
@@ -40,20 +37,31 @@ export class BlockCellValueMapper {
   }
 
   private initializeMap(): void {
+
     this.map = {
-      // type: this.getTransactionType(),
-      // subtype: this.getTransactionSubtype(),
-      // attachment: this.getAttachment(),
-      // feeNQT: this.getAmount(this.block.feeNQT),
-      // amountNQT: this.getAmount(this.block.amountNQT),
-      // senderRS: this.getTypedValue(this.block.senderRS, BlockCellValueType.AccountAddress),
-      // sender: this.getTypedValue(this.block.sender, BlockCellValueType.AccountId),
-      // recipientRS: this.getTypedValue(this.block.recipientRS, BlockCellValueType.AccountAddress),
-      // recipient: this.getTypedValue(this.block.recipient, BlockCellValueType.AccountId),
-      // block: this.getTypedValue(this.block.block, BlockCellValueType.BlockId),
-      // blockTimestamp: this.getTime(this.block.blockTimestamp),
-      // ecBlockId: this.getTypedValue(this.block.ecBlockId, BlockCellValueType.BlockId),
-      // timestamp: this.getTime(this.block.timestamp),
+      nextBlock: this.getTypedValue(this.block.nextBlock, BlockCellValueType.BlockId),
+      previousBlock: this.getTypedValue(this.block.previousBlock, BlockCellValueType.BlockId),
+      blockReward: this.getAmount(this.block.blockReward),
+      generatorRS: this.getTypedValue(this.block.generatorRS, BlockCellValueType.AccountAddress),
+      generator: this.getTypedValue(this.block.generator, BlockCellValueType.AccountId),
+      totalFeeNQT: this.getAmount(this.block.totalFeeNQT),
+      totalAmountNQT: this.getAmount(this.block.totalAmountNQT),
+      timestamp: this.getTime(this.block.timestamp),
+      transactions: this.getTypedValue(this.block.transactions, BlockCellValueType.Transactions)
     };
+  }
+
+  private getTime(blockTimestamp: number): CellValue {
+    const date = convertBurstTimeToDate(blockTimestamp);
+    return new CellValue(date, CellValueType.Date);
+  }
+
+  private getAmount(nqt: string): BlockCellValue {
+    const valueStr = `${convertNQTStringToNumber(nqt)} BURST`;
+    return new BlockCellValue(valueStr);
+  }
+
+  private getTypedValue(value: any, valueType: BlockCellValueType): BlockCellValue {
+    return new BlockCellValue(value, valueType);
   }
 }

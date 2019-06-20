@@ -44,20 +44,13 @@
     </table>
   </div>
 
-  <!-- for block -->
-  <div *ngSwitchCase="'Transactions'">
-      <span *ngFor="let v of value.data" class="transaction chip">
-        <a [routerLink]="['/transactions/transaction', v]">{{v}}</a>
-      </span>
-  </div>
-
   <div *ngSwitchCase="'Date'">{{value.data | date:'MMM d, y, h:mm:ss'}}</div>
 
   <div *ngSwitchCase="'AccountInfo'">{{value.data.name}} - {{value.data.description}}</div>
 
   <div *ngSwitchCase="'MultiSameOutCreation'">
     <label>{{'recipients' | i18n}}</label>
-    <div class="address-list">
+    <div class="chip-list">
       <span *ngFor="let accountId of value.data.recipients" class="chip">
         <a [routerLink]="['/account', accountId]">{{convertNumericIdToAddress(accountId)}}</a>
       </span>
@@ -66,7 +59,7 @@
 
   <div *ngSwitchCase="'MultiOutCreation'">
     <label>{{'payments' | i18n}}</label>
-    <div class="address-list">
+    <div class="chip-list">
       <span *ngFor="let payment of value.data.recipients" class="chip">
         <a [routerLink]="['/account', payment[0]]">{{convertNQTStringToNumber(payment[1])}} BURST</a>
       </span>
