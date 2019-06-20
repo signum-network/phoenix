@@ -28,8 +28,8 @@ import { BlocksResolver } from './blocks.resolver';
 import { BlocksComponent } from './blocks.component';
 import { BlockDetailsComponent } from './block-details/block-details.component';
 import { BlockResolver } from './block-details/block.resolver';
-import { TransactionRowValueCellComponent } from '../transactions/transaction-details/transaction-row-value-cell/transaction-row-value-cell.component';
-import { TransactionsModule } from '../transactions/transactions.module';
+import {PageModule} from '../../components/page/page.module';
+import {BlockRowValueCellComponent} from './block-details/block-row-value-cell/block-row-value-cell.component';
 
 const routes = [
   {
@@ -78,11 +78,13 @@ const routes = [
     ReactiveFormsModule,
     I18nModule,
     MatDialogModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    PageModule
   ],
   declarations: [
     BlocksComponent,
-    BlockDetailsComponent
+    BlockDetailsComponent,
+    BlockRowValueCellComponent,
   ],
   providers: [
     BlocksResolver,

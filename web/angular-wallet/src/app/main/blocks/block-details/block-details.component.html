@@ -1,32 +1,16 @@
-<div class="page-layout blank simple" fusePerfectScrollbar>
-
-  <!-- HEADER -->
-  <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-    fxLayoutAlign.gt-xs="space-between center">
-
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <a [routerLink]="['/dashboard']"><mat-icon class="secondary-text s-18">home</mat-icon></a>
-        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-        <a [routerLink]="['/blocks']" class="secondary-text">{{ 'blocks' | i18n }}</a>
-        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-        <span class="secondary-text">{{ block.block }}</span>
-      </div>
-      <div class="h1 mt-16">
-        <h2>{{ 'block' | i18n }}</h2>
+<app-page [title]="'block' | i18n"
+          [breadcrumbs]="[{label:'blocks' | i18n, path: '/blocks'}]"
+          [wide]="true"
+>
+  <div class="info table">
+    <div class="row" *ngFor="let row of detailsData; trackBy: trackRows">
+      <div class="label">{{row.l | i18n}}</div>
+      <div class="value">
+        <app-block-row-value-cell
+          [value]="row.v"
+          [block]="block">
+        </app-block-row-value-cell>
       </div>
     </div>
   </div>
-  <!-- / HEADER -->
-
-  <div class=" p-24">
-    <table class="info table">
-      <tr *ngFor="let row of getDetailsData()">
-        <th>{{ row[0] | i18n }}</th>
-        <td>
-<!--          <app-transaction-row-value-cell [value]="row[1]" [key]="row[0]"></app-transaction-row-value-cell>-->
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
+</app-page>
