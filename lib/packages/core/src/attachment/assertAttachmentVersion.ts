@@ -1,6 +1,7 @@
 /** @module core */
 
 import {Transaction} from '../typings/transaction';
+import {isAttachmentVersion} from './isAttachmentVersion';
 
 /**
  * Asserts a specific version of a transactions attachment
@@ -9,8 +10,7 @@ import {Transaction} from '../typings/transaction';
  * @throws An exception in case of wrong version
  */
 export function assertAttachmentVersion(transaction: Transaction, versionIdentifier: string) {
-    const {attachment} = transaction;
-    if (attachment && attachment[`version.${versionIdentifier}`]) { return; }
-
-    throw new Error(`Attachment of Transaction ${transaction.transaction} is not of version '${versionIdentifier}'`);
+    if (!isAttachmentVersion(transaction, versionIdentifier)) {
+        throw new Error(`Attachment of Transaction ${transaction.transaction} is not of version '${versionIdentifier}'`);
+    }
 }
