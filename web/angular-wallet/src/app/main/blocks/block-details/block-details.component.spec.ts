@@ -19,10 +19,12 @@ import { BlockDetailsComponent } from './block-details.component';
 import { NetworkService } from 'app/network/network.service';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { NotifierModule } from 'angular-notifier';
-import { TransactionRowValueCellComponent } from 'app/main/transactions/transaction-details/transaction-row-value-cell/transaction-row-value-cell.component';
 import { ActivatedRoute } from '@angular/router';
+import {PageModule} from '../../../components/page/page.module';
+import {BlockRowValueCellComponent} from './block-row-value-cell/block-row-value-cell.component';
+import {UtilService} from '../../../util.service';
 
-xdescribe('BlockDetailsComponent', () => {
+describe('BlockDetailsComponent', () => {
   let component: BlockDetailsComponent;
   let fixture: ComponentFixture<BlockDetailsComponent>;
   let activatedRoute: ActivatedRoute;
@@ -43,11 +45,12 @@ xdescribe('BlockDetailsComponent', () => {
         I18nModule,
         BrowserAnimationsModule,
         NotifierModule,
+        PageModule,
         RouterTestingModule.withRoutes(
           [{path: 'block/123', component: BlockDetailsComponent}]
         )
       ],
-      providers: [ TimeAgoPipe, I18nService, {
+      providers: [ TimeAgoPipe, I18nService, UtilService, {
         provide: StoreService,
         useFactory: () => {
           return {
@@ -67,13 +70,14 @@ xdescribe('BlockDetailsComponent', () => {
         }
       },
       {provide: ActivatedRoute, useValue: {
+          paramMap: new BehaviorSubject(''),
           snapshot: {
             data: {
               block: '123'
             }
           }
       } }],
-      declarations: [ BlockDetailsComponent, TimeAgoPipe, TransactionRowValueCellComponent ]
+      declarations: [ BlockDetailsComponent, TimeAgoPipe, BlockRowValueCellComponent ]
     })
     .compileComponents();
   }));
