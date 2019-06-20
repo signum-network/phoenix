@@ -678,6 +678,7 @@
   "payload_length": "Длина коммерческой нагрузки",
   "payment": "Оплата",
   "payment_with_message": "Платеж с сообщением",
+  "payments": "платежи",
   "peer": "Узел",
   "peers": "Пиры",
   "pending": "Ожидающие",

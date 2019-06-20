@@ -678,6 +678,7 @@
   "payload_length": "Velikost datové části",
   "payment": "Platba",
   "payment_with_message": "Platba se zprávou",
+  "payments": "Platby",
   "peer": "Protějšek",
   "peers": "Peeři",
   "pending": "Čekající",

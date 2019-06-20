@@ -678,6 +678,7 @@
   "payload_length": "Hyötykuorman pituus",
   "payment": "maksu",
   "payment_with_message": "Maksu viestin kanssa",
+  "payments": "maksut",
   "peer": "Vertaiskäyttäjä",
   "peers": "Käyttäjät",
   "pending": "Odottava",

@@ -20,6 +20,7 @@ export enum CellValueType {
   EncryptedMessage = 'EncryptedMessage',
   Message = 'Message',
   MultiSameOutCreation = 'MultiSameOutCreation',
+  MultiOutCreation = 'MultiOutCreation',
 }
 
 export class CellValue {
@@ -88,6 +89,8 @@ export class CellValueMapper {
         return new CellValue(attachment, CellValueType.Asset);
       case 'MultiSameOutCreation':
         return new CellValue(attachment, CellValueType.MultiSameOutCreation)
+      case 'MultiOutCreation':
+        return new CellValue(attachment, CellValueType.MultiOutCreation)
       default:
         return this.transaction['attachment'];
     }

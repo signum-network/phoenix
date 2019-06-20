@@ -678,6 +678,7 @@
   "payload_length": "Longitude da Carga",
   "payment": "Forma de pagamento",
   "payment_with_message": "Pagamento Com Mensagem",
+  "payments": "pagamentos",
   "peer": "Par",
   "peers": "Pares",
   "pending": "Pendente",
