@@ -8,7 +8,7 @@ import {Transaction} from '../typings/transaction';
  * @param versionIdentifier The version string, i.e. MultiOutCreation
  * @return _true_, if version string matches
  */
-export function isAttachmentVersion(transaction: Transaction, versionIdentifier: string) {
+export function isAttachmentVersion(transaction: Transaction, versionIdentifier: string): boolean {
     const {attachment} = transaction;
-    return attachment && attachment[`version.${versionIdentifier}`]
+    return attachment && attachment[`version.${versionIdentifier}`];
 }
