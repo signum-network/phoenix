@@ -3,9 +3,12 @@
 import {Transaction} from '../typings/transaction';
 
 /**
- * Get the transaction attachment version identitfier
+ * Get the transaction attachment version identifier
+ *
+ * Attachment types are identified by a field _version.<Identifier>_
+ *
  * @param transaction The transaction to be checked
- * @return , if version string matches
+ * @return return _Identifier_, if exists, otherwise `undefined`
  */
 export function getAttachmentVersion(transaction: Transaction): string {
     const {attachment} = transaction;
