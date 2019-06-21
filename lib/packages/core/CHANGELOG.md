@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+# unreleased
+
+- added `isAttachmentVersion`
+- added `getAttachmentVersion`
+
 ## 0.2.1
 
 - fixed missing contract imports

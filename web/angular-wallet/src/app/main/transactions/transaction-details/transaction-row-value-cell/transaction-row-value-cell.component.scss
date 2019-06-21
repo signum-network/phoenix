@@ -1,0 +1,33 @@
+:host {
+
+  .encrypted-message {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  td {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  .chip {
+    background: #428bca;
+    border-radius: 3px;
+    padding: 1px 5px;
+    line-height: 1.5em;
+    font-size: 12px;
+    margin: 4px 4px 0 0;
+  }
+
+  .chip a {
+    color: #fff;
+  }
+
+  .address-list {
+    max-height: 200px;
+    flex-wrap: wrap;
+    display: flex;
+  }
+
+}

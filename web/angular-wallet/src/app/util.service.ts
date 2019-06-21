@@ -15,6 +15,7 @@ import {
   getTransactionSubtypeTranslationKey,
   getTransactionTypeTranslationKey
 } from './util/transaction/getTransactionTypeTranslationKey';
+import {getTransactionFieldTranslationKey} from './util/transaction/getTransactionFieldTranslationKey';
 
 
 @Injectable()
@@ -257,6 +258,11 @@ export class UtilService {
 
   public translateTransactionType(transaction: Transaction): string {
     const translationKey = getTransactionTypeTranslationKey(transaction);
+    return this.i18nService.getTranslation(translationKey);
+  }
+
+  public translateTransactionField(txFieldKey: string): string {
+    const translationKey = getTransactionFieldTranslationKey(txFieldKey);
     return this.i18nService.getTranslation(translationKey);
   }
 }

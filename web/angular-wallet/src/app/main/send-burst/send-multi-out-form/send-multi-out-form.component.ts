@@ -96,7 +96,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
           recipients: multiOutString,
           feeNQT: this.feeNQT,
           deadline: parseInt(this.deadline, 10) * 60,
-          amountNQT: this.getTotal().toString()
+          amountNQT: this.amountNQT
         },
         pin: this.pin,
         keys: this.account.keys,
