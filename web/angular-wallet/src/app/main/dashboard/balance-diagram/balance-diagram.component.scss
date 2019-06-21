@@ -6,10 +6,21 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 
-    mat-form-field{
-      width: 80px;
-      font-size: 12px
-    };
+    .right-container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: baseline;
+      mat-checkbox {
+        font-size: 12px;
+      }
+
+      mat-form-field {
+        width: 80px;
+        font-size: 12px
+      }
+    ;
+    }
   }
 }
