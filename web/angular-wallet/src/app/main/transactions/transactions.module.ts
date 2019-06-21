@@ -32,6 +32,7 @@ import { TransactionsResolver } from './transactions.resolver';
 import { AccountResolver } from 'app/setup/account/account.resolver';
 import { TransactionTableModule } from './transaction-table/transaction.module';
 import {PageModule} from '../../components/page/page.module';
+import {TransactionRowValueCellComponent} from './transaction-details/transaction-row-value-cell/transaction-row-value-cell.component';
 
 const routes = [
     {
@@ -87,7 +88,8 @@ const routes = [
   ],
     declarations: [
         TransactionsComponent,
-        TransactionDetailsComponent
+        TransactionDetailsComponent,
+        TransactionRowValueCellComponent
     ],
     providers: [
         TransactionResolver,

@@ -9,7 +9,7 @@ export class BlockResolver implements Resolve<Promise<Block>> {
   constructor(private networkService: NetworkService) {
   }
 
-  resolve(route: ActivatedRouteSnapshot) {
+  resolve(route: ActivatedRouteSnapshot): Promise<Block> {
     return this.networkService.getBlockById(route.params.id);
   }
 }

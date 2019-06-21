@@ -20,4 +20,7 @@ export class PageComponent{
 
   @Input()
   wide: boolean;
+
+  @Input()
+  subtitle: string;
 }
