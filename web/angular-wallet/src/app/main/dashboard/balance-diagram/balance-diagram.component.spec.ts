@@ -12,6 +12,8 @@ import {MockComponent} from 'ng-mocks';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {MatCheckboxModule} from '@angular/material';
+import {FormsModule} from '@angular/forms';
 
 describe('BalanceDiagramComponent', () => {
   let component: BalanceDiagramComponent;
@@ -20,10 +22,12 @@ describe('BalanceDiagramComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        FormsModule,
         NoopAnimationsModule,
         NgxChartsModule,
         I18nModule,
         MatSelectModule,
+        MatCheckboxModule,
         HttpClientTestingModule,
         RouterTestingModule.withRoutes([])
       ],
