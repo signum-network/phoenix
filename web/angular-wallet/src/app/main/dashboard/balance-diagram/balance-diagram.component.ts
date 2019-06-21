@@ -60,9 +60,6 @@ export class BalanceDiagramComponent implements OnChanges {
   }
 
   private updateDiagram(): void {
-
-    console.log("updateDiagram", this.smoothedCurve);
-
     const transactions = this.account.transactions.slice(0, this.transactionCount);
     const {account, balanceNQT} = this.account;
 
