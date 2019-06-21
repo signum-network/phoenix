@@ -1,92 +1,64 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import {EncryptedMessage, Message, Account, Transaction} from '@burstjs/core';
+import {Component, OnInit} from '@angular/core';
+import {
+  Account,
+  Transaction
+} from '@burstjs/core';
 import {StoreService} from 'app/store/store.service';
 import {ActivatedRoute} from '@angular/router';
 import {UtilService} from '../../../util.service';
-import { AccountService } from 'app/setup/account/account.service';
+import {CellValue, CellValueMapper} from './cell-value-mapper';
 
-type TransactionDetailsCellValue = string | Message | EncryptedMessage | number;
-type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
+export interface TransactionDetailRow {
+  k: string;
+  l: string;
+  v: CellValue;
+}
 
 @Component({
   selector: 'app-transaction-details',
   templateUrl: './transaction-details.component.html',
-  styleUrls: ['./transaction-details.component.css']
+  styleUrls: ['./transaction-details.component.scss']
 })
 export class TransactionDetailsComponent implements OnInit {
 
-  infoColumns = ['key', 'value'];
-  infoRows = ['transactionType', 'attachment', 'amountNQT', 'feeNQT', 'senderAddress', 'recipientAddress'];
-  infoData: Map<string, TransactionDetailsCellValue>;
-  detailsData: Map<string, TransactionDetailsCellValue>;
+  public detailsData: TransactionDetailRow[] = [];
   account: Account;
   transaction: Transaction;
   recipient: Account;
+  private cellValueMapper: CellValueMapper;
 
   constructor(
     private storeService: StoreService,
     private utilService: UtilService,
     private route: ActivatedRoute,
-    private accountService: AccountService) {
-  }
+  ) {}
 
-  private getNameFromTransactionSubtype(): string {
-    return this.utilService.translateTransactionType(this.transaction, this.account);
-  }
-
-  closeDialog(): void {
-  }
-
-  public getInfoData(): TransactionDetailsCellValueMap[] {
-    return Array.from(this.infoData.entries());
-  }
-
-  public getDetailsData(): TransactionDetailsCellValueMap[] {
-    return Array.from(this.detailsData.entries());
-  }
-
-  private mapCellValue(key: string): TransactionDetailsCellValueMap {
-    let value;
-    switch (key){
-      // TODO: make type translation
-      case 'subtype':
-        value = this.getNameFromTransactionSubtype();
-        break;
-      default:
-        value = this.transaction[key];
-    }
-
-    return [key, value];
-  }
-
-
-  trackRows(index, row) {
-    return row ? row.id : undefined;
-  }
-
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.transaction = this.route.snapshot.data.transaction as Transaction;
-    const transactionDetails = Object
-      .keys(this.transaction)
-      .map( key => this.mapCellValue(key) );
-    this.detailsData = new Map(transactionDetails);
-    this.infoData = new Map(transactionDetails.filter((row) => this.infoRows.indexOf(row[0]) > -1));
-    try {
-      this.recipient = await this.accountService.getAccount(this.transaction.recipient);
-    } catch (e) {
-    }
+    this.account = await this.storeService.getSelectedAccount();
+    this.cellValueMapper = new CellValueMapper(this.transaction, this.account, this.utilService);
 
-    this.storeService.getSelectedAccount()
-      .then((account) => {
-        this.account = account;
-        // @ts-ignore
-        this.transaction.transactionType = this.getNameFromTransactionSubtype(this.transaction, this.account);
+    this.detailsData = Object
+      .keys(this.transaction)
+      .map(k => ({
+          k,
+          l: this.getFieldNameFromField(k),
+          v: this.cellValueMapper.getValue(k)
+        })
+      ).sort((a, b) => {
+        if (a.l < b.l) { return -1; }
+        if (a.l > b.l) { return 1; }
+        return 0;
       });
   }
 
-  currentAccountIsSender() {
-    return this.account && this.transaction.senderRS === this.account.accountRS;
+
+  trackRows(index, row): any {
+    return row ? row.id : undefined;
+  }
+
+  getFieldNameFromField(field: string): string {
+    return this.utilService.translateTransactionField(field);
   }
 
 }

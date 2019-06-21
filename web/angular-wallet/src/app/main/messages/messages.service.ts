@@ -78,6 +78,10 @@ export class MessagesService implements Resolve<any> {
    * @returns {Observable<any> | Promise<any> | any}
    */
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
+    return this.populateMessages();
+  }
+
+  public populateMessages(): any {
     return new Promise(async (resolve, reject) => {
       try {
         this.user = await this.accountService.currentAccount.getValue();
@@ -101,13 +105,15 @@ export class MessagesService implements Resolve<any> {
             timestamp: val.timestamp // relies on default order being reverse chrono
           });
         }, []);
-      } catch (e) {
+      }
+      catch (e) {
         console.warn(e);
         this.messages = [];
         this.contacts = [];
       }
-      resolve();
 
+      this.onMessagesUpdated.next(this.messages);
+      resolve();
     });
   }
 
@@ -172,7 +178,9 @@ export class MessagesService implements Resolve<any> {
       messages[1].unconfirmedTransactions.filter((t: Transaction) =>
         t.type === TransactionType.Arbitrary &&
         t.subtype === TransactionArbitrarySubtype.Message
-      ).concat(messages[0].transactions);
+      )
+      .concat(messages[0].transactions)
+      .sort((a, b) => a.timestamp > b.timestamp ? -1 : 1 );
 
     return Promise.resolve(allMessages);
   }
@@ -184,8 +192,10 @@ export class MessagesService implements Resolve<any> {
       senderRS: recipient,
       timestamp: convertDateToBurstTime(new Date()).toString()
     };
-    this.messages.push(message);
-    this.onMessagesUpdated.next(this.messages);
+    if (recipient) {
+      this.messages.push(message);
+      this.onMessagesUpdated.next(this.messages);
+    }
     this.getMessage(message, true);
   }
 

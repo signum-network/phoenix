@@ -11,7 +11,11 @@ import {
 } from '@burstjs/core';
 import {I18nService} from './layout/components/i18n/i18n.service';
 import {HttpError} from '@burstjs/http';
-import {getTransactionTypeTranslationKey} from './util/transaction/getTransactionTypeTranslationKey';
+import {
+  getTransactionSubtypeTranslationKey,
+  getTransactionTypeTranslationKey
+} from './util/transaction/getTransactionTypeTranslationKey';
+import {getTransactionFieldTranslationKey} from './util/transaction/getTransactionFieldTranslationKey';
 
 
 @Injectable()
@@ -247,8 +251,18 @@ export class UtilService {
     }
   }
 
-  public translateTransactionType(transaction: Transaction, account: Account): string {
-    const translationKey = getTransactionTypeTranslationKey(transaction, account);
+  public translateTransactionSubtype(transaction: Transaction, account: Account): string {
+    const translationKey = getTransactionSubtypeTranslationKey(transaction, account);
+    return this.i18nService.getTranslation(translationKey);
+  }
+
+  public translateTransactionType(transaction: Transaction): string {
+    const translationKey = getTransactionTypeTranslationKey(transaction);
+    return this.i18nService.getTranslation(translationKey);
+  }
+
+  public translateTransactionField(txFieldKey: string): string {
+    const translationKey = getTransactionFieldTranslationKey(txFieldKey);
     return this.i18nService.getTranslation(translationKey);
   }
 }

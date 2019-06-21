@@ -34,9 +34,11 @@
 
         <!-- CHATS LIST-->
         <div class="message-list" fxLayout="column">
-
             <div matSubheader *ngIf="(messages | filter: searchText).length > 0">
-                Messages
+                {{ 'messages' | i18n }}
+                <button mat-icon-button color="primary" (click)="startMessage()">
+                    <mat-icon>add</mat-icon> 
+                </button>
             </div>
 
             <button mat-button class="contact" *ngFor="let message of messages | filter: searchText"
@@ -67,7 +69,7 @@
             </button>
 
             <div *ngIf="(messages | filter: searchText).length === 0">
-                <div matSubheader>No results found.</div>
+                <div matSubheader>{{ 'no_messages_available' | i18n }}</div>
 
                 <div class="new-message">
                   <button class="mr-8" mat-raised-button mat-button color="primary"

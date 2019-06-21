@@ -1,7 +1,7 @@
 /** @module core */
 
-import {Transaction} from '../typings/transaction';
 import {convertNQTStringToNumber} from '@burstjs/util';
+import {Transaction} from '../typings/transaction';
 import {getRecipientAmountsFromMultiOutPayment} from './getRecipientAmountsFromMultiOutPayment';
 import {isMultiOutTransaction} from './isMultiOutTransaction';
 import {isMultiOutSameTransaction} from './isMultiOutSameTransaction';

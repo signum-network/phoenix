@@ -1,13 +1,7 @@
 /** @module core */
 
-import {isMultiOutSameTransaction} from './isMultiOutSameTransaction';
-import {isMultiOutTransaction} from './isMultiOutTransaction';
-import {getRecipientAmountsFromMultiOutPayment} from './getRecipientAmountsFromMultiOutPayment';
-import {getRecipientsAmount} from './getRecipientsAmount';
+export * from './isMultiOutSameTransaction';
+export * from './isMultiOutTransaction';
+export * from './getRecipientAmountsFromMultiOutPayment';
+export * from './getRecipientsAmount';
 
-export {
-    isMultiOutSameTransaction,
-    isMultiOutTransaction,
-    getRecipientAmountsFromMultiOutPayment,
-    getRecipientsAmount
-};

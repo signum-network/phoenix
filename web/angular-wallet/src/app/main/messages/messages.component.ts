@@ -25,7 +25,10 @@ export class MessagesComponent implements OnInit, OnDestroy {
   encrypt: boolean;
   feeNQT: number;
 
+  MESSAGE_FETCH_INTERVAL = 30000; // 30 secs
+
   private _unsubscribeAll: Subject<any>;
+  messageFetcher$: NodeJS.Timeout;
 
   constructor(
     private _messageService: MessagesService,
@@ -45,10 +48,15 @@ export class MessagesComponent implements OnInit, OnDestroy {
       .subscribe(({message}) => {
         this.selectedMessage = message;
       });
+
+    this.messageFetcher$ = setInterval(() => {
+      this._messageService.populateMessages();
+    }, this.MESSAGE_FETCH_INTERVAL);
   }
 
   ngOnDestroy(): void {
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
+    clearInterval(this.messageFetcher$);
   }
 }

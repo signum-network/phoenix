@@ -98,17 +98,22 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#constructburstaddress" class="tsd-kind-icon">construct<wbr>Burst<wbr>Address</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertaddresstonumericid" class="tsd-kind-icon">convert<wbr>Address<wbr>ToNumeric<wbr>Id</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertbursttimetodate" class="tsd-kind-icon">convert<wbr>Burst<wbr>Time<wbr>ToDate</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertbursttimetoepochtime" class="tsd-kind-icon">convert<wbr>Burst<wbr>Time<wbr>ToEpoch<wbr>Time</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertbytearraytohexstring" class="tsd-kind-icon">convert<wbr>Byte<wbr>Array<wbr>ToHex<wbr>String</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertbytearraytostring" class="tsd-kind-icon">convert<wbr>Byte<wbr>Array<wbr>ToString</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertdatetobursttime" class="tsd-kind-icon">convert<wbr>Date<wbr>ToBurst<wbr>Time</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#converthexstringtobytearray" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToByte<wbr>Array</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#converthexstringtodecstring" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToDec<wbr>String</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#converthexstringtostring" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToString</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertnqtstringtonumber" class="tsd-kind-icon">convertNQTString<wbr>ToNumber</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertnumbertonqtstring" class="tsd-kind-icon">convert<wbr>Number<wbr>ToNQTString</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertnumericidtoaddress" class="tsd-kind-icon">convert<wbr>Numeric<wbr>IdTo<wbr>Address</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertstringtobytearray" class="tsd-kind-icon">convert<wbr>String<wbr>ToByte<wbr>Array</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#convertstringtohexstring" class="tsd-kind-icon">convert<wbr>String<wbr>ToHex<wbr>String</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#isburstaddress" class="tsd-kind-icon">is<wbr>Burst<wbr>Address</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#isvalid" class="tsd-kind-icon">is<wbr>Valid</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#splitburstaddress" class="tsd-kind-icon">split<wbr>Burst<wbr>Address</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="util.html#sumnqtstringtonumber" class="tsd-kind-icon">sumNQTString<wbr>ToNumber</a></li>
 							</ul>
 						</section>
@@ -124,39 +129,6 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="constructburstaddress" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> construct<wbr>Burst<wbr>Address</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">construct<wbr>Burst<wbr>Address<span class="tsd-signature-symbol">(</span>parts<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/constructBurstAddress.ts#L12">util/src/constructBurstAddress.ts:12</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Construct a Burst address from a string array</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>parts: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>4 parts string array</p>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="convertaddresstonumericid" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> convert<wbr>Address<wbr>ToNumeric<wbr>Id</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
@@ -166,7 +138,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/convertAddressToNumericId.ts#L18">util/src/convertAddressToNumericId.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/convertAddressToNumericId.ts#L18">util/src/convertAddressToNumericId.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -200,7 +172,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/convertBurstTimeToDate.ts#L13">util/src/convertBurstTimeToDate.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/convertBurstTimeToDate.ts#L13">util/src/convertBurstTimeToDate.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -234,7 +206,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/convertBurstTimeToEpochTime.ts#L15">util/src/convertBurstTimeToEpochTime.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/convertBurstTimeToEpochTime.ts#L15">util/src/convertBurstTimeToEpochTime.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -259,6 +231,100 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="convertbytearraytohexstring" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> convert<wbr>Byte<wbr>Array<wbr>ToHex<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">convert<wbr>Byte<wbr>Array<wbr>ToHex<wbr>String<span class="tsd-signature-symbol">(</span>bytes<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, uppercase<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/convertByteArrayToHexString.ts#L14">util/src/convertByteArrayToHexString.ts:14</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts byte array to hexadecimal string
+									Inverse operation of <a href="util.html#converthexstringtobytearray">convertHexStringToByteArray</a></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bytes: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The byte array to be converted</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> uppercase: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>If <em>true</em>, converts hex string with uppercase characters (Default: false)</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>A hex string representing the byte array input</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="convertbytearraytostring" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> convert<wbr>Byte<wbr>Array<wbr>ToString</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">convert<wbr>Byte<wbr>Array<wbr>ToString<span class="tsd-signature-symbol">(</span>byteArray<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, startIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, length<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/convertByteArrayToString.ts#L15">util/src/convertByteArrayToString.ts:15</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts a byte array into string
+									Inverse function <a href="util.html#convertstringtobytearray">convertStringToByteArray</a></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>byteArray: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The byte array to be converted</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> startIndex: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The starting index of array to be converted (Default: 0)</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> length: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The number of bytes to be considered, <em>iff</em> startIndex is given. If <em>null</em> the byte array&#39;s length is considered</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The converted string</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="convertdatetobursttime" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> convert<wbr>Date<wbr>ToBurst<wbr>Time</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
@@ -268,7 +334,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/convertDateToBurstTime.ts#L13">util/src/convertDateToBurstTime.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/convertDateToBurstTime.ts#L13">util/src/convertDateToBurstTime.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -293,6 +359,110 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="converthexstringtobytearray" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> convert<wbr>Hex<wbr>String<wbr>ToByte<wbr>Array</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToByte<wbr>Array<span class="tsd-signature-symbol">(</span>hex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/convertHexStringToByteArray.ts#L12">util/src/convertHexStringToByteArray.ts:12</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts an hexadecimal string to byte array</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>hex: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The hexadecimal string to be converted</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>An byte array representing the hexadecimal input</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="converthexstringtodecstring" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> convert<wbr>Hex<wbr>String<wbr>ToDec<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToDec<wbr>String<span class="tsd-signature-symbol">(</span>hexStr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/convertHexStringToDecString.ts#L13">util/src/convertHexStringToDecString.ts:13</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Arbitrary length hexadecimal to decimal conversion
+									<a href="https://stackoverflow.com/questions/21667377/javascript-hexadecimal-string-to-decimal-string">https://stackoverflow.com/questions/21667377/javascript-hexadecimal-string-to-decimal-string</a></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>hexStr: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>A hexadecimal string</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>A decimal string</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="converthexstringtostring" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> convert<wbr>Hex<wbr>String<wbr>ToString</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToString<span class="tsd-signature-symbol">(</span>hex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/convertHexStringToString.ts#L17">util/src/convertHexStringToString.ts:17</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts a Hexadecimally encoded string into String
+									Inverse function <a href="util.html#convertstringtohexstring">convertStringToHexString</a></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>hex: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The Hex string to be converted</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The string represented by the Hex String</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="convertnqtstringtonumber" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> convertNQTString<wbr>ToNumber</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
@@ -302,7 +472,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/convertNQTStringToNumber.ts#L14">util/src/convertNQTStringToNumber.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/convertNQTStringToNumber.ts#L14">util/src/convertNQTStringToNumber.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -336,7 +506,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/convertNumberToNQTString.ts#L13">util/src/convertNumberToNQTString.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/convertNumberToNQTString.ts#L13">util/src/convertNumberToNQTString.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -370,7 +540,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/convertNumericIdToAddress.ts#L17">util/src/convertNumericIdToAddress.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/convertNumericIdToAddress.ts#L17">util/src/convertNumericIdToAddress.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -395,6 +565,76 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="convertstringtobytearray" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> convert<wbr>String<wbr>ToByte<wbr>Array</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">convert<wbr>String<wbr>ToByte<wbr>Array<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/convertStringToByteArray.ts#L13">util/src/convertStringToByteArray.ts:13</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts a string into byte array
+									Inverse function <a href="util.html#convertbytearraytostring">convertByteArrayToString</a></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>str: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The string  to be converted</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>A byte array representing the string input</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="convertstringtohexstring" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> convert<wbr>String<wbr>ToHex<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">convert<wbr>String<wbr>ToHex<wbr>String<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/convertStringToHexString.ts#L17">util/src/convertStringToHexString.ts:17</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts/Encode a String into Hexadecimally encoded
+									Inverse function <a href="util.html#converthexstringtostring">convertHexStringToString</a></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>str: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The Hex string to be converted</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The Hex String representing the input string</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="isburstaddress" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> is<wbr>Burst<wbr>Address</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
@@ -404,7 +644,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/isBurstAddress.ts#L75">util/src/isBurstAddress.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/isBurstAddress.ts#L75">util/src/isBurstAddress.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -438,7 +678,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/isBurstAddress.ts#L16">util/src/isBurstAddress.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/isBurstAddress.ts#L16">util/src/isBurstAddress.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -463,39 +703,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="splitburstaddress" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> split<wbr>Burst<wbr>Address</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">split<wbr>Burst<wbr>Address<span class="tsd-signature-symbol">(</span>address<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/splitBurstAddress.ts#L12">util/src/splitBurstAddress.ts:12</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Split the Burst address string into an array of 4 parts</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>address: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>A valid Burst address</p>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="sumnqtstringtonumber" class="tsd-anchor"></a>
 					<h3>sumNQTString<wbr>ToNumber</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
@@ -505,7 +712,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/sumNQTStringToNumber.ts#L13">util/src/sumNQTStringToNumber.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/sumNQTStringToNumber.ts#L13">util/src/sumNQTStringToNumber.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -536,7 +743,7 @@
 					<div class="tsd-signature tsd-kind-icon">burst<wbr>Address<wbr>Pattern<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/index.ts#L19">util/src/index.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/index.ts#L25">util/src/index.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -550,7 +757,7 @@
 						<div class="tsd-signature tsd-kind-icon">_<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/index.ts#L20">util/src/index.ts:20</a></li>
+								<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/index.ts#L26">util/src/index.ts:26</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -559,7 +766,7 @@
 							<div class="tsd-signature tsd-kind-icon">pattern<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x27;\[a-zA-Z0-9\]&#x27;)</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/900a2ae/lib/packages/util/src/index.ts#L20">util/src/index.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7af3189/lib/packages/util/src/index.ts#L26">util/src/index.ts:26</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -590,9 +797,6 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="util.html#constructburstaddress" class="tsd-kind-icon">construct<wbr>Burst<wbr>Address</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="util.html#convertaddresstonumericid" class="tsd-kind-icon">convert<wbr>Address<wbr>ToNumeric<wbr>Id</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
@@ -602,7 +806,22 @@
 						<a href="util.html#convertbursttimetoepochtime" class="tsd-kind-icon">convert<wbr>Burst<wbr>Time<wbr>ToEpoch<wbr>Time</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="util.html#convertbytearraytohexstring" class="tsd-kind-icon">convert<wbr>Byte<wbr>Array<wbr>ToHex<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="util.html#convertbytearraytostring" class="tsd-kind-icon">convert<wbr>Byte<wbr>Array<wbr>ToString</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="util.html#convertdatetobursttime" class="tsd-kind-icon">convert<wbr>Date<wbr>ToBurst<wbr>Time</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="util.html#converthexstringtobytearray" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToByte<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="util.html#converthexstringtodecstring" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToDec<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="util.html#converthexstringtostring" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToString</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="util.html#convertnqtstringtonumber" class="tsd-kind-icon">convertNQTString<wbr>ToNumber</a>
@@ -614,13 +833,16 @@
 						<a href="util.html#convertnumericidtoaddress" class="tsd-kind-icon">convert<wbr>Numeric<wbr>IdTo<wbr>Address</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="util.html#convertstringtobytearray" class="tsd-kind-icon">convert<wbr>String<wbr>ToByte<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="util.html#convertstringtohexstring" class="tsd-kind-icon">convert<wbr>String<wbr>ToHex<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="util.html#isburstaddress" class="tsd-kind-icon">is<wbr>Burst<wbr>Address</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="util.html#isvalid" class="tsd-kind-icon">is<wbr>Valid</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="util.html#splitburstaddress" class="tsd-kind-icon">split<wbr>Burst<wbr>Address</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="util.html#sumnqtstringtonumber" class="tsd-kind-icon">sumNQTString<wbr>ToNumber</a>

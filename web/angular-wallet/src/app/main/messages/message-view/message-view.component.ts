@@ -56,7 +56,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   isNewMessage = false;
   burstAddressPatternRef = burstAddressPattern;
   isSending = false;
-
+  showPin = [];
 
   private _unsubscribeAll: Subject<any>;
 
@@ -82,6 +82,17 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         this.message = message;
         this.isNewMessage = isNewMessage;
         this.readyToReply();
+      });
+
+    this.messageService.onMessagesUpdated
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((messages) => {
+          messages.map((message) => {
+            if (message.contactId === this.message.contactId) {
+              this.message = message;
+              this.scrollToBottom();
+            }
+          });
       });
   }
 

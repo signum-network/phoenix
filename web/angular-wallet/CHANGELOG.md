@@ -1,10 +1,10 @@
 # Changelog
 
-## unreleased
+##1.0.0-beta.7
 
 # Bug Fixes
 - Fixed green/red transactions on dashboard
-
+- Fixed MultiSameOut (#543)
 
 ##1.0.0-beta.8
 

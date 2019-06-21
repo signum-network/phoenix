@@ -19,7 +19,7 @@
         {{getValidationIcon()}}
       </mat-icon>
     </div>
-    <input #file type="file" accept="image/*" (change)="parseQR()" id="file" class="inputfile" capture="camera">
-    <label for="file" class="camera-icon"><mat-icon>camera_alt</mat-icon></label>
+    <input #file type="file" accept="image/*" (change)="parseQR()" id="{{fileId}}" class="inputfile" capture="camera">
+    <label for="{{fileId}}" class="camera-icon"><mat-icon>camera_alt</mat-icon></label>
   </div>
 </mat-form-field>

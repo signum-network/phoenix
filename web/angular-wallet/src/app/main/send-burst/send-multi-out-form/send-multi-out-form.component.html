@@ -23,7 +23,7 @@
 
   </ng-container>
 
-  <button mat-button class="add-recipient" (click)="addRecipient($event)">{{ "add_recipient" | i18n }}</button>
+  <button mat-button type="button" class="add-recipient" (click)="addRecipient($event)">{{ "add_recipient" | i18n }}</button>
 
   <mat-form-field>
     <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">

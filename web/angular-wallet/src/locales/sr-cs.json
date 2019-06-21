@@ -567,7 +567,7 @@
     "no_contacts_yet": "Još uvek bez kontakta, <a href='#'' data-toggle='modal' data-target='#add_contact_modal'>dodajte jedan.<\/a>",
     "no_do_not_cancel": "Ne, Nemojte Otkazivati",
     "no_longer_for_sale": "Više nije na prodaju.",
-    "no_messages_available": "Poruke nisu dostupne, <a href='#'' data-toggle='modal' data-target='#send_message_modal'>pošaljite jednu<\/a>.",
+    "no_messages_available": "Poruke nisu dostupne.",
     "no_name_set": "Ime Nije Izabrano",
     "no_open_buy_orders": "Ne postoje otvorene porudžbine.",
     "no_open_sell_orders": "Nema otvorenih prodajnih naloga.",

@@ -4,6 +4,9 @@ import {AccountService} from '../../../setup/account/account.service';
 import jsQR from 'jsqr';
 import { NotifierService } from 'angular-notifier';
 
+// generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
+let nextId = 0;
+
 export enum RecipientType {
   UNKNOWN = 0,
   ADDRESS = 1,
@@ -37,6 +40,8 @@ export class Recipient {
   styleUrls: ['./burst-recipient-input.component.scss']
 })
 export class BurstRecipientInputComponent implements OnInit {
+
+  fileId = `file-${nextId++}`;
 
   recipient = new Recipient();
   @Output()

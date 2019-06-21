@@ -4,6 +4,9 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 
+/**
+ * The contract interface
+ */
 export interface Contract {
     creator: string;
     creatorRS: string;

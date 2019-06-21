@@ -29,11 +29,11 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   @ViewChild('sendBurstForm', { static: true }) public sendBurstForm: NgForm;
   public feeNQT: string;
   @ViewChild('recipientAddress', { static: false }) public recipientAddress: string;
-  @ViewChild('amountNQT', { static: false }) public amountNQT: string;
+  @ViewChild('amountNQT', { static: true }) public amountNQT: string;
   @ViewChild('message', { static: false }) public message: string;
   @ViewChild('fullHash', { static: false }) public fullHash: string;
   @ViewChild('encrypt', { static: false }) public encrypt: string;
-  @ViewChild('pin', { static: false }) public pin: string;
+  @ViewChild('pin', { static: true }) public pin: string;
 
   @ViewChild('recipients', { static: true }) public recipients: Array<Recipient> = [];
 
@@ -88,7 +88,6 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   private async sendBurst(): Promise<void> {
     this.isSending = true;
-    event.stopImmediatePropagation();
     const multiOutString = this.getMultiOutString();
 
     try {
@@ -97,7 +96,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
           recipients: multiOutString,
           feeNQT: this.feeNQT,
           deadline: parseInt(this.deadline, 10) * 60,
-          amountNQT: this.getTotal().toString()
+          amountNQT: this.amountNQT
         },
         pin: this.pin,
         keys: this.account.keys,

@@ -2,10 +2,25 @@
 All notable changes to this project will be documented in this file.
 
 # unreleased
-- now available as standalone bundle (iife)
+
+- added `isAttachmentVersion`
+- added `getAttachmentVersion`
+
+## 0.2.1
+
+- fixed missing contract imports
+- adjusted error response for inconsistent BRS error responses
+
+## 0.2.0
 - introduced first Contract API functions
     - `getContract`
     - `getContractsByAccount`
+- `ContractHelper` class for easier contract inspection
+- fixed symlink bundling issue 
+
+
+## 0.1.3
+- now available as standalone bundle (iife)
 
 ## 0.1.2
 - added `confirmed` property to `Account` model
