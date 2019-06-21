@@ -23,7 +23,7 @@
 
   <!-- CENTER -->
   <div class="content-container">
-    <div class="content">
+    <div [ngClass]="{content: true, wide:wide===true}">
       <ng-content></ng-content>
     </div>
   </div>
