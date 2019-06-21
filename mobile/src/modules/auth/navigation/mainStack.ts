@@ -8,6 +8,7 @@ import { ImportAccountScreen } from '../screens/ImportAccountScreen';
 
 import { defaultStackOptions } from '../../../core/navigation/defaultStackOptions';
 import { routes, RoutesMap } from '../../../core/navigation/routes';
+import { AccountDetailsScreen } from '../screens/AccountDetailsScreen';
 
 const stackConfig: StackNavigatorConfig = {
   initialRouteName: routes.home,
@@ -19,7 +20,8 @@ const routesMap: RoutesMap = {
   [routes.accounts]: AccountsScreen,
   [routes.addAccount]: AddAccountScreen,
   [routes.createAccount]: CreateAccountScreen,
-  [routes.importAccount]: ImportAccountScreen
+  [routes.importAccount]: ImportAccountScreen,
+  [routes.accountDetails]: AccountDetailsScreen
 };
 
 export const mainStack = createStackNavigator(routesMap, stackConfig);
