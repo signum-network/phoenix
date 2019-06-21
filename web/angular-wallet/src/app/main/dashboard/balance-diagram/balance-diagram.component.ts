@@ -33,6 +33,7 @@ export class BalanceDiagramComponent implements OnChanges {
   private balanceHistory: BalanceHistoryItem[];
   itemCountOptions: Array<any>;
   firstDate: Date;
+  smoothedCurve =  true;
 
   constructor(private router: Router) {
     this.transactionCount = 0;
@@ -67,10 +68,12 @@ export class BalanceDiagramComponent implements OnChanges {
       convertNQTStringToNumber(balanceNQT),
       transactions).reverse();
 
-    this.firstDate =  this.balanceHistory.length && 
-                      this.balanceHistory[0].timestamp && 
+    this.firstDate =  this.balanceHistory.length &&
+                      this.balanceHistory[0].timestamp &&
                       convertBurstTimeToDate(this.balanceHistory[0].timestamp) ||
                       new Date();
+
+    this.options.curve = this.smoothedCurve ? shape.curveBasis : shape.curveLinear;
 
     this.data = [
       {
@@ -81,6 +84,10 @@ export class BalanceDiagramComponent implements OnChanges {
         }))
       },
     ];
+  }
+
+  onCurveModeChecked(): void {
+    this.updateDiagram();
   }
 
   onItemCountSelected(): void {

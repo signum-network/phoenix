@@ -26,14 +26,26 @@
   </div>
 
   <div class="controls">
-    <p class="font-size-14 secondary-text pr-16">{{"recent_transactions_since" | i18n}}&nbsp;{{firstDate | date:'MMM d, y, h:mm:ss'}}</p>
-    <mat-form-field >
-      <mat-label>{{"transactions" | i18n}}</mat-label>
-      <mat-select [(value)]="transactionCount" (selectionChange)="onItemCountSelected()">
-        <mat-option *ngFor="let option of itemCountOptions" [value]="option.value">
-          {{option.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <p
+      class="font-size-14 secondary-text pr-16">{{"recent_transactions_since" | i18n}}&nbsp;{{firstDate | date:'MMM d, y, h:mm:ss'}}</p>
+
+    <div class="right-container">
+      <mat-checkbox
+        class="mr-8"
+        [(ngModel)]="smoothedCurve"
+        (change)="onCurveModeChecked()"
+      >
+        {{ "smooth_curve" | i18n }}
+      </mat-checkbox>
+
+      <mat-form-field>
+        <mat-label>{{"transactions" | i18n}}</mat-label>
+        <mat-select [(value)]="transactionCount" (selectionChange)="onItemCountSelected()">
+          <mat-option *ngFor="let option of itemCountOptions" [value]="option.value">
+            {{option.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
 </div>

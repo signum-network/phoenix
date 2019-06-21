@@ -23,6 +23,7 @@ import {MarketModule} from './market/market.module';
 import {BalanceDiagramComponent} from './balance-diagram/balance-diagram.component';
 import {TooltipComponent} from './balance-diagram/tooltip/tooltip.component';
 import {BalanceComponent} from './balance/balance.component';
+import {MatCheckboxModule} from '@angular/material';
 
 const routes: Routes = [
   {
@@ -61,6 +62,7 @@ const routes: Routes = [
     I18nModule,
     TransactionTableModule,
     MarketModule,
+    MatCheckboxModule,
   ],
   providers: [
     DashboardService,
