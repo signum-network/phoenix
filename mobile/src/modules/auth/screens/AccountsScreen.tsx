@@ -53,7 +53,9 @@ class Accounts extends React.PureComponent<TProps, State> {
   }
 
   handleAccountPress = (_account: Account) => {
-    // TODO: do smthng
+    this.props.navigation.navigate(routes.accountDetails, {
+      account: _account
+    });
   }
 
   handleAddAccountPress = async () => {

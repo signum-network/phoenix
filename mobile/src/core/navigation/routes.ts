@@ -9,6 +9,7 @@ export interface Routes {
   home: string;
   send: string;
   receive: string;
+  accountDetails: string;
 }
 
 export type RoutesMap = {
@@ -25,5 +26,6 @@ export const routes: Routes = {
   importAccount: 'importAccount',
   home: 'home',
   send: 'send',
-  receive: 'receive'
+  receive: 'receive',
+  accountDetails: 'accountDetails'
 };

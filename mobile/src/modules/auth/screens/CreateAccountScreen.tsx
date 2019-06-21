@@ -16,7 +16,7 @@ import { EnterPinStage } from '../components/create/EnterPinStage';
 import { NotePassphraseStage } from '../components/create/NotePassphraseStage';
 import { SeedGeneratorStage } from '../components/create/SeedGeneratorStage';
 import { StepCounter } from '../components/create/StepCounter';
-import { addAccount, createActiveAccount } from '../store/actions';
+import { addAccount, createActiveAccount, hydrateAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
 
@@ -76,11 +76,12 @@ class CreateAccount extends React.PureComponent<Props, State> {
   saveAccount = async () => {
     // @ts-ignore because we have account here 100%
     await this.props.dispatch(addAccount(this.state.account));
+    await this.props.dispatch(hydrateAccount(this.state.account as Account));
   }
 
   handlePhraseEntered = async () => {
     await this.saveAccount();
-    this.props.navigation.navigate(routes.accounts);
+    this.props.navigation.navigate(routes.home);
   }
 
   handlePhraseNoted = () => {
