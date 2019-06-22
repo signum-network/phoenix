@@ -4,6 +4,7 @@ const semver = require('semver');
 const {HttpImpl} = require('@burstjs/http');
 const getSSL = require('get-ssl-certificate');
 const {validateSSL} = require("ssl-validator");
+const logger = require('./logger');
 
 const PlatformFilePatterns = {
   darwin: [
@@ -60,7 +61,7 @@ class UpdateService {
       await validateSSL(cert.pemEncoded, {domain});
 
       if(cert.fingerprint256 !== fingerprint){
-        throw new Error('invalid fingerprint');
+        throw new Error(`Invalid fingerprint: {expected: ${fingerprint}, received: ${cert.fingerprint}`);
       }
 
       return {
@@ -70,8 +71,8 @@ class UpdateService {
         validThru: cert.valid_to
       }
     } catch (e) {
-      /* eslint-disable no-console */
-      console.error('Certificate check failed:', e);
+      delete e.data;
+      logger.error(`Certificate check failed: ${e.message}`, e);
       return {
         isValid: false,
         issuer: cert.issuer.O,
@@ -96,6 +97,7 @@ class UpdateService {
 
   async checkForLatestRelease(callback) {
     try {
+      logger.info('Checking for new version...');
 
       const release = await this.getLatestRelease();
       if (!release) return callback(null);
@@ -111,10 +113,11 @@ class UpdateService {
 
       const releaseVersion = tag_name.replace(tagPrefix, '');
       if (!semver.lt(currentVersion, releaseVersion)) {
+        logger.info(`Latest version installed: ${currentVersion}`);
         return callback(null);
       }
 
-      console.info(`Found a new version: ${releaseVersion}`);
+      logger.info(`Found a new version: ${releaseVersion}`);
       const domain = this._getRepositoryDomain();
       const validCert = await this.validateCertificate(domain, certFingerprint);
       callback({
@@ -126,7 +129,8 @@ class UpdateService {
         validCert
       })
     } catch (e) {
-      console.log(e);
+      delete e.data;
+      logger.error(e.message, e);
     }
   }
 

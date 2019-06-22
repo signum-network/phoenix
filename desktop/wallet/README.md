@@ -29,6 +29,15 @@ Run the following commands to start the wallet as [electron](https://electronjs.
 9. `npm install`
 10. `npm start`
 
+
+### Arguments
+
+| Argument | Description |
+|----------|-------------|
+|  --log     |  Enables Logging           |
+|          |             |
+|          |             |
+
 ## Create Desktop Wallet Executable for Deployment
 
 To create a platform dependent executable run step 1 to 9 (if not already done)
