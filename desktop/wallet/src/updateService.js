@@ -3,7 +3,6 @@ const _ = require('lodash');
 const semver = require('semver');
 const {HttpImpl} = require('@burstjs/http');
 const getSSL = require('get-ssl-certificate');
-const {validateSSL} = require("ssl-validator");
 const logger = require('./logger');
 
 const PlatformFilePatterns = {
@@ -58,7 +57,14 @@ class UpdateService {
   async validateCertificate(domain, fingerprint) {
     const cert = await getSSL.get(domain);
     try {
-      await validateSSL(cert.pemEncoded, {domain});
+
+      if(cert.subject.CN !== domain){
+        throw new Error(`Invalid domain: {expected: ${domain}, received: ${cert.subject.CN}`)
+      }
+
+      if(new Date(cert.valid_to) < new Date()){
+        throw new Error('Expired Certificate')
+      }
 
       if(cert.fingerprint256 !== fingerprint){
         throw new Error(`Invalid fingerprint: {expected: ${fingerprint}, received: ${cert.fingerprint}`);
@@ -75,6 +81,7 @@ class UpdateService {
       logger.error(`Certificate check failed: ${e.message}`, e);
       return {
         isValid: false,
+        reason: e.message,
         issuer: cert.issuer.O,
         domain: cert.subject.CN,
         validThru: cert.valid_to

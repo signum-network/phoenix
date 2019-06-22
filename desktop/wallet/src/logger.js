@@ -1,3 +1,4 @@
+const path = require('path');
 const {createLogger, transports, format} = require('winston');
 
 isLoggingEnabled = () => {
