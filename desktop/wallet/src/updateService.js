@@ -59,11 +59,11 @@ class UpdateService {
     try {
 
       if(cert.subject.CN !== domain){
-        throw new Error(`Invalid domain: {expected: ${domain}, received: ${cert.subject.CN}`)
+        throw new Error(`Invalid domain: {expected: ${domain}, received: ${cert.subject.CN}`);
       }
 
       if(new Date(cert.valid_to) < new Date()){
-        throw new Error('Expired Certificate')
+        throw new Error('Expired Certificate');
       }
 
       if(cert.fingerprint256 !== fingerprint){

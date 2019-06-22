@@ -1,7 +1,7 @@
 const path = require('path');
 const {createLogger, transports, format} = require('winston');
 
-isLoggingEnabled = () => {
+const isLoggingEnabled = () => {
   let isEnabled = false;
   process.argv.forEach(function (val, index, array) {
     if (val === '--log'){
@@ -12,14 +12,14 @@ isLoggingEnabled = () => {
 };
 
 const createFilename = (type) => {
-  const z = n => n < 10 ? '0' + n : '' + n;
+  const z = (n) => n < 10 ? '0' + n : '' + n;
 
   const date = new Date();
   const YYYY = date.getFullYear();
   const MM = z(date.getMonth() + 1);
   const DD = z(date.getDate());
 
-  return path.join(process.cwd(), `phoenix-${YYYY}${MM}${DD}.${type}.log`)
+  return path.join(process.cwd(), `phoenix-${YYYY}${MM}${DD}.${type}.log`);
 
 };
 
