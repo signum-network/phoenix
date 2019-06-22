@@ -3,7 +3,6 @@ const {createLogger, transports, format} = require('winston');
 isLoggingEnabled = () => {
   let isEnabled = false;
   process.argv.forEach(function (val, index, array) {
-    console.log(val);
     if (val === '--log'){
       isEnabled = true;
     }
