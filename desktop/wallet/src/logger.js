@@ -18,7 +18,8 @@ const createFilename = (type) => {
   const MM = z(date.getMonth() + 1);
   const DD = z(date.getDate());
 
-  return `phoenix-${YYYY}${MM}${DD}.${type}.log`
+  return path.join(process.cwd(), `phoenix-${YYYY}${MM}${DD}.${type}.log`)
+
 };
 
 const Noop = () => {};
