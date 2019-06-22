@@ -201,6 +201,7 @@ function downloadUpdate($event, assetUrl) {
 
 function onReady() {
   createWindow();
+
   win.webContents.on('did-finish-load', () => {
     updateService.start((newVersion) => {
       if (newVersion) {
