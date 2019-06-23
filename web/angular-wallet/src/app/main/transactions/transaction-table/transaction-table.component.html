@@ -60,7 +60,7 @@
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
       {{
-      convertNQTStringToNumber(transaction.feeNQT) | number: "1.0-4":this.locale
+      convertNQTStringToNumber(transaction.fee) | number: "1.0-4":this.locale
       }}
     </mat-cell>
   </ng-container>

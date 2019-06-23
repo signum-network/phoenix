@@ -1,6 +1,11 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Account, SuggestedFees} from '@burstjs/core';
-import {burstAddressPattern, convertNQTStringToNumber} from '@burstjs/util';
+import {
+  burstAddressPattern,
+  convertNQTStringToNumber,
+  convertNumberToNQTString,
+  sumNQTStringToNumber
+} from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
@@ -32,7 +37,7 @@ const isNotEmpty = (value: string) => value && value.length > 0;
 })
 export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnInit {
   @ViewChild('sendBurstForm', { static: true }) public sendBurstForm: NgForm;
-  @ViewChild('amountNQT', { static: true }) public amountNQT: string;
+  @ViewChild('amount', { static: true }) public amount: string;
   @ViewChild('message', { static: false }) public message: string;
   @ViewChild('fullHash', { static: false }) public fullHash: string;
   @ViewChild('encrypt', { static: false }) public encrypt: string;
@@ -48,7 +53,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   immutable = false;
 
   public recipient = new Recipient();
-  public feeNQT: string;
+  public fee: string;
   isSending = false;
   language: string;
 
@@ -74,7 +79,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   getTotal(): number {
-    return parseFloat(this.amountNQT) + parseFloat(this.feeNQT) || 0;
+    return parseFloat(this.amount) + parseFloat(this.fee) || 0;
   }
 
   onSubmit(event): void {
@@ -99,8 +104,8 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
       await this.transactionService.sendMoney({
         transaction: {
           // FIX: amountNQT is actually in burst
-          amountNQT: this.amountNQT,
-          feeNQT: this.feeNQT,
+          amountNQT: this.amount,
+          feeNQT: this.fee,
           attachment: this.getMessage(),
           deadline: parseFloat(this.deadline) * 60,
           fullHash: this.fullHash,
@@ -146,12 +151,12 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   hasSufficientBalance(): boolean {
-    return convertNQTStringToNumber(this.account.balanceNQT) - this.getTotal() > Number.EPSILON;
+    return convertNQTStringToNumber(this.account.balanceNQT) - this.getTotal() >= 0;
   }
 
   canSubmit(): boolean {
     return isNotEmpty(this.recipient.addressRaw) &&
-      isNotEmpty(this.amountNQT) &&
+      isNotEmpty(this.amount) &&
       isNotEmpty(this.pin) &&
       this.hasSufficientBalance();
   }
@@ -161,9 +166,13 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   onQRUpload(qrData: QRData): void {
-    this.amountNQT = convertNQTStringToNumber(qrData.amountNQT).toString();
-    this.feeNQT = convertNQTStringToNumber(qrData.feeNQT).toString();
+    this.amount = convertNQTStringToNumber(qrData.amountNQT).toString();
+    this.fee = convertNQTStringToNumber(qrData.feeNQT).toString();
     this.immutable = qrData.immutable;
   }
 
+  onSpendAll(): void {
+    const maxAmount = sumNQTStringToNumber(this.account.balanceNQT, `-${convertNumberToNQTString(+this.fee)}`);
+    this.amount = `${maxAmount}`;
+  }
 }
