@@ -1,10 +1,17 @@
 # Changelog
 
-##1.0.0-beta.7
+# unreleased
+
+### New Feature:
+
+- Spend all on Send Burst
+- Improved Layout for Transactions 
+- Improved Layout for Blocks 
 
 # Bug Fixes
 - Fixed green/red transactions on dashboard
 - Fixed MultiSameOut (#543)
+- Fixed Update Issue on Windows
 
 ##1.0.0-beta.8
 
