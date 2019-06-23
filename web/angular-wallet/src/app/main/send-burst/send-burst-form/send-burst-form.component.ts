@@ -43,8 +43,8 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   @ViewChild('encrypt', { static: false }) public encrypt: string;
   @ViewChild('pin', { static: true }) public pin: string;
 
-  @Input('account') account: Account;
-  @Input('fees') fees: SuggestedFees;
+  @Input() account: Account;
+  @Input() fees: SuggestedFees;
 
   advanced = false;
   showMessage = false;

@@ -5,7 +5,7 @@
   <div class="amount-wrapper">
     <mat-form-field>
       <div class="container" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-        <input matInput [(ngModel)]="amount" name="amountNQT" placeholder="{{ 'amount' | i18n }}" [disabled]="immutable">
+        <input matInput [(ngModel)]="amount" name="amount" placeholder="{{ 'amount' | i18n }}" [disabled]="immutable">
         <mat-icon class="all-icon"
                   matTooltip="{{'spend_all' | i18n}}"
                   (click)="onSpendAll()"
@@ -16,7 +16,7 @@
     </mat-form-field>
 
     <mat-form-field *ngIf="fee">
-      <input matInput [(ngModel)]="fee" name="feeNQT" placeholder="{{ 'fee' | i18n }}" [disabled]="immutable">
+      <input matInput [(ngModel)]="fee" name="fee" placeholder="{{ 'fee' | i18n }}" [disabled]="immutable">
     </mat-form-field>
   </div>
 
@@ -75,7 +75,7 @@
 
 
   <strong>Total:&nbsp;</strong>
-  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal() | number: '1.0-10': this.language }} BURST</span> -
+  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal() | number: '1.0-6': this.language }} BURST</span> -
   <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
 
 </form>
