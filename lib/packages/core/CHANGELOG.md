@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 
 - added `isAttachmentVersion`
 - added `getAttachmentVersion`
+- splitted `sendMoneyMultiOut` into 
+    - `sendSameAmountToMultipleRecipients`
+- minor refactoring leading to slightly smaller code
 
 ## 0.2.1
 

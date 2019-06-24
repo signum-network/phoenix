@@ -68,4 +68,22 @@ export interface TransactionApi {
         recipients: string,
         sameAmount: boolean
     ) => Promise<TransactionId>;
+
+
+    /**
+     * Sends a multi-out request to the blockchain with _same_ value for all recipients
+     *
+     * @param transaction The unsigned transaction
+     * @param recipientIds The list of recipient ids
+     * @param senderPublicKey The senders public key for sending an _unsigned_ message
+     * @param senderPrivateKey The senders private key to _sign_ the message
+     * @return The Transaction Id
+     */
+    sendSameAmountToMultipleRecipients: (
+        transaction: Transaction,
+        recipientIds: string[],
+        senderPublicKey: string,
+        senderPrivateKey: string,
+    ) => Promise<TransactionId>;
+
 }
