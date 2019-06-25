@@ -27,6 +27,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
   @Input('selectedAccount') selectedAccount: Account;
   selectedAccountQRCode: string;
   language: string;
+  node: string;
 
   // Private
   private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
@@ -103,8 +104,12 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this._unsubscribeAll)
       )
-      .subscribe(async ({language}) => {
+      .subscribe(async ({language, node}) => {
           this.language = language;
+          this.node = node;
+
+          // Get QR Code
+          await this.updateQRCode();
         }
       );
     // Subscribe to the config changes
@@ -120,13 +125,24 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
         filter(value => value !== null),
         takeUntil(this._unsubscribeAll)
       )
-      .subscribe(() => {
+      .subscribe(async () => {
         this.navigation = this._fuseNavigationService.getCurrentNavigation();
+        await this.updateQRCode();
       });
 
-    // Get QR Code
+    this._accountService.currentAccount
+      .pipe(
+        delay(1),
+        takeUntil(this._unsubscribeAll)
+      )
+      .subscribe(async () => {
+        await this.updateQRCode();
+      });
+  }
+
+  private async updateQRCode() {
     this.selectedAccountQRCode = await this.getQRCode(this.selectedAccount.accountRS);
-    this.selectedAccountQRCode = `${environment.defaultNode}/${this.selectedAccountQRCode}`;
+    this.selectedAccountQRCode = `${this.node}/${this.selectedAccountQRCode}`;
   }
 
   /**
