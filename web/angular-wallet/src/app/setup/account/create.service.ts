@@ -68,11 +68,17 @@ export class CreateService {
           this.account !== undefined;
     }
 
-    public createActiveAccount() {
+    public createActiveAccount(): Promise<Account> {
         return this.accountService.createActiveAccount({ passphrase: this.getCompletePassphrase(), pin: this.pin });
     }
 
-    public createPassiveAccount() {
+    public createLedgerAccount(accountIndex: number): Promise<string> {
+      return this.accountService.createLedgerAccount(accountIndex).then(account => {
+        return account.accountRS;
+      });
+    }
+
+    public createPassiveAccount(): Promise<Account> {
         return this.accountService.createOfflineAccount(`BURST-${this.accountRS}`);
     }
 

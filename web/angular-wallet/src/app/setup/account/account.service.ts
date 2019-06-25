@@ -170,6 +170,10 @@ export class AccountService {
     });
   }
 
+  public createLedgerAccount(accountIndex: number): Promise<Account> {
+    return null; // TODO
+  }
+
   /*
   * Method responsible for importing an offline account.
   * Creates an account object with no keys attached.

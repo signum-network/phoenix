@@ -23,18 +23,19 @@ export class CreateLedgerAccountComponent implements OnInit {
   ngOnInit() {
   }
 
-  public submit(accountIndex: number) {
-      // TODO
-      const address = '';
-      this.createService.setAddress(address);
-      this.createService.createPassiveAccount().then((success) => {
-        this.notificationService.notify('success', `Account added: ${address}`);
-        this.createService.reset();
-        this.router.navigate(['/']);
-      },
-      (error) => {
-        this.notificationService.notify('error', error.toString());
-      });
+  public submit() {
+    console.log(this.accountIndex);
+    if (this.accountIndex < 0 || this.accountIndex > 255) {
+      this.notificationService.notify('error', 'Account Index must be 0-255');
+      return;
+    }
+    this.createService.createLedgerAccount(this.accountIndex).then(address => {
+      this.notificationService.notify('success', `Account added: ${address}`);
+      this.createService.reset();
+      this.router.navigate(['/']);
+    },
+    (error) => {
+      this.notificationService.notify('error', error.toString());
+    });
   }
-
 }
