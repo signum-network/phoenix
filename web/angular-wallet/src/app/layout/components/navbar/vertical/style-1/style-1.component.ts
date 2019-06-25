@@ -27,7 +27,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
   @Input('selectedAccount') selectedAccount: Account;
   selectedAccountQRCode: string;
   language: string;
-  node: string;
+  node = environment.defaultNode;
 
   // Private
   private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
