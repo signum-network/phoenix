@@ -36,6 +36,7 @@ import { AccountCreateExistingComponent } from './account/create-active/existing
 import { AccountResolver } from './account/account.resolver';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {PageModule} from '../components/page/page.module';
+import {CreateLedgerAccountComponent} from './account/create-ledger/create-ledger.component';
 
 @NgModule({
   imports: [
@@ -68,6 +69,7 @@ import {PageModule} from '../components/page/page.module';
     declarations: [
         SetupComponent,
         CreateActiveAccountComponent,
+        CreateLedgerAccountComponent,
         CreatePassiveAccountComponent,
         AccountCreatePinComponent,
         AccountCreateRecordComponent,
@@ -82,6 +84,7 @@ import {PageModule} from '../components/page/page.module';
     exports: [
         AccountNewComponent,
         CreateActiveAccountComponent,
+        CreateLedgerAccountComponent,
         CreatePassiveAccountComponent
     ]
 })

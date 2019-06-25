@@ -180,6 +180,7 @@
   "copy_send_burst_link": "'Stuur BURST' link kopieren",
   "copy_send_message_link": "Kopieer 'Stuur bericht' Link",
   "create_passive": "Create a new account without passphrase",
+  "create_ledger": "Import a Ledger Nano S account",
   "create_poll": "Peiling aanmaken",
   "create_your_account": "Maak uw account aan",
   "current_price": "Huidige Prijs",

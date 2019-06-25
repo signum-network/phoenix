@@ -180,6 +180,7 @@
   "copy_send_burst_link": "Скопировать ссылку 'Отправить BURST'",
   "copy_send_message_link": "Скопировать ссылку «Отправить сообщение»",
   "create_passive": "Create a new account without passphrase",
+  "create_ledger": "Import a Ledger Nano S account",
   "create_poll": "Создать опрос",
   "create_your_account": "Создайте свой аккаунт",
   "current_price": "Текущая цена",

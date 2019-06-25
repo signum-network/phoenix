@@ -180,6 +180,7 @@
   "copy_send_burst_link": "Salin Link 'Kirim BURST'",
   "copy_send_message_link": "Salin Link 'Kirim pesan'",
   "create_passive": "Create a new account without passphrase",
+  "create_ledger": "Import a Ledger Nano S account",
   "create_poll": "Buat Pemilihan",
   "create_your_account": "Membuat akun",
   "current_price": "Harga saat ini",

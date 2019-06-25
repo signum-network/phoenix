@@ -1,0 +1,53 @@
+$media-querie-mobile: 0;
+$media-querie-tablet: 768px;
+$media-querie-desktop: 992px;
+$media-querie-screen:  1200px;
+
+.signup {
+  margin: 40px auto;
+  &__header {
+    padding: 1rem;
+    text-align: center;
+  }
+  &__logo {
+    height: 30px;
+  }
+  &__container {
+      height: calc(100vh - 50px);
+      margin: 0 auto;
+      max-width: 720px;
+  }
+  &__title {
+    color: #333333;
+    font-weight: bold;
+    margin: 3rem 0;
+    position: relative;
+    @media screen and (min-width: $media-querie-mobile) {
+      font-size: 2rem;
+      margin-left: 3rem;
+    }
+    @media screen and (min-width: $media-querie-tablet) {
+      font-size: 3.5rem;
+      margin-left: 0;
+    }
+    &::after {
+      background: #00579d;
+      bottom: -5px;
+      content: '';
+      display: inline-block;
+      height: 5px;
+      left: 0;
+      position: absolute;
+      width: 150px;
+    }
+  }
+}
+
+.legend {
+  font-size: 1.2rem;
+  margin-bottom: .5rem;
+}
+
+:host .field {
+  width: 100%;
+}

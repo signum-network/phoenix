@@ -180,6 +180,7 @@
   "copy_send_burst_link": "Copiaţi linkul \"Trimite burst\"",
   "copy_send_message_link": "Copiaţi linkul \"Trimite Mesaj\"",
   "create_passive": "Create a new account without passphrase",
+  "create_ledger": "Import a Ledger Nano S account",
   "create_poll": "Creați Sondaj",
   "create_your_account": "Crează-ţi Contul",
   "current_price": "Preț Actual",

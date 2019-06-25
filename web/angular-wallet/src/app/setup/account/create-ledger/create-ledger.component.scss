@@ -1,0 +1,30 @@
+$media-querie-mobile: 0;
+$media-querie-tablet: 768px;
+
+.accountRS-container mat-form-field {
+  @media screen and (min-width: $media-querie-mobile) {
+    margin-left: 3rem;
+    width: 80%;
+  }
+  @media screen and (min-width: $media-querie-tablet) {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+.fa-arrow-right {
+    color: #fff;
+    top: -4px;
+    left: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.address-container {
+  text-align:center;
+}
+
+mat-form-field {
+  width: 100%;
+  display: block;
+}

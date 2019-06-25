@@ -180,6 +180,7 @@
   "copy_send_burst_link": "Kopírovat odkaz \"Poslat burst\"",
   "copy_send_message_link": "Kopírovat odkaz \"Poslat zprávu\"",
   "create_passive": "Create a new account without passphrase",
+  "create_ledger": "Import a Ledger Nano S account",
   "create_poll": "Vytvořit anketu",
   "create_your_account": "Vytvořit účet",
   "current_price": "Aktuální cena",

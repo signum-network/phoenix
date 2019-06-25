@@ -13,6 +13,7 @@
         <a class="login__link--yes" [routerLink]="[ '/login/active' ]" [queryParams]="{ newUser: true }">{{ 'new_user_yes' | i18n }}</a>
         <a class="login__link--no" [routerLink]="[ '/login/active' ]" >{{ 'new_user_no' | i18n }}</a>
         <p class="login__divider">{{ 'or' | i18n }}</p>
+        <a class="login__link--default" [routerLink]="[ '/login/ledger' ]" >{{ 'create_ledger' | i18n }}</a>
         <a class="login__link--default" [routerLink]="[ '/login/passive' ]" >{{ 'create_passive' | i18n }}</a>
       </div>
     </div>

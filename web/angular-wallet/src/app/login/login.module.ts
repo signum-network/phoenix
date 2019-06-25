@@ -17,6 +17,7 @@ import { I18nModule } from '../layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { LoginPassiveComponent } from './login-passive/login-passive.component';
 import { LoginActiveComponent } from './login-active/login-active.component';
+import {LoginLedgerComponent} from './login-ledger/login-ledger.component';
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import { LoginActiveComponent } from './login-active/login-active.component';
   declarations: [
     LoginComponent,
     LoginPassiveComponent,
+    LoginLedgerComponent,
     LoginActiveComponent,
   ],
   exports: [

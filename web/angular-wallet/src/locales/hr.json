@@ -180,6 +180,7 @@
   "copy_send_burst_link": "Kopiraj 'pošalji BURST' poveznicu",
   "copy_send_message_link": "Kopiraj poveznicu 'Pošalji poruku'",
   "create_passive": "Create a new account without passphrase",
+  "create_ledger": "Import a Ledger Nano S account",
   "create_poll": "Kreiraj anketu",
   "create_your_account": "Kreirajte vaš račun",
   "current_price": "Trenutna cijena",

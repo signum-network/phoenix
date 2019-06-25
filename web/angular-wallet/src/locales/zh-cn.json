@@ -180,6 +180,7 @@
   "copy_send_burst_link": "复制“发送 BURST\"链接",
   "copy_send_message_link": "复制“发送信息”链接",
   "create_passive": "Create a new account without passphrase",
+  "create_ledger": "Import a Ledger Nano S account",
   "create_poll": "创建投票",
   "create_your_account": "创建您的帐户",
   "current_price": "当前价格",

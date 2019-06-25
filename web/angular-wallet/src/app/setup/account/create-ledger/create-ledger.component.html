@@ -1,0 +1,7 @@
+<div class="address-container">
+  <mat-form-field class="input">
+    <input matInput type="text" placeholder="Account Index (0-255)" required [(ngModel)]="accountIndex">
+  </mat-form-field>
+  <button class="btn-error" mat-raised-button routerLink="/login">{{ 'cancel' | i18n }}</button>
+  <button class="btn-success" mat-raised-button (click)="submit(this.accountIndex)">{{ 'submit' | i18n }}</button>
+</div>

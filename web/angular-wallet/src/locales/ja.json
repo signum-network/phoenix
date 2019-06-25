@@ -180,6 +180,7 @@
   "copy_send_burst_link": "「BURST を送信」のリンクをコピー",
   "copy_send_message_link": "「メッセージ送信」のリンクをコピー",
   "create_passive": "Create a new account without passphrase",
+  "create_ledger": "Import a Ledger Nano S account",
   "create_poll": "投票調査を作成",
   "create_your_account": "アカウントを作成",
   "current_price": "現在の価格",

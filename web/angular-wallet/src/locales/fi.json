@@ -180,6 +180,7 @@
   "copy_send_burst_link": "Kopioi 'Lähetä BURST:tä' -linkki",
   "copy_send_message_link": "Kopioi 'Lähetä viesti' -linkki",
   "create_passive": "Create a new account without passphrase",
+  "create_ledger": "Import a Ledger Nano S account",
   "create_poll": "Luo galluppi",
   "create_your_account": "Luo tili",
   "current_price": "Nykyinen hinta",

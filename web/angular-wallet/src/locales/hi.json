@@ -180,6 +180,7 @@
   "copy_send_burst_link": "'burst भेजें' लिंक कापी करें",
   "copy_send_message_link": "'संदेश भेजें' लिंक कापी करें",
   "create_passive": "Create a new account without passphrase",
+  "create_ledger": "Import a Ledger Nano S account",
   "create_poll": "मतदान बनाएँ",
   "create_your_account": "अपना खाता बनाएँ",
   "current_price": "वर्तमान मूल्य",
