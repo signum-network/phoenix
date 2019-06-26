@@ -6,7 +6,6 @@
 import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
-import {Transaction} from '../../../typings/transaction';
 import {signAndBroadcastTransaction} from '../../../internal/signAndBroadcastTransaction';
 
 
@@ -16,15 +15,20 @@ import {signAndBroadcastTransaction} from '../../../internal/signAndBroadcastTra
  * See details at [[TransactionApi.sendSameAmountToMultipleRecipients]]
  */
 export const sendSameAmountToMultipleRecipients = (service: BurstService):
-    (transaction: Transaction,
+    (amountPlanck: string,
+     feePlanck: string,
      recipientIds: string[],
      senderPublicKey: string,
-     senderPrivateKey: string) => Promise<TransactionId> =>
+     senderPrivateKey: string,
+     deadline?: number
+    ) => Promise<TransactionId> =>
     async (
-        transaction: Transaction,
+        amountPlanck: string,
+        feePlanck: string,
         recipientIds: string[],
         senderPublicKey: string,
         senderPrivateKey: string,
+        deadline = 1440
     ): Promise<TransactionId> => {
 
         if (recipientIds.length === 0) {
@@ -34,9 +38,9 @@ export const sendSameAmountToMultipleRecipients = (service: BurstService):
         const parameters = {
             publicKey: senderPublicKey,
             recipients: recipientIds.join(';'),
-            deadline: transaction.deadline || '1440',
-            feeNQT: transaction.feeNQT,
-            amountNQT: transaction.amountNQT
+            feeNQT: feePlanck,
+            amountNQT: amountPlanck,
+            deadline,
         };
 
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>(

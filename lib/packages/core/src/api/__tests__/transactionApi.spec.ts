@@ -249,8 +249,9 @@ describe('Transaction Api', () => {
         it('should send money to multiple recipients', async () => {
             httpMock = HttpMockBuilder.create()
             // tslint:disable:max-line-length
+
                 .onPostReply(200, mockBroadcastResponse,
-                    'relPath?requestType=sendMoneyMultiSame&publicKey=senderPublicKey&recipients=recipient_1;recipient_2&deadline=1440&feeNQT=1000&amountNQT=2000')
+                    'relPath?requestType=sendMoneyMultiSame&publicKey=senderPublicKey&recipients=recipient_1;recipient_2&feeNQT=1000&amountNQT=2000&deadline=1440')
                 .onPostReply(200, mockTransaction.transaction,
                     'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
                 .build();
@@ -259,7 +260,8 @@ describe('Transaction Api', () => {
 
             service = createBurstService(httpMock, 'relPath');
             const status = await sendSameAmountToMultipleRecipients(service)(
-                mockTransaction,
+                '2000',
+                '1000',
                 recipients,
                 'senderPublicKey',
                 'senderPrivateKey',
@@ -283,7 +285,8 @@ describe('Transaction Api', () => {
 
             try {
                 await sendSameAmountToMultipleRecipients(service)(
-                    mockTransaction,
+                    '2000',
+                    '1000',
                     recipients,
                     'senderPublicKey',
                     'senderPrivateKey',
@@ -293,8 +296,5 @@ describe('Transaction Api', () => {
                 expect(e.message).toContain('No recipients given');
             }
         });
-
-
     });
-
 });
