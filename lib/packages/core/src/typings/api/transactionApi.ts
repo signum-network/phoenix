@@ -3,6 +3,7 @@
 import {TransactionId} from '../transactionId';
 import {Transaction} from '../transaction';
 import {MultioutRecipientAmount} from '../multioutRecipientAmount';
+import {Attachment} from '../attachment';
 
 /**
  * Transaction API
@@ -28,6 +29,7 @@ export interface TransactionApi {
     getTransaction: (transactionId: string) => Promise<Transaction>;
 
     /**
+     * @deprecated use [[sendAmount]] instead
      * Sends burst to the blockchain
      *
      * The transaction will be broadcasted in two steps.
@@ -49,6 +51,7 @@ export interface TransactionApi {
 
 
     /**
+     * @deprecated Use [[sendSameAmountToMultipleRecipients]], [[sendAmountToMultipleRecipients]] instead
      * Sends a multi-out request to the blockchain
      *
      * The transaction will be broadcasted in two steps.
@@ -109,4 +112,27 @@ export interface TransactionApi {
         senderPrivateKey: string,
     ) => Promise<TransactionId>;
 
+
+    /**
+     * Sends burst to the blockchain
+     *
+     * The transaction will be broadcasted in two steps.
+     * 1. Send the sendMoney call with public key to the network
+     * 2. Take the returned unsigned message and sign it, i.e. the private key won't be transmitted.
+
+     * @param amountPlanck The amount to be sent as Planck value
+     * @param feePlanck The fee as Planck value
+     * @param recipientId The id of the recipient
+     * @param senderPublicKey The senders public key for sending an _unsigned_ message
+     * @param senderPrivateKey The senders private key to _sign_ the message
+     * @param attachment An optional attachment
+     */
+    sendAmount: (
+        amountPlanck: string,
+        feePlanck: string,
+        recipientId: string,
+        senderPublicKey: string,
+        senderPrivateKey: string,
+        attachment?: Attachment,
+    ) => Promise<TransactionId>;
 }

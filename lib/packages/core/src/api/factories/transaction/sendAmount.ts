@@ -3,40 +3,35 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import { BurstService } from '../../../service/burstService';
-import { TransactionId } from '../../../typings/transactionId';
-import { TransactionResponse } from '../../../typings/transactionResponse';
-import { generateSignature, decryptAES, Keys } from '@burstjs/crypto';
-import { verifySignature } from '@burstjs/crypto';
-import { generateSignedTransactionBytes } from '@burstjs/crypto';
-import { constructAttachment } from '../../../internal/constructAttachment';
-import {broadcastTransaction} from './broadcastTransaction';
+import {BurstService} from '../../../service/burstService';
+import {TransactionId} from '../../../typings/transactionId';
+import {TransactionResponse} from '../../../typings/transactionResponse';
+import {Attachment} from '../../../typings/attachment';
 import {DefaultDeadline} from '../../../constants';
-import {Attachment} from '../../..';
-import {signAndBroadcastTransaction} from '../../../internal';
+import {createParametersFromAttachment, signAndBroadcastTransaction} from '../../../internal';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
- * See details at [[TransactionApi.sendMoney]]
+ * See details at [[TransactionApi.sendAmount]]
  */
-export const sendMoney = (service: BurstService):
+export const sendAmount = (service: BurstService):
     (amountPlanck: string,
      feePlanck: string,
      recipientId: string,
      senderPublicKey: string,
      senderPrivateKey: string,
-     attachment: Attachment,
-     deadline?: number) => Promise<TransactionId | Error> =>
+     attachment?: Attachment,
+     deadline?: number) => Promise<TransactionId> =>
     async (
         amountPlanck: string,
         feePlanck: string,
         recipientId: string,
         senderPublicKey: string,
         senderPrivateKey: string,
-        attachment: Attachment,
+        attachment: Attachment = null,
         deadline = DefaultDeadline
-    ): Promise<TransactionId | Error> => {
+    ): Promise<TransactionId> => {
 
         let parameters = {
             amountNQT: amountPlanck,
@@ -47,10 +42,15 @@ export const sendMoney = (service: BurstService):
         };
 
         if (attachment) {
-            parameters = constructAttachment(transaction, parameters);
+            parameters = createParametersFromAttachment(attachment, parameters);
         }
+
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('sendMoney', parameters);
 
-        return signAndBroadcastTransaction(unsignedHexMessage, service)
+        return signAndBroadcastTransaction({
+            senderPublicKey,
+            senderPrivateKey,
+            unsignedHexMessage
+        }, service);
 
     };

@@ -1,10 +1,10 @@
 /** @module core */
+/** @ignore */
 
 import { EncryptedMessage, Message } from '../typings/attachment';
 import { Transaction } from '../typings/transaction';
 
 /**
- * @ignore
  * @deprecated Remove this when removing sendMoney
  *
  * Constructs an Attachment
