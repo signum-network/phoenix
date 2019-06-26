@@ -5,13 +5,14 @@ import { Transaction } from '../typings/transaction';
 
 /**
  * @ignore
+ * @deprecated Remove this when removing sendMoney
+ *
  * Constructs an Attachment
  *
  * @param transaction The transaction with the attachment
  * @param params Some HttpParams
  * @return HttpParams
  */
-// TODO: refactor me...
 export const constructAttachment = (transaction: Transaction, params: any) => {
     if (transaction.attachment.type === 'encrypted_message') {
         const em: EncryptedMessage = transaction.attachment;
