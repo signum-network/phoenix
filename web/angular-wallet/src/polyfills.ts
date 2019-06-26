@@ -95,3 +95,7 @@ if ( typeof SVGElement.prototype.contains === 'undefined' )
 {
     SVGElement.prototype.contains = HTMLDivElement.prototype.contains;
 }
+
+// Buffer for Ledger libraries
+global.Buffer = global.Buffer || require('buffer').Buffer;
+// global.regeneratorRuntime = require("regenerator-runtime");

@@ -3,6 +3,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 import semver from 'semver';
+import TransportWebUSB from '@ledgerhq/hw-transport-webusb';
 
 import {StoreService} from 'app/store/store.service';
 import {Settings} from 'app/settings';
@@ -20,6 +21,7 @@ import {decryptAES, encryptAES, generateMasterKeys, getAccountIdFromPublicKey, h
 import {convertAddressToNumericId, convertNumericIdToAddress, isBurstAddress, convertNQTStringToNumber} from '@burstjs/util';
 import {ApiService} from '../../api.service';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import {LedgerService} from '../../ledger/ledger.service';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -65,7 +67,7 @@ export class AccountService {
   // has already received a push notification
   private transactionsSeenInNotifications: string[] = [];
 
-  constructor(private storeService: StoreService, private apiService: ApiService, private i18nService: I18nService) {
+  constructor(private storeService: StoreService, private apiService: ApiService, private i18nService: I18nService, private ledgerService: LedgerService) {
     this.storeService.settings.subscribe((settings: Settings) => {
       this.api = this.apiService.api;
       this.selectedNode = {
@@ -171,7 +173,24 @@ export class AccountService {
   }
 
   public createLedgerAccount(accountIndex: number): Promise<Account> {
-    return null; // TODO
+    return new Promise(async (resolve, reject) => {
+      const account: Account = new Account();
+      const publicKey = await this.ledgerService.getPublicKey(accountIndex);
+      const address = null;
+      const accountId = convertAddressToNumericId(address);
+      const existingAccount = await this.storeService.findAccount(accountId);
+      if (existingAccount === undefined) {
+        // import offline account
+        account.type = 'ledger';
+        // account.accountRS = address;
+        account.account = accountId;
+        await this.selectAccount(account);
+        const savedAccount = await this.synchronizeAccount(account);
+        resolve(savedAccount);
+      } else {
+        reject('Burstcoin address already imported!');
+      }
+    });
   }
 
   /*

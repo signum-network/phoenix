@@ -68,7 +68,7 @@ export class CreateService {
           this.account !== undefined;
     }
 
-    public createActiveAccount(): Promise<Account> {
+    public createActiveAccount() {
         return this.accountService.createActiveAccount({ passphrase: this.getCompletePassphrase(), pin: this.pin });
     }
 
@@ -78,7 +78,7 @@ export class CreateService {
       });
     }
 
-    public createPassiveAccount(): Promise<Account> {
+    public createPassiveAccount() {
         return this.accountService.createOfflineAccount(`BURST-${this.accountRS}`);
     }
 
