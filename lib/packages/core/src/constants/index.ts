@@ -15,8 +15,14 @@ import {TransactionSmartContractSubtype} from './transactionSmartContractSubtype
  */
 const FeeQuantNQT = 735000;
 
+/**
+ * The default deadline (in minutes) for Transactions
+ */
+const DefaultDeadline = 1440;
+
 export {
     FeeQuantNQT,
+    DefaultDeadline,
     TransactionType,
     TransactionPaymentSubtype,
     TransactionMarketplaceSubtype,

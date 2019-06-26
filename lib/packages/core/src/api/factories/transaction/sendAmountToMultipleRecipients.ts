@@ -6,46 +6,48 @@
 import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
+import {MultioutRecipientAmount} from '../../../typings/multioutRecipientAmount';
 import {signAndBroadcastTransaction} from '../../../internal/signAndBroadcastTransaction';
 import {DefaultDeadline} from '../../../constants';
 
+function mountRecipientsString(recipientAmounts: MultioutRecipientAmount[]): string {
+    return recipientAmounts.map( ({amountNQT, recipient}) => `${recipient}:${amountNQT}`).join(';');
+}
 
 /**
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
- * See details at [[TransactionApi.sendSameAmountToMultipleRecipients]]
+ * See details at [[TransactionApi.sendAmountToMultipleRecipients]]
  */
-export const sendSameAmountToMultipleRecipients = (service: BurstService):
-    (amountPlanck: string,
-     feePlanck: string,
-     recipientIds: string[],
-     senderPublicKey: string,
-     senderPrivateKey: string,
-     deadline?: number
+export const sendAmountToMultipleRecipients = (service: BurstService):
+    (
+        recipientAmounts: MultioutRecipientAmount[],
+        feePlanck: string,
+        senderPublicKey: string,
+        senderPrivateKey: string,
+        deadline?: number
     ) => Promise<TransactionId> =>
     async (
-        amountPlanck: string,
+        recipientAmounts: MultioutRecipientAmount[],
         feePlanck: string,
-        recipientIds: string[],
         senderPublicKey: string,
         senderPrivateKey: string,
         deadline = DefaultDeadline
     ): Promise<TransactionId> => {
 
-        if (recipientIds.length === 0) {
+        if (recipientAmounts.length === 0) {
             throw new Error('No recipients given. Send ignored');
         }
 
         const parameters = {
             publicKey: senderPublicKey,
-            recipients: recipientIds.join(';'),
+            recipients: mountRecipientsString(recipientAmounts),
             feeNQT: feePlanck,
-            amountNQT: amountPlanck,
-            deadline,
+            deadline
         };
 
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>(
-            'sendMoneyMultiSame', parameters);
+            'sendMoneyMulti', parameters);
 
         return signAndBroadcastTransaction({
             unsignedHexMessage,

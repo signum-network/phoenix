@@ -2,6 +2,7 @@
 
 import {TransactionId} from '../transactionId';
 import {Transaction} from '../transaction';
+import {MultioutRecipientAmount} from '../multioutRecipientAmount';
 
 /**
  * Transaction API
@@ -78,7 +79,6 @@ export interface TransactionApi {
      * @param recipientIds List of account IDs for the recipients
      * @param senderPublicKey The senders public key for sending an _unsigned_ message
      * @param senderPrivateKey The senders private key to _sign_ the message
-     * @param deadline The (optional) deadline in minutes (default: 1440)
      * @return The Transaction Id
      */
     sendSameAmountToMultipleRecipients: (
@@ -87,28 +87,26 @@ export interface TransactionApi {
         recipientIds: string[],
         senderPublicKey: string,
         senderPrivateKey: string,
-        deadline?: number
     ) => Promise<TransactionId>;
 
-    // TODO: Adjust correctly
     /**
      * Sends a multi-out request to the blockchain with _arbitrary_ value for each recipient
      *
-     * @param amountPlanck The amount to be sent as Planck value
+     * @return The Transaction Id
+     */
+    /**
+     *
+     * @param recipientAmounts A list of recipient Ids and their respective amounts to be sent
      * @param feePlanck The fee to be paid as Planck value
-     * @param recipientIds List of account IDs for the recipients
      * @param senderPublicKey The senders public key for sending an _unsigned_ message
      * @param senderPrivateKey The senders private key to _sign_ the message
-     * @param deadline The (optional) deadline in minutes (default: 1440)
      * @return The Transaction Id
      */
     sendAmountToMultipleRecipients: (
-        amountPlanck: string,
+        recipientAmounts: MultioutRecipientAmount[],
         feePlanck: string,
-        recipientIds: string[],
         senderPublicKey: string,
         senderPrivateKey: string,
-        deadline?: number
     ) => Promise<TransactionId>;
 
 }

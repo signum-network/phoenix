@@ -7,6 +7,8 @@ import {sendMoneyMultiOut} from '../factories/transaction/sendMoneyMultiOut';
 import {Transaction} from '../../typings/transaction';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {sendSameAmountToMultipleRecipients} from '../factories/transaction/sendSameAmountToMultipleRecipients';
+import {sendAmountToMultipleRecipients} from '../factories/transaction/sendAmountToMultipleRecipients';
+import {MultioutRecipientAmount} from '../../typings/multioutRecipientAmount';
 
 describe('Transaction Api', () => {
 
@@ -103,6 +105,7 @@ describe('Transaction Api', () => {
         });
 
     });
+    // @deprecated Not necessary in the future
     describe('sendMoneyMultiOut', () => {
         let service;
 
@@ -213,7 +216,7 @@ describe('Transaction Api', () => {
 
     });
 
-    describe('sendSameMoneyToMultipleRecipients', () => {
+    describe('sendSameAmountToMultipleRecipients', () => {
 
         let service;
 
@@ -288,6 +291,97 @@ describe('Transaction Api', () => {
                     '2000',
                     '1000',
                     recipients,
+                    'senderPublicKey',
+                    'senderPrivateKey',
+                );
+                expect(false).toBe('Expected exception');
+            } catch (e) {
+                expect(e.message).toContain('No recipients given');
+            }
+        });
+    });
+
+
+    describe('sendAmountToMultipleRecipients', () => {
+
+        let service;
+
+        const mockTransaction: Transaction = {
+            transaction: 'transactionId',
+            requestProcessingTime: 4,
+            fullHash: '808d5c32b12f4d4b963404c19523b6391ddf7a04a96ec4a495703aeead76c6ff',
+        };
+
+        const mockBroadcastResponse = {
+            unsignedTransactionBytes: 'unsignedHexMessage'
+        };
+
+        beforeEach(() => {
+            jest.resetAllMocks();
+
+            // @ts-ignore
+            generateSignature = jest.fn(() => 'signature');
+            // @ts-ignore
+            verifySignature = jest.fn(() => true);
+            // @ts-ignore
+            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
+
+        });
+
+        afterEach(() => {
+            // @ts-ignore
+            httpMock.reset();
+        });
+
+        it('should send arbitrary amounts to multiple recipients', async () => {
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+
+                .onPostReply(200, mockBroadcastResponse,
+                    'relPath?requestType=sendMoneyMulti&publicKey=senderPublicKey&recipients=recipient_1:2000;recipient_2:4000&feeNQT=1000&deadline=1440')
+                .onPostReply(200, mockTransaction.transaction,
+                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+                .build();
+
+            const recipients: MultioutRecipientAmount[] = [
+                {
+                    recipient: 'recipient_1',
+                    amountNQT: '2000',
+                },
+                {
+                    recipient: 'recipient_2',
+                    amountNQT: '4000',
+                }
+            ];
+
+            service = createBurstService(httpMock, 'relPath');
+            const status = await sendAmountToMultipleRecipients(service)(
+                recipients,
+                '1000',
+                'senderPublicKey',
+                'senderPrivateKey',
+            );
+
+            expect(status).toBe('transactionId');
+            expect(generateSignature).toBeCalledTimes(1);
+            expect(verifySignature).toBeCalledTimes(1);
+            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+        });
+
+
+        it('should not send arbitrary amounts to multiple recipients, if recipients are empty', async () => {
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+                .onPostReply(200, mockBroadcastResponse)
+                .build();
+
+            const recipients = [];
+            service = createBurstService(httpMock, 'relPath');
+
+            try {
+                await sendAmountToMultipleRecipients(service)(
+                    recipients,
+                    '1000',
                     'senderPublicKey',
                     'senderPrivateKey',
                 );

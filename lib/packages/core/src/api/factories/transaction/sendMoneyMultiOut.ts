@@ -14,7 +14,7 @@ import { convertNumberToNQTString } from '@burstjs/util';
 import { broadcastTransaction } from './broadcastTransaction';
 
 /**
- * @deprecated Will be substituted by [[sendSameAmountToMultipleRecipients]]
+ * @deprecated Use [[sendSameAmountToMultipleRecipients]], [[sendAmountToMultipleRecipients]] instead
  *
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
