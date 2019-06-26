@@ -9,6 +9,8 @@ import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {sendSameAmountToMultipleRecipients} from '../factories/transaction/sendSameAmountToMultipleRecipients';
 import {sendAmountToMultipleRecipients} from '../factories/transaction/sendAmountToMultipleRecipients';
 import {MultioutRecipientAmount} from '../../typings/multioutRecipientAmount';
+import {Attachment, EncryptedMessage, Message} from '../../typings/attachment';
+import {sendAmount} from '../factories/transaction';
 
 describe('Transaction Api', () => {
 
@@ -368,7 +370,6 @@ describe('Transaction Api', () => {
             expect(generateSignedTransactionBytes).toBeCalledTimes(1);
         });
 
-
         it('should not send arbitrary amounts to multiple recipients, if recipients are empty', async () => {
             httpMock = HttpMockBuilder.create()
             // tslint:disable:max-line-length
@@ -391,4 +392,154 @@ describe('Transaction Api', () => {
             }
         });
     });
+
+    describe('sendAmount', () => {
+
+        const mockTransaction: Transaction = {
+            transaction: 'transactionId',
+            requestProcessingTime: 4,
+            fullHash: '808d5c32b12f4d4b963404c19523b6391ddf7a04a96ec4a495703aeead76c6ff',
+        };
+
+        const mockBroadcastResponse = {
+            unsignedTransactionBytes: 'unsignedHexMessage'
+        };
+
+        beforeEach(() => {
+
+            jest.resetAllMocks();
+
+            // @ts-ignore
+            generateSignature = jest.fn(() => 'signature');
+            // @ts-ignore
+            verifySignature = jest.fn(() => true);
+            // @ts-ignore
+            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
+
+
+        });
+
+        afterEach(() => {
+            // @ts-ignore
+            httpMock.reset();
+        });
+
+        it('should sendMoney without attachment', async () => {
+
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+                .onPostReply(200, mockBroadcastResponse,
+                    'relPath?requestType=sendMoney&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
+                .onPostReply(200, mockTransaction.transaction,
+                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+                .build();
+
+            const service = createBurstService(httpMock, 'relPath');
+
+            const status = await sendAmount(service)(
+                '2000',
+                '1000',
+                'recipientId',
+                'senderPublicKey',
+                'senderPrivateKey',
+            );
+            expect(status).toBe('transactionId');
+            expect(generateSignature).toBeCalledTimes(1);
+            expect(verifySignature).toBeCalledTimes(1);
+            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+        });
+
+
+        it('should sendMoney with encrypted message attachment', async () => {
+
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+                .onPostReply(200, mockBroadcastResponse,
+                    'relPath?requestType=sendMoney&encryptedMessageData=data&encryptedMessageNonce=nonce&messageToEncryptIsText=true&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
+                .onPostReply(200, mockTransaction.transaction,
+                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+                .build();
+
+            const service = createBurstService(httpMock, 'relPath');
+
+            const encryptedMessage = new EncryptedMessage();
+            encryptedMessage.data = 'data';
+            encryptedMessage.isText = true;
+            encryptedMessage.nonce = 'nonce';
+
+            const status = await sendAmount(service)(
+                '2000',
+                '1000',
+                'recipientId',
+                'senderPublicKey',
+                'senderPrivateKey',
+                encryptedMessage
+            );
+            expect(status).toBe('transactionId');
+            expect(generateSignature).toBeCalledTimes(1);
+            expect(verifySignature).toBeCalledTimes(1);
+            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+        });
+
+        it('should sendMoney with plain message attachment', async () => {
+
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+                .onPostReply(200, mockBroadcastResponse,
+                    'relPath?requestType=sendMoney&message=message&messageIsText=true&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
+                .onPostReply(200, mockTransaction.transaction,
+                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+                .build();
+
+            const service = createBurstService(httpMock, 'relPath');
+
+            const message = new Message();
+            message.message = 'message';
+            message.messageIsText = true;
+
+            const status = await sendAmount(service)(
+                '2000',
+                '1000',
+                'recipientId',
+                'senderPublicKey',
+                'senderPrivateKey',
+                message
+            );
+            expect(status).toBe('transactionId');
+            expect(generateSignature).toBeCalledTimes(1);
+            expect(verifySignature).toBeCalledTimes(1);
+            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+        });
+
+        it('should throw error on invalid attachment', async () => {
+
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+                .onPostReply(200, mockBroadcastResponse,
+                    'relPath?requestType=sendMoney&message=message&messageIsText=true&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
+                .onPostReply(200, mockTransaction.transaction,
+                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+                .build();
+
+            const service = createBurstService(httpMock, 'relPath');
+
+            const attachment = new Attachment('unknown');
+
+            try {
+                await sendAmount(service)(
+                    '2000',
+                    '1000',
+                    'recipientId',
+                    'senderPublicKey',
+                    'senderPrivateKey',
+                    attachment
+                );
+                expect(false).toBe('Expect Exception');
+            } catch (e) {
+                expect(e.message).toContain('Unknown attachment type');
+            }
+        });
+
+    });
+
 });

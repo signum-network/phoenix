@@ -8,7 +8,8 @@ import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {Attachment} from '../../../typings/attachment';
 import {DefaultDeadline} from '../../../constants';
-import {createParametersFromAttachment, signAndBroadcastTransaction} from '../../../internal';
+import {signAndBroadcastTransaction} from '../../../internal/signAndBroadcastTransaction';
+import {createParametersFromAttachment} from '../../../internal';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].

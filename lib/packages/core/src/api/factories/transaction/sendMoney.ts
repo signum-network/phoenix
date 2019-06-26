@@ -13,7 +13,7 @@ import {constructAttachment} from '../../../internal/constructAttachment';
 import {broadcastTransaction} from './broadcastTransaction';
 
 /**
- * @deprecated use [[TransactionApi.sendMoney]]
+ * @deprecated use [[TransactionApi.sendAmount]]
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
  * See details at [[TransactionApi.sendMoney]]
