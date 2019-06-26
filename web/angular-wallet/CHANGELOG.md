@@ -4,14 +4,15 @@
 
 ### New Feature:
 
-- Spend all on Send Burst
+- _Spend all_ on Send Burst
 - Improved Layout for Transactions 
 - Improved Layout for Blocks 
 
 # Bug Fixes
-- Fixed green/red transactions on dashboard
+- Fixed green/red transactions on dashboard (#523)
 - Fixed MultiSameOut (#543)
 - Fixed Update Issue on Windows
+- Fixed QR Code Update on Account Change (#553)
 
 ##1.0.0-beta.8
 
