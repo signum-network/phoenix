@@ -1,6 +1,6 @@
 <form (ngSubmit)="onSubmit($event);" #sendBurstForm="ngForm">
 
-  <burst-recipient-input (qrCodeUpload)="onQRUpload($event)" (recipientChange)="onRecipientChange($event)" [disabled]="immutable" ></burst-recipient-input>
+  <burst-recipient-input [recipient]="recipient" (qrCodeUpload)="onQRUpload($event)" (recipientChange)="onRecipientChange($event)" [disabled]="immutable" ></burst-recipient-input>
 
   <div class="amount-wrapper">
     <mat-form-field>
@@ -26,7 +26,7 @@
 
   <div *ngIf="showMessage">
     <mat-form-field>
-      <textarea matInput [(ngModel)]="message" name="message" placeholder="{{ 'message' | i18n }}"></textarea>
+      <textarea matInput [disabled]="immutable" [(ngModel)]="message" name="message" placeholder="{{ 'message' | i18n }}"></textarea>
     </mat-form-field>
     <mat-checkbox  labelPosition="before" [(ngModel)]="encrypt" name="encrypt">{{ "encrypt_message" | i18n }}?</mat-checkbox>
   </div>

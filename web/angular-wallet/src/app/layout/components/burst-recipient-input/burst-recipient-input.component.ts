@@ -43,7 +43,8 @@ export class BurstRecipientInputComponent implements OnInit {
 
   fileId = `file-${nextId++}`;
 
-  recipient = new Recipient();
+  @Input()
+  recipient: Recipient;
   @Output()
   recipientChange = new EventEmitter();
   @Output()
@@ -59,6 +60,11 @@ export class BurstRecipientInputComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.recipient) {
+      this.validateRecipient();
+    } else {
+      this.recipient = new Recipient();
+    }
   }
 
   applyRecipientType(recipient: string): void {
