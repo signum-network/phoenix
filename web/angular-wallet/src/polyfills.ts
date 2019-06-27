@@ -84,9 +84,11 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+import 'regenerator-runtime/runtime';
 
 // Add global to window, assigning the value of window itself.
 (window as any).global = window;
+
 
 /**
  * Fix for ngx-chart to work on ie11

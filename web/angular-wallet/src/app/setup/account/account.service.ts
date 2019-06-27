@@ -3,7 +3,6 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 import semver from 'semver';
-import TransportWebUSB from '@ledgerhq/hw-transport-webusb';
 
 import {StoreService} from 'app/store/store.service';
 import {Settings} from 'app/settings';

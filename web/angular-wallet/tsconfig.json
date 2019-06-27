@@ -7,11 +7,15 @@
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "paths": {
       "@fuse": ["@fuse/"],
-      "@burstjs/*": ["../../../lib/packages/*"]
+      "@burstjs/*": ["../../../lib/packages/*"],
+      "fs": [ "../../../scripts/noop" ],
+      "os": [ "../../../scripts/noop" ],
+      "path": [ "../../../scripts/noop" ]
     },
     "target": "es5",
     "typeRoots": [
@@ -20,6 +24,6 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
   }
 }

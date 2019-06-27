@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import Transport from '@ledgerhq/hw-transport';
-import TransportWebUSB from '@ledgerhq/hw-transport-webusb';
+import TransportNodeHid from '@ledgerhq/hw-transport-node-hid';
 
 @Injectable()
 export class LedgerService {
@@ -9,7 +9,7 @@ export class LedgerService {
   }
 
   private async getTransport(): Transport {
-    return await TransportWebUSB.create();
+    return await TransportNodeHid.create();
   }
 
   public async getPublicKey(accountIndex: number): Promise<Buffer> {

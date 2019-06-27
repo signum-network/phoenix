@@ -7,7 +7,7 @@ const log = require('../log');
 async function buildAngularWallet(cwd){
     const angularWalletPath = path.join(__dirname, '../../web/angular-wallet');
     process.chdir(angularWalletPath);
-    await exec('ng', ['build', '--prod']);
+    await exec('ng', ['build', '--configuration=desktop']);
     process.chdir(cwd);
 }
 
