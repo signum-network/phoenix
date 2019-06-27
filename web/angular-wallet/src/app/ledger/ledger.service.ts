@@ -1,21 +1,15 @@
 import {Injectable} from '@angular/core';
-import {AppService} from '../app.service';
 import Transport from '@ledgerhq/hw-transport';
 import TransportWebUSB from '@ledgerhq/hw-transport-webusb';
-import TransportNodeHid from '@ledgerhq/hw-transport-node-hid';
 
 @Injectable()
 export class LedgerService {
 
-  constructor(private appService: AppService) {
+  constructor() {
   }
 
   private async getTransport(): Transport {
-    if (this.appService.isDesktop()) {
-      return await TransportNodeHid.create();
-    } else {
-      return await TransportWebUSB.create();
-    }
+    return await TransportWebUSB.create();
   }
 
   public async getPublicKey(accountIndex: number): Promise<Buffer> {
