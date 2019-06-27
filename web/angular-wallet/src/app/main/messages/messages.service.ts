@@ -6,11 +6,11 @@ import {
   Api,
   Account,
   SuggestedFees,
-  EncryptedMessage,
   Transaction,
   TransactionId,
   TransactionType,
   TransactionArbitrarySubtype,
+  AttachmentEncryptedMessage,
 } from '@burstjs/core';
 import {AccountService} from 'app/setup/account/account.service';
 import {decryptAES, hashSHA256} from '@burstjs/crypto';
@@ -22,7 +22,7 @@ export interface ChatMessage {
   message: string;
   timestamp: number;
   contactId: string;
-  encryptedMessage?: EncryptedMessage;
+  encryptedMessage?: AttachmentEncryptedMessage;
 }
 
 export interface Messages {
