@@ -8,7 +8,7 @@
         ]
     },
     "typeRoots": [
-        "typings",
+      "src/typings",
         "node_modules/@types"
     ],
     "include": [
