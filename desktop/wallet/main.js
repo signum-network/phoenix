@@ -1,9 +1,13 @@
+global.Buffer = global.Buffer || require('buffer').Buffer;
+global.regeneratorRuntime = require("regenerator-runtime");
+
 const path = require('path');
 const {app, BrowserWindow, Menu, shell, ipcMain} = require('electron');
 const {download} = require('electron-dl');
 
 const {version, update} = require('./package.json');
 const UpdateService = require('./src/updateService');
+const TransportNodeHid = require('@ledgerhq/hw-transport-node-hid');
 
 let win;
 let downloadHandle;
@@ -20,6 +24,20 @@ const isWindows = () => process.platform === 'win32';
 
 function handleLatestUpdate(newVersion) {
   win.webContents.send('new-version', newVersion);
+}
+
+async function getPublicKey() {
+  await TransportNodeHid.create();
+
+  // todo: move this to a shared fn
+  let accountIndexHex = accountIndex.toString(16);
+  if (accountIndexHex.length === 1) {
+    accountIndexHex = '0' + accountIndexHex;
+  }
+  console.log('accountIndexHex', accountIndexHex); // TODO
+  const publicKey = await transport.exchange(Buffer.from('800400' + accountIndexHex + '00', 'hex'));
+  console.log('publicKey', publicKey); // TODO
+  return win.webContents.send('public-key-received', publicKey);
 }
 
 function getBrowserWindowConfig() {
@@ -210,6 +228,7 @@ function onReady() {
     });
   });
   ipcMain.on('new-version-asset-selected', downloadUpdate);
+  ipcMain.on('get-public-key', getPublicKey);
 }
 
 app.on('ready', onReady);

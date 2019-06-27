@@ -12,10 +12,7 @@
     "resolveJsonModule": true,
     "paths": {
       "@fuse": ["@fuse/"],
-      "@burstjs/*": ["../../../lib/packages/*"],
-      "fs": [ "../../../scripts/noop" ],
-      "os": [ "../../../scripts/noop" ],
-      "path": [ "../../../scripts/noop" ]
+      "@burstjs/*": ["../../../lib/packages/*"]
     },
     "target": "es5",
     "typeRoots": [

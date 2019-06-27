@@ -88,7 +88,7 @@ import 'regenerator-runtime/runtime';
 
 // Add global to window, assigning the value of window itself.
 (window as any).global = window;
-
+// (window as any).process = require('process/');
 
 /**
  * Fix for ngx-chart to work on ie11
