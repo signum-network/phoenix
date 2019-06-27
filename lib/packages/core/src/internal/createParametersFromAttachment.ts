@@ -1,7 +1,7 @@
 /** @module core */
 /** @ignore */
 
-import {Attachment, EncryptedMessage, Message} from '../typings/attachment';
+import {Attachment, AttachmentEncryptedMessage, AttachmentMessage} from '../typings/attachment';
 
 /**
  *
@@ -12,8 +12,8 @@ import {Attachment, EncryptedMessage, Message} from '../typings/attachment';
  * @return HttpParams
  */
 export const createParametersFromAttachment = (attachment: Attachment, params: any) => {
-    if (attachment instanceof EncryptedMessage) {
-        const em = <EncryptedMessage>attachment;
+    if (attachment instanceof AttachmentEncryptedMessage) {
+        const em = <AttachmentEncryptedMessage>attachment;
         return {
             encryptedMessageData: em.data,
             encryptedMessageNonce: em.nonce,
@@ -22,8 +22,8 @@ export const createParametersFromAttachment = (attachment: Attachment, params: a
         };
     }
 
-    if (attachment instanceof Message) {
-        const m = <Message>attachment;
+    if (attachment instanceof AttachmentMessage) {
+        const m = <AttachmentMessage>attachment;
         return {
             message: m.message,
             messageIsText: String(m.messageIsText),

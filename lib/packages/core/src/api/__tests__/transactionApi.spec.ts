@@ -9,7 +9,7 @@ import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {sendSameAmountToMultipleRecipients} from '../factories/transaction/sendSameAmountToMultipleRecipients';
 import {sendAmountToMultipleRecipients} from '../factories/transaction/sendAmountToMultipleRecipients';
 import {MultioutRecipientAmount} from '../../typings/multioutRecipientAmount';
-import {Attachment, EncryptedMessage, Message} from '../../typings/attachment';
+import {Attachment, AttachmentEncryptedMessage, AttachmentMessage} from '../../typings/attachment';
 import {sendAmount} from '../factories/transaction';
 
 describe('Transaction Api', () => {
@@ -462,7 +462,7 @@ describe('Transaction Api', () => {
 
             const service = createBurstService(httpMock, 'relPath');
 
-            const encryptedMessage = new EncryptedMessage();
+            const encryptedMessage = new AttachmentEncryptedMessage();
             encryptedMessage.data = 'data';
             encryptedMessage.isText = true;
             encryptedMessage.nonce = 'nonce';
@@ -493,7 +493,7 @@ describe('Transaction Api', () => {
 
             const service = createBurstService(httpMock, 'relPath');
 
-            const message = new Message();
+            const message = new AttachmentMessage();
             message.message = 'message';
             message.messageIsText = true;
 

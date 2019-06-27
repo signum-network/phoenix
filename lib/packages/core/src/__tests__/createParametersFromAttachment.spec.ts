@@ -1,12 +1,12 @@
 import {createParametersFromAttachment} from '../internal';
-import {EncryptedMessage, Message} from '../typings/attachment';
+import {AttachmentEncryptedMessage, AttachmentMessage} from '../typings/attachment';
 
 
 describe('createParametersFromAttachment', () => {
 
     it('should construct message attachment', () => {
 
-        const messageAttachment = new Message();
+        const messageAttachment = new AttachmentMessage();
         messageAttachment.message = 'message';
         messageAttachment.messageIsText = true;
 
@@ -19,7 +19,7 @@ describe('createParametersFromAttachment', () => {
 
     it('should construct encrypted message attachment', () => {
 
-        const encryptedMessageAttachment = new EncryptedMessage();
+        const encryptedMessageAttachment = new AttachmentEncryptedMessage();
         encryptedMessageAttachment.data = 'data';
         encryptedMessageAttachment.nonce = 'nonce';
         encryptedMessageAttachment.isText = true;

@@ -21,7 +21,7 @@ export class Attachment {
 *
 * The Message class is used to model a plain message attached to a transaction.
 */
-export class Message extends Attachment {
+export class AttachmentMessage extends Attachment {
     public messageIsText: boolean;
     public message: string;
 
@@ -37,7 +37,7 @@ export class Message extends Attachment {
 *
 * The EncryptedMessage class is a model for a encrypted message attached to a transaction.
 */
-export class EncryptedMessage extends Attachment {
+export class AttachmentEncryptedMessage extends Attachment {
     public data: string;
     public nonce: string;
     public isText: boolean;
