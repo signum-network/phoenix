@@ -25,6 +25,7 @@ export class AttachmentMessage extends Attachment {
     public messageIsText: boolean;
     public message: string;
 
+    // TODO: make constructor attrs as single args to be more expressive
     constructor(data: any = {}) {
         super('message');
         this.messageIsText = data.messageIsText || false;
@@ -42,6 +43,7 @@ export class AttachmentEncryptedMessage extends Attachment {
     public nonce: string;
     public isText: boolean;
 
+    // TODO: make constructor attrs as single args to be more expressive
     constructor(data: any = {}) {
         super('encrypted_message');
         this.data = data.data || undefined;

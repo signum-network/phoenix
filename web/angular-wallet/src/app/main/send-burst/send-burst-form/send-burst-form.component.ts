@@ -101,7 +101,6 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
 
     try {
       this.isSending = true;
-
       await this.transactionService.sendBurst({
         amount: convertNumberToNQTString(parseFloat(this.amount)),
         fee: convertNumberToNQTString(parseFloat(this.fee)),
@@ -111,23 +110,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
         message: this.message,
         shouldEncryptMessage: this.encrypt,
         deadline: 1440
-      })
-
-      // await this.transactionService.sendMoney({
-      //   transaction: {
-      //     // FIX: amountNQT is actually in burst
-      //     amountNQT: this.amount,
-      //     feeNQT: this.fee,
-      //     attachment: this.getMessage(),
-      //     deadline: parseFloat(this.deadline) * 60,
-      //     fullHash: this.fullHash,
-      //     type: 1
-      //   },
-      //   pin: this.pin,
-      //   keys: this.account.keys,
-      //   recipientAddress: addressRS,
-      // });
-
+      });
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
       this.sendBurstForm.resetForm();
     } catch (e) {

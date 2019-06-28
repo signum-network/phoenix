@@ -7,10 +7,10 @@ import {
   convertAddressToNumericId,
   convertNQTStringToNumber
 } from '@burstjs/util';
-import {SuggestedFees, Account} from '@burstjs/core';
+import {SuggestedFees, Account, TransactionId} from '@burstjs/core';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {TransactionService} from 'app/main/transactions/transaction.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 import {Recipient} from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
 import {takeUntil} from 'rxjs/operators';
@@ -26,16 +26,16 @@ const isNotEmpty = (value: string) => value && value.length > 0;
 })
 export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements OnInit {
 
-  @ViewChild('sendBurstForm', { static: true }) public sendBurstForm: NgForm;
-  public feeNQT: string;
-  @ViewChild('recipientAddress', { static: false }) public recipientAddress: string;
-  @ViewChild('amountNQT', { static: true }) public amountNQT: string;
-  @ViewChild('message', { static: false }) public message: string;
-  @ViewChild('fullHash', { static: false }) public fullHash: string;
-  @ViewChild('encrypt', { static: false }) public encrypt: string;
-  @ViewChild('pin', { static: true }) public pin: string;
+  @ViewChild('sendBurstForm', {static: true}) public sendBurstForm: NgForm;
+  public fee: string;
+  @ViewChild('recipientAddress', {static: false}) public recipientAddress: string;
+  @ViewChild('amountNQT', {static: true}) public amount: string;
+  @ViewChild('message', {static: false}) public message: string;
+  @ViewChild('fullHash', {static: false}) public fullHash: string;
+  @ViewChild('encrypt', {static: false}) public encrypt: string;
+  @ViewChild('pin', {static: true}) public pin: string;
 
-  @ViewChild('recipients', { static: true }) public recipients: Array<Recipient> = [];
+  @ViewChild('recipients', {static: true}) public recipients: Array<Recipient> = [];
 
   @Input('account') account: Account;
   @Input('fees') fees: SuggestedFees;
@@ -86,23 +86,24 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     }
   }
 
+  private async sendBurstSameAmount(): Promise<void> {
+    await this.transactionService.sendSameBurstToMultipleRecipients({
+      recipientIds: this.recipients.map(r => convertAddressToNumericId(r.addressRS)),
+      fee: convertNumberToNQTString(parseFloat(this.fee)),
+      amount: convertNumberToNQTString(parseFloat(this.amount)),
+      pin: this.pin,
+      keys: this.account.keys,
+    });
+  }
+
   private async sendBurst(): Promise<void> {
     this.isSending = true;
     const multiOutString = this.getMultiOutString();
 
     try {
-      await this.transactionService.sendMoneyMultiOut({
-        transaction: {
-          recipients: multiOutString,
-          feeNQT: this.feeNQT,
-          deadline: parseInt(this.deadline, 10) * 60,
-          amountNQT: this.amountNQT
-        },
-        pin: this.pin,
-        keys: this.account.keys,
-        sameAmount: this.sameAmount
-      });
-
+      // FIXME: implement arbitrary amounts
+      const sendFunction = this.sameAmount ? this.sendBurstSameAmount : () => {};
+      await sendFunction();
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
       this.sendBurstForm.resetForm();
     } catch (e) {
@@ -149,12 +150,12 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   private getTotalForSameAmount(): number {
-    return parseFloat(this.amountNQT) * this.recipients.length;
+    return parseFloat(this.amount) * this.recipients.length;
   }
 
   getTotal(): number {
     const calculateAmount = this.sameAmount ? this.getTotalForSameAmount() : this.getTotalForMultiOut();
-    return calculateAmount + parseFloat(this.feeNQT) || 0;
+    return calculateAmount + parseFloat(this.fee) || 0;
   }
 
   private nonEmptyRecipients(): Array<Recipient> {
@@ -184,7 +185,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     return hasCompletedRecipients
       && this.hasSufficientBalance()
       && isNotEmpty(this.pin)
-      && (this.sameAmount ? isNotEmpty(this.amountNQT) : true);
+      && (this.sameAmount ? isNotEmpty(this.amount) : true);
 
   }
 
