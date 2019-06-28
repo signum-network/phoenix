@@ -6,7 +6,8 @@
     <mat-form-field>
       <div class="container" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
         <input matInput [(ngModel)]="amount" name="amount" placeholder="{{ 'amount' | i18n }}" [disabled]="immutable">
-        <mat-icon class="all-icon"
+        <mat-icon *ngIf="!immutable"
+                  class="all-icon"
                   matTooltip="{{'spend_all' | i18n}}"
                   (click)="onSpendAll()"
         >
@@ -22,13 +23,13 @@
 
   <burst-fee-selector *ngIf="!immutable" [fees]="fees" [(feeNQT)]="fee"></burst-fee-selector>
 
-  <mat-checkbox labelPosition="before" (click)="showMessage=!showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>
+  <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="showMessage" name="showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>
 
   <div *ngIf="showMessage">
     <mat-form-field>
       <textarea matInput [disabled]="immutable" [(ngModel)]="message" name="message" placeholder="{{ 'message' | i18n }}"></textarea>
     </mat-form-field>
-    <mat-checkbox  labelPosition="before" [(ngModel)]="encrypt" name="encrypt">{{ "encrypt_message" | i18n }}?</mat-checkbox>
+    <mat-checkbox  labelPosition="before" [disabled]="immutable" [(ngModel)]="encrypt" name="encrypt">{{ "encrypt_message" | i18n }}?</mat-checkbox>
   </div>
 
   <div *ngIf="advanced">

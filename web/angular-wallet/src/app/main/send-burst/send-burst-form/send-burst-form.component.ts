@@ -41,7 +41,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
   @ViewChild('amount', { static: true }) public amount: string;
   @ViewChild('message', { static: true }) public message: string;
   @ViewChild('fullHash', { static: false }) public fullHash: string;
-  @ViewChild('encrypt', { static: false }) public encrypt: string;
+  @ViewChild('encrypt', { static: true }) public encrypt: string;
   @ViewChild('pin', { static: true }) public pin: string;
 
   @Input() account: Account;
@@ -51,7 +51,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
   showMessage = false;
   burstAddressPatternRef = burstAddressPattern;
   deadline = '24';
-  immutable = false;
+  immutable: string | boolean = false;
 
   public recipient = new Recipient();
   public fee: string;
@@ -84,9 +84,13 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
         this.fee = this.route.snapshot.queryParams.fee;
         this.amount = this.route.snapshot.queryParams.amount;
         this.message = this.route.snapshot.queryParams.message;
+        this.encrypt = this.route.snapshot.queryParams.encrypt;
         this.immutable = this.route.snapshot.queryParams.immutable || this.immutable;
+        if (this.immutable === 'false') {
+          this.immutable = false;
+        }
         this.showMessage = !!this.message;
-      }, 200);
+      }, 1);
     }
   }
 
