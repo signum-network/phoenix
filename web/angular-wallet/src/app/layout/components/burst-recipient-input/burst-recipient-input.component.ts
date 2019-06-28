@@ -24,7 +24,7 @@ export class Recipient {
 
   constructor(
     public addressRaw = '',
-    public amountNQT = '',
+    public amount = '',
     public addressRS = '',
     public status = RecipientValidationStatus.UNKNOWN,
     public type = RecipientType.UNKNOWN,
@@ -32,7 +32,6 @@ export class Recipient {
 
   }
 }
-
 
 @Component({
   selector: 'burst-recipient-input',
@@ -49,8 +48,8 @@ export class BurstRecipientInputComponent implements OnInit {
   @Output()
   qrCodeUpload = new EventEmitter();
 
-  @Input('appearance') appearance: string = '';
-  @Input('disabled') disabled: boolean = false;
+  @Input('appearance') appearance = '';
+  @Input('disabled') disabled = false;
 
   @ViewChild('file', { static: true }) file: ElementRef;
 
@@ -148,9 +147,9 @@ export class BurstRecipientInputComponent implements OnInit {
         const img = new Image();
         img.src = window.URL.createObjectURL(file);
         img.onload = () => {
-            // reduce the image by 1/4 to make it more reliable 
-            const width = Math.round(img.naturalWidth / 4), 
-                  height = Math.round(img.naturalHeight / 4); 
+            // reduce the image by 1/4 to make it more reliable
+            const width = Math.round(img.naturalWidth / 4),
+                  height = Math.round(img.naturalHeight / 4);
 
             const reader = new FileReader();
             reader.onload = (e: ProgressEvent): void => {

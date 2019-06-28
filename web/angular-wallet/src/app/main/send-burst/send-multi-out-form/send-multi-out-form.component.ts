@@ -97,15 +97,29 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     await this.transactionService.sendSameBurstToMultipleRecipients(request);
   }
 
+  private async sendBurstArbitraryAmount(): Promise<void> {
+    const request = {
+      recipientAmounts: this.recipients.map(r => ({
+        recipient: convertAddressToNumericId(r.addressRS),
+        amountNQT: convertNumberToNQTString(parseFloat(r.amount))
+      })),
+      fee: convertNumberToNQTString(parseFloat(this.fee)),
+      pin: this.pin,
+      keys: this.account.keys,
+    };
+    await this.transactionService.sendBurstToMultipleRecipients(request);
+  }
+
+
   private async sendBurst(): Promise<void> {
     this.isSending = true;
     try {
       // FIXME: implement arbitrary amounts
       if(this.sameAmount){
-        this.sendBurstSameAmount()
+        this.sendBurstSameAmount();
       }
       else {
-        console.log('send arbitrary')
+        this.sendBurstArbitraryAmount();
       }
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
       this.sendBurstForm.resetForm();
@@ -138,7 +152,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   private getTotalForMultiOut(): number {
     return this.nonEmptyRecipients()
-      .map(({amountNQT}) => parseFloat(amountNQT) || 0)
+      .map(({amount}) => parseFloat(amount) || 0)
       .reduce((acc, curr) => acc + curr, 0);
   }
 
@@ -153,7 +167,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   private nonEmptyRecipients(): Array<Recipient> {
     return this.recipients.filter(
-      r => r.amountNQT !== '' || r.addressRS !== ''
+      r => r.amount !== '' || r.addressRS !== ''
     );
   }
 
@@ -172,7 +186,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       .nonEmptyRecipients()
       .reduce(
         (isComplete, recipient) => isComplete
-          && (!this.sameAmount ? recipient.amountNQT && recipient.amountNQT.length > 0 : true)
+          && (!this.sameAmount ? recipient.amount && recipient.amount.length > 0 : true)
         , true);
 
     return hasCompletedRecipients
@@ -185,15 +199,4 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   onRecipientChange(recipient: Recipient, i: number): void {
     this.recipients[i] = recipient;
   }
-
-  // todo: make it work
-  // onDeleteRecipient(i: number) {
-  //   if (this.recipients.length > 1) {
-  //
-  //     this.recipients = this.recipients.filter((r, x) => x !== i)
-  //     event.stopImmediatePropagation();
-  //     event.preventDefault();
-  //
-  //   }
-  // }
 }

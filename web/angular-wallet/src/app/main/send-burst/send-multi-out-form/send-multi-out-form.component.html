@@ -12,7 +12,7 @@
     <div class="recipients-item">
       <burst-recipient-input (recipientChange)="onRecipientChange($event, i)"></burst-recipient-input>
       <mat-form-field *ngIf="!sameAmount">
-        <input matInput [(ngModel)]="recipients[i].amountNQT" name="amountNQT{{i}}"
+        <input matInput [(ngModel)]="recipients[i].amount" name="amountNQT{{i}}"
                placeholder="{{ 'amount' | i18n }}">
       </mat-form-field>
 <!--
