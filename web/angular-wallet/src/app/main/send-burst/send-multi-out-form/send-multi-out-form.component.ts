@@ -87,39 +87,32 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   private async sendBurstSameAmount(): Promise<void> {
-    await this.transactionService.sendSameBurstToMultipleRecipients({
+    const request = {
       recipientIds: this.recipients.map(r => convertAddressToNumericId(r.addressRS)),
       fee: convertNumberToNQTString(parseFloat(this.fee)),
       amount: convertNumberToNQTString(parseFloat(this.amount)),
       pin: this.pin,
       keys: this.account.keys,
-    });
+    };
+    await this.transactionService.sendSameBurstToMultipleRecipients(request);
   }
 
   private async sendBurst(): Promise<void> {
     this.isSending = true;
-    const multiOutString = this.getMultiOutString();
-
     try {
       // FIXME: implement arbitrary amounts
-      const sendFunction = this.sameAmount ? this.sendBurstSameAmount : () => {};
-      await sendFunction();
+      if(this.sameAmount){
+        this.sendBurstSameAmount()
+      }
+      else {
+        console.log('send arbitrary')
+      }
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
       this.sendBurstForm.resetForm();
     } catch (e) {
       this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
     }
     this.isSending = false;
-  }
-
-  private getMultiOutString(): string {
-    return this
-      .nonEmptyRecipients()
-      .map(recipient =>
-        this.sameAmount
-          ? convertAddressToNumericId(recipient.addressRS)
-          : `${convertAddressToNumericId(recipient.addressRS)}:${convertNumberToNQTString(parseFloat(recipient.amountNQT))}`
-      ).join(';');
   }
 
   private openWarningDialog(recipients: Array<Recipient>): MatDialogRef<any> {
