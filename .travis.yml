@@ -18,19 +18,15 @@ before_script:
 jobs:
   include:
     - stage: prepare
-      node_js: '12'
       name: "Build App"
       script: './scripts/ci/build-electron.sh'
     - # parallel run
-      node_js: '10'
       name: "Bundle BurstJS"
       script: './scripts/ci/bundle-burstjs.sh'
     - # parallel run
-      node_js: '10'
       name: "Run BurstJS Tests"
       script: './scripts/ci/test-burstjs.sh'
     - # parallel run
-      node_js: '12'
       name: "Run Angular Tests"
       script: './scripts/ci/test-ng.sh'
     - stage: desktop-deploy
