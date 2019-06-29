@@ -9,7 +9,7 @@ import {NotifierService} from 'angular-notifier';
 import {NetworkService} from './network/network.service';
 import {UtilService} from './util.service';
 import {I18nService} from './layout/components/i18n/i18n.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {
   CertificationInfo,
   NewVersionDialogComponent,
@@ -29,7 +29,7 @@ import {takeUntil} from 'rxjs/operators';
 export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDestroy {
   firstTime = true;
   isScanning = false;
-
+  isDownloadingUpdate = false;
   newVersionAvailable = false;
   updateInfo: UpdateInfo;
   downloadingBlockchain = false;
@@ -38,7 +38,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   isLoggedIn = false;
   selectedAccount: Account;
   accounts: Account[];
-  BLOCKCHAIN_STATUS_INTERVAL = 30000; // 30 secs
+  BLOCKCHAIN_STATUS_INTERVAL = 30000;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -103,10 +103,15 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     });
 
     this.appService.onIpcMessage('new-version-download-started', () => {
+      this.isDownloadingUpdate = true;
       this.appService.showDesktopMessage(
         this.i18nService.getTranslation('download_started'),
         this.i18nService.getTranslation('downloading_update')
       );
+    });
+
+    this.appService.onIpcMessage('new-version-download-finished', () => {
+      this.isDownloadingUpdate = false;
     });
 
     this.appService.onIpcMessage('new-version-check-noupdate', () => {
@@ -167,6 +172,9 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   }
 
   onClickedNewVersion(): void {
+
+    if (this.isDownloadingUpdate) { return; }
+
     this.openNewVersionDialog()
       .afterClosed()
       .subscribe(assetUrl => {
