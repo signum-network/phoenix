@@ -27,7 +27,6 @@ const isNotEmpty = (value: string) => value && value.length > 0;
 export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements OnInit {
 
   @ViewChild('sendBurstForm', {static: true}) public sendBurstForm: NgForm;
-  public fee: string;
   @ViewChild('recipientAddress', {static: false}) public recipientAddress: string;
   @ViewChild('amountNQT', {static: true}) public amount: string;
   @ViewChild('message', {static: false}) public message: string;
@@ -40,6 +39,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   @Input('account') account: Account;
   @Input('fees') fees: SuggestedFees;
 
+  fee: string;
   sameAmount = false;
   advanced = false;
   showMessage = false;

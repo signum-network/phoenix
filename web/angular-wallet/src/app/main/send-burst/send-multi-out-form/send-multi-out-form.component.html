@@ -26,7 +26,7 @@
   <button mat-button type="button" class="add-recipient" (click)="addRecipient($event)">{{ "add_recipient" | i18n }}</button>
 
   <mat-form-field>
-    <input matInput [(ngModel)]="fee" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
+    <input matInput [(ngModel)]="fee" name="fee" placeholder="{{ 'fee' | i18n }}">
   </mat-form-field>
 
   <burst-fee-selector [fees]="fees" [(feeNQT)]="fee"></burst-fee-selector>
