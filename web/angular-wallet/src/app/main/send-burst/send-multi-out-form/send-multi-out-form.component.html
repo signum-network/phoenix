@@ -3,7 +3,7 @@
   <mat-checkbox labelPosition="before" (click)="toggleSameAmount()" class="same-amount">{{ "same_out" | i18n }}?</mat-checkbox>
 
   <mat-form-field *ngIf="sameAmount">
-    <input matInput [(ngModel)]="amount" name="amountNQT" placeholder="{{ 'amount' | i18n }}">
+    <input matInput [(ngModel)]="amount" name="amount" placeholder="{{ 'amount' | i18n }}">
   </mat-form-field>
 
 
@@ -12,7 +12,7 @@
     <div class="recipients-item">
       <burst-recipient-input (recipientChange)="onRecipientChange($event, i)"></burst-recipient-input>
       <mat-form-field *ngIf="!sameAmount">
-        <input matInput [(ngModel)]="recipients[i].amount" name="amountNQT{{i}}"
+        <input matInput [(ngModel)]="recipients[i].amount" name="amount{{i}}"
                placeholder="{{ 'amount' | i18n }}">
       </mat-form-field>
 <!--

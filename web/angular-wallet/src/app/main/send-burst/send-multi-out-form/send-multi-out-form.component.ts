@@ -115,10 +115,9 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     this.isSending = true;
     try {
       // FIXME: implement arbitrary amounts
-      if(this.sameAmount){
+      if (this.sameAmount) {
         this.sendBurstSameAmount();
-      }
-      else {
+      } else {
         this.sendBurstArbitraryAmount();
       }
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
@@ -182,8 +181,13 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   canSubmit(): boolean {
 
-    const hasCompletedRecipients = this
-      .nonEmptyRecipients()
+    const nonEmptyRecipients = this.nonEmptyRecipients();
+
+    if (!nonEmptyRecipients.length) {
+      return false;
+    }
+
+    const hasCompletedRecipients = nonEmptyRecipients
       .reduce(
         (isComplete, recipient) => isComplete
           && (!this.sameAmount ? recipient.amount && recipient.amount.length > 0 : true)
