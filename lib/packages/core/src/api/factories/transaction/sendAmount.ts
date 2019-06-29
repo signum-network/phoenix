@@ -9,7 +9,7 @@ import {TransactionResponse} from '../../../typings/transactionResponse';
 import {Attachment} from '../../../typings/attachment';
 import {DefaultDeadline} from '../../../constants';
 import {signAndBroadcastTransaction} from '../../../internal/signAndBroadcastTransaction';
-import {createParametersFromAttachment} from '../../../internal';
+import {createParametersFromAttachment} from '../../../internal/createParametersFromAttachment';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].

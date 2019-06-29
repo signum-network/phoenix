@@ -6,11 +6,11 @@
  */
 
 import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
-import {broadcastTransaction} from '../api/factories/transaction';
+import {broadcastTransaction} from '../api/factories/transaction/broadcastTransaction';
 import {BurstService} from '../service';
 import {TransactionId} from '../typings/transactionId';
 
-export interface UnsignedTransaction{
+export interface UnsignedTransaction {
     unsignedHexMessage: string;
     senderPrivateKey: string;
     senderPublicKey: string;
@@ -22,7 +22,7 @@ export interface UnsignedTransaction{
  * @param service The service used for
  * @return The transaction Id
  */
-export function signAndBroadcastTransaction(unsignedTransaction: UnsignedTransaction, service: BurstService) : Promise<TransactionId> {
+export function signAndBroadcastTransaction(unsignedTransaction: UnsignedTransaction, service: BurstService): Promise<TransactionId> {
 
     const {unsignedHexMessage, senderPrivateKey, senderPublicKey} = unsignedTransaction;
 
