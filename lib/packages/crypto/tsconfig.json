@@ -1,19 +1,19 @@
 {
-    "compilerOptions": {
-        "outDir": "./out",
-        "types": [
-            "axios",
-            "jest",
-            "node"
-        ]
-    },
-    "typeRoots": [
-      "src/typings",
-        "node_modules/@types"
-    ],
-    "include": [
-        "./src",
-        "README.md"
-    ],
-    "extends": "../../tsconfig.json"
+  "compilerOptions": {
+    "outDir": "./out",
+    "types": [
+      "axios",
+      "jest",
+      "node"
+    ]
+  },
+  "typeRoots": [
+    "src/typings",
+    "node_modules/@types"
+  ],
+  "include": [
+    "./src",
+    "README.md"
+  ],
+  "extends": "../../tsconfig.json"
 }
