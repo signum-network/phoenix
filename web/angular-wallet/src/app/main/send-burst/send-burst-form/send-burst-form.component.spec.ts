@@ -33,6 +33,7 @@ import {TransactionService} from 'app/main/transactions/transaction.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {Account} from '@burstjs/core';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SendBurstFormComponent', () => {
   let component: SendBurstFormComponent;
@@ -60,7 +61,8 @@ describe('SendBurstFormComponent', () => {
         NetworkModule,
         HttpClientTestingModule,
         MatProgressSpinnerModule,
-        MatDialogModule
+        MatDialogModule,
+        RouterTestingModule.withRoutes([])
       ],
       declarations: [
         SendBurstFormComponent,

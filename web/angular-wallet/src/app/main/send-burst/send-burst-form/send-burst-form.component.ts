@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {Account, SuggestedFees} from '@burstjs/core';
 import {
   burstAddressPattern, convertAddressToNumericId,
@@ -19,6 +19,7 @@ import {
 import {StoreService} from '../../../store/store.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
+import { ActivatedRoute } from '@angular/router';
 
 
 interface QRData {
@@ -35,12 +36,12 @@ const isNotEmpty = (value: string) => value && value.length > 0;
   templateUrl: './send-burst-form.component.html',
   styleUrls: ['./send-burst-form.component.scss']
 })
-export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnInit {
+export class SendBurstFormComponent extends UnsubscribeOnDestroy implements AfterViewInit {
   @ViewChild('sendBurstForm', { static: true }) public sendBurstForm: NgForm;
   @ViewChild('amount', { static: true }) public amount: string;
-  @ViewChild('message', { static: false }) public message: string;
+  @ViewChild('message', { static: true }) public message: string;
   @ViewChild('fullHash', { static: false }) public fullHash: string;
-  @ViewChild('encrypt', { static: false }) public encrypt: boolean;
+  @ViewChild('encrypt', { static: true }) public encrypt: boolean;
   @ViewChild('pin', { static: true }) public pin: string;
 
   @Input() account: Account;
@@ -50,7 +51,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   showMessage = false;
   burstAddressPatternRef = burstAddressPattern;
   deadline = '24';
-  immutable = false;
+  immutable: string | boolean = false;
 
   public recipient = new Recipient();
   public fee: string;
@@ -62,7 +63,8 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
     private transactionService: TransactionService,
     private notifierService: NotifierService,
     private i18nService: I18nService,
-    private storeService: StoreService
+    private storeService: StoreService,
+    private route: ActivatedRoute
   ) {
     super();
     this.storeService.settings
@@ -75,7 +77,21 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
       );
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    if (this.route.snapshot.queryParams) {
+      setTimeout(() => {
+        this.onRecipientChange(new Recipient(this.route.snapshot.queryParams.recipient));
+        this.fee = this.route.snapshot.queryParams.fee;
+        this.amount = this.route.snapshot.queryParams.amount;
+        this.message = this.route.snapshot.queryParams.message;
+        this.encrypt = this.route.snapshot.queryParams.encrypt;
+        this.immutable = this.route.snapshot.queryParams.immutable || this.immutable;
+        if (this.immutable === 'false') {
+          this.immutable = false;
+        }
+        this.showMessage = !!this.message;
+      }, 1);
+    }
   }
 
   getTotal(): number {

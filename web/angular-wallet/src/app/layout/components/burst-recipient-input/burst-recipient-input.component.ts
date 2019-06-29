@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef, OnChanges} from '@angular/core';
 import {convertAddressToNumericId} from '@burstjs/util';
 import {AccountService} from '../../../setup/account/account.service';
 import jsQR from 'jsqr';
@@ -38,11 +38,12 @@ export class Recipient {
   templateUrl: './burst-recipient-input.component.html',
   styleUrls: ['./burst-recipient-input.component.scss']
 })
-export class BurstRecipientInputComponent implements OnInit {
+export class BurstRecipientInputComponent implements OnInit, OnChanges {
 
   fileId = `file-${nextId++}`;
 
-  recipient = new Recipient();
+  @Input() recipient: Recipient;
+
   @Output()
   recipientChange = new EventEmitter();
   @Output()
@@ -58,6 +59,12 @@ export class BurstRecipientInputComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.recipient = new Recipient();
+  }
+
+  ngOnChanges(): void {
+    this.applyRecipientType(this.recipient.addressRaw);
+    this.validateRecipient();
   }
 
   applyRecipientType(recipient: string): void {
