@@ -220,7 +220,7 @@ if (isMacOS()) {
     applicationName: app.getName(),
     applicationVersion: app.getVersion(),
     copyright: 'Burst Apps Team',
-    credits: 'ohager, blankey1337, Matheus Castiglioni',
+    credits: 'ohager, blankey1337',
     version: process.versions.electron
   });
 }
