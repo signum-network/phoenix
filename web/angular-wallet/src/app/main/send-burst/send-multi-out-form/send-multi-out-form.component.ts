@@ -114,7 +114,6 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   private async sendBurst(): Promise<void> {
     this.isSending = true;
     try {
-      // FIXME: implement arbitrary amounts
       if (this.sameAmount) {
         this.sendBurstSameAmount();
       } else {
