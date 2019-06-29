@@ -7,6 +7,7 @@
 - Spend all on Send Burst
 - Improved Layout for Transactions 
 - Improved Layout for Blocks 
+- Added Indicator while Downloading latest Update
 
 # Bug Fixes
 - Fixed green/red transactions on dashboard
