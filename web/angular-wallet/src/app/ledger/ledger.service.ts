@@ -30,4 +30,12 @@ export class LedgerService {
       return publicKey.toString('hex').substr(0, 64);
     }
   }
+
+  public async sign(accountIndex: number, message: string): Promise<string> {
+    if (this.appService.isDesktop()) {
+      // TODO
+    } else {
+      // TODO
+    }
+  }
 }

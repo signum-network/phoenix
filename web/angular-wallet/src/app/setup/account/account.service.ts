@@ -173,17 +173,15 @@ export class AccountService {
 
   public createLedgerAccount(accountIndex: number): Promise<Account> {
     return new Promise(async (resolve, reject) => {
-      const account: Account = new Account();
       const publicKey = await this.ledgerService.getPublicKey(accountIndex);
-      console.log('we got public key!', publicKey); // TODO
-      const address = null;
-      const accountId = convertAddressToNumericId(address);
-      const existingAccount = await this.storeService.findAccount(accountId);
+      const id = getAccountIdFromPublicKey(publicKey);
+      const existingAccount = await this.storeService.findAccount(id);
       if (existingAccount === undefined) {
+        const account: Account = new Account();
         // import offline account
         account.type = 'ledger';
-        // account.accountRS = address;
-        account.account = accountId;
+        account.accountRS = convertNumericIdToAddress(id);
+        account.account = id;
         await this.selectAccount(account);
         const savedAccount = await this.synchronizeAccount(account);
         resolve(savedAccount);
