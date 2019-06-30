@@ -7,7 +7,7 @@ const {download} = require('electron-dl');
 
 const {version, update} = require('./package.json');
 const UpdateService = require('./src/updateService');
-const TransportNodeHid = require('@ledgerhq/hw-transport-node-hid');
+const TransportNodeHid = require('@ledgerhq/hw-transport-node-hid').default;
 
 let win;
 let downloadHandle;
@@ -28,7 +28,7 @@ function handleLatestUpdate(newVersion) {
 
 async function getPublicKey(event, arg) {
   try {
-    const transport = await TransportNodeHid.default.create();
+    const transport = await TransportNodeHid.create();
     const accountIndex = parseInt(arg);
     // todo: move this to a shared fn
     let accountIndexHex = accountIndex.toString(16);
