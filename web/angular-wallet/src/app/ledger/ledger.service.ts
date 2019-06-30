@@ -8,25 +8,26 @@ export class LedgerService {
   constructor(private appService: AppService) {
   }
 
-  public async getPublicKey(accountIndex: number): Promise<Buffer> {
+  /**
+   * @param accountIndex The last entry in the derivation path, which selects which account to use.
+   * @return The public key, hex encoded
+   */
+  public async getPublicKey(accountIndex: number): Promise<string> {
     if (this.appService.isDesktop()) {
-      console.log('Desktop!');
-      const publicKeyHex = this.appService.sendIpcMessageSync('ledger-get-public-key', accountIndex);
+      const publicKeyHex: string = this.appService.sendIpcMessageSync('ledger-get-public-key', accountIndex);
       if (publicKeyHex.startsWith('Error: ')) {
         throw new Error(publicKeyHex);
       }
-      console.log('received public key', publicKeyHex); // TODO
-      return Buffer.from(publicKeyHex, 'hex');
+      return publicKeyHex;
     } else {
       const transport = await TransportWebUSB.create();
+      // todo: move this to a shared fn
       let accountIndexHex = accountIndex.toString(16);
       if (accountIndexHex.length === 1) {
         accountIndexHex = '0' + accountIndexHex;
       }
-      console.log('accountIndexHex', accountIndexHex); // TODO
-      const publicKey = await transport.exchange(Buffer.from('800400' + accountIndexHex + '00', 'hex'));
-      console.log('publicKey', publicKey); // TODO
-      return publicKey;
+      const publicKey: Buffer = await transport.exchange(Buffer.from('800400' + accountIndexHex + '00', 'hex'));
+      return publicKey.toString('hex').substr(0, 64);
     }
   }
 }

@@ -28,22 +28,15 @@ function handleLatestUpdate(newVersion) {
 
 async function getPublicKey(event, arg) {
   try {
-    console.log('WOO!');
-    const accountIndex = arg;
-    console.log(TransportNodeHid);
     const transport = await TransportNodeHid.default.create();
-
-    console.log('accountIndex', accountIndex); // TODO
-
+    const accountIndex = parseInt(arg);
     // todo: move this to a shared fn
     let accountIndexHex = accountIndex.toString(16);
     if (accountIndexHex.length === 1) {
       accountIndexHex = '0' + accountIndexHex;
     }
-    console.log('accountIndexHex', accountIndexHex); // TODO
     const publicKey = await transport.exchange(Buffer.from('800400' + accountIndexHex + '00', 'hex'));
-    console.log('publicKey', publicKey); // TODO
-    event.returnValue = publicKey.toString('hex');
+    event.returnValue = publicKey.toString('hex').substr(0, 64);
   } catch (e) {
     event.returnValue = "Error: " + e.toString();
   }
