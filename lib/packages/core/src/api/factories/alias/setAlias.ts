@@ -6,11 +6,9 @@
 import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
-import {generateSignature} from '@burstjs/crypto';
-import {verifySignature} from '@burstjs/crypto';
-import {generateSignedTransactionBytes} from '@burstjs/crypto';
 import {convertNumberToNQTString} from '@burstjs/util';
-import {broadcastTransaction} from '../transaction/broadcastTransaction';
+import {signAndBroadcastTransaction} from '../../../internal';
+import {DefaultDeadline} from '../../../constants';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[AliasApi]].
@@ -31,23 +29,21 @@ export const setAlias = (service: BurstService): (
         feeNQT: string,
         senderPublicKey: string,
         senderPrivateKey: string,
-        deadline: number,
+        deadline: number = DefaultDeadline,
     ): Promise<TransactionId> => {
 
         const parameters = {
-            aliasName,
-            aliasURI,
+            aliasName: aliasName,
+            aliasURI: aliasURI,
             deadline: deadline,
             feeNQT: convertNumberToNQTString(parseFloat(feeNQT)),
             publicKey: senderPublicKey
         };
-        const {unsignedTransactionBytes} = await service.send<TransactionResponse>('setAlias', parameters);
-        const signature = generateSignature(unsignedTransactionBytes, senderPrivateKey);
-        if (!verifySignature(signature, unsignedTransactionBytes, senderPublicKey)) {
-            throw new Error('The signed message could not be verified! Transaction not broadcasted!');
-        }
+        const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('setAlias', parameters);
 
-        const signedMessage = generateSignedTransactionBytes(unsignedTransactionBytes, signature);
-        return broadcastTransaction(service)(signedMessage);
-
+        return signAndBroadcastTransaction({
+            senderPublicKey,
+            senderPrivateKey,
+            unsignedHexMessage
+        }, service, signFunc);
     };
