@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-# unreleased (will be 0.3.0)
+# 0.3.0
 
 ___
 __Breaking Changes__

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TransactionLeasingSubtype
+	<title>AttachmentEncryptedMessage
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,10 +80,10 @@
 					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="core.transactionleasingsubtype.html">TransactionLeasingSubtype</a>
+					<a href="core.attachmentencryptedmessage.html">AttachmentEncryptedMessage</a>
 				</li>
 			</ul>
-			<h1>Enumeration TransactionLeasingSubtype</h1>
+			<h1>Class AttachmentEncryptedMessage</h1>
 		</div>
 	</div>
 </header>
@@ -93,32 +93,113 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Constants for leasing subtypes</p>
+						<p>EncryptedMessage class</p>
 					</div>
+					<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<a href="core.attachment.html" class="tsd-signature-type">Attachment</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">AttachmentEncryptedMessage</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Enumeration members</h3>
+							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionleasingsubtype.html#ordinary" class="tsd-kind-icon">Ordinary</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="core.attachmentencryptedmessage.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.attachmentencryptedmessage.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.attachmentencryptedmessage.html#istext" class="tsd-kind-icon">is<wbr>Text</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.attachmentencryptedmessage.html#nonce" class="tsd-kind-icon">nonce</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="core.attachmentencryptedmessage.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Enumeration members</h2>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="ordinary" class="tsd-anchor"></a>
-					<h3>Ordinary</h3>
-					<div class="tsd-signature tsd-kind-icon">Ordinary<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Attachment<wbr>Encrypted<wbr>Message<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.attachmentencryptedmessage.html" class="tsd-signature-type">AttachmentEncryptedMessage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="core.attachment.html">Attachment</a>.<a href="core.attachment.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/9ccb67b/lib/packages/core/src/typings/attachment.ts#L44">core/src/typings/attachment.ts:44</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> data: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="core.attachmentencryptedmessage.html" class="tsd-signature-type">AttachmentEncryptedMessage</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="data" class="tsd-anchor"></a>
+					<h3>data</h3>
+					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/9ccb67b/lib/packages/core/src/constants/transactionLeasingSubtype.ts#L12">core/src/constants/transactionLeasingSubtype.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/9ccb67b/lib/packages/core/src/typings/attachment.ts#L42">core/src/typings/attachment.ts:42</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="istext" class="tsd-anchor"></a>
+					<h3>is<wbr>Text</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/9ccb67b/lib/packages/core/src/typings/attachment.ts#L44">core/src/typings/attachment.ts:44</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="nonce" class="tsd-anchor"></a>
+					<h3>nonce</h3>
+					<div class="tsd-signature tsd-kind-icon">nonce<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/9ccb67b/lib/packages/core/src/typings/attachment.ts#L43">core/src/typings/attachment.ts:43</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="type" class="tsd-anchor"></a>
+					<h3>type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="core.attachment.html">Attachment</a>.<a href="core.attachment.html#type">type</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/9ccb67b/lib/packages/core/src/typings/attachment.ts#L16">core/src/typings/attachment.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -148,11 +229,23 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-enum tsd-parent-kind-external-module">
-						<a href="core.transactionleasingsubtype.html" class="tsd-kind-icon">Transaction<wbr>Leasing<wbr>Subtype</a>
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+						<a href="core.attachmentencryptedmessage.html" class="tsd-kind-icon">Attachment<wbr>Encrypted<wbr>Message</a>
 						<ul>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionleasingsubtype.html#ordinary" class="tsd-kind-icon">Ordinary</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+								<a href="core.attachmentencryptedmessage.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.attachmentencryptedmessage.html#data" class="tsd-kind-icon">data</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.attachmentencryptedmessage.html#istext" class="tsd-kind-icon">is<wbr>Text</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.attachmentencryptedmessage.html#nonce" class="tsd-kind-icon">nonce</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="core.attachmentencryptedmessage.html#type" class="tsd-kind-icon">type</a>
 							</li>
 						</ul>
 					</li>

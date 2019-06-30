@@ -29,7 +29,11 @@ export interface TransactionApi {
     getTransaction: (transactionId: string) => Promise<Transaction>;
 
     /**
-     * @deprecated use [[sendAmount]] instead
+     * @deprecated
+     * <div class="deprecated">
+     *     Use [[sendAmount]] instead
+     * </div>
+     *
      * Sends burst to the blockchain
      *
      * The transaction will be broadcasted in two steps.
@@ -51,7 +55,11 @@ export interface TransactionApi {
 
 
     /**
-     * @deprecated Use [[sendSameAmountToMultipleRecipients]], [[sendAmountToMultipleRecipients]] instead
+     * @deprecated
+     * <div class="deprecated">
+     *     Use [[sendSameAmountToMultipleRecipients]], [[sendAmountToMultipleRecipients]] instead
+     * </div>
+     *
      * Sends a multi-out request to the blockchain
      *
      * The transaction will be broadcasted in two steps.

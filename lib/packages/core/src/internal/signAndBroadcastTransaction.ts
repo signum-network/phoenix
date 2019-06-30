@@ -18,6 +18,8 @@ export interface UnsignedTransaction {
 
 /**
  * Signs and broadcasts a transaction
+ *
+ * @hidden
  * @param unsignedTransaction The unsigned transaction context
  * @param service The service used for
  * @return The transaction Id
