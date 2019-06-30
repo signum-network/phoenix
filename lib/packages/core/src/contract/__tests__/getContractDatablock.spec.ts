@@ -1,4 +1,4 @@
-import {getContractDatablock} from './getContractDatablock';
+import {getContractDatablock} from '../getContractDatablock';
 
 describe('getContractDatablock', () => {
     it('returns correctly hex values at given positions', () => {

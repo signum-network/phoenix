@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { EncryptedMessage, Message, Account, Transaction } from '@burstjs/core';
+import { AttachmentEncryptedMessage, AttachmentMessage, Account, Transaction } from '@burstjs/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
 
-type TransactionDetailsCellValue = string | Message | EncryptedMessage | number;
+type TransactionDetailsCellValue = string | AttachmentMessage | AttachmentEncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
 
 @Component({
@@ -22,8 +22,8 @@ export class AccountDetailsComponent implements OnInit {
   accountQRCodeURL: Promise<string>;
   language: string;
 
-  constructor(private route: ActivatedRoute, 
-    private router: Router, 
+  constructor(private route: ActivatedRoute,
+    private router: Router,
     private accountService: AccountService,
     private storeService: StoreService) {
     router.events.subscribe((val) => {
@@ -35,7 +35,7 @@ export class AccountDetailsComponent implements OnInit {
 
   public getDetailsData(): TransactionDetailsCellValueMap[] {
     return Array.from(this.detailsData.entries());
-  } 
+  }
 
   ngOnInit() {
     this.loadAccountAndSetData();

@@ -20,7 +20,7 @@ export class AddAliasComponent implements OnInit {
   @ViewChild('fullHash', { static: false }) public fullHash: string;
   @ViewChild('pin', { static: false }) public pin: string;
   @ViewChild('uri', { static: false }) public uri: string;
-  @ViewChild('accountAliasURI', { static: false }) public accountAliasURI: string;
+  @ViewChild('accountAliasURI', { static: true }) public accountAliasURI: string;
   @Output() submit = new EventEmitter<any>();
 
   public feeNQT: string;

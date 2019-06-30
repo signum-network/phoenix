@@ -5,8 +5,7 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 import {BurstService} from '../../../service/burstService';
-import {BlockId, Transaction} from '../../..';
-import {TransactionId} from '../../../typings/transactionId';
+import {Transaction} from '../../../typings/transaction';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].

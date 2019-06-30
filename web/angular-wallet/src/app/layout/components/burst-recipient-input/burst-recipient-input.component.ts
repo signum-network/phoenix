@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef, OnChanges} from '@angular/core';
 import {convertAddressToNumericId} from '@burstjs/util';
 import {AccountService} from '../../../setup/account/account.service';
 import jsQR from 'jsqr';
@@ -24,7 +24,7 @@ export class Recipient {
 
   constructor(
     public addressRaw = '',
-    public amountNQT = '',
+    public amount = '',
     public addressRS = '',
     public status = RecipientValidationStatus.UNKNOWN,
     public type = RecipientType.UNKNOWN,
@@ -33,24 +33,24 @@ export class Recipient {
   }
 }
 
-
 @Component({
   selector: 'burst-recipient-input',
   templateUrl: './burst-recipient-input.component.html',
   styleUrls: ['./burst-recipient-input.component.scss']
 })
-export class BurstRecipientInputComponent implements OnInit {
+export class BurstRecipientInputComponent implements OnInit, OnChanges {
 
   fileId = `file-${nextId++}`;
 
-  recipient = new Recipient();
+  @Input() recipient: Recipient;
+
   @Output()
   recipientChange = new EventEmitter();
   @Output()
   qrCodeUpload = new EventEmitter();
 
-  @Input('appearance') appearance: string = '';
-  @Input('disabled') disabled: boolean = false;
+  @Input('appearance') appearance = '';
+  @Input('disabled') disabled = false;
 
   @ViewChild('file', { static: true }) file: ElementRef;
 
@@ -59,6 +59,12 @@ export class BurstRecipientInputComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.recipient = new Recipient();
+  }
+
+  ngOnChanges(): void {
+    this.applyRecipientType(this.recipient.addressRaw);
+    this.validateRecipient();
   }
 
   applyRecipientType(recipient: string): void {
@@ -148,9 +154,9 @@ export class BurstRecipientInputComponent implements OnInit {
         const img = new Image();
         img.src = window.URL.createObjectURL(file);
         img.onload = () => {
-            // reduce the image by 1/4 to make it more reliable 
-            const width = Math.round(img.naturalWidth / 4), 
-                  height = Math.round(img.naturalHeight / 4); 
+            // reduce the image by 1/4 to make it more reliable
+            const width = Math.round(img.naturalWidth / 4),
+                  height = Math.round(img.naturalHeight / 4);
 
             const reader = new FileReader();
             reader.onload = (e: ProgressEvent): void => {

@@ -6,7 +6,7 @@
 
 import {Converter} from './converter';
 import {decryptData} from './decryptData';
-import {EncryptedMessage} from '../typings/encryptedMessage';
+import {EncryptedMessage} from './typings/encryptedMessage';
 
 /**
  * Decrypts an encrypted Message

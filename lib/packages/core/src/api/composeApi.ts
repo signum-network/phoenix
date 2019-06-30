@@ -38,6 +38,7 @@ import {getAliasById} from './factories/alias/getAliasById';
 import {getAliasByName} from './factories/alias/getAliasByName';
 import {getContractsByAccount} from './factories/contract/getContractsByAccount';
 import {getContract} from './factories/contract/getContract';
+import {sendAmount, sendAmountToMultipleRecipients, sendSameAmountToMultipleRecipients} from './factories/transaction';
 
 
 /**
@@ -96,6 +97,9 @@ export function composeApi(settings: ApiSettings): Api {
             getTransaction,
             sendMoney,
             sendMoneyMultiOut,
+            sendAmount,
+            sendAmountToMultipleRecipients,
+            sendSameAmountToMultipleRecipients,
         })
         .withMessageApi({
             sendTextMessage,

@@ -6,7 +6,7 @@
 
 import {Converter} from './converter';
 import {encryptData} from './encryptData';
-import {EncryptedMessage} from '../typings/encryptedMessage';
+import {EncryptedMessage} from './typings/encryptedMessage';
 
 /**
  * Encrypts a message (UTF-8 compatible)

@@ -622,7 +622,7 @@
   "no_contacts_yet": "No contacts yet, <a href='#'' data-toggle='modal' data-target='#add_contact_modal'>add one.</a>",
   "no_do_not_cancel": "No, Do Not Cancel",
   "no_longer_for_sale": "No longer for sale.",
-  "no_messages_available": "No messages available, <a href='#'' data-toggle='modal' data-target='#send_message_modal'>send one</a>.",
+  "no_messages_available": "No messages available.",
   "no_name_set": "No Name Set",
   "no_open_buy_orders": "No open buy orders.",
   "no_open_sell_orders": "No open sell orders.",

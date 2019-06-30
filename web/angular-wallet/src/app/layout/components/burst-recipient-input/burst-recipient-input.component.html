@@ -20,6 +20,6 @@
       </mat-icon>
     </div>
     <input #file type="file" accept="image/*" (change)="parseQR()" id="{{fileId}}" class="inputfile" capture="camera">
-    <label for="{{fileId}}" class="camera-icon"><mat-icon>camera_alt</mat-icon></label>
+    <label for="{{fileId}}" class="camera-icon" *ngIf="!disabled"><mat-icon>camera_alt</mat-icon></label>
   </div>
 </mat-form-field>

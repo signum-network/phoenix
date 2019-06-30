@@ -2,7 +2,7 @@ import {HttpMockBuilder, Http} from '@burstjs/http';
 import {BurstService} from '../../service/burstService';
 import {generateSignedTransactionBytes, generateSignature, encryptMessage} from '@burstjs/crypto';
 import {verifySignature} from '@burstjs/crypto';
-import {constructAttachment} from '../../attachment/constructAttachment';
+import {constructAttachment} from '../../internal/constructAttachment';
 import {sendTextMessage} from '../factories/message/sendTextMessage';
 import {broadcastTransaction} from '../factories/transaction/broadcastTransaction';
 import {sendEncryptedTextMessage} from '../factories/message/sendEncryptedTextMessage';
