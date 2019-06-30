@@ -26,12 +26,15 @@ export const sendMoney = (service: BurstService):
     (transaction: Transaction,
      senderPublicKey: string,
      senderPrivateKey: string,
-     recipientAddress: string) => Promise<TransactionId | Error> =>
+     recipientAddress: string,
+     signFunc?: (unsignedBytes: string) => string,
+    ) => Promise<TransactionId | Error> =>
     async (
         transaction: Transaction,
         senderPublicKey: string,
         senderPrivateKey: string,
         recipientAddress: string,
+        signFunc: (unsignedBytes: string) => string = null,
     ): Promise<TransactionId | Error> => {
 
         let parameters = {

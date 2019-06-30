@@ -22,6 +22,7 @@ export const setAccountInfo = (service: BurstService): (
     senderPublicKey: string,
     senderPrivateKey: string,
     deadline: number,
+    signFunc?: (unsignedBytes: string) => string,
 ) => Promise<TransactionId> =>
     async (
         name: string,
@@ -30,6 +31,7 @@ export const setAccountInfo = (service: BurstService): (
         senderPublicKey: string,
         senderPrivateKey: string,
         deadline: number = DefaultDeadline,
+        signFunc: (unsignedBytes: string) => string = null,
     ): Promise<TransactionId> => {
 
         const parameters = {

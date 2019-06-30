@@ -25,13 +25,16 @@ export const sendMoneyMultiOut = (service: BurstService):
      senderPublicKey: string,
      senderPrivateKey: string,
      recipients: string,
-     sameAmount: boolean) => Promise<TransactionId | Error> =>
+     sameAmount: boolean,
+     signFunc?: (unsignedBytes: string) => string,
+    ) => Promise<TransactionId | Error> =>
     async (
         transaction: Transaction,
         senderPublicKey: string,
         senderPrivateKey: string,
         recipients: string,
-        sameAmount: boolean
+        sameAmount: boolean,
+        signFunc: (unsignedBytes: string) => string = null,
     ): Promise<TransactionId | Error> => {
 
         const parameters = {

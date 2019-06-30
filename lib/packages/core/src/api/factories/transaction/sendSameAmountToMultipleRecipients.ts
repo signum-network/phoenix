@@ -22,7 +22,7 @@ export const sendSameAmountToMultipleRecipients = (service: BurstService):
      senderPublicKey: string,
      senderPrivateKey: string,
      deadline?: number,
-     signFunc?: (unsignedBytes: string) => string
+     signFunc?: (unsignedBytes: string) => string,
     ) => Promise<TransactionId> =>
     async (
         amountPlanck: string,
@@ -31,7 +31,7 @@ export const sendSameAmountToMultipleRecipients = (service: BurstService):
         senderPublicKey: string,
         senderPrivateKey: string,
         deadline = DefaultDeadline,
-        signFunc: (unsignedBytes: string) => string = null
+        signFunc: (unsignedBytes: string) => string = null,
     ): Promise<TransactionId> => {
 
         if (recipientIds.length === 0) {
