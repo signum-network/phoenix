@@ -29,7 +29,7 @@ interface SendMoneyMultiOutRequest {
 }
 
 interface SendBurstMultipleSameRequest {
-  amount: string;
+  amountNQT: string;
   fee: string;
   deadline?: number;
   keys: Keys;
@@ -95,9 +95,9 @@ export class TransactionService {
   }
 
   public async sendSameBurstToMultipleRecipients(request: SendBurstMultipleSameRequest): Promise<TransactionId> {
-    const {amount, fee, keys, pin, recipientIds} = request;
+    const {amountNQT, fee, keys, pin, recipientIds} = request;
     return this.transactionApi.sendSameAmountToMultipleRecipients(
-      amount,
+      amountNQT,
       fee,
       recipientIds,
       keys.publicKey,

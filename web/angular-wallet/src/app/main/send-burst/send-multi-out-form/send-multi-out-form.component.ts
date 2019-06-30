@@ -90,7 +90,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     const request = {
       recipientIds: this.recipients.map(r => convertAddressToNumericId(r.addressRS)),
       fee: convertNumberToNQTString(parseFloat(this.fee)),
-      amount: convertNumberToNQTString(parseFloat(this.amount)),
+      amountNQT: convertNumberToNQTString(parseFloat(this.amount)),
       pin: this.pin,
       keys: this.account.keys,
     };
