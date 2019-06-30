@@ -52,6 +52,7 @@ export interface AliasApi {
         senderPublicKey: string,
         senderPrivateKey: string,
         deadline?: number,
+        signFunc?: (unsignedBytes: string) => string,
     ) => Promise<TransactionId>;
 
 }

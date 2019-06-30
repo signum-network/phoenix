@@ -24,6 +24,7 @@ export interface UnsignedTransaction {
  * @param service The service used for
  * @param signFunc A custom signing function. Takes unsigned transaction bytes as a
  * hex string and returns the signed transaction bytes as a hex string. May be null.
+ * Intended for hardware wallets as they perform signing independently.
  * @return The transaction Id
  */
 export function signAndBroadcastTransaction(unsignedTransaction: UnsignedTransaction, service: BurstService,

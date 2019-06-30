@@ -50,7 +50,8 @@ export interface TransactionApi {
         transaction: Transaction,
         senderPublicKey: string,
         senderPrivateKey: string,
-        recipientAddress: string
+        recipientAddress: string,
+        signFunc?: (unsignedBytes: string) => string,
     ) => Promise<TransactionId | Error>;
 
 
@@ -78,7 +79,8 @@ export interface TransactionApi {
         senderPublicKey: string,
         senderPrivateKey: string,
         recipients: string,
-        sameAmount: boolean
+        sameAmount: boolean,
+        signFunc?: (unsignedBytes: string) => string,
     ) => Promise<TransactionId>;
 
 
@@ -98,6 +100,7 @@ export interface TransactionApi {
         recipientIds: string[],
         senderPublicKey: string,
         senderPrivateKey: string,
+        signFunc?: (unsignedBytes: string) => string,
     ) => Promise<TransactionId>;
 
     /**
@@ -118,6 +121,7 @@ export interface TransactionApi {
         feePlanck: string,
         senderPublicKey: string,
         senderPrivateKey: string,
+        signFunc?: (unsignedBytes: string) => string,
     ) => Promise<TransactionId>;
 
 
@@ -142,5 +146,6 @@ export interface TransactionApi {
         senderPublicKey: string,
         senderPrivateKey: string,
         attachment?: Attachment,
+        signFunc?: (unsignedBytes: string) => string,
     ) => Promise<TransactionId>;
 }
