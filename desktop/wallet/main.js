@@ -1,5 +1,5 @@
 const path = require('path');
-const {app, BrowserWindow, Menu, shell, ipcMain} = require('electron');
+const {app, BrowserWindow, Menu, shell, ipcMain, protocol} = require('electron');
 const {download} = require('electron-dl');
 
 const {version, update} = require('./package.json');
@@ -210,9 +210,30 @@ function onReady() {
     });
   });
   ipcMain.on('new-version-asset-selected', downloadUpdate);
+
+  app.setAsDefaultProtocolClient('phoenix');  
+
+  // protocol.registerFileProtocol('phoenix', (request, callback) => {
+  //   console.log(request);
+  //   const url = request.url.substr(7)
+  //   callback({ path: path.normalize(`${__dirname}/${url}`) })
+  // }, (error) => {
+  //   if (error) console.error('Failed to register protocol')
+  // })
+  // protocol.registerSchemesAsPrivileged([
+  //   { scheme: 'phoenix', privileges: { bypassCSP: true } }
+  // ])
 }
 
 app.on('ready', onReady);
+
+let link;
+// This will catch clicks on links such as <a href="foobar://abc=1">open in foobar</a>
+app.on('open-url', function (event, data) {
+  event.preventDefault();
+  win.webContents.send('deep-link-clicked', data);
+  link = data;
+});
 
 // TODO: need this for other OSes
 if (isMacOS()) {

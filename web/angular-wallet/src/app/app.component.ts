@@ -115,6 +115,10 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         this.i18nService.getTranslation('update_up_to_date')
       );
     });
+
+    this.appService.onIpcMessage('deep-link-clicked', (url) => {
+      console.log(url);
+    });
   }
 
   private async checkBlockchainStatus(): Promise<void> {
