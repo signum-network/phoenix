@@ -37,5 +37,6 @@ export class LedgerService {
     } else {
       // TODO
     }
+    return null;
   }
 }
