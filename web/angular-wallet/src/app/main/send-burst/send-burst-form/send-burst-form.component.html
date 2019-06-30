@@ -16,7 +16,7 @@
       </div>
     </mat-form-field>
 
-    <mat-form-field *ngIf="fee">
+    <mat-form-field>
       <input matInput [(ngModel)]="fee" name="fee" placeholder="{{ 'fee' | i18n }}" [disabled]="immutable">
     </mat-form-field>
   </div>

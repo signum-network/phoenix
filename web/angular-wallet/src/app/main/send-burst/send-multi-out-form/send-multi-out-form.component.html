@@ -3,7 +3,7 @@
   <mat-checkbox labelPosition="before" (click)="toggleSameAmount()" class="same-amount">{{ "same_out" | i18n }}?</mat-checkbox>
 
   <mat-form-field *ngIf="sameAmount">
-    <input matInput [(ngModel)]="amountNQT" name="amountNQT" placeholder="{{ 'amount' | i18n }}">
+    <input matInput [(ngModel)]="amount" name="amount" placeholder="{{ 'amount' | i18n }}">
   </mat-form-field>
 
 
@@ -12,7 +12,7 @@
     <div class="recipients-item">
       <burst-recipient-input (recipientChange)="onRecipientChange($event, i)"></burst-recipient-input>
       <mat-form-field *ngIf="!sameAmount">
-        <input matInput [(ngModel)]="recipients[i].amountNQT" name="amountNQT{{i}}"
+        <input matInput [(ngModel)]="recipients[i].amount" name="amount{{i}}"
                placeholder="{{ 'amount' | i18n }}">
       </mat-form-field>
 <!--
@@ -26,10 +26,10 @@
   <button mat-button type="button" class="add-recipient" (click)="addRecipient($event)">{{ "add_recipient" | i18n }}</button>
 
   <mat-form-field>
-    <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
+    <input matInput [(ngModel)]="fee" name="fee" placeholder="{{ 'fee' | i18n }}">
   </mat-form-field>
 
-  <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
+  <burst-fee-selector [fees]="fees" [(feeNQT)]="fee"></burst-fee-selector>
 
   <div *ngIf="advanced">
     <mat-form-field>

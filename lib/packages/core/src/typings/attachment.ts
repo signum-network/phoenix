@@ -5,31 +5,27 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-/*
+
+/**
 * Attachment class
 *
 * The attachment class is used to appended to transaction where appropriate.
 * It is a super class for Message and EncryptedMessage.
 */
-
-// TODO: review attachment, as this applies only for sending messages
 export class Attachment {
-    public type?: string;
-
-    constructor(type: string) {
-        this.type = type;
-    }
+    constructor(public type: string) {}
 }
 
-/*
+/**
 * Message class
 *
 * The Message class is used to model a plain message attached to a transaction.
 */
-export class Message extends Attachment {
+export class AttachmentMessage extends Attachment {
     public messageIsText: boolean;
     public message: string;
 
+    // TODO: make constructor attrs as single args to be more expressive
     constructor(data: any = {}) {
         super('message');
         this.messageIsText = data.messageIsText || false;
@@ -37,16 +33,17 @@ export class Message extends Attachment {
     }
 }
 
-/*
+/**
 * EncryptedMessage class
 *
 * The EncryptedMessage class is a model for a encrypted message attached to a transaction.
 */
-export class EncryptedMessage extends Attachment {
+export class AttachmentEncryptedMessage extends Attachment {
     public data: string;
     public nonce: string;
     public isText: boolean;
 
+    // TODO: make constructor attrs as single args to be more expressive
     constructor(data: any = {}) {
         super('encrypted_message');
         this.data = data.data || undefined;

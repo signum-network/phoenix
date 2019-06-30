@@ -28,7 +28,7 @@ import {
 import {NotifierService} from 'angular-notifier';
 import {UtilService} from 'app/util.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {decryptAES, hashSHA256, decryptMessage} from '@burstjs/crypto/out/src';
+import {decryptAES, hashSHA256, decryptMessage} from '@burstjs/crypto';
 
 @Component({
   selector: 'message-view',

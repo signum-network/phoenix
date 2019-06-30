@@ -1,10 +1,29 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-# unreleased
+# unreleased (will be 0.3.0)
+
+___
+__Breaking Changes__
+
+- removed `assertAttachmentVersion`
+    - use `isAttachmentVersion` instead
+- deprecated `sendMoneyMultiOut`
+    - will be removed in next major version (0.4)
+    - use `sendSameAmountToMultipleRecipients`
+    - use `sendAmountToMultipleRecipients`
+- deprecated `sendMoney`
+    - will be removed in next major version (0.4)
+    - use `sendAmount`
+___
 
 - added `isAttachmentVersion`
 - added `getAttachmentVersion`
+- splitted `sendMoneyMultiOut` into 
+    - `sendSameAmountToMultipleRecipients`
+    - `sendAmountToMultipleRecipients`
+- added `sendAmount`
+- minor refactoring leading to slightly smaller code
 
 ## 0.2.1
 

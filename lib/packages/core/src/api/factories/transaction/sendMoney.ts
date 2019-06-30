@@ -3,18 +3,17 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import { BurstService } from '../../../service/burstService';
-import { TransactionId } from '../../../typings/transactionId';
-import { TransactionResponse } from '../../../typings/transactionResponse';
-import { Transaction } from '../../../typings/transaction';
-import { generateSignature, decryptAES, Keys } from '@burstjs/crypto';
-import { verifySignature } from '@burstjs/crypto';
-import { generateSignedTransactionBytes } from '@burstjs/crypto';
-import { convertNumberToNQTString, convertNQTStringToNumber } from '@burstjs/util';
-import { constructAttachment } from '../../../attachment/constructAttachment';
+import {generateSignature, verifySignature, generateSignedTransactionBytes} from '@burstjs/crypto';
+import {convertNumberToNQTString} from '@burstjs/util';
+import {BurstService} from '../../../service/burstService';
+import {TransactionId} from '../../../typings/transactionId';
+import {TransactionResponse} from '../../../typings/transactionResponse';
+import {Transaction} from '../../../typings/transaction';
+import {constructAttachment} from '../../../internal/constructAttachment';
 import {broadcastTransaction} from './broadcastTransaction';
 
 /**
+ * @deprecated use [[TransactionApi.sendAmount]]
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
  * See details at [[TransactionApi.sendMoney]]

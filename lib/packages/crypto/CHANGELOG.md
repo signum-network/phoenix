@@ -1,5 +1,8 @@
 # Change Log
 All notable changes to this project will be documented in this file.
+## unreleased
+- Moved typings into src folder
+
 
 ## 0.2.0
 - cleaned up internal converter functions
