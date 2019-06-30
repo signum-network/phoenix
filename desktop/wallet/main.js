@@ -30,7 +30,8 @@ async function getPublicKey(event, arg) {
   try {
     console.log('WOO!');
     const accountIndex = arg;
-    const transport = await TransportNodeHid.create();
+    console.log(TransportNodeHid);
+    const transport = await TransportNodeHid.default.create();
 
     console.log('accountIndex', accountIndex); // TODO
 
