@@ -5,10 +5,13 @@ import { AttachmentEncryptedMessage, AttachmentMessage } from '../typings/attach
 import { Transaction } from '../typings/transaction';
 
 /**
- * @deprecated Remove this when removing sendMoney
+ * @deprecated
+ * <div class="deprecated">
+ *     Will be removed with [[TransactionApi.sendMoney]]
+ * </div>
  *
  * Constructs an Attachment
- *
+ * @hidden
  * @param transaction The transaction with the attachment
  * @param params Some HttpParams
  * @return HttpParams

@@ -13,10 +13,14 @@ import {constructAttachment} from '../../../internal/constructAttachment';
 import {broadcastTransaction} from './broadcastTransaction';
 
 /**
- * @deprecated use [[TransactionApi.sendAmount]]
+ * <div class="deprecated">
+ *     Use [[TransactionApi.sendAmount]] instead
+ * </div>
+ *
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
  * See details at [[TransactionApi.sendMoney]]
+ *
  */
 export const sendMoney = (service: BurstService):
     (transaction: Transaction,

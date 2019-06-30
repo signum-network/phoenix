@@ -4,9 +4,9 @@
 import {Attachment, AttachmentEncryptedMessage, AttachmentMessage} from '../typings/attachment';
 
 /**
- *
  * Creates BRS Http send parameters for a transaction from attachment data
  *
+ * @hidden
  * @param attachment The attachment
  * @param params Any object
  * @return HttpParams
