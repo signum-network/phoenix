@@ -7,7 +7,8 @@
 
 <button *ngIf="newVersionAvailable" mat-icon-button class="warn mat-elevation-z2 announcement-hint"
         (click)="onClickedNewVersion()">
-  <mat-icon>announcement</mat-icon>
+  <mat-icon *ngIf="!isDownloadingUpdate" class="newupdate-icon" matTooltip="{{'update_available' | i18n}}">announcement</mat-icon>
+  <mat-icon *ngIf="isDownloadingUpdate" class="downloading-icon" matTooltip="{{'downloading_update' | i18n}}">autorenew</mat-icon>
 </button>
 
 
