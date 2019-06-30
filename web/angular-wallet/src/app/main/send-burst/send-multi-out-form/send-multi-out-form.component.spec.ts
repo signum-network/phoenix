@@ -144,7 +144,7 @@ describe('SendMultiOutFormComponent', () => {
       component.sameAmount = true;
       // @ts-ignore
       component.recipients = [{addressRaw: '1'}, {addressRaw: '2'}];
-      component.amountNQT = '1000';
+      component.amount = '1000';
       component.fee = '10';
       expect(component.getTotal()).toBe(2010);
     });
