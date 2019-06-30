@@ -24,7 +24,7 @@ export const sendAmount = (service: BurstService):
      senderPrivateKey: string,
      attachment?: Attachment,
      deadline?: number,
-     signFunc?: (unsignedBytes: string) => string,
+     signFunc?: (unsignedBytes: string) => Promise<string>,
     ) => Promise<TransactionId> =>
     async (
         amountPlanck: string,
@@ -34,7 +34,7 @@ export const sendAmount = (service: BurstService):
         senderPrivateKey: string,
         attachment: Attachment = null,
         deadline = DefaultDeadline,
-        signFunc: (unsignedBytes: string) => string = null,
+        signFunc: (unsignedBytes: string) => Promise<string> = null,
     ): Promise<TransactionId> => {
 
         let parameters = {

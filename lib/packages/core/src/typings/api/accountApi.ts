@@ -127,7 +127,7 @@ export interface AccountApi {
         senderPublicKey: string,
         senderPrivateKey: string,
         deadline?: number,
-        signFunc?: (unsignedBytes: string) => string,
+        signFunc?: (unsignedBytes: string) => Promise<string>,
     ) => Promise<TransactionId>;
 
 
@@ -154,7 +154,7 @@ export interface AccountApi {
         senderPublicKey: string,
         senderPrivateKey: string,
         deadline?: number,
-        signFunc?: (unsignedBytes: string) => string,
+        signFunc?: (unsignedBytes: string) => Promise<string>,
     ) => Promise<TransactionId>;
 
     /**
@@ -178,6 +178,6 @@ export interface AccountApi {
         senderPublicKey: string,
         senderPrivateKey: string,
         deadline?: number,
-        signFunc?: (unsignedBytes: string) => string,
+        signFunc?: (unsignedBytes: string) => Promise<string>,
     ) => Promise<TransactionId>;
 }

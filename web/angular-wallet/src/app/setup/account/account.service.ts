@@ -76,6 +76,20 @@ export class AccountService {
     });
   }
 
+  public async getCustomSignFunc(): Promise<(unsignedBytes: string) => Promise<string>> {
+    console.log('Here we go...');
+    const account = await this.getCurrentAccount();
+    if (account.type === 'ledger') {
+      console.log('We\'re a ledger!', account);
+      return async unsignedBytes => {
+        console.log('WOOOO!');
+        return await this.ledgerService.sign(account.accountIndex, unsignedBytes);
+      };
+    } else {
+      return null;
+    }
+  }
+
   public setCurrentAccount(account: Account): void {
     this.currentAccount.next(account);
   }
@@ -108,9 +122,13 @@ export class AccountService {
     return this.api.account.getAliases(id);
   }
 
-  public setAlias({ aliasName, aliasURI, feeNQT, deadline, pin, keys }: SetAliasRequest): Promise<TransactionId> {
-    const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
-    return this.api.account.setAlias(aliasName, aliasURI, feeNQT, keys.publicKey, senderPrivateKey, deadline);
+  public async setAlias({ aliasName, aliasURI, feeNQT, deadline, pin, keys }: SetAliasRequest): Promise<TransactionId> {
+    const signFunc = await this.getCustomSignFunc();
+    let senderPrivateKey: string;
+    if (signFunc !== null) {
+      senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    }
+    return await this.api.account.setAlias(aliasName, aliasURI, feeNQT, keys.publicKey, senderPrivateKey, deadline, signFunc);
   }
 
   public getAccountBalance(id: string): Promise<Balance> {
@@ -129,14 +147,22 @@ export class AccountService {
     return Promise.resolve(this.currentAccount.getValue());
   }
 
-  public setAccountInfo({ name, description, feeNQT, deadline, pin, keys }: SetAccountInfoRequest): Promise<TransactionId> {
-    const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
-    return this.api.account.setAccountInfo(name, description, feeNQT, keys.publicKey, senderPrivateKey, deadline);
+  public async setAccountInfo({ name, description, feeNQT, deadline, pin, keys }: SetAccountInfoRequest): Promise<TransactionId> {
+    const signFunc = await this.getCustomSignFunc();
+    let senderPrivateKey: string;
+    if (signFunc !== null) {
+      senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    }
+    return await this.api.account.setAccountInfo(name, description, feeNQT, keys.publicKey, senderPrivateKey, deadline, signFunc);
   }
 
-  public setRewardRecipient({ recipient, feeNQT, deadline, pin, keys }: SetRewardRecipientRequest): Promise<TransactionId> {
-    const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
-    return this.api.account.setRewardRecipient(recipient, feeNQT, keys.publicKey, senderPrivateKey, deadline);
+  public async setRewardRecipient({ recipient, feeNQT, deadline, pin, keys }: SetRewardRecipientRequest): Promise<TransactionId> {
+    const signFunc = await this.getCustomSignFunc();
+    let senderPrivateKey: string;
+    if (signFunc !== null) {
+      senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    }
+    return await this.api.account.setRewardRecipient(recipient, feeNQT, keys.publicKey, senderPrivateKey, deadline, signFunc);
   }
 
   /*
@@ -182,6 +208,7 @@ export class AccountService {
         account.type = 'ledger';
         account.accountRS = convertNumericIdToAddress(id);
         account.account = id;
+        account.accountIndex = accountIndex;
         await this.selectAccount(account);
         const savedAccount = await this.synchronizeAccount(account);
         resolve(savedAccount);
@@ -233,8 +260,8 @@ export class AccountService {
   public selectAccount(account: Account): Promise<Account> {
     return new Promise((resolve, reject) => {
       this.storeService.selectAccount(account)
-        .then(account => {
-          this.synchronizeAccount(account);
+        .then(selectedAccount => {
+          this.synchronizeAccount(selectedAccount);
         });
       this.setCurrentAccount(account);
       resolve(account);
@@ -264,7 +291,7 @@ export class AccountService {
   public sendNewTransactionNotification(transaction: Transaction): void {
     this.transactionsSeenInNotifications[transaction.transaction] = true;
     const incoming = transaction.recipientRS === this.currentAccount.value.accountRS;
-    const totalAmountBurst = convertNQTStringToNumber(transaction.amountNQT) + convertNQTStringToNumber(transaction.feeNQT)
+    const totalAmountBurst = convertNQTStringToNumber(transaction.amountNQT) + convertNQTStringToNumber(transaction.feeNQT);
 
     // @ts-ignore
     return window.Notification && new window.Notification(incoming ?

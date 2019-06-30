@@ -22,7 +22,7 @@ export const sendTextMessage = (service: BurstService):
      senderPrivateKey: string,
      deadline?: number,
      fee?: number,
-     signFunc?: (unsignedBytes: string) => string,
+     signFunc?: (unsignedBytes: string) => Promise<string>,
     ) => Promise<TransactionId> =>
     async (
         message: string,
@@ -31,7 +31,7 @@ export const sendTextMessage = (service: BurstService):
         senderPrivateKey: string,
         deadline: number = DefaultDeadline,
         fee: number,
-        signFunc: (unsignedBytes: string) => string = null,
+        signFunc: (unsignedBytes: string) => Promise<string> = null,
     ): Promise<TransactionId> => {
 
         const parameters = {

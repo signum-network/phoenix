@@ -30,7 +30,7 @@ export interface MessageApi {
         senderPrivateKey: string,
         deadline?: number,
         fee?: number,
-        signFunc?: (unsignedBytes: string) => string,
+        signFunc?: (unsignedBytes: string) => Promise<string>,
     ) => Promise<TransactionId>;
 
 
@@ -52,6 +52,6 @@ export interface MessageApi {
         senderKeys: Keys,
         deadline?: number,
         fee?: number,
-        signFunc?: (unsignedBytes: string) => string,
+        signFunc?: (unsignedBytes: string) => Promise<string>,
     ) => Promise<TransactionId>;
 }

@@ -28,15 +28,16 @@ export interface UnsignedTransaction {
  * @return The transaction Id
  */
 export function signAndBroadcastTransaction(unsignedTransaction: UnsignedTransaction, service: BurstService,
-                                            signFunc: (unsignedBytes: string) => string = null): Promise<TransactionId> {
+                                            signFunc: (unsignedBytes: string) => Promise<string> = null): Promise<TransactionId> {
+    return new Promise(async (resolve, reject) => {
+        const {unsignedHexMessage, senderPrivateKey, senderPublicKey} = unsignedTransaction;
 
-    const {unsignedHexMessage, senderPrivateKey, senderPublicKey} = unsignedTransaction;
+        const signature = signFunc == null ? generateSignature(unsignedHexMessage, senderPrivateKey) : await signFunc(unsignedHexMessage);
+        if (!verifySignature(signature, unsignedHexMessage, senderPublicKey)) {
+            reject('The signed message could not be verified! Transaction not broadcasted!');
+        }
 
-    const signature = signFunc == null ? generateSignature(unsignedHexMessage, senderPrivateKey) : signFunc(unsignedHexMessage);
-    if (!verifySignature(signature, unsignedHexMessage, senderPublicKey)) {
-        throw new Error('The signed message could not be verified! Transaction not broadcasted!');
-    }
-
-    const signedMessage = generateSignedTransactionBytes(unsignedHexMessage, signature);
-    return broadcastTransaction(service)(signedMessage);
+        const signedMessage = generateSignedTransactionBytes(unsignedHexMessage, signature);
+        resolve(await broadcastTransaction(service)(signedMessage));
+    });
 }

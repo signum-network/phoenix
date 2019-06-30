@@ -14,6 +14,7 @@ import {AccountService} from 'app/setup/account/account.service';
 import {convertAddressToNumericId} from '@burstjs/util/out';
 import {StoreService} from 'app/store/store.service';
 import {Settings} from 'app/settings';
+import {LedgerService} from '../../ledger/ledger.service';
 
 interface SendMoneyMultiOutRequest {
   transaction: {
@@ -64,7 +65,7 @@ export class TransactionService {
 
   public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
-  constructor(apiService: ApiService, private accountService: AccountService, private storeService: StoreService) {
+  constructor(apiService: ApiService, private accountService: AccountService, private storeService: StoreService, private ledgerService: LedgerService) {
     this.transactionApi = apiService.api.transaction;
     this.storeService.settings.subscribe((settings: Settings) => {
       this.transactionApi = apiService.api.transaction;
@@ -80,8 +81,12 @@ export class TransactionService {
   }
 
   public async sendMoneyMultiOut({transaction, pin, keys, sameAmount}: SendMoneyMultiOutRequest): Promise<TransactionId> {
-    const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
-    return this.transactionApi.sendMoneyMultiOut(transaction, keys.publicKey, senderPrivateKey, transaction.recipients, sameAmount);
+    const signFunc = await this.accountService.getCustomSignFunc();
+    let senderPrivateKey: string;
+    if (signFunc !== null) {
+      senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    }
+    return this.transactionApi.sendMoneyMultiOut(transaction, keys.publicKey, senderPrivateKey, transaction.recipients, sameAmount, signFunc);
   }
 
   public async sendBurstToMultipleRecipients(request: SendBurstMultipleRequest): Promise<TransactionId> {
@@ -90,7 +95,8 @@ export class TransactionService {
       recipientAmounts,
       fee,
       keys.publicKey,
-      this.getSendersPrivateKey(pin, keys)
+      this.getSendersPrivateKey(pin, keys),
+      await this.accountService.getCustomSignFunc()
     );
   }
 
@@ -101,7 +107,8 @@ export class TransactionService {
       fee,
       recipientIds,
       keys.publicKey,
-      this.getSendersPrivateKey(pin, keys)
+      this.getSendersPrivateKey(pin, keys),
+      await this.accountService.getCustomSignFunc()
     );
   }
 
@@ -130,7 +137,7 @@ export class TransactionService {
       recipientId,
       keys.publicKey,
       this.getSendersPrivateKey(pin, keys),
-      attachment);
+      attachment,
+      await this.accountService.getCustomSignFunc());
   }
-
 }

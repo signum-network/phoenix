@@ -30,6 +30,7 @@ export class Account {
     public selected: boolean;
     public transactions: Transaction[];
     public type: string;
+    public accountIndex: number; // For Hierarchical Deterministic wallets (including hardware wallets), the account index
     public unconfirmedAssetBalances: UnconfirmedAssetBalance[];
     public unconfirmedBalanceNQT: string;
     public confirmed: boolean;
@@ -57,6 +58,7 @@ export class Account {
             this.transactions = [];
         }
         this.type = data.type || 'offline';
+        this.accountIndex = 0;
         this.unconfirmedAssetBalances = data.unconfirmedAssetBalances || undefined;
         this.unconfirmedBalanceNQT = data.unconfirmedBalanceNQT || 0;
         this.confirmed = data.confirmed || false;

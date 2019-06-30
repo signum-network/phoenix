@@ -29,7 +29,7 @@ export class UtilService {
 
   // TODO: extract extensive translation logic
   public translateServerError(error): string {
-
+    console.log(error);
     let response = error;
 
     if (error instanceof HttpError) {
