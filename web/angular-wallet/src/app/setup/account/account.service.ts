@@ -175,6 +175,7 @@ export class AccountService {
     return new Promise(async (resolve, reject) => {
       const account: Account = new Account();
       const publicKey = await this.ledgerService.getPublicKey(accountIndex);
+      console.log('we got public key!', publicKey); // TODO
       const address = null;
       const accountId = convertAddressToNumericId(address);
       const existingAccount = await this.storeService.findAccount(accountId);

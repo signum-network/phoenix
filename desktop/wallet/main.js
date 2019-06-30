@@ -26,18 +26,26 @@ function handleLatestUpdate(newVersion) {
   win.webContents.send('new-version', newVersion);
 }
 
-async function getPublicKey() {
-  await TransportNodeHid.create();
+async function getPublicKey(event, arg) {
+  try {
+    console.log('WOO!');
+    const accountIndex = arg;
+    const transport = await TransportNodeHid.create();
 
-  // todo: move this to a shared fn
-  let accountIndexHex = accountIndex.toString(16);
-  if (accountIndexHex.length === 1) {
-    accountIndexHex = '0' + accountIndexHex;
+    console.log('accountIndex', accountIndex); // TODO
+
+    // todo: move this to a shared fn
+    let accountIndexHex = accountIndex.toString(16);
+    if (accountIndexHex.length === 1) {
+      accountIndexHex = '0' + accountIndexHex;
+    }
+    console.log('accountIndexHex', accountIndexHex); // TODO
+    const publicKey = await transport.exchange(Buffer.from('800400' + accountIndexHex + '00', 'hex'));
+    console.log('publicKey', publicKey); // TODO
+    event.returnValue = publicKey.toString('hex');
+  } catch (e) {
+    event.returnValue = "Error: " + e.toString();
   }
-  console.log('accountIndexHex', accountIndexHex); // TODO
-  const publicKey = await transport.exchange(Buffer.from('800400' + accountIndexHex + '00', 'hex'));
-  console.log('publicKey', publicKey); // TODO
-  return win.webContents.send('public-key-received', publicKey);
 }
 
 function getBrowserWindowConfig() {
@@ -228,7 +236,7 @@ function onReady() {
     });
   });
   ipcMain.on('new-version-asset-selected', downloadUpdate);
-  ipcMain.on('get-public-key', getPublicKey);
+  ipcMain.on('ledger-get-public-key', getPublicKey);
 }
 
 app.on('ready', onReady);

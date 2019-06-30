@@ -63,10 +63,6 @@
                                 {
                                     "replace": "src/environments/environment.ts",
                                     "with": "src/environments/environment.prod.ts"
-                                },
-                                {
-                                    "replace": "src/app/ledger/ledger.service.ts",
-                                    "with": "src/app/ledger/ledger.service.desktop.ts"
                                 }
                             ],
                             "optimization": true,

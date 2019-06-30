@@ -46,4 +46,11 @@ export class AppService {
     }
     this.electronService.ipcRenderer.send(eventName, payload);
   }
+
+  public sendIpcMessageSync(eventName: string, payload: any): any {
+    if (!this.electronService.isElectronApp) {
+      return;
+    }
+    return this.electronService.ipcRenderer.sendSync(eventName, payload);
+  }
 }
