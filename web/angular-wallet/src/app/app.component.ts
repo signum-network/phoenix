@@ -20,6 +20,7 @@ import {version} from '../../package.json';
 import {AppService} from './app.service';
 import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
+import { Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET } from '@angular/router';
 
 @Component({
   selector: 'app',
@@ -39,6 +40,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   selectedAccount: Account;
   accounts: Account[];
   BLOCKCHAIN_STATUS_INTERVAL = 30000;
+  urlSerializer = new DefaultUrlSerializer();
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -50,7 +52,8 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     private utilService: UtilService,
     private i18nService: I18nService,
     private appService: AppService,
-    private newVersionDialog: MatDialog
+    private newVersionDialog: MatDialog,
+    private router: Router
   ) {
     super();
     if (this._platform.ANDROID || this._platform.IOS) {
@@ -122,7 +125,14 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     });
 
     this.appService.onIpcMessage('deep-link-clicked', (url) => {
-      console.log(url);
+      // remove 'phoenix://' from url
+      const parsedUrl = this.urlSerializer.parse(url.slice(10));
+      const g: UrlSegmentGroup = parsedUrl.root.children[PRIMARY_OUTLET];
+      const s: UrlSegment[] = g.segments;
+      this.router.navigate([s[0].path], { 
+        queryParams: parsedUrl.queryParams, 
+        queryParamsHandling: 'merge' 
+      });
     });
   }
 
