@@ -17,8 +17,12 @@
     opacity: .90;
     z-index: 998;
 
-    mat-icon {
+    mat-icon.newupdate-icon {
       animation: pulse 5s linear infinite;
+    }
+
+    mat-icon.downloading-icon {
+      animation: rotate 3s linear infinite;
     }
 
     &:hover {
@@ -26,6 +30,15 @@
     }
   }
 
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
 
 @keyframes pulse {

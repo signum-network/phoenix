@@ -3,14 +3,12 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import { BurstService } from '../../../service/burstService';
-import { TransactionId } from '../../../typings/transactionId';
-import { TransactionResponse } from '../../../typings/transactionResponse';
-import { generateSignature, decryptAES, Keys } from '@burstjs/crypto';
-import { verifySignature } from '@burstjs/crypto';
-import { generateSignedTransactionBytes } from '@burstjs/crypto';
-import { convertNumberToNQTString } from '@burstjs/util';
-import { broadcastTransaction } from '../transaction/broadcastTransaction';
+import {convertNumberToNQTString} from '@burstjs/util';
+import {generateSignature, verifySignature, generateSignedTransactionBytes} from '@burstjs/crypto';
+import {BurstService} from '../../../service/burstService';
+import {TransactionId} from '../../../typings/transactionId';
+import {TransactionResponse} from '../../../typings/transactionResponse';
+import {broadcastTransaction} from '../transaction/broadcastTransaction';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
@@ -18,13 +16,13 @@ import { broadcastTransaction } from '../transaction/broadcastTransaction';
  * See details at [[AccountApi.setAccountInfo]]
  */
 export const setAccountInfo = (service: BurstService): (
-        name: string,
-        description: string,
-        feeNQT: string,
-        senderPublicKey: string,
-        senderPrivateKey: string,
-        deadline: number,
-    ) => Promise<TransactionId> =>
+    name: string,
+    description: string,
+    feeNQT: string,
+    senderPublicKey: string,
+    senderPrivateKey: string,
+    deadline: number,
+) => Promise<TransactionId> =>
     async (
         name: string,
         description: string,
@@ -34,7 +32,7 @@ export const setAccountInfo = (service: BurstService): (
         deadline: number,
     ): Promise<TransactionId> => {
 
-        let parameters = {
+        const parameters = {
             name,
             description,
             deadline: 1440,

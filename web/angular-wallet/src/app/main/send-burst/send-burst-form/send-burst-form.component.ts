@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {Account, SuggestedFees} from '@burstjs/core';
 import {
-  burstAddressPattern,
+  burstAddressPattern, convertAddressToNumericId,
   convertNQTStringToNumber,
   convertNumberToNQTString,
   sumNQTStringToNumber
@@ -41,7 +41,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
   @ViewChild('amount', { static: true }) public amount: string;
   @ViewChild('message', { static: true }) public message: string;
   @ViewChild('fullHash', { static: false }) public fullHash: string;
-  @ViewChild('encrypt', { static: true }) public encrypt: string;
+  @ViewChild('encrypt', { static: true }) public encrypt: boolean;
   @ViewChild('pin', { static: true }) public pin: string;
 
   @Input() account: Account;
@@ -117,21 +117,16 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
 
     try {
       this.isSending = true;
-      await this.transactionService.sendMoney({
-        transaction: {
-          // FIX: amountNQT is actually in burst
-          amountNQT: this.amount,
-          feeNQT: this.fee,
-          attachment: this.getMessage(),
-          deadline: parseFloat(this.deadline) * 60,
-          fullHash: this.fullHash,
-          type: 1
-        },
-        pin: this.pin,
+      await this.transactionService.sendBurst({
+        amount: convertNumberToNQTString(parseFloat(this.amount)),
+        fee: convertNumberToNQTString(parseFloat(this.fee)),
+        recipientId: convertAddressToNumericId(this.recipient.addressRS),
         keys: this.account.keys,
-        recipientAddress: addressRS,
+        pin: this.pin,
+        message: this.message,
+        shouldEncryptMessage: this.encrypt,
+        deadline: 1440
       });
-
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
       this.sendBurstForm.resetForm();
     } catch (e) {

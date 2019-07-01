@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/crypto",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Cryptographic functions for building Burstcoin apps.",
   "contributors": [
     "ohager",
@@ -14,8 +14,8 @@
     "node": ">=10"
   },
   "license": "GPL-3.0",
-  "main": "./out/src/index.js",
-  "typings": "./out/src/index.d.ts",
+  "main": "./out/index.js",
+  "typings": "./out/index.d.ts",
   "private": false,
   "jest": {
     "transform": {

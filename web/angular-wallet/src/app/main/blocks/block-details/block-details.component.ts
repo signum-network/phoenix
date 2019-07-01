@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, OnChanges, OnInit} from '@angular/core';
-import { EncryptedMessage, Message, Account, Block } from '@burstjs/core';
+import {Component, OnInit} from '@angular/core';
+import { Block } from '@burstjs/core';
 import { ActivatedRoute } from '@angular/router';
 import {BlockCellValue, BlockCellValueMapper} from './block-cell-value-mapper';
 import {UtilService} from '../../../util.service';

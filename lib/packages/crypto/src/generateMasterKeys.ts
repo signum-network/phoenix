@@ -1,7 +1,7 @@
 /** @module crypto */
 
 import * as CryptoJS from 'crypto-js';
-import { Keys } from '../typings/keys';
+import { Keys } from './typings/keys';
 import { ECKCDSA } from './ec-kcdsa';
 import { Converter } from './converter';
 

@@ -56,7 +56,7 @@ class ApiImpl implements Api {
  * .compose();
  * ```
  *
- * The `with<section>Api` uses factory methods from the [api.core.factories](/phoenix/docs/modules/core_api_factories.html) package
+ * The `with<section>Api` uses factory methods from the [api.core.factories](/phoenix/docs/modules/core.api.factories.html) package
  */
 export class ApiComposer {
     private api: Api = new ApiImpl();

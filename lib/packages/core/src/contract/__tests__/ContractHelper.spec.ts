@@ -1,4 +1,4 @@
-import {ContractHelper} from './ContractHelper';
+import {ContractHelper} from '../ContractHelper';
 
 describe('ContractHelper', () => {
     const contract = {
