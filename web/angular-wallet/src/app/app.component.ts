@@ -1,4 +1,4 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, ApplicationRef} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {Platform} from '@angular/cdk/platform';
 import {Subject} from 'rxjs';
@@ -53,7 +53,8 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     private i18nService: I18nService,
     private appService: AppService,
     private newVersionDialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private applicationRef: ApplicationRef
   ) {
     super();
     if (this._platform.ANDROID || this._platform.IOS) {
@@ -133,6 +134,10 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         queryParams: parsedUrl.queryParams, 
         queryParamsHandling: 'merge' 
       });
+      // fixes an issue with the view not rendering
+      setTimeout(() => {
+        this.applicationRef.tick();
+      }, 100);
     });
   }
 

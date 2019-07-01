@@ -26,14 +26,16 @@ app.on('second-instance', (argv, workingDirectory) => {
 
   // Protocol handler for win32
   // argv: An array of the second instance’s (command line / deep linked) arguments
-  if (process.platform == 'win32') {
+  if (process.platform === 'win32') {
     // Keep only command line / deep linked arguments
-    deeplinkingUrl = argv.slice(1)
+    deeplinkingUrl = argv.slice(1);
   }
 
   if (win) {
-    if (win.isMinimized()) win.restore()
-    win.focus()
+    if (win.isMinimized()) {
+      win.restore();
+    }
+    win.focus();
   }
 })
 
@@ -201,9 +203,9 @@ function createWindow() {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
   // Protocol handler for win32
-  if (process.platform == 'win32') {
+  if (process.platform === 'win32') {
     // Keep only command line / deep linked arguments
-    deeplinkingUrl = process.argv.slice(1)
+    deeplinkingUrl = process.argv.slice(1);
   }
 }
 
@@ -267,18 +269,18 @@ if (isMacOS()) {
 app.on('window-all-closed', function () {
 
   if (downloadHandle) {
-    downloadHandle.cancel()
+    downloadHandle.cancel();
   }
 
   // On macOS specific close process
   if (!isMacOS()) {
-    app.quit()
+    app.quit();
   }
 });
 
 app.on('activate', function () {
   // macOS specific activate process
   if (win === null) {
-    createWindow()
+    createWindow();
   }
 });
