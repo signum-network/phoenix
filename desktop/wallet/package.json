@@ -56,7 +56,7 @@
   "dependencies": {
     "@burstjs/http": "^0.3.0",
     "electron-dl": "^1.14.0",
-    "get-ssl-certificate": "^2.3.2",
+    "get-ssl-certificate": "^2.3.3",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
