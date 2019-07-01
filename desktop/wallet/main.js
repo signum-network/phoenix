@@ -30,7 +30,6 @@ app.on('second-instance', (argv, workingDirectory) => {
     // Keep only command line / deep linked arguments
     deeplinkingUrl = argv.slice(1)
   }
-  logEverywhere("app.makeSingleInstance# " + deeplinkingUrl)
 
   if (win) {
     if (win.isMinimized()) win.restore()
