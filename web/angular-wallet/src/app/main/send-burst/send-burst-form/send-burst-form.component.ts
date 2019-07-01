@@ -183,7 +183,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
   }
 
   onSpendAll(): void {
-    const maxAmount = sumNQTStringToNumber(this.account.balanceNQT, `-${convertNumberToNQTString(+this.fee)}`);
+    const maxAmount = sumNQTStringToNumber(this.account.balanceNQT, `-${convertNumberToNQTString(+this.fee || 0)}`);
     this.amount = `${maxAmount}`;
   }
 }
