@@ -36,10 +36,6 @@ export class BurstFeeSelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // avoids ExpressionChangedAfterItHasBeenCheckedError
-    // setTimeout(() => {
-    //   this.feeNQT = this.convertFeeToBurst(this.fees.standard);
-    // });
     this.options = {
       step: 0.0000001,
       floor: this.convertFeeToBurst(this.fees.minimum),
