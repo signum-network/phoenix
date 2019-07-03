@@ -126,11 +126,11 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     });
 
     this.appService.onIpcMessage('deep-link-clicked', (url) => {
-      // remove 'phoenix://' from url
-      const parsedUrl = this.urlSerializer.parse(url.slice(10));
+      // remove 'burst://' from url
+      const parsedUrl = this.urlSerializer.parse(url.slice(8));
       const g: UrlSegmentGroup = parsedUrl.root.children[PRIMARY_OUTLET];
       const s: UrlSegment[] = g.segments;
-      this.router.navigate([s[0].path], { 
+      this.router.navigate([s[0].path.replace('requestBurst', 'send')], { 
         queryParams: parsedUrl.queryParams, 
         queryParamsHandling: 'merge' 
       });
