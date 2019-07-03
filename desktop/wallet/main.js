@@ -240,7 +240,7 @@ function onReady() {
   }
   ipcMain.on('new-version-asset-selected', downloadUpdate);
 
-  app.setAsDefaultProtocolClient('phoenix');  
+  app.setAsDefaultProtocolClient('burst');  
 }
 
 app.on('ready', onReady);
