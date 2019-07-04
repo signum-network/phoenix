@@ -1,4 +1,4 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, ApplicationRef} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {Platform} from '@angular/cdk/platform';
 import {Subject} from 'rxjs';
@@ -20,6 +20,7 @@ import {version} from '../../package.json';
 import {AppService} from './app.service';
 import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
+import { Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET } from '@angular/router';
 
 @Component({
   selector: 'app',
@@ -39,6 +40,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   selectedAccount: Account;
   accounts: Account[];
   BLOCKCHAIN_STATUS_INTERVAL = 30000;
+  urlSerializer = new DefaultUrlSerializer();
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -50,7 +52,9 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     private utilService: UtilService,
     private i18nService: I18nService,
     private appService: AppService,
-    private newVersionDialog: MatDialog
+    private newVersionDialog: MatDialog,
+    private router: Router,
+    private applicationRef: ApplicationRef
   ) {
     super();
     if (this._platform.ANDROID || this._platform.IOS) {
@@ -119,6 +123,21 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         this.i18nService.getTranslation('update_check'),
         this.i18nService.getTranslation('update_up_to_date')
       );
+    });
+
+    this.appService.onIpcMessage('deep-link-clicked', (url) => {
+      // remove 'burst://' from url
+      const parsedUrl = this.urlSerializer.parse(url.slice(8));
+      const g: UrlSegmentGroup = parsedUrl.root.children[PRIMARY_OUTLET];
+      const s: UrlSegment[] = g.segments;
+      this.router.navigate([s[0].path.replace('requestBurst', 'send')], { 
+        queryParams: parsedUrl.queryParams, 
+        queryParamsHandling: 'merge' 
+      });
+      // fixes an issue with the view not rendering
+      setTimeout(() => {
+        this.applicationRef.tick();
+      }, 100);
     });
   }
 

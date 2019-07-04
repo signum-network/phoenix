@@ -1,5 +1,5 @@
 const path = require('path');
-const {app, BrowserWindow, Menu, shell, ipcMain} = require('electron');
+const {app, BrowserWindow, Menu, shell, ipcMain, protocol} = require('electron');
 const {download} = require('electron-dl');
 
 const {version, update} = require('./package.json');
@@ -7,6 +7,7 @@ const UpdateService = require('./src/updateService');
 
 let win;
 let downloadHandle;
+let deeplinkingUrl;
 
 const updateService = new UpdateService({
   currentVersion: version,
@@ -17,6 +18,26 @@ const isDevelopment = process.env.development;
 const isLinux = () => process.platform === 'linux';
 const isMacOS = () => process.platform === 'darwin';
 const isWindows = () => process.platform === 'win32';
+
+// Force Single Instance Application
+app.requestSingleInstanceLock();
+// Someone tried to run a second instance, we should focus our window.
+app.on('second-instance', (argv, workingDirectory) => {
+
+  // Protocol handler for win32
+  // argv: An array of the second instance’s (command line / deep linked) arguments
+  if (process.platform === 'win32') {
+    // Keep only command line / deep linked arguments
+    deeplinkingUrl = argv.slice(1);
+  }
+
+  if (win) {
+    if (win.isMinimized()) {
+      win.restore();
+    }
+    win.focus();
+  }
+})
 
 function handleLatestUpdate(newVersion) {
   win.webContents.send('new-version', newVersion);
@@ -180,6 +201,12 @@ function createWindow() {
   }
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+
+  // Protocol handler for win32
+  if (process.platform === 'win32') {
+    // Keep only command line / deep linked arguments
+    deeplinkingUrl = process.argv.slice(1);
+  }
 }
 
 function downloadUpdate($event, assetUrl) {
@@ -202,17 +229,30 @@ function downloadUpdate($event, assetUrl) {
 function onReady() {
   createWindow();
 
-  win.webContents.on('did-finish-load', () => {
-    updateService.start((newVersion) => {
-      if (newVersion) {
-        handleLatestUpdate(newVersion);
-      }
+  if (win) {
+    win.webContents.on('did-finish-load', () => {
+      updateService.start((newVersion) => {
+        if (newVersion) {
+          handleLatestUpdate(newVersion);
+        }
+      });
     });
-  });
+  }
   ipcMain.on('new-version-asset-selected', downloadUpdate);
+
+  app.setAsDefaultProtocolClient('burst');  
 }
 
 app.on('ready', onReady);
+
+// This will catch clicks on links such as <a href="foobar://abc=1">open in foobar</a>
+app.on('open-url', function (event, data) {
+  event.preventDefault();
+  if (win) {
+    win.webContents.send('deep-link-clicked', data);
+  }
+  deeplinkingUrl = data;
+});
 
 // TODO: need this for other OSes
 if (isMacOS()) {
@@ -229,18 +269,18 @@ if (isMacOS()) {
 app.on('window-all-closed', function () {
 
   if (downloadHandle) {
-    downloadHandle.cancel()
+    downloadHandle.cancel();
   }
 
   // On macOS specific close process
   if (!isMacOS()) {
-    app.quit()
+    app.quit();
   }
 });
 
 app.on('activate', function () {
   // macOS specific activate process
   if (win === null) {
-    createWindow()
+    createWindow();
   }
 });
