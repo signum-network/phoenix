@@ -77,12 +77,9 @@ export class AccountService {
   }
 
   public async getCustomSignFunc(): Promise<(unsignedBytes: string) => Promise<string>> {
-    console.log('Here we go...');
     const account = await this.getCurrentAccount();
     if (account.type === 'ledger') {
-      console.log('We\'re a ledger!', account);
       return async unsignedBytes => {
-        console.log('WOOOO!');
         return await this.ledgerService.sign(account.accountIndex, unsignedBytes);
       };
     } else {
@@ -125,7 +122,7 @@ export class AccountService {
   public async setAlias({ aliasName, aliasURI, feeNQT, deadline, pin, keys }: SetAliasRequest): Promise<TransactionId> {
     const signFunc = await this.getCustomSignFunc();
     let senderPrivateKey: string;
-    if (signFunc !== null) {
+    if (signFunc === null) {
       senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
     }
     return await this.api.account.setAlias(aliasName, aliasURI, feeNQT, keys.publicKey, senderPrivateKey, deadline, signFunc);
@@ -148,18 +145,24 @@ export class AccountService {
   }
 
   public async setAccountInfo({ name, description, feeNQT, deadline, pin, keys }: SetAccountInfoRequest): Promise<TransactionId> {
-    const signFunc = await this.getCustomSignFunc();
-    let senderPrivateKey: string;
-    if (signFunc !== null) {
-      senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    try {
+      const signFunc = await this.getCustomSignFunc();
+      let senderPrivateKey: string;
+      if (signFunc === null) {
+        senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+      }
+      console.log('going!');
+      return await this.api.account.setAccountInfo(name, description, feeNQT, keys.publicKey, senderPrivateKey, deadline, signFunc);
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
-    return await this.api.account.setAccountInfo(name, description, feeNQT, keys.publicKey, senderPrivateKey, deadline, signFunc);
   }
 
   public async setRewardRecipient({ recipient, feeNQT, deadline, pin, keys }: SetRewardRecipientRequest): Promise<TransactionId> {
     const signFunc = await this.getCustomSignFunc();
     let senderPrivateKey: string;
-    if (signFunc !== null) {
+    if (signFunc === null) {
       senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
     }
     return await this.api.account.setRewardRecipient(recipient, feeNQT, keys.publicKey, senderPrivateKey, deadline, signFunc);
@@ -204,11 +207,16 @@ export class AccountService {
       const existingAccount = await this.storeService.findAccount(id);
       if (existingAccount === undefined) {
         const account: Account = new Account();
-        // import offline account
+        // import ledger account
         account.type = 'ledger';
         account.accountRS = convertNumericIdToAddress(id);
         account.account = id;
         account.accountIndex = accountIndex;
+        account.keys = {
+          publicKey: publicKey,
+          signPrivateKey: null,
+          agreementPrivateKey: null
+        };
         await this.selectAccount(account);
         const savedAccount = await this.synchronizeAccount(account);
         resolve(savedAccount);

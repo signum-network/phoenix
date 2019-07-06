@@ -26,7 +26,18 @@ function handleLatestUpdate(newVersion) {
   win.webContents.send('new-version', newVersion);
 }
 
-async function getPublicKey(event, arg) {
+function byteToHex(byte) {
+  if (byte > 255 || byte < 0) {
+    throw new Error('Byte out of bounds');
+  }
+  let accountIndexHex = byte.toString(16);
+  if (accountIndexHex.length === 1) {
+    accountIndexHex = '0' + accountIndexHex;
+  }
+  return accountIndexHex;
+}
+
+async function ledgerGetPublicKey(event, arg) {
   try {
     const transport = await TransportNodeHid.create();
     const accountIndex = parseInt(arg);
@@ -39,6 +50,43 @@ async function getPublicKey(event, arg) {
     event.returnValue = publicKey.toString('hex').substr(0, 64);
   } catch (e) {
     event.returnValue = "Error: " + e.toString();
+  }
+}
+
+async function ledgerSign(event, arg) {
+  try {
+    console.log("Made it!");
+    const transport = await TransportNodeHid.create();
+    const {accountIndex, message} = arg;
+    let offset = 0;
+    while (offset !== message.length) {
+      let chunk;
+      if (message.length - offset > 510) {
+        chunk = message.substr(offset, 510);
+      } else {
+        chunk = message.substr(offset);
+      }
+      let apdu = '8002';
+      const final = (offset + chunk.length) === message.length;
+      apdu += final ? '80' : '00';
+      apdu += byteToHex(accountIndex);
+      apdu += byteToHex(chunk.length / 2);
+      apdu += chunk;
+      offset += chunk.length;
+      console.log("sending " + apdu);
+      console.log("chunk " + chunk);
+      const result = await transport.exchange(Buffer.from(apdu, 'hex'));
+      console.log("response: " + result.toString('hex').substr(0, 128));
+      if (final) {
+        event.returnValue = result.toString('hex').substr(0, 128);
+      }
+    }
+  } catch (e) {
+    event.returnValue = "Error: " + e.toString();
+    // 80028000b60115b5eb3809a00528ca53dceb5bd0b2069605515e3d0bf7443196c9d485e9bc3b9f56e6b3b3c95b00000000000000000000000000000000306e16000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c7f10000724516c82407cfee010161010062
+    // 0115b5eb3809a00528ca53dceb5bd0b2069605515e3d0bf7443196c9d485e9bc3b9f56e6b3b3c95b00000000000000000000000000000000306e16000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c7f10000724516c82407cfee010161010062
+    // 0115b5eb3809a00528ca53dceb5bd0b2069605515e3d0bf7443196c9d485e9bc3b9f56e6b3b3c95b00000000000000000000000000000000306e160000000000000000000000000000000000000000000000000000000000000000000000000004d589bda650c5027746b797cee2d10c6d631c4ae74c76f27d0ec71601388307802bf2b9521584640df7c9fc0c96c97bc9886fb7b9cf417679c18bc9ef0153f100000000c7f10000724516c82407cfee010161010062
+    // 04d589bda650c5027746b797cee2d10c6d631c4ae74c76f27d0ec71601388307802bf2b9521584640df7c9fc0c96c97bc9886fb7b9cf417679c18bc9ef0153f1
   }
 }
 
@@ -230,7 +278,8 @@ function onReady() {
     });
   });
   ipcMain.on('new-version-asset-selected', downloadUpdate);
-  ipcMain.on('ledger-get-public-key', getPublicKey);
+  ipcMain.on('ledger-get-public-key', ledgerGetPublicKey);
+  ipcMain.on('ledger-sign', ledgerSign);
 }
 
 app.on('ready', onReady);

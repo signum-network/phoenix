@@ -33,7 +33,6 @@ export const setAccountInfo = (service: BurstService): (
         deadline: number = DefaultDeadline,
         signFunc: (unsignedBytes: string) => Promise<string> = null,
     ): Promise<TransactionId> => {
-
         const parameters = {
             name,
             description,
@@ -41,6 +40,7 @@ export const setAccountInfo = (service: BurstService): (
             feeNQT: convertNumberToNQTString(parseFloat(feeNQT)),
             publicKey: senderPublicKey
         };
+
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('setAccountInfo', parameters);
 
         return signAndBroadcastTransaction({

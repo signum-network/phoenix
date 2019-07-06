@@ -5,7 +5,18 @@ import {AppService} from '../app.service';
 @Injectable()
 export class LedgerService {
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService) { // TODO close transports after using them
+  }
+  
+  private byteToHex(byte: number): string {
+    if (byte > 255 || byte < 0) {
+      throw new Error('Byte out of bounds');
+    }
+    let accountIndexHex = byte.toString(16);
+    if (accountIndexHex.length === 1) {
+      accountIndexHex = '0' + accountIndexHex;
+    }
+    return accountIndexHex;
   }
 
   /**
@@ -22,21 +33,42 @@ export class LedgerService {
     } else {
       const transport = await TransportWebUSB.create();
       // todo: move this to a shared fn
-      let accountIndexHex = accountIndex.toString(16);
-      if (accountIndexHex.length === 1) {
-        accountIndexHex = '0' + accountIndexHex;
-      }
-      const publicKey: Buffer = await transport.exchange(Buffer.from('800400' + accountIndexHex + '00', 'hex'));
+      const publicKey: Buffer = await transport.exchange(Buffer.from('800400' + this.byteToHex(accountIndex) + '00', 'hex'));
       return publicKey.toString('hex').substr(0, 64);
     }
   }
 
   public async sign(accountIndex: number, message: string): Promise<string> {
     if (this.appService.isDesktop()) {
-      // TODO
+      const signature: string = this.appService.sendIpcMessageSync('ledger-sign', {accountIndex, message});
+      if (signature.startsWith('Error: ')) {
+        throw new Error(signature);
+      }
+      return signature;
     } else {
-      // TODO
+      const transport = await TransportWebUSB.create();
+      let offset = 0;
+      while (offset !== message.length) {
+        let chunk: string;
+        if (message.length - offset > 510) {
+          chunk = message.substr(offset, 510);
+        } else {
+          chunk = message.substr(offset);
+        }
+        let apdu = '8002';
+        const final = (offset + chunk.length) === message.length;
+        apdu += final ? '80' : '00';
+        apdu += this.byteToHex(accountIndex);
+        apdu += this.byteToHex(chunk.length / 2);
+        apdu += chunk;
+        offset += chunk.length;
+        const result: Buffer = await transport.exchange(Buffer.from(apdu, 'hex'));
+        if (final) {
+          return result.toString('hex').substr(0, 128);
+        }
+      }
+      // Should never reach here
+      throw new Error('Never delivered final chunk');
     }
-    return null;
   }
 }

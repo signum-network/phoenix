@@ -76,14 +76,14 @@ export class TransactionService {
     return this.transactionApi.getTransaction(id);
   }
 
-  private getSendersPrivateKey(pin: string, keys: Keys): string {
+  private getSendersPrivateKey(pin: string, keys: Keys): string { // TODO don't do this if signFunc is null
     return decryptAES(keys.signPrivateKey, hashSHA256(pin));
   }
 
   public async sendMoneyMultiOut({transaction, pin, keys, sameAmount}: SendMoneyMultiOutRequest): Promise<TransactionId> {
     const signFunc = await this.accountService.getCustomSignFunc();
     let senderPrivateKey: string;
-    if (signFunc !== null) {
+    if (signFunc === null) {
       senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
     }
     return this.transactionApi.sendMoneyMultiOut(transaction, keys.publicKey, senderPrivateKey, transaction.recipients, sameAmount, signFunc);
