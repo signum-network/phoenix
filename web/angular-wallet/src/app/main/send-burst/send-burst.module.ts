@@ -38,6 +38,11 @@ const routes = [
       account: AccountResolver,
       suggestedFees: SuggestFeeResolver
     }
+  },
+  {
+    path: 'requestBurst',
+    redirectTo: 'send',
+    pathMatch: 'full'
   }
 ];
 
