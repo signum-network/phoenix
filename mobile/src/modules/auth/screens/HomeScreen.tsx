@@ -98,7 +98,7 @@ class Home extends React.PureComponent<TProps, State> {
     this.props.dispatch(removeAccount(account));
   }
 
-  destroy () {
+  componentWillUnmount () {
     clearInterval(this._checkPinExpiryInterval as number);
   }
 
