@@ -6,11 +6,11 @@ import {
   NavigationContainer
 } from 'react-navigation';
 import { mainStack } from '../../modules/auth/navigation/mainStack';
+import { settingsStack } from '../../modules/settings/navigation/settingsStack';
 import { receiveStack } from '../../modules/transactions/navigation/receiveStack';
 import { sendStack } from '../../modules/transactions/navigation/sendStack';
 import { Colors } from '../theme/colors';
 import { routes, RoutesMap } from './routes';
-import { settingsStack } from '../../modules/settings/navigation/settingsStack';
 
 const routesMap: RoutesMap = {
   [routes.home]: mainStack,

@@ -48,6 +48,10 @@ const removeAccount: Reducer<AuthReduxState, Account> = (state, action) => {
   };
 };
 
+const resetAuthState: Reducer<AuthReduxState, Account> = (_state) => {
+  return authState();
+};
+
 const loadAccounts: Reducer<AuthReduxState, Account[]> = (state, action) => {
   const accounts = action.payload;
   return {
@@ -87,7 +91,8 @@ const reducers = {
   [actionTypes.loadAccounts]: loadAccounts,
   [actionTypes.loadPasscodeEnteredTime]: loadPasscodeEnteredTime,
   [actionTypes.setPasscodeEnteredTime]: setPasscodeEnteredTime,
-  [actionTypes.loadPasscode]: loadPasscode
+  [actionTypes.loadPasscode]: loadPasscode,
+  [actionTypes.resetAuthState]: resetAuthState
 };
 
 export const auth = createReducers(authState(), reducers);

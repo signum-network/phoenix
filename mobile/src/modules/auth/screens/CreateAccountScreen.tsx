@@ -59,7 +59,7 @@ class CreateAccount extends React.PureComponent<Props, State> {
     const { phrase } = this.state;
 
     try {
-      const account = await this.props.dispatch(createActiveAccount({ phrase, pin: this.props.auth.passcode }));
+      const account = await this.props.dispatch(createActiveAccount(phrase));
       this.setState({
         account,
         stage: Stages.NOTE_PASSPHRASE

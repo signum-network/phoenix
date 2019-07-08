@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Modal, Alert } from 'react-native';
+import { Alert, Modal, StyleSheet, View } from 'react-native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Button } from '../../../core/components/base/Button';
@@ -9,11 +10,13 @@ import { i18n } from '../../../core/i18n';
 import { InjectedReduxProps } from '../../../core/interfaces';
 import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
+import { routes } from '../../../core/navigation/routes';
 import { ApplicationState } from '../../../core/store/initialState';
 import { Sizes } from '../../../core/theme/sizes';
+import { resetAuthState } from '../../auth/store/actions';
+import { actionTypes } from '../../auth/store/actionTypes';
 import { AuthReduxState } from '../../auth/store/reducer';
 import { settings } from '../translations';
-import { TouchableHighlight } from 'react-native-gesture-handler';
 
 interface IProps extends InjectedReduxProps {
   auth: AuthReduxState,
@@ -37,13 +40,17 @@ class Settings extends React.PureComponent<Props> {
     headerTitle: <HeaderTitle>{i18n.t(settings.screens.settings.title)}</HeaderTitle>
   };
 
-  showConfirmDeletePrompt() {
-    return () => {
-      return !this.state.erasePromptVisible;
-    };
+  toggleConfirmDeletePrompt = () => {
+    this.setState({ erasePromptVisible: !this.state.erasePromptVisible });
   }
 
-  render() {
+  confirmErase = () => {
+    this.props.dispatch(resetAuthState());
+    this.props.navigation.navigate(routes.home);
+    this.toggleConfirmDeletePrompt();
+  }
+
+  render () {
     return (
       <Screen>
         <FullHeightView>
@@ -55,27 +62,30 @@ class Settings extends React.PureComponent<Props> {
           <View>
 
             <Modal
-              animationType="slide"
+              animationType='slide'
               transparent={false}
               visible={this.state.erasePromptVisible}
-// tslint:disable-next-line: jsx-no-lambda
+              // tslint:disable-next-line: jsx-no-lambda
               onRequestClose={() => {
                 Alert.alert('Modal has been closed.');
-              }}>
+              }}
+            >
               <View style={{ marginTop: 22 }}>
                 <View>
                   <Text>Hello World!</Text>
 
-                  <TouchableHighlight
-                    onPress={this.showConfirmDeletePrompt()}
-                  >
-                    <Text>Hide Modal</Text>
-                  </TouchableHighlight>
+                  <Button onPress={this.toggleConfirmDeletePrompt}>
+                    {i18n.t(settings.screens.settings.cancel)}
+                  </Button>
+
+                  <Button onPress={this.confirmErase}>
+                    {i18n.t(settings.screens.settings.confirmErase)}
+                  </Button>
                 </View>
               </View>
             </Modal>
 
-            <Button onPress={this.showConfirmDeletePrompt()}>
+            <Button onPress={this.toggleConfirmDeletePrompt}>
               {i18n.t(settings.screens.settings.erase)}
             </Button>
           </View>
@@ -85,7 +95,7 @@ class Settings extends React.PureComponent<Props> {
   }
 }
 
-function mapStateToProps(state: ApplicationState) {
+function mapStateToProps (state: ApplicationState) {
   return {
     auth: state.auth
   };

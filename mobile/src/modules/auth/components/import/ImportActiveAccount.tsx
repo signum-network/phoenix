@@ -4,20 +4,13 @@ import { Button } from '../../../../core/components/base/Button';
 import { Input } from '../../../../core/components/base/Input';
 import { i18n } from '../../../../core/i18n';
 import { auth } from '../../translations';
-import { SimplePinInput } from '../SimplePinInput';
 import { AccountTypeHint } from './AccountTypeHint';
 
-export interface ActiveAccountData {
-  pin: string;
-  passphrase: string;
-}
-
 interface Props {
-  onFinish: (data: ActiveAccountData) => void;
+  onFinish: (passphrase: string) => void;
 }
 
 interface State {
-  pin: string;
   passphrase: string;
 }
 
@@ -29,7 +22,6 @@ const styles = StyleSheet.create({
 
 export class ImportActiveAccount extends React.PureComponent<Props, State> {
   state: State = {
-    pin: '',
     passphrase: ''
   };
 
@@ -37,22 +29,14 @@ export class ImportActiveAccount extends React.PureComponent<Props, State> {
     this.setState({ passphrase });
   }
 
-  handleChangePin = (pin: string) => {
-    this.setState({ pin });
-  }
-
   handleFinish = () => {
-    const { passphrase, pin } = this.state;
+    const { passphrase } = this.state;
 
-    const data: ActiveAccountData = {
-      passphrase,
-      pin
-    };
-    this.props.onFinish(data);
+    this.props.onFinish(passphrase);
   }
 
   render () {
-    const { passphrase, pin } = this.state;
+    const { passphrase } = this.state;
     return (
       <React.Fragment>
         <View style={styles.mainBlock}>
@@ -62,7 +46,6 @@ export class ImportActiveAccount extends React.PureComponent<Props, State> {
             value={passphrase}
             onChangeText={this.handleChangePassphrase}
           />
-          <SimplePinInput value={pin} onChange={this.handleChangePin}/>
           <AccountTypeHint>{i18n.t(auth.importAccount.activeAccountHint)}</AccountTypeHint>
         </View>
         <Button fullWidth={true} onPress={this.handleFinish}>{i18n.t(auth.importAccount.import)}</Button>

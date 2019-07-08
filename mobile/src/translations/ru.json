@@ -54,10 +54,6 @@
         "import": "Добавить",
         "passiveAccountHint": "Пассивные аккаунты используются если известен BURST-адрес, но нет необходимости совершать транзакции. Это безопаснее. Пассивный аккаунт всегда можно преобразовать в активный.",
         "title": "Добавить аккаунт"
-      },
-      "settings": {
-        "title": "Settings",
-        "erase": "Erase all accounts and reset PIN"
       }
     }
   },
@@ -107,6 +103,15 @@
         "feeNQT": "Комиссия",
         "sent": "Отправлено!",
         "title": "Отправить"
+      }
+    }
+  },
+  "settings": {
+    "screens": {
+      "settings": {
+        "title": "Settings",
+        "erase": "Erase all accounts and reset PIN",
+        "confirmErase": "Confirm - Erase and Reset"
       }
     }
   }

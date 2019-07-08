@@ -11,7 +11,7 @@ import { Screen } from '../../../core/layout/Screen';
 import { routes } from '../../../core/navigation/routes';
 import { ApplicationState } from '../../../core/store/initialState';
 import { Sizes } from '../../../core/theme/sizes';
-import { ActiveAccountData, ImportActiveAccount } from '../components/import/ImportActiveAccount';
+import { ImportActiveAccount } from '../components/import/ImportActiveAccount';
 import { ImportOfflineAccount } from '../components/import/ImportOfflineAccount';
 import { addAccount, createActiveAccount, createOfflineAccount, hydrateAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
@@ -41,15 +41,9 @@ class ImportAccount extends React.PureComponent<Props, State> {
     isActive: false
   };
 
-  handleAddActiveAccount = async (data: ActiveAccountData) => {
-    const { passphrase, pin } = data;
-
+  handleAddActiveAccount = async (passphrase: string) => {
     try {
-      const account = await this.props.dispatch(createActiveAccount(
-        {
-          phrase: passphrase.split(' '),
-          pin
-        }));
+      const account = await this.props.dispatch(createActiveAccount(passphrase.split(' ')));
       this.props.dispatch(addAccount(account));
       this.props.dispatch(hydrateAccount(account));
       this.props.navigation.navigate(routes.home);
