@@ -53,9 +53,18 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   componentDidMount () {
+
     this.props.navigation.setParams({
       handleAddAccountPress: this.handleAddAccountPress
     });
+
+    setInterval(() => {
+      const { passcodeTime } = this.props.app.appSettings;
+      const { passcodeEnteredTime } = this.props.auth;
+      if (shouldEnterPIN(passcodeTime, passcodeEnteredTime)) {
+        this.setModalVisible(true);
+      }
+    }, 1000);
   }
 
   setModalVisible = (isPINModalVisible: boolean) => {
@@ -69,14 +78,7 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   handleAddAccountPress = async () => {
-    const { passcodeEnteredTime } = this.props.auth;
-    const { passcodeTime } = this.props.app.appSettings;
-
-    if (shouldEnterPIN(passcodeTime, passcodeEnteredTime)) {
-      this.setModalVisible(true);
-    } else {
-      this.handleAddAccount();
-    }
+    this.handleAddAccount();
   }
 
   handlePINEntered = () => {

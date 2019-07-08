@@ -30,7 +30,6 @@ interface State {
   seed: any[];
   phrase: string[];
   account: Account | null;
-  pin: string;
 }
 
 enum Stages {
@@ -44,8 +43,7 @@ const getDefaultState = (): State => ({
   stage: Stages.GENERATE_SEED,
   seed: [],
   phrase: [],
-  account: null,
-  pin: ''
+  account: null
 });
 
 const passPhraseGenerator: PassPhraseGenerator = new PassPhraseGenerator();
@@ -58,10 +56,10 @@ class CreateAccount extends React.PureComponent<Props, State> {
   state: State = getDefaultState();
 
   createAccount = async () => {
-    const { phrase, pin } = this.state;
+    const { phrase } = this.state;
 
     try {
-      const account = await this.props.dispatch(createActiveAccount({ phrase, pin }));
+      const account = await this.props.dispatch(createActiveAccount({ phrase, pin: this.props.auth.passcode }));
       this.setState({
         account,
         stage: Stages.NOTE_PASSPHRASE
@@ -90,15 +88,10 @@ class CreateAccount extends React.PureComponent<Props, State> {
     });
   }
 
-  handlePinEntered = (newPin: string) => {
-    this.setState({ pin: newPin }, async () => {
-      await this.createAccount();
-    });
-  }
-
   handleSeedGenerated = async (seed: string[]) => {
     const phrase = await passPhraseGenerator.generatePassPhrase(seed);
-    this.setState({ phrase, stage: Stages.ENTER_PIN });
+    this.setState({ phrase });
+    this.createAccount();
   }
 
   renderStage = () => {
@@ -107,8 +100,6 @@ class CreateAccount extends React.PureComponent<Props, State> {
     switch (stage) {
       case Stages.GENERATE_SEED:
         return <SeedGeneratorStage onSeedGenerated={this.handleSeedGenerated}/>;
-      case Stages.ENTER_PIN:
-        return <EnterPinStage onFinish={this.handlePinEntered}/>;
       case Stages.NOTE_PASSPHRASE:
         return <NotePassphraseStage phrase={phrase} onFinish={this.handlePhraseNoted}/>;
       case Stages.ENTER_PASSPHRASE:

@@ -58,6 +58,8 @@ export const createActiveAccount = createActionFn<ActiveAccountGeneratorData, Ac
     const accountRS = convertNumericIdToAddress(account);
     const pinHash = hashSHA256(pin + keys.publicKey);
 
+    setPasscode(pin);
+
     // TODO: make fields optional in @burst package
     return new Account({
       account,

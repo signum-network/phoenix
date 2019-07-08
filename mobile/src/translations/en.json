@@ -106,5 +106,13 @@
         "title": "Send"
       }
     }
+  },
+  "settings": {
+    "screens": {
+      "settings": {
+        "title": "Settings",
+        "erase": "Erase all accounts and reset PIN"
+      }
+    }
   }
 }

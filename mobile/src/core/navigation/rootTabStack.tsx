@@ -10,11 +10,13 @@ import { receiveStack } from '../../modules/transactions/navigation/receiveStack
 import { sendStack } from '../../modules/transactions/navigation/sendStack';
 import { Colors } from '../theme/colors';
 import { routes, RoutesMap } from './routes';
+import { settingsStack } from '../../modules/settings/navigation/settingsStack';
 
 const routesMap: RoutesMap = {
   [routes.home]: mainStack,
   [routes.send]: sendStack,
-  [routes.receive]: receiveStack
+  [routes.receive]: receiveStack,
+  [routes.settings]: settingsStack
 };
 
 const rootTabStackConfig: BottomTabNavigatorConfig = {
