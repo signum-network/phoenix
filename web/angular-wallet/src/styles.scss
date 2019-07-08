@@ -32,3 +32,12 @@ $success-color: #00cc99;
 .mat-dialog-container {
   padding: 0 !important;
 }
+
+app-market-overview {
+  .mat-list-item {
+    height:43px !important;
+  }
+  .mat-list-item-content {
+    padding:0 !important;
+  }
+}
