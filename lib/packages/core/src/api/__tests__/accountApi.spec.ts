@@ -402,4 +402,15 @@ describe('Account Api', () => {
             }
         })
     });
+
+    describe('getAccountBlocks()', () => {
+
+        it('should getAccountBlocks', async () => {
+            httpMock = HttpMockBuilder.create().onGetReply(200, {blocks: ['123','456']}).build();
+            const service = createBurstService(httpMock);
+            const block = await getBlockId(service)(1);
+            expect(block.block).toBe(100);
+        });
+
+    });
 });
