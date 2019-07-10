@@ -94,7 +94,7 @@ export const constants = {
       port: 8125,
       selected: false,
       ping: -1,
-      version: '2.3.0'
+      version: '2.4.0'
     },
     {
       name: 'burstcoin.ro #1',
