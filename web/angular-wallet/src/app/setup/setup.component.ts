@@ -13,6 +13,7 @@ interface NodeDescriptor {
   version: string;
 }
 
+// TODO: REMOVE me...because I moved to main/settings!
 @Component({
   selector: 'app-setup',
   styleUrls: ['./setup.component.scss'],
