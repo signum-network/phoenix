@@ -26,18 +26,17 @@ export class I18nService {
   ) {
     this.state = new Subject();
 
-    this.storeService.ready.subscribe((ready) => {
-      if (ready) {
-        this.initLanguage(constants.defaultLanguage || 'en');
-        this.fetch(this.currentLanguage.code);
-        this.storeService.getSettings().then(s => {
-          this.initLanguage(s.language);
-        });
+    this.storeService.ready.subscribe(async ready => {
+      if (!ready) {
+        return;
       }
+      const {language} = await this.storeService.getSettings();
+      this.initLanguage(language);
+      this.fetch(this.currentLanguage.code);
     });
   }
 
-  private fetch(locale: any) {
+  private fetch(locale: any): void {
     this.http.get(`locales/${locale}.json`)
       .subscribe((data: any) => {
         this.data = data;
@@ -46,10 +45,8 @@ export class I18nService {
       });
   }
 
-  private initLanguage(locale: string) {
-    const language = constants.languages.find((it) => {
-      return it.code === locale;
-    });
+  private initLanguage(locale: string): void {
+    const language = constants.languages.find(it => it.code === locale);
     if (language) {
       this.setLanguage(language);
     } else {
@@ -57,13 +54,11 @@ export class I18nService {
     }
   }
 
-  setLanguage(language): void {
+  async setLanguage(language): Promise<void> {
     this.currentLanguage = language;
-    this.storeService.getSettings()
-      .then(s => {
-        s.language = language.code;
-        this.storeService.saveSettings(s);
-      });
+    const settings = await this.storeService.getSettings();
+    settings.language = language.code;
+    await this.storeService.saveSettings(settings);
     this.fetch(language.code);
   }
 

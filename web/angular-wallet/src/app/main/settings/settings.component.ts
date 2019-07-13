@@ -26,7 +26,7 @@ const UnsupportedFeatures = {
 })
 export class SettingsComponent implements OnInit {
 
-  constructor(private i18n: I18nService,
+  constructor(private i18nService: I18nService,
               private storeService: StoreService,
               private notifierService: NotifierService,
               private route: ActivatedRoute) {
@@ -100,20 +100,20 @@ export class SettingsComponent implements OnInit {
         url,
         version,
       });
-      this.notifierService.notify('error', 'Node could not be set. Most probably it\'s not reachable');
+      this.notifierService.notify('error', this.i18nService.getTranslation('node_not_set'));
       return;
     }
     await this.setNode(nodeDescriptor);
-    this.notifierService.notify('success', 'Node successfully selected');
+    this.notifierService.notify('success', this.i18nService.getTranslation('node_set_success'));
   }
 
   getVersion(): string {
-    return this.isFetchingNodeInfo ? 'validating...' : (this.selectedNode.value.version || 'version unknown');
+    return this.isFetchingNodeInfo ? this.i18nService.getTranslation('validating_node') : (this.selectedNode.value.version || this.i18nService.getTranslation('unknown_version'));
   }
 
   getUnsupportedFeatures(): string[] {
     if (this.isFetchingNodeInfo) {
-      return ['Contacting node...'];
+      return [this.i18nService.getTranslation('contacting_node')];
     }
 
     const {version} = this.selectedNode.value;
@@ -121,7 +121,7 @@ export class SettingsComponent implements OnInit {
       return Object
         .keys(UnsupportedFeatures)
         .filter(minVersion => semver.lte(version, minVersion))
-        .map(minVersion => `${UnsupportedFeatures[minVersion]} - (>= ${minVersion})`);
+        .map(minVersion => `${this.i18nService.getTranslation(UnsupportedFeatures[minVersion])} - (>= ${minVersion})`);
     }
     return [];
   }

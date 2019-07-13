@@ -17,7 +17,6 @@ export class ApiService {
     this.initApi = this.initApi.bind(this);
 
     this.storeService.ready.subscribe((settings: Settings) => {
-      console.log('on ready');
       this.initApi(settings);
     });
 
@@ -26,7 +25,6 @@ export class ApiService {
         distinctUntilChanged((s: Settings, t: Settings) => s.node === t.node),
       )
       .subscribe((settings: Settings) => {
-        console.log('node changed');
         this.initApi(settings);
     });
   }
