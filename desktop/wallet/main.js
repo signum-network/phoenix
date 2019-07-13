@@ -242,8 +242,10 @@ if (!gotTheLock) {
 
       // Deeplinks for Windows
       argv.forEach((arg) => {
-        if (/burst:\/\//.test(arg)) {
-          win.webContents.send('deep-link-clicked', arg);
+        if (/^burst:\/\//.test(arg)) {
+          if (win.webContents) {
+            win.webContents.send('deep-link-clicked', arg);
+          }
         }
       });
 
