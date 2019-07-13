@@ -1,15 +1,32 @@
-<app-page title="{{ 'settings' | i18n }}" >
+<app-page title="{{ 'settings' | i18n }}">
   <div class="p-24" fxLayout="column">
-    <h1> Settings Go here </h1>
-<!--    <mat-form-field>-->
-<!--      <input type="text" placeholder="{{ 'select_node' | i18n }}" matInput-->
-<!--             [formControl]="selectedNode" [matAutocomplete]="auto">-->
-<!--      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayNodeUrl">-->
-<!--        <mat-option *ngFor="let node of nodes" [value]="node">-->
-<!--          {{node.url}}-->
-<!--          <small>{{node.version}}</small>-->
-<!--        </mat-option>-->
-<!--      </mat-autocomplete>-->
-<!--    </mat-form-field>-->
+    <div class="node-selector">
+      <mat-form-field>
+        <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+          <input type="text" placeholder="{{ 'select_node' | i18n }}" matInput
+                 [formControl]="selectedNode" [matAutocomplete]="auto">
+          <div class="version-info secondary-text font-size-10">
+            {{getVersion()}}
+          </div>
+        </div>
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayNodeUrl">
+          <mat-option *ngFor="let node of nodes" [value]="node">
+            {{node.url}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <div class="button-wrapper">
+        <ul class="unfeatures">
+          <li *ngFor="let f of getUnsupportedFeatures()"
+              class="secondary-text font-size-10"
+          >
+            {{f}}
+          </li>
+        </ul>
+        <button mat-raised-button color="accent" (click)="selectNode()"
+                disabled="{{isFetchingNodeInfo}}">{{'select_node' | i18n }}</button>
+      </div>
+    </div>
   </div>
 </app-page>

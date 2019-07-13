@@ -9,7 +9,13 @@ export class SettingsResolver implements Resolve<Promise<Settings>> {
       this.storeService = storeService;
   }
 
-  resolve(route: ActivatedRouteSnapshot) {
-    return this.storeService.getSettings();
+  async resolve(route: ActivatedRouteSnapshot): Promise<Settings> {
+
+    const settings = await this.storeService.getSettings();
+    if(!settings.nodeVersion || settings.nodeVersion.length === 0){
+        console.log('No version, wtf?')
+    }
+
+    return settings;
   }
 }
