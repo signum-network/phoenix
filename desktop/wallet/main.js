@@ -20,62 +20,6 @@ const isWindows = () => process.platform === 'win32';
 
 const gotTheLock = app.requestSingleInstanceLock();
 
-if (!gotTheLock) {
-  app.quit();
-} else {
-
-  // Someone tried to run a second instance, we should focus our window.
-  app.on('second-instance', (e, argv) => {
-    if (win) {
-
-      // Deeplinks for Windows
-      argv.forEach(arg => {
-        if (/burst:\/\//.test(arg)) {
-          win.webContents.send('deep-link-clicked', arg);
-        }
-      });
-
-      if (win.isMinimized()) {
-        win.restore();
-      }
-      win.focus();
-    }
-  })
-
-  app.on('ready', onReady);
-
-  app.on('will-finish-launching', () => {
-    // Deeplinks for OSX
-    app.on('open-url', (e, url) => {
-      e.preventDefault();
-      if (win && win.webContents) {
-        logEverywhere(url);
-        win.webContents.send('deep-link-clicked', url);
-      }
-    })
-  });
-
-  // Quit when all windows are closed.
-  app.on('window-all-closed', function () {
-
-    if (downloadHandle) {
-      downloadHandle.cancel();
-    }
-
-    // On macOS specific close process
-    if (!isMacOS()) {
-      app.quit();
-    }
-  });
-
-  app.on('activate', function () {
-    // macOS specific activate process
-    if (win === null) {
-      createWindow();
-    }
-  });
-}
-
 function handleLatestUpdate(newVersion) {
   win.webContents.send('new-version', newVersion);
 }
@@ -282,6 +226,69 @@ function onReady() {
   app.setAsDefaultProtocolClient('burst');
 }
 
+// Log both at dev console and at running node console instance
+function logEverywhere(s) {
+  console.log(s)
+  if (win && win.webContents) {
+    win.webContents.executeJavaScript(`console.log("${s}")`)
+  }
+}
+
+if (!gotTheLock) {
+  app.quit();
+} else {
+
+  // Someone tried to run a second instance, we should focus our window.
+  app.on('second-instance', (e, argv) => {
+    if (win) {
+
+      // Deeplinks for Windows
+      argv.forEach(arg => {
+        if (/burst:\/\//.test(arg)) {
+          win.webContents.send('deep-link-clicked', arg);
+        }
+      });
+
+      if (win.isMinimized()) {
+        win.restore();
+      }
+      win.focus();
+    }
+  })
+
+  app.on('ready', onReady);
+
+  app.on('will-finish-launching', () => {
+    // Deeplinks for OSX
+    app.on('open-url', (e, url) => {
+      e.preventDefault();
+      if (win && win.webContents) {
+        logEverywhere(url);
+        win.webContents.send('deep-link-clicked', url);
+      }
+    })
+  });
+
+  // Quit when all windows are closed.
+  app.on('window-all-closed', function () {
+
+    if (downloadHandle) {
+      downloadHandle.cancel();
+    }
+
+    // On macOS specific close process
+    if (!isMacOS()) {
+      app.quit();
+    }
+  });
+
+  app.on('activate', function () {
+    // macOS specific activate process
+    if (win === null) {
+      createWindow();
+    }
+  });
+}
 
 // TODO: need this for other OSes
 if (isMacOS()) {
@@ -292,13 +299,4 @@ if (isMacOS()) {
     credits: 'ohager, blankey1337',
     version: process.versions.electron
   });
-}
-
-
-// Log both at dev console and at running node console instance
-function logEverywhere(s) {
-  console.log(s)
-  if (win && win.webContents) {
-    win.webContents.executeJavaScript(`console.log("${s}")`)
-  }
 }
