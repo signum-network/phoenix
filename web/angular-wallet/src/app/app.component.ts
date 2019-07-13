@@ -101,7 +101,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       // fixes an issue with the view not rendering
       setTimeout(() => {
         this.applicationRef.tick();
-      }, 100);
+      }, 1000);
     });
   }
 
