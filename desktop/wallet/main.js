@@ -214,7 +214,7 @@ function onReady() {
       });
 
       // Deeplinks for initial startup
-      process.argv.forEach(arg => {
+      process.argv.forEach((arg) => {
         if (/burst:\/\//.test(arg)) {
           win.webContents.send('deep-link-clicked', arg);
         }
@@ -226,11 +226,9 @@ function onReady() {
   app.setAsDefaultProtocolClient('burst');
 }
 
-// Log both at dev console and at running node console instance
 function logEverywhere(s) {
-  console.log(s)
   if (win && win.webContents) {
-    win.webContents.executeJavaScript(`console.log("${s}")`)
+    win.webContents.executeJavaScript(`console.log("${s}")`);
   }
 }
 
@@ -243,7 +241,7 @@ if (!gotTheLock) {
     if (win) {
 
       // Deeplinks for Windows
-      argv.forEach(arg => {
+      argv.forEach((arg) => {
         if (/burst:\/\//.test(arg)) {
           win.webContents.send('deep-link-clicked', arg);
         }
