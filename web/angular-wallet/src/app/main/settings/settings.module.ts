@@ -10,7 +10,6 @@ import {FuseSharedModule} from '../../../@fuse/shared.module';
 
 const routes = [
   {
-    // TODO rename path to 'settings'
     path: '',
     component: SettingsComponent,
     resolve: {
