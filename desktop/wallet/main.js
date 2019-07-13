@@ -215,7 +215,7 @@ function onReady() {
 
       // Deeplinks for initial startup
       process.argv.forEach((arg) => {
-        if (/burst:\/\//.test(arg)) {
+        if (/^burst:\/\//.test(arg)) {
           win.webContents.send('deep-link-clicked', arg);
         }
       });
