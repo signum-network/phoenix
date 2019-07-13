@@ -1,13 +1,14 @@
 import {Injectable, ApplicationRef} from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
-import { constants } from '../../../constants';
-import { StoreService } from 'app/store/store.service';
-import { Settings } from 'app/settings';
+import {HttpClient} from '@angular/common/http';
+import {Subject} from 'rxjs';
+import {constants} from '../../../constants';
+import {StoreService} from 'app/store/store.service';
+import {Settings} from 'app/settings';
+
 export interface Language {
-    name: string;
-    code: string;
+  name: string;
+  code: string;
 }
 
 @Injectable()
@@ -19,10 +20,10 @@ export class I18nService {
 
 
   constructor(
-      private http: HttpClient,
-      private ref: ApplicationRef,
-      private storeService: StoreService
-    ) {
+    private http: HttpClient,
+    private ref: ApplicationRef,
+    private storeService: StoreService
+  ) {
     this.state = new Subject();
 
     this.storeService.ready.subscribe((ready) => {
@@ -37,7 +38,7 @@ export class I18nService {
   }
 
   private fetch(locale: any) {
-    this.http.get( `locales/${locale}.json` )
+    this.http.get(`locales/${locale}.json`)
       .subscribe((data: any) => {
         this.data = data;
         this.state.next(data);
@@ -56,12 +57,13 @@ export class I18nService {
     }
   }
 
-  setLanguage(language){
+  setLanguage(language): void {
     this.currentLanguage = language;
     this.storeService.getSettings()
-        .then(s => {
-            this.storeService.saveSettings(new Settings({...s, language: language.code}));
-        });
+      .then(s => {
+        s.language = language.code;
+        this.storeService.saveSettings(s);
+      });
     this.fetch(language.code);
   }
 

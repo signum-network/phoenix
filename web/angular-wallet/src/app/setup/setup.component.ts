@@ -62,11 +62,9 @@ export class SetupComponent implements OnInit {
         url = value;
         version = '';
       }
-      this.storeService.saveSettings({
-        ...settings,
-        node: url,
-        nodeVersion: version
-      });
+      settings.node = url;
+      settings.nodeVersion = version;
+      this.storeService.saveSettings(settings);
     };
   }
 }
