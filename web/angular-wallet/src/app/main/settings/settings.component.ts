@@ -92,9 +92,9 @@ export class SettingsComponent implements OnInit {
 
   async selectNode(): Promise<void> {
     this.isFetchingNodeInfo = true;
-    const nodeDescriptor = await SettingsComponent.fetchNodeInformation(this.selectedNode.value.url);
+    const nodeInformation = await SettingsComponent.fetchNodeInformation(this.selectedNode.value.url);
     this.isFetchingNodeInfo = false;
-    if (!nodeDescriptor) {
+    if (!nodeInformation) {
       const {node: url, nodeVersion: version} = await this.storeService.getSettings();
       this.selectedNode.setValue({
         url,
@@ -103,7 +103,7 @@ export class SettingsComponent implements OnInit {
       this.notifierService.notify('error', this.i18nService.getTranslation('node_not_set'));
       return;
     }
-    await this.setNode(nodeDescriptor);
+    await this.setNode(nodeInformation);
     this.notifierService.notify('success', this.i18nService.getTranslation('node_set_success'));
   }
 
