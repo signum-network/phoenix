@@ -16,17 +16,13 @@ export class ApiService {
   constructor(private storeService: StoreService) {
     this.initApi = this.initApi.bind(this);
 
-    this.storeService.ready.subscribe((settings: Settings) => {
-      this.initApi(settings);
-    });
+    this.storeService.ready.subscribe(this.initApi);
 
     this.storeService.settings
       .pipe(
         distinctUntilChanged((s: Settings, t: Settings) => s.node === t.node),
       )
-      .subscribe((settings: Settings) => {
-        this.initApi(settings);
-    });
+      .subscribe(this.initApi);
   }
 
   private initApi(settings: Settings): void {
