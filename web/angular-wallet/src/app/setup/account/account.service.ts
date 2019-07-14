@@ -85,10 +85,22 @@ export class AccountService {
     this.currentAccount.next(account);
   }
 
-  public getAccountTransactions(id: string, firstIndex?: number, lastIndex?: number, numberOfConfirmations?: number, type?: number, subtype?: number): Promise<TransactionList> {
-    const includeTransactions = semver.gte(this.selectedNode.version, constants.multiOutMinVersion, {includePrerelease: true}) || undefined;
-    return this.api.account.getAccountTransactions(
-      id, firstIndex, lastIndex, numberOfConfirmations, type, subtype, includeTransactions);
+  public async getAccountTransactions(id: string, firstIndex?: number, lastIndex?: number, numberOfConfirmations?: number, type?: number, subtype?: number): Promise<TransactionList> {
+    try{
+      const includeMultiouts = semver.gte(this.selectedNode.version, constants.multiOutMinVersion, {includePrerelease: true}) || undefined;
+      const transactions = await this.api.account.getAccountTransactions(
+        id, firstIndex, lastIndex, numberOfConfirmations, type, subtype, includeMultiouts);
+      return Promise.resolve(transactions);
+    }catch (e){
+      // defensive programming: fallback, in case of multiout not accepted
+      const EC_INVALID_ARG = 4;
+      if (e.data.errorCode === EC_INVALID_ARG){
+        return this.api.account.getAccountTransactions(id, firstIndex, lastIndex, numberOfConfirmations, type, subtype);
+      }
+      else{
+        throw e;
+      }
+    }
   }
 
   public generateSendTransactionQRCodeAddress(
