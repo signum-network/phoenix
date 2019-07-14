@@ -111,6 +111,15 @@ export const constants = {
       port: 443,
       selected: false,
       ping: -1,
+    },
+    {
+      name: 'testnet',
+      region: 'Global',
+      location: 'Europe',
+      address: 'http://testnet.burstcoin.network',
+      port: 6876,
+      selected: false,
+      ping: -1,
     }
   ],
   supportUrl: 'https://github.com/burst-apps-team/phoenix/issues',
