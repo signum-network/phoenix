@@ -5,7 +5,7 @@
 ### New Feature:
 
 - Deep Linking
-- Improved Node Selection (#604)
+- Improved Node Selection (#604 #351)
 - _Spend all_ on Send Burst (#553)
 - Improved Layout for Transactions 
 - Improved Layout for Blocks 
