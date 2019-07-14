@@ -80,17 +80,25 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
   ngAfterViewInit(): void {
     if (this.route.snapshot.queryParams) {
       setTimeout(() => {
-        this.onRecipientChange(new Recipient(this.route.snapshot.queryParams.recipient));
-        this.fee = this.route.snapshot.queryParams.fee;
-        this.amount = this.route.snapshot.queryParams.amount;
+        this.onRecipientChange(new Recipient(this.route.snapshot.queryParams.receiver));
+        if (this.route.snapshot.queryParams.feeNQT) {
+          this.fee = convertNQTStringToNumber(this.route.snapshot.queryParams.feeNQT).toString();
+        }
+
+        if (this.route.snapshot.queryParams.amountNQT) {
+          this.amount = convertNQTStringToNumber(this.route.snapshot.queryParams.amountNQT).toString();
+        }
         this.message = this.route.snapshot.queryParams.message;
         this.encrypt = this.route.snapshot.queryParams.encrypt;
         this.immutable = this.route.snapshot.queryParams.immutable || this.immutable;
         if (this.immutable === 'false') {
           this.immutable = false;
         }
+        if (this.route.snapshot.queryParams.feeSuggestionType && this.fees[this.route.snapshot.queryParams.feeSuggestionType]) {
+          this.fee = convertNQTStringToNumber(this.fees[this.route.snapshot.queryParams.feeSuggestionType]).toString();
+        }
         this.showMessage = !!this.message;
-      }, 1);
+      }, 500); // delay needed for ng5 slider to catch up
     }
   }
 
@@ -183,7 +191,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
   }
 
   onSpendAll(): void {
-    const maxAmount = sumNQTStringToNumber(this.account.balanceNQT, `-${convertNumberToNQTString(+this.fee)}`);
+    const maxAmount = sumNQTStringToNumber(this.account.balanceNQT, `-${convertNumberToNQTString(+this.fee || 0)}`);
     this.amount = `${maxAmount}`;
   }
 }

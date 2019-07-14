@@ -63,8 +63,10 @@ export class BurstRecipientInputComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    this.applyRecipientType(this.recipient.addressRaw);
-    this.validateRecipient();
+    if (this.recipient.addressRaw) {
+      this.applyRecipientType(this.recipient.addressRaw);
+      this.validateRecipient();
+    }
   }
 
   applyRecipientType(recipient: string): void {

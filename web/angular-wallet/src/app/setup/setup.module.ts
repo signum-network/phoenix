@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { SetupRouting } from './setup.routing';
-import { SetupComponent } from './setup.component';
 import { AccountNewComponent } from './account/account.component';
 import { CreatePassiveAccountComponent } from './account/create-passive/create-passive.component';
 import { CreateActiveAccountComponent } from './account/create-active/create.component';
@@ -67,7 +66,6 @@ import {CreateLedgerAccountComponent} from './account/create-ledger/create-ledge
     PageModule
   ],
     declarations: [
-        SetupComponent,
         CreateActiveAccountComponent,
         CreateLedgerAccountComponent,
         CreatePassiveAccountComponent,

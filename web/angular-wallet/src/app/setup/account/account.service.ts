@@ -17,10 +17,17 @@ import {
   Transaction
 } from '@burstjs/core';
 import {decryptAES, encryptAES, generateMasterKeys, getAccountIdFromPublicKey, hashSHA256, Keys} from '@burstjs/crypto';
-import {convertAddressToNumericId, convertNumericIdToAddress, isBurstAddress, convertNQTStringToNumber} from '@burstjs/util';
+import {
+  convertAddressToNumericId,
+  convertNumericIdToAddress,
+  isBurstAddress,
+  sumNQTStringToNumber
+} from '@burstjs/util';
 import {ApiService} from '../../api.service';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import {LedgerService} from '../../ledger/ledger.service';
+import {I18nService} from 'app/layout/components/i18n/i18n.service';
+import {constants} from 'app/constants';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -91,10 +98,22 @@ export class AccountService {
     this.currentAccount.next(account);
   }
 
-  public getAccountTransactions(id: string, firstIndex?: number, lastIndex?: number, numberOfConfirmations?: number, type?: number, subtype?: number): Promise<TransactionList> {
-    const includeTransactions = semver.satisfies(this.selectedNode.version, '>=2.3.1') || undefined;
-    return this.api.account.getAccountTransactions(
-      id, firstIndex, lastIndex, numberOfConfirmations, type, subtype, includeTransactions);
+  public async getAccountTransactions(id: string, firstIndex?: number, lastIndex?: number, numberOfConfirmations?: number, type?: number, subtype?: number): Promise<TransactionList> {
+    try{
+      const includeMultiouts = semver.gte(this.selectedNode.version, constants.multiOutMinVersion, {includePrerelease: true}) || undefined;
+      const transactions = await this.api.account.getAccountTransactions(
+        id, firstIndex, lastIndex, numberOfConfirmations, type, subtype, includeMultiouts);
+      return Promise.resolve(transactions);
+    }catch (e){
+      // defensive programming: fallback, in case of multiout not accepted
+      const EC_INVALID_ARG = 4;
+      if (e.data.errorCode === EC_INVALID_ARG){
+        return this.api.account.getAccountTransactions(id, firstIndex, lastIndex, numberOfConfirmations, type, subtype);
+      }
+      else{
+        throw e;
+      }
+    }
   }
 
   public generateSendTransactionQRCodeAddress(
@@ -111,7 +130,8 @@ export class AccountService {
       immutable
     );
   }
-  public getAlias(name: string): Promise<any>{
+
+  public getAlias(name: string): Promise<any> {
     return this.api.alias.getAliasByName(name);
   }
 
@@ -173,7 +193,7 @@ export class AccountService {
   * Generates keys for an account, encrypts them with the provided key and saves them.
   * TODO: error handling of asynchronous method calls
   */
-  public createActiveAccount({ passphrase, pin = '' }): Promise<Account> {
+  public createActiveAccount({passphrase, pin = ''}): Promise<Account> {
     return new Promise(async (resolve, reject) => {
       const account: Account = new Account();
       // import active account
@@ -282,12 +302,15 @@ export class AccountService {
   */
   public synchronizeAccount(account: Account): Promise<Account> {
     return new Promise(async (resolve, reject) => {
-      // todo: parallelize
-      await this.syncAccountDetails(account);
-      await this.syncAccountTransactions(account);
-      await this.syncAccountUnconfirmedTransactions(account);
-
-      this.storeService.saveAccount(account).catch(error => { reject(error); });
+      await Promise.all([
+          this.syncAccountDetails(account),
+          this.syncAccountTransactions(account),
+          this.syncAccountUnconfirmedTransactions(account),
+        ]
+      );
+      this.storeService.saveAccount(account).catch(error => {
+        reject(error);
+      });
       resolve(account);
     });
   }
@@ -299,7 +322,7 @@ export class AccountService {
   public sendNewTransactionNotification(transaction: Transaction): void {
     this.transactionsSeenInNotifications[transaction.transaction] = true;
     const incoming = transaction.recipientRS === this.currentAccount.value.accountRS;
-    const totalAmountBurst = convertNQTStringToNumber(transaction.amountNQT) + convertNQTStringToNumber(transaction.feeNQT);
+    const totalAmountBurst = sumNQTStringToNumber(transaction.amountNQT, transaction.feeNQT);
 
     // @ts-ignore
     return window.Notification && new window.Notification(incoming ?
@@ -325,8 +348,7 @@ export class AccountService {
           .filter(({transaction}) => this.isNewTransaction(transaction))
           .map((transaction) => this.sendNewTransactionNotification(transaction));
       }
-    }
-    catch (e) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -335,8 +357,7 @@ export class AccountService {
     try {
       const transactionList = await this.getAccountTransactions(account.account, 0, 500);
       account.transactions = transactionList.transactions;
-    }
-    catch (e) {
+    } catch (e) {
       account.transactions = [];
       console.log(e);
     }
@@ -353,8 +374,7 @@ export class AccountService {
       account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
       // @ts-ignore
       account.confirmed = !!remoteAccount.publicKey;
-    }
-    catch (e) {
+    } catch (e) {
       account.confirmed = false;
       console.log(e);
     }

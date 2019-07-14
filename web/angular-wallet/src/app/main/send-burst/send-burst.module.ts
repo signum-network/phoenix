@@ -29,15 +29,22 @@ import { SendBurstFormComponent } from './send-burst-form/send-burst-form.compon
 import { SendMultiOutFormComponent } from './send-multi-out-form/send-multi-out-form.component';
 import { WarnSendDialogComponent } from './warn-send-dialog/warn-send-dialog.component';
 import {PageModule} from '../../components/page/page.module';
+import { LoginGuard } from 'app/login/login-guard.service';
 
 const routes = [
   {
     path: 'send',
     component: SendBurstComponent,
+    canActivate: [LoginGuard],
     resolve: {
       account: AccountResolver,
       suggestedFees: SuggestFeeResolver
     }
+  },
+  {
+    path: 'requestBurst',
+    redirectTo: 'send',
+    pathMatch: 'full'
   }
 ];
 

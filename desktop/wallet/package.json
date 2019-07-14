@@ -5,7 +5,7 @@
     "email": "contact@burst-coin.org"
   },
   "productName": "Phoenix BURST Wallet",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.9",
   "contributors": [
     "ohager",
     "blankey1337"
@@ -63,14 +63,14 @@
     "electron-dl": "^1.14.0",
     "get-ssl-certificate": "^2.3.3",
     "js-yaml": "^3.13.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "prop-types": "^15.7.2",
     "regenerator-runtime": "^0.13.2",
     "semver": "^6.1.1",
     "snyk": "^1.170.0",
     "usb": "^1.6.0",
     "semver": "^6.1.3",
-    "snyk": "^1.185.5",
+    "snyk": "^1.189.0",
     "winston": "^3.2.1"
   },
   "snyk": true
