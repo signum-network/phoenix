@@ -4,7 +4,9 @@
 
 ### New Feature:
 
-- _Spend all_ on Send Burst
+- Deep Linking
+- Improved Node Selection (#604)
+- _Spend all_ on Send Burst (#553)
 - Improved Layout for Transactions 
 - Improved Layout for Blocks 
 - Added Indicator while Downloading latest Update
