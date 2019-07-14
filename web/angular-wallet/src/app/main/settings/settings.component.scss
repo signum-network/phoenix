@@ -1,0 +1,38 @@
+@import "src/@fuse/scss/fuse";
+
+:host {
+
+  .node-selector {
+    display: flex;
+    flex-direction: column;
+
+    .version-info {
+      text-align: right;
+      width: 20% !important;
+    }
+
+    .button-wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      @include media-breakpoint('xs') {
+        flex-direction: column;
+        margin-top: 12px;
+        justify-content: normal;
+      }
+
+      .unfeatures {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      button {
+        @include media-breakpoint('xs') {
+          margin-top: 12px;
+        }
+      }
+    }
+  }
+}

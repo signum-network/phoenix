@@ -43,12 +43,10 @@ export class DisclaimerComponent
       try {
 
         const settings = await this.storeService.getSettings();
-        await this.storeService.saveSettings({
-          ...settings,
-          agree: true
-        });
+        settings.agree = true;
+        await this.storeService.saveSettings(settings);
         this.router.navigate(['/login']);
-        
+
       } catch (e) {
         console.warn(e);
       }

@@ -40,7 +40,7 @@ export class Settings {
         this.currency = data.currency || constants.defaultCurrency;
         this.language = data.language || constants.defaultLanguage;
         this.node = data.node || environment.defaultNode;
-        this.nodeVersion = data.nodeVersion || environment.nodeVersion;
+        this.nodeVersion = data.nodeVersion || '*';
         this.marketUrl = data.marketUrl || environment.market.tickerUrl;
         this.theme = data.theme || constants.defaultTheme;
         this.version = data.version || version;
