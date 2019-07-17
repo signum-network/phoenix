@@ -1,6 +1,6 @@
 import { Account } from '@burstjs/core';
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, ActionSheetIOS } from 'react-native';
+import { ActionSheetIOS, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Swipeout from 'react-native-swipeout';
 import { Text, TextAlign } from '../../../core/components/base/Text';
 import { Colors } from '../../../core/theme/colors';
@@ -44,7 +44,7 @@ export class AccountListItem extends React.PureComponent<Props> {
     onPress(account);
   }
 
-  render() {
+  render () {
     const { accountRS = '', balanceNQT = '', type = '' } = this.props.account;
     const styles = this.getStyles();
     const swipeBtns = [{

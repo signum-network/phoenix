@@ -19,10 +19,7 @@ interface Props extends InjectedReduxProps {
 
 type TProps = NavigationInjectedProps & Props;
 
-interface State {
-}
-
-class AccountDetails extends React.PureComponent<TProps, State> {
+class AccountDetails extends React.PureComponent<TProps> {
   state = {
   };
 
@@ -30,10 +27,12 @@ class AccountDetails extends React.PureComponent<TProps, State> {
     const { params = {} } = navigation.state;
 
     return {
-      headerLeft:  <BackHeaderButton onPress={params.handleBackPress} />,
-      headerTitle: (<AccountDetailsHeaderTitle>
+      headerLeft: <BackHeaderButton onPress={params.handleBackPress} />,
+      headerTitle: (
+        <AccountDetailsHeaderTitle>
           <Text>{i18n.t(auth.accounts.title)}</Text>
-        </AccountDetailsHeaderTitle>)
+        </AccountDetailsHeaderTitle>
+      )
     };
   }
 
@@ -53,9 +52,9 @@ class AccountDetails extends React.PureComponent<TProps, State> {
     return (
       <Screen>
         <FullHeightView withoutPaddings>
-            <Text>{account.accountRS}</Text>
-            <Text>{account.balanceNQT}</Text>
-            <Text>{account.transactions}</Text>
+          <Text>{account.accountRS}</Text>
+          <Text>{account.balanceNQT}</Text>
+          <Text>{account.transactions}</Text>
         </FullHeightView>
       </Screen>
     );

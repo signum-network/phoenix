@@ -1,12 +1,11 @@
 import { Account } from '@burstjs/core';
-import React, { Props } from 'react';
+import React from 'react';
 
 import { Button, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { AuthReduxState } from '../store/reducer';
 
-import { Text } from '../../../core/components/base/Text';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { PlusHeaderButton } from '../../../core/components/header/PlusHeaderButton';
 import { i18n } from '../../../core/i18n';
@@ -22,18 +21,20 @@ import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
 import { removeAccount } from '../store/actions';
 import { shouldEnterPIN } from '../store/utils';
 
-interface Props extends InjectedReduxProps {
+interface CustomProps extends InjectedReduxProps {
   app: AppReduxState,
   auth: AuthReduxState,
 }
 
-type TProps = NavigationInjectedProps & Props;
+type TProps = NavigationInjectedProps & CustomProps;
 
 interface State {
   isPINModalVisible: boolean
 }
 
 class Home extends React.PureComponent<TProps, State> {
+
+  _checkPinExpiryInterval: number | undefined;
 
   state = {
     isPINModalVisible: false
@@ -53,9 +54,18 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   componentDidMount () {
+
     this.props.navigation.setParams({
       handleAddAccountPress: this.handleAddAccountPress
     });
+
+    this._checkPinExpiryInterval = setInterval(() => {
+      const { passcodeTime } = this.props.app.appSettings;
+      const { passcodeEnteredTime } = this.props.auth;
+      if (shouldEnterPIN(passcodeTime, passcodeEnteredTime)) {
+        this.setModalVisible(true);
+      }
+    }, 1000);
   }
 
   setModalVisible = (isPINModalVisible: boolean) => {
@@ -69,19 +79,11 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   handleAddAccountPress = async () => {
-    const { passcodeEnteredTime } = this.props.auth;
-    const { passcodeTime } = this.props.app.appSettings;
-
-    if (shouldEnterPIN(passcodeTime, passcodeEnteredTime)) {
-      this.setModalVisible(true);
-    } else {
-      this.handleAddAccount();
-    }
+    this.handleAddAccount();
   }
 
   handlePINEntered = () => {
     this.setModalVisible(false);
-    this.handleAddAccount();
   }
 
   handleAddAccount = () => {
@@ -94,6 +96,10 @@ class Home extends React.PureComponent<TProps, State> {
 
   handleDelete = (account: Account) => {
     this.props.dispatch(removeAccount(account));
+  }
+
+  componentWillUnmount () {
+    clearInterval(this._checkPinExpiryInterval as number);
   }
 
   render () {
