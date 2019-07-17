@@ -82,9 +82,8 @@ export const constants = {
       location: 'USA',
       address: 'https://wallet1.burst-team.us',
       port: 2083,
-      selected: true,
+      selected: false,
       ping: -1,
-      version: '2.3.0'
     },
     {
       name: 'burst-alliance.org',
@@ -94,7 +93,6 @@ export const constants = {
       port: 8125,
       selected: false,
       ping: -1,
-      version: '2.3.0'
     },
     {
       name: 'burstcoin.ro #1',
@@ -104,7 +102,6 @@ export const constants = {
       port: 443,
       selected: false,
       ping: -1,
-      version: '2.3.0'
     },
     {
       name: 'burstcoin.ro #2',
@@ -114,9 +111,18 @@ export const constants = {
       port: 443,
       selected: false,
       ping: -1,
-      version: '2.3.0'
+    },
+    {
+      name: 'testnet',
+      region: 'Global',
+      location: 'Europe',
+      address: 'http://testnet.burstcoin.network',
+      port: 6876,
+      selected: false,
+      ping: -1,
     }
   ],
   supportUrl: 'https://github.com/burst-apps-team/phoenix/issues',
-  transactionCount: '100'
+  transactionCount: '100',
+  multiOutMinVersion: '2.3.1'
 };

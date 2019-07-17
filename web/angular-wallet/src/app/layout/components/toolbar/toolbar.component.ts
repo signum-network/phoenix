@@ -76,9 +76,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
                 this.hiddenNavbar = settings.layout.navbar.hidden === true;
             });
 
-        this.storeService.settings.subscribe(() => {
+        this.storeService.ready.subscribe(() => {
             this.selectedLanguage = this.i18nService.currentLanguage;
-        })
+        });
     }
 
     /**

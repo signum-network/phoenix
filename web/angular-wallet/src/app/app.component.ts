@@ -84,7 +84,25 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
 
     if (this.appService.isDesktop()) {
       this.initDesktopUpdater();
+      this.initDeepLinkHandler();
     }
+
+  }
+
+  private initDeepLinkHandler(): void {
+    this.appService.onIpcMessage('deep-link-clicked', (url) => {
+      const parsedUrl = this.urlSerializer.parse(url.replace('burst://', ''));
+      const g: UrlSegmentGroup = parsedUrl.root.children[PRIMARY_OUTLET];
+      const s: UrlSegment[] = g.segments;
+      this.router.navigate([s[0].path.replace('requestBurst', 'send')], {
+        queryParams: parsedUrl.queryParams,
+        queryParamsHandling: 'merge'
+      });
+      // fixes an issue with the view not rendering
+      setTimeout(() => {
+        this.applicationRef.tick();
+      }, 1000);
+    });
   }
 
   private initDesktopUpdater(): void {
@@ -125,20 +143,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       );
     });
 
-    this.appService.onIpcMessage('deep-link-clicked', (url) => {
-      // remove 'burst://' from url
-      const parsedUrl = this.urlSerializer.parse(url.slice(8));
-      const g: UrlSegmentGroup = parsedUrl.root.children[PRIMARY_OUTLET];
-      const s: UrlSegment[] = g.segments;
-      this.router.navigate([s[0].path.replace('requestBurst', 'send')], { 
-        queryParams: parsedUrl.queryParams, 
-        queryParamsHandling: 'merge' 
-      });
-      // fixes an issue with the view not rendering
-      setTimeout(() => {
-        this.applicationRef.tick();
-      }, 100);
-    });
+   
   }
 
   private async checkBlockchainStatus(): Promise<void> {
