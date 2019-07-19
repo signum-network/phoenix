@@ -109,9 +109,9 @@
   "settings": {
     "screens": {
       "settings": {
-        "title": "Settings",
-        "erase": "Erase all accounts and reset PIN",
-        "confirmErase": "Confirm - Erase and Reset"
+        "title": "Настройки",
+        "erase": "Удалить все аккаунты и сбросить PIN",
+        "confirmErase": "Удалить и сбросить"
       }
     }
   }

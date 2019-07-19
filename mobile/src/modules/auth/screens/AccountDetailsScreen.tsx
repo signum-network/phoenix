@@ -61,7 +61,7 @@ class AccountDetails extends React.PureComponent<TProps> {
   }
 }
 
-function mapStateToProps (state: ApplicationState) {
+function mapStateToProps (_state: ApplicationState) {
   return {
   };
 }

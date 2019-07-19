@@ -12,7 +12,6 @@ import { Screen } from '../../../core/layout/Screen';
 import { routes } from '../../../core/navigation/routes';
 import { ApplicationState } from '../../../core/store/initialState';
 import { EnterPassphraseStage } from '../components/create/EnterPassphraseStage';
-import { EnterPinStage } from '../components/create/EnterPinStage';
 import { NotePassphraseStage } from '../components/create/NotePassphraseStage';
 import { SeedGeneratorStage } from '../components/create/SeedGeneratorStage';
 import { StepCounter } from '../components/create/StepCounter';

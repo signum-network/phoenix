@@ -104,21 +104,10 @@ class Home extends React.PureComponent<TProps, State> {
 
   render () {
     const accounts: Account[] = this.props.auth.accounts || [];
-    const selectedAccount = this.props.auth.accounts.length &&
-      this.props.auth.accounts[0] || { accountRS: '', balanceNQT: '' };
     return (
       <Screen>
         <FullHeightView>
           <View>
-            {/* <Text>
-              {selectedAccount.accountRS}
-            </Text> */}
-            {/* <Text>
-              {selectedAccount.balanceNQT || '0'} BURST
-            </Text>
-            <Text>
-              {selectedAccount.balanceNQT || '0'} USD
-            </Text> */}
             <AccountsList
               accounts={accounts}
               onAccountPress={this.handleAccountPress}

@@ -1,11 +1,10 @@
 import { Account } from '@burstjs/core';
 import React from 'react';
-import { ActionSheetIOS, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Swipeout from 'react-native-swipeout';
 import { Text, TextAlign } from '../../../core/components/base/Text';
 import { Colors } from '../../../core/theme/colors';
 import { defaultSideOffset } from '../../../core/theme/sizes';
-import { actionTypes } from '../../transactions/store/actionTypes';
 
 interface IProps {
   onPress: (account: Account) => void;
