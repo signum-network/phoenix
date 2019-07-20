@@ -1,6 +1,5 @@
 import React from 'react';
 import { Alert, Modal, StyleSheet, View } from 'react-native';
-import { TouchableHighlight } from 'react-native-gesture-handler';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Button } from '../../../core/components/base/Button';
@@ -14,7 +13,6 @@ import { routes } from '../../../core/navigation/routes';
 import { ApplicationState } from '../../../core/store/initialState';
 import { Sizes } from '../../../core/theme/sizes';
 import { resetAuthState } from '../../auth/store/actions';
-import { actionTypes } from '../../auth/store/actionTypes';
 import { AuthReduxState } from '../../auth/store/reducer';
 import { settings } from '../translations';
 
@@ -72,8 +70,6 @@ class Settings extends React.PureComponent<Props> {
             >
               <View style={{ marginTop: 22 }}>
                 <View>
-                  <Text>Hello World!</Text>
-
                   <Button onPress={this.toggleConfirmDeletePrompt}>
                     {i18n.t(settings.screens.settings.cancel)}
                   </Button>

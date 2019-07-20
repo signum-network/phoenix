@@ -52,9 +52,9 @@ class Accounts extends React.PureComponent<TProps, State> {
     this.setState({ isPINModalVisible });
   }
 
-  handleAccountPress = (_account: Account) => {
+  handleAccountPress = (account: Account) => {
     this.props.navigation.navigate(routes.accountDetails, {
-      account: _account
+      account
     });
   }
 
@@ -82,6 +82,10 @@ class Accounts extends React.PureComponent<TProps, State> {
     this.setModalVisible(false);
   }
 
+  handleDeleteAccount = (_account: Account) => {
+    // TODO: do something;
+  }
+
   render () {
     const accounts: Account[] = this.props.auth.accounts || [];
 
@@ -92,6 +96,7 @@ class Accounts extends React.PureComponent<TProps, State> {
             accounts={accounts}
             onAccountPress={this.handleAccountPress}
             onAddAccountPress={this.handleAddAccountPress}
+            onDelete={this.handleDeleteAccount}
           />
           <EnterPasscodeModal
             visible={this.state.isPINModalVisible}

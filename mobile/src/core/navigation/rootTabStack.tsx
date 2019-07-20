@@ -1,5 +1,3 @@
-import React from 'react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
   BottomTabNavigatorConfig,
   createBottomTabNavigator,
@@ -21,21 +19,6 @@ const routesMap: RoutesMap = {
 
 const rootTabStackConfig: BottomTabNavigatorConfig = {
   initialRouteName: routes.home,
-  // defaultNavigationOptions: ({ navigation }) => ({
-  //   tabBarIcon: ({ focused }) => {
-  //     const { routeName } = navigation.state;
-  //     const IconComponent = Ionicons;
-  //     let iconName = '';
-  //     if (routeName === 'home') {
-  //       iconName = `ios-information-circle${focused ? '' : '-outline'}`;
-  //     } else if (routeName === 'Settings') {
-  //       iconName = `ios-options`;
-  //     }
-
-  //     // You can return any component that you like here!
-  //     return <IconComponent name={iconName} size={25} color={Colors.WHITE} />;
-  //   }
-  // }),
   tabBarOptions: {
     activeTintColor: Colors.WHITE,
     activeBackgroundColor: Colors.BLUE,
