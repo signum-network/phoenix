@@ -1,11 +1,12 @@
 import { Account } from '@burstjs/core';
 import React from 'react';
 
-import { Button, View } from 'react-native';
+import { Button, Text, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { AuthReduxState } from '../store/reducer';
 
+import { convertNQTStringToNumber } from '@burstjs/util';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { PlusHeaderButton } from '../../../core/components/header/PlusHeaderButton';
 import { i18n } from '../../../core/i18n';
@@ -16,6 +17,7 @@ import { routes } from '../../../core/navigation/routes';
 import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { core } from '../../../core/translations';
+import { PriceInfoReduxState } from '../../cmc/store/reducer';
 import { AccountsList } from '../components/AccountsList';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
 import { removeAccount } from '../store/actions';
@@ -24,6 +26,7 @@ import { shouldEnterPIN } from '../store/utils';
 interface CustomProps extends InjectedReduxProps {
   app: AppReduxState,
   auth: AuthReduxState,
+  cmc: PriceInfoReduxState
 }
 
 type TProps = NavigationInjectedProps & CustomProps;
@@ -104,9 +107,26 @@ class Home extends React.PureComponent<TProps, State> {
 
   render () {
     const accounts: Account[] = this.props.auth.accounts || [];
+    const totalBalance = accounts.map(({ balanceNQT }) => balanceNQT)
+      .reduce((prev, curr) => {
+        return prev + convertNQTStringToNumber(curr);
+      }, 0);
+
+    const totalBalanceInBTC = this.props.cmc && Number(this.props.cmc.price_btc) * totalBalance || 0;
+    console.log('reccalc', this.props.cmc, totalBalanceInBTC);
     return (
       <Screen>
         <FullHeightView>
+          <Text>
+            All Accounts
+          </Text>
+          <Text>
+            {totalBalance} BURST
+          </Text>
+          <Text>
+            {totalBalanceInBTC} BTC
+            {JSON.stringify(this.props.cmc)}
+          </Text>
           <View>
             <AccountsList
               accounts={accounts}
@@ -130,7 +150,8 @@ class Home extends React.PureComponent<TProps, State> {
 function mapStateToProps (state: ApplicationState) {
   return {
     app: state.app,
-    auth: state.auth
+    auth: state.auth,
+    cmc: state.cmc
   };
 }
 

@@ -73,6 +73,7 @@ export interface BurstSettings {
 export interface AppSettings {
   passcodeTime: number; // Time, after then we should ask passcode again, msec.
   burstSettings: BurstSettings;
+  coinMarketCapURL: string;
 }
 
 export type StorageKey = AuthStorageKeys;
