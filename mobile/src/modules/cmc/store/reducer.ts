@@ -1,4 +1,3 @@
-import { defaultSettings } from '../../../core/environment';
 import { Reducer } from '../../../core/interfaces';
 import { createReducers } from '../../../core/utils/store';
 import { actionTypes } from './actionTypes';
@@ -41,18 +40,12 @@ export const cmcState = (): PriceInfoReduxState => {
   };
 };
 
-const fetchPriceInfo: Reducer<Promise<PriceInfoReduxState>, void> = async (state) => {
-
-  console.log('in fetch price info');
-  const response = await fetch(defaultSettings.coinMarketCapURL);
-  const updatedPriceInfo = await response.json();
-  console.log(updatedPriceInfo);
-
-  return updatedPriceInfo.length && updatedPriceInfo[0] || state;
+const updatePriceInfo: Reducer<PriceInfoReduxState, PriceInfoReduxState> = (state, action) => {
+  return action.payload || state;
 };
 
 const reducers = {
-  [actionTypes.fetchPriceInfo]: fetchPriceInfo
+  [actionTypes.updatePriceInfo]: updatePriceInfo
 };
 
 export const cmc = createReducers(cmcState(), reducers);

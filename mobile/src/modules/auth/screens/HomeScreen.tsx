@@ -112,8 +112,7 @@ class Home extends React.PureComponent<TProps, State> {
         return prev + convertNQTStringToNumber(curr);
       }, 0);
 
-    const totalBalanceInBTC = this.props.cmc && Number(this.props.cmc.price_btc) * totalBalance || 0;
-    console.log('reccalc', this.props.cmc, totalBalanceInBTC);
+    const totalBalanceInBTC = Number(this.props.cmc.price_btc) * totalBalance || 0;
     return (
       <Screen>
         <FullHeightView>
@@ -125,7 +124,6 @@ class Home extends React.PureComponent<TProps, State> {
           </Text>
           <Text>
             {totalBalanceInBTC} BTC
-            {JSON.stringify(this.props.cmc)}
           </Text>
           <View>
             <AccountsList
