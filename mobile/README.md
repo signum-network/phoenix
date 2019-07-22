@@ -45,7 +45,7 @@ Install `Homebrew` and `NodeJS` 10+, then run following commands
 ```
 brew install watchman
 npm install -g react-native-cli
-npm install
+npm run init
 ```
 
 ### Windows (untested)
@@ -80,7 +80,7 @@ By default it's `c:\Users\YOUR_USERNAME\AppData\Local\Android\Sdk`
 Run the following commands:
 ```
 npm install -g react-native-cli
-npm install
+npm run init
 ```
 
 ### *nix systems (untested)
@@ -115,7 +115,7 @@ Then compile and install `Watchman` with [guide](https://facebook.github.io/watc
 Run the following commands:
 ```
 npm install -g react-native-cli
-npm install
+npm run init
 ``` 
 
 ## Development server
