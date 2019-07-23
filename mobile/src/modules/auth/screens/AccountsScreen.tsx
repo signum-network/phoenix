@@ -13,6 +13,7 @@ import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { AccountsList } from '../components/AccountsList';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
+import { removeAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { shouldEnterPIN } from '../store/utils';
 import { auth } from '../translations';
@@ -82,8 +83,8 @@ class Accounts extends React.PureComponent<TProps, State> {
     this.setModalVisible(false);
   }
 
-  handleDeleteAccount = (_account: Account) => {
-    // TODO: do something;
+  handleDeleteAccount = (account: Account) => {
+    this.props.dispatch(removeAccount(account));
   }
 
   render () {

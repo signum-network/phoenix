@@ -21,9 +21,16 @@ const rootTabStackConfig: BottomTabNavigatorConfig = {
   initialRouteName: routes.home,
   tabBarOptions: {
     activeTintColor: Colors.WHITE,
-    activeBackgroundColor: Colors.BLUE,
-    inactiveTintColor: Colors.WHITE,
-    inactiveBackgroundColor: Colors.BLUE
+    activeBackgroundColor: Colors.BLUE_DARK,
+    inactiveTintColor: Colors.GREY,
+    inactiveBackgroundColor: Colors.BLUE_DARK,
+    showIcon: true,
+    labelStyle: {
+      textTransform: 'uppercase'
+    },
+    style: {
+      borderTopWidth: 0
+    }
   }
 };
 
