@@ -77,7 +77,8 @@
       "home": {
         "accountsList": "Список аккаунтов",
         "recentTransactions": "Последние транзакции",
-        "title": "BURST"
+        "title": "BURST",
+        "allAccounts": "Все аккаунты"
       },
       "loading": {
         "loadingText": "Загрузка..."

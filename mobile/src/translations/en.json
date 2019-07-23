@@ -78,7 +78,8 @@
       "home": {
         "accountsList": "Accounts List",
         "recentTransactions": "Recent Transactions",
-        "title": "BURST"
+        "title": "BURST",
+        "allAccounts": "All Accounts"
       },
       "loading": {
         "loadingText": "Loading..."

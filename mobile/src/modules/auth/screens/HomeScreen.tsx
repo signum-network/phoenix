@@ -117,7 +117,7 @@ class Home extends React.PureComponent<TProps, State> {
       <Screen>
         <FullHeightView>
           <Text>
-            All Accounts
+          {i18n.t(core.screens.home.allAccounts)}
           </Text>
           <Text>
             {totalBalance} BURST

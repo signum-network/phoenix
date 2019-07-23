@@ -17,9 +17,9 @@ export const loadApp = createActionFn<void, Promise<void>>(
       dispatch(loadAccounts()),
       dispatch(loadPasscode()),
       dispatch(loadPasscodeEnteredTime()),
-      dispatch(loadAppSettings()),
-      dispatch(loadCMCData())
+      dispatch(loadAppSettings())
     ]);
+    dispatch(loadCMCData());
     dispatch(actions.appLoaded());
   }
 );

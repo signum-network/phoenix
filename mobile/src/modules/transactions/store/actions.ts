@@ -1,6 +1,5 @@
-import { sendMoney as send, Transaction, TransactionId } from '@burstjs/core';
+import { Account, sendMoney as send, Transaction, TransactionId } from '@burstjs/core';
 import { decryptAES, hashSHA256 } from '@burstjs/crypto';
-import { isEmpty } from 'lodash';
 import { createAction, createActionFn } from '../../../core/utils/store';
 import { actionTypes } from './actionTypes';
 
@@ -15,27 +14,21 @@ export interface SendMoneyPayload {
   amount: string;
   fee: string;
   attachment?: any;
+  sender: Account;
 }
 
 export const sendMoney = createActionFn<SendMoneyPayload, Promise<TransactionId>>(
   async (dispatch, getState, payload): Promise<TransactionId> => {
     const state = getState();
-    const { amount, address, fee } = payload;
+    const { amount, address, fee, sender } = payload;
     const service = state.app.burstService;
-    const accounts = state.auth.accounts;
-
-    // TODO: pass selected account with payload or so.
-    if (isEmpty(accounts)) {
-      throw new Error('No accounts');
-    }
-    const account = accounts[0];
 
     const transaction: Transaction = {
       amountNQT: amount,
       feeNQT: fee
     };
-    const senderPublicKey = account.keys.publicKey;
-    const senderPrivateKey = decryptAES(account.keys.signPrivateKey, hashSHA256(state.auth.passcode));
+    const senderPublicKey = sender.keys.publicKey;
+    const senderPrivateKey = decryptAES(sender.keys.signPrivateKey, hashSHA256(state.auth.passcode));
 
     dispatch(actions.sendMoney(payload));
     try {
