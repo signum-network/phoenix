@@ -16,6 +16,7 @@ export const core = {
       title: 'core.screens.home.title',
       recentTransactions: 'core.screens.home.recentTransactions',
       accountsList: 'core.screens.home.accountsList'
+      allAccounts: 'core.screens.home.allAccounts'
     }
   }
 };

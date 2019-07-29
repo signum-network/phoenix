@@ -1,3 +1,4 @@
+import { Account } from '@burstjs/core';
 import React from 'react';
 import { View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
@@ -66,6 +67,7 @@ class Send extends React.PureComponent<Props, State> {
   }
 
   render () {
+    const accounts: Account[] = this.props.auth.accounts || [];
     const { data, error } = this.props.transactions.sendMoney;
     const isLoading = isAsyncLoading(this.props.transactions.sendMoney);
 
@@ -73,7 +75,11 @@ class Send extends React.PureComponent<Props, State> {
       <Screen>
         <FullHeightView>
           <View>
-            <SendBurstForm loading={isLoading} onSubmit={this.handleSubmit}/>
+            <SendBurstForm
+              accounts={accounts}
+              loading={isLoading}
+              onSubmit={this.handleSubmit}
+            />
             {data && <Text theme={TextThemes.ACCENT}>{i18n.t(transactions.screens.send.sent)}</Text>}
             {error && <Text theme={TextThemes.DANGER}>{error.message}</Text>}
           </View>
