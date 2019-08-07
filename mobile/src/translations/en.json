@@ -68,6 +68,16 @@
       "save": "Save",
       "submit": "Submit"
     },
+    "currency": {
+      "BTC": {
+        "name": "BTC",
+        "value": "{{value}} BTC"
+      },
+      "BURST": {
+        "name": "BURST",
+        "value": "{{value}} BURST"
+      }
+    },
     "layout": {
       "preventBackButton": {
         "alertMessage": "Information will be lost",
@@ -78,7 +88,7 @@
       "home": {
         "accountsList": "Accounts List",
         "recentTransactions": "Recent Transactions",
-        "title": "BURST",
+        "title": "All Accounts",
         "allAccounts": "All Accounts"
       },
       "loading": {

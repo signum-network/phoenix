@@ -76,8 +76,8 @@ export class SendBurstForm extends React.PureComponent<Props, State> {
         <Picker
           selectedValue={this.state.address}
           style={{ height: 100, width: '100%', position: 'absolute', bottom: 0, backgroundColor: 'white' }}
-          onValueChange={this.setSender()
-          }>
+          onValueChange={this.setSender()}
+        >
             {this.listAccounts()}
         </Picker>
         <Input

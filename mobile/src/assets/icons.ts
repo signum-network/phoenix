@@ -7,3 +7,8 @@ export const tabbarIcons = {
   receive: require('./icons/qrcode.png'),
   settings: require('./icons/settings.png')
 };
+
+// 120/80/40px
+export const actionIcons = {
+  del: require('./icons/delete.png')
+};

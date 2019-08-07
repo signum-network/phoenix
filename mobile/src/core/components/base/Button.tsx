@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   buttonAccent: {
     backgroundColor: Colors.BLUE,
-    borderColor: Colors.BLUE_DARK
+    borderColor: Colors.BLUE_DARKER
   },
   loader: {
     margin: Sizes.SMALL
