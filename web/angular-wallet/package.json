@@ -71,7 +71,7 @@
     "ng2-charts": "2.2.4",
     "ng5-slider": "^1.2.4",
     "ngrx-store-freeze": "0.2.4",
-    "ngx-color-picker": "7.5.0",
+    "ngx-color-picker": "8.1.0",
     "ngx-cookie-service": "2.2.0",
     "ngx-electron": "^2.1.1",
     "ngx-mask": "^7.9.9",
