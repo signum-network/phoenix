@@ -82,6 +82,50 @@ See more here:
 <dd></dd>
 <dt><a href="#module_core">core</a></dt>
 <dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
 </dl>
 
 ## Classes
@@ -113,6 +157,13 @@ with its functions.</p>
 <p>Note, that this method mounts the <strong>entire</strong> API, i.e. all available methods. One may also customize the API composition
 using [[ApiComposer]].</p>
 </blockquote></dd>
+</dl>
+
+## Functions
+
+<dl>
+<dt><a href="#createParametersFromAttachment">createParametersFromAttachment(attachment, params)</a> ⇒</dt>
+<dd><p>Creates BRS Http send parameters for a transaction from attachment data</p></dd>
 </dl>
 
 <a name="core.module_api"></a>
@@ -169,7 +220,7 @@ const api = apiComposer
            })
 .compose();
 </code></pre>
-<p>The <code>with&lt;section&gt;Api</code> uses factory methods from the <a href="/phoenix/docs/modules/core_api_factories.html">api.core.factories</a> package</p>
+<p>The <code>with&lt;section&gt;Api</code> uses factory methods from the <a href="/phoenix/docs/modules/core.api.factories.html">api.core.factories</a> package</p>
 
 **Kind**: inner class of [<code>api</code>](#core.module_api)  
 
@@ -287,25 +338,54 @@ Note: As of being a builder pattern, this need to call this method as last</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -313,6 +393,14 @@ Note: As of being a builder pattern, this need to call this method as last</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -385,16 +473,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -405,6 +503,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -413,6 +512,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -472,25 +599,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -498,6 +654,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -570,16 +734,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -590,6 +764,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -598,6 +773,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -657,25 +860,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -683,6 +915,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -755,16 +995,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -775,6 +1025,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -783,6 +1034,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -842,25 +1121,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -868,6 +1176,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -940,16 +1256,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -960,6 +1286,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -968,6 +1295,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -1027,25 +1382,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -1053,6 +1437,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -1125,16 +1517,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -1145,6 +1547,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -1153,6 +1556,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -1212,25 +1643,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -1238,6 +1698,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -1310,16 +1778,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -1330,6 +1808,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -1338,6 +1817,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -1397,25 +1904,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -1423,6 +1959,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -1495,16 +2039,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -1515,6 +2069,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -1523,6 +2078,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -1582,25 +2165,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -1608,6 +2220,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -1680,16 +2300,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -1700,6 +2330,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -1708,6 +2339,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -1767,25 +2426,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -1793,6 +2481,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -1865,16 +2561,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -1885,6 +2591,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -1893,6 +2600,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -1952,25 +2687,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -1978,6 +2742,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -2050,16 +2822,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -2070,6 +2852,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -2078,6 +2861,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -2137,25 +2948,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -2163,6 +3003,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -2235,16 +3083,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -2255,6 +3113,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -2263,6 +3122,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -2322,25 +3209,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -2348,6 +3264,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -2420,16 +3344,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -2440,6 +3374,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -2448,6 +3383,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -2507,25 +3470,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -2533,6 +3525,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -2605,16 +3605,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -2625,6 +3635,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -2633,6 +3644,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -2692,25 +3731,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -2718,6 +3786,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -2790,16 +3866,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -2810,6 +3896,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -2818,6 +3905,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -2877,25 +3992,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -2903,6 +4047,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -2975,16 +4127,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -2995,6 +4157,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -3003,6 +4166,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -3062,25 +4253,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -3088,6 +4308,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -3160,16 +4388,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -3180,6 +4418,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -3188,6 +4427,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -3247,25 +4514,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -3273,6 +4569,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -3345,16 +4649,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -3365,6 +4679,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -3373,6 +4688,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -3432,25 +4775,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -3458,6 +4830,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -3530,16 +4910,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -3550,6 +4940,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -3558,6 +4949,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -3617,25 +5036,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -3643,6 +5091,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -3715,16 +5171,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -3735,6 +5201,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -3743,6 +5210,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -3802,25 +5297,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -3828,6 +5352,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -3900,16 +5432,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -3920,6 +5462,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -3928,6 +5471,34 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -3987,25 +5558,54 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 ## core
 
 * [core](#module_core)
-    * [~Account](#module_core..Account)
-    * [~BurstNode](#module_core..BurstNode)
-    * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-    * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-    * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-    * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-    * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-    * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-    * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-    * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-    * [~TransactionType](#module_core..TransactionType)
-    * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-    * [~assertAttachmentVersion(transaction, versionIdentifier)](#module_core..assertAttachmentVersion)
-    * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-    * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-    * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-    * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-    * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core..Account"></a>
 
 ### core~Account
@@ -4013,6 +5613,14 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The account class serves as a model for a Burstcoin account.
 It's meant to model the response from BRS API, except publicKey
 has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
 
 **Kind**: inner class of [<code>core</code>](#module_core)  
 <a name="module_core..BurstNode"></a>
@@ -4085,16 +5693,26 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..assertAttachmentVersion"></a>
+<a name="module_core..getAttachmentVersion"></a>
 
-### core~assertAttachmentVersion(transaction, versionIdentifier)
-<p>Asserts a specific version of a transactions attachment</p>
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
-**Throws**:
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
 
-- <p>An exception in case of wrong version</p>
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
 
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
 
 | Param | Description |
 | --- | --- |
@@ -4105,6 +5723,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core~getContractDatablock(position, length) ⇒
 <p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
 
 **Kind**: inner method of [<code>core</code>](#module_core)  
 **Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
@@ -4113,6 +5732,556 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- | --- |
 | position |  | <p>The variables position</p> |
 | length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
+
+<a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
+
+### core~getRecipientAmountsFromMultiOutPayment(transaction) ⇒
+<p>Tries to extract recipients and its amounts for multi out payments (different and same amount)</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>A list of recipients and their payed amount (in NQT)</p>  
+**Throws**:
+
+- <p>An exception in case of wrong transaction types</p>
+
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction</p> |
+
+<a name="module_core..getRecipientsAmount"></a>
+
+### core~getRecipientsAmount(recipientId, transaction) ⇒
+<p>Gets the amount from a transaction, considering ordinary and multi out transactions (with same and different payments)</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>the amount in BURST (not NQT)</p>  
+
+| Param | Description |
+| --- | --- |
+| recipientId | <p>The numeric id of the recipient</p> |
+| transaction | <p>The payment transaction</p> |
+
+<a name="module_core..isMultiOutSameTransaction"></a>
+
+### core~isMultiOutSameTransaction(transaction) ⇒
+<p>Checks if a transaction is a multi out transaction with same amounts for each recipient</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>true, if is a multi out transaction</p>  
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>Transaction to be checked</p> |
+
+<a name="module_core..isMultiOutTransaction"></a>
+
+### core~isMultiOutTransaction(transaction) ⇒
+<p>Checks if a transaction is a multi out transaction (with different amounts)</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>true, if is a multi out transaction</p>  
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>Transaction to be checked</p> |
+
+<a name="module_core"></a>
+
+## core
+
+* [core](#module_core)
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core..Account"></a>
+
+### core~Account
+<p>Account class</p>
+<p>The account class serves as a model for a Burstcoin account.
+It's meant to model the response from BRS API, except publicKey
+has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..BurstNode"></a>
+
+### core~BurstNode
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionArbitrarySubtype"></a>
+
+### core~TransactionArbitrarySubtype
+<p>Constants for arbitrary subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionAssetSubtype"></a>
+
+### core~TransactionAssetSubtype
+<p>Constants for asset subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionEscrowSubtype"></a>
+
+### core~TransactionEscrowSubtype
+<p>Constants for escrow subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionLeasingSubtype"></a>
+
+### core~TransactionLeasingSubtype
+<p>Constants for leasing subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionMarketplaceSubtype"></a>
+
+### core~TransactionMarketplaceSubtype
+<p>Constants for marketplace subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionPaymentSubtype"></a>
+
+### core~TransactionPaymentSubtype
+<p>Constants for payment subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionRewardRecipientSubtype"></a>
+
+### core~TransactionRewardRecipientSubtype
+<p>Constants for reward recipient subtypes (Pool Operation)</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionSmartContractSubtype"></a>
+
+### core~TransactionSmartContractSubtype
+<p>Constants for smart contract (aka AT) subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionType"></a>
+
+### core~TransactionType
+<p>Constants for transaction types</p>
+<p>The transaction type is part of every [[Transaction]] object
+and used to distinguish block data. Additionally, to the transaction type
+a subtype is sent, that specifies the kind of transaction more detailly.</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..FeeQuantNQT"></a>
+
+### core~FeeQuantNQT
+<p>The smallest possible fee</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
+<a name="module_core..getAttachmentVersion"></a>
+
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
+
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
+| versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
+
+<a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
+
+### core~getRecipientAmountsFromMultiOutPayment(transaction) ⇒
+<p>Tries to extract recipients and its amounts for multi out payments (different and same amount)</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>A list of recipients and their payed amount (in NQT)</p>  
+**Throws**:
+
+- <p>An exception in case of wrong transaction types</p>
+
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction</p> |
+
+<a name="module_core..getRecipientsAmount"></a>
+
+### core~getRecipientsAmount(recipientId, transaction) ⇒
+<p>Gets the amount from a transaction, considering ordinary and multi out transactions (with same and different payments)</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>the amount in BURST (not NQT)</p>  
+
+| Param | Description |
+| --- | --- |
+| recipientId | <p>The numeric id of the recipient</p> |
+| transaction | <p>The payment transaction</p> |
+
+<a name="module_core..isMultiOutSameTransaction"></a>
+
+### core~isMultiOutSameTransaction(transaction) ⇒
+<p>Checks if a transaction is a multi out transaction with same amounts for each recipient</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>true, if is a multi out transaction</p>  
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>Transaction to be checked</p> |
+
+<a name="module_core..isMultiOutTransaction"></a>
+
+### core~isMultiOutTransaction(transaction) ⇒
+<p>Checks if a transaction is a multi out transaction (with different amounts)</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>true, if is a multi out transaction</p>  
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>Transaction to be checked</p> |
+
+<a name="module_core"></a>
+
+## core
+
+* [core](#module_core)
+    * _static_
+        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.Attachment](#module_core.Attachment)
+        * [.AttachmentMessage](#module_core.AttachmentMessage)
+    * _inner_
+        * [~Account](#module_core..Account)
+        * [~Attachment](#module_core..Attachment)
+        * [~BurstNode](#module_core..BurstNode)
+        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
+        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
+        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
+        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
+        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
+        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
+        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
+        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
+        * [~TransactionType](#module_core..TransactionType)
+        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
+        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
+        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
+        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
+        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
+        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
+        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
+        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
+        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
+
+<a name="module_core.FeeQuantNQT"></a>
+
+### core.FeeQuantNQT
+<p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.Attachment"></a>
+
+### core.Attachment
+<p>Message class</p>
+<p>The Message class is used to model a plain message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.AttachmentMessage"></a>
+
+### core.AttachmentMessage
+<p>EncryptedMessage class</p>
+<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core..Account"></a>
+
+### core~Account
+<p>Account class</p>
+<p>The account class serves as a model for a Burstcoin account.
+It's meant to model the response from BRS API, except publicKey
+has been moved into the keys object.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..Attachment"></a>
+
+### core~Attachment
+<p>Attachment class</p>
+<p>The attachment class is used to appended to transaction where appropriate.
+It is a super class for Message and EncryptedMessage.</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..BurstNode"></a>
+
+### core~BurstNode
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team</p>
+
+**Kind**: inner class of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionArbitrarySubtype"></a>
+
+### core~TransactionArbitrarySubtype
+<p>Constants for arbitrary subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionAssetSubtype"></a>
+
+### core~TransactionAssetSubtype
+<p>Constants for asset subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionEscrowSubtype"></a>
+
+### core~TransactionEscrowSubtype
+<p>Constants for escrow subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionLeasingSubtype"></a>
+
+### core~TransactionLeasingSubtype
+<p>Constants for leasing subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionMarketplaceSubtype"></a>
+
+### core~TransactionMarketplaceSubtype
+<p>Constants for marketplace subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionPaymentSubtype"></a>
+
+### core~TransactionPaymentSubtype
+<p>Constants for payment subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionRewardRecipientSubtype"></a>
+
+### core~TransactionRewardRecipientSubtype
+<p>Constants for reward recipient subtypes (Pool Operation)</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionSmartContractSubtype"></a>
+
+### core~TransactionSmartContractSubtype
+<p>Constants for smart contract (aka AT) subtypes</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..TransactionType"></a>
+
+### core~TransactionType
+<p>Constants for transaction types</p>
+<p>The transaction type is part of every [[Transaction]] object
+and used to distinguish block data. Additionally, to the transaction type
+a subtype is sent, that specifies the kind of transaction more detailly.</p>
+
+**Kind**: inner property of [<code>core</code>](#module_core)  
+<a name="module_core..FeeQuantNQT"></a>
+
+### core~FeeQuantNQT
+<p>The smallest possible fee</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
+<a name="module_core..getAttachmentVersion"></a>
+
+### core~getAttachmentVersion(transaction) ⇒
+<p>Get the transaction attachment version identifier</p>
+<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
+
+<a name="module_core..isAttachmentVersion"></a>
+
+### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
+<p>Checks if a transaction attachment is of specific version</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p><em>true</em>, if version string matches</p>  
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction to be checked</p> |
+| versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
+
+<a name="module_core..getContractDatablock"></a>
+
+### core~getContractDatablock(position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_core..constructAttachment"></a>
+
+### ~~core~constructAttachment(transaction, params) ⇒~~
+***Deprecated***
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| transaction | <p>The transaction with the attachment</p> |
+| params | <p>Some HttpParams</p> |
+
+<a name="module_core..signAndBroadcastTransaction"></a>
+
+### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
+<p>Signs and broadcasts a transaction</p>
+
+**Kind**: inner method of [<code>core</code>](#module_core)  
+**Returns**: <p>The transaction Id</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| unsignedTransaction | <p>The unsigned transaction context</p> |
+| service | <p>The service used for</p> |
 
 <a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
 
@@ -4351,4 +6520,18 @@ using [[ApiComposer]].</p>
 | Param | Description |
 | --- | --- |
 | settings | <p>necessary execution context</p> |
+
+<a name="createParametersFromAttachment"></a>
+
+## createParametersFromAttachment(attachment, params) ⇒
+<p>Creates BRS Http send parameters for a transaction from attachment data</p>
+
+**Kind**: global function  
+**Returns**: <p>HttpParams</p>  
+**Hidden**:   
+
+| Param | Description |
+| --- | --- |
+| attachment | <p>The attachment</p> |
+| params | <p>Any object</p> |
 
