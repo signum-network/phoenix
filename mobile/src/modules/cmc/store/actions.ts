@@ -7,7 +7,7 @@ const actions = {
   updatePriceInfo: createAction<PriceInfoReduxState>(actionTypes.updatePriceInfo)
 };
 
-export const loadCMCData = createActionFn<PriceInfoReduxState, Promise<void>>(
+export const loadCMCData = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) => {
     const response = await fetch(defaultSettings.coinMarketCapURL);
     const updatedPriceInfo = await response.json();

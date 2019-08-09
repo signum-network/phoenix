@@ -1,12 +1,8 @@
 import { Account } from '@burstjs/core';
 import React from 'react';
-
-import { Button, Text, View } from 'react-native';
+import { Button, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-import { AuthReduxState } from '../store/reducer';
-
-import { convertNQTStringToNumber } from '@burstjs/util';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { PlusHeaderButton } from '../../../core/components/header/PlusHeaderButton';
 import { i18n } from '../../../core/i18n';
@@ -16,11 +12,13 @@ import { Screen } from '../../../core/layout/Screen';
 import { routes } from '../../../core/navigation/routes';
 import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
+import { Colors } from '../../../core/theme/colors';
 import { core } from '../../../core/translations';
 import { PriceInfoReduxState } from '../../cmc/store/reducer';
 import { AccountsList } from '../components/AccountsList';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
 import { removeAccount } from '../store/actions';
+import { AuthReduxState } from '../store/reducer';
 import { shouldEnterPIN } from '../store/utils';
 
 interface CustomProps extends InjectedReduxProps {
@@ -107,30 +105,18 @@ class Home extends React.PureComponent<TProps, State> {
 
   render () {
     const accounts: Account[] = this.props.auth.accounts || [];
-    const totalBalance = accounts.map(({ balanceNQT }) => balanceNQT)
-      .reduce((prev, curr) => {
-        return prev + convertNQTStringToNumber(curr);
-      }, 0);
 
-    const totalBalanceInBTC = Number(this.props.cmc.price_btc) * totalBalance || 0;
+    // TODO: remove when all screens will be with blue background
     return (
-      <Screen>
-        <FullHeightView>
-          <Text>
-          {i18n.t(core.screens.home.allAccounts)}
-          </Text>
-          <Text>
-            {totalBalance} BURST
-          </Text>
-          <Text>
-            {totalBalanceInBTC} BTC
-          </Text>
+      <Screen style={{ backgroundColor: Colors.BLUE_DARKER }}>
+        <FullHeightView withoutPaddings>
           <View>
             <AccountsList
               accounts={accounts}
               onAccountPress={this.handleAccountPress}
               onAddAccountPress={this.handleAddAccountPress}
               onDelete={this.handleDelete}
+              cmc={this.props.cmc}
             />
             <EnterPasscodeModal
               visible={this.state.isPINModalVisible}

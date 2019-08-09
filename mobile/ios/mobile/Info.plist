@@ -55,11 +55,13 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>BebasNeueBold.ttf</string>
-		<string>BebasNeueRegular.ttf</string>
-		<string>NotoSansBold.ttf</string>
-		<string>NotoSansItalic.ttf</string>
 		<string>NotoSansRegular.ttf</string>
+		<string>NotoSansItalic.ttf</string>
+		<string>NotoSansBold.ttf</string>
+		<string>BebasNeueThin.ttf</string>
+		<string>BebasNeueRegular.ttf</string>
+		<string>BebasNeueBold.ttf</string>
+		<string>NotoSansThin.ttf</string>
 	</array>
 </dict>
 </plist>

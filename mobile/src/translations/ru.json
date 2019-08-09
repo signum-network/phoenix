@@ -67,6 +67,16 @@
       "save": "Сохранить",
       "submit": "Отправить"
     },
+    "currency": {
+      "BTC": {
+        "name": "BTC",
+        "value": "{{value}} BTC"
+      },
+      "BURST": {
+        "name": "BURST",
+        "value": "{{value}} BURST"
+      }
+    },
     "layout": {
       "preventBackButton": {
         "alertMessage": "Информация будет утеряна",
@@ -77,7 +87,7 @@
       "home": {
         "accountsList": "Список аккаунтов",
         "recentTransactions": "Последние транзакции",
-        "title": "BURST",
+        "title": "Все аккаунты",
         "allAccounts": "Все аккаунты"
       },
       "loading": {

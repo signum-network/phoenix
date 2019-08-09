@@ -8,6 +8,7 @@ import { settingsStack } from '../../modules/settings/navigation/settingsStack';
 import { receiveStack } from '../../modules/transactions/navigation/receiveStack';
 import { sendStack } from '../../modules/transactions/navigation/sendStack';
 import { Colors } from '../theme/colors';
+import { fonts } from '../theme/fonts';
 import { routes, RoutesMap } from './routes';
 
 const routesMap: RoutesMap = {
@@ -21,12 +22,13 @@ const rootTabStackConfig: BottomTabNavigatorConfig = {
   initialRouteName: routes.home,
   tabBarOptions: {
     activeTintColor: Colors.WHITE,
-    activeBackgroundColor: Colors.BLUE_DARK,
+    activeBackgroundColor: Colors.BLUE_DARKER,
     inactiveTintColor: Colors.GREY,
-    inactiveBackgroundColor: Colors.BLUE_DARK,
+    inactiveBackgroundColor: Colors.BLUE_DARKER,
     showIcon: true,
     labelStyle: {
-      textTransform: 'uppercase'
+      textTransform: 'uppercase',
+      fontFamily: fonts.bebas
     },
     style: {
       borderTopWidth: 0
