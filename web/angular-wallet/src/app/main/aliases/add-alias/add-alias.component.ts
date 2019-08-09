@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { SuggestedFees, Account } from '@burstjs/core';
 import { NgForm } from '@angular/forms';
-import { burstAddressPattern } from '@burstjs/util';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from 'app/setup/account/account.service';
-import { StoreService } from 'app/store/store.service';
 import { NotifierService } from 'angular-notifier';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import {burstAddressPattern} from 'app/util/burstAddressPattern';
 
 @Component({
   selector: 'app-add-alias',
