@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { SuggestedFees, Account } from '@burstjs/core';
 import { NgForm } from '@angular/forms';
-import { burstAddressPattern } from '@burstjs/util';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from 'app/setup/account/account.service';
 import { NotifierService } from 'angular-notifier';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { Recipient } from 'app/layout/components/burst-recipient-input/burst-recipient-input.component';
+import { burstAddressPattern } from 'app/util/burstAddressPattern';
 
 @Component({
   selector: 'app-set-reward-recipient',
@@ -52,7 +52,7 @@ export class SetRewardRecipientComponent implements OnInit {
       });
       this.notifierService.notify('success', this.i18nService.getTranslation('success_set_reward_recipient'));
       this.setRewardRecipientForm.resetForm();
-    } catch (e) { 
+    } catch (e) {
       this.notifierService.notify('error', e.message || this.i18nService.getTranslation('error_set_reward_recipient'));
     }
   }
@@ -61,4 +61,3 @@ export class SetRewardRecipientComponent implements OnInit {
     this.recipient = recipient;
   }
 }
- 

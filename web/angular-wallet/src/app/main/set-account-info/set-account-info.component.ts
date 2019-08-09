@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { SuggestedFees, Account } from '@burstjs/core';
 import { NgForm } from '@angular/forms';
-import { burstAddressPattern } from '@burstjs/util';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
 import { NotifierService } from 'angular-notifier';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { TransactionService } from '../transactions/transaction.service';
+import { burstAddressPattern } from 'app/util/burstAddressPattern';
 
 @Component({
   selector: 'app-set-account-info',
@@ -57,9 +57,8 @@ export class SetAccountInfoComponent implements OnInit {
       });
       this.notifierService.notify('success', this.i18nService.getTranslation('success_set_account_info'));
       this.setAccountInfoForm.resetForm();
-    } catch (e) { 
+    } catch (e) {
       this.notifierService.notify('error', this.i18nService.getTranslation('error_unknown'));
     }
   }
 }
- 

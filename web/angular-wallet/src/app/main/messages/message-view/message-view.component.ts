@@ -19,7 +19,6 @@ import {AccountService} from 'app/setup/account/account.service';
 import {Account} from '@burstjs/core';
 import {Router} from '@angular/router';
 import {
-  burstAddressPattern,
   convertAddressToNumericId,
   isValid,
   convertDateToBurstTime,
@@ -29,6 +28,7 @@ import {NotifierService} from 'angular-notifier';
 import {UtilService} from 'app/util.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {decryptAES, hashSHA256, decryptMessage} from '@burstjs/crypto';
+import {burstAddressPattern} from 'app/util/burstAddressPattern';
 
 @Component({
   selector: 'message-view',
