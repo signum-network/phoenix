@@ -128,7 +128,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
       await this.transactionService.sendBurst({
         amount: convertNumberToNQTString(parseFloat(this.amount)),
         fee: convertNumberToNQTString(parseFloat(this.fee)),
-        recipientId: convertAddressToNumericId(this.recipient.addressRS || this.recipient.addressRaw),
+        recipientId: convertAddressToNumericId(this.recipient.addressRS),
         keys: this.account.keys,
         pin: this.pin,
         message: this.message,

@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef, OnChanges} from '@angular/core';
-import {convertAddressToNumericId} from '@burstjs/util';
-import {AccountService} from '../../../setup/account/account.service';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef, OnChanges } from '@angular/core';
+import { convertAddressToNumericId, isBurstAddress } from '@burstjs/util';
+import { AccountService } from '../../../setup/account/account.service';
 import jsQR from 'jsqr';
 import { NotifierService } from 'angular-notifier';
 
@@ -106,16 +106,17 @@ export class BurstRecipientInputComponent implements OnInit, OnChanges {
       return;
     }
 
-    accountFetchFn.call(this.accountService, id).then(({accountRS}) => {
+    accountFetchFn.call(this.accountService, id).then(({ accountRS }) => {
       this.recipient.addressRS = accountRS;
       this.recipient.status = RecipientValidationStatus.VALID;
     }).catch(() => {
-      this.recipient.addressRS = '';
+      this.recipient.addressRS = (isBurstAddress(this.recipient.addressRaw)) ?
+        this.recipient.addressRaw : '';
       this.recipient.status = RecipientValidationStatus.INVALID;
     }).finally(() => {
-        // TODO: use Recipient class
-        this.recipientChange.emit(this.recipient);
-      }
+      // TODO: use Recipient class
+      this.recipientChange.emit(this.recipient);
+    }
     );
 
   }
@@ -153,43 +154,43 @@ export class BurstRecipientInputComponent implements OnInit, OnChanges {
     const file = this.file.nativeElement.files[0];
 
     if (file) {
-        const img = new Image();
-        img.src = window.URL.createObjectURL(file);
-        img.onload = () => {
-            // reduce the image by 1/4 to make it more reliable
-            const width = Math.round(img.naturalWidth / 4),
-                  height = Math.round(img.naturalHeight / 4);
+      const img = new Image();
+      img.src = window.URL.createObjectURL(file);
+      img.onload = () => {
+        // reduce the image by 1/4 to make it more reliable
+        const width = Math.round(img.naturalWidth / 4),
+          height = Math.round(img.naturalHeight / 4);
 
-            const reader = new FileReader();
-            reader.onload = (e: ProgressEvent): void => {
+        const reader = new FileReader();
+        reader.onload = (e: ProgressEvent): void => {
 
-              const canvas = document.createElement('canvas');
-              canvas.width = width;
-              canvas.height = height;
-              const ctx = canvas.getContext('2d');
-              ctx.drawImage(img, 0, 0, width * 4, height * 4, 0, 0, width, height);
-              const { data }  = ctx.getImageData(0, 0, width, height);
-              const qr = jsQR(data, width, height);
-              if (qr) {
-                const url = new URLSearchParams(qr.data);
-                this.applyRecipientType(url.get('receiver'));
-                this.recipient.addressRaw = url.get('receiver');
-                this.validateRecipient();
-                this.qrCodeUpload.emit({
-                  recipient: this.recipient,
-                  amountNQT: url.get('amountNQT'),
-                  feeNQT: url.get('feeNQT'),
-                  immutable: url.get('immutable') === 'true'
-                });
-                this.notifierService.notify('success', 'QR parsed successfully');
-              } else {
-                this.notifierService.notify('error', 'Error parsing QR code');
-              }
-            };
-
-            window.URL.revokeObjectURL(img.src);
-            reader.readAsDataURL(file);
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width * 4, height * 4, 0, 0, width, height);
+          const { data } = ctx.getImageData(0, 0, width, height);
+          const qr = jsQR(data, width, height);
+          if (qr) {
+            const url = new URLSearchParams(qr.data);
+            this.applyRecipientType(url.get('receiver'));
+            this.recipient.addressRaw = url.get('receiver');
+            this.validateRecipient();
+            this.qrCodeUpload.emit({
+              recipient: this.recipient,
+              amountNQT: url.get('amountNQT'),
+              feeNQT: url.get('feeNQT'),
+              immutable: url.get('immutable') === 'true'
+            });
+            this.notifierService.notify('success', 'QR parsed successfully');
+          } else {
+            this.notifierService.notify('error', 'Error parsing QR code');
+          }
         };
+
+        window.URL.revokeObjectURL(img.src);
+        reader.readAsDataURL(file);
+      };
     }
   }
 }
