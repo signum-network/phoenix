@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef, OnChanges } from '@angular/core';
-import { convertAddressToNumericId, isBurstAddress } from '@burstjs/util';
-import { AccountService } from '../../../setup/account/account.service';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef, OnChanges} from '@angular/core';
+import {convertAddressToNumericId, convertNumericIdToAddress, isBurstAddress} from '@burstjs/util';
+import {AccountService} from '../../../setup/account/account.service';
 import jsQR from 'jsqr';
-import { NotifierService } from 'angular-notifier';
+import {NotifierService} from 'angular-notifier';
 
 // generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
 let nextId = 0;
@@ -52,10 +52,10 @@ export class BurstRecipientInputComponent implements OnInit, OnChanges {
   @Input('appearance') appearance = '';
   @Input('disabled') disabled = false;
 
-  @ViewChild('file', { static: true }) file: ElementRef;
+  @ViewChild('file', {static: true}) file: ElementRef;
 
   constructor(private accountService: AccountService,
-    private notifierService: NotifierService) {
+              private notifierService: NotifierService) {
   }
 
   ngOnInit(): void {
@@ -106,17 +106,16 @@ export class BurstRecipientInputComponent implements OnInit, OnChanges {
       return;
     }
 
-    accountFetchFn.call(this.accountService, id).then(({ accountRS }) => {
+    accountFetchFn.call(this.accountService, id).then(({accountRS}) => {
       this.recipient.addressRS = accountRS;
       this.recipient.status = RecipientValidationStatus.VALID;
     }).catch(() => {
       this.recipient.addressRS = (isBurstAddress(this.recipient.addressRaw)) ?
-        this.recipient.addressRaw : '';
+        this.recipient.addressRaw : convertNumericIdToAddress(this.recipient.addressRaw);
       this.recipient.status = RecipientValidationStatus.INVALID;
     }).finally(() => {
-      // TODO: use Recipient class
-      this.recipientChange.emit(this.recipient);
-    }
+        this.recipientChange.emit(this.recipient);
+      }
     );
 
   }
@@ -169,7 +168,7 @@ export class BurstRecipientInputComponent implements OnInit, OnChanges {
           canvas.height = height;
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, width * 4, height * 4, 0, 0, width, height);
-          const { data } = ctx.getImageData(0, 0, width, height);
+          const {data} = ctx.getImageData(0, 0, width, height);
           const qr = jsQR(data, width, height);
           if (qr) {
             const url = new URLSearchParams(qr.data);
