@@ -1,5 +1,11 @@
 # Changelog
 
+##1.0.0-beta.10
+
+# Bug Fixes
+- Fixed sending to unknown accounts (#645)
+
+
 ##1.0.0-beta.9
 
 ### New Feature:
