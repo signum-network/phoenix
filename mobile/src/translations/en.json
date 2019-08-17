@@ -29,6 +29,11 @@
         },
         "title": "Accounts"
       },
+      "accountDetails": {
+        "noTransactions": {
+          "title": "No transactions"
+        }
+      },
       "addAccount": {
         "createAccount": "Create account",
         "hint": "Do you have an account?",
@@ -76,6 +81,24 @@
       "BURST": {
         "name": "BURST",
         "value": "{{value}} BURST"
+      }
+    },
+    "dates": {
+      "months": {
+        "short": {
+          "0": "Jan",
+          "1": "Feb",
+          "2": "Mar",
+          "3": "Apr",
+          "4": "May",
+          "5": "Jun",
+          "6": "Jul",
+          "7": "Aug",
+          "8": "Sep",
+          "9": "Oct",
+          "10": "Nov",
+          "11": "Dec"
+        }
       }
     },
     "layout": {

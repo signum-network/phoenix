@@ -88,8 +88,11 @@ export const createOfflineAccount = createActionFn<string, Account>(
 
 export const hydrateAccount = createActionFn<Account, Promise<Account>>(
   async (dispatch, getState, account) => {
+    const state = getState();
+    const { nodeHost, apiRootUrl } = state.app.burstService.settings;
 
-    const api = composeApi(new ApiSettings('https://wallet1.burst-team.us:2083', 'burst'));
+    // TODO: unify network request actions, add proper error handling and so on
+    const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
     try {
       const accountDetails = await api.account.getAccount(account.account);
       dispatch(actions.updateAccount(accountDetails));
@@ -99,6 +102,27 @@ export const hydrateAccount = createActionFn<Account, Promise<Account>>(
     await setAccounts(getState().auth.accounts);
     return account;
   }
+);
+
+export const updateAccountTransactions = createActionFn<Account, Promise<Account>>(
+    async (dispatch, getState, account) => {
+      const state = getState();
+      const { nodeHost, apiRootUrl } = state.app.burstService.settings;
+
+      const updatedAccount: Account = {
+        ...account
+      };
+      const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
+      try {
+        const transactions = await api.account.getAccountTransactions(account.account);
+        updatedAccount.transactions = transactions.transactions;
+        dispatch(actions.updateAccount(updatedAccount));
+      // tslint:disable-next-line: no-empty
+      } catch (e) {}
+
+      await setAccounts(getState().auth.accounts);
+      return updatedAccount;
+    }
 );
 
 export const addAccount = createActionFn<Account, Promise<Account>>(
