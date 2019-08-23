@@ -7,18 +7,18 @@ export const core: any = {
   dates: {
     months: {
       short: {
-        0: 'core.dates.months.short.0',
-        1: 'core.dates.months.short.1',
-        2: 'core.dates.months.short.2',
-        3: 'core.dates.months.short.3',
-        4: 'core.dates.months.short.4',
-        5: 'core.dates.months.short.5',
-        6: 'core.dates.months.short.6',
-        7: 'core.dates.months.short.7',
-        8: 'core.dates.months.short.8',
-        9: 'core.dates.months.short.9',
-        10: 'core.dates.months.short.10',
-        11: 'core.dates.months.short.11'
+        JAN: 'core.dates.months.short.JAN',
+        FEB: 'core.dates.months.short.FEB',
+        MAR: 'core.dates.months.short.MAR',
+        APR: 'core.dates.months.short.APR',
+        MAY: 'core.dates.months.short.MAY',
+        JUN: 'core.dates.months.short.JUN',
+        JUL: 'core.dates.months.short.JUL',
+        AUG: 'core.dates.months.short.AUG',
+        SEP: 'core.dates.months.short.SEP',
+        OCT: 'core.dates.months.short.OCT',
+        NOV: 'core.dates.months.short.NOV',
+        DEC: 'core.dates.months.short.DEC'
       }
     }
   },
