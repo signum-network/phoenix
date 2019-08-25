@@ -1,68 +1,90 @@
-import { Account } from '@burstjs/core';
+import { Account, Transaction } from '@burstjs/core';
+import { last } from 'lodash';
 import React from 'react';
-import { Text } from 'react-native';
+import { View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-import { AccountDetailsHeaderTitle } from '../../../core/components/header/AccountDetailsHeaderTitle';
-import { BackHeaderButton } from '../../../core/components/header/BackHeaderButton';
-import { i18n } from '../../../core/i18n';
+import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { InjectedReduxProps } from '../../../core/interfaces';
 import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
-import { routes } from '../../../core/navigation/routes';
 import { ApplicationState } from '../../../core/store/initialState';
-import { auth } from '../translations';
+import { Colors } from '../../../core/theme/colors';
+import { PriceInfoReduxState } from '../../cmc/store/reducer';
+import { AccountDetailsList } from '../components/details/AccountDetailsList';
+import { updateAccountTransactions } from '../store/actions';
 
 interface Props extends InjectedReduxProps {
-  account: Account
+  accounts: Account[];
+  cmc: PriceInfoReduxState;
 }
 
 type TProps = NavigationInjectedProps & Props;
 
 class AccountDetails extends React.PureComponent<TProps> {
-  state = {
-  };
-
   static navigationOptions = ({ navigation }: NavigationInjectedProps) => {
     const { params = {} } = navigation.state;
+    const shortAddress = `...${last(params.accountRS.split('-'))}`;
 
     return {
-      headerLeft: <BackHeaderButton onPress={params.handleBackPress} />,
       headerTitle: (
-        <AccountDetailsHeaderTitle>
-          <Text>{i18n.t(auth.accounts.title)}</Text>
-        </AccountDetailsHeaderTitle>
+        <HeaderTitle>
+          {shortAddress}
+        </HeaderTitle>
       )
     };
   }
 
   componentDidMount () {
-    this.props.navigation.setParams({
-      handleBackPress: this.handleBackPress
-    });
+    this.updateTransactions();
   }
 
-  handleBackPress = () => {
-    this.props.navigation.navigate(routes.home);
+  getAccount = () => {
+    const accountRS = this.props.navigation.getParam('accountRS');
+    return this.props.accounts.find((acc) => acc.accountRS === accountRS);
+  }
+
+  updateTransactions = () => {
+    const account = this.getAccount();
+    if (account) {
+      this.props.dispatch(updateAccountTransactions(account));
+    }
+  }
+
+  handleTransactionPress = (transaction: Transaction) => {
+    // TODO: do something?
+    // tslint:disable-next-line
+    console.log(transaction);
   }
 
   render () {
-    const account: Account = this.props.navigation.getParam('account');
+    const { cmc } = this.props;
+    const account = this.getAccount();
+    if (!account) {
+      return null;
+    }
 
+    // TODO: remove when all screens will be with blue background
     return (
-      <Screen>
+      <Screen style={{ backgroundColor: Colors.BLUE_DARKER }}>
         <FullHeightView withoutPaddings>
-          <Text>{account.accountRS}</Text>
-          <Text>{account.balanceNQT}</Text>
-          <Text>{account.transactions}</Text>
+          <View>
+            <AccountDetailsList
+                account={account}
+                onTransactionPress={this.handleTransactionPress}
+                cmc={cmc}
+            />
+          </View>
         </FullHeightView>
       </Screen>
     );
   }
 }
 
-function mapStateToProps (_state: ApplicationState) {
+function mapStateToProps (state: ApplicationState) {
   return {
+    accounts: state.auth.accounts,
+    cmc: state.cmc
   };
 }
 

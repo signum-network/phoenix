@@ -67,7 +67,7 @@ export class AccountListItem extends React.PureComponent<Props> {
 
   render () {
     // TODO: add name to account creating and so on
-    const { accountRS = '', balanceNQT = '', name = 'blankey' } = this.props.account;
+    const { accountRS = '', balanceNQT = '', name = 'unnamed' } = this.props.account;
     const { cmc } = this.props;
 
     const address = `...${last(accountRS.split('-'))}`;
