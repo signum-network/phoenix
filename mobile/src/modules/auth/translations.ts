@@ -18,6 +18,11 @@ export const auth = {
     addAccount: 'auth.screens.accounts.addAccount',
     createAccount: 'auth.screens.accounts.createAccount'
   },
+  accountDetails: {
+    noTransactions: {
+      title: 'auth.screens.accountDetails.noTransactions.title'
+    }
+  },
   createAccount: {
     step: 'auth.screens.createAccount.step',
     title: 'auth.screens.createAccount.title',

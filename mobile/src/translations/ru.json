@@ -29,6 +29,11 @@
         },
         "title": "Аккаунты"
       },
+      "accountDetails": {
+        "noTransactions": {
+          "title": "Нет транзакций"
+        }
+      },
       "addAccount": {
         "addAccount": "Добавить аккаунт",
         "createAccount": "Создать аккаунт",
@@ -75,6 +80,24 @@
       "BURST": {
         "name": "BURST",
         "value": "{{value}} BURST"
+      }
+    },
+    "dates": {
+      "months": {
+        "short": {
+          "JAN": "Янв",
+          "FEB": "Фев",
+          "MAR": "Мар",
+          "APR": "Апр",
+          "MAY": "Мая",
+          "JUN": "Июн",
+          "JUL": "Июл",
+          "AUG": "Авг",
+          "SEP": "Сен",
+          "OCT": "Окт",
+          "NOV": "Ноя",
+          "DEC": "Дек"
+        }
       }
     },
     "layout": {

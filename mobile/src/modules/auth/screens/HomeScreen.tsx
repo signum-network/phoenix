@@ -17,7 +17,7 @@ import { core } from '../../../core/translations';
 import { PriceInfoReduxState } from '../../cmc/store/reducer';
 import { AccountsList } from '../components/AccountsList';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
-import { removeAccount } from '../store/actions';
+import { hydrateAccount, removeAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { shouldEnterPIN } from '../store/utils';
 
@@ -55,7 +55,6 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   componentDidMount () {
-
     this.props.navigation.setParams({
       handleAddAccountPress: this.handleAddAccountPress
     });
@@ -67,15 +66,23 @@ class Home extends React.PureComponent<TProps, State> {
         this.setModalVisible(true);
       }
     }, 1000);
+
+    this.updateAllAccounts();
+  }
+
+  updateAllAccounts = () => {
+    this.props.auth.accounts.forEach((account) => {
+      this.props.dispatch(hydrateAccount(account));
+    });
   }
 
   setModalVisible = (isPINModalVisible: boolean) => {
     this.setState({ isPINModalVisible });
   }
 
-  handleAccountPress = (_account: Account) => {
+  handleAccountPress = (account: Account) => {
     this.props.navigation.navigate(routes.accountDetails, {
-      account: _account
+      accountRS: account.accountRS
     });
   }
 
