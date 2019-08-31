@@ -138,6 +138,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
       this.sendBurstForm.resetForm();
     } catch (e) {
+      console.log(e);
       this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
     }
     this.immutable = false;

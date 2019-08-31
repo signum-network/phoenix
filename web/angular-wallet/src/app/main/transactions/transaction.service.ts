@@ -113,31 +113,36 @@ export class TransactionService {
   }
 
   public async sendBurst(request: SendBurstRequest): Promise<TransactionId> {
+    try {
+      const {pin, amount, fee, recipientId, message, shouldEncryptMessage, keys, deadline} = request;
+      const signFunc = await this.accountService.getCustomSignFunc();
 
-    const {pin, amount, fee, recipientId, message, shouldEncryptMessage, keys} = request;
+      let attachment: Attachment;
+      if (message && shouldEncryptMessage) {
+        const recipient = await this.accountService.getAccount(recipientId);
+        const agreementPrivateKey = decryptAES(keys.agreementPrivateKey, hashSHA256(pin));
+        const encryptedMessage = encryptMessage(
+          message,
+          // @ts-ignore
+          recipient.publicKey,
+          agreementPrivateKey
+        );
+        attachment = new AttachmentEncryptedMessage(encryptedMessage);
+      } else if (message) {
+        attachment = new AttachmentMessage({message, messageIsText: true});
+      }
 
-    let attachment: Attachment;
-    if (message && shouldEncryptMessage) {
-      const recipient = await this.accountService.getAccount(recipientId);
-      const agreementPrivateKey = decryptAES(keys.agreementPrivateKey, hashSHA256(pin));
-      const encryptedMessage = encryptMessage(
-        message,
-        // @ts-ignore
-        recipient.publicKey,
-        agreementPrivateKey
-      );
-      attachment = new AttachmentEncryptedMessage(encryptedMessage);
-    } else if (message) {
-      attachment = new AttachmentMessage({message, messageIsText: true});
+      return this.transactionApi.sendAmount(
+        amount,
+        fee,
+        recipientId,
+        keys.publicKey,
+        signFunc == null ? this.getSendersPrivateKey(pin, keys) : null,
+        attachment,
+        deadline,
+        signFunc);
+    } catch (e) {
+      console.log(e);
     }
-
-    return this.transactionApi.sendAmount(
-      amount,
-      fee,
-      recipientId,
-      keys.publicKey,
-      this.getSendersPrivateKey(pin, keys),
-      attachment,
-      await this.accountService.getCustomSignFunc());
   }
 }

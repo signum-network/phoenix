@@ -146,6 +146,7 @@ export interface TransactionApi {
         senderPublicKey: string,
         senderPrivateKey: string,
         attachment?: Attachment,
+        deadline?: number,
         signFunc?: (unsignedBytes: string) => Promise<string>,
     ) => Promise<TransactionId>;
 }

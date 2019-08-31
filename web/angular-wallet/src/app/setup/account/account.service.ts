@@ -26,7 +26,6 @@ import {
 import {ApiService} from '../../api.service';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import {LedgerService} from '../../ledger/ledger.service';
-import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {constants} from 'app/constants';
 
 interface SetAccountInfoRequest {
