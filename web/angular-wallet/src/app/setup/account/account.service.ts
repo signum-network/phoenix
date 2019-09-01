@@ -245,12 +245,10 @@ export class AccountService {
   */
   public synchronizeAccount(account: Account): Promise<Account> {
     return new Promise(async (resolve, reject) => {
-      await Promise.all([
-          this.syncAccountDetails(account),
-          this.syncAccountTransactions(account),
-          this.syncAccountUnconfirmedTransactions(account),
-        ]
-      );
+      await this.syncAccountDetails(account);
+      await this.syncAccountTransactions(account);
+      await this.syncAccountUnconfirmedTransactions(account);
+      
       this.storeService.saveAccount(account).catch(error => {
         reject(error);
       });
@@ -282,6 +280,7 @@ export class AccountService {
     try {
       const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account);
       account.transactions = unconfirmedTransactionsResponse.unconfirmedTransactions
+        .sort((a, b) => a.timestamp > b.timestamp ? -1 : 1)
         .concat(account.transactions);
 
       // @ts-ignore - Send notifications for new transactions
