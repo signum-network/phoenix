@@ -3,18 +3,34 @@
     <div class="node-selector">
       <mat-form-field>
         <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-          <input type="text" placeholder="{{ 'select_node' | i18n }}" matInput
-                 [formControl]="selectedNode" [matAutocomplete]="auto">
+          <input type="text"
+                 placeholder="{{ 'select_node' | i18n }}"
+                 matInput
+                 [formControl]="selectedNode"
+                 [matAutocomplete]="auto">
           <div class="version-info secondary-text font-size-10">
             {{getVersion()}}
           </div>
         </div>
-        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayNodeUrl">
+        <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let node of nodes" [value]="node">
-            {{node.url}}
+            {{node}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
+
+      <mat-checkbox labelPosition="before" [(ngModel)]="showAdvancedOptions"
+      >{{ "advanced_uppercase" | i18n }}</mat-checkbox>
+
+      <div *ngIf="showAdvancedOptions">
+        <mat-form-field>
+          <input type="text"
+                 placeholder="Node's API Endpoint"
+                 matInput
+                 [formControl]="selectedNodeEndpoint"
+          >
+        </mat-form-field>
+      </div>
 
       <div class="button-wrapper">
         <ul class="unfeatures">
