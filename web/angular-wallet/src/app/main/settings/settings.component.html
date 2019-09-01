@@ -10,6 +10,12 @@
                  [matAutocomplete]="auto">
           <div class="version-info secondary-text font-size-10">
             {{getVersion()}}
+            <mat-icon *ngIf="showConnectionErrorIcon"
+                      class="error-icon"
+                      matTooltip="{{'error_server_connect' | i18n}}"
+            >
+              error_outline
+            </mat-icon>
           </div>
         </div>
         <mat-autocomplete #auto="matAutocomplete">
@@ -25,7 +31,7 @@
       <div *ngIf="showAdvancedOptions">
         <mat-form-field>
           <input type="text"
-                 placeholder="Node's API Endpoint"
+                 placeholder="{{ 'node_endpoint' | i18n}}"
                  matInput
                  [formControl]="selectedNodeEndpoint"
           >

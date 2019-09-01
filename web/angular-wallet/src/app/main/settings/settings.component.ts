@@ -43,6 +43,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   public nodes = SettingsComponent.createNodeList();
   public isFetchingNodeInfo = false;
   public showAdvancedOptions = false;
+  public showConnectionErrorIcon = false;
   public selectedNodeVersion: string;
 
   private static createNodeList(): Array<any> {
@@ -137,9 +138,14 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   }
 
   private async fetchNodeVersion(): Promise<void> {
-    this.isFetchingNodeInfo = true;
-    const {version} = await SettingsComponent.fetchNodeInformation(this.selectedNode.value, this.selectedNodeEndpoint.value);
-    this.selectedNodeVersion = version;
-    this.isFetchingNodeInfo = false;
+    try {
+      this.isFetchingNodeInfo = true;
+      const {version} = await SettingsComponent.fetchNodeInformation(this.selectedNode.value, this.selectedNodeEndpoint.value);
+      this.selectedNodeVersion = version;
+      this.isFetchingNodeInfo = false;
+      this.showConnectionErrorIcon = false;
+    } catch (e) {
+      this.showConnectionErrorIcon = true;
+    }
   }
 }

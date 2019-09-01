@@ -8,6 +8,8 @@ import {I18nModule} from '../../layout/components/i18n/i18n.module';
 import {MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {FuseSharedModule} from '../../../@fuse/shared.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatIconModule} from '@angular/material/icon';
 
 const routes = [
   {
@@ -31,7 +33,9 @@ const routes = [
     MatAutocompleteModule,
     FuseSharedModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTooltipModule,
+    MatIconModule
   ],
   providers: [
     SettingsResolver,
