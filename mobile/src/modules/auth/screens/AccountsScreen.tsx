@@ -13,6 +13,7 @@ import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { AccountsList } from '../components/AccountsList';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
+import { removeAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { shouldEnterPIN } from '../store/utils';
 import { auth } from '../translations';
@@ -52,9 +53,9 @@ class Accounts extends React.PureComponent<TProps, State> {
     this.setState({ isPINModalVisible });
   }
 
-  handleAccountPress = (_account: Account) => {
+  handleAccountPress = (account: Account) => {
     this.props.navigation.navigate(routes.accountDetails, {
-      account: _account
+      account
     });
   }
 
@@ -82,6 +83,10 @@ class Accounts extends React.PureComponent<TProps, State> {
     this.setModalVisible(false);
   }
 
+  handleDeleteAccount = (account: Account) => {
+    this.props.dispatch(removeAccount(account));
+  }
+
   render () {
     const accounts: Account[] = this.props.auth.accounts || [];
 
@@ -92,6 +97,7 @@ class Accounts extends React.PureComponent<TProps, State> {
             accounts={accounts}
             onAccountPress={this.handleAccountPress}
             onAddAccountPress={this.handleAddAccountPress}
+            onDelete={this.handleDeleteAccount}
           />
           <EnterPasscodeModal
             visible={this.state.isPINModalVisible}

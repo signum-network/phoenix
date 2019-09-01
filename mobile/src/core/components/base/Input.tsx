@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     fontSize: FontSizes.MEDIUM,
     color,
     borderBottomWidth: 1,
-    borderBottomColor: Colors.BLUE_DARK
+    borderBottomColor: Colors.BLUE_DARKER
   }
 });
 

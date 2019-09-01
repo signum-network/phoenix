@@ -10,5 +10,5 @@ import {Transaction} from '../typings/transaction';
  */
 export function isAttachmentVersion(transaction: Transaction, versionIdentifier: string): boolean {
     const {attachment} = transaction;
-    return attachment && attachment[`version.${versionIdentifier}`];
+    return attachment && (attachment[`version.${versionIdentifier}`] !== undefined);
 }

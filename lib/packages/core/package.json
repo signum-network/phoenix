@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/core",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Burst-related functions and models for building Burstcoin applications.",
   "contributors": [
     "ohager",
@@ -37,7 +37,7 @@
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^5.0.1",
-    "rollup-plugin-typescript2": "^0.21.1"
+    "rollup-plugin-typescript2": "^0.22.1"
   },
   "scripts": {
     "test": "jest",
@@ -47,9 +47,9 @@
     "readme": "jsdoc2md  --files ./src/**/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
   },
   "dependencies": {
-    "@burstjs/crypto": "^0.3.0",
-    "@burstjs/http": "^0.3.0",
-    "@burstjs/util": "^0.3.0"
+    "@burstjs/crypto": "^0.3.1",
+    "@burstjs/http": "^0.3.1",
+    "@burstjs/util": "^0.3.1"
   },
   "husky": {
     "hooks": {

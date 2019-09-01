@@ -8,5 +8,6 @@ export const actionTypes = {
   loadPasscodeEnteredTime: `${PATH}_LOAD_PASSCODE_ENTERED_TIME`,
   setPasscodeEnteredTime: `${PATH}_SET_PASSCODE_ENTERED_TIME`,
   setPasscode: `${PATH}_SET_PASSCODE`,
-  loadPasscode: `${PATH}_LOAD_PASSCODE`
+  loadPasscode: `${PATH}_LOAD_PASSCODE`,
+  resetAuthState: `${PATH}_STATE_RESET`
 };

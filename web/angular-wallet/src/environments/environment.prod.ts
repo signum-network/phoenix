@@ -4,8 +4,7 @@ export const environment = {
   production: true,
   hmr: false,
   version,
-  defaultNode: 'https://wallet1.burst-team.us:2083',
-  nodeVersion: '2.3.0',
+  defaultNode: 'https://wallet.burst-alliance.org:8125',
   market: {
     tickerUrl: 'https://api.coinmarketcap.com/v1/ticker/burst/',
     tickerInterval: 30 * 1000

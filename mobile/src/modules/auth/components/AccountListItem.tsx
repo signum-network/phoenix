@@ -1,80 +1,113 @@
 import { Account } from '@burstjs/core';
+import { convertNQTStringToNumber } from '@burstjs/util';
+import { last, toNumber } from 'lodash';
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, ActionSheetIOS } from 'react-native';
+import { Image, TouchableOpacity, View } from 'react-native';
 import Swipeout from 'react-native-swipeout';
+import { actionIcons } from '../../../assets/icons';
 import { Text, TextAlign } from '../../../core/components/base/Text';
+import { i18n } from '../../../core/i18n';
 import { Colors } from '../../../core/theme/colors';
-import { defaultSideOffset } from '../../../core/theme/sizes';
-import { actionTypes } from '../../transactions/store/actionTypes';
+import { defaultSideOffset, FontSizes, Sizes } from '../../../core/theme/sizes';
+import { core } from '../../../core/translations';
+import { PriceInfoReduxState } from '../../cmc/store/reducer';
 
 interface IProps {
   onPress: (account: Account) => void;
   onDelete: (account: Account) => void;
   account: Account;
+  cmc?: PriceInfoReduxState;
 }
 
 type Props = IProps;
 
-export class AccountListItem extends React.PureComponent<Props> {
-  getStyles = () => {
-    const styles = {
-      view: {
-        paddingHorizontal: defaultSideOffset,
-        backgroundColor: Colors.WHITE
-      },
-      address: {
-
-      },
-      info: {
-        flexDirection: 'row'
-      },
-      accountType: {
-        alignSelf: 'flex-start',
-        flexGrow: 1
-      },
-      balance: {
-        alignSelf: 'flex-end'
-      }
-    };
-    return StyleSheet.create(styles as any);
+const styles: any = {
+  view: {
+    paddingHorizontal: defaultSideOffset,
+    paddingVertical: Sizes.MEDIUM,
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-between'
+  },
+  col: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap'
+  },
+  row: {
+    display: 'flex',
+    width: '100%'
+  },
+  del: {
+    alignSelf: 'center',
+    marginTop: Sizes.SMALL
   }
+};
 
+export class AccountListItem extends React.PureComponent<Props> {
   handlePress = () => {
     const { onPress, account } = this.props;
     onPress(account);
   }
 
-  render() {
-    const { accountRS = '', balanceNQT = '', type = '' } = this.props.account;
-    const styles = this.getStyles();
-    const swipeBtns = [{
-      text: 'Delete',
-      backgroundColor: 'red',
-      underlayColor: 'rgba(0, 0, 0, 0.6)',
-      onPress: () => { this.props.onDelete(this.props.account); }
-    }];
+  handleDelete = () => {
+    const { onDelete, account } = this.props;
+    onDelete(account);
+  }
+
+  getSwipeButtons = () => [
+    {
+      component: <Image source={actionIcons.del} style={styles.del} />,
+      backgroundColor: Colors.RED,
+      underlayColor: Colors.GREY,
+      onPress: this.handleDelete
+    }
+  ]
+
+  render () {
+    // TODO: add name to account creating and so on
+    const { accountRS = '', balanceNQT = '', name = 'unnamed' } = this.props.account;
+    const { cmc } = this.props;
+
+    const address = `...${last(accountRS.split('-'))}`;
+    const balanceBURST = convertNQTStringToNumber(balanceNQT);
+    const balanceBTC = cmc
+        ? toNumber(cmc.price_btc) * balanceBURST
+        : 0;
 
     return (
       <Swipeout
-        right={swipeBtns}
+        right={this.getSwipeButtons()}
         autoClose={true}
         backgroundColor='transparent'
       >
         <TouchableOpacity style={styles.view} onPress={this.handlePress}>
-
-          <View style={styles.address}>
-            <Text>{accountRS}</Text>
+          <View style={styles.col}>
+            <View style={styles.row}>
+              <Text bold bebasFont color={Colors.WHITE}>{address}</Text>
+            </View>
+            {name && (
+              <View style={styles.row}>
+                <Text color={Colors.WHITE} size={FontSizes.SMALL}>{name}</Text>
+              </View>
+            )}
           </View>
-          <View style={styles.info}>
-            <View style={styles.accountType}>
-              <Text>{type}</Text>
+          <View style={styles.col}>
+            <View style={styles.row}>
+              <Text bold bebasFont textAlign={TextAlign.RIGHT} color={Colors.WHITE}>
+                {i18n.t(core.currency.BURST.value, { value: balanceBURST })}
+              </Text>
             </View>
-            <View style={styles.balance}>
-              <Text textAlign={TextAlign.RIGHT}>{balanceNQT.toString()}</Text>
-            </View>
+            {cmc && (
+              <View style={styles.row}>
+                <Text size={FontSizes.SMALL} textAlign={TextAlign.RIGHT} color={Colors.WHITE}>
+                  {i18n.t(core.currency.BTC.value, { value: balanceBTC })}
+                </Text>
+              </View>
+            )}
           </View>
         </TouchableOpacity>
-
       </Swipeout>
     );
   }

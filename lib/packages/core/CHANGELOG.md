@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+# unreleased
+
+- `isAttachmentVersion` returns `true` or `false` consistently
+
 # 0.3.0
 
 ___

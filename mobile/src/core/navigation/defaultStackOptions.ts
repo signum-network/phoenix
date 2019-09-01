@@ -4,7 +4,8 @@ import { fonts } from '../theme/fonts';
 
 export const defaultStackOptions: NavigationScreenOptions = {
   headerStyle: {
-    backgroundColor: Colors.BLUE
+    backgroundColor: Colors.BLUE_DARKER,
+    borderBottomWidth: 0
   },
   headerTintColor: Colors.WHITE,
   headerTitleStyle: {

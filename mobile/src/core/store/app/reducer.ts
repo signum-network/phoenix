@@ -13,7 +13,8 @@ export interface AppReduxState {
 export function getDefaultAppSettings (): AppSettings {
   return {
     passcodeTime: defaultSettings.passcodeTime, // 10 min,
-    burstSettings: getDefaultBurstSettings()
+    burstSettings: getDefaultBurstSettings(),
+    coinMarketCapURL: defaultSettings.coinMarketCapURL
   };
 }
 

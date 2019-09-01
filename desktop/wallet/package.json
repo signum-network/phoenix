@@ -5,7 +5,7 @@
     "email": "contact@burst-coin.org"
   },
   "productName": "Phoenix BURST Wallet",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.9",
   "contributors": [
     "ohager",
     "blankey1337"
@@ -40,10 +40,10 @@
     "prepare": "npm run snyk-protect"
   },
   "devDependencies": {
-    "ajv": "^6.10.0",
+    "ajv": "^6.10.2",
     "cross-env": "^5.2.0",
-    "electron": "^5.0.6",
-    "electron-builder": "^20.44.4",
+    "electron": "^6.0.1",
+    "electron-builder": "^21.2.0",
     "jest": "^24.8.0",
     "rimraf": "^2.6.3"
   },
@@ -58,10 +58,10 @@
     "electron-dl": "^1.14.0",
     "get-ssl-certificate": "^2.3.3",
     "js-yaml": "^3.13.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
-    "semver": "^6.1.3",
-    "snyk": "^1.189.0",
+    "semver": "^6.3.0",
+    "snyk": "^1.207.2",
     "winston": "^3.2.1"
   },
   "snyk": true

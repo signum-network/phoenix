@@ -1,4 +1,5 @@
 import { loadAccounts, loadPasscode, loadPasscodeEnteredTime } from '../../../modules/auth/store/actions';
+import { loadCMCData } from '../../../modules/cmc/store/actions';
 import { AppSettings } from '../../interfaces';
 import { getAppSettings, saveAppSettings } from '../../utils/keychain';
 import { createAction, createActionFn } from '../../utils/store';
@@ -18,6 +19,7 @@ export const loadApp = createActionFn<void, Promise<void>>(
       dispatch(loadPasscodeEnteredTime()),
       dispatch(loadAppSettings())
     ]);
+    dispatch(loadCMCData());
     dispatch(actions.appLoaded());
   }
 );

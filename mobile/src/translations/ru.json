@@ -29,6 +29,11 @@
         },
         "title": "Аккаунты"
       },
+      "accountDetails": {
+        "noTransactions": {
+          "title": "Нет транзакций"
+        }
+      },
       "addAccount": {
         "addAccount": "Добавить аккаунт",
         "createAccount": "Создать аккаунт",
@@ -67,6 +72,34 @@
       "save": "Сохранить",
       "submit": "Отправить"
     },
+    "currency": {
+      "BTC": {
+        "name": "BTC",
+        "value": "{{value}} BTC"
+      },
+      "BURST": {
+        "name": "BURST",
+        "value": "{{value}} BURST"
+      }
+    },
+    "dates": {
+      "months": {
+        "short": {
+          "JAN": "Янв",
+          "FEB": "Фев",
+          "MAR": "Мар",
+          "APR": "Апр",
+          "MAY": "Мая",
+          "JUN": "Июн",
+          "JUL": "Июл",
+          "AUG": "Авг",
+          "SEP": "Сен",
+          "OCT": "Окт",
+          "NOV": "Ноя",
+          "DEC": "Дек"
+        }
+      }
+    },
     "layout": {
       "preventBackButton": {
         "alertMessage": "Информация будет утеряна",
@@ -77,7 +110,8 @@
       "home": {
         "accountsList": "Список аккаунтов",
         "recentTransactions": "Последние транзакции",
-        "title": "BURST"
+        "title": "Все аккаунты",
+        "allAccounts": "Все аккаунты"
       },
       "loading": {
         "loadingText": "Загрузка..."
@@ -103,6 +137,15 @@
         "feeNQT": "Комиссия",
         "sent": "Отправлено!",
         "title": "Отправить"
+      }
+    }
+  },
+  "settings": {
+    "screens": {
+      "settings": {
+        "title": "Настройки",
+        "erase": "Удалить все аккаунты и сбросить PIN",
+        "confirmErase": "Удалить и сбросить"
       }
     }
   }

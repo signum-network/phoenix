@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {Account, SuggestedFees} from '@burstjs/core';
 import {
-  burstAddressPattern, convertAddressToNumericId,
+  convertAddressToNumericId,
   convertNQTStringToNumber,
   convertNumberToNQTString,
   sumNQTStringToNumber
@@ -20,6 +20,7 @@ import {StoreService} from '../../../store/store.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import { ActivatedRoute } from '@angular/router';
+import { burstAddressPattern } from 'app/util/burstAddressPattern';
 
 
 interface QRData {

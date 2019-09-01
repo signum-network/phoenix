@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import thunk from 'redux-thunk';
 import { auth } from '../../modules/auth/store/reducer';
+import { cmc } from '../../modules/cmc/store/reducer';
 import { transactions } from '../../modules/transactions/store/reducer';
 import { app } from './app/reducer';
 import { initialState } from './initialState';
@@ -8,6 +9,7 @@ import { initialState } from './initialState';
 const rootReducer = combineReducers({
   app,
   auth,
+  cmc,
   transactions
 });
 

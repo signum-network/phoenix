@@ -1,13 +1,12 @@
 const path = require('path');
-const {app, BrowserWindow, Menu, shell, ipcMain, protocol} = require('electron');
-const {download} = require('electron-dl');
+const { app, BrowserWindow, Menu, shell, ipcMain, protocol } = require('electron');
+const { download } = require('electron-dl');
 
-const {version, update} = require('./package.json');
+const { version, update } = require('./package.json');
 const UpdateService = require('./src/updateService');
 
 let win;
 let downloadHandle;
-let deeplinkingUrl;
 
 const updateService = new UpdateService({
   currentVersion: version,
@@ -19,25 +18,7 @@ const isLinux = () => process.platform === 'linux';
 const isMacOS = () => process.platform === 'darwin';
 const isWindows = () => process.platform === 'win32';
 
-// Force Single Instance Application
-app.requestSingleInstanceLock();
-// Someone tried to run a second instance, we should focus our window.
-app.on('second-instance', (argv, workingDirectory) => {
-
-  // Protocol handler for win32
-  // argv: An array of the second instance’s (command line / deep linked) arguments
-  if (process.platform === 'win32') {
-    // Keep only command line / deep linked arguments
-    deeplinkingUrl = argv.slice(1);
-  }
-
-  if (win) {
-    if (win.isMinimized()) {
-      win.restore();
-    }
-    win.focus();
-  }
-})
+const gotTheLock = app.requestSingleInstanceLock();
 
 function handleLatestUpdate(newVersion) {
   win.webContents.send('new-version', newVersion);
@@ -53,11 +34,11 @@ function getBrowserWindowConfig() {
     }
   };
   return isDevelopment ? {
-      ...commonConfig,
-      fullscreen: false,
-      width: 800,
-      height: 600
-    } :
+    ...commonConfig,
+    fullscreen: false,
+    width: 800,
+    height: 600
+  } :
     {
       ...commonConfig,
     }
@@ -79,34 +60,34 @@ function createWindow() {
     {
       label: 'Edit',
       submenu: [
-        {role: 'undo'},
-        {role: 'redo'},
-        {type: 'separator'},
-        {role: 'cut'},
-        {role: 'copy'},
-        {role: 'paste'},
-        {role: 'pasteandmatchstyle'},
-        {role: 'delete'},
-        {role: 'selectall'}
+        { role: 'undo' },
+        { role: 'redo' },
+        { type: 'separator' },
+        { role: 'cut' },
+        { role: 'copy' },
+        { role: 'paste' },
+        { role: 'pasteandmatchstyle' },
+        { role: 'delete' },
+        { role: 'selectall' }
       ]
     },
     {
       label: 'View',
       submenu: [
-        {role: 'toggledevtools'},
-        {type: 'separator'},
-        {role: 'resetzoom'},
-        {role: 'zoomin'},
-        {role: 'zoomout'},
-        {type: 'separator'},
-        {role: 'togglefullscreen'}
+        { role: 'toggledevtools' },
+        { type: 'separator' },
+        { role: 'resetzoom' },
+        { role: 'zoomin' },
+        { role: 'zoomout' },
+        { type: 'separator' },
+        { role: 'togglefullscreen' }
       ]
     },
     {
       role: 'window',
       submenu: [
-        {role: 'minimize'},
-        {role: 'close'}
+        { role: 'minimize' },
+        { role: 'close' }
       ]
     },
     {
@@ -162,14 +143,14 @@ function createWindow() {
 
       submenu: [
 
-        {label: `About ${app.getName()}`, selector: 'orderFrontStandardAboutPanel:'},
-        {type: 'separator'},
-        {role: 'services'},
-        {type: 'separator'},
-        {role: 'hide'},
-        {role: 'hideothers'},
-        {role: 'unhide'},
-        {type: 'separator'},
+        { label: `About ${app.getName()}`, selector: 'orderFrontStandardAboutPanel:' },
+        { type: 'separator' },
+        { role: 'services' },
+        { type: 'separator' },
+        { role: 'hide' },
+        { role: 'hideothers' },
+        { role: 'unhide' },
+        { type: 'separator' },
         {
           role: 'quit', accelerator: 'Command+Q', click: () => {
             app.quit();
@@ -180,33 +161,28 @@ function createWindow() {
 
     // Edit menu
     template[1].submenu.push(
-      {type: 'separator'},
+      { type: 'separator' },
       {
         label: 'Speech',
         submenu: [
-          {role: 'startspeaking'},
-          {role: 'stopspeaking'}
+          { role: 'startspeaking' },
+          { role: 'stopspeaking' }
         ]
       }
     );
 
     // Window menu
     template[3].submenu = [
-      {role: 'close'},
-      {role: 'minimize'},
-      {role: 'zoom'},
-      {type: 'separator'},
-      {role: 'front'}
+      { role: 'close' },
+      { role: 'minimize' },
+      { role: 'zoom' },
+      { type: 'separator' },
+      { role: 'front' }
     ];
   }
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
-  // Protocol handler for win32
-  if (process.platform === 'win32') {
-    // Keep only command line / deep linked arguments
-    deeplinkingUrl = process.argv.slice(1);
-  }
 }
 
 function downloadUpdate($event, assetUrl) {
@@ -229,30 +205,90 @@ function downloadUpdate($event, assetUrl) {
 function onReady() {
   createWindow();
 
-  if (win) {
+  if (win && win.webContents) {
     win.webContents.on('did-finish-load', () => {
       updateService.start((newVersion) => {
         if (newVersion) {
           handleLatestUpdate(newVersion);
         }
       });
+
+      // Deeplinks for initial startup
+      process.argv.forEach((arg) => {
+        if (/^burst:\/\//.test(arg)) {
+          win.webContents.send('deep-link-clicked', arg);
+        }
+      });
     });
   }
   ipcMain.on('new-version-asset-selected', downloadUpdate);
 
-  app.setAsDefaultProtocolClient('burst');  
+  app.setAsDefaultProtocolClient('burst');
 }
 
-app.on('ready', onReady);
-
-// This will catch clicks on links such as <a href="foobar://abc=1">open in foobar</a>
-app.on('open-url', function (event, data) {
-  event.preventDefault();
-  if (win) {
-    win.webContents.send('deep-link-clicked', data);
+function logEverywhere(s) {
+  if (win && win.webContents) {
+    win.webContents.executeJavaScript(`console.log("${s}")`);
   }
-  deeplinkingUrl = data;
-});
+}
+
+if (!gotTheLock) {
+  app.quit();
+} else {
+
+  // Someone tried to run a second instance, we should focus our window.
+  app.on('second-instance', (e, argv) => {
+    if (win) {
+
+      // Deeplinks for Windows
+      argv.forEach((arg) => {
+        if (/^burst:\/\//.test(arg)) {
+          if (win.webContents) {
+            win.webContents.send('deep-link-clicked', arg);
+          }
+        }
+      });
+
+      if (win.isMinimized()) {
+        win.restore();
+      }
+      win.focus();
+    }
+  })
+
+  app.on('ready', onReady);
+
+  app.on('will-finish-launching', () => {
+    // Deeplinks for OSX
+    app.on('open-url', (e, url) => {
+      e.preventDefault();
+      if (win && win.webContents) {
+        logEverywhere(url);
+        win.webContents.send('deep-link-clicked', url);
+      }
+    })
+  });
+
+  // Quit when all windows are closed.
+  app.on('window-all-closed', function () {
+
+    if (downloadHandle) {
+      downloadHandle.cancel();
+    }
+
+    // On macOS specific close process
+    if (!isMacOS()) {
+      app.quit();
+    }
+  });
+
+  app.on('activate', function () {
+    // macOS specific activate process
+    if (win === null) {
+      createWindow();
+    }
+  });
+}
 
 // TODO: need this for other OSes
 if (isMacOS()) {
@@ -264,23 +300,3 @@ if (isMacOS()) {
     version: process.versions.electron
   });
 }
-
-// Quit when all windows are closed.
-app.on('window-all-closed', function () {
-
-  if (downloadHandle) {
-    downloadHandle.cancel();
-  }
-
-  // On macOS specific close process
-  if (!isMacOS()) {
-    app.quit();
-  }
-});
-
-app.on('activate', function () {
-  // macOS specific activate process
-  if (win === null) {
-    createWindow();
-  }
-});

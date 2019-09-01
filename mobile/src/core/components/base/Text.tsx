@@ -29,6 +29,7 @@ interface Props {
   disabled?: boolean;
   disabledColor?: Colors | string;
   bold?: boolean;
+  thin?: boolean;
   textAlign?: TextAlign;
   selectable?: boolean;
 }
@@ -67,8 +68,9 @@ const styles = StyleSheet.create({
   }
 });
 
+// TODO: Create new universal text component according to mockups
 export const Text: React.FunctionComponent<Props> = (props) => {
-  const { theme = defaultTheme, textAlign, color, bebasFont, size, disabled, disabledColor, bold } = props;
+  const { theme = defaultTheme, textAlign, color, bebasFont, size, disabled, disabledColor, bold, thin } = props;
   const style: any = [
     styles.text,
     theme === TextThemes.ACCENT && styles.textAccent,
@@ -81,7 +83,8 @@ export const Text: React.FunctionComponent<Props> = (props) => {
     size && { fontSize: size },
     disabled && styles.textDisabled,
     disabledColor && { color: disabledColor },
-    bold && { fontWeight: 'bold' }
+    bold && { fontWeight: '500' },
+    thin && { fontWeight: '400' }
   ];
 
   return (

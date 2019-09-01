@@ -21,14 +21,14 @@
     "dev": "npm run dev:ios",
     "dev:ios": "react-native run-ios --simulator=\"iPhone SE\"",
     "dev:android": "react-native run-android",
+    "init": "npm install && npm run link",
+    "link": "react-native link",
     "lint": "tslint --fix --project tsconfig.json 'src/**/*.{ts,tsx}'",
     "lint:staged": "tslint --fix --project tsconfig.json",
     "start": "node ./node_modules/react-scripts/bin/react-scripts.js start",
     "translations:sort": "node tasks/sortJsonDir.js src/translations && git add src/translations/*.json",
     "test": "jest",
-    "tsc": "tsc --init --pretty --jsx react",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "tsc": "tsc --init --pretty --jsx react"
   },
   "dependencies": {
     "@burstjs/core": "^0.1.1",
@@ -36,24 +36,22 @@
     "@burstjs/http": "^0.1.1",
     "@burstjs/util": "^0.1.1",
     "i18n-js": "^3.2.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "react": "16.8.3",
-    "react-native": "0.60.0",
+    "react-native": "0.59.8",
     "react-native-gesture-handler": "^1.2.1",
     "react-native-keychain": "^3.1.3",
     "react-native-localize": "^1.1.2",
     "react-native-swipeout": "^2.3.6",
     "react-native-touch-id": "^4.4.1",
-    "react-native-vector-icons": "^6.5.0",
     "react-navigation": "^3.11.0",
     "react-redux": "^7.0.3",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0",
-    "snyk": "^1.192.0"
+    "redux-thunk": "^2.3.0"
   },
   "rnpm": {
     "assets": [
-      "./assets/fonts/"
+      "./src/assets/fonts/"
     ]
   },
   "devDependencies": {
@@ -108,6 +106,5 @@
       "<rootDir>/node_modules/"
     ],
     "cacheDirectory": ".jest/cache"
-  },
-  "snyk": true
+  }
 }

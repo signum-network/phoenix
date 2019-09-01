@@ -1,10 +1,5 @@
-import { Account, getAccount, composeApi, ApiSettings } from '@burstjs/core';
-import {
-  encryptAES,
-  generateMasterKeys,
-  getAccountIdFromPublicKey,
-  hashSHA256
-} from '@burstjs/crypto';
+import { Account, ApiSettings, composeApi } from '@burstjs/core';
+import { encryptAES, generateMasterKeys, getAccountIdFromPublicKey, hashSHA256 } from '@burstjs/crypto';
 import { convertAddressToNumericId, convertNumericIdToAddress, isValid } from '@burstjs/util';
 import { some } from 'lodash';
 import { i18n } from '../../../core/i18n';
@@ -12,9 +7,11 @@ import { createAction, createActionFn } from '../../../core/utils/store';
 import { auth } from '../translations';
 import { actionTypes } from './actionTypes';
 import {
-  getAccounts, getPasscode,
+  getAccounts,
+  getPasscode,
   getPasscodeEnteredTime,
-  isPassphraseCorrect, savePasscode,
+  isPassphraseCorrect,
+  savePasscode,
   savePasscodeEnteredTime,
   setAccounts
 } from './utils';
@@ -27,18 +24,17 @@ const actions = {
   loadPasscodeEnteredTime: createAction<number>(actionTypes.loadPasscodeEnteredTime),
   setPasscodeEnteredTime: createAction<number>(actionTypes.setPasscodeEnteredTime),
   setPasscode: createAction<string>(actionTypes.setPasscode),
-  loadPasscode: createAction<string>(actionTypes.loadPasscode)
+  loadPasscode: createAction<string>(actionTypes.loadPasscode),
+  resetAuthState: createAction<void>(actionTypes.resetAuthState)
 };
 
-export interface ActiveAccountGeneratorData {
-  phrase: any[];
-  pin: string;
-}
-
-export const createActiveAccount = createActionFn<ActiveAccountGeneratorData, Account>(
+export const createActiveAccount = createActionFn<string[], Account>(
   // @ts-ignore
-  async (_dispatch, getState, { phrase, pin }): Promise<Account> => {
+  async (_dispatch, getState, phrase): Promise<Account> => {
+
+    const pin = getState().auth.passcode;
     const passphrase = phrase.join(' ');
+
     if (!isPassphraseCorrect(passphrase)) {
       throw new Error(i18n.t(auth.errors.incorrectPassphrase));
     }
@@ -92,17 +88,41 @@ export const createOfflineAccount = createActionFn<string, Account>(
 
 export const hydrateAccount = createActionFn<Account, Promise<Account>>(
   async (dispatch, getState, account) => {
+    const state = getState();
+    const { nodeHost, apiRootUrl } = state.app.burstService.settings;
 
-    const api = composeApi(new ApiSettings('https://wallet1.burst-team.us:2083', 'burst'));
+    // TODO: unify network request actions, add proper error handling and so on
+    const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
     try {
       const accountDetails = await api.account.getAccount(account.account);
       dispatch(actions.updateAccount(accountDetails));
-    // @ts-ignore
-    } catch (e) { }
+    // tslint:disable-next-line: no-empty
+    } catch (e) {}
 
     await setAccounts(getState().auth.accounts);
     return account;
   }
+);
+
+export const updateAccountTransactions = createActionFn<Account, Promise<Account>>(
+    async (dispatch, getState, account) => {
+      const state = getState();
+      const { nodeHost, apiRootUrl } = state.app.burstService.settings;
+
+      const updatedAccount: Account = {
+        ...account
+      };
+      const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
+      try {
+        const transactions = await api.account.getAccountTransactions(account.account);
+        updatedAccount.transactions = transactions.transactions;
+        dispatch(actions.updateAccount(updatedAccount));
+      // tslint:disable-next-line: no-empty
+      } catch (e) {}
+
+      await setAccounts(getState().auth.accounts);
+      return updatedAccount;
+    }
 );
 
 export const addAccount = createActionFn<Account, Promise<Account>>(
@@ -125,6 +145,12 @@ export const loadAccounts = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) => {
     const accounts: Account[] = await getAccounts();
     dispatch(actions.loadAccounts(accounts));
+  }
+);
+
+export const resetAuthState = createActionFn<void, Promise<void>>(
+  async (dispatch, _getState) => {
+    dispatch(actions.resetAuthState());
   }
 );
 

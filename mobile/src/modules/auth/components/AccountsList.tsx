@@ -3,7 +3,9 @@ import { toString } from 'lodash';
 import React from 'react';
 import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
 import { ListSeparator } from '../../../core/components/base/ListSeparator';
+import { PriceInfoReduxState } from '../../cmc/store/reducer';
 import { AccountListItem } from './AccountListItem';
+import { AccountsListHeader } from './AccountsListHeader';
 import { NoAccounts } from './NoAccounts';
 
 interface Props {
@@ -11,6 +13,7 @@ interface Props {
   onAccountPress: (account: Account) => void;
   onAddAccountPress: () => void;
   onDelete: (account: Account) => void;
+  cmc?: PriceInfoReduxState;
 }
 
 const styles = StyleSheet.create({
@@ -24,6 +27,13 @@ export class AccountsList extends React.PureComponent<Props> {
     return toString(item.account || index);
   }
 
+  renderHeader = () => {
+    const { accounts, cmc } = this.props;
+    return (
+        <AccountsListHeader cmc={cmc} accounts={accounts}/>
+    );
+  }
+
   renderNoData = () => {
     return (
       <NoAccounts onPress={this.props.onAddAccountPress}/>
@@ -31,8 +41,10 @@ export class AccountsList extends React.PureComponent<Props> {
   }
 
   renderAccountItem = ({ item }: ListRenderItemInfo<Account>) => {
+    const { onDelete, onAccountPress, cmc } = this.props;
+
     return (
-      <AccountListItem onDelete={this.props.onDelete} onPress={this.props.onAccountPress} account={item}/>
+      <AccountListItem onDelete={onDelete} onPress={onAccountPress} account={item} cmc={cmc}/>
     );
   }
 
@@ -41,6 +53,7 @@ export class AccountsList extends React.PureComponent<Props> {
     return (
       <FlatList
         style={styles.flatList}
+        ListHeaderComponent={this.renderHeader}
         ListEmptyComponent={this.renderNoData}
         data={accounts}
         renderItem={this.renderAccountItem}

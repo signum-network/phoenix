@@ -3,7 +3,6 @@ import {NgForm} from '@angular/forms';
 import {NotifierService} from 'angular-notifier';
 import {
   convertNumberToNQTString,
-  burstAddressPattern,
   convertAddressToNumericId,
   convertNQTStringToNumber
 } from '@burstjs/util';
@@ -15,7 +14,8 @@ import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.comp
 import {Recipient} from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
 import {takeUntil} from 'rxjs/operators';
 import {StoreService} from '../../../store/store.service';
-import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
+import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
+import {burstAddressPattern} from 'app/util/burstAddressPattern';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
