@@ -629,6 +629,7 @@
   "no_transactions_found": "कोई लेन-देन नहीं मिले",
   "no_transactions_in_block": "इस ब्लाक में कोई लेन-देन नहीं।",
   "no_transactions_yet": "अभी तक कोई लेनदेन नहीं।",
+  "node_endpoint": "नोड एंडपॉइंट",
   "node_hint_no_multiout": "कोई मल्टीआउट भुगतान समर्थित नहीं है",
   "node_not_set": "नोड नहीं बदल सका। बहुधा यह उपलब्ध नहीं है।",
   "node_set_success": "नोड सफलतापूर्वक बदल गया",

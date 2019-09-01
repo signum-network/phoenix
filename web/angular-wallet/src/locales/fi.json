@@ -629,6 +629,7 @@
   "no_transactions_found": "Tapahtumia ei löytynyt",
   "no_transactions_in_block": "Ei tapahtumia tässä lohkossa.",
   "no_transactions_yet": "Ei tilitapahtumia.",
+  "node_endpoint": "Solmun päätepiste",
   "node_hint_no_multiout": "Mitään maksuja ei tueta",
   "node_not_set": "Solmua ei voitu muuttaa. Todennäköisin se ei ole saavutettavissa.",
   "node_set_success": "Solmu muuttui onnistuneesti",

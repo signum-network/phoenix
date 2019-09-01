@@ -629,6 +629,7 @@
   "no_transactions_found": "Не са намерени сделки",
   "no_transactions_in_block": "Няма сделки в този блок.",
   "no_transactions_yet": "Все още няма сделки.",
+  "node_endpoint": "Крайна точка на възела",
   "node_hint_no_multiout": "Не се поддържат многократни плащания",
   "node_not_set": "Възел не може да се промени. Най-вероятно тя не е достъпна.",
   "node_set_success": "Възел е променен успешно",

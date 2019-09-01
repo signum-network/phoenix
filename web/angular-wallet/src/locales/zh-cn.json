@@ -629,6 +629,7 @@
   "no_transactions_found": "未找到交易",
   "no_transactions_in_block": "该区块中没有交易。",
   "no_transactions_yet": "没有交易记录。",
+  "node_endpoint": "节点端点",
   "node_hint_no_multiout": "不支持多帐户付款",
   "node_not_set": "无法更改节点。最有可能它无法到达。",
   "node_set_success": "节点已成功更改",

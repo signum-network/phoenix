@@ -638,6 +638,7 @@
   "no_transactions_found": "Nie znaleziono transakcji",
   "no_transactions_in_block": "Blok nie zawiera transakcji.",
   "no_transactions_yet": "Nie ma jeszcze transakcji.",
+  "node_endpoint": "Węzeł Punkt końcowy",
   "node_hint_no_multiout": "Brak obsługiwanych płatności wielokrotnych",
   "node_not_set": "Nie można zmienić węzła. Najbardziej prawdopodobne, że nie jest osiągalne.",
   "node_set_success": "Węzeł został pomyślnie zmieniony",

@@ -629,6 +629,7 @@
   "no_transactions_found": "No se han encontrado transacciones",
   "no_transactions_in_block": "Ninguna transacción en este bloque.",
   "no_transactions_yet": "Aún no hay transacciones.",
+  "node_endpoint": "Punto final del nodo",
   "node_hint_no_multiout": "No hay pagos multiout compatibles",
   "node_not_set": "No se pudo cambiar el nodo. Lo más probable es que no sea alcanzable.",
   "node_set_success": "Nodo cambiado exitosamente",

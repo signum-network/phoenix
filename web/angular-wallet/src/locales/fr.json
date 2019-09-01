@@ -629,6 +629,7 @@
   "no_transactions_found": "Aucune transaction",
   "no_transactions_in_block": "Aucune transaction dans ce bloc.",
   "no_transactions_yet": "Aucune transaction pour le moment.",
+  "node_endpoint": "Noeud final",
   "node_hint_no_multiout": "Aucun paiement multiout pris en charge",
   "node_not_set": "Impossible de changer de noeud. Le plus probable, il n'est pas accessible.",
   "node_set_success": "Le nœud a changé avec succès",

@@ -591,6 +591,7 @@
   "no_transactions_found": "Transakcija nije pronađena",
   "no_transactions_in_block": "Nema transakcija u ovom bloku.",
   "no_transactions_yet": "Bez transakcija.",
+  "node_endpoint": "Крајња тачка чвора",
   "node_hint_no_multiout": "Нису подржане мултиоут исплате",
   "node_not_set": "Није могуће променити чвор. Највјероватније није доступно.",
   "node_set_success": "Ноде је успешно промењена",

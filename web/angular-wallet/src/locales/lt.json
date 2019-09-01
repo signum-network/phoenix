@@ -629,6 +629,7 @@
   "no_transactions_found": "Transakcijų nerasta",
   "no_transactions_in_block": "Nėra transakcijų šiame bloke.",
   "no_transactions_yet": "Nėra jokių transakcijų dar.",
+  "node_endpoint": "Mazgo pabaiga",
   "node_hint_no_multiout": "Nėra daugkartinių mokėjimų",
   "node_not_set": "Nepavyko pakeisti mazgo. Labiausiai tikėtina, kad jis nepasiekiamas.",
   "node_set_success": "Mazgas sėkmingai pasikeitė",

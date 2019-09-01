@@ -629,6 +629,7 @@
   "no_transactions_found": "Транзакции не найдены",
   "no_transactions_in_block": "В этом блоке нет транзакций.",
   "no_transactions_yet": "Еще нет транзакций.",
+  "node_endpoint": "Конечная точка узла",
   "node_hint_no_multiout": "Не поддерживаются множественные платежи",
   "node_not_set": "Не удалось изменить узел. Скорее всего, это не достижимо.",
   "node_set_success": "Узел успешно изменен",
