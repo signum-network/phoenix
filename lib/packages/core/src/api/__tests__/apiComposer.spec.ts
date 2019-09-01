@@ -14,6 +14,8 @@ import {getAccountTransactions} from '../factories/account/getAccountTransaction
 import {getUnconfirmedAccountTransactions} from '../factories/account/getUnconfirmedAccountTransactions';
 import {generateSendTransactionQRCode} from '../factories/account/generateSendTransactionQRCode';
 import {getAccountBalance} from '../factories/account/getAccountBalance';
+import {getAccountBlocks} from '../factories/account/getAccountBlocks';
+import {getAccountBlockIds} from '../factories/account/getAccountBlockIds';
 import {generateSendTransactionQRCodeAddress} from '../factories/account/generateSendTransactionQRCodeAddress';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {getContract} from '../factories/contract';
@@ -177,6 +179,8 @@ describe('ApiComposer', () => {
                 getAccountTransactions,
                 getUnconfirmedAccountTransactions,
                 getAccountBalance,
+                getAccountBlocks,
+                getAccountBlockIds,
                 generateSendTransactionQRCode,
                 generateSendTransactionQRCodeAddress,
             })
@@ -187,6 +191,8 @@ describe('ApiComposer', () => {
         expect(api.account.getAccountTransactions).toBeDefined();
         expect(api.account.getUnconfirmedAccountTransactions).toBeDefined();
         expect(api.account.getAccountBalance).toBeDefined();
+        expect(api.account.getAccountBlocks).toBeDefined();
+        expect(api.account.getAccountBlockIds).toBeDefined();
         expect(api.account.generateSendTransactionQRCode).toBeDefined();
         expect(api.account.generateSendTransactionQRCodeAddress).toBeDefined();
 

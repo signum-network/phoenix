@@ -54,7 +54,6 @@ export interface AccountApi {
      */
     getAccountBalance: (accountId: string) => Promise<Balance>;
 
-
     /**
      * Get an account given an ID
      * @param {string} accountId
