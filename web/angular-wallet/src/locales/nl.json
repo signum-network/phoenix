@@ -629,6 +629,7 @@
   "no_transactions_found": "Geen transacties gevonden",
   "no_transactions_in_block": "Er zijn geen transacties in dit blok.",
   "no_transactions_yet": "Nog geen transacties.",
+  "node_endpoint": "Knooppunt eindpunt",
   "node_hint_no_multiout": "Geen multiout-betalingen ondersteund",
   "node_not_set": "Kan het knooppunt niet wijzigen. Hoogstwaarschijnlijk is het niet bereikbaar.",
   "node_set_success": "Knooppunt met succes gewijzigd",

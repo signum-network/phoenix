@@ -629,6 +629,7 @@
   "no_transactions_found": "トランザクションが見つかりません",
   "no_transactions_in_block": "このブロックにはトランザクションがありません。",
   "no_transactions_yet": "トランザクションがまだありません。",
+  "node_endpoint": "ノードエンドポイント",
   "node_hint_no_multiout": "マルチアウト支払いはサポートされていません",
   "node_not_set": "ノードを変更できませんでした。最も可能性が高いのは到達不可能です。",
   "node_set_success": "ノードは正常に変更されました",

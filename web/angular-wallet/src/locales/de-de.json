@@ -629,6 +629,7 @@
   "no_transactions_found": "Keine Transaktionen gefunden",
   "no_transactions_in_block": "Keine Transaktionen in diesem Block.",
   "no_transactions_yet": "Noch keine Transaktionen.",
+  "node_endpoint": "Knotenendpunkt",
   "node_hint_no_multiout": "Keine Multiout-Zahlungen unterstützt",
   "node_not_set": "Node konnte nicht geändert werden. Höchstwahrscheinlich ist er nicht erreichbar.",
   "node_set_success": "Node wurde erfolgreich geändert",

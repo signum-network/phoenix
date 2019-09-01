@@ -2,6 +2,12 @@
 
 ##1.0.0-beta.10
 
+### New Feature
+
+- Enhanced Node Selection
+    - custom endpoint possible
+    - dynamic version detection 
+
 # Bug Fixes
 - Fixed sending to unknown accounts (#645)
 

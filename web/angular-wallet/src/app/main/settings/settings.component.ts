@@ -7,12 +7,15 @@ import {environment} from '../../../environments/environment.hmr';
 import {I18nService} from '../../layout/components/i18n/i18n.service';
 import {StoreService} from '../../store/store.service';
 import {ActivatedRoute} from '@angular/router';
-import {ApiComposer, BurstService, getBlockchainStatus, getServerStatus} from '@burstjs/core';
+import {ApiComposer, BurstService, getBlockchainStatus} from '@burstjs/core';
 import {NotifierService} from 'angular-notifier';
+import {debounceTime, takeUntil} from 'rxjs/operators';
+import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 
 interface NodeInformation {
   url: string;
   version: string;
+  endpoint: string;
 }
 
 const UnsupportedFeatures = {
@@ -24,91 +27,99 @@ const UnsupportedFeatures = {
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
 
   constructor(private i18nService: I18nService,
               private storeService: StoreService,
               private notifierService: NotifierService,
               private route: ActivatedRoute) {
+    super();
   }
 
   public selectedNode = new FormControl();
+  public selectedNodeEndpoint = new FormControl();
   public settings: Settings;
 
   public nodes = SettingsComponent.createNodeList();
   public isFetchingNodeInfo = false;
+  public showAdvancedOptions = false;
+  public showConnectionErrorIcon = false;
+  public selectedNodeVersion: string;
 
-  private static createNodeList(): Array<NodeInformation> {
-    return constants.nodes.map(({address, port}) => ({
-        url: `${address}:${port}`,
-        version: null,
+  private static createNodeList(): Array<any> {
+    return constants.nodes.map(({address, port}) => `${address}:${port}`).concat(environment.defaultNode);
+  }
+
+  static async fetchNodeInformation(host: string, endpoint: string): Promise<NodeInformation> {
+    const networkApi = ApiComposer
+      .create(
+        new BurstService({
+          nodeHost: host,
+          apiRootUrl: endpoint,
+        }))
+      .withNetworkApi({
+        getBlockchainStatus,
       })
-    ).concat({
-      url: environment.defaultNode,
-      version: null,
-    });
+      .compose();
+    const {version} = await networkApi.network.getBlockchainStatus();
+    return {
+      url: host,
+      version,
+      endpoint,
+    };
   }
 
-  static async fetchNodeInformation(url: string): Promise<NodeInformation> {
-    try {
-      const networkApi = ApiComposer
-        .create(
-          new BurstService({
-            nodeHost: url,
-            apiRootUrl: '/burst',
-          }))
-        .withNetworkApi({
-          getBlockchainStatus,
-        })
-        .compose();
-      const {version} = await networkApi.network.getBlockchainStatus();
-      return {
-        url,
-        version,
-      };
-    } catch (e) {
-      // no op
-    }
-    return null;
-  }
-
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.settings = this.route.snapshot.data.settings as Settings;
-    this.selectedNode.setValue({
-      url: this.settings.node,
-      version: this.settings.nodeVersion
-    });
+    this.selectedNode.setValue(this.settings.node);
+    this.selectedNodeEndpoint.setValue(this.settings.nodeEndpoint);
+    const waitASecond = debounceTime(1000);
+    const updateVersion = () => {
+      this.fetchNodeVersion();
+    };
+
+    this.selectedNode.valueChanges.pipe(
+      takeUntil(this.unsubscribeAll),
+      waitASecond
+    ).subscribe(updateVersion);
+
+    this.selectedNodeEndpoint.valueChanges.pipe(
+      takeUntil(this.unsubscribeAll),
+      waitASecond
+    ).subscribe(updateVersion);
+
+    updateVersion();
   }
 
-  displayNodeUrl = (value: NodeInformation): string => value.url;
-
-  private async setNode(value: NodeInformation): Promise<void> {
+  private async updateNodeSettings(value: NodeInformation): Promise<void> {
     const currentSettings = await this.storeService.getSettings();
     currentSettings.nodeVersion = value.version;
     currentSettings.node = value.url;
-    this.storeService.saveSettings(currentSettings);
-    this.selectedNode.setValue(value);
+    currentSettings.nodeEndpoint = value.endpoint;
+    await this.storeService.saveSettings(currentSettings);
+  }
+
+  private async getLastValidSettings(): Promise<void> {
+    const {node, nodeEndpoint} = await this.storeService.getSettings();
+    this.selectedNode.setValue(node);
+    this.selectedNodeEndpoint.setValue(nodeEndpoint);
   }
 
   async selectNode(): Promise<void> {
-    this.isFetchingNodeInfo = true;
-    const nodeInformation = await SettingsComponent.fetchNodeInformation(this.selectedNode.value.url);
-    this.isFetchingNodeInfo = false;
-    if (!nodeInformation) {
-      const {node: url, nodeVersion: version} = await this.storeService.getSettings();
-      this.selectedNode.setValue({
-        url,
-        version,
-      });
+    try {
+      this.isFetchingNodeInfo = true;
+      const nodeInformation = await SettingsComponent.fetchNodeInformation(this.selectedNode.value, this.selectedNodeEndpoint.value);
+      this.isFetchingNodeInfo = false;
+      await this.updateNodeSettings(nodeInformation);
+      this.notifierService.notify('success', this.i18nService.getTranslation('node_set_success'));
+    } catch (e) {
+      await this.getLastValidSettings();
       this.notifierService.notify('error', this.i18nService.getTranslation('node_not_set'));
-      return;
     }
-    await this.setNode(nodeInformation);
-    this.notifierService.notify('success', this.i18nService.getTranslation('node_set_success'));
   }
 
   getVersion(): string {
-    return this.isFetchingNodeInfo ? this.i18nService.getTranslation('validating_node') : (this.selectedNode.value.version || this.i18nService.getTranslation('unknown_version'));
+    return this.isFetchingNodeInfo ? this.i18nService.getTranslation('validating_node') : (this.selectedNodeVersion || this.i18nService.getTranslation('unknown_version'));
   }
 
   getUnsupportedFeatures(): string[] {
@@ -116,7 +127,7 @@ export class SettingsComponent implements OnInit {
       return [this.i18nService.getTranslation('contacting_node')];
     }
 
-    const {version} = this.selectedNode.value;
+    const version = this.selectedNodeVersion;
     if (semver.valid(version)) {
       return Object
         .keys(UnsupportedFeatures)
@@ -124,5 +135,17 @@ export class SettingsComponent implements OnInit {
         .map(minVersion => `${this.i18nService.getTranslation(UnsupportedFeatures[minVersion])} - (>= ${minVersion})`);
     }
     return [];
+  }
+
+  private async fetchNodeVersion(): Promise<void> {
+    try {
+      this.isFetchingNodeInfo = true;
+      const {version} = await SettingsComponent.fetchNodeInformation(this.selectedNode.value, this.selectedNodeEndpoint.value);
+      this.selectedNodeVersion = version;
+      this.isFetchingNodeInfo = false;
+      this.showConnectionErrorIcon = false;
+    } catch (e) {
+      this.showConnectionErrorIcon = true;
+    }
   }
 }

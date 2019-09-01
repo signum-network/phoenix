@@ -629,6 +629,7 @@
   "no_transactions_found": "Nu s-au găsit tranzacții",
   "no_transactions_in_block": "Nu sunt tranzacţii în acest bloc.",
   "no_transactions_yet": "Încă nu sunt tranzacţii.",
+  "node_endpoint": "Punctul final al nodului",
   "node_hint_no_multiout": "Nu sunt acceptate plăți multiple",
   "node_not_set": "Nu s-a putut modifica nodul. Cel mai probabil nu este accesibil.",
   "node_set_success": "Nodul sa schimbat cu succes",

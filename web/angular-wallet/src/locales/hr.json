@@ -629,6 +629,7 @@
   "no_transactions_found": "Transakcija nije pronađena",
   "no_transactions_in_block": "Nema transakcija u ovom bloku.",
   "no_transactions_yet": "Još uvijek bez transakcija.",
+  "node_endpoint": "Krajnja točka čvora",
   "node_hint_no_multiout": "Nisu podržana višestruka plaćanja",
   "node_not_set": "Nije moguće promijeniti čvor. Najvjerojatnije nije dostupno.",
   "node_set_success": "Čvor je uspješno izmijenjen",

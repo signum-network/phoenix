@@ -629,6 +629,7 @@
   "no_transactions_found": "Nenašla sa žiadna transakcia",
   "no_transactions_in_block": "Žiadne transakcie v tomto bloku.",
   "no_transactions_yet": "Zatiaľ žiadne transakcie.",
+  "node_endpoint": "Uzol Koncový bod",
   "node_hint_no_multiout": "Nie sú podporované žiadne multiout platby",
   "node_not_set": "Uzol sa nepodarilo zmeniť. S najväčšou pravdepodobnosťou nie je dosiahnuteľný.",
   "node_set_success": "Uzol sa úspešne zmenil",

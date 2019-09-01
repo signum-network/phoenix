@@ -629,6 +629,7 @@
   "no_transactions_found": "No transactions found",
   "no_transactions_in_block": "No transactions in this block.",
   "no_transactions_yet": "Δεν υπάρχουν συναλλαγές ακόμα.",
+  "node_endpoint": "Endpoint κόμβου",
   "node_hint_no_multiout": "Δεν υποστηρίζονται πολλαπλές πληρωμές",
   "node_not_set": "Δεν ήταν δυνατή η αλλαγή κόμβου. Πιθανότατα δεν είναι εφικτό.",
   "node_set_success": "Ο κόμβος άλλαξε επιτυχώς",

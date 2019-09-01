@@ -638,6 +638,7 @@
   "no_transactions_found": "No transactions found",
   "no_transactions_in_block": "No transactions in this block.",
   "no_transactions_yet": "No transactions yet.",
+  "node_endpoint": "Node Endpoint",
   "node_hint_no_multiout": "No multiout payments supported",
   "node_not_set": "Could not change node. Most probable it is not reachable.",
   "node_set_success": "Node changed successfully",

@@ -629,6 +629,7 @@
   "no_transactions_found": "Tidak ada transaksi yang ditemukan",
   "no_transactions_in_block": "Tidak ada transaksi dalam blok ini.",
   "no_transactions_yet": "Belum ada transaksi.",
+  "node_endpoint": "Titik Akhir Simpul",
   "node_hint_no_multiout": "Tidak ada pembayaran multi-out yang didukung",
   "node_not_set": "Tidak dapat mengubah simpul. Paling mungkin itu tidak terjangkau.",
   "node_set_success": "Node berhasil diubah",
