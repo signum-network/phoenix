@@ -32,6 +32,8 @@ import {getAliases} from './factories/account/getAliases';
 import {setAlias} from './factories/account/setAlias';
 import {getTime} from './factories/network/getTime';
 import {getAccount} from './factories/account/getAccount';
+import {getAccountBlocks} from './factories/account/getAccountBlocks';
+import {getAccountBlockIds} from './factories/account/getAccountBlockIds';
 import {setAccountInfo} from './factories/account/setAccountInfo';
 import {setRewardRecipient} from './factories/account/setRewardRecipient';
 import {getAliasById} from './factories/alias/getAliasById';
@@ -114,6 +116,8 @@ export function composeApi(settings: ApiSettings): Api {
             getAliases,
             setAlias,
             getAccount,
+            getAccountBlocks,
+            getAccountBlockIds,
             setAccountInfo,
             setRewardRecipient,
         }).withAliasApi({

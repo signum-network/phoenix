@@ -2,6 +2,8 @@ import {Http, HttpMockBuilder} from '@burstjs/http';
 import {getAccountTransactions} from '../factories/account/getAccountTransactions';
 import {getUnconfirmedAccountTransactions} from '../factories/account/getUnconfirmedAccountTransactions';
 import {getAccountBalance} from '../factories/account/getAccountBalance';
+import {getAccountBlocks} from '../factories/account/getAccountBlocks';
+import {getAccountBlockIds} from '../factories/account/getAccountBlockIds';
 import {generateSendTransactionQRCodeAddress} from '../factories/account/generateSendTransactionQRCodeAddress';
 import {generateSendTransactionQRCode} from '../factories/account/generateSendTransactionQRCode';
 import {getAliases} from '../factories/account/getAliases';
@@ -401,5 +403,25 @@ describe('Account Api', () => {
                 expect(generateSignedTransactionBytes).toBeCalledTimes(0);
             }
         })
+    });
+
+    describe('getAccountBlocks()', () => {
+
+        it('should getAccountBlocks', async () => {
+            httpMock = HttpMockBuilder.create().onGetReply(200, {
+                blocks: [{'block': '1798696848813217050'}]
+            }).build();
+            const service = createBurstService(httpMock);
+            const blockResponse = await getAccountBlocks(service)(1);
+            expect(blockResponse.blocks[0].block).toBe('1798696848813217050');
+        });
+
+        it('should getAccountBlockIds', async () => {
+            httpMock = HttpMockBuilder.create().onGetReply(200, {blockIds: ['123', '456']}).build();
+            const service = createBurstService(httpMock);
+            const blockResponse = await getAccountBlockIds(service)(1);
+            expect(blockResponse.blockIds[0]).toBe('123');
+        });
+
     });
 });

@@ -6,6 +6,7 @@ import {Balance} from '../balance';
 import {AliasList} from '../aliasList';
 import { Account } from '../account';
 import { TransactionId } from '../transactionId';
+import { Block } from '../block';
 
 /**
  * Account API
@@ -53,7 +54,6 @@ export interface AccountApi {
      */
     getAccountBalance: (accountId: string) => Promise<Balance>;
 
-
     /**
      * Get an account given an ID
      * @param {string} accountId
@@ -61,6 +61,21 @@ export interface AccountApi {
      */
     getAccount: (accountId: string) => Promise<Account>;
 
+    /**
+     * Get blocks forged by an account
+     * @param firstIndex first block to retrieve (optional, default is zero or the last block on the blockchain)
+     * @param lastIndex the last block to retrieve (optional, default is firstIndex + 99)
+     * @return {Promise<Block[]>} The list of blocks
+     */
+    getAccountBlocks: (accountId: string) => Promise<Block[]>;
+
+    /**
+     * Get blockIds forged by an account
+     * @param firstIndex first block to retrieve (optional, default is zero or the last block on the blockchain)
+     * @param lastIndex the last block to retrieve (optional, default is firstIndex + 99)
+     * @return {Promise<string[]>} The list of blocks
+     */
+    getAccountBlockIds: (accountId: string) => Promise<string[]>;
 
     /**
      * Get QR Code image for a given BURST address
