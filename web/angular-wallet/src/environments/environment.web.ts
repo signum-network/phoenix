@@ -5,6 +5,7 @@ export const environment = {
   hmr: false,
   version,
   defaultNode: '',
+  defaultNodeEndpoint: '/burst',
   nodeVersion: '',
   market: {
     tickerUrl: 'https://api.coinmarketcap.com/v1/ticker/burst/',

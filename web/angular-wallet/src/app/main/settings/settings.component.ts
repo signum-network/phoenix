@@ -13,6 +13,7 @@ import {NotifierService} from 'angular-notifier';
 interface NodeInformation {
   url: string;
   version: string;
+  endpoint: string;
 }
 
 const UnsupportedFeatures = {
@@ -39,22 +40,24 @@ export class SettingsComponent implements OnInit {
   public isFetchingNodeInfo = false;
 
   private static createNodeList(): Array<NodeInformation> {
-    return constants.nodes.map(({address, port}) => ({
+    return constants.nodes.map(({address, port, endpoint}) => ({
         url: `${address}:${port}`,
         version: null,
+        endpoint,
       })
     ).concat({
       url: environment.defaultNode,
       version: null,
+      endpoint: environment.defaultNodeEndpoint,
     });
   }
 
-  static async fetchNodeInformation(url: string): Promise<NodeInformation> {
+  static async fetchNodeInformation(host: string, endpoint: string): Promise<NodeInformation> {
     try {
       const networkApi = ApiComposer
         .create(
           new BurstService({
-            nodeHost: url,
+            nodeHost: host,
             apiRootUrl: '/burst',
           }))
         .withNetworkApi({
@@ -63,8 +66,9 @@ export class SettingsComponent implements OnInit {
         .compose();
       const {version} = await networkApi.network.getBlockchainStatus();
       return {
-        url,
+        url: host,
         version,
+        endpoint,
       };
     } catch (e) {
       // no op
@@ -76,7 +80,8 @@ export class SettingsComponent implements OnInit {
     this.settings = this.route.snapshot.data.settings as Settings;
     this.selectedNode.setValue({
       url: this.settings.node,
-      version: this.settings.nodeVersion
+      version: this.settings.nodeVersion,
+      endpoint: this.settings.nodeEndpoint
     });
   }
 
@@ -86,13 +91,13 @@ export class SettingsComponent implements OnInit {
     const currentSettings = await this.storeService.getSettings();
     currentSettings.nodeVersion = value.version;
     currentSettings.node = value.url;
-    this.storeService.saveSettings(currentSettings);
+    await this.storeService.saveSettings(currentSettings);
     this.selectedNode.setValue(value);
   }
 
   async selectNode(): Promise<void> {
     this.isFetchingNodeInfo = true;
-    const nodeInformation = await SettingsComponent.fetchNodeInformation(this.selectedNode.value.url);
+    const nodeInformation = await SettingsComponent.fetchNodeInformation(this.selectedNode.value.url, this.selectedNode.value.endpoint);
     this.isFetchingNodeInfo = false;
     if (!nodeInformation) {
       const {node: url, nodeVersion: version} = await this.storeService.getSettings();

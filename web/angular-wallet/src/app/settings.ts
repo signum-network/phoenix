@@ -20,6 +20,7 @@ export class Settings {
     public language: string;
     public node: string;
     public nodeVersion: string;
+    public nodeEndpoint: string;
     public theme: string;
     public version: string;
     public marketUrl: string;
@@ -40,6 +41,7 @@ export class Settings {
         this.currency = data.currency || constants.defaultCurrency;
         this.language = data.language || constants.defaultLanguage;
         this.node = data.node || environment.defaultNode;
+        this.nodeEndpoint = data.nodeEndpoint || environment.defaultNodeEndpoint;
         this.nodeVersion = data.nodeVersion || '*';
         this.marketUrl = data.marketUrl || environment.market.tickerUrl;
         this.theme = data.theme || constants.defaultTheme;
