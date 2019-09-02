@@ -17,7 +17,8 @@
     "jsx-boolean-value": false,
     "jsx-no-multiline-js": false,
     "no-console": true,
-    "semicolon": [true, "always", "ignore-interfaces"]
+    "semicolon": [true, "always", "ignore-interfaces"],
+    "indent": [true, "spaces", 2]
   },
   "rulesDirectory": [],
   "linterOptions": {

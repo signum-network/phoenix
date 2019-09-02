@@ -96,6 +96,7 @@ export const hydrateAccount = createActionFn<Account, Promise<Account>>(
     try {
       const accountDetails = await api.account.getAccount(account.account);
       dispatch(actions.updateAccount(accountDetails));
+      dispatch(updateAccountTransactions(accountDetails));
     // tslint:disable-next-line: no-empty
     } catch (e) {}
 
@@ -124,6 +125,28 @@ export const updateAccountTransactions = createActionFn<Account, Promise<Account
       return updatedAccount;
     }
 );
+
+export const updateAccountTransactionsForMultipleAccounts = createActionFn<Account[], Promise<Account[]>>(
+    async (dispatch, getState, accounts) => {
+      const state = getState();
+      const { nodeHost, apiRootUrl } = state.app.burstService.settings;
+      const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
+
+      // @ts-ignore - i submit to the ts gods, i  not worthy
+      const updatedAccounts: Promise<Account[]> = Promise.all(accounts.map(async (account) => {
+        try {
+          const transactions = await api.account.getAccountTransactions(account.account);
+          account.transactions = transactions.transactions;
+          dispatch(actions.updateAccount(account));
+          return account;
+        // tslint:disable-next-line: no-empty
+        } catch (e) {}
+      }));
+
+      await setAccounts(getState().auth.accounts);
+      return updatedAccounts;
+    }
+)
 
 export const addAccount = createActionFn<Account, Promise<Account>>(
   async (dispatch, getState, account) => {
