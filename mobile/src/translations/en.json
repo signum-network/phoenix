@@ -136,8 +136,12 @@
       "send": {
         "amountNQT": "Amount",
         "feeNQT": "Fee",
+        "from": "From",
+        "selectAccount": "Select an account",
         "sent": "Sent!",
-        "title": "Send"
+        "title": "Send",
+        "to": "To",
+        "total": "Total: {{value}} BURST"
       }
     }
   },
