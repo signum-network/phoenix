@@ -1,29 +1,31 @@
+@import "src/@fuse/scss/fuse";
+
 mat-form-field {
-    width: 100%;
-    display: block;
+  width: 100%;
+  display: block;
 }
 
 form {
-    margin:20px 0;
+  margin: 20px 0;
 }
 
-.no-balance{
+.no-balance {
   color: red;
   font-weight: bold;
 }
 
-.recipients-item{
+.recipients-item {
   display: flex;
   flex-direction: row;
   align-items: baseline;
 
-  burst-recipient-input{
+  burst-recipient-input {
     margin-right: 8px;
     width: 100%;
   }
 
-  mat-form-field{
-    width:30%
+  mat-form-field {
+    width: 30%
   }
 
   mat-icon {
@@ -31,14 +33,34 @@ form {
   }
 }
 
-.add-recipient {
-    width:100%;
+.action-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    @include media-breakpoint('xs') {
+      flex-direction: column;
+      margin-top: 12px;
+      justify-content: normal;
+    }
+
+    button {
+      @include media-breakpoint('xs') {
+        margin-top: 12px;
+      }
+    }
+  }
 }
 
 .same-amount {
-    margin:10px 0;
-    font-size:14px;
-    display: inline-block;
+  margin: 10px 0;
+  font-size: 14px;
+  display: inline-block;
 }
 
 .send-button-wrapper {

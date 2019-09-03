@@ -19,6 +19,7 @@
   "add_message_q": "Add a Message?",
   "add_note_to_self_q": "Add Note to Self?",
   "add_recipient": "Add Recipient",
+  "add_recipient_batch": "Adding multiple recipients by CSV",
   "add_recipient_to_contacts_q": "Add recipient to contacts?",
   "add_sender_as_contact": "Add Sender as Contact",
   "add_to_group": "Add to Group",

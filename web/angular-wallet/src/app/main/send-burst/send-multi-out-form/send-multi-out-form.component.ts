@@ -16,6 +16,7 @@ import {takeUntil} from 'rxjs/operators';
 import {StoreService} from '../../../store/store.service';
 import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
 import {burstAddressPattern} from 'app/util/burstAddressPattern';
+import {BatchRecipientsDialogComponent} from '../batch-recipients-dialog/batch-recipients-dialog.component';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -51,6 +52,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   constructor(
     private warnDialog: MatDialog,
+    private batchRecipientsDialog: MatDialog,
     private transactionService: TransactionService,
     private notifierService: NotifierService,
     private i18nService: I18nService,
@@ -134,6 +136,14 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     });
   }
 
+  private openBatchRecipientsDialog(): MatDialogRef<any> {
+    return this.batchRecipientsDialog.open(BatchRecipientsDialogComponent, {
+      width: '400px',
+    });
+  }
+
+
+
   trackByIndex(index): number {
     return index;
   }
@@ -146,6 +156,18 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     this.recipients.push(new Recipient());
     event.stopImmediatePropagation();
     event.preventDefault();
+  }
+
+  addBatchedRecipient(event: MouseEvent): void {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+    console.log('addBatchedRecipient');
+    const dialogRef = this.openBatchRecipientsDialog();
+    dialogRef.afterClosed().subscribe(ok => {
+      if (ok) {
+        console.log('closed');
+      }
+    });
   }
 
   private getTotalForMultiOut(): number {
@@ -202,4 +224,5 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   onRecipientChange(recipient: Recipient, i: number): void {
     this.recipients[i] = recipient;
   }
+
 }

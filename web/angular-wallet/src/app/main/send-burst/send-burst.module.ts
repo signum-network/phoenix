@@ -30,6 +30,7 @@ import { SendMultiOutFormComponent } from './send-multi-out-form/send-multi-out-
 import { WarnSendDialogComponent } from './warn-send-dialog/warn-send-dialog.component';
 import {PageModule} from '../../components/page/page.module';
 import { LoginGuard } from 'app/login/login-guard.service';
+import {BatchRecipientsDialogComponent} from './batch-recipients-dialog/batch-recipients-dialog.component';
 
 const routes = [
   {
@@ -55,6 +56,7 @@ const routes = [
     SendBurstFormComponent,
     SendMultiOutFormComponent,
     WarnSendDialogComponent,
+    BatchRecipientsDialogComponent
   ],
   imports: [
     CommonModule,
@@ -82,7 +84,8 @@ const routes = [
     PageModule
   ],
   entryComponents: [
-    WarnSendDialogComponent
+    WarnSendDialogComponent,
+    BatchRecipientsDialogComponent
   ],
   exports: [
     BurstInputValidatorDirective
