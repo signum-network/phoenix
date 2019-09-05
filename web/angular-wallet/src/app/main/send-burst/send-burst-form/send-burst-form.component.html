@@ -33,12 +33,12 @@
   </div>
 
   <div *ngIf="advanced">
+    <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="messageIsText" name="messageIsText">{{ "message_is_text" | i18n }}</mat-checkbox>
+    
     <mat-form-field>
       <label>{{ 'deadline_hours' | i18n }}</label>
       <input matInput [(ngModel)]="deadline" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}">
     </mat-form-field>
-
-    <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="messageIsText" name="messageIsText">{{ "message_is_text" | i18n }}</mat-checkbox>
 
     <!--    FUTURE FEATURE-->
     <!--
