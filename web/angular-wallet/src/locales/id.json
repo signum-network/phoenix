@@ -566,6 +566,7 @@
   "memorize_passphrase_help_addon": "Jika Anda kehilangan frasa sandi, Anda tidak akan dapat melakukan transaksi, mis. Koin Anda hilang. Frasa sandi tidak dapat dipulihkan. Jaga kerahasiaan kata sandi ini. Semua orang yang tahu frasa sandi adalah pemilik akun itu.",
   "message": "Pesan",
   "message_empty": "Pesan kosong.",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "Pesan ini dienkripsi.",
   "message_is_not_encrypted": "Pesan ini tidak dienkripsi.",
   "messages": "Pesan",

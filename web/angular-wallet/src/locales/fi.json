@@ -566,6 +566,7 @@
   "memorize_passphrase_help_addon": "Jos menetät salasanan, et voi tehdä mitään tapahtumia, eli kolikot häviävät. Salasana ei ole palautettavissa. Pidä tämä salasana salassa. Jokainen, joka tietää salasanan, on tosiasiallisesti tilin omistaja.",
   "message": "Viesti",
   "message_empty": "Viesti on tyhjä.",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "Tämä viesti on salattu.",
   "message_is_not_encrypted": "Tätä viestiä ei ole salattu.",
   "messages": "Viestit",

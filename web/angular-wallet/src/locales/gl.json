@@ -566,6 +566,7 @@
   "memorize_passphrase_help_addon": "Se perde a frase de contrasinal, non poderás realizar ningunha transacción, é dicir, as túas moedas están perdidas. A frase de acceso non é recuperable. Manter este contrasinal secreto. Todos os que coñecen o contrasinal son de feito o dono da conta.",
   "message": "Mensaxe",
   "message_empty": "Message is empty.",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "This message is encrypted.",
   "message_is_not_encrypted": "This message is not encrypted.",
   "messages": "Mensaxes",

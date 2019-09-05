@@ -566,6 +566,7 @@
   "memorize_passphrase_help_addon": "Si vous perdez la phrase secrète, vous ne pourrez plus effectuer aucune transaction, c’est-à-dire que vos pièces sont perdues. La phrase secrète n'est pas récupérable. Gardez cette phrase secrète secrète. Tous ceux qui connaissent la phrase secrète sont de facto propriétaires du compte.",
   "message": "Message",
   "message_empty": "Le message est vide.",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "Ce message est chiffré.",
   "message_is_not_encrypted": "Ce message n'est pas chiffré.",
   "messages": "Messages",

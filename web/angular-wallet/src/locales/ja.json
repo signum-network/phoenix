@@ -566,6 +566,7 @@
   "memorize_passphrase_help_addon": "あなたがパスフレーズを失うならば、あなたはどんな取引もすることができないでしょう、すなわちあなたのコインは失われます。パスフレーズは回復できません。このパスフレーズを秘密にしてください。パスフレーズを知っている人はだれでも事実上アカウントの所有者です。",
   "message": "メッセージ",
   "message_empty": "メッセージが空です。",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "このメッセージは暗号化されます。",
   "message_is_not_encrypted": "このメッセージは暗号化されません。",
   "messages": "メッセージ",

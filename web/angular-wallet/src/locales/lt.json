@@ -566,6 +566,7 @@
   "memorize_passphrase_help_addon": "Jei prarandate slaptafrazę, negalėsite atlikti jokių operacijų, t. Y. Jūsų monetos prarandamos. Slaptafrazė nėra atkuriama. Laikykite šią slaptafrazę paslaptyje. Visi, kurie žino slaptafrazę, de facto yra paskyros savininkas.",
   "message": "Žinutė",
   "message_empty": "Žinutė yra tuščia.",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "Ši žinutė yra šifruota.",
   "message_is_not_encrypted": "Ši žinutė neužšifruota.",
   "messages": "Žinutės",

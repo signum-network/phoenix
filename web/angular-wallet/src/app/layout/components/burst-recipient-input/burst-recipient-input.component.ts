@@ -179,7 +179,9 @@ export class BurstRecipientInputComponent implements OnInit, OnChanges {
               recipient: this.recipient,
               amountNQT: url.get('amountNQT'),
               feeNQT: url.get('feeNQT'),
-              immutable: url.get('immutable') === 'true'
+              immutable: url.get('immutable') === 'true',
+              feeSelectionType: url.get('feeSelectionType'),
+              messageIsText: url.get('messageIsText') === 'false' ? false : true
             });
             this.notifierService.notify('success', 'QR parsed successfully');
           } else {

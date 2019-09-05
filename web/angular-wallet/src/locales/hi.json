@@ -566,6 +566,7 @@
   "memorize_passphrase_help_addon": "यदि आप पासफ़्रेज़ को ढीला करते हैं तो आप कोई भी लेन-देन नहीं कर पाएंगे, यानी आपके सिक्के खो गए हैं। पासफ़्रेज़ पुनर्प्राप्त करने योग्य नहीं है। इस पासफ़्रेज़ को गुप्त रखें। पासफ़्रेज़ को जानने वाला हर व्यक्ति खाता का मालिक है।",
   "message": "संदेश",
   "message_empty": "संदेश खाली है।",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "This message is encrypted.",
   "message_is_not_encrypted": "यह संदेश एन्क्रिप्ट नहीं किया गया है।",
   "messages": "संदेश",

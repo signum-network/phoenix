@@ -531,6 +531,7 @@
   "memorize_passphrase_help": "Molimo Vas zapištite ili zapamtite ovih 12 reči (redosled reči i veličina slova je veoma važna - uvek koristite mala slova).  Ponuđena lozinka je neophodna za pristup Vašem BURST računu.",
   "message": "Poruka",
   "message_empty": "Poruka je prazna.",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "Ova poruka je zaštićena.",
   "message_is_not_encrypted": "Ova poruka nije zaštićena.",
   "messages": "Poruke",
