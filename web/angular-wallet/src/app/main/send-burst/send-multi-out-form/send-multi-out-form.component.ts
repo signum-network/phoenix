@@ -138,11 +138,10 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   private openBatchRecipientsDialog(): MatDialogRef<any> {
     return this.batchRecipientsDialog.open(BatchRecipientsDialogComponent, {
-      width: '400px',
+      // TODO: make 100% on mobile
+      width: '50%',
     });
   }
-
-
 
   trackByIndex(index): number {
     return index;
@@ -161,11 +160,10 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   addBatchedRecipient(event: MouseEvent): void {
     event.stopImmediatePropagation();
     event.preventDefault();
-    console.log('addBatchedRecipient');
     const dialogRef = this.openBatchRecipientsDialog();
     dialogRef.afterClosed().subscribe(ok => {
       if (ok) {
-        console.log('closed');
+        console.log('closed', ok);
       }
     });
   }
