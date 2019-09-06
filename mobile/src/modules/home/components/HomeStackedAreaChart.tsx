@@ -1,17 +1,22 @@
-
-import { Account, Transaction } from '@burstjs/core';
+import { Account } from '@burstjs/core';
 import { convertBurstTimeToDate, convertNQTStringToNumber } from '@burstjs/util';
 import * as shape from 'd3-shape';
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { Grid, StackedAreaChart, YAxis } from 'react-native-svg-charts';
-import { NavigationInjectedProps } from 'react-navigation';
-import { Button } from '../../../core/components/base/Button';
 import { Colors } from '../../../core/theme/colors';
 import { getBalanceHistoryFromTransactions } from '../../../core/utils/balance/getBalanceHistoryFromTransactions';
 import { BalanceHistoryItem } from '../../../core/utils/balance/typings';
-import { updateAccountTransactions } from '../../auth/store/actions';
-import { Metric, PriceInfo, PriceInfoReduxState } from '../../price-api/store/reducer';
+import { isSameDay } from '../../../core/utils/date';
+import { Metric, PriceInfoReduxState } from '../../price-api/store/reducer';
+
+const ACCOUNT_TOKEN = 'account';
+
+interface ChartData {
+  [key: string]: number | Date;
+  // day: Date;
+  // `account[0-n]`: number;
+}
 
 interface Props {
   accounts: Account[];
@@ -20,7 +25,8 @@ interface Props {
 type TProps = Props;
 
 interface State {
-  priceInBTC: boolean
+  priceInBTC: boolean;
+  selectedDateRange: number;
 }
 
 export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
@@ -30,68 +36,73 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
     priceInBTC: false
   };
 
-  componentWillMount () {
-    // this.props.dispatch(updateAccountTransactionForMultipleAccounts(this.props.accounts));
-  }
-
   calculateChartData () {
-    console.log(this.props.priceApi.historicalPriceInfo);
     const accountTransactions = this.props.accounts.map((account) => {
       if (account.transactions) {
         return getBalanceHistoryFromTransactions(account.account,
           convertNQTStringToNumber(account.balanceNQT), account.transactions);
       }
     });
-    const now = new Date();
-    const data = [];
-    const historicalPrice: Metric[] = [];
-    let i = 0;
-    for (const d = new Date(new Date().setDate(now.getDate() - this.state.selectedDateRange));
-      d <= now; d.setDate(d.getDate() + 1)) {
-      data[i] = {
-        day: new Date(d)
-      };
-
-      if (this.state.priceInBTC) {
-        const price = this.props.priceApi.historicalPriceInfo.Data.find((metric) => {
-          return this.sameDay(new Date(metric.time * 1000), d);
-        });
-        historicalPrice[d.getTime()] = price || this.props.priceApi.historicalPriceInfo.Data[0];
-      }
-      accountTransactions.map((transactions, accountIndex) => {
-        // set to 0 by default, in case we can't match a transaction
-        data[i][`account${accountIndex}`] = 0;
-
-        if (transactions && transactions.length) {
-          for (let t = transactions.length - 1; t >= 0; t--) {
-            const transaction = transactions[t];
-            // only match up to the most recent transaction, not beyond
-            if (convertBurstTimeToDate(transaction.timestamp) > d) {
-              continue;
-            }
-            if (this.state.priceInBTC) {
-              const priceInBTCOnThatDay = historicalPrice[d.getTime()];
-              data[i][`account${accountIndex}`] = transaction.balance * priceInBTCOnThatDay.close;
-            } else {
-              data[i][`account${accountIndex}`] = transaction.balance;
-            }
-          }
-        }
-      });
-      i++;
-    }
+    const data: ChartData[] = this.buildChartData(accountTransactions);
 
     return data;
   }
 
   toggleBTCPrice = () => {
-    this.setState({ priceInBTC: !this.state.priceInBTC });
+    this.setState({ ...this.state, priceInBTC: !this.state.priceInBTC });
   }
 
-  sameDay (d1, d2) {
-    return d1.getFullYear() === d2.getFullYear() &&
-      d1.getMonth() === d2.getMonth() &&
-      d1.getDate() === d2.getDate();
+  addTransactionToChartData (data: ChartData[],
+                             i: number,
+                             d: Date,
+                             historicalPrice: Metric[],
+                             atThatTime: number,
+                             priceInBTC: boolean):
+    (value: BalanceHistoryItem[] | undefined, index: number, array: Array<BalanceHistoryItem[] | undefined>) => void {
+    return (transactions, accountIndex) => {
+      // set to 0 by default, in case we can't match a transaction
+      data[i][`${ACCOUNT_TOKEN}${accountIndex}`] = 0;
+      if (transactions && transactions.length) {
+        for (let t = transactions.length - 1; t >= 0; t--) {
+          const transaction = transactions[t];
+          // only match up to the most recent transaction, not beyond
+          if (convertBurstTimeToDate(transaction.timestamp) > d) {
+            continue;
+          }
+          if (priceInBTC) {
+            const priceInBTCOnThatDay = historicalPrice[atThatTime];
+            data[i][`${ACCOUNT_TOKEN}${accountIndex}`] = transaction.balance * priceInBTCOnThatDay.close;
+          } else {
+            data[i][`${ACCOUNT_TOKEN}${accountIndex}`] = transaction.balance;
+          }
+        }
+      }
+    };
+  }
+
+  private buildChartData (accountTransactions: Array<BalanceHistoryItem[] | undefined>): ChartData[] {
+    const now = new Date();
+    const data: ChartData[] = [];
+    const historicalPrice: Metric[] = [];
+    let i = 0;
+    // tslint:disable-next-line: max-line-length
+    for (const d = new Date(new Date().setDate(now.getDate() - this.state.selectedDateRange)); d <= now; d.setDate(d.getDate() + 1)) {
+      const atThatTime = d.getTime();
+      data[i] = {
+        day: new Date(d)
+      };
+      if (this.state.priceInBTC) {
+        const price = this.props.priceApi.historicalPriceInfo.Data.find((metric) => {
+          return isSameDay(new Date(metric.time * 1000), d);
+        });
+        historicalPrice[atThatTime] = price || this.props.priceApi.historicalPriceInfo.Data[0];
+      }
+      accountTransactions.map(
+        this.addTransactionToChartData(data, i, d, historicalPrice, atThatTime, this.state.priceInBTC)
+      );
+      i++;
+    }
+    return data;
   }
 
   render () {
@@ -133,23 +144,24 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
             baselineShift: '3'
           }}
         />
-        <TouchableOpacity onPress={this.toggleBTCPrice} style={{
-          position: 'absolute',
-          top: 20,
-          right: 5,
-          backgroundColor: Colors.BLUE_DARKEST,
-          fontSize: 8,
-          zIndex: 3,
-          flex: 1,
-          alignContent: 'center',
-          justifyContent: 'center',
-          borderRadius: 3,
-          borderWidth: 1,
-          borderColor: Colors.BLUE_LIGHT,
-          padding: 8,
-          opacity: .8
-          }}>
-          <Text style={{color: Colors.BLUE_LIGHT, textAlign: 'center'}}>
+        <TouchableOpacity
+                          onPress={this.toggleBTCPrice}
+                          style={{
+                            position: 'absolute',
+                            top: 20,
+                            right: 5,
+                            backgroundColor: Colors.BLUE_DARKEST,
+                            zIndex: 3,
+                            flex: 1,
+                            alignContent: 'center',
+                            justifyContent: 'center',
+                            borderRadius: 3,
+                            borderWidth: 1,
+                            borderColor: Colors.BLUE_LIGHT,
+                            padding: 8,
+                            opacity: .8
+                          }}>
+          <Text style={{ color: Colors.BLUE_LIGHT, textAlign: 'center' }}>
             {this.state.priceInBTC ? `BTC` : `BURST`}
           </Text>
         </TouchableOpacity>
