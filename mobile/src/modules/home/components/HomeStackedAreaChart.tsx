@@ -29,6 +29,34 @@ interface State {
   selectedDateRange: number;
 }
 
+const styles = {
+  stackedAreaChart: { height: 200, paddingVertical: 16, zIndex: 1 },
+  yAxis: { position: 'absolute', top: 0, left: 5, height: 200, paddingVertical: 16, zIndex: 2 },
+  svg: {
+    fontSize: 8,
+    fill: 'white', // StyleSheet.create doesn't like fill
+    stroke: 'black',
+    strokeWidth: 0.1,
+    alignmentBaseline: 'baseline',
+    baselineShift: '3'
+  },
+  button: {
+    position: 'absolute',
+    top: 20,
+    right: 5,
+    backgroundColor: Colors.BLUE_DARKEST,
+    zIndex: 3,
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+    borderRadius: 3,
+    borderWidth: 1,
+    borderColor: Colors.BLUE_LIGHT,
+    padding: 8,
+    opacity: .8
+  }
+};
+
 export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
 
   state = {
@@ -113,14 +141,18 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
     const keys = Object.keys(data[0]).slice(1); // remove 'day' from the keys to get the account names
 
     const svgs = [
+      // tslint:disable-next-line: no-console
       { onPress: () => console.log('account0') },
+      // tslint:disable-next-line: no-console
       { onPress: () => console.log('bananas') }
     ];
 
     return (
       <>
+      {/*
+      // @ts-ignore */}
         <StackedAreaChart
-          style={{ height: 200, paddingVertical: 16, zIndex: 1 }}
+          style={styles.stackedAreaChart}
           data={data}
           keys={keys}
           colors={colors}
@@ -132,40 +164,21 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
         </StackedAreaChart>
 
         <YAxis
-          style={{ position: 'absolute', top: 0, left: 5, height: 200, paddingVertical: 16, zIndex: 2 }}
+          style={styles.yAxis as StyleMedia}
           data={StackedAreaChart.extractDataPoints(data, keys)}
           contentInset={{ top: 10, bottom: 10 }}
-          svg={{
-            fontSize: 8,
-            fill: 'white',
-            stroke: 'black',
-            strokeWidth: 0.1,
-            alignmentBaseline: 'baseline',
-            baselineShift: '3'
-          }}
+          svg={styles.svg as StyleMedia}
         />
+
         <TouchableOpacity
-                          onPress={this.toggleBTCPrice}
-                          style={{
-                            position: 'absolute',
-                            top: 20,
-                            right: 5,
-                            backgroundColor: Colors.BLUE_DARKEST,
-                            zIndex: 3,
-                            flex: 1,
-                            alignContent: 'center',
-                            justifyContent: 'center',
-                            borderRadius: 3,
-                            borderWidth: 1,
-                            borderColor: Colors.BLUE_LIGHT,
-                            padding: 8,
-                            opacity: .8
-                          }}>
+          onPress={this.toggleBTCPrice}
+          style={styles.button as StyleMedia}
+        >
           <Text style={{ color: Colors.BLUE_LIGHT, textAlign: 'center' }}>
             {this.state.priceInBTC ? `BTC` : `BURST`}
           </Text>
         </TouchableOpacity>
-        </>
+      </>
     );
   }
 }
