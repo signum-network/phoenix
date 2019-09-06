@@ -9,11 +9,11 @@ import { Colors } from '../../../core/theme/colors';
 import { defaultSideOffset, FontSizes, Sizes } from '../../../core/theme/sizes';
 import { core } from '../../../core/translations';
 import { amountToString } from '../../../core/utils/numbers';
-import { PriceInfoReduxState } from '../../cmc/store/reducer';
+import { PriceInfoReduxState } from '../../price-api/store/reducer';
 
 interface Props {
   accounts: Account[];
-  cmc?: PriceInfoReduxState
+  priceApi?: PriceInfoReduxState
 }
 
 const styles: any = {
@@ -25,15 +25,15 @@ const styles: any = {
 
 export class AccountsListHeader extends React.PureComponent<Props> {
   render () {
-    const { accounts, cmc } = this.props;
+    const { accounts, priceApi } = this.props;
     const hasAccounts = !isEmpty(accounts);
-    const cmcPrice = cmc && cmc.price_btc;
+    const priceInBTC = priceApi && priceApi.priceInfo && priceApi.priceInfo.price_btc;
 
     const totalBalance = accounts.reduce((prev, curr) => {
       return prev + convertNQTStringToNumber(curr.balanceNQT);
     }, 0);
-    const totalBalanceBTC = cmcPrice
-      ? toNumber(cmcPrice) * totalBalance
+    const totalBalanceBTC = priceInBTC
+      ? toNumber(priceInBTC) * totalBalance
       : 0;
 
     return hasAccounts ? (
@@ -41,7 +41,7 @@ export class AccountsListHeader extends React.PureComponent<Props> {
         <Text color={Colors.WHITE} size={FontSizes.LARGE} bold bebasFont>
           {i18n.t(core.currency.BURST.value, { value: amountToString(totalBalance) })}
         </Text>
-        {cmcPrice ? (
+        {priceInBTC ? (
           <Text color={Colors.WHITE} bebasFont>
             {i18n.t(core.currency.BTC.value, { value: amountToString(totalBalanceBTC) })}
           </Text>

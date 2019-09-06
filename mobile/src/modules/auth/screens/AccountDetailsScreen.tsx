@@ -10,13 +10,13 @@ import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
 import { ApplicationState } from '../../../core/store/initialState';
 import { Colors } from '../../../core/theme/colors';
-import { PriceInfoReduxState } from '../../cmc/store/reducer';
+import { PriceInfoReduxState } from '../../price-api/store/reducer';
 import { AccountDetailsList } from '../components/details/AccountDetailsList';
 import { updateAccountTransactions } from '../store/actions';
 
 interface Props extends InjectedReduxProps {
   accounts: Account[];
-  cmc: PriceInfoReduxState;
+  priceApi: PriceInfoReduxState;
 }
 
 type TProps = NavigationInjectedProps & Props;
@@ -58,7 +58,7 @@ class AccountDetails extends React.PureComponent<TProps> {
   }
 
   render () {
-    const { cmc } = this.props;
+    const { priceApi } = this.props;
     const account = this.getAccount();
     if (!account) {
       return null;
@@ -72,7 +72,7 @@ class AccountDetails extends React.PureComponent<TProps> {
             <AccountDetailsList
                 account={account}
                 onTransactionPress={this.handleTransactionPress}
-                cmc={cmc}
+                priceApi={priceApi}
             />
           </View>
         </FullHeightView>
@@ -84,7 +84,7 @@ class AccountDetails extends React.PureComponent<TProps> {
 function mapStateToProps (state: ApplicationState) {
   return {
     accounts: state.auth.accounts,
-    cmc: state.cmc
+    priceApi: state.priceApi
   };
 }
 

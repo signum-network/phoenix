@@ -14,8 +14,10 @@ import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { Colors } from '../../../core/theme/colors';
 import { core } from '../../../core/translations';
-import { PriceInfoReduxState } from '../../cmc/store/reducer';
+import { HomeStackedAreaChart } from '../../home/components/HomeStackedAreaChart';
+import { PriceInfoReduxState } from '../../price-api/store/reducer';
 import { AccountsList } from '../components/AccountsList';
+import { AccountsListHeader } from '../components/AccountsListHeader';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
 import { hydrateAccount, removeAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
@@ -24,7 +26,7 @@ import { shouldEnterPIN } from '../store/utils';
 interface CustomProps extends InjectedReduxProps {
   app: AppReduxState,
   auth: AuthReduxState,
-  cmc: PriceInfoReduxState
+  priceApi: PriceInfoReduxState
 }
 
 type TProps = NavigationInjectedProps & CustomProps;
@@ -112,18 +114,24 @@ class Home extends React.PureComponent<TProps, State> {
 
   render () {
     const accounts: Account[] = this.props.auth.accounts || [];
+    const priceApi = this.props.priceApi;
 
     // TODO: remove when all screens will be with blue background
     return (
       <Screen style={{ backgroundColor: Colors.BLUE_DARKER }}>
         <FullHeightView withoutPaddings>
+          <AccountsListHeader priceApi={priceApi} accounts={accounts}/>
           <View>
+            <HomeStackedAreaChart
+              priceApi={priceApi}
+              accounts={accounts}
+            />
             <AccountsList
               accounts={accounts}
               onAccountPress={this.handleAccountPress}
               onAddAccountPress={this.handleAddAccountPress}
               onDelete={this.handleDelete}
-              cmc={this.props.cmc}
+              priceApi={this.props.priceApi}
             />
             <EnterPasscodeModal
               visible={this.state.isPINModalVisible}
@@ -142,7 +150,7 @@ function mapStateToProps (state: ApplicationState) {
   return {
     app: state.app,
     auth: state.auth,
-    cmc: state.cmc
+    priceApi: state.priceApi
   };
 }
 
