@@ -73,8 +73,8 @@ export const priceApiState = (): PriceInfoReduxState => {
     },
     historicalPriceInfo: {
       Data: [],
-      TimeFrom: 1558742400,
-      TimeTo: 1567382400
+      TimeFrom: 0,
+      TimeTo: 0
     }
   };
 };

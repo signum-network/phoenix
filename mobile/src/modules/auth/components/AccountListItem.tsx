@@ -7,7 +7,7 @@ import Swipeout from 'react-native-swipeout';
 import { actionIcons } from '../../../assets/icons';
 import { Text, TextAlign } from '../../../core/components/base/Text';
 import { i18n } from '../../../core/i18n';
-import { Colors } from '../../../core/theme/colors';
+import { AccountColors, Colors } from '../../../core/theme/colors';
 import { defaultSideOffset, FontSizes, Sizes } from '../../../core/theme/sizes';
 import { core } from '../../../core/translations';
 import { PriceInfoReduxState } from '../../price-api/store/reducer';
@@ -17,6 +17,7 @@ interface IProps {
   onDelete: (account: Account) => void;
   account: Account;
   priceApi?: PriceInfoReduxState;
+  accountIndex: number;
 }
 
 type Props = IProps;
@@ -27,13 +28,16 @@ const styles: any = {
     paddingVertical: Sizes.MEDIUM,
     display: 'flex',
     flexDirection: 'row',
-    flexWrap: 'nowrap',
-    justifyContent: 'space-between'
+    flexWrap: 'nowrap'
   },
-  col: {
+  accountCol: {
     display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'wrap'
+    flex: 1,
+    maxWidth: '40%'
+  },
+  amountCol: {
+    display: 'flex',
+    flex: 1
   },
   row: {
     display: 'flex',
@@ -68,7 +72,7 @@ export class AccountListItem extends React.PureComponent<Props> {
   render () {
     // TODO: add name to account creating and so on
     const { accountRS = '', balanceNQT = '', name = 'unnamed' } = this.props.account;
-    const { priceApi } = this.props;
+    const { priceApi, accountIndex } = this.props;
 
     const address = `...${last(accountRS.split('-'))}`;
     const balanceBURST = convertNQTStringToNumber(balanceNQT);
@@ -83,7 +87,21 @@ export class AccountListItem extends React.PureComponent<Props> {
         backgroundColor='transparent'
       >
         <TouchableOpacity style={styles.view} onPress={this.handlePress}>
-          <View style={styles.col}>
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              flexWrap: 'wrap',
+              backgroundColor: AccountColors[accountIndex],
+              width: '5%',
+              minHeight: 50,
+              marginTop: -10,
+              marginRight: 10,
+              marginBottom: -10,
+              marginLeft: -10
+            }}
+          />
+          <View style={styles.accountCol}>
             <View style={styles.row}>
               <Text bold bebasFont color={Colors.WHITE}>{address}</Text>
             </View>
@@ -93,7 +111,7 @@ export class AccountListItem extends React.PureComponent<Props> {
               </View>
             )}
           </View>
-          <View style={styles.col}>
+          <View style={styles.amountCol}>
             <View style={styles.row}>
               <Text bold bebasFont textAlign={TextAlign.RIGHT} color={Colors.WHITE}>
                 {i18n.t(core.currency.BURST.value, { value: balanceBURST })}
