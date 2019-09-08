@@ -8,6 +8,7 @@ import { FuseNavigationService } from '@fuse/components/navigation/navigation.se
 import { AccountService } from 'app/setup/account/account.service';
 import { MediaObserver } from '@angular/flex-layout';
 import { I18nService } from '../../../app/layout/components/i18n/i18n.service';
+import { Account } from '@burstjs/core';
 
 @Component({
     selector   : 'fuse-shortcuts',
@@ -21,6 +22,7 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
     filteredNavigationItems: any[];
     searching: boolean;
     mobileShortcutsPanelActive: boolean;
+    currentAccount: Account;
 
     @Input()
     navigation: any;
@@ -77,36 +79,12 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
         if (this._cookieService.check('FUSE2.shortcuts')) {
             this.shortcutItems = JSON.parse(this._cookieService.get('FUSE2.shortcuts'));
         } else {
-            this.accountService.currentAccount.subscribe((account) => {
-                this.shortcutItems = [];
-                if (account && account.type !== 'offline') {
-                    this.shortcutItems.push({
-                        'title': this.i18nService.getTranslation('send_burst'),
-                        'type' : 'item',
-                        'icon' : 'vertical_align_top',
-                        'url'  : '/send'
-                    });
-                }
-                this.shortcutItems.push({
-                    'title': this.i18nService.getTranslation('request_burst'),
-                    'type' : 'item',
-                    'icon' : 'vertical_align_bottom',
-                    'url'  : '/request'
-                },
-                {
-                    'title': this.i18nService.getTranslation('messages'),
-                    'type' : 'item',
-                    'icon' : 'email',
-                    'url'  : '/messages'
-                },
-                {
-                    'title': this.i18nService.getTranslation('settings'),
-                    'type' : 'item',
-                    'icon' : 'settings',
-                    'url'  : '/setup'
-                });
-            });
+            this.accountService.currentAccount.subscribe(this.setAccount());
         }
+
+        this.i18nService.state.subscribe(() => {
+            this.updateShortcuts();
+        });
 
         // Subscribe to media changes
         this._fuseMatchMediaService.onMediaChange
@@ -117,6 +95,41 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
                     this.hideMobileShortcutsPanel();
                 }
             });
+    }
+
+    private setAccount(): (value: Account) => void {
+        return (account) => {
+            this.currentAccount = account;
+            this.updateShortcuts();
+        };
+    }
+
+    private updateShortcuts(): void {
+        this.shortcutItems = [];
+        if (this.currentAccount && this.currentAccount.type !== 'offline') {
+            this.shortcutItems.push({
+                'title': this.i18nService.getTranslation('send_burst'),
+                'type': 'item',
+                'icon': 'vertical_align_top',
+                'url': '/send'
+            });
+        }
+        this.shortcutItems.push({
+            'title': this.i18nService.getTranslation('request_burst'),
+            'type': 'item',
+            'icon': 'vertical_align_bottom',
+            'url': '/request'
+        }, {
+            'title': this.i18nService.getTranslation('messages'),
+            'type': 'item',
+            'icon': 'email',
+            'url': '/messages'
+        }, {
+            'title': this.i18nService.getTranslation('settings'),
+            'type': 'item',
+            'icon': 'settings',
+            'url': '/setup'
+        });
     }
 
     /**
