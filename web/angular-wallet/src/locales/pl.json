@@ -575,6 +575,7 @@
   "memorize_passphrase_help_addon": "Jeśli stracisz hasło, nie będziesz mógł wykonywać żadnych transakcji, tzn. Twoje monety zostaną utracone. Hasło nie można odzyskać. Zachowaj to hasło w tajemnicy. Każdy, kto zna hasło, jest de facto właścicielem konta.",
   "message": "Wiadomość",
   "message_empty": "Wiadomość jest pust",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "Wiadomość jest zaszyfrowana.",
   "message_is_not_encrypted": "Wiadomość nie jest zaszyfrowana.",
   "messages": "Wiadomośći",

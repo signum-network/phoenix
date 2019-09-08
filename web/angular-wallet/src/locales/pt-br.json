@@ -566,6 +566,7 @@
   "memorize_passphrase_help_addon": "Se você perder a frase secreta, não poderá fazer nenhuma transação, ou seja, suas moedas serão perdidas. A frase secreta não é recuperável. Mantenha esta senha secreta. Todo mundo que conhece a senha é de fato o dono da conta.",
   "message": "Mensagem",
   "message_empty": "A mensagem está vazia.",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "Esta mensagem é criptografada.",
   "message_is_not_encrypted": "Esta mensagem não é criptografada.",
   "messages": "Mensagens",

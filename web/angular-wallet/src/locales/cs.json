@@ -566,6 +566,7 @@
   "memorize_passphrase_help_addon": "Pokud ztratíte přístupové heslo, nebudete moci provádět žádné transakce, tj. Vaše mince budou ztraceny. Přístupová fráze není obnovitelná. Udržujte toto heslo v tajnosti. Každý, kdo zná přístupovou frázi, je de facto vlastníkem účtu.",
   "message": "Zpráva",
   "message_empty": "Zpráva je prázdná.",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "Tato zpráva je zašifrována.",
   "message_is_not_encrypted": "Tato zpráva není zašifrována.",
   "messages": "Zprávy",

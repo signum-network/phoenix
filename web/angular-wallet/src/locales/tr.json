@@ -566,6 +566,7 @@
   "memorize_passphrase_help_addon": "Parolayı kaybederseniz herhangi bir işlem yapamazsınız, yani madeni paralarınız kaybolur. Parola kurtarılamaz. Bu parolayı gizli tut. Parolayı bilen herkes hesap sahibine aittir.",
   "message": "Message",
   "message_empty": "Message is empty.",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "This message is encrypted.",
   "message_is_not_encrypted": "This message is not encrypted.",
   "messages": "Messages",

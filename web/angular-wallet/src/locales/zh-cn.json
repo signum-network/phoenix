@@ -566,6 +566,7 @@
   "memorize_passphrase_help_addon": "如果你松开密码短语，你将无法进行任何交易，即你的硬币丢失了。密码短语无法恢复。保密密码。知道密码的每个人事实上都是帐户的所有者。",
   "message": "信息",
   "message_empty": "信息是空白的。",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "该信息是加密的。",
   "message_is_not_encrypted": "该信息是未加密的。",
   "messages": "信息",

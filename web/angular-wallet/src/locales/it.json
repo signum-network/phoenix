@@ -566,6 +566,7 @@
   "memorize_passphrase_help_addon": "Se perdi la passphrase non sarai in grado di fare alcuna transazione, cioè le tue monete andranno perse. La passphrase non è recuperabile. Tieni segreto questo passphrase. Chiunque conosca la passphrase è di fatto il proprietario dell'account.",
   "message": "Messaggio",
   "message_empty": "Message is empty.",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "This message is encrypted.",
   "message_is_not_encrypted": "This message is not encrypted.",
   "messages": "Messaggi",
