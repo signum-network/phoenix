@@ -608,6 +608,7 @@
   "next": "Next",
   "next_block": "Next Block",
   "next_page": "Next Page",
+  "network": "Network",
   "no": "No",
   "no_account_q_create_account": "Don't have an account? Click here to create one!",
   "no_aliases_yet": "No aliases yet, <a href='#' data-toggle='modal' data-target='#register_alias_modal'>register one!</a>",
