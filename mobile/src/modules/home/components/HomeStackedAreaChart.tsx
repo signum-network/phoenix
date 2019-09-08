@@ -139,15 +139,20 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
   render () {
 
     const data = this.calculateChartData();
-    // todo: make colors and counts dynamic
     const keys = Object.keys(data[0]).slice(1); // remove 'day' from the keys to get the account names
-
     const svgs = [
       // tslint:disable-next-line: no-console
       { onPress: () => console.log('account0') },
       // tslint:disable-next-line: no-console
       { onPress: () => console.log('bananas') }
     ];
+
+    const getAccountColors = (colors: string[]): string[] => {
+      return (colors.length > this.props.accounts.length) ?
+              colors : getAccountColors(colors.concat(colors));
+    };
+
+    const accountColors = getAccountColors(AccountColors);
 
     return (
       <>
@@ -157,7 +162,7 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
           style={styles.stackedAreaChart}
           data={data}
           keys={keys}
-          colors={AccountColors}
+          colors={accountColors}
           curve={shape.curveNatural}
           showGrid={false}
           svgs={svgs}
@@ -177,7 +182,7 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
           style={styles.button as StyleMedia}
         >
           <Text style={{ color: Colors.BLUE_LIGHT, textAlign: 'center' }}>
-            {this.state.priceInBTC ? `BTC` : `BURST`}
+            {this.state.priceInBTC ? `BTC` : `BURST`} TEST
           </Text>
         </TouchableOpacity>
       </>
