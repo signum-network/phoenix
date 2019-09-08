@@ -10,13 +10,13 @@ import { i18n } from '../../../core/i18n';
 import { Colors } from '../../../core/theme/colors';
 import { defaultSideOffset, FontSizes, Sizes } from '../../../core/theme/sizes';
 import { core } from '../../../core/translations';
-import { PriceInfoReduxState } from '../../cmc/store/reducer';
+import { PriceInfoReduxState } from '../../price-api/store/reducer';
 
 interface IProps {
   onPress: (account: Account) => void;
   onDelete: (account: Account) => void;
   account: Account;
-  cmc?: PriceInfoReduxState;
+  priceApi?: PriceInfoReduxState;
 }
 
 type Props = IProps;
@@ -68,12 +68,12 @@ export class AccountListItem extends React.PureComponent<Props> {
   render () {
     // TODO: add name to account creating and so on
     const { accountRS = '', balanceNQT = '', name = 'unnamed' } = this.props.account;
-    const { cmc } = this.props;
+    const { priceApi } = this.props;
 
     const address = `...${last(accountRS.split('-'))}`;
     const balanceBURST = convertNQTStringToNumber(balanceNQT);
-    const balanceBTC = cmc
-        ? toNumber(cmc.price_btc) * balanceBURST
+    const balanceBTC = priceApi
+        ? toNumber(priceApi.priceInfo.price_btc) * balanceBURST
         : 0;
 
     return (
@@ -99,7 +99,7 @@ export class AccountListItem extends React.PureComponent<Props> {
                 {i18n.t(core.currency.BURST.value, { value: balanceBURST })}
               </Text>
             </View>
-            {cmc && (
+            {priceApi && priceApi.priceInfo && (
               <View style={styles.row}>
                 <Text size={FontSizes.SMALL} textAlign={TextAlign.RIGHT} color={Colors.WHITE}>
                   {i18n.t(core.currency.BTC.value, { value: balanceBTC })}

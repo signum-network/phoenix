@@ -11,6 +11,7 @@ import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
 import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
+import { Colors } from '../../../core/theme/colors';
 import { isAsyncLoading } from '../../../core/utils/async';
 import { EnterPasscodeModal } from '../../auth/components/passcode/EnterPasscodeModal';
 import { AuthReduxState } from '../../auth/store/reducer';
@@ -72,7 +73,7 @@ class Send extends React.PureComponent<Props, State> {
     const isLoading = isAsyncLoading(this.props.transactions.sendMoney);
 
     return (
-      <Screen>
+      <Screen style={{ backgroundColor: Colors.BLUE_DARKER }}>
         <FullHeightView>
           <View>
             <SendBurstForm

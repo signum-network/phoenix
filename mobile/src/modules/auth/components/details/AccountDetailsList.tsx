@@ -4,7 +4,7 @@ import { toString } from 'lodash';
 import React from 'react';
 import { FlatList, ListRenderItemInfo } from 'react-native';
 import { ListSeparator } from '../../../../core/components/base/ListSeparator';
-import { PriceInfoReduxState } from '../../../cmc/store/reducer';
+import { PriceInfoReduxState } from '../../../price-api/store/reducer';
 import { AccountTransactionsHeader } from './AccountTransactionsHeader';
 import { NoTransactions } from './NoTransactions';
 import { TransactionListItem } from './TransactionListItem';
@@ -12,7 +12,7 @@ import { TransactionListItem } from './TransactionListItem';
 interface Props {
   account: Account;
   onTransactionPress: (transaction: Transaction) => void;
-  cmc?: PriceInfoReduxState;
+  priceApi?: PriceInfoReduxState;
 }
 
 const styles: any = {
@@ -27,9 +27,9 @@ export class AccountDetailsList extends React.PureComponent<Props> {
   }
 
   renderHeader = () => {
-    const { account, cmc } = this.props;
+    const { account, priceApi } = this.props;
     return (
-        <AccountTransactionsHeader cmc={cmc} account={account}/>
+        <AccountTransactionsHeader priceApi={priceApi} account={account}/>
     );
   }
 

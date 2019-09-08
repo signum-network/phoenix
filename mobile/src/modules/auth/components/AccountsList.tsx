@@ -3,9 +3,8 @@ import { toString } from 'lodash';
 import React from 'react';
 import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
 import { ListSeparator } from '../../../core/components/base/ListSeparator';
-import { PriceInfoReduxState } from '../../cmc/store/reducer';
+import { PriceInfoReduxState } from '../../price-api/store/reducer';
 import { AccountListItem } from './AccountListItem';
-import { AccountsListHeader } from './AccountsListHeader';
 import { NoAccounts } from './NoAccounts';
 
 interface Props {
@@ -13,7 +12,7 @@ interface Props {
   onAccountPress: (account: Account) => void;
   onAddAccountPress: () => void;
   onDelete: (account: Account) => void;
-  cmc?: PriceInfoReduxState;
+  priceApi?: PriceInfoReduxState;
 }
 
 const styles = StyleSheet.create({
@@ -27,13 +26,6 @@ export class AccountsList extends React.PureComponent<Props> {
     return toString(item.account || index);
   }
 
-  renderHeader = () => {
-    const { accounts, cmc } = this.props;
-    return (
-        <AccountsListHeader cmc={cmc} accounts={accounts}/>
-    );
-  }
-
   renderNoData = () => {
     return (
       <NoAccounts onPress={this.props.onAddAccountPress}/>
@@ -41,10 +33,10 @@ export class AccountsList extends React.PureComponent<Props> {
   }
 
   renderAccountItem = ({ item }: ListRenderItemInfo<Account>) => {
-    const { onDelete, onAccountPress, cmc } = this.props;
+    const { onDelete, onAccountPress, priceApi } = this.props;
 
     return (
-      <AccountListItem onDelete={onDelete} onPress={onAccountPress} account={item} cmc={cmc}/>
+      <AccountListItem onDelete={onDelete} onPress={onAccountPress} account={item} priceApi={priceApi}/>
     );
   }
 
@@ -53,7 +45,6 @@ export class AccountsList extends React.PureComponent<Props> {
     return (
       <FlatList
         style={styles.flatList}
-        ListHeaderComponent={this.renderHeader}
         ListEmptyComponent={this.renderNoData}
         data={accounts}
         renderItem={this.renderAccountItem}

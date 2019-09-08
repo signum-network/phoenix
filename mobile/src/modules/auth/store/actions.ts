@@ -96,6 +96,7 @@ export const hydrateAccount = createActionFn<Account, Promise<Account>>(
     try {
       const accountDetails = await api.account.getAccount(account.account);
       dispatch(actions.updateAccount(accountDetails));
+      dispatch(updateAccountTransactions(accountDetails));
     // tslint:disable-next-line: no-empty
     } catch (e) {}
 

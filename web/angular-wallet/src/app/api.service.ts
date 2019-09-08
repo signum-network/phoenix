@@ -12,6 +12,7 @@ import {distinctUntilChanged} from 'rxjs/operators';
 export class ApiService {
   public api: Api;
   public nodeUrl = environment.defaultNode;
+  public nodeEndpoint = environment.defaultNodeEndpoint;
 
   constructor(private storeService: StoreService) {
     this.initApi = this.initApi.bind(this);
@@ -25,9 +26,22 @@ export class ApiService {
       .subscribe(this.initApi);
   }
 
+  private static trimTrailingOrLeadingSlashes(path: string): string {
+    let p = path;
+    if (p.startsWith('/')) {
+      p = p.substr(1);
+    }
+
+    if (p.endsWith('/')) {
+      p = p.substr(0, p.length - 1);
+    }
+    return p;
+  }
+
   private initApi(settings: Settings): void {
     this.nodeUrl = settings.node;
-    const apiSettings = new ApiSettings(this.nodeUrl, 'burst');
+    this.nodeEndpoint = ApiService.trimTrailingOrLeadingSlashes(settings.nodeEndpoint || environment.defaultNodeEndpoint);
+    const apiSettings = new ApiSettings(this.nodeUrl, this.nodeEndpoint);
     this.api = composeApi(apiSettings);
   }
 
