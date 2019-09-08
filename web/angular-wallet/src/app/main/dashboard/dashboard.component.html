@@ -69,7 +69,7 @@
             </div>
             <a *ngIf="dataSource && dataSource.data.length"
                class="p-16" fxLayoutAlign="end"
-               [routerLink]="'/transactions'">All Transactions</a>
+               [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</a>
           </div>
         </div>
         <div class="widget" fxFlex="100" fxFlex.gt-sm="40">

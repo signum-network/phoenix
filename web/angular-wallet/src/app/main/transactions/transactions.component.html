@@ -23,7 +23,7 @@
       <div fxFlex="50">
         <div class="transaction-filter">
           <mat-form-field class="search-form">
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" #query>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="{{ 'search' | i18n }}" #query>
           </mat-form-field>
         </div>
       </div>
