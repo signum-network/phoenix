@@ -7,6 +7,7 @@ import { FuseMatchMediaService } from '@fuse/services/match-media.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { MediaObserver } from '@angular/flex-layout';
+import { I18nService } from '../../../app/layout/components/i18n/i18n.service';
 
 @Component({
     selector   : 'fuse-shortcuts',
@@ -43,6 +44,7 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
      * @param {ObservableMedia} _observableMedia
      */
     constructor(
+        private i18nService: I18nService,
         private _cookieService: CookieService,
         private _fuseMatchMediaService: FuseMatchMediaService,
         private _fuseNavigationService: FuseNavigationService,
@@ -79,20 +81,26 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
                 this.shortcutItems = [];
                 if (account && account.type !== 'offline') {
                     this.shortcutItems.push({
-                        'title': 'New Transaction',
+                        'title': this.i18nService.getTranslation('send_burst'),
                         'type' : 'item',
-                        'icon' : 'send',
+                        'icon' : 'vertical_align_top',
                         'url'  : '/send'
                     });
                 }
                 this.shortcutItems.push({
-                    'title': 'Messages',
+                    'title': this.i18nService.getTranslation('request_burst'),
+                    'type' : 'item',
+                    'icon' : 'vertical_align_bottom',
+                    'url'  : '/request'
+                },
+                {
+                    'title': this.i18nService.getTranslation('messages'),
                     'type' : 'item',
                     'icon' : 'email',
                     'url'  : '/messages'
                 },
                 {
-                    'title': 'Settings',
+                    'title': this.i18nService.getTranslation('settings'),
                     'type' : 'item',
                     'icon' : 'settings',
                     'url'  : '/setup'
