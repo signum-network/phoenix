@@ -133,7 +133,7 @@ export class TransactionService {
       
       attachment = new AttachmentEncryptedMessage(encryptedMessage);
     } else if (message) {
-      attachment = new AttachmentMessage({message, messageIsText: messageIsText});
+      attachment = new AttachmentMessage({message, messageIsText});
     }
 
     return this.transactionApi.sendAmount(
