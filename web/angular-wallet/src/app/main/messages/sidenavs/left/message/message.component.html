@@ -11,7 +11,7 @@
 
                 <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                     <mat-icon class="s-16 secondary-text">search</mat-icon>
-                    <input [(ngModel)]="searchText" type="text" placeholder="Search or start new message" fxFlex>
+                    <input [(ngModel)]="searchText" type="text" placeholder="{{ 'search_or_start_message' | i18n }}" fxFlex>
                 </div>
 
             </div>
@@ -73,7 +73,7 @@
 
                 <div class="new-message">
                   <button class="mr-8" mat-raised-button mat-button color="primary"
-                          (click)="startMessage()">Compose a new message
+                          (click)="startMessage()">{{ 'new_message' | i18n }}
                   </button>
                 </div>
             </div>
