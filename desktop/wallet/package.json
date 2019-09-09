@@ -45,7 +45,7 @@
     "electron": "^6.0.1",
     "electron-builder": "^21.2.0",
     "jest": "^24.9.0",
-    "rimraf": "^2.6.3"
+    "rimraf": "^3.0.0"
   },
   "update": {
     "repositoryRootUrl": "https://api.github.com/repos/burst-apps-team/phoenix",
