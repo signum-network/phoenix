@@ -1,5 +1,21 @@
 import {RecipientAmountCsvParser} from './recipientAmountCsvParser';
+import {I18nService} from '../../../layout/components/i18n/i18n.service';
+import {BehaviorSubject, Subject} from 'rxjs';
 
+class MockTranslationService extends I18nService {
+  constructor() {
+    // @ts-ignore
+    super(null, null, {
+      ready: new BehaviorSubject(false)
+    });
+  }
+
+  getTranslation(phrase: string, opts?: object): string {
+    return phrase;
+  }
+}
+
+const mockTranslationService =  new MockTranslationService();
 
 describe('RecipientAmountCsvParser', () => {
   describe('parse', () => {
@@ -8,7 +24,7 @@ describe('RecipientAmountCsvParser', () => {
         '2,20\n' +
         '3,30';
 
-      const parser = new RecipientAmountCsvParser();
+      const parser = new RecipientAmountCsvParser(mockTranslationService);
       const recipientAmounts = parser.parse(testData);
       expect(recipientAmounts.length).toBe(3);
       expect(recipientAmounts[0]).toEqual({recipient: '1', amountNQT: '10'});
@@ -21,7 +37,7 @@ describe('RecipientAmountCsvParser', () => {
         '2-20;' +
         '3-30';
 
-      const parser = new RecipientAmountCsvParser({delimiter: '-', lineBreak: ';'});
+      const parser = new RecipientAmountCsvParser(mockTranslationService, {delimiter: '-', lineBreak: ';'});
       const recipientAmounts = parser.parse(testData);
       expect(recipientAmounts.length).toBe(3);
       expect(recipientAmounts[0]).toEqual({recipient: '1', amountNQT: '10'});
@@ -34,7 +50,7 @@ describe('RecipientAmountCsvParser', () => {
         '2,   20\n   ' +
         '   3, 30   \n';
 
-      const parser = new RecipientAmountCsvParser();
+      const parser = new RecipientAmountCsvParser(mockTranslationService);
       const recipientAmounts = parser.parse(testData);
       expect(recipientAmounts.length).toBe(3);
       expect(recipientAmounts[0]).toEqual({recipient: '1', amountNQT: '10'});
@@ -47,12 +63,12 @@ describe('RecipientAmountCsvParser', () => {
         '2,20\n' +
         '1,30';
 
-      const parser = new RecipientAmountCsvParser();
+      const parser = new RecipientAmountCsvParser(mockTranslationService);
       try{
         parser.parse(testData);
         expect(true).toBe('Exception expected');
       }catch (e){
-        expect(e.message).toContain('Duplicated Recipient:1');
+        expect(e.message).toContain('csv_error_duplicated_recipient: 1');
       }
     });
 
@@ -61,12 +77,12 @@ describe('RecipientAmountCsvParser', () => {
         '2,0\n' +
         '3,30';
 
-      const parser = new RecipientAmountCsvParser();
+      const parser = new RecipientAmountCsvParser(mockTranslationService);
       try{
         parser.parse(testData);
         expect(true).toBe('Exception expected');
       }catch (e){
-        expect(e.message).toContain('Invalid Amount:2');
+        expect(e.message).toContain('csv_error_invalid_amount');
       }
     });
 
@@ -75,12 +91,12 @@ describe('RecipientAmountCsvParser', () => {
         '2,10\n' +
         '3,-30';
 
-      const parser = new RecipientAmountCsvParser();
+      const parser = new RecipientAmountCsvParser(mockTranslationService);
       try{
         parser.parse(testData);
         expect(true).toBe('Exception expected');
       }catch (e){
-        expect(e.message).toContain('Invalid Amount:3');
+        expect(e.message).toContain('csv_error_invalid_amount');
       }
     });
 
@@ -89,12 +105,12 @@ describe('RecipientAmountCsvParser', () => {
         '2,10\n' +
         '3,ABD';
 
-      const parser = new RecipientAmountCsvParser();
+      const parser = new RecipientAmountCsvParser(mockTranslationService);
       try{
         parser.parse(testData);
         expect(true).toBe('Exception expected');
       }catch (e){
-        expect(e.message).toContain('Invalid Amount:3');
+        expect(e.message).toContain('csv_error_invalid_amount');
       }
     });
 
@@ -104,12 +120,12 @@ describe('RecipientAmountCsvParser', () => {
         testData.push(`${i},${i * 10}`);
       }
 
-      const parser = new RecipientAmountCsvParser();
+      const parser = new RecipientAmountCsvParser(mockTranslationService);
       try{
         parser.parse(testData.join('\n'));
         expect(true).toBe('Exception expected');
       }catch (e){
-        expect(e.message).toContain('Maximum Limit (64) for Multiout exceeded');
+        expect(e.message).toContain('csv_error_max_limit_multiout 64');
       }
     });
 
@@ -119,12 +135,22 @@ describe('RecipientAmountCsvParser', () => {
         testData.push(`${i},100`);
       }
 
-      const parser = new RecipientAmountCsvParser();
+      const parser = new RecipientAmountCsvParser(mockTranslationService);
       try{
         parser.parse(testData.join('\n'));
         expect(true).toBe('Exception expected');
       }catch (e){
-        expect(e.message).toContain('Maximum Limit (128) for Same Multiout exceeded');
+        expect(e.message).toContain('csv_error_max_limit_same_multiout 128');
+      }
+    });
+
+    it('should throw exception, if has unreadable format', () => {
+      const parser = new RecipientAmountCsvParser(mockTranslationService);
+      try{
+        parser.parse('1029');
+        expect(true).toBe('Exception expected');
+      }catch (e){
+        expect(e.message).toContain('csv_error_unreadable_format');
       }
     });
   });
