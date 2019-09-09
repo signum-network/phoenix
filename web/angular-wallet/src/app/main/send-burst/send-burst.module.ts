@@ -31,6 +31,7 @@ import { WarnSendDialogComponent } from './warn-send-dialog/warn-send-dialog.com
 import {PageModule} from '../../components/page/page.module';
 import { LoginGuard } from 'app/login/login-guard.service';
 import {BatchRecipientsDialogComponent} from './batch-recipients-dialog/batch-recipients-dialog.component';
+import {MatSelectModule} from '@angular/material/select';
 
 const routes = [
   {
@@ -81,7 +82,8 @@ const routes = [
     MatBadgeModule,
     MatTooltipModule,
     MatDialogModule,
-    PageModule
+    PageModule,
+    MatSelectModule
   ],
   entryComponents: [
     WarnSendDialogComponent,

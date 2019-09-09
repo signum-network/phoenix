@@ -1,5 +1,5 @@
 import { loadAccounts, loadPasscode, loadPasscodeEnteredTime } from '../../../modules/auth/store/actions';
-import { loadCMCData } from '../../../modules/cmc/store/actions';
+import { loadHistoricalPriceApiData, loadPriceApiData } from '../../../modules/price-api/store/actions';
 import { AppSettings } from '../../interfaces';
 import { getAppSettings, saveAppSettings } from '../../utils/keychain';
 import { createAction, createActionFn } from '../../utils/store';
@@ -19,7 +19,8 @@ export const loadApp = createActionFn<void, Promise<void>>(
       dispatch(loadPasscodeEnteredTime()),
       dispatch(loadAppSettings())
     ]);
-    dispatch(loadCMCData());
+    dispatch(loadPriceApiData());
+    dispatch(loadHistoricalPriceApiData());
     dispatch(actions.appLoaded());
   }
 );
