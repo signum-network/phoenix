@@ -19,7 +19,7 @@
   "engines": {
     "node": ">=10"
   },
-  "license": "GPL-3.0",
+  "license": "Apache-2.0",
   "main": "./out/index.js",
   "typings": "./out/index.d.ts",
   "private": false,
