@@ -33,6 +33,7 @@ export class BatchRecipientsDialogComponent extends UnsubscribeOnDestroy impleme
   delimiters: DelimiterOption[];
   isValid = false;
   message = '';
+  private result: MultioutRecipientAmount[] = [];
 
   constructor(public dialogRef: MatDialogRef<BatchRecipientsDialogComponent>, private translationService: I18nService) {
     super();
@@ -64,6 +65,7 @@ export class BatchRecipientsDialogComponent extends UnsubscribeOnDestroy impleme
       const recipientAmounts = parser.parse(recipients);
       this.isValid = true;
       this.message = `${recipientAmounts.length} ${this.translationService.getTranslation('recipients')}`;
+      this.result = recipientAmounts;
     } catch (e) {
       this.isValid = false;
       this.message = e.message;
@@ -80,4 +82,7 @@ export class BatchRecipientsDialogComponent extends UnsubscribeOnDestroy impleme
     this.formGroup.controls['delimiter'].setValue('comma');
   }
 
+  public submit(): void {
+    this.dialogRef.close(this.result);
+  }
 }

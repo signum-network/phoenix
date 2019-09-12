@@ -14,22 +14,30 @@ form {
   font-weight: bold;
 }
 
-.recipients-item {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
+.recipients-wrapper {
+  max-height: 400px;
+  overflow-y: auto;
+  border: solid 1px lightgrey;
+  padding: 1em;
+  margin-bottom: 1rem;
 
-  burst-recipient-input {
-    margin-right: 8px;
-    width: 100%;
-  }
+  .recipients-item {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
 
-  mat-form-field {
-    width: 30%
-  }
+    burst-recipient-input {
+      margin-right: 8px;
+      width: 100%;
+    }
 
-  mat-icon {
-    cursor: pointer;
+    mat-form-field {
+      width: 30%
+    }
+
+    mat-icon {
+      cursor: pointer;
+    }
   }
 }
 
@@ -43,6 +51,9 @@ form {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    color: #666;
+    cursor: pointer;
+
     @include media-breakpoint('xs') {
       flex-direction: column;
       margin-top: 12px;
@@ -52,6 +63,12 @@ form {
     button {
       @include media-breakpoint('xs') {
         margin-top: 12px;
+      }
+      .add-icon:hover{
+         color: #0062b3;
+      }
+      &:hover {
+        color: black
       }
     }
   }

@@ -4,19 +4,20 @@ import {NotifierService} from 'angular-notifier';
 import {
   convertNumberToNQTString,
   convertAddressToNumericId,
-  convertNQTStringToNumber
+  convertNQTStringToNumber, convertNumericIdToAddress
 } from '@burstjs/util';
-import {SuggestedFees, Account, TransactionId} from '@burstjs/core';
+import {SuggestedFees, Account, TransactionId, MultioutRecipientAmount} from '@burstjs/core';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 import {Recipient} from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
-import {takeUntil} from 'rxjs/operators';
+import {filter, takeUntil} from 'rxjs/operators';
 import {StoreService} from '../../../store/store.service';
 import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
 import {burstAddressPattern} from 'app/util/burstAddressPattern';
 import {BatchRecipientsDialogComponent} from '../batch-recipients-dialog/batch-recipients-dialog.component';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -57,6 +58,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     private notifierService: NotifierService,
     private i18nService: I18nService,
     private storeService: StoreService,
+    private breakpointObserver: BreakpointObserver,
   ) {
     super();
     this.storeService.settings
@@ -68,8 +70,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   ngOnInit(): void {
-    this.recipients = new Array<Recipient>();
-    this.recipients.push(new Recipient());
+    this.resetRecipients();
   }
 
   onSubmit(event): void {
@@ -83,7 +84,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
           this.sendBurst();
         }
       });
-    } else {
+    } else  {
       this.sendBurst();
     }
   }
@@ -114,6 +115,10 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
 
   private async sendBurst(): Promise<void> {
+    if (!this.nonEmptyRecipients().length){
+      return;
+    }
+
     this.isSending = true;
     try {
       if (this.sameAmount) {
@@ -137,9 +142,9 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   private openBatchRecipientsDialog(): MatDialogRef<any> {
+    const width = this.breakpointObserver.isMatched(Breakpoints.Handset) ? '90%' : '50%';
     return this.batchRecipientsDialog.open(BatchRecipientsDialogComponent, {
-      // TODO: make 100% on mobile
-      width: '50%',
+      width
     });
   }
 
@@ -157,15 +162,19 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     event.preventDefault();
   }
 
+  clearRecipients(): void {
+    this.recipients = [];
+  }
+
   addBatchedRecipient(event: MouseEvent): void {
     event.stopImmediatePropagation();
     event.preventDefault();
-    const dialogRef = this.openBatchRecipientsDialog();
-    dialogRef.afterClosed().subscribe(ok => {
-      if (ok) {
-        console.log('closed', ok);
-      }
-    });
+    this.openBatchRecipientsDialog()
+      .afterClosed()
+      .pipe(
+        filter(recipientAmounts => recipientAmounts && recipientAmounts.length > 0)
+      )
+      .subscribe(this.handleBatchRecipients.bind(this));
   }
 
   private getTotalForMultiOut(): number {
@@ -220,7 +229,30 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   onRecipientChange(recipient: Recipient, i: number): void {
-    this.recipients[i] = recipient;
+    // this.recipients[i] = recipient;
   }
 
+  private handleBatchRecipients(recipientAmounts: MultioutRecipientAmount[]): void {
+    recipientAmounts.forEach( ra => {
+      const r = new Recipient();
+      r.amount = ra.amountNQT;
+      r.addressRaw = ra.recipient;
+      r.addressRS = convertNumericIdToAddress(ra.recipient);
+      this.recipients.push(r);
+    });
+
+    // recipientAmounts.forEach( ra => {
+    //   const r = new Recipient();
+    //   r.amount = ra.amountNQT;
+    //   r.addressRaw = ra.recipient;
+    //   r.addressRS = convertNumericIdToAddress(ra.recipient);
+    //   this.recipients.push(r);
+    // });
+
+  }
+
+  resetRecipients(): void {
+    this.clearRecipients();
+    this.recipients.push(new Recipient());
+  }
 }

@@ -4,11 +4,14 @@
     <mat-checkbox labelPosition="before" (click)="toggleSameAmount()" class="same-amount">{{ "same_out" | i18n }}?
     </mat-checkbox>
     <div class="button-wrapper">
-      <button mat-icon-button color="accent" (click)="addRecipient($event)"  matTooltip="{{'add_recipient' | i18n}}">
-        <mat-icon>add_box</mat-icon>
+      <button mat-icon-button (click)="resetRecipients()" matTooltip="{{'add_recipient_batch' | i18n}}">
+        <mat-icon>delete_sweep</mat-icon>
       </button>
-      <button mat-icon-button color="accent" (click)="addBatchedRecipient($event)"  matTooltip="{{'add_recipient_batch' | i18n}}">
+      <button mat-icon-button (click)="addBatchedRecipient($event)" matTooltip="{{'add_recipient_batch' | i18n}}">
         <mat-icon>unarchive</mat-icon>
+      </button>
+      <button mat-icon-button (click)="addRecipient($event)" matTooltip="{{'add_recipient' | i18n}}">
+        <mat-icon class="add-icon s-32" color="accent">add_box</mat-icon>
       </button>
     </div>
   </div>
@@ -18,21 +21,23 @@
   </mat-form-field>
 
 
-  <ng-container *ngFor="let recipient of recipients; let i = index; trackBy: trackByIndex;" [attr.data-index]="i">
+  <div class="recipients-wrapper">
+    <ng-container *ngFor="let recipient of recipients; let i = index; trackBy: trackByIndex;" [attr.data-index]="i">
 
-    <div class="recipients-item">
-      <burst-recipient-input (recipientChange)="onRecipientChange($event, i)"></burst-recipient-input>
-      <mat-form-field *ngIf="!sameAmount">
-        <input matInput [(ngModel)]="recipients[i].amount" name="amount{{i}}"
-               placeholder="{{ 'amount' | i18n }}">
-      </mat-form-field>
-      <!--
-            FUTURE FEATURE
-            <mat-icon *ngIf="recipients.length > 1" matTooltip="{{'delete' | i18n}}" (click)="onDeleteRecipient(i)" >delete</mat-icon>
-      -->
-    </div>
-
-  </ng-container>
+      <div class="recipients-item">
+        <burst-recipient-input [recipientValue]="recipient.addressRaw"
+                               (recipientChange)="onRecipientChange($event, i)"></burst-recipient-input>
+        <mat-form-field *ngIf="!sameAmount">
+          <input matInput [(ngModel)]="recipient.amount" name="amount{{i}}"
+                 placeholder="{{ 'amount' | i18n }}">
+        </mat-form-field>
+        <!--
+              FUTURE FEATURE
+              <mat-icon *ngIf="recipients.length > 1" matTooltip="{{'delete' | i18n}}" (click)="onDeleteRecipient(i)" >delete</mat-icon>
+        -->
+      </div>
+    </ng-container>
+  </div>
 
   <mat-form-field>
     <input matInput [(ngModel)]="fee" name="fee" placeholder="{{ 'fee' | i18n }}">
@@ -45,26 +50,6 @@
       <label>{{ 'deadline_hours' | i18n }}</label>
       <input matInput [(ngModel)]="deadline" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}">
     </mat-form-field>
-
-    <!--WILL BE A FUTURE FEATURE-->
-    <!--
-        <mat-form-field appearance="outline">
-          <input matInput [(ngModel)]="fullHash" name="fullHash"
-                 placeholder="{{ 'referenced_transaction_full_hash' | i18n }}" disabled>
-        </mat-form-field>
-
-        <mat-checkbox [(ngModel)]="broadcast" name="broadcast" disabled>{{ "do_not_broadcast" | i18n }}</mat-checkbox>
-        <br/>
-
-        <mat-checkbox [(ngModel)]="note" name="note" disabled>{{ "add_note_to_self_q" | i18n }}</mat-checkbox>
-
-        <div *ngIf="note">
-          <mat-form-field appearance="outline">
-            <textarea matInput [(ngModel)]="note_text" name="note_text" placeholder="{{ 'note' | i18n }}"></textarea>
-          </mat-form-field>
-        </div>
-    -->
-
   </div>
   <div class="send-button-wrapper">
     <mat-form-field class="message-text password-field" floatLabel="never" appearance="standard">

@@ -1,10 +1,9 @@
 <mat-form-field [appearance]="appearance">
   <div class="container" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
     <input matInput
-           [(ngModel)]="recipient.addressRaw"
-           (ngModelChange)="applyRecipientType($event)"
-           (blur)="validateRecipient()"
-           name="recipient"
+           [(ngModel)]="recipientValue"
+           (ngModelChange)="applyRecipientType(recipientValue)"
+           (blur)="validateRecipient(recipientValue)"
            placeholder="{{ 'recipient' | i18n }}"
            [disabled]="disabled">
 
@@ -20,6 +19,8 @@
       </mat-icon>
     </div>
     <input #file type="file" accept="image/*" (change)="parseQR()" id="{{fileId}}" class="inputfile" capture="camera">
-    <label for="{{fileId}}" class="camera-icon" *ngIf="!disabled"><mat-icon>camera_alt</mat-icon></label>
+    <label for="{{fileId}}" class="camera-icon" *ngIf="!disabled">
+      <mat-icon>camera_alt</mat-icon>
+    </label>
   </div>
 </mat-form-field>
