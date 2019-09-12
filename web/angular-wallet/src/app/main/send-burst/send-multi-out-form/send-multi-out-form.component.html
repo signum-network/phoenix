@@ -1,7 +1,11 @@
 <form (ngSubmit)="onSubmit($event);" #sendBurstForm="ngForm">
 
   <div class="action-container">
-    <mat-checkbox labelPosition="before" (click)="toggleSameAmount()" class="same-amount">{{ "same_out" | i18n }}?
+    <mat-checkbox labelPosition="before"
+                  name="same-amount-checkbox"
+                  class="same-amount"
+                  [(ngModel)]="sameAmount"
+    >{{ "same_out" | i18n }}?
     </mat-checkbox>
     <div class="button-wrapper">
       <button mat-icon-button (click)="resetRecipients()" matTooltip="{{'add_recipient_batch' | i18n}}">

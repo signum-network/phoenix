@@ -27,9 +27,9 @@ describe('RecipientAmountCsvParser', () => {
       const parser = new RecipientAmountCsvParser(mockTranslationService);
       const recipientAmounts = parser.parse(testData);
       expect(recipientAmounts.length).toBe(3);
-      expect(recipientAmounts[0]).toEqual({recipient: '1', amountNQT: '10'});
-      expect(recipientAmounts[1]).toEqual({recipient: '2', amountNQT: '20'});
-      expect(recipientAmounts[2]).toEqual({recipient: '3', amountNQT: '30'});
+      expect(recipientAmounts[0]).toEqual({recipient: '1', amountNQT: '1000000000'});
+      expect(recipientAmounts[1]).toEqual({recipient: '2', amountNQT: '2000000000'});
+      expect(recipientAmounts[2]).toEqual({recipient: '3', amountNQT: '3000000000'});
     });
 
     it('should parse correct csv data with custom options', () => {
@@ -40,9 +40,9 @@ describe('RecipientAmountCsvParser', () => {
       const parser = new RecipientAmountCsvParser(mockTranslationService, {delimiter: '-', lineBreak: ';'});
       const recipientAmounts = parser.parse(testData);
       expect(recipientAmounts.length).toBe(3);
-      expect(recipientAmounts[0]).toEqual({recipient: '1', amountNQT: '10'});
-      expect(recipientAmounts[1]).toEqual({recipient: '2', amountNQT: '20'});
-      expect(recipientAmounts[2]).toEqual({recipient: '3', amountNQT: '30'});
+      expect(recipientAmounts[0]).toEqual({recipient: '1', amountNQT: '1000000000'});
+      expect(recipientAmounts[1]).toEqual({recipient: '2', amountNQT: '2000000000'});
+      expect(recipientAmounts[2]).toEqual({recipient: '3', amountNQT: '3000000000'});
     });
 
     it('should trim and parse correct csv data', () => {
@@ -53,9 +53,9 @@ describe('RecipientAmountCsvParser', () => {
       const parser = new RecipientAmountCsvParser(mockTranslationService);
       const recipientAmounts = parser.parse(testData);
       expect(recipientAmounts.length).toBe(3);
-      expect(recipientAmounts[0]).toEqual({recipient: '1', amountNQT: '10'});
-      expect(recipientAmounts[1]).toEqual({recipient: '2', amountNQT: '20'});
-      expect(recipientAmounts[2]).toEqual({recipient: '3', amountNQT: '30'});
+      expect(recipientAmounts[0]).toEqual({recipient: '1', amountNQT: '1000000000'});
+      expect(recipientAmounts[1]).toEqual({recipient: '2', amountNQT: '2000000000'});
+      expect(recipientAmounts[2]).toEqual({recipient: '3', amountNQT: '3000000000'});
     });
 
     it('should throw exception, if has duplicated recipients ', () => {

@@ -1,5 +1,6 @@
 import {MultioutRecipientAmount} from '@burstjs/core';
 import {I18nService} from '../../../layout/components/i18n/i18n.service';
+import {convertNQTStringToNumber, convertNumberToNQTString} from '@burstjs/util';
 
 export interface RecipientAmountCsvParserOptions {
   delimiter: string;
@@ -40,9 +41,8 @@ export class RecipientAmountCsvParser {
     }
   }
 
-  private assertValidAmount(amountNQT: string, recipient: string): void {
-    const int = parseInt(amountNQT, 10);
-    if (Number.isNaN(int) || int <= 0){
+  private assertValidAmount(amount: number): void {
+    if (Number.isNaN(amount) || amount <= 0){
       const message = `${this.translationService.getTranslation('csv_error_invalid_amount')}`;
       throw new Error(message);
     }
@@ -55,13 +55,14 @@ export class RecipientAmountCsvParser {
     let previousAmountNQT = null;
     recipientAmounts
       .forEach( (ra = '') => {
-        const [recipient, amountNQT] = ra.trim().split(this.options.delimiter);
-        if (!(recipient && amountNQT)) {
+        const [recipient, amount] = ra.trim().split(this.options.delimiter);
+        if (!(recipient && amount)) {
           throw new Error(this.translationService.getTranslation('csv_error_unreadable_format'));
         }
-        const trimmedAmountNQT = amountNQT.trim();
+        const trimmedAmount = parseFloat(amount.trim());
+        this.assertValidAmount(trimmedAmount);
+        const trimmedAmountNQT = convertNumberToNQTString(trimmedAmount);
         const trimmedRecipient = recipient.trim();
-        this.assertValidAmount(trimmedAmountNQT, trimmedRecipient);
         this.assertNoDuplicate(parsedRecipientAmounts, trimmedRecipient);
         parsedRecipientAmounts[trimmedRecipient] = trimmedAmountNQT;
         this.assertNoMaximumExceeded(parsedRecipientAmounts, trimmedAmountNQT === previousAmountNQT);

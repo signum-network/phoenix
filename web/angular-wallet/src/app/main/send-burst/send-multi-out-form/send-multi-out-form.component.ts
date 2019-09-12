@@ -30,7 +30,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   @ViewChild('sendBurstForm', {static: true}) public sendBurstForm: NgForm;
   @ViewChild('recipientAddress', {static: false}) public recipientAddress: string;
-  @ViewChild('amountNQT', {static: true}) public amount: string;
+  @ViewChild('amount', {static: true}) public amount: string;
   @ViewChild('message', {static: false}) public message: string;
   @ViewChild('fullHash', {static: false}) public fullHash: string;
   @ViewChild('encrypt', {static: false}) public encrypt: string;
@@ -84,7 +84,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
           this.sendBurst();
         }
       });
-    } else  {
+    } else {
       this.sendBurst();
     }
   }
@@ -115,7 +115,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
 
   private async sendBurst(): Promise<void> {
-    if (!this.nonEmptyRecipients().length){
+    if (!this.nonEmptyRecipients().length) {
       return;
     }
 
@@ -135,25 +135,20 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   private openWarningDialog(recipients: Array<Recipient>): MatDialogRef<any> {
+    const width = this.breakpointObserver.isMatched(Breakpoints.Handset) ? '90%' : '50%';
     return this.warnDialog.open(WarnSendDialogComponent, {
-      width: '400px',
+      width,
       data: recipients
     });
   }
 
   private openBatchRecipientsDialog(): MatDialogRef<any> {
     const width = this.breakpointObserver.isMatched(Breakpoints.Handset) ? '90%' : '50%';
-    return this.batchRecipientsDialog.open(BatchRecipientsDialogComponent, {
-      width
-    });
+    return this.batchRecipientsDialog.open(BatchRecipientsDialogComponent, {width});
   }
 
   trackByIndex(index): number {
     return index;
-  }
-
-  toggleSameAmount(): void {
-    this.sameAmount = !this.sameAmount;
   }
 
   addRecipient(event): void {
@@ -211,7 +206,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
     const nonEmptyRecipients = this.nonEmptyRecipients();
 
-    if (!nonEmptyRecipients.length) {
+    if (nonEmptyRecipients.length < 2) {
       return false;
     }
 
@@ -229,26 +224,35 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   onRecipientChange(recipient: Recipient, i: number): void {
-    // this.recipients[i] = recipient;
+    const amount = this.recipients[i].amount;
+    this.recipients[i] = {
+      ...recipient,
+      amount
+    };
   }
 
   private handleBatchRecipients(recipientAmounts: MultioutRecipientAmount[]): void {
-    recipientAmounts.forEach( ra => {
+
+    let previousAmount = null;
+    let isSameAmount = true;
+
+    this.recipients = recipientAmounts.map(ra => {
       const r = new Recipient();
-      r.amount = ra.amountNQT;
+      r.amount = convertNQTStringToNumber(ra.amountNQT).toString(10);
       r.addressRaw = ra.recipient;
       r.addressRS = convertNumericIdToAddress(ra.recipient);
-      this.recipients.push(r);
+
+      if (previousAmount) {
+        isSameAmount = isSameAmount && (previousAmount === r.amount);
+      }
+      previousAmount = r.amount;
+      return r;
     });
 
-    // recipientAmounts.forEach( ra => {
-    //   const r = new Recipient();
-    //   r.amount = ra.amountNQT;
-    //   r.addressRaw = ra.recipient;
-    //   r.addressRS = convertNumericIdToAddress(ra.recipient);
-    //   this.recipients.push(r);
-    // });
-
+    if (isSameAmount) {
+      this.sameAmount = isSameAmount;
+      this.amount = previousAmount;
+    }
   }
 
   resetRecipients(): void {
