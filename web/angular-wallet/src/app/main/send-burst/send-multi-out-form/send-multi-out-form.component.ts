@@ -18,6 +18,7 @@ import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
 import {burstAddressPattern} from 'app/util/burstAddressPattern';
 import {BatchRecipientsDialogComponent} from '../batch-recipients-dialog/batch-recipients-dialog.component';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {constants} from '../../../constants';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -122,13 +123,15 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     this.isSending = true;
     try {
       if (this.sameAmount) {
-        this.sendBurstSameAmount();
+        await this.sendBurstSameAmount();
       } else {
-        this.sendBurstArbitraryAmount();
+        await this.sendBurstArbitraryAmount();
       }
-      this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
       this.sendBurstForm.resetForm();
+      this.resetRecipients();
+      this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
     } catch (e) {
+      console.log(e);
       this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
     }
     this.isSending = false;
@@ -210,6 +213,10 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       return false;
     }
 
+    if (this.hasRecipientsExceeded()){
+      return false;
+    }
+
     const hasCompletedRecipients = nonEmptyRecipients
       .reduce(
         (isComplete, recipient) => isComplete
@@ -256,7 +263,29 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   resetRecipients(): void {
+    console.log('resetRecipients');
     this.clearRecipients();
     this.recipients.push(new Recipient());
+  }
+
+  private getMaxAllowedRecipients(): number {
+    return this.sameAmount ? constants.maxRecipientsSameMultiout : constants.maxRecipientsMultiout;
+  }
+
+  hasRecipientsExceeded(): boolean {
+    return this.nonEmptyRecipients().length > this.getMaxAllowedRecipients();
+  }
+  getRecipientCounter(): string {
+    return `${this.nonEmptyRecipients().length}/${this.getMaxAllowedRecipients()} ${this.i18nService.getTranslation('recipients')}`;
+  }
+
+  eventuallyAddRecipient($event: KeyboardEvent, index: number): void {
+    if ($event.code === 'Enter'){
+      $event.preventDefault();
+      $event.stopImmediatePropagation();
+      if (index === this.recipients.length - 1 && this.recipients[index].amount.length){
+        this.addRecipient($event);
+      }
+    }
   }
 }

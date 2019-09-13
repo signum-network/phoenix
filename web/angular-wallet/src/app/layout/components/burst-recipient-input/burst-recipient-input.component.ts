@@ -44,14 +44,15 @@ export class BurstRecipientInputComponent implements OnChanges {
   recipient = new Recipient();
 
   @Input() recipientValue: string;
+  @Input() withQrCode = true;
+  @Input('appearance') appearance = '';
+  @Input('disabled') disabled = false;
 
   @Output()
   recipientChange = new EventEmitter();
   @Output()
   qrCodeUpload = new EventEmitter();
 
-  @Input('appearance') appearance = '';
-  @Input('disabled') disabled = false;
 
   @ViewChild('file', {static: true}) file: ElementRef;
 
@@ -63,8 +64,6 @@ export class BurstRecipientInputComponent implements OnChanges {
     if (!this.recipientValue) {
       return;
     }
-    const recipient = this.recipientValue.trim();
-    console.log('ngOnChanges', this.recipientValue);
     this.applyRecipientType(this.recipientValue);
     this.validateRecipient(this.recipientValue);
   }

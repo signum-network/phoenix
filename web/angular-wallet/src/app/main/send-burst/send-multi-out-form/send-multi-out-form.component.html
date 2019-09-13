@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit($event);" #sendBurstForm="ngForm">
+<form (ngSubmit)="onSubmit($event)" #sendBurstForm="ngForm">
 
   <div class="action-container">
     <mat-checkbox labelPosition="before"
@@ -24,23 +24,28 @@
     <input matInput [(ngModel)]="amount" name="amount" placeholder="{{ 'amount' | i18n }}">
   </mat-form-field>
 
-
-  <div class="recipients-wrapper">
-    <ng-container *ngFor="let recipient of recipients; let i = index; trackBy: trackByIndex;" [attr.data-index]="i">
-
-      <div class="recipients-item">
-        <burst-recipient-input [recipientValue]="recipient.addressRaw"
-                               (recipientChange)="onRecipientChange($event, i)"></burst-recipient-input>
-        <mat-form-field *ngIf="!sameAmount">
-          <input matInput [(ngModel)]="recipient.amount" name="amount{{i}}"
-                 placeholder="{{ 'amount' | i18n }}">
-        </mat-form-field>
-        <!--
-              FUTURE FEATURE
-              <mat-icon *ngIf="recipients.length > 1" matTooltip="{{'delete' | i18n}}" (click)="onDeleteRecipient(i)" >delete</mat-icon>
-        -->
-      </div>
-    </ng-container>
+  <div class="recipients-container">
+    <small [class.no-balance]="hasRecipientsExceeded()">{{getRecipientCounter()}}</small>
+    <div class="recipients-list">
+      <ng-container *ngFor="let recipient of recipients; let i = index; trackBy: trackByIndex;" [attr.data-index]="i">
+        <div class="recipients-item">
+          <burst-recipient-input [recipientValue]="recipient.addressRaw"
+                                 (recipientChange)="onRecipientChange($event, i)"
+                                 [withQrCode]="false"></burst-recipient-input>
+          <mat-form-field *ngIf="!sameAmount">
+            <input matInput [(ngModel)]="recipient.amount"
+                   name="amount{{i}}"
+                   (keypress)="eventuallyAddRecipient($event, i)"
+                   placeholder="{{ 'amount' | i18n }}"
+            >
+          </mat-form-field>
+          <!--
+                FUTURE FEATURE
+                <mat-icon *ngIf="recipients.length > 1" matTooltip="{{'delete' | i18n}}" (click)="onDeleteRecipient(i)" >delete</mat-icon>
+          -->
+        </div>
+      </ng-container>
+    </div>
   </div>
 
   <mat-form-field>

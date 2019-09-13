@@ -14,29 +14,31 @@ form {
   font-weight: bold;
 }
 
-.recipients-wrapper {
-  max-height: 400px;
-  overflow-y: auto;
-  border: solid 1px lightgrey;
-  padding: 1em;
-  margin-bottom: 1rem;
+.recipients-container {
+  .recipients-list {
+    max-height: 400px;
+    overflow-y: auto;
+    border: solid 1px lightgrey;
+    padding: 1em;
+    margin-bottom: 1rem;
 
-  .recipients-item {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
+    .recipients-item {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
 
-    burst-recipient-input {
-      margin-right: 8px;
-      width: 100%;
-    }
+      burst-recipient-input {
+        margin-right: 8px;
+        width: 100%;
+      }
 
-    mat-form-field {
-      width: 30%
-    }
+      mat-form-field {
+        width: 30%
+      }
 
-    mat-icon {
-      cursor: pointer;
+      mat-icon {
+        cursor: pointer;
+      }
     }
   }
 }
@@ -64,9 +66,11 @@ form {
       @include media-breakpoint('xs') {
         margin-top: 12px;
       }
-      .add-icon:hover{
-         color: #0062b3;
+
+      .add-icon:hover {
+        color: #0062b3;
       }
+
       &:hover {
         color: black
       }
