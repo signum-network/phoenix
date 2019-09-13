@@ -794,6 +794,7 @@
   "repeat": "Repeat",
   "request_burst": "Request BURST",
   "request_processing_time": "Request Processing Time",
+  "reset_recipients": "Reset Recipients",
   "returning_user_q": "Returning User?",
   "reward_recipient": "Reward Recipient",
   "same_out": "Same Amount",

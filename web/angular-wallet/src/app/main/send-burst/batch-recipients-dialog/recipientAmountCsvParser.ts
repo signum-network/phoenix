@@ -1,6 +1,7 @@
 import {MultioutRecipientAmount} from '@burstjs/core';
 import {I18nService} from '../../../layout/components/i18n/i18n.service';
 import {convertNQTStringToNumber, convertNumberToNQTString} from '@burstjs/util';
+import {constants} from '../../../constants';
 
 export interface RecipientAmountCsvParserOptions {
   delimiter: string;
@@ -28,8 +29,8 @@ export class RecipientAmountCsvParser {
   }
 
   private assertNoMaximumExceeded(parsedRecipientAmounts: any, isSameAmount: boolean): void {
-    const MaxSameAmountCount = 128;
-    const MaxDiffAmountCount = 64;
+    const MaxSameAmountCount = constants.maxRecipientsSameMultiout;
+    const MaxDiffAmountCount = constants.maxRecipientsMultiout;
     const recipientCount = Object.keys(parsedRecipientAmounts).length;
     if (!isSameAmount && recipientCount > MaxDiffAmountCount){
       const message = `${this.translationService.getTranslation('csv_error_max_limit_multiout')} ${MaxDiffAmountCount}`;
