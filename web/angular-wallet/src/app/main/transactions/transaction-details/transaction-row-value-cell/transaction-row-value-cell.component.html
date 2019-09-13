@@ -35,13 +35,24 @@
     <table>
       <tr>
         <th>{{ 'asset_name' | i18n }}</th>
-        <th>{{ 'quantity' | i18n }} (NQT)</th>
+        <th>{{ 'quantity' | i18n }} (QNT)</th>
       </tr>
       <tr *ngFor="let v of value.data">
         <td>{{v.asset}}</td>
         <td>{{v.balanceQNT || v.unconfirmedBalanceQNT}}</td>
       </tr>
     </table>
+  </div>
+
+  <div *ngSwitchCase="'AssetTransfer'">
+    <div class="data-item">
+      <label class="mr-8">{{'asset' | i18n}}:</label>
+      <span>{{value.data.asset}}</span>
+    </div>
+    <div class="data-item">
+      <label class="mr-8">{{'quantity' | i18n}} (QNT):</label>
+      <span>{{value.data.quantityQNT}}</span>
+    </div>
   </div>
 
   <div *ngSwitchCase="'Date'">{{value.data | date:'MMM d, y, h:mm:ss'}}</div>
@@ -61,7 +72,8 @@
     <label>{{'payments' | i18n}}</label>
     <div class="chip-list">
       <span *ngFor="let payment of value.data.recipients" class="chip">
-        <a [routerLink]="['/account', payment[0]]">{{convertNumericIdToAddress(payment[0])}}({{convertNQTStringToNumber(payment[1])}} BURST)</a>
+        <a [routerLink]="['/account', payment[0]]">{{convertNumericIdToAddress(payment[0])}}
+          ({{convertNQTStringToNumber(payment[1])}} BURST)</a>
       </span>
     </div>
   </div>
