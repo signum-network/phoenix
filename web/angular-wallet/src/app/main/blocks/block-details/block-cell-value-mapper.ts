@@ -41,7 +41,7 @@ export class BlockCellValueMapper {
     this.map = {
       nextBlock: this.getTypedValue(this.block.nextBlock, BlockCellValueType.BlockId),
       previousBlock: this.getTypedValue(this.block.previousBlock, BlockCellValueType.BlockId),
-      blockReward: this.getAmount(this.block.blockReward),
+      blockReward: `${this.block.blockReward} BURST`,
       generatorRS: this.getTypedValue(this.block.generatorRS, BlockCellValueType.AccountAddress),
       generator: this.getTypedValue(this.block.generator, BlockCellValueType.AccountId),
       totalFeeNQT: this.getAmount(this.block.totalFeeNQT),
