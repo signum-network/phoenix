@@ -9,6 +9,7 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/burst-apps-team/phoenix/badge.svg?targetFile=lib%2Fpackage.json)](https://snyk.io/test/github/burst-apps-team/phoenix?targetFile=lib%2Fpackage.json)
 [![codecov](https://codecov.io/gh/burst-apps-team/phoenix/branch/develop/graph/badge.svg)](https://codecov.io/gh/burst-apps-team/phoenix)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@burstjs/core/badge)](https://www.jsdelivr.com/package/npm/@burstjs/core)
+![NPM](https://img.shields.io/npm/l/@burstjs/core?color=blue&label=license)
 ---
 
 `@burstjs` is a modern library written in Typescript providing common functionalities for _browsers_ and _nodejs_ to interact with the [BurstCoin blockchain](https://burstcoin.community/), 
