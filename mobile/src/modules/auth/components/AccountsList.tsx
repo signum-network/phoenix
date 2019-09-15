@@ -33,10 +33,17 @@ export class AccountsList extends React.PureComponent<Props> {
   }
 
   renderAccountItem = ({ item }: ListRenderItemInfo<Account>) => {
-    const { onDelete, onAccountPress, priceApi } = this.props;
+    const { onDelete, onAccountPress, priceApi, accounts } = this.props;
+    const accountIndex = accounts.findIndex(({ account }) => account === item.account);
 
     return (
-      <AccountListItem onDelete={onDelete} onPress={onAccountPress} account={item} priceApi={priceApi}/>
+      <AccountListItem
+        onDelete={onDelete}
+        onPress={onAccountPress}
+        account={item}
+        accountIndex={accountIndex}
+        priceApi={priceApi}
+      />
     );
   }
 
