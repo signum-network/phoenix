@@ -44,7 +44,7 @@
 
           <ng-container matColumnDef="timestamp">
               <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  <mat-icon>schedule</mat-icon>&nbsp;Date
+                  <mat-icon>schedule</mat-icon>&nbsp;{{ 'date' | i18n }}
               </mat-header-cell>
               <mat-cell *matCellDef="let block"
                   title="{{convertTimestamp(block.timestamp) | date:'MMM d, y, h:mm:ss'}}">

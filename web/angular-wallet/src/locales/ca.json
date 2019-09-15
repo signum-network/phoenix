@@ -566,6 +566,7 @@
   "memorize_passphrase_help_addon": "Si perdeu la contrasenya, no podreu fer cap transacció, és a dir, es perdran les vostres monedes. La contrasenya no es pot recuperar. Manteniu aquesta contrasenya secreta. Tothom que sàpiga la contrasenya és de facto el propietari del compte.",
   "message": "Missatge",
   "message_empty": "El Missatge és buit.",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "Aquest missatge és xifrat.",
   "message_is_not_encrypted": "Aquest Missatge no està Xifrat.",
   "messages": "Missatges",
