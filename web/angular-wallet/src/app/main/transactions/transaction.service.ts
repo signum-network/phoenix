@@ -8,10 +8,10 @@ import {
   Attachment,
   MultioutRecipientAmount, Transaction
 } from '@burstjs/core';
-import {Keys, decryptAES, hashSHA256, encryptMessage} from '@burstjs/crypto';
+import {Keys, decryptAES, hashSHA256, encryptMessage, encryptData, EncryptedMessage, EncryptedData} from '@burstjs/crypto';
 import {ApiService} from '../../api.service';
 import {AccountService} from 'app/setup/account/account.service';
-import {convertAddressToNumericId} from '@burstjs/util/out';
+import {convertHexStringToByteArray} from '@burstjs/util';
 import {StoreService} from 'app/store/store.service';
 import {Settings} from 'app/settings';
 
@@ -53,6 +53,7 @@ interface SendBurstRequest {
   message?: string;
   pin: string;
   recipientId: string;
+  messageIsText: boolean;
   shouldEncryptMessage?: boolean;
 }
 
@@ -107,21 +108,32 @@ export class TransactionService {
 
   public async sendBurst(request: SendBurstRequest): Promise<TransactionId> {
 
-    const {pin, amount, fee, recipientId, message, shouldEncryptMessage, keys} = request;
+    const {pin, amount, fee, recipientId, message, messageIsText, shouldEncryptMessage, keys} = request;
 
     let attachment: Attachment;
     if (message && shouldEncryptMessage) {
       const recipient = await this.accountService.getAccount(recipientId);
       const agreementPrivateKey = decryptAES(keys.agreementPrivateKey, hashSHA256(pin));
-      const encryptedMessage = encryptMessage(
-        message,
-        // @ts-ignore
-        recipient.publicKey,
-        agreementPrivateKey
-      );
+      let encryptedMessage: EncryptedMessage | EncryptedData;
+      if (messageIsText) {
+        encryptedMessage = encryptMessage(
+          message,
+          // @ts-ignore
+          recipient.publicKey,
+          agreementPrivateKey
+        );
+      } else {
+        encryptedMessage = encryptData(
+          new Uint8Array(convertHexStringToByteArray(message)),
+          // @ts-ignore
+          recipient.publicKey,
+          agreementPrivateKey
+        );
+      }
+      
       attachment = new AttachmentEncryptedMessage(encryptedMessage);
     } else if (message) {
-      attachment = new AttachmentMessage({message, messageIsText: true});
+      attachment = new AttachmentMessage({message, messageIsText});
     }
 
     return this.transactionApi.sendAmount(

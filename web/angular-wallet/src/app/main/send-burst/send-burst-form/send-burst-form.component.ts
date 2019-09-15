@@ -28,6 +28,9 @@ interface QRData {
   amountNQT: string;
   feeNQT: string;
   immutable: boolean;
+  feeSuggestionType: string;
+  encrypt: boolean;
+  messageIsText: boolean;
 }
 
 const isNotEmpty = (value: string) => value && value.length > 0;
@@ -44,6 +47,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
   @ViewChild('fullHash', { static: false }) public fullHash: string;
   @ViewChild('encrypt', { static: true }) public encrypt: boolean;
   @ViewChild('pin', { static: true }) public pin: string;
+  @ViewChild('messageIsText', { static: true }) public messageIsText: boolean;
 
   @Input() account: Account;
   @Input() fees: SuggestedFees;
@@ -79,6 +83,8 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
   }
 
   ngAfterViewInit(): void {
+    this.messageIsText = true;
+
     if (this.route.snapshot.queryParams) {
       setTimeout(() => {
         this.onRecipientChange(new Recipient(this.route.snapshot.queryParams.receiver));
@@ -94,6 +100,9 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
         this.immutable = this.route.snapshot.queryParams.immutable || this.immutable;
         if (this.immutable === 'false') {
           this.immutable = false;
+        }
+        if (this.route.snapshot.queryParams.messageIsText === 'false') {
+          this.messageIsText = false;
         }
         if (this.route.snapshot.queryParams.feeSuggestionType && this.fees[this.route.snapshot.queryParams.feeSuggestionType]) {
           this.fee = convertNQTStringToNumber(this.fees[this.route.snapshot.queryParams.feeSuggestionType]).toString();
@@ -134,6 +143,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
         pin: this.pin,
         message: this.message,
         shouldEncryptMessage: this.encrypt,
+        messageIsText: this.messageIsText,
         deadline: 1440
       });
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
@@ -189,6 +199,11 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
     this.amount = convertNQTStringToNumber(qrData.amountNQT).toString();
     this.fee = convertNQTStringToNumber(qrData.feeNQT).toString();
     this.immutable = qrData.immutable;
+    this.encrypt = qrData.encrypt;
+    this.messageIsText = qrData.messageIsText;
+    if (qrData.feeSuggestionType && this.fees[qrData.feeSuggestionType]) {
+      this.fee = convertNQTStringToNumber(this.fees[qrData.feeSuggestionType]).toString();
+    }
   }
 
   onSpendAll(): void {

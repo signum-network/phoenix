@@ -566,6 +566,7 @@
   "memorize_passphrase_help_addon": "Ako izgubite zaporku, nećete moći obavljati nikakve transakcije, tj. Izgubljeni kovanice. Zaporka se ne može vratiti. Čuvajte ovu tajnu zaporke. Svatko tko zna zaporku de facto je vlasnik računa.",
   "message": "Poruka",
   "message_empty": "Poruka je prazna.",
+  "message_is_text": "Message is Text?",
   "message_is_encrypted": "Ova poruka je zaštićena.",
   "message_is_not_encrypted": "Ova poruka nije zaštićena.",
   "messages": "Poruke",
