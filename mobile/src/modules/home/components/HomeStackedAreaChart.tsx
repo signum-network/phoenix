@@ -182,7 +182,7 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
           style={styles.button as StyleMedia}
         >
           <Text style={{ color: Colors.BLUE_LIGHT, textAlign: 'center' }}>
-            {this.state.priceInBTC ? `BTC` : `BURST`} TEST
+            {this.state.priceInBTC ? `BTC` : `BURST`}
           </Text>
         </TouchableOpacity>
       </>
