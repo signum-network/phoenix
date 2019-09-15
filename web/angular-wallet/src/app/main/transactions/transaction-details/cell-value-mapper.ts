@@ -14,6 +14,7 @@ export enum CellValueType {
   AccountId = 'AccountId',
   AccountInfo = 'AccountInfo',
   Asset = 'Asset',
+  AssetTransfer = 'AssetTransfer',
   BlockId = 'BlockId',
   Date = 'Date',
   Default = 'Default',
@@ -87,6 +88,8 @@ export class CellValueMapper {
         return this.getMessageAttachment(this.transaction);
       case 'Asset':
         return new CellValue(attachment, CellValueType.Asset);
+      case 'AssetTransfer':
+        return new CellValue(attachment, CellValueType.AssetTransfer);
       case 'MultiSameOutCreation':
         return new CellValue(attachment, CellValueType.MultiSameOutCreation);
       case 'MultiOutCreation':
