@@ -48,7 +48,7 @@ export class AccountsListHeader extends React.PureComponent<Props> {
         {priceInBTC ? (
           <Text color={Colors.WHITE} bebasFont>
             {priceApi && priceApi.selectedCurrency === 'USD' ?
-              i18n.t(core.currency.USD.value, { value: amountToString(totalBalanceUSD) }) :
+              i18n.t(core.currency.USD.value, { value: totalBalanceUSD.toFixed(2) }) :
               i18n.t(core.currency.BTC.value, { value: amountToString(totalBalanceBTC) })}
           </Text>
         ) : null}
