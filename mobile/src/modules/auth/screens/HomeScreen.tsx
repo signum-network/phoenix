@@ -15,7 +15,7 @@ import { ApplicationState } from '../../../core/store/initialState';
 import { Colors } from '../../../core/theme/colors';
 import { core } from '../../../core/translations';
 import { HomeStackedAreaChart } from '../../home/components/HomeStackedAreaChart';
-import { PriceInfoReduxState } from '../../price-api/store/reducer';
+import { PriceInfoReduxState, PriceTypeStrings } from '../../price-api/store/reducer';
 import { AccountsList } from '../components/AccountsList';
 import { AccountsListHeader } from '../components/AccountsListHeader';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
@@ -32,15 +32,19 @@ interface CustomProps extends InjectedReduxProps {
 type TProps = NavigationInjectedProps & CustomProps;
 
 interface State {
-  isPINModalVisible: boolean
+  isPINModalVisible: boolean,
+  selectedCurrency: PriceTypeStrings;
 }
+
+const priceTypes = ['BURST', 'BTC', 'USD'];
 
 class Home extends React.PureComponent<TProps, State> {
 
   _checkPinExpiryInterval: number | undefined;
 
   state = {
-    isPINModalVisible: false
+    isPINModalVisible: false,
+    selectedCurrency: priceTypes[0] as PriceTypeStrings
   };
 
   static navigationOptions = ({ navigation }: NavigationInjectedProps) => {
@@ -125,6 +129,7 @@ class Home extends React.PureComponent<TProps, State> {
             <HomeStackedAreaChart
               priceApi={priceApi}
               accounts={accounts}
+              priceTypes={priceTypes}
             />
             <AccountsList
               accounts={accounts}

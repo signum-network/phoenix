@@ -22,18 +22,13 @@ export interface PriceInfo {
 
 export interface PriceInfoReduxState {
   priceInfo: PriceInfo;
-  historicalPriceInfo: PairedHistoricalPriceInfo
+  historicalPriceInfo: PairedHistoricalPriceInfo,
+  selectedCurrency: PriceTypeStrings
 }
 
 export interface PairedHistoricalPriceInfo {
   BTC: HistoricalPriceInfo;
   USD: HistoricalPriceInfo;
-}
-
-export enum PriceType {
-  BURST,
-  BTC,
-  USD
 }
 
 export interface HistoricalPriceInfoUpdate {
@@ -68,6 +63,19 @@ export interface HistoricalPriceInfo {
   HasWarning?: boolean;
 }
 
+export enum PriceType {
+  BURST,
+  BTC,
+  USD
+}
+export type PriceTypeStrings = keyof typeof PriceType;
+
+export enum HistoricalPriceTypes {
+  BTC,
+  USD
+}
+export type HistoricalPriceTypeStrings = keyof typeof HistoricalPriceTypes;
+
 export const priceApiState = (): PriceInfoReduxState => {
   return {
     priceInfo: {
@@ -98,7 +106,8 @@ export const priceApiState = (): PriceInfoReduxState => {
         TimeFrom: 0,
         TimeTo: 0
       }
-    }
+    },
+    selectedCurrency: 'BURST'
   };
 };
 
@@ -107,6 +116,14 @@ const updatePriceInfo: Reducer<PriceInfoReduxState, PriceInfo> = (state, action)
   return {
     ...state,
     priceInfo
+  };
+};
+
+const selectCurrency: Reducer<PriceInfoReduxState, PriceTypeStrings> = (state, action) => {
+  const selectedCurrency = action.payload;
+  return {
+    ...state,
+    selectedCurrency
   };
 };
 
@@ -120,6 +137,7 @@ const updateHistoricalPriceInfo: Reducer<PriceInfoReduxState, PairedHistoricalPr
 
 const reducers = {
   [actionTypes.updatePriceInfo]: updatePriceInfo,
+  [actionTypes.selectCurrency]: selectCurrency,
   [actionTypes.updateHistoricalPriceInfo]: updateHistoricalPriceInfo
 };
 

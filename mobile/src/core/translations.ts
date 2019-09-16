@@ -30,6 +30,10 @@ export const core: any = {
     BURST: {
       name: 'core.currency.BURST.name',
       value: 'core.currency.BURST.value'
+    },
+    USD: {
+      name: 'core.currency.USD.name',
+      value: 'core.currency.USD.value'
     }
   },
   preventBack: {
