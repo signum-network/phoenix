@@ -131,7 +131,6 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       this.resetRecipients();
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
     } catch (e) {
-      console.log(e);
       this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
     }
     this.isSending = false;
@@ -213,7 +212,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       return false;
     }
 
-    if (this.hasRecipientsExceeded()){
+    if (this.hasRecipientsExceeded()) {
       return false;
     }
 
@@ -263,7 +262,6 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   resetRecipients(): void {
-    console.log('resetRecipients');
     this.clearRecipients();
     this.recipients.push(new Recipient());
   }
@@ -275,17 +273,18 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   hasRecipientsExceeded(): boolean {
     return this.nonEmptyRecipients().length > this.getMaxAllowedRecipients();
   }
+
   getRecipientCounter(): string {
     return `${this.nonEmptyRecipients().length}/${this.getMaxAllowedRecipients()} ${this.i18nService.getTranslation('recipients')}`;
   }
 
-  eventuallyAddRecipient($event: KeyboardEvent, index: number): void {
-    if ($event.code === 'Enter'){
-      $event.preventDefault();
-      $event.stopImmediatePropagation();
-      if (index === this.recipients.length - 1 && this.recipients[index].amount.length){
-        this.addRecipient($event);
-      }
+  isLastRecipientItem(index: number): boolean {
+    return this.recipients.length - 1 === index;
+  }
+
+  removeRecipientItem(index: number): void {
+    if (this.recipients.length > 1) {
+      this.recipients.splice(index, 1);
     }
   }
 }

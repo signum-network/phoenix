@@ -8,14 +8,12 @@
     >{{ "same_out" | i18n }}?
     </mat-checkbox>
     <div class="button-wrapper">
-      <button mat-icon-button (click)="resetRecipients()" matTooltip="{{'reset_recipients' | i18n}}">
+      <button mat-icon-button type="button" (click)="resetRecipients()" matTooltip="{{'reset_recipients' | i18n}}">
         <mat-icon>delete_sweep</mat-icon>
       </button>
-      <button mat-icon-button (click)="addBatchedRecipient($event)" matTooltip="{{'add_recipient_batch' | i18n}}">
+      <button mat-icon-button type="button" (click)="addBatchedRecipient($event)"
+              matTooltip="{{'add_recipient_batch' | i18n}}">
         <mat-icon>unarchive</mat-icon>
-      </button>
-      <button mat-icon-button (click)="addRecipient($event)" matTooltip="{{'add_recipient' | i18n}}">
-        <mat-icon class="add-icon s-32" color="accent">add_box</mat-icon>
       </button>
     </div>
   </div>
@@ -35,14 +33,17 @@
           <mat-form-field *ngIf="!sameAmount">
             <input matInput [(ngModel)]="recipient.amount"
                    name="amount{{i}}"
-                   (keypress)="eventuallyAddRecipient($event, i)"
                    placeholder="{{ 'amount' | i18n }}"
             >
           </mat-form-field>
-          <!--
-                FUTURE FEATURE
-                <mat-icon *ngIf="recipients.length > 1" matTooltip="{{'delete' | i18n}}" (click)="onDeleteRecipient(i)" >delete</mat-icon>
-          -->
+          <button *ngIf="isLastRecipientItem(i)" mat-icon-button type="button" (click)="addRecipient($event)"
+                  matTooltip="{{'add_recipient' | i18n}}">
+            <mat-icon color="accent">add_box</mat-icon>
+          </button>
+          <button *ngIf="this.recipients.length > 1" mat-icon-button type="button" (click)="removeRecipientItem(i)"
+                  matTooltip="{{'add_recipient' | i18n}}">
+            <mat-icon color="warn">clear</mat-icon>
+          </button>
         </div>
       </ng-container>
     </div>
