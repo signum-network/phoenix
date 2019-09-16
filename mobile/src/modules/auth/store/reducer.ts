@@ -10,6 +10,7 @@ export interface AuthReduxState {
 }
 
 export const authState = (): AuthReduxState => {
+  console.log('here');
   return {
     accounts: [],
     passcodeEnteredTime: 0,

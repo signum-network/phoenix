@@ -3,6 +3,7 @@ import { toString } from 'lodash';
 import React from 'react';
 import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
 import { ListSeparator } from '../../../core/components/base/ListSeparator';
+import { AccountColors } from '../../../core/theme/colors';
 import { PriceInfoReduxState } from '../../price-api/store/reducer';
 import { AccountListItem } from './AccountListItem';
 import { NoAccounts } from './NoAccounts';
@@ -33,10 +34,17 @@ export class AccountsList extends React.PureComponent<Props> {
   }
 
   renderAccountItem = ({ item }: ListRenderItemInfo<Account>) => {
-    const { onDelete, onAccountPress, priceApi } = this.props;
+    const { onDelete, onAccountPress, priceApi, accounts } = this.props;
+    const accountIndex = accounts.findIndex(({ account }) => account === item.account) % AccountColors.length;
 
     return (
-      <AccountListItem onDelete={onDelete} onPress={onAccountPress} account={item} priceApi={priceApi}/>
+      <AccountListItem
+        onDelete={onDelete}
+        onPress={onAccountPress}
+        account={item}
+        accountIndex={accountIndex}
+        priceApi={priceApi}
+      />
     );
   }
 

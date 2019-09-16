@@ -13,3 +13,14 @@ export enum Colors {
   RED = '#FF0000',
   GREEN = '#00FF00'
 }
+
+export const AccountColors = [
+  Colors.GREY_LIGHT,
+  Colors.GREY_DARK,
+  Colors.WHITE,
+  Colors.BLUE_LIGHT,
+  Colors.BLUE_DARKEST,
+  Colors.BLACK,
+  Colors.BLUE,
+  Colors.BLUE_DARKER
+];

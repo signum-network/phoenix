@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## unreleased
+- Changed License: From GPL-3.0 to Apache 2.0
+
+
 ## 0.3.0
 - Moved typings into src folder
 

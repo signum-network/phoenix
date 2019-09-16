@@ -7,10 +7,11 @@
 - Enhanced Node Selection
     - custom endpoint possible
     - dynamic version detection 
+- Added ability to send hex messages with transactions
 
 # Bug Fixes
 - Fixed sending to unknown accounts (#645)
-
+- Fixed an issue with unconfirmed transactions on the dashboard sometimes not showing up
 
 ##1.0.0-beta.9
 

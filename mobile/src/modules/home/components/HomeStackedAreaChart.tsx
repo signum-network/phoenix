@@ -4,7 +4,7 @@ import * as shape from 'd3-shape';
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { Grid, StackedAreaChart, YAxis } from 'react-native-svg-charts';
-import { Colors } from '../../../core/theme/colors';
+import { AccountColors, Colors } from '../../../core/theme/colors';
 import { getBalanceHistoryFromTransactions } from '../../../core/utils/balance/getBalanceHistoryFromTransactions';
 import { BalanceHistoryItem } from '../../../core/utils/balance/typings';
 import { isSameDay } from '../../../core/utils/date';
@@ -86,7 +86,9 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
                              historicalPrice: Metric[],
                              atThatTime: number,
                              priceInBTC: boolean):
-    (value: BalanceHistoryItem[] | undefined, index: number, array: Array<BalanceHistoryItem[] | undefined>) => void {
+    (value: BalanceHistoryItem[] | undefined,
+     index: number,
+     array: Array<BalanceHistoryItem[] | undefined>) => void {
     return (transactions, accountIndex) => {
       // set to 0 by default, in case we can't match a transaction
       data[i][`${ACCOUNT_TOKEN}${accountIndex}`] = 0;
@@ -112,9 +114,11 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
     const now = new Date();
     const data: ChartData[] = [];
     const historicalPrice: Metric[] = [];
-    let i = 0;
     // tslint:disable-next-line: max-line-length
-    for (const d = new Date(new Date().setDate(now.getDate() - this.state.selectedDateRange)); d <= now; d.setDate(d.getDate() + 1)) {
+    // tslint:disable-next-line: one-variable-per-declaration
+    for (let d = new Date(new Date().setDate(now.getDate() - this.state.selectedDateRange)), i = 0;
+          d <= now;
+          d.setDate(d.getDate() + 1), i++) {
       const atThatTime = d.getTime();
       data[i] = {
         day: new Date(d)
@@ -128,7 +132,6 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
       accountTransactions.map(
         this.addTransactionToChartData(data, i, d, historicalPrice, atThatTime, this.state.priceInBTC)
       );
-      i++;
     }
     return data;
   }
@@ -136,16 +139,20 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
   render () {
 
     const data = this.calculateChartData();
-    // todo: make colors and counts dynamic
-    const colors = ['rgba(171,171,171,1)', 'rgba(37,37,37,1)', 'rgba(255, 255, 255, 1)', 'rgba(51, 109, 181, 1)'];
     const keys = Object.keys(data[0]).slice(1); // remove 'day' from the keys to get the account names
-
     const svgs = [
       // tslint:disable-next-line: no-console
       { onPress: () => console.log('account0') },
       // tslint:disable-next-line: no-console
       { onPress: () => console.log('bananas') }
     ];
+
+    const getAccountColors = (colors: string[]): string[] => {
+      return (colors.length > this.props.accounts.length) ?
+              colors : getAccountColors(colors.concat(colors));
+    };
+
+    const accountColors = getAccountColors(AccountColors);
 
     return (
       <>
@@ -155,7 +162,7 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
           style={styles.stackedAreaChart}
           data={data}
           keys={keys}
-          colors={colors}
+          colors={accountColors}
           curve={shape.curveNatural}
           showGrid={false}
           svgs={svgs}
@@ -175,7 +182,7 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
           style={styles.button as StyleMedia}
         >
           <Text style={{ color: Colors.BLUE_LIGHT, textAlign: 'center' }}>
-            {this.state.priceInBTC ? `BTC` : `BURST`}
+            {this.state.priceInBTC ? `BTC` : `BURST`} TEST
           </Text>
         </TouchableOpacity>
       </>

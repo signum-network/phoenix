@@ -41,7 +41,7 @@ export class BlockCellValueMapper {
     this.map = {
       nextBlock: this.getTypedValue(this.block.nextBlock, BlockCellValueType.BlockId),
       previousBlock: this.getTypedValue(this.block.previousBlock, BlockCellValueType.BlockId),
-      blockReward: this.getAmount(this.block.blockReward),
+      blockReward: this.getAmount(this.block.blockReward, false),
       generatorRS: this.getTypedValue(this.block.generatorRS, BlockCellValueType.AccountAddress),
       generator: this.getTypedValue(this.block.generator, BlockCellValueType.AccountId),
       totalFeeNQT: this.getAmount(this.block.totalFeeNQT),
@@ -56,8 +56,8 @@ export class BlockCellValueMapper {
     return new CellValue(date, CellValueType.Date);
   }
 
-  private getAmount(nqt: string): BlockCellValue {
-    const valueStr = `${convertNQTStringToNumber(nqt)} BURST`;
+  private getAmount(value: string, isPlanck = true): BlockCellValue {
+    const valueStr = `${isPlanck ? convertNQTStringToNumber(value): value} BURST`;
     return new BlockCellValue(valueStr);
   }
 
