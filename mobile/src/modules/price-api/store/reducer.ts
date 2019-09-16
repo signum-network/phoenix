@@ -22,7 +22,23 @@ export interface PriceInfo {
 
 export interface PriceInfoReduxState {
   priceInfo: PriceInfo;
-  historicalPriceInfo: HistoricalPriceInfo;
+  historicalPriceInfo: PairedHistoricalPriceInfo
+}
+
+export interface PairedHistoricalPriceInfo {
+  BTC: HistoricalPriceInfo;
+  USD: HistoricalPriceInfo;
+}
+
+export enum PriceType {
+  BURST,
+  BTC,
+  USD
+}
+
+export interface HistoricalPriceInfoUpdate {
+  historicalPriceInfo: HistoricalPriceInfo,
+  type: PriceType
 }
 
 export interface Metric {
@@ -72,9 +88,16 @@ export const priceApiState = (): PriceInfoReduxState => {
       'last_updated': ''
     },
     historicalPriceInfo: {
-      Data: [],
-      TimeFrom: 0,
-      TimeTo: 0
+      BTC: {
+        Data: [],
+        TimeFrom: 0,
+        TimeTo: 0
+      },
+      USD: {
+        Data: [],
+        TimeFrom: 0,
+        TimeTo: 0
+      }
     }
   };
 };
@@ -87,7 +110,7 @@ const updatePriceInfo: Reducer<PriceInfoReduxState, PriceInfo> = (state, action)
   };
 };
 
-const updateHistoricalPriceInfo: Reducer<PriceInfoReduxState, HistoricalPriceInfo> = (state, action) => {
+const updateHistoricalPriceInfo: Reducer<PriceInfoReduxState, PairedHistoricalPriceInfo> = (state, action) => {
   const historicalPriceInfo = action.payload;
   return {
     ...state,

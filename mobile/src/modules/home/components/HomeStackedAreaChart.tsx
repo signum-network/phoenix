@@ -8,7 +8,7 @@ import { AccountColors, Colors } from '../../../core/theme/colors';
 import { getBalanceHistoryFromTransactions } from '../../../core/utils/balance/getBalanceHistoryFromTransactions';
 import { BalanceHistoryItem } from '../../../core/utils/balance/typings';
 import { isSameDay } from '../../../core/utils/date';
-import { Metric, PriceInfoReduxState } from '../../price-api/store/reducer';
+import { Metric, PriceInfoReduxState, HistoricalPriceInfo } from '../../price-api/store/reducer';
 
 const ACCOUNT_TOKEN = 'account';
 
@@ -25,7 +25,7 @@ interface Props {
 type TProps = Props;
 
 interface State {
-  priceInBTC: boolean;
+  showPricesIn: PriceTypeStrings;
   selectedDateRange: number;
 }
 
@@ -57,11 +57,26 @@ const styles = {
   }
 };
 
+enum PriceType {
+  BURST,
+  BTC,
+  USD
+}
+type PriceTypeStrings = keyof typeof PriceType;
+
+enum HistoricalPriceTypes {
+  BTC,
+  USD
+}
+type HistoricalPriceTypeStrings = keyof typeof HistoricalPriceTypes;
+
+const priceTypes = ['BURST', 'BTC', 'USD'];
+
 export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
 
   state = {
     selectedDateRange: 100,
-    priceInBTC: false
+    showPricesIn: priceTypes[0] as PriceTypeStrings
   };
 
   calculateChartData () {
@@ -76,8 +91,13 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
     return data;
   }
 
-  toggleBTCPrice = () => {
-    this.setState({ ...this.state, priceInBTC: !this.state.priceInBTC });
+  showPricesIn = () => {
+    this.setState({
+      ...this.state,
+      showPricesIn: priceTypes[
+        priceTypes.findIndex((val) => val === this.state.showPricesIn) + 1
+      ] as PriceTypeStrings || priceTypes[0] as PriceTypeStrings
+    });
   }
 
   addTransactionToChartData (data: ChartData[],
@@ -85,7 +105,7 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
                              d: Date,
                              historicalPrice: Metric[],
                              atThatTime: number,
-                             priceInBTC: boolean):
+                             showPricesIn: PriceTypeStrings):
     (value: BalanceHistoryItem[] | undefined,
      index: number,
      array: Array<BalanceHistoryItem[] | undefined>) => void {
@@ -99,9 +119,10 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
           if (convertBurstTimeToDate(transaction.timestamp) > d) {
             continue;
           }
-          if (priceInBTC) {
-            const priceInBTCOnThatDay = historicalPrice[atThatTime];
-            data[i][`${ACCOUNT_TOKEN}${accountIndex}`] = transaction.balance * priceInBTCOnThatDay.close;
+
+          if (showPricesIn === priceTypes[1] || showPricesIn === priceTypes[2]) {
+            const priceOnThatDay = historicalPrice[atThatTime];
+            data[i][`${ACCOUNT_TOKEN}${accountIndex}`] = transaction.balance * priceOnThatDay.close;
           } else {
             data[i][`${ACCOUNT_TOKEN}${accountIndex}`] = transaction.balance;
           }
@@ -123,14 +144,18 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
       data[i] = {
         day: new Date(d)
       };
-      if (this.state.priceInBTC) {
-        const price = this.props.priceApi.historicalPriceInfo.Data.find((metric) => {
-          return isSameDay(new Date(metric.time * 1000), d);
-        });
-        historicalPrice[atThatTime] = price || this.props.priceApi.historicalPriceInfo.Data[0];
+      if (this.state.showPricesIn === priceTypes[1] || this.state.showPricesIn === priceTypes[2]) {
+        const price = this.props.priceApi.historicalPriceInfo[
+            this.state.showPricesIn as HistoricalPriceTypeStrings
+          ].Data.find((metric) => {
+            return isSameDay(new Date(metric.time * 1000), d);
+          });
+
+        historicalPrice[atThatTime] = price ||
+          this.props.priceApi.historicalPriceInfo[this.state.showPricesIn as HistoricalPriceTypeStrings].Data[0];
       }
       accountTransactions.map(
-        this.addTransactionToChartData(data, i, d, historicalPrice, atThatTime, this.state.priceInBTC)
+        this.addTransactionToChartData(data, i, d, historicalPrice, atThatTime, this.state.showPricesIn)
       );
     }
     return data;
@@ -178,11 +203,11 @@ export class HomeStackedAreaChart extends React.PureComponent<TProps, State> {
         />
 
         <TouchableOpacity
-          onPress={this.toggleBTCPrice}
+          onPress={this.showPricesIn}
           style={styles.button as StyleMedia}
         >
           <Text style={{ color: Colors.BLUE_LIGHT, textAlign: 'center' }}>
-            {this.state.priceInBTC ? `BTC` : `BURST`} TEST
+            {this.state.showPricesIn}
           </Text>
         </TouchableOpacity>
       </>

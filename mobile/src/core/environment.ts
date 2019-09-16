@@ -6,7 +6,7 @@ import { CMC_HOST_URL, CRYPTOCOMPARE_HOST_URL, DEFAULT_API_ROOT_URL, DEFAULT_NOD
 // So we check it like this
 if (!DEFAULT_API_ROOT_URL || !DEFAULT_NODE_HOST || !DEFAULT_PASSCODE_TIME || !CMC_HOST_URL || !CRYPTOCOMPARE_HOST_URL) {
   throw new Error('Incorrect .env config!');
-}
+} 
 
 export const defaultSettings = {
   nodeHost: toString(DEFAULT_NODE_HOST),
