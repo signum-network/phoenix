@@ -26,8 +26,6 @@ import {generateSendTransactionQRCodeAddress} from './factories/account/generate
 import {suggestFee} from './factories/network/suggestFee';
 import {getPeer} from './factories/network/getPeer';
 import {getPeers} from './factories/network/getPeers';
-import {sendMoney} from './factories/transaction/sendMoney';
-import {sendMoneyMultiOut} from './factories/transaction/sendMoneyMultiOut';
 import {getAliases} from './factories/account/getAliases';
 import {setAlias} from './factories/account/setAlias';
 import {getTime} from './factories/network/getTime';
@@ -40,7 +38,12 @@ import {getAliasById} from './factories/alias/getAliasById';
 import {getAliasByName} from './factories/alias/getAliasByName';
 import {getContractsByAccount} from './factories/contract/getContractsByAccount';
 import {getContract} from './factories/contract/getContract';
-import {sendAmount, sendAmountToMultipleRecipients, sendSameAmountToMultipleRecipients} from './factories/transaction';
+import {
+    sendAmount,
+    sendAmountToMultipleRecipients,
+    sendAmountToSingleRecipient,
+    sendSameAmountToMultipleRecipients
+} from './factories/transaction';
 
 
 /**
@@ -97,9 +100,8 @@ export function composeApi(settings: ApiSettings): Api {
         .withTransactionApi({
             broadcastTransaction,
             getTransaction,
-            sendMoney,
-            sendMoneyMultiOut,
             sendAmount,
+            sendAmountToSingleRecipient,
             sendAmountToMultipleRecipients,
             sendSameAmountToMultipleRecipients,
         })

@@ -4,6 +4,8 @@ import {TransactionId} from '../transactionId';
 import {Transaction} from '../transaction';
 import {MultioutRecipientAmount} from '../multioutRecipientAmount';
 import {Attachment} from '../attachment';
+import {BurstService} from '../../service';
+import {SendAmountArgs} from '../args/sendAmountArgs';
 
 /**
  * Transaction API
@@ -27,60 +29,6 @@ export interface TransactionApi {
      * @return The Transaction
      */
     getTransaction: (transactionId: string) => Promise<Transaction>;
-
-    /**
-     * @deprecated
-     * <div class="deprecated">
-     *     Use [[sendAmount]] instead
-     * </div>
-     *
-     * Sends burst to the blockchain
-     *
-     * The transaction will be broadcasted in two steps.
-     * 1. Send the sendMoney call with public key to the network
-     * 2. Take the returned unsigned message and sign it, i.e. the private key won't be transmitted.
-     *
-     * @param transaction The unsigned transaction
-     * @param senderPublicKey The senders public key for sending an _unsigned_ message
-     * @param senderPrivateKey The senders private key to _sign_ the message
-     * @param recipientAddress The recipients RS Address
-     * @return The Transaction
-     */
-    sendMoney: (
-        transaction: Transaction,
-        senderPublicKey: string,
-        senderPrivateKey: string,
-        recipientAddress: string
-    ) => Promise<TransactionId | Error>;
-
-
-    /**
-     * @deprecated
-     * <div class="deprecated">
-     *     Use [[sendSameAmountToMultipleRecipients]], [[sendAmountToMultipleRecipients]] instead
-     * </div>
-     *
-     * Sends a multi-out request to the blockchain
-     *
-     * The transaction will be broadcasted in two steps.
-     * 1. If sameAmount is true. "sendMoneyMultiSame" is called, otherwise "sendMoneyMulti" is called
-     * 2. Take the returned unsigned message and sign it, i.e. the private key won't be transmitted.
-     *
-     * @param transaction The unsigned transaction
-     * @param senderPublicKey The senders public key for sending an _unsigned_ message
-     * @param senderPrivateKey The senders private key to _sign_ the message
-     * @param recipients The multi-out string of recipient->amount key value pairs
-     * @param sameAmount Whether all recipients will receive the same amount
-     * @return The Transaction
-     */
-    sendMoneyMultiOut: (
-        transaction: Transaction,
-        senderPublicKey: string,
-        senderPrivateKey: string,
-        recipients: string,
-        sameAmount: boolean
-    ) => Promise<TransactionId>;
-
 
     /**
      * Sends a multi-out request to the blockchain with _same_ value for all recipients
@@ -122,6 +70,10 @@ export interface TransactionApi {
 
 
     /**
+     * @deprecated
+     * <div class="deprecated">
+     *     Use [[sendAmount]], [[sendAmountToMultipleRecipients]] instead
+     * </div>
      * Sends burst to the blockchain
      *
      * The transaction will be broadcasted in two steps.
@@ -134,6 +86,7 @@ export interface TransactionApi {
      * @param senderPublicKey The senders public key for sending an _unsigned_ message
      * @param senderPrivateKey The senders private key to _sign_ the message
      * @param attachment An optional attachment
+     * @return The Transaction Id (as promise)
      */
     sendAmount: (
         amountPlanck: string,
@@ -143,4 +96,13 @@ export interface TransactionApi {
         senderPrivateKey: string,
         attachment?: Attachment,
     ) => Promise<TransactionId>;
+
+    /**
+     * Sends burst to another account/recipient
+     *
+     * @param args The argument object
+     * @return The Transaction Id (as promise)
+     */
+    sendAmountToSingleRecipient:
+        (args: SendAmountArgs) => Promise<TransactionId>;
 }

@@ -2,15 +2,13 @@ import {HttpMockBuilder, Http} from '@burstjs/http';
 import {generateSignature, verifySignature, generateSignedTransactionBytes} from '@burstjs/crypto';
 import {broadcastTransaction} from '../factories/transaction/broadcastTransaction';
 import {getTransaction} from '../factories/transaction/getTransaction';
-import {sendMoney} from '../factories/transaction/sendMoney';
-import {sendMoneyMultiOut} from '../factories/transaction/sendMoneyMultiOut';
 import {Transaction} from '../../typings/transaction';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {sendSameAmountToMultipleRecipients} from '../factories/transaction/sendSameAmountToMultipleRecipients';
 import {sendAmountToMultipleRecipients} from '../factories/transaction/sendAmountToMultipleRecipients';
 import {MultioutRecipientAmount} from '../../typings/multioutRecipientAmount';
 import {Attachment, AttachmentEncryptedMessage, AttachmentMessage} from '../../typings/attachment';
-import {sendAmount} from '../factories/transaction';
+import {sendAmount, sendAmountToSingleRecipient} from '../factories/transaction';
 
 describe('Transaction Api', () => {
 
@@ -47,173 +45,6 @@ describe('Transaction Api', () => {
             const status = await getTransaction(service)('transactionId');
             expect(status.transaction).toBe('transactionId');
             expect(status.block).toBe('blockId');
-        });
-
-    });
-
-    describe('sendMoney', () => {
-        let service;
-
-        const mockTransaction: Transaction = {
-            transaction: 'transactionId',
-            requestProcessingTime: 4,
-            feeNQT: '1',
-            amountNQT: '1',
-            fullHash: '808d5c32b12f4d4b963404c19523b6391ddf7a04a96ec4a495703aeead76c6ff',
-        };
-
-        const mockBroadcastResponse = {
-            unsignedTransactionBytes: 'unsignedHexMessage'
-        };
-
-        beforeEach(() => {
-
-            jest.resetAllMocks();
-
-            // @ts-ignore
-            generateSignature = jest.fn(() => 'signature');
-            // @ts-ignore
-            verifySignature = jest.fn(() => true);
-            // @ts-ignore
-            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
-
-            httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
-                .onPostReply(200, mockBroadcastResponse,
-                    'relPath?requestType=sendMoney&amountNQT=100000000&publicKey=senderPublicKey&recipient=recipientId&deadline=1440&feeNQT=100000000')
-                .onPostReply(200, mockTransaction.transaction,
-                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
-                .build();
-
-            service = createBurstService(httpMock, 'relPath');
-        });
-
-        afterEach(() => {
-            // @ts-ignore
-            httpMock.reset();
-        });
-
-        it('should sendMoney', async () => {
-            const status = await sendMoney(service)(
-                mockTransaction,
-                'senderPublicKey',
-                'senderPrivateKey',
-                'recipientId'
-            );
-            expect(status).toBe('transactionId');
-            expect(generateSignature).toBeCalledTimes(1);
-            expect(verifySignature).toBeCalledTimes(1);
-            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
-        });
-
-    });
-    // @deprecated Not necessary in the future
-    describe('sendMoneyMultiOut', () => {
-        let service;
-
-        const mockTransaction: Transaction = {
-            transaction: 'transactionId',
-            requestProcessingTime: 4,
-            feeNQT: '1',
-            amountNQT: '1',
-            fullHash: '808d5c32b12f4d4b963404c19523b6391ddf7a04a96ec4a495703aeead76c6ff',
-        };
-
-        const mockBroadcastResponse = {
-            unsignedTransactionBytes: 'unsignedHexMessage'
-        };
-
-        beforeEach(() => {
-            jest.resetAllMocks();
-
-            // @ts-ignore
-            generateSignature = jest.fn(() => 'signature');
-            // @ts-ignore
-            verifySignature = jest.fn(() => true);
-            // @ts-ignore
-            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
-
-        });
-
-        afterEach(() => {
-            // @ts-ignore
-            httpMock.reset();
-        });
-
-        it('should sendMoneyMulti', async () => {
-            httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
-                .onPostReply(200, mockBroadcastResponse,
-                    'relPath?requestType=sendMoneyMulti&publicKey=senderPublicKey&recipients=thisIsAStringRepresentingAMultiOutPayload&deadline=1440&feeNQT=100000000')
-                .onPostReply(200, mockTransaction.transaction,
-                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
-                .build();
-
-            service = createBurstService(httpMock, 'relPath');
-            const status = await sendMoneyMultiOut(service)(
-                mockTransaction,
-                'senderPublicKey',
-                'senderPrivateKey',
-                'thisIsAStringRepresentingAMultiOutPayload',
-                false
-            );
-            expect(status).toBe('transactionId');
-            expect(generateSignature).toBeCalledTimes(1);
-            expect(verifySignature).toBeCalledTimes(1);
-            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
-        });
-
-
-        it('should sendMoneyMultiSame', async () => {
-            httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
-                .onPostReply(200, mockBroadcastResponse,
-                    'relPath?requestType=sendMoneyMultiSame&publicKey=senderPublicKey&recipients=thisIsAStringRepresentingAMultiOutSamePayload&deadline=1440&feeNQT=100000000&amountNQT=100000000')
-                .onPostReply(200, mockTransaction.transaction,
-                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
-                .build();
-
-            service = createBurstService(httpMock, 'relPath');
-            const status = await sendMoneyMultiOut(service)(
-                mockTransaction,
-                'senderPublicKey',
-                'senderPrivateKey',
-                'thisIsAStringRepresentingAMultiOutSamePayload',
-                true
-            );
-            expect(status).toBe('transactionId');
-            expect(generateSignature).toBeCalledTimes(1);
-            expect(verifySignature).toBeCalledTimes(1);
-            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
-        });
-
-
-        it('should support deadlines', async () => {
-            httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
-                .onPostReply(200, mockBroadcastResponse,
-                    'relPath?requestType=sendMoneyMultiSame&publicKey=senderPublicKey&recipients=thisIsAStringRepresentingAMultiOutSamePayload&deadline=720&feeNQT=100000000&amountNQT=100000000')
-                .onPostReply(200, mockTransaction.transaction,
-                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
-                .build();
-
-            const mockTransaction2: Transaction = {
-                deadline: 720, // 12 hrs instead of default 24
-                ...mockTransaction
-            };
-
-            service = createBurstService(httpMock, 'relPath');
-            const status = await sendMoneyMultiOut(service)(
-                mockTransaction2,
-                'senderPublicKey',
-                'senderPrivateKey',
-                'thisIsAStringRepresentingAMultiOutSamePayload',
-                true
-            );
-            expect(status).toBe('transactionId');
-            expect(generateSignature).toBeCalledTimes(1);
-            expect(verifySignature).toBeCalledTimes(1);
-            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
         });
 
     });
@@ -533,6 +364,185 @@ describe('Transaction Api', () => {
                     'senderPublicKey',
                     'senderPrivateKey',
                     attachment
+                );
+                expect(false).toBe('Expect Exception');
+            } catch (e) {
+                expect(e.message).toContain('Unknown attachment type');
+            }
+        });
+
+    });
+
+    describe('sendAmountToSingleRecipient', () => {
+
+        const mockTransaction: Transaction = {
+            transaction: 'transactionId',
+            requestProcessingTime: 4,
+            fullHash: '808d5c32b12f4d4b963404c19523b6391ddf7a04a96ec4a495703aeead76c6ff',
+        };
+
+        const mockBroadcastResponse = {
+            unsignedTransactionBytes: 'unsignedHexMessage'
+        };
+
+        beforeEach(() => {
+
+            jest.resetAllMocks();
+
+            // @ts-ignore
+            generateSignature = jest.fn(() => 'signature');
+            // @ts-ignore
+            verifySignature = jest.fn(() => true);
+            // @ts-ignore
+            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
+
+
+        });
+
+        afterEach(() => {
+            // @ts-ignore
+            httpMock.reset();
+        });
+
+        it('should send amount without attachment', async () => {
+
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+                .onPostReply(200, mockBroadcastResponse,
+                    'relPath?requestType=sendMoney&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
+                .onPostReply(200, mockTransaction.transaction,
+                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+                .build();
+
+            const service = createBurstService(httpMock, 'relPath');
+
+            const status = await sendAmountToSingleRecipient(service)({
+                amountPlanck: '2000',
+                feePlanck: '1000',
+                recipientId: 'recipientId',
+                senderPublicKey: 'senderPublicKey',
+                senderPrivateKey: 'senderPrivateKey',
+            });
+            expect(status).toBe('transactionId');
+            expect(generateSignature).toBeCalledTimes(1);
+            expect(verifySignature).toBeCalledTimes(1);
+            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+        });
+
+        it('should send amount without attachment, but with recipient public key', async () => {
+
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+                .onPostReply(200, mockBroadcastResponse,
+                    'relPath?requestType=sendMoney&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&recipientPublicKey=recipientPublicKey&feeNQT=1000&deadline=1440')
+                .onPostReply(200, mockTransaction.transaction,
+                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+                .build();
+
+            const service = createBurstService(httpMock, 'relPath');
+
+            const status = await sendAmountToSingleRecipient(service)({
+                amountPlanck: '2000',
+                feePlanck: '1000',
+                recipientId: 'recipientId',
+                recipientPublicKey: 'recipientPublicKey',
+                senderPublicKey: 'senderPublicKey',
+                senderPrivateKey: 'senderPrivateKey',
+            });
+            expect(status).toBe('transactionId');
+            expect(generateSignature).toBeCalledTimes(1);
+            expect(verifySignature).toBeCalledTimes(1);
+            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+        });
+
+
+        it('should send amount with encrypted message attachment', async () => {
+
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+                .onPostReply(200, mockBroadcastResponse,
+                    'relPath?requestType=sendMoney&encryptedMessageData=data&encryptedMessageNonce=nonce&messageToEncryptIsText=true&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
+                .onPostReply(200, mockTransaction.transaction,
+                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+                .build();
+
+            const service = createBurstService(httpMock, 'relPath');
+
+            const encryptedMessage = new AttachmentEncryptedMessage();
+            encryptedMessage.data = 'data';
+            encryptedMessage.isText = true;
+            encryptedMessage.nonce = 'nonce';
+
+            const status = await sendAmountToSingleRecipient(service)(
+                {
+                    amountPlanck: '2000',
+                    feePlanck: '1000',
+                    recipientId: 'recipientId',
+                    senderPublicKey: 'senderPublicKey',
+                    senderPrivateKey: 'senderPrivateKey',
+                    attachment: encryptedMessage
+                }
+            );
+            expect(status).toBe('transactionId');
+            expect(generateSignature).toBeCalledTimes(1);
+            expect(verifySignature).toBeCalledTimes(1);
+            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+        });
+
+        it('should send money with plain message attachment', async () => {
+
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+                .onPostReply(200, mockBroadcastResponse,
+                    'relPath?requestType=sendMoney&message=message&messageIsText=true&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
+                .onPostReply(200, mockTransaction.transaction,
+                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+                .build();
+
+            const service = createBurstService(httpMock, 'relPath');
+
+            const message = new AttachmentMessage();
+            message.message = 'message';
+            message.messageIsText = true;
+
+            const status = await sendAmountToSingleRecipient(service)({
+                    amountPlanck: '2000',
+                    feePlanck: '1000',
+                    recipientId: 'recipientId',
+                    senderPublicKey: 'senderPublicKey',
+                    senderPrivateKey: 'senderPrivateKey',
+                    attachment: message
+                }
+            );
+            expect(status).toBe('transactionId');
+            expect(generateSignature).toBeCalledTimes(1);
+            expect(verifySignature).toBeCalledTimes(1);
+            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+        });
+
+        it('should throw error on invalid attachment', async () => {
+
+            httpMock = HttpMockBuilder.create()
+            // tslint:disable:max-line-length
+                .onPostReply(200, mockBroadcastResponse,
+                    'relPath?requestType=sendMoney&message=message&messageIsText=true&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
+                .onPostReply(200, mockTransaction.transaction,
+                    'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+                .build();
+
+            const service = createBurstService(httpMock, 'relPath');
+
+            const attachment = new Attachment('unknown');
+
+            try {
+                await sendAmountToSingleRecipient(service)({
+                        amountPlanck: '2000',
+                        feePlanck: '1000',
+                        recipientId: 'recipientId',
+                        senderPublicKey: 'senderPublicKey',
+                        senderPrivateKey: 'senderPrivateKey',
+                        attachment
+                    }
                 );
                 expect(false).toBe('Expect Exception');
             } catch (e) {

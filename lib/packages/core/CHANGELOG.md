@@ -1,10 +1,20 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-# 0.4.0
+# 0.4.0 (to be released)
 - Changed License: From GPL-3.0 to Apache 2.0
 - `isAttachmentVersion` returns `true` or `false` consistently
-
+- added `sendAmountToSingleRecipient` using new argument objects
+    - allows sending with public key, to enable recipients account activation
+- removed `sendMoneyMultiOut`
+    - use `sendSameAmountToMultipleRecipients`
+    - use `sendAmountToMultipleRecipients`
+- removed `sendMoney`
+    - use `sendAmount`, or better `sendAmountToSingleRecipient` 
+- deprecated `sendAmount`
+    - will be removed in next major version (0.5)
+    - use `sendAmountToSingleRecipient`    
+    
 # 0.3.0
 
 ___
