@@ -9,7 +9,7 @@ import { Block } from '../../../typings/block';
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
  *
- * See details at [[BlockApi.getAccountBlocks]]
+ * See details at [[AccountApi.getAccountBlocks]]
  */
 export const getAccountBlocks = (service: BurstService):
     (firstIndex?: number, lastIndex?: number) => Promise<Block[]> =>
