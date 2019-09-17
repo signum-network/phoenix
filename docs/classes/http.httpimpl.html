@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BurstService
+	<title>HttpImpl
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,13 +77,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/core.html">core</a>
+					<a href="../modules/http.html">http</a>
 				</li>
 				<li>
-					<a href="core.burstservice.html">BurstService</a>
+					<a href="http.httpimpl.html">HttpImpl</a>
 				</li>
 			</ul>
-			<h1>Class BurstService</h1>
+			<h1>Class HttpImpl</h1>
 		</div>
 	</div>
 </header>
@@ -93,7 +93,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Generic BRS Web Service class.</p>
+						<p>Generic Http client</p>
 					</div>
 				</div>
 			</section>
@@ -101,8 +101,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">BurstService</span>
+						<span class="target">HttpImpl</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/http.http-1.html" class="tsd-signature-type">Http</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -112,21 +118,17 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="core.burstservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.burstservice.html#settings" class="tsd-kind-icon">settings</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="http.httpimpl.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="core.burstservice.html#query" class="tsd-kind-icon">query</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="core.burstservice.html#send" class="tsd-kind-icon">send</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.burstservice.html#tobrsendpoint" class="tsd-kind-icon">toBRSEndpoint</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="http.httpimpl.html#delete" class="tsd-kind-icon">delete</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="http.httpimpl.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="http.httpimpl.html#post" class="tsd-kind-icon">post</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="http.httpimpl.html#put" class="tsd-kind-icon">put</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="http.httpimpl.html#mounterror" class="tsd-kind-icon">mount<wbr>Error</a></li>
 							</ul>
 						</section>
 					</div>
@@ -138,196 +140,163 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Burst<wbr>Service<span class="tsd-signature-symbol">(</span>settings<span class="tsd-signature-symbol">: </span><a href="../interfaces/core.burstservicesettings.html" class="tsd-signature-type">BurstServiceSettings</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.burstservice.html" class="tsd-signature-type">BurstService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Http<wbr>Impl<span class="tsd-signature-symbol">(</span>baseURL<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.httpimpl.html" class="tsd-signature-type">HttpImpl</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/service/burstService.ts#L32">core/src/service/burstService.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/http/src/httpImpl.ts#L13">http/src/httpImpl.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates Service instance</p>
+									<p>Creates your Http client</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>settings: <a href="../interfaces/core.burstservicesettings.html" class="tsd-signature-type">BurstServiceSettings</a></h5>
+									<h5>baseURL: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>The settings for the service</p>
+											<p>The baseUrl, i.e host url</p>
 										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="core.burstservice.html" class="tsd-signature-type">BurstService</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="http.httpimpl.html" class="tsd-signature-type">HttpImpl</a></h4>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="settings" class="tsd-anchor"></a>
-					<h3>settings</h3>
-					<div class="tsd-signature tsd-kind-icon">settings<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core.burstservicesettings.html" class="tsd-signature-type">BurstServiceSettings</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/service/burstService.ts#L44">core/src/service/burstService.ts:44</a></li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-					<a name="query" class="tsd-anchor"></a>
-					<h3>query</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">query&lt;T&gt;<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, args<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="delete" class="tsd-anchor"></a>
+					<h3>delete</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="http.httpresponse.html" class="tsd-signature-type">HttpResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/http.http-1.html">Http</a>.<a href="../interfaces/http.http-1.html#delete">delete</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/service/burstService.ts#L81">core/src/service/burstService.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/http/src/httpImpl.ts#L62">http/src/httpImpl.ts:62</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Requests a query to BRS</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>throws</dt>
-									<dd><p>HttpError in case of failure</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>T</h4>
-								</li>
-							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>method: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The BRS method according <a href="https://burstwiki.org/wiki/The_Burst_API">https://burstwiki.org/wiki/The_Burst_API</a></p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A JSON object which will be mapped to url params</p>
-									</div>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>The response data of success</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-					<a name="send" class="tsd-anchor"></a>
-					<h3>send</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">send&lt;T&gt;<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, args<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/service/burstService.ts#L100">core/src/service/burstService.ts:100</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Send data to BRS</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>throws</dt>
-									<dd><p>HttpError in case of failure</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>T</h4>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>method: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The BRS method according <a href="https://burstwiki.org/wiki/The_Burst_API">https://burstwiki.org/wiki/The_Burst_API</a>.
-										Note that there are only a few POST methods</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A JSON object which will be mapped to url params</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> body: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>An object with key value pairs to submit as post body</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>The response data of success</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="http.httpresponse.html" class="tsd-signature-type">HttpResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="tobrsendpoint" class="tsd-anchor"></a>
-					<h3>toBRSEndpoint</h3>
+					<a name="get" class="tsd-anchor"></a>
+					<h3>get</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">toBRSEndpoint<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="http.httpresponse.html" class="tsd-signature-type">HttpResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/http.http-1.html">Http</a>.<a href="../interfaces/http.http-1.html#get">get</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/http/src/httpImpl.ts#L35">http/src/httpImpl.ts:35</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="http.httpresponse.html" class="tsd-signature-type">HttpResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="post" class="tsd-anchor"></a>
+					<h3>post</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">post<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="http.httpresponse.html" class="tsd-signature-type">HttpResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/http.http-1.html">Http</a>.<a href="../interfaces/http.http-1.html#post">post</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/http/src/httpImpl.ts#L44">http/src/httpImpl.ts:44</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>payload: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="http.httpresponse.html" class="tsd-signature-type">HttpResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="put" class="tsd-anchor"></a>
+					<h3>put</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">put<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="http.httpresponse.html" class="tsd-signature-type">HttpResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/http.http-1.html">Http</a>.<a href="../interfaces/http.http-1.html#put">put</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/http/src/httpImpl.ts#L53">http/src/httpImpl.ts:53</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>payload: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="http.httpresponse.html" class="tsd-signature-type">HttpResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="mounterror" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> mount<wbr>Error</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">mount<wbr>Error<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.httperror.html" class="tsd-signature-type">HttpError</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/service/burstService.ts#L64">core/src/service/burstService.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/http/src/httpImpl.ts#L26">http/src/httpImpl.ts:26</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Mounts a BRS conform API (V1) endpoint of format <code>&lt;host&gt;?requestType=getBlock&amp;height=123</code></p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>see</dt>
-									<dd><p><a href="https://burstwiki.org/wiki/The_Burst_API">https://burstwiki.org/wiki/The_Burst_API</a></p>
-									</dd>
-								</dl>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>method: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The method name for <code>requestType</code></p>
-									</div>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> data: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A JSON object which will be mapped to url params</p>
-									</div>
+									<h5>error: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							<p>The mounted url (without host)</p>
+							<h4 class="tsd-returns-title">Returns <a href="http.httperror.html" class="tsd-signature-type">HttpError</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -339,13 +308,13 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/crypto.html">crypto</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/http.html">http</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -355,30 +324,45 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="http.httperror.html" class="tsd-kind-icon">Http<wbr>Error</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.burstservice.html" class="tsd-kind-icon">Burst<wbr>Service</a>
+						<a href="http.httpimpl.html" class="tsd-kind-icon">Http<wbr>Impl</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="core.burstservice.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="core.burstservice.html#settings" class="tsd-kind-icon">settings</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-								<a href="core.burstservice.html#query" class="tsd-kind-icon">query</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-								<a href="core.burstservice.html#send" class="tsd-kind-icon">send</a>
+								<a href="http.httpimpl.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.burstservice.html#tobrsendpoint" class="tsd-kind-icon">toBRSEndpoint</a>
+								<a href="http.httpimpl.html#delete" class="tsd-kind-icon">delete</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="http.httpimpl.html#get" class="tsd-kind-icon">get</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="http.httpimpl.html#post" class="tsd-kind-icon">post</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="http.httpimpl.html#put" class="tsd-kind-icon">put</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="http.httpimpl.html#mounterror" class="tsd-kind-icon">mount<wbr>Error</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="http.httpmockbuilder.html" class="tsd-kind-icon">Http<wbr>Mock<wbr>Builder</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="http.httpresponse.html" class="tsd-kind-icon">Http<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/http.http-1.html" class="tsd-kind-icon">Http</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

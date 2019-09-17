@@ -94,15 +94,12 @@
 					<a href="https://travis-ci.org/burst-apps-team/phoenix"><img src="https://travis-ci.org/burst-apps-team/phoenix.svg?branch=develop" alt="Build Status"></a>
 					<a href="https://snyk.io/test/github/burst-apps-team/phoenix?targetFile=lib%2Fpackage.json"><img src="https://snyk.io/test/github/burst-apps-team/phoenix/badge.svg?targetFile=lib%2Fpackage.json" alt="Known Vulnerabilities"></a>
 					<a href="https://codecov.io/gh/burst-apps-team/phoenix"><img src="https://codecov.io/gh/burst-apps-team/phoenix/branch/develop/graph/badge.svg" alt="codecov"></a>
-					<a href="https://www.jsdelivr.com/package/npm/@burstjs/core"><img src="https://data.jsdelivr.com/v1/package/npm/@burstjs/core/badge" alt="jsDelivr"></a>
-				<img src="https://img.shields.io/npm/l/@burstjs/core?color=blue&label=license" alt="NPM"></p>
-				<hr>
+				<a href="https://www.jsdelivr.com/package/npm/@burstjs/core"><img src="https://data.jsdelivr.com/v1/package/npm/@burstjs/core/badge" alt="jsDelivr"></a></p>
+				<h2 id="npm"><img src="https://img.shields.io/npm/l/@burstjs/core?color=blue&label=license" alt="NPM"></h2>
 				<p><code>@burstjs</code> is a modern library written in Typescript providing common functionalities for <em>browsers</em> and <em>nodejs</em> to interact with the <a href="https://burstcoin.community/">BurstCoin blockchain</a>,
 				an advanced community-driven blockchain technology.</p>
 				<p>This library is part of the Phoenix project, i.e. the new Burstcoin Wallet for Web, Desktop, Android, and iOS.</p>
-				<a href="#packages" id="packages" style="color: inherit; text-decoration: none;">
-					<h2>Packages</h2>
-				</a>
+				<h2 id="packages">Packages</h2>
 				<p>The library is separated in the following packages</p>
 				<ul>
 					<li><a href="./modules/core.html">@burstjs/core</a> The main package providing an extense API for blockchain interaction</li>
@@ -110,13 +107,9 @@
 					<li><a href="./modules/util.html">@burstjs/util</a> A package providing useful functions, e.g. common conversion functions </li>
 					<li><a href="./modules/http.html">@burstjs/http</a> A package providing a <em>simplified</em> Http layer, with consistent response types, and exception handling</li>
 				</ul>
-				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-					<h2>Installation</h2>
-				</a>
+				<h2 id="installation">Installation</h2>
 				<p><code>@burstjs</code> aims modern browsers and nodejs &gt; v10, but can also be used as bundled JavaScript using <code>&lt;script&gt;</code> </p>
-				<a href="#using-with-nodejs-andor-modern-web-frameworks" id="using-with-nodejs-andor-modern-web-frameworks" style="color: inherit; text-decoration: none;">
-					<h3>Using with NodeJS and/or modern web frameworks</h3>
-				</a>
+				<h3 id="using-with-nodejs-and-or-modern-web-frameworks">Using with NodeJS and/or modern web frameworks</h3>
 				<p>Install using <a href="https://www.npmjs.org/">npm</a>:</p>
 				<pre><code><span class="hljs-built_in">npm</span> install @burstjs/core
 <span class="hljs-built_in">npm</span> install @burstjs/crypto (optional)
@@ -134,9 +127,7 @@ yarn add @burstjs/http (optional)</code></pre>
 yarn add @burstjs/crypto (optional)
 yarn add @burstjs/util (optional)
 yarn add @burstjs/http (optional)</code></pre>
-				<a href="#using-in-classic-codeltscriptgtcode" id="using-in-classic-codeltscriptgtcode" style="color: inherit; text-decoration: none;">
-					<h3>Using in classic <code>&lt;script&gt;</code></h3>
-				</a>
+				<h3 id="using-in-classic-script">Using in classic <code>&lt;script&gt;</code></h3>
 				<p>Each package is available as bundled standalone library using IIFE.
 					This way <em>burstJS</em> can be used also within <code>&lt;script&gt;</code>-Tags.
 				This might be useful for Wordpress and/or other PHP applications.</p>
@@ -185,13 +176,9 @@ api.network.getBlockchainStatus().then(<span class="hljs-built_in">console</span
 				<pre><code class="language-js"><span class="hljs-comment">// using http</span>
 <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> b$http.HttpImpl(<span class="hljs-string">'https://jsonplaceholder.typicode.com/'</span>);
 client.get(<span class="hljs-string">'/todos/1'</span>).then(<span class="hljs-built_in">console</span>.log)</code></pre>
-				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-					<h2>Usage</h2>
-				</a>
+				<h2 id="usage">Usage</h2>
 				<p>The following example shows how to interact with the blockchain, i.e. getting the balance of a specific account</p>
-				<a href="#es6nodejs-style" id="es6nodejs-style" style="color: inherit; text-decoration: none;">
-					<h3>ES6/NodeJS style</h3>
-				</a>
+				<h3 id="es6-nodejs-style">ES6/NodeJS style</h3>
 				<p>In a separate file, preferribly <code>index.js</code> or <code>main.js</code> write your entry point like this:</p>
 				<pre><code class="language-js"><span class="hljs-keyword">import</span> {composeApi, ApiSettings} <span class="hljs-keyword">from</span> <span class="hljs-string">'@burstjs/core'</span>
 <span class="hljs-keyword">import</span> {convertNQTStringToNumber} <span class="hljs-keyword">from</span> <span class="hljs-string">'@burstjs/util'</span>
@@ -211,9 +198,7 @@ client.get(<span class="hljs-string">'/todos/1'</span>).then(<span class="hljs-b
   }
 })()
 </code></pre>
-				<a href="#codeltscriptgtcode-style" id="codeltscriptgtcode-style" style="color: inherit; text-decoration: none;">
-					<h3><code>&lt;script&gt;</code> style</h3>
-				</a>
+				<h3 id="script-style"><code>&lt;script&gt;</code> style</h3>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> apiSettings = <span class="hljs-keyword">new</span> b$.ApiSettings(<span class="hljs-string">'http://at-testnet.burst-alliance.org:6876'</span>, <span class="hljs-string">'burst'</span>);
 <span class="hljs-keyword">const</span> api = b$.composeApi(apiSettings);
 
@@ -234,150 +219,6 @@ api.account.getAccountBalance(<span class="hljs-string">'13036514135565182944'</
 				<ul>
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_api_factories_account_index_.html">"core/src/api/factories/account/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_api_factories_alias_index_.html">"core/src/api/factories/alias/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_api_factories_block_index_.html">"core/src/api/factories/block/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_api_factories_contract_index_.html">"core/src/api/factories/contract/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_api_factories_index_.html">"core/src/api/factories/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_api_factories_message_index_.html">"core/src/api/factories/message/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_api_factories_network_index_.html">"core/src/api/factories/network/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_api_factories_transaction_index_.html">"core/src/api/factories/transaction/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_attachment_getattachmentversion_.html">"core/src/attachment/get<wbr>Attachment<wbr>Version"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_attachment_index_.html">"core/src/attachment/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_attachment_isattachmentversion_.html">"core/src/attachment/is<wbr>Attachment<wbr>Version"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_constants_apiversion_.html">"core/src/constants/api<wbr>Version"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_constants_index_.html">"core/src/constants/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_contract_index_.html">"core/src/contract/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_index_.html">"core/src/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_service_index_.html">"core/src/service/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_transaction_getrecipientamountsfrommultioutpayment_.html">"core/src/transaction/get<wbr>Recipient<wbr>Amounts<wbr>From<wbr>Multi<wbr>Out<wbr>Payment"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_transaction_getrecipientsamount_.html">"core/src/transaction/get<wbr>Recipients<wbr>Amount"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_transaction_index_.html">"core/src/transaction/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_transaction_ismultioutsametransaction_.html">"core/src/transaction/is<wbr>Multi<wbr>Out<wbr>Same<wbr>Transaction"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_transaction_ismultiouttransaction_.html">"core/src/transaction/is<wbr>Multi<wbr>Out<wbr>Transaction"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_typings_api_accountapi_.html">"core/src/typings/api/account<wbr>Api"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_typings_api_aliasapi_.html">"core/src/typings/api/alias<wbr>Api"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_typings_api_contractapi_.html">"core/src/typings/api/contract<wbr>Api"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_typings_api_index_.html">"core/src/typings/api/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_typings_api_messageapi_.html">"core/src/typings/api/message<wbr>Api"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_typings_api_networkapi_.html">"core/src/typings/api/network<wbr>Api"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_typings_api_transactionapi_.html">"core/src/typings/api/transaction<wbr>Api"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_typings_args_index_.html">"core/src/typings/args/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_typings_args_sendamountargs_.html">"core/src/typings/args/send<wbr>Amount<wbr>Args"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_typings_contractlist_.html">"core/src/typings/contract<wbr>List"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_core_src_typings_multioutrecipientamount_.html">"core/src/typings/multiout<wbr>Recipient<wbr>Amount"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_crypto_src_decryptaes_.html">"crypto/src/decryptAES"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_crypto_src_encryptaes_.html">"crypto/src/encryptAES"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_crypto_src_generatemasterkeys_.html">"crypto/src/generate<wbr>Master<wbr>Keys"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_crypto_src_generatesignature_.html">"crypto/src/generate<wbr>Signature"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_crypto_src_getaccountidfrompublickey_.html">"crypto/src/get<wbr>Account<wbr>IdFrom<wbr>Public<wbr>Key"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_crypto_src_hashsha256_.html">"crypto/src/hashSHA256"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_crypto_src_index_.html">"crypto/src/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_crypto_src_verifysignature_.html">"crypto/src/verify<wbr>Signature"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_http_src_http_.html">"http/src/http"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_http_src_httpimpl_.html">"http/src/http<wbr>Impl"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_http_src_httpmock_.html">"http/src/http<wbr>Mock"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_http_src_httpmockbuilder_.html">"http/src/http<wbr>Mock<wbr>Builder"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_http_src_index_.html">"http/src/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_util_src_convertbursttimetoepochtime_.html">"util/src/convert<wbr>Burst<wbr>Time<wbr>ToEpoch<wbr>Time"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_util_src_index_.html">"util/src/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_util_src_sumnqtstringtonumber_.html">"util/src/sumNQTString<wbr>ToNumber"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/core.html">core</a>

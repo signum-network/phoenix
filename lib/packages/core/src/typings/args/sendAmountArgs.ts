@@ -1,3 +1,5 @@
+/** @module core */
+
 import {Attachment} from '../attachment';
 
 /**

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TransactionAssetSubtype
+	<title>Api
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,10 +80,13 @@
 					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="core.transactionassetsubtype.html">TransactionAssetSubtype</a>
+					<a href="../modules/core.api.html">api</a>
+				</li>
+				<li>
+					<a href="core.api.api.html">Api</a>
 				</li>
 			</ul>
-			<h1>Enumeration TransactionAssetSubtype</h1>
+			<h1>Class Api</h1>
 		</div>
 	</div>
 </header>
@@ -93,87 +96,117 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Constants for asset subtypes</p>
+						<p>The API structure returned by <a href="../modules/core.api.html#composeapi">composeApi</a></p>
 					</div>
+					<p>The programming interface uses a <em>builder pattern</em> to mount an API.
+						For sake of simplicity the <a href="../modules/core.api.html#composeapi">composeApi</a> method mounts the <strong>entire</strong> API, i.e.
+					all available methods are mounted using this class</p>
+					<pre><code class="language-ts"><span class="hljs-keyword">const</span> api = composeApi({
+  nodeHost: <span class="hljs-string">'https://wallet1.burst-team.us:2083'</span>, <span class="hljs-comment">// one of the mainnet nodes</span>
+  apiRootUrl: <span class="hljs-string">'/burst'</span> <span class="hljs-comment">// endpoint to the BURST API</span>
+})</code></pre>
+					<p>While this is a straightforward way to have access to all BURST functionality, this methods
+						has the disadvantage of including all needed dependencies, thus leading to a bigger bundle, for those
+						who use bundlers like <a href="https://webpack.js.org/">webpack</a>. To reduce the bundle size, one may mount the API
+					conforming his needs using the <a href="core.api.apicomposer.html">ApiComposer</a> class.</p>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">Api</span>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Enumeration members</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionassetsubtype.html#askordercancellation" class="tsd-kind-icon">Ask<wbr>Order<wbr>Cancellation</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionassetsubtype.html#askorderplacement" class="tsd-kind-icon">Ask<wbr>Order<wbr>Placement</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionassetsubtype.html#assetissuance" class="tsd-kind-icon">Asset<wbr>Issuance</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionassetsubtype.html#assettransfer" class="tsd-kind-icon">Asset<wbr>Transfer</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionassetsubtype.html#bidordercancellation" class="tsd-kind-icon">Bid<wbr>Order<wbr>Cancellation</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionassetsubtype.html#bidorderplacement" class="tsd-kind-icon">Bid<wbr>Order<wbr>Placement</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.api.api.html#account" class="tsd-kind-icon">account</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.api.api.html#alias" class="tsd-kind-icon">alias</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.api.api.html#block" class="tsd-kind-icon">block</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.api.api.html#contract" class="tsd-kind-icon">contract</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.api.api.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.api.api.html#network" class="tsd-kind-icon">network</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.api.api.html#transaction" class="tsd-kind-icon">transaction</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Enumeration members</h2>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="askordercancellation" class="tsd-anchor"></a>
-					<h3>Ask<wbr>Order<wbr>Cancellation</h3>
-					<div class="tsd-signature tsd-kind-icon">Ask<wbr>Order<wbr>Cancellation<span class="tsd-signature-symbol">:</span> </div>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="account" class="tsd-anchor"></a>
+					<h3>account</h3>
+					<div class="tsd-signature tsd-kind-icon">account<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core.api.accountapi.html" class="tsd-signature-type">AccountApi</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/constants/transactionAssetSubtype.ts#L16">core/src/constants/transactionAssetSubtype.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/typings/api/index.ts#L47">core/src/typings/api/index.ts:47</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="askorderplacement" class="tsd-anchor"></a>
-					<h3>Ask<wbr>Order<wbr>Placement</h3>
-					<div class="tsd-signature tsd-kind-icon">Ask<wbr>Order<wbr>Placement<span class="tsd-signature-symbol">:</span> </div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="alias" class="tsd-anchor"></a>
+					<h3>alias</h3>
+					<div class="tsd-signature tsd-kind-icon">alias<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core.api.aliasapi.html" class="tsd-signature-type">AliasApi</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/constants/transactionAssetSubtype.ts#L14">core/src/constants/transactionAssetSubtype.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/typings/api/index.ts#L48">core/src/typings/api/index.ts:48</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="assetissuance" class="tsd-anchor"></a>
-					<h3>Asset<wbr>Issuance</h3>
-					<div class="tsd-signature tsd-kind-icon">Asset<wbr>Issuance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="block" class="tsd-anchor"></a>
+					<h3>block</h3>
+					<div class="tsd-signature tsd-kind-icon">block<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core.api.blockapi.html" class="tsd-signature-type">BlockApi</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/constants/transactionAssetSubtype.ts#L12">core/src/constants/transactionAssetSubtype.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/typings/api/index.ts#L43">core/src/typings/api/index.ts:43</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="assettransfer" class="tsd-anchor"></a>
-					<h3>Asset<wbr>Transfer</h3>
-					<div class="tsd-signature tsd-kind-icon">Asset<wbr>Transfer<span class="tsd-signature-symbol">:</span> </div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="contract" class="tsd-anchor"></a>
+					<h3>contract</h3>
+					<div class="tsd-signature tsd-kind-icon">contract<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core.api.contractapi.html" class="tsd-signature-type">ContractApi</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/constants/transactionAssetSubtype.ts#L13">core/src/constants/transactionAssetSubtype.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/typings/api/index.ts#L49">core/src/typings/api/index.ts:49</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="bidordercancellation" class="tsd-anchor"></a>
-					<h3>Bid<wbr>Order<wbr>Cancellation</h3>
-					<div class="tsd-signature tsd-kind-icon">Bid<wbr>Order<wbr>Cancellation<span class="tsd-signature-symbol">:</span> </div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="message" class="tsd-anchor"></a>
+					<h3>message</h3>
+					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core.api.messageapi.html" class="tsd-signature-type">MessageApi</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/constants/transactionAssetSubtype.ts#L17">core/src/constants/transactionAssetSubtype.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/typings/api/index.ts#L46">core/src/typings/api/index.ts:46</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="bidorderplacement" class="tsd-anchor"></a>
-					<h3>Bid<wbr>Order<wbr>Placement</h3>
-					<div class="tsd-signature tsd-kind-icon">Bid<wbr>Order<wbr>Placement<span class="tsd-signature-symbol">:</span> </div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="network" class="tsd-anchor"></a>
+					<h3>network</h3>
+					<div class="tsd-signature tsd-kind-icon">network<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core.api.networkapi.html" class="tsd-signature-type">NetworkApi</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/constants/transactionAssetSubtype.ts#L15">core/src/constants/transactionAssetSubtype.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/typings/api/index.ts#L44">core/src/typings/api/index.ts:44</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="transaction" class="tsd-anchor"></a>
+					<h3>transaction</h3>
+					<div class="tsd-signature tsd-kind-icon">transaction<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core.api.transactionapi.html" class="tsd-signature-type">TransactionApi</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/typings/api/index.ts#L45">core/src/typings/api/index.ts:45</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -185,49 +218,70 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/core.html">core</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/crypto.html">crypto</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/http.html">http</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/util.html">util</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-enum tsd-parent-kind-external-module">
-						<a href="core.transactionassetsubtype.html" class="tsd-kind-icon">Transaction<wbr>Asset<wbr>Subtype</a>
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+						<a href="core.api.api.html" class="tsd-kind-icon">Api</a>
 						<ul>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionassetsubtype.html#askordercancellation" class="tsd-kind-icon">Ask<wbr>Order<wbr>Cancellation</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.api.api.html#account" class="tsd-kind-icon">account</a>
 							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionassetsubtype.html#askorderplacement" class="tsd-kind-icon">Ask<wbr>Order<wbr>Placement</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.api.api.html#alias" class="tsd-kind-icon">alias</a>
 							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionassetsubtype.html#assetissuance" class="tsd-kind-icon">Asset<wbr>Issuance</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.api.api.html#block" class="tsd-kind-icon">block</a>
 							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionassetsubtype.html#assettransfer" class="tsd-kind-icon">Asset<wbr>Transfer</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.api.api.html#contract" class="tsd-kind-icon">contract</a>
 							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionassetsubtype.html#bidordercancellation" class="tsd-kind-icon">Bid<wbr>Order<wbr>Cancellation</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.api.api.html#message" class="tsd-kind-icon">message</a>
 							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionassetsubtype.html#bidorderplacement" class="tsd-kind-icon">Bid<wbr>Order<wbr>Placement</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.api.api.html#network" class="tsd-kind-icon">network</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.api.api.html#transaction" class="tsd-kind-icon">transaction</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="core.api.apicomposer.html" class="tsd-kind-icon">Api<wbr>Composer</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="core.api.apisettings.html" class="tsd-kind-icon">Api<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.api.accountapi.html" class="tsd-kind-icon">Account<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.api.aliasapi.html" class="tsd-kind-icon">Alias<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.api.blockapi.html" class="tsd-kind-icon">Block<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.api.contractapi.html" class="tsd-kind-icon">Contract<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.api.messageapi.html" class="tsd-kind-icon">Message<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.api.networkapi.html" class="tsd-kind-icon">Network<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.api.transactionapi.html" class="tsd-kind-icon">Transaction<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/core.api.html#composeapi" class="tsd-kind-icon">compose<wbr>Api</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
