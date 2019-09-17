@@ -4,6 +4,8 @@
  */
 
 export const constants = {
+  maxRecipientsSameMultiout: 128,
+  maxRecipientsMultiout: 64,
   connectionTimeout: 10000,
   currencies: [
     {code: 'AUD', symbol: '$'},

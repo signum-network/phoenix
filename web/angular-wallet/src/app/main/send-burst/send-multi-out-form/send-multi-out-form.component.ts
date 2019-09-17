@@ -4,18 +4,21 @@ import {NotifierService} from 'angular-notifier';
 import {
   convertNumberToNQTString,
   convertAddressToNumericId,
-  convertNQTStringToNumber
+  convertNQTStringToNumber, convertNumericIdToAddress
 } from '@burstjs/util';
-import {SuggestedFees, Account, TransactionId} from '@burstjs/core';
+import {SuggestedFees, Account, TransactionId, MultioutRecipientAmount} from '@burstjs/core';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 import {Recipient} from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
-import {takeUntil} from 'rxjs/operators';
+import {filter, takeUntil} from 'rxjs/operators';
 import {StoreService} from '../../../store/store.service';
 import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
 import {burstAddressPattern} from 'app/util/burstAddressPattern';
+import {BatchRecipientsDialogComponent} from '../batch-recipients-dialog/batch-recipients-dialog.component';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {constants} from '../../../constants';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -28,7 +31,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   @ViewChild('sendBurstForm', {static: true}) public sendBurstForm: NgForm;
   @ViewChild('recipientAddress', {static: false}) public recipientAddress: string;
-  @ViewChild('amountNQT', {static: true}) public amount: string;
+  @ViewChild('amount', {static: true}) public amount: string;
   @ViewChild('message', {static: false}) public message: string;
   @ViewChild('fullHash', {static: false}) public fullHash: string;
   @ViewChild('encrypt', {static: false}) public encrypt: string;
@@ -51,10 +54,12 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   constructor(
     private warnDialog: MatDialog,
+    private batchRecipientsDialog: MatDialog,
     private transactionService: TransactionService,
     private notifierService: NotifierService,
     private i18nService: I18nService,
     private storeService: StoreService,
+    private breakpointObserver: BreakpointObserver,
   ) {
     super();
     this.storeService.settings
@@ -66,8 +71,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   ngOnInit(): void {
-    this.recipients = new Array<Recipient>();
-    this.recipients.push(new Recipient());
+    this.resetRecipients();
   }
 
   onSubmit(event): void {
@@ -112,15 +116,20 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
 
   private async sendBurst(): Promise<void> {
+    if (!this.nonEmptyRecipients().length) {
+      return;
+    }
+
     this.isSending = true;
     try {
       if (this.sameAmount) {
-        this.sendBurstSameAmount();
+        await this.sendBurstSameAmount();
       } else {
-        this.sendBurstArbitraryAmount();
+        await this.sendBurstArbitraryAmount();
       }
-      this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
       this.sendBurstForm.resetForm();
+      this.resetRecipients();
+      this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
     } catch (e) {
       this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
     }
@@ -128,24 +137,41 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   private openWarningDialog(recipients: Array<Recipient>): MatDialogRef<any> {
+    const width = this.breakpointObserver.isMatched(Breakpoints.Handset) ? '90%' : '50%';
     return this.warnDialog.open(WarnSendDialogComponent, {
-      width: '400px',
+      width,
       data: recipients
     });
+  }
+
+  private openBatchRecipientsDialog(): MatDialogRef<any> {
+    const width = this.breakpointObserver.isMatched(Breakpoints.Handset) ? '90%' : '50%';
+    return this.batchRecipientsDialog.open(BatchRecipientsDialogComponent, {width});
   }
 
   trackByIndex(index): number {
     return index;
   }
 
-  toggleSameAmount(): void {
-    this.sameAmount = !this.sameAmount;
-  }
-
   addRecipient(event): void {
     this.recipients.push(new Recipient());
     event.stopImmediatePropagation();
     event.preventDefault();
+  }
+
+  clearRecipients(): void {
+    this.recipients = [];
+  }
+
+  addBatchedRecipient(event: MouseEvent): void {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+    this.openBatchRecipientsDialog()
+      .afterClosed()
+      .pipe(
+        filter(recipientAmounts => recipientAmounts && recipientAmounts.length > 0)
+      )
+      .subscribe(this.handleBatchRecipients.bind(this));
   }
 
   private getTotalForMultiOut(): number {
@@ -182,7 +208,11 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
     const nonEmptyRecipients = this.nonEmptyRecipients();
 
-    if (!nonEmptyRecipients.length) {
+    if (nonEmptyRecipients.length < 2) {
+      return false;
+    }
+
+    if (this.hasRecipientsExceeded()) {
       return false;
     }
 
@@ -200,6 +230,61 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   onRecipientChange(recipient: Recipient, i: number): void {
-    this.recipients[i] = recipient;
+    const amount = this.recipients[i].amount;
+    this.recipients[i] = {
+      ...recipient,
+      amount
+    };
+  }
+
+  private handleBatchRecipients(recipientAmounts: MultioutRecipientAmount[]): void {
+
+    let previousAmount = null;
+    let isSameAmount = true;
+
+    this.recipients = recipientAmounts.map(ra => {
+      const r = new Recipient();
+      r.amount = convertNQTStringToNumber(ra.amountNQT).toString(10);
+      r.addressRaw = ra.recipient;
+      r.addressRS = convertNumericIdToAddress(ra.recipient);
+
+      if (previousAmount) {
+        isSameAmount = isSameAmount && (previousAmount === r.amount);
+      }
+      previousAmount = r.amount;
+      return r;
+    });
+
+    if (isSameAmount) {
+      this.sameAmount = isSameAmount;
+      this.amount = previousAmount;
+    }
+  }
+
+  resetRecipients(): void {
+    this.clearRecipients();
+    this.recipients.push(new Recipient());
+  }
+
+  private getMaxAllowedRecipients(): number {
+    return this.sameAmount ? constants.maxRecipientsSameMultiout : constants.maxRecipientsMultiout;
+  }
+
+  hasRecipientsExceeded(): boolean {
+    return this.nonEmptyRecipients().length > this.getMaxAllowedRecipients();
+  }
+
+  getRecipientCounter(): string {
+    return `${this.nonEmptyRecipients().length}/${this.getMaxAllowedRecipients()} ${this.i18nService.getTranslation('recipients')}`;
+  }
+
+  isLastRecipientItem(index: number): boolean {
+    return this.recipients.length - 1 === index;
+  }
+
+  removeRecipientItem(index: number): void {
+    if (this.recipients.length > 1) {
+      this.recipients.splice(index, 1);
+    }
   }
 }
