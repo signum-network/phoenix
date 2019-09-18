@@ -80,11 +80,6 @@ export class TransactionService {
     return decryptAES(keys.signPrivateKey, hashSHA256(pin));
   }
 
-  public async sendMoneyMultiOut({transaction, pin, keys, sameAmount}: SendMoneyMultiOutRequest): Promise<TransactionId> {
-    const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
-    return this.transactionApi.sendMoneyMultiOut(transaction, keys.publicKey, senderPrivateKey, transaction.recipients, sameAmount);
-  }
-
   public async sendBurstToMultipleRecipients(request: SendBurstMultipleRequest): Promise<TransactionId> {
     const {fee, keys, pin, recipientAmounts} = request;
     return this.transactionApi.sendAmountToMultipleRecipients(
@@ -130,7 +125,7 @@ export class TransactionService {
           agreementPrivateKey
         );
       }
-      
+
       attachment = new AttachmentEncryptedMessage(encryptedMessage);
     } else if (message) {
       attachment = new AttachmentMessage({message, messageIsText});

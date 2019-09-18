@@ -12,9 +12,14 @@ import {signAndBroadcastTransaction} from '../../../internal/signAndBroadcastTra
 import {createParametersFromAttachment} from '../../../internal/createParametersFromAttachment';
 
 /**
+ * <div class="deprecated">
+ *     Use [[TransactionApi.sendAmountToSingleRecipient]] instead
+ * </div>
+ *
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
  * See details at [[TransactionApi.sendAmount]]
+ *
  */
 export const sendAmount = (service: BurstService):
     (amountPlanck: string,
