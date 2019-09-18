@@ -138,6 +138,7 @@ describe('SendMultiOutFormComponent', () => {
       null,
       null,
       null,
+      null,
       storeServiceMock);
 
     it('should calculate same amount correctly', () => {
