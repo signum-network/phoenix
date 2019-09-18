@@ -25,6 +25,8 @@ const getRandomIndex = (length: number): number => {
 };
 
 export class EnterPassphraseStage extends React.PureComponent<Props, State> {
+
+  isDone: boolean = false; // hax: bypass state to avoid double accounts being added
   state: State = {
     offset: 0
   };
@@ -39,7 +41,8 @@ export class EnterPassphraseStage extends React.PureComponent<Props, State> {
         this.setState({
           offset: offset + 1
         });
-      } else {
+      } else if (!this.isDone) {
+        this.isDone = true;
         this.props.onFinish();
       }
     }
