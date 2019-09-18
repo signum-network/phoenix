@@ -81,7 +81,6 @@ See more here:
 <dt><a href="#core.module_api">api</a></dt>
 <dd></dd>
 <dt><a href="#module_core">core</a></dt>
-<dd></dd>
 </dl>
 
 ## Classes
