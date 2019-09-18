@@ -122,10 +122,10 @@ class Home extends React.PureComponent<TProps, State> {
         <FullHeightView withoutPaddings>
           <AccountsListHeader priceApi={priceApi} accounts={accounts}/>
           <View>
-            <HomeStackedAreaChart
+            {accounts.length && <HomeStackedAreaChart
               priceApi={priceApi}
               accounts={accounts}
-            />
+            /> || null}
             <AccountsList
               accounts={accounts}
               onAccountPress={this.handleAccountPress}
