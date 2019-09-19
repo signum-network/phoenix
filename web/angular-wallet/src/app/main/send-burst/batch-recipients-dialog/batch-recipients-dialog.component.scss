@@ -1,0 +1,22 @@
+@import "src/@fuse/scss/fuse";
+
+:host{
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+
+  .right {
+    align-content: center;
+    justify-content: flex-end;
+    @include media-breakpoint('xs') {
+      justify-content: center;
+    }
+  }
+
+  .status-message {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}

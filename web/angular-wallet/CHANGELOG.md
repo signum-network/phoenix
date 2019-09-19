@@ -4,12 +4,18 @@
 
 ### New Feature
 
+- Improved Multi-out Payments with CSV upload (#238)
 - Enhanced Node Selection
     - custom endpoint possible
     - dynamic version detection 
-- Added ability to send hex messages with transactions
+- Added ability to send hex messages with transactions (#696)
+- Added Asset Transfer info in Tx details
 
 # Bug Fixes
+- Improved some of Translations (pt-br,pt-pt, lt)
+- Fixed Block Reward conversion in Block Details
+- Fixed Message Handling on Multiout (#654)
+- Fixed Fee issue for messages (#614)
 - Fixed sending to unknown accounts (#645)
 - Fixed an issue with unconfirmed transactions on the dashboard sometimes not showing up
 

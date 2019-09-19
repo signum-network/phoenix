@@ -1,44 +1,83 @@
+@import "src/@fuse/scss/fuse";
+
 mat-form-field {
-    width: 100%;
-    display: block;
+  width: 100%;
+  display: block;
 }
 
 form {
-    margin:20px 0;
+  margin: 20px 0;
 }
 
-.no-balance{
+.no-balance {
   color: red;
   font-weight: bold;
 }
 
-.recipients-item{
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
+.recipients-container {
+  .recipients-list {
+    max-height: 400px;
+    overflow-y: auto;
+    border: solid 1px lightgrey;
+    padding: 1em;
+    margin-bottom: 1rem;
 
-  burst-recipient-input{
-    margin-right: 8px;
-    width: 100%;
-  }
+    .recipients-item {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
 
-  mat-form-field{
-    width:30%
-  }
+      burst-recipient-input {
+        margin-right: 8px;
+        width: 100%;
+      }
 
-  mat-icon {
-    cursor: pointer;
+      mat-form-field {
+        width: 30%
+      }
+
+      mat-icon {
+        cursor: pointer;
+      }
+    }
   }
 }
 
-.add-recipient {
-    width:100%;
+.action-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    color: #666;
+    cursor: pointer;
+
+    @include media-breakpoint('xs') {
+      flex-direction: column;
+      margin-top: 12px;
+      justify-content: normal;
+    }
+
+    button {
+      @include media-breakpoint('xs') {
+        margin-top: 12px;
+      }
+
+      &:hover {
+        color: black
+      }
+    }
+  }
 }
 
 .same-amount {
-    margin:10px 0;
-    font-size:14px;
-    display: inline-block;
+  margin: 10px 0;
+  font-size: 14px;
+  display: inline-block;
 }
 
 .send-button-wrapper {

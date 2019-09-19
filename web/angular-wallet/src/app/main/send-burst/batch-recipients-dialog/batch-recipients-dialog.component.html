@@ -1,0 +1,33 @@
+<div class="w-100-p p-24">
+  <form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <h1 mat-dialog-title>{{"csv_add_recipients" | i18n}}</h1>
+    <div mat-dialog-content>
+      <mat-form-field class="w-100-p">
+        <mat-select placeholder="{{'choose_delimiter' | i18n}}" formControlName="delimiter">
+          <mat-option *ngFor="let delimiter of delimiters" [value]="delimiter.value">
+            {{delimiter.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="w-100-p">
+      <textarea
+        matInput
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="4"
+        cdkAutosizeMaxRows="10"
+        placeholder="{{'paste_csv_content' | i18n}}"
+        formControlName="recipientsInput"
+      ></textarea>
+      </mat-form-field>
+      <span class="s-24 status-message">
+        <small>{{message}}</small>
+        <mat-icon *ngIf="isValid" class="green-800-fg ml-8">done</mat-icon>
+        <mat-icon *ngIf="!isValid" class="warn-700-fg ml-8">remove_circle</mat-icon>
+      </span>
+    </div>
+    <div mat-dialog-actions class="right">
+      <button mat-button [mat-dialog-close]>{{ 'cancel' | i18n }}</button>
+      <button type="submit" mat-button color="accent" disabled="{{!isValid}}">{{ 'submit' | i18n }}</button>
+    </div>
+  </form>
+</div>
