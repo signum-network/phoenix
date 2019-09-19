@@ -1,7 +1,7 @@
 import { defaultSettings } from '../../../core/environment';
 import { createAction, createActionFn } from '../../../core/utils/store';
 import { actionTypes } from './actionTypes';
-import { PairedHistoricalPriceInfo, PriceInfo, PriceTypeStrings } from './reducer';
+import { PairedHistoricalPriceInfo, PriceInfo, PriceType, PriceTypeStrings } from './reducer';
 
 const actions = {
   updatePriceInfo: createAction<PriceInfo>(actionTypes.updatePriceInfo),
@@ -28,16 +28,16 @@ export const selectCurrency = createActionFn<PriceTypeStrings, Promise<void>>(
 export const loadHistoricalPriceApiData = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) => {
     const response = await Promise.all([
-      fetch(defaultSettings.cryptoCompareURL.replace('$SYMBOL', 'BTC')),
-      fetch(defaultSettings.cryptoCompareURL.replace('$SYMBOL', 'USD'))
+      fetch(defaultSettings.cryptoCompareURL.replace('$SYMBOL', PriceType.BTC)),
+      fetch(defaultSettings.cryptoCompareURL.replace('$SYMBOL', PriceType.USD))
     ]);
 
     const updatedPriceInfo = await Promise.all([response[0].json(), response[1].json()]);
     if (updatedPriceInfo[0].Data && updatedPriceInfo[0].Data.length &&
         updatedPriceInfo[1].Data && updatedPriceInfo[1].Data.length) {
       dispatch(actions.updateHistoricalPriceInfo({
-        BTC: updatedPriceInfo[0],
-        USD: updatedPriceInfo[1]
+        [PriceType.BTC]: updatedPriceInfo[0],
+        [PriceType.USD]: updatedPriceInfo[1]
       }));
     }
   }

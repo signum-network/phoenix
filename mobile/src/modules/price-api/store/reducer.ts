@@ -22,14 +22,16 @@ export interface PriceInfo {
 
 export interface PriceInfoReduxState {
   priceInfo: PriceInfo;
-  historicalPriceInfo: PairedHistoricalPriceInfo,
-  selectedCurrency: PriceTypeStrings
+  historicalPriceInfo: PairedHistoricalPriceInfo;
+  selectedCurrency: PriceTypeStrings;
 }
 
 export interface PairedHistoricalPriceInfo {
   BTC: HistoricalPriceInfo;
   USD: HistoricalPriceInfo;
 }
+
+export type HistoricalPriceTypeStrings = keyof PairedHistoricalPriceInfo;
 
 export interface HistoricalPriceInfoUpdate {
   historicalPriceInfo: HistoricalPriceInfo,
@@ -64,17 +66,12 @@ export interface HistoricalPriceInfo {
 }
 
 export enum PriceType {
-  BURST,
-  BTC,
-  USD
+  BURST = 'BURST',
+  BTC = 'BTC',
+  USD = 'USD'
 }
-export type PriceTypeStrings = keyof typeof PriceType;
 
-export enum HistoricalPriceTypes {
-  BTC,
-  USD
-}
-export type HistoricalPriceTypeStrings = keyof typeof HistoricalPriceTypes;
+export type PriceTypeStrings = keyof typeof PriceType;
 
 export const priceApiState = (): PriceInfoReduxState => {
   return {
@@ -107,7 +104,7 @@ export const priceApiState = (): PriceInfoReduxState => {
         TimeTo: 0
       }
     },
-    selectedCurrency: 'BURST'
+    selectedCurrency: PriceType.BURST
   };
 };
 

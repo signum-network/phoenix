@@ -15,7 +15,8 @@ import { ApplicationState } from '../../../core/store/initialState';
 import { Colors } from '../../../core/theme/colors';
 import { core } from '../../../core/translations';
 import { HomeStackedAreaChart } from '../../home/components/HomeStackedAreaChart';
-import { PriceInfoReduxState, PriceTypeStrings } from '../../price-api/store/reducer';
+import { selectCurrency } from '../../price-api/store/actions';
+import { PriceInfoReduxState, PriceType, PriceTypeStrings } from '../../price-api/store/reducer';
 import { AccountsList } from '../components/AccountsList';
 import { AccountsListHeader } from '../components/AccountsListHeader';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
@@ -36,7 +37,7 @@ interface State {
   selectedCurrency: PriceTypeStrings;
 }
 
-const priceTypes = ['BURST', 'BTC', 'USD'];
+const priceTypes = [PriceType.BURST, PriceType.BTC, PriceType.USD];
 
 class Home extends React.PureComponent<TProps, State> {
 
@@ -44,7 +45,7 @@ class Home extends React.PureComponent<TProps, State> {
 
   state = {
     isPINModalVisible: false,
-    selectedCurrency: priceTypes[0] as PriceTypeStrings
+    selectedCurrency: priceTypes[0]
   };
 
   static navigationOptions = ({ navigation }: NavigationInjectedProps) => {
@@ -61,6 +62,8 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   componentDidMount () {
+    this.selectCurrency = this.selectCurrency.bind(this);
+
     this.props.navigation.setParams({
       handleAddAccountPress: this.handleAddAccountPress
     });
@@ -116,6 +119,15 @@ class Home extends React.PureComponent<TProps, State> {
     clearInterval(this._checkPinExpiryInterval as number);
   }
 
+  selectCurrency () {
+    this.props.dispatch(
+      selectCurrency(priceTypes[priceTypes.findIndex(
+          (val) => val === this.props.priceApi.selectedCurrency
+        ) + 1] || priceTypes[0]
+      )
+    );
+  }
+
   render () {
     const accounts: Account[] = this.props.auth.accounts || [];
     const priceApi = this.props.priceApi;
@@ -130,6 +142,7 @@ class Home extends React.PureComponent<TProps, State> {
               priceApi={priceApi}
               accounts={accounts}
               priceTypes={priceTypes}
+              selectCurrency={this.selectCurrency}
             />
             <AccountsList
               accounts={accounts}

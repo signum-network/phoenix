@@ -11,7 +11,7 @@ import { AccountColors, Colors } from '../../../core/theme/colors';
 import { defaultSideOffset, FontSizes, Sizes } from '../../../core/theme/sizes';
 import { core } from '../../../core/translations';
 import { amountToString } from '../../../core/utils/numbers';
-import { PriceInfoReduxState } from '../../price-api/store/reducer';
+import { PriceInfoReduxState, PriceType } from '../../price-api/store/reducer';
 
 interface IProps {
   onPress: (account: Account) => void;
@@ -124,10 +124,8 @@ export class AccountListItem extends React.PureComponent<Props> {
             {priceApi && priceApi.priceInfo && (
               <View style={styles.row}>
                 <Text size={FontSizes.SMALL} textAlign={TextAlign.RIGHT} color={Colors.WHITE}>
-                  {/* todo: figure out why this doesnt work */}
-                  {priceApi.selectedCurrency === 'USD' ?
-                    // i18n.t(core.currency.USD.value, { value: balanceUSD.toFixed(2) }) :
-                    i18n.t(core.currency.BTC.value, { value: amountToString(balanceBTC) }) :
+                  {priceApi.selectedCurrency === PriceType.USD ?
+                    i18n.t(core.currency.USD.value, { value: balanceUSD.toFixed(2) }) :
                     i18n.t(core.currency.BTC.value, { value: amountToString(balanceBTC) })}
                 </Text>
               </View>

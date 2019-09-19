@@ -9,7 +9,7 @@ import { Colors } from '../../../core/theme/colors';
 import { defaultSideOffset, FontSizes, Sizes } from '../../../core/theme/sizes';
 import { core } from '../../../core/translations';
 import { amountToString } from '../../../core/utils/numbers';
-import { PriceInfoReduxState } from '../../price-api/store/reducer';
+import { PriceInfoReduxState, PriceType } from '../../price-api/store/reducer';
 
 interface Props {
   accounts: Account[];
@@ -47,7 +47,7 @@ export class AccountsListHeader extends React.PureComponent<Props> {
         </Text>
         {priceInBTC ? (
           <Text color={Colors.WHITE} bebasFont>
-            {priceApi && priceApi.selectedCurrency === 'USD' ?
+            {priceApi && priceApi.selectedCurrency === PriceType.USD ?
               i18n.t(core.currency.USD.value, { value: totalBalanceUSD.toFixed(2) }) :
               i18n.t(core.currency.BTC.value, { value: amountToString(totalBalanceBTC) })}
           </Text>

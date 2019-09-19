@@ -4,15 +4,15 @@ import * as shape from 'd3-shape';
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { Grid, StackedAreaChart, YAxis } from 'react-native-svg-charts';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
-import { connect } from 'react-redux';
-import { InjectedReduxProps } from '../../../core/interfaces';
 import { AccountColors, Colors } from '../../../core/theme/colors';
 import { getBalanceHistoryFromTransactions } from '../../../core/utils/balance/getBalanceHistoryFromTransactions';
 import { BalanceHistoryItem } from '../../../core/utils/balance/typings';
 import { isSameDay } from '../../../core/utils/date';
-import { selectCurrency } from '../../price-api/store/actions';
-import { Metric, PriceInfoReduxState, PriceTypeStrings, HistoricalPriceTypeStrings } from '../../price-api/store/reducer';
+import { HistoricalPriceTypeStrings,
+         Metric,
+         PriceInfoReduxState,
+         PriceTypeStrings
+} from '../../price-api/store/reducer';
 
 const ACCOUNT_TOKEN = 'account';
 
@@ -22,12 +22,12 @@ interface ChartData {
   // `account[0-n]`: number;
 }
 
-interface Props extends InjectedReduxProps {
+interface Props {
   accounts: Account[];
   priceApi: PriceInfoReduxState;
-  priceTypes: string[]
+  priceTypes: string[];
+  selectCurrency: (() => void);
 }
-type TProps = NavigationInjectedProps & Props;
 
 interface State {
   selectedDateRange: number;
@@ -61,7 +61,7 @@ const styles = {
   }
 };
 
-class HomeStackedAreaChartComponent extends React.PureComponent<TProps, State> {
+export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
 
   state = {
     selectedDateRange: 100
@@ -77,18 +77,6 @@ class HomeStackedAreaChartComponent extends React.PureComponent<TProps, State> {
     const data: ChartData[] = this.buildChartData(accountTransactions);
 
     return data;
-  }
-
-  selectCurrency = () => {
-    this.props.dispatch(
-      selectCurrency(this.props.priceTypes[
-        this.props.priceTypes.findIndex(
-          (val) => val === this.props.priceApi.selectedCurrency
-        ) + 1
-      ] as PriceTypeStrings ||
-      this.props.priceTypes[0] as PriceTypeStrings
-      )
-    );
   }
 
   addTransactionToChartData (data: ChartData[],
@@ -130,9 +118,7 @@ class HomeStackedAreaChartComponent extends React.PureComponent<TProps, State> {
     // tslint:disable-next-line: one-variable-per-declaration
     for (let d = new Date(new Date().setDate(
         now.getDate() - this.state.selectedDateRange)
-      ), i = 0;
-        d <= now;
-        d.setDate(d.getDate() + 1), i++) {
+      ), i = 0; d <= now; d.setDate(d.getDate() + 1), i++) {
       const atThatTime = d.getTime();
       data[i] = {
         day: new Date(d)
@@ -192,7 +178,7 @@ class HomeStackedAreaChartComponent extends React.PureComponent<TProps, State> {
         />
 
         <TouchableOpacity
-          onPress={this.selectCurrency}
+          onPress={this.props.selectCurrency}
           style={styles.button as StyleMedia}
         >
           <Text style={{ color: Colors.BLUE_LIGHT, textAlign: 'center' }}>
@@ -203,11 +189,3 @@ class HomeStackedAreaChartComponent extends React.PureComponent<TProps, State> {
     );
   }
 }
-
-function mapStateToProps (state: State) {
-  return {
-    selectedDateRange: state.selectedDateRange
-  };
-}
-
-export const HomeStackedAreaChart = connect(mapStateToProps)(withNavigation(HomeStackedAreaChartComponent));
