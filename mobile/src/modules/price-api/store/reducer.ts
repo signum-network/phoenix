@@ -22,7 +22,20 @@ export interface PriceInfo {
 
 export interface PriceInfoReduxState {
   priceInfo: PriceInfo;
-  historicalPriceInfo: HistoricalPriceInfo;
+  historicalPriceInfo: PairedHistoricalPriceInfo;
+  selectedCurrency: PriceTypeStrings;
+}
+
+export interface PairedHistoricalPriceInfo {
+  BTC: HistoricalPriceInfo;
+  USD: HistoricalPriceInfo;
+}
+
+export type HistoricalPriceTypeStrings = keyof PairedHistoricalPriceInfo;
+
+export interface HistoricalPriceInfoUpdate {
+  historicalPriceInfo: HistoricalPriceInfo,
+  type: PriceType
 }
 
 export interface Metric {
@@ -52,6 +65,14 @@ export interface HistoricalPriceInfo {
   HasWarning?: boolean;
 }
 
+export enum PriceType {
+  BURST = 'BURST',
+  BTC = 'BTC',
+  USD = 'USD'
+}
+
+export type PriceTypeStrings = keyof typeof PriceType;
+
 export const priceApiState = (): PriceInfoReduxState => {
   return {
     priceInfo: {
@@ -72,10 +93,18 @@ export const priceApiState = (): PriceInfoReduxState => {
       'last_updated': ''
     },
     historicalPriceInfo: {
-      Data: [],
-      TimeFrom: 0,
-      TimeTo: 0
-    }
+      BTC: {
+        Data: [],
+        TimeFrom: 0,
+        TimeTo: 0
+      },
+      USD: {
+        Data: [],
+        TimeFrom: 0,
+        TimeTo: 0
+      }
+    },
+    selectedCurrency: PriceType.BURST
   };
 };
 
@@ -87,7 +116,15 @@ const updatePriceInfo: Reducer<PriceInfoReduxState, PriceInfo> = (state, action)
   };
 };
 
-const updateHistoricalPriceInfo: Reducer<PriceInfoReduxState, HistoricalPriceInfo> = (state, action) => {
+const selectCurrency: Reducer<PriceInfoReduxState, PriceTypeStrings> = (state, action) => {
+  const selectedCurrency = action.payload;
+  return {
+    ...state,
+    selectedCurrency
+  };
+};
+
+const updateHistoricalPriceInfo: Reducer<PriceInfoReduxState, PairedHistoricalPriceInfo> = (state, action) => {
   const historicalPriceInfo = action.payload;
   return {
     ...state,
@@ -97,6 +134,7 @@ const updateHistoricalPriceInfo: Reducer<PriceInfoReduxState, HistoricalPriceInf
 
 const reducers = {
   [actionTypes.updatePriceInfo]: updatePriceInfo,
+  [actionTypes.selectCurrency]: selectCurrency,
   [actionTypes.updateHistoricalPriceInfo]: updateHistoricalPriceInfo
 };
 

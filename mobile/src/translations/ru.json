@@ -80,6 +80,10 @@
       "BURST": {
         "name": "BURST",
         "value": "{{value}} BURST"
+      },
+      "USD": {
+        "name": "USD",
+        "value": "{{value}} USD"
       }
     },
     "dates": {

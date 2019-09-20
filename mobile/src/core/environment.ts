@@ -1,4 +1,5 @@
 import { toNumber, toString } from 'lodash';
+
 // @ts-ignore-next-line WARNING: typescript can't check what we have in .env
 // tslint:disable-next-line: max-line-length
 import { CMC_HOST_URL, CRYPTOCOMPARE_HOST_URL, DEFAULT_API_ROOT_URL, DEFAULT_NODE_HOST, DEFAULT_PASSCODE_TIME } from 'react-native-dotenv';

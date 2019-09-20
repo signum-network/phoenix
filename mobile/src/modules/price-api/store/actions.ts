@@ -1,11 +1,12 @@
 import { defaultSettings } from '../../../core/environment';
 import { createAction, createActionFn } from '../../../core/utils/store';
 import { actionTypes } from './actionTypes';
-import { HistoricalPriceInfo, PriceInfo } from './reducer';
+import { PairedHistoricalPriceInfo, PriceInfo, PriceType, PriceTypeStrings } from './reducer';
 
 const actions = {
   updatePriceInfo: createAction<PriceInfo>(actionTypes.updatePriceInfo),
-  updateHistoricalPriceInfo: createAction<HistoricalPriceInfo>(actionTypes.updateHistoricalPriceInfo)
+  selectCurrency: createAction<PriceTypeStrings>(actionTypes.selectCurrency),
+  updateHistoricalPriceInfo: createAction<PairedHistoricalPriceInfo>(actionTypes.updateHistoricalPriceInfo)
 };
 
 export const loadPriceApiData = createActionFn<void, Promise<void>>(
@@ -18,12 +19,26 @@ export const loadPriceApiData = createActionFn<void, Promise<void>>(
   }
 );
 
+export const selectCurrency = createActionFn<PriceTypeStrings, Promise<void>>(
+  async (dispatch, _getState, currency) => {
+    dispatch(actions.selectCurrency(currency));
+  }
+);
+
 export const loadHistoricalPriceApiData = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) => {
-    const response = await fetch(defaultSettings.cryptoCompareURL);
-    const updatedPriceInfo = await response.json();
-    if (updatedPriceInfo.Data && updatedPriceInfo.Data.length) {
-      dispatch(actions.updateHistoricalPriceInfo(updatedPriceInfo));
+    const response = await Promise.all([
+      fetch(defaultSettings.cryptoCompareURL.replace('$SYMBOL', PriceType.BTC)),
+      fetch(defaultSettings.cryptoCompareURL.replace('$SYMBOL', PriceType.USD))
+    ]);
+
+    const updatedPriceInfo = await Promise.all([response[0].json(), response[1].json()]);
+    if (updatedPriceInfo[0].Data && updatedPriceInfo[0].Data.length &&
+        updatedPriceInfo[1].Data && updatedPriceInfo[1].Data.length) {
+      dispatch(actions.updateHistoricalPriceInfo({
+        [PriceType.BTC]: updatedPriceInfo[0],
+        [PriceType.USD]: updatedPriceInfo[1]
+      }));
     }
   }
 );

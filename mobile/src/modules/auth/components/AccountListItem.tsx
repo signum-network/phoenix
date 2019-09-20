@@ -10,7 +10,8 @@ import { i18n } from '../../../core/i18n';
 import { AccountColors, Colors } from '../../../core/theme/colors';
 import { defaultSideOffset, FontSizes, Sizes } from '../../../core/theme/sizes';
 import { core } from '../../../core/translations';
-import { PriceInfoReduxState } from '../../price-api/store/reducer';
+import { amountToString } from '../../../core/utils/numbers';
+import { PriceInfoReduxState, PriceType } from '../../price-api/store/reducer';
 
 interface IProps {
   onPress: (account: Account) => void;
@@ -79,6 +80,9 @@ export class AccountListItem extends React.PureComponent<Props> {
     const balanceBTC = priceApi
         ? toNumber(priceApi.priceInfo.price_btc) * balanceBURST
         : 0;
+    const balanceUSD = priceApi
+        ? toNumber(priceApi.priceInfo.price_usd) * balanceBURST
+        : 0;
 
     return (
       <Swipeout
@@ -120,7 +124,9 @@ export class AccountListItem extends React.PureComponent<Props> {
             {priceApi && priceApi.priceInfo && (
               <View style={styles.row}>
                 <Text size={FontSizes.SMALL} textAlign={TextAlign.RIGHT} color={Colors.WHITE}>
-                  {i18n.t(core.currency.BTC.value, { value: balanceBTC })}
+                  {priceApi.selectedCurrency === PriceType.USD ?
+                    i18n.t(core.currency.USD.value, { value: balanceUSD.toFixed(2) }) :
+                    i18n.t(core.currency.BTC.value, { value: amountToString(balanceBTC) })}
                 </Text>
               </View>
             )}
