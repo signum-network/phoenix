@@ -2,7 +2,7 @@ import { Account } from '@burstjs/core';
 import { isValid } from '@burstjs/util';
 import { last } from 'lodash';
 import React from 'react';
-import { CheckBox, View } from 'react-native';
+import { CheckBox, View, Switch } from 'react-native';
 import { BInput, KeyboardTypes } from '../../../../core/components/base/BInput';
 import { SelectItem, BSelect } from '../../../../core/components/base/BSelect';
 import { Button as BButton } from '../../../../core/components/base/Button';
@@ -33,6 +33,18 @@ const styles: any = {
   form: {
     display: 'flex',
     flexGrow: 1
+  },
+  col: {
+    flex: 1
+  },
+  row: {
+    marginTop: 10,
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  label: {
+    flex: 3
   }
 };
 
@@ -118,15 +130,22 @@ export class ReceiveBurstForm extends React.PureComponent<Props, State> {
             title={i18n.t(transactions.screens.send.feeNQT)}
             placeholder={'0'}
           />
+          <View style={styles.row}>
+            <View style={styles.col}>
+              <Switch
+                value={immutable}
+                onValueChange={this.handleImmutableChange}
+              />
+            </View>
+
+            <View style={[styles.col, styles.label]}>
+                <BText color={Colors.WHITE}>
+                  {i18n.t(transactions.screens.receive.immutable)}
+                </BText>
+            </View>
+          </View>
           <BText color={Colors.WHITE}>
             {i18n.t(transactions.screens.send.total, { value: amountToString(total) })}
-          </BText>
-
-          <CheckBox
-            value={immutable}
-            onValueChange={this.handleImmutableChange} />
-          <BText color={Colors.WHITE}>
-            {i18n.t(transactions.screens.receive.immutable)}
           </BText>
         </View>
         <View>
