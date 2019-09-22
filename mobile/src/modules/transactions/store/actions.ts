@@ -1,12 +1,22 @@
-import { Account, sendMoney as send, Transaction, TransactionId } from '@burstjs/core';
+import { Account,
+  generateSendTransactionQRCodeAddress,
+  sendMoney as send,
+  SuggestedFees,
+  Transaction,
+  TransactionId } from '@burstjs/core';
 import { decryptAES, hashSHA256 } from '@burstjs/crypto';
+import { convertNQTStringToNumber } from '@burstjs/util';
 import { createAction, createActionFn } from '../../../core/utils/store';
 import { actionTypes } from './actionTypes';
+import { amountToString } from '../../../core/utils/numbers';
 
 const actions = {
   sendMoney: createAction<SendMoneyPayload>(actionTypes.sendMoney),
   sendMoneySuccess: createAction<TransactionId>(actionTypes.sendMoneySuccess),
-  sendMoneyFailed: createAction<Error>(actionTypes.sendMoneyFailed)
+  sendMoneyFailed: createAction<Error>(actionTypes.sendMoneyFailed),
+  generateQRAddress: createAction<SendMoneyPayload>(actionTypes.generateQRAddress),
+  generateQRAddressSuccess: createAction<string>(actionTypes.generateQRAddressSuccess),
+  generateQRAddressFailed: createAction<Error>(actionTypes.generateQRAddressFailed)
 };
 
 export interface SendMoneyPayload {
@@ -15,6 +25,14 @@ export interface SendMoneyPayload {
   fee: string;
   attachment?: any;
   sender: Account;
+}
+
+export interface ReceiveBurstPayload {
+  recipient: Account;
+  amount: string;
+  feeSuggestionType: keyof SuggestedFees;
+  fee: string;
+  immutable: boolean;
 }
 
 export const sendMoney = createActionFn<SendMoneyPayload, Promise<TransactionId>>(
@@ -38,6 +56,31 @@ export const sendMoney = createActionFn<SendMoneyPayload, Promise<TransactionId>
       return result;
     } catch (e) {
       dispatch(actions.sendMoneyFailed(e));
+
+      throw e;
+    }
+  }
+);
+
+export const generateQRAddress = createActionFn<ReceiveBurstPayload, Promise<string>>(
+  async (dispatch, getState, payload): Promise<string> => {
+    const state = getState();
+    const { amount, fee, feeSuggestionType, recipient, immutable } = payload;
+    const service = state.app.burstService;
+
+    try {
+      const result = await generateSendTransactionQRCodeAddress(service)(
+        recipient.account,
+        // @ts-ignore
+        amount,
+        feeSuggestionType,
+        // @ts-ignore
+        fee,
+        immutable);
+      dispatch(actions.generateQRAddressSuccess(result));
+      return result;
+    } catch (e) {
+      dispatch(actions.generateQRAddressFailed(e));
 
       throw e;
     }

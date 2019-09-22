@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ViewProps } from 'react-native';
 import { defaultSideOffset, Sizes } from '../theme/sizes';
+import { Colors } from '../theme/colors';
 
 interface Props extends ViewProps {
   withoutPaddings?: boolean;
@@ -12,7 +13,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexGrow: 1,
     paddingVertical: Sizes.MEDIUM,
-    paddingHorizontal: defaultSideOffset
+    paddingHorizontal: defaultSideOffset,
+    backgroundColor: Colors.BLUE_DARKER
   },
   withoutPaddings: {
     paddingVertical: 0,

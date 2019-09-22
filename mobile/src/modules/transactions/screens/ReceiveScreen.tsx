@@ -1,49 +1,77 @@
+import { Account } from '@burstjs/core';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-import { Text, TextThemes } from '../../../core/components/base/Text';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { i18n } from '../../../core/i18n';
 import { InjectedReduxProps } from '../../../core/interfaces';
 import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
+import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
-import { Sizes } from '../../../core/theme/sizes';
+import { EnterPasscodeModal } from '../../auth/components/passcode/EnterPasscodeModal';
 import { AuthReduxState } from '../../auth/store/reducer';
+import { sendMoney, SendMoneyPayload, ReceiveBurstPayload, generateQRAddress } from '../store/actions';
 import { transactions } from '../translations';
+import { ReceiveBurstForm } from '../components/receive/ReceiveBurstForm';
+import { routes } from '../../../core/navigation/routes';
+import { actionTypes } from '../store/actionTypes';
 
 interface IProps extends InjectedReduxProps {
-  auth: AuthReduxState,
+  app: AppReduxState;
+  auth: AuthReduxState;
 }
+
 type Props = IProps & NavigationInjectedProps;
 
-const styles = StyleSheet.create({
-  hintView: {
-    paddingTop: Sizes.SMALL,
-    flexGrow: 1
-  }
-});
+interface State {
+  isPINModalVisible: boolean;
+}
 
-class Receive extends React.PureComponent<Props> {
+class Receive extends React.PureComponent<Props, State> {
   static navigationOptions = {
     headerTitle: <HeaderTitle>{i18n.t(transactions.screens.receive.title)}</HeaderTitle>
   };
 
+  state = {
+    isPINModalVisible: false
+  };
+
+  handleSubmit = (form: ReceiveBurstPayload) => {
+    this.props.dispatch(generateQRAddress(form));
+    this.props.navigation.navigate(routes.viewQRCode, { form });
+  }
+
+  handlePINEntered = () => {
+    this.setState({
+      isPINModalVisible: false
+    });
+  }
+
+  handlePINCancel = () => {
+    this.setState({
+      isPINModalVisible: false
+    });
+  }
+
   render () {
+    const accounts: Account[] = this.props.auth.accounts || [];
+
     return (
       <Screen>
         <FullHeightView>
-          <View style={styles.hintView}>
-            <Text theme={TextThemes.HEADER}>
-                {i18n.t(transactions.screens.receive.title)}
-            </Text>
-          </View>
           <View>
-              <Text>
-              (Receive burst form)
-              </Text>
+            <ReceiveBurstForm
+              accounts={accounts}
+              onSubmit={this.handleSubmit}
+            />
           </View>
+          <EnterPasscodeModal
+            visible={this.state.isPINModalVisible}
+            onSuccess={this.handlePINEntered}
+            onCancel={this.handlePINCancel}
+          />
         </FullHeightView>
       </Screen>
     );
@@ -52,7 +80,9 @@ class Receive extends React.PureComponent<Props> {
 
 function mapStateToProps (state: ApplicationState) {
   return {
-    auth: state.auth
+    app: state.app,
+    auth: state.auth,
+    transactions: state.transactions
   };
 }
 

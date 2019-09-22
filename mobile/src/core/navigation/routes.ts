@@ -9,6 +9,7 @@ export interface Routes {
   home: string;
   send: string;
   receive: string;
+  viewQRCode: string;
   accountDetails: string;
   settings: string;
 }
@@ -28,6 +29,7 @@ export const routes: Routes = {
   home: 'home',
   send: 'send',
   receive: 'receive',
+  viewQRCode: 'viewQRCode',
   accountDetails: 'accountDetails',
   settings: 'settings'
 };

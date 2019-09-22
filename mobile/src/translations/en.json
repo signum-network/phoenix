@@ -135,7 +135,10 @@
   "transactions": {
     "screens": {
       "receive": {
-        "title": "Receive"
+        "title": "Receive",
+        "recipient": "Recipient",
+        "generate": "Generate QR Code",
+        "immutable": "Immutable"
       },
       "send": {
         "amountNQT": "Amount",

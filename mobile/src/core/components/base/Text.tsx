@@ -32,6 +32,7 @@ interface Props {
   thin?: boolean;
   textAlign?: TextAlign;
   selectable?: boolean;
+  numberOfLines?: number;
 }
 
 const defaultTheme = TextThemes.DEFAULT;
@@ -70,7 +71,17 @@ const styles = StyleSheet.create({
 
 // TODO: Create new universal text component according to mockups
 export const Text: React.FunctionComponent<Props> = (props) => {
-  const { theme = defaultTheme, textAlign, color, bebasFont, size, disabled, disabledColor, bold, thin } = props;
+  const { theme = defaultTheme,
+    textAlign,
+    color,
+    bebasFont,
+    size,
+    disabled,
+    disabledColor,
+    bold,
+    thin,
+    numberOfLines
+  } = props;
   const style: any = [
     styles.text,
     theme === TextThemes.ACCENT && styles.textAccent,
@@ -88,7 +99,7 @@ export const Text: React.FunctionComponent<Props> = (props) => {
   ];
 
   return (
-    <RNText style={style} selectable={props.selectable}>
+    <RNText style={style} selectable={props.selectable} numberOfLines={numberOfLines}>
       {props.children}
     </RNText>
   );

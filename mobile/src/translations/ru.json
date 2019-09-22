@@ -134,7 +134,10 @@
   "transactions": {
     "screens": {
       "receive": {
-        "title": "Получить"
+        "title": "Получить",
+        "recipient": "Получатель",
+        "generate": "Создать QR-код",
+        "immutable": "Неизменный"
       },
       "send": {
         "amountNQT": "Количество",
