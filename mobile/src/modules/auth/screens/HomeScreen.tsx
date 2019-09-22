@@ -1,6 +1,6 @@
 import { Account } from '@burstjs/core';
 import React from 'react';
-import { Button, View } from 'react-native';
+import { Button, View, Platform, Linking } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
@@ -115,15 +115,16 @@ class Home extends React.PureComponent<TProps, State> {
     this.props.dispatch(removeAccount(account));
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
+    Linking.removeEventListener('url', this.handleOpenURL);
     clearInterval(this._checkPinExpiryInterval as number);
   }
 
-  selectCurrency () {
+  selectCurrency() {
     this.props.dispatch(
       selectCurrency(priceTypes[priceTypes.findIndex(
-          (val) => val === this.props.priceApi.selectedCurrency
-        ) + 1] || priceTypes[0]
+        (val) => val === this.props.priceApi.selectedCurrency
+      ) + 1] || priceTypes[0]
       )
     );
   }
@@ -132,11 +133,10 @@ class Home extends React.PureComponent<TProps, State> {
     const accounts: Account[] = this.props.auth.accounts || [];
     const priceApi = this.props.priceApi;
 
-    // TODO: remove when all screens will be with blue background
     return (
-      <Screen style={{ backgroundColor: Colors.BLUE_DARKER }}>
+      <Screen>
         <FullHeightView withoutPaddings>
-          <AccountsListHeader priceApi={priceApi} accounts={accounts}/>
+          <AccountsListHeader priceApi={priceApi} accounts={accounts} />
           <View>
             {accounts.length && <HomeStackedAreaChart
               priceApi={priceApi}
@@ -164,7 +164,7 @@ class Home extends React.PureComponent<TProps, State> {
   }
 }
 
-function mapStateToProps (state: ApplicationState) {
+function mapStateToProps(state: ApplicationState) {
   return {
     app: state.app,
     auth: state.auth,
