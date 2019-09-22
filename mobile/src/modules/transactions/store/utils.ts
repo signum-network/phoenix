@@ -1,13 +1,12 @@
-export function parseURLParams(url: string): any {
-  const regex = /[?&]([^=#]+)=([^&#]*)/g;
-  const params = {};
-  let match;
-  // @ts-ignore
-  // tslint:disable-next-line: no-conditional-assignment
-  while (match = regex.exec(url)) {
-
+export function parseURLParams (queryString: string): object {
+  const query = {};
+  const firstVar = queryString.indexOf('?');
+  const pairs = (firstVar > -1 ? queryString.substr(firstVar + 1) : queryString).split('&');
+  // tslint:disable-next-line: prefer-for-of
+  for (let i = 0; i < pairs.length; i++) {
+    const pair = pairs[i].split('=');
     // @ts-ignore
-    params[match[1]] = match[2];
+    query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
   }
-  return params;
+  return query;
 }
