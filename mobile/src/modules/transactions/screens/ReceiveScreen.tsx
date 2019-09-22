@@ -8,15 +8,15 @@ import { i18n } from '../../../core/i18n';
 import { InjectedReduxProps } from '../../../core/interfaces';
 import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
+import { routes } from '../../../core/navigation/routes';
 import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { EnterPasscodeModal } from '../../auth/components/passcode/EnterPasscodeModal';
 import { AuthReduxState } from '../../auth/store/reducer';
-import { sendMoney, SendMoneyPayload, ReceiveBurstPayload, generateQRAddress } from '../store/actions';
-import { transactions } from '../translations';
 import { ReceiveBurstForm } from '../components/receive/ReceiveBurstForm';
-import { routes } from '../../../core/navigation/routes';
+import { generateQRAddress, ReceiveBurstPayload, sendMoney, SendMoneyPayload } from '../store/actions';
 import { actionTypes } from '../store/actionTypes';
+import { transactions } from '../translations';
 
 interface IProps extends InjectedReduxProps {
   app: AppReduxState;

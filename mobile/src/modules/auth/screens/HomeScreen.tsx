@@ -1,6 +1,6 @@
 import { Account } from '@burstjs/core';
 import React from 'react';
-import { Button, View, Platform, Linking } from 'react-native';
+import { Button, Linking, Platform, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
@@ -115,12 +115,12 @@ class Home extends React.PureComponent<TProps, State> {
     this.props.dispatch(removeAccount(account));
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     Linking.removeEventListener('url', this.handleOpenURL);
     clearInterval(this._checkPinExpiryInterval as number);
   }
 
-  selectCurrency() {
+  selectCurrency () {
     this.props.dispatch(
       selectCurrency(priceTypes[priceTypes.findIndex(
         (val) => val === this.props.priceApi.selectedCurrency
@@ -164,7 +164,7 @@ class Home extends React.PureComponent<TProps, State> {
   }
 }
 
-function mapStateToProps(state: ApplicationState) {
+function mapStateToProps (state: ApplicationState) {
   return {
     app: state.app,
     auth: state.auth,

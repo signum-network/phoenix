@@ -6,9 +6,9 @@ import { Account,
   TransactionId } from '@burstjs/core';
 import { decryptAES, hashSHA256 } from '@burstjs/crypto';
 import { convertNQTStringToNumber } from '@burstjs/util';
+import { amountToString } from '../../../core/utils/numbers';
 import { createAction, createActionFn } from '../../../core/utils/store';
 import { actionTypes } from './actionTypes';
-import { amountToString } from '../../../core/utils/numbers';
 
 const actions = {
   sendMoney: createAction<SendMoneyPayload>(actionTypes.sendMoney),
