@@ -1,26 +1,24 @@
-import { generateSendTransactionQRCodeAddress } from '@burstjs/core';
+import { convertNumberToNQTString } from '@burstjs/util';
 import React from 'react';
-import { Image, StyleSheet, View, Share, Clipboard } from 'react-native';
+import { Clipboard, Image, Share, StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
+import { Button } from '../../../core/components/base/Button';
 import { Text, TextAlign } from '../../../core/components/base/Text';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { i18n } from '../../../core/i18n';
 import { InjectedReduxProps } from '../../../core/interfaces';
 import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
-import { routes } from '../../../core/navigation/routes';
-import { AppReduxState, getDefaultBurstSettings } from '../../../core/store/app/reducer';
+import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { Colors } from '../../../core/theme/colors';
-import { FontSizes, Sizes, defaultSideOffset } from '../../../core/theme/sizes';
+import { defaultSideOffset, FontSizes, Sizes } from '../../../core/theme/sizes';
 import { EnterPasscodeModal } from '../../auth/components/passcode/EnterPasscodeModal';
 import { AuthReduxState } from '../../auth/store/reducer';
-import { ReceiveBurstPayload, sendMoney, SendMoneyPayload } from '../store/actions';
+import { ReceiveBurstPayload } from '../store/actions';
 import { TransactionsReduxState } from '../store/reducer';
 import { transactions } from '../translations';
-import { Button } from '../../../core/components/base/Button';
-import { convertNumberToNQTString } from '@burstjs/util';
 
 interface IProps extends InjectedReduxProps {
   app: AppReduxState;
@@ -46,6 +44,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     height: '100%'
   },
+  imageWrapper: {
+    flex: 5
+  },
   qrImage: {
     width: 200,
     height: 200,
@@ -53,6 +54,15 @@ const styles = StyleSheet.create({
   },
   valueCol: {
     flex: 3
+  },
+  buttonRow: {
+    flex: 2,
+    marginTop: 30
+  },
+  alignCenter: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center'
   }
 });
 
@@ -116,7 +126,7 @@ class ViewQRCode extends React.PureComponent<Props, State> {
            `&immutable=${immutable.toString()}`;
   }
 
-  render() {
+  render () {
 
     const { amount, fee, recipient, immutable } = this.props.navigation.getParam('form');
 
@@ -128,13 +138,13 @@ class ViewQRCode extends React.PureComponent<Props, State> {
         <FullHeightView>
           <View style={styles.details}>
             {imageUrl &&
-              <View style={[styles.row, styles.qrImage, { flex: 5 } ]}>
-                <View style={[styles.col, { alignItems: 'center' }]}>
+              <View style={[styles.row, styles.qrImage, styles.imageWrapper]}>
+                <View style={[styles.col, styles.alignCenter]}>
                   <Image source={{ uri: imageUrl }} style={styles.qrImage} />
                 </View>
               </View>
             }
-            <View style={[styles.row, { flex: 2, marginTop: 30 }]}>
+            <View style={[styles.row, styles.buttonRow]}>
               <View style={styles.col}>
                 <Button onPress={this.handleShare}>
                   Share
@@ -228,7 +238,7 @@ class ViewQRCode extends React.PureComponent<Props, State> {
   }
 }
 
-function mapStateToProps(state: ApplicationState) {
+function mapStateToProps (state: ApplicationState) {
   return {
     app: state.app,
     auth: state.auth,

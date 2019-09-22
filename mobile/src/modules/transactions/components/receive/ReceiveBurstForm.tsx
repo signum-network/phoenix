@@ -1,10 +1,9 @@
 import { Account } from '@burstjs/core';
-import { isValid } from '@burstjs/util';
 import { last } from 'lodash';
 import React from 'react';
-import { CheckBox, View, Switch } from 'react-native';
+import { Switch, View } from 'react-native';
 import { BInput, KeyboardTypes } from '../../../../core/components/base/BInput';
-import { SelectItem, BSelect } from '../../../../core/components/base/BSelect';
+import { BSelect, SelectItem } from '../../../../core/components/base/BSelect';
 import { Button as BButton } from '../../../../core/components/base/Button';
 import { Text as BText } from '../../../../core/components/base/Text';
 import { i18n } from '../../../../core/i18n';
