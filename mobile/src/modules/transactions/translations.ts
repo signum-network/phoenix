@@ -11,7 +11,10 @@ export const transactions = {
       total: 'transactions.screens.send.total'
     },
     receive: {
-      title: 'transactions.screens.receive.title'
+      title: 'transactions.screens.receive.title',
+      recipient: 'transactions.screens.receive.recipient',
+      generate: 'transactions.screens.receive.generate',
+      immutable: 'transactions.screens.receive.immutable'
     }
   }
 };

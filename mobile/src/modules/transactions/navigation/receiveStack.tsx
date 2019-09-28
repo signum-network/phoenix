@@ -5,6 +5,7 @@ import { TabBarIcon } from '../../../core/components/tabbar/TabBarIcon';
 import { defaultStackOptions } from '../../../core/navigation/defaultStackOptions';
 import { routes, RoutesMap } from '../../../core/navigation/routes';
 import { ReceiveScreen } from '../screens/ReceiveScreen';
+import { ViewQRCodeScreen } from '../screens/ViewQRCodeScreen';
 
 const stackConfig: StackNavigatorConfig = {
   initialRouteName: routes.receive,
@@ -15,7 +16,8 @@ const stackConfig: StackNavigatorConfig = {
 };
 
 const routesMap: RoutesMap = {
-  [routes.receive]: ReceiveScreen
+  [routes.receive]: ReceiveScreen,
+  [routes.viewQRCode]: ViewQRCodeScreen
 };
 
 export const receiveStack = createStackNavigator(routesMap, stackConfig);
