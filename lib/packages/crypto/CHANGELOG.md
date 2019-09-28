@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## unreleased
 - Changed License: From GPL-3.0 to Apache 2.0
-
+- Updated seedrandom from 3.0.1 to 3.0.5 (removes eval)
 
 ## 0.3.0
 - Moved typings into src folder
