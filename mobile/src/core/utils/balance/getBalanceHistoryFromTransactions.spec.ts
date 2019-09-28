@@ -1,6 +1,6 @@
-import {getBalanceHistoryFromTransactions} from './getBalanceHistoryFromTransactions';
-import {convertNumberToNQTString} from '@burstjs/util';
-import {TransactionPaymentSubtype, TransactionType} from '@burstjs/core';
+import { TransactionPaymentSubtype, TransactionType } from '@burstjs/core';
+import { convertNumberToNQTString } from '@burstjs/util';
+import { getBalanceHistoryFromTransactions } from './getBalanceHistoryFromTransactions';
 
 const nqt = convertNumberToNQTString;
 
@@ -31,7 +31,7 @@ describe('getBalanceHistoryFromTransactions', () => {
         feeNQT: '100000000',
         sender: '123',
         type: TransactionType.Payment,
-        subtype: TransactionPaymentSubtype.Ordinary,
+        subtype: TransactionPaymentSubtype.Ordinary
       });
     });
 
@@ -89,7 +89,6 @@ describe('getBalanceHistoryFromTransactions', () => {
 
   describe('Multi Payout Same', () => {
 
-
     it('should create a correct balance history with multi out same payments', () => {
 
       const accountId = 'recipient1';
@@ -104,7 +103,7 @@ describe('getBalanceHistoryFromTransactions', () => {
           sender: 'senderId',
           attachment: {
             'version.MultiOutSameCreation': 1,
-            recipients: ['recipient1', 'recipient2']
+            "recipients": ['recipient1', 'recipient2']
           }
         },
         {
@@ -146,10 +145,10 @@ describe('getBalanceHistoryFromTransactions', () => {
           sender: 'senderId',
           attachment: {
             'version.MultiOutCreation': 1,
-            recipients: [
+            "recipients": [
               ['recipient1', nqt(100)],
               ['recipient2', nqt(150)],
-              ['recipient3', nqt(50)],
+              ['recipient3', nqt(50)]
             ]
           }
         },

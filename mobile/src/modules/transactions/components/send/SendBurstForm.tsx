@@ -17,9 +17,10 @@ interface Props {
   loading: boolean;
   onSubmit: (form: SendMoneyPayload) => void;
   accounts: Account[];
+  deepLinkProps?: SendBurstFormState;
 }
 
-interface State {
+export interface SendBurstFormState {
   sender: null | Account;
   address: string;
   amount: string;
@@ -37,12 +38,12 @@ const styles: any = {
   }
 };
 
-export class SendBurstForm extends React.PureComponent<Props, State> {
+export class SendBurstForm extends React.PureComponent<Props, SendBurstFormState> {
   state = {
     sender: null,
-    address: 'BURST-',
-    amount: '',
-    fee: ''
+    address: this.props.deepLinkProps && this.props.deepLinkProps.address || 'BURST-',
+    amount: this.props.deepLinkProps && this.props.deepLinkProps.amount || '',
+    fee: this.props.deepLinkProps && this.props.deepLinkProps.fee || ''
   };
 
   getAccounts = (): Array<SelectItem<Account>> => {

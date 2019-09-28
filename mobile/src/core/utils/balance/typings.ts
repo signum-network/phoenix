@@ -1,4 +1,4 @@
-import {Transaction} from '@burstjs/core';
+import { Transaction } from '@burstjs/core';
 
 export interface BalanceHistoryItem {
   readonly timestamp: number;

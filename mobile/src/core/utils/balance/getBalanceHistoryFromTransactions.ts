@@ -1,13 +1,13 @@
 import {
-  Transaction,
-  getRecipientsAmount
+  getRecipientsAmount,
+  Transaction
 } from '@burstjs/core';
-import {convertNQTStringToNumber} from '@burstjs/util';
-import {BalanceHistoryItem} from './typings';
+import { convertNQTStringToNumber } from '@burstjs/util';
+import { BalanceHistoryItem } from './typings';
 
 const isOwnTransaction = (accountId: string, transaction: Transaction): boolean => transaction.sender === accountId;
 
-function getRelativeTransactionAmount(accountId: string, transaction: Transaction): number {
+function getRelativeTransactionAmount (accountId: string, transaction: Transaction): number {
 
   if (isOwnTransaction(accountId, transaction)) {
     const amountBurst = convertNQTStringToNumber(transaction.amountNQT);
@@ -18,7 +18,6 @@ function getRelativeTransactionAmount(accountId: string, transaction: Transactio
   return getRecipientsAmount(accountId, transaction);
 }
 
-
 /**
  * Creates a (reversed) history of balances, i.e. deducing an ordered transaction list from current balance
  * @param accountId The accountId of the related Account
@@ -26,10 +25,10 @@ function getRelativeTransactionAmount(accountId: string, transaction: Transactio
  * @param transactions The transaction array (assuming most recent transaction on head of list)
  * @return A list with balances per transaction
  */
-export function getBalanceHistoryFromTransactions(
+export function getBalanceHistoryFromTransactions (
   accountId: string,
   currentBalance: number,
-  transactions: Transaction[]): Array<BalanceHistoryItem> {
+  transactions: Transaction[]): BalanceHistoryItem[] {
 
   let balance = currentBalance;
 
