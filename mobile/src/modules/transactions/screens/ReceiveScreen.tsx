@@ -13,10 +13,10 @@ import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { EnterPasscodeModal } from '../../auth/components/passcode/EnterPasscodeModal';
 import { AuthReduxState } from '../../auth/store/reducer';
-import { ReceiveBurstForm } from '../components/receive/ReceiveBurstForm';
 import { generateQRAddress, ReceiveBurstPayload, sendMoney, SendMoneyPayload } from '../store/actions';
 import { actionTypes } from '../store/actionTypes';
 import { transactions } from '../translations';
+import { ReceiveBurstForm } from '../components/receive/ReceiveBurstForm';
 
 interface IProps extends InjectedReduxProps {
   app: AppReduxState;
