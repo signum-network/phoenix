@@ -25,6 +25,10 @@ export interface SendBurstFormState {
   address: string;
   amount: string;
   fee: string;
+  message?: string;
+  messageIsText: boolean;
+  encrypt: boolean;
+  immutable: boolean;
 }
 
 const styles: any = {
@@ -43,7 +47,11 @@ export class SendBurstForm extends React.PureComponent<Props, SendBurstFormState
     sender: null,
     address: this.props.deepLinkProps && this.props.deepLinkProps.address || 'BURST-',
     amount: this.props.deepLinkProps && this.props.deepLinkProps.amount || '',
-    fee: this.props.deepLinkProps && this.props.deepLinkProps.fee || ''
+    fee: this.props.deepLinkProps && this.props.deepLinkProps.fee || '',
+    message: this.props.deepLinkProps && this.props.deepLinkProps.message || undefined,
+    messageIsText: this.props.deepLinkProps && this.props.deepLinkProps.messageIsText || true,
+    encrypt: this.props.deepLinkProps && this.props.deepLinkProps.encrypt || false,
+    immutable: this.props.deepLinkProps && this.props.deepLinkProps.immutable || false
   };
 
   getAccounts = (): Array<SelectItem<Account>> => {
@@ -83,14 +91,18 @@ export class SendBurstForm extends React.PureComponent<Props, SendBurstFormState
   }
 
   handleSubmit = () => {
-    const { address, amount, fee, sender } = this.state;
+    const { address, amount, fee, sender, message, messageIsText, encrypt, immutable } = this.state;
 
-    if (this.isSubmitEnabled() && sender) {
+    if (this.isSubmitEnabled()) {
       this.props.onSubmit({
         address,
         amount,
         fee,
-        sender
+        sender,
+        message,
+        messageIsText,
+        immutable,
+        encrypt
       });
     }
   }
@@ -113,6 +125,7 @@ export class SendBurstForm extends React.PureComponent<Props, SendBurstFormState
           <BInput
             value={address}
             onChange={this.handleChangeAddress}
+            // disabled={this.state.immutable}
             title={i18n.t(transactions.screens.send.to)}
             placeholder='BURST-____-____-____-_____'
           />
@@ -120,6 +133,7 @@ export class SendBurstForm extends React.PureComponent<Props, SendBurstFormState
             value={amount}
             onChange={this.handleAmountChange}
             keyboard={KeyboardTypes.NUMERIC}
+            // disabled={this.state.immutable}
             title={i18n.t(transactions.screens.send.amountNQT)}
             placeholder={'0'}
           />
@@ -127,6 +141,7 @@ export class SendBurstForm extends React.PureComponent<Props, SendBurstFormState
             value={fee}
             onChange={this.handleFeeChange}
             keyboard={KeyboardTypes.NUMERIC}
+            // disabled={this.state.immutable}
             title={i18n.t(transactions.screens.send.feeNQT)}
             placeholder={'0'}
           />

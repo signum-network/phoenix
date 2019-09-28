@@ -14,8 +14,7 @@ import { ApplicationState } from '../../../core/store/initialState';
 import { EnterPasscodeModal } from '../../auth/components/passcode/EnterPasscodeModal';
 import { AuthReduxState } from '../../auth/store/reducer';
 import { ReceiveBurstForm } from '../components/receive/ReceiveBurstForm';
-import { generateQRAddress, ReceiveBurstPayload, sendMoney, SendMoneyPayload } from '../store/actions';
-import { actionTypes } from '../store/actionTypes';
+import { generateQRAddress, ReceiveBurstPayload } from '../store/actions';
 import { transactions } from '../translations';
 
 interface IProps extends InjectedReduxProps {

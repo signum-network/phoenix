@@ -3,12 +3,13 @@ import { Account,
   sendMoney as send,
   SuggestedFees,
   Transaction,
-  TransactionId } from '@burstjs/core';
-import { decryptAES, hashSHA256 } from '@burstjs/crypto';
-import { convertNQTStringToNumber } from '@burstjs/util';
-import { amountToString } from '../../../core/utils/numbers';
+  TransactionId,
+  Attachment,
+  EncryptedMessage} from '@burstjs/core';
+import { decryptAES, hashSHA256, encryptMessage, encryptData, EncryptedData } from '@burstjs/crypto';
 import { createAction, createActionFn } from '../../../core/utils/store';
 import { actionTypes } from './actionTypes';
+import { getAccount } from '../../auth/store/actions';
 
 const actions = {
   sendMoney: createAction<SendMoneyPayload>(actionTypes.sendMoney),
@@ -25,6 +26,9 @@ export interface SendMoneyPayload {
   fee: string;
   attachment?: any;
   sender: Account;
+  encrypt: boolean;
+  message?: string;
+  messageIsText?: boolean;
 }
 
 export interface ReceiveBurstPayload {
@@ -38,7 +42,7 @@ export interface ReceiveBurstPayload {
 export const sendMoney = createActionFn<SendMoneyPayload, Promise<TransactionId>>(
   async (dispatch, getState, payload): Promise<TransactionId> => {
     const state = getState();
-    const { amount, address, fee, sender } = payload;
+    const { amount, address, fee, sender, message, encrypt, messageIsText } = payload;
     const service = state.app.burstService;
 
     const transaction: Transaction = {
@@ -47,6 +51,32 @@ export const sendMoney = createActionFn<SendMoneyPayload, Promise<TransactionId>
     };
     const senderPublicKey = sender.keys.publicKey;
     const senderPrivateKey = decryptAES(sender.keys.signPrivateKey, hashSHA256(state.auth.passcode));
+
+    let attachment: Attachment;
+    if (message && encrypt) {
+      const recipient = dispatch(getAccount(address));
+      const agreementPrivateKey = sender.keys.agreementPrivateKey;
+      let encryptedMessage: EncryptedMessage | EncryptedData;
+      if (messageIsText) {
+        encryptedMessage = encryptMessage(
+          message,
+          // @ts-ignore
+          recipient.publicKey,
+          agreementPrivateKey
+        );
+      } else {
+        encryptedMessage = encryptData(
+          new Uint8Array(convertHexStringToByteArray(message)),
+          // @ts-ignore
+          recipient.publicKey,
+          agreementPrivateKey
+        );
+      }
+
+      attachment = new AttachmentEncryptedMessage(encryptedMessage);
+    } else if (message) {
+      attachment = new AttachmentMessage({message, messageIsText});
+    }
 
     dispatch(actions.sendMoney(payload));
     try {

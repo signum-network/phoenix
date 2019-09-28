@@ -1,4 +1,4 @@
-export function parseURLParams (queryString: string): object {
+export function parseURLParams (queryString: string): any {
   const query = {};
   const firstVar = queryString.indexOf('?');
   const pairs = (firstVar > -1 ? queryString.substr(firstVar + 1) : queryString).split('&');

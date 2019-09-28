@@ -4,6 +4,7 @@ import { AppSettings } from '../../interfaces';
 import { getAppSettings, saveAppSettings } from '../../utils/keychain';
 import { createAction, createActionFn } from '../../utils/store';
 import { actionTypes } from './actionTypes';
+import { getSuggestedFees } from '../../../modules/network/store/actions';
 
 const actions = {
   appLoaded: createAction<void>(actionTypes.appLoaded),
@@ -21,6 +22,7 @@ export const loadApp = createActionFn<void, Promise<void>>(
     ]);
     dispatch(loadPriceApiData());
     dispatch(loadHistoricalPriceApiData());
+    dispatch(getSuggestedFees());
     dispatch(actions.appLoaded());
   }
 );

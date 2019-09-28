@@ -31,6 +31,7 @@ interface QRData {
   feeSuggestionType: string;
   encrypt: boolean;
   messageIsText: boolean;
+  message?: string;
 }
 
 const isNotEmpty = (value: string) => value && value.length > 0;
@@ -162,23 +163,6 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
     });
   }
 
-  getMessage(): any {
-
-    if (!this.message) {
-      return null;
-    }
-
-    return this.encrypt ? {
-      data: this.message,
-      nonce: null,
-      isText: true
-    } : {
-      message: this.message,
-      type: 'message',
-      messageIsText: true
-    };
-  }
-
   hasSufficientBalance(): boolean {
     return convertNQTStringToNumber(this.account.balanceNQT) - this.getTotal() >= 0;
   }
@@ -199,6 +183,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
     this.fee = convertNQTStringToNumber(qrData.feeNQT).toString();
     this.immutable = qrData.immutable;
     this.encrypt = qrData.encrypt;
+    this.message = qrData.message;
     this.messageIsText = qrData.messageIsText;
     if (qrData.feeSuggestionType && this.fees[qrData.feeSuggestionType]) {
       this.fee = convertNQTStringToNumber(this.fees[qrData.feeSuggestionType]).toString();

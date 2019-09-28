@@ -16,6 +16,7 @@ import { isAsyncLoading } from '../../../core/utils/async';
 import { EnterPasscodeModal } from '../../auth/components/passcode/EnterPasscodeModal';
 import { AuthReduxState } from '../../auth/store/reducer';
 import { shouldEnterPIN } from '../../auth/store/utils';
+import { NetworkReduxState } from '../../network/store/reducer';
 import { SendBurstForm, SendBurstFormState } from '../components/send/SendBurstForm';
 import { sendMoney, SendMoneyPayload } from '../store/actions';
 import { TransactionsReduxState } from '../store/reducer';
@@ -26,6 +27,7 @@ interface IProps extends InjectedReduxProps {
   app: AppReduxState;
   auth: AuthReduxState;
   transactions: TransactionsReduxState;
+  network: NetworkReduxState;
 }
 
 type Props = IProps & NavigationInjectedProps;
@@ -55,10 +57,22 @@ class Send extends React.PureComponent<Props, State> {
       this.deepLinkProps = {
         sender: null,
         address: params.receiver,
-        fee: convertNQTStringToNumber(params.feeNQT).toString(),
-        amount: convertNQTStringToNumber(params.amountNQT).toString()
+        fee: this.getFee(params.feeNQT, params.feeSuggestionType),
+        amount: convertNQTStringToNumber(params.amountNQT).toString(),
+        message: params.message,
+        messageIsText: params.messageIsText === 'false' ? false : true,
+        encrypt: params.encrypt,
+        immutable: params.immutable === 'false' ? false : true
       };
     }
+  }
+
+  getFee (feeNQT: string, feeSuggestionType: string) {
+    let fee = convertNQTStringToNumber(feeNQT);
+    if (feeSuggestionType) {
+      fee = convertNQTStringToNumber(this.props.network.fees[feeSuggestionType]);
+    }
+    return fee.toString();
   }
 
   handleSubmit = (form: SendMoneyPayload) => {
