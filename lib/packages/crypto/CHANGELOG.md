@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## unreleased
+## 0.4.0
 - Changed License: From GPL-3.0 to Apache 2.0
 - Updated seedrandom from 3.0.1 to 3.0.5 (removes eval)
 

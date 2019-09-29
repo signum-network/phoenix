@@ -1,6 +1,6 @@
 # Changelog
 
-##1.0.0-beta.10
+## 1.0.0-beta.10
 
 ### New Feature
 
@@ -12,14 +12,14 @@
 - Added Asset Transfer info in Tx details
 
 # Bug Fixes
-- Improved some of Translations (pt-br,pt-pt, lt)
+- Improved some of Translations (pt-br, pt-pt, lt)
 - Fixed Block Reward conversion in Block Details
 - Fixed Message Handling on Multiout (#654)
 - Fixed Fee issue for messages (#614)
 - Fixed sending to unknown accounts (#645)
 - Fixed an issue with unconfirmed transactions on the dashboard sometimes not showing up
 
-##1.0.0-beta.9
+## 1.0.0-beta.9
 
 ### New Feature:
 
@@ -36,7 +36,7 @@
 - Fixed Update Issue on Windows
 - Fixed QR Code Update on Account Change (#553)
 
-##1.0.0-beta.8
+## 1.0.0-beta.8
 
 ### New Features:
 - Added ability to scan QR codes when sending BURST
@@ -44,7 +44,7 @@
 ### Bug Fixes:
 - Corrected incomings/outgoings in Account Details
 
-##1.0.0-beta.7
+## 1.0.0-beta.7
 
 ### New Features:
 - Update checker
@@ -64,7 +64,7 @@
 - Delete current account issue
 - Several minor fixes
 
-##1.0.0-beta.6
+## 1.0.0-beta.6
 
 ### New Features:
 - Added transaction count selector and smoothed the lines on the Balance History chart

@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-# 0.4.0 (to be released)
+## 0.4.0
 - Changed License: From GPL-3.0 to Apache 2.0
 - `isAttachmentVersion` returns `true` or `false` consistently
 - added `sendAmountToSingleRecipient` using new argument objects
@@ -15,7 +15,7 @@ All notable changes to this project will be documented in this file.
     - will be removed in next major version (0.5)
     - use `sendAmountToSingleRecipient`    
     
-# 0.3.0
+## 0.3.0
 
 ___
 __Breaking Changes__
