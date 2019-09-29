@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ViewProps } from 'react-native';
 import { Colors } from '../theme/colors';
 import { defaultSideOffset, Sizes } from '../theme/sizes';
+import { Colors } from '../theme/colors';
 
 interface Props extends ViewProps {
   withoutPaddings?: boolean;

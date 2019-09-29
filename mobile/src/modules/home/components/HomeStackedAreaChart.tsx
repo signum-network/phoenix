@@ -2,7 +2,7 @@ import { Account } from '@burstjs/core';
 import { convertBurstTimeToDate, convertNQTStringToNumber } from '@burstjs/util';
 import * as shape from 'd3-shape';
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Grid, StackedAreaChart, YAxis } from 'react-native-svg-charts';
 import { AccountColors, Colors } from '../../../core/theme/colors';
 import { getBalanceHistoryFromTransactions } from '../../../core/utils/balance/getBalanceHistoryFromTransactions';
@@ -33,23 +33,16 @@ interface State {
   selectedDateRange: number;
 }
 
-const styles = {
+const styles = StyleSheet.create({
   stackedAreaChart: { height: 200, paddingVertical: 16, zIndex: 1 },
   yAxis: { position: 'absolute', top: 0, left: 5, height: 200, paddingVertical: 16, zIndex: 2 },
-  svg: {
-    fontSize: 8,
-    fill: 'white', // StyleSheet.create doesn't like fill
-    stroke: 'black',
-    strokeWidth: 0.1,
-    alignmentBaseline: 'baseline',
-    baselineShift: '3'
-  },
   button: {
     position: 'absolute',
-    top: 20,
+    top: 142,
     right: 5,
+    width: 70,
     backgroundColor: Colors.BLUE_DARKEST,
-    zIndex: 3,
+    zIndex: 10,
     flex: 1,
     alignContent: 'center',
     justifyContent: 'center',
@@ -58,13 +51,27 @@ const styles = {
     borderColor: Colors.BLUE_LIGHT,
     padding: 8,
     opacity: .8
+  },
+  dateRange: {
+    right: 80
   }
+});
+
+const svgStyles: StyleMedia = {
+  fontSize: 8,
+  stroke: 'black',
+  strokeWidth: 0.1,
+  alignmentBaseline: 'baseline',
+  baselineShift: '3',
+  fill: 'white'
 };
+
+const DATE_RANGES = [7, 30, 100];
 
 export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
 
   state = {
-    selectedDateRange: 100
+    selectedDateRange: DATE_RANGES[0]
   };
 
   calculateChartData () {
@@ -143,6 +150,13 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
     return data;
   }
 
+  selectDateRange = () => {
+    this.setState({
+      ...this.state,
+      selectedDateRange: DATE_RANGES[DATE_RANGES.indexOf(this.state.selectedDateRange) + 1] || DATE_RANGES[0]
+    });
+  }
+
   render () {
 
     const data = this.calculateChartData();
@@ -174,7 +188,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
           style={styles.yAxis as StyleMedia}
           data={StackedAreaChart.extractDataPoints(data, keys)}
           contentInset={{ top: 10, bottom: 10 }}
-          svg={styles.svg as StyleMedia}
+          svg={svgStyles}
         />
 
         <TouchableOpacity
@@ -183,6 +197,15 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
         >
           <Text style={{ color: Colors.BLUE_LIGHT, textAlign: 'center' }}>
             {this.props.priceApi.selectedCurrency}
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={this.selectDateRange}
+          style={[styles.button, styles.dateRange]}
+        >
+          <Text style={{ color: Colors.BLUE_LIGHT, textAlign: 'center' }}>
+            {this.state.selectedDateRange.toString()}d
           </Text>
         </TouchableOpacity>
       </>

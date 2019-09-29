@@ -1,15 +1,19 @@
 import { Account,
   generateSendTransactionQRCodeAddress,
-  sendMoney as send,
+  sendAmount as send,
   SuggestedFees,
   Transaction,
   TransactionId,
   Attachment,
-  EncryptedMessage} from '@burstjs/core';
-import { decryptAES, hashSHA256, encryptMessage, encryptData, EncryptedData } from '@burstjs/crypto';
+  AttachmentMessage,
+  AttachmentEncryptedMessage,
+  composeApi,
+  ApiSettings} from '@burstjs/core';
+import { decryptAES, hashSHA256, encryptMessage, encryptData, EncryptedData, EncryptedMessage } from '@burstjs/crypto';
 import { createAction, createActionFn } from '../../../core/utils/store';
 import { actionTypes } from './actionTypes';
 import { getAccount } from '../../auth/store/actions';
+import { convertHexStringToByteArray } from '@burstjs/util';
 
 const actions = {
   sendMoney: createAction<SendMoneyPayload>(actionTypes.sendMoney),
@@ -39,11 +43,20 @@ export interface ReceiveBurstPayload {
   immutable: boolean;
 }
 
+export interface ReceiveBurstPayload {
+  recipient: Account;
+  amount: string;
+  feeSuggestionType: keyof SuggestedFees;
+  fee: string;
+  immutable: boolean;
+}
+
 export const sendMoney = createActionFn<SendMoneyPayload, Promise<TransactionId>>(
   async (dispatch, getState, payload): Promise<TransactionId> => {
     const state = getState();
     const { amount, address, fee, sender, message, encrypt, messageIsText } = payload;
     const service = state.app.burstService;
+    const { nodeHost, apiRootUrl } = service.settings;
 
     const transaction: Transaction = {
       amountNQT: amount,
@@ -77,6 +90,15 @@ export const sendMoney = createActionFn<SendMoneyPayload, Promise<TransactionId>
     } else if (message) {
       attachment = new AttachmentMessage({message, messageIsText});
     }
+
+    // TODO: unify network request actions, add proper error handling and so on
+    const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
+    try {
+      const accountDetails = await api.transaction.sendMoney(account.account);
+      dispatch(actions.updateAccount(accountDetails));
+      dispatch(updateAccountTransactions(accountDetails));
+    // tslint:disable-next-line: no-empty
+    } catch (e) {}
 
     dispatch(actions.sendMoney(payload));
     try {
