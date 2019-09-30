@@ -29,7 +29,7 @@ const updateAccount: Reducer<AuthReduxState, Account> = (state, action) => {
   const account = action.payload;
   const accounts = state.accounts.map((existingAccount) => {
     if (existingAccount.account === account.account) {
-      return account;
+      return { ...existingAccount, ...account };
     } else {
       return existingAccount;
     }

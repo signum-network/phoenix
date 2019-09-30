@@ -1,19 +1,17 @@
 import { Account,
-  generateSendTransactionQRCodeAddress,
-  sendAmount as send,
-  SuggestedFees,
-  Transaction,
-  TransactionId,
-  Attachment,
-  AttachmentMessage,
+  ApiSettings,
   AttachmentEncryptedMessage,
+  AttachmentMessage,
   composeApi,
-  ApiSettings} from '@burstjs/core';
-import { decryptAES, hashSHA256, encryptMessage, encryptData, EncryptedData, EncryptedMessage } from '@burstjs/crypto';
+  generateSendTransactionQRCodeAddress,
+  SuggestedFees,
+  TransactionId} from '@burstjs/core';
+import { SendAmountArgs } from '@burstjs/core/out/typings/args/sendAmountArgs';
+import { decryptAES, encryptData, EncryptedData, EncryptedMessage, encryptMessage, hashSHA256 } from '@burstjs/crypto';
+import { convertHexStringToByteArray, convertNumberToNQTString } from '@burstjs/util';
 import { createAction, createActionFn } from '../../../core/utils/store';
-import { actionTypes } from './actionTypes';
 import { getAccount } from '../../auth/store/actions';
-import { convertHexStringToByteArray } from '@burstjs/util';
+import { actionTypes } from './actionTypes';
 
 const actions = {
   sendMoney: createAction<SendMoneyPayload>(actionTypes.sendMoney),
@@ -55,54 +53,32 @@ export const sendMoney = createActionFn<SendMoneyPayload, Promise<TransactionId>
   async (dispatch, getState, payload): Promise<TransactionId> => {
     const state = getState();
     const { amount, address, fee, sender, message, encrypt, messageIsText } = payload;
-    const service = state.app.burstService;
-    const { nodeHost, apiRootUrl } = service.settings;
-
-    const transaction: Transaction = {
-      amountNQT: amount,
-      feeNQT: fee
-    };
+    const { nodeHost, apiRootUrl } = state.app.burstService.settings;
     const senderPublicKey = sender.keys.publicKey;
     const senderPrivateKey = decryptAES(sender.keys.signPrivateKey, hashSHA256(state.auth.passcode));
 
-    let attachment: Attachment;
-    if (message && encrypt) {
-      const recipient = dispatch(getAccount(address));
-      const agreementPrivateKey = sender.keys.agreementPrivateKey;
-      let encryptedMessage: EncryptedMessage | EncryptedData;
-      if (messageIsText) {
-        encryptedMessage = encryptMessage(
-          message,
-          // @ts-ignore
-          recipient.publicKey,
-          agreementPrivateKey
-        );
-      } else {
-        encryptedMessage = encryptData(
-          new Uint8Array(convertHexStringToByteArray(message)),
-          // @ts-ignore
-          recipient.publicKey,
-          agreementPrivateKey
-        );
-      }
+    const sendMoneyPayload: SendAmountArgs = {
+      amountPlanck: convertNumberToNQTString(parseFloat(amount)),
+      feePlanck: convertNumberToNQTString(parseFloat(fee)),
+      recipientId: address,
+      senderPublicKey,
+      senderPrivateKey,
+      deadline: 1440
+    };
 
-      attachment = new AttachmentEncryptedMessage(encryptedMessage);
+    if (message && encrypt) {
+      const encryptedMessage: EncryptedMessage | EncryptedData =
+          getEncryptedMessage(dispatch, address, sender, messageIsText, message);
+
+      sendMoneyPayload.attachment = new AttachmentEncryptedMessage(encryptedMessage);
     } else if (message) {
-      attachment = new AttachmentMessage({message, messageIsText});
+      sendMoneyPayload.attachment = new AttachmentMessage({ message, messageIsText });
     }
 
     // TODO: unify network request actions, add proper error handling and so on
     const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
     try {
-      const accountDetails = await api.transaction.sendMoney(account.account);
-      dispatch(actions.updateAccount(accountDetails));
-      dispatch(updateAccountTransactions(accountDetails));
-    // tslint:disable-next-line: no-empty
-    } catch (e) {}
-
-    dispatch(actions.sendMoney(payload));
-    try {
-      const result = await send(service)(transaction, senderPublicKey, senderPrivateKey, address) as TransactionId;
+      const result = await api.transaction.sendAmountToSingleRecipient(sendMoneyPayload);
       dispatch(actions.sendMoneySuccess(result));
 
       return result;
@@ -138,3 +114,21 @@ export const generateQRAddress = createActionFn<ReceiveBurstPayload, Promise<str
     }
   }
 );
+
+function getEncryptedMessage (dispatch: any,
+                              address: string,
+                              sender: Account,
+                              messageIsText: boolean | undefined,
+                              message: string) {
+  const recipient = dispatch(getAccount(address));
+  const agreementPrivateKey = sender.keys.agreementPrivateKey;
+  let encryptedMessage: EncryptedMessage | EncryptedData;
+  if (messageIsText) {
+    encryptedMessage = encryptMessage(message,
+      recipient.publicKey, agreementPrivateKey);
+  } else {
+    encryptedMessage = encryptData(new Uint8Array(convertHexStringToByteArray(message)),
+      recipient.publicKey, agreementPrivateKey);
+  }
+  return encryptedMessage;
+}

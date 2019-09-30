@@ -1,4 +1,4 @@
-import { convertNumberToNQTString } from '@burstjs/util';
+import { convertNumberToNQTString, convertNQTStringToNumber } from '@burstjs/util';
 import React from 'react';
 import { Clipboard, Image, Share, StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
@@ -97,7 +97,7 @@ class ViewQRCode extends React.PureComponent<Props, State> {
       await Share.share({
         message: `BURST Payment Requested from ` +
            `${recipient.accountRS} for ` +
-           `${amount} (+${fee}).
+           `${convertNQTStringToNumber(amount)} (+${convertNQTStringToNumber(fee)}).
 
            Pay using the Phoenix Wallet from burstwallet.io`,
         title: `BURST Request for ${amount}`,
@@ -120,8 +120,8 @@ class ViewQRCode extends React.PureComponent<Props, State> {
     const { amount, fee, recipient, immutable, feeSuggestionType } = this.props.navigation.getParam('form');
 
     return `burst://requestBurst?receiver=${recipient.accountRS}` +
-           `&amountNQT=${convertNumberToNQTString(amount)}` +
-           `&feeNQT=${convertNumberToNQTString(fee)}` +
+           `&amountNQT=${amount}` +
+           `&feeNQT=${fee}` +
            `&feeSuggestionType=${feeSuggestionType}` +
            `&immutable=${immutable.toString()}`;
   }
@@ -187,7 +187,7 @@ class ViewQRCode extends React.PureComponent<Props, State> {
                   color={Colors.WHITE}
                   size={FontSizes.MEDIUM}
                 >
-                  {amount}
+                  {convertNQTStringToNumber(amount).toString()}
                 </Text>
               </View>
             </View>
@@ -204,7 +204,7 @@ class ViewQRCode extends React.PureComponent<Props, State> {
                   color={Colors.WHITE}
                   size={FontSizes.MEDIUM}
                 >
-                  {fee}
+                  {convertNQTStringToNumber(fee).toString()}
                 </Text>
               </View>
             </View>

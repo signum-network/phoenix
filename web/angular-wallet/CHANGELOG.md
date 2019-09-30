@@ -2,8 +2,7 @@
 
 ## 1.0.0-beta.10
 
-### New Feature
-
+### New Features:
 - Improved Multi-out Payments with CSV upload (#238)
 - Enhanced Node Selection
     - custom endpoint possible
@@ -11,7 +10,7 @@
 - Added ability to send hex messages with transactions (#696)
 - Added Asset Transfer info in Tx details
 
-# Bug Fixes
+### Bug Fixes:
 - Improved some of Translations (pt-br, pt-pt, lt)
 - Fixed Block Reward conversion in Block Details
 - Fixed Message Handling on Multiout (#654)
@@ -21,8 +20,7 @@
 
 ## 1.0.0-beta.9
 
-### New Feature:
-
+### New Features:
 - Deep Linking
 - Improved Node Selection (#604 #351)
 - _Spend all_ on Send Burst (#553)
@@ -30,7 +28,7 @@
 - Improved Layout for Blocks 
 - Added Indicator while Downloading latest Update
 
-# Bug Fixes
+### Bug Fixes:
 - Fixed green/red transactions on dashboard (#523)
 - Fixed MultiSameOut (#543)
 - Fixed Update Issue on Windows
@@ -56,7 +54,6 @@
 - Several layout tweaks
 
 ### Bug Fixes:
-
 - Slider for Fee Selection
 - CPU usage on particle screen
 - "always encrypted" issue for messages

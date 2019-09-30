@@ -1,20 +1,24 @@
-import { Account } from '@burstjs/core';
+import { Account, SuggestedFees } from '@burstjs/core';
+import { convertNQTStringToNumber, convertNumberToNQTString } from '@burstjs/util';
 import { last } from 'lodash';
 import React from 'react';
-import { Switch, View } from 'react-native';
+import { View } from 'react-native';
 import { BInput, KeyboardTypes } from '../../../../core/components/base/BInput';
 import { BSelect, SelectItem } from '../../../../core/components/base/BSelect';
 import { Button as BButton } from '../../../../core/components/base/Button';
+import { SwitchItem } from '../../../../core/components/base/SwitchItem';
 import { Text as BText } from '../../../../core/components/base/Text';
 import { i18n } from '../../../../core/i18n';
 import { Colors } from '../../../../core/theme/colors';
 import { amountToString } from '../../../../core/utils/numbers';
 import { ReceiveBurstPayload } from '../../store/actions';
 import { transactions } from '../../translations';
+import { FeeSlider } from '../fee-slider/FeeSlider';
 
 interface Props {
   onSubmit: (form: ReceiveBurstPayload) => void;
   accounts: Account[];
+  suggestedFees: SuggestedFees | null;
 }
 
 interface State {
@@ -44,6 +48,10 @@ const styles: any = {
   },
   label: {
     flex: 3
+  },
+  slider: {
+    width: '100%',
+    height: 40
   }
 };
 
@@ -51,7 +59,8 @@ export class ReceiveBurstForm extends React.PureComponent<Props, State> {
   state = {
     recipient: null,
     amount: '',
-    fee: '',
+    fee: this.props.suggestedFees &&
+         convertNQTStringToNumber(this.props.suggestedFees.standard.toString()).toString() || '',
     immutable: false
   };
 
@@ -93,17 +102,23 @@ export class ReceiveBurstForm extends React.PureComponent<Props, State> {
 
     if (this.isSubmitEnabled()) {
       this.props.onSubmit({
+        // @ts-ignore - ts bug I think
         recipient,
-        amount,
-        fee,
+        amount: convertNumberToNQTString(Number(amount)),
+        fee: convertNumberToNQTString(Number(fee)),
         immutable
       });
     }
   }
 
+  handleFeeChangeFromSlider = (fee: number) => {
+    this.setState({ fee: amountToString(fee) });
+  }
+
   render () {
     const { immutable, recipient, amount, fee } = this.state;
     const total = Number(amount) + Number(fee);
+    const { suggestedFees } = this.props;
 
     return (
       <View style={styles.wrapper}>
@@ -129,20 +144,19 @@ export class ReceiveBurstForm extends React.PureComponent<Props, State> {
             title={i18n.t(transactions.screens.send.feeNQT)}
             placeholder={'0'}
           />
-          <View style={styles.row}>
-            <View style={styles.col}>
-              <Switch
-                value={immutable}
-                onValueChange={this.handleImmutableChange}
-              />
-            </View>
-
-            <View style={[styles.col, styles.label]}>
-                <BText color={Colors.WHITE}>
-                  {i18n.t(transactions.screens.receive.immutable)}
-                </BText>
-            </View>
-          </View>
+          {suggestedFees &&
+           <FeeSlider
+            fee={parseFloat(fee) || 0}
+            onSlidingComplete={this.handleFeeChangeFromSlider}
+            suggestedFees={suggestedFees}
+           />}
+            <SwitchItem
+              text={(
+                <BText color={Colors.WHITE}>{i18n.t(transactions.screens.receive.immutable)}</BText>
+              )}
+              value={immutable}
+              onChange={this.handleImmutableChange}
+            />
           <BText color={Colors.WHITE}>
             {i18n.t(transactions.screens.send.total, { value: amountToString(total) })}
           </BText>

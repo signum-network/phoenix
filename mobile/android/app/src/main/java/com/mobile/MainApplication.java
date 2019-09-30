@@ -3,6 +3,7 @@ package com.mobile;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.slider.ReactSliderPackage;
 import com.horcrux.svg.SvgPackage;
 import com.rnfingerprint.FingerprintAuthPackage;
 import com.reactcommunity.rnlocalize.RNLocalizePackage;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactSliderPackage(),
             new SvgPackage(),
             new FingerprintAuthPackage(),
             new RNLocalizePackage(),

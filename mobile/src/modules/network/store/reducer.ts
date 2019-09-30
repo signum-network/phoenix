@@ -7,7 +7,7 @@ export interface NetworkReduxState {
   suggestedFees: SuggestedFees | null;
 }
 
-export const authState = (): NetworkReduxState => {
+export const networkState = (): NetworkReduxState => {
   return {
     suggestedFees: null
   };
@@ -26,4 +26,4 @@ const reducers = {
   [actionTypes.getSuggestedFees]: getSuggestedFees
 };
 
-export const auth = createReducers(authState(), reducers);
+export const network = createReducers(networkState(), reducers);

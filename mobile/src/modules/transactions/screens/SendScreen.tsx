@@ -1,4 +1,4 @@
-import { Account } from '@burstjs/core';
+import { Account, SuggestedFees } from '@burstjs/core';
 import { convertNQTStringToNumber } from '@burstjs/util';
 import React from 'react';
 import { View } from 'react-native';
@@ -10,6 +10,7 @@ import { i18n } from '../../../core/i18n';
 import { InjectedReduxProps } from '../../../core/interfaces';
 import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
+import { routes } from '../../../core/navigation/routes';
 import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { isAsyncLoading } from '../../../core/utils/async';
@@ -69,8 +70,9 @@ class Send extends React.PureComponent<Props, State> {
 
   getFee (feeNQT: string, feeSuggestionType: string) {
     let fee = convertNQTStringToNumber(feeNQT);
-    if (feeSuggestionType) {
-      fee = convertNQTStringToNumber(this.props.network.fees[feeSuggestionType]);
+    if (feeSuggestionType && feeSuggestionType !== 'undefined' && this.props.network.suggestedFees) {
+      // @ts-ignore
+      fee = convertNQTStringToNumber(this.props.network.suggestedFees[feeSuggestionType]);
     }
     return fee.toString();
   }
@@ -85,6 +87,7 @@ class Send extends React.PureComponent<Props, State> {
       });
     } else {
       this.props.dispatch(sendMoney(form));
+      this.props.navigation.navigate(routes.home);
     }
   }
 
@@ -114,6 +117,7 @@ class Send extends React.PureComponent<Props, State> {
               loading={isLoading}
               onSubmit={this.handleSubmit}
               deepLinkProps={this.deepLinkProps}
+              suggestedFees={this.props.network.suggestedFees}
             />
             {data && <Text theme={TextThemes.ACCENT}>{i18n.t(transactions.screens.send.sent)}</Text>}
             {error && <Text theme={TextThemes.DANGER}>{error.message}</Text>}
@@ -133,7 +137,8 @@ function mapStateToProps (state: ApplicationState) {
   return {
     app: state.app,
     auth: state.auth,
-    transactions: state.transactions
+    transactions: state.transactions,
+    network: state.network
   };
 }
 
