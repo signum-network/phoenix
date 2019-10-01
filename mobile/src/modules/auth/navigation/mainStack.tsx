@@ -4,7 +4,6 @@ import { tabbarIcons } from '../../../assets/icons';
 import { TabBarIcon } from '../../../core/components/tabbar/TabBarIcon';
 import { defaultStackOptions } from '../../../core/navigation/defaultStackOptions';
 import { routes, RoutesMap } from '../../../core/navigation/routes';
-import { SendScreen } from '../../transactions/screens/SendScreen';
 import { AccountDetailsScreen } from '../screens/AccountDetailsScreen';
 import { AccountsScreen } from '../screens/AccountsScreen';
 import { AddAccountScreen } from '../screens/AddAccountScreen';
@@ -26,8 +25,7 @@ const routesMap: RoutesMap = {
   [routes.addAccount]: AddAccountScreen,
   [routes.createAccount]: CreateAccountScreen,
   [routes.importAccount]: ImportAccountScreen,
-  [routes.accountDetails]: AccountDetailsScreen,
-  [routes.send]: SendScreen
+  [routes.accountDetails]: AccountDetailsScreen
 };
 
 export const mainStack = createStackNavigator(routesMap, stackConfig);

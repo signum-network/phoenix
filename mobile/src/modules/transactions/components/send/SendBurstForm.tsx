@@ -3,7 +3,7 @@ import { convertNQTStringToNumber, isValid } from '@burstjs/util';
 import Slider from '@react-native-community/slider';
 import { last } from 'lodash';
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import { BInput, KeyboardTypes } from '../../../../core/components/base/BInput';
 import { BSelect, SelectItem } from '../../../../core/components/base/BSelect';
 import { Button as BButton } from '../../../../core/components/base/Button';
@@ -14,10 +14,13 @@ import { amountToString } from '../../../../core/utils/numbers';
 import { SendMoneyPayload } from '../../store/actions';
 import { transactions } from '../../translations';
 import { FeeSlider } from '../fee-slider/FeeSlider';
+import { transactionIcons } from '../../../../assets/icons';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 interface Props {
   loading: boolean;
   onSubmit: (form: SendMoneyPayload) => void;
+  onCameraIconPress: () => void;
   accounts: Account[];
   deepLinkProps?: SendBurstFormState;
   suggestedFees: SuggestedFees | null;
@@ -34,7 +37,7 @@ export interface SendBurstFormState {
   immutable: boolean;
 }
 
-const styles: any = {
+const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
     height: '100%'
@@ -43,24 +46,43 @@ const styles: any = {
     display: 'flex',
     flexGrow: 1
   },
-  slider: {
-    width: '100%',
-    height: 40
+  col: {
+    flex: 1
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  scan: {
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10
   }
-};
+});
 
-export class SendBurstForm extends React.PureComponent<Props, SendBurstFormState> {
-  state = {
-    sender: null,
-    address: this.props.deepLinkProps && this.props.deepLinkProps.address || 'BURST-',
-    amount: this.props.deepLinkProps && this.props.deepLinkProps.amount || '',
-    fee: this.props.deepLinkProps && this.props.deepLinkProps.fee ||
-    this.props.suggestedFees && convertNQTStringToNumber(this.props.suggestedFees.standard.toString()).toString() || '',
-    message: this.props.deepLinkProps && this.props.deepLinkProps.message || undefined,
-    messageIsText: this.props.deepLinkProps && this.props.deepLinkProps.messageIsText || true,
-    encrypt: this.props.deepLinkProps && this.props.deepLinkProps.encrypt || false,
-    immutable: this.props.deepLinkProps && this.props.deepLinkProps.immutable || false
-  };
+export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
+
+  setupState = (props?: SendBurstFormState) => {
+    return {
+      sender: null,
+      address: props && props.address || 'BURST-',
+      amount: props && props.amount || '',
+      fee: props && props.fee ||
+           this.props.suggestedFees &&
+           convertNQTStringToNumber(this.props.suggestedFees.standard.toString()).toString() || '',
+      message: props && props.message || undefined,
+      messageIsText: props && props.messageIsText || true,
+      encrypt: props && props.encrypt || false,
+      immutable: props && props.immutable || false
+    };
+  }
+
+  state = this.setupState(this.props.deepLinkProps);
+
+  componentWillReceiveProps = ({ deepLinkProps }: Props) => {
+    this.setState(this.setupState(deepLinkProps));
+  }
 
   getAccounts = (): Array<SelectItem<Account>> => {
     return this.props.accounts.map((account) => ({
@@ -128,13 +150,22 @@ export class SendBurstForm extends React.PureComponent<Props, SendBurstFormState
     return (
       <View style={styles.wrapper}>
         <View style={styles.form}>
-          <BSelect
-            value={sender}
-            items={this.getAccounts()}
-            onChange={this.handleChangeFromAccount}
-            title={i18n.t(transactions.screens.send.from)}
-            placeholder={i18n.t(transactions.screens.send.selectAccount)}
-          />
+          <View style={styles.row}>
+            <View style={styles.col}>
+              <BSelect
+                value={sender}
+                items={this.getAccounts()}
+                onChange={this.handleChangeFromAccount}
+                title={i18n.t(transactions.screens.send.from)}
+                placeholder={i18n.t(transactions.screens.send.selectAccount)}
+              />
+            </View>
+            <View style={styles.scan}>
+              <TouchableHighlight onPress={this.props.onCameraIconPress}>
+                <Image source={transactionIcons.camera} style={{ backgroundColor: Colors.BLUE_DARKER }} />
+              </TouchableHighlight>
+            </View>
+          </View>
           <BInput
             value={address}
             onChange={this.handleChangeAddress}

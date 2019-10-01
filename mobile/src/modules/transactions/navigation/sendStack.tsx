@@ -4,6 +4,7 @@ import { tabbarIcons } from '../../../assets/icons';
 import { TabBarIcon } from '../../../core/components/tabbar/TabBarIcon';
 import { defaultStackOptions } from '../../../core/navigation/defaultStackOptions';
 import { routes, RoutesMap } from '../../../core/navigation/routes';
+import { ScanQRCodeScreen } from '../screens/ScanQRCodeScreen';
 import { SendScreen } from '../screens/SendScreen';
 
 const stackConfig: StackNavigatorConfig = {
@@ -15,7 +16,8 @@ const stackConfig: StackNavigatorConfig = {
 };
 
 const routesMap: RoutesMap = {
-  [routes.send]: SendScreen
+  [routes.send]: SendScreen,
+  [routes.scan]: ScanQRCodeScreen
 };
 
 export const sendStack = createStackNavigator(routesMap, stackConfig);

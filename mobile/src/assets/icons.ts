@@ -9,13 +9,12 @@ export const tabbarIcons = {
   settings: require('./icons/settings.png')
 };
 
-// 120/80/40px
 export const actionIcons = {
   del: require('./icons/delete.png')
 };
 
-// 120/80/40px
 export const transactionIcons = {
   done: require('./icons/check-circle.png'),
-  waiting: require('./icons/clock.png')
+  waiting: require('./icons/clock.png'),
+  camera: require('./icons/camera.png')
 };

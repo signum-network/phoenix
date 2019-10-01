@@ -138,6 +138,8 @@ android {
 }
 
 dependencies {
+    implementation project(':@react-native-community_async-storage')
+    implementation project(':react-native-camera')
     implementation project(':@react-native-community_slider')
     implementation project(':react-native-svg')
     implementation project(':react-native-touch-id')

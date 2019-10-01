@@ -40,6 +40,7 @@ export default class App extends React.Component<{}, {}> {
 
   componentWillUnmount (): void {
     removeEventListener('change', this.handleLanguagesChange);
+    Linking.removeEventListener('url', this.handleOpenURL);
   }
 
   handleLanguagesChange = (event: ChangeLanguageEvent) => {

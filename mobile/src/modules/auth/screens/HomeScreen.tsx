@@ -116,7 +116,6 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   componentWillUnmount () {
-    Linking.removeEventListener('url', this.handleOpenURL);
     clearInterval(this._checkPinExpiryInterval as number);
   }
 

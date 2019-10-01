@@ -12,6 +12,7 @@ export interface Routes {
   viewQRCode: string;
   accountDetails: string;
   settings: string;
+  scan: string;
 }
 
 export type RoutesMap = {
@@ -31,5 +32,6 @@ export const routes: Routes = {
   receive: 'receive',
   viewQRCode: 'viewQRCode',
   accountDetails: 'accountDetails',
-  settings: 'settings'
+  settings: 'settings',
+  scan: 'scanQRCode'
 };

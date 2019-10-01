@@ -1,8 +1,8 @@
 import { Account, SuggestedFees } from '@burstjs/core';
 import { convertNQTStringToNumber } from '@burstjs/util';
 import React from 'react';
-import { View } from 'react-native';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { View, EventEmitterListener } from 'react-native';
+import { NavigationInjectedProps, withNavigation, NavigationEventSubscription } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Text, TextThemes } from '../../../core/components/base/Text';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
@@ -34,7 +34,8 @@ interface IProps extends InjectedReduxProps {
 type Props = IProps & NavigationInjectedProps;
 
 interface State {
-  isPINModalVisible: boolean
+  isPINModalVisible: boolean,
+  deepLinkProps?: SendBurstFormState
 }
 
 class Send extends React.PureComponent<Props, State> {
@@ -45,27 +46,51 @@ class Send extends React.PureComponent<Props, State> {
 
   state = {
     isPINModalVisible: false,
-    deepLink: false
+    deepLinkProps: undefined
   };
 
-  deepLinkProps?: SendBurstFormState;
+  focusListener?: NavigationEventSubscription;
+  blurListener?: NavigationEventSubscription;
 
   componentWillMount () {
-    const deepLink = this.props.navigation.getParam('url');
+    this.focusListener = this.props.navigation.addListener('willFocus', this.willFocus);
+    this.blurListener = this.props.navigation.addListener('willBlur', this.willBlur);
+  }
+
+  willFocus = () => {
+    let deepLink = this.props.navigation.dangerouslyGetParent() &&
+                   // @ts-ignore
+                   this.props.navigation.dangerouslyGetParent().getParam('url');
+    if (!deepLink) {
+      deepLink = this.props.navigation.getParam('url');
+    }
     if (deepLink) {
       const params = parseURLParams(deepLink);
 
-      this.deepLinkProps = {
-        sender: null,
-        address: params.receiver,
-        fee: this.getFee(params.feeNQT, params.feeSuggestionType),
-        amount: convertNQTStringToNumber(params.amountNQT).toString(),
-        message: params.message,
-        messageIsText: params.messageIsText === 'false' ? false : true,
-        encrypt: params.encrypt,
-        immutable: params.immutable === 'false' ? false : true
-      };
+      this.setState({
+        deepLinkProps: {
+          sender: null,
+          address: params.receiver,
+          fee: this.getFee(params.feeNQT, params.feeSuggestionType),
+          amount: convertNQTStringToNumber(params.amountNQT).toString(),
+          message: params.message,
+          messageIsText: params.messageIsText === 'false' ? false : true,
+          encrypt: params.encrypt,
+          immutable: params.immutable === 'false' ? false : true
+        }
+      });
     }
+  }
+
+  willBlur = () => {
+    const deepLink = this.props.navigation.dangerouslyGetParent();
+    if (deepLink) {
+      deepLink.setParams({ url: undefined });
+    }
+    this.props.navigation.setParams({ url: undefined });
+    this.setState({
+      deepLinkProps: undefined
+    });
   }
 
   getFee (feeNQT: string, feeSuggestionType: string) {
@@ -103,6 +128,19 @@ class Send extends React.PureComponent<Props, State> {
     });
   }
 
+  handleCameraIconPress = () => {
+    this.props.navigation.navigate(routes.scan);
+  }
+
+  componentWillUnmount () {
+    if (this.focusListener) {
+      this.focusListener.remove();
+    }
+    if (this.blurListener) {
+      this.blurListener.remove();
+    }
+  }
+
   render () {
     const accounts: Account[] = this.props.auth.accounts || [];
     const { data, error } = this.props.transactions.sendMoney;
@@ -116,7 +154,8 @@ class Send extends React.PureComponent<Props, State> {
               accounts={accounts}
               loading={isLoading}
               onSubmit={this.handleSubmit}
-              deepLinkProps={this.deepLinkProps}
+              onCameraIconPress={this.handleCameraIconPress}
+              deepLinkProps={this.state.deepLinkProps}
               suggestedFees={this.props.network.suggestedFees}
             />
             {data && <Text theme={TextThemes.ACCENT}>{i18n.t(transactions.screens.send.sent)}</Text>}
