@@ -14,6 +14,7 @@ import { ApplicationState } from '../../../core/store/initialState';
 import { Sizes } from '../../../core/theme/sizes';
 import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
+import { Colors } from '../../../core/theme/colors';
 
 interface IProps extends InjectedReduxProps {
   auth: AuthReduxState,
@@ -43,7 +44,7 @@ class AddAccount extends React.PureComponent<Props> {
   render () {
     return (
       <Screen>
-        <FullHeightView>
+        <FullHeightView style={{ backgroundColor: Colors.WHITE }}>
           <View style={styles.hintView}>
             <Text theme={TextThemes.HEADER}>
               {i18n.t(auth.addAccount.hint)}

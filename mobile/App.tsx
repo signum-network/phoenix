@@ -61,6 +61,11 @@ export default class App extends React.Component<{}, {}> {
     if (this.navigator && routeName.indexOf('requestBurst') > -1) {
       this.navigator.dispatch(
         NavigationActions.navigate({
+          routeName: routes.home
+        })
+      );
+      this.navigator.dispatch(
+        NavigationActions.navigate({
           routeName: routes.send,
           params: { url }
         })
