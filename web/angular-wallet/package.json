@@ -97,7 +97,7 @@
     "@types/dragula": "^2.1.34",
     "@types/node": "~12.7.3",
     "codelyzer": "~5.1.1",
-    "cross-env": "^5.2.0",
+    "cross-env": "^6.0.3",
     "electron": "^6.0.1",
     "husky": "^3.0.5",
     "jasmine-core": "~3.4.0",
