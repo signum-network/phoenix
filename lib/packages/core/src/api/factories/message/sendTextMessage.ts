@@ -6,6 +6,7 @@
 import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
+import {DefaultDeadline} from '../../../constants';
 import {generateSignature} from '@burstjs/crypto';
 import {verifySignature} from '@burstjs/crypto';
 import {generateSignedTransactionBytes} from '@burstjs/crypto';
@@ -29,7 +30,7 @@ export const sendTextMessage = (service: BurstService):
         recipientId: string,
         senderPublicKey: string,
         senderPrivateKey: string,
-        deadline: number = 1440,
+        deadline: number = DefaultDeadline,
         fee: number = 0.1,
     ): Promise<TransactionId> => {
 
@@ -39,7 +40,7 @@ export const sendTextMessage = (service: BurstService):
             message,
             messageIsText: true,
             broadcast: true,
-            deadline: 1440, // which deadline?
+            deadline,
             feeNQT: convertNumberToNQTString(fee),
         };
 
