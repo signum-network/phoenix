@@ -3,6 +3,7 @@ import {convertAddressToNumericId, convertNumericIdToAddress, isBurstAddress} fr
 import {AccountService} from '../../../setup/account/account.service';
 import jsQR from 'jsqr';
 import {NotifierService} from 'angular-notifier';
+import { DomainService } from 'app/main/send-burst/domain/domain.service';
 
 // generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
 let nextId = 0;
@@ -12,6 +13,7 @@ export enum RecipientType {
   ADDRESS = 1,
   ID,
   ALIAS,
+  ZIL,
 }
 
 export enum RecipientValidationStatus {
@@ -57,7 +59,8 @@ export class BurstRecipientInputComponent implements OnChanges {
   @ViewChild('file', {static: true}) file: ElementRef;
 
   constructor(private accountService: AccountService,
-              private notifierService: NotifierService) {
+              private notifierService: NotifierService,
+              private domainService: DomainService) {
   }
 
   ngOnChanges(): void {
@@ -78,6 +81,8 @@ export class BurstRecipientInputComponent implements OnChanges {
       this.recipient.type = RecipientType.UNKNOWN;
     } else if (r.startsWith('BURST-')) {
       this.recipient.type = RecipientType.ADDRESS;
+    } else if (r.endsWith('.zil')) {
+      this.recipient.type = RecipientType.ZIL;
     } else if (/^\d+$/.test(r)) {
       this.recipient.type = RecipientType.ID;
     } else {
@@ -86,7 +91,7 @@ export class BurstRecipientInputComponent implements OnChanges {
   }
 
 
-  validateRecipient(recipient: string): void {
+  async validateRecipient(recipient: string): Promise<void> {
     let accountFetchFn;
     this.recipient.addressRaw = recipient.trim();
     let id = this.recipient.addressRaw;
@@ -96,6 +101,9 @@ export class BurstRecipientInputComponent implements OnChanges {
         break;
       case RecipientType.ADDRESS:
         id = convertAddressToNumericId(id);
+        break;
+      case RecipientType.ZIL:
+        id = await this.domainService.getZilAddress(id);
       // tslint:disable-next-line:no-switch-case-fall-through
       case RecipientType.ID:
         accountFetchFn = this.accountService.getAccount;
