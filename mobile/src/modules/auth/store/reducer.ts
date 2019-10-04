@@ -7,13 +7,15 @@ export interface AuthReduxState {
   accounts: Account[];
   passcodeEnteredTime: number;
   passcode: string;
+  agreeToTerms: boolean;
 }
 
 export const authState = (): AuthReduxState => {
   return {
     accounts: [],
     passcodeEnteredTime: 0,
-    passcode: ''
+    passcode: '',
+    agreeToTerms: false
   };
 };
 
@@ -76,6 +78,14 @@ const setPasscodeEnteredTime: Reducer<AuthReduxState, number> = (state, action) 
   };
 };
 
+const setAgreeToTerms: Reducer<AuthReduxState, boolean> = (state, action) => {
+  const agree = action.payload;
+  return {
+    ...state,
+    agreeToTerms: agree
+  };
+};
+
 const loadPasscode: Reducer<AuthReduxState, string> = (state, action) => {
   const passcode = action.payload;
   return {
@@ -92,7 +102,8 @@ const reducers = {
   [actionTypes.loadPasscodeEnteredTime]: loadPasscodeEnteredTime,
   [actionTypes.setPasscodeEnteredTime]: setPasscodeEnteredTime,
   [actionTypes.loadPasscode]: loadPasscode,
-  [actionTypes.resetAuthState]: resetAuthState
+  [actionTypes.resetAuthState]: resetAuthState,
+  [actionTypes.setAgreeToTerms]: setAgreeToTerms
 };
 
 export const auth = createReducers(authState(), reducers);
