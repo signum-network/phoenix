@@ -2,15 +2,16 @@ import React from 'react';
 
 import {
   StyleSheet,
-  Text,
-  TouchableOpacity
+  Text
 } from 'react-native';
 
 import QRCodeScanner, { Event } from 'react-native-qrcode-scanner';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-import { Colors } from '../../../core/theme/colors';
 import { routes } from '../../../core/navigation/routes';
+import { Colors } from '../../../core/theme/colors';
+import { i18n } from '../../../core/i18n';
+import { transactions } from '../translations';
 
 class ScanQRCodeScreenComponent extends React.PureComponent<NavigationInjectedProps> {
   onSuccess = (e: Event) => {
@@ -30,13 +31,8 @@ class ScanQRCodeScreenComponent extends React.PureComponent<NavigationInjectedPr
         onRead={this.onSuccess}
         topContent={
           <Text style={styles.centerText}>
-            Scan Burst QR Code
+            {i18n.t(transactions.screens.scan.title)}
           </Text>
-        }
-        bottomContent={
-          <TouchableOpacity style={styles.buttonTouchable}>
-            <Text style={styles.centerText}>Done</Text>
-          </TouchableOpacity>
         }
       />
     );
