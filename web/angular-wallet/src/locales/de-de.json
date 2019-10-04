@@ -571,7 +571,7 @@
   "max_memory": "Maximaler Speicher",
   "max_nr_of_options": "Höchstanzahl an Optionen",
   "maximum_nr_choices": "Höchstanzahl an Auswahlmöglichkeiten",
-  "memorize_passphrase_help": "Bitte bewahren Sie diese 12 Wörter an einem sicheren Ort auf. Diese Passphrase wird benötigt, um auf Ihr Burst-Konto zuzugreifen.",
+  "memorize_passphrase_help": "Bitte bewahren Sie diese Passphrase an einem sicheren Ort auf. Diese Passphrase wird benötigt, um auf Ihr Burst-Konto zuzugreifen.",
   "memorize_passphrase_help_addon": "Wenn Sie die Passphrase verlieren, können Sie keine Transaktionen durchführen, d. H. Ihre Münzen gehen verloren. Die Passphrase kann nicht wiederhergestellt werden. Bewahren Sie diese Passphrase geheim auf. Jeder, der die Passphrase kennt, ist de facto der Besitzer des Kontos.",
   "message": "Nachricht",
   "message_empty": "Die Nachricht ist leer.",

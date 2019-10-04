@@ -571,7 +571,7 @@
   "max_memory": "Muistin enimmäismäärä",
   "max_nr_of_options": "Valintojen maksimimäärä",
   "maximum_nr_choices": "Valintojen maksimimäärä",
-  "memorize_passphrase_help": "Säilytä nämä 12 sanaa turvallisessa paikassa. Tätä salasanaa tarvitaan, jotta voit käyttää Burst-tiliäsi.",
+  "memorize_passphrase_help": "Säilytä tämä tunnuslause turvallisessa paikassa. Tätä salasanaa tarvitaan pääsyäksesi Burst-tiliisi.",
   "memorize_passphrase_help_addon": "Jos menetät salasanan, et voi tehdä mitään tapahtumia, eli kolikot häviävät. Salasana ei ole palautettavissa. Pidä tämä salasana salassa. Jokainen, joka tietää salasanan, on tosiasiallisesti tilin omistaja.",
   "message": "Viesti",
   "message_empty": "Viesti on tyhjä.",
