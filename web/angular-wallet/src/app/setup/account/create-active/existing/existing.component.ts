@@ -23,19 +23,20 @@ export class AccountCreateExistingComponent {
     this.passphraseGenerator = new PassPhraseGenerator();
   }
 
-  public setPassphraseAndGenerateMasterKeys(phrase: string[]) {
+  public setPassphraseAndGenerateMasterKeys(phrase: string[]): void {
     this.createService.setPassphrase(phrase);
-    const keys = generateMasterKeys(this.createService.getCompletePassphrase());
-    const id = getAccountIdFromPublicKey(keys.publicKey);
-    this.createService.setId(id);
+    const {publicKey} = generateMasterKeys(this.createService.getCompletePassphrase());
+    const id = getAccountIdFromPublicKey(publicKey);
     const address = convertNumericIdToAddress(id);
+    this.createService.setId(id);
+    this.createService.setPublicKey(publicKey);
     this.createService.setAddress(address);
     setTimeout(x => {
       this.createService.setStepIndex(1);
     }, 0);
   }
 
-  public setManualPassphrase(phrase: string) {
+  public setManualPassphrase(phrase: string): void {
     return this.setPassphraseAndGenerateMasterKeys(phrase.split(' '));
   }
 }

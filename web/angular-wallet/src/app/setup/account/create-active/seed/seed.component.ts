@@ -26,7 +26,7 @@ export class AccountCreateSeedComponent {
     this.passphraseGenerator = new PassPhraseGenerator();
   }
 
-  public movement(e) {
+  public movement(e): void {
     this.seed.push([e.clientX, e.clientY, new Date()]);
     if (!this.update) {
       this.update = true;
@@ -42,14 +42,15 @@ export class AccountCreateSeedComponent {
         });
     }
   }
-  
-  public setPassphraseAndGenerateMasterKeys(phrase: string[]) {
+
+  public setPassphraseAndGenerateMasterKeys(phrase: string[]): void {
     this.createService.setPassphrase(phrase);
-    const keys = generateMasterKeys(this.createService.getCompletePassphrase());
-    const id = getAccountIdFromPublicKey(keys.publicKey);
-    this.createService.setId(id);
+    const {publicKey} = generateMasterKeys(this.createService.getCompletePassphrase());
+    const id = getAccountIdFromPublicKey(publicKey);
     const address = convertNumericIdToAddress(id);
+    this.createService.setId(id);
     this.createService.setAddress(address);
+    this.createService.setPublicKey(publicKey);
     this.seed = [];
     setTimeout(x => {
       this.createService.setStepIndex(1);

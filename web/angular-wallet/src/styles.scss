@@ -25,8 +25,10 @@ $success-color: #00cc99;
   margin: 0 .5rem;
 }
 
-.divider {
-  border-top-color: #dcdcdc;
+.separator {
+  border: none;
+  border-top: 1px solid #dcdcdc;
+  height: 1px;
 }
 
 .mat-dialog-container {

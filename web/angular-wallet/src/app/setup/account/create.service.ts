@@ -1,84 +1,95 @@
-import { Injectable } from '@angular/core';
-import { AccountService } from './account.service';
+import {Injectable} from '@angular/core';
+import {AccountService} from './account.service';
 
 @Injectable()
 export class CreateService {
-    private passphrase: string[];
-    private pin: string;
-    private account: string;
-    private accountRS: string;
-    private stepIndex: number;
+  private passphrase: string[];
+  private pin: string;
+  private account: string;
+  private accountRS: string;
+  private publicKey: string;
+  private stepIndex: number;
 
-    constructor(private accountService: AccountService) {
-        this.stepIndex = 0;
-        this.reset();
-    }
+  constructor(private accountService: AccountService) {
+    this.stepIndex = 0;
+    this.reset();
+  }
 
-    public setPassphrase(passphrase: string[]) {
-        this.passphrase = passphrase;
-    }
+  public setPassphrase(passphrase: string[]): void {
+    this.passphrase = passphrase;
+  }
 
-    public getPassphrase(): string[] {
-        return this.passphrase;
-    }
+  public getPassphrase(): string[] {
+    return this.passphrase;
+  }
 
-    public setPin(pin: string) {
-        this.pin = pin;
-    }
+  public setPin(pin: string): void {
+    this.pin = pin;
+  }
 
-    public getPin(): string {
-        return this.pin;
-    }
+  public getPin(): string {
+    return this.pin;
+  }
 
-    public getPassphrasePart(index: number): string {
-        return this.passphrase[index];
-    }
+  public setPublicKey(publicKey: string): void {
+    this.publicKey = publicKey;
+  }
 
-    public getCompletePassphrase(): string {
-        return this.passphrase.join(' ');
-    }
+  public getPublicKey(): string {
+    return this.publicKey;
+  }
 
-    public setId(account: string) {
-        this.account = account;
-    }
+  public getPassphrasePart(index: number): string {
+    return this.passphrase[index];
+  }
 
-    public getId() {
-        return this.account;
-    }
+  public getCompletePassphrase(): string {
+    return this.passphrase.join(' ');
+  }
 
-    public setAddress(address: string) {
-        this.accountRS = address;
-    }
+  public setId(account: string): void {
+    this.account = account;
+  }
 
-    public getAddress(): string {
-        return this.accountRS;
-    }
+  public getId(): string {
+    return this.account;
+  }
 
-    public setStepIndex(index: number) {
-        this.stepIndex = index;
-    }
+  public setAddress(address: string): void {
+    this.accountRS = address;
+  }
 
-    public getStepIndex(): number {
-        return this.stepIndex;
-    }
+  public getAddress(): string {
+    return this.accountRS;
+  }
 
-    public isPassphraseGenerated(): boolean {
-        return this.passphrase.length > 0 &&
-          this.accountRS !== undefined &&
-          this.account !== undefined;
-    }
+  public setStepIndex(index: number): void {
+    this.stepIndex = index;
+  }
 
-    public createActiveAccount() {
-        return this.accountService.createActiveAccount({ passphrase: this.getCompletePassphrase(), pin: this.pin });
-    }
+  public getStepIndex(): number {
+    return this.stepIndex;
+  }
 
-    public createPassiveAccount() {
-        return this.accountService.createOfflineAccount(`BURST-${this.accountRS}`);
-    }
+  public isPassphraseGenerated(): boolean {
+    return this.passphrase.length > 0 &&
+      this.accountRS !== undefined &&
+      this.account !== undefined;
+  }
 
-    public reset() {
-        this.passphrase = [];
-        this.account = undefined;
-        this.accountRS = undefined;
-    }
+  public createActiveAccount(): Promise<Account> {
+    // @ts-ignore
+    return this.accountService.createActiveAccount({passphrase: this.getCompletePassphrase(), pin: this.pin});
+  }
+
+  public createPassiveAccount(): Promise<Account> {
+    // @ts-ignore
+    return this.accountService.createOfflineAccount(`BURST-${this.accountRS}`);
+  }
+
+  public reset(): void {
+    this.passphrase = [];
+    this.account = undefined;
+    this.accountRS = undefined;
+  }
 }

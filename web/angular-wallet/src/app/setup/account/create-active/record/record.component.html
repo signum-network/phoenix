@@ -33,6 +33,19 @@
   </tr>
   <tr>
     <td class="table__label">
+      {{ 'public_key' | i18n }}:
+    </td>
+    <td class="table__text">
+      {{ this.createService.getPublicKey() }}
+    </td>
+  </tr>
+</table>
+
+<div class="separator"></div>
+
+<table cellspacing="10" class="table">
+  <tr>
+    <td class="table__label">
       {{ 'passphrase' | i18n }}:
     </td>
     <td class="table__text unselectable">
@@ -45,7 +58,9 @@
     </td>
   </tr>
 </table>
-<hr class="divider">
+
+<div class="separator"></div>
+
 <small>{{"account_is_not_public_yet" |i18n }}</small>
 <div class="text-center navigation">
   <button class="btn-danger" mat-raised-button (click)="reset()">{{"back" | i18n}}</button>
