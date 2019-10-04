@@ -6,6 +6,7 @@
 import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
+import {DefaultDeadline} from '../../../constants';
 import {generateSignature, Keys} from '@burstjs/crypto';
 import {verifySignature, generateSignedTransactionBytes, encryptMessage} from '@burstjs/crypto';
 import {convertNumberToNQTString} from '@burstjs/util';
@@ -30,7 +31,7 @@ export const sendEncryptedTextMessage = (service: BurstService):
         recipientId: string,
         recipientPublicKey: string,
         senderKeys: Keys,
-        deadline: number = 1440,
+        deadline: number = DefaultDeadline,
         fee: number = 0.1,
     ): Promise<TransactionId> => {
 

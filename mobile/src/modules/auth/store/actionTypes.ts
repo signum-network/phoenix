@@ -10,5 +10,6 @@ export const actionTypes = {
   setPasscodeEnteredTime: `${PATH}_SET_PASSCODE_ENTERED_TIME`,
   setPasscode: `${PATH}_SET_PASSCODE`,
   loadPasscode: `${PATH}_LOAD_PASSCODE`,
-  resetAuthState: `${PATH}_STATE_RESET`
+  resetAuthState: `${PATH}_STATE_RESET`,
+  setAgreeToTerms: `${PATH}_AGREE_TO_TERMS`
 };
