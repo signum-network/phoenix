@@ -571,7 +571,7 @@
   "max_memory": "Max Memory",
   "max_nr_of_options": "Maximum Nr of Options",
   "maximum_nr_choices": "Maximum Nr Of Choices",
-  "memorize_passphrase_help": "Lütfen bu 12 kelimeyi (sipariş ve büyük harf kullanımı - her zaman küçük harf) güvenli bir yerde saklayın. Burst hesabınıza erişmek için bu parola gereklidir.",
+  "memorize_passphrase_help": "Lütfen bu parolayı güvenli bir yerde saklayın. Burst hesabınıza erişmek için bu parola gereklidir.",
   "memorize_passphrase_help_addon": "Parolayı kaybederseniz herhangi bir işlem yapamazsınız, yani madeni paralarınız kaybolur. Parola kurtarılamaz. Bu parolayı gizli tut. Parolayı bilen herkes hesap sahibine aittir.",
   "message": "Message",
   "message_empty": "Message is empty.",

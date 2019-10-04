@@ -571,7 +571,7 @@
   "max_memory": "Mémoire max",
   "max_nr_of_options": "Nbre d'options maximum",
   "maximum_nr_choices": "Nbre de choix maximum",
-  "memorize_passphrase_help": "Veuillez stocker ces 12 mots dans un endroit sûr. Ce mot de passe est nécessaire pour accéder à votre compte Burst.",
+  "memorize_passphrase_help": "Veuillez stocker cette phrase secrète dans un endroit sécurisé. Ce mot de passe est nécessaire pour accéder à votre compte Burst.",
   "memorize_passphrase_help_addon": "Si vous perdez la phrase secrète, vous ne pourrez plus effectuer aucune transaction, c’est-à-dire que vos pièces sont perdues. La phrase secrète n'est pas récupérable. Gardez cette phrase secrète secrète. Tous ceux qui connaissent la phrase secrète sont de facto propriétaires du compte.",
   "message": "Message",
   "message_empty": "Le message est vide.",

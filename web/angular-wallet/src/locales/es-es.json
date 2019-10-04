@@ -571,7 +571,7 @@
   "max_memory": "Memoria Max",
   "max_nr_of_options": "Máximo Nº de Opciones",
   "maximum_nr_choices": "Máximo Nº de Opciones",
-  "memorize_passphrase_help": "Por favor almacene estas 12 palabras en un lugar seguro. Esta frase de contraseña es necesaria para acceder a su cuenta de Burst.",
+  "memorize_passphrase_help": "Guarde esta frase de contraseña en un lugar seguro. Esta frase de contraseña es necesaria para acceder a su cuenta de Burst.",
   "memorize_passphrase_help_addon": "Si pierde la contraseña, no podrá realizar ninguna transacción, es decir, se perderán sus monedas. La frase de contraseña no es recuperable. Mantenga esta frase secreta en secreto. Todos los que conocen la frase de contraseña son, de hecho, el propietario de la cuenta.",
   "message": "Mensaje",
   "message_empty": "El mensaje está vacío.",

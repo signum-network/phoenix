@@ -571,7 +571,7 @@
   "max_memory": "Memorie Maximă",
   "max_nr_of_options": "Nr maxim de opţiuni",
   "maximum_nr_choices": "Număr Maxim de Alegeri",
-  "memorize_passphrase_help": "Păstrați aceste 12 cuvinte (ordine și capitalizare - întotdeauna mici) într-un loc sigur. Această frază de acces este necesară pentru a vă accesa contul Burst.",
+  "memorize_passphrase_help": "Vă rugăm să păstrați această parolă într-un loc sigur. Această parolă este necesară pentru a vă accesa contul Burst.",
   "memorize_passphrase_help_addon": "Dacă pierdeți fraza de acces, nu veți putea efectua nicio tranzacție, adică monedele dvs. se pierd. Fraza de acces nu poate fi recuperată. Mențineți această parolă secretă. Toată lumea care cunoaște expresia de acces este de facto proprietarul contului.",
   "message": "Mesaj",
   "message_empty": "Mesajul este gol.",

@@ -571,7 +571,7 @@
   "max_memory": "Maksimum memori",
   "max_nr_of_options": "Jumlah maksimum Pilihan",
   "maximum_nr_choices": "Jumlah maksimum Pilihan",
-  "memorize_passphrase_help": "Silakan simpan 12 kata ini di tempat yang aman. Frasa sandi ini diperlukan untuk mengakses akun Burst Anda.",
+  "memorize_passphrase_help": "Harap simpan frasa sandi ini di tempat yang aman. Frasa sandi ini diperlukan untuk mengakses akun Burst Anda.",
   "memorize_passphrase_help_addon": "Jika Anda kehilangan frasa sandi, Anda tidak akan dapat melakukan transaksi, mis. Koin Anda hilang. Frasa sandi tidak dapat dipulihkan. Jaga kerahasiaan kata sandi ini. Semua orang yang tahu frasa sandi adalah pemilik akun itu.",
   "message": "Pesan",
   "message_empty": "Pesan kosong.",
