@@ -22,7 +22,6 @@ export type RoutesMap = {
  * List of all in-app routes
  */
 export const routes: Routes = {
-  terms: 'terms',
   accounts: 'accounts',
   addAccount: 'addAccount',
   createAccount: 'createAccount',
