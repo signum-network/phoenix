@@ -571,7 +571,7 @@
   "max_memory": "Memoria Máxima",
   "max_nr_of_options": "Máximo Nº de opcións",
   "maximum_nr_choices": "Máximo Nº de opcións",
-  "memorize_passphrase_help": "Garde estas 12 palabras nun lugar seguro. Esta frase de acceso é necesaria para acceder á súa conta de ráfaga.",
+  "memorize_passphrase_help": "Almacene esta frase de paso nun lugar seguro. Esta frase de paso é necesaria para acceder á súa conta de explosión.",
   "memorize_passphrase_help_addon": "Se perde a frase de contrasinal, non poderás realizar ningunha transacción, é dicir, as túas moedas están perdidas. A frase de acceso non é recuperable. Manter este contrasinal secreto. Todos os que coñecen o contrasinal son de feito o dono da conta.",
   "message": "Mensaxe",
   "message_empty": "Message is empty.",

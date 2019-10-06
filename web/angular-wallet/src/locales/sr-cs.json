@@ -537,7 +537,7 @@
   "max_memory": "Max Memorija",
   "max_nr_of_options": "Maksimalan Broj Opcija",
   "maximum_nr_choices": "Maksimalan Broj Izbora",
-  "memorize_passphrase_help": "Molimo Vas zapištite ili zapamtite ovih 12 reči (redosled reči i veličina slova je veoma važna - uvek koristite mala slova).  Ponuđena lozinka je neophodna za pristup Vašem BURST računu.",
+  "memorize_passphrase_help": "Молимо чувајте ову лозинку на сигурном месту. Ова лозинка потребна је за приступ вашем Бурст налогу.",
   "message": "Poruka",
   "message_empty": "Poruka je prazna.",
   "message_is_encrypted": "Ova poruka je zaštićena.",

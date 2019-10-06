@@ -571,7 +571,7 @@
   "max_memory": "Max Memorija",
   "max_nr_of_options": "Maksimalan broj opcija",
   "maximum_nr_choices": "Maksimalan broj izbora",
-  "memorize_passphrase_help": "Te 12 riječi pohranite na sigurno mjesto. Ta je zaporka potrebna za pristup Burst računu.",
+  "memorize_passphrase_help": "Spremite ovu lozinku na sigurnom mjestu. Ova lozinka potrebna je za pristup vašem Burst računu.",
   "memorize_passphrase_help_addon": "Ako izgubite zaporku, nećete moći obavljati nikakve transakcije, tj. Izgubljeni kovanice. Zaporka se ne može vratiti. Čuvajte ovu tajnu zaporke. Svatko tko zna zaporku de facto je vlasnik računa.",
   "message": "Poruka",
   "message_empty": "Poruka je prazna.",

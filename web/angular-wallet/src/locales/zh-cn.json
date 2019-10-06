@@ -571,7 +571,7 @@
   "max_memory": "最大内存",
   "max_nr_of_options": "选项的最大数目",
   "maximum_nr_choices": "选择的最大值",
-  "memorize_passphrase_help": "请将这12个字（订单和大写字母 - 始终小写）存放在安全的地方。需要此密码才能访问您的Burst帐户。",
+  "memorize_passphrase_help": "请将此密码存储在安全的地方。需要此密码才能访问您的Burst帐户。",
   "memorize_passphrase_help_addon": "如果你松开密码短语，你将无法进行任何交易，即你的硬币丢失了。密码短语无法恢复。保密密码。知道密码的每个人事实上都是帐户的所有者。",
   "message": "信息",
   "message_empty": "信息是空白的。",

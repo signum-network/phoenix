@@ -1,9 +1,10 @@
 import { Account, SuggestedFees } from '@burstjs/core';
 import { convertNQTStringToNumber, isValid } from '@burstjs/util';
-import Slider from '@react-native-community/slider';
 import { last } from 'lodash';
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
+import { transactionIcons } from '../../../../assets/icons';
 import { BInput, KeyboardTypes } from '../../../../core/components/base/BInput';
 import { BSelect, SelectItem } from '../../../../core/components/base/BSelect';
 import { Button as BButton } from '../../../../core/components/base/Button';
@@ -14,8 +15,6 @@ import { amountToString } from '../../../../core/utils/numbers';
 import { SendMoneyPayload } from '../../store/actions';
 import { transactions } from '../../translations';
 import { FeeSlider } from '../fee-slider/FeeSlider';
-import { transactionIcons } from '../../../../assets/icons';
-import { TouchableHighlight } from 'react-native-gesture-handler';
 
 interface Props {
   loading: boolean;
