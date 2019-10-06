@@ -12,8 +12,8 @@ export enum Colors {
   PINK = '#D9534F',
   RED = '#FF0000',
   GREEN = '#00FF00',
-  ORANGE = '#eaa924',
-  YELLOW = '#fffe33'
+  ORANGE = '#EAA924',
+  YELLOW = '#FFFE33'
 }
 
 export const AccountColors = [
