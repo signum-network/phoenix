@@ -3,6 +3,7 @@ mat-form-field {
 
   .container {
     width: fit-content;
+    position: relative;
   }
 
   .badge {
@@ -19,10 +20,23 @@ mat-form-field {
     &.valid {
       color: white;
       background: #00b386;
+      
+      mat-icon {
+        color: white;
+      }
     }
 
     &.unknown {
       background: lightgray;
+    }
+
+    &.zil-outage {
+      background: red;
+      color: white;
+
+      mat-icon {
+        color: white;
+      }
     }
 
     mat-icon {
@@ -43,8 +57,15 @@ mat-form-field {
     margin: 0 2px 0 0;
     word-break: normal;
     hyphenate-character: "-";
+    text-overflow: ellipsis;
+    overflow: hidden;
+    direction: rtl;
   }
+}
 
+mat-progress-bar {
+  position:absolute;
+  bottom:-11px;
 }
 
 .inputfile {

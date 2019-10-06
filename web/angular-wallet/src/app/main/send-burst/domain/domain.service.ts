@@ -9,7 +9,7 @@ export class DomainService {
   }
 
   public getZilAddress(address: string): Promise<string> {
-    return this.namicorn.address(address, 'ZIL');
+    return this.namicorn.address(address, 'BURST');
   }
 
 }
