@@ -12,11 +12,7 @@
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@fuse": ["@fuse/"],
-      "@burstjs/*": ["../../../lib/packages/*"],
-      "os": ["src/empty.ts"],
-      "http": ["src/empty.ts"],
-      "stream": ["src/empty.ts"],
-      "crypto": ["src/empty.ts"]
+      "@burstjs/*": ["../../../lib/packages/*"]
     },
     "target": "es5",
     "typeRoots": [
