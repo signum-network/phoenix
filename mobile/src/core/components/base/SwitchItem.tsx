@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Sizes } from '../../theme/sizes';
 import { Text } from './Text';
+import { Colors } from '../../theme/colors';
 
 interface IProps {
   text: string | JSX.Element;
@@ -48,7 +49,12 @@ export const SwitchItem: React.FunctionComponent<Props> = (props) => {
         {isString(text) ? <Text>{text}</Text> : text}
       </View>
       <View style={styles.switchView}>
-        <Switch onValueChange={handleSwitchChange} value={value} disabled={disabled} />
+        <Switch
+          onValueChange={handleSwitchChange}
+          trackColor={{true: Colors.GREEN, false: Colors.BLUE_DARKEST}}
+          value={value}
+          disabled={disabled}
+        />
       </View>
     </TouchableOpacity>
   );

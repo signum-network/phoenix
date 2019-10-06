@@ -18,6 +18,7 @@ import {
 
 const actions = {
   addAccount: createAction<Account>(actionTypes.addAccount),
+  getAccount: createAction<string>(actionTypes.getAccount),
   updateAccount: createAction<Account>(actionTypes.updateAccount),
   removeAccount: createAction<Account>(actionTypes.removeAccount),
   loadAccounts: createAction<Account[]>(actionTypes.loadAccounts),
@@ -102,6 +103,21 @@ export const hydrateAccount = createActionFn<Account, Promise<Account>>(
 
     await setAccounts(getState().auth.accounts);
     return account;
+  }
+);
+
+export const getAccount = createActionFn<string, Promise<Account | undefined>>(
+  async (_dispatch, getState, account) => {
+
+    const state = getState();
+    const { nodeHost, apiRootUrl } = state.app.burstService.settings;
+    // TODO: unify network request actions, add proper error handling and so on
+    const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
+    try {
+      const accountDetails = await api.account.getAccount(account);
+      return accountDetails;
+    // tslint:disable-next-line: no-empty
+    } catch (e) {}
   }
 );
 

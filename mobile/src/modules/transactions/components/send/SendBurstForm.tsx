@@ -1,5 +1,6 @@
-import { Account } from '@burstjs/core';
-import { isValid } from '@burstjs/util';
+import { Account, SuggestedFees } from '@burstjs/core';
+import { convertNQTStringToNumber, isValid } from '@burstjs/util';
+import Slider from '@react-native-community/slider';
 import { last } from 'lodash';
 import React from 'react';
 import { View } from 'react-native';
@@ -12,12 +13,14 @@ import { Colors } from '../../../../core/theme/colors';
 import { amountToString } from '../../../../core/utils/numbers';
 import { SendMoneyPayload } from '../../store/actions';
 import { transactions } from '../../translations';
+import { FeeSlider } from '../fee-slider/FeeSlider';
 
 interface Props {
   loading: boolean;
   onSubmit: (form: SendMoneyPayload) => void;
   accounts: Account[];
   deepLinkProps?: SendBurstFormState;
+  suggestedFees: SuggestedFees | null;
 }
 
 export interface SendBurstFormState {
@@ -25,6 +28,10 @@ export interface SendBurstFormState {
   address: string;
   amount: string;
   fee: string;
+  message?: string;
+  messageIsText: boolean;
+  encrypt: boolean;
+  immutable: boolean;
 }
 
 const styles: any = {
@@ -35,6 +42,10 @@ const styles: any = {
   form: {
     display: 'flex',
     flexGrow: 1
+  },
+  slider: {
+    width: '100%',
+    height: 40
   }
 };
 
@@ -43,7 +54,12 @@ export class SendBurstForm extends React.PureComponent<Props, SendBurstFormState
     sender: null,
     address: this.props.deepLinkProps && this.props.deepLinkProps.address || 'BURST-',
     amount: this.props.deepLinkProps && this.props.deepLinkProps.amount || '',
-    fee: this.props.deepLinkProps && this.props.deepLinkProps.fee || ''
+    fee: this.props.deepLinkProps && this.props.deepLinkProps.fee ||
+    this.props.suggestedFees && convertNQTStringToNumber(this.props.suggestedFees.standard.toString()).toString() || '',
+    message: this.props.deepLinkProps && this.props.deepLinkProps.message || undefined,
+    messageIsText: this.props.deepLinkProps && this.props.deepLinkProps.messageIsText || true,
+    encrypt: this.props.deepLinkProps && this.props.deepLinkProps.encrypt || false,
+    immutable: this.props.deepLinkProps && this.props.deepLinkProps.immutable || false
   };
 
   getAccounts = (): Array<SelectItem<Account>> => {
@@ -82,22 +98,31 @@ export class SendBurstForm extends React.PureComponent<Props, SendBurstFormState
     this.setState({ fee });
   }
 
-  handleSubmit = () => {
-    const { address, amount, fee, sender } = this.state;
+  handleFeeChangeFromSlider = (fee: number) => {
+    this.setState({ fee: amountToString(fee) });
+  }
 
-    if (this.isSubmitEnabled() && sender) {
+  handleSubmit = () => {
+    const { address, amount, fee, sender, message, messageIsText, encrypt, immutable } = this.state;
+
+    if (this.isSubmitEnabled()) {
       this.props.onSubmit({
         address,
         amount,
         fee,
-        sender
+         // @ts-ignore
+        sender,
+        message,
+        messageIsText,
+        immutable,
+        encrypt
       });
     }
   }
 
   render () {
     const { sender, address, amount, fee } = this.state;
-    const { loading } = this.props;
+    const { loading, suggestedFees } = this.props;
     const total = Number(amount) + Number(fee);
 
     return (
@@ -113,6 +138,7 @@ export class SendBurstForm extends React.PureComponent<Props, SendBurstFormState
           <BInput
             value={address}
             onChange={this.handleChangeAddress}
+            // disabled={this.state.immutable}
             title={i18n.t(transactions.screens.send.to)}
             placeholder='BURST-____-____-____-_____'
           />
@@ -120,6 +146,7 @@ export class SendBurstForm extends React.PureComponent<Props, SendBurstFormState
             value={amount}
             onChange={this.handleAmountChange}
             keyboard={KeyboardTypes.NUMERIC}
+            // disabled={this.state.immutable}
             title={i18n.t(transactions.screens.send.amountNQT)}
             placeholder={'0'}
           />
@@ -127,9 +154,16 @@ export class SendBurstForm extends React.PureComponent<Props, SendBurstFormState
             value={fee}
             onChange={this.handleFeeChange}
             keyboard={KeyboardTypes.NUMERIC}
+            // disabled={this.state.immutable}
             title={i18n.t(transactions.screens.send.feeNQT)}
             placeholder={'0'}
           />
+          {suggestedFees &&
+           <FeeSlider
+            fee={parseFloat(fee) || 0}
+            onSlidingComplete={this.handleFeeChangeFromSlider}
+            suggestedFees={suggestedFees}
+           />}
           <BText color={Colors.WHITE}>
             {i18n.t(transactions.screens.send.total, { value: amountToString(total) })}
           </BText>

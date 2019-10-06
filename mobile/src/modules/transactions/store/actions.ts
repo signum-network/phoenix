@@ -1,15 +1,17 @@
 import { Account,
+  ApiSettings,
+  AttachmentEncryptedMessage,
+  AttachmentMessage,
+  composeApi,
   generateSendTransactionQRCodeAddress,
-  sendMoney as send,
   SuggestedFees,
-  Transaction,
-  TransactionId } from '@burstjs/core';
-import { decryptAES, hashSHA256 } from '@burstjs/crypto';
-import { convertNQTStringToNumber } from '@burstjs/util';
-import { amountToString } from '../../../core/utils/numbers';
+  TransactionId} from '@burstjs/core';
+import { SendAmountArgs } from '@burstjs/core/out/typings/args/sendAmountArgs';
+import { decryptAES, encryptData, EncryptedData, EncryptedMessage, encryptMessage, hashSHA256 } from '@burstjs/crypto';
+import { convertHexStringToByteArray, convertNumberToNQTString } from '@burstjs/util';
 import { createAction, createActionFn } from '../../../core/utils/store';
+import { getAccount } from '../../auth/store/actions';
 import { actionTypes } from './actionTypes';
-import { amountToString } from '../../../core/utils/numbers';
 
 const actions = {
   sendMoney: createAction<SendMoneyPayload>(actionTypes.sendMoney),
@@ -26,6 +28,17 @@ export interface SendMoneyPayload {
   fee: string;
   attachment?: any;
   sender: Account;
+  encrypt: boolean;
+  message?: string;
+  messageIsText?: boolean;
+}
+
+export interface ReceiveBurstPayload {
+  recipient: Account;
+  amount: string;
+  feeSuggestionType: keyof SuggestedFees;
+  fee: string;
+  immutable: boolean;
 }
 
 export interface ReceiveBurstPayload {
@@ -39,19 +52,33 @@ export interface ReceiveBurstPayload {
 export const sendMoney = createActionFn<SendMoneyPayload, Promise<TransactionId>>(
   async (dispatch, getState, payload): Promise<TransactionId> => {
     const state = getState();
-    const { amount, address, fee, sender } = payload;
-    const service = state.app.burstService;
-
-    const transaction: Transaction = {
-      amountNQT: amount,
-      feeNQT: fee
-    };
+    const { amount, address, fee, sender, message, encrypt, messageIsText } = payload;
+    const { nodeHost, apiRootUrl } = state.app.burstService.settings;
     const senderPublicKey = sender.keys.publicKey;
     const senderPrivateKey = decryptAES(sender.keys.signPrivateKey, hashSHA256(state.auth.passcode));
 
-    dispatch(actions.sendMoney(payload));
+    const sendMoneyPayload: SendAmountArgs = {
+      amountPlanck: convertNumberToNQTString(parseFloat(amount)),
+      feePlanck: convertNumberToNQTString(parseFloat(fee)),
+      recipientId: address,
+      senderPublicKey,
+      senderPrivateKey,
+      deadline: 1440
+    };
+
+    if (message && encrypt) {
+      const encryptedMessage: EncryptedMessage | EncryptedData =
+          getEncryptedMessage(dispatch, address, sender, messageIsText, message);
+
+      sendMoneyPayload.attachment = new AttachmentEncryptedMessage(encryptedMessage);
+    } else if (message) {
+      sendMoneyPayload.attachment = new AttachmentMessage({ message, messageIsText });
+    }
+
+    // TODO: unify network request actions, add proper error handling and so on
+    const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
     try {
-      const result = await send(service)(transaction, senderPublicKey, senderPrivateKey, address) as TransactionId;
+      const result = await api.transaction.sendAmountToSingleRecipient(sendMoneyPayload);
       dispatch(actions.sendMoneySuccess(result));
 
       return result;
@@ -87,3 +114,21 @@ export const generateQRAddress = createActionFn<ReceiveBurstPayload, Promise<str
     }
   }
 );
+
+function getEncryptedMessage (dispatch: any,
+                              address: string,
+                              sender: Account,
+                              messageIsText: boolean | undefined,
+                              message: string) {
+  const recipient = dispatch(getAccount(address));
+  const agreementPrivateKey = sender.keys.agreementPrivateKey;
+  let encryptedMessage: EncryptedMessage | EncryptedData;
+  if (messageIsText) {
+    encryptedMessage = encryptMessage(message,
+      recipient.publicKey, agreementPrivateKey);
+  } else {
+    encryptedMessage = encryptData(new Uint8Array(convertHexStringToByteArray(message)),
+      recipient.publicKey, agreementPrivateKey);
+  }
+  return encryptedMessage;
+}

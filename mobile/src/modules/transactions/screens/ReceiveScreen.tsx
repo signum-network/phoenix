@@ -13,14 +13,15 @@ import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { EnterPasscodeModal } from '../../auth/components/passcode/EnterPasscodeModal';
 import { AuthReduxState } from '../../auth/store/reducer';
-import { generateQRAddress, ReceiveBurstPayload, sendMoney, SendMoneyPayload } from '../store/actions';
-import { actionTypes } from '../store/actionTypes';
-import { transactions } from '../translations';
 import { ReceiveBurstForm } from '../components/receive/ReceiveBurstForm';
+import { generateQRAddress, ReceiveBurstPayload } from '../store/actions';
+import { transactions } from '../translations';
+import { NetworkReduxState } from '../../network/store/reducer';
 
 interface IProps extends InjectedReduxProps {
   app: AppReduxState;
   auth: AuthReduxState;
+  network: NetworkReduxState;
 }
 
 type Props = IProps & NavigationInjectedProps;
@@ -57,6 +58,7 @@ class Receive extends React.PureComponent<Props, State> {
 
   render () {
     const accounts: Account[] = this.props.auth.accounts || [];
+    const { suggestedFees } = this.props.network;
 
     return (
       <Screen>
@@ -65,6 +67,7 @@ class Receive extends React.PureComponent<Props, State> {
             <ReceiveBurstForm
               accounts={accounts}
               onSubmit={this.handleSubmit}
+              suggestedFees={suggestedFees}
             />
           </View>
           <EnterPasscodeModal
@@ -82,7 +85,8 @@ function mapStateToProps (state: ApplicationState) {
   return {
     app: state.app,
     auth: state.auth,
-    transactions: state.transactions
+    transactions: state.transactions,
+    network: state.network
   };
 }
 

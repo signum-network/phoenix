@@ -11,7 +11,9 @@ export enum Colors {
   BLUE_DARKEST = '#09233F',
   PINK = '#D9534F',
   RED = '#FF0000',
-  GREEN = '#00FF00'
+  GREEN = '#00FF00',
+  ORANGE = '#eaa924',
+  YELLOW = '#fffe33'
 }
 
 export const AccountColors = [
@@ -22,5 +24,7 @@ export const AccountColors = [
   Colors.BLUE_DARKEST,
   Colors.BLACK,
   Colors.BLUE,
-  Colors.BLUE_DARKER
+  Colors.BLUE_DARKER,
+  Colors.ORANGE,
+  Colors.YELLOW
 ];
