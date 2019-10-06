@@ -49,7 +49,7 @@ export class BurstRecipientInputComponent implements OnChanges {
   loading = false;
   fileId = `file-${nextId++}`;
   recipient = new Recipient();
-  recipientFieldInputChange: Subject<string> = new Subject<string>();
+  recipientFieldInputChange$: Subject<string> = new Subject<string>();
 
   @Input() recipientValue: string;
   @Input() withQrCode = true;
@@ -68,7 +68,7 @@ export class BurstRecipientInputComponent implements OnChanges {
               private notifierService: NotifierService,
               private domainService: DomainService) {
 
-    this.recipientFieldInputChange.pipe(
+    this.recipientFieldInputChange$.pipe(
       debounceTime(200), distinctUntilChanged()
     )
     .subscribe((model: string) => {
@@ -78,7 +78,7 @@ export class BurstRecipientInputComponent implements OnChanges {
   }
 
   onRecipientFieldInputChange(query: string) {
-    this.recipientFieldInputChange.next(query);
+    this.recipientFieldInputChange$.next(query);
   }
 
   ngOnChanges(): void {
@@ -86,8 +86,6 @@ export class BurstRecipientInputComponent implements OnChanges {
       this.recipient = new Recipient();
       return;
     }
-    // this.applyRecipientType(this.recipientValue);
-    // this.validateRecipient(this.recipientValue);
   }
 
   applyRecipientType(recipient: string): void {
@@ -139,7 +137,7 @@ export class BurstRecipientInputComponent implements OnChanges {
     if (!accountFetchFn) {
       return;
     }
-    
+
     this.loading = true;
 
     accountFetchFn.call(this.accountService, id).then(({accountRS}) => {
