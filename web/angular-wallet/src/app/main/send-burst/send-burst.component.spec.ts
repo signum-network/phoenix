@@ -35,6 +35,8 @@ import { SendBurstFormComponent } from './send-burst-form/send-burst-form.compon
 import { SendMultiOutFormComponent } from './send-multi-out-form/send-multi-out-form.component';
 import {WarnSendDialogComponent} from './warn-send-dialog/warn-send-dialog.component';
 import {PageModule} from '../../components/page/page.module';
+import { MatProgressBarModule } from '@angular/material';
+import { DomainService } from './domain/domain.service';
 
 describe('SendBurstComponent', () => {
   let component: SendBurstComponent;
@@ -66,6 +68,7 @@ describe('SendBurstComponent', () => {
           [{path: 'send', component: SendBurstComponent}]
         ),
         MatProgressSpinnerModule,
+        MatProgressBarModule,
         MatDialogModule,
         PageModule
       ],
@@ -94,6 +97,14 @@ describe('SendBurstComponent', () => {
           useFactory: () => {
             return {
               sendMoney: () => Promise.resolve({broadcasted:true})
+            }
+          }
+        },
+        {
+          provide: DomainService,
+          useFactory: () => {
+            return {
+              sendMoney: () => Promise.resolve('success')
             }
           }
         },
