@@ -571,7 +571,7 @@
   "max_memory": "Max pamäť",
   "max_nr_of_options": "Maximálny počet možností",
   "maximum_nr_choices": "Minimálny počet možností",
-  "memorize_passphrase_help": "Uložte si týchto 12 slov (objednávka a kapitalizácia - vždy malé) na bezpečné miesto. Táto prístupová fráza je potrebná na prístup k vášmu účtu Burst.",
+  "memorize_passphrase_help": "Túto prístupovú frázu uschovajte na bezpečnom mieste. Táto prístupová fráza je potrebná na prístup k vášmu účtu Burst.",
   "memorize_passphrase_help_addon": "Ak stratíte prístupovú frázu, nebudete môcť vykonávať žiadne transakcie, t. J. Vaše mince sa stratia. Prístupová fráza sa nedá obnoviť. Udržujte toto heslo v tajnosti. Každý, kto pozná heslo, je de facto vlastníkom účtu.",
   "message": "Správa",
   "message_empty": "Správa je prázdna.",

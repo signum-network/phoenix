@@ -571,7 +571,7 @@
   "max_memory": "Maximaal geheugen",
   "max_nr_of_options": "Maximaal aantal opties",
   "maximum_nr_choices": "Maximale aantal keuzes",
-  "memorize_passphrase_help": "Bewaar deze 12 woorden (orde en hoofdlettergebruik zijn belangrijk - altijd kleine letters) op een veilige plaats. Deze wachtwoordzin is nodig om toegang te krijgen tot uw Burst-account.",
+  "memorize_passphrase_help": "Bewaar deze wachtwoordzin op een veilige plaats. Deze wachtwoordzin is nodig om toegang te krijgen tot uw Burst-account.",
   "memorize_passphrase_help_addon": "Als u de wachtwoordzin verliest, kunt u geen transacties uitvoeren, dat wil zeggen dat uw munten verloren zijn. De wachtwoordzin kan niet worden hersteld. Houd deze wachtwoordzin geheim. Iedereen die de wachtwoordzin kent, is de eigenaar van het account.",
   "message": "Bericht",
   "message_empty": "Het bericht is leeg.",
