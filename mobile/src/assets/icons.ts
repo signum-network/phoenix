@@ -18,3 +18,7 @@ export const transactionIcons = {
   waiting: require('./icons/clock.png'),
   camera: require('./icons/camera.png')
 };
+
+export const logos = {
+  white: require('./icons/logo_white.png')
+};

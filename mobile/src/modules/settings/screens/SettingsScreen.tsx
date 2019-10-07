@@ -1,12 +1,12 @@
 import { currentLocale, locales, translations } from 'i18n-js';
 import React from 'react';
-import { Alert, I18nManager, Modal, StyleSheet, View } from 'react-native';
+import { Alert, I18nManager, Modal, StyleSheet, View, SafeAreaView } from 'react-native';
 import VersionNumber from 'react-native-version-number';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { BSelect } from '../../../core/components/base/BSelect';
 import { Button } from '../../../core/components/base/Button';
-import { Text, TextThemes } from '../../../core/components/base/Text';
+import { Text } from '../../../core/components/base/Text';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { i18n } from '../../../core/i18n';
 import { InjectedReduxProps } from '../../../core/interfaces';
@@ -84,14 +84,14 @@ class Settings extends React.PureComponent<Props> {
       <Screen>
         <FullHeightView>
           <View style={styles.container}>
-          {/* <BSelect
-                // @ts-ignore bad .d.ts
-                value={currentLocale.locale}
-                items={this.getLocales()}
-                onChange={this.handleLanguageChange}
-                title={i18n.t(settings.screens.settings.changeLanguage)}
-                placeholder={i18n.t(settings.screens.settings.changeLanguage)}
-          /> */}
+            {/* <BSelect
+                  // @ts-ignore bad .d.ts
+                  value={currentLocale.locale}
+                  items={this.getLocales()}
+                  onChange={this.handleLanguageChange}
+                  title={i18n.t(settings.screens.settings.changeLanguage)}
+                  placeholder={i18n.t(settings.screens.settings.changeLanguage)}
+            /> */}
 
             <Button onPress={this.toggleConfirmDeletePrompt}>
               {i18n.t(settings.screens.settings.erase)}
@@ -100,7 +100,7 @@ class Settings extends React.PureComponent<Props> {
             <View style={[styles.flexBottom, styles.bodyText]}>
               <Text color={Colors.WHITE} size={FontSizes.SMALL}>
                 Phoenix BURST Wallet {VersionNumber.appVersion} ({VersionNumber.buildVersion})
-              </Text>
+                </Text>
               <Text color={Colors.WHITE} size={FontSizes.SMALL}>
                 {i18n.t(settings.screens.settings.copyright)}
               </Text>
@@ -115,19 +115,23 @@ class Settings extends React.PureComponent<Props> {
                 Alert.alert('Modal has been closed.');
               }}
             >
-              <View>
-                <View style={styles.bodyText}>
-                  <Text>{i18n.t(settings.screens.settings.confirmReset)}</Text>
+              <SafeAreaView>
 
-                  <Button onPress={this.toggleConfirmDeletePrompt}>
-                    {i18n.t(settings.screens.settings.cancel)}
-                  </Button>
+                <View>
+                  <View style={styles.bodyText}>
+                    <Text>{i18n.t(settings.screens.settings.confirmReset)}</Text>
 
-                  <Button onPress={this.confirmErase}>
-                    {i18n.t(settings.screens.settings.confirmErase)}
-                  </Button>
+                    <Button onPress={this.toggleConfirmDeletePrompt}>
+                      {i18n.t(settings.screens.settings.cancel)}
+                    </Button>
+
+                    <Button onPress={this.confirmErase}>
+                      {i18n.t(settings.screens.settings.confirmErase)}
+                    </Button>
+                  </View>
                 </View>
-              </View>
+              </SafeAreaView>
+
             </Modal>
           </View>
         </FullHeightView>
@@ -136,7 +140,7 @@ class Settings extends React.PureComponent<Props> {
   }
 }
 
-function mapStateToProps (state: ApplicationState) {
+function mapStateToProps(state: ApplicationState) {
   return {
     auth: state.auth
   };

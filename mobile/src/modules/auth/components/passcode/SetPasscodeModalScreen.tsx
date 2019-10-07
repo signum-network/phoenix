@@ -38,13 +38,20 @@ interface State {
 
 const styles = StyleSheet.create({
   view: {
-    backgroundColor: Colors.BLUE
+    backgroundColor: Colors.BLUE,
+    display: 'flex',
+    alignItems: 'center',
+    height: '100%'
   },
   header: {
-    flexGrow: 1
+    textAlign: 'center',
+    flex: 1,
+    alignSelf: 'center',
+    justifyContent: 'flex-end'
   },
   keyboard: {
-    display: 'flex'
+    flex: 2,
+    justifyContent: 'center'
   },
   hint: {
     marginBottom: Sizes.MEDIUM

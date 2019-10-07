@@ -13,7 +13,7 @@
       },
       "setPasscode": {
         "enterAgain": "Enter passcode again",
-        "passcodeHint": "Before continue, you must set up a passcode to secure your device"
+        "passcodeHint": "Please set a passcode to secure your device"
       }
     },
     "passcode": {
