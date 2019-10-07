@@ -6,7 +6,7 @@ export const environment = {
   version,
   defaultNode: '',
   defaultNodeEndpoint: '/burst',
-  nodeVersion: '',
+  nodeVersion: '2.4.2',
   market: {
     tickerUrl: 'https://api.coinmarketcap.com/v1/ticker/burst/',
     tickerInterval: 30 * 1000
