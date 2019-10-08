@@ -25,6 +25,7 @@ const actions = {
   loadPasscodeEnteredTime: createAction<number>(actionTypes.loadPasscodeEnteredTime),
   setPasscodeEnteredTime: createAction<number>(actionTypes.setPasscodeEnteredTime),
   setPasscode: createAction<string>(actionTypes.setPasscode),
+  setAgreeToTerms: createAction<boolean>(actionTypes.setAgreeToTerms),
   loadPasscode: createAction<string>(actionTypes.loadPasscode),
   resetAuthState: createAction<void>(actionTypes.resetAuthState)
 };
@@ -189,6 +190,12 @@ export const setPasscode = createActionFn<string, Promise<void>>(
   async (dispatch, _getState, passcode) => {
     dispatch(actions.setPasscode(passcode));
     await savePasscode(passcode);
+  }
+);
+
+export const setAgreeToTerms = createActionFn<boolean, Promise<void>>(
+  async (dispatch, _getState, agree) => {
+    dispatch(actions.setAgreeToTerms(agree));
   }
 );
 

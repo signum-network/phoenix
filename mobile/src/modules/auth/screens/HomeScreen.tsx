@@ -1,6 +1,6 @@
 import { Account } from '@burstjs/core';
 import React from 'react';
-import { Button, Linking, Platform, View } from 'react-native';
+import { Button, Linking, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
@@ -12,7 +12,6 @@ import { Screen } from '../../../core/layout/Screen';
 import { routes } from '../../../core/navigation/routes';
 import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
-import { Colors } from '../../../core/theme/colors';
 import { core } from '../../../core/translations';
 import { HomeStackedAreaChart } from '../../home/components/HomeStackedAreaChart';
 import { selectCurrency } from '../../price-api/store/actions';
@@ -20,6 +19,7 @@ import { PriceInfoReduxState, PriceType, PriceTypeStrings } from '../../price-ap
 import { AccountsList } from '../components/AccountsList';
 import { AccountsListHeader } from '../components/AccountsListHeader';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
+import { TermsModal } from '../components/terms/TermsModal';
 import { hydrateAccount, removeAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { shouldEnterPIN } from '../store/utils';
@@ -34,6 +34,7 @@ type TProps = NavigationInjectedProps & CustomProps;
 
 interface State {
   isPINModalVisible: boolean,
+  isTermsModalVisible: boolean,
   selectedCurrency: PriceTypeStrings;
 }
 
@@ -45,6 +46,7 @@ class Home extends React.PureComponent<TProps, State> {
 
   state = {
     isPINModalVisible: false,
+    isTermsModalVisible: this.props.auth.agreeToTerms,
     selectedCurrency: priceTypes[0]
   };
 
@@ -72,7 +74,7 @@ class Home extends React.PureComponent<TProps, State> {
       const { passcodeTime } = this.props.app.appSettings;
       const { passcodeEnteredTime } = this.props.auth;
       if (shouldEnterPIN(passcodeTime, passcodeEnteredTime)) {
-        this.setModalVisible(true);
+        this.setPINModalVisible(true);
       }
     }, 1000);
 
@@ -85,8 +87,12 @@ class Home extends React.PureComponent<TProps, State> {
     });
   }
 
-  setModalVisible = (isPINModalVisible: boolean) => {
+  setPINModalVisible = (isPINModalVisible: boolean) => {
     this.setState({ isPINModalVisible });
+  }
+
+  setTermsModalVisible = (isTermsModalVisible: boolean) => {
+    this.setState({ isTermsModalVisible });
   }
 
   handleAccountPress = (account: Account) => {
@@ -100,7 +106,11 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   handlePINEntered = () => {
-    this.setModalVisible(false);
+    this.setPINModalVisible(false);
+  }
+
+  handleTermsAgreed = () => {
+    this.setTermsModalVisible(false);
   }
 
   handleAddAccount = () => {
@@ -108,7 +118,7 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   handlePINCancel = () => {
-    this.setModalVisible(false);
+    this.setPINModalVisible(false);
   }
 
   handleDelete = (account: Account) => {
@@ -116,7 +126,6 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   componentWillUnmount () {
-    Linking.removeEventListener('url', this.handleOpenURL);
     clearInterval(this._checkPinExpiryInterval as number);
   }
 
@@ -155,6 +164,10 @@ class Home extends React.PureComponent<TProps, State> {
               visible={this.state.isPINModalVisible}
               onSuccess={this.handlePINEntered}
               onCancel={this.handlePINCancel}
+            />
+            <TermsModal
+              visible={this.state.isTermsModalVisible}
+              onAgree={this.handleTermsAgreed}
             />
             <Button onPress={this.handleChangeAccount} title={i18n.t(core.screens.home.accountsList)} />
           </View>
