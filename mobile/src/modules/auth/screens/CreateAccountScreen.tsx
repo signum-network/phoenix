@@ -18,6 +18,7 @@ import { StepCounter } from '../components/create/StepCounter';
 import { addAccount, createActiveAccount, hydrateAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
+import { Colors } from '../../../core/theme/colors';
 
 interface IProps extends InjectedReduxProps {
   auth: AuthReduxState,
@@ -111,7 +112,7 @@ class CreateAccount extends React.PureComponent<Props, State> {
   render () {
     return (
       <Screen>
-        <FullHeightView>
+        <FullHeightView style={{ backgroundColor: Colors.WHITE }}>
           <StepCounter stage={this.state.stage}/>
           {this.renderStage()}
         </FullHeightView>

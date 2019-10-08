@@ -64,7 +64,6 @@ class AccountDetails extends React.PureComponent<TProps> {
       return null;
     }
 
-    // TODO: remove when all screens will be with blue background
     return (
       <Screen style={{ backgroundColor: Colors.BLUE_DARKER }}>
         <FullHeightView withoutPaddings>

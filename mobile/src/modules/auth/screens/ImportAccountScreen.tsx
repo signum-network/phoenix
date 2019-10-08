@@ -16,6 +16,7 @@ import { ImportOfflineAccount } from '../components/import/ImportOfflineAccount'
 import { addAccount, createActiveAccount, createOfflineAccount, hydrateAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
+import { Colors } from '../../../core/theme/colors';
 
 interface IProps extends InjectedReduxProps {
   auth: AuthReduxState,
@@ -72,7 +73,7 @@ class ImportAccount extends React.PureComponent<Props, State> {
 
     return (
       <Screen>
-        <FullHeightView>
+        <FullHeightView style={{ backgroundColor: Colors.WHITE }}>
           <View style={styles.switchView}>
             <SwitchItem
               onChange={this.handleChangeAccountType}

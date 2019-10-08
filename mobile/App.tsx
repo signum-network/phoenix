@@ -40,6 +40,7 @@ export default class App extends React.Component<{}, {}> {
 
   componentWillUnmount (): void {
     removeEventListener('change', this.handleLanguagesChange);
+    Linking.removeEventListener('url', this.handleOpenURL);
   }
 
   handleLanguagesChange = (event: ChangeLanguageEvent) => {
@@ -58,6 +59,11 @@ export default class App extends React.Component<{}, {}> {
 
     // user clicked on a deep link to pay someone else burst
     if (this.navigator && routeName.indexOf('requestBurst') > -1) {
+      this.navigator.dispatch(
+        NavigationActions.navigate({
+          routeName: routes.home
+        })
+      );
       this.navigator.dispatch(
         NavigationActions.navigate({
           routeName: routes.send,

@@ -149,6 +149,9 @@
         "title": "Send",
         "to": "To",
         "total": "Total: {{value}} BURST"
+      },
+      "scan": {
+        "title": "Scan BURST QR Code"
       }
     }
   },
