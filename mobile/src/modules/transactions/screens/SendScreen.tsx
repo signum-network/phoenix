@@ -1,5 +1,5 @@
 import { Account, SuggestedFees } from '@burstjs/core';
-import { convertNQTStringToNumber } from '@burstjs/util';
+import { convertNQTStringToNumber, isBurstAddress, convertNumericIdToAddress } from '@burstjs/util';
 import React from 'react';
 import { View, EventEmitterListener } from 'react-native';
 import { NavigationInjectedProps, withNavigation, NavigationEventSubscription } from 'react-navigation';
@@ -70,7 +70,7 @@ class Send extends React.PureComponent<Props, State> {
       this.setState({
         deepLinkProps: {
           sender: null,
-          address: params.receiver,
+          address: isBurstAddress(params.receiver) ? params.receiver : convertNumericIdToAddress(params.receiver),
           fee: this.getFee(params.feeNQT, params.feeSuggestionType),
           amount: convertNQTStringToNumber(params.amountNQT).toString(),
           message: params.message,
