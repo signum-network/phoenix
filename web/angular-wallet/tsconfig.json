@@ -9,7 +9,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
     "paths": {
       "@fuse": ["@fuse/"],
       "@burstjs/*": ["../../../lib/packages/*"]
