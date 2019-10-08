@@ -1,6 +1,6 @@
 import { Account } from '@burstjs/core';
 import React from 'react';
-import { Button, Linking, View } from 'react-native';
+import { Button, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
@@ -20,7 +20,7 @@ import { AccountsList } from '../components/AccountsList';
 import { AccountsListHeader } from '../components/AccountsListHeader';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
 import { TermsModal } from '../components/terms/TermsModal';
-import { hydrateAccount, removeAccount } from '../store/actions';
+import { hydrateAccount, removeAccount, setAgreeToTerms } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { shouldEnterPIN } from '../store/utils';
 
@@ -110,6 +110,7 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   handleTermsAgreed = () => {
+    this.props.dispatch(setAgreeToTerms(true));
     this.setTermsModalVisible(false);
   }
 
@@ -153,6 +154,7 @@ class Home extends React.PureComponent<TProps, State> {
               priceTypes={priceTypes}
               selectCurrency={this.selectCurrency}
             /> || null}
+
             <AccountsList
               accounts={accounts}
               onAccountPress={this.handleAccountPress}
@@ -169,7 +171,12 @@ class Home extends React.PureComponent<TProps, State> {
               visible={this.state.isTermsModalVisible}
               onAgree={this.handleTermsAgreed}
             />
-            <Button onPress={this.handleChangeAccount} title={i18n.t(core.screens.home.accountsList)} />
+
+            {!accounts.length &&
+              <Button
+                onPress={this.handleChangeAccount}
+                title={i18n.t(core.screens.home.accountsList)}
+              />}
           </View>
         </FullHeightView>
       </Screen>

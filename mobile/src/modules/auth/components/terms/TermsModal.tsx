@@ -1,28 +1,16 @@
 import React from 'react';
-import { Modal, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { Modal, ScrollView, StyleSheet } from 'react-native';
 import Markdown from 'react-native-markdown-renderer';
-import { connect } from 'react-redux';
+import { SafeAreaView } from 'react-navigation';
 import { Button } from '../../../../core/components/base/Button';
-import { InjectedReduxProps } from '../../../../core/interfaces';
 import { Screen } from '../../../../core/layout/Screen';
-import { AppReduxState } from '../../../../core/store/app/reducer';
-import { ApplicationState } from '../../../../core/store/initialState';
 import { Colors } from '../../../../core/theme/colors';
-import { setAgreeToTerms } from '../../store/actions';
-import { AuthReduxState } from '../../store/reducer';
 import { LICENSE } from './LICENSE';
 
-interface OwnProps {
+interface Props {
   visible: boolean;
   onAgree: () => void;
 }
-
-interface InjectedProps extends InjectedReduxProps {
-  app: AppReduxState;
-  auth: AuthReduxState;
-}
-
-type Props = OwnProps & InjectedProps;
 
 const styles = StyleSheet.create({
   view: {
@@ -51,9 +39,8 @@ const styles = StyleSheet.create({
   }
 });
 
-class Terms extends React.PureComponent<Props> {
+export class TermsModal extends React.PureComponent<Props> {
   handleAgree = () => {
-    this.props.dispatch(setAgreeToTerms(true));
     this.props.onAgree();
   }
 
@@ -66,9 +53,9 @@ class Terms extends React.PureComponent<Props> {
         visible={visible}
         transparent={false}
       >
-        <Screen style={styles.view}>
+        <Screen style={styles.view} >
           <SafeAreaView>
-            <ScrollView style={{ marginTop: 15, paddingLeft: 15, paddingRight: 15 }}>
+            <ScrollView style={{ paddingLeft: 15, paddingRight: 15 }}>
               <Markdown style={styles}>{LICENSE}</Markdown>
               <Button onPress={this.handleAgree}>Agree</Button>
             </ScrollView>
@@ -78,12 +65,3 @@ class Terms extends React.PureComponent<Props> {
     );
   }
 }
-
-function mapStateToProps (state: ApplicationState) {
-  return {
-    app: state.app,
-    auth: state.auth
-  };
-}
-
-export const TermsModal = connect(mapStateToProps)(Terms);
