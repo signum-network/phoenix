@@ -3,6 +3,7 @@ package com.mobile;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.apsl.versionnumber.RNVersionNumberPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import org.reactnative.camera.RNCameraPackage;
 import com.reactnativecommunity.slider.ReactSliderPackage;
@@ -31,6 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNVersionNumberPackage(),
             new AsyncStoragePackage(),
             new RNCameraPackage(),
             new ReactSliderPackage(),

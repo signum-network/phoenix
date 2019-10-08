@@ -13,7 +13,7 @@
       },
       "setPasscode": {
         "enterAgain": "Enter passcode again",
-        "passcodeHint": "Before continue, you must set up a passcode to secure your device"
+        "passcodeHint": "Please set a passcode to secure your device"
       }
     },
     "passcode": {
@@ -160,7 +160,10 @@
       "settings": {
         "title": "Settings",
         "erase": "Erase all accounts and reset PIN",
-        "confirmErase": "Confirm - Erase and Reset"
+        "confirmReset": "Are you sure? You cannot undo this action.",
+        "confirmErase": "Confirm - Erase and Reset",
+        "changeLanguage": "Select Language",
+        "copyright": "Copyright © Burst Apps Team"
       }
     }
   }

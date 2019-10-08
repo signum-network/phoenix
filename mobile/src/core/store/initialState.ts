@@ -1,5 +1,5 @@
 import { AuthReduxState, authState } from '../../modules/auth/store/reducer';
-import { networkState, NetworkReduxState } from '../../modules/network/store/reducer';
+import { NetworkReduxState, networkState } from '../../modules/network/store/reducer';
 import { priceApiState, PriceInfoReduxState } from '../../modules/price-api/store/reducer';
 import { TransactionsReduxState, transactionsState } from '../../modules/transactions/store/reducer';
 import { AppReduxState, appState } from './app/reducer';

@@ -58,7 +58,8 @@
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		F7BB7BA0325A4B4DAE59515F /* libRNSVG-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3FDB933D4C49E1A297C6C7 /* libRNSVG-tvOS.a */; };
 		F805058258BA4CC2BE7D2D6A /* libRNLocalize.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCA47CDB31F4986B77292F6 /* libRNLocalize.a */; };
-		3984153BF98D42068CEEF6ED /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B2C7C45EE84F83838EC8DB /* libReactNativePermissions.a */; };
+		6E9C1588E5534F02A7221F4E /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB9CBA995534AA6BEF8FB97 /* libRNVersionNumber.a */; };
+		E5CE628C38F643C482BF8DDB /* libRNVersionNumber-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1328A3827230435088115FE0 /* libRNVersionNumber-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -485,6 +486,9 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F41A8C9F2E1B44CC8CC5BBAA /* RNLocalize.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNLocalize.xcodeproj; path = "../node_modules/react-native-localize/ios/RNLocalize.xcodeproj"; sourceTree = "<group>"; };
 		F9DECC6766FE4ABCB5B2DDF9 /* libRNCSlider.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCSlider.a; sourceTree = "<group>"; };
+		33D3418BCFD4408ABBB10084 /* RNVersionNumber.xcodeproj */ = {isa = PBXFileReference; name = "RNVersionNumber.xcodeproj"; path = "../node_modules/react-native-version-number/ios/RNVersionNumber.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		0BB9CBA995534AA6BEF8FB97 /* libRNVersionNumber.a */ = {isa = PBXFileReference; name = "libRNVersionNumber.a"; path = "libRNVersionNumber.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		1328A3827230435088115FE0 /* libRNVersionNumber-tvOS.a */ = {isa = PBXFileReference; name = "libRNVersionNumber-tvOS.a"; path = "libRNVersionNumber-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -522,6 +526,7 @@
 				3984153BF98D42068CEEF6ED /* libReactNativePermissions.a in Frameworks */,
 				A26F61C584674C858E6E7A5F /* libRNCamera.a in Frameworks */,
 				073C939E956D4F0F8B8FA1A4 /* libRNCAsyncStorage.a in Frameworks */,
+				6E9C1588E5534F02A7221F4E /* libRNVersionNumber.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +546,7 @@
 				7A772338768E42CE96CF74DF /* libRNGestureHandler-tvOS.a in Frameworks */,
 				4EF8129A6EFC4515AF5EAA7D /* libRNLocalize-tvOS.a in Frameworks */,
 				F7BB7BA0325A4B4DAE59515F /* libRNSVG-tvOS.a in Frameworks */,
+				E5CE628C38F643C482BF8DDB /* libRNVersionNumber-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,6 +838,7 @@
 				A24198E5CBD54CF5A0DC9A8C /* ReactNativePermissions.xcodeproj */,
 				B9D4829814EA4BAB95547152 /* RNCamera.xcodeproj */,
 				2C2E8083624A4CFCAD5FF2E8 /* RNCAsyncStorage.xcodeproj */,
+				33D3418BCFD4408ABBB10084 /* RNVersionNumber.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1601,12 +1608,15 @@
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
 				);
 				INFOPLIST_FILE = mobileTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1641,12 +1651,15 @@
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
 				);
 				INFOPLIST_FILE = mobileTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1682,6 +1695,7 @@
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
 				);
 				INFOPLIST_FILE = mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1713,6 +1727,7 @@
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
 				);
 				INFOPLIST_FILE = mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1750,11 +1765,14 @@
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
 				);
 				INFOPLIST_FILE = "mobile-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1797,11 +1815,14 @@
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
 				);
 				INFOPLIST_FILE = "mobile-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1843,11 +1864,14 @@
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
 				);
 				INFOPLIST_FILE = "mobile-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1889,11 +1913,14 @@
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
 				);
 				INFOPLIST_FILE = "mobile-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (

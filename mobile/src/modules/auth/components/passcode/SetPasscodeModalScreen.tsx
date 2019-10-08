@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from '../../../../core/components/base/Button';
 import { Text, TextAlign, TextThemes } from '../../../../core/components/base/Text';
@@ -17,6 +17,7 @@ import { PASSCODE_LENGTH } from '../../consts';
 import { setPasscode } from '../../store/actions';
 import { AuthReduxState } from '../../store/reducer';
 import { auth } from '../../translations';
+import { logos } from '../../../../assets/icons';
 
 interface InjectedProps extends InjectedReduxProps {
   app: AppReduxState,
@@ -38,16 +39,29 @@ interface State {
 
 const styles = StyleSheet.create({
   view: {
-    backgroundColor: Colors.BLUE
+    backgroundColor: Colors.BLUE,
+    display: 'flex',
+    alignItems: 'center',
+    height: '100%'
   },
   header: {
-    flexGrow: 1
+    textAlign: 'center',
+    flex: 1,
+    alignSelf: 'center',
+    justifyContent: 'flex-end'
   },
   keyboard: {
-    display: 'flex'
+    flex: 2,
+    justifyContent: 'center'
   },
   hint: {
     marginBottom: Sizes.MEDIUM
+  },
+  logo: {
+    width: 200,
+    height: 53,
+    marginBottom: 50,
+    alignSelf: 'center'
   }
 });
 
@@ -113,6 +127,7 @@ class SetPasscodeModal extends React.PureComponent<Props, State> {
       <Screen style={styles.view}>
         <FullHeightView>
           <View style={styles.header}>
+            <Image source={logos.white} style={styles.logo}/>
             <View style={styles.hint}>
               <Text theme={TextThemes.HINT} textAlign={TextAlign.CENTER} color={Colors.WHITE}>
                 {hint}
@@ -136,9 +151,6 @@ class SetPasscodeModal extends React.PureComponent<Props, State> {
               onDelPress={this.handleDelPress}
               onPress={this.handleNumberPress}
             />
-            <Button onPress={this.props.onCancel}>
-              {i18n.t(core.actions.cancel)}
-            </Button>
           </View>
         </FullHeightView>
       </Screen>

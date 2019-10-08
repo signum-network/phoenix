@@ -4,7 +4,10 @@ export const settings = {
       title: 'settings.screens.settings.title',
       erase: 'settings.screens.settings.erase',
       cancel: 'core.actions.cancel',
-      confirmErase: 'settings.screens.settings.confirmErase'
+      confirmReset: 'settings.screens.settings.confirmReset',
+      confirmErase: 'settings.screens.settings.confirmErase',
+      changeLanguage: 'settings.screens.settings.changeLanguage',
+      copyright: 'settings.screens.settings.copyright'
     }
   }
 };

@@ -159,7 +159,10 @@
       "settings": {
         "title": "Настройки",
         "erase": "Удалить все аккаунты и сбросить PIN",
-        "confirmErase": "Удалить и сбросить"
+        "confirmReset": "Are you sure? You cannot undo this action.",
+        "confirmErase": "Удалить и сбросить",
+        "changeLanguage": "Select Language",
+        "copyright": "Copyright © Burst Apps Team"
       }
     }
   }
