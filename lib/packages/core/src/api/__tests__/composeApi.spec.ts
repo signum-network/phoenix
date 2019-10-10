@@ -7,6 +7,7 @@ describe('composeApi', () => {
             'nodeHost',
             'apiRootUrl'
         ));
+        expect(api.asset).toBeDefined();
         expect(api.account).toBeDefined();
         expect(api.alias).toBeDefined();
         expect(api.block).toBeDefined();

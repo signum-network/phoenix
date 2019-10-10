@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 0.4.1 (TBR)
+- Initiated work on assets Api
+    - added `getAsset()`
+    
 ## 0.4.0
 - Changed License: From GPL-3.0 to Apache 2.0
 - `isAttachmentVersion` returns `true` or `false` consistently

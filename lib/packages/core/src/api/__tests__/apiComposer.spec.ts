@@ -21,6 +21,7 @@ import {getContract} from '../factories/contract';
 import {getContractsByAccount} from '../../../out/api/factories/contract';
 import {sendAmount, sendAmountToSingleRecipient, sendAmountToMultipleRecipients, sendSameAmountToMultipleRecipients} from '../factories/transaction';
 import {sendEncryptedTextMessage} from '../factories/message';
+import {getAsset} from '../factories/asset/getAsset';
 
 
 describe('ApiComposer', () => {
@@ -173,6 +174,18 @@ describe('ApiComposer', () => {
         expect(api.contract.getContract).toBeDefined();
         expect(api.contract.getContractsByAccount).toBeDefined();
 
+    });
+
+    it('should compose asset Api', () => {
+        const api = apiComposer
+            .withAssetApi({
+                getAsset,
+            })
+            .compose();
+
+        expect(api).toBeDefined();
+        expect(api.asset).toBeDefined();
+        expect(api.asset.getAsset).toBeDefined();
     });
 
 

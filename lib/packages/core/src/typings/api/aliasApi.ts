@@ -13,7 +13,7 @@ export interface AliasApi {
     /**
      * Get alias by its id, i.e. get basic account info for given alias name
      * @param {string} aliasId The alias id
-     * @return {Promise<Alias>} List of transactions
+     * @return {Promise<Alias>} The Alias object
      */
     getAliasById: (
         aliasId: string,
@@ -23,7 +23,7 @@ export interface AliasApi {
     /**
      * Get alias by name, i.e. get basic account info for given alias name
      * @param {string} aliasName The alias name
-     * @return {Promise<Alias>} List of transactions
+     * @return {Promise<Alias>} The Alias object
      */
     getAliasByName: (
         aliasName: string,

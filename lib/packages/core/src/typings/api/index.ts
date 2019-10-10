@@ -7,16 +7,17 @@ import {MessageApi} from './messageApi';
 import {AccountApi} from './accountApi';
 import {AliasApi} from './aliasApi';
 import {ContractApi} from './contractApi';
-
+import {AssetApi} from './assetApi';
 
 export {
-    BlockApi,
-    NetworkApi,
-    TransactionApi,
-    MessageApi,
     AccountApi,
     AliasApi,
-    ContractApi
+    AssetApi,
+    BlockApi,
+    ContractApi,
+    MessageApi,
+    NetworkApi,
+    TransactionApi,
 };
 
 /**
@@ -40,6 +41,7 @@ export {
  *
  */
 export class Api {
+    readonly asset: AssetApi;
     readonly block: BlockApi;
     readonly network: NetworkApi;
     readonly transaction: TransactionApi;
