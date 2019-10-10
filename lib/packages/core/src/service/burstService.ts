@@ -65,7 +65,7 @@ export class BurstService {
         const request = `${this._relPath}?requestType=${method}`;
         const params = Object.keys(data)
             .filter(k => data[k] !== undefined)
-            .map(k => `${k}=${data[k]}`)
+            .map(k => `${k}=${encodeURIComponent(data[k])}`)
             .join('&');
         return params ? `${request}&${params}` : request;
     }
