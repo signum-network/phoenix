@@ -7,6 +7,7 @@ export * from './typings/alias';
 export * from './typings/aliasList';
 export * from './typings/api';
 export * from './typings/args';
+export * from './typings/asset';
 export * from './typings/attachment';
 export * from './typings/balance';
 export * from './typings/block';

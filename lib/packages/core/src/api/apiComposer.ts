@@ -5,6 +5,7 @@
  */
 
 import {Api} from '../typings/api';
+import {AssetApi} from '../typings/api/assetApi';
 import {AliasApi} from '../typings/api/aliasApi';
 import {BlockApi} from '../typings/api/blockApi';
 import {AccountApi} from '../typings/api/accountApi';
@@ -18,6 +19,7 @@ import {ContractApi} from '../typings/api/contractApi';
 class ApiImpl implements Api {
     alias: AliasApi;
     account: AccountApi;
+    asset: AssetApi;
     block: BlockApi;
     message: MessageApi;
     network: NetworkApi;
@@ -132,6 +134,15 @@ export class ApiComposer {
      */
     public withAliasApi(creatorMap: any): ApiComposer {
         this.mapCreators('alias', creatorMap);
+        return this;
+    }
+
+    /**
+     * Adds the [[AssetApi]]  to be composed
+     * @param creatorMap A map of creator/factory functions for the endpoints
+     */
+    public withAssetApi(creatorMap: any): ApiComposer {
+        this.mapCreators('asset', creatorMap);
         return this;
     }
 

@@ -44,6 +44,7 @@ import {
     sendAmountToSingleRecipient,
     sendSameAmountToMultipleRecipients
 } from './factories/transaction';
+import {getAsset} from './factories/asset';
 
 
 /**
@@ -129,6 +130,8 @@ export function composeApi(settings: ApiSettings): Api {
         }).withContractApi({
             getContract,
             getContractsByAccount
+        }).withAssetApi({
+            getAsset,
         })
         .compose();
 
