@@ -87,7 +87,7 @@ describe('Transaction Api', () => {
             // tslint:disable:max-line-length
 
                 .onPostReply(200, mockBroadcastResponse,
-                    'relPath?requestType=sendMoneyMultiSame&publicKey=senderPublicKey&recipients=recipient_1;recipient_2&feeNQT=1000&amountNQT=2000&deadline=1440')
+                    'relPath?requestType=sendMoneyMultiSame&publicKey=senderPublicKey&recipients=recipient_1%3Brecipient_2&feeNQT=1000&amountNQT=2000&deadline=1440')
                 .onPostReply(200, mockTransaction.transaction,
                     'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
                 .build();
@@ -171,7 +171,7 @@ describe('Transaction Api', () => {
             // tslint:disable:max-line-length
 
                 .onPostReply(200, mockBroadcastResponse,
-                    'relPath?requestType=sendMoneyMulti&publicKey=senderPublicKey&recipients=recipient_1:2000;recipient_2:4000&feeNQT=1000&deadline=1440')
+                    'relPath?requestType=sendMoneyMulti&publicKey=senderPublicKey&recipients=recipient_1%3A2000%3Brecipient_2%3A4000&feeNQT=1000&deadline=1440')
                 .onPostReply(200, mockTransaction.transaction,
                     'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
                 .build();

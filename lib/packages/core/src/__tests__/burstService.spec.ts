@@ -70,6 +70,15 @@ describe('BurstService', () => {
             expect(url).toBe('?requestType=getBlockByHeight&id=123&includeTransactions=true');
         });
 
+        it('should create BRS BURST url with many parameters and encode correctly', () => {
+            const url = service.toBRSEndpoint('getBlockByHeight', {
+                id: 123,
+                includeTransactions: true,
+                data: '{"foo":"some data#&$%-";\n\t"bar":"1234"}'
+            });
+            expect(url).toBe('?requestType=getBlockByHeight&id=123&includeTransactions=true&data=%7B%22foo%22%3A%22some%20data%23%26%24%25-%22%3B%0A%09%22bar%22%3A%221234%22%7D');
+        });
+
         it('should create BRS BURST url with many parameters ignoring undefined', () => {
             const url = service.toBRSEndpoint('getBlockByHeight',
                 {
