@@ -132,14 +132,14 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
       };
       if (this.props.priceApi.selectedCurrency === this.props.priceTypes[1] ||
           this.props.priceApi.selectedCurrency === this.props.priceTypes[2]) {
-        const price = this.props.priceApi.historicalPriceInfo[
-            this.props.priceApi.selectedCurrency as HistoricalPriceTypeStrings
-          ].Data.find((metric) => {
-            return isSameDay(new Date(metric.time * 1000), d);
-          });
-        if (price) {
-          historicalPrice[atThatTime] = price;
-        }
+        const historicalPriceData = this.props.priceApi.historicalPriceInfo[
+          this.props.priceApi.selectedCurrency as HistoricalPriceTypeStrings
+        ].Data;
+        const price = historicalPriceData.find((metric) => {
+          return isSameDay(new Date(metric.time * 1000), d);
+        });
+
+        historicalPrice[atThatTime] = price || historicalPriceData[historicalPriceData.length - 1];
       }
       accountTransactions.map(
         this.addTransactionToChartData(data, i, d, historicalPrice, atThatTime, this.props.priceApi.selectedCurrency)
