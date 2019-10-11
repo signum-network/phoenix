@@ -137,11 +137,9 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
           ].Data.find((metric) => {
             return isSameDay(new Date(metric.time * 1000), d);
           });
-
-        historicalPrice[atThatTime] = price ||
-          this.props.priceApi.historicalPriceInfo[
-            this.props.priceApi.selectedCurrency as HistoricalPriceTypeStrings
-          ].Data[0];
+        if (price) {
+          historicalPrice[atThatTime] = price;
+        }
       }
       accountTransactions.map(
         this.addTransactionToChartData(data, i, d, historicalPrice, atThatTime, this.props.priceApi.selectedCurrency)
