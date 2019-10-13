@@ -46,7 +46,7 @@ class Home extends React.PureComponent<TProps, State> {
 
   state = {
     isPINModalVisible: false,
-    isTermsModalVisible: this.props.auth.agreeToTerms,
+    isTermsModalVisible: !this.props.auth.agreeToTerms,
     selectedCurrency: priceTypes[0]
   };
 

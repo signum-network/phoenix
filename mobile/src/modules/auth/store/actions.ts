@@ -2,12 +2,15 @@ import { Account, ApiSettings, composeApi } from '@burstjs/core';
 import { encryptAES, generateMasterKeys, getAccountIdFromPublicKey, hashSHA256 } from '@burstjs/crypto';
 import { convertAddressToNumericId, convertNumericIdToAddress, isValid } from '@burstjs/util';
 import { some } from 'lodash';
+import { AsyncStorage } from 'react-native';
+import { AsyncStorageKeys } from '../../../core/enums';
 import { i18n } from '../../../core/i18n';
 import { createAction, createActionFn } from '../../../core/utils/store';
 import { auth } from '../translations';
 import { actionTypes } from './actionTypes';
 import {
   getAccounts,
+  getAgreeToTerms,
   getPasscode,
   getPasscodeEnteredTime,
   isPassphraseCorrect,
@@ -27,6 +30,7 @@ const actions = {
   setPasscode: createAction<string>(actionTypes.setPasscode),
   setAgreeToTerms: createAction<boolean>(actionTypes.setAgreeToTerms),
   loadPasscode: createAction<string>(actionTypes.loadPasscode),
+  loadAgreeToTerms: createAction<boolean>(actionTypes.loadAgreeToTerms),
   resetAuthState: createAction<void>(actionTypes.resetAuthState)
 };
 
@@ -195,6 +199,11 @@ export const setPasscode = createActionFn<string, Promise<void>>(
 
 export const setAgreeToTerms = createActionFn<boolean, Promise<void>>(
   async (dispatch, _getState, agree) => {
+    try {
+      await AsyncStorage.setItem(AsyncStorageKeys.agreeToTerms, JSON.stringify(agree));
+    } catch (error) {
+      // Error saving data
+    }
     dispatch(actions.setAgreeToTerms(agree));
   }
 );
@@ -203,5 +212,12 @@ export const loadPasscode = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) => {
     const passcode = await getPasscode();
     dispatch(actions.loadPasscode(passcode));
+  }
+);
+
+export const loadAgreeToTerms = createActionFn<void, Promise<void>>(
+  async (dispatch, _getState) => {
+    const agree = await getAgreeToTerms();
+    dispatch(actions.setAgreeToTerms(agree));
   }
 );

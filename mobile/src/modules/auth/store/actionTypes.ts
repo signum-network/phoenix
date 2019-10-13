@@ -11,5 +11,6 @@ export const actionTypes = {
   setPasscode: `${PATH}_SET_PASSCODE`,
   loadPasscode: `${PATH}_LOAD_PASSCODE`,
   resetAuthState: `${PATH}_STATE_RESET`,
-  setAgreeToTerms: `${PATH}_AGREE_TO_TERMS`
+  setAgreeToTerms: `${PATH}_SET_AGREE_TO_TERMS`,
+  loadAgreeToTerms: `${PATH}_LOAD_AGREE_TO_TERMS`
 };

@@ -11,6 +11,10 @@ export enum KeyChainKeys {
   settings = 'SETTINGS'
 }
 
+export enum AsyncStorageKeys {
+  agreeToTerms = 'AGREE_TO_TERMS'
+}
+
 export enum AsyncParticleStates {
   IDLE = 0,
   LOADING = 1,
