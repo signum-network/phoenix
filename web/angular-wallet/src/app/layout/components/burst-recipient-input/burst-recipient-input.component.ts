@@ -3,6 +3,10 @@ import {convertAddressToNumericId, convertNumericIdToAddress, isBurstAddress} fr
 import {AccountService} from '../../../setup/account/account.service';
 import jsQR from 'jsqr';
 import {NotifierService} from 'angular-notifier';
+import { DomainService } from 'app/main/send-burst/domain/domain.service';
+import { Subject } from 'rxjs';
+import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
+import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 
 // generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
 let nextId = 0;
@@ -12,12 +16,14 @@ export enum RecipientType {
   ADDRESS = 1,
   ID,
   ALIAS,
+  ZIL,
 }
 
 export enum RecipientValidationStatus {
   UNKNOWN = 'unknown',
   INVALID = 'invalid',
   VALID = 'valid',
+  ZIL_OUTAGE = 'zil-outage',
 }
 
 export class Recipient {
@@ -40,8 +46,10 @@ export class Recipient {
 })
 export class BurstRecipientInputComponent implements OnChanges {
 
+  loading = false;
   fileId = `file-${nextId++}`;
   recipient = new Recipient();
+  recipientFieldInputChange$: Subject<string> = new Subject<string>();
 
   @Input() recipientValue: string;
   @Input() withQrCode = true;
@@ -57,7 +65,20 @@ export class BurstRecipientInputComponent implements OnChanges {
   @ViewChild('file', {static: false}) file: ElementRef;
 
   constructor(private accountService: AccountService,
-              private notifierService: NotifierService) {
+              private notifierService: NotifierService,
+              private domainService: DomainService) {
+
+    this.recipientFieldInputChange$.pipe(
+      debounceTime(200), distinctUntilChanged()
+    )
+    .subscribe((model: string) => {
+      this.applyRecipientType(model);
+      this.validateRecipient(model);
+    });
+  }
+
+  onRecipientFieldInputChange(query: string) {
+    this.recipientFieldInputChange$.next(query);
   }
 
   ngOnChanges(): void {
@@ -65,8 +86,6 @@ export class BurstRecipientInputComponent implements OnChanges {
       this.recipient = new Recipient();
       return;
     }
-    this.applyRecipientType(this.recipientValue);
-    this.validateRecipient(this.recipientValue);
   }
 
   applyRecipientType(recipient: string): void {
@@ -76,8 +95,10 @@ export class BurstRecipientInputComponent implements OnChanges {
     this.recipient.status = RecipientValidationStatus.UNKNOWN;
     if (r.length === 0) {
       this.recipient.type = RecipientType.UNKNOWN;
-    } else if (r.startsWith('BURST-')) {
+    } else if (r.toUpperCase().startsWith('BURST-')) {
       this.recipient.type = RecipientType.ADDRESS;
+    } else if (r.toUpperCase().endsWith('.ZIL')) {
+      this.recipient.type = RecipientType.ZIL;
     } else if (/^\d+$/.test(r)) {
       this.recipient.type = RecipientType.ID;
     } else {
@@ -86,7 +107,7 @@ export class BurstRecipientInputComponent implements OnChanges {
   }
 
 
-  validateRecipient(recipient: string): void {
+  async validateRecipient(recipient: string): Promise<void> {
     let accountFetchFn;
     this.recipient.addressRaw = recipient.trim();
     let id = this.recipient.addressRaw;
@@ -96,6 +117,15 @@ export class BurstRecipientInputComponent implements OnChanges {
         break;
       case RecipientType.ADDRESS:
         id = convertAddressToNumericId(id);
+        break;
+      case RecipientType.ZIL:
+        try {
+          id = await this.domainService.getZilAddress(id);
+          accountFetchFn = this.accountService.getAccount;
+        } catch (e) {
+          this.recipient.status = RecipientValidationStatus.ZIL_OUTAGE;
+        }
+        break;
       // tslint:disable-next-line:no-switch-case-fall-through
       case RecipientType.ID:
         accountFetchFn = this.accountService.getAccount;
@@ -108,17 +138,24 @@ export class BurstRecipientInputComponent implements OnChanges {
       return;
     }
 
+    this.loading = true;
+
     accountFetchFn.call(this.accountService, id).then(({accountRS}) => {
       this.recipient.addressRS = accountRS;
       this.recipient.status = RecipientValidationStatus.VALID;
     }).catch(() => {
-      this.recipient.addressRS = (isBurstAddress(this.recipient.addressRaw)) ?
-        this.recipient.addressRaw : convertNumericIdToAddress(this.recipient.addressRaw);
+      if (isBurstAddress(this.recipient.addressRaw)) {
+        this.recipient.addressRS = this.recipient.addressRaw;
+      } else if (this.recipient.type === RecipientType.ZIL) {
+        this.recipient.addressRS = id;
+      } else {
+        this.recipient.addressRS = convertNumericIdToAddress(this.recipient.addressRaw);
+      }
       this.recipient.status = RecipientValidationStatus.INVALID;
     }).finally(() => {
-        this.recipientChange.emit(this.recipient);
-      }
-    );
+      this.loading = false;
+      this.recipientChange.emit(this.recipient);
+    });
 
   }
 
@@ -133,6 +170,8 @@ export class BurstRecipientInputComponent implements OnChanges {
         return 'Address was successfully verified';
       case RecipientValidationStatus.INVALID:
         return 'This address does not seem valid. Verify if it really exists!';
+      case RecipientValidationStatus.ZIL_OUTAGE:
+        return 'Unable to fetch from the ZIL API. Please try again later.';
     }
   }
 
@@ -143,6 +182,7 @@ export class BurstRecipientInputComponent implements OnChanges {
       case RecipientValidationStatus.VALID:
         return 'check_circle';
       case RecipientValidationStatus.INVALID:
+      case RecipientValidationStatus.ZIL_OUTAGE:
         return 'error_outline';
     }
   }

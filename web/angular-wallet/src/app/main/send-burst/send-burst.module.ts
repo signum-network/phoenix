@@ -32,6 +32,7 @@ import {PageModule} from '../../components/page/page.module';
 import { LoginGuard } from 'app/login/login-guard.service';
 import {BatchRecipientsDialogComponent} from './batch-recipients-dialog/batch-recipients-dialog.component';
 import {MatSelectModule} from '@angular/material/select';
+import { DomainService } from './domain/domain.service';
 
 const routes = [
   {
@@ -51,6 +52,9 @@ const routes = [
 ];
 
 @NgModule({
+  providers: [
+    DomainService
+  ],
   declarations: [
     SendBurstComponent,
     BurstInputValidatorDirective,

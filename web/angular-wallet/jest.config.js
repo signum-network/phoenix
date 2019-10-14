@@ -10,5 +10,6 @@ module.exports = {
     '@fuse': '<rootDir>/src'
   },
   setupFilesAfterEnv: ['<rootDir>/src/setup-jest.ts'],
-  transformIgnorePatterns: ['node_modules/(?!(jest-test))']
+  transformIgnorePatterns: ['node_modules/(?!(jest-test))'],
+  moduleFileExtensions: ["ts", "js", "html", "json", "node"]
 };

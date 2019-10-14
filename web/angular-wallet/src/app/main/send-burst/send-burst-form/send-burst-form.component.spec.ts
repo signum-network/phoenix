@@ -34,6 +34,8 @@ import {AccountService} from 'app/setup/account/account.service';
 import {Account} from '@burstjs/core';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatProgressBarModule } from '@angular/material';
+import { DomainService } from '../domain/domain.service';
 
 describe('SendBurstFormComponent', () => {
   let component: SendBurstFormComponent;
@@ -61,6 +63,7 @@ describe('SendBurstFormComponent', () => {
         NetworkModule,
         HttpClientTestingModule,
         MatProgressSpinnerModule,
+        MatProgressBarModule,
         MatDialogModule,
         RouterTestingModule.withRoutes([])
       ],
@@ -88,6 +91,14 @@ describe('SendBurstFormComponent', () => {
             return {
               sendMoney: () => Promise.resolve({broadcasted: true})
             };
+          }
+        },
+        {
+          provide: DomainService,
+          useFactory: () => {
+            return {
+              sendMoney: () => Promise.resolve('success')
+            }
           }
         },
         {
