@@ -2,7 +2,7 @@ import { Account } from '@burstjs/core';
 import { convertBurstTimeToDate, convertNQTStringToNumber } from '@burstjs/util';
 import * as shape from 'd3-shape';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Grid, StackedAreaChart, YAxis } from 'react-native-svg-charts';
 import { AccountColors, Colors } from '../../../core/theme/colors';
 import { getBalanceHistoryFromTransactions } from '../../../core/utils/balance/getBalanceHistoryFromTransactions';
@@ -13,6 +13,8 @@ import { HistoricalPriceTypeStrings,
          PriceInfoReduxState,
          PriceTypeStrings
 } from '../../price-api/store/reducer';
+import { FontSizes } from '../../../core/theme/sizes';
+import { Text } from '../../../core/components/base/Text';
 
 const ACCOUNT_TOKEN = 'account';
 
@@ -35,12 +37,18 @@ interface State {
 
 const styles = StyleSheet.create({
   stackedAreaChart: { height: 200, paddingVertical: 16, zIndex: 1 },
-  yAxis: { position: 'absolute', top: 0, left: 5, height: 200, paddingVertical: 16, zIndex: 2 },
+  yAxis: {
+    position: 'absolute',
+    top: 0,
+    left: 5,
+    height: 200,
+    paddingVertical: 16,
+    zIndex: 2
+  },
   button: {
     position: 'absolute',
     top: 142,
     right: 5,
-    width: 70,
     backgroundColor: Colors.BLUE_DARKEST,
     zIndex: 10,
     flex: 1,
@@ -53,7 +61,7 @@ const styles = StyleSheet.create({
     opacity: .8
   },
   dateRange: {
-    right: 80
+    right: 70
   }
 });
 
@@ -193,7 +201,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
           onPress={this.props.selectCurrency}
           style={styles.button as StyleMedia}
         >
-          <Text style={{ color: Colors.BLUE_LIGHT, textAlign: 'center' }}>
+          <Text color={Colors.BLUE_LIGHT} size={FontSizes.SMALL}>
             {this.props.priceApi.selectedCurrency}
           </Text>
         </TouchableOpacity>
@@ -202,7 +210,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
           onPress={this.selectDateRange}
           style={[styles.button, styles.dateRange]}
         >
-          <Text style={{ color: Colors.BLUE_LIGHT, textAlign: 'center' }}>
+          <Text color={Colors.BLUE_LIGHT} size={FontSizes.SMALL}>
             {this.state.selectedDateRange.toString()}d
           </Text>
         </TouchableOpacity>

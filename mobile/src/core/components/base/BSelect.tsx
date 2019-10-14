@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import RNPickerSelect, { Item } from 'react-native-picker-select';
 import { Colors } from '../../theme/colors';
 import { fonts } from '../../theme/fonts';
 import { FontSizes, Sizes } from '../../theme/sizes';
 // TODO: create BText component
 import { Text as BText } from './Text';
+import { transactionIcons, actionIcons } from '../../../assets/icons';
 
 interface Props {
   value: any;
@@ -23,12 +24,21 @@ export interface SelectItem<T> extends Item {
 const defaultStyles: any = {
   fontSize: FontSizes.MEDIUM,
   fontFamily: fonts.noto,
+  letterSpacing: -1,
   fontWeight: '500',
   color: Colors.WHITE,
   borderColor: Colors.BLUE,
   borderWidth: 1,
   backgroundColor: Colors.BLACK,
-  padding: Sizes.MEDIUM
+  padding: Sizes.MEDIUM,
+  shadowColor: Colors.BLACK,
+  shadowOffset: {
+    width: 0,
+    height: 1
+  },
+  shadowOpacity: 0.22,
+  shadowRadius: 2.22,
+  elevation: 3
 };
 
 const styles: any = {
@@ -50,6 +60,11 @@ const styles: any = {
   },
   placeholder: {
     color: Colors.GREY_LIGHT
+  },
+  chevron: {
+    width: 25,
+    height: 25,
+    marginTop: 3
   }
 };
 
@@ -72,7 +87,9 @@ export class BSelect extends React.PureComponent<Props> {
           value={value}
           style={styles}
           placeholder={placeholderObject}
-          Icon={rightElement ? rightElement : undefined}
+          Icon={rightElement ? rightElement : () => {
+            return <Image source={actionIcons.chevronDown} style={styles.chevron} />;
+          }}
         />
       </View>
     );

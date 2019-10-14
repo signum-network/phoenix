@@ -1,4 +1,4 @@
-import { Account, ApiSettings, composeApi } from '@burstjs/core';
+import { Account, ApiSettings, composeApi, AliasList, Alias } from '@burstjs/core';
 import { encryptAES, generateMasterKeys, getAccountIdFromPublicKey, hashSHA256 } from '@burstjs/crypto';
 import { convertAddressToNumericId, convertNumericIdToAddress, isValid } from '@burstjs/util';
 import { some } from 'lodash';
@@ -121,6 +121,21 @@ export const getAccount = createActionFn<string, Promise<Account | undefined>>(
     try {
       const accountDetails = await api.account.getAccount(account);
       return accountDetails;
+    // tslint:disable-next-line: no-empty
+    } catch (e) {}
+  }
+);
+
+export const getAlias = createActionFn<string, Promise<Alias | undefined>>(
+  async (_dispatch, getState, account) => {
+
+    const state = getState();
+    const { nodeHost, apiRootUrl } = state.app.burstService.settings;
+    // TODO: unify network request actions, add proper error handling and so on
+    const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
+    try {
+      const alias = await api.alias.getAliasByName(account);
+      return alias;
     // tslint:disable-next-line: no-empty
     } catch (e) {}
   }

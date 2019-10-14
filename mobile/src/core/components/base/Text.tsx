@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     textAlign: TextAlign.CENTER
   },
   textDisabled: {
-    color: Colors.GREY
+    color: Colors.GREY_DARK
   }
 });
 

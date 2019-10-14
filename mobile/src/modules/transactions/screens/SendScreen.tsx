@@ -23,6 +23,7 @@ import { sendMoney, SendMoneyPayload } from '../store/actions';
 import { TransactionsReduxState } from '../store/reducer';
 import { parseURLParams } from '../store/utils';
 import { transactions } from '../translations';
+import { getAccount, getAlias } from '../../auth/store/actions';
 
 interface IProps extends InjectedReduxProps {
   app: AppReduxState;
@@ -128,6 +129,14 @@ class Send extends React.PureComponent<Props, State> {
     });
   }
 
+  handleGetAccount = (id: string) => {
+    return this.props.dispatch(getAccount(id));
+  }
+
+  handleGetAlias = (id: string) => {
+    return this.props.dispatch(getAlias(id));
+  }
+
   handleCameraIconPress = () => {
     this.props.navigation.navigate(routes.scan);
   }
@@ -154,6 +163,8 @@ class Send extends React.PureComponent<Props, State> {
               accounts={accounts}
               loading={isLoading}
               onSubmit={this.handleSubmit}
+              onGetAccount={this.handleGetAccount}
+              onGetAlias={this.handleGetAlias}
               onCameraIconPress={this.handleCameraIconPress}
               deepLinkProps={this.state.deepLinkProps}
               suggestedFees={this.props.network.suggestedFees}

@@ -10,3 +10,28 @@ export function parseURLParams (queryString: string): any {
   }
   return query;
 }
+
+export enum RecipientType {
+  UNKNOWN = 0,
+  ADDRESS = 1,
+  ID,
+  ALIAS
+}
+
+export enum RecipientValidationStatus {
+  UNKNOWN = 'unknown',
+  INVALID = 'invalid',
+  VALID = 'valid'
+}
+
+export class Recipient {
+
+  constructor (
+    public addressRaw = '',
+    public addressRS = '',
+    public status = RecipientValidationStatus.UNKNOWN,
+    public type = RecipientType.UNKNOWN
+  ) {
+
+  }
+}
