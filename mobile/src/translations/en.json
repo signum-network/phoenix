@@ -148,7 +148,10 @@
         "sent": "Sent!",
         "title": "Send",
         "to": "To",
-        "total": "Total: {{value}} BURST"
+        "total": "Total: {{value}} BURST",
+        "noPublicKey": "Please confirm address before sending.",
+        "invalidAddress": "This address is not valid.",
+        "zilOutage": "Unable to fetch from the ZIL API."
       },
       "scan": {
         "title": "Scan BURST QR Code"

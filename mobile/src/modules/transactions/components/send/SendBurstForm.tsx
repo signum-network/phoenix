@@ -8,8 +8,7 @@ import {
 } from '@burstjs/util';
 import { last } from 'lodash';
 import React from 'react';
-import { Image, NativeSyntheticEvent, StyleSheet, TextInputFocusEventData, View } from 'react-native';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import { Image, NativeSyntheticEvent, StyleSheet, TextInputEndEditingEventData, View, TouchableOpacity, ScrollView } from 'react-native';
 import { transactionIcons } from '../../../../assets/icons';
 import { BInput, KeyboardTypes } from '../../../../core/components/base/BInput';
 import { BSelect, SelectItem } from '../../../../core/components/base/BSelect';
@@ -32,6 +31,7 @@ interface Props {
   onCameraIconPress: () => void;
   onGetAccount: (id: string) => Promise<Account>;
   onGetAlias: (id: string) => Promise<Account>;
+  onGetZilAddress: (id: string) => Promise<string | null>;
   accounts: Account[];
   deepLinkProps?: SendBurstFormState;
   suggestedFees: SuggestedFees | null;
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     marginRight: 2,
     width: 20,
     height: 20,
-    backgroundColor: Colors.BLACK
+    backgroundColor: Colors.TRANSPARENT
   },
   total: {
     marginTop: 10
@@ -100,10 +100,12 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
   }
 
   getAccounts = (): Array<SelectItem<Account>> => {
-    return this.props.accounts.filter(({ keys }) => keys && keys.publicKey).map((account) => ({
-      value: account,
-      label: `...${last(account.accountRS.split('-'))}`
-    }));
+    return this.props.accounts
+      .filter(({ keys }) => keys && keys.publicKey)
+      .map((account) => ({
+        value: account,
+        label: `...${last(account.accountRS.split('-'))}`
+      }));
   }
 
   applyRecipientType (recipient: string): void {
@@ -112,8 +114,10 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
     if (r.length === 0) {
       type = RecipientType.UNKNOWN;
-    } else if (r.startsWith(burstPrefix)) {
+    } else if (r.toUpperCase().startsWith(burstPrefix)) {
       type = RecipientType.ADDRESS;
+    } else if (r.toUpperCase().endsWith('.ZIL') || r.toUpperCase().endsWith('.CRYPTO')) {
+      type = RecipientType.ZIL;
     } else if (/^\d+$/.test(r)) {
       type = RecipientType.ID;
     } else {
@@ -134,14 +138,38 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
   async validateRecipient (recipient: string, type: RecipientType): Promise<void> {
     let accountFetchFn;
+    let formattedAddress: string | null = recipient;
 
     switch (type) {
       case RecipientType.ALIAS:
         accountFetchFn = this.props.onGetAlias;
         break;
       case RecipientType.ADDRESS:
-        recipient = convertAddressToNumericId(recipient);
-      // tslint:disable-next-line:no-switch-case-fall-through
+        formattedAddress = convertAddressToNumericId(recipient);
+        accountFetchFn = this.props.onGetAccount;
+        break;
+      case RecipientType.ZIL:
+        try {
+          formattedAddress = await this.props.onGetZilAddress(recipient);
+          accountFetchFn = this.props.onGetAccount;
+
+          if (formattedAddress === null) {
+            this.setState({
+              recipient: {
+                ...this.state.recipient,
+                status: RecipientValidationStatus.INVALID
+              }
+            });
+          }
+        } catch (e) {
+          this.setState({
+            recipient: {
+              ...this.state.recipient,
+              status: RecipientValidationStatus.ZIL_OUTAGE
+            }
+          });
+        }
+        break;
       case RecipientType.ID:
         accountFetchFn = this.props.onGetAccount;
         break;
@@ -149,12 +177,12 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
       // no op
     }
 
-    if (!accountFetchFn || !recipient) {
+    if (!accountFetchFn || !formattedAddress) {
       return;
     }
 
     try {
-      const { accountRS } = await accountFetchFn(recipient);
+      const { accountRS } = await accountFetchFn(formattedAddress);
       this.setState({
         recipient: {
           ...this.state.recipient,
@@ -165,7 +193,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
       this.setState({
         recipient: {
           ...this.state.recipient,
-          addressRS: (isBurstAddress(recipient)) ?
+          addressRS: (isBurstAddress(recipient) || this.state.recipient.type === RecipientType.ZIL) ?
           recipient : convertNumericIdToAddress(recipient),
           status: RecipientValidationStatus.INVALID
         }
@@ -199,7 +227,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
     });
   }
 
-  handleAddressBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+  handleAddressBlur = (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
     this.applyRecipientType(e.nativeEvent.text);
   }
 
@@ -241,15 +269,16 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
     const recipientRightIcons = (
       <View style={{ flexDirection: 'row' }}>
-        {recipient.addressRaw !== burstPrefix && <AccountStatusPill type={recipient.type} status={recipient.status} />}
-        <TouchableHighlight onPress={this.props.onCameraIconPress}>
+        {recipient.addressRaw !== burstPrefix &&
+          <AccountStatusPill address={recipient.addressRS} type={recipient.type} status={recipient.status} />}
+        <TouchableOpacity onPress={this.props.onCameraIconPress}>
           <Image source={transactionIcons.camera} style={styles.cameraIcon} />
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     );
 
     return (
-      <View style={styles.wrapper}>
+      <ScrollView style={styles.wrapper}>
         <View style={styles.form}>
           <BSelect
             value={sender}
@@ -261,7 +290,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
           <BInput
             value={recipient.addressRaw}
             onChange={this.handleChangeAddress}
-            onBlur={this.handleAddressBlur}
+            onEndEditing={this.handleAddressBlur}
             // disabled={this.state.immutable}
             title={i18n.t(transactions.screens.send.to)}
             placeholder='BURST-____-____-____-_____'
@@ -300,7 +329,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             {i18n.t(transactions.screens.send.title)}
           </BButton>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

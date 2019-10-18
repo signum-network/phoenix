@@ -1,4 +1,4 @@
-import { convertNumberToNQTString, convertNQTStringToNumber } from '@burstjs/util';
+import { convertNQTStringToNumber } from '@burstjs/util';
 import React from 'react';
 import { Clipboard, Image, Share, StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
@@ -103,9 +103,8 @@ class ViewQRCode extends React.PureComponent<Props, State> {
         title: `BURST Request for ${amount}`,
         url: this.buildPhoenixDeepLinkURL()
       });
-    } catch (error) {
-      console.log(error);
-    }
+    // tslint:disable-next-line: no-empty
+    } catch (error) {}
   }
 
   handleCopy = () => {

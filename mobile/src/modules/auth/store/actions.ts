@@ -1,7 +1,8 @@
-import { Account, ApiSettings, composeApi, AliasList, Alias } from '@burstjs/core';
+import { Account, Alias, ApiSettings, composeApi } from '@burstjs/core';
 import { encryptAES, generateMasterKeys, getAccountIdFromPublicKey, hashSHA256 } from '@burstjs/crypto';
 import { convertAddressToNumericId, convertNumericIdToAddress, isValid } from '@burstjs/util';
 import { some } from 'lodash';
+import { Namicorn } from 'namicorn';
 import { AsyncStorage } from 'react-native';
 import { AsyncStorageKeys } from '../../../core/enums';
 import { i18n } from '../../../core/i18n';
@@ -18,6 +19,8 @@ import {
   savePasscodeEnteredTime,
   setAccounts
 } from './utils';
+
+const namicorn = new Namicorn();
 
 const actions = {
   addAccount: createAction<Account>(actionTypes.addAccount),
@@ -138,6 +141,12 @@ export const getAlias = createActionFn<string, Promise<Alias | undefined>>(
       return alias;
     // tslint:disable-next-line: no-empty
     } catch (e) {}
+  }
+);
+
+export const getZilAddress = createActionFn<string, Promise<string | null>>(
+  async (_dispatch, _getState, address) => {
+    return namicorn.address(address.toLowerCase(), 'BURST');
   }
 );
 

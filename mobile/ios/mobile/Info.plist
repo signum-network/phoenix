@@ -74,7 +74,7 @@
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>New item</key>
-			<string></string>
+			<string/>
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>

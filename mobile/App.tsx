@@ -9,6 +9,7 @@ import {
 } from 'react-navigation';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
+import './shim';
 import { i18n } from './src/core/i18n';
 import { ChangeLanguageEvent } from './src/core/interfaces';
 import { RootView } from './src/core/layout/RootView';

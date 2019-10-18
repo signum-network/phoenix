@@ -7,7 +7,11 @@
            placeholder="{{ 'recipient' | i18n }}"
            [disabled]="disabled">
 
-    <div *ngIf="recipient.type!==1" class="recipient-address" title="{{ recipient.addressRS }}">{{ recipient.addressRS}}</div>
+    <div *ngIf="recipient.type !== 1 && recipient.status !== 4"
+         class="recipient-address"
+         title="{{ recipient.addressRS }}">
+        {{ recipient.addressRS }}
+    </div>
     <div fxFlex fxLayout="row"
          *ngIf="recipient.type>0"
          [ngClass]="getValidationClass()"

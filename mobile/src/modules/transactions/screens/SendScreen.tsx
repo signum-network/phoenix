@@ -1,8 +1,8 @@
-import { Account, SuggestedFees } from '@burstjs/core';
-import { convertNQTStringToNumber, isBurstAddress, convertNumericIdToAddress } from '@burstjs/util';
+import { Account } from '@burstjs/core';
+import { convertNQTStringToNumber, convertNumericIdToAddress, isBurstAddress } from '@burstjs/util';
 import React from 'react';
-import { View, EventEmitterListener } from 'react-native';
-import { NavigationInjectedProps, withNavigation, NavigationEventSubscription } from 'react-navigation';
+import { View } from 'react-native';
+import { NavigationEventSubscription, NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Text, TextThemes } from '../../../core/components/base/Text';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
@@ -15,6 +15,7 @@ import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { isAsyncLoading } from '../../../core/utils/async';
 import { EnterPasscodeModal } from '../../auth/components/passcode/EnterPasscodeModal';
+import { getAccount, getAlias, getZilAddress } from '../../auth/store/actions';
 import { AuthReduxState } from '../../auth/store/reducer';
 import { shouldEnterPIN } from '../../auth/store/utils';
 import { NetworkReduxState } from '../../network/store/reducer';
@@ -23,7 +24,6 @@ import { sendMoney, SendMoneyPayload } from '../store/actions';
 import { TransactionsReduxState } from '../store/reducer';
 import { parseURLParams } from '../store/utils';
 import { transactions } from '../translations';
-import { getAccount, getAlias } from '../../auth/store/actions';
 
 interface IProps extends InjectedReduxProps {
   app: AppReduxState;
@@ -133,6 +133,10 @@ class Send extends React.PureComponent<Props, State> {
     return this.props.dispatch(getAccount(id));
   }
 
+  handleGetZilAddress = (id: string) => {
+    return this.props.dispatch(getZilAddress(id));
+  }
+
   handleGetAlias = (id: string) => {
     return this.props.dispatch(getAlias(id));
   }
@@ -165,6 +169,7 @@ class Send extends React.PureComponent<Props, State> {
               onSubmit={this.handleSubmit}
               onGetAccount={this.handleGetAccount}
               onGetAlias={this.handleGetAlias}
+              onGetZilAddress={this.handleGetZilAddress}
               onCameraIconPress={this.handleCameraIconPress}
               deepLinkProps={this.state.deepLinkProps}
               suggestedFees={this.props.network.suggestedFees}

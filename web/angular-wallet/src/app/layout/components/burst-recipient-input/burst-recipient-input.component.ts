@@ -23,7 +23,7 @@ export enum RecipientValidationStatus {
   UNKNOWN = 'unknown',
   INVALID = 'invalid',
   VALID = 'valid',
-  ZIL_OUTAGE = 'zil-outage',
+  ZIL_OUTAGE = 'zil-outage'
 }
 
 export class Recipient {
@@ -53,7 +53,9 @@ export class BurstRecipientInputComponent implements OnChanges {
 
   @Input() recipientValue: string;
   @Input() withQrCode = true;
+  // tslint:disable-next-line: no-input-rename
   @Input('appearance') appearance = '';
+  // tslint:disable-next-line: no-input-rename
   @Input('disabled') disabled = false;
 
   @Output()
@@ -69,7 +71,7 @@ export class BurstRecipientInputComponent implements OnChanges {
               private domainService: DomainService) {
 
     this.recipientFieldInputChange$.pipe(
-      debounceTime(200), distinctUntilChanged()
+      debounceTime(500), distinctUntilChanged()
     )
     .subscribe((model: string) => {
       this.applyRecipientType(model);
@@ -77,7 +79,7 @@ export class BurstRecipientInputComponent implements OnChanges {
     });
   }
 
-  onRecipientFieldInputChange(query: string) {
+  onRecipientFieldInputChange(query: string): void {
     this.recipientFieldInputChange$.next(query);
   }
 
@@ -117,11 +119,16 @@ export class BurstRecipientInputComponent implements OnChanges {
         break;
       case RecipientType.ADDRESS:
         id = convertAddressToNumericId(id);
+        accountFetchFn = this.accountService.getAccount;
         break;
       case RecipientType.ZIL:
         try {
           id = await this.domainService.getZilAddress(id);
           accountFetchFn = this.accountService.getAccount;
+
+          if (id === null) {
+            this.recipient.status = RecipientValidationStatus.INVALID;
+          }
         } catch (e) {
           this.recipient.status = RecipientValidationStatus.ZIL_OUTAGE;
         }
@@ -134,7 +141,7 @@ export class BurstRecipientInputComponent implements OnChanges {
       // no op
     }
 
-    if (!accountFetchFn) {
+    if (!accountFetchFn || !id) {
       return;
     }
 
@@ -165,11 +172,11 @@ export class BurstRecipientInputComponent implements OnChanges {
     // TODO: localization
     switch (this.recipient.status) {
       case RecipientValidationStatus.UNKNOWN:
-        return 'The address was not validated yet';
+        return 'Address has not been verified.';
       case RecipientValidationStatus.VALID:
-        return 'Address was successfully verified';
+        return 'Address was successfully verified.';
       case RecipientValidationStatus.INVALID:
-        return 'This address does not seem valid. Verify if it really exists!';
+        return 'Please verify address before sending.';
       case RecipientValidationStatus.ZIL_OUTAGE:
         return 'Unable to fetch from the ZIL API. Please try again later.';
     }

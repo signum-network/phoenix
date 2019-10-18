@@ -1,6 +1,6 @@
 import { Account } from '@burstjs/core';
 import React from 'react';
-import { Button, View, StyleSheet } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
@@ -51,7 +51,7 @@ const priceTypes = [PriceType.BURST, PriceType.BTC, PriceType.USD];
 
 class Home extends React.PureComponent<TProps, State> {
 
-  _checkPinExpiryInterval: number | undefined;
+  _checkPinExpiryInterval?: NodeJS.Timeout;
 
   state = {
     isPINModalVisible: false,
@@ -136,7 +136,9 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   componentWillUnmount () {
-    clearInterval(this._checkPinExpiryInterval as number);
+    if (this._checkPinExpiryInterval) {
+      clearInterval(this._checkPinExpiryInterval);
+    }
   }
 
   selectCurrency () {

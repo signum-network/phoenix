@@ -17,6 +17,8 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
+import com.bitgo.randombytes.RandomBytesPackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,15 +34,16 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNVersionNumberPackage(),
-            new AsyncStoragePackage(),
-            new RNCameraPackage(),
-            new ReactSliderPackage(),
-            new SvgPackage(),
-            new FingerprintAuthPackage(),
-            new RNLocalizePackage(),
-            new KeychainPackage(),
-            new RNGestureHandlerPackage()
+          new RNVersionNumberPackage(),
+          new RandomBytesPackage(),
+          new AsyncStoragePackage(),
+          new RNCameraPackage(),
+          new ReactSliderPackage(),
+          new SvgPackage(),
+          new FingerprintAuthPackage(),
+          new RNLocalizePackage(),
+          new KeychainPackage(),
+          new RNGestureHandlerPackage()
       );
     }
 

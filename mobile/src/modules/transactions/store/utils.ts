@@ -15,13 +15,15 @@ export enum RecipientType {
   UNKNOWN = 0,
   ADDRESS = 1,
   ID,
-  ALIAS
+  ALIAS,
+  ZIL
 }
 
 export enum RecipientValidationStatus {
   UNKNOWN = 'unknown',
   INVALID = 'invalid',
-  VALID = 'valid'
+  VALID = 'valid',
+  ZIL_OUTAGE = 'zil_outage'
 }
 
 export class Recipient {

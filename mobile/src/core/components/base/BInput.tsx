@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NativeSyntheticEvent, TextInput, TextInputFocusEventData, View } from 'react-native';
+import { NativeSyntheticEvent, TextInput, TextInputEndEditingEventData, View } from 'react-native';
 import { Colors } from '../../theme/colors';
 import { fonts } from '../../theme/fonts';
 import { FontSizes, Sizes } from '../../theme/sizes';
@@ -9,7 +9,7 @@ import { Text as BText } from './Text';
 interface Props {
   value: string;
   onChange: (value: string) => void;
-  onBlur?: (value: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+  onEndEditing?: (value: NativeSyntheticEvent<TextInputEndEditingEventData>) => void;
   keyboard?: KeyboardTypes;
   title?: string;
   placeholder?: string;
@@ -48,6 +48,7 @@ const styles: any = {
     color: Colors.WHITE,
     backgroundColor: Colors.TRANSPARENT,
     height: 25,
+    padding: 0,
     width: '100%',
     flex: 1
   },
@@ -58,7 +59,7 @@ const styles: any = {
 
 export class BInput extends React.PureComponent<Props> {
   render () {
-    const { title, value, onChange, placeholder, keyboard, onBlur, rightIcons } = this.props;
+    const { title, value, onChange, placeholder, keyboard, onEndEditing, rightIcons } = this.props;
 
     return (
       <View>
@@ -67,7 +68,7 @@ export class BInput extends React.PureComponent<Props> {
         ) : null}
         <View style={styles.wrapper}>
           <TextInput
-            onBlur={onBlur}
+            onEndEditing={onEndEditing}
             value={value}
             onChangeText={onChange}
             style={styles.input}
