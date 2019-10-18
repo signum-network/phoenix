@@ -20,7 +20,9 @@ if (typeof process === 'undefined') {
 }
 
 process.browser = false;
-if (typeof Buffer === 'undefined') global.Buffer = require('buffer').Buffer;
+if (typeof Buffer === 'undefined') {
+  global.Buffer = require('buffer').Buffer;
+}
 
 // global.location = global.location || { port: 80 }
 const isDev = typeof __DEV__ === 'boolean' && __DEV__;
