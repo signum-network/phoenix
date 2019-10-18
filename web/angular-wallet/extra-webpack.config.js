@@ -7,4 +7,4 @@ module.exports = {
       os: true,
       stream: true
     }
-  }
+  };
