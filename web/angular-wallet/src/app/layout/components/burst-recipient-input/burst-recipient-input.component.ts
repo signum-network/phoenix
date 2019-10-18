@@ -99,7 +99,7 @@ export class BurstRecipientInputComponent implements OnChanges {
       this.recipient.type = RecipientType.UNKNOWN;
     } else if (r.toUpperCase().startsWith('BURST-')) {
       this.recipient.type = RecipientType.ADDRESS;
-    } else if (r.toUpperCase().endsWith('.ZIL')) {
+    } else if (r.toUpperCase().endsWith('.ZIL') || r.toUpperCase().endsWith('.CRYPTO')) {
       this.recipient.type = RecipientType.ZIL;
     } else if (/^\d+$/.test(r)) {
       this.recipient.type = RecipientType.ID;
