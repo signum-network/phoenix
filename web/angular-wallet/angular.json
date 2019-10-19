@@ -15,11 +15,8 @@
             },
             "architect": {
                 "build": {
-                    "builder": "@angular-builders/custom-webpack:browser",
+                    "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "customWebpackConfig": {
-                            "path": "./extra-webpack.config.js"
-                        },
                         "outputPath": "dist",
                         "index": "src/index.html",
                         "main": "src/main.ts",
@@ -56,8 +53,8 @@
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "4mb",
-                                    "maximumError": "8mb"
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
                                 }
                             ]
                         },
@@ -80,8 +77,8 @@
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "4mb",
-                                    "maximumError": "8mb"
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
                                 }
                             ]
                         },
@@ -100,11 +97,8 @@
                     }
                 },
                 "serve": {
-                    "builder": "@angular-builders/custom-webpack:dev-server",
+                    "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "customWebpackConfig": {
-                            "path": "./extra-webpack.config.js"
-                        },
                         "browserTarget": "fuse:build"
                     },
                     "configurations": {
