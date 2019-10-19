@@ -4,9 +4,9 @@ All notable changes to this project will be documented in this file.
 ## 0.4.1 (TBR)
 - Initiated work on assets Api
     - added `getAsset()`
+    - added `getAllAssets()`
 - Fixed encoding issue on BRS requests (#826)
 - Added `getAllContractIds` to contract Api
-- Updated ServerStatus response object 
     
 ## 0.4.0
 - Changed License: From GPL-3.0 to Apache 2.0
