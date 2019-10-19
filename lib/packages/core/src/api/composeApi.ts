@@ -2,58 +2,41 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../service/burstService';
+import {BurstService} from '../service';
 import {BurstServiceSettings} from '../service/burstServiceSettings';
 import {Api} from '../typings/api';
 import {ApiVersion} from '../constants/apiVersion';
 import {ApiComposer} from './apiComposer';
-import {getBlockByTimestamp} from './factories/block/getBlockByTimestamp';
-import {getBlockByHeight} from './factories/block/getBlockByHeight';
-import {getBlockById} from './factories/block/getBlockById';
-import {getBlockId} from './factories/block/getBlockId';
-import {getBlocks} from './factories/block/getBlocks';
-import {getBlockchainStatus} from './factories/network/getBlockchainStatus';
-import {getServerStatus} from './factories/network/getServerStatus';
-import {broadcastTransaction} from './factories/transaction/broadcastTransaction';
-import {getTransaction} from './factories/transaction/getTransaction';
-import {sendTextMessage} from './factories/message/sendTextMessage';
-import {sendEncryptedTextMessage} from './factories/message/sendEncryptedTextMessage';
-import {getAccountTransactions} from './factories/account/getAccountTransactions';
-import {getUnconfirmedAccountTransactions} from './factories/account/getUnconfirmedAccountTransactions';
-import {getAccountBalance} from './factories/account/getAccountBalance';
-import {generateSendTransactionQRCode} from './factories/account/generateSendTransactionQRCode';
-import {generateSendTransactionQRCodeAddress} from './factories/account/generateSendTransactionQRCodeAddress';
-import {suggestFee} from './factories/network/suggestFee';
-import {getPeer} from './factories/network/getPeer';
-import {getPeers} from './factories/network/getPeers';
-import {getAliases} from './factories/account/getAliases';
-import {setAlias} from './factories/account/setAlias';
-import {getTime} from './factories/network/getTime';
-import {getAccount} from './factories/account/getAccount';
-import {getAccountBlocks} from './factories/account/getAccountBlocks';
-import {getAccountBlockIds} from './factories/account/getAccountBlockIds';
-import {setAccountInfo} from './factories/account/setAccountInfo';
-import {setRewardRecipient} from './factories/account/setRewardRecipient';
-import {getAliasById} from './factories/alias/getAliasById';
-import {getAliasByName} from './factories/alias/getAliasByName';
-import {getContractsByAccount} from './factories/contract/getContractsByAccount';
-import {getContract} from './factories/contract/getContract';
+import {getBlockByHeight, getBlockById, getBlockByTimestamp, getBlockId, getBlocks} from './factories/block';
+import {getBlockchainStatus, getPeer, getPeers, getServerStatus, getTime, suggestFee} from './factories/network';
+import {sendTextMessage} from './factories/message';
+import {sendEncryptedTextMessage} from './factories/message';
 import {
+    generateSendTransactionQRCode, generateSendTransactionQRCodeAddress, getAccount,
+    getAccountBalance, getAccountBlockIds, getAccountBlocks,
+    getAccountTransactions, getAliases,
+    getUnconfirmedAccountTransactions, setAccountInfo, setAlias, setRewardRecipient
+} from './factories/account';
+import {getAliasById, getAliasByName} from './factories/alias';
+import {getContractsByAccount, getContract, getAllContractIds} from './factories/contract';
+import {
+    broadcastTransaction, getTransaction,
     sendAmount,
     sendAmountToMultipleRecipients,
     sendAmountToSingleRecipient,
     sendSameAmountToMultipleRecipients
 } from './factories/transaction';
-import {getAsset} from './factories/asset';
+import {getAllAssets, getAsset} from './factories/asset';
+import {DefaultApiEndpoint} from '../constants';
 
 
 /**
- * Context for API used in [[composeApi]]
+ * Settings for API used in [[composeApi]]
  */
 export class ApiSettings {
     constructor(
         public nodeHost: string,
-        public apiRootUrl: string,
+        public apiRootUrl: string = DefaultApiEndpoint,
         public apiVersion: ApiVersion = ApiVersion.V1
     ) {
     }
@@ -129,10 +112,11 @@ export function composeApi(settings: ApiSettings): Api {
             setAlias
         }).withContractApi({
             getContract,
-            getContractsByAccount
+            getContractsByAccount,
+            getAllContractIds
         }).withAssetApi({
             getAsset,
+            getAllAssets,
         })
         .compose();
-
 }

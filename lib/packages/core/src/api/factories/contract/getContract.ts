@@ -7,7 +7,7 @@ import { BurstService } from '../../../service/burstService';
 import {Contract} from '../../../typings/contract';
 
 /**
- * Use with [[ApiComposer]] and belongs to [[NetworkApi]].
+ * Use with [[ApiComposer]] and belongs to [[ContractApi]].
  *
  * See details at [[ContractApi.getContract]]
  */

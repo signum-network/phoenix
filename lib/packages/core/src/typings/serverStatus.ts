@@ -4,29 +4,32 @@
  */
 
 export interface ServerStatus {
-    readonly numberOfPeers: number;
-    readonly numberOfUnlockedAccounts: number;
-    readonly numberOfTransfers: number;
-    readonly numberOfOrders: number;
-    readonly numberOfTransactions: number;
-    readonly maxMemory: number;
-    readonly isScanning: boolean;
+    readonly application: string;
+    readonly availableProcessors: number;
     readonly cumulativeDifficulty: string;
     readonly freeMemory: number;
-    readonly availableProcessors: number;
-    readonly totalEffectiveBalanceNXT: number;
-    readonly version: string;
+    readonly grpcApiEnabled: boolean;
+    readonly grpcApiPort: number;
+    readonly indirectIncomingServiceEnabled: boolean;
+    readonly isScanning: boolean;
     readonly lastBlock: string;
-    readonly totalMemory: number;
-    readonly application: string;
-    readonly numberOfAliases: number;
     readonly lastBlockchainFeeder: string;
     readonly lastBlockchainFeederHeight: number;
-    readonly time: number;
+    readonly maxMemory: number;
+    readonly numberOfAccounts: number;
+    readonly numberOfAliases: number;
     readonly numberOfAskOrders: number;
     readonly numberOfAssets: number;
-    readonly numberOfAccounts: number;
-    readonly numberOfBlocks: number;
     readonly numberOfBidOrders: number;
+    readonly numberOfBlocks: number;
+    readonly numberOfOrders: number;
+    readonly numberOfPeers: number;
     readonly numberOfTrades: number;
+    readonly numberOfTransactions: number;
+    readonly numberOfTransfers: number;
+    readonly numberOfUnlockedAccounts: number;
+    readonly time: number;
+    readonly totalEffectiveBalanceNXT: number;
+    readonly totalMemory: number;
+    readonly version: string;
 }

@@ -2,6 +2,7 @@
 
 import {Contract} from '../contract';
 import {ContractList} from '../contractList';
+import {ContractIdList} from '../contractIdList';
 
 /**
  * Contract API
@@ -22,5 +23,12 @@ export interface ContractApi {
      * @returns {ContractList} A list of contracts
      */
     getContractsByAccount: (accountId: string) => Promise<ContractList>;
+
+
+    /**
+     * Get all contract Ids of the blockchain
+     * @return {ContractIdList} The list of contract ids
+     */
+    getAllContractIds: (id: string) => Promise<ContractIdList>;
 
 }
