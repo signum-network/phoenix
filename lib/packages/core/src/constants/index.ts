@@ -20,9 +20,15 @@ const FeeQuantNQT = 735000;
  */
 const DefaultDeadline = 1440;
 
+/**
+ * The default endpoint for [[ApiSettings]]
+ */
+const DefaultApiEndpoint = '/burst';
+
 export {
     FeeQuantNQT,
     DefaultDeadline,
+    DefaultApiEndpoint,
     TransactionType,
     TransactionPaymentSubtype,
     TransactionMarketplaceSubtype,

@@ -1,6 +1,6 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
-import {getAsset} from '../../factories/asset';
+import {getAllAssets, getAsset} from '../../factories/asset';
 
 const environment = loadEnvironment();
 
@@ -16,5 +16,10 @@ describe(`[E2E] Asset Api`, () => {
     it('should getAsset', async () => {
         const asset = await getAsset(service)(environment.testAssetId);
         expect(asset).not.toBeUndefined();
+    });
+
+    it('should getAllAssets', async () => {
+        const assetList = await getAllAssets(service)();
+        expect(assetList.assets.length).toBeGreaterThan(0);
     });
 });

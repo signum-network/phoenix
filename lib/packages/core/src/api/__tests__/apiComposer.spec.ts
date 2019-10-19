@@ -17,11 +17,12 @@ import {getAccountBlocks} from '../factories/account/getAccountBlocks';
 import {getAccountBlockIds} from '../factories/account/getAccountBlockIds';
 import {generateSendTransactionQRCodeAddress} from '../factories/account/generateSendTransactionQRCodeAddress';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
-import {getContract} from '../factories/contract';
+import {getAllContractIds, getContract} from '../factories/contract';
 import {getContractsByAccount} from '../../../out/api/factories/contract';
 import {sendAmount, sendAmountToSingleRecipient, sendAmountToMultipleRecipients, sendSameAmountToMultipleRecipients} from '../factories/transaction';
 import {sendEncryptedTextMessage} from '../factories/message';
 import {getAsset} from '../factories/asset/getAsset';
+import {getAllAssets} from '../factories/asset';
 
 
 describe('ApiComposer', () => {
@@ -165,7 +166,8 @@ describe('ApiComposer', () => {
         const api = apiComposer
             .withContractApi({
                 getContract,
-                getContractsByAccount
+                getContractsByAccount,
+                getAllContractIds,
             })
             .compose();
 
@@ -173,6 +175,7 @@ describe('ApiComposer', () => {
         expect(api.contract).toBeDefined();
         expect(api.contract.getContract).toBeDefined();
         expect(api.contract.getContractsByAccount).toBeDefined();
+        expect(api.contract.getAllContractIds).toBeDefined();
 
     });
 
@@ -180,12 +183,14 @@ describe('ApiComposer', () => {
         const api = apiComposer
             .withAssetApi({
                 getAsset,
+                getAllAssets,
             })
             .compose();
 
         expect(api).toBeDefined();
         expect(api.asset).toBeDefined();
         expect(api.asset.getAsset).toBeDefined();
+        expect(api.asset.getAllAssets).toBeDefined();
     });
 
 

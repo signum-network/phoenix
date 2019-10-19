@@ -26,16 +26,17 @@ import {
     sendAmountToSingleRecipient,
     sendSameAmountToMultipleRecipients
 } from './factories/transaction';
-import {getAsset} from './factories/asset';
+import {getAllAssets, getAsset} from './factories/asset';
+import {DefaultApiEndpoint} from '../constants';
 
 
 /**
- * Context for API used in [[composeApi]]
+ * Settings for API used in [[composeApi]]
  */
 export class ApiSettings {
     constructor(
         public nodeHost: string,
-        public apiRootUrl: string,
+        public apiRootUrl: string = DefaultApiEndpoint,
         public apiVersion: ApiVersion = ApiVersion.V1
     ) {
     }
@@ -115,6 +116,7 @@ export function composeApi(settings: ApiSettings): Api {
             getAllContractIds
         }).withAssetApi({
             getAsset,
+            getAllAssets,
         })
         .compose();
 }
