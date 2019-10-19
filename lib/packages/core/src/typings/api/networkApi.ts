@@ -20,7 +20,8 @@ export interface NetworkApi {
     getBlockchainStatus: () => Promise<BlockchainStatus>;
 
     /**
-     * Get the state of the server node and network
+     * Get the state of the server node and network.
+     * Note: This request is pretty slow and might needs several seconds until reply.
      * @return {ServerStatus} The server Status
      */
     getServerStatus: () => Promise<ServerStatus>;

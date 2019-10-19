@@ -21,7 +21,6 @@ describe('[E2E] Network Api', () => {
     });
 
     it('should getNetworkState', async () => {
-
         const status = await getServerStatus(service)();
         expect(status.application).toBe('BRS');
         expect(status.numberOfAccounts).toBeGreaterThan(1);
