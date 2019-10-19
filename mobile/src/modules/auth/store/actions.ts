@@ -2,7 +2,6 @@ import { Account, Alias, ApiSettings, composeApi } from '@burstjs/core';
 import { encryptAES, generateMasterKeys, getAccountIdFromPublicKey, hashSHA256 } from '@burstjs/crypto';
 import { convertAddressToNumericId, convertNumericIdToAddress, isValid } from '@burstjs/util';
 import { some } from 'lodash';
-import { Namicorn } from 'namicorn';
 import { AsyncStorage } from 'react-native';
 import { AsyncStorageKeys } from '../../../core/enums';
 import { i18n } from '../../../core/i18n';
@@ -20,7 +19,15 @@ import {
   setAccounts
 } from './utils';
 
-const namicorn = new Namicorn();
+interface ZilResponse {
+  addresses: {
+    BURST: string
+  };
+  meta: {
+    owner: string,
+    ttl: number
+  };
+}
 
 const actions = {
   addAccount: createAction<Account>(actionTypes.addAccount),
@@ -146,7 +153,11 @@ export const getAlias = createActionFn<string, Promise<Alias | undefined>>(
 
 export const getZilAddress = createActionFn<string, Promise<string | null>>(
   async (_dispatch, _getState, address) => {
-    return namicorn.address(address.toLowerCase(), 'BURST');
+    return fetch(`https://unstoppabledomains.com/api/v1/${address.toLowerCase()}`)
+      .then((response) => response.json())
+      .then((response: ZilResponse) => {
+        return response.addresses.BURST;
+      });
   }
 );
 
