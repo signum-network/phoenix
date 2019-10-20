@@ -1,6 +1,6 @@
 import { Account } from '@burstjs/core';
 import React from 'react';
-import { Button, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
@@ -38,15 +38,24 @@ interface State {
   selectedCurrency: PriceTypeStrings;
 }
 
+const styles = StyleSheet.create({
+  wrapper: {
+    flexDirection: 'column',
+    top: 'auto',
+    height: '100%',
+    flex: 1
+  }
+});
+
 const priceTypes = [PriceType.BURST, PriceType.BTC, PriceType.USD];
 
 class Home extends React.PureComponent<TProps, State> {
 
-  _checkPinExpiryInterval: number | undefined;
+  _checkPinExpiryInterval?: NodeJS.Timeout;
 
   state = {
     isPINModalVisible: false,
-    isTermsModalVisible: this.props.auth.agreeToTerms,
+    isTermsModalVisible: !this.props.auth.agreeToTerms,
     selectedCurrency: priceTypes[0]
   };
 
@@ -127,7 +136,9 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   componentWillUnmount () {
-    clearInterval(this._checkPinExpiryInterval as number);
+    if (this._checkPinExpiryInterval) {
+      clearInterval(this._checkPinExpiryInterval);
+    }
   }
 
   selectCurrency () {
@@ -147,7 +158,7 @@ class Home extends React.PureComponent<TProps, State> {
       <Screen>
         <FullHeightView withoutPaddings>
           <AccountsListHeader priceApi={priceApi} accounts={accounts} />
-          <View>
+          <View style={styles.wrapper}>
             {accounts.length && <HomeStackedAreaChart
               priceApi={priceApi}
               accounts={accounts}

@@ -27,6 +27,7 @@ import { BurstFeeSelectorComponent } from 'app/layout/components/burst-fee-selec
 import { Ng5SliderModule } from 'ng5-slider';
 import { TransactionService } from '../transactions/transaction.service';
 import { BurstRecipientInputComponent } from 'app/layout/components/burst-recipient-input/burst-recipient-input.component';
+import { MatProgressBarModule } from '@angular/material';
 
 describe('SetRewardRecipientComponent', () => {
   let component: SetRewardRecipientComponent;
@@ -52,6 +53,7 @@ describe('SetRewardRecipientComponent', () => {
         FormsModule,
         NetworkModule,
         HttpClientTestingModule,
+        MatProgressBarModule,
         RouterTestingModule.withRoutes(
           [{path: 'set-reward-recipient', component: SetRewardRecipientComponent}]
         ),

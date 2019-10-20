@@ -3,7 +3,7 @@ import { toString } from 'lodash';
 import React from 'react';
 import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
 import { ListSeparator } from '../../../core/components/base/ListSeparator';
-import { AccountColors } from '../../../core/theme/colors';
+import { AccountColors, Colors } from '../../../core/theme/colors';
 import { PriceInfoReduxState } from '../../price-api/store/reducer';
 import { AccountListItem } from './AccountListItem';
 import { NoAccounts } from './NoAccounts';
@@ -18,7 +18,7 @@ interface Props {
 
 const styles = StyleSheet.create({
   flatList: {
-    height: '100%'
+    backgroundColor: Colors.BLUE_DARKER
   }
 });
 

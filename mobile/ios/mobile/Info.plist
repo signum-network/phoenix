@@ -2,6 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Not in use.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Not in use.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Not in use.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Not in use.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Not in use.</string>
+	<key>kTCCServiceMediaLibrary</key>
+	<string>Not in use.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Not in use.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Not in use.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Not in use.</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -26,15 +44,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>0.1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -57,15 +73,17 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>New item</key>
+			<string/>
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
-			<key>New item</key>
-			<string/>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera is needed for scanning QR codes</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NotoSansRegular.ttf</string>
@@ -76,7 +94,5 @@
 		<string>BebasNeueBold.ttf</string>
 		<string>NotoSansThin.ttf</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>Camera is needed for scanning QR codes</string>
 </dict>
 </plist>

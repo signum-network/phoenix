@@ -52,6 +52,9 @@ const styles: any = {
   slider: {
     width: '100%',
     height: 40
+  },
+  total: {
+    marginTop: 10
   }
 };
 
@@ -152,14 +155,16 @@ export class ReceiveBurstForm extends React.PureComponent<Props, State> {
            />}
             <SwitchItem
               text={(
-                <BText color={Colors.WHITE}>{i18n.t(transactions.screens.receive.immutable)}</BText>
+                <BText bebasFont color={Colors.WHITE}>{i18n.t(transactions.screens.receive.immutable)}</BText>
               )}
               value={immutable}
               onChange={this.handleImmutableChange}
             />
-          <BText color={Colors.WHITE}>
-            {i18n.t(transactions.screens.send.total, { value: amountToString(total) })}
-          </BText>
+          <View style={styles.total}>
+            <BText bebasFont color={Colors.WHITE}>
+              {i18n.t(transactions.screens.send.total, { value: amountToString(total) })}
+            </BText>
+          </View>
         </View>
         <View>
           <BButton disabled={!this.isSubmitEnabled()} onPress={this.handleSubmit}>

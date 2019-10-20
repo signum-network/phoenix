@@ -1,4 +1,4 @@
-package com.mobile;
+package com.burstcoin.phoenix;
 
 import com.facebook.react.ReactActivity;
 

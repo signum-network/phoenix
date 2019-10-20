@@ -1,6 +1,6 @@
 {
   "name": "phoenix-burst-mobile-wallet",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "contributors": [
     "titanishu",
     "blankey1337"
@@ -25,7 +25,6 @@
     "link": "react-native link",
     "lint": "tslint --fix --project tsconfig.json 'src/**/*.{ts,tsx}'",
     "lint:staged": "tslint --fix --project tsconfig.json",
-    "start": "node ./node_modules/react-scripts/bin/react-scripts.js start",
     "translations:sort": "node tasks/sortJsonDir.js src/translations && git add src/translations/*.json",
     "test": "jest",
     "tsc": "tsc --init --pretty --jsx react"
@@ -43,7 +42,7 @@
     "lodash": "^4.17.13",
     "react": "16.8.3",
     "react-native": "^0.59.8",
-    "react-native-camera": "^3.6.0",
+    "react-native-camera": "^3.7.1",
     "react-native-gesture-handler": "^1.2.1",
     "react-native-keychain": "^3.1.3",
     "react-native-localize": "^1.1.2",

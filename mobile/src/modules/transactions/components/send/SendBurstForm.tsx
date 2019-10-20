@@ -1,9 +1,14 @@
 import { Account, SuggestedFees } from '@burstjs/core';
-import { convertNQTStringToNumber, isValid } from '@burstjs/util';
+import {
+  convertAddressToNumericId,
+  convertNQTStringToNumber,
+  convertNumericIdToAddress,
+  isBurstAddress,
+  isValid
+} from '@burstjs/util';
 import { last } from 'lodash';
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import { Image, NativeSyntheticEvent, StyleSheet, TextInputEndEditingEventData, View, TouchableOpacity, ScrollView } from 'react-native';
 import { transactionIcons } from '../../../../assets/icons';
 import { BInput, KeyboardTypes } from '../../../../core/components/base/BInput';
 import { BSelect, SelectItem } from '../../../../core/components/base/BSelect';
@@ -13,13 +18,20 @@ import { i18n } from '../../../../core/i18n';
 import { Colors } from '../../../../core/theme/colors';
 import { amountToString } from '../../../../core/utils/numbers';
 import { SendMoneyPayload } from '../../store/actions';
+import { Recipient, RecipientType, RecipientValidationStatus } from '../../store/utils';
 import { transactions } from '../../translations';
 import { FeeSlider } from '../fee-slider/FeeSlider';
+import { AccountStatusPill } from './AccountStatusPill';
+
+const burstPrefix = 'BURST-';
 
 interface Props {
   loading: boolean;
   onSubmit: (form: SendMoneyPayload) => void;
   onCameraIconPress: () => void;
+  onGetAccount: (id: string) => Promise<Account>;
+  onGetAlias: (id: string) => Promise<Account>;
+  onGetZilAddress: (id: string) => Promise<string | null>;
   accounts: Account[];
   deepLinkProps?: SendBurstFormState;
   suggestedFees: SuggestedFees | null;
@@ -27,13 +39,15 @@ interface Props {
 
 export interface SendBurstFormState {
   sender: null | Account;
-  address: string;
   amount: string;
+  address?: string;
   fee: string;
   message?: string;
   messageIsText: boolean;
   encrypt: boolean;
   immutable: boolean;
+  recipient?: Recipient;
+  recipientType?: string;
 }
 
 const styles = StyleSheet.create({
@@ -45,18 +59,20 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexGrow: 1
   },
-  col: {
-    flex: 1
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   scan: {
     marginTop: 10,
     marginLeft: 10,
     marginRight: 10
+  },
+  cameraIcon: {
+    marginTop: 3,
+    marginRight: 2,
+    width: 20,
+    height: 20,
+    backgroundColor: Colors.TRANSPARENT
+  },
+  total: {
+    marginTop: 10
   }
 });
 
@@ -65,7 +81,6 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
   setupState = (props?: SendBurstFormState) => {
     return {
       sender: null,
-      address: props && props.address || 'BURST-',
       amount: props && props.amount || '',
       fee: props && props.fee ||
            this.props.suggestedFees &&
@@ -73,7 +88,8 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
       message: props && props.message || undefined,
       messageIsText: props && props.messageIsText || true,
       encrypt: props && props.encrypt || false,
-      immutable: props && props.immutable || false
+      immutable: props && props.immutable || false,
+      recipient: new Recipient(props && props.address || 'BURST-', props && props.address || '')
     };
   }
 
@@ -84,21 +100,116 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
   }
 
   getAccounts = (): Array<SelectItem<Account>> => {
-    return this.props.accounts.map((account) => ({
-      value: account,
-      label: `...${last(account.accountRS.split('-'))}`
-    }));
+    return this.props.accounts
+      .filter(({ keys }) => keys && keys.publicKey)
+      .map((account) => ({
+        value: account,
+        label: `...${last(account.accountRS.split('-'))}`
+      }));
+  }
+
+  applyRecipientType (recipient: string): void {
+    const r = recipient.trim();
+    let type: RecipientType;
+
+    if (r.length === 0) {
+      type = RecipientType.UNKNOWN;
+    } else if (r.toUpperCase().startsWith(burstPrefix)) {
+      type = RecipientType.ADDRESS;
+    } else if (r.toUpperCase().endsWith('.ZIL') || r.toUpperCase().endsWith('.CRYPTO')) {
+      type = RecipientType.ZIL;
+    } else if (/^\d+$/.test(r)) {
+      type = RecipientType.ID;
+    } else {
+      type = RecipientType.ALIAS;
+    }
+
+    this.setState({
+      recipient: {
+        addressRaw: r,
+        addressRS: '',
+        status: RecipientValidationStatus.UNKNOWN,
+        type
+      }
+    });
+
+    this.validateRecipient(recipient, type);
+  }
+
+  async validateRecipient (recipient: string, type: RecipientType): Promise<void> {
+    let accountFetchFn;
+    let formattedAddress: string | null = recipient;
+
+    switch (type) {
+      case RecipientType.ALIAS:
+        accountFetchFn = this.props.onGetAlias;
+        break;
+      case RecipientType.ADDRESS:
+        formattedAddress = convertAddressToNumericId(recipient);
+        accountFetchFn = this.props.onGetAccount;
+        break;
+      case RecipientType.ZIL:
+        try {
+          formattedAddress = await this.props.onGetZilAddress(recipient);
+          accountFetchFn = this.props.onGetAccount;
+
+          if (formattedAddress === null) {
+            this.setState({
+              recipient: {
+                ...this.state.recipient,
+                status: RecipientValidationStatus.INVALID
+              }
+            });
+          }
+        } catch (e) {
+          this.setState({
+            recipient: {
+              ...this.state.recipient,
+              status: RecipientValidationStatus.ZIL_OUTAGE
+            }
+          });
+        }
+        break;
+      case RecipientType.ID:
+        accountFetchFn = this.props.onGetAccount;
+        break;
+      default:
+      // no op
+    }
+
+    if (!accountFetchFn || !formattedAddress) {
+      return;
+    }
+
+    try {
+      const { accountRS } = await accountFetchFn(formattedAddress);
+      this.setState({
+        recipient: {
+          ...this.state.recipient,
+          addressRS: accountRS,
+          status: RecipientValidationStatus.VALID
+        }});
+    } catch (e) {
+      this.setState({
+        recipient: {
+          ...this.state.recipient,
+          addressRS: (isBurstAddress(recipient) || this.state.recipient.type === RecipientType.ZIL) ?
+          recipient : convertNumericIdToAddress(recipient),
+          status: RecipientValidationStatus.INVALID
+        }
+      });
+    }
   }
 
   isSubmitEnabled = () => {
-    const { sender, address, amount, fee } = this.state;
+    const { sender, recipient, amount, fee } = this.state;
     const { loading } = this.props;
 
     return Boolean(
       Number(amount) &&
       Number(fee) &&
       sender &&
-      isValid(address) &&
+      isValid(recipient.addressRS) &&
       !loading
     );
   }
@@ -108,7 +219,16 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
   }
 
   handleChangeAddress = (address: string) => {
-    this.setState({ address });
+    this.setState({
+      recipient: {
+        ...this.state.recipient,
+        addressRaw: address
+      }
+    });
+  }
+
+  handleAddressBlur = (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
+    this.applyRecipientType(e.nativeEvent.text);
   }
 
   handleAmountChange = (amount: string) => {
@@ -124,7 +244,8 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
   }
 
   handleSubmit = () => {
-    const { address, amount, fee, sender, message, messageIsText, encrypt, immutable } = this.state;
+    const { recipient, amount, fee, sender, message, messageIsText, encrypt, immutable } = this.state;
+    const address = recipient.addressRS;
 
     if (this.isSubmitEnabled()) {
       this.props.onSubmit({
@@ -142,35 +263,38 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
   }
 
   render () {
-    const { sender, address, amount, fee } = this.state;
+    const { sender, recipient, amount, fee } = this.state;
     const { loading, suggestedFees } = this.props;
     const total = Number(amount) + Number(fee);
 
+    const recipientRightIcons = (
+      <View style={{ flexDirection: 'row' }}>
+        {recipient.addressRaw !== burstPrefix &&
+          <AccountStatusPill address={recipient.addressRS} type={recipient.type} status={recipient.status} />}
+        <TouchableOpacity onPress={this.props.onCameraIconPress}>
+          <Image source={transactionIcons.camera} style={styles.cameraIcon} />
+        </TouchableOpacity>
+      </View>
+    );
+
     return (
-      <View style={styles.wrapper}>
+      <ScrollView style={styles.wrapper}>
         <View style={styles.form}>
-          <View style={styles.row}>
-            <View style={styles.col}>
-              <BSelect
-                value={sender}
-                items={this.getAccounts()}
-                onChange={this.handleChangeFromAccount}
-                title={i18n.t(transactions.screens.send.from)}
-                placeholder={i18n.t(transactions.screens.send.selectAccount)}
-              />
-            </View>
-            <View style={styles.scan}>
-              <TouchableHighlight onPress={this.props.onCameraIconPress}>
-                <Image source={transactionIcons.camera} style={{ backgroundColor: Colors.BLUE_DARKER }} />
-              </TouchableHighlight>
-            </View>
-          </View>
+          <BSelect
+            value={sender}
+            items={this.getAccounts()}
+            onChange={this.handleChangeFromAccount}
+            title={i18n.t(transactions.screens.send.from)}
+            placeholder={i18n.t(transactions.screens.send.selectAccount)}
+          />
           <BInput
-            value={address}
+            value={recipient.addressRaw}
             onChange={this.handleChangeAddress}
+            onEndEditing={this.handleAddressBlur}
             // disabled={this.state.immutable}
             title={i18n.t(transactions.screens.send.to)}
             placeholder='BURST-____-____-____-_____'
+            rightIcons={recipientRightIcons}
           />
           <BInput
             value={amount}
@@ -194,16 +318,18 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             onSlidingComplete={this.handleFeeChangeFromSlider}
             suggestedFees={suggestedFees}
            />}
-          <BText color={Colors.WHITE}>
-            {i18n.t(transactions.screens.send.total, { value: amountToString(total) })}
-          </BText>
+           <View style={styles.total}>
+            <BText bebasFont color={Colors.WHITE}>
+              {i18n.t(transactions.screens.send.total, { value: amountToString(total) })}
+            </BText>
+           </View>
         </View>
         <View>
           <BButton loading={loading} disabled={!this.isSubmitEnabled()} onPress={this.handleSubmit}>
             {i18n.t(transactions.screens.send.title)}
           </BButton>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

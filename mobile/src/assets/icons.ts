@@ -10,7 +10,8 @@ export const tabbarIcons = {
 };
 
 export const actionIcons = {
-  del: require('./icons/delete.png')
+  del: require('./icons/delete.png'),
+  chevronDown: require('./icons/chevron-down.png')
 };
 
 export const transactionIcons = {

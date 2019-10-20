@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TextInput, View } from 'react-native';
+import { NativeSyntheticEvent, TextInput, TextInputEndEditingEventData, View } from 'react-native';
 import { Colors } from '../../theme/colors';
 import { fonts } from '../../theme/fonts';
 import { FontSizes, Sizes } from '../../theme/sizes';
@@ -9,9 +9,11 @@ import { Text as BText } from './Text';
 interface Props {
   value: string;
   onChange: (value: string) => void;
+  onEndEditing?: (value: NativeSyntheticEvent<TextInputEndEditingEventData>) => void;
   keyboard?: KeyboardTypes;
   title?: string;
   placeholder?: string;
+  rightIcons?: React.ReactElement;
 }
 
 export enum KeyboardTypes {
@@ -27,20 +29,37 @@ const styles: any = {
     borderWidth: 1,
     padding: Sizes.MEDIUM,
     backgroundColor: Colors.BLACK,
-    marginBottom: Sizes.MEDIUM
+    marginBottom: Sizes.MEDIUM,
+    flexDirection: 'row',
+    shadowColor: Colors.BLACK,
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3
   },
   input: {
     fontFamily: fonts.noto,
+    letterSpacing: -1,
     fontSize: FontSizes.MEDIUM,
     fontWeight: '500',
     color: Colors.WHITE,
-    backgroundColor: Colors.TRANSPARENT
+    backgroundColor: Colors.TRANSPARENT,
+    height: 25,
+    padding: 0,
+    width: '100%',
+    flex: 1
+  },
+  end: {
+    marginLeft: 'auto'
   }
 };
 
 export class BInput extends React.PureComponent<Props> {
   render () {
-    const { title, value, onChange, placeholder, keyboard } = this.props;
+    const { title, value, onChange, placeholder, keyboard, onEndEditing, rightIcons } = this.props;
 
     return (
       <View>
@@ -49,6 +68,7 @@ export class BInput extends React.PureComponent<Props> {
         ) : null}
         <View style={styles.wrapper}>
           <TextInput
+            onEndEditing={onEndEditing}
             value={value}
             onChangeText={onChange}
             style={styles.input}
@@ -59,6 +79,9 @@ export class BInput extends React.PureComponent<Props> {
             placeholder={placeholder}
             placeholderTextColor={Colors.GREY_LIGHT}
           />
+          <View style={styles.end}>
+            {rightIcons}
+          </View>
         </View>
       </View>
     );

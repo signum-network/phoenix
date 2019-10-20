@@ -14,6 +14,7 @@ import {TransactionService} from '../../../main/transactions/transaction.service
 import {AccountService} from '../../../setup/account/account.service';
 import {BurstInputValidatorDirective} from '../../../main/send-burst/send-burst-validator.directive';
 import {FeeQuantNQT} from '@burstjs/core';
+import { MatProgressBarModule } from '@angular/material';
 
 describe('RecipientInputComponent', () => {
   let component: BurstRecipientInputComponent;
@@ -26,7 +27,8 @@ describe('RecipientInputComponent', () => {
         MatTooltipModule,
         MatIconModule,
         I18nModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        MatProgressBarModule
       ],
       declarations: [ BurstFeeSelectorComponent ],
       providers: [

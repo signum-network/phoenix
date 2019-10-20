@@ -1,13 +1,16 @@
-import { Account, ApiSettings, composeApi } from '@burstjs/core';
+import { Account, Alias, ApiSettings, composeApi } from '@burstjs/core';
 import { encryptAES, generateMasterKeys, getAccountIdFromPublicKey, hashSHA256 } from '@burstjs/crypto';
 import { convertAddressToNumericId, convertNumericIdToAddress, isValid } from '@burstjs/util';
 import { some } from 'lodash';
+import { AsyncStorage } from 'react-native';
+import { AsyncStorageKeys } from '../../../core/enums';
 import { i18n } from '../../../core/i18n';
 import { createAction, createActionFn } from '../../../core/utils/store';
 import { auth } from '../translations';
 import { actionTypes } from './actionTypes';
 import {
   getAccounts,
+  getAgreeToTerms,
   getPasscode,
   getPasscodeEnteredTime,
   isPassphraseCorrect,
@@ -15,6 +18,16 @@ import {
   savePasscodeEnteredTime,
   setAccounts
 } from './utils';
+
+interface ZilResponse {
+  addresses: {
+    BURST: string
+  };
+  meta: {
+    owner: string,
+    ttl: number
+  };
+}
 
 const actions = {
   addAccount: createAction<Account>(actionTypes.addAccount),
@@ -27,6 +40,7 @@ const actions = {
   setPasscode: createAction<string>(actionTypes.setPasscode),
   setAgreeToTerms: createAction<boolean>(actionTypes.setAgreeToTerms),
   loadPasscode: createAction<string>(actionTypes.loadPasscode),
+  loadAgreeToTerms: createAction<boolean>(actionTypes.loadAgreeToTerms),
   resetAuthState: createAction<void>(actionTypes.resetAuthState)
 };
 
@@ -122,6 +136,31 @@ export const getAccount = createActionFn<string, Promise<Account | undefined>>(
   }
 );
 
+export const getAlias = createActionFn<string, Promise<Alias | undefined>>(
+  async (_dispatch, getState, account) => {
+
+    const state = getState();
+    const { nodeHost, apiRootUrl } = state.app.burstService.settings;
+    // TODO: unify network request actions, add proper error handling and so on
+    const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
+    try {
+      const alias = await api.alias.getAliasByName(account);
+      return alias;
+    // tslint:disable-next-line: no-empty
+    } catch (e) {}
+  }
+);
+
+export const getZilAddress = createActionFn<string, Promise<string | null>>(
+  async (_dispatch, _getState, address) => {
+    return fetch(`https://unstoppabledomains.com/api/v1/${address.toLowerCase()}`)
+      .then((response) => response.json())
+      .then((response: ZilResponse) => {
+        return response.addresses.BURST;
+      });
+  }
+);
+
 export const updateAccountTransactions = createActionFn<Account, Promise<Account>>(
     async (dispatch, getState, account) => {
       const state = getState();
@@ -195,6 +234,11 @@ export const setPasscode = createActionFn<string, Promise<void>>(
 
 export const setAgreeToTerms = createActionFn<boolean, Promise<void>>(
   async (dispatch, _getState, agree) => {
+    try {
+      await AsyncStorage.setItem(AsyncStorageKeys.agreeToTerms, JSON.stringify(agree));
+    } catch (error) {
+      // Error saving data
+    }
     dispatch(actions.setAgreeToTerms(agree));
   }
 );
@@ -203,5 +247,12 @@ export const loadPasscode = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) => {
     const passcode = await getPasscode();
     dispatch(actions.loadPasscode(passcode));
+  }
+);
+
+export const loadAgreeToTerms = createActionFn<void, Promise<void>>(
+  async (dispatch, _getState) => {
+    const agree = await getAgreeToTerms();
+    dispatch(actions.setAgreeToTerms(agree));
   }
 );

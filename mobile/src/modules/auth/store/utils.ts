@@ -1,6 +1,7 @@
 import { Account } from '@burstjs/core';
 import { isEmpty } from 'lodash';
-import { KeyChainKeys } from '../../../core/enums';
+import { AsyncStorage } from 'react-native';
+import { AsyncStorageKeys, KeyChainKeys } from '../../../core/enums';
 import { KeychainCredentials } from '../../../core/interfaces';
 import { getCredentials, setCredentials } from '../../../core/utils/keychain';
 
@@ -21,6 +22,19 @@ export async function getPasscode (): Promise<string> {
   } else {
     return '';
   }
+}
+
+export async function getAgreeToTerms (): Promise<boolean> {
+  let agree = false;
+  try {
+    const value = await AsyncStorage.getItem(AsyncStorageKeys.agreeToTerms);
+    if (value !== null) {
+      agree = JSON.parse(value);
+    }
+  } catch (error) {
+    // Error retrieving data
+  }
+  return agree;
 }
 
 export function setAccounts (accounts: Account[]): Promise<boolean> {

@@ -1,4 +1,4 @@
-package com.mobile;
+package com.burstcoin.phoenix;
 
 import android.app.Application;
 
@@ -32,15 +32,15 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNVersionNumberPackage(),
-            new AsyncStoragePackage(),
-            new RNCameraPackage(),
-            new ReactSliderPackage(),
-            new SvgPackage(),
-            new FingerprintAuthPackage(),
-            new RNLocalizePackage(),
-            new KeychainPackage(),
-            new RNGestureHandlerPackage()
+          new RNVersionNumberPackage(),
+          new AsyncStoragePackage(),
+          new RNCameraPackage(),
+          new ReactSliderPackage(),
+          new SvgPackage(),
+          new FingerprintAuthPackage(),
+          new RNLocalizePackage(),
+          new KeychainPackage(),
+          new RNGestureHandlerPackage()
       );
     }
 

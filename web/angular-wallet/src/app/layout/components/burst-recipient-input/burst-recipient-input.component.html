@@ -2,19 +2,23 @@
   <div class="container" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
     <input matInput
            [(ngModel)]="recipientValue"
-           (ngModelChange)="applyRecipientType(recipientValue)"
+           (ngModelChange)="onRecipientFieldInputChange(recipientValue)"
            (blur)="validateRecipient(recipientValue)"
            placeholder="{{ 'recipient' | i18n }}"
            [disabled]="disabled">
 
-    <div *ngIf="recipient.type!==1" class="recipient-address">{{ recipient.addressRS}}</div>
+    <div *ngIf="recipient.type !== 1 && recipient.status !== 'zil-outage'"
+         class="recipient-address"
+         title="{{ recipient.addressRS }}">
+        {{ recipient.addressRS }}
+    </div>
     <div fxFlex fxLayout="row"
          *ngIf="recipient.type>0"
          [ngClass]="getValidationClass()"
          matTooltip="{{getValidationHint()}}"
     >
       <div>{{getRecipientTypeName()}}</div>
-      <mat-icon [ngClass]="recipient.status === 'valid' ? '' : 'fuse-black-500-fg'">
+      <mat-icon>
         {{getValidationIcon()}}
       </mat-icon>
     </div>
@@ -24,5 +28,6 @@
         <mat-icon>camera_alt</mat-icon>
       </label>
     </ng-container>
+    <mat-progress-bar *ngIf="loading" mode="query"></mat-progress-bar>
   </div>
 </mat-form-field>

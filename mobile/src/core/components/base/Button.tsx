@@ -80,7 +80,7 @@ export const Button: React.FunctionComponent<Props> = (props) => {
 
   const textSize = textSizes[size];
   const childrenColor = (disabled)
-    ? Colors.GREY
+    ? Colors.BLACK
     : childrenColors[theme];
   const wrapperStyles = [
     styles.wrapper,
