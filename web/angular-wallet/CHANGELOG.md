@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.0-beta.11
+
+### New Features:
+- Added support for sending BURST to .zil and .crypto domains
+
 ## 1.0.0-beta.10
 
 ### New Features:
