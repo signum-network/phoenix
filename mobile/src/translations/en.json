@@ -24,8 +24,8 @@
         "addAccount": "Add account",
         "createAccount": "Create account",
         "noAccounts": {
-          "hint": "Press to add account",
-          "title": "No accounts"
+          "hint": "Please add an account to get started.",
+          "title": "Welcome to Burst"
         },
         "title": "Accounts"
       },
@@ -151,7 +151,9 @@
         "total": "Total: {{value}} BURST",
         "noPublicKey": "Please confirm address before sending.",
         "invalidAddress": "This address is not valid.",
-        "zilOutage": "Unable to fetch from the ZIL API."
+        "zilOutage": "Unable to fetch from the ZIL API.",
+        "success": "Successfully sent {{amount}} BURST to {{address}}.",
+        "failure": "Failed to send BURST. Please check your entries and try again."
       },
       "scan": {
         "title": "Scan BURST QR Code"

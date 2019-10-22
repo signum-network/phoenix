@@ -1,6 +1,6 @@
 import { Account } from '@burstjs/core';
 import React from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
@@ -44,6 +44,16 @@ const styles = StyleSheet.create({
     top: 'auto',
     height: '100%',
     flex: 1
+  },
+  addAccount: {
+    justifyContent: 'center',
+    alignContent: 'center',
+    flex: 3,
+    paddingLeft: 20,
+    paddingRight: 20
+  },
+  addAccountText: {
+    marginBottom: 20
   }
 });
 
@@ -51,7 +61,7 @@ const priceTypes = [PriceType.BURST, PriceType.BTC, PriceType.USD];
 
 class Home extends React.PureComponent<TProps, State> {
 
-  _checkPinExpiryInterval?: NodeJS.Timeout;
+  _checkPinExpiryInterval?: any;
 
   state = {
     isPINModalVisible: false,
@@ -182,12 +192,6 @@ class Home extends React.PureComponent<TProps, State> {
               visible={this.state.isTermsModalVisible}
               onAgree={this.handleTermsAgreed}
             />
-
-            {!accounts.length &&
-              <Button
-                onPress={this.handleChangeAccount}
-                title={i18n.t(core.screens.home.accountsList)}
-              />}
           </View>
         </FullHeightView>
       </Screen>

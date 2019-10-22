@@ -18,7 +18,13 @@ interface Props {
 
 const styles = StyleSheet.create({
   flatList: {
-    backgroundColor: Colors.BLUE_DARKER
+    flex: 1
+  },
+  container: {
+    height: 'auto'
+  },
+  emptyContainer: {
+    height: '100%'
   }
 });
 
@@ -31,6 +37,10 @@ export class AccountsList extends React.PureComponent<Props> {
     return (
       <NoAccounts onPress={this.props.onAddAccountPress}/>
     );
+  }
+
+  getContainerStyle = () => {
+    return this.props.accounts.length ? styles.container : styles.emptyContainer;
   }
 
   renderAccountItem = ({ item }: ListRenderItemInfo<Account>) => {
@@ -52,6 +62,7 @@ export class AccountsList extends React.PureComponent<Props> {
     const { accounts } = this.props;
     return (
       <FlatList
+        contentContainerStyle={this.getContainerStyle()}
         style={styles.flatList}
         ListEmptyComponent={this.renderNoData}
         data={accounts}
