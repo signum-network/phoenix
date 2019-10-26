@@ -14,7 +14,7 @@ import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { core } from '../../../core/translations';
 import { HomeStackedAreaChart } from '../../home/components/HomeStackedAreaChart';
-import { selectCurrency } from '../../price-api/store/actions';
+import { selectCurrency, loadPriceApiData } from '../../price-api/store/actions';
 import { PriceInfoReduxState, PriceType, PriceTypeStrings } from '../../price-api/store/reducer';
 import { AccountsList } from '../components/AccountsList';
 import { AccountsListHeader } from '../components/AccountsListHeader';
@@ -101,9 +101,12 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   updateAllAccounts = () => {
-    this.props.auth.accounts.forEach((account) => {
-      this.props.dispatch(hydrateAccount(account));
-    });
+    try {
+      return Promise.all(this.props.auth.accounts.map((account) => {
+        this.props.dispatch(hydrateAccount(account));
+      }));
+    // tslint:disable-next-line: no-empty
+    } catch (e) { }
   }
 
   setPINModalVisible = (isPINModalVisible: boolean) => {
@@ -145,6 +148,11 @@ class Home extends React.PureComponent<TProps, State> {
     this.props.dispatch(removeAccount(account));
   }
 
+  handleAccountsListRefresh = () => {
+    this.props.dispatch(loadPriceApiData());
+    return this.updateAllAccounts();
+  }
+
   componentWillUnmount () {
     if (this._checkPinExpiryInterval) {
       clearInterval(this._checkPinExpiryInterval);
@@ -163,13 +171,13 @@ class Home extends React.PureComponent<TProps, State> {
   render () {
     const accounts: Account[] = this.props.auth.accounts || [];
     const priceApi = this.props.priceApi;
-
+    const shouldShowChart = accounts.length && priceApi.priceInfo && priceApi.historicalPriceInfo;
     return (
       <Screen>
         <FullHeightView withoutPaddings>
           <AccountsListHeader priceApi={priceApi} accounts={accounts} />
           <View style={styles.wrapper}>
-            {accounts.length && <HomeStackedAreaChart
+            {shouldShowChart && <HomeStackedAreaChart
               priceApi={priceApi}
               accounts={accounts}
               priceTypes={priceTypes}
@@ -182,6 +190,7 @@ class Home extends React.PureComponent<TProps, State> {
               onAddAccountPress={this.handleAddAccountPress}
               onDelete={this.handleDelete}
               priceApi={this.props.priceApi}
+              onRefresh={this.handleAccountsListRefresh}
             />
             <EnterPasscodeModal
               visible={this.state.isPINModalVisible}

@@ -79,10 +79,11 @@ export class AccountListItem extends React.PureComponent<Props> {
 
     const address = `...${last(accountRS.split('-'))}`;
     const balanceBURST = convertNQTStringToNumber(balanceNQT);
-    const balanceBTC = priceApi
+
+    const balanceBTC = priceApi && priceApi.priceInfo
         ? toNumber(priceApi.priceInfo.price_btc) * balanceBURST
         : 0;
-    const balanceUSD = priceApi
+    const balanceUSD = priceApi && priceApi.priceInfo
         ? toNumber(priceApi.priceInfo.price_usd) * balanceBURST
         : 0;
 

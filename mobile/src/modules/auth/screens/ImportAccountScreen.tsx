@@ -58,7 +58,7 @@ class ImportAccount extends React.PureComponent<Props, State> {
       const account = await this.props.dispatch(createOfflineAccount(address));
       this.props.dispatch(addAccount(account));
       this.props.dispatch(hydrateAccount(account));
-      this.props.navigation.navigate(routes.accounts);
+      this.props.navigation.navigate(routes.home);
     } catch (error) {
       Alert.alert(error.message);
     }
