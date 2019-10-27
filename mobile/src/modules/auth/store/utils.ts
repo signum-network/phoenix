@@ -33,7 +33,13 @@ export async function getAgreeToTerms (): Promise<boolean> {
 }
 
 export function setAccounts (accounts: Account[]): Promise<boolean> {
-  const data = JSON.stringify(accounts);
+  const accountsWithoutTransactions = accounts.map((account) => {
+    return {
+      ...account,
+      transactions: []
+    };
+  });
+  const data = JSON.stringify(accountsWithoutTransactions);
   return setCredentials({ username: KeyChainKeys.accounts, password: data }, KeyChainKeys.accounts);
 }
 
