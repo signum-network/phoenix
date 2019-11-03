@@ -9,8 +9,7 @@ import {ApiVersion} from '../constants/apiVersion';
 import {ApiComposer} from './apiComposer';
 import {getBlockByHeight, getBlockById, getBlockByTimestamp, getBlockId, getBlocks} from './factories/block';
 import {getBlockchainStatus, getPeer, getPeers, getServerStatus, getTime, suggestFee} from './factories/network';
-import {sendTextMessage} from './factories/message';
-import {sendEncryptedTextMessage} from './factories/message';
+import {sendTextMessage, sendEncryptedTextMessage, sendMessage, sendEncryptedMessage} from './factories/message';
 import {
     generateSendTransactionQRCode, generateSendTransactionQRCodeAddress, getAccount,
     getAccountBalance, getAccountBlockIds, getAccountBlocks,
@@ -92,6 +91,8 @@ export function composeApi(settings: ApiSettings): Api {
         .withMessageApi({
             sendTextMessage,
             sendEncryptedTextMessage,
+            sendMessage,
+            sendEncryptedMessage,
         })
         .withAccountApi({
             getAccountTransactions,
