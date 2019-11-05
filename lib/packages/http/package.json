@@ -35,7 +35,7 @@
     "bili": "^4.8.0",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^5.0.1",
-    "rollup-plugin-typescript2": "^0.24.2"
+    "rollup-plugin-typescript2": "^0.25.2"
   },
   "scripts": {
     "test": "jest",
