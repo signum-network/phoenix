@@ -16,8 +16,15 @@ export const decryptAES = (encryptedBase64: string, key: string): string => {
     while (retrials < 10) {
         try {
             const decrypted = CryptoJS.AES.decrypt(encoded, key);
-            return decrypted && decrypted.toString(CryptoJS.enc.Utf8);
+            if (decrypted) {
+                const str = decrypted.toString(CryptoJS.enc.Utf8);
+                if (str.length > 0) {
+                    return str;
+                }
+            }
         } catch (e) {
+            // no op
+        } finally {
             retrials++;
         }
     }
