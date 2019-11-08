@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   view: {
     display: 'flex',
     justifyContent: 'center',
-    minHeight: '100%'
+    height: '100%'
   }
 });
 

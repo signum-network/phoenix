@@ -80,14 +80,13 @@ See more here:
 <dl>
 <dt><a href="#core.module_api">api</a></dt>
 <dd></dd>
-<dt><a href="#module_core">core</a></dt>
 </dl>
 
 ## Classes
 
 <dl>
 <dt><a href="#ApiSettings">ApiSettings</a></dt>
-<dd><p>Context for API used in [[composeApi]]</p></dd>
+<dd><p>Settings for API used in [[composeApi]]</p></dd>
 <dt><a href="#ContractHelper">ContractHelper</a></dt>
 <dd><p>Helper class for contracts</p>
 <p>A contract owns additional data, which is splitted in 8 byte blocks.
@@ -105,7 +104,6 @@ This helper class facilitates access to these data</p></dd>
 with its functions.</p>
 <pre class="prettyprint source lang-ts"><code>const api = composeApi({
   nodeHost: 'https://wallet1.burst-team.us:2083', // one of the mainnet nodes
-  apiRootUrl: '/burst' // endpoint to the BURST API
 })
 </code></pre>
 <blockquote>
@@ -135,6 +133,7 @@ using [[ApiComposer]].</p>
             * [.withMessageApi(creatorMap)](#core.module_api..ApiComposer+withMessageApi)
             * [.withTransactionApi(creatorMap)](#core.module_api..ApiComposer+withTransactionApi)
             * [.withAliasApi(creatorMap)](#core.module_api..ApiComposer+withAliasApi)
+            * [.withAssetApi(creatorMap)](#core.module_api..ApiComposer+withAssetApi)
             * [.withContractApi(creatorMap)](#core.module_api..ApiComposer+withContractApi)
             * [.compose()](#core.module_api..ApiComposer+compose)
         * _static_
@@ -158,7 +157,6 @@ compose your own API with the methods you need. This can reduce your final bundl
 <pre class="prettyprint source lang-typescript"><code>
 const burstService = new BurstService({
     nodeHost: 'https://testnet.burst.fun',
-    apiRootUrl: '/burst'
 })
 
 const api = apiComposer
@@ -187,6 +185,7 @@ const api = apiComposer
         * [.withMessageApi(creatorMap)](#core.module_api..ApiComposer+withMessageApi)
         * [.withTransactionApi(creatorMap)](#core.module_api..ApiComposer+withTransactionApi)
         * [.withAliasApi(creatorMap)](#core.module_api..ApiComposer+withAliasApi)
+        * [.withAssetApi(creatorMap)](#core.module_api..ApiComposer+withAssetApi)
         * [.withContractApi(creatorMap)](#core.module_api..ApiComposer+withContractApi)
         * [.compose()](#core.module_api..ApiComposer+compose)
     * _static_
@@ -258,6 +257,17 @@ const api = apiComposer
 | --- | --- |
 | creatorMap | <p>A map of creator/factory functions for the endpoints</p> |
 
+<a name="core.module_api..ApiComposer+withAssetApi"></a>
+
+#### apiComposer.withAssetApi(creatorMap)
+<p>Adds the [[AssetApi]]  to be composed</p>
+
+**Kind**: instance method of [<code>ApiComposer</code>](#core.module_api..ApiComposer)  
+
+| Param | Description |
+| --- | --- |
+| creatorMap | <p>A map of creator/factory functions for the endpoints</p> |
+
 <a name="core.module_api..ApiComposer+withContractApi"></a>
 
 #### apiComposer.withContractApi(creatorMap)
@@ -295,6 +305,7 @@ Note: As of being a builder pattern, this need to call this method as last</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -325,6 +336,12 @@ Note: As of being a builder pattern, this need to call this method as last</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -556,6 +573,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -586,6 +604,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -817,6 +841,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -847,6 +872,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -1078,6 +1109,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -1108,6 +1140,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -1339,6 +1377,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -1369,6 +1408,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -1600,6 +1645,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -1630,6 +1676,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -1861,6 +1913,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -1891,6 +1944,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -2122,6 +2181,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -2152,6 +2212,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -2383,6 +2449,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -2413,6 +2480,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -2644,6 +2717,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -2674,6 +2748,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -2905,6 +2985,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -2935,6 +3016,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -3166,6 +3253,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -3196,6 +3284,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -3427,6 +3521,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -3457,6 +3552,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -3688,6 +3789,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -3718,6 +3820,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -3949,6 +4057,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -3979,6 +4088,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -4210,6 +4325,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -4240,6 +4356,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -4471,6 +4593,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -4501,6 +4624,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -4732,6 +4861,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -4762,6 +4892,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -4993,6 +5129,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -5023,6 +5160,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -5254,6 +5397,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -5284,6 +5428,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -5515,6 +5665,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -5545,6 +5696,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -5776,6 +5933,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -5806,6 +5964,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -6037,6 +6201,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 * [core](#module_core)
     * _static_
         * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
     * _inner_
@@ -6067,6 +6232,12 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 ### core.FeeQuantNQT
 <p>The default deadline (in minutes) for Transactions</p>
+
+**Kind**: static property of [<code>core</code>](#module_core)  
+<a name="module_core.DefaultDeadline"></a>
+
+### core.DefaultDeadline
+<p>The default endpoint for [[ApiSettings]]</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
 <a name="module_core.Attachment"></a>
@@ -6294,9 +6465,20 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 <a name="ApiSettings"></a>
 
 ## ApiSettings
-<p>Context for API used in [[composeApi]]</p>
+<p>Settings for API used in [[composeApi]]</p>
 
 **Kind**: global class  
+<a name="new_ApiSettings_new"></a>
+
+### new ApiSettings(nodeHost, apiRootUrl, apiVersion, httpOptions)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| nodeHost | <code>string</code> | <p>The url of the Burst peer</p> |
+| apiRootUrl | <code>string</code> | <p>The optional api endpoint, i.e. <code>/burst</code>. Usually, you wont use this.</p> |
+| apiVersion | <code>ApiVersion</code> | <p>For future usage.</p> |
+| httpOptions | <code>any</code> \| <code>AxiosRequestSettings</code> | <p>Optional http options, like additional header. The default implementation uses axios. In case of a custom client pass your own options. see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
+
 <a name="ContractHelper"></a>
 
 ## ContractHelper
@@ -6392,8 +6574,8 @@ This helper class facilitates access to these data</p>
 * [BurstService](#BurstService)
     * [new BurstService(settings)](#new_BurstService_new)
     * [.toBRSEndpoint(method, data)](#BurstService+toBRSEndpoint) ⇒ <code>string</code>
-    * [.query(method, args)](#BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
-    * [.send(method, args, body)](#BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.query(method, args, options)](#BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.send(method, args, body, options)](#BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
 
 <a name="new_BurstService_new"></a>
 
@@ -6421,7 +6603,7 @@ This helper class facilitates access to these data</p>
 
 <a name="BurstService+query"></a>
 
-### burstService.query(method, args) ⇒ <code>Promise.&lt;T&gt;</code>
+### burstService.query(method, args, options) ⇒ <code>Promise.&lt;T&gt;</code>
 <p>Requests a query to BRS</p>
 
 **Kind**: instance method of [<code>BurstService</code>](#BurstService)  
@@ -6435,10 +6617,11 @@ This helper class facilitates access to these data</p>
 | --- | --- | --- |
 | method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API</p> |
 | args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
 <a name="BurstService+send"></a>
 
-### burstService.send(method, args, body) ⇒ <code>Promise.&lt;T&gt;</code>
+### burstService.send(method, args, body, options) ⇒ <code>Promise.&lt;T&gt;</code>
 <p>Send data to BRS</p>
 
 **Kind**: instance method of [<code>BurstService</code>](#BurstService)  
@@ -6453,6 +6636,7 @@ This helper class facilitates access to these data</p>
 | method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API. Note that there are only a few POST methods</p> |
 | args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
 <a name="ApiSettings"></a>
 
@@ -6461,7 +6645,6 @@ This helper class facilitates access to these data</p>
 with its functions.</p>
 <pre class="prettyprint source lang-ts"><code>const api = composeApi({
   nodeHost: 'https://wallet1.burst-team.us:2083', // one of the mainnet nodes
-  apiRootUrl: '/burst' // endpoint to the BURST API
 })
 </code></pre>
 <blockquote>
@@ -6475,6 +6658,17 @@ using [[ApiComposer]].</p>
 | Param | Description |
 | --- | --- |
 | settings | <p>necessary execution context</p> |
+
+<a name="new_ApiSettings_new"></a>
+
+### new ApiSettings(nodeHost, apiRootUrl, apiVersion, httpOptions)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| nodeHost | <code>string</code> | <p>The url of the Burst peer</p> |
+| apiRootUrl | <code>string</code> | <p>The optional api endpoint, i.e. <code>/burst</code>. Usually, you wont use this.</p> |
+| apiVersion | <code>ApiVersion</code> | <p>For future usage.</p> |
+| httpOptions | <code>any</code> \| <code>AxiosRequestSettings</code> | <p>Optional http options, like additional header. The default implementation uses axios. In case of a custom client pass your own options. see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
 
 <a name="createParametersFromAttachment"></a>
 

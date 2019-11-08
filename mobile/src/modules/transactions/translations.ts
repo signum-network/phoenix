@@ -11,7 +11,9 @@ export const transactions = {
       total: 'transactions.screens.send.total',
       noPublicKey: 'transactions.screens.send.noPublicKey',
       invalidAddress: 'transactions.screens.send.invalidAddress',
-      zilOutage: 'transactions.screens.send.zilOutage'
+      zilOutage: 'transactions.screens.send.zilOutage',
+      success: 'transactions.screens.send.success',
+      failure: 'transactions.screens.send.failure'
     },
     receive: {
       title: 'transactions.screens.receive.title',

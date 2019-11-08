@@ -97,6 +97,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
   componentWillReceiveProps = ({ deepLinkProps }: Props) => {
     this.setState(this.setupState(deepLinkProps));
+    this.applyRecipientType(this.state.recipient.addressRaw);
   }
 
   getAccounts = (): Array<SelectItem<Account>> => {

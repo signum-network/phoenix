@@ -8,9 +8,16 @@ import { Account,
   TransactionId} from '@burstjs/core';
 import { SendAmountArgs } from '@burstjs/core/out/typings/args/sendAmountArgs';
 import { decryptAES, encryptData, EncryptedData, EncryptedMessage, encryptMessage, hashSHA256 } from '@burstjs/crypto';
-import { convertHexStringToByteArray, convertNumberToNQTString } from '@burstjs/util';
+import {
+  convertHexStringToByteArray,
+  convertNQTStringToNumber,
+  convertNumberToNQTString
+} from '@burstjs/util';
+import { Alert } from 'react-native';
+import { i18n } from '../../../core/i18n';
 import { createAction, createActionFn } from '../../../core/utils/store';
 import { getAccount } from '../../auth/store/actions';
+import { transactions } from '../translations';
 import { actionTypes } from './actionTypes';
 
 const actions = {
@@ -78,11 +85,21 @@ export const sendMoney = createActionFn<SendMoneyPayload, Promise<TransactionId>
     // TODO: unify network request actions, add proper error handling and so on
     const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
     try {
+
       const result = await api.transaction.sendAmountToSingleRecipient(sendMoneyPayload);
+
+      Alert.alert(i18n.t(transactions.screens.send.success, {
+        amount: convertNQTStringToNumber(sendMoneyPayload.amountPlanck),
+        address: sendMoneyPayload.recipientId
+      }));
+
       dispatch(actions.sendMoneySuccess(result));
 
       return result;
     } catch (e) {
+
+      Alert.alert(i18n.t(transactions.screens.send.failure));
+
       dispatch(actions.sendMoneyFailed(e));
 
       throw e;

@@ -46,7 +46,8 @@ const styles: any = {
   },
   del: {
     alignSelf: 'center',
-    marginTop: Sizes.SMALL
+    marginBottom: 'auto',
+    marginTop: 'auto'
   }
 };
 
@@ -66,6 +67,7 @@ export class AccountListItem extends React.PureComponent<Props> {
       component: <Image source={actionIcons.del} style={styles.del} />,
       backgroundColor: Colors.RED,
       underlayColor: Colors.GREY,
+      style: styles.buttonStyles,
       onPress: this.handleDelete
     }
   ]
@@ -77,10 +79,11 @@ export class AccountListItem extends React.PureComponent<Props> {
 
     const address = `...${last(accountRS.split('-'))}`;
     const balanceBURST = convertNQTStringToNumber(balanceNQT);
-    const balanceBTC = priceApi
+
+    const balanceBTC = priceApi && priceApi.priceInfo
         ? toNumber(priceApi.priceInfo.price_btc) * balanceBURST
         : 0;
-    const balanceUSD = priceApi
+    const balanceUSD = priceApi && priceApi.priceInfo
         ? toNumber(priceApi.priceInfo.price_usd) * balanceBURST
         : 0;
 

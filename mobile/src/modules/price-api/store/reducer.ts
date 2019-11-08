@@ -21,8 +21,8 @@ export interface PriceInfo {
 }
 
 export interface PriceInfoReduxState {
-  priceInfo: PriceInfo;
-  historicalPriceInfo: PairedHistoricalPriceInfo;
+  priceInfo?: PriceInfo;
+  historicalPriceInfo?: PairedHistoricalPriceInfo;
   selectedCurrency: PriceTypeStrings;
 }
 
@@ -75,35 +75,6 @@ export type PriceTypeStrings = keyof typeof PriceType;
 
 export const priceApiState = (): PriceInfoReduxState => {
   return {
-    priceInfo: {
-      'id': 'burst',
-      'name': 'Burst',
-      'symbol': 'BURST',
-      'rank': '',
-      'price_usd': '',
-      'price_btc': '',
-      '24h_volume_usd': '',
-      'market_cap_usd': '',
-      'available_supply': '',
-      'total_supply': '',
-      'max_supply': '',
-      'percent_change_1h': '',
-      'percent_change_24h': '',
-      'percent_change_7d': '',
-      'last_updated': ''
-    },
-    historicalPriceInfo: {
-      BTC: {
-        Data: [],
-        TimeFrom: 0,
-        TimeTo: 0
-      },
-      USD: {
-        Data: [],
-        TimeFrom: 0,
-        TimeTo: 0
-      }
-    },
     selectedCurrency: PriceType.BURST
   };
 };
@@ -113,6 +84,13 @@ const updatePriceInfo: Reducer<PriceInfoReduxState, PriceInfo> = (state, action)
   return {
     ...state,
     priceInfo
+  };
+};
+
+const failedToUpdatePriceInfo: Reducer<PriceInfoReduxState, void> = (state) => {
+  return {
+    ...state,
+    priceInfo: undefined
   };
 };
 
@@ -132,10 +110,19 @@ const updateHistoricalPriceInfo: Reducer<PriceInfoReduxState, PairedHistoricalPr
   };
 };
 
+const failedToUpdateHistoricalPriceInfo: Reducer<PriceInfoReduxState, void> = (state) => {
+  return {
+    ...state,
+    historicalPriceInfo: undefined
+  };
+};
+
 const reducers = {
   [actionTypes.updatePriceInfo]: updatePriceInfo,
+  [actionTypes.failedToUpdatePriceInfo]: failedToUpdatePriceInfo,
   [actionTypes.selectCurrency]: selectCurrency,
-  [actionTypes.updateHistoricalPriceInfo]: updateHistoricalPriceInfo
+  [actionTypes.updateHistoricalPriceInfo]: updateHistoricalPriceInfo,
+  [actionTypes.failedToUpdateHistoricalPriceInfo]: failedToUpdateHistoricalPriceInfo
 };
 
 export const priceApi = createReducers(priceApiState(), reducers);

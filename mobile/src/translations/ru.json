@@ -54,7 +54,9 @@
         "title": "Создать аккаунт",
         "noPublicKey": "Нет открытого ключа: подтвердите адрес перед отправкой.",
         "invalidAddress": "Этот адрес недействителен.",
-        "zilOutage": "Невозможно получить из ZIL API."
+        "zilOutage": "Невозможно получить из ZIL API.",
+        "success": "Successfully sent {{amount}} BURST to {{address}}.",
+        "failure": "Failed to send BURST. Please check your entries and try again."
       },
       "importAccount": {
         "activeAccount": "Активный аккаунт",

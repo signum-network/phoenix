@@ -13,7 +13,6 @@ import {
   getAgreeToTerms,
   getPasscode,
   getPasscodeEnteredTime,
-  isPassphraseCorrect,
   savePasscode,
   savePasscodeEnteredTime,
   setAccounts
@@ -50,11 +49,6 @@ export const createActiveAccount = createActionFn<string[], Account>(
 
     const pin = getState().auth.passcode;
     const passphrase = phrase.join(' ');
-
-    if (!isPassphraseCorrect(passphrase)) {
-      throw new Error(i18n.t(auth.errors.incorrectPassphrase));
-    }
-
     const keys = generateMasterKeys(passphrase);
     const encryptedKeys = {
       publicKey: keys.publicKey,

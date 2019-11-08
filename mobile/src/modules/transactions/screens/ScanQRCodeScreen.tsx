@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+  Alert,
   StyleSheet,
   Text
 } from 'react-native';
@@ -8,13 +9,16 @@ import {
 import QRCodeScanner, { Event } from 'react-native-qrcode-scanner';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
+import { i18n } from '../../../core/i18n';
 import { routes } from '../../../core/navigation/routes';
 import { Colors } from '../../../core/theme/colors';
-import { i18n } from '../../../core/i18n';
 import { transactions } from '../translations';
 
 class ScanQRCodeScreenComponent extends React.PureComponent<NavigationInjectedProps> {
   onSuccess = (e: Event) => {
+    if (e.data.indexOf('requestBurst') === -1) {
+      return Alert.alert('Error scanning QR code');
+    }
     this.props.navigation.navigate({
       routeName: routes.send,
       params: {

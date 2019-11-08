@@ -11,6 +11,7 @@ import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
 import { routes } from '../../../core/navigation/routes';
 import { ApplicationState } from '../../../core/store/initialState';
+import { Colors } from '../../../core/theme/colors';
 import { EnterPassphraseStage } from '../components/create/EnterPassphraseStage';
 import { NotePassphraseStage } from '../components/create/NotePassphraseStage';
 import { SeedGeneratorStage } from '../components/create/SeedGeneratorStage';
@@ -18,7 +19,6 @@ import { StepCounter } from '../components/create/StepCounter';
 import { addAccount, createActiveAccount, hydrateAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
-import { Colors } from '../../../core/theme/colors';
 
 interface IProps extends InjectedReduxProps {
   auth: AuthReduxState,

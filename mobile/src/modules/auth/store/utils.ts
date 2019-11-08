@@ -5,11 +5,6 @@ import { AsyncStorageKeys, KeyChainKeys } from '../../../core/enums';
 import { KeychainCredentials } from '../../../core/interfaces';
 import { getCredentials, setCredentials } from '../../../core/utils/keychain';
 
-export function isPassphraseCorrect (passphrase: string): boolean {
-  // TODO: more checks, move to @burst package?
-  return passphrase.split(' ').length === 12;
-}
-
 export function savePasscode (passcode: string): Promise<boolean> {
   const data = JSON.stringify(passcode);
   return setCredentials({ username: KeyChainKeys.passcode, password: data }, KeyChainKeys.passcode);

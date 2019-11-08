@@ -6,6 +6,7 @@
 
 import {Http, HttpError, HttpImpl} from '@burstjs/http';
 import {BurstServiceSettings} from './burstServiceSettings';
+import {AxiosRequestConfig} from 'axios';
 
 // BRS is inconsistent in it's error responses
 interface ApiError {
@@ -18,7 +19,7 @@ class SettingsImpl implements BurstServiceSettings {
     constructor(settings: BurstServiceSettings) {
         this.apiRootUrl = settings.apiRootUrl;
         this.nodeHost = settings.nodeHost;
-        this.httpClient = settings.httpClient || new HttpImpl(settings.nodeHost);
+        this.httpClient = settings.httpClient || new HttpImpl(settings.nodeHost, settings.httpClientOptions);
     }
 
     readonly apiRootUrl: string;
@@ -75,12 +76,13 @@ export class BurstService {
      * Requests a query to BRS
      * @param {string} method The BRS method according https://burstwiki.org/wiki/The_Burst_API
      * @param {any} args A JSON object which will be mapped to url params
+     * @param {any | AxiosRequestConfig} options The optional request configuration for the passed Http client
      * @return {Promise<T>} The response data of success
      * @throws HttpError in case of failure
      */
-    public async query<T>(method: string, args: any = {}): Promise<T> {
+    public async query<T>(method: string, args: any = {}, options?: any | AxiosRequestConfig): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
-        const {response} = await this.settings.httpClient.get(brsUrl);
+        const {response} = await this.settings.httpClient.get(brsUrl, options);
         if (response.errorCode) {
             BurstService.throwAsHttpError(brsUrl, response);
         }
@@ -94,12 +96,13 @@ export class BurstService {
      *        Note that there are only a few POST methods
      * @param {any} args A JSON object which will be mapped to url params
      * @param {any} body An object with key value pairs to submit as post body
+     * @param  {any | AxiosRequestConfig} options The optional request configuration for the passed Http client
      * @return {Promise<T>} The response data of success
      * @throws HttpError in case of failure
      */
-    public async send<T>(method: string, args: any = {}, body: any = {}): Promise<T> {
+    public async send<T>(method: string, args: any = {}, body: any = {}, options?: any | AxiosRequestConfig): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
-        const {response} = await this.settings.httpClient.post(brsUrl, body);
+        const {response} = await this.settings.httpClient.post(brsUrl, body, options);
         if (response.errorCode || response.error || response.errorDescription) {
             BurstService.throwAsHttpError(brsUrl, response);
         }
