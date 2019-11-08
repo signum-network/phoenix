@@ -24,6 +24,7 @@ export interface BurstServiceSettings {
     /**
      * The options passed to httpClient
      * The default implementation uses axios. In case of a custom client pass your own options.
+     * see [Axios Configuration](https://github.com/axios/axios#request-config)
      */
     readonly httpClientOptions?: any | AxiosRequestConfig;
 

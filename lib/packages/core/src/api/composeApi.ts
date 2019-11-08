@@ -43,6 +43,15 @@ import {AxiosRequestConfig} from 'axios';
  * Settings for API used in [[composeApi]]
  */
 export class ApiSettings {
+    /**
+     * @param nodeHost {string} The url of the Burst peer
+     * @param apiRootUrl {string} The optional api endpoint, i.e. `/burst`. Usually, you wont use this.
+     * @param apiVersion {ApiVersion} For future usage.
+     * @param httpOptions {any | AxiosRequestSettings}   Optional http options, like additional header.
+     * The default implementation uses axios. In case of a custom client pass your own options.
+     * see [Axios Configuration](https://github.com/axios/axios#request-config)
+
+     */
     constructor(
         public nodeHost: string,
         public apiRootUrl: string = DefaultApiEndpoint,

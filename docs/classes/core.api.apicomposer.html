@@ -106,7 +106,6 @@
 					<pre><code class="language-typescript">
 <span class="hljs-keyword">const</span> burstService = <span class="hljs-keyword">new</span> BurstService({
     nodeHost: <span class="hljs-string">'https://testnet.burst.fun'</span>,
-    apiRootUrl: <span class="hljs-string">'/burst'</span>
 })
 
 <span class="hljs-keyword">const</span> api = apiComposer
@@ -143,6 +142,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#compose" class="tsd-kind-icon">compose</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#withaccountapi" class="tsd-kind-icon">with<wbr>Account<wbr>Api</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#withaliasapi" class="tsd-kind-icon">with<wbr>Alias<wbr>Api</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#withassetapi" class="tsd-kind-icon">with<wbr>Asset<wbr>Api</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#withblockapi" class="tsd-kind-icon">with<wbr>Block<wbr>Api</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#withcontractapi" class="tsd-kind-icon">with<wbr>Contract<wbr>Api</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#withmessageapi" class="tsd-kind-icon">with<wbr>Message<wbr>Api</a></li>
@@ -166,7 +166,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/api/apiComposer.ts#L151">core/src/api/apiComposer.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/apiComposer.ts#L161">core/src/api/apiComposer.ts:161</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -189,7 +189,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/api/apiComposer.ts#L97">core/src/api/apiComposer.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/apiComposer.ts#L98">core/src/api/apiComposer.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -220,12 +220,43 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/api/apiComposer.ts#L133">core/src/api/apiComposer.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/apiComposer.ts#L134">core/src/api/apiComposer.ts:134</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Adds the <a href="../interfaces/core.api.aliasapi.html">AliasApi</a>  to be composed</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>creatorMap: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A map of creator/factory functions for the endpoints</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="withassetapi" class="tsd-anchor"></a>
+					<h3>with<wbr>Asset<wbr>Api</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Asset<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/apiComposer.ts#L143">core/src/api/apiComposer.ts:143</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds the <a href="../interfaces/core.api.assetapi.html">AssetApi</a>  to be composed</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -251,7 +282,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/api/apiComposer.ts#L88">core/src/api/apiComposer.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/apiComposer.ts#L89">core/src/api/apiComposer.ts:89</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -282,7 +313,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/api/apiComposer.ts#L142">core/src/api/apiComposer.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/apiComposer.ts#L152">core/src/api/apiComposer.ts:152</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -313,7 +344,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/api/apiComposer.ts#L115">core/src/api/apiComposer.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/apiComposer.ts#L116">core/src/api/apiComposer.ts:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -344,7 +375,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/api/apiComposer.ts#L106">core/src/api/apiComposer.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/apiComposer.ts#L107">core/src/api/apiComposer.ts:107</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -375,7 +406,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/api/apiComposer.ts#L124">core/src/api/apiComposer.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/apiComposer.ts#L125">core/src/api/apiComposer.ts:125</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -406,7 +437,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/api/apiComposer.ts#L69">core/src/api/apiComposer.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/apiComposer.ts#L70">core/src/api/apiComposer.ts:70</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -455,6 +486,9 @@
 								<a href="core.api.apicomposer.html#withaliasapi" class="tsd-kind-icon">with<wbr>Alias<wbr>Api</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="core.api.apicomposer.html#withassetapi" class="tsd-kind-icon">with<wbr>Asset<wbr>Api</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="core.api.apicomposer.html#withblockapi" class="tsd-kind-icon">with<wbr>Block<wbr>Api</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -484,6 +518,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/core.api.aliasapi.html" class="tsd-kind-icon">Alias<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.api.assetapi.html" class="tsd-kind-icon">Asset<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/core.api.blockapi.html" class="tsd-kind-icon">Block<wbr>Api</a>
