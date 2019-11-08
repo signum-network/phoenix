@@ -40,7 +40,6 @@ class ApiImpl implements Api {
  *
  * const burstService = new BurstService({
  *     nodeHost: 'https://testnet.burst.fun',
- *     apiRootUrl: '/burst'
  * })
  *
  * const api = apiComposer
