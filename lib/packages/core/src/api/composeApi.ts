@@ -9,18 +9,26 @@ import {ApiVersion} from '../constants/apiVersion';
 import {ApiComposer} from './apiComposer';
 import {getBlockByHeight, getBlockById, getBlockByTimestamp, getBlockId, getBlocks} from './factories/block';
 import {getBlockchainStatus, getPeer, getPeers, getServerStatus, getTime, suggestFee} from './factories/network';
-import {sendTextMessage} from './factories/message';
-import {sendEncryptedTextMessage} from './factories/message';
+import {sendEncryptedTextMessage, sendTextMessage} from './factories/message';
 import {
-    generateSendTransactionQRCode, generateSendTransactionQRCodeAddress, getAccount,
-    getAccountBalance, getAccountBlockIds, getAccountBlocks,
-    getAccountTransactions, getAliases,
-    getUnconfirmedAccountTransactions, setAccountInfo, setAlias, setRewardRecipient
+    generateSendTransactionQRCode,
+    generateSendTransactionQRCodeAddress,
+    getAccount,
+    getAccountBalance,
+    getAccountBlockIds,
+    getAccountBlocks,
+    getAccountTransactions,
+    getAliases,
+    getUnconfirmedAccountTransactions,
+    setAccountInfo,
+    setAlias,
+    setRewardRecipient
 } from './factories/account';
 import {getAliasById, getAliasByName} from './factories/alias';
-import {getContractsByAccount, getContract, getAllContractIds} from './factories/contract';
+import {getAllContractIds, getContract, getContractsByAccount} from './factories/contract';
 import {
-    broadcastTransaction, getTransaction,
+    broadcastTransaction,
+    getTransaction,
     sendAmount,
     sendAmountToMultipleRecipients,
     sendAmountToSingleRecipient,
@@ -28,6 +36,7 @@ import {
 } from './factories/transaction';
 import {getAllAssets, getAsset} from './factories/asset';
 import {DefaultApiEndpoint} from '../constants';
+import {AxiosRequestConfig} from 'axios';
 
 
 /**
@@ -37,7 +46,8 @@ export class ApiSettings {
     constructor(
         public nodeHost: string,
         public apiRootUrl: string = DefaultApiEndpoint,
-        public apiVersion: ApiVersion = ApiVersion.V1
+        public apiVersion: ApiVersion = ApiVersion.V1,
+        public httpOptions?: any | AxiosRequestConfig,
     ) {
     }
 }
@@ -49,7 +59,6 @@ export class ApiSettings {
  * ```ts
  * const api = composeApi({
  *   nodeHost: 'https://wallet1.burst-team.us:2083', // one of the mainnet nodes
- *   apiRootUrl: '/burst' // endpoint to the BURST API
  * })
  * ```
  *

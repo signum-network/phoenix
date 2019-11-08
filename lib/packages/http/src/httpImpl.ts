@@ -1,6 +1,6 @@
 /** @module http */
 
-import axios from 'axios';
+import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
 import HttpResponse from './httpResponse';
 import HttpError from './httpError';
 import Http from './http';
@@ -12,7 +12,7 @@ const DefaultAxiosOptions = {};
  */
 export default class HttpImpl implements Http {
 
-    private _clientImpl: any;
+    private _clientImpl: AxiosInstance;
 
     /**
      * Creates your Http client
@@ -21,7 +21,7 @@ export default class HttpImpl implements Http {
      * The current implementation uses axios, so the options can be found here
      * [Axios Configuration](https://github.com/axios/axios#request-config)
      */
-    constructor(baseURL: string, options: any = DefaultAxiosOptions) {
+    constructor(baseURL: string, options: AxiosRequestConfig = DefaultAxiosOptions) {
         // see https://github.com/axios/axios#request-config for more
         this._clientImpl = axios.create({
             baseURL,
@@ -38,7 +38,7 @@ export default class HttpImpl implements Http {
         return new HttpError(url, -1, 'Http Configuration error', null);
     }
 
-    async get(url: string, options?: any): Promise<HttpResponse> {
+    async get(url: string, options?: any | AxiosRequestConfig): Promise<HttpResponse> {
         try {
             const {status, data} = await this._clientImpl.get(url, options);
             return new HttpResponse(status, data);
@@ -47,7 +47,7 @@ export default class HttpImpl implements Http {
         }
     }
 
-    async post(url: string, payload: any, options?: any): Promise<HttpResponse> {
+    async post(url: string, payload: any, options?: any | AxiosRequestConfig): Promise<HttpResponse> {
         try {
             const {status, data} = await this._clientImpl.post(url, payload, options);
             return new HttpResponse(status, data);
@@ -56,7 +56,7 @@ export default class HttpImpl implements Http {
         }
     }
 
-    async put(url: string, payload: any, options?: any): Promise<HttpResponse> {
+    async put(url: string, payload: any, options?: any | AxiosRequestConfig): Promise<HttpResponse> {
         try {
             const {status, data} = await this._clientImpl.put(url, payload, options);
             return new HttpResponse(status, data);
@@ -65,7 +65,7 @@ export default class HttpImpl implements Http {
         }
     }
 
-    async delete(url: string, options?: any): Promise<HttpResponse> {
+    async delete(url: string, options?: any | AxiosRequestConfig): Promise<HttpResponse> {
         try {
             const {status, data} = await this._clientImpl.delete(url, options);
             return new HttpResponse(status, data);

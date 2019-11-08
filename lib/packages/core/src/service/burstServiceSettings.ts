@@ -6,6 +6,7 @@
 
 
 import {Http} from '@burstjs/http';
+import {AxiosRequestConfig} from 'axios';
 
 /**
  * The settings interface for the BurstService class
@@ -19,9 +20,17 @@ export interface BurstServiceSettings {
      * The relative path the Burst API endpoint, usually '/burst' - must begin with slash
      */
     readonly apiRootUrl: string;
+
+    /**
+     * The options passed to httpClient
+     * The default implementation uses axios. In case of a custom client pass your own options.
+     */
+    readonly httpClientOptions?: any | AxiosRequestConfig;
+
     /**
      * If passed an client instance, it will be used instead of default HttpImpl.
      * Good for testing, but usually you won't need this
      */
     readonly httpClient?: Http;
+
 }
