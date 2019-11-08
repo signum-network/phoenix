@@ -1,13 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 0.4.1 (TBR)
+## 0.4.1
 - Initiated work on assets Api
     - added `getAsset()`
     - added `getAllAssets()`
 - Fixed encoding issue on BRS requests (#826)
 - Added `getAllContractIds` to contract Api
-    
+- Added Http Options for `BurstService`/`composeApi` 
+
 ## 0.4.0
 - Changed License: From GPL-3.0 to Apache 2.0
 - `isAttachmentVersion` returns `true` or `false` consistently

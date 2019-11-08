@@ -96,7 +96,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Context for API used in <a href="../modules/core.api.html#composeapi">composeApi</a></p>
+						<p>Settings for API used in <a href="../modules/core.api.html#composeapi">composeApi</a></p>
 					</div>
 				</div>
 			</section>
@@ -123,6 +123,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.api.apisettings.html#apirooturl" class="tsd-kind-icon">api<wbr>Root<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.api.apisettings.html#apiversion" class="tsd-kind-icon">api<wbr>Version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.api.apisettings.html#httpoptions" class="tsd-kind-icon">http<wbr>Options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.api.apisettings.html#nodehost" class="tsd-kind-icon">node<wbr>Host</a></li>
 							</ul>
 						</section>
@@ -135,25 +136,52 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Api<wbr>Settings<span class="tsd-signature-symbol">(</span>nodeHost<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, apiRootUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, apiVersion<span class="tsd-signature-symbol">?: </span><a href="../enums/core.apiversion.html" class="tsd-signature-type">ApiVersion</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.api.apisettings.html" class="tsd-signature-type">ApiSettings</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Api<wbr>Settings<span class="tsd-signature-symbol">(</span>nodeHost<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, apiRootUrl<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, apiVersion<span class="tsd-signature-symbol">?: </span><a href="../enums/core.apiversion.html" class="tsd-signature-type">ApiVersion</a>, httpOptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosRequestConfig</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.api.apisettings.html" class="tsd-signature-type">ApiSettings</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/api/composeApi.ts#L52">core/src/api/composeApi.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/composeApi.ts#L45">core/src/api/composeApi.ts:45</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>nodeHost: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The url of the Burst peer</p>
+										</div>
+									</div>
 								</li>
 								<li>
-									<h5>apiRootUrl: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> apiRootUrl: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;DefaultApiEndpoint</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The optional api endpoint, i.e. <code>/burst</code>. Usually, you wont use this.</p>
+										</div>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> apiVersion: <a href="../enums/core.apiversion.html" class="tsd-signature-type">ApiVersion</a><span class="tsd-signature-symbol"> =&nbsp;ApiVersion.V1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>For future usage.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> httpOptions: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosRequestConfig</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Optional http options, like additional header.
+												The default implementation uses axios. In case of a custom client pass your own options.
+											see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="core.api.apisettings.html" class="tsd-signature-type">ApiSettings</a></h4>
@@ -169,9 +197,14 @@
 					<div class="tsd-signature tsd-kind-icon">api<wbr>Root<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/api/composeApi.ts#L55">core/src/api/composeApi.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/composeApi.ts#L57">core/src/api/composeApi.ts:57</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The optional api endpoint, i.e. <code>/burst</code>. Usually, you wont use this.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="apiversion" class="tsd-anchor"></a>
@@ -179,9 +212,31 @@
 					<div class="tsd-signature tsd-kind-icon">api<wbr>Version<span class="tsd-signature-symbol">:</span> <a href="../enums/core.apiversion.html" class="tsd-signature-type">ApiVersion</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/api/composeApi.ts#L56">core/src/api/composeApi.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/composeApi.ts#L58">core/src/api/composeApi.ts:58</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>For future usage.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="httpoptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> http<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">http<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosRequestConfig</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/composeApi.ts#L59">core/src/api/composeApi.ts:59</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Optional http options, like additional header.
+								The default implementation uses axios. In case of a custom client pass your own options.
+							see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="nodehost" class="tsd-anchor"></a>
@@ -189,9 +244,14 @@
 					<div class="tsd-signature tsd-kind-icon">node<wbr>Host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/fec2723/lib/packages/core/src/api/composeApi.ts#L54">core/src/api/composeApi.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/api/composeApi.ts#L56">core/src/api/composeApi.ts:56</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The url of the Burst peer</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -226,6 +286,9 @@
 								<a href="core.api.apisettings.html#apiversion" class="tsd-kind-icon">api<wbr>Version</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.api.apisettings.html#httpoptions" class="tsd-kind-icon">http<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="core.api.apisettings.html#nodehost" class="tsd-kind-icon">node<wbr>Host</a>
 							</li>
 						</ul>
@@ -237,6 +300,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/core.api.aliasapi.html" class="tsd-kind-icon">Alias<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.api.assetapi.html" class="tsd-kind-icon">Asset<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/core.api.blockapi.html" class="tsd-kind-icon">Block<wbr>Api</a>

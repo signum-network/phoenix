@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Balance
+	<title>AssetApi
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,10 +80,13 @@
 					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="core.balance.html">Balance</a>
+					<a href="../modules/core.api.html">api</a>
+				</li>
+				<li>
+					<a href="core.api.assetapi.html">AssetApi</a>
 				</li>
 			</ul>
-			<h1>Interface Balance</h1>
+			<h1>Interface AssetApi</h1>
 		</div>
 	</div>
 </header>
@@ -93,15 +96,16 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Original work Copyright (c) 2019 Burst Apps Team</p>
+						<p>Asset API</p>
 					</div>
+					<p>Work in progress</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Balance</span>
+						<span class="target">AssetApi</span>
 					</li>
 				</ul>
 			</section>
@@ -112,12 +116,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.balance.html#balancenqt" class="tsd-kind-icon">balanceNQT</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.balance.html#effectivebalancenxt" class="tsd-kind-icon">effective<wbr>BalanceNXT</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.balance.html#forgedbalancenqt" class="tsd-kind-icon">forged<wbr>BalanceNQT</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.balance.html#guaranteedbalancenqt" class="tsd-kind-icon">guaranteed<wbr>BalanceNQT</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.balance.html#requestprocessingtime" class="tsd-kind-icon">request<wbr>Processing<wbr>Time</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.balance.html#unconfirmedbalancenqt" class="tsd-kind-icon">unconfirmed<wbr>BalanceNQT</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.assetapi.html#getallassets" class="tsd-kind-icon">get<wbr>All<wbr>Assets</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.assetapi.html#getasset" class="tsd-kind-icon">get<wbr>Asset</a></li>
 							</ul>
 						</section>
 					</div>
@@ -126,64 +126,98 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="balancenqt" class="tsd-anchor"></a>
-					<h3>balanceNQT</h3>
-					<div class="tsd-signature tsd-kind-icon">balanceNQT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="getallassets" class="tsd-anchor"></a>
+					<h3>get<wbr>All<wbr>Assets</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Assets<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/typings/balance.ts#L12">core/src/typings/balance.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/typings/api/assetApi.ts#L29">core/src/typings/api/assetApi.ts:29</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get all available assets</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The first index of range to be returned (begins with 0)</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>The first index of range to be returned (max is 500)</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>List of assets</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>firstIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, lastIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.assetlist.html" class="tsd-signature-type">AssetList</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> firstIndex: <span class="tsd-signature-type">number</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> lastIndex: <span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.assetlist.html" class="tsd-signature-type">AssetList</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="effectivebalancenxt" class="tsd-anchor"></a>
-					<h3>effective<wbr>BalanceNXT</h3>
-					<div class="tsd-signature tsd-kind-icon">effective<wbr>BalanceNXT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="getasset" class="tsd-anchor"></a>
+					<h3>get<wbr>Asset</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Asset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/typings/balance.ts#L10">core/src/typings/balance.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/typings/api/assetApi.ts#L18">core/src/typings/api/assetApi.ts:18</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="forgedbalancenqt" class="tsd-anchor"></a>
-					<h3>forged<wbr>BalanceNQT</h3>
-					<div class="tsd-signature tsd-kind-icon">forged<wbr>BalanceNQT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/typings/balance.ts#L11">core/src/typings/balance.ts:11</a></li>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get asset information by its id</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The asset id</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>The asset, if exists</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>assetId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>assetId: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
 						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="guaranteedbalancenqt" class="tsd-anchor"></a>
-					<h3>guaranteed<wbr>BalanceNQT</h3>
-					<div class="tsd-signature tsd-kind-icon">guaranteed<wbr>BalanceNQT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/typings/balance.ts#L9">core/src/typings/balance.ts:9</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="requestprocessingtime" class="tsd-anchor"></a>
-					<h3>request<wbr>Processing<wbr>Time</h3>
-					<div class="tsd-signature tsd-kind-icon">request<wbr>Processing<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/typings/balance.ts#L13">core/src/typings/balance.ts:13</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="unconfirmedbalancenqt" class="tsd-anchor"></a>
-					<h3>unconfirmed<wbr>BalanceNQT</h3>
-					<div class="tsd-signature tsd-kind-icon">unconfirmed<wbr>BalanceNQT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5bc28f5/lib/packages/core/src/typings/balance.ts#L8">core/src/typings/balance.ts:8</a></li>
-						</ul>
-					</aside>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -193,49 +227,58 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/core.html">core</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/crypto.html">crypto</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/http.html">http</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/util.html">util</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core.api.api.html" class="tsd-kind-icon">Api</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core.api.apicomposer.html" class="tsd-kind-icon">Api<wbr>Composer</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core.api.apisettings.html" class="tsd-kind-icon">Api<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.api.accountapi.html" class="tsd-kind-icon">Account<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.api.aliasapi.html" class="tsd-kind-icon">Alias<wbr>Api</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="core.balance.html" class="tsd-kind-icon">Balance</a>
+						<a href="core.api.assetapi.html" class="tsd-kind-icon">Asset<wbr>Api</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.balance.html#balancenqt" class="tsd-kind-icon">balanceNQT</a>
+								<a href="core.api.assetapi.html#getallassets" class="tsd-kind-icon">get<wbr>All<wbr>Assets</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.balance.html#effectivebalancenxt" class="tsd-kind-icon">effective<wbr>BalanceNXT</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.balance.html#forgedbalancenqt" class="tsd-kind-icon">forged<wbr>BalanceNQT</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.balance.html#guaranteedbalancenqt" class="tsd-kind-icon">guaranteed<wbr>BalanceNQT</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.balance.html#requestprocessingtime" class="tsd-kind-icon">request<wbr>Processing<wbr>Time</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.balance.html#unconfirmedbalancenqt" class="tsd-kind-icon">unconfirmed<wbr>BalanceNQT</a>
+								<a href="core.api.assetapi.html#getasset" class="tsd-kind-icon">get<wbr>Asset</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.api.blockapi.html" class="tsd-kind-icon">Block<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.api.contractapi.html" class="tsd-kind-icon">Contract<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.api.messageapi.html" class="tsd-kind-icon">Message<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.api.networkapi.html" class="tsd-kind-icon">Network<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.api.transactionapi.html" class="tsd-kind-icon">Transaction<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/core.api.html#composeapi" class="tsd-kind-icon">compose<wbr>Api</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
