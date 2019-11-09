@@ -14,6 +14,11 @@ import {convertNumberToNQTString} from '@burstjs/util';
 import {broadcastTransaction} from '../transaction/broadcastTransaction';
 
 /**
+ * @deprecated
+ * <div class="deprecated">
+ *     Use [[MessageApi.sendMessage]] instead
+ * </div>
+ *
  * Use with [[ApiComposer]] and belongs to [[MessageApi]].
  *
  * See details at [[MessageApi.sendTextMessage]]

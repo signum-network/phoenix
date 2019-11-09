@@ -2,6 +2,8 @@
 
 import {TransactionId} from '../transactionId';
 import {Keys} from '@burstjs/crypto';
+import {SendMessageArgs} from '../args';
+import {SendEncryptedMessageArgs} from '../args/sendEncryptedMessageArgs';
 
 /**
  * The Message API
@@ -9,6 +11,11 @@ import {Keys} from '@burstjs/crypto';
 export interface MessageApi {
 
     /**
+     * @deprecated
+     * <div class="deprecated">
+     *     Use [[sendMessage]] instead
+     * </div>
+
      * Broadcasts a text message to the network/blockchain
      *
      * The message will be broadcasted in two steps.
@@ -34,6 +41,11 @@ export interface MessageApi {
 
 
     /**
+     * @deprecated
+     * <div class="deprecated">
+     *     Use [[sendEncryptedMessage]] instead
+     * </div>
+
      * Broadcasts an _encrypted_ text message to the network/blockchain
      * It's analogous to sendTextMessage but encrypts the message priorly
      *
@@ -52,4 +64,20 @@ export interface MessageApi {
         deadline?: number,
         fee?: number
     ) => Promise<TransactionId>;
+
+    /**
+     * Sends a plain text message to another account/recipient
+     *
+     * @param args The argument object
+     * @return The Transaction Id (as promise)
+     */
+    sendMessage: (args: SendMessageArgs) => Promise<TransactionId>;
+
+    /**
+     * Sends an encrypted text message to another account/recipient
+     *
+     * @param args The argument object
+     * @return The Transaction Id (as promise)
+     */
+    sendEncryptedMessage: (args: SendEncryptedMessageArgs) => Promise<TransactionId>;
 }

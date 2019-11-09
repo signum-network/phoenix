@@ -17,7 +17,7 @@ interface ApiError {
 
 class SettingsImpl implements BurstServiceSettings {
     constructor(settings: BurstServiceSettings) {
-        this.apiRootUrl = settings.apiRootUrl;
+        this.apiRootUrl = settings.apiRootUrl || '/burst';
         this.nodeHost = settings.nodeHost;
         this.httpClient = settings.httpClient || new HttpImpl(settings.nodeHost, settings.httpClientOptions);
     }
