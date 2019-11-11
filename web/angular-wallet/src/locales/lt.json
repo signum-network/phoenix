@@ -632,6 +632,7 @@
   "no_polls_found": "Nerasta apklausų.",
   "no_products_found": "Prekių nerasta.",
   "no_products_listed_yet": "Jūs dar neturite produktų pardavimui, <a href='#'' data-toggle='modal' data-target='#dgs_listing_modal'> pridėkite juos.</a>",
+  "no_public_key_activate": "Šioje paskyroje dar nėra viešojo rakto. Spustelėkite, kad suaktyvintumėte ir apsaugotumėte savo sąskaitą.",
   "no_public_key_warning": "Įspėjimas!: Jūsų sąskaita neturi viešojo rakto! Tai reiškia, ji nėra apsaugota kaip kitos sąskaitos. Jūs turite padaryti išeinančią transakciją, kad išspręstumėte šią problemą.",
   "no_purchased_products_found": "Nerasta įsigytų produktų.",
   "no_sell_orders_for_asset": "Nėra šio aktyvo pardavimo užsakymų.",

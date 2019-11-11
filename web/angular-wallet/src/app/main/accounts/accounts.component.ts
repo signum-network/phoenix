@@ -125,4 +125,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     return convertNQTStringToNumber(balanceNQT);
   }
 
+  activateAccount(account: Account): void {
+    console.log('activate account', account);
+  }
 }

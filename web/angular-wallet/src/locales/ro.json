@@ -632,6 +632,7 @@
   "no_polls_found": "Nici un sondaj găsit.",
   "no_products_found": "Nu a fost găsit niciun produs.",
   "no_products_listed_yet": "Încă nu ai listat produse de vânzare",
+  "no_public_key_activate": "Acest cont nu are încă o cheie publică. Faceți clic pentru a vă activa și securiza contul.",
   "no_public_key_warning": "Atenţie!: contul tău nu are o cheie publică! Acest lucru înseamnă că nu este protejat ca şi alte conturi. Trebuie să faci o tranzacţie de ieşire pentru a corecta problema.",
   "no_purchased_products_found": "Nu s-au găsit produse cumpărate.",
   "no_sell_orders_for_asset": "Nu sunt ordine de vânzare pentru această activă.",

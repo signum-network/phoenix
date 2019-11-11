@@ -632,6 +632,7 @@
   "no_polls_found": "Ankete nisu pronađene.",
   "no_products_found": "Proizvodi nisu pronađeni.",
   "no_products_listed_yet": "Još niste ponudili ni jedan proizvod na prodaju, <a href='#'' data-toggle='modal' data-target='#dgs_listing_modal'>dodajte jedan.</a>",
+  "no_public_key_activate": "Ovaj račun još nema javni ključ. Kliknite da biste aktivirali i osigurali svoj račun.",
   "no_public_key_warning": "Upozorenje!: Vaš račun ne posjeduje javni ključ!! To znači da nije zaštičen kao ostali računi. Morate izvršiti jednu transakciju prema van kako biste ispravili taj problem.",
   "no_purchased_products_found": "Nema pronađenih kupljenih proizvoda.",
   "no_sell_orders_for_asset": "Nema prodajnih naloga za ovaj asset.",
