@@ -15,6 +15,11 @@ import {broadcastTransaction} from '../transaction/broadcastTransaction';
 const MAX_MESSAGE_LENGTH = 1024;
 
 /**
+ * @deprecated
+ * <div class="deprecated">
+ *     Use [[MessageApi.sendEncryptedMessage]] instead
+ * </div>
+ *
  * Use with [[ApiComposer]] and belongs to [[MessageApi]].
  *
  * See details at [[MessageApi.sendEncryptedTextMessage]]
@@ -37,7 +42,7 @@ export const sendEncryptedTextMessage = (service: BurstService):
 
         const encryptedMessage = encryptMessage(message, recipientPublicKey, senderKeys.agreementPrivateKey);
 
-        if ( encryptedMessage.data.length > MAX_MESSAGE_LENGTH ) {
+        if (encryptedMessage.data.length > MAX_MESSAGE_LENGTH) {
             throw new Error(`The encrypted message exceeds allowed limit of ${MAX_MESSAGE_LENGTH} bytes`);
         }
 

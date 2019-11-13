@@ -1,3 +1,5 @@
+# Privacy Policy
+
 This Privacy Policy ("Policy") describes our policies regarding the collection, usage, protection and processing of personally identifiable information received from Users ("User", "You") of the Phoenix Burst Wallet Application and its related applications and services ("Wallet", "We", "Our" or "Us").
 
 We encourage you to read our Privacy Policy carefully before using our Wallet. We do not collect any information that may identify You without your permission. However by using the Wallet, you give us a consent and permission to collect, store and use the information about you, including your personal information, as prescribed by this Policy. You acknowledge and agree that such personal information may be transferred to and stored on the servers of the Wallet and the servers of authorized third parties.

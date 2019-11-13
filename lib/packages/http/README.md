@@ -394,11 +394,12 @@ so you can mock them one on one.</p>
 **Kind**: global class  
 <a name="new_HttpImpl_new"></a>
 
-### new HttpImpl(baseURL)
+### new HttpImpl(baseURL, options)
 <p>Creates your Http client</p>
 
 
 | Param | Description |
 | --- | --- |
 | baseURL | <p>The baseUrl, i.e host url</p> |
+| options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
 

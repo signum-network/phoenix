@@ -12,9 +12,14 @@ jest.setTimeout(environment.timeout);
 
 describe(`[E2E] Block Api`, () => {
 
+    const validateStatusMockFn = jest.fn( status => true );
+
     const service = new BurstService({
         nodeHost: environment.testNetHost,
-        apiRootUrl: environment.testNetApiPath
+        apiRootUrl: environment.testNetApiPath,
+        httpClientOptions: {
+            validateStatus:  validateStatusMockFn
+        }
     });
 
     it('should getBlockByTimestamp', async () => {
@@ -28,6 +33,8 @@ describe(`[E2E] Block Api`, () => {
         expect(block).not.toBeUndefined();
         expect(block.block).toBe('15105048788654004778');
         expect(block.height).toBe(10);
+        expect(validateStatusMockFn).toHaveBeenCalledTimes(1);
+        expect(validateStatusMockFn).toHaveBeenCalledWith(200);
     });
 
     it(`should getBlockById`, async () => {

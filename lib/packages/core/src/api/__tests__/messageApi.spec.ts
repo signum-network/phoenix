@@ -7,6 +7,10 @@ import {sendTextMessage} from '../factories/message/sendTextMessage';
 import {broadcastTransaction} from '../factories/transaction/broadcastTransaction';
 import {sendEncryptedTextMessage} from '../factories/message/sendEncryptedTextMessage';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
+import {sendMessage} from '../factories/message';
+import {FeeQuantNQT} from '../../constants';
+import {signAndBroadcastTransaction} from '../../internal';
+import {sendEncryptedMessage} from '../factories/message/sendEncryptedMessage';
 
 describe('Message Api', () => {
 
@@ -221,6 +225,91 @@ describe('Message Api', () => {
             expect(generateSignature).not.toBeCalled();
             expect(verifySignature).not.toBeCalled();
             expect(generateSignedTransactionBytes).not.toBeCalled();
+        });
+
+    });
+
+    describe('sendMessage', () => {
+
+        let httpMock: Http;
+        let service: BurstService;
+
+        beforeEach(() => {
+            jest.resetAllMocks();
+            // @ts-ignore
+            signAndBroadcastTransaction = jest.fn();
+            httpMock = HttpMockBuilder.create().onPostReply(200, {
+                unsignedTransactionBytes: 'unsignedHexMessage'
+            }).build();
+            service = createBurstService(httpMock, 'relPath');
+            // @ts-ignore
+            service.send = jest.fn(() => ({unsignedTransactionBytes: 'unsignedTransactionBytes'}));
+        });
+
+        afterEach(() => {
+            // @ts-ignore
+            httpMock.reset();
+        });
+
+
+        it('should sendMessage', async () => {
+
+            await sendMessage(service)({
+                message: 'Message Text',
+                feePlanck: '' + FeeQuantNQT,
+                recipientId: 'recipientId',
+                recipientPublicKey: 'recipientPublicKey',
+                senderPrivateKey: 'senderPrivateKey',
+                senderPublicKey: 'senderPublicKey',
+            });
+
+            expect(signAndBroadcastTransaction).toBeCalledTimes(1);
+            expect(service.send).toBeCalledWith('sendMessage', {
+                'broadcast': true,
+                'deadline': 1440,
+                'feeNQT': '735000',
+                'message': 'Message Text',
+                'messageIsText': true,
+                'publicKey': 'senderPublicKey',
+                'recipient': 'recipientId',
+                'recipientPublicKey': 'recipientPublicKey',
+            });
+        });
+
+        it('should sendEncryptedMessage', async () => {
+
+            // @ts-ignore
+            encryptMessage = jest.fn(
+                () =>
+                    ({
+                        data: 'encryptedMessage',
+                        nonce: 'nonce'
+                    })
+            );
+
+            await sendEncryptedMessage(service)({
+                message: 'Message Text',
+                feePlanck: '' + FeeQuantNQT,
+                recipientId: 'recipientId',
+                recipientPublicKey: 'recipientPublicKey',
+                senderKeys: {
+                    signPrivateKey: 'signPrivateKey',
+                    publicKey: 'publicKey',
+                    agreementPrivateKey: 'agreementPrivateKey'
+                }
+            });
+
+            expect(signAndBroadcastTransaction).toBeCalledTimes(1);
+            expect(service.send).toBeCalledWith('sendMessage', {
+                'deadline': 1440,
+                'encryptedMessageData': 'encryptedMessage',
+                'encryptedMessageNonce': 'nonce',
+                'feeNQT': '735000',
+                'messageToEncryptIsText': true,
+                'publicKey': 'publicKey',
+                'recipient': 'recipientId',
+                'recipientPublicKey': 'recipientPublicKey',
+            });
         });
 
     });
