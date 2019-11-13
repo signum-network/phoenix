@@ -1,5 +1,4 @@
 import { Account, Transaction } from '@burstjs/core';
-import { last } from 'lodash';
 import React from 'react';
 import { View } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
@@ -24,12 +23,11 @@ type TProps = NavigationInjectedProps & Props;
 class AccountDetails extends React.PureComponent<TProps> {
   static navigationOptions = ({ navigation }: NavigationInjectedProps) => {
     const { params = {} } = navigation.state;
-    const shortAddress = `...${last(params.accountRS.split('-'))}`;
 
     return {
       headerTitle: (
         <HeaderTitle>
-          {shortAddress}
+          {params.accountRS}
         </HeaderTitle>
       )
     };

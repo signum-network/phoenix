@@ -171,7 +171,6 @@ export const updateAccountTransactions = createActionFn<Account, Promise<Account
       // tslint:disable-next-line: no-empty
       } catch (e) {}
 
-      await setAccounts(getState().auth.accounts);
       return updatedAccount;
     }
 );
@@ -195,6 +194,7 @@ export const removeAccount = createActionFn<Account, Promise<void>>(
 export const loadAccounts = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) => {
     const accounts: Account[] = await getAccounts();
+    accounts.map((account) => hydrateAccount(account));
     dispatch(actions.loadAccounts(accounts));
   }
 );

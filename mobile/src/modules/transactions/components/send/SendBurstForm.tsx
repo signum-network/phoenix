@@ -8,7 +8,15 @@ import {
 } from '@burstjs/util';
 import { last } from 'lodash';
 import React from 'react';
-import { Image, NativeSyntheticEvent, StyleSheet, TextInputEndEditingEventData, View, TouchableOpacity, ScrollView } from 'react-native';
+import {
+  Image,
+  NativeSyntheticEvent,
+  ScrollView,
+  StyleSheet,
+  TextInputEndEditingEventData,
+  TouchableOpacity,
+  View
+} from 'react-native';
 import { transactionIcons } from '../../../../assets/icons';
 import { BInput, KeyboardTypes } from '../../../../core/components/base/BInput';
 import { BSelect, SelectItem } from '../../../../core/components/base/BSelect';
@@ -22,6 +30,7 @@ import { Recipient, RecipientType, RecipientValidationStatus } from '../../store
 import { transactions } from '../../translations';
 import { FeeSlider } from '../fee-slider/FeeSlider';
 import { AccountStatusPill } from './AccountStatusPill';
+import { getAccount } from '../../../auth/store/actions';
 
 const burstPrefix = 'BURST-';
 
@@ -96,17 +105,21 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
   state = this.setupState(this.props.deepLinkProps);
 
   componentWillReceiveProps = ({ deepLinkProps }: Props) => {
-    this.setState(this.setupState(deepLinkProps));
-    this.applyRecipientType(this.state.recipient.addressRaw);
+    this.setState(this.setupState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
   }
 
-  getAccounts = (): Array<SelectItem<Account>> => {
+  getAccounts = (): Array<SelectItem<string>> => {
     return this.props.accounts
       .filter(({ keys }) => keys && keys.publicKey)
       .map((account) => ({
-        value: account,
+        value: account.accountRS,
         label: `...${last(account.accountRS.split('-'))}`
       }));
+  }
+
+  getAccount = (address: string): Account | null => {
+    return this.props.accounts
+      .find(({ accountRS }) => accountRS === address) || null;
   }
 
   applyRecipientType (recipient: string): void {
@@ -215,15 +228,15 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
     );
   }
 
-  handleChangeFromAccount = (sender: null | Account) => {
-    this.setState({ sender });
+  handleChangeFromAccount = (sender: string) => {
+    this.setState({ sender: this.getAccount(sender) });
   }
 
   handleChangeAddress = (address: string) => {
     this.setState({
       recipient: {
         ...this.state.recipient,
-        addressRaw: address
+        addressRaw: address.toUpperCase()
       }
     });
   }
@@ -233,11 +246,11 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
   }
 
   handleAmountChange = (amount: string) => {
-    this.setState({ amount });
+    this.setState({ amount: amount.replace(',', '.') });
   }
 
   handleFeeChange = (fee: string) => {
-    this.setState({ fee });
+    this.setState({ fee: fee.replace(',', '.') });
   }
 
   handleFeeChangeFromSlider = (fee: number) => {
@@ -267,6 +280,8 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
     const { sender, recipient, amount, fee } = this.state;
     const { loading, suggestedFees } = this.props;
     const total = Number(amount) + Number(fee);
+    // @ts-ignore
+    const senderRS = sender && sender.accountRS || null;
 
     const recipientRightIcons = (
       <View style={{ flexDirection: 'row' }}>
@@ -282,7 +297,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
       <ScrollView style={styles.wrapper}>
         <View style={styles.form}>
           <BSelect
-            value={sender}
+            value={senderRS}
             items={this.getAccounts()}
             onChange={this.handleChangeFromAccount}
             title={i18n.t(transactions.screens.send.from)}

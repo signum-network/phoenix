@@ -60,25 +60,14 @@ class CreateAccount extends React.PureComponent<Props, State> {
 
     try {
       const account = await this.props.dispatch(createActiveAccount(phrase));
-      this.setState({
-        account,
-        stage: Stages.NOTE_PASSPHRASE
-      });
+      // @ts-ignore because we have account here 100%
+      await this.props.dispatch(addAccount(account));
+      await this.props.dispatch(hydrateAccount(account as Account));
     } catch (error) {
       // This error shouldn't be possible, but still
       this.setState(getDefaultState());
       Alert.alert(error.message);
     }
-  }
-
-  saveAccount = async () => {
-    // @ts-ignore because we have account here 100%
-    await this.props.dispatch(addAccount(this.state.account));
-    await this.props.dispatch(hydrateAccount(this.state.account as Account));
-  }
-
-  handlePhraseEntered = async () => {
-    await this.saveAccount();
     this.props.navigation.navigate(routes.home);
   }
 
@@ -90,8 +79,10 @@ class CreateAccount extends React.PureComponent<Props, State> {
 
   handleSeedGenerated = async (seed: string[]) => {
     const phrase = await passPhraseGenerator.generatePassPhrase(seed);
-    this.setState({ phrase });
-    this.createAccount();
+    this.setState({
+      phrase,
+      stage: Stages.NOTE_PASSPHRASE
+    });
   }
 
   renderStage = () => {
@@ -103,7 +94,7 @@ class CreateAccount extends React.PureComponent<Props, State> {
       case Stages.NOTE_PASSPHRASE:
         return <NotePassphraseStage phrase={phrase} onFinish={this.handlePhraseNoted}/>;
       case Stages.ENTER_PASSPHRASE:
-        return <EnterPassphraseStage phrase={phrase} onFinish={this.handlePhraseEntered} />;
+        return <EnterPassphraseStage phrase={phrase} onFinish={this.createAccount} />;
     }
 
     return null;

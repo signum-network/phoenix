@@ -14,7 +14,7 @@ import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { core } from '../../../core/translations';
 import { HomeStackedAreaChart } from '../../home/components/HomeStackedAreaChart';
-import { selectCurrency, loadPriceApiData } from '../../price-api/store/actions';
+import { loadPriceApiData, selectCurrency } from '../../price-api/store/actions';
 import { PriceInfoReduxState, PriceType, PriceTypeStrings } from '../../price-api/store/reducer';
 import { AccountsList } from '../components/AccountsList';
 import { AccountsListHeader } from '../components/AccountsListHeader';
