@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "Akcije",
   "activate": "",
+  "activation_failed": "",
+  "activation_success": "",
   "add_answer": "Dodaj odgovor",
   "add_as_contact": "Dodaj u kontakte",
   "add_asset": "Dodaj asset",

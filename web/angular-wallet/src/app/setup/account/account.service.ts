@@ -68,8 +68,6 @@ export class AccountService {
   private api: Api;
   private selectedNode: NodeDescriptor;
 
-  // a simple string cache of transaction ids for which the user
-  // has already received a push notification
   private transactionsSeenInNotifications: string[] = [];
 
   constructor(private storeService: StoreService, private apiService: ApiService, private i18nService: I18nService) {
@@ -86,14 +84,20 @@ export class AccountService {
     this.currentAccount.next(account);
   }
 
-  public async getAccountTransactions(id: string, firstIndex?: number, lastIndex?: number, numberOfConfirmations?: number, type?: number, subtype?: number): Promise<TransactionList> {
+  public async getAccountTransactions(
+    id: string,
+    firstIndex?: number,
+    lastIndex?: number,
+    numberOfConfirmations?: number,
+    type?: number,
+    subtype?: number
+  ): Promise<TransactionList> {
     try {
       const includeMultiouts = semver.gte(this.selectedNode.version, constants.multiOutMinVersion, {includePrerelease: true}) || undefined;
       const transactions = await this.api.account.getAccountTransactions(
         id, firstIndex, lastIndex, numberOfConfirmations, type, subtype, includeMultiouts);
       return Promise.resolve(transactions);
     } catch (e) {
-      // defensive programming: fallback, in case of multiout not accepted
       const EC_INVALID_ARG = 4;
       if (e.data.errorCode === EC_INVALID_ARG) {
         return this.api.account.getAccountTransactions(id, firstIndex, lastIndex, numberOfConfirmations, type, subtype);
@@ -161,11 +165,6 @@ export class AccountService {
     return this.api.account.setRewardRecipient(recipient, feeNQT, keys.publicKey, senderPrivateKey, deadline);
   }
 
-  /*
-  * Method responsible for creating a new active account from a passphrase.
-  * Generates keys for an account, encrypts them with the provided key and saves them.
-  * TODO: error handling of asynchronous method calls
-  */
   public createActiveAccount({passphrase, pin = ''}): Promise<Account> {
     return new Promise(async (resolve, reject) => {
       const account: Account = new Account();
@@ -189,14 +188,11 @@ export class AccountService {
 
       await this.selectAccount(account);
       const savedAccount = await this.synchronizeAccount(account);
+      await this.activateAccount(savedAccount);
       resolve(savedAccount);
     });
   }
 
-  /*
-  * Method responsible for importing an offline account.
-  * Creates an account object with no keys attached.
-  */
   public createOfflineAccount(address: string): Promise<Account> {
     return new Promise(async (resolve, reject) => {
 
@@ -222,16 +218,10 @@ export class AccountService {
     });
   }
 
-  /*
-  * Method responsible for removing an existing account.
-  */
   public removeAccount(account: Account): Promise<boolean> {
     return this.storeService.removeAccount(account).catch(error => error);
   }
 
-  /*
-  * Method responsible for selecting a different account.
-  */
   public selectAccount(account: Account): Promise<Account> {
     return new Promise((resolve, reject) => {
       this.storeService.selectAccount(account)
@@ -244,9 +234,6 @@ export class AccountService {
   }
 
 
-  /*
-  * Method responsible for synchronizing an account with the blockchain.
-  */
   public synchronizeAccount(account: Account): Promise<Account> {
     return new Promise(async (resolve, reject) => {
       await this.syncAccountDetails(account);

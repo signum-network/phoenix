@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "Acțiuni",
   "activate": "Activati",
+  "activation_failed": "Activarea a eșuat:",
+  "activation_success": "Activarea solicitată cu succes. Contul dvs. va fi activat în câteva momente.",
   "add_answer": "Adaugă răspuns",
   "add_as_contact": "Adauga ca persoană de Contact",
   "add_asset": "Adaugă activă",

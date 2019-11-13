@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "Toiminnot",
   "activate": "Aktivoida",
+  "activation_failed": "Aktivointi epäonnistui:",
+  "activation_success": "Pyydetty aktivointi onnistuneesti. Tilisi aktivoituu hetkessä.",
   "add_answer": "Lisää vastaus",
   "add_as_contact": "Lisää yhteystietoihin",
   "add_asset": "Lisää arvopaperi",

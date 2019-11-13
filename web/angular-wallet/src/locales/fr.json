@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "Actions",
   "activate": "Activer",
+  "activation_failed": "Activation echouée:",
+  "activation_success": "Activation demandée avec succès. Votre compte sera activé dans quelques instants.",
   "add_answer": "Ajouter une réponse",
   "add_as_contact": "Ajouter comme contact",
   "add_asset": "Ajouter un actif",

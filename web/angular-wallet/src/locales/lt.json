@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "Veiksmai",
   "activate": "Suaktyvinti",
+  "activation_failed": "Aktyvinimas nepavyko:",
+  "activation_success": "Sėkmingai paprašyta suaktyvinti. Jūsų sąskaita bus suaktyvinta po kelių akimirkų.",
   "add_answer": "Pridėti atsakymą",
   "add_as_contact": "Pridėti kontaktą",
   "add_asset": "Pridėti aktyvą",

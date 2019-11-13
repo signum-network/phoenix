@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "Działania",
   "activate": "Aktywuj",
+  "activation_failed": "Aktywacja nie powiodła się:",
+  "activation_success": "Pomyślnie zażądano aktywacji. Twoje konto zostanie aktywowane za kilka chwil.",
   "add_answer": "Dodaj pytanie",
   "add_as_contact": "Dodaj jako kontakt",
   "add_asset": "Dodaj aktywo",

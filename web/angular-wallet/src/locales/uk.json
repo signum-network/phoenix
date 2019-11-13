@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "Дії",
   "activate": "Активуйте",
+  "activation_failed": "Помилка активації:",
+  "activation_success": "Активація просила успішно. Ваш рахунок буде активовано через кілька моментів.",
   "add_answer": "Додати відповідь",
   "add_as_contact": "Додати як контакт",
   "add_asset": "Додати актив",

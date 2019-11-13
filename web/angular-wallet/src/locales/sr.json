@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "Акције",
   "activate": "Активирати",
+  "activation_failed": "Активација није успела:",
+  "activation_success": "Активирање је успешно. Ваш рачун ће се активирати за неколико тренутака.",
   "add_answer": "Додај Одговор",
   "add_as_contact": "Додај у Контакте",
   "add_asset": "Додај Асет",

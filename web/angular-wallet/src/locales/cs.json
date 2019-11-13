@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "Akce",
   "activate": "aktivovat",
+  "activation_failed": "Aktivace se nezdařila:",
+  "activation_success": "Aktivace byla úspěšně vyžádána. Váš účet bude aktivován za několik okamžiků.",
   "add_answer": "Přidat odpověď",
   "add_as_contact": "Přidat jako kontakt",
   "add_asset": "Přidat aktivum",

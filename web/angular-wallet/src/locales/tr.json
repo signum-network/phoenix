@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "işlemler",
   "activate": "etkinleştirme",
+  "activation_failed": "Aktivasyon başarısız oldu:",
+  "activation_success": "Başarıyla aktivasyon istendi. Hesabınız birkaç dakika içinde aktif hale gelecektir.",
   "add_answer": "Cevap Ekle",
   "add_as_contact": "Rehbere ekle ",
   "add_asset": "Ürün ekle",

@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "क्रिया",
   "activate": "सक्रिय",
+  "activation_failed": "सक्रियकरण असफल:",
+  "activation_success": "सफलतापूर्वक सक्रियण का अनुरोध किया। आपका खाता कुछ ही क्षणों में सक्रिय हो जाएगा।",
   "add_answer": "उत्तर जोड़ें",
   "add_as_contact": "संपर्क के रूप में जोड़ें",
   "add_asset": "संपत्ति जोड़ें",

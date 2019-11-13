@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "Acties",
   "activate": "Activeren",
+  "activation_failed": "Activatie mislukt:",
+  "activation_success": "Succesvolle activering aangevraagd. Uw account wordt over enkele ogenblikken geactiveerd.",
   "add_answer": "Antwoord toevoegen",
   "add_as_contact": "Toevoegen als contactpersoon",
   "add_asset": "Activa toevoegen",

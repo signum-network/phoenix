@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "Tindakan",
   "activate": "Mengaktifkan",
+  "activation_failed": "Aktivasi gagal:",
+  "activation_success": "Aktivasi berhasil diminta. Akun Anda akan diaktifkan dalam beberapa saat.",
   "add_answer": "Tambahkan jawaban",
   "add_as_contact": "Tambahkan sebagai kontak",
   "add_asset": "Tambahkan aset",

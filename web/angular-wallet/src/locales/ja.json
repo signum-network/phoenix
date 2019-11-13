@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "アクション",
   "activate": "アクティベート",
+  "activation_failed": "アクティベーションに失敗しました：",
+  "activation_success": "アクティベーションを正常に要求しました。アカウントはすぐに有効になります。",
   "add_answer": "回答を追加",
   "add_as_contact": "連絡先として追加",
   "add_asset": "資産追加",

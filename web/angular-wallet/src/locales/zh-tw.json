@@ -13,6 +13,8 @@
   "accounts": "Accounts",
   "actions": "操作",
   "activate": "启用",
+  "activation_failed": "激活失败：",
+  "activation_success": "成功请求激活。您的帐户将在几分钟后被激活。",
   "add_answer": "添加答案",
   "add_as_contact": "添加為聯絡人",
   "add_asset": "添加資產",
