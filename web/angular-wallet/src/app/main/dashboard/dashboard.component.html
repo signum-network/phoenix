@@ -11,9 +11,11 @@
         <mat-icon (click)="closeWelcomeNotification()" class="close">close</mat-icon>
       </mat-toolbar-row>
 
-      <mat-toolbar-row class="warning" *ngIf="!account.confirmed && account.balanceNQT">
+<!--      <mat-toolbar-row class="warning" *ngIf="!account.confirmed && account.balanceNQT">-->
+      <mat-toolbar-row class="warning">
         <mat-icon>warning</mat-icon>
         <span>{{ 'no_public_key_warning' | i18n }}</span>
+        <button class="activate" mat-raised-button (click)="activateAccount()" disabled="{{isActivating}}">{{'activate' | i18n}}</button>
       </mat-toolbar-row>
 
       <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">

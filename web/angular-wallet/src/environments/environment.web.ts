@@ -10,5 +10,6 @@ export const environment = {
   market: {
     tickerUrl: 'https://api.coinmarketcap.com/v1/ticker/burst/',
     tickerInterval: 30 * 1000
-  }
+  },
+  activatorServiceUrl: 'https://burst-account-activator-testnet.ohager.now.sh',
 };

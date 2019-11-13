@@ -125,7 +125,12 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     return convertNQTStringToNumber(balanceNQT);
   }
 
-  activateAccount(account: Account): void {
-    console.log('activate account', account);
+  async activateAccount(account: Account): Promise<void> {
+    try{
+      await this.accountService.activateAccount(account);
+      this.notificationService.notify('success', 'Successfully requested activation. Your account will be activated in a few moments.');
+    } catch (e){
+      this.notificationService.notify('error', `Activation failed: ${e.message}`);
+    }
   }
 }
