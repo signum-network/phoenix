@@ -10,13 +10,13 @@ import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
 import { routes } from '../../../core/navigation/routes';
 import { ApplicationState } from '../../../core/store/initialState';
+import { Colors } from '../../../core/theme/colors';
 import { Sizes } from '../../../core/theme/sizes';
 import { ImportActiveAccount } from '../components/import/ImportActiveAccount';
 import { ImportOfflineAccount } from '../components/import/ImportOfflineAccount';
 import { addAccount, createActiveAccount, createOfflineAccount, hydrateAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
-import { Colors } from '../../../core/theme/colors';
 
 interface IProps extends InjectedReduxProps {
   auth: AuthReduxState,
