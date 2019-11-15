@@ -31,6 +31,7 @@ const rootTabStackConfig: BottomTabNavigatorConfig = {
       fontFamily: fonts.bebas
     },
     style: {
+      backgroundColor: Colors.BLUE_DARKER,
       borderTopWidth: 0
     }
   }

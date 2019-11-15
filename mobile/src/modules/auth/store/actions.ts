@@ -165,13 +165,20 @@ export const updateAccountTransactions = createActionFn<Account, Promise<Account
       };
       const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
       try {
-        const transactions = await api.account.getAccountTransactions(account.account);
+        const transactions = await api.account.getAccountTransactions(
+          account.account,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          true
+        );
         updatedAccount.transactions = transactions.transactions;
         dispatch(actions.updateAccount(updatedAccount));
       // tslint:disable-next-line: no-empty
       } catch (e) {}
 
-      await setAccounts(getState().auth.accounts);
       return updatedAccount;
     }
 );
@@ -195,6 +202,7 @@ export const removeAccount = createActionFn<Account, Promise<void>>(
 export const loadAccounts = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) => {
     const accounts: Account[] = await getAccounts();
+    accounts.map((account) => hydrateAccount(account));
     dispatch(actions.loadAccounts(accounts));
   }
 );

@@ -82,6 +82,18 @@ export class TransactionListItem extends React.PureComponent<Props> {
     );
   }
 
+  getOpacity = () => {
+    const { confirmations = 0 } = this.props.transaction;
+
+    const opacity = confirmations > 0
+      ? 1
+      : .75;
+
+    return {
+      opacity
+    };
+  }
+
   render () {
     const {
       amountNQT = '0',
@@ -96,7 +108,7 @@ export class TransactionListItem extends React.PureComponent<Props> {
     const date = getShortDateFromTimestamp(timestamp);
 
     return (
-      <TouchableOpacity style={styles.view} onPress={this.handlePress}>
+      <TouchableOpacity style={[styles.view, this.getOpacity()]} onPress={this.handlePress}>
         <View style={styles.iconView}>
           {this.renderIcon()}
         </View>

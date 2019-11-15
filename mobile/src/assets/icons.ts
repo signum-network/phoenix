@@ -11,13 +11,16 @@ export const tabbarIcons = {
 
 export const actionIcons = {
   del: require('./icons/delete.png'),
-  chevronDown: require('./icons/chevron-down.png')
+  chevronDown: require('./icons/chevron-down.png'),
+  chevronRight: require('./icons/chevron-right.png'),
+  copy: require('./icons/content-copy.png')
 };
 
 export const transactionIcons = {
   done: require('./icons/check-circle.png'),
   waiting: require('./icons/clock.png'),
-  camera: require('./icons/camera.png')
+  camera: require('./icons/camera.png'),
+  copy: require('./icons/content-copy.png')
 };
 
 export const logos = {

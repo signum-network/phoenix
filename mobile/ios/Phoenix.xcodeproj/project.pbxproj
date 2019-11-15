@@ -1004,16 +1004,16 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 7BH8AJK3Z7;
+						DevelopmentTeam = P3QNZ4665B;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 7BH8AJK3Z7;
+						DevelopmentTeam = P3QNZ4665B;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 7BH8AJK3Z7;
+						DevelopmentTeam = P3QNZ4665B;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
@@ -1731,9 +1731,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 7BH8AJK3Z7;
+				DEVELOPMENT_TEAM = P3QNZ4665B;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
@@ -1749,12 +1749,13 @@
 				);
 				INFOPLIST_FILE = mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.burst.phoenix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.burstcoin.phoenix;
 				PRODUCT_NAME = Phoenix;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1764,8 +1765,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7BH8AJK3Z7;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = P3QNZ4665B;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
@@ -1781,12 +1782,13 @@
 				);
 				INFOPLIST_FILE = mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.burst.phoenix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.burstcoin.phoenix;
 				PRODUCT_NAME = Phoenix;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2026,7 +2028,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 7BH8AJK3Z7;
+				DEVELOPMENT_TEAM = P3QNZ4665B;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2047,7 +2049,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.burst.phoenix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.burstcoin.phoenix;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2081,7 +2083,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = 7BH8AJK3Z7;
+				DEVELOPMENT_TEAM = P3QNZ4665B;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2094,7 +2096,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.burst.phoenix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.burstcoin.phoenix;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

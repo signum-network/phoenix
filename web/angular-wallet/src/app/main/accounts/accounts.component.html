@@ -42,7 +42,7 @@
             <mat-icon class="account-type-icon" matTooltip="{{'hint_online_account' | i18n}}">verified_user</mat-icon>
           </ng-container>
           <ng-container *ngIf="account.type !== 'offline' && !account.confirmed">
-            <mat-icon class="account-type-icon" matTooltip="{{'error_no_public_key' | i18n}}">lock_open</mat-icon>
+            <mat-icon class="account-type-icon clickable" matTooltip="{{'no_public_key_activate' | i18n}}" (click)="activateAccount(account)">lock_open</mat-icon>
           </ng-container>
         </mat-cell>
       </ng-container>
@@ -102,7 +102,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           <mat-icon>delete</mat-icon>
         </mat-header-cell>
-        <mat-cell *matCellDef="let account" class="center">
+        <mat-cell *matCellDef="let account" class="select-icon">
           <mat-checkbox [(ngModel)]="selectedAccounts[account.account]"></mat-checkbox>
         </mat-cell>
       </ng-container>

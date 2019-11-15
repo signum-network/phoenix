@@ -1,24 +1,23 @@
 
-
 .mat-header-cell.mat-sort-header-sorted {
-    color: black;
+  color: black;
 }
 
 .button-row {
-    justify-content: space-between;
-    display: flex;
+  justify-content: space-between;
+  display: flex;
 }
 
 .button-row button {
-    align-self: center;
+  align-self: center;
 }
 
 .button-row button.delete {
-    margin-left:auto;
-    margin-right:10px;
+  margin-left: auto;
+  margin-right: 10px;
 }
 
-.mat-column{
+.mat-column {
 
   &-type {
     flex: 0 0 80px;
@@ -29,8 +28,13 @@
     flex: 0 0 50px;
   }
 
-  .center {
-    justify-content: center
-  }
+}
 
+.select-icon {
+  justify-content: center;
+}
+
+.clickable {
+  cursor: pointer;
+  color: #039be5 !important;
 }

@@ -116,7 +116,6 @@ export const Button: React.FunctionComponent<Props> = (props) => {
           textAlign={TextAlign.CENTER}
           size={textSize}
           disabled={props.disabled}
-          bold
         >
           {children}
         </Text>
