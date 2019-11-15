@@ -1,9 +1,12 @@
 import { Account, Transaction } from '@burstjs/core';
 import React from 'react';
-import { View, Image, StyleSheet, Alert, Clipboard } from 'react-native';
+import { Alert, Clipboard, Image, StyleSheet, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
+import { actionIcons } from '../../../assets/icons';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
+import { i18n } from '../../../core/i18n';
 import { InjectedReduxProps } from '../../../core/interfaces';
 import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
@@ -12,9 +15,6 @@ import { Colors } from '../../../core/theme/colors';
 import { PriceInfoReduxState } from '../../price-api/store/reducer';
 import { AccountDetailsList } from '../components/details/AccountDetailsList';
 import { updateAccountTransactions } from '../store/actions';
-import { actionIcons } from '../../../assets/icons';
-import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
-import { i18n } from '../../../core/i18n';
 import { auth } from '../translations';
 
 interface Props extends InjectedReduxProps {
