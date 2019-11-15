@@ -122,7 +122,7 @@ export const constants = {
       name: 'testnet',
       region: 'Global',
       location: 'Europe',
-      address: 'http://testnet.burstcoin.network',
+      address: 'http://testnet.getburst.net',
       endpoint: '/burst',
       port: 6876,
       selected: false,
