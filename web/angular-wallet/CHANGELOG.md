@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-beta.12 (TBR)
+
+### New Features:
+- Added Account Activation
+
+
 ## 1.0.0-beta.11
 
 ### New Features:

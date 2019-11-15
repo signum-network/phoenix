@@ -4,7 +4,9 @@ import {decryptMessage, generateMasterKeys, getAccountIdFromPublicKey} from '@bu
 import {sendTextMessage} from '../../factories/message/sendTextMessage';
 import {sendEncryptedTextMessage} from '../../factories/message/sendEncryptedTextMessage';
 import {getTransaction} from '../../factories/transaction/getTransaction';
-import {assertAttachmentVersion} from '../../../attachment/assertAttachmentVersion';
+import {isAttachmentVersion} from '../../../attachment';
+import {sendMessage} from '../../factories/message';
+import {FeeQuantNQT} from '../../../constants';
 
 
 describe('[E2E] Message Api', () => {
@@ -44,6 +46,25 @@ describe('[E2E] Message Api', () => {
 
     });
 
+    it('should sendMessage with recipientPublicKey', async () => {
+
+        const transactionId = await sendMessage(service)({
+            message: '[E2E] sendMessage TEST',
+            senderPublicKey: senderKeys.publicKey,
+            senderPrivateKey: senderKeys.signPrivateKey,
+            feePlanck: '' + FeeQuantNQT,
+            recipientId,
+            recipientPublicKey: recipientKeys.publicKey,
+            deadline: 1440,
+        });
+
+        expect(transactionId).not.toBeUndefined();
+
+        const transaction = await getTransaction(service)(transactionId.transaction);
+        expect(isAttachmentVersion(transaction, 'PublicKeyAnnouncement')).toBeTruthy();
+
+    });
+
 
     it('should sendEncryptedTextMessage', async () => {
         const transactionId = await sendEncryptedTextMessage(service)(
@@ -62,7 +83,7 @@ describe('[E2E] Message Api', () => {
     it('should get a transaction from BRS with encrypted message and decrypt successfully', async () => {
         const transaction = await getTransaction(service)(environment.testEncryptedMessageTransactionId);
         expect(transaction).not.toBeUndefined();
-        assertAttachmentVersion(transaction, 'EncryptedMessage');
+        isAttachmentVersion(transaction, 'EncryptedMessage');
         const {encryptedMessage} = transaction.attachment;
 
         const recipientsMessage = decryptMessage(encryptedMessage, transaction.senderPublicKey, recipientKeys.agreementPrivateKey);

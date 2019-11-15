@@ -11,6 +11,7 @@ import {Account} from '@burstjs/core';
 import {convertNQTStringToNumber} from '@burstjs/util/out';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
+import {I18nService} from '../../layout/components/i18n/i18n.service';
 
 @Component({
   selector: 'app-accounts',
@@ -31,6 +32,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     private storeService: StoreService,
     private accountService: AccountService,
     private notificationService: NotifierService,
+    private i18nService: I18nService,
     private deleteDialog: MatDialog,
     public router: Router
   ) {
@@ -125,4 +127,13 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     return convertNQTStringToNumber(balanceNQT);
   }
 
+  async activateAccount(account: Account): Promise<void> {
+    try{
+      await this.accountService.activateAccount(account);
+      this.notificationService.notify('success', this.i18nService.getTranslation('activation_success'));
+    } catch (e){
+      const activationFailed = this.i18nService.getTranslation('activation_failed');
+      this.notificationService.notify('error', `${activationFailed} ${e.message}`);
+    }
+  }
 }

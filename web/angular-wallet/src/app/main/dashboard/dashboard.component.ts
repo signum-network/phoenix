@@ -1,17 +1,15 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {fuseAnimations} from '@fuse/animations';
-import {Subscription} from 'rxjs';
-import {filter, takeUntil, takeWhile} from 'rxjs/operators';
-import {Router, NavigationEnd} from '@angular/router';
+import {takeUntil} from 'rxjs/operators';
+import {Router} from '@angular/router';
 import {StoreService} from 'app/store/store.service';
-import {Account, Transaction, TransactionList, UnconfirmedTransactionList} from '@burstjs/core';
-import {convertNQTStringToNumber} from '@burstjs/util';
+import {Account, Transaction} from '@burstjs/core';
 import {AccountService} from 'app/setup/account/account.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MarketService} from './market/market.service';
 import {Settings} from 'app/settings';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
-
+import {NotifierService} from 'angular-notifier';
 
 @Component({
   selector: 'dashboard-dashboard',
@@ -29,10 +27,12 @@ export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit {
   settings: Settings;
 
   public dataSource: MatTableDataSource<Transaction>;
+  public isActivating = false;
 
   constructor(private router: Router,
               private storeService: StoreService,
               private accountService: AccountService,
+              private notificationService: NotifierService,
               private marketService: MarketService) {
 
     super();
@@ -45,7 +45,7 @@ export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit {
       });
   }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
 
     this.accountService.currentAccount
       .pipe(
@@ -68,12 +68,24 @@ export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit {
     this.account = account;
     this.dataSource = new MatTableDataSource<Transaction>();
     this.dataSource.data = account.transactions.concat().splice(0, 10);
-  }
+  };
 
   closeWelcomeNotification = () => {
     this.settings.welcomeMessageHiddenFrom.push(this.account.account);
     this.storeService.saveSettings(this.settings);
-  }
+  };
 
+  async activateAccount(): Promise<void> {
+    try {
+      this.isActivating = true;
+      await this.accountService.activateAccount(this.account);
+      this.notificationService.notify('success', 'Successfully requested activation. Your account will be activated in a few moments.');
+    } catch (e) {
+      this.notificationService.notify('error', `Activation failed: ${e.message}`);
+    } finally {
+      this.isActivating = false;
+    }
+  }
 }
+
 
