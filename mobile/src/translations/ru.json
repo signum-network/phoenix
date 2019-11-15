@@ -32,7 +32,8 @@
       "accountDetails": {
         "noTransactions": {
           "title": "Нет транзакций"
-        }
+        },
+        "copiedSuccessfully": "Address copied successfully."
       },
       "addAccount": {
         "addAccount": "Добавить аккаунт",
@@ -152,8 +153,14 @@
         "selectAccount": "Выберите аккаунт",
         "sent": "Отправлено!",
         "title": "Отправить",
+        "button": "Swipe to Send",
         "to": "Аккаунт получателя",
-        "total": "Всего: {{value}} BURST"
+        "total": "Всего: {{value}} BURST",
+        "noPublicKey": "Please confirm address before sending.",
+        "invalidAddress": "This address is not valid.",
+        "zilOutage": "Unable to fetch from the ZIL API.",
+        "success": "Successfully sent {{amount}} BURST to {{address}}.",
+        "failure": "Failed to send BURST. Please check your entries and try again."
       },
       "scan": {
         "title": "Сканировать BURST QR-код"

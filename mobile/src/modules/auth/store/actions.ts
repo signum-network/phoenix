@@ -165,7 +165,15 @@ export const updateAccountTransactions = createActionFn<Account, Promise<Account
       };
       const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
       try {
-        const transactions = await api.account.getAccountTransactions(account.account);
+        const transactions = await api.account.getAccountTransactions(
+          account.account,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          true
+        );
         updatedAccount.transactions = transactions.transactions;
         dispatch(actions.updateAccount(updatedAccount));
       // tslint:disable-next-line: no-empty

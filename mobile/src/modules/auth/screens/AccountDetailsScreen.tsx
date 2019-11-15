@@ -1,6 +1,6 @@
 import { Account, Transaction } from '@burstjs/core';
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image, StyleSheet, Alert, Clipboard } from 'react-native';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
@@ -12,6 +12,10 @@ import { Colors } from '../../../core/theme/colors';
 import { PriceInfoReduxState } from '../../price-api/store/reducer';
 import { AccountDetailsList } from '../components/details/AccountDetailsList';
 import { updateAccountTransactions } from '../store/actions';
+import { actionIcons } from '../../../assets/icons';
+import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
+import { i18n } from '../../../core/i18n';
+import { auth } from '../translations';
 
 interface Props extends InjectedReduxProps {
   accounts: Account[];
@@ -20,15 +24,34 @@ interface Props extends InjectedReduxProps {
 
 type TProps = NavigationInjectedProps & Props;
 
+const styles = StyleSheet.create({
+  copyIcon: {
+    margin: 5,
+    width: 25,
+    height: 25
+  }
+});
+
 class AccountDetails extends React.PureComponent<TProps> {
+
   static navigationOptions = ({ navigation }: NavigationInjectedProps) => {
     const { params = {} } = navigation.state;
+
+    const handleCopy = () => {
+      Clipboard.setString(params.accountRS);
+      Alert.alert(i18n.t(auth.accountDetails.copiedSuccessfully));
+    };
 
     return {
       headerTitle: (
         <HeaderTitle>
           {params.accountRS}
         </HeaderTitle>
+      ),
+      headerRight: (
+        <TouchableOpacity onPress={handleCopy}>
+          <Image style={styles.copyIcon} source={actionIcons.copy} />
+        </TouchableOpacity>
       )
     };
   }

@@ -21,7 +21,8 @@ export const auth = {
   accountDetails: {
     noTransactions: {
       title: 'auth.screens.accountDetails.noTransactions.title'
-    }
+    },
+    copiedSuccessfully: 'auth.screens.accountDetails.copiedSuccessfully'
   },
   createAccount: {
     step: 'auth.screens.createAccount.step',
