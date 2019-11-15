@@ -32,7 +32,8 @@
       "accountDetails": {
         "noTransactions": {
           "title": "No transactions"
-        }
+        },
+        "copiedSuccessfully": "Address copied successfully."
       },
       "addAccount": {
         "createAccount": "Create account",
@@ -148,6 +149,7 @@
         "selectAccount": "Select an account",
         "sent": "Sent!",
         "title": "Send",
+        "button": "Swipe to Send",
         "to": "To",
         "total": "Total: {{value}} BURST",
         "noPublicKey": "Please confirm address before sending.",

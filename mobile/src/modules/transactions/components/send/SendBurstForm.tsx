@@ -17,10 +17,10 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { transactionIcons } from '../../../../assets/icons';
+import SwipeButton from 'rn-swipe-button';
+import { actionIcons, transactionIcons } from '../../../../assets/icons';
 import { BInput, KeyboardTypes } from '../../../../core/components/base/BInput';
 import { BSelect, SelectItem } from '../../../../core/components/base/BSelect';
-import { Button as BButton } from '../../../../core/components/base/Button';
 import { Text as BText } from '../../../../core/components/base/Text';
 import { i18n } from '../../../../core/i18n';
 import { Colors } from '../../../../core/theme/colors';
@@ -30,7 +30,6 @@ import { Recipient, RecipientType, RecipientValidationStatus } from '../../store
 import { transactions } from '../../translations';
 import { FeeSlider } from '../fee-slider/FeeSlider';
 import { AccountStatusPill } from './AccountStatusPill';
-import { getAccount } from '../../../auth/store/actions';
 
 const burstPrefix = 'BURST-';
 
@@ -57,6 +56,7 @@ export interface SendBurstFormState {
   immutable: boolean;
   recipient?: Recipient;
   recipientType?: string;
+  showSubmitButton: boolean;
 }
 
 const styles = StyleSheet.create({
@@ -82,6 +82,9 @@ const styles = StyleSheet.create({
   },
   total: {
     marginTop: 10
+  },
+  swipeButtonContainer: {
+    marginTop: 20
   }
 });
 
@@ -98,7 +101,8 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
       messageIsText: props && props.messageIsText || true,
       encrypt: props && props.encrypt || false,
       immutable: props && props.immutable || false,
-      recipient: new Recipient(props && props.address || 'BURST-', props && props.address || '')
+      recipient: new Recipient(props && props.address || 'BURST-', props && props.address || ''),
+      showSubmitButton: true
     };
   }
 
@@ -273,17 +277,18 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
         immutable,
         encrypt
       });
+      this.setState({showSubmitButton: false});
     }
   }
 
   render () {
     const { sender, recipient, amount, fee } = this.state;
-    const { loading, suggestedFees } = this.props;
+    const { suggestedFees } = this.props;
     const total = Number(amount) + Number(fee);
     // @ts-ignore
     const senderRS = sender && sender.accountRS || null;
 
-    const recipientRightIcons = (
+    const RecipientRightIcons = (
       <View style={{ flexDirection: 'row' }}>
         {recipient.addressRaw !== burstPrefix &&
           <AccountStatusPill address={recipient.addressRS} type={recipient.type} status={recipient.status} />}
@@ -310,7 +315,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             // disabled={this.state.immutable}
             title={i18n.t(transactions.screens.send.to)}
             placeholder='BURST-____-____-____-_____'
-            rightIcons={recipientRightIcons}
+            rightIcons={RecipientRightIcons}
           />
           <BInput
             value={amount}
@@ -340,10 +345,22 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             </BText>
            </View>
         </View>
-        <View>
-          <BButton loading={loading} disabled={!this.isSubmitEnabled()} onPress={this.handleSubmit}>
-            {i18n.t(transactions.screens.send.title)}
-          </BButton>
+        <View style={styles.swipeButtonContainer}>
+          {this.state.showSubmitButton ? <SwipeButton
+            disabledRailBackgroundColor={Colors.GREY}
+            disabledThumbIconBackgroundColor={Colors.GREY}
+            disabledThumbIconBorderColor={Colors.BLUE_DARKER}
+            thumbIconBackgroundColor={Colors.WHITE}
+            thumbIconImageSource={actionIcons.chevronRight}
+            onSwipeSuccess={this.handleSubmit}
+            title={i18n.t(transactions.screens.send.button)}
+            railBackgroundColor={Colors.BLACK}
+            railBorderColor={Colors.BLUE_DARKER}
+            railFillBackgroundColor={Colors.BLUE_DARKER}
+            railFillBorderColor={Colors.BLUE_DARKER}
+            titleColor={this.isSubmitEnabled() ? Colors.WHITE : Colors.BLACK}
+            disabled={!this.isSubmitEnabled()}
+          /> : null}
         </View>
       </ScrollView>
     );

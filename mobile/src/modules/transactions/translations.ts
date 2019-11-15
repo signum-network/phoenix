@@ -9,6 +9,7 @@ export const transactions = {
       from: 'transactions.screens.send.from',
       to: 'transactions.screens.send.to',
       total: 'transactions.screens.send.total',
+      button: 'transactions.screens.send.button',
       noPublicKey: 'transactions.screens.send.noPublicKey',
       invalidAddress: 'transactions.screens.send.invalidAddress',
       zilOutage: 'transactions.screens.send.zilOutage',
