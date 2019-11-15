@@ -11,5 +11,5 @@ export const environment = {
     tickerUrl: 'https://api.coinmarketcap.com/v1/ticker/burst/',
     tickerInterval: 30 * 1000
   },
-  activatorServiceUrl: 'https://burst-account-activator-testnet.ohager.now.sh',
+  activatorServiceUrl: 'https://burst-account-activator.ohager.now.sh',
 };

@@ -72,6 +72,8 @@
     padding-left: 16px;
     margin-bottom: 20px;
     white-space: normal;
+    justify-content: space-between;
+    height: fit-content;
 
     &.warning {
       background: #F0AD4E;
