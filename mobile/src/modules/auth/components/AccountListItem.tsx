@@ -67,7 +67,6 @@ export class AccountListItem extends React.PureComponent<Props> {
       component: <Image source={actionIcons.del} style={styles.del} />,
       backgroundColor: Colors.RED,
       underlayColor: Colors.GREY,
-      style: styles.buttonStyles,
       onPress: this.handleDelete
     }
   ]

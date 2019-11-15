@@ -1,10 +1,12 @@
 import { Account, Transaction } from '@burstjs/core';
-import { last } from 'lodash';
 import React from 'react';
-import { View } from 'react-native';
+import { Alert, Clipboard, Image, StyleSheet, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
+import { actionIcons } from '../../../assets/icons';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
+import { i18n } from '../../../core/i18n';
 import { InjectedReduxProps } from '../../../core/interfaces';
 import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
@@ -13,6 +15,7 @@ import { Colors } from '../../../core/theme/colors';
 import { PriceInfoReduxState } from '../../price-api/store/reducer';
 import { AccountDetailsList } from '../components/details/AccountDetailsList';
 import { updateAccountTransactions } from '../store/actions';
+import { auth } from '../translations';
 
 interface Props extends InjectedReduxProps {
   accounts: Account[];
@@ -21,16 +24,34 @@ interface Props extends InjectedReduxProps {
 
 type TProps = NavigationInjectedProps & Props;
 
+const styles = StyleSheet.create({
+  copyIcon: {
+    margin: 5,
+    width: 25,
+    height: 25
+  }
+});
+
 class AccountDetails extends React.PureComponent<TProps> {
+
   static navigationOptions = ({ navigation }: NavigationInjectedProps) => {
     const { params = {} } = navigation.state;
-    const shortAddress = `...${last(params.accountRS.split('-'))}`;
+
+    const handleCopy = () => {
+      Clipboard.setString(params.accountRS);
+      Alert.alert(i18n.t(auth.accountDetails.copiedSuccessfully));
+    };
 
     return {
       headerTitle: (
         <HeaderTitle>
-          {shortAddress}
+          {params.accountRS}
         </HeaderTitle>
+      ),
+      headerRight: (
+        <TouchableOpacity onPress={handleCopy}>
+          <Image style={styles.copyIcon} source={actionIcons.copy} />
+        </TouchableOpacity>
       )
     };
   }

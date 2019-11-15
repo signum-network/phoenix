@@ -21,7 +21,8 @@ export const auth = {
   accountDetails: {
     noTransactions: {
       title: 'auth.screens.accountDetails.noTransactions.title'
-    }
+    },
+    copiedSuccessfully: 'auth.screens.accountDetails.copiedSuccessfully'
   },
   createAccount: {
     step: 'auth.screens.createAccount.step',
@@ -48,7 +49,8 @@ export const auth = {
     activeAccount: 'auth.screens.importAccount.activeAccount',
     activeAccountHint: 'auth.screens.importAccount.activeAccountHint',
     passiveAccountHint: 'auth.screens.importAccount.passiveAccountHint',
-    title: 'auth.screens.importAccount.title'
+    title: 'auth.screens.importAccount.title',
+    showPassphrase: 'auth.screens.importAccount.showPassphrase'
   },
   errors: {
     accountExist: 'auth.errors.accountExist',
