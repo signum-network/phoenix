@@ -4,9 +4,10 @@ import {TransactionList} from '../transactionList';
 import {UnconfirmedTransactionList} from '../unconfirmedTransactionList';
 import {Balance} from '../balance';
 import {AliasList} from '../aliasList';
-import { Account } from '../account';
-import { TransactionId } from '../transactionId';
-import { Block } from '../block';
+import {Account} from '../account';
+import {TransactionId} from '../transactionId';
+import {Block} from '../block';
+import {GetAccountTransactionsArgs} from '../args';
 
 /**
  * Account API
@@ -15,25 +16,10 @@ export interface AccountApi {
 
     /**
      * Get transactions of given account
-     * @param {string} accountId The numeric accountId
-     * @param {number?} firstIndex The first index of the transaction list, beginning at 0
-     * @param {number?} lastIndex The last index of the transaction list
-     * @param {number?} numberOfConfirmations The minimum required number of confirmations per transaction
-     * @param {number?} type The type of transactions to fetch
-     * @param {number?} subtype The subtype of transactions to fetch
-     * @param {boolean?} includeIndirect Includes indirect transaction, i.e. multi out payments.
-     * For BRS Versions before 2.3.1 this must be `undefined`
+     * @param {GetAccountTransactionsArgs} args The arguments
      * @return {Promise<TransactionList>} List of transactions
      */
-    getAccountTransactions: (
-        accountId: string,
-        firstIndex?: number,
-        lastIndex?: number,
-        numberOfConfirmations?: number,
-        type?: number,
-        subtype?: number,
-        includeIndirect?: boolean
-    ) => Promise<TransactionList>;
+    getAccountTransactions: (args: GetAccountTransactionsArgs) => Promise<TransactionList>;
 
     /**
      * Get _unconfirmed_ transactions of given account
