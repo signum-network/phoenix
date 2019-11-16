@@ -19,7 +19,6 @@ export class Settings {
     public currency: string;
     public language: string;
     public node: string;
-    public nodeVersion: string;
     public theme: string;
     public version: string;
     public marketUrl: string;
