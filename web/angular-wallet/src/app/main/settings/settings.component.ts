@@ -15,7 +15,6 @@ import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 interface NodeInformation {
   url: string;
   version: string;
-  endpoint: string;
 }
 
 const UnsupportedFeatures = {
@@ -37,7 +36,6 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   }
 
   public selectedNode = new FormControl();
-  public selectedNodeEndpoint = new FormControl();
   public settings: Settings;
 
   public nodes = SettingsComponent.createNodeList();
@@ -50,12 +48,11 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
     return constants.nodes.map(({address, port}) => `${address}:${port}`).concat(environment.defaultNode);
   }
 
-  static async fetchNodeInformation(host: string, endpoint: string): Promise<NodeInformation> {
+  static async fetchNodeInformation(nodeHost: string): Promise<NodeInformation> {
     const networkApi = ApiComposer
       .create(
         new BurstService({
-          nodeHost: host,
-          apiRootUrl: endpoint,
+          nodeHost
         }))
       .withNetworkApi({
         getBlockchainStatus,
@@ -63,16 +60,14 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
       .compose();
     const {version} = await networkApi.network.getBlockchainStatus();
     return {
-      url: host,
-      version,
-      endpoint,
+      url: nodeHost,
+      version
     };
   }
 
   async ngOnInit(): Promise<void> {
     this.settings = this.route.snapshot.data.settings as Settings;
     this.selectedNode.setValue(this.settings.node);
-    this.selectedNodeEndpoint.setValue(this.settings.nodeEndpoint);
     const waitASecond = debounceTime(1000);
     const updateVersion = () => {
       this.fetchNodeVersion();
@@ -83,32 +78,24 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
       waitASecond
     ).subscribe(updateVersion);
 
-    this.selectedNodeEndpoint.valueChanges.pipe(
-      takeUntil(this.unsubscribeAll),
-      waitASecond
-    ).subscribe(updateVersion);
-
     updateVersion();
   }
 
   private async updateNodeSettings(value: NodeInformation): Promise<void> {
     const currentSettings = await this.storeService.getSettings();
-    currentSettings.nodeVersion = value.version;
     currentSettings.node = value.url;
-    currentSettings.nodeEndpoint = value.endpoint;
     await this.storeService.saveSettings(currentSettings);
   }
 
   private async getLastValidSettings(): Promise<void> {
-    const {node, nodeEndpoint} = await this.storeService.getSettings();
+    const {node} = await this.storeService.getSettings();
     this.selectedNode.setValue(node);
-    this.selectedNodeEndpoint.setValue(nodeEndpoint);
   }
 
   async selectNode(): Promise<void> {
     try {
       this.isFetchingNodeInfo = true;
-      const nodeInformation = await SettingsComponent.fetchNodeInformation(this.selectedNode.value, this.selectedNodeEndpoint.value);
+      const nodeInformation = await SettingsComponent.fetchNodeInformation(this.selectedNode.value);
       this.isFetchingNodeInfo = false;
       await this.updateNodeSettings(nodeInformation);
       this.notifierService.notify('success', this.i18nService.getTranslation('node_set_success'));
@@ -140,7 +127,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   private async fetchNodeVersion(): Promise<void> {
     try {
       this.isFetchingNodeInfo = true;
-      const {version} = await SettingsComponent.fetchNodeInformation(this.selectedNode.value, this.selectedNodeEndpoint.value);
+      const {version} = await SettingsComponent.fetchNodeInformation(this.selectedNode.value);
       this.selectedNodeVersion = version;
       this.isFetchingNodeInfo = false;
       this.showConnectionErrorIcon = false;

@@ -2,6 +2,7 @@ import {BurstService} from '../service/burstService';
 import {Http, HttpError, HttpImpl, HttpMockBuilder, HttpResponse} from '@burstjs/http';
 import {BurstServiceSettings} from '../service/burstServiceSettings';
 import {createBurstService} from './helpers/createBurstService';
+import {DefaultApiEndpoint} from '../constants';
 
 class TestHttpClient implements Http {
     delete(url: string): Promise<HttpResponse> {
@@ -27,10 +28,9 @@ describe('BurstService', () => {
         it('should create with least required parameters', () => {
             const {settings} = new BurstService({
                 nodeHost: 'nodeHost',
-                apiRootUrl: 'apiRootUrl',
             });
             expect(settings.nodeHost).toBe('nodeHost');
-            expect(settings.apiRootUrl).toBe('apiRootUrl');
+            expect(settings.apiRootUrl).toBe(DefaultApiEndpoint);
             expect(settings.httpClient instanceof HttpImpl).toBeTruthy();
         });
 

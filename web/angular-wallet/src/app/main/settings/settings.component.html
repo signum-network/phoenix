@@ -25,25 +25,12 @@
         </mat-autocomplete>
       </mat-form-field>
 
-      <mat-checkbox labelPosition="before" [(ngModel)]="showAdvancedOptions"
-      >{{ "advanced_uppercase" | i18n }}</mat-checkbox>
-
-      <div *ngIf="showAdvancedOptions">
-        <mat-form-field>
-          <input type="text"
-                 placeholder="{{ 'node_endpoint' | i18n}}"
-                 matInput
-                 [formControl]="selectedNodeEndpoint"
-          >
-        </mat-form-field>
-      </div>
-
       <div class="button-wrapper">
         <ul class="unfeatures">
-          <li *ngFor="let f of getUnsupportedFeatures()"
+          <li *ngFor="let feature of getUnsupportedFeatures()"
               class="secondary-text font-size-10"
           >
-            {{f}}
+            {{feature}}
           </li>
         </ul>
         <button mat-raised-button color="accent" (click)="selectNode()"

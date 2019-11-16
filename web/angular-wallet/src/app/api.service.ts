@@ -11,8 +11,8 @@ import {distinctUntilChanged} from 'rxjs/operators';
 })
 export class ApiService {
   public api: Api;
+  private brsVersion: string;
   public nodeUrl = environment.defaultNode;
-  public nodeEndpoint = environment.defaultNodeEndpoint;
 
   constructor(private storeService: StoreService) {
     this.initApi = this.initApi.bind(this);
@@ -40,9 +40,18 @@ export class ApiService {
 
   private initApi(settings: Settings): void {
     this.nodeUrl = settings.node;
-    this.nodeEndpoint = ApiService.trimTrailingOrLeadingSlashes(settings.nodeEndpoint || environment.defaultNodeEndpoint);
-    const apiSettings = new ApiSettings(this.nodeUrl, this.nodeEndpoint);
+    const apiSettings = new ApiSettings(this.nodeUrl);
     this.api = composeApi(apiSettings);
+    this.fetchBrsApiVersion();
+    console.log('API initialized');
+  }
+
+  async fetchBrsApiVersion(): Promise<string> {
+    if (!this.brsVersion) {
+      const {version} = await this.api.network.getBlockchainStatus();
+      this.brsVersion = version;
+    }
+    return this.brsVersion;
   }
 
 }
