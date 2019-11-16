@@ -803,6 +803,7 @@
   "select_color_scheme": "Select Color Scheme",
   "select_contact_in_sidebar": "Please select a contact in the left sidebar.",
   "select_node": "Düğüm Seç",
+  "select_node_description": "Bağlanmak istediğiniz eşi seçin. Önerilen bir eş kullanabilirsiniz, ancak isteğe bağlı eş URL'sini de girebilirsiniz.",
   "select_recipients": "Alıcıları Seç",
   "sell": "Sell",
   "sell_alias": "Sell Alias",

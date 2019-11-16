@@ -807,6 +807,7 @@
   "select_color_scheme": "Selecione o esquema de cores",
   "select_contact_in_sidebar": "Por favor, selecione um contato na barra lateral esquerda.",
   "select_node": "Escolha o nó",
+  "select_node_description": "Selecione o par ao qual você deseja se conectar. Você pode usar um par sugerido, mas também pode inserir um URL arbitrário.",
   "select_recipients": "Selecionar beneficiários",
   "sell": "Vender",
   "sell_alias": "Vender Pseudônimo",

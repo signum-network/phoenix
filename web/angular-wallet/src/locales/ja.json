@@ -803,6 +803,7 @@
   "select_color_scheme": "配色を選択",
   "select_contact_in_sidebar": "左のサイドバーで連絡先を選択してください。",
   "select_node": "ノードを選択",
+  "select_node_description": "接続するピアを選択します。推奨されるピアを使用できますが、任意のピアURLを入力することもできます。",
   "select_recipients": "受信者を選択",
   "sell": "販売",
   "sell_alias": "エイリアスを販売",

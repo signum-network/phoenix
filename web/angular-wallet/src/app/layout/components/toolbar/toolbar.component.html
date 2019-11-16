@@ -60,7 +60,7 @@
                         {{account.name || account.accountRS}}
                     </span>
                 </button>
-
+                <mat-divider></mat-divider>
                 <button mat-menu-item class="manage-accounts" routerLink="/accounts">
                     <mat-icon>people</mat-icon>
                     <span>Manage Accounts</span>
@@ -70,11 +70,14 @@
 
             <div class="toolbar-separator"></div>
 
-            <button *ngIf="selectedLanguage" mat-button fxHide fxShow.gt-xs
+            <button *ngIf="selectedLanguage" mat-button
                     class="language-button"
                     [matMenuTriggerFor]="languageMenu">
                 <div fxLayout="row" fxLayoutAlign="center center">
-                    <span class="iso text-uppercase">{{selectedLanguage.name}}</span>
+                    <span class="iso text-uppercase" fxHide fxShow.gt-xs>{{selectedLanguage.name}}</span>
+                    <span class="iso text-uppercase" fxHide.gt-xs>
+                      <mat-icon class="secondary-text">language</mat-icon>
+                    </span>
                 </div>
             </button>
 

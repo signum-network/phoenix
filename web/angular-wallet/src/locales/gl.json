@@ -803,6 +803,7 @@
   "select_color_scheme": "Seleccione o esquema de color",
   "select_contact_in_sidebar": "Por favor seleccione un contacto na barra lateral esquerda.",
   "select_node": "Escolla Nodo",
+  "select_node_description": "Seleccione o compañeiro ao que quere conectarse. Pode usar un par suxerido, pero tamén pode introducir un URL de pares arbitrario.",
   "select_recipients": "Seleccione Destinatarios",
   "sell": "Vender",
   "sell_alias": "Vender Alias",

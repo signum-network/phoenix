@@ -803,6 +803,7 @@
   "select_color_scheme": "选择色彩方案",
   "select_contact_in_sidebar": "请在左侧栏中选择一个联系人。",
   "select_node": "选择节点",
+  "select_node_description": "选择您要连接的对等体。您可以使用建议的对等方，但也可以输入任意的对等方网址。",
   "select_recipients": "选择收件人",
   "sell": "出售",
   "sell_alias": "出售别名",

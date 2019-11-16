@@ -803,6 +803,7 @@
   "select_color_scheme": "Selectare schemă culori",
   "select_contact_in_sidebar": "Te rugăm să selectezi o persoană de contact în bara laterală stânga.",
   "select_node": "Alegeți Nodul",
+  "select_node_description": "Selectați peerul la care doriți să vă conectați. Puteți utiliza un peer sugerat, dar puteți introduce, de asemenea, o adresă urlă arbitră.",
   "select_recipients": "Selectați Destinatari",
   "sell": "Vânzare",
   "sell_alias": "Vinde Alias",
