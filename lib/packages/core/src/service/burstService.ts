@@ -7,6 +7,7 @@
 import {Http, HttpError, HttpImpl} from '@burstjs/http';
 import {BurstServiceSettings} from './burstServiceSettings';
 import {AxiosRequestConfig} from 'axios';
+import {DefaultApiEndpoint} from '../constants';
 
 // BRS is inconsistent in it's error responses
 interface ApiError {
@@ -39,11 +40,13 @@ export class BurstService {
 
         this.settings = new SettingsImpl(settings);
         const {apiRootUrl} = this.settings;
-        this._relPath = apiRootUrl.endsWith('/') ? apiRootUrl.substr(0, apiRootUrl.length - 1) : apiRootUrl;
+        if (apiRootUrl) {
+            this._relPath = apiRootUrl.endsWith('/') ? apiRootUrl.substr(0, apiRootUrl.length - 1) : apiRootUrl;
+        }
     }
 
     public readonly settings: BurstServiceSettings;
-    private readonly _relPath: string;
+    private readonly _relPath: string = DefaultApiEndpoint;
 
     private static throwAsHttpError(url: string, apiError: ApiError) {
         const errorCode = apiError.errorCode && ` (Code: ${apiError.errorCode})` || '';

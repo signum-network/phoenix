@@ -1,6 +1,9 @@
 <app-page title="{{ 'settings' | i18n }}">
   <div class="p-24" fxLayout="column">
     <div class="node-selector">
+    <small class="mb-8">
+      {{ 'select_node_description' | i18n }}
+    </small>
       <mat-form-field>
         <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
           <input type="text"
@@ -25,25 +28,13 @@
         </mat-autocomplete>
       </mat-form-field>
 
-      <mat-checkbox labelPosition="before" [(ngModel)]="showAdvancedOptions"
-      >{{ "advanced_uppercase" | i18n }}</mat-checkbox>
-
-      <div *ngIf="showAdvancedOptions">
-        <mat-form-field>
-          <input type="text"
-                 placeholder="{{ 'node_endpoint' | i18n}}"
-                 matInput
-                 [formControl]="selectedNodeEndpoint"
-          >
-        </mat-form-field>
-      </div>
 
       <div class="button-wrapper">
         <ul class="unfeatures">
-          <li *ngFor="let f of getUnsupportedFeatures()"
+          <li *ngFor="let feature of getUnsupportedFeatures()"
               class="secondary-text font-size-10"
           >
-            {{f}}
+            {{feature}}
           </li>
         </ul>
         <button mat-raised-button color="accent" (click)="selectNode()"
