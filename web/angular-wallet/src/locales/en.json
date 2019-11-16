@@ -816,6 +816,7 @@
   "select_color_scheme": "Select Color Scheme",
   "select_contact_in_sidebar": "Please select a contact in the left sidebar.",
   "select_node": "Select Node",
+  "select_node_description": "Select the peer you want to connect to. You may use a suggested peer, but may also enter an arbitrary peer url.",
   "select_recipients": "Select Recipients",
   "sell": "Sell",
   "sell_alias": "Sell Alias",

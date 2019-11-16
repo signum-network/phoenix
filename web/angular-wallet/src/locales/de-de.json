@@ -803,6 +803,7 @@
   "select_color_scheme": "Farbschema auswählen",
   "select_contact_in_sidebar": "Bitte wählen Sie einen Kontakt in der linken Seitenleiste.",
   "select_node": "Knoten auswählen",
+  "select_node_description": "Wählen Sie den Peer aus, zu dem Sie eine Verbindung herstellen möchten. Sie können einen vorgeschlagenen Peer verwenden, aber auch eine beliebige Peer-URL eingeben.",
   "select_recipients": "Wählen Sie Empfänger",
   "sell": "Verkaufen",
   "sell_alias": "Alias verkaufen",

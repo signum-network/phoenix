@@ -803,6 +803,7 @@
   "select_color_scheme": "Pasirinkite spalvų schemą",
   "select_contact_in_sidebar": "Kairiajame meniu pasirinkite kontaktą.",
   "select_node": "Pasirinkite mazgas",
+  "select_node_description": "Pasirinkite bendraamžį, prie kurio norite prisijungti. Galite naudoti siūlomą bendraamžį, bet taip pat galite įvesti savavališką bendraamžių URL.",
   "select_recipients": "Pasirinkite Gavėjai",
   "sell": "Parduoti",
   "sell_alias": "Parduoti pseudonimą",

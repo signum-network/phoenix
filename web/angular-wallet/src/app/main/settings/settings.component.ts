@@ -45,7 +45,11 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   public selectedNodeVersion: string;
 
   private static createNodeList(): Array<any> {
-    return constants.nodes.map(({address, port}) => `${address}:${port}`).concat(environment.defaultNode);
+    const nodes = constants.nodes.map(({address, port}) => `${address}:${port}`);
+    if (!environment.production) {
+      nodes.push(environment.defaultNode);
+    }
+    return nodes;
   }
 
   static async fetchNodeInformation(nodeHost: string): Promise<NodeInformation> {

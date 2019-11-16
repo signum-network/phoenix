@@ -1,6 +1,9 @@
 <app-page title="{{ 'settings' | i18n }}">
   <div class="p-24" fxLayout="column">
     <div class="node-selector">
+    <small class="mb-8">
+      {{ 'select_node_description' | i18n }}
+    </small>
       <mat-form-field>
         <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
           <input type="text"
@@ -24,6 +27,7 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
+
 
       <div class="button-wrapper">
         <ul class="unfeatures">
