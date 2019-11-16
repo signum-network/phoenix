@@ -43,7 +43,6 @@ export class ApiService {
     const apiSettings = new ApiSettings(this.nodeUrl);
     this.api = composeApi(apiSettings);
     this.fetchBrsApiVersion();
-    console.log('API initialized');
   }
 
   async fetchBrsApiVersion(): Promise<string> {
@@ -51,7 +50,7 @@ export class ApiService {
       const {version} = await this.api.network.getBlockchainStatus();
       this.brsVersion = version;
     }
-    return this.brsVersion;
+    return Promise.resolve(this.brsVersion);
   }
 
 }

@@ -140,8 +140,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
   }
 
   private async updateQRCode(): Promise<void> {
-    const address = await this.getQRCode(this.selectedAccount.accountRS);
-    this.selectedAccountQRCode = `${this.node}${address}`;
+    const path = await this.getQRCode(this.selectedAccount.accountRS);
+    this.selectedAccountQRCode = this.node + path;
   }
 
   /**
