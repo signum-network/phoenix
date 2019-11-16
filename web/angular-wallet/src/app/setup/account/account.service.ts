@@ -97,7 +97,8 @@ export class AccountService {
       subtype,
     };
     try {
-      const includeMultiouts = semver.gte(this.selectedNode.version, constants.multiOutMinVersion, {includePrerelease: true}) || undefined;
+      const apiVersion = await this.apiService.fetchBrsApiVersion();
+      const includeMultiouts = semver.gte(apiVersion, constants.multiOutMinVersion, {includePrerelease: true}) || undefined;
       const transactions = await this.api.account.getAccountTransactions({
         ...args,
         includeIndirect: includeMultiouts
