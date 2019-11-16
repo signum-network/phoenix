@@ -812,6 +812,7 @@
   "select_color_scheme": "Wybierz schemat koloru",
   "select_contact_in_sidebar": "Proszę wybrać kontakt po lewej.",
   "select_node": "Wybierz Węzeł",
+  "select_node_description": "Wybierz element równorzędny, z którym chcesz się połączyć. Możesz użyć sugerowanego elementu równorzędnego, ale możesz także wprowadzić dowolny adres URL elementu równorzędnego.",
   "select_recipients": "Wybierz odbiorców",
   "sell": "Sprzedaj",
   "sell_alias": "Sprzedaj Alias",

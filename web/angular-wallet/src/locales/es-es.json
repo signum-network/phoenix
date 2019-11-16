@@ -803,6 +803,7 @@
   "select_color_scheme": "Seleccione el Esquema de Color",
   "select_contact_in_sidebar": "Por favor, seleccione un contacto en la barra lateral izquierda.",
   "select_node": "Elija Nodo",
+  "select_node_description": "Seleccione el par al que desea conectarse. Puede usar un par sugerido, pero también puede ingresar una url arbitraria.",
   "select_recipients": "Seleccionar destinatarios",
   "sell": "Vender",
   "sell_alias": "Vender Alias",

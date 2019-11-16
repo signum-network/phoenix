@@ -748,6 +748,7 @@
   "select_color_scheme": "Izaberite Shemu Boje",
   "select_contact_in_sidebar": "Molimo Vas izaberite kontakt u levom padajućem meniju.",
   "select_node": "Изаберите Ноде",
+  "select_node_description": "Одаберите вршњак са којим желите да се повежете. Можете користити предложени пеер, али можете и унети произвољни пеер урл.",
   "select_recipients": "Изаберите примаоци",
   "sell": "Prodaj",
   "sell_alias": "Prodajte Alias",

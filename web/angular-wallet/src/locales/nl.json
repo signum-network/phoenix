@@ -803,6 +803,7 @@
   "select_color_scheme": "Selecteer kleurenschema",
   "select_contact_in_sidebar": "Selecteer A.u.b. een contactpersoon in de linker menubar.",
   "select_node": "Kies knooppunt",
+  "select_node_description": "Selecteer de peer waarmee u verbinding wilt maken. U kunt een voorgestelde peer gebruiken, maar u kunt ook een willekeurige peer-url invoeren.",
   "select_recipients": "Selecteer ontvangers",
   "sell": "Verkoop",
   "sell_alias": "Verkoop Alias",

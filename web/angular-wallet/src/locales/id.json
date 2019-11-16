@@ -803,6 +803,7 @@
   "select_color_scheme": "Pilih skema warna",
   "select_contact_in_sidebar": "Silahkan pilih kontak di sidebar kiri.",
   "select_node": "Pilih Node",
+  "select_node_description": "Pilih rekan yang ingin Anda hubungkan. Anda dapat menggunakan rekan yang disarankan, tetapi juga dapat memasukkan url rekan sewenang-wenang.",
   "select_recipients": "Pilih Penerima",
   "sell": "Menjual",
   "sell_alias": "Menjual Alias",

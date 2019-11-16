@@ -56,7 +56,6 @@ interface SetAliasRequest {
 
 interface NodeDescriptor {
   url: string;
-  version: string;
 }
 
 
@@ -73,10 +72,6 @@ export class AccountService {
   constructor(private storeService: StoreService, private apiService: ApiService, private i18nService: I18nService) {
     this.storeService.settings.subscribe((settings: Settings) => {
       this.api = this.apiService.api;
-      this.selectedNode = {
-        url: settings.node,
-        version: settings.nodeVersion
-      };
     });
   }
 

@@ -11,6 +11,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 import { ToolbarComponent } from 'app/layout/components/toolbar/toolbar.component';
 import {I18nModule} from '../i18n/i18n.module';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import {I18nModule} from '../i18n/i18n.module';
     FuseSharedModule,
     FuseSearchBarModule,
     FuseShortcutsModule,
-    I18nModule
+    I18nModule,
+    MatDividerModule
   ],
     exports     : [
         ToolbarComponent
