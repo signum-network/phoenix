@@ -20,7 +20,7 @@ export function decryptMessage(
     senderPublicKeyHex: string,
     recipientPrivateKeyHex: string): string {
 
-    if(!encryptedMessage.isText){
+    if (!encryptedMessage.isText) {
         throw new Error('Encrypted message is marked as non-text. Use decryptData instead');
     }
 

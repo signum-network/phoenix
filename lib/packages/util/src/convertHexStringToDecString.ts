@@ -26,4 +26,4 @@ export const convertHexStringToDecString = (hexStr: string): string => {
         }
     }
     return digits.reverse().join('');
-}
+};

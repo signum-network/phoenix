@@ -111,6 +111,7 @@ export class Converter {
             result.push(bytes);
             i++;
         }
+        // @ts-ignore
         return [].concat.apply([], result);
     }
 
