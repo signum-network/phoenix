@@ -5,6 +5,8 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/burst-apps-team/phoenix/badge.svg?targetFile=lib%2Fpackage.json)](https://snyk.io/test/github/burst-apps-team/phoenix?targetFile=lib%2Fpackage.json)
 [![codecov](https://codecov.io/gh/burst-apps-team/phoenix/branch/develop/graph/badge.svg)](https://codecov.io/gh/burst-apps-team/phoenix)
 
+<a href="https://apps.apple.com/us/app/phoenix-burst-ios-wallet/id1485827209" target="_blank"><img src="./assets/btn-appstore.png" width="128" /></a> <a href="https://play.google.com/store/apps/details?id=com.burstcoin.phoenix" target="_blank"><img src="./assets/btn-playstore.png" width="128" /></a> 
+
 ## About
 
 Phoenix was proposed in [CIP-18](https://github.com/burst-apps-team/CIPs/blob/master/cip-0018.md) and is designed to be a cross-platform wallet for the BURST blockchain.
