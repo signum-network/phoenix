@@ -80,23 +80,34 @@ export class AccountService {
   }
 
   public async getAccountTransactions(
-    id: string,
+    accountId: string,
     firstIndex?: number,
     lastIndex?: number,
     numberOfConfirmations?: number,
     type?: number,
     subtype?: number
   ): Promise<TransactionList> {
+
+    const args = {
+      accountId,
+      firstIndex,
+      lastIndex,
+      numberOfConfirmations,
+      type,
+      subtype,
+    };
     try {
       const apiVersion = await this.apiService.fetchBrsApiVersion();
       const includeMultiouts = semver.gte(apiVersion, constants.multiOutMinVersion, {includePrerelease: true}) || undefined;
-      const transactions = await this.api.account.getAccountTransactions(
-        id, firstIndex, lastIndex, numberOfConfirmations, type, subtype, includeMultiouts);
+      const transactions = await this.api.account.getAccountTransactions({
+        ...args,
+        includeIndirect: includeMultiouts
+      });
       return Promise.resolve(transactions);
     } catch (e) {
       const EC_INVALID_ARG = 4;
       if (e.data.errorCode === EC_INVALID_ARG) {
-        return this.api.account.getAccountTransactions(id, firstIndex, lastIndex, numberOfConfirmations, type, subtype);
+        return await this.api.account.getAccountTransactions(args);
       } else {
         throw e;
       }

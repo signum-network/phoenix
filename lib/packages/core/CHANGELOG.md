@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## 0.4.2 (TBR)
+
+___
+__Breaking Changes__
+- `getAccountTransations` uses an argument object now
+___
+
 - deprecated `sendTextMessage`
     - will be removed in next version (0.5)
     - use `sendMessage`

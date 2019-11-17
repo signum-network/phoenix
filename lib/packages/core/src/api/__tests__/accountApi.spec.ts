@@ -91,7 +91,8 @@ describe('Account Api', () => {
         it('should getAccountTransaction without paging', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
             const service = createBurstService(httpMock);
-            const transactions = await getAccountTransactions(service)('accountId');
+            const args = { accountId: 'accountId' };
+            const transactions = await getAccountTransactions(service)(args);
             expect(transactions.requestProcessingTime).not.toBeNull();
             expect(transactions.transactions).toHaveLength(2);
             expect(transactions.transactions[0].height).toBe(20);
@@ -102,7 +103,8 @@ describe('Account Api', () => {
             httpMock = HttpMockBuilder.create().onGetThrowError(404, 'Test Error').build();
             const service = createBurstService(httpMock);
             try {
-                await getAccountTransactions(service)('accountId');
+                const args = { accountId: 'accountId' };
+                await getAccountTransactions(service)(args);
             } catch (e) {
                 expect(e.status).toBe(404);
                 expect(e.message).toBe('Test Error');
@@ -112,7 +114,8 @@ describe('Account Api', () => {
         it('should getAccountTransaction with paging', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
             const service = createBurstService(httpMock);
-            const transactions = await getAccountTransactions(service)('accountId', 0, 10);
+            const args = { accountId: 'accountId', firstIndex: 0, lastIndex: 10 };
+            const transactions = await getAccountTransactions(service)(args);
             expect(transactions.requestProcessingTime).not.toBeNull();
             expect(transactions.transactions).toHaveLength(2);
             expect(transactions.transactions[0].height).toBe(20);
@@ -122,7 +125,8 @@ describe('Account Api', () => {
         it('should getAccountTransaction with number of confirmations', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
             const service = createBurstService(httpMock);
-            const transactions = await getAccountTransactions(service)('accountId', undefined, undefined, 10);
+            const args = { accountId: 'accountId', confirmations: 10 };
+            const transactions = await getAccountTransactions(service)(args);
             expect(transactions.requestProcessingTime).not.toBeNull();
             expect(transactions.transactions).toHaveLength(2);
             expect(transactions.transactions[0].height).toBe(20);

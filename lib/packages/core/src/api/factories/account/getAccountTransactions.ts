@@ -5,6 +5,7 @@
  */
 import {BurstService} from '../../../service/burstService';
 import {TransactionList} from '../../../typings/transactionList';
+import {GetAccountTransactionsArgs} from '../../../typings/args';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
@@ -12,30 +13,14 @@ import {TransactionList} from '../../../typings/transactionList';
  * See details at [[AccountApi.getAccountTransactions]]
  */
 export const getAccountTransactions = (service: BurstService):
-    (
-        accountId: string,
-        firstIndex?: number,
-        lastIndex?: number,
-        numberOfConfirmations?: number,
-        type?: number,
-        subtype?: number,
-        includeIndirect?: boolean
-    ) => Promise<TransactionList> =>
-    (
-        accountId: string,
-        firstIndex?: number,
-        lastIndex?: number,
-        numberOfConfirmations?: number,
-        type?: number,
-        subtype?: number,
-        includeIndirect?: boolean
-    ): Promise<TransactionList> =>
-        service.query('getAccountTransactions', {
-            account: accountId,
-            firstIndex,
-            lastIndex,
-            numberOfConfirmations,
-            type,
-            subtype,
-            includeIndirect
-        });
+    (args: GetAccountTransactionsArgs) => Promise<TransactionList> =>
+    (args: GetAccountTransactionsArgs): Promise<TransactionList> => {
+
+        const parameters = {
+            ...args,
+            account: args.accountId,
+        };
+        delete parameters.accountId;
+
+        return service.query('getAccountTransactions', parameters);
+    };
