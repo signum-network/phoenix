@@ -3,19 +3,19 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 
 import {
-  Api,
   Account,
+  Api,
+  AttachmentEncryptedMessage,
   SuggestedFees,
   Transaction,
+  TransactionArbitrarySubtype,
   TransactionId,
   TransactionType,
-  TransactionArbitrarySubtype,
-  AttachmentEncryptedMessage,
 } from '@burstjs/core';
 import {AccountService} from 'app/setup/account/account.service';
 import {decryptAES, hashSHA256} from '@burstjs/crypto';
 import {NetworkService} from 'app/network/network.service';
-import {convertDateToBurstTime, convertAddressToNumericId} from '@burstjs/util';
+import {convertAddressToNumericId, convertDateToBurstTime, convertNumberToNQTString} from '@burstjs/util';
 import {ApiService} from '../../api.service';
 
 export interface ChatMessage {
@@ -105,8 +105,7 @@ export class MessagesService implements Resolve<any> {
             timestamp: val.timestamp // relies on default order being reverse chrono
           });
         }, []);
-      }
-      catch (e) {
+      } catch (e) {
         console.warn(e);
         this.messages = [];
         this.contacts = [];
@@ -136,16 +135,30 @@ export class MessagesService implements Resolve<any> {
     };
 
     let transactionId;
+
     if (isEncrypted) {
       // @ts-ignore
       if (!recipient.publicKey) {
         // todo: figure out why notifier service isnt working!
         throw new ErrorEvent('error_recipient_no_public_key');
       }
-      // @ts-ignore
-      transactionId = await this.api.message.sendEncryptedTextMessage(message.message, recipientId, recipient.publicKey, senderKeys, 1440, fee);
+
+      transactionId = await this.api.message.sendEncryptedMessage({
+        recipientId,
+        // @ts-ignore
+        recipientPublicKey: recipient.publicKey,
+        message: message.message,
+        feePlanck: convertNumberToNQTString(fee),
+        senderKeys,
+      });
     } else {
-      transactionId = await this.api.message.sendTextMessage(message.message, recipientId, this.user.keys.publicKey, senderKeys.signPrivateKey, 1440, fee);
+      transactionId = await this.api.message.sendMessage({
+        recipientId,
+        message: message.message,
+        feePlanck: convertNumberToNQTString(fee),
+        senderPrivateKey: senderKeys.signPrivateKey,
+        senderPublicKey: senderKeys.publicKey,
+      });
     }
 
     // Check to see if existing chat session exists (ios-style), if so, merge it
@@ -179,13 +192,13 @@ export class MessagesService implements Resolve<any> {
         t.type === TransactionType.Arbitrary &&
         t.subtype === TransactionArbitrarySubtype.Message
       )
-      .concat(messages[0].transactions)
-      .sort((a, b) => a.timestamp > b.timestamp ? -1 : 1 );
+        .concat(messages[0].transactions)
+        .sort((a, b) => a.timestamp > b.timestamp ? -1 : 1);
 
     return Promise.resolve(allMessages);
   }
 
-  sendNewMessage(recipient): void{
+  sendNewMessage(recipient): void {
     const message = {
       contactId: convertAddressToNumericId(recipient) || 'new',
       dialog: [],
