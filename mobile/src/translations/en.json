@@ -33,7 +33,8 @@
         "noTransactions": {
           "title": "No transactions"
         },
-        "copiedSuccessfully": "Address copied successfully."
+        "copiedSuccessfully": "Address copied successfully.",
+        "copy": "Copy"
       },
       "addAccount": {
         "createAccount": "Create account",

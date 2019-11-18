@@ -9,6 +9,7 @@ interface Props {
   onSlidingComplete: (value: number) => void;
   suggestedFees: SuggestedFees;
   fee: number;
+  disabled?: boolean;
 }
 
 const styles: any = {
@@ -33,6 +34,7 @@ export class FeeSlider extends React.PureComponent<Props> {
   render () {
     return (
       <Slider
+        disabled={this.props.disabled}
         value={this.props.fee}
         style={styles.slider}
         minimumValue={convertNQTStringToNumber(this.props.suggestedFees.minimum.toString())}

@@ -1,7 +1,7 @@
 import { Account } from '@burstjs/core';
 import { convertNQTStringToNumber, convertNumericIdToAddress, isBurstAddress } from '@burstjs/util';
 import React from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import { NavigationEventSubscription, NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Text, TextThemes } from '../../../core/components/base/Text';
@@ -67,17 +67,16 @@ class Send extends React.PureComponent<Props, State> {
     }
     if (deepLink) {
       const params = parseURLParams(deepLink);
-
       this.setState({
         deepLinkProps: {
           sender: null,
           address: isBurstAddress(params.receiver) ? params.receiver : convertNumericIdToAddress(params.receiver),
-          fee: this.getFee(params.feeNQT, params.feeSuggestionType),
-          amount: convertNQTStringToNumber(params.amountNQT).toString(),
+          fee: params.feeNQT ? this.getFee(params.feeNQT, params.feeSuggestionType) : undefined,
+          amount: params.amountNQT ? convertNQTStringToNumber(params.amountNQT).toString() : undefined,
           message: params.message,
           messageIsText: params.messageIsText === 'false' ? false : true,
           encrypt: params.encrypt,
-          immutable: params.immutable === 'false' ? false : true
+          immutable: params.immutable === 'true' ? true : false
         }
       });
     }

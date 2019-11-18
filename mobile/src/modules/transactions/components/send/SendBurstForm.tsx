@@ -15,7 +15,8 @@ import {
   StyleSheet,
   TextInputEndEditingEventData,
   TouchableOpacity,
-  View
+  View,
+  Alert
 } from 'react-native';
 import SwipeButton from 'rn-swipe-button';
 import { actionIcons, transactionIcons } from '../../../../assets/icons';
@@ -47,16 +48,16 @@ interface Props {
 
 export interface SendBurstFormState {
   sender: null | Account;
-  amount: string;
+  amount?: string;
   address?: string;
-  fee: string;
+  fee?: string;
   message?: string;
   messageIsText: boolean;
   encrypt: boolean;
   immutable: boolean;
   recipient?: Recipient;
   recipientType?: string;
-  showSubmitButton: boolean;
+  showSubmitButton?: boolean;
 }
 
 const styles = StyleSheet.create({
@@ -281,6 +282,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
     }
   }
 
+
   render () {
     const { sender, recipient, amount, fee } = this.state;
     const { suggestedFees } = this.props;
@@ -312,7 +314,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             value={recipient.addressRaw}
             onChange={this.handleChangeAddress}
             onEndEditing={this.handleAddressBlur}
-            // disabled={this.state.immutable}
+            editable={!this.state.immutable}
             title={i18n.t(transactions.screens.send.to)}
             placeholder='BURST-____-____-____-_____'
             rightIcons={RecipientRightIcons}
@@ -321,7 +323,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             value={amount}
             onChange={this.handleAmountChange}
             keyboard={KeyboardTypes.NUMERIC}
-            // disabled={this.state.immutable}
+            editable={!this.state.immutable}
             title={i18n.t(transactions.screens.send.amountNQT)}
             placeholder={'0'}
           />
@@ -329,12 +331,13 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             value={fee}
             onChange={this.handleFeeChange}
             keyboard={KeyboardTypes.NUMERIC}
-            // disabled={this.state.immutable}
+            editable={!this.state.immutable}
             title={i18n.t(transactions.screens.send.feeNQT)}
             placeholder={'0'}
           />
           {suggestedFees &&
            <FeeSlider
+            disabled={this.state.immutable}
             fee={parseFloat(fee) || 0}
             onSlidingComplete={this.handleFeeChangeFromSlider}
             suggestedFees={suggestedFees}
