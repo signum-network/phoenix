@@ -80,6 +80,8 @@ See more here:
 <dl>
 <dt><a href="#core.module_api">api</a></dt>
 <dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
 </dl>
 
 ## Classes
@@ -6470,12 +6472,11 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 **Kind**: global class  
 <a name="new_ApiSettings_new"></a>
 
-### new ApiSettings(nodeHost, apiRootUrl, apiVersion, httpOptions)
+### new ApiSettings(nodeHost, apiVersion, httpOptions)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | nodeHost | <code>string</code> | <p>The url of the Burst peer</p> |
-| apiRootUrl | <code>string</code> | <p>The optional api endpoint, i.e. <code>/burst</code>. Usually, you wont use this.</p> |
 | apiVersion | <code>ApiVersion</code> | <p>For future usage.</p> |
 | httpOptions | <code>any</code> \| <code>AxiosRequestSettings</code> | <p>Optional http options, like additional header. The default implementation uses axios. In case of a custom client pass your own options. see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
 
@@ -6490,17 +6491,17 @@ This helper class facilitates access to these data</p>
 **Kind**: global class  
 
 * [ContractHelper](#ContractHelper)
-    * [.contract](#ContractHelper+contract) ⇒
+    * [.getContract()](#ContractHelper+getContract) ⇒
     * [.getVariableAsString(index)](#ContractHelper+getVariableAsString) ⇒
     * [.getDataBlocksAsString(index, count)](#ContractHelper+getDataBlocksAsString) ⇒
     * [.getVariableAsDecimal(index)](#ContractHelper+getVariableAsDecimal) ⇒
     * [.getVariable(index)](#ContractHelper+getVariable) ⇒
     * [.getHexDataAt(index, length)](#ContractHelper+getHexDataAt) ⇒
 
-<a name="ContractHelper+contract"></a>
+<a name="ContractHelper+getContract"></a>
 
-### contractHelper.contract ⇒
-**Kind**: instance property of [<code>ContractHelper</code>](#ContractHelper)  
+### contractHelper.getContract() ⇒
+**Kind**: instance method of [<code>ContractHelper</code>](#ContractHelper)  
 **Returns**: <p>Get the contract</p>  
 <a name="ContractHelper+getVariableAsString"></a>
 
@@ -6661,12 +6662,11 @@ using [[ApiComposer]].</p>
 
 <a name="new_ApiSettings_new"></a>
 
-### new ApiSettings(nodeHost, apiRootUrl, apiVersion, httpOptions)
+### new ApiSettings(nodeHost, apiVersion, httpOptions)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | nodeHost | <code>string</code> | <p>The url of the Burst peer</p> |
-| apiRootUrl | <code>string</code> | <p>The optional api endpoint, i.e. <code>/burst</code>. Usually, you wont use this.</p> |
 | apiVersion | <code>ApiVersion</code> | <p>For future usage.</p> |
 | httpOptions | <code>any</code> \| <code>AxiosRequestSettings</code> | <p>Optional http options, like additional header. The default implementation uses axios. In case of a custom client pass your own options. see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
 
