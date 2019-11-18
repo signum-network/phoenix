@@ -5,6 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { actionIcons } from '../../../assets/icons';
+import { Button as BButton, ButtonSizes, ButtonThemes } from '../../../core/components/base/Button';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { i18n } from '../../../core/i18n';
 import { InjectedReduxProps } from '../../../core/interfaces';
@@ -12,10 +13,12 @@ import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
 import { ApplicationState } from '../../../core/store/initialState';
 import { Colors } from '../../../core/theme/colors';
+import { isIOS } from '../../../core/utils/platform';
 import { PriceInfoReduxState } from '../../price-api/store/reducer';
 import { AccountDetailsList } from '../components/details/AccountDetailsList';
 import { updateAccountTransactions } from '../store/actions';
 import { auth } from '../translations';
+import { Sizes } from '../../../core/theme/sizes';
 
 interface Props extends InjectedReduxProps {
   accounts: Account[];
@@ -47,12 +50,21 @@ class AccountDetails extends React.PureComponent<TProps> {
         <HeaderTitle>
           {params.accountRS}
         </HeaderTitle>
+
       ),
-      headerRight: (
-        <TouchableOpacity onPress={handleCopy}>
-          <Image style={styles.copyIcon} source={actionIcons.copy} />
-        </TouchableOpacity>
-      )
+
+      // This makes no sense because BButton _is_ a TouchableOpacity, but it works
+      headerRight: isIOS ?
+        (
+          <TouchableOpacity onPress={handleCopy}>
+            <Image style={styles.copyIcon} source={actionIcons.copy} />
+          </TouchableOpacity>
+        ) :
+        (
+          <BButton theme={ButtonThemes.ACCENT} size={ButtonSizes.SMALL} onPress={handleCopy}>
+            <Image style={styles.copyIcon} source={actionIcons.copy} />
+          </BButton>
+        )
     };
   }
 

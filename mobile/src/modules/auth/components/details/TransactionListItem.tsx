@@ -1,12 +1,12 @@
-import { Transaction } from '@burstjs/core';
+import { getRecipientsAmount, isMultiOutSameTransaction, isMultiOutTransaction, Transaction } from '@burstjs/core';
+import { convertNQTStringToNumber, convertBurstTimeToDate, convertAddressToNumericId } from '@burstjs/util';
 import React from 'react';
 import { Image, TouchableOpacity, View } from 'react-native';
-import { transactionIcons } from '../../../../assets/icons';
+import { transactionIcons, actionIcons } from '../../../../assets/icons';
 import { Text, TextAlign } from '../../../../core/components/base/Text';
 import { Colors } from '../../../../core/theme/colors';
 import { defaultSideOffset, FontSizes, Sizes } from '../../../../core/theme/sizes';
 import { getShortDateFromTimestamp } from '../../../../core/utils/date';
-import { NQTAmountToString } from '../../../../core/utils/numbers';
 
 interface Props {
   transaction: Transaction;
@@ -52,17 +52,40 @@ const styles: any = {
     height: 20
   },
   incomingAmount: {
-    marginRight: Sizes.MEDIUM
+    marginRight: Sizes.MEDIUM,
+    flexDirection: 'row'
   },
   outcomingAmount: {
-    marginLeft: Sizes.MEDIUM
+    marginLeft: Sizes.MEDIUM,
+    flexDirection: 'row'
   }
 };
 
 export class TransactionListItem extends React.PureComponent<Props> {
-  isIncomingTransaction = () => {
-    const { accountRS, transaction } = this.props;
-    return accountRS === transaction.recipientRS;
+
+  account: any;
+
+  isMultiOutPayment (transaction: Transaction): boolean {
+    return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction);
+  }
+
+  isOwnAccount (address: string | undefined): boolean {
+    return address && address === this.props.accountRS ? true : false;
+  }
+
+  getAmount = (transaction: Transaction): number => {
+
+    if (this.isOwnAccount(transaction.senderRS)) {
+      return -convertNQTStringToNumber(transaction.amountNQT || '0');
+    }
+
+    return this.isMultiOutPayment(transaction)
+      ? getRecipientsAmount(convertAddressToNumericId(this.props.accountRS), transaction)
+      : convertNQTStringToNumber(transaction.amountNQT || '0');
+  }
+
+  isAmountNegative = (transaction: Transaction): boolean => {
+    return this.isOwnAccount(transaction.senderRS);
   }
 
   handlePress = () => {
@@ -96,15 +119,19 @@ export class TransactionListItem extends React.PureComponent<Props> {
 
   render () {
     const {
-      amountNQT = '0',
       transaction = '',
       timestamp = 0,
       recipientRS = '',
       senderRS = ''
     } = this.props.transaction;
-    const isIncoming = this.isIncomingTransaction();
-    const amount = NQTAmountToString(amountNQT);
-    const accountRS = isIncoming ? senderRS : recipientRS;
+    const isNegative = this.isAmountNegative(this.props.transaction);
+    const amount = this.getAmount(this.props.transaction);
+    let accountRS = isNegative ? recipientRS : senderRS;
+
+    if (this.isMultiOutPayment(this.props.transaction)) {
+      accountRS = 'Multi-out Payment';
+    }
+
     const date = getShortDateFromTimestamp(timestamp);
 
     return (
@@ -122,17 +149,27 @@ export class TransactionListItem extends React.PureComponent<Props> {
             </View>
           </View>
           <View style={styles.dataView}>
-            {isIncoming ? (
-                <View style={styles.incomingAmount}>
-                  <Text color={Colors.GREEN} bebasFont>+{amount}</Text>
+            {isNegative ? (
+                <View style={styles.outcomingAmount}>
+                  <View style={styles.flex}>
+                    <Text color={Colors.RED} bebasFont>{amount}</Text>
+                  </View>
+                  <View style={styles.flex}>
+                    <Image source={actionIcons.chevronRight} style={styles.icon} />
+                  </View>
                 </View>
             ) : null}
-            <View>
+            <View style={styles.account}>
               <Text color={Colors.WHITE} bebasFont>{accountRS}</Text>
             </View>
-            {!isIncoming ? (
-                <View style={styles.outcomingAmount}>
-                  <Text color={Colors.RED} bebasFont>-{amount}</Text>
+            {!isNegative ? (
+                <View style={styles.incomingAmount}>
+                  <View style={styles.flex}>
+                    <Image source={actionIcons.chevronRight} style={styles.icon} />
+                  </View>
+                  <View style={styles.flex}>
+                    <Text color={Colors.GREEN} bebasFont>{amount}</Text>
+                  </View>
                 </View>
             ) : null}
           </View>
