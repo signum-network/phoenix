@@ -1,8 +1,8 @@
 import { getRecipientsAmount, isMultiOutSameTransaction, isMultiOutTransaction, Transaction } from '@burstjs/core';
-import { convertNQTStringToNumber, convertBurstTimeToDate, convertAddressToNumericId } from '@burstjs/util';
+import { convertAddressToNumericId, convertNQTStringToNumber } from '@burstjs/util';
 import React from 'react';
 import { Image, TouchableOpacity, View } from 'react-native';
-import { transactionIcons, actionIcons } from '../../../../assets/icons';
+import { actionIcons, transactionIcons } from '../../../../assets/icons';
 import { Text, TextAlign } from '../../../../core/components/base/Text';
 import { Colors } from '../../../../core/theme/colors';
 import { defaultSideOffset, FontSizes, Sizes } from '../../../../core/theme/sizes';
@@ -62,8 +62,6 @@ const styles: any = {
 };
 
 export class TransactionListItem extends React.PureComponent<Props> {
-
-  account: any;
 
   isMultiOutPayment (transaction: Transaction): boolean {
     return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction);
