@@ -34,7 +34,7 @@ export const setAlias = (service: BurstService): (
         deadline: number,
     ): Promise<TransactionId> => {
 
-        let parameters = {
+        const parameters = {
             aliasName,
             aliasURI,
             deadline: deadline,
