@@ -5,6 +5,14 @@
     "output": "release-builds",
     "buildResources": "dist"
   },
+  "protocols": [
+    {
+      "name": "Phoenix Burst Wallet",
+      "schemes": [
+        "burst"
+      ]
+    }
+  ],
   "files": [
     "dist/**/*",
     "node_modules/**/*",

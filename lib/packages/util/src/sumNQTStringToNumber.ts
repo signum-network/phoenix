@@ -10,6 +10,6 @@ import {convertNQTStringToNumber} from './convertNQTStringToNumber';
  * @param nqts Variable amount list with NQT string
  * @return The sum of all amounts in BURST
  */
-export function sumNQTStringToNumber(...nqts: string[]): number{
+export function sumNQTStringToNumber(...nqts: string[]): number {
     return nqts.reduce( (sum, v) => sum + convertNQTStringToNumber(v), 0);
 }

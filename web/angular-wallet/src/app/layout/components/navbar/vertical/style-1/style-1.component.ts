@@ -107,7 +107,6 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
       .subscribe(async ({language, node}) => {
           this.language = language;
           this.node = node;
-
           // Get QR Code
           await this.updateQRCode();
         }
@@ -140,9 +139,9 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
       });
   }
 
-  private async updateQRCode() {
-    this.selectedAccountQRCode = await this.getQRCode(this.selectedAccount.accountRS);
-    this.selectedAccountQRCode = `${this.node}/${this.selectedAccountQRCode}`;
+  private async updateQRCode(): Promise<void> {
+    const path = await this.getQRCode(this.selectedAccount.accountRS);
+    this.selectedAccountQRCode = this.node + path;
   }
 
   /**

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 export const HeaderTitle: React.FunctionComponent<Props> = ({ children, onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.view} activeOpacity={onPress ? 0.2 : 1}>
-      <Text bebasFont={true} bold={true} color={Colors.WHITE} size={FontSizes.MEDIUM}>{children}</Text>
+      <Text bebasFont={true} color={Colors.WHITE} size={FontSizes.MEDIUM}>{children}</Text>
     </TouchableOpacity>
   );
 };

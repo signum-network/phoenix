@@ -2,100 +2,106 @@
 
 #dashboard {
 
-    .main-widget {
-        display: flex;
-        flex-direction: column;
+  .main-widget {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content {
+    display: flex;
+    flex: 1 1 auto;
+    padding: 32px;
+    min-width: 0;
+
+    @include media-breakpoint('lt-lg') {
+      flex-direction: column;
     }
 
-    .content {
-        display: flex;
+    .left {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      min-width: 0;
+
+      .widget {
         flex: 1 1 auto;
-        padding: 32px;
         min-width: 0;
+      }
+    }
+
+    .right {
+      display: flex;
+      flex: 0 0 auto;
+      width: 320px;
+      min-width: 320px;
+      max-width: 320px;
+
+      @include media-breakpoint('lt-lg') {
+        flex: 1 0 100%;
+        margin-top: 32px;
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+      }
+
+      .fuse-card {
 
         @include media-breakpoint('lt-lg') {
-            flex-direction: column;
+          width: 100%;
+          min-width: 0;
+          max-width: none;
         }
+      }
+    }
+  }
 
-        .left {
-            display: flex;
-            flex-direction: column;
-            flex: 1 1 auto;
-            min-width: 0;
+  .recent-transactions {
+    overflow-y: auto;
+  }
 
-            .widget {
-                flex: 1 1 auto;
-                min-width: 0;
-            }
-        }
+  mat-toolbar-row {
 
-        .right {
-            display: flex;
-            flex: 0 0 auto;
-            width: 320px;
-            min-width: 320px;
-            max-width: 320px;
+    background-color: #5CB85C;
+    color: #FFF;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    cursor: default;
+    padding-top: 11px;
+    padding-right: 16px;
+    padding-bottom: 10px;
+    padding-left: 16px;
+    margin-bottom: 20px;
+    white-space: normal;
+    justify-content: space-between;
+    height: fit-content;
 
-            @include media-breakpoint('lt-lg') {
-                flex: 1 0 100%;
-                margin-top: 32px;
-                width: 100%;
-                min-width: 0;
-                max-width: none;
-            }
-
-            .fuse-card {
-
-                @include media-breakpoint('lt-lg') {
-                    width: 100%;
-                    min-width: 0;
-                    max-width: none;
-                }
-            }
-        }
+    &.warning {
+      background: #F0AD4E;
+      button.activate {
+        min-width: fit-content;
+      }
     }
 
-    .recent-transactions {
-        overflow-y: auto;
+    a {
+      color: #fff;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
 
-    mat-toolbar-row {
-
-        background-color: #5CB85C;
-        color: #FFF;
-        border-radius: 3px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-        cursor: default;
-        padding-top: 11px;
-        padding-right: 16px;
-        padding-bottom: 10px;
-        padding-left: 16px;
-        margin-bottom:20px;
-        white-space: normal;
-
-        &.warning {
-            background:#F0AD4E;
-        }
-
-        a { 
-            color:#fff;
-            text-decoration: underline;
-            &:hover {
-                text-decoration: none;
-            }
-        }
-
-        .spacer {
-            flex: 1 1 auto;
-        }
-    
-        mat-icon {
-            padding:0 35px 0 0;
-        }
-
-        .close {
-            cursor: pointer;
-        }
+    .spacer {
+      flex: 1 1 auto;
     }
+
+    mat-icon {
+      padding: 0 35px 0 0;
+    }
+
+    .close {
+      cursor: pointer;
+    }
+  }
 
 }

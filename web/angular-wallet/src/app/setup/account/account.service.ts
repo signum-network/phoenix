@@ -3,7 +3,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 import semver from 'semver';
-
+import {environment} from 'environments/environment';
 import {StoreService} from 'app/store/store.service';
 import {Settings} from 'app/settings';
 import {
@@ -11,10 +11,10 @@ import {
   AliasList,
   Api,
   Balance,
+  Transaction,
   TransactionId,
   TransactionList,
-  UnconfirmedTransactionList,
-  Transaction
+  UnconfirmedTransactionList
 } from '@burstjs/core';
 import {decryptAES, encryptAES, generateMasterKeys, getAccountIdFromPublicKey, hashSHA256, Keys} from '@burstjs/crypto';
 import {
@@ -26,6 +26,7 @@ import {
 import {ApiService} from '../../api.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {constants} from 'app/constants';
+import {HttpError, HttpImpl as Http} from '@burstjs/http';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -55,7 +56,6 @@ interface SetAliasRequest {
 
 interface NodeDescriptor {
   url: string;
-  version: string;
 }
 
 
@@ -67,17 +67,11 @@ export class AccountService {
   private api: Api;
   private selectedNode: NodeDescriptor;
 
-  // a simple string cache of transaction ids for which the user
-  // has already received a push notification
   private transactionsSeenInNotifications: string[] = [];
 
   constructor(private storeService: StoreService, private apiService: ApiService, private i18nService: I18nService) {
     this.storeService.settings.subscribe((settings: Settings) => {
       this.api = this.apiService.api;
-      this.selectedNode = {
-        url: settings.node,
-        version: settings.nodeVersion
-      };
     });
   }
 
@@ -85,19 +79,36 @@ export class AccountService {
     this.currentAccount.next(account);
   }
 
-  public async getAccountTransactions(id: string, firstIndex?: number, lastIndex?: number, numberOfConfirmations?: number, type?: number, subtype?: number): Promise<TransactionList> {
-    try{
-      const includeMultiouts = semver.gte(this.selectedNode.version, constants.multiOutMinVersion, {includePrerelease: true}) || undefined;
-      const transactions = await this.api.account.getAccountTransactions(
-        id, firstIndex, lastIndex, numberOfConfirmations, type, subtype, includeMultiouts);
+  public async getAccountTransactions(
+    accountId: string,
+    firstIndex?: number,
+    lastIndex?: number,
+    numberOfConfirmations?: number,
+    type?: number,
+    subtype?: number
+  ): Promise<TransactionList> {
+
+    const args = {
+      accountId,
+      firstIndex,
+      lastIndex,
+      numberOfConfirmations,
+      type,
+      subtype,
+    };
+    try {
+      const apiVersion = await this.apiService.fetchBrsApiVersion();
+      const includeMultiouts = semver.gte(apiVersion, constants.multiOutMinVersion, {includePrerelease: true}) || undefined;
+      const transactions = await this.api.account.getAccountTransactions({
+        ...args,
+        includeIndirect: includeMultiouts
+      });
       return Promise.resolve(transactions);
-    }catch (e){
-      // defensive programming: fallback, in case of multiout not accepted
+    } catch (e) {
       const EC_INVALID_ARG = 4;
-      if (e.data.errorCode === EC_INVALID_ARG){
-        return this.api.account.getAccountTransactions(id, firstIndex, lastIndex, numberOfConfirmations, type, subtype);
-      }
-      else{
+      if (e.data.errorCode === EC_INVALID_ARG) {
+        return await this.api.account.getAccountTransactions(args);
+      } else {
         throw e;
       }
     }
@@ -127,8 +138,12 @@ export class AccountService {
   }
 
   public setAlias({aliasName, aliasURI, feeNQT, deadline, pin, keys}: SetAliasRequest): Promise<TransactionId> {
-    const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    const senderPrivateKey = this.getPrivateKey(keys, pin);
     return this.api.account.setAlias(aliasName, aliasURI, feeNQT, keys.publicKey, senderPrivateKey, deadline);
+  }
+
+  private getPrivateKey(keys, pin): string {
+    return decryptAES(keys.signPrivateKey, hashSHA256(pin));
   }
 
   public getAccountBalance(id: string): Promise<Balance> {
@@ -148,20 +163,15 @@ export class AccountService {
   }
 
   public setAccountInfo({name, description, feeNQT, deadline, pin, keys}: SetAccountInfoRequest): Promise<TransactionId> {
-    const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    const senderPrivateKey = this.getPrivateKey(keys, pin);
     return this.api.account.setAccountInfo(name, description, feeNQT, keys.publicKey, senderPrivateKey, deadline);
   }
 
   public setRewardRecipient({recipient, feeNQT, deadline, pin, keys}: SetRewardRecipientRequest): Promise<TransactionId> {
-    const senderPrivateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    const senderPrivateKey = this.getPrivateKey(keys, pin);
     return this.api.account.setRewardRecipient(recipient, feeNQT, keys.publicKey, senderPrivateKey, deadline);
   }
 
-  /*
-  * Method responsible for creating a new active account from a passphrase.
-  * Generates keys for an account, encrypts them with the provided key and saves them.
-  * TODO: error handling of asynchronous method calls
-  */
   public createActiveAccount({passphrase, pin = ''}): Promise<Account> {
     return new Promise(async (resolve, reject) => {
       const account: Account = new Account();
@@ -185,14 +195,11 @@ export class AccountService {
 
       await this.selectAccount(account);
       const savedAccount = await this.synchronizeAccount(account);
+      await this.activateAccount(savedAccount);
       resolve(savedAccount);
     });
   }
 
-  /*
-  * Method responsible for importing an offline account.
-  * Creates an account object with no keys attached.
-  */
   public createOfflineAccount(address: string): Promise<Account> {
     return new Promise(async (resolve, reject) => {
 
@@ -218,21 +225,15 @@ export class AccountService {
     });
   }
 
-  /*
-  * Method responsible for removing an existing account.
-  */
   public removeAccount(account: Account): Promise<boolean> {
     return this.storeService.removeAccount(account).catch(error => error);
   }
 
-  /*
-  * Method responsible for selecting a different account.
-  */
   public selectAccount(account: Account): Promise<Account> {
     return new Promise((resolve, reject) => {
       this.storeService.selectAccount(account)
-        .then(account => {
-          this.synchronizeAccount(account);
+        .then(acc => {
+          this.synchronizeAccount(acc);
         });
       this.setCurrentAccount(account);
       resolve(account);
@@ -240,15 +241,12 @@ export class AccountService {
   }
 
 
-  /*
-  * Method responsible for synchronizing an account with the blockchain.
-  */
   public synchronizeAccount(account: Account): Promise<Account> {
     return new Promise(async (resolve, reject) => {
       await this.syncAccountDetails(account);
       await this.syncAccountTransactions(account);
       await this.syncAccountUnconfirmedTransactions(account);
-      
+
       this.storeService.saveAccount(account).catch(error => {
         reject(error);
       });
@@ -319,6 +317,28 @@ export class AccountService {
     } catch (e) {
       account.confirmed = false;
       console.log(e);
+    }
+  }
+
+  public async activateAccount(account: Account): Promise<void> {
+    try {
+
+      if (!account.keys) {
+        console.warn('Account does not have keys...ignored');
+        return;
+      }
+
+      const http = new Http(environment.activatorServiceUrl);
+      const payload = {
+        account: account.account,
+        publickey: account.keys.publicKey
+      };
+      await http.post('/api/activate', payload);
+    } catch (e) {
+      if (e instanceof HttpError) {
+        throw new Error(e.data || 'Unknown Error while requesting activation service');
+      }
+      throw e;
     }
   }
 }

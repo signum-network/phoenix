@@ -3,17 +3,12 @@
   <div class="content">
 
     <div class="mr-lg-32" fxFlex="100" *ngIf="account">
-      <mat-toolbar-row *ngIf="!account.confirmed && settings.welcomeMessageHiddenFrom.indexOf(account.account) === -1 && !account.balanceNQT">
-        <mat-icon>card_giftcard</mat-icon>
-        <span>{{ 'welcome_to_burst' | i18n }} <a href="http://faucet.burst-alliance.org:8080"
-                                                 target="_blank">{{ 'click_to_claim' | i18n }}</a></span>
-        <span class="spacer"></span>
-        <mat-icon (click)="closeWelcomeNotification()" class="close">close</mat-icon>
-      </mat-toolbar-row>
 
       <mat-toolbar-row class="warning" *ngIf="!account.confirmed && account.balanceNQT">
         <mat-icon>warning</mat-icon>
         <span>{{ 'no_public_key_warning' | i18n }}</span>
+        <button class="activate" mat-raised-button (click)="activateAccount()"
+                disabled="{{isActivating}}">{{'activate' | i18n}}</button>
       </mat-toolbar-row>
 
       <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
@@ -35,7 +30,8 @@
                 <div *ngIf="!account.transactions.length">
                   {{ 'no_transactions_yet' | i18n }}
                 </div>
-                <div *ngIf="account.transactions.length" [ngClass.gt-md]="'font-size-54'" class="font-size-30 font-weight-300 line-height-1 mt-8">
+                <div *ngIf="account.transactions.length" [ngClass.gt-md]="'font-size-54'"
+                     class="font-size-30 font-weight-300 line-height-1 mt-8">
                   <app-balance-diagram
                     [account]="account"
                     [transactionCount]="50"
@@ -62,9 +58,9 @@
                 <div>
                   {{ 'no_transactions_yet' | i18n }}
                 </div>
-                  <a href="http://faucet.burst-alliance.org:8080" target="_blank">
-                    {{ 'click_to_claim' | i18n }}
-                  </a>
+                <a href="http://faucet.burst-alliance.org:8080" target="_blank">
+                  {{ 'click_to_claim' | i18n }}
+                </a>
               </div>
             </div>
             <a *ngIf="dataSource && dataSource.data.length"

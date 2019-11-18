@@ -32,7 +32,9 @@
       "accountDetails": {
         "noTransactions": {
           "title": "Нет транзакций"
-        }
+        },
+        "copiedSuccessfully": "Address copied successfully.",
+        "copy": "Copy"
       },
       "addAccount": {
         "addAccount": "Добавить аккаунт",
@@ -63,7 +65,8 @@
         "activeAccountHint": "Активные аккаунты используются для совершения BURST транзакций. Необходимо сгенерировать или ввести кодовую фразу. Пользователь должен создать PIN-код для транзакций. Кодовая фраза используется только для шифрования приватного ключа и нигде не сохраняется.",
         "import": "Добавить",
         "passiveAccountHint": "Пассивные аккаунты используются если известен BURST-адрес, но нет необходимости совершать транзакции. Это безопаснее. Пассивный аккаунт всегда можно преобразовать в активный.",
-        "title": "Добавить аккаунт"
+        "title": "Добавить аккаунт",
+        "showPassphrase": "Показать фразу"
       }
     }
   },
@@ -151,8 +154,14 @@
         "selectAccount": "Выберите аккаунт",
         "sent": "Отправлено!",
         "title": "Отправить",
+        "button": "Swipe to Send",
         "to": "Аккаунт получателя",
-        "total": "Всего: {{value}} BURST"
+        "total": "Всего: {{value}} BURST",
+        "noPublicKey": "Please confirm address before sending.",
+        "invalidAddress": "This address is not valid.",
+        "zilOutage": "Unable to fetch from the ZIL API.",
+        "success": "Successfully sent {{amount}} BURST to {{address}}.",
+        "failure": "Failed to send BURST. Please check your entries and try again."
       },
       "scan": {
         "title": "Сканировать BURST QR-код"

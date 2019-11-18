@@ -26,7 +26,7 @@ export class ContractHelper {
     /**
      * @return Get the contract
      */
-    get contract() { return this._contract; }
+    getContract() { return this._contract; }
 
     /**
      * Get a variable as string
@@ -74,8 +74,8 @@ export class ContractHelper {
      * @return The data as hexadecimal string (in little endianness)
      */
     public getHexDataAt(index: number, length?: number): string {
-        const l = length ? length : this.contract.machineData.length - ContractHelper.VARIABLE_LENGTH * index;
-        return getContractDatablock(this.contract, index, l);
+        const l = length ? length : this._contract.machineData.length - ContractHelper.VARIABLE_LENGTH * index;
+        return getContractDatablock(this._contract, index, l);
     }
 
 }

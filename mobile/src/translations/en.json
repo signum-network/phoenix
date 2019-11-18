@@ -32,7 +32,9 @@
       "accountDetails": {
         "noTransactions": {
           "title": "No transactions"
-        }
+        },
+        "copiedSuccessfully": "Address copied successfully.",
+        "copy": "Copy"
       },
       "addAccount": {
         "createAccount": "Create account",
@@ -59,7 +61,8 @@
         "activeAccountHint": "Active accounts are used for making BURST transactions. Requires user generate a passphrase or provide one. Requires a user create a PIN for transactions. The passphrase is only used once locally to encrypt your private key; it is not stored anywhere.",
         "import": "Import",
         "passiveAccountHint": "Passive accounts are useful if you know a BURST address, but don't intend on making any transactions. Adds increased security. Can be converted to an active account at any time.",
-        "title": "Import account"
+        "title": "Import account",
+        "showPassphrase": "Show passphrase"
       }
     }
   },
@@ -147,6 +150,7 @@
         "selectAccount": "Select an account",
         "sent": "Sent!",
         "title": "Send",
+        "button": "Swipe to Send",
         "to": "To",
         "total": "Total: {{value}} BURST",
         "noPublicKey": "Please confirm address before sending.",

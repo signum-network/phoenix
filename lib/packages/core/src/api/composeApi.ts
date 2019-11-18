@@ -9,7 +9,7 @@ import {ApiVersion} from '../constants/apiVersion';
 import {ApiComposer} from './apiComposer';
 import {getBlockByHeight, getBlockById, getBlockByTimestamp, getBlockId, getBlocks} from './factories/block';
 import {getBlockchainStatus, getPeer, getPeers, getServerStatus, getTime, suggestFee} from './factories/network';
-import {sendEncryptedTextMessage, sendTextMessage} from './factories/message';
+import {sendTextMessage, sendEncryptedTextMessage, sendMessage, sendEncryptedMessage} from './factories/message';
 import {
     generateSendTransactionQRCode,
     generateSendTransactionQRCodeAddress,
@@ -45,7 +45,6 @@ import {AxiosRequestConfig} from 'axios';
 export class ApiSettings {
     /**
      * @param nodeHost {string} The url of the Burst peer
-     * @param apiRootUrl {string} The optional api endpoint, i.e. `/burst`. Usually, you wont use this.
      * @param apiVersion {ApiVersion} For future usage.
      * @param httpOptions {any | AxiosRequestSettings}   Optional http options, like additional header.
      * The default implementation uses axios. In case of a custom client pass your own options.
@@ -54,7 +53,6 @@ export class ApiSettings {
      */
     constructor(
         public nodeHost: string,
-        public apiRootUrl: string = DefaultApiEndpoint,
         public apiVersion: ApiVersion = ApiVersion.V1,
         public httpOptions?: any | AxiosRequestConfig,
     ) {
@@ -110,6 +108,8 @@ export function composeApi(settings: ApiSettings): Api {
         .withMessageApi({
             sendTextMessage,
             sendEncryptedTextMessage,
+            sendMessage,
+            sendEncryptedMessage,
         })
         .withAccountApi({
             getAccountTransactions,

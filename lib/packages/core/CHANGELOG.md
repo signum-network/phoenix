@@ -1,12 +1,27 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 0.4.2 (TBR)
+
+___
+__Breaking Changes__
+- `getAccountTransations` uses an argument object now
+___
+
+- deprecated `sendTextMessage`
+    - will be removed in next version (0.5)
+    - use `sendMessage`
+- deprecated `sendEncryptedTextMessage`
+    - will be removed in next version (0.5)
+    - use `sendEncryptedMessage`
+
 ## 0.4.1
 - Initiated work on assets Api
-    - added `getAsset()`
-    - added `getAllAssets()`
+    - added `getAsset`
+    - added `getAllAssets`
 - Fixed encoding issue on BRS requests (#826)
 - Added `getAllContractIds` to contract Api
+    
 - Added Http Options for `BurstService`/`composeApi` 
 
 ## 0.4.0

@@ -22,28 +22,20 @@ describe(`[E2E] Account Api`, () => {
 
     describe('getAccountTransactions', () => {
         it('should getAccountTransactions', async () => {
-            const transactionList = await getAccountTransactions(service)(accountId);
+            const transactionList = await getAccountTransactions(service)({
+                accountId
+            });
             expect(transactionList).not.toBeUndefined();
             const {transactions} = transactionList;
             expect(transactions.length).toBeGreaterThan(1);
-
-            const testTransaction = transactions.filter(
-                ({transaction}) => transaction === environment.testTransactionId
-            )[0];
-            expect(testTransaction).toBeDefined();
-            expect(testTransaction.sender).toBe(accountId);
-
         });
 
         it('should getAccountTransactions with MultiOut', async () => {
-            const transactionList = await getAccountTransactions(service)(accountId,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                true
-                );
+            const transactionList = await getAccountTransactions(service)({
+                    accountId,
+                    includeIndirect: true
+                }
+            );
             expect(transactionList).not.toBeUndefined();
             const {transactions} = transactionList;
             expect(transactions.length).toBeGreaterThan(1);
@@ -57,14 +49,18 @@ describe(`[E2E] Account Api`, () => {
         });
 
         it('should getAccountTransactions paged', async () => {
-            const transactionList = await getAccountTransactions(service)(accountId, 0, 3);
+            const transactionList = await getAccountTransactions(service)({
+                accountId,
+                firstIndex: 0,
+                lastIndex: 3
+            });
             expect(transactionList).not.toBeUndefined();
             const {transactions} = transactionList;
             expect(transactions).toHaveLength(4);
         });
 
         it('should getAccountTransactions minimum confirmations', async () => {
-            const transactionList = await getAccountTransactions(service)(accountId, undefined, undefined, 1440);
+            const transactionList = await getAccountTransactions(service)({accountId, numberOfConfirmations: 1440});
             expect(transactionList).not.toBeUndefined();
             const {transactions} = transactionList;
             expect(transactions.length).toBeGreaterThanOrEqual(4);

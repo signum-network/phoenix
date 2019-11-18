@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadiusSizes.LARGE
   },
   buttonAccent: {
-    backgroundColor: Colors.BLUE,
+    backgroundColor: Colors.BLUE_DARKER,
     borderColor: Colors.BLUE_DARKER
   },
   loader: {
@@ -116,7 +116,6 @@ export const Button: React.FunctionComponent<Props> = (props) => {
           textAlign={TextAlign.CENTER}
           size={textSize}
           disabled={props.disabled}
-          bold
         >
           {children}
         </Text>

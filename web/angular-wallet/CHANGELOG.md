@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0-beta.12 (TBR)
+
+### New Features:
+- Added Account Activation
+- Removed Endpoint Setting
+    - simplified node selection
+    - automatic/dynamic peer version detection
+
 ## 1.0.0-beta.11
 
 ### New Features:

@@ -5,7 +5,6 @@ import { TabBarIcon } from '../../../core/components/tabbar/TabBarIcon';
 import { defaultStackOptions } from '../../../core/navigation/defaultStackOptions';
 import { routes, RoutesMap } from '../../../core/navigation/routes';
 import { AccountDetailsScreen } from '../screens/AccountDetailsScreen';
-import { AccountsScreen } from '../screens/AccountsScreen';
 import { AddAccountScreen } from '../screens/AddAccountScreen';
 import { CreateAccountScreen } from '../screens/CreateAccountScreen';
 import { HomeScreen } from '../screens/HomeScreen';
@@ -21,7 +20,6 @@ const stackConfig: StackNavigatorConfig = {
 
 const routesMap: RoutesMap = {
   [routes.home]: HomeScreen,
-  [routes.accounts]: AccountsScreen,
   [routes.addAccount]: AddAccountScreen,
   [routes.createAccount]: CreateAccountScreen,
   [routes.importAccount]: ImportAccountScreen,

@@ -2,6 +2,7 @@ import {BurstService} from '../service/burstService';
 import {Http, HttpError, HttpImpl, HttpMockBuilder, HttpResponse} from '@burstjs/http';
 import {BurstServiceSettings} from '../service/burstServiceSettings';
 import {createBurstService} from './helpers/createBurstService';
+import {DefaultApiEndpoint} from '../constants';
 
 class TestHttpClient implements Http {
     delete(url: string): Promise<HttpResponse> {
@@ -27,10 +28,9 @@ describe('BurstService', () => {
         it('should create with least required parameters', () => {
             const {settings} = new BurstService({
                 nodeHost: 'nodeHost',
-                apiRootUrl: 'apiRootUrl',
             });
             expect(settings.nodeHost).toBe('nodeHost');
-            expect(settings.apiRootUrl).toBe('apiRootUrl');
+            expect(settings.apiRootUrl).toBe(DefaultApiEndpoint);
             expect(settings.httpClient instanceof HttpImpl).toBeTruthy();
         });
 
@@ -50,24 +50,23 @@ describe('BurstService', () => {
 
         const settings: BurstServiceSettings = {
             nodeHost: 'localhost',
-            apiRootUrl: '',
         };
 
         let service = new BurstService(settings);
 
         it('should create BRS BURST url without any parameter', () => {
             const url = service.toBRSEndpoint('getBlockByHeight');
-            expect(url).toBe('?requestType=getBlockByHeight');
+            expect(url).toBe('/burst?requestType=getBlockByHeight');
         });
 
         it('should create BRS BURST url with one parameter', () => {
             const url = service.toBRSEndpoint('getBlockByHeight', {id: 123});
-            expect(url).toBe('?requestType=getBlockByHeight&id=123');
+            expect(url).toBe('/burst?requestType=getBlockByHeight&id=123');
         });
 
         it('should create BRS BURST url with many parameters', () => {
             const url = service.toBRSEndpoint('getBlockByHeight', {id: 123, includeTransactions: true});
-            expect(url).toBe('?requestType=getBlockByHeight&id=123&includeTransactions=true');
+            expect(url).toBe('/burst?requestType=getBlockByHeight&id=123&includeTransactions=true');
         });
 
         it('should create BRS BURST url with many parameters and encode correctly', () => {
@@ -76,7 +75,7 @@ describe('BurstService', () => {
                 includeTransactions: true,
                 data: '{"foo":"some data#&$%-";\n\t"bar":"1234"}'
             });
-            expect(url).toBe('?requestType=getBlockByHeight&id=123&includeTransactions=true&data=%7B%22foo%22%3A%22some%20data%23%26%24%25-%22%3B%0A%09%22bar%22%3A%221234%22%7D');
+            expect(url).toBe('/burst?requestType=getBlockByHeight&id=123&includeTransactions=true&data=%7B%22foo%22%3A%22some%20data%23%26%24%25-%22%3B%0A%09%22bar%22%3A%221234%22%7D');
         });
 
         it('should create BRS BURST url with many parameters ignoring undefined', () => {
@@ -87,7 +86,7 @@ describe('BurstService', () => {
                     foo: undefined,
                     bar: undefined
                 });
-            expect(url).toBe('?requestType=getBlockByHeight&id=123&includeTransactions=true');
+            expect(url).toBe('/burst?requestType=getBlockByHeight&id=123&includeTransactions=true');
         });
 
         it('should create BRS BURST url with many parameters and relative Url', () => {
