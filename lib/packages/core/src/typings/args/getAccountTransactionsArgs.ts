@@ -1,3 +1,5 @@
+/** @module core */
+
 /**
  * The argument object for [[AccountApi.getAccountTransactions]]
  *

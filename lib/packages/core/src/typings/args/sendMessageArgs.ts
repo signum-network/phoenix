@@ -1,7 +1,7 @@
 /** @module core */
 
 /**
- * The argument object for [[MessageApi.sendTextMessage]]
+ * The argument object for [[MessageApi.sendMessage]]
  *
  * @param message The message as text to be sent
  * @param feePlanck The fee as Planck value
