@@ -98,7 +98,7 @@
     "@types/node": "^12.7.12",
     "codelyzer": "^5.1.2",
     "cross-env": "^5.2.1",
-    "electron": "^6.1.4",
+    "electron": "^7.1.2",
     "husky": "^3.1.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
