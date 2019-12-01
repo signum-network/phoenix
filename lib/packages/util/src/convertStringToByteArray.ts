@@ -10,10 +10,9 @@
  * @param str The string  to be converted
  * @return {number[]} A byte array representing the string input
  */
-export const convertStringToByteArray = (str: string): number[] => {
+export const convertStringToByteArray = (str: string): Uint8Array => {
     const s = unescape(encodeURIComponent(str));
-
-    const bytes = new Array(s.length);
+    const bytes = new Uint8Array(s.length);
     for (let i = 0; i < s.length; ++i) {
         bytes[i] = s.charCodeAt(i);
     }
