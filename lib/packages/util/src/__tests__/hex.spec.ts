@@ -2,6 +2,7 @@ import {convertHexStringToByteArray} from '../convertHexStringToByteArray';
 import {convertByteArrayToHexString} from '../convertByteArrayToHexString';
 import {convertHexStringToString} from '../convertHexStringToString';
 import {convertStringToHexString} from '../convertStringToHexString';
+import {convertHexEndianess} from '../convertHexEndianess';
 
 describe('Hex String Conversions', () => {
     const TestHex = '0123456789ABCDEF';
@@ -66,6 +67,15 @@ describe('Hex String Conversions', () => {
 
         it('should convertStringToHexString()', () => {
             expect(convertStringToHexString(TestString)).toEqual(TestStringHexEncoded);
+        });
+
+    });
+
+    describe('convertHexEndianess', () => {
+
+        it('should convertHexEndianess()', () => {
+            expect(convertHexEndianess(TestHex)).toEqual('EFCDAB8967452301');
+            expect(convertHexEndianess('EFCDAB8967452301')).toEqual(TestHex);
         });
 
     });

@@ -15,3 +15,4 @@ export * from './convertHexStringToDecString';
 export * from './convertHexStringToString';
 export * from './convertStringToByteArray';
 export * from './convertStringToHexString';
+export * from './convertHexEndianess';
