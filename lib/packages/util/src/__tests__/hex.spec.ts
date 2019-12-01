@@ -5,7 +5,7 @@ import {convertStringToHexString} from '../convertStringToHexString';
 
 describe('Hex String Conversions', () => {
     const TestHex = '0123456789ABCDEF';
-    const TestBytes = [1, 35, 69, 103, 137, 171, 205, 239];
+    const TestBytes = new Uint8Array([1, 35, 69, 103, 137, 171, 205, 239]);
     const TestString = 'This is a test string';
     const TestStringHexEncoded = '546869732069732061207465737420737472696e67';
 
@@ -14,12 +14,20 @@ describe('Hex String Conversions', () => {
         it('should convertHexStringToByteArray()', () => {
             expect(convertHexStringToByteArray(TestHex)).toEqual(TestBytes);
             expect(convertHexStringToByteArray(TestHex.toLowerCase())).toEqual(TestBytes);
-            expect(convertHexStringToByteArray('')).toEqual([]);
+            expect(convertHexStringToByteArray('')).toEqual(new Uint8Array(0));
         });
 
-        it('should throw Error on invalid Hex String', () => {
+        it('should throw Error on invalid Hex String #1', () => {
             try {
                 convertHexStringToByteArray('TestInvalid');
+                expect(false).toBe('Should throw exceptipn');
+            } catch (e) {
+            }
+        });
+
+        it('should throw Error on invalid Hex String #2', () => {
+            try {
+                convertHexStringToByteArray('0123456789ABCDE');
                 expect(false).toBe('Should throw exceptipn');
             } catch (e) {
             }
