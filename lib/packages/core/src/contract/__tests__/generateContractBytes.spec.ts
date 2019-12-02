@@ -1,6 +1,6 @@
 import {generateContractBytes} from '../generateContractBytes';
 import {convertHexEndianess, convertNumberToNQTString} from '@burstjs/util';
-import {EchoContract, AppRegistryContract, UniqueTokenContract} from './__mocks__/contracts.mock';
+import {EchoContract, AppRegistryContract, UniqueTokenContract} from './helpers/contractsMocks';
 const minActivationFee = convertNumberToNQTString(30);
 
 describe('generateContractBytes', () => {
