@@ -93,7 +93,7 @@ class ByteBuffer {
  * @note This implementation is only for the AT Version 1, and a simplified version without data yet
  */
 export const generateContractBytes = (
-    {hexCode, isLittleEndian = true, activationFeePlanck}: GenerateContractBytesArgs
+    {activationFeePlanck, hexCode, isLittleEndian = true}: GenerateContractBytesArgs
 ): ArrayBuffer => {
 
     const code = isLittleEndian ? convertHexEndianess(hexCode) : hexCode;
@@ -137,7 +137,7 @@ export const generateContractBytes = (
     byteBuffer.putUInt32(activationAmountNumber);
     byteBuffer.putUInt32(0);
     putLength(cPages, codeLength, byteBuffer);
-    byteBuffer.putBytes(new Int8Array(convertHexStringToByteArray(hexCode)));
+    byteBuffer.putBytes(new Int8Array(convertHexStringToByteArray(code)));
     putLength(dPages, 0, byteBuffer); // no data support yet
 
     return byteBuffer.getBytes();
