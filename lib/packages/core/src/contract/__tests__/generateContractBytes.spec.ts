@@ -14,25 +14,23 @@ describe('generateContractBytes', () => {
         expect(new Int8Array(generated)).toEqual(EchoContract.expected);
     });
 
-    it('should generate bytes correctly - Big Endian Source - APPREGISTRY', () => {
+    it('should generate bytes correctly - APPREGISTRY', () => {
         const generated = generateContractBytes({
-            hexCode: convertHexEndianess(AppRegistryContract.hexCodeLE),
+            hexCode: AppRegistryContract.hexCodeLE,
             activationFeePlanck: minActivationFee,
-            isLittleEndian: false,
         });
         expect(new Int8Array(generated)).toEqual(AppRegistryContract.expected);
     });
 
-    it('should generate bytes correctly - Big Endian Source - UNIQUETOKEN', () => {
+    it('should generate bytes correctly - UNIQUETOKEN', () => {
         const generated = generateContractBytes({
-            hexCode: convertHexEndianess(UniqueTokenContract.hexCodeLE),
+            hexCode: UniqueTokenContract.hexCodeLE,
             activationFeePlanck: minActivationFee,
-            isLittleEndian: false,
         });
         expect(new Int8Array(generated)).toEqual(UniqueTokenContract.expected);
     });
 
-    it('should generate bytes correctly - Little Endian Source - ECHO', () => {
+    it('should generate bytes correctly - ECHO', () => {
         const generated = generateContractBytes({
             hexCode: EchoContract.hexCodeLE,
             activationFeePlanck: minActivationFee,
