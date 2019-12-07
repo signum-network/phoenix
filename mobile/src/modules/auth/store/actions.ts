@@ -233,6 +233,9 @@ export const setPasscode = createActionFn<string, Promise<void>>(
   async (dispatch, _getState, passcode) => {
     dispatch(actions.setPasscode(passcode));
     await savePasscode(passcode);
+
+    // reset the redux store
+    dispatch(loadPasscode());
   }
 );
 
