@@ -30,7 +30,7 @@
           <burst-recipient-input [recipientValue]="recipient.addressRaw"
                                  (recipientChange)="onRecipientChange($event, i)"
                                  [withQrCode]="false"></burst-recipient-input>
-          <mat-form-field *ngIf="!sameAmount">
+          <mat-form-field [class.last]="isLastRecipientItem(i) && i !== 0" *ngIf="!sameAmount">
             <input matInput [(ngModel)]="recipient.amount"
                    name="amount{{i}}"
                    placeholder="{{ 'amount' | i18n }}"
