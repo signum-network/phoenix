@@ -60,6 +60,15 @@ export function savePasscodeEnteredTime (time: number): Promise<boolean> {
   );
 }
 
+export function resetKeychain (): Promise<boolean[]> {
+  return Promise.all([
+    setCredentials({ username: KeyChainKeys.passcodeEnteredTime, password: JSON.stringify(0) },
+      KeyChainKeys.passcodeEnteredTime),
+    setCredentials({ username: KeyChainKeys.accounts, password: JSON.stringify([]) },
+      KeyChainKeys.accounts)
+  ]);
+}
+
 export async function getPasscodeEnteredTime (): Promise<number> {
   const credentials: KeychainCredentials =
     await getCredentials(KeyChainKeys.passcodeEnteredTime) as KeychainCredentials;

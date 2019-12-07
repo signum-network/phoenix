@@ -15,6 +15,7 @@ interface OwnProps {
   onSuccess: () => void;
   onCancel?: () => void;
   onDismiss?: () => void;
+  onReset?: () => void;
 }
 
 interface InjectedProps extends InjectedReduxProps {
@@ -42,6 +43,12 @@ class EnterPasscode extends React.PureComponent<Props> {
     onCancel && onCancel();
   }
 
+  handleReset = () => {
+    const { onReset } = this.props;
+
+    onReset && onReset();
+  }
+
   render () {
     const { visible, auth } = this.props;
     const isCodeSet = isPasscodeSet(auth.passcode);
@@ -59,6 +66,7 @@ class EnterPasscode extends React.PureComponent<Props> {
               passcode={auth.passcode}
               onSuccess={this.handleSubmit}
               onCancel={this.handleCancel}
+              onReset={this.handleReset}
           />
         ) : (
           <SetPasscodeModalScreen

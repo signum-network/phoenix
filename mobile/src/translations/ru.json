@@ -9,7 +9,9 @@
     },
     "modals": {
       "enterPasscode": {
-        "passcodeHint": "Введите код"
+        "passcodeHint": "Введите код",
+        "forgotPin": "Забыли ПИН?",
+        "confirmReset": "Удалить все учетные записи и сбросить ПИН?"
       },
       "setPasscode": {
         "enterAgain": "Введите код еще раз",
@@ -53,12 +55,7 @@
         "notePassphraseHint": "Запишите кодовую фразу. Кодовая фраза это главный ключ к аккаунту. Всегда держите кодовую фразу в безопасности!",
         "notePassphraseHint2": "Мы не храним кодовую фразу даже на телефоне, поэтому не можем восстановить доступ к аккаунту. Запишите ее!",
         "step": "Шаг {{step}}/4",
-        "title": "Создать аккаунт",
-        "noPublicKey": "Нет открытого ключа: подтвердите адрес перед отправкой.",
-        "invalidAddress": "Этот адрес недействителен.",
-        "zilOutage": "Невозможно получить из ZIL API.",
-        "success": "Successfully sent {{amount}} BURST to {{address}}.",
-        "failure": "Failed to send BURST. Please check your entries and try again."
+        "title": "Создать аккаунт"
       },
       "importAccount": {
         "activeAccount": "Активный аккаунт",
@@ -154,14 +151,14 @@
         "selectAccount": "Выберите аккаунт",
         "sent": "Отправлено!",
         "title": "Отправить",
-        "button": "Swipe to Send",
+        "button": "Проведите, чтобы отправить",
         "to": "Аккаунт получателя",
         "total": "Всего: {{value}} BURST",
-        "noPublicKey": "Please confirm address before sending.",
-        "invalidAddress": "This address is not valid.",
-        "zilOutage": "Unable to fetch from the ZIL API.",
-        "success": "Successfully sent {{amount}} BURST to {{address}}.",
-        "failure": "Failed to send BURST. Please check your entries and try again."
+        "noPublicKey": "Пожалуйста, подтвердите адрес перед отправкой.",
+        "invalidAddress": "Этот адрес недействителен.",
+        "zilOutage": "Невозможно получить из ZIL API.",
+        "success": "Успешно отправлено {{amount}} BURST на {{address}}.",
+        "failure": "Не удалось отправить BURST. Пожалуйста, проверьте ваши записи и попробуйте снова."
       },
       "scan": {
         "title": "Сканировать BURST QR-код"
@@ -173,9 +170,9 @@
       "settings": {
         "title": "Настройки",
         "erase": "Удалить все аккаунты и сбросить PIN",
-        "confirmReset": "Are you sure? You cannot undo this action.",
+        "confirmReset": "Вы уверены? Вы не можете отменить это действие.",
         "confirmErase": "Удалить и сбросить",
-        "changeLanguage": "Select Language",
+        "changeLanguage": "Выбрать язык",
         "copyright": "Copyright © Burst Apps Team"
       }
     }

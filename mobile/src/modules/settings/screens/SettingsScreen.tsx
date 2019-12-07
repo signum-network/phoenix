@@ -1,11 +1,10 @@
-import { currentLocale, locales, translations } from 'i18n-js';
+import { translations } from 'i18n-js';
 import React from 'react';
-import { Alert, I18nManager, Modal, StyleSheet, View, SafeAreaView } from 'react-native';
+import { Modal, SafeAreaView, StyleSheet, View } from 'react-native';
 import VersionNumber from 'react-native-version-number';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-import { BSelect } from '../../../core/components/base/BSelect';
-import { Button } from '../../../core/components/base/Button';
+import { Button, ButtonThemes } from '../../../core/components/base/Button';
 import { Text } from '../../../core/components/base/Text';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { i18n } from '../../../core/i18n';
@@ -15,11 +14,11 @@ import { Screen } from '../../../core/layout/Screen';
 import { routes } from '../../../core/navigation/routes';
 import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
-import { Sizes, FontSizes } from '../../../core/theme/sizes';
+import { Colors } from '../../../core/theme/colors';
+import { FontSizes, Sizes } from '../../../core/theme/sizes';
 import { resetAuthState } from '../../auth/store/actions';
 import { AuthReduxState } from '../../auth/store/reducer';
 import { settings } from '../translations';
-import { Colors } from '../../../core/theme/colors';
 
 interface IProps extends InjectedReduxProps {
   auth: AuthReduxState,
@@ -67,9 +66,6 @@ class Settings extends React.PureComponent<Props> {
     this.toggleConfirmDeletePrompt();
   }
 
-  handleLanguageChange = () => {
-  }
-
   getLocales = () => {
     return Object.keys(translations).map((locale) => {
       return {
@@ -112,7 +108,7 @@ class Settings extends React.PureComponent<Props> {
               visible={this.state.erasePromptVisible}
               // tslint:disable-next-line: jsx-no-lambda
               onRequestClose={() => {
-                Alert.alert('Modal has been closed.');
+                // Alert.alert('Modal has been closed.');
               }}
             >
               <SafeAreaView>
@@ -121,7 +117,7 @@ class Settings extends React.PureComponent<Props> {
                   <View style={styles.bodyText}>
                     <Text>{i18n.t(settings.screens.settings.confirmReset)}</Text>
 
-                    <Button onPress={this.toggleConfirmDeletePrompt}>
+                    <Button theme={ButtonThemes.ACCENT} onPress={this.toggleConfirmDeletePrompt}>
                       {i18n.t(settings.screens.settings.cancel)}
                     </Button>
 
@@ -140,7 +136,7 @@ class Settings extends React.PureComponent<Props> {
   }
 }
 
-function mapStateToProps(state: ApplicationState) {
+function mapStateToProps (state: ApplicationState) {
   return {
     auth: state.auth
   };
