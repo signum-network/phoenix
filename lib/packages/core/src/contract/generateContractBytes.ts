@@ -65,6 +65,18 @@ class ByteBuffer {
         this.offset += 4;
     }
 
+    putUInt53(uint53: number) {
+        if (!Number.isSafeInteger(uint53)) {
+            // workaround: instead of struggling with BigInt here, we limit max activation amount
+            throw new Error('Activation Amount exceeds supported limit (2^53 -1 Planck)');
+        }
+
+        const uint32_l = uint53 & 0xFFFFFFFF;
+        const uint32_u = uint53 & 0xFFFFFFFF00000000;
+        this.putUInt32(uint32_l);
+        this.putUInt32(uint32_u);
+    }
+
     putBytes(bytes: Int8Array) {
         // not a fast implementation!
         const l = bytes.length;
@@ -112,10 +124,7 @@ export const generateContractBytes = (
     creationLength += 0; // data length
 
     const activationAmountNumber = +activationFeePlanck;
-    if (activationAmountNumber > 2 ** 32 - 1) {
-        // workaround: instead of struggling with BigInt here, we limit max activation amount
-        throw new Error('Activation Amount exceeds supported limit (2^32 -1 Planck)');
-    }
+
 
     const putLength = (nPages: number, length: number, buffer: ByteBuffer) => {
         if (nPages * 256 <= 256) {
@@ -134,8 +143,9 @@ export const generateContractBytes = (
     byteBuffer.putShort(dPages);
     byteBuffer.putShort(csPages);
     byteBuffer.putShort(usPages);
-    byteBuffer.putUInt32(activationAmountNumber);
-    byteBuffer.putUInt32(0);
+    byteBuffer.putUInt53(activationAmountNumber);
+    // byteBuffer.putUInt32(activationAmountNumber);
+    // byteBuffer.putUInt32(0);
     putLength(cPages, codeLength, byteBuffer);
     byteBuffer.putBytes(new Int8Array(convertHexStringToByteArray(code)));
     putLength(dPages, 0, byteBuffer); // no data support yet

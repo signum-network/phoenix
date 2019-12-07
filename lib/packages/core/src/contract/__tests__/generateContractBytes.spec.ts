@@ -1,6 +1,12 @@
 import {generateContractBytes} from '../generateContractBytes';
 import {convertHexEndianess, convertNumberToNQTString} from '@burstjs/util';
-import {EchoContract, AppRegistryContract, UniqueTokenContract} from './helpers/contractsMocks';
+import {
+    AppRegistryContract,
+    Echo4000kMinActivationContract,
+    EchoContract,
+    UniqueTokenContract
+} from './helpers/contractsMocks';
+
 const minActivationFee = convertNumberToNQTString(30);
 
 describe('generateContractBytes', () => {
@@ -12,6 +18,19 @@ describe('generateContractBytes', () => {
             isLittleEndian: false,
         });
         expect(new Int8Array(generated)).toEqual(EchoContract.expected);
+    });
+
+    it('should throw exception when minFee is too big', () => {
+        try {
+            const t = convertNumberToNQTString( 4000000000);
+            generateContractBytes({
+                hexCode: EchoContract.hexCodeLE,
+                activationFeePlanck: t,
+            });
+            expect('Expected exception').toBeTruthy();
+        } catch (e) {
+            expect(true).toBeTruthy();
+        }
     });
 
     it('should generate bytes correctly - APPREGISTRY', () => {
@@ -36,6 +55,14 @@ describe('generateContractBytes', () => {
             activationFeePlanck: minActivationFee,
         });
         expect(new Int8Array(generated)).toEqual(EchoContract.expected);
+    });
+
+    it('should generate bytes correctly with huge activation costs- ECHO', () => {
+        const generated = generateContractBytes({
+            hexCode: Echo4000kMinActivationContract.hexCodeLE,
+            activationFeePlanck: convertNumberToNQTString(4000000),
+        });
+        expect(new Int8Array(generated)).toEqual(Echo4000kMinActivationContract.expected);
     });
 
 });
