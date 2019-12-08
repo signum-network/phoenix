@@ -1,42 +1,7 @@
-/** @module core */
-/**
- public byte[] getATCreationBytes(short atVersion, byte[] code, byte[] data, int dPages, int csPages, int usPages, BurstValue minActivationAmount) {
-        int cPages = (code.length / 256) + ((code.length % 256) != 0 ? 1 : 0);
-
-        if (dPages < 0 || csPages < 0 || usPages < 0) {
-            throw new IllegalArgumentException();
-        }
-
-        long minActivationAmountPlanck = minActivationAmount.toPlanck().longValueExact();
-
-        int creationLength = 4; // version + reserved
-        creationLength += 8; // pages
-        creationLength += 8; // minActivationAmount
-        creationLength += cPages * 256 <= 256 ? 1 : (cPages * 256 <= 32767 ? 2 : 4); // code size
-        creationLength += code.length;
-        creationLength += dPages * 256 <= 256 ? 1 : (dPages * 256 <= 32767 ? 2 : 4); // data size
-        creationLength += data.length;
-
-        ByteBuffer creation = ByteBuffer.allocate(creationLength);
-        creation.order(ByteOrder.LITTLE_ENDIAN);
-        creation.putShort(atVersion);
-        creation.putShort((short) 0);
-        creation.putShort((short) cPages);
-        creation.putShort((short) dPages);
-        creation.putShort((short) csPages);
-        creation.putShort((short) usPages);
-        creation.putLong(minActivationAmountPlanck);
-        putLength(cPages, code.length, creation);
-        creation.put(code);
-        putLength(dPages, data.length, creation);
-        creation.put(data);
-        return creation.array();
-    }
- */
-
+/** @module contracts */
 
 import {convertHexEndianess, convertHexStringToByteArray} from '@burstjs/util';
-import {GenerateContractBytesArgs} from '../typings/args';
+import {GenerateContractBytesArgs} from './typings/args';
 
 const ContractVersion = 1;
 

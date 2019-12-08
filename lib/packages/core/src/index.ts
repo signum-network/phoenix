@@ -2,6 +2,11 @@
 
 // order alphabetically, please :)
 
+export * from './api';
+export * from './attachment';
+export * from './constants';
+export * from './service';
+export * from './transaction';
 export * from './typings/account';
 export * from './typings/alias';
 export * from './typings/aliasList';
@@ -26,11 +31,5 @@ export * from './typings/transactionList';
 export * from './typings/transactionResponse';
 export * from './typings/unconfirmedTransactionList';
 
-export * from './service';
-export * from './api';
-export * from './attachment';
-export * from './transaction';
-export * from './contract';
-export * from './constants';
 
 

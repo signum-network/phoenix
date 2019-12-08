@@ -1,11 +1,11 @@
-/** @module core */
+/** @module contracts */
 
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
 
 import {convertHexStringToDecString, convertHexStringToString} from '@burstjs/util';
-import {Contract} from '../typings/contract';
+import {Contract} from './typings/contract';
 import {getContractDatablock} from './getContractDatablock';
 
 /**
@@ -26,7 +26,9 @@ export class ContractHelper {
     /**
      * @return Get the contract
      */
-    getContract() { return this._contract; }
+    getContract() {
+        return this._contract;
+    }
 
     /**
      * Get a variable as string

@@ -1,10 +1,10 @@
-/** @module core */
+/** @module contracts */
 
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
 
-import {Contract} from '../typings/contract';
+import {Contract} from './typings/contract';
 
 /**
  * Extracts a variables value as hexadecimal string from a contract's machine data
