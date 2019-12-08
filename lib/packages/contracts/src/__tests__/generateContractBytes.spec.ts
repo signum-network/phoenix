@@ -57,7 +57,7 @@ describe('generateContractBytes', () => {
         expect(new Int8Array(generated)).toEqual(EchoContract.expected);
     });
 
-    it('should generate bytes correctly with huge activation costs- ECHO', () => {
+    it('should generate bytes correctly with high activation costs- ECHO', () => {
         const generated = generateContractBytes({
             hexCode: Echo4000kMinActivationContract.hexCodeLE,
             activationFeePlanck: convertNumberToNQTString(4000000),

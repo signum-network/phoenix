@@ -1,6 +1,6 @@
 import {getContractDatablock} from '../getContractDatablock';
 
-describe.skip('getContractDatablock', () => {
+describe('getContractDatablock', () => {
     it('returns correctly hex values at given positions', () => {
 
         const contract = {
