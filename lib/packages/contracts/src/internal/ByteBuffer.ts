@@ -63,7 +63,7 @@ export class ByteBuffer {
         }
     }
 
-    putBytes(bytes: number[]) {
+    putBytes(bytes: Uint8Array) {
         // not a fast implementation!
         const l = bytes.length;
         if (this.littleEndian) {

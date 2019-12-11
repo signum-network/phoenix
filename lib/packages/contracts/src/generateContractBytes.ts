@@ -57,7 +57,7 @@ export const generateContractBytes = (
     // byteBuffer.putUInt32(activationAmountNumber);
     // byteBuffer.putUInt32(0);
     putLength(cPages, codeLength, byteBuffer);
-    byteBuffer.putBytes(new Int8Array(convertHexStringToByteArray(code)));
+    byteBuffer.putBytes(convertHexStringToByteArray(code));
     putLength(dPages, 0, byteBuffer); // no data support yet
 
     return byteBuffer.getBytes();
