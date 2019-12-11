@@ -1,4 +1,5 @@
 import {ByteBuffer} from '../ByteBuffer';
+import BigNumber from 'bignumber.js';
 
 describe('ByteBuffer', () => {
 

@@ -44,14 +44,15 @@ export class ByteBuffer {
         this.offset += 4;
     }
 
-    putUInt64(value: number) {
-        const bigNumber = new BigNumber(value);
+    putUInt64(uint64: BigNumber | number) {
 
-        if (value < 0 || bigNumber.gt(MaxUInt64)) {
-            throw Error(`Out of range (${0}, ${MaxUInt64})`);
+        const value = uint64 instanceof BigNumber ? uint64 : new BigNumber(uint64);
+
+        if (value.lt(0) || value.gt(MaxUInt64)) {
+            throw Error(`Out of range (0, ${MaxUInt64})`);
         }
         // @ts-ignore
-        const hex = bigNumber.toString(16).padStart(16, '0');
+        const hex = value.toString(16).padStart(16, '0');
         const upperUint32 = parseInt(hex.slice(0, 8), 16);
         const lowerUint32 = parseInt(hex.slice(8), 16);
         if (this.littleEndian) {

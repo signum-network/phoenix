@@ -4,6 +4,7 @@
  * The argument object for [[MessageApi.sendMessage]]
  *
  * @param message The message as text to be sent
+ * @param messageIsText Defines whether the message is text or another format (hex or base64) (default: `true`)
  * @param feePlanck The fee as Planck value
  * @param recipientId The id of the recipient
  * @param recipientPublicKey The _optional_ recipients public key in hex format.
@@ -15,6 +16,7 @@
  */
 export interface SendMessageArgs {
     message: string;
+    messageIsText?: boolean;
     feePlanck: string;
     recipientId: string;
     recipientPublicKey?: string;

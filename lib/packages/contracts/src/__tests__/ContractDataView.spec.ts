@@ -1,6 +1,6 @@
-import {ContractHelper} from '../ContractHelper';
+import {ContractDataView} from '../ContractDataView';
 
-describe('ContractHelper', () => {
+describe('ContractDataView', () => {
     const contract = {
         // tslint:disable-next-line:max-line-length
         machineData: 'a23677e9ce2322cf' // 0
@@ -12,7 +12,7 @@ describe('ContractHelper', () => {
     };
 
     // @ts-ignore
-    const helper = new ContractHelper(contract);
+    const helper = new ContractDataView(contract);
 
 
     describe('getVariableAsString', () => {

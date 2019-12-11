@@ -11,16 +11,15 @@ import {getContractDatablock} from './getContractDatablock';
 /**
  * Helper class for contracts
  *
- * A contract owns additional data, which is splitted in 8 byte blocks.
+ * A contract owns additional data, which is split in 8 byte blocks.
  * The content is encoded in hexadecimal representation and big endianness.
- * This helper class facilitates access to these data
+ * This class facilitates access to these data
  */
-export class ContractHelper {
+export class ContractDataView {
 
     public static VARIABLE_LENGTH = 16;
 
     constructor(private _contract: Contract) {
-
     }
 
     /**
@@ -36,7 +35,7 @@ export class ContractHelper {
      * @return The data as string (Utf-8)
      */
     public getVariableAsString(index: number): string {
-        const hexData = this.getHexDataAt(index, ContractHelper.VARIABLE_LENGTH);
+        const hexData = this.getHexDataAt(index, ContractDataView.VARIABLE_LENGTH);
         return convertHexStringToString(hexData.replace(/00/g, ''));
     }
 
@@ -47,7 +46,7 @@ export class ContractHelper {
      * @return The data as string (Utf-8)
      */
     public getDataBlocksAsString(index: number, count?: number): string {
-        const hexData = this.getHexDataAt(index, count * ContractHelper.VARIABLE_LENGTH);
+        const hexData = this.getHexDataAt(index, count * ContractDataView.VARIABLE_LENGTH);
         return convertHexStringToString(hexData.replace(/00/g, ''));
     }
 
@@ -66,7 +65,7 @@ export class ContractHelper {
      * @return The data as hexadecimal string (in little endianness)
      */
     public getVariable(index: number): string {
-        return this.getHexDataAt(index, ContractHelper.VARIABLE_LENGTH);
+        return this.getHexDataAt(index, ContractDataView.VARIABLE_LENGTH);
     }
 
     /**
@@ -76,7 +75,7 @@ export class ContractHelper {
      * @return The data as hexadecimal string (in little endianness)
      */
     public getHexDataAt(index: number, length?: number): string {
-        const l = length ? length : this._contract.machineData.length - ContractHelper.VARIABLE_LENGTH * index;
+        const l = length ? length : this._contract.machineData.length - ContractDataView.VARIABLE_LENGTH * index;
         return getContractDatablock(this._contract, index, l);
     }
 

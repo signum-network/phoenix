@@ -1,8 +1,13 @@
 /** @module contracts */
 
+/**
+ * Copyright (c) 2019 Burst Apps Team
+ */
+
 import {convertHexEndianess, convertHexStringToByteArray} from '@burstjs/util';
 import {GenerateContractBytesArgs} from './typings/args';
 import {ByteBuffer} from './internal/ByteBuffer';
+import BigNumber from 'bignumber.js';
 
 const ContractVersion = 1;
 
@@ -32,9 +37,6 @@ export const generateContractBytes = (
     creationLength += dPages * 256 <= 256 ? 1 : (dPages * 256 <= 32767 ? 2 : 4); // data size
     creationLength += 0; // data length
 
-    const activationAmountNumber = +activationFeePlanck;
-
-
     const putLength = (nPages: number, length: number, buffer: ByteBuffer) => {
         if (nPages * 256 <= 256) {
             buffer.putByte(length);
@@ -52,10 +54,7 @@ export const generateContractBytes = (
     byteBuffer.putShort(dPages);
     byteBuffer.putShort(csPages);
     byteBuffer.putShort(usPages);
-    // byteBuffer.putUInt53(activationAmountNumber);
-    byteBuffer.putUInt64(activationAmountNumber);
-    // byteBuffer.putUInt32(activationAmountNumber);
-    // byteBuffer.putUInt32(0);
+    byteBuffer.putUInt64(new BigNumber(activationFeePlanck));
     putLength(cPages, codeLength, byteBuffer);
     byteBuffer.putBytes(convertHexStringToByteArray(code));
     putLength(dPages, 0, byteBuffer); // no data support yet
