@@ -7,7 +7,9 @@ export const auth = {
     passcodeHint: 'auth.modals.setPasscode.passcodeHint'
   },
   enterPasscodeModal: {
-    passcodeHint: 'auth.modals.enterPasscode.passcodeHint'
+    passcodeHint: 'auth.modals.enterPasscode.passcodeHint',
+    forgotPin: 'auth.modals.enterPasscode.forgotPin',
+    confirmReset: 'auth.modals.enterPasscode.confirmReset'
   },
   accounts: {
     title: 'auth.screens.accounts.title',

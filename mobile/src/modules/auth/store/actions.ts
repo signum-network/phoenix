@@ -13,6 +13,7 @@ import {
   getAgreeToTerms,
   getPasscode,
   getPasscodeEnteredTime,
+  resetKeychain,
   savePasscode,
   savePasscodeEnteredTime,
   setAccounts
@@ -209,6 +210,7 @@ export const loadAccounts = createActionFn<void, Promise<void>>(
 
 export const resetAuthState = createActionFn<void, Promise<void>>(
   async (dispatch, _getState) => {
+    resetKeychain();
     dispatch(actions.resetAuthState());
   }
 );
@@ -231,6 +233,9 @@ export const setPasscode = createActionFn<string, Promise<void>>(
   async (dispatch, _getState, passcode) => {
     dispatch(actions.setPasscode(passcode));
     await savePasscode(passcode);
+
+    // reset the redux store
+    dispatch(loadPasscode());
   }
 );
 

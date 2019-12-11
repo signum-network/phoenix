@@ -9,7 +9,9 @@
     },
     "modals": {
       "enterPasscode": {
-        "passcodeHint": "Enter passcode"
+        "passcodeHint": "Enter passcode",
+        "forgotPin": "Forgot PIN?",
+        "confirmReset": "Remove all accounts and reset PIN?"
       },
       "setPasscode": {
         "enterAgain": "Enter passcode again",

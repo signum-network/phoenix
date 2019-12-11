@@ -20,7 +20,7 @@ import { AccountsList } from '../components/AccountsList';
 import { AccountsListHeader } from '../components/AccountsListHeader';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
 import { TermsModal } from '../components/terms/TermsModal';
-import { hydrateAccount, removeAccount, setAgreeToTerms } from '../store/actions';
+import { hydrateAccount, removeAccount, resetAuthState, setAgreeToTerms } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { shouldEnterPIN } from '../store/utils';
 
@@ -148,6 +148,11 @@ class Home extends React.PureComponent<TProps, State> {
     this.props.dispatch(removeAccount(account));
   }
 
+  handleReset = () => {
+    this.props.dispatch(resetAuthState());
+    this.props.navigation.navigate(routes.home);
+  }
+
   handleAccountsListRefresh = () => {
     this.props.dispatch(loadPriceApiData());
     return this.updateAllAccounts();
@@ -196,6 +201,7 @@ class Home extends React.PureComponent<TProps, State> {
               visible={this.state.isPINModalVisible}
               onSuccess={this.handlePINEntered}
               onCancel={this.handlePINCancel}
+              onReset={this.handleReset}
             />
             <TermsModal
               visible={this.state.isTermsModalVisible}
