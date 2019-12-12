@@ -1,3 +1,4 @@
+/** @ignore */
 /** @module contracts */
 
 /**
@@ -5,8 +6,8 @@
  */
 
 import {convertHexEndianess, convertHexStringToByteArray} from '@burstjs/util';
-import {GenerateContractBytesArgs} from './typings/args';
-import {ByteBuffer} from './internal/ByteBuffer';
+import {GenerateContractArgs} from '../typings/args';
+import {ByteBuffer} from './ByteBuffer';
 import BigNumber from 'bignumber.js';
 
 const ContractVersion = 1;
@@ -19,7 +20,7 @@ const ContractVersion = 1;
  * @note This implementation is only for the AT Version 1, and a simplified version without data support yet
  */
 export const generateContractBytes = (
-    {activationFeePlanck, hexCode, isLittleEndian = true}: GenerateContractBytesArgs
+    {activationFeePlanck, hexCode, isLittleEndian = true}: GenerateContractArgs
 ): ArrayBuffer => {
 
     const code = isLittleEndian ? convertHexEndianess(hexCode) : hexCode;

@@ -1,5 +1,4 @@
 import {ByteBuffer} from '../ByteBuffer';
-import BigNumber from 'bignumber.js';
 
 describe('ByteBuffer', () => {
 
@@ -45,14 +44,14 @@ describe('ByteBuffer', () => {
     describe('putBytes', () => {
         it('puts multiple bytes - Big Endian', () => {
             const byteBuffer = new ByteBuffer(4, false);
-            byteBuffer.putBytes([-1, 0, 1, 2]);
+            byteBuffer.putBytes(new Int8Array([-1, 0, 1, 2]));
             const bytes = new Uint8Array(byteBuffer.getBytes());
             expect(bytes).toEqual(new Uint8Array([255, 0, 1, 2]));
         });
 
         it('puts a multiple bytes - Little Endian', () => {
             const byteBuffer = new ByteBuffer(4, true);
-            byteBuffer.putBytes([-1, 0, 1, 2]);
+            byteBuffer.putBytes(new Int8Array([-1, 0, 1, 2]));
             const bytes = new Uint8Array(byteBuffer.getBytes());
             expect(bytes).toEqual(new Uint8Array([2, 1, 0, 255]));
         });
@@ -70,7 +69,7 @@ describe('ByteBuffer', () => {
             const byteBuffer = new ByteBuffer(2, true);
             byteBuffer.putShort(12345);
             const bytes = new Uint8Array(byteBuffer.getBytes());
-            expect(bytes).toEqual(new Uint8Array([57,48]));
+            expect(bytes).toEqual(new Uint8Array([57, 48]));
         });
 
         it('puts a short - Out of range', () => {

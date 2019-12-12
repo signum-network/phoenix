@@ -1,5 +1,5 @@
 /** @module contracts */
 export * from './getContractDatablock';
 export * from './ContractDataView';
-export * from './generateContractBytes';
-export * from './generateMethodCallHexMessage';
+export * from './generateContract';
+export * from './generateMethodCall';

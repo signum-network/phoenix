@@ -42,7 +42,7 @@ const twosComplementBinary = (bn: BigNumber) => {
  * @param argsLong Up to three long arguments (in string) to be passed on call
  * @see [[ContractApi.callMethod]]]
  */
-export const generateMethodCallHexMessage = (methodLong: string, ...argsLong: string[]): string => {
+export const generateMethodCall = (methodLong: string, ...argsLong: string[]): string => {
     if (argsLong.length > MaxArgsCount) {
         throw new Error(`Only ${MaxArgsCount} arguments allowed`);
     }

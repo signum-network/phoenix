@@ -5,7 +5,7 @@ import {
     Echo4000kMinActivationContract,
     EchoContract,
     UniqueTokenContract
-} from './helpers/contractsMocks';
+} from '../../__tests__/helpers/contractsMocks';
 
 const minActivationFee = convertNumberToNQTString(30);
 
