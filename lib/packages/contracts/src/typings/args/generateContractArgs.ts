@@ -1,4 +1,4 @@
-/** @module core */
+/** @module contracts */
 
 /**
  * Copyright (c) 2019 Burst Apps Team
