@@ -13,7 +13,7 @@ import {TransactionSmartContractSubtype} from './transactionSmartContractSubtype
 /**
  * The smallest possible fee
  */
-const FeeQuantNQT = 735000;
+const FeeQuantPlanck = 735000;
 
 /**
  * The default deadline (in minutes) for Transactions
@@ -26,7 +26,7 @@ const DefaultDeadline = 1440;
 const DefaultApiEndpoint = '/burst';
 
 export {
-    FeeQuantNQT,
+    FeeQuantPlanck,
     DefaultDeadline,
     DefaultApiEndpoint,
     TransactionType,

@@ -25,7 +25,7 @@ import {
     setRewardRecipient
 } from './factories/account';
 import {getAliasById, getAliasByName} from './factories/alias';
-import {getAllContractIds, getContract, getContractsByAccount} from './factories/contract';
+import {getAllContractIds, getContract, getContractsByAccount, publishContract} from './factories/contract';
 import {
     broadcastTransaction,
     getTransaction,
@@ -35,7 +35,6 @@ import {
     sendSameAmountToMultipleRecipients
 } from './factories/transaction';
 import {getAllAssets, getAsset} from './factories/asset';
-import {DefaultApiEndpoint} from '../constants';
 import {AxiosRequestConfig} from 'axios';
 
 
@@ -131,7 +130,8 @@ export function composeApi(settings: ApiSettings): Api {
         }).withContractApi({
             getContract,
             getContractsByAccount,
-            getAllContractIds
+            getAllContractIds,
+            publishContract,
         }).withAssetApi({
             getAsset,
             getAllAssets,

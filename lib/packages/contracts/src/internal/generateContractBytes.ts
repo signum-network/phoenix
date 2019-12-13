@@ -14,7 +14,7 @@ const ContractVersion = 1;
 
 /**
  * Generate the byte sequence for a contract, such that this can be committed to blockchain
- * @param args The [[GenerateContractnpm run tsArgs]] arguments
+ * @param args The [[GenerateContract]] arguments
  * @return ArrayBuffer The byte sequence to be committed to Blockchain.
  *
  * @note This implementation is only for the AT Version 1, and a simplified version without data support yet

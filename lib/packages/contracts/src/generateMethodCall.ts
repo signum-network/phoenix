@@ -1,4 +1,5 @@
 /** @module contracts */
+
 /**
  * Copyright (c) 2019 Burst Apps Team
  *
@@ -6,11 +7,10 @@
  * https://coolaj86.com/articles/convert-decimal-to-hex-with-js-bigints/
  */
 
-
 import './internal/padStartPolyfill';
 import BigNumber from 'bignumber.js';
 import {convertHexEndianess} from '@burstjs/util';
-import {GenerateMethodCallArgs, MethodArgument} from './typings/args/generateMethodCallArgs';
+import {GenerateMethodCallArgs, MethodArgument} from './typings/args';
 
 const numericToHex = (numeric: string): string => {
     let bn = new BigNumber(numeric);
@@ -43,7 +43,6 @@ const convertArgument = (value: MethodArgument): string => {
     }
     return value;
 };
-
 
 /**
  * Generates a method call message of a contracts public method. The message can be sent using for example

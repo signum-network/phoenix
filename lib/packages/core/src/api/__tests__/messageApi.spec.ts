@@ -8,7 +8,7 @@ import {broadcastTransaction} from '../factories/transaction/broadcastTransactio
 import {sendEncryptedTextMessage} from '../factories/message/sendEncryptedTextMessage';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {sendMessage} from '../factories/message';
-import {FeeQuantNQT} from '../../constants';
+import {FeeQuantPlanck} from '../../constants';
 import {signAndBroadcastTransaction} from '../../internal';
 import {sendEncryptedMessage} from '../factories/message/sendEncryptedMessage';
 
@@ -256,7 +256,7 @@ describe('Message Api', () => {
 
             await sendMessage(service)({
                 message: 'Message Text',
-                feePlanck: '' + FeeQuantNQT,
+                feePlanck: '' + FeeQuantPlanck,
                 recipientId: 'recipientId',
                 recipientPublicKey: 'recipientPublicKey',
                 senderPrivateKey: 'senderPrivateKey',
@@ -289,7 +289,7 @@ describe('Message Api', () => {
 
             await sendEncryptedMessage(service)({
                 message: 'Message Text',
-                feePlanck: '' + FeeQuantNQT,
+                feePlanck: '' + FeeQuantPlanck,
                 recipientId: 'recipientId',
                 recipientPublicKey: 'recipientPublicKey',
                 senderKeys: {

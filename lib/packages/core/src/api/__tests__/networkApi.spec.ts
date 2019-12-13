@@ -4,7 +4,7 @@ import {getServerStatus} from '../factories/network/getServerStatus';
 import {getTime} from '../factories/network/getTime';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {suggestFee} from '../factories/network';
-import {FeeQuantNQT} from '../../constants';
+import {FeeQuantPlanck} from '../../constants';
 
 describe('Network Api', () => {
 
@@ -94,7 +94,7 @@ describe('Network Api', () => {
             const service = createBurstService(httpMock, 'relPath');
             const status = await suggestFee(service)();
             expect(status).toEqual({
-                minimum: FeeQuantNQT,
+                minimum: FeeQuantPlanck,
                 standard: 1,
                 cheap: 2,
                 priority: 3,

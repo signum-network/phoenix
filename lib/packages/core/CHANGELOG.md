@@ -8,6 +8,9 @@ __Breaking Changes__
 - `ContractHelper`, `getContractDatablock` moved into new package `contracts`
 ___
 
+- added new methods to contract Api
+    - `callContractMethod`
+    - `commitContract`
 
 ## 0.4.3
 ___

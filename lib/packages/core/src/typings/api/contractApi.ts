@@ -3,6 +3,8 @@
 import {Contract} from '../contract';
 import {ContractList} from '../contractList';
 import {ContractIdList} from '../contractIdList';
+import {PublishContractArgs} from '../args';
+import {TransactionId} from '../transactionId';
 
 /**
  * Contract API
@@ -30,5 +32,13 @@ export interface ContractApi {
      * @return {ContractIdList} The list of contract ids
      */
     getAllContractIds: (id: string) => Promise<ContractIdList>;
+
+
+    /**
+     * Publishes a smart contract to the blockchain
+     * @param args {PublishContractArgs} The argument object
+     * @return {TransactionId} The transaction id in case of success
+     */
+    publishContract: (args: PublishContractArgs) => Promise<TransactionId>;
 
 }
