@@ -9,7 +9,6 @@ import {signAndBroadcastTransaction} from '../../../internal';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline, FeeQuantPlanck} from '../../../constants';
-import {generateContract} from '@burstjs/contracts';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[ContractApi]].
@@ -20,19 +19,17 @@ export const publishContract = (service: BurstService):
     (args: PublishContractArgs) => Promise<TransactionId> =>
     async (args: PublishContractArgs): Promise<TransactionId> => {
 
-        const codeHex = generateContract({
-            activationFeePlanck: args.activationAmountPlanck,
-            hexCode: args.codeHex
-        });
-
         const parameters = {
-            creationBytes: codeHex,
+            code: args.codeHex,
             deadline: args.deadline || DefaultDeadline,
             description: args.description,
             feeNQT: args.feePlanck || FeeQuantPlanck,
             minActivationAmountNQT: args.activationAmountPlanck,
             name: args.name,
             publicKey: args.senderPublicKey,
+            cspages: 1,
+            dpages: 1,
+            uspages: 1,
         };
 
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('createATProgram', parameters);
