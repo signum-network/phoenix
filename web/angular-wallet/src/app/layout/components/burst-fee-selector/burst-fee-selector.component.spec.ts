@@ -1,10 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BurstFeeSelectorComponent } from './burst-fee-selector.component';
-import { Ng5SliderModule } from 'ng5-slider';
-import {FeeQuantNQT} from '@burstjs/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import {BurstFeeSelectorComponent} from './burst-fee-selector.component';
+import {Ng5SliderModule} from 'ng5-slider';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {I18nModule} from '../i18n/i18n.module';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {I18nService} from '../i18n/i18n.service';
@@ -13,6 +12,7 @@ import {BehaviorSubject} from 'rxjs';
 import {TransactionService} from '../../../main/transactions/transaction.service';
 import {AccountService} from '../../../setup/account/account.service';
 import {BurstInputValidatorDirective} from '../../../main/send-burst/send-burst-validator.directive';
+import {FeeQuantPlanck} from '@burstjs/core/src';
 
 describe('BurstFeeSelectorComponent', () => {
   let component: BurstFeeSelectorComponent;
@@ -27,7 +27,7 @@ describe('BurstFeeSelectorComponent', () => {
         I18nModule,
         HttpClientTestingModule
       ],
-      declarations: [ BurstFeeSelectorComponent ],
+      declarations: [BurstFeeSelectorComponent],
       providers: [
         I18nService,
         {
@@ -59,14 +59,14 @@ describe('BurstFeeSelectorComponent', () => {
         BurstInputValidatorDirective
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BurstFeeSelectorComponent);
     component = fixture.componentInstance;
     component.fees = {
-      minimum: FeeQuantNQT,
+      minimum: FeeQuantPlanck,
       cheap: 0.1,
       standard: 0.2,
       priority: 0.3,
