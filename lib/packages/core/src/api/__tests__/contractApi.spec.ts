@@ -2,6 +2,7 @@ import {Http, HttpMockBuilder} from '@burstjs/http';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {getContract, getContractsByAccount, publishContract} from '../factories/contract';
 import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
+import {generateContract} from '@burstjs/contracts';
 
 describe('Contract Api', () => {
 
@@ -78,6 +79,7 @@ describe('Contract Api', () => {
             // @ts-ignore
             generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
 
+            generateContract = jest.fn(() => 'hexCode');
         });
 
 

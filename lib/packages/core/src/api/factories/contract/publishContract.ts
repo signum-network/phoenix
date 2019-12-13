@@ -5,8 +5,11 @@
  */
 import {BurstService} from '../../../service';
 import {PublishContractArgs} from '../../../typings/args';
-import {DefaultDeadline, FeeQuantPlanck, TransactionId, TransactionResponse} from '../../..';
 import {signAndBroadcastTransaction} from '../../../internal';
+import {TransactionId} from '../../../typings/transactionId';
+import {TransactionResponse} from '../../../typings/transactionResponse';
+import {DefaultDeadline, FeeQuantPlanck} from '../../../constants';
+import {generateContract} from '@burstjs/contracts';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[ContractApi]].
@@ -17,8 +20,13 @@ export const publishContract = (service: BurstService):
     (args: PublishContractArgs) => Promise<TransactionId> =>
     async (args: PublishContractArgs): Promise<TransactionId> => {
 
+        const codeHex = generateContract({
+            activationFeePlanck: args.activationAmountPlanck,
+            hexCode: args.codeHex
+        });
+
         const parameters = {
-            creationBytes: args.codeHex,
+            creationBytes: codeHex,
             deadline: args.deadline || DefaultDeadline,
             description: args.description,
             feeNQT: args.feePlanck || FeeQuantPlanck,
@@ -34,4 +42,6 @@ export const publishContract = (service: BurstService):
             senderPrivateKey: args.senderPrivateKey,
             unsignedHexMessage
         }, service);
+
+        // TODO: return the contract address
     };

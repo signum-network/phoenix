@@ -7,7 +7,6 @@
  * https://coolaj86.com/articles/convert-decimal-to-hex-with-js-bigints/
  */
 
-
 import {GenerateContractArgs} from './typings/args';
 import {generateContractBytes} from './internal/generateContractBytes';
 import {convertByteArrayToHexString} from '@burstjs/util';
