@@ -71,14 +71,9 @@ describe('Contract Api', () => {
 
         beforeEach(() => {
             jest.resetAllMocks();
-
-            // @ts-ignore
             generateSignature = jest.fn(() => 'signature');
-            // @ts-ignore
             verifySignature = jest.fn(() => true);
-            // @ts-ignore
             generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
-
             generateContract = jest.fn(() => 'hexCode');
         });
 
