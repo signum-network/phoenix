@@ -7,7 +7,7 @@
  * @param codeHex {string}
  * @param deadline {number}
  * @param description {string}
- * @param feePlanck {string}
+ * @param publishFeePlanck {string} The publishing fee for the contract
  * @param activationAmountPlanck {string}
  * @param name {string}
  * @param senderPublicKey {string}
@@ -19,7 +19,7 @@ export interface PublishContractArgs {
     codeHex: string;
     deadline?: number;
     description: string;
-    feePlanck?: string;
+    publishFeePlanck: string;
     name: string;
     senderPublicKey: string;
     senderPrivateKey: string;

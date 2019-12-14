@@ -3,12 +3,14 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
+import {calculateMinimumCreationFee} from '@burstjs/contracts';
 import {BurstService} from '../../../service';
 import {PublishContractArgs} from '../../../typings/args';
 import {signAndBroadcastTransaction} from '../../../internal';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
-import {DefaultDeadline, FeeQuantPlanck} from '../../../constants';
+import {DefaultDeadline} from '../../../constants';
+
 
 /**
  * Use with [[ApiComposer]] and belongs to [[ContractApi]].
@@ -23,7 +25,7 @@ export const publishContract = (service: BurstService):
             code: args.codeHex,
             deadline: args.deadline || DefaultDeadline,
             description: args.description,
-            feeNQT: args.feePlanck || FeeQuantPlanck,
+            feeNQT: calculateMinimumCreationFee(args.codeHex),
             minActivationAmountNQT: args.activationAmountPlanck,
             name: args.name,
             publicKey: args.senderPublicKey,
@@ -39,6 +41,4 @@ export const publishContract = (service: BurstService):
             senderPrivateKey: args.senderPrivateKey,
             unsignedHexMessage
         }, service);
-
-        // TODO: return the contract address
     };

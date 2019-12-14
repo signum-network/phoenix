@@ -13,7 +13,7 @@ import {TransactionSmartContractSubtype} from './transactionSmartContractSubtype
 /**
  * The smallest possible fee
  */
-const FeeQuantPlanck = 73500000;
+const FeeQuantPlanck = 735000;
 /**
  * The default deadline (in minutes) for Transactions
  */

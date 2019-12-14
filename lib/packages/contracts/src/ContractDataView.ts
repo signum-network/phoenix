@@ -7,6 +7,7 @@
 import {convertHexStringToDecString, convertHexStringToString} from '@burstjs/util';
 import {Contract} from './typings/contract';
 import {getContractDatablock} from './getContractDatablock';
+import {CodePageSize} from './constants';
 
 /**
  * Helper class for contracts
@@ -27,6 +28,13 @@ export class ContractDataView {
      */
     getContract() {
         return this._contract;
+    }
+
+    /**
+     * @return The number of code pages
+     */
+    countCodePages() {
+        return (this._contract.machineCode.length / 2) / CodePageSize
     }
 
     /**
