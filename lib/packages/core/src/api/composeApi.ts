@@ -25,7 +25,7 @@ import {
     setRewardRecipient
 } from './factories/account';
 import {getAliasById, getAliasByName} from './factories/alias';
-import {getAllContractIds, getContract, getContractsByAccount, publishContract} from './factories/contract';
+import {getAllContractIds, getContract, getContractsByAccount, publishContract, callContractMethod} from './factories/contract';
 import {
     broadcastTransaction,
     getTransaction,
@@ -132,6 +132,7 @@ export function composeApi(settings: ApiSettings): Api {
             getContractsByAccount,
             getAllContractIds,
             publishContract,
+            callContractMethod,
         }).withAssetApi({
             getAsset,
             getAllAssets,
