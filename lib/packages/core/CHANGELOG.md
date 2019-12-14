@@ -11,7 +11,7 @@ ___
 
 - added new methods to contract Api
     - `callContractMethod`
-    - `commitContract`
+    - `publishContract`
 
 ## 0.4.3
 ___
