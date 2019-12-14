@@ -9,14 +9,18 @@
  * @param hex The hexadecimal string to be converted
  * @return {number[]} An byte array representing the hexadecimal input
  */
-export const convertHexStringToByteArray = (hex: string): number[] => {
-    const bytes = [];
+export const convertHexStringToByteArray = (hex: string): Uint8Array => {
+    if (hex.length % 2) {
+        throw new Error(`Invalid Hex String: ${hex}`);
+    }
+
+    const bytes = new Uint8Array(hex.length / 2);
     for (let c = 0; c < hex.length; c += 2) {
         const byte = parseInt(hex.substr(c, 2), 16);
         if (Number.isNaN(byte)) {
             throw new Error(`Invalid Hex String: ${hex}`);
         }
-        bytes.push(byte);
+        bytes[c / 2] = byte;
     }
 
     return bytes;

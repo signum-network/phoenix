@@ -3,7 +3,7 @@ import {convertByteArrayToString} from '../convertByteArrayToString';
 
 describe('String Conversions', () => {
     const TestString = 'Test string: çãá😀';
-    const TestBytes = [84, 101, 115, 116, 32, 115, 116, 114, 105, 110, 103, 58, 32, 195, 167, 195, 163, 195, 161, 240, 159, 152, 128];
+    const TestBytes = new Uint8Array([84, 101, 115, 116, 32, 115, 116, 114, 105, 110, 103, 58, 32, 195, 167, 195, 163, 195, 161, 240, 159, 152, 128]);
     describe('convertStringToByteArray', () => {
 
         it('should convertStringToByteArray()', () => {

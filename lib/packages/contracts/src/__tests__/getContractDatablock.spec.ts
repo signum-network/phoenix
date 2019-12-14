@@ -4,7 +4,6 @@ describe('getContractDatablock', () => {
     it('returns correctly hex values at given positions', () => {
 
         const contract = {
-            // tslint:disable-next-line:max-line-length
             machineData: 'a23677e9ce2322cf1acf3c5ef2907048961919a7b3030000b943729d08000000',
         };
 

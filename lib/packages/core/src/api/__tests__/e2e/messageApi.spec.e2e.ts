@@ -6,7 +6,7 @@ import {sendEncryptedTextMessage} from '../../factories/message/sendEncryptedTex
 import {getTransaction} from '../../factories/transaction/getTransaction';
 import {isAttachmentVersion} from '../../../attachment';
 import {sendMessage} from '../../factories/message';
-import {FeeQuantNQT} from '../../../constants';
+import {FeeQuantPlanck} from '../../../constants';
 
 
 describe('[E2E] Message Api', () => {
@@ -52,7 +52,7 @@ describe('[E2E] Message Api', () => {
             message: '[E2E] sendMessage TEST',
             senderPublicKey: senderKeys.publicKey,
             senderPrivateKey: senderKeys.signPrivateKey,
-            feePlanck: '' + FeeQuantNQT,
+            feePlanck: '' + FeeQuantPlanck,
             recipientId,
             recipientPublicKey: recipientKeys.publicKey,
             deadline: 1440,

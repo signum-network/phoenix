@@ -1,32 +1,42 @@
-/** @module core */
+/** @module contracts */
 
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
 
 import {convertHexStringToDecString, convertHexStringToString} from '@burstjs/util';
-import {Contract} from '../typings/contract';
+import {Contract} from './typings/contract';
 import {getContractDatablock} from './getContractDatablock';
+import {CodePageSize} from './constants';
+import {countCodePages} from './countCodePages';
 
 /**
  * Helper class for contracts
  *
- * A contract owns additional data, which is splitted in 8 byte blocks.
+ * A contract owns additional data, which is split in 8 byte blocks.
  * The content is encoded in hexadecimal representation and big endianness.
- * This helper class facilitates access to these data
+ * This class facilitates access to these data
  */
-export class ContractHelper {
+export class ContractDataView {
 
-    public static VARIABLE_LENGTH = 16;
+    private static VariableLength = 16;
 
     constructor(private _contract: Contract) {
-
     }
 
     /**
      * @return Get the contract
      */
-    getContract() { return this._contract; }
+    getContract() {
+        return this._contract;
+    }
+
+    /**
+     * @return The number of code pages
+     */
+    countCodePages() {
+        return countCodePages(this._contract.machineCode);
+    }
 
     /**
      * Get a variable as string
@@ -34,7 +44,7 @@ export class ContractHelper {
      * @return The data as string (Utf-8)
      */
     public getVariableAsString(index: number): string {
-        const hexData = this.getHexDataAt(index, ContractHelper.VARIABLE_LENGTH);
+        const hexData = this.getHexDataAt(index, ContractDataView.VariableLength);
         return convertHexStringToString(hexData.replace(/00/g, ''));
     }
 
@@ -45,7 +55,7 @@ export class ContractHelper {
      * @return The data as string (Utf-8)
      */
     public getDataBlocksAsString(index: number, count?: number): string {
-        const hexData = this.getHexDataAt(index, count * ContractHelper.VARIABLE_LENGTH);
+        const hexData = this.getHexDataAt(index, count * ContractDataView.VariableLength);
         return convertHexStringToString(hexData.replace(/00/g, ''));
     }
 
@@ -64,7 +74,7 @@ export class ContractHelper {
      * @return The data as hexadecimal string (in little endianness)
      */
     public getVariable(index: number): string {
-        return this.getHexDataAt(index, ContractHelper.VARIABLE_LENGTH);
+        return this.getHexDataAt(index, ContractDataView.VariableLength);
     }
 
     /**
@@ -74,7 +84,7 @@ export class ContractHelper {
      * @return The data as hexadecimal string (in little endianness)
      */
     public getHexDataAt(index: number, length?: number): string {
-        const l = length ? length : this._contract.machineData.length - ContractHelper.VARIABLE_LENGTH * index;
+        const l = length ? length : this._contract.machineData.length - ContractDataView.VariableLength * index;
         return getContractDatablock(this._contract, index, l);
     }
 

@@ -12,7 +12,7 @@
  * @param length The number of bytes to be considered, _iff_ startIndex is given. If _null_ the byte array's length is considered
  * @return {string} The converted string
  */
-export const convertByteArrayToString = (byteArray: number[], startIndex: number = 0, length: number = null): string => {
+export const convertByteArrayToString = (byteArray: Uint8Array, startIndex: number = 0, length: number = null): string => {
     if (length === 0) {
         return '';
     }
@@ -24,11 +24,11 @@ export const convertByteArrayToString = (byteArray: number[], startIndex: number
         bytes = byteArray.slice(startIndex, startIndex + len);
     }
 
-    return decodeURIComponent(escape(String.fromCharCode.apply(null, bytes)));
+    return decodeURIComponent(escape(String.fromCharCode.apply(null, Array.from(bytes))));
 };
 
 
-function checkBytesToIntInput(bytes: number[], numBytes: number, startIndex: number = 0) {
+function checkBytesToIntInput(bytes: Uint8Array, numBytes: number, startIndex: number = 0) {
     if (startIndex < 0) {
         throw new Error('Start index should not be negative');
     }

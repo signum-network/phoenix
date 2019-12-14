@@ -2,7 +2,9 @@ import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
 import {getContractsByAccount} from '../../factories/contract/getContractsByAccount';
 import {getContract} from '../../factories/contract/getContract';
-import {getAllContractIds} from '../../factories/contract';
+import {getAllContractIds, publishContract} from '../../factories/contract';
+import {convertNumberToNQTString} from '@burstjs/util';
+import {generateMasterKeys, getAccountIdFromPublicKey} from '@burstjs/crypto';
 
 const environment = loadEnvironment();
 
@@ -13,6 +15,18 @@ describe('[E2E] Contract Api', () => {
     const service = new BurstService({
         nodeHost: environment.testNetHost,
         apiRootUrl: environment.testNetApiPath
+    });
+
+    let senderKeys;
+    let recipientKeys;
+    let recipientId;
+
+    beforeAll(() => {
+        jest.setTimeout(environment.timeout);
+
+        senderKeys = generateMasterKeys(environment.testPassphrase);
+        recipientKeys = generateMasterKeys(environment.testRecipientPassphrase);
+        recipientId = getAccountIdFromPublicKey(recipientKeys.publicKey);
     });
 
     it('should getContract', async () => {
@@ -29,5 +43,19 @@ describe('[E2E] Contract Api', () => {
     it('should getAllContractIds', async () => {
         const contractIdList = await getAllContractIds(service)();
         expect(contractIdList.atIds.length).toBeGreaterThan(0);
+    });
+
+    it('should publishContract', async () => {
+        const transactionId = await publishContract(service)(
+            {
+                codeHex: environment.testContractCodeHex,
+                activationAmountPlanck: convertNumberToNQTString(10),
+                senderPublicKey: senderKeys.publicKey,
+                senderPrivateKey: senderKeys.signPrivateKey,
+                description: '[E2E] burstjs publishContract Test',
+                name: 'Echo',
+            }
+        );
+        expect(transactionId.transaction).toBeDefined();
     });
 });

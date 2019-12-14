@@ -19,6 +19,7 @@ an advanced community-driven blockchain technology.
 The library is separated in the following packages
 
 - [@burstjs/core](./modules/core.html) The main package providing an extense API for blockchain interaction
+- [@burstjs/contracts](./modules/contracts.html) A package providing BURST relevant functions for _smart contracts_
 - [@burstjs/crypto](./modules/crypto.html) A package providing BURST relevant crypto functions
 - [@burstjs/util](./modules/util.html) A package providing useful functions, e.g. common conversion functions 
 - [@burstjs/http](./modules/http.html) A package providing a _simplified_ Http layer, with consistent response types, and exception handling
@@ -34,6 +35,7 @@ Install using [npm](https://www.npmjs.org/):
 
 ```
 npm install @burstjs/core
+npm install @burstjs/contracts (optional)
 npm install @burstjs/crypto (optional)
 npm install @burstjs/util (optional)
 npm install @burstjs/http (optional)
@@ -44,6 +46,7 @@ or using [yarn](https://yarnpkg.com/):
 
 ``` yarn
 yarn add @burstjs/core
+yarn add @burstjs/contracts (optional)
 yarn add @burstjs/crypto (optional)
 yarn add @burstjs/util (optional)
 yarn add @burstjs/http (optional)
@@ -61,6 +64,8 @@ Just import one of the packages using the HTML `<script>` tag.
 
 `<script src='https://cdn.jsdelivr.net/npm/@burstjs/core/dist/burstjs.min.js'></script>`
 
+`<script src='https://cdn.jsdelivr.net/npm/@burstjs/contracts/dist/burstjs.contracts.min.js'></script>`
+
 `<script src='https://cdn.jsdelivr.net/npm/@burstjs/crypto/dist/burstjs.crypto.min.js'></script>`
 
 `<script src='https://cdn.jsdelivr.net/npm/@burstjs/http/dist/burstjs.http.min.js'></script>`
@@ -73,6 +78,7 @@ Due to the way a package is imported following global variables are provided
 | Package | Variable |
 |---------|----------|
 |  core   |`b$`      |
+|  crypto |`b$contracts`|
 |  crypto |`b$crypto`|
 |  http   |`b$http`  |
 |  util   |`b$util`  |
@@ -87,6 +93,12 @@ const api = b$.composeApi({
 });
 
 api.network.getBlockchainStatus().then(console.log);
+```
+
+```js
+// using contracts
+const dataView = new b$contracts.ContractDataView(contract)
+console.log(dataView.getVariable(2))
 ```
 
 ```js

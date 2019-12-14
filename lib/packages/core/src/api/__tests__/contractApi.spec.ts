@@ -1,6 +1,8 @@
-import {HttpMockBuilder, Http} from '@burstjs/http';
+import {Http, HttpMockBuilder} from '@burstjs/http';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
-import {getContract, getContractsByAccount} from '../factories/contract';
+import {getContract, getContractsByAccount, publishContract} from '../factories/contract';
+import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
+import {generateContract} from '@burstjs/contracts';
 
 describe('Contract Api', () => {
 
@@ -61,6 +63,45 @@ describe('Contract Api', () => {
             const contracts = await getContractsByAccount(service)('1234');
             expect(contracts.ats).toHaveLength(1);
             expect(contracts.ats[0]).toEqual(testContract);
+        });
+    });
+
+
+    describe('publishContract', () => {
+
+        beforeEach(() => {
+            jest.resetAllMocks();
+            generateSignature = jest.fn(() => 'signature');
+            verifySignature = jest.fn(() => true);
+            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
+            generateContract = jest.fn(() => 'hexCode');
+        });
+
+
+        it('should publishContract', async () => {
+
+            const testResponse = {
+                fullHash: 'fullHash',
+                transaction: 'transactionId'
+            };
+
+            httpMock = HttpMockBuilder.create()
+                .onPostReply(200, testResponse).build();
+
+            const service = createBurstService(httpMock, 'relPath');
+            const transaction = await publishContract(service)({
+                activationAmountPlanck: '20000000',
+                codeHex: 'creationBytes',
+                description: 'description',
+                feePlanck: '10000000',
+                name: 'testContract',
+                senderPublicKey: 'publickey',
+                senderPrivateKey: 'privateKey'
+            });
+            expect(transaction).toEqual({
+                fullHash: 'fullHash',
+                transaction: 'transactionId'
+            });
         });
     });
 });

@@ -1,16 +1,18 @@
-/** @module core */
+/** @module contracts */
 
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
 
-import {Contract} from '../typings/contract';
+import {convertHexEndianess} from '@burstjs/util';
+import {Contract} from './typings/contract';
 
 /**
  * Extracts a variables value as hexadecimal string from a contract's machine data
  *
- * This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead
+ * This is a generic function to extract arbitrary data from a contract. It's recommended to use the [[ContractDataView]] class instead
  *
+ * @param contract The contract
  * @param position The variables position
  * @param length The length of data to be extracted
  * @return The value as hexadecimal string (already considering endianness)
@@ -27,10 +29,5 @@ export function getContractDatablock(contract: Contract, position: number, lengt
         throw new Error(`Invalid position: ${startIndex} (or given length: ${length}) - must be at least multiple of 2`);
     }
 
-    let result = '';
-    const rawData = contract.machineData.substr(startIndex, length);
-    for (let i = rawData.length - 1; i >= 0; i -= 2) {
-        result += rawData[i - 1] + rawData[i];
-    }
-    return result;
+    return convertHexEndianess(contract.machineData.substr(startIndex, length));
 }
