@@ -5,6 +5,7 @@ import {ContractList} from '../contractList';
 import {ContractIdList} from '../contractIdList';
 import {PublishContractArgs} from '../args';
 import {TransactionId} from '../transactionId';
+import {CallContractMethodArgs} from '../args/callContractMethodArgs';
 
 /**
  * Contract API
@@ -40,5 +41,12 @@ export interface ContractApi {
      * @return {TransactionId} The transaction id in case of success
      */
     publishContract: (args: PublishContractArgs) => Promise<TransactionId>;
+
+    /**
+     * Calls a public method of smart contract
+     * @param args {CallContractMethodArgs} The argument object
+     * @return {TransactionId} The transaction id in case of success
+     */
+    callContractMethod: (args: CallContractMethodArgs) => Promise<TransactionId>;
 
 }

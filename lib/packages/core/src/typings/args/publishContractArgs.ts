@@ -2,7 +2,7 @@
 
 
 /**
- * The argument object for [[ContractApi.publishContrac]]
+ * The argument object for [[ContractApi.publishContract]]
  *
  * @param codeHex {string}
  * @param deadline {number}
