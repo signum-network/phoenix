@@ -14,6 +14,17 @@ describe('AES', () => {
 
     });
 
+    it('should encrypt/decrypt correctly unicode', () => {
+
+        const secret = 'secret';
+        const Message = '\u01F6 with Unicode';
+
+        const encrypted = encryptAES(Message, secret);
+        const decrypted = decryptAES(encrypted, secret);
+        expect(decrypted).toBe(Message);
+
+    });
+
     it('should NOT encrypt/decrypt correctly', () => {
 
         const secret = 'secret';
