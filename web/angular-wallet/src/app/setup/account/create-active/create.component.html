@@ -1,25 +1,40 @@
-<mat-horizontal-stepper #stepper linear [linear]="true" [selectedIndex]="this.createService.getStepIndex()" labelPosition="bottom">
-    <mat-step [completed]="this.createService.isPassphraseGenerated()" [editable]="!this.createService.isPassphraseGenerated()">
-        <ng-template matStepLabel>{{ 'generate' | i18n }}</ng-template>
-        <div class="step-container">
-            <ng-container *ngIf="newUser">
-                <app-account-create-seed></app-account-create-seed>
-            </ng-container>
-            <ng-container *ngIf="!newUser">
-                <app-account-create-existing></app-account-create-existing>
-            </ng-container>
-        </div>
+<div class="create-account-container">
+
+  <mat-horizontal-stepper #stepper
+                          linear
+                          [linear]="true"
+                          [selectedIndex]="this.createService.getStep()"
+                          labelPosition="bottom"
+  >
+    <mat-step [completed]="this.createService.isPassphraseGenerated()"
+              [editable]="!this.createService.isPassphraseGenerated()">
+      <ng-template matStepLabel>{{ 'generate' | i18n }}</ng-template>
+      <div class="step-container">
+        <ng-container *ngIf="newUser">
+          <app-account-create-seed></app-account-create-seed>
+        </ng-container>
+        <ng-container *ngIf="!newUser">
+          <app-account-create-existing></app-account-create-existing>
+        </ng-container>
+      </div>
     </mat-step>
     <mat-step [completed]="this.createService.getAddress() != undefined && this.createService.getId() != undefined">
-        <ng-template matStepLabel>{{ 'record' | i18n }}</ng-template>
-        <div class="step-container">
-            <app-account-create-record></app-account-create-record>
-        </div>
+      <ng-template matStepLabel>{{ 'record' | i18n }}</ng-template>
+      <div class="step-container">
+        <app-account-create-record></app-account-create-record>
+      </div>
     </mat-step>
     <mat-step>
-        <ng-template matStepLabel>{{ 'secure' | i18n }}</ng-template>
-        <div class="step-container">
-            <app-account-create-pin></app-account-create-pin>
-        </div>
+      <ng-template matStepLabel>{{ 'secure' | i18n }}</ng-template>
+      <div class="step-container">
+        <app-account-create-pin [lastStep]="!newUser"></app-account-create-pin>
+      </div>
     </mat-step>
-</mat-horizontal-stepper>
+    <mat-step *ngIf="newUser">
+      <ng-template matStepLabel>{{ 'secure' | i18n }}</ng-template>
+      <div class="step-container">
+        <app-account-activate></app-account-activate>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

@@ -968,7 +968,7 @@
   "update_available": "Nova atualização disponível",
   "update_beta_available": "Está disponível uma versão experimental. Não se aconselha instalá-la se nom sabe bem o que está a fazer.",
   "update_blockchain_downloading": "A corrente de blocos ainda está sendo descarregada, verifique novamente após o término do download.",
-  "update_burst_account": "Update your burst account",
+  "update_burst_account": "Importar conta existente",
   "update_check": "Verificar atualização",
   "update_contact": "Atualizar Contato",
   "update_multiple_available": "Tanto a versão geral como a experimental estão disponíveis. Não é recomendável que você instale a versão experimental, a menos que você saiba o que está fazendo.",

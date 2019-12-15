@@ -968,7 +968,7 @@
   "update_available": "Υπάρχει διαθέσιμη νέα ενημέρωση",
   "update_beta_available": "A new experimental release is available. It is not recommended that you install this unless you know what you're doing.",
   "update_blockchain_downloading": "The blockchain is still downloading, check again after it's up to date.",
-  "update_burst_account": "Update your burst account",
+  "update_burst_account": "Εισαγωγή υπάρχοντος λογαριασμού",
   "update_check": "Ελεγχος ενημέρωσης",
   "update_contact": "Ενημέρωση επαφής",
   "update_multiple_available": "Both a general and experimental release are available. It is not recommended that you install the experimental release unless you know what you're doing.",

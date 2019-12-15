@@ -968,7 +968,7 @@
   "update_available": "Dostupno je novo ažuriranje",
   "update_beta_available": "Dostupna je nova eksperimentalna inačica. Ova instalacija se ne preporuča ukoliko niste sigurni što radite.",
   "update_blockchain_downloading": "Blockchain je još uvijek u fazi učitavanja, provjerite ponovo nakon završetka procesa.",
-  "update_burst_account": "Update your burst account",
+  "update_burst_account": "Uvezi postojeći račun",
   "update_check": "Provjera ažuriranja",
   "update_contact": "Ažuriraj kontakt",
   "update_multiple_available": "Dostupne su obje inačice, osnovna i eksperimentalna. Nije preporučljivo instaliranje eksperimentalne inačice ukoliko niste sigurni što radite.",

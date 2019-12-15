@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Router} from '@angular/router';
-import {CreateService} from '../../create.service';
+import {CreateService, StepsEnum} from '../../create.service';
 import {NotifierService} from 'angular-notifier';
 
 @Component({
@@ -10,7 +10,8 @@ import {NotifierService} from 'angular-notifier';
 })
 export class AccountCreatePinComponent {
 
-  @Input() pin: string;
+  @Input() lastStep: boolean;
+  pin: string;
 
   constructor(
     private router: Router,
@@ -20,24 +21,32 @@ export class AccountCreatePinComponent {
   }
 
   public back(): void {
-    this.createService.setStepIndex(1);
+    this.createService.previousStep();
   }
 
   public get isValid(): boolean {
     return this.pin && this.pin.length >= 4;
   }
 
-  public finish(): void {
+  public nextOrFinish(): void {
+
+    if (!this.lastStep) {
+      console.log('next')
+      this.createService.setStep(StepsEnum.ActivateAccount);
+      return;
+    }
+
     if (!this.isValid) {
       return;
     }
+
     this.createService.setPin(this.pin);
     this.createService.createActiveAccount().then((success) => {
         this.notificationService.notify('success', `Account added successfully`);
         this.createService.reset();
         // Angular Stepper hack
         setTimeout(x => {
-          this.createService.setStepIndex(0);
+          this.createService.setStep(0);
         }, 0);
         this.router.navigate(['/']);
       },

@@ -1,12 +1,14 @@
-$media-querie-mobile: 0;
-$media-querie-tablet: 768px;
+@import "src/@fuse/scss/fuse";
+
+$media-query-mobile: 0;
+$media-query-tablet: 768px;
 
 .accountRS-container mat-form-field {
-  @media screen and (min-width: $media-querie-mobile) {
+  @media screen and (min-width: $media-query-mobile) {
     margin-left: 3rem;
     width: 80%;
   }
-  @media screen and (min-width: $media-querie-tablet) {
+  @media screen and (min-width: $media-query-tablet) {
     margin-left: 0;
     width: 100%;
   }
@@ -21,6 +23,7 @@ $media-querie-tablet: 768px;
 }
 
 .address-container {
+  @include mat-elevation(16);
   text-align:center;
 }
 

@@ -1,38 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { CreateService } from '../../create.service';
+import {Component} from '@angular/core';
+import {CreateService, StepsEnum} from '../../create.service';
 
 @Component({
     selector: 'app-account-create-record',
     styleUrls: ['./record.component.scss'],
     templateUrl: './record.component.html'
 })
-export class AccountCreateRecordComponent implements OnInit {
+export class AccountCreateRecordComponent {
 
     constructor(
         public createService: CreateService,
     ) { }
 
-    public ngOnInit() {
 
-    }
-
-    public ngOnDestroy() {
-
-    }
-
-    public reset() {
+    public reset(): void {
         this.createService.reset();
-        // Angular Stepper hack
-        setTimeout(x => {
-            this.createService.setStepIndex(0);
-        }, 0);
     }
 
-    public next() {
-        this.createService.setStepIndex(2);
+    public next(): void {
+        this.createService.setStep(StepsEnum.DefinePin);
     }
 
-    public copy() {
+    public copy(): void {
         const selBox = document.createElement('textarea');
         selBox.style.position = 'fixed';
         selBox.style.left = '0';

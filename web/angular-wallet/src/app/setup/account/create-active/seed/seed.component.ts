@@ -1,11 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {CreateService} from '../../create.service';
+import {Component} from '@angular/core';
+import {CreateService, StepsEnum} from '../../create.service';
 import {convertNumericIdToAddress} from '@burstjs/util';
-import {
-  generateMasterKeys,
-  getAccountIdFromPublicKey,
-  PassPhraseGenerator
-} from '@burstjs/crypto';
+import {generateMasterKeys, getAccountIdFromPublicKey, PassPhraseGenerator} from '@burstjs/crypto';
 
 
 @Component({
@@ -26,7 +22,7 @@ export class AccountCreateSeedComponent {
     this.passphraseGenerator = new PassPhraseGenerator();
   }
 
-  public movement(e) {
+  public movement(e): void {
     this.seed.push([e.clientX, e.clientY, new Date()]);
     if (!this.update) {
       this.update = true;
@@ -42,8 +38,8 @@ export class AccountCreateSeedComponent {
         });
     }
   }
-  
-  public setPassphraseAndGenerateMasterKeys(phrase: string[]) {
+
+  public setPassphraseAndGenerateMasterKeys(phrase: string[]): void {
     this.createService.setPassphrase(phrase);
     const keys = generateMasterKeys(this.createService.getCompletePassphrase());
     const id = getAccountIdFromPublicKey(keys.publicKey);
@@ -52,7 +48,7 @@ export class AccountCreateSeedComponent {
     this.createService.setAddress(address);
     this.seed = [];
     setTimeout(x => {
-      this.createService.setStepIndex(1);
+      this.createService.setStep(StepsEnum.Record);
     }, 0);
   }
 }

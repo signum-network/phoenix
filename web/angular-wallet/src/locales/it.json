@@ -968,7 +968,7 @@
   "update_available": "Nuovo aggiornamento disponibile",
   "update_beta_available": "È disponibile una nuova versione sperimentale. Non è consigliabile installarla se non sai cosa stai facendo.",
   "update_blockchain_downloading": "Il blockchain sta ancora scaricando, controllare nuovamente appena sarà aggiornato.",
-  "update_burst_account": "Update your burst account",
+  "update_burst_account": "Importa account esistente",
   "update_check": "Controllo dell'aggiornamento",
   "update_contact": "Aggiorna contatto",
   "update_multiple_available": "Sia un rilascio generale che uno sperimentale sono disponibili. Non è consigliabile installare il rilascio sperimentale se non si è certi di cosa si stia facendo.",

@@ -902,7 +902,7 @@
   "update_available": "Nova verzija BRS-a je dostupna. Preporučujemo vam ažuriranje.",
   "update_beta_available": "Nova eksperimentalna verzija je dostupna. Nine preporučeno da je instalirate ukoliko ne znate šta radite.",
   "update_blockchain_downloading": "Blockchain je još uvek u fazi učitavanja, proverite ponovo nakon završetka procesa.",
-  "update_burst_account": "Update your burst account",
+  "update_burst_account": "Увези постојећи налог",
   "update_contact": "Ažuriraj Kontakt",
   "update_multiple_available": "Dostupne su obe verzije, osnovna i eksperimentalna. Nije preporučljiva instalacija eksperimentalne verzije ukoliko niste sigurni šta radite.",
   "update_testnet": "BRS nije moguće ažurirati dok je spojen na testnet.",

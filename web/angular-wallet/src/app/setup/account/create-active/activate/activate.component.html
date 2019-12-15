@@ -1,0 +1,16 @@
+<h2>
+  To do
+</h2>
+<div class="text-center navigation">
+    <button class="btn-danger" mat-raised-button (click)="back()">{{"back" | i18n }}</button>
+    <button class="btn-success" mat-raised-button (click)="finish()" disabled="{{!isValid}}">{{"finish" | i18n }}</button>
+</div>
+
+<!--<div class="pin-container">-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--        <input matInput type="password" placeholder="{{'enter_pin' | i18n}}" [(ngModel)]="pin">-->
+<!--    </mat-form-field>-->
+<!--</div>-->
+<!--<small>-->
+<!--   {{"pin_hint" | i18n }}-->
+<!--</small>-->
