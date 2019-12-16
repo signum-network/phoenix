@@ -1,12 +1,18 @@
 .navigation {
-    margin: 10px;
+  margin: 10px;
 }
 
 .pin-container {
     text-align: center;
 }
 
-.example-full-width {
+.passphrase-input {
   margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
   width: 100%;
+}
+
+.tokens{
+  display: flex;
+  flex-direction: row;
 }

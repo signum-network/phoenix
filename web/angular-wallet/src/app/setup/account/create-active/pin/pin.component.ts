@@ -31,7 +31,6 @@ export class AccountCreatePinComponent {
   public nextOrFinish(): void {
 
     if (!this.lastStep) {
-      console.log('next')
       this.createService.setStep(StepsEnum.ActivateAccount);
       return;
     }
@@ -44,10 +43,6 @@ export class AccountCreatePinComponent {
     this.createService.createActiveAccount().then((success) => {
         this.notificationService.notify('success', `Account added successfully`);
         this.createService.reset();
-        // Angular Stepper hack
-        setTimeout(x => {
-          this.createService.setStep(0);
-        }, 0);
         this.router.navigate(['/']);
       },
       (error) => {

@@ -1,16 +1,24 @@
 <h2>
-  To do
+  {{"confirm_passphrase" | i18n}}
 </h2>
-<div class="text-center navigation">
-    <button class="btn-danger" mat-raised-button (click)="back()">{{"back" | i18n }}</button>
-    <button class="btn-success" mat-raised-button (click)="finish()" disabled="{{!isValid}}">{{"finish" | i18n }}</button>
+<div class="activate-container">
+  <mat-chip-list>
+    <mat-chip *ngFor="let token of this.randomizedTokens"
+              [ngClass] = "{'green-bg': token.ok === true, 'red-bg': token.ok === false}"
+              (click)="confirm($event)"
+    >
+      {{token.text}}
+    </mat-chip>
+  </mat-chip-list>
+  <mat-form-field class="passphrase-input">
+    <input matInput placeholder="{{'click_words' | i18n}}" readonly [ngModel]="passphrase">
+  </mat-form-field>
 </div>
-
-<!--<div class="pin-container">-->
-<!--    <mat-form-field class="example-full-width">-->
-<!--        <input matInput type="password" placeholder="{{'enter_pin' | i18n}}" [(ngModel)]="pin">-->
-<!--    </mat-form-field>-->
-<!--</div>-->
-<!--<small>-->
-<!--   {{"pin_hint" | i18n }}-->
-<!--</small>-->
+<small>
+  {{"activate_hint" | i18n }}
+</small>
+<div class="text-center navigation">
+  <button class="btn-danger" mat-raised-button (click)="back()">{{"back" | i18n }}</button>
+  <button class="btn-danger" mat-raised-button (click)="reset()">{{"try_again" | i18n }}</button>
+  <button class="btn-success" mat-raised-button (click)="activate()" disabled="{{!isValid}}">{{"activate" | i18n }}</button>
+</div>

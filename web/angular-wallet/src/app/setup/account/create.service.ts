@@ -12,7 +12,7 @@ export enum StepsEnum {
 
 @Injectable()
 export class CreateService {
-  private passphrase: string[];
+  private passphrase: string[] = [];
   private pin: string;
   private account: string;
   private accountRS: string;
