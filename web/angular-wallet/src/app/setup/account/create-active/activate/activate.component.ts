@@ -22,7 +22,7 @@ export class AccountActivateComponent {
 
   isActivating = false;
   passphrase = '';
-  private randomizedTokens: Token[] = [];
+  randomizedTokens: Token[] = [];
 
   constructor(
     private router: Router,
