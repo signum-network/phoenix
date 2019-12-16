@@ -67,11 +67,13 @@ export class ReceiveBurstForm extends React.PureComponent<Props, State> {
     immutable: false
   };
 
-  getAccounts = (): Array<SelectItem<Account>> => {
-    return this.props.accounts.map((account) => ({
-      value: account,
-      label: `...${last(account.accountRS.split('-'))}`
-    }));
+  getAccounts = (): Array<SelectItem<string>> => {
+    return this.props.accounts
+      .filter(({ keys }) => keys && keys.publicKey)
+      .map((account) => ({
+        value: account.accountRS,
+        label: `...${last(account.accountRS.split('-'))}`
+      }));
   }
 
   isSubmitEnabled = () => {

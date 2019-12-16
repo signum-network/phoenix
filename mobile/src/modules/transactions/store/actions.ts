@@ -41,15 +41,7 @@ export interface SendMoneyPayload {
 }
 
 export interface ReceiveBurstPayload {
-  recipient: Account;
-  amount: string;
-  feeSuggestionType: keyof SuggestedFees;
-  fee: string;
-  immutable: boolean;
-}
-
-export interface ReceiveBurstPayload {
-  recipient: Account;
+  recipient: string;
   amount: string;
   feeSuggestionType: keyof SuggestedFees;
   fee: string;
@@ -62,6 +54,7 @@ export const sendMoney = createActionFn<SendMoneyPayload, Promise<TransactionId>
     const { amount, address, fee, sender, message, encrypt, messageIsText } = payload;
     const { nodeHost, apiRootUrl } = state.app.burstService.settings;
     const senderPublicKey = sender.keys.publicKey;
+
     const senderPrivateKey = decryptAES(sender.keys.signPrivateKey, hashSHA256(state.auth.passcode));
 
     const sendMoneyPayload: SendAmountArgs = {
@@ -115,7 +108,7 @@ export const generateQRAddress = createActionFn<ReceiveBurstPayload, Promise<str
 
     try {
       const result = await generateSendTransactionQRCodeAddress(service)(
-        recipient.account,
+        recipient,
         // @ts-ignore
         amount,
         feeSuggestionType,
