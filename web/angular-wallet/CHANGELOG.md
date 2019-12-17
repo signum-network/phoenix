@@ -4,6 +4,7 @@
 
 ### New Features:
 - Added Account Activation
+- Improved UX for Account Creation Process 
 - Removed Endpoint Setting
     - simplified node selection
     - automatic/dynamic peer version detection
