@@ -15,16 +15,18 @@ $media-query-tablet: 768px;
 }
 
 .fa-arrow-right {
-    color: #fff;
-    top: -4px;
-    left: 10px;
-    position: relative;
-    cursor: pointer;
+  color: #fff;
+  top: -4px;
+  left: 10px;
+  position: relative;
+  cursor: pointer;
 }
 
 .address-container {
   @include mat-elevation(16);
-  text-align:center;
+  text-align: center;
+  background: white;
+  padding: 24px;
 }
 
 mat-form-field {
