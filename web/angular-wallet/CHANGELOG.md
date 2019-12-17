@@ -8,6 +8,7 @@
 - Removed Endpoint Setting
     - simplified node selection
     - automatic/dynamic peer version detection
+- Language Selection for Mobile/Responsive version
 
 ## 1.0.0-beta.11
 
