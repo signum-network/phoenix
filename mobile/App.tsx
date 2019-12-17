@@ -1,5 +1,7 @@
+// @ts-ignore
+import * as PushNotificationIOS from '@react-native-community/push-notification-ios';
 import React from 'react';
-import { Linking, Platform } from 'react-native';
+import { Alert, Linking, Platform } from 'react-native';
 import { addEventListener, removeEventListener } from 'react-native-localize';
 import {
   createAppContainer,
@@ -16,14 +18,83 @@ import { rootTabStack } from './src/core/navigation/rootTabStack';
 import { routes } from './src/core/navigation/routes';
 import { getStore } from './src/core/store/store';
 
+import { Account } from '@burstjs/core';
+// @ts-ignore
+import * as PushNotifications from 'react-native-push-notification';
+import { defaultSettings } from './src/core/environment';
+
 const AppContainer: NavigationContainer = createAppContainer(rootTabStack);
 const store: Store = getStore();
+
+interface TokenResponse {
+  token: string;
+  os: string;
+}
 
 export default class App extends React.Component<{}, {}> {
 
   navigator?: NavigationContainerComponent | null;
 
   componentDidMount (): void {
+
+    const onNotification = (notification: PushNotificationIOS) => {
+      if (!notification.foreground) {
+        // @ts-ignore
+        this.navigator.dispatch(
+          NavigationActions.navigate({
+            routeName: routes.accountDetails,
+            params: {
+              accountRS: notification.data.accountRS
+            }
+          })
+        );
+      }
+      // required on iOS only (see fetchCompletionHandler docs:
+      // https://github.com/react-native-community/react-native-push-notification-ios)
+      notification.finish(PushNotificationIOS.FetchResult.NoData);
+    };
+
+    PushNotifications.configure({
+
+      onRegister: ({ token }: TokenResponse) => {
+        // Need to wait for the store to be setup
+        setTimeout(async () => {
+          const accounts = store.getState().auth.accounts;
+          if (accounts) {
+            try {
+              await Promise.all(accounts.map(({ accountRS }: Account) => {
+                return fetch(defaultSettings.burstAlertsURL, {
+                  method: 'POST',
+                  body: JSON.stringify({
+                    address: accountRS,
+                    phone: token,
+                    method: 2
+                  }),
+                  headers: {
+                    'Content-Type': 'application/json'
+                  }
+                }).then((result) => console.log);
+              }));
+            } catch (e) {
+              console.log(e);
+            }
+          }
+        }, 500);
+      },
+
+      // (required) Called when a remote or local notification is opened or received
+      onNotification,
+
+      // ANDROID ONLY: GCM or FCM Sender ID (product_number)
+      senderID: '1025777552500',
+
+      // IOS ONLY (optional): default: all - Permissions to register.
+      permissions: {
+        alert: true,
+        badge: true,
+        sound: true
+      }
+    });
 
     addEventListener('change', this.handleLanguagesChange);
 

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1025777552500",
+    "firebase_url": "https://phoenix-burst-mobile-wallet.firebaseio.com",
+    "project_id": "phoenix-burst-mobile-wallet",
+    "storage_bucket": "phoenix-burst-mobile-wallet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025777552500:android:455a3500f6156435141521",
+        "android_client_info": {
+          "package_name": "com.burstcoin.phoenix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1025777552500-rfih49c94g7hv6ljjp3tcvt7lfg5353h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx4UoArr_R6C8CcY6I4b4GdQAlmNHzlsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025777552500-rfih49c94g7hv6ljjp3tcvt7lfg5353h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1025777552500-5922s64fiv4ep4ua2ps63ftn1psq4eub.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.burstcoin.phoenix",
+                "app_store_id": "1485827209"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

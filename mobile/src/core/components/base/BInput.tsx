@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { NativeSyntheticEvent, TextInput, TextInputEndEditingEventData, View, Alert } from 'react-native';
+import { NativeSyntheticEvent, TextInput, TextInputEndEditingEventData, View } from 'react-native';
 import { Colors } from '../../theme/colors';
 import { fonts } from '../../theme/fonts';
 import { FontSizes, Sizes } from '../../theme/sizes';
-// TODO: create BText component
 import { Text as BText } from './Text';
-import { styles } from 'react-native-markdown-renderer';
 
 interface Props {
   value: string;
@@ -16,6 +14,7 @@ interface Props {
   placeholder?: string;
   rightIcons?: React.ReactElement;
   editable?: boolean;
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters' | undefined;
 }
 
 export enum KeyboardTypes {
@@ -64,7 +63,7 @@ export class BInput extends React.PureComponent<Props> {
     return {
       ...this.styles.input,
       color: this.props.editable || this.props.editable === undefined ? Colors.WHITE : Colors.GREY
-    }
+    };
   }
 
   render () {
@@ -76,7 +75,8 @@ export class BInput extends React.PureComponent<Props> {
       placeholder,
       keyboard,
       onEndEditing,
-      rightIcons
+      rightIcons,
+      autoCapitalize
     } = this.props;
 
     return (
@@ -91,7 +91,7 @@ export class BInput extends React.PureComponent<Props> {
             value={value}
             onChangeText={onChange}
             style={this.getInputStyle()}
-            autoCapitalize={'none'}
+            autoCapitalize={autoCapitalize || 'none'}
             autoCorrect={false}
             keyboardType={keyboard}
             returnKeyType={'done'}

@@ -14,7 +14,8 @@ export function getDefaultAppSettings (): AppSettings {
   return {
     passcodeTime: defaultSettings.passcodeTime, // 10 min,
     burstSettings: getDefaultBurstSettings(),
-    coinMarketCapURL: defaultSettings.coinMarketCapURL
+    coinMarketCapURL: defaultSettings.coinMarketCapURL,
+    burstAlertsURL: defaultSettings.burstAlertsURL
   };
 }
 

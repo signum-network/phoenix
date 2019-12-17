@@ -15,7 +15,11 @@ export function isFallbackTouchIDError (e: TouchIDError) {
 }
 
 export function setCredentials ({ username, password }: KeychainCredentials, service?: string): Promise<boolean> {
-  return Keychain.setGenericPassword(username, password, { service });
+  return Keychain.setGenericPassword(
+    username,
+    password,
+    { service, accessible: Keychain.ACCESSIBLE.AFTER_FIRST_UNLOCK }
+  );
 }
 
 export function getCredentials (service?: string)

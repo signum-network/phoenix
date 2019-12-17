@@ -150,9 +150,10 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
         status: RecipientValidationStatus.UNKNOWN,
         type
       }
+    }, () => {
+      this.validateRecipient(r, type);
     });
 
-    this.validateRecipient(recipient, type);
   }
 
   async validateRecipient (recipient: string, type: RecipientType): Promise<void> {
@@ -241,7 +242,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
     this.setState({
       recipient: {
         ...this.state.recipient,
-        addressRaw: address.toUpperCase()
+        addressRaw: address
       }
     });
   }
@@ -282,7 +283,6 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
     }
   }
 
-
   render () {
     const { sender, recipient, amount, fee } = this.state;
     const { suggestedFees } = this.props;
@@ -311,6 +311,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             placeholder={i18n.t(transactions.screens.send.selectAccount)}
           />
           <BInput
+            autoCapitalize='characters'
             value={recipient.addressRaw}
             onChange={this.handleChangeAddress}
             onEndEditing={this.handleAddressBlur}

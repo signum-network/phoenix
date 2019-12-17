@@ -3,6 +3,7 @@ import { StyleSheet, Text as RNText } from 'react-native';
 import { Colors } from '../../theme/colors';
 import { fonts } from '../../theme/fonts';
 import { FontSizes } from '../../theme/sizes';
+import { isIOS } from '../../utils/platform';
 
 export enum TextThemes {
   DEFAULT = 'DEFAULT',
@@ -90,11 +91,11 @@ export const Text: React.FunctionComponent<Props> = (props) => {
     theme === TextThemes.HINT && styles.textHint,
     textAlign && { textAlign },
     color && { color },
-    bebasFont && { fontFamily: fonts.bebas },
+    bebasFont && { fontFamily: bold && isIOS ? fonts.bebas : fonts.bebasBold },
     size && { fontSize: size },
     disabled && styles.textDisabled,
     disabledColor && { color: disabledColor },
-    bold && { fontWeight: '500' },
+    bold && { fontWeight: isIOS ? '500' : '400' },
     thin && { fontWeight: '400' }
   ];
 

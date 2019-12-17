@@ -96,7 +96,7 @@ class ViewQRCode extends React.PureComponent<Props, State> {
     try {
       await Share.share({
         message: `BURST Payment Requested from ` +
-           `${recipient.accountRS} for ` +
+           `${recipient} for ` +
            `${convertNQTStringToNumber(amount)} (+${convertNQTStringToNumber(fee)}).
 
            Pay using the Phoenix Wallet from burstwallet.io`,
@@ -118,7 +118,7 @@ class ViewQRCode extends React.PureComponent<Props, State> {
   private buildPhoenixDeepLinkURL () {
     const { amount, fee, recipient, immutable, feeSuggestionType } = this.props.navigation.getParam('form');
 
-    return `burst://requestBurst?receiver=${recipient.accountRS}` +
+    return `burst://requestBurst?receiver=${recipient}` +
            `&amountNQT=${amount}` +
            `&feeNQT=${fee}` +
            `&feeSuggestionType=${feeSuggestionType}` +
@@ -169,7 +169,7 @@ class ViewQRCode extends React.PureComponent<Props, State> {
                   size={FontSizes.MEDIUM}
                   numberOfLines={1}
                 >
-                  {recipient.accountRS}
+                  {recipient}
                 </Text>
               </View>
             </View>
