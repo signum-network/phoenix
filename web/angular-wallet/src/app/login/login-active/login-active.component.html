@@ -1,15 +1,12 @@
-<div class="signup">
-  <header class="signup__header">
-      <a [routerLink]="[ '' ]">
-        <img alt="Burst logo" class="signup__logo" src="assets/images/logos/logo_blue.png"/>
-      </a>
-  </header>
-  <div class="signup__container">
+<div class="login-active__container">
+  <div class="signup">
+    <div class="signup__container">
       <h1 *ngIf="newUser | async; else updateTitle" class="signup__title">{{ 'create_your_account' | i18n }}</h1>
       <app-account-create [newUser]="newUser | async"></app-account-create>
+    </div>
   </div>
-</div>
 
-<ng-template #updateTitle>
-  <h1 class="signup__title">{{ 'update_burst_account' | i18n }}</h1>
-</ng-template>
+  <ng-template #updateTitle>
+    <h1 class="signup__title">{{ 'update_burst_account' | i18n }}</h1>
+  </ng-template>
+</div>

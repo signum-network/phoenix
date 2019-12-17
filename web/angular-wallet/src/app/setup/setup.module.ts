@@ -35,6 +35,7 @@ import { AccountCreateExistingComponent } from './account/create-active/existing
 import { AccountResolver } from './account/account.resolver';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {PageModule} from '../components/page/page.module';
+import {AccountActivateComponent} from './account/create-active/activate/activate.component';
 
 @NgModule({
   imports: [
@@ -72,6 +73,7 @@ import {PageModule} from '../components/page/page.module';
         AccountCreateExistingComponent,
         AccountCreateSeedComponent,
         AccountNewComponent,
+        AccountActivateComponent,
     ],
     providers: [
         CreateService,

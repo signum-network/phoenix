@@ -1,3 +1,5 @@
+@import "src/@fuse/scss/fuse";
+
 :host .mat-step-header .mat-step-icon-state-number.mat-step-icon-selected,
 :host .mat-step-header .mat-step-icon-state-done,
 :host .mat-step-header .mat-step-icon-state-edit {
@@ -6,4 +8,8 @@
 
 :host .mat-horizontal-stepper-header.cdk-focused {
   background: none;
+}
+
+:host .create-account-container {
+  @include mat-elevation(16);
 }

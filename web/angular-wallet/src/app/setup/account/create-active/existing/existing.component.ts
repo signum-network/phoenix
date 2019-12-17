@@ -23,7 +23,7 @@ export class AccountCreateExistingComponent {
     this.passphraseGenerator = new PassPhraseGenerator();
   }
 
-  public setPassphraseAndGenerateMasterKeys(phrase: string[]) {
+  public setPassphraseAndGenerateMasterKeys(phrase: string[]): void {
     this.createService.setPassphrase(phrase);
     const keys = generateMasterKeys(this.createService.getCompletePassphrase());
     const id = getAccountIdFromPublicKey(keys.publicKey);
@@ -31,11 +31,11 @@ export class AccountCreateExistingComponent {
     const address = convertNumericIdToAddress(id);
     this.createService.setAddress(address);
     setTimeout(x => {
-      this.createService.setStepIndex(1);
+      this.createService.setStep(1);
     }, 0);
   }
 
-  public setManualPassphrase(phrase: string) {
-    return this.setPassphraseAndGenerateMasterKeys(phrase.split(' '));
+  public setManualPassphrase(phrase: string): void {
+    this.setPassphraseAndGenerateMasterKeys(phrase.split(' '));
   }
 }

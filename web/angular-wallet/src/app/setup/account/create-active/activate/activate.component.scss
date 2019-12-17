@@ -1,0 +1,37 @@
+@import "src/@fuse/scss/fuse";
+
+:host {
+
+  .chip-list-wrapper {
+    width: 70%;
+    margin: 0 auto;
+    @include media-breakpoint('xs') {
+      width: 90%;
+    }
+  }
+
+  .navigation {
+    margin: 10px;
+  }
+
+  .pin-container {
+    text-align: center;
+  }
+
+  .passphrase-input {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+  .tokens {
+    display: flex;
+    flex-direction: row;
+  }
+
+}
+
+.spinner {
+  display: flex;
+  line-height: 36px;
+  align-items: center;
+}
