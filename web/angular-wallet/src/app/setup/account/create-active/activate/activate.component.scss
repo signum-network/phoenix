@@ -1,18 +1,37 @@
-.navigation {
-  margin: 10px;
-}
+@import "src/@fuse/scss/fuse";
 
-.pin-container {
+:host {
+
+  .chip-list-wrapper {
+    width: 70%;
+    margin: 0 auto;
+    @include media-breakpoint('xs') {
+      width: 90%;
+    }
+  }
+
+  .navigation {
+    margin: 10px;
+  }
+
+  .pin-container {
     text-align: center;
+  }
+
+  .passphrase-input {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+  .tokens {
+    display: flex;
+    flex-direction: row;
+  }
+
 }
 
-.passphrase-input {
-  margin-bottom: 1.5rem;
-  margin-top: 0.5rem;
-  width: 100%;
-}
-
-.tokens{
+.spinner {
   display: flex;
-  flex-direction: row;
+  line-height: 36px;
+  align-items: center;
 }

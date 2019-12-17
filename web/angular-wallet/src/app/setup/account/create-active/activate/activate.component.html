@@ -2,14 +2,16 @@
   {{"confirm_passphrase" | i18n}}
 </h2>
 <div class="activate-container">
-  <mat-chip-list>
-    <mat-chip *ngFor="let token of this.randomizedTokens"
-              [ngClass] = "{'green-bg': token.ok === true, 'red-bg': token.ok === false}"
-              (click)="confirm($event)"
-    >
-      {{token.text}}
-    </mat-chip>
-  </mat-chip-list>
+  <div class="chip-list-wrapper">
+    <mat-chip-list>
+      <mat-chip *ngFor="let token of this.randomizedTokens"
+                [ngClass]="{'green-bg': token.ok === true, 'red-bg': token.ok === false}"
+                (click)="confirm($event)"
+      >
+        {{token.text}}
+      </mat-chip>
+    </mat-chip-list>
+  </div>
   <mat-form-field class="passphrase-input">
     <input matInput placeholder="{{'click_words' | i18n}}" readonly [ngModel]="passphrase">
   </mat-form-field>
@@ -20,5 +22,13 @@
 <div class="text-center navigation">
   <button class="btn-danger" mat-raised-button (click)="back()">{{"back" | i18n }}</button>
   <button class="btn-danger" mat-raised-button (click)="reset()">{{"try_again" | i18n }}</button>
-  <button class="btn-success" mat-raised-button (click)="activate()" disabled="{{!isValid}}">{{"activate" | i18n }}</button>
+  <button class="btn-success" mat-raised-button (click)="activate()"
+          disabled="{{!isValid && !isActivating}}">
+    <ng-container *ngIf="isActivating">
+      <span class="spinner">&nbsp;<mat-spinner diameter="20"></mat-spinner></span>
+    </ng-container>
+    <ng-container *ngIf="!isActivating">
+      {{"activate" | i18n }}
+    </ng-container>
+  </button>
 </div>

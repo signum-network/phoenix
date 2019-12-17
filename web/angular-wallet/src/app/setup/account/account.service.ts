@@ -195,7 +195,6 @@ export class AccountService {
 
       await this.selectAccount(account);
       const savedAccount = await this.synchronizeAccount(account);
-      await this.activateAccount(savedAccount);
       resolve(savedAccount);
     });
   }

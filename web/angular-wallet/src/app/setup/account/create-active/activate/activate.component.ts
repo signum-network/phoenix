@@ -45,21 +45,21 @@ export class AccountActivateComponent {
   }
 
   public back(): void {
-    this.createService.previousStep();
+    setTimeout(() => {
+      this.createService.previousStep();
+    }, 0);
   }
 
   public reset(): void {
     this.passphrase = '';
     this.randomizedTokens = [];
-    setTimeout(() => {
-      this.randomizePassphraseTokens();
-    }, 100);
+    this.randomizePassphraseTokens();
   }
 
   private randomizePassphraseTokens(): void {
     const tokens = this.createService.getPassphrase();
     if (tokens && tokens.length) {
-      this.randomizedTokens = sampleSize(tokens, tokens.length).map( t => ({
+      this.randomizedTokens = sampleSize(tokens, tokens.length).map(t => ({
         text: t,
         ok: null,
       }));
@@ -72,20 +72,13 @@ export class AccountActivateComponent {
     }
     return this.createService.getCompletePassphrase() === this.passphrase;
   }
+
   async activateAccount(): Promise<void> {
-    try {
-
-      // TODO: consider Account Activation loading.
-
-      this.isActivating = true;
-      const newAccount = new Account();
-      newAccount.keys = generateMasterKeys(this.createService.getCompletePassphrase());
-      newAccount.account = this.createService.getId();
-      await this.accountService.activateAccount(newAccount);
-      this.notificationService.notify('success', this.i18nService.getTranslation('activate_request_successful'));
-    } finally {
-      this.isActivating = false;
-    }
+    const newAccount = new Account();
+    newAccount.keys = generateMasterKeys(this.createService.getCompletePassphrase());
+    newAccount.account = this.createService.getId();
+    await this.accountService.activateAccount(newAccount);
+    this.notificationService.notify('success', this.i18nService.getTranslation('activate_request_successful'));
   }
 
   public async activate(): Promise<void> {
@@ -93,13 +86,16 @@ export class AccountActivateComponent {
       return;
     }
     try {
+      this.isActivating = true;
       await this.createService.createActiveAccount();
-      this.notificationService.notify('success', this.i18nService.getTranslation('account_added'));
-      this.createService.reset();
       await this.activateAccount();
+      this.createService.reset();
       await this.router.navigate(['/']);
+      this.notificationService.notify('success', this.i18nService.getTranslation('account_added'));
     } catch (error) {
       this.notificationService.notify('error', error.toString());
+    } finally {
+      this.isActivating = false;
     }
   }
 

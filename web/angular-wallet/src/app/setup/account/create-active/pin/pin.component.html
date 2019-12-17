@@ -11,5 +11,6 @@
 </small>
 <div class="text-center navigation">
     <button class="btn-danger" mat-raised-button (click)="back()">{{"back" | i18n }}</button>
-    <button class="btn-success" mat-raised-button (click)="nextOrFinish()" disabled="{{!isValid}}">{{"finish" | i18n }}</button>
+    <button *ngIf="lastStep" class="btn-success" mat-raised-button (click)="finish()" disabled="{{!isValid}}">{{"finish" | i18n }}</button>
+    <button *ngIf="!lastStep" class="btn-success" mat-raised-button (click)="next()" disabled="{{!isValid}}">{{"next" | i18n }}</button>
 </div>

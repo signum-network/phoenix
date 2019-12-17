@@ -63,7 +63,7 @@ export class CreateService {
     return this.accountRS;
   }
 
-  public previousStep() : void {
+  public previousStep(): void {
     this.step = Math.max(0, this.step - 1);
   }
 
