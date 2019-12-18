@@ -5,6 +5,7 @@
 ### New Features:
 - Added Account Activation
 - Improved UX for Account Creation Process 
+- Account Manager with explicit actions (#700) 
 - Removed Endpoint Setting
     - simplified node selection
     - automatic/dynamic peer version detection
