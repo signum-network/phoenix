@@ -12,8 +12,7 @@ $text-alt-color: #b3b3b3;
 
 .login {
   display: flex;
-  height: 100vh;
-  max-height: 100%;
+  height: calc(100vh - 64px);
   width: 100vw;
   align-items: center;
 

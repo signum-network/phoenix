@@ -5,16 +5,19 @@
 
 .button-row {
   justify-content: space-between;
+  align-items: center;
   display: flex;
-}
 
-.button-row button {
-  align-self: center;
-}
+  .buttons {
+    button {
+      align-self: center;
+    }
 
-.button-row button.delete {
-  margin-left: auto;
-  margin-right: 10px;
+    button.delete {
+      margin-left: auto;
+      margin-right: 10px;
+    }
+  }
 }
 
 .mat-column {

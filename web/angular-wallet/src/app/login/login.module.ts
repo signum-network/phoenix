@@ -17,6 +17,7 @@ import { I18nModule } from '../layout/components/i18n/i18n.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { LoginPassiveComponent } from './login-passive/login-passive.component';
 import { LoginActiveComponent } from './login-active/login-active.component';
+import {FuseSharedModule} from '../../@fuse/shared.module';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { LoginActiveComponent } from './login-active/login-active.component';
     MatButtonModule,
     MatIconModule,
 
-    SetupModule
+    SetupModule,
+    FuseSharedModule,
 
   ],
   declarations: [
