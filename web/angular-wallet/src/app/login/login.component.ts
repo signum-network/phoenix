@@ -22,10 +22,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+      // @ts-ignore
     if (window.pJSDom) {
       // @ts-ignore
       window.pJSDom[0].pJS.fn.vendors.destroypJS();
-      window["pJSDom"] = []; // see https://github.com/VincentGarreau/particles.js/issues/63
+      window['pJSDom'] = []; // see https://github.com/VincentGarreau/particles.js/issues/63
     }
   }
 }
