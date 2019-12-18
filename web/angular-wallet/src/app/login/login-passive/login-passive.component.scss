@@ -3,10 +3,23 @@ $media-querie-tablet: 768px;
 $media-querie-desktop: 992px;
 $media-querie-screen: 1200px;
 
-.login-passive__container {
+.login {
+  display: flex;
+  height: calc(100vh - 64px);
+  width: 100vw;
+  align-items: center;
+  overflow: hidden;
+
   background: linear-gradient(60deg, #003D6E, #00579D);
-  width: 100%;
-  height: 100%;
+  -webkit-animation: bg 30s ease infinite;
+  -moz-animation: bg 30s ease infinite;
+  animation: bg 30s ease infinite;
+
+  .login-passive__container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .signup {
