@@ -17,16 +17,31 @@
 
   <div class="p-24">
 
-    <div class="button-row">
-      <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-      </mat-form-field>
-      <button mat-button color="accent" class="delete" *ngIf="getSelectedAccounts().length"
-              (click)="deleteSelectedAccounts()">Delete Selected
-      </button>
-      <button mat-button color="primary"
-              (click)="router.navigate(['/login'])">New Account
-      </button>
+    <div class="action-row">
+      <div class="inputs">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+      <div class="buttons">
+        <button mat-button color="primary" class="delete" *ngIf="getSelectedAccounts().length"
+                (click)="deleteSelectedAccounts()">Delete Selected
+        </button>
+        <ng-container *ngIf="!getSelectedAccounts().length">
+          <button mat-button color="primary"
+                  (click)="router.navigate(['/login/passive'])">
+            {{ 'account_watch_short' | i18n }}
+          </button>
+          <button mat-button color="primary"
+                  (click)="router.navigate(['/login/active'])">
+            {{ 'account_import_short' | i18n }}
+          </button>
+          <button mat-button color="primary"
+                  (click)="router.navigate(['/login/active'], { queryParams: { newUser: true } })">
+            {{ 'account_create_new_short' | i18n }}
+          </button>
+        </ng-container>
+      </div>
     </div>
 
     <mat-table #table [dataSource]="dataSource" matSort>
@@ -42,7 +57,9 @@
             <mat-icon class="account-type-icon" matTooltip="{{'hint_online_account' | i18n}}">verified_user</mat-icon>
           </ng-container>
           <ng-container *ngIf="account.type !== 'offline' && !account.confirmed">
-            <mat-icon class="account-type-icon clickable" matTooltip="{{'no_public_key_activate' | i18n}}" (click)="activateAccount(account)">lock_open</mat-icon>
+            <mat-icon class="account-type-icon clickable" matTooltip="{{'no_public_key_activate' | i18n}}"
+                      (click)="activateAccount(account)">lock_open
+            </mat-icon>
           </ng-container>
         </mat-cell>
       </ng-container>
