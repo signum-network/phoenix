@@ -1,9 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {environment} from '../../environments/environment';
-
-import '../../particles';
-
-declare const particlesJS: any;
+import {destroy, initialize} from '../../particles';
+import particleConf from '../../particles/config';
 
 @Component({
   selector: 'login',
@@ -18,15 +16,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   version = environment.version;
 
   ngOnInit(): void {
-    particlesJS.load('login-particles', 'assets/particles.json');
+    initialize('login-particles', particleConf);
   }
 
   ngOnDestroy(): void {
-      // @ts-ignore
-    if (window.pJSDom) {
-      // @ts-ignore
-      window.pJSDom[0].pJS.fn.vendors.destroypJS();
-      window['pJSDom'] = []; // see https://github.com/VincentGarreau/particles.js/issues/63
-    }
+    destroy();
   }
 }
