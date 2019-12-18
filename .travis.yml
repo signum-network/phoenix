@@ -42,7 +42,7 @@ jobs:
 stages:
   - prepare
   - name: desktop-build
-    if: type!=cron OR tag!=~/^desktop-\d+\.\d+\.\d+/ OR branch!=~/^force-deploy/
+    if: type!=cron OR tag!~/^desktop-\d+\.\d+\.\d+/ OR branch!~/^force-deploy/
   - name: desktop-deploy
     if: tag=~/^desktop-\d+\.\d+\.\d+/
   - name: force-deploy
