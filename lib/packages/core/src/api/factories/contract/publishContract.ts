@@ -32,6 +32,7 @@ export const publishContract = (service: BurstService):
             cspages: 1,
             dpages: 1,
             uspages: 1,
+            broadcast: true,
         };
 
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('createATProgram', parameters);

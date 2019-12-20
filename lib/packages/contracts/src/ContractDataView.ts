@@ -19,7 +19,10 @@ import {countCodePages} from './countCodePages';
  */
 export class ContractDataView {
 
-    private static VariableLength = 16;
+    /**
+     * The length of a contracts variable (considering Hex notation)
+     */
+    public static VariableLength = 16;
 
     constructor(private _contract: Contract) {
     }

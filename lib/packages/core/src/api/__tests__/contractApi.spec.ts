@@ -2,7 +2,6 @@ import {Http, HttpMockBuilder} from '@burstjs/http';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {getContract, getContractsByAccount, publishContract} from '../factories/contract';
 import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
-import {generateContract} from '@burstjs/contracts';
 
 describe('Contract Api', () => {
 
@@ -74,7 +73,6 @@ describe('Contract Api', () => {
             generateSignature = jest.fn(() => 'signature');
             verifySignature = jest.fn(() => true);
             generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
-            generateContract = jest.fn(() => 'hexCode');
         });
 
 
@@ -93,7 +91,6 @@ describe('Contract Api', () => {
                 activationAmountPlanck: '20000000',
                 codeHex: 'creationBytes',
                 description: 'description',
-                feePlanck: '10000000',
                 name: 'testContract',
                 senderPublicKey: 'publickey',
                 senderPrivateKey: 'privateKey'
