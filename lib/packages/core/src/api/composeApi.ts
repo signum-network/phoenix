@@ -45,7 +45,7 @@ export class ApiSettings {
     /**
      * @param nodeHost {string} The url of the Burst peer
      * @param apiVersion {ApiVersion} For future usage.
-     * @param httpOptions {any | AxiosRequestSettings}   Optional http options, like additional header.
+     * @param httpClientOptions {any | AxiosRequestSettings}   Optional http options, like additional header.
      * The default implementation uses axios. In case of a custom client pass your own options.
      * see [Axios Configuration](https://github.com/axios/axios#request-config)
 
@@ -53,7 +53,7 @@ export class ApiSettings {
     constructor(
         public nodeHost: string,
         public apiVersion: ApiVersion = ApiVersion.V1,
-        public httpOptions?: any | AxiosRequestConfig,
+        public httpClientOptions?: any | AxiosRequestConfig,
     ) {
     }
 }
