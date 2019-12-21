@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TransactionArbitrarySubtype
+	<title>CallContractMethodArgs
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,10 +80,10 @@
 					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="core.transactionarbitrarysubtype.html">TransactionArbitrarySubtype</a>
+					<a href="core.callcontractmethodargs.html">CallContractMethodArgs</a>
 				</li>
 			</ul>
-			<h1>Enumeration TransactionArbitrarySubtype</h1>
+			<h1>Interface CallContractMethodArgs</h1>
 		</div>
 	</div>
 </header>
@@ -93,109 +93,117 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Constants for arbitrary subtypes</p>
+						<p>The argument object for <a href="core.api.contractapi.html#callcontractmethod">ContractApi.callContractMethod</a></p>
 					</div>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">CallContractMethodArgs</span>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Enumeration members</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionarbitrarysubtype.html#accountinfo" class="tsd-kind-icon">Account<wbr>Info</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionarbitrarysubtype.html#aliasassignment" class="tsd-kind-icon">Alias<wbr>Assignment</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionarbitrarysubtype.html#aliasbuy" class="tsd-kind-icon">Alias<wbr>Buy</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionarbitrarysubtype.html#aliassale" class="tsd-kind-icon">Alias<wbr>Sale</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionarbitrarysubtype.html#hubannouncement" class="tsd-kind-icon">Hub<wbr>Announcement</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionarbitrarysubtype.html#message" class="tsd-kind-icon">Message</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionarbitrarysubtype.html#pollcreation" class="tsd-kind-icon">Poll<wbr>Creation</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionarbitrarysubtype.html#votecasting" class="tsd-kind-icon">Vote<wbr>Casting</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.callcontractmethodargs.html#amountplanck" class="tsd-kind-icon">amount<wbr>Planck</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.callcontractmethodargs.html#contractid" class="tsd-kind-icon">contract<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.callcontractmethodargs.html#deadline" class="tsd-kind-icon">deadline</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.callcontractmethodargs.html#feeplanck" class="tsd-kind-icon">fee<wbr>Planck</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.callcontractmethodargs.html#methodargs" class="tsd-kind-icon">method<wbr>Args</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.callcontractmethodargs.html#methodhash" class="tsd-kind-icon">method<wbr>Hash</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.callcontractmethodargs.html#senderprivatekey" class="tsd-kind-icon">sender<wbr>Private<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.callcontractmethodargs.html#senderpublickey" class="tsd-kind-icon">sender<wbr>Public<wbr>Key</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Enumeration members</h2>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="accountinfo" class="tsd-anchor"></a>
-					<h3>Account<wbr>Info</h3>
-					<div class="tsd-signature tsd-kind-icon">Account<wbr>Info<span class="tsd-signature-symbol">:</span> </div>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="amountplanck" class="tsd-anchor"></a>
+					<h3>amount<wbr>Planck</h3>
+					<div class="tsd-signature tsd-kind-icon">amount<wbr>Planck<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L17">core/src/constants/transactionArbitrarySubtype.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/typings/args/callContractMethodArgs.ts#L11">core/src/typings/args/callContractMethodArgs.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="aliasassignment" class="tsd-anchor"></a>
-					<h3>Alias<wbr>Assignment</h3>
-					<div class="tsd-signature tsd-kind-icon">Alias<wbr>Assignment<span class="tsd-signature-symbol">:</span> </div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="contractid" class="tsd-anchor"></a>
+					<h3>contract<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">contract<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L13">core/src/constants/transactionArbitrarySubtype.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/typings/args/callContractMethodArgs.ts#L12">core/src/typings/args/callContractMethodArgs.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="aliasbuy" class="tsd-anchor"></a>
-					<h3>Alias<wbr>Buy</h3>
-					<div class="tsd-signature tsd-kind-icon">Alias<wbr>Buy<span class="tsd-signature-symbol">:</span> </div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="deadline" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> deadline</h3>
+					<div class="tsd-signature tsd-kind-icon">deadline<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L19">core/src/constants/transactionArbitrarySubtype.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/typings/args/callContractMethodArgs.ts#L13">core/src/typings/args/callContractMethodArgs.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="aliassale" class="tsd-anchor"></a>
-					<h3>Alias<wbr>Sale</h3>
-					<div class="tsd-signature tsd-kind-icon">Alias<wbr>Sale<span class="tsd-signature-symbol">:</span> </div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="feeplanck" class="tsd-anchor"></a>
+					<h3>fee<wbr>Planck</h3>
+					<div class="tsd-signature tsd-kind-icon">fee<wbr>Planck<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L18">core/src/constants/transactionArbitrarySubtype.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/typings/args/callContractMethodArgs.ts#L14">core/src/typings/args/callContractMethodArgs.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="hubannouncement" class="tsd-anchor"></a>
-					<h3>Hub<wbr>Announcement</h3>
-					<div class="tsd-signature tsd-kind-icon">Hub<wbr>Announcement<span class="tsd-signature-symbol">:</span> </div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="methodargs" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> method<wbr>Args</h3>
+					<div class="tsd-signature tsd-kind-icon">method<wbr>Args<span class="tsd-signature-symbol">:</span> <a href="../modules/contracts.html#methodargument" class="tsd-signature-type">MethodArgument</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L16">core/src/constants/transactionArbitrarySubtype.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/typings/args/callContractMethodArgs.ts#L15">core/src/typings/args/callContractMethodArgs.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="message" class="tsd-anchor"></a>
-					<h3>Message</h3>
-					<div class="tsd-signature tsd-kind-icon">Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="methodhash" class="tsd-anchor"></a>
+					<h3>method<wbr>Hash</h3>
+					<div class="tsd-signature tsd-kind-icon">method<wbr>Hash<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L12">core/src/constants/transactionArbitrarySubtype.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/typings/args/callContractMethodArgs.ts#L16">core/src/typings/args/callContractMethodArgs.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="pollcreation" class="tsd-anchor"></a>
-					<h3>Poll<wbr>Creation</h3>
-					<div class="tsd-signature tsd-kind-icon">Poll<wbr>Creation<span class="tsd-signature-symbol">:</span> </div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="senderprivatekey" class="tsd-anchor"></a>
+					<h3>sender<wbr>Private<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">sender<wbr>Private<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L14">core/src/constants/transactionArbitrarySubtype.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/typings/args/callContractMethodArgs.ts#L17">core/src/typings/args/callContractMethodArgs.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="votecasting" class="tsd-anchor"></a>
-					<h3>Vote<wbr>Casting</h3>
-					<div class="tsd-signature tsd-kind-icon">Vote<wbr>Casting<span class="tsd-signature-symbol">:</span> </div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="senderpublickey" class="tsd-anchor"></a>
+					<h3>sender<wbr>Public<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">sender<wbr>Public<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/constants/transactionArbitrarySubtype.ts#L15">core/src/constants/transactionArbitrarySubtype.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19a030e2/lib/packages/core/src/typings/args/callContractMethodArgs.ts#L18">core/src/typings/args/callContractMethodArgs.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -228,32 +236,32 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-enum tsd-parent-kind-external-module">
-						<a href="core.transactionarbitrarysubtype.html" class="tsd-kind-icon">Transaction<wbr>Arbitrary<wbr>Subtype</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core.callcontractmethodargs.html" class="tsd-kind-icon">Call<wbr>Contract<wbr>Method<wbr>Args</a>
 						<ul>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionarbitrarysubtype.html#accountinfo" class="tsd-kind-icon">Account<wbr>Info</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.callcontractmethodargs.html#amountplanck" class="tsd-kind-icon">amount<wbr>Planck</a>
 							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionarbitrarysubtype.html#aliasassignment" class="tsd-kind-icon">Alias<wbr>Assignment</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.callcontractmethodargs.html#contractid" class="tsd-kind-icon">contract<wbr>Id</a>
 							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionarbitrarysubtype.html#aliasbuy" class="tsd-kind-icon">Alias<wbr>Buy</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.callcontractmethodargs.html#deadline" class="tsd-kind-icon">deadline</a>
 							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionarbitrarysubtype.html#aliassale" class="tsd-kind-icon">Alias<wbr>Sale</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.callcontractmethodargs.html#feeplanck" class="tsd-kind-icon">fee<wbr>Planck</a>
 							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionarbitrarysubtype.html#hubannouncement" class="tsd-kind-icon">Hub<wbr>Announcement</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.callcontractmethodargs.html#methodargs" class="tsd-kind-icon">method<wbr>Args</a>
 							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionarbitrarysubtype.html#message" class="tsd-kind-icon">Message</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.callcontractmethodargs.html#methodhash" class="tsd-kind-icon">method<wbr>Hash</a>
 							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionarbitrarysubtype.html#pollcreation" class="tsd-kind-icon">Poll<wbr>Creation</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.callcontractmethodargs.html#senderprivatekey" class="tsd-kind-icon">sender<wbr>Private<wbr>Key</a>
 							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionarbitrarysubtype.html#votecasting" class="tsd-kind-icon">Vote<wbr>Casting</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.callcontractmethodargs.html#senderpublickey" class="tsd-kind-icon">sender<wbr>Public<wbr>Key</a>
 							</li>
 						</ul>
 					</li>

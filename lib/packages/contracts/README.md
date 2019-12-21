@@ -52,343 +52,504 @@ See more here:
 ## Modules
 
 <dl>
-<dt><a href="#module_http">http</a></dt>
+<dt><a href="#module_contracts">contracts</a></dt>
 <dd></dd>
 </dl>
 
 ## Classes
 
 <dl>
-<dt><a href="#HttpImpl">HttpImpl</a></dt>
-<dd><p>Generic Http client</p></dd>
+<dt><a href="#ContractDataView">ContractDataView</a></dt>
+<dd><p>Helper class for contracts</p>
+<p>A contract owns additional data, which is split in 8 byte blocks.
+The content is encoded in hexadecimal representation and big endianness.
+This class facilitates access to these data</p></dd>
 </dl>
 
-<a name="module_http"></a>
+<a name="module_contracts"></a>
 
-## http
+## contracts
 
-* [http](#module_http)
-    * [~HttpError](#module_http..HttpError)
-    * [~HttpMock](#module_http..HttpMock)
-        * [.onGet(endpoint?)](#module_http..HttpMock.onGet)
-        * [.onPost(endpoint?)](#module_http..HttpMock.onPost)
-        * [.onPut(endpoint?)](#module_http..HttpMock.onPut)
-        * [.onDelete(endpoint?)](#module_http..HttpMock.onDelete)
-        * [.reset()](#module_http..HttpMock.reset)
-    * [~HttpResponse](#module_http..HttpResponse)
+* [contracts](#module_contracts)
+    * [~CodePageSize](#module_contracts..CodePageSize)
+    * [~calculateMinimumCreationFee(hexCode)](#module_contracts..calculateMinimumCreationFee) ⇒
+    * [~countCodePages(hexCode)](#module_contracts..countCodePages) ⇒
+    * [~numericToHex()](#module_contracts..numericToHex)
+    * [~generateMethodCall(args)](#module_contracts..generateMethodCall) ⇒
+    * [~getContractDatablock(contract, position, length)](#module_contracts..getContractDatablock) ⇒
 
-<a name="module_http..HttpError"></a>
+<a name="module_contracts..CodePageSize"></a>
 
-### http~HttpError
-<p>HttpError class</p>
-<p>Thrown on HTTP errors</p>
+### contracts~CodePageSize
+<p>Size of Code Pages in bytes</p>
 
-**Kind**: inner class of [<code>http</code>](#module_http)  
-<a name="module_http..HttpMock"></a>
+**Kind**: inner constant of [<code>contracts</code>](#module_contracts)  
+<a name="module_contracts..calculateMinimumCreationFee"></a>
 
-### http~HttpMock
-<p>Http Mocker for easy to http testing using Jest</p>
-<p>When using this mocking helper you need to call <code>Http.onGet()</code>
-before Http instance is created</p>
+### contracts~calculateMinimumCreationFee(hexCode) ⇒
+<p>Calculates the minimum creation fee of the contract</p>
 
-**Kind**: inner class of [<code>http</code>](#module_http)  
-
-* [~HttpMock](#module_http..HttpMock)
-    * [.onGet(endpoint?)](#module_http..HttpMock.onGet)
-    * [.onPost(endpoint?)](#module_http..HttpMock.onPost)
-    * [.onPut(endpoint?)](#module_http..HttpMock.onPut)
-    * [.onDelete(endpoint?)](#module_http..HttpMock.onDelete)
-    * [.reset()](#module_http..HttpMock.reset)
-
-<a name="module_http..HttpMock.onGet"></a>
-
-#### HttpMock.onGet(endpoint?)
-<p>Mocks responses for get methods
-You may pass a specific endpoint as parameter to mock only selected endpoints.
-This is very useful, when having methods that do several Http requests,
-so you can mock them one on one.</p>
-<p>The following code returns the same content on <em>every</em> get call</p>
-<pre class="prettyprint source"><code>  HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);
-</code></pre>
-<p>The next code returns the different content depending on the passed endpoint</p>
-<pre class="prettyprint source"><code>  HttpMock.onGet('/foo').reply(200, {data: 'foo'});
-  HttpMock.onGet('/bar').reply(200, {data: 'bar'});
-</code></pre>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The minimum fee expressed in Planck</p>  
 
 | Param | Description |
 | --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
+| hexCode | <p>The contracts code in hex form</p> |
 
-<a name="module_http..HttpMock.onPost"></a>
+<a name="module_contracts..countCodePages"></a>
 
-#### HttpMock.onPost(endpoint?)
-<p>Mocks responses for post methods</p>
+### contracts~countCodePages(hexCode) ⇒
+<p>Counts the code pages for given machine code</p>
 
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.onPut"></a>
-
-#### HttpMock.onPut(endpoint?)
-<p>Mocks responses for put methods</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The number of code pages for the passed code</p>  
 
 | Param | Description |
 | --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
+| hexCode | <p>The contracts code in hex form</p> |
 
-<a name="module_http..HttpMock.onDelete"></a>
+<a name="module_contracts..numericToHex"></a>
 
-#### HttpMock.onDelete(endpoint?)
-<p>Mocks responses for delete methods</p>
+### contracts~numericToHex()
+<p>Copyright (c) 2019 Burst Apps Team</p>
+<p>Credits to AJ ONeal for the two-complements stuff
+https://coolaj86.com/articles/convert-decimal-to-hex-with-js-bigints/</p>
 
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+<a name="module_contracts..generateMethodCall"></a>
 
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
+### contracts~generateMethodCall(args) ⇒
+<p>Generates a method call message of a contracts public method. The message can be sent using for example
+[[MessageApi.sendMessage]] with <code>messageIsText = false</code> or [[ContractApi.callMethod]]]</p>
 
-<a name="module_http..HttpMock.reset"></a>
-
-#### HttpMock.reset()
-<p>Resets all mocked behavior</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-<a name="module_http..HttpResponse"></a>
-
-### http~HttpResponse
-<p>Http Response</p>
-<p>Returned by Http request</p>
-
-**Kind**: inner class of [<code>http</code>](#module_http)  
-<a name="module_http"></a>
-
-## http
-
-* [http](#module_http)
-    * [~HttpError](#module_http..HttpError)
-    * [~HttpMock](#module_http..HttpMock)
-        * [.onGet(endpoint?)](#module_http..HttpMock.onGet)
-        * [.onPost(endpoint?)](#module_http..HttpMock.onPost)
-        * [.onPut(endpoint?)](#module_http..HttpMock.onPut)
-        * [.onDelete(endpoint?)](#module_http..HttpMock.onDelete)
-        * [.reset()](#module_http..HttpMock.reset)
-    * [~HttpResponse](#module_http..HttpResponse)
-
-<a name="module_http..HttpError"></a>
-
-### http~HttpError
-<p>HttpError class</p>
-<p>Thrown on HTTP errors</p>
-
-**Kind**: inner class of [<code>http</code>](#module_http)  
-<a name="module_http..HttpMock"></a>
-
-### http~HttpMock
-<p>Http Mocker for easy to http testing using Jest</p>
-<p>When using this mocking helper you need to call <code>Http.onGet()</code>
-before Http instance is created</p>
-
-**Kind**: inner class of [<code>http</code>](#module_http)  
-
-* [~HttpMock](#module_http..HttpMock)
-    * [.onGet(endpoint?)](#module_http..HttpMock.onGet)
-    * [.onPost(endpoint?)](#module_http..HttpMock.onPost)
-    * [.onPut(endpoint?)](#module_http..HttpMock.onPut)
-    * [.onDelete(endpoint?)](#module_http..HttpMock.onDelete)
-    * [.reset()](#module_http..HttpMock.reset)
-
-<a name="module_http..HttpMock.onGet"></a>
-
-#### HttpMock.onGet(endpoint?)
-<p>Mocks responses for get methods
-You may pass a specific endpoint as parameter to mock only selected endpoints.
-This is very useful, when having methods that do several Http requests,
-so you can mock them one on one.</p>
-<p>The following code returns the same content on <em>every</em> get call</p>
-<pre class="prettyprint source"><code>  HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);
-</code></pre>
-<p>The next code returns the different content depending on the passed endpoint</p>
-<pre class="prettyprint source"><code>  HttpMock.onGet('/foo').reply(200, {data: 'foo'});
-  HttpMock.onGet('/bar').reply(200, {data: 'bar'});
-</code></pre>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>A hex string that can be used as contracts transaction message</p>  
 
 | Param | Description |
 | --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
+| args | <p>The argument object</p> |
 
-<a name="module_http..HttpMock.onPost"></a>
+<a name="module_contracts..getContractDatablock"></a>
 
-#### HttpMock.onPost(endpoint?)
-<p>Mocks responses for post methods</p>
+### contracts~getContractDatablock(contract, position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. It's recommended to use the [[ContractDataView]] class instead</p>
 
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
 
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
+| Param | Default | Description |
+| --- | --- | --- |
+| contract |  | <p>The contract</p> |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
-<a name="module_http..HttpMock.onPut"></a>
+<a name="module_contracts"></a>
 
-#### HttpMock.onPut(endpoint?)
-<p>Mocks responses for put methods</p>
+## contracts
 
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
+* [contracts](#module_contracts)
+    * [~CodePageSize](#module_contracts..CodePageSize)
+    * [~calculateMinimumCreationFee(hexCode)](#module_contracts..calculateMinimumCreationFee) ⇒
+    * [~countCodePages(hexCode)](#module_contracts..countCodePages) ⇒
+    * [~numericToHex()](#module_contracts..numericToHex)
+    * [~generateMethodCall(args)](#module_contracts..generateMethodCall) ⇒
+    * [~getContractDatablock(contract, position, length)](#module_contracts..getContractDatablock) ⇒
 
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
+<a name="module_contracts..CodePageSize"></a>
 
-<a name="module_http..HttpMock.onDelete"></a>
+### contracts~CodePageSize
+<p>Size of Code Pages in bytes</p>
 
-#### HttpMock.onDelete(endpoint?)
-<p>Mocks responses for delete methods</p>
+**Kind**: inner constant of [<code>contracts</code>](#module_contracts)  
+<a name="module_contracts..calculateMinimumCreationFee"></a>
 
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
+### contracts~calculateMinimumCreationFee(hexCode) ⇒
+<p>Calculates the minimum creation fee of the contract</p>
 
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.reset"></a>
-
-#### HttpMock.reset()
-<p>Resets all mocked behavior</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-<a name="module_http..HttpResponse"></a>
-
-### http~HttpResponse
-<p>Http Response</p>
-<p>Returned by Http request</p>
-
-**Kind**: inner class of [<code>http</code>](#module_http)  
-<a name="module_http"></a>
-
-## http
-
-* [http](#module_http)
-    * [~HttpError](#module_http..HttpError)
-    * [~HttpMock](#module_http..HttpMock)
-        * [.onGet(endpoint?)](#module_http..HttpMock.onGet)
-        * [.onPost(endpoint?)](#module_http..HttpMock.onPost)
-        * [.onPut(endpoint?)](#module_http..HttpMock.onPut)
-        * [.onDelete(endpoint?)](#module_http..HttpMock.onDelete)
-        * [.reset()](#module_http..HttpMock.reset)
-    * [~HttpResponse](#module_http..HttpResponse)
-
-<a name="module_http..HttpError"></a>
-
-### http~HttpError
-<p>HttpError class</p>
-<p>Thrown on HTTP errors</p>
-
-**Kind**: inner class of [<code>http</code>](#module_http)  
-<a name="module_http..HttpMock"></a>
-
-### http~HttpMock
-<p>Http Mocker for easy to http testing using Jest</p>
-<p>When using this mocking helper you need to call <code>Http.onGet()</code>
-before Http instance is created</p>
-
-**Kind**: inner class of [<code>http</code>](#module_http)  
-
-* [~HttpMock](#module_http..HttpMock)
-    * [.onGet(endpoint?)](#module_http..HttpMock.onGet)
-    * [.onPost(endpoint?)](#module_http..HttpMock.onPost)
-    * [.onPut(endpoint?)](#module_http..HttpMock.onPut)
-    * [.onDelete(endpoint?)](#module_http..HttpMock.onDelete)
-    * [.reset()](#module_http..HttpMock.reset)
-
-<a name="module_http..HttpMock.onGet"></a>
-
-#### HttpMock.onGet(endpoint?)
-<p>Mocks responses for get methods
-You may pass a specific endpoint as parameter to mock only selected endpoints.
-This is very useful, when having methods that do several Http requests,
-so you can mock them one on one.</p>
-<p>The following code returns the same content on <em>every</em> get call</p>
-<pre class="prettyprint source"><code>  HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);
-</code></pre>
-<p>The next code returns the different content depending on the passed endpoint</p>
-<pre class="prettyprint source"><code>  HttpMock.onGet('/foo').reply(200, {data: 'foo'});
-  HttpMock.onGet('/bar').reply(200, {data: 'bar'});
-</code></pre>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The minimum fee expressed in Planck</p>  
 
 | Param | Description |
 | --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
+| hexCode | <p>The contracts code in hex form</p> |
 
-<a name="module_http..HttpMock.onPost"></a>
+<a name="module_contracts..countCodePages"></a>
 
-#### HttpMock.onPost(endpoint?)
-<p>Mocks responses for post methods</p>
+### contracts~countCodePages(hexCode) ⇒
+<p>Counts the code pages for given machine code</p>
 
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.onPut"></a>
-
-#### HttpMock.onPut(endpoint?)
-<p>Mocks responses for put methods</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The number of code pages for the passed code</p>  
 
 | Param | Description |
 | --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
+| hexCode | <p>The contracts code in hex form</p> |
 
-<a name="module_http..HttpMock.onDelete"></a>
+<a name="module_contracts..numericToHex"></a>
 
-#### HttpMock.onDelete(endpoint?)
-<p>Mocks responses for delete methods</p>
+### contracts~numericToHex()
+<p>Copyright (c) 2019 Burst Apps Team</p>
+<p>Credits to AJ ONeal for the two-complements stuff
+https://coolaj86.com/articles/convert-decimal-to-hex-with-js-bigints/</p>
 
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+<a name="module_contracts..generateMethodCall"></a>
+
+### contracts~generateMethodCall(args) ⇒
+<p>Generates a method call message of a contracts public method. The message can be sent using for example
+[[MessageApi.sendMessage]] with <code>messageIsText = false</code> or [[ContractApi.callMethod]]]</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>A hex string that can be used as contracts transaction message</p>  
 
 | Param | Description |
 | --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
+| args | <p>The argument object</p> |
 
-<a name="module_http..HttpMock.reset"></a>
+<a name="module_contracts..getContractDatablock"></a>
 
-#### HttpMock.reset()
-<p>Resets all mocked behavior</p>
+### contracts~getContractDatablock(contract, position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. It's recommended to use the [[ContractDataView]] class instead</p>
 
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-<a name="module_http..HttpResponse"></a>
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
 
-### http~HttpResponse
-<p>Http Response</p>
-<p>Returned by Http request</p>
+| Param | Default | Description |
+| --- | --- | --- |
+| contract |  | <p>The contract</p> |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
-**Kind**: inner class of [<code>http</code>](#module_http)  
-<a name="HttpImpl"></a>
+<a name="module_contracts"></a>
 
-## HttpImpl
-<p>Generic Http client</p>
+## contracts
+
+* [contracts](#module_contracts)
+    * [~CodePageSize](#module_contracts..CodePageSize)
+    * [~calculateMinimumCreationFee(hexCode)](#module_contracts..calculateMinimumCreationFee) ⇒
+    * [~countCodePages(hexCode)](#module_contracts..countCodePages) ⇒
+    * [~numericToHex()](#module_contracts..numericToHex)
+    * [~generateMethodCall(args)](#module_contracts..generateMethodCall) ⇒
+    * [~getContractDatablock(contract, position, length)](#module_contracts..getContractDatablock) ⇒
+
+<a name="module_contracts..CodePageSize"></a>
+
+### contracts~CodePageSize
+<p>Size of Code Pages in bytes</p>
+
+**Kind**: inner constant of [<code>contracts</code>](#module_contracts)  
+<a name="module_contracts..calculateMinimumCreationFee"></a>
+
+### contracts~calculateMinimumCreationFee(hexCode) ⇒
+<p>Calculates the minimum creation fee of the contract</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The minimum fee expressed in Planck</p>  
+
+| Param | Description |
+| --- | --- |
+| hexCode | <p>The contracts code in hex form</p> |
+
+<a name="module_contracts..countCodePages"></a>
+
+### contracts~countCodePages(hexCode) ⇒
+<p>Counts the code pages for given machine code</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The number of code pages for the passed code</p>  
+
+| Param | Description |
+| --- | --- |
+| hexCode | <p>The contracts code in hex form</p> |
+
+<a name="module_contracts..numericToHex"></a>
+
+### contracts~numericToHex()
+<p>Copyright (c) 2019 Burst Apps Team</p>
+<p>Credits to AJ ONeal for the two-complements stuff
+https://coolaj86.com/articles/convert-decimal-to-hex-with-js-bigints/</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+<a name="module_contracts..generateMethodCall"></a>
+
+### contracts~generateMethodCall(args) ⇒
+<p>Generates a method call message of a contracts public method. The message can be sent using for example
+[[MessageApi.sendMessage]] with <code>messageIsText = false</code> or [[ContractApi.callMethod]]]</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>A hex string that can be used as contracts transaction message</p>  
+
+| Param | Description |
+| --- | --- |
+| args | <p>The argument object</p> |
+
+<a name="module_contracts..getContractDatablock"></a>
+
+### contracts~getContractDatablock(contract, position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. It's recommended to use the [[ContractDataView]] class instead</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| contract |  | <p>The contract</p> |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_contracts"></a>
+
+## contracts
+
+* [contracts](#module_contracts)
+    * [~CodePageSize](#module_contracts..CodePageSize)
+    * [~calculateMinimumCreationFee(hexCode)](#module_contracts..calculateMinimumCreationFee) ⇒
+    * [~countCodePages(hexCode)](#module_contracts..countCodePages) ⇒
+    * [~numericToHex()](#module_contracts..numericToHex)
+    * [~generateMethodCall(args)](#module_contracts..generateMethodCall) ⇒
+    * [~getContractDatablock(contract, position, length)](#module_contracts..getContractDatablock) ⇒
+
+<a name="module_contracts..CodePageSize"></a>
+
+### contracts~CodePageSize
+<p>Size of Code Pages in bytes</p>
+
+**Kind**: inner constant of [<code>contracts</code>](#module_contracts)  
+<a name="module_contracts..calculateMinimumCreationFee"></a>
+
+### contracts~calculateMinimumCreationFee(hexCode) ⇒
+<p>Calculates the minimum creation fee of the contract</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The minimum fee expressed in Planck</p>  
+
+| Param | Description |
+| --- | --- |
+| hexCode | <p>The contracts code in hex form</p> |
+
+<a name="module_contracts..countCodePages"></a>
+
+### contracts~countCodePages(hexCode) ⇒
+<p>Counts the code pages for given machine code</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The number of code pages for the passed code</p>  
+
+| Param | Description |
+| --- | --- |
+| hexCode | <p>The contracts code in hex form</p> |
+
+<a name="module_contracts..numericToHex"></a>
+
+### contracts~numericToHex()
+<p>Copyright (c) 2019 Burst Apps Team</p>
+<p>Credits to AJ ONeal for the two-complements stuff
+https://coolaj86.com/articles/convert-decimal-to-hex-with-js-bigints/</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+<a name="module_contracts..generateMethodCall"></a>
+
+### contracts~generateMethodCall(args) ⇒
+<p>Generates a method call message of a contracts public method. The message can be sent using for example
+[[MessageApi.sendMessage]] with <code>messageIsText = false</code> or [[ContractApi.callMethod]]]</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>A hex string that can be used as contracts transaction message</p>  
+
+| Param | Description |
+| --- | --- |
+| args | <p>The argument object</p> |
+
+<a name="module_contracts..getContractDatablock"></a>
+
+### contracts~getContractDatablock(contract, position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. It's recommended to use the [[ContractDataView]] class instead</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| contract |  | <p>The contract</p> |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="module_contracts"></a>
+
+## contracts
+
+* [contracts](#module_contracts)
+    * [~CodePageSize](#module_contracts..CodePageSize)
+    * [~calculateMinimumCreationFee(hexCode)](#module_contracts..calculateMinimumCreationFee) ⇒
+    * [~countCodePages(hexCode)](#module_contracts..countCodePages) ⇒
+    * [~numericToHex()](#module_contracts..numericToHex)
+    * [~generateMethodCall(args)](#module_contracts..generateMethodCall) ⇒
+    * [~getContractDatablock(contract, position, length)](#module_contracts..getContractDatablock) ⇒
+
+<a name="module_contracts..CodePageSize"></a>
+
+### contracts~CodePageSize
+<p>Size of Code Pages in bytes</p>
+
+**Kind**: inner constant of [<code>contracts</code>](#module_contracts)  
+<a name="module_contracts..calculateMinimumCreationFee"></a>
+
+### contracts~calculateMinimumCreationFee(hexCode) ⇒
+<p>Calculates the minimum creation fee of the contract</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The minimum fee expressed in Planck</p>  
+
+| Param | Description |
+| --- | --- |
+| hexCode | <p>The contracts code in hex form</p> |
+
+<a name="module_contracts..countCodePages"></a>
+
+### contracts~countCodePages(hexCode) ⇒
+<p>Counts the code pages for given machine code</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The number of code pages for the passed code</p>  
+
+| Param | Description |
+| --- | --- |
+| hexCode | <p>The contracts code in hex form</p> |
+
+<a name="module_contracts..numericToHex"></a>
+
+### contracts~numericToHex()
+<p>Copyright (c) 2019 Burst Apps Team</p>
+<p>Credits to AJ ONeal for the two-complements stuff
+https://coolaj86.com/articles/convert-decimal-to-hex-with-js-bigints/</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+<a name="module_contracts..generateMethodCall"></a>
+
+### contracts~generateMethodCall(args) ⇒
+<p>Generates a method call message of a contracts public method. The message can be sent using for example
+[[MessageApi.sendMessage]] with <code>messageIsText = false</code> or [[ContractApi.callMethod]]]</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>A hex string that can be used as contracts transaction message</p>  
+
+| Param | Description |
+| --- | --- |
+| args | <p>The argument object</p> |
+
+<a name="module_contracts..getContractDatablock"></a>
+
+### contracts~getContractDatablock(contract, position, length) ⇒
+<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
+<p>This is a generic function to extract arbitrary data from a contract. It's recommended to use the [[ContractDataView]] class instead</p>
+
+**Kind**: inner method of [<code>contracts</code>](#module_contracts)  
+**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
+
+| Param | Default | Description |
+| --- | --- | --- |
+| contract |  | <p>The contract</p> |
+| position |  | <p>The variables position</p> |
+| length | <code>16</code> | <p>The length of data to be extracted</p> |
+
+<a name="ContractDataView"></a>
+
+## ContractDataView
+<p>Helper class for contracts</p>
+<p>A contract owns additional data, which is split in 8 byte blocks.
+The content is encoded in hexadecimal representation and big endianness.
+This class facilitates access to these data</p>
 
 **Kind**: global class  
-<a name="new_HttpImpl_new"></a>
 
-### new HttpImpl(baseURL, options)
-<p>Creates your Http client</p>
+* [ContractDataView](#ContractDataView)
+    * [new ContractDataView()](#new_ContractDataView_new)
+    * [.getContract()](#ContractDataView+getContract) ⇒
+    * [.countCodePages()](#ContractDataView+countCodePages) ⇒
+    * [.getVariableAsString(index)](#ContractDataView+getVariableAsString) ⇒
+    * [.getDataBlocksAsString(index, count)](#ContractDataView+getDataBlocksAsString) ⇒
+    * [.getVariableAsDecimal(index)](#ContractDataView+getVariableAsDecimal) ⇒
+    * [.getVariable(index)](#ContractDataView+getVariable) ⇒
+    * [.getHexDataAt(index, length)](#ContractDataView+getHexDataAt) ⇒
 
+<a name="new_ContractDataView_new"></a>
+
+### new ContractDataView()
+<p>The length of a contracts variable (considering Hex notation)</p>
+
+<a name="ContractDataView+getContract"></a>
+
+### contractDataView.getContract() ⇒
+**Kind**: instance method of [<code>ContractDataView</code>](#ContractDataView)  
+**Returns**: <p>Get the contract</p>  
+<a name="ContractDataView+countCodePages"></a>
+
+### contractDataView.countCodePages() ⇒
+**Kind**: instance method of [<code>ContractDataView</code>](#ContractDataView)  
+**Returns**: <p>The number of code pages</p>  
+<a name="ContractDataView+getVariableAsString"></a>
+
+### contractDataView.getVariableAsString(index) ⇒
+<p>Get a variable as string</p>
+
+**Kind**: instance method of [<code>ContractDataView</code>](#ContractDataView)  
+**Returns**: <p>The data as string (Utf-8)</p>  
 
 | Param | Description |
 | --- | --- |
-| baseURL | <p>The baseUrl, i.e host url</p> |
-| options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
+| index | <p>The index of variable (starting at 0)</p> |
+
+<a name="ContractDataView+getDataBlocksAsString"></a>
+
+### contractDataView.getDataBlocksAsString(index, count) ⇒
+<p>Get multiple data blocks as string</p>
+
+**Kind**: instance method of [<code>ContractDataView</code>](#ContractDataView)  
+**Returns**: <p>The data as string (Utf-8)</p>  
+
+| Param | Description |
+| --- | --- |
+| index | <p>The index of variable (starting at 0)</p> |
+| count | <p>Number of blocks</p> |
+
+<a name="ContractDataView+getVariableAsDecimal"></a>
+
+### contractDataView.getVariableAsDecimal(index) ⇒
+<p>Get a variable as decimal (string)</p>
+
+**Kind**: instance method of [<code>ContractDataView</code>](#ContractDataView)  
+**Returns**: <p>The data as a decimal string sequence</p>  
+
+| Param | Description |
+| --- | --- |
+| index | <p>The index of variable (starting at 0)</p> |
+
+<a name="ContractDataView+getVariable"></a>
+
+### contractDataView.getVariable(index) ⇒
+<p>Get a variable at given position/index</p>
+
+**Kind**: instance method of [<code>ContractDataView</code>](#ContractDataView)  
+**Returns**: <p>The data as hexadecimal string (in little endianness)</p>  
+
+| Param | Description |
+| --- | --- |
+| index | <p>The index of variable (starting at 0)</p> |
+
+<a name="ContractDataView+getHexDataAt"></a>
+
+### contractDataView.getHexDataAt(index, length) ⇒
+<p>Get a hexadecimal data block of arbitrary length at given position/index</p>
+
+**Kind**: instance method of [<code>ContractDataView</code>](#ContractDataView)  
+**Returns**: <p>The data as hexadecimal string (in little endianness)</p>  
+
+| Param | Description |
+| --- | --- |
+| index | <p>The index of variable (starting at 0)</p> |
+| length | <p>The length of the data block (must be a multiple of 2)</p> |
 
