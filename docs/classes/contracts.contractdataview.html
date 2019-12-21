@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ContractHelper
+	<title>ContractDataView
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,13 +77,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/core.html">core</a>
+					<a href="../modules/contracts.html">contracts</a>
 				</li>
 				<li>
-					<a href="core.contracthelper.html">ContractHelper</a>
+					<a href="contracts.contractdataview.html">ContractDataView</a>
 				</li>
 			</ul>
-			<h1>Class ContractHelper</h1>
+			<h1>Class ContractDataView</h1>
 		</div>
 	</div>
 </header>
@@ -95,16 +95,16 @@
 					<div class="lead">
 						<p>Helper class for contracts</p>
 					</div>
-					<p>A contract owns additional data, which is splitted in 8 byte blocks.
+					<p>A contract owns additional data, which is split in 8 byte blocks.
 						The content is encoded in hexadecimal representation and big endianness.
-					This helper class facilitates access to these data</p>
+					This class facilitates access to these data</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ContractHelper</span>
+						<span class="target">ContractDataView</span>
 					</li>
 				</ul>
 			</section>
@@ -115,24 +115,25 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="core.contracthelper.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="contracts.contractdataview.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="core.contracthelper.html#variable_length" class="tsd-kind-icon">VARIABLE_<wbr>LENGTH</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="contracts.contractdataview.html#variablelength" class="tsd-kind-icon">Variable<wbr>Length</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.contracthelper.html#getcontract" class="tsd-kind-icon">get<wbr>Contract</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.contracthelper.html#getdatablocksasstring" class="tsd-kind-icon">get<wbr>Data<wbr>Blocks<wbr>AsString</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.contracthelper.html#gethexdataat" class="tsd-kind-icon">get<wbr>Hex<wbr>Data<wbr>At</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.contracthelper.html#getvariable" class="tsd-kind-icon">get<wbr>Variable</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.contracthelper.html#getvariableasdecimal" class="tsd-kind-icon">get<wbr>Variable<wbr>AsDecimal</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.contracthelper.html#getvariableasstring" class="tsd-kind-icon">get<wbr>Variable<wbr>AsString</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="contracts.contractdataview.html#countcodepages" class="tsd-kind-icon">count<wbr>Code<wbr>Pages</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="contracts.contractdataview.html#getcontract" class="tsd-kind-icon">get<wbr>Contract</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="contracts.contractdataview.html#getdatablocksasstring" class="tsd-kind-icon">get<wbr>Data<wbr>Blocks<wbr>AsString</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="contracts.contractdataview.html#gethexdataat" class="tsd-kind-icon">get<wbr>Hex<wbr>Data<wbr>At</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="contracts.contractdataview.html#getvariable" class="tsd-kind-icon">get<wbr>Variable</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="contracts.contractdataview.html#getvariableasdecimal" class="tsd-kind-icon">get<wbr>Variable<wbr>AsDecimal</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="contracts.contractdataview.html#getvariableasstring" class="tsd-kind-icon">get<wbr>Variable<wbr>AsString</a></li>
 							</ul>
 						</section>
 					</div>
@@ -144,22 +145,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Contract<wbr>Helper<span class="tsd-signature-symbol">(</span>_contract<span class="tsd-signature-symbol">: </span><a href="../interfaces/core.contract.html" class="tsd-signature-type">Contract</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.contracthelper.html" class="tsd-signature-type">ContractHelper</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Contract<wbr>Data<wbr>View<span class="tsd-signature-symbol">(</span>_contract<span class="tsd-signature-symbol">: </span><a href="../interfaces/contracts.contract.html" class="tsd-signature-type">Contract</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="contracts.contractdataview.html" class="tsd-signature-type">ContractDataView</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/contract/ContractHelper.ts#L20">core/src/contract/ContractHelper.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/contracts/src/ContractDataView.ts#L25">contracts/src/ContractDataView.ts:25</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>_contract: <a href="../interfaces/core.contract.html" class="tsd-signature-type">Contract</a></h5>
+									<h5>_contract: <a href="../interfaces/contracts.contract.html" class="tsd-signature-type">Contract</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="core.contracthelper.html" class="tsd-signature-type">ContractHelper</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="contracts.contractdataview.html" class="tsd-signature-type">ContractDataView</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -167,34 +168,59 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="variable_length" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> VARIABLE_<wbr>LENGTH</h3>
-					<div class="tsd-signature tsd-kind-icon">VARIABLE_<wbr>LENGTH<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;16</span></div>
+					<a name="variablelength" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> Variable<wbr>Length</h3>
+					<div class="tsd-signature tsd-kind-icon">Variable<wbr>Length<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;16</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/contract/ContractHelper.ts#L20">core/src/contract/ContractHelper.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/contracts/src/ContractDataView.ts#L25">contracts/src/ContractDataView.ts:25</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The length of a contracts variable (considering Hex notation)</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getcontract" class="tsd-anchor"></a>
-					<h3>get<wbr>Contract</h3>
+					<a name="countcodepages" class="tsd-anchor"></a>
+					<h3>count<wbr>Code<wbr>Pages</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Contract<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/core.contract.html" class="tsd-signature-type">Contract</a></li>
+						<li class="tsd-signature tsd-kind-icon">count<wbr>Code<wbr>Pages<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/contract/ContractHelper.ts#L29">core/src/contract/ContractHelper.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/contracts/src/ContractDataView.ts#L40">contracts/src/ContractDataView.ts:40</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/core.contract.html" class="tsd-signature-type">Contract</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>The number of code pages</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getcontract" class="tsd-anchor"></a>
+					<h3>get<wbr>Contract</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Contract<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/contracts.contract.html" class="tsd-signature-type">Contract</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/contracts/src/ContractDataView.ts#L33">contracts/src/ContractDataView.ts:33</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/contracts.contract.html" class="tsd-signature-type">Contract</a></h4>
 							<p>Get the contract</p>
 						</li>
 					</ul>
@@ -209,7 +235,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/contract/ContractHelper.ts#L47">core/src/contract/ContractHelper.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/contracts/src/ContractDataView.ts#L60">contracts/src/ContractDataView.ts:60</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -247,7 +273,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/contract/ContractHelper.ts#L76">core/src/contract/ContractHelper.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/contracts/src/ContractDataView.ts#L89">contracts/src/ContractDataView.ts:89</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -285,7 +311,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/contract/ContractHelper.ts#L66">core/src/contract/ContractHelper.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/contracts/src/ContractDataView.ts#L79">contracts/src/ContractDataView.ts:79</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -317,7 +343,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/contract/ContractHelper.ts#L57">core/src/contract/ContractHelper.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/contracts/src/ContractDataView.ts#L70">contracts/src/ContractDataView.ts:70</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -349,7 +375,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/contract/ContractHelper.ts#L36">core/src/contract/ContractHelper.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/contracts/src/ContractDataView.ts#L49">contracts/src/ContractDataView.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -380,6 +406,9 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
+						<a href="../modules/contracts.html">contracts</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -398,36 +427,63 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.contracthelper.html" class="tsd-kind-icon">Contract<wbr>Helper</a>
+						<a href="contracts.contractdataview.html" class="tsd-kind-icon">Contract<wbr>Data<wbr>View</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="core.contracthelper.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="contracts.contractdataview.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="core.contracthelper.html#variable_length" class="tsd-kind-icon">VARIABLE_<wbr>LENGTH</a>
+								<a href="contracts.contractdataview.html#variablelength" class="tsd-kind-icon">Variable<wbr>Length</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.contracthelper.html#getcontract" class="tsd-kind-icon">get<wbr>Contract</a>
+								<a href="contracts.contractdataview.html#countcodepages" class="tsd-kind-icon">count<wbr>Code<wbr>Pages</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.contracthelper.html#getdatablocksasstring" class="tsd-kind-icon">get<wbr>Data<wbr>Blocks<wbr>AsString</a>
+								<a href="contracts.contractdataview.html#getcontract" class="tsd-kind-icon">get<wbr>Contract</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.contracthelper.html#gethexdataat" class="tsd-kind-icon">get<wbr>Hex<wbr>Data<wbr>At</a>
+								<a href="contracts.contractdataview.html#getdatablocksasstring" class="tsd-kind-icon">get<wbr>Data<wbr>Blocks<wbr>AsString</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.contracthelper.html#getvariable" class="tsd-kind-icon">get<wbr>Variable</a>
+								<a href="contracts.contractdataview.html#gethexdataat" class="tsd-kind-icon">get<wbr>Hex<wbr>Data<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.contracthelper.html#getvariableasdecimal" class="tsd-kind-icon">get<wbr>Variable<wbr>AsDecimal</a>
+								<a href="contracts.contractdataview.html#getvariable" class="tsd-kind-icon">get<wbr>Variable</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.contracthelper.html#getvariableasstring" class="tsd-kind-icon">get<wbr>Variable<wbr>AsString</a>
+								<a href="contracts.contractdataview.html#getvariableasdecimal" class="tsd-kind-icon">get<wbr>Variable<wbr>AsDecimal</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="contracts.contractdataview.html#getvariableasstring" class="tsd-kind-icon">get<wbr>Variable<wbr>AsString</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/contracts.contract.html" class="tsd-kind-icon">Contract</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/contracts.generatemethodcallargs.html" class="tsd-kind-icon">Generate<wbr>Method<wbr>Call<wbr>Args</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/contracts.html#methodargument" class="tsd-kind-icon">Method<wbr>Argument</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+						<a href="../modules/contracts.html#codepagesize" class="tsd-kind-icon">Code<wbr>Page<wbr>Size</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/contracts.html#calculateminimumcreationfee" class="tsd-kind-icon">calculate<wbr>Minimum<wbr>Creation<wbr>Fee</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/contracts.html#countcodepages" class="tsd-kind-icon">count<wbr>Code<wbr>Pages</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/contracts.html#generatemethodcall" class="tsd-kind-icon">generate<wbr>Method<wbr>Call</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/contracts.html#getcontractdatablock" class="tsd-kind-icon">get<wbr>Contract<wbr>Datablock</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

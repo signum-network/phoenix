@@ -100,6 +100,9 @@
 						<dd><p>The message as text to be sent</p>
 						</dd>
 						<dt>param</dt>
+						<dd><p>Defines whether the message is text or another format (hex or base64) (default: <code>true</code>)</p>
+						</dd>
+						<dt>param</dt>
 						<dd><p>The fee as Planck value</p>
 						</dd>
 						<dt>param</dt>
@@ -140,6 +143,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.sendmessageargs.html#deadline" class="tsd-kind-icon">deadline</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.sendmessageargs.html#feeplanck" class="tsd-kind-icon">fee<wbr>Planck</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.sendmessageargs.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.sendmessageargs.html#messageistext" class="tsd-kind-icon">message<wbr>IsText</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.sendmessageargs.html#recipientid" class="tsd-kind-icon">recipient<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.sendmessageargs.html#recipientpublickey" class="tsd-kind-icon">recipient<wbr>Public<wbr>Key</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.sendmessageargs.html#senderprivatekey" class="tsd-kind-icon">sender<wbr>Private<wbr>Key</a></li>
@@ -157,7 +161,7 @@
 					<div class="tsd-signature tsd-kind-icon">deadline<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/typings/args/sendMessageArgs.ts#L23">core/src/typings/args/sendMessageArgs.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/typings/args/sendMessageArgs.ts#L25">core/src/typings/args/sendMessageArgs.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -167,7 +171,7 @@
 					<div class="tsd-signature tsd-kind-icon">fee<wbr>Planck<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/typings/args/sendMessageArgs.ts#L18">core/src/typings/args/sendMessageArgs.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/typings/args/sendMessageArgs.ts#L20">core/src/typings/args/sendMessageArgs.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -177,7 +181,17 @@
 					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/typings/args/sendMessageArgs.ts#L17">core/src/typings/args/sendMessageArgs.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/typings/args/sendMessageArgs.ts#L18">core/src/typings/args/sendMessageArgs.ts:18</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="messageistext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> message<wbr>IsText</h3>
+					<div class="tsd-signature tsd-kind-icon">message<wbr>IsText<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/typings/args/sendMessageArgs.ts#L19">core/src/typings/args/sendMessageArgs.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -187,7 +201,7 @@
 					<div class="tsd-signature tsd-kind-icon">recipient<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/typings/args/sendMessageArgs.ts#L19">core/src/typings/args/sendMessageArgs.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/typings/args/sendMessageArgs.ts#L21">core/src/typings/args/sendMessageArgs.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -197,7 +211,7 @@
 					<div class="tsd-signature tsd-kind-icon">recipient<wbr>Public<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/typings/args/sendMessageArgs.ts#L20">core/src/typings/args/sendMessageArgs.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/typings/args/sendMessageArgs.ts#L22">core/src/typings/args/sendMessageArgs.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -207,7 +221,7 @@
 					<div class="tsd-signature tsd-kind-icon">sender<wbr>Private<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/typings/args/sendMessageArgs.ts#L22">core/src/typings/args/sendMessageArgs.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/typings/args/sendMessageArgs.ts#L24">core/src/typings/args/sendMessageArgs.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -217,7 +231,7 @@
 					<div class="tsd-signature tsd-kind-icon">sender<wbr>Public<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/typings/args/sendMessageArgs.ts#L21">core/src/typings/args/sendMessageArgs.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/typings/args/sendMessageArgs.ts#L23">core/src/typings/args/sendMessageArgs.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -228,6 +242,9 @@
 				<ul>
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/contracts.html">contracts</a>
 					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
@@ -258,6 +275,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core.sendmessageargs.html#message" class="tsd-kind-icon">message</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.sendmessageargs.html#messageistext" class="tsd-kind-icon">message<wbr>IsText</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core.sendmessageargs.html#recipientid" class="tsd-kind-icon">recipient<wbr>Id</a>

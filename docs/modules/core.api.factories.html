@@ -105,6 +105,7 @@
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#broadcasttransaction" class="tsd-kind-icon">broadcast<wbr>Transaction</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#callcontractmethod" class="tsd-kind-icon">call<wbr>Contract<wbr>Method</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#generatesendtransactionqrcode" class="tsd-kind-icon">generate<wbr>Send<wbr>TransactionQRCode</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#generatesendtransactionqrcodeaddress" class="tsd-kind-icon">generate<wbr>Send<wbr>TransactionQRCode<wbr>Address</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getaccount" class="tsd-kind-icon">get<wbr>Account</a></li>
@@ -132,6 +133,7 @@
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#gettime" class="tsd-kind-icon">get<wbr>Time</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#gettransaction" class="tsd-kind-icon">get<wbr>Transaction</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getunconfirmedaccounttransactions" class="tsd-kind-icon">get<wbr>Unconfirmed<wbr>Account<wbr>Transactions</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#publishcontract" class="tsd-kind-icon">publish<wbr>Contract</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#sendamount" class="tsd-kind-icon">send<wbr>Amount</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#sendamounttomultiplerecipients" class="tsd-kind-icon">send<wbr>Amount<wbr>ToMultiple<wbr>Recipients</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#sendamounttosinglerecipient" class="tsd-kind-icon">send<wbr>Amount<wbr>ToSingle<wbr>Recipient</a></li>
@@ -162,7 +164,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/transaction/broadcastTransaction.ts#L15">core/src/api/factories/transaction/broadcastTransaction.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/transaction/broadcastTransaction.ts#L15">core/src/api/factories/transaction/broadcastTransaction.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -200,6 +202,53 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="callcontractmethod" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> call<wbr>Contract<wbr>Method</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">call<wbr>Contract<wbr>Method<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/contract/callContractMethod.ts#L19">core/src/api/factories/contract/callContractMethod.ts:19</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.contractapi.html">ContractApi</a>.</p>
+								</div>
+								<p>See details at <a href="../interfaces/core.api.contractapi.html#callcontractmethod">ContractApi.callContractMethod</a></p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-siganture">
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><a href="../interfaces/core.callcontractmethodargs.html" class="tsd-signature-type">CallContractMethodArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-parameters-title">Parameters</h4>
+											<ul class="tsd-parameters">
+												<li>
+													<h5>args: <a href="../interfaces/core.callcontractmethodargs.html" class="tsd-signature-type">CallContractMethodArgs</a></h5>
+												</li>
+											</ul>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="generatesendtransactionqrcode" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> generate<wbr>Send<wbr>TransactionQRCode</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
@@ -209,7 +258,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/account/generateSendTransactionQRCode.ts#L13">core/src/api/factories/account/generateSendTransactionQRCode.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/account/generateSendTransactionQRCode.ts#L13">core/src/api/factories/account/generateSendTransactionQRCode.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -268,7 +317,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/account/generateSendTransactionQRCodeAddress.ts#L13">core/src/api/factories/account/generateSendTransactionQRCodeAddress.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/account/generateSendTransactionQRCodeAddress.ts#L13">core/src/api/factories/account/generateSendTransactionQRCodeAddress.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -327,7 +376,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/account/getAccount.ts#L15">core/src/api/factories/account/getAccount.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/account/getAccount.ts#L15">core/src/api/factories/account/getAccount.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -374,7 +423,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/account/getAccountBalance.ts#L15">core/src/api/factories/account/getAccountBalance.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/account/getAccountBalance.ts#L15">core/src/api/factories/account/getAccountBalance.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -421,7 +470,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/account/getAccountBlockIds.ts#L13">core/src/api/factories/account/getAccountBlockIds.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/account/getAccountBlockIds.ts#L13">core/src/api/factories/account/getAccountBlockIds.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -471,7 +520,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/account/getAccountBlocks.ts#L14">core/src/api/factories/account/getAccountBlocks.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/account/getAccountBlocks.ts#L14">core/src/api/factories/account/getAccountBlocks.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -521,7 +570,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/account/getAccountTransactions.ts#L15">core/src/api/factories/account/getAccountTransactions.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/account/getAccountTransactions.ts#L15">core/src/api/factories/account/getAccountTransactions.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -568,7 +617,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/alias/getAliasById.ts#L14">core/src/api/factories/alias/getAliasById.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/alias/getAliasById.ts#L14">core/src/api/factories/alias/getAliasById.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -615,7 +664,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/alias/getAliasByName.ts#L14">core/src/api/factories/alias/getAliasByName.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/alias/getAliasByName.ts#L14">core/src/api/factories/alias/getAliasByName.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -662,7 +711,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/account/getAliases.ts#L14">core/src/api/factories/account/getAliases.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/account/getAliases.ts#L14">core/src/api/factories/account/getAliases.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -709,7 +758,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/asset/getAllAssets.ts#L14">core/src/api/factories/asset/getAllAssets.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/asset/getAllAssets.ts#L14">core/src/api/factories/asset/getAllAssets.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -759,7 +808,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/contract/getAllContractIds.ts#L15">core/src/api/factories/contract/getAllContractIds.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/contract/getAllContractIds.ts#L15">core/src/api/factories/contract/getAllContractIds.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -800,7 +849,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/asset/getAsset.ts#L14">core/src/api/factories/asset/getAsset.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/asset/getAsset.ts#L14">core/src/api/factories/asset/getAsset.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -847,7 +896,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/block/getBlockByHeight.ts#L15">core/src/api/factories/block/getBlockByHeight.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/block/getBlockByHeight.ts#L15">core/src/api/factories/block/getBlockByHeight.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -897,7 +946,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/block/getBlockById.ts#L16">core/src/api/factories/block/getBlockById.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/block/getBlockById.ts#L16">core/src/api/factories/block/getBlockById.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -947,7 +996,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/block/getBlockByTimestamp.ts#L14">core/src/api/factories/block/getBlockByTimestamp.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/block/getBlockByTimestamp.ts#L14">core/src/api/factories/block/getBlockByTimestamp.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -997,7 +1046,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/block/getBlockId.ts#L15">core/src/api/factories/block/getBlockId.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/block/getBlockId.ts#L15">core/src/api/factories/block/getBlockId.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1044,7 +1093,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/network/getBlockchainStatus.ts#L16">core/src/api/factories/network/getBlockchainStatus.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/network/getBlockchainStatus.ts#L16">core/src/api/factories/network/getBlockchainStatus.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1085,7 +1134,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/block/getBlocks.ts#L14">core/src/api/factories/block/getBlocks.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/block/getBlocks.ts#L14">core/src/api/factories/block/getBlocks.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1138,7 +1187,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/contract/getContract.ts#L14">core/src/api/factories/contract/getContract.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/contract/getContract.ts#L14">core/src/api/factories/contract/getContract.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1185,7 +1234,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/contract/getContractsByAccount.ts#L15">core/src/api/factories/contract/getContractsByAccount.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/contract/getContractsByAccount.ts#L15">core/src/api/factories/contract/getContractsByAccount.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1232,7 +1281,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/network/getPeer.ts#L14">core/src/api/factories/network/getPeer.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/network/getPeer.ts#L14">core/src/api/factories/network/getPeer.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1279,7 +1328,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/network/getPeers.ts#L14">core/src/api/factories/network/getPeers.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/network/getPeers.ts#L14">core/src/api/factories/network/getPeers.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1326,7 +1375,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/network/getServerStatus.ts#L15">core/src/api/factories/network/getServerStatus.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/network/getServerStatus.ts#L15">core/src/api/factories/network/getServerStatus.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1367,7 +1416,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/network/getTime.ts#L15">core/src/api/factories/network/getTime.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/network/getTime.ts#L15">core/src/api/factories/network/getTime.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1408,7 +1457,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/transaction/getTransaction.ts#L15">core/src/api/factories/transaction/getTransaction.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/transaction/getTransaction.ts#L15">core/src/api/factories/transaction/getTransaction.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1455,7 +1504,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/account/getUnconfirmedAccountTransactions.ts#L14">core/src/api/factories/account/getUnconfirmedAccountTransactions.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/account/getUnconfirmedAccountTransactions.ts#L14">core/src/api/factories/account/getUnconfirmedAccountTransactions.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1496,6 +1545,53 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="publishcontract" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> publish<wbr>Contract</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">publish<wbr>Contract<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/contract/publishContract.ts#L20">core/src/api/factories/contract/publishContract.ts:20</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.contractapi.html">ContractApi</a>.</p>
+								</div>
+								<p>See details at <a href="../interfaces/core.api.contractapi.html#publishcontract">ContractApi.publishContract</a></p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-siganture">
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><a href="../interfaces/core.publishcontractargs.html" class="tsd-signature-type">PublishContractArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-parameters-title">Parameters</h4>
+											<ul class="tsd-parameters">
+												<li>
+													<h5>args: <a href="../interfaces/core.publishcontractargs.html" class="tsd-signature-type">PublishContractArgs</a></h5>
+												</li>
+											</ul>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="sendamount" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> send<wbr>Amount</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
@@ -1505,7 +1601,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/transaction/sendAmount.ts#L24">core/src/api/factories/transaction/sendAmount.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/transaction/sendAmount.ts#L24">core/src/api/factories/transaction/sendAmount.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1573,7 +1669,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/transaction/sendAmountToMultipleRecipients.ts#L22">core/src/api/factories/transaction/sendAmountToMultipleRecipients.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/transaction/sendAmountToMultipleRecipients.ts#L22">core/src/api/factories/transaction/sendAmountToMultipleRecipients.ts:22</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1632,7 +1728,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/transaction/sendAmountToSingleRecipient.ts#L19">core/src/api/factories/transaction/sendAmountToSingleRecipient.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/transaction/sendAmountToSingleRecipient.ts#L19">core/src/api/factories/transaction/sendAmountToSingleRecipient.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1679,7 +1775,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/message/sendEncryptedMessage.ts#L21">core/src/api/factories/message/sendEncryptedMessage.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/message/sendEncryptedMessage.ts#L21">core/src/api/factories/message/sendEncryptedMessage.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1726,7 +1822,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/message/sendEncryptedTextMessage.ts#L27">core/src/api/factories/message/sendEncryptedTextMessage.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/message/sendEncryptedTextMessage.ts#L27">core/src/api/factories/message/sendEncryptedTextMessage.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1782,7 +1878,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/message/sendMessage.ts#L18">core/src/api/factories/message/sendMessage.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/message/sendMessage.ts#L18">core/src/api/factories/message/sendMessage.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1829,7 +1925,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/transaction/sendSameAmountToMultipleRecipients.ts#L18">core/src/api/factories/transaction/sendSameAmountToMultipleRecipients.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/transaction/sendSameAmountToMultipleRecipients.ts#L18">core/src/api/factories/transaction/sendSameAmountToMultipleRecipients.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1891,7 +1987,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/message/sendTextMessage.ts#L26">core/src/api/factories/message/sendTextMessage.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/message/sendTextMessage.ts#L26">core/src/api/factories/message/sendTextMessage.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1947,7 +2043,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/account/setAccountInfo.ts#L18">core/src/api/factories/account/setAccountInfo.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/account/setAccountInfo.ts#L18">core/src/api/factories/account/setAccountInfo.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2009,7 +2105,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/account/setAlias.ts#L20">core/src/api/factories/account/setAlias.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/account/setAlias.ts#L20">core/src/api/factories/account/setAlias.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2071,7 +2167,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/alias/setAlias.ts#L20">core/src/api/factories/alias/setAlias.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/alias/setAlias.ts#L20">core/src/api/factories/alias/setAlias.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2133,7 +2229,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/account/setRewardRecipient.ts#L20">core/src/api/factories/account/setRewardRecipient.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/account/setRewardRecipient.ts#L20">core/src/api/factories/account/setRewardRecipient.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2192,7 +2288,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a7e7857/lib/packages/core/src/api/factories/network/suggestFee.ts#L15">core/src/api/factories/network/suggestFee.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/4d3fe32a/lib/packages/core/src/api/factories/network/suggestFee.ts#L15">core/src/api/factories/network/suggestFee.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2237,6 +2333,9 @@
 				<ul class="before-current">
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="core.api.factories.html#broadcasttransaction" class="tsd-kind-icon">broadcast<wbr>Transaction</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="core.api.factories.html#callcontractmethod" class="tsd-kind-icon">call<wbr>Contract<wbr>Method</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="core.api.factories.html#generatesendtransactionqrcode" class="tsd-kind-icon">generate<wbr>Send<wbr>TransactionQRCode</a>
@@ -2318,6 +2417,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="core.api.factories.html#getunconfirmedaccounttransactions" class="tsd-kind-icon">get<wbr>Unconfirmed<wbr>Account<wbr>Transactions</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="core.api.factories.html#publishcontract" class="tsd-kind-icon">publish<wbr>Contract</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="core.api.factories.html#sendamount" class="tsd-kind-icon">send<wbr>Amount</a>

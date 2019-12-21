@@ -89,11 +89,6 @@ See more here:
 <dl>
 <dt><a href="#ApiSettings">ApiSettings</a></dt>
 <dd><p>Settings for API used in [[composeApi]]</p></dd>
-<dt><a href="#ContractHelper">ContractHelper</a></dt>
-<dd><p>Helper class for contracts</p>
-<p>A contract owns additional data, which is splitted in 8 byte blocks.
-The content is encoded in hexadecimal representation and big endianness.
-This helper class facilitates access to these data</p></dd>
 <dt><a href="#BurstService">BurstService</a></dt>
 <dd><p>Generic BRS Web Service class.</p></dd>
 </dl>
@@ -306,7 +301,7 @@ Note: As of being a builder pattern, this need to call this method as last</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -323,10 +318,9 @@ Note: As of being a builder pattern, this need to call this method as last</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -334,9 +328,9 @@ Note: As of being a builder pattern, this need to call this method as last</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -441,9 +435,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -472,20 +466,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -574,7 +554,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -591,10 +571,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -602,9 +581,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -709,9 +688,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -740,20 +719,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -842,7 +807,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -859,10 +824,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -870,9 +834,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -977,9 +941,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -1008,20 +972,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -1110,7 +1060,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -1127,10 +1077,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -1138,9 +1087,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -1245,9 +1194,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -1276,20 +1225,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -1378,7 +1313,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -1395,10 +1330,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -1406,9 +1340,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -1513,9 +1447,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -1544,20 +1478,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -1646,7 +1566,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -1663,10 +1583,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -1674,9 +1593,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -1781,9 +1700,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -1812,20 +1731,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -1914,7 +1819,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -1931,10 +1836,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -1942,9 +1846,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -2049,9 +1953,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -2080,20 +1984,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -2182,7 +2072,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -2199,10 +2089,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -2210,9 +2099,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -2317,9 +2206,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -2348,20 +2237,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -2450,7 +2325,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -2467,10 +2342,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -2478,9 +2352,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -2585,9 +2459,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -2616,20 +2490,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -2718,7 +2578,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -2735,10 +2595,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -2746,9 +2605,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -2853,9 +2712,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -2884,20 +2743,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -2986,7 +2831,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -3003,10 +2848,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -3014,9 +2858,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -3121,9 +2965,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -3152,20 +2996,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -3254,7 +3084,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -3271,10 +3101,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -3282,9 +3111,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -3389,9 +3218,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -3420,20 +3249,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -3522,7 +3337,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -3539,10 +3354,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -3550,9 +3364,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -3657,9 +3471,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -3688,20 +3502,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -3790,7 +3590,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -3807,10 +3607,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -3818,9 +3617,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -3925,9 +3724,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -3956,20 +3755,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -4058,7 +3843,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -4075,10 +3860,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -4086,9 +3870,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -4193,9 +3977,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -4224,20 +4008,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -4326,7 +4096,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -4343,10 +4113,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -4354,9 +4123,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -4461,9 +4230,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -4492,20 +4261,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -4594,7 +4349,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -4611,10 +4366,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -4622,9 +4376,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -4729,9 +4483,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -4760,20 +4514,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -4862,7 +4602,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -4879,10 +4619,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -4890,9 +4629,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -4997,9 +4736,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -5028,20 +4767,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -5130,7 +4855,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -5147,10 +4872,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -5158,9 +4882,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -5265,9 +4989,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -5296,20 +5020,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -5398,7 +5108,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -5415,10 +5125,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -5426,9 +5135,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -5533,9 +5242,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -5564,20 +5273,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -5666,7 +5361,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -5683,10 +5378,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -5694,9 +5388,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -5801,9 +5495,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -5832,20 +5526,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -5934,7 +5614,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 * [core](#module_core)
     * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
+        * [.FeeQuantPlanck](#module_core.FeeQuantPlanck)
         * [.DefaultDeadline](#module_core.DefaultDeadline)
         * [.Attachment](#module_core.Attachment)
         * [.AttachmentMessage](#module_core.AttachmentMessage)
@@ -5951,10 +5631,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
         * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
         * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
+        * [~FeeQuantPlanck](#module_core..FeeQuantPlanck)
         * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
         * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
         * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
         * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
         * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
@@ -5962,9 +5641,9 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
         * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
 
-<a name="module_core.FeeQuantNQT"></a>
+<a name="module_core.FeeQuantPlanck"></a>
 
-### core.FeeQuantNQT
+### core.FeeQuantPlanck
 <p>The default deadline (in minutes) for Transactions</p>
 
 **Kind**: static property of [<code>core</code>](#module_core)  
@@ -6069,9 +5748,9 @@ and used to distinguish block data. Additionally, to the transaction type
 a subtype is sent, that specifies the kind of transaction more detailly.</p>
 
 **Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
+<a name="module_core..FeeQuantPlanck"></a>
 
-### core~FeeQuantNQT
+### core~FeeQuantPlanck
 <p>The smallest possible fee</p>
 
 **Kind**: inner constant of [<code>core</code>](#module_core)  
@@ -6100,288 +5779,6 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | --- | --- |
 | transaction | <p>The transaction to be checked</p> |
 | versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
-
-<a name="module_core..constructAttachment"></a>
-
-### ~~core~constructAttachment(transaction, params) ⇒~~
-***Deprecated***
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>HttpParams</p>  
-**Hidden**:   
-
-| Param | Description |
-| --- | --- |
-| transaction | <p>The transaction with the attachment</p> |
-| params | <p>Some HttpParams</p> |
-
-<a name="module_core..signAndBroadcastTransaction"></a>
-
-### core~signAndBroadcastTransaction(unsignedTransaction, service) ⇒
-<p>Signs and broadcasts a transaction</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The transaction Id</p>  
-**Hidden**:   
-
-| Param | Description |
-| --- | --- |
-| unsignedTransaction | <p>The unsigned transaction context</p> |
-| service | <p>The service used for</p> |
-
-<a name="module_core..getRecipientAmountsFromMultiOutPayment"></a>
-
-### core~getRecipientAmountsFromMultiOutPayment(transaction) ⇒
-<p>Tries to extract recipients and its amounts for multi out payments (different and same amount)</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>A list of recipients and their payed amount (in NQT)</p>  
-**Throws**:
-
-- <p>An exception in case of wrong transaction types</p>
-
-
-| Param | Description |
-| --- | --- |
-| transaction | <p>The transaction</p> |
-
-<a name="module_core..getRecipientsAmount"></a>
-
-### core~getRecipientsAmount(recipientId, transaction) ⇒
-<p>Gets the amount from a transaction, considering ordinary and multi out transactions (with same and different payments)</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>the amount in BURST (not NQT)</p>  
-
-| Param | Description |
-| --- | --- |
-| recipientId | <p>The numeric id of the recipient</p> |
-| transaction | <p>The payment transaction</p> |
-
-<a name="module_core..isMultiOutSameTransaction"></a>
-
-### core~isMultiOutSameTransaction(transaction) ⇒
-<p>Checks if a transaction is a multi out transaction with same amounts for each recipient</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>true, if is a multi out transaction</p>  
-
-| Param | Description |
-| --- | --- |
-| transaction | <p>Transaction to be checked</p> |
-
-<a name="module_core..isMultiOutTransaction"></a>
-
-### core~isMultiOutTransaction(transaction) ⇒
-<p>Checks if a transaction is a multi out transaction (with different amounts)</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>true, if is a multi out transaction</p>  
-
-| Param | Description |
-| --- | --- |
-| transaction | <p>Transaction to be checked</p> |
-
-<a name="module_core"></a>
-
-## core
-
-* [core](#module_core)
-    * _static_
-        * [.FeeQuantNQT](#module_core.FeeQuantNQT)
-        * [.DefaultDeadline](#module_core.DefaultDeadline)
-        * [.Attachment](#module_core.Attachment)
-        * [.AttachmentMessage](#module_core.AttachmentMessage)
-    * _inner_
-        * [~Account](#module_core..Account)
-        * [~Attachment](#module_core..Attachment)
-        * [~BurstNode](#module_core..BurstNode)
-        * [~TransactionArbitrarySubtype](#module_core..TransactionArbitrarySubtype)
-        * [~TransactionAssetSubtype](#module_core..TransactionAssetSubtype)
-        * [~TransactionEscrowSubtype](#module_core..TransactionEscrowSubtype)
-        * [~TransactionLeasingSubtype](#module_core..TransactionLeasingSubtype)
-        * [~TransactionMarketplaceSubtype](#module_core..TransactionMarketplaceSubtype)
-        * [~TransactionPaymentSubtype](#module_core..TransactionPaymentSubtype)
-        * [~TransactionRewardRecipientSubtype](#module_core..TransactionRewardRecipientSubtype)
-        * [~TransactionSmartContractSubtype](#module_core..TransactionSmartContractSubtype)
-        * [~TransactionType](#module_core..TransactionType)
-        * [~FeeQuantNQT](#module_core..FeeQuantNQT)
-        * [~getAttachmentVersion(transaction)](#module_core..getAttachmentVersion) ⇒
-        * [~isAttachmentVersion(transaction, versionIdentifier)](#module_core..isAttachmentVersion) ⇒
-        * [~getContractDatablock(position, length)](#module_core..getContractDatablock) ⇒
-        * ~~[~constructAttachment(transaction, params)](#module_core..constructAttachment) ⇒~~
-        * [~signAndBroadcastTransaction(unsignedTransaction, service)](#module_core..signAndBroadcastTransaction) ⇒
-        * [~getRecipientAmountsFromMultiOutPayment(transaction)](#module_core..getRecipientAmountsFromMultiOutPayment) ⇒
-        * [~getRecipientsAmount(recipientId, transaction)](#module_core..getRecipientsAmount) ⇒
-        * [~isMultiOutSameTransaction(transaction)](#module_core..isMultiOutSameTransaction) ⇒
-        * [~isMultiOutTransaction(transaction)](#module_core..isMultiOutTransaction) ⇒
-
-<a name="module_core.FeeQuantNQT"></a>
-
-### core.FeeQuantNQT
-<p>The default deadline (in minutes) for Transactions</p>
-
-**Kind**: static property of [<code>core</code>](#module_core)  
-<a name="module_core.DefaultDeadline"></a>
-
-### core.DefaultDeadline
-<p>The default endpoint for [[ApiSettings]]</p>
-
-**Kind**: static property of [<code>core</code>](#module_core)  
-<a name="module_core.Attachment"></a>
-
-### core.Attachment
-<p>Message class</p>
-<p>The Message class is used to model a plain message attached to a transaction.</p>
-
-**Kind**: static property of [<code>core</code>](#module_core)  
-<a name="module_core.AttachmentMessage"></a>
-
-### core.AttachmentMessage
-<p>EncryptedMessage class</p>
-<p>The EncryptedMessage class is a model for a encrypted message attached to a transaction.</p>
-
-**Kind**: static property of [<code>core</code>](#module_core)  
-<a name="module_core..Account"></a>
-
-### core~Account
-<p>Account class</p>
-<p>The account class serves as a model for a Burstcoin account.
-It's meant to model the response from BRS API, except publicKey
-has been moved into the keys object.</p>
-
-**Kind**: inner class of [<code>core</code>](#module_core)  
-<a name="module_core..Attachment"></a>
-
-### core~Attachment
-<p>Attachment class</p>
-<p>The attachment class is used to appended to transaction where appropriate.
-It is a super class for Message and EncryptedMessage.</p>
-
-**Kind**: inner class of [<code>core</code>](#module_core)  
-<a name="module_core..BurstNode"></a>
-
-### core~BurstNode
-<p>Original work Copyright (c) 2018 PoC-Consortium
-Modified work Copyright (c) 2019 Burst Apps Team</p>
-
-**Kind**: inner class of [<code>core</code>](#module_core)  
-<a name="module_core..TransactionArbitrarySubtype"></a>
-
-### core~TransactionArbitrarySubtype
-<p>Constants for arbitrary subtypes</p>
-
-**Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..TransactionAssetSubtype"></a>
-
-### core~TransactionAssetSubtype
-<p>Constants for asset subtypes</p>
-
-**Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..TransactionEscrowSubtype"></a>
-
-### core~TransactionEscrowSubtype
-<p>Constants for escrow subtypes</p>
-
-**Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..TransactionLeasingSubtype"></a>
-
-### core~TransactionLeasingSubtype
-<p>Constants for leasing subtypes</p>
-
-**Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..TransactionMarketplaceSubtype"></a>
-
-### core~TransactionMarketplaceSubtype
-<p>Constants for marketplace subtypes</p>
-
-**Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..TransactionPaymentSubtype"></a>
-
-### core~TransactionPaymentSubtype
-<p>Constants for payment subtypes</p>
-
-**Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..TransactionRewardRecipientSubtype"></a>
-
-### core~TransactionRewardRecipientSubtype
-<p>Constants for reward recipient subtypes (Pool Operation)</p>
-
-**Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..TransactionSmartContractSubtype"></a>
-
-### core~TransactionSmartContractSubtype
-<p>Constants for smart contract (aka AT) subtypes</p>
-
-**Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..TransactionType"></a>
-
-### core~TransactionType
-<p>Constants for transaction types</p>
-<p>The transaction type is part of every [[Transaction]] object
-and used to distinguish block data. Additionally, to the transaction type
-a subtype is sent, that specifies the kind of transaction more detailly.</p>
-
-**Kind**: inner property of [<code>core</code>](#module_core)  
-<a name="module_core..FeeQuantNQT"></a>
-
-### core~FeeQuantNQT
-<p>The smallest possible fee</p>
-
-**Kind**: inner constant of [<code>core</code>](#module_core)  
-<a name="module_core..getAttachmentVersion"></a>
-
-### core~getAttachmentVersion(transaction) ⇒
-<p>Get the transaction attachment version identifier</p>
-<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>return <em>Identifier</em>, if exists, otherwise <code>undefined</code></p>  
-
-| Param | Description |
-| --- | --- |
-| transaction | <p>The transaction to be checked</p> |
-
-<a name="module_core..isAttachmentVersion"></a>
-
-### core~isAttachmentVersion(transaction, versionIdentifier) ⇒
-<p>Checks if a transaction attachment is of specific version</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p><em>true</em>, if version string matches</p>  
-
-| Param | Description |
-| --- | --- |
-| transaction | <p>The transaction to be checked</p> |
-| versionIdentifier | <p>The version string, i.e. MultiOutCreation</p> |
-
-<a name="module_core..getContractDatablock"></a>
-
-### core~getContractDatablock(position, length) ⇒
-<p>Extracts a variables value as hexadecimal string from a contract's machine data</p>
-<p>This is a generic function to extract arbitrary data from a contract. I's recommended to use the [[ContractHelper]] class instead</p>
-
-**Kind**: inner method of [<code>core</code>](#module_core)  
-**Returns**: <p>The value as hexadecimal string (already considering endianness)</p>  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| position |  | <p>The variables position</p> |
-| length | <code>16</code> | <p>The length of data to be extracted</p> |
 
 <a name="module_core..constructAttachment"></a>
 
@@ -6472,98 +5869,13 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 **Kind**: global class  
 <a name="new_ApiSettings_new"></a>
 
-### new ApiSettings(nodeHost, apiVersion, httpOptions)
+### new ApiSettings(nodeHost, apiVersion, httpClientOptions)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | nodeHost | <code>string</code> | <p>The url of the Burst peer</p> |
 | apiVersion | <code>ApiVersion</code> | <p>For future usage.</p> |
-| httpOptions | <code>any</code> \| <code>AxiosRequestSettings</code> | <p>Optional http options, like additional header. The default implementation uses axios. In case of a custom client pass your own options. see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
-
-<a name="ContractHelper"></a>
-
-## ContractHelper
-<p>Helper class for contracts</p>
-<p>A contract owns additional data, which is splitted in 8 byte blocks.
-The content is encoded in hexadecimal representation and big endianness.
-This helper class facilitates access to these data</p>
-
-**Kind**: global class  
-
-* [ContractHelper](#ContractHelper)
-    * [.getContract()](#ContractHelper+getContract) ⇒
-    * [.getVariableAsString(index)](#ContractHelper+getVariableAsString) ⇒
-    * [.getDataBlocksAsString(index, count)](#ContractHelper+getDataBlocksAsString) ⇒
-    * [.getVariableAsDecimal(index)](#ContractHelper+getVariableAsDecimal) ⇒
-    * [.getVariable(index)](#ContractHelper+getVariable) ⇒
-    * [.getHexDataAt(index, length)](#ContractHelper+getHexDataAt) ⇒
-
-<a name="ContractHelper+getContract"></a>
-
-### contractHelper.getContract() ⇒
-**Kind**: instance method of [<code>ContractHelper</code>](#ContractHelper)  
-**Returns**: <p>Get the contract</p>  
-<a name="ContractHelper+getVariableAsString"></a>
-
-### contractHelper.getVariableAsString(index) ⇒
-<p>Get a variable as string</p>
-
-**Kind**: instance method of [<code>ContractHelper</code>](#ContractHelper)  
-**Returns**: <p>The data as string (Utf-8)</p>  
-
-| Param | Description |
-| --- | --- |
-| index | <p>The index of variable (starting at 0)</p> |
-
-<a name="ContractHelper+getDataBlocksAsString"></a>
-
-### contractHelper.getDataBlocksAsString(index, count) ⇒
-<p>Get multiple data blocks as string</p>
-
-**Kind**: instance method of [<code>ContractHelper</code>](#ContractHelper)  
-**Returns**: <p>The data as string (Utf-8)</p>  
-
-| Param | Description |
-| --- | --- |
-| index | <p>The index of variable (starting at 0)</p> |
-| count | <p>Number of blocks</p> |
-
-<a name="ContractHelper+getVariableAsDecimal"></a>
-
-### contractHelper.getVariableAsDecimal(index) ⇒
-<p>Get a variable as decimal (string)</p>
-
-**Kind**: instance method of [<code>ContractHelper</code>](#ContractHelper)  
-**Returns**: <p>The data as a decimal string sequence</p>  
-
-| Param | Description |
-| --- | --- |
-| index | <p>The index of variable (starting at 0)</p> |
-
-<a name="ContractHelper+getVariable"></a>
-
-### contractHelper.getVariable(index) ⇒
-<p>Get a variable at given position/index</p>
-
-**Kind**: instance method of [<code>ContractHelper</code>](#ContractHelper)  
-**Returns**: <p>The data as hexadecimal string (in little endianness)</p>  
-
-| Param | Description |
-| --- | --- |
-| index | <p>The index of variable (starting at 0)</p> |
-
-<a name="ContractHelper+getHexDataAt"></a>
-
-### contractHelper.getHexDataAt(index, length) ⇒
-<p>Get a hexadecimal data block of arbitrary length at given position/index</p>
-
-**Kind**: instance method of [<code>ContractHelper</code>](#ContractHelper)  
-**Returns**: <p>The data as hexadecimal string (in little endianness)</p>  
-
-| Param | Description |
-| --- | --- |
-| index | <p>The index of variable (starting at 0)</p> |
-| length | <p>The length of the data block (must be a multiple of 2)</p> |
+| httpClientOptions | <code>any</code> \| <code>AxiosRequestSettings</code> | <p>Optional http options, like additional header. The default implementation uses axios. In case of a custom client pass your own options. see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
 
 <a name="BurstService"></a>
 
@@ -6662,13 +5974,13 @@ using [[ApiComposer]].</p>
 
 <a name="new_ApiSettings_new"></a>
 
-### new ApiSettings(nodeHost, apiVersion, httpOptions)
+### new ApiSettings(nodeHost, apiVersion, httpClientOptions)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | nodeHost | <code>string</code> | <p>The url of the Burst peer</p> |
 | apiVersion | <code>ApiVersion</code> | <p>For future usage.</p> |
-| httpOptions | <code>any</code> \| <code>AxiosRequestSettings</code> | <p>Optional http options, like additional header. The default implementation uses axios. In case of a custom client pass your own options. see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
+| httpClientOptions | <code>any</code> \| <code>AxiosRequestSettings</code> | <p>Optional http options, like additional header. The default implementation uses axios. In case of a custom client pass your own options. see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
 
 <a name="createParametersFromAttachment"></a>
 

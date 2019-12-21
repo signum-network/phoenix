@@ -84,25 +84,24 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<img src="./assets/images/burstjs.png" alt="burstjs" width="600" align="middle" />
+				<img src="../assets/burstjs.png" alt="burstjs" width="600" align="middle" />
 				<blockquote>
 					<p>The BurstCoin Type/Javascript Reference Library</p>
 				</blockquote>
-				<hr>
-				<p><a href="https://lernajs.io/"><img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" alt="lerna"></a>
+				<p><img src="https://img.shields.io/npm/v/@burstjs/core.svg?style=flat" alt="npm">
+					<a href="https://lernajs.io/"><img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" alt="lerna"></a>
 					<a href="https://www.codacy.com/app/ohager/phoenix?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=burst-apps-team/phoenix&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/81a6119af03d4a7e8a55c65999884709" alt="Codacy Badge"></a>
 					<a href="https://travis-ci.org/burst-apps-team/phoenix"><img src="https://travis-ci.org/burst-apps-team/phoenix.svg?branch=develop" alt="Build Status"></a>
 					<a href="https://snyk.io/test/github/burst-apps-team/phoenix?targetFile=lib%2Fpackage.json"><img src="https://snyk.io/test/github/burst-apps-team/phoenix/badge.svg?targetFile=lib%2Fpackage.json" alt="Known Vulnerabilities"></a>
 					<a href="https://codecov.io/gh/burst-apps-team/phoenix"><img src="https://codecov.io/gh/burst-apps-team/phoenix/branch/develop/graph/badge.svg" alt="codecov"></a>
 				<a href="https://www.jsdelivr.com/package/npm/@burstjs/core"><img src="https://data.jsdelivr.com/v1/package/npm/@burstjs/core/badge" alt="jsDelivr"></a></p>
-				<h2 id="npm"><img src="https://img.shields.io/npm/l/@burstjs/core?color=blue&label=license" alt="NPM"></h2>
 				<p><code>@burstjs</code> is a modern library written in Typescript providing common functionalities for <em>browsers</em> and <em>nodejs</em> to interact with the <a href="https://burstcoin.community/">BurstCoin blockchain</a>,
 				an advanced community-driven blockchain technology.</p>
-				<p>This library is part of the Phoenix project, i.e. the new Burstcoin Wallet for Web, Desktop, Android, and iOS.</p>
 				<h2 id="packages">Packages</h2>
 				<p>The library is separated in the following packages</p>
 				<ul>
 					<li><a href="./modules/core.html">@burstjs/core</a> The main package providing an extense API for blockchain interaction</li>
+					<li><a href="./modules/contracts.html">@burstjs/contracts</a> A package providing BURST relevant functions for <em>smart contracts</em></li>
 					<li><a href="./modules/crypto.html">@burstjs/crypto</a> A package providing BURST relevant crypto functions</li>
 					<li><a href="./modules/util.html">@burstjs/util</a> A package providing useful functions, e.g. common conversion functions </li>
 					<li><a href="./modules/http.html">@burstjs/http</a> A package providing a <em>simplified</em> Http layer, with consistent response types, and exception handling</li>
@@ -112,27 +111,25 @@
 				<h3 id="using-with-nodejs-and-or-modern-web-frameworks">Using with NodeJS and/or modern web frameworks</h3>
 				<p>Install using <a href="https://www.npmjs.org/">npm</a>:</p>
 				<pre><code><span class="hljs-built_in">npm</span> install @burstjs/core
+<span class="hljs-built_in">npm</span> install @burstjs/contracts (optional)
 <span class="hljs-built_in">npm</span> install @burstjs/crypto (optional)
 <span class="hljs-built_in">npm</span> install @burstjs/util (optional)
 <span class="hljs-built_in">npm</span> install @burstjs/http (optional)</code></pre><p>or using <a href="https://yarnpkg.com/">yarn</a>:</p>
 				<pre><code class="language-yarn">yarn add @burstjs/core
+yarn add @burstjs/contracts (optional)
 yarn add @burstjs/crypto (optional)
 yarn add @burstjs/util (optional)
 yarn add @burstjs/http (optional)</code></pre>
 				<blockquote>
 					<p>Usually, you won&#39;t need to install other packages than <code>@burstjs/core</code>, which uses the other packages.</p>
 				</blockquote>
-				<p>or using <a href="https://yarnpkg.com/">yarn</a>:</p>
-				<pre><code class="language-yarn">yarn add @burstjs/core
-yarn add @burstjs/crypto (optional)
-yarn add @burstjs/util (optional)
-yarn add @burstjs/http (optional)</code></pre>
 				<h3 id="using-in-classic-script">Using in classic <code>&lt;script&gt;</code></h3>
 				<p>Each package is available as bundled standalone library using IIFE.
 					This way <em>burstJS</em> can be used also within <code>&lt;script&gt;</code>-Tags.
 				This might be useful for Wordpress and/or other PHP applications.</p>
 				<p>Just import one of the packages using the HTML <code>&lt;script&gt;</code> tag.</p>
 				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@burstjs/core/dist/burstjs.min.js&#39;&gt;&lt;/script&gt;</code></p>
+				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@burstjs/contracts/dist/burstjs.contracts.min.js&#39;&gt;&lt;/script&gt;</code></p>
 				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@burstjs/crypto/dist/burstjs.crypto.min.js&#39;&gt;&lt;/script&gt;</code></p>
 				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@burstjs/http/dist/burstjs.http.min.js&#39;&gt;&lt;/script&gt;</code></p>
 				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@burstjs/util/dist/burstjs.util.min.js&#39;&gt;&lt;/script&gt;</code></p>
@@ -147,6 +144,10 @@ yarn add @burstjs/http (optional)</code></pre>
 					<tbody><tr>
 							<td>core</td>
 							<td><code>b$</code></td>
+						</tr>
+						<tr>
+							<td>crypto</td>
+							<td><code>b$contracts</code></td>
 						</tr>
 						<tr>
 							<td>crypto</td>
@@ -169,6 +170,9 @@ yarn add @burstjs/http (optional)</code></pre>
 });
 
 api.network.getBlockchainStatus().then(<span class="hljs-built_in">console</span>.log);</code></pre>
+				<pre><code class="language-js"><span class="hljs-comment">// using contracts</span>
+<span class="hljs-keyword">const</span> dataView = <span class="hljs-keyword">new</span> b$contracts.ContractDataView(contract)
+<span class="hljs-built_in">console</span>.log(dataView.getVariable(<span class="hljs-number">2</span>))</code></pre>
 				<pre><code class="language-js"><span class="hljs-comment">// using crypto</span>
 <span class="hljs-built_in">console</span>.log(b$crypto.hashSHA256(<span class="hljs-string">"test"</span>))</code></pre>
 				<pre><code class="language-js"><span class="hljs-comment">// using util</span>
@@ -219,6 +223,9 @@ api.account.getAccountBalance(<span class="hljs-string">'13036514135565182944'</
 				<ul>
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/contracts.html">contracts</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/core.html">core</a>
