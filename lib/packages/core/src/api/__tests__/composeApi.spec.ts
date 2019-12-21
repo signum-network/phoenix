@@ -1,12 +1,19 @@
 import {ApiSettings, composeApi} from '../composeApi';
+import {ApiVersion} from '../../constants/apiVersion';
 
 describe('composeApi', () => {
 
     it('should compose with no errors', async () => {
         const api = composeApi(new ApiSettings(
             'nodeHost',
-            'apiRootUrl'
+            ApiVersion.V1,
+            {
+                headers: {
+                    'X-Test': 'some test'
+                }
+            }
         ));
+
         expect(api.asset).toBeDefined();
         expect(api.account).toBeDefined();
         expect(api.alias).toBeDefined();
