@@ -16,3 +16,5 @@ export * from './convertHexStringToString';
 export * from './convertStringToByteArray';
 export * from './convertStringToHexString';
 export * from './convertHexEndianess';
+export * from './createDeeplink';
+export * from './typings';
