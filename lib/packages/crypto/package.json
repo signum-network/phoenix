@@ -40,7 +40,6 @@
     "test": "jest",
     "tsc": "tsc",
     "bundle": "bili",
-    "doc": "./node_modules/.bin/esdoc",
     "readme": "jsdoc2md  --files ./src/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
   },
   "dependencies": {
