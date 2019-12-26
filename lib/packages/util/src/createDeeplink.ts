@@ -6,6 +6,7 @@
 
 import {CreateDeeplinkArgs, EncoderFormat} from './typings/args/createDeeplinkArgs';
 import {convertStringToHexString} from './convertStringToHexString';
+import {Base64} from 'js-base64';
 
 function encodePayload(payload: any, encoderFormat: EncoderFormat): string {
 
@@ -15,13 +16,11 @@ function encodePayload(payload: any, encoderFormat: EncoderFormat): string {
     }
 
     switch (encoderFormat) {
-        case 'hex':
+        case EncoderFormat.Hexadecimal:
             return convertStringToHexString(data);
-        case 'base64':
-            // @ts-ignore
-            const b = new Buffer(data);
-            return b.toString('base64');
-        case 'none':
+        case EncoderFormat.Base64:
+            return Base64.encode(data);
+        case EncoderFormat.Text:
         default:
             // noop
             return data;
@@ -41,7 +40,7 @@ function encodePayload(payload: any, encoderFormat: EncoderFormat): string {
  */
 export const createDeeplink = (args: CreateDeeplinkArgs): string => {
 
-    const {encoderFormat = 'base64', domain, action, payload} = args;
+    const {encoderFormat = EncoderFormat.Base64, domain, action, payload} = args;
 
     let link = `burst.${domain}://v1`;
 

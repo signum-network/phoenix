@@ -1,7 +1,5 @@
-import {convertBurstTimeToEpochTime} from '../convertBurstTimeToEpochTime';
-import {convertBurstTimeToDate} from '../convertBurstTimeToDate';
-import {convertDateToBurstTime} from '../convertDateToBurstTime';
 import {createDeeplink} from '../createDeeplink';
+import {EncoderFormat} from '../typings';
 
 describe('createDeeplink', () => {
     it('should create a deeplink without action and payload', () => {
@@ -25,7 +23,7 @@ describe('createDeeplink', () => {
             domain: 'testdomain',
             action: 'testAction',
             payload: 'testPayload',
-            encoderFormat: 'none'
+            encoderFormat: EncoderFormat.Text
         })).toBe(expected);
     });
 
@@ -38,7 +36,7 @@ describe('createDeeplink', () => {
                 foo: 'bar😀', // unicode
                 bar: [1, 2, 3]
             },
-            encoderFormat: 'hex'
+            encoderFormat: EncoderFormat.Hexadecimal
         })).toBe(expected);
     });
 

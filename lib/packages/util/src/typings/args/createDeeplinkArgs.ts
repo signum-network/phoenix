@@ -1,7 +1,11 @@
 /** @module util */
 
 
-export type EncoderFormat = 'hex' | 'base64' | 'none';
+export enum EncoderFormat {
+    Text,
+    Hexadecimal,
+    Base64
+}
 
 /**
  * The argument object for [[createDeeplink]]
