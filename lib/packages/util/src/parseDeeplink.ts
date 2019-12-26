@@ -4,36 +4,9 @@
  * Original work Copyright (c) 2019 Burst Apps Team
  */
 
-import {EncoderFormat} from './typings/args/createDeeplinkArgs';
-import {convertStringToHexString} from './convertStringToHexString';
-import {Base64} from 'js-base64';
 import {DeeplinkParts} from './typings/DeeplinkParts';
 
-function decodePayload(payload: any, encoderFormat: EncoderFormat): string {
-
-    let data = payload;
-    if (typeof payload !== 'string') {
-        data = JSON.stringify(payload);
-    }
-
-    switch (encoderFormat) {
-        case EncoderFormat.Hexadecimal:
-            return convertStringToHexString(data);
-        case EncoderFormat.Base64:
-            return Base64.encode(data);
-        case EncoderFormat.Text:
-        default:
-            // noop
-            return data;
-    }
-}
-
-
-const HexPattern = /^[0-9a-fA-F]+$/;
-const isHexFormat = (s: string): boolean => HexPattern.test(s);
-
-const DeeplinkPattern = /^burst.(.+):\/\/(.+)\?action=(.+)&payload=(.+)$/igm;
-
+const MandatoryPattern = /^burst.(.+):\/\/(v.+?)\??/i;
 /**
  * Parses a deeplink according the [CIP22 spec](https://github.com/burst-apps-team/CIPs/blob/master/cip-0022.md)
  *
@@ -43,7 +16,6 @@ const DeeplinkPattern = /^burst.(.+):\/\/(.+)\?action=(.+)&payload=(.+)$/igm;
  * @return The parsed deeplink parts.
  */
 export const parseDeeplink = (deeplink: string): DeeplinkParts => {
-    const MandatoryPattern = /^burst.(.+):\/\/(v.+?)\??/i;
     const throwError = () => {
         throw new Error('Invalid deeplink: ' + deeplink);
     };

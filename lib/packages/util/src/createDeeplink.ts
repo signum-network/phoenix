@@ -6,7 +6,7 @@
 
 import {CreateDeeplinkArgs, EncoderFormat} from './typings/args/createDeeplinkArgs';
 import {convertStringToHexString} from './convertStringToHexString';
-import {Base64} from 'js-base64';
+import {convertStringToBase64String} from './convertStringToBase64String';
 
 function encodePayload(payload: any, encoderFormat: EncoderFormat): string {
 
@@ -19,7 +19,7 @@ function encodePayload(payload: any, encoderFormat: EncoderFormat): string {
         case EncoderFormat.Hexadecimal:
             return convertStringToHexString(data);
         case EncoderFormat.Base64:
-            return Base64.encodeURI(data);
+            return convertStringToBase64String(data);
         case EncoderFormat.Text:
         default:
             // noop
