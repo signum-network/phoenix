@@ -41,7 +41,7 @@ describe('createDeeplink', () => {
     });
 
     it('should create a deeplink with action and payload - base64 Encoded', () => {
-        const expected = 'burst.testdomain://v1?action=testAction&payload=eyJmb28iOiJiYXLwn5iAIiwiYmFyIjpbMSwyLDNdfQ==';
+        const expected = 'burst.testdomain://v1?action=testAction&payload=eyJmb28iOiJiYXLwn5iAIiwiYmFyIjpbMSwyLDNdfQ';
         expect(createDeeplink({
             domain: 'testdomain',
             action: 'testAction',

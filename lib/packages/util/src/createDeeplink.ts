@@ -19,7 +19,7 @@ function encodePayload(payload: any, encoderFormat: EncoderFormat): string {
         case EncoderFormat.Hexadecimal:
             return convertStringToHexString(data);
         case EncoderFormat.Base64:
-            return Base64.encode(data);
+            return Base64.encodeURI(data);
         case EncoderFormat.Text:
         default:
             // noop
