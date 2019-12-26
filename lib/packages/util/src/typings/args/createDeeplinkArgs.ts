@@ -1,6 +1,5 @@
 /** @module util */
 
-
 export enum EncoderFormat {
     Text,
     Hexadecimal,

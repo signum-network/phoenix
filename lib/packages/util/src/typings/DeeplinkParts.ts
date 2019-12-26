@@ -1,3 +1,5 @@
+/** @module util */
+
 export interface DeeplinkParts {
     domain: string;
     version: string;
