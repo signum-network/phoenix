@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 - New `createDeeplink` and `parseDeeplink` methods
     - CIP22 implementation
 - Added Base64 conversion (URI and UTF-8 compatible)
-
+    - `convertStringToBase64String`
+    - `convertBase64StringToString`
 
 # 0.4.0
 - Changed License: From GPL-3.0 to Apache 2.0
