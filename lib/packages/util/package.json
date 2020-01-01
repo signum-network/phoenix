@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/util",
-  "version": "0.5.0-beta.1",
+  "version": "0.5.0-beta.3",
   "description": "Useful utilities and tools for building Burstcoin applications",
   "keywords": [
     "burst",
@@ -45,7 +45,6 @@
     "test": "jest",
     "tsc": "tsc",
     "bundle": "bili",
-    "doc": "./node_modules/.bin/esdoc",
     "readme": "jsdoc2md  --files ./src/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
   },
   "husky": {
@@ -56,5 +55,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "9b5a4e07616d783e85bcae6c21b72f50db783f48"
+  "gitHead": "9b5a4e07616d783e85bcae6c21b72f50db783f48",
+  "dependencies": {
+    "js-base64": "^2.5.1"
+  }
 }

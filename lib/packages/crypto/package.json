@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/crypto",
-  "version": "0.5.0-beta.1",
+  "version": "0.5.0-beta.3",
   "description": "Cryptographic functions for building Burstcoin apps.",
   "contributors": [
     "ohager",
@@ -40,7 +40,6 @@
     "test": "jest",
     "tsc": "tsc",
     "bundle": "bili",
-    "doc": "./node_modules/.bin/esdoc",
     "readme": "jsdoc2md  --files ./src/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
   },
   "dependencies": {
