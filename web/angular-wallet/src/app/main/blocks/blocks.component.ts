@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,7 +15,7 @@ import { StoreService } from 'app/store/store.service';
   styleUrls: ['./blocks.component.scss'],
   templateUrl: './blocks.component.html'
 })
-export class BlocksComponent {
+export class BlocksComponent implements OnInit {
   public dataSource: MatTableDataSource<Block>;
   public convertNQTStringToNumber = convertNQTStringToNumber;
   public displayedColumns: string[];
@@ -43,7 +43,7 @@ export class BlocksComponent {
     this.networkService.setBlocks(this.dataSource.data);
     this.networkService.blocks.subscribe((blocks) => {
       this.dataSource.data = blocks;
-      const chartData = blocks.slice().splice(0, 10).map((block, i) => {
+      const chartData = blocks.slice().splice(0, 20).map((block, i) => {
         if (blocks[i + 1]) {
           const timeBetween = this.convertTimestamp(block.timestamp).getTime() - this.convertTimestamp(blocks[i + 1].timestamp).getTime();
           return new Date(timeBetween).getMinutes();
@@ -51,43 +51,43 @@ export class BlocksComponent {
       }).filter((time) => time !== undefined);
       this.chart = {
         chartType: 'line',
-        datasets : [
-            {
-              label: 'Block Time',
-              data: chartData,
-              fill: 'start'
-            }
-          ],
-          labels: blocks.slice().splice(0, 10).map((block) => block.block),
-          colors   : [
-            {
-              borderColor: '#42a5f5',
-              backgroundColor: '#42a5f5',
-              pointBackgroundColor: '#1e88e5',
-              pointHoverBackgroundColor: '#1e88e5',
-              pointBorderColor: '#ffffff',
-              pointHoverBorderColor: '#ffffff'
-            }
-          ],
-            options  : {
+        datasets: [
+          {
+            label: 'Block Time (mins)',
+            data: chartData,
+            fill: 'start'
+          }
+        ],
+        labels: blocks.slice().splice(0, 20).map((block) => block.block),
+        colors: [
+          {
+            borderColor: '#42a5f5',
+            backgroundColor: '#42a5f5',
+            pointBackgroundColor: '#1e88e5',
+            pointHoverBackgroundColor: '#1e88e5',
+            pointBorderColor: '#ffffff',
+            pointHoverBorderColor: '#ffffff'
+          }
+        ],
+        options: {
           spanGaps: false,
-            legend             : {
+          legend: {
             display: false
           },
           maintainAspectRatio: false,
-            layout             : {
+          layout: {
             padding: {
               top: 32,
-                left : 32,
-                  right: 32
+              left: 32,
+              right: 32
             }
           },
           elements: {
             point: {
               radius: 4,
-                borderWidth     : 2,
-                  hoverRadius     : 4,
-                    hoverBorderWidth: 2
+              borderWidth: 2,
+              hoverRadius: 4,
+              hoverBorderWidth: 2
             },
             line: {
               tension: 0
@@ -107,16 +107,16 @@ export class BlocksComponent {
                 }
               }
             ],
-              yAxes: [
-                {
-                  ticks: {
-                    min: Math.min(...chartData),
-                    max: Math.max(...chartData),
-                    stepSize: 2,
-                    fontColor: '#ffffff'
-                  }
+            yAxes: [
+              {
+                ticks: {
+                  min: Math.min(...chartData),
+                  max: Math.max(...chartData),
+                  stepSize: 2,
+                  fontColor: '#ffffff'
                 }
-              ]
+              }
+            ]
           },
           plugins: {
             filler: {
