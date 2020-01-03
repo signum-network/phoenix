@@ -1,75 +1,89 @@
 <div class="page-layout blank simple" fusePerfectScrollbar>
 
-  <!-- HEADER -->
-  <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-      fxLayoutAlign.gt-xs="space-between center">
+    <!-- HEADER -->
+    <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+        fxLayoutAlign.gt-xs="space-between center">
 
-      <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
-          <div fxLayout="row" fxLayoutAlign="start center">
-              <a [routerLink]="['/dashboard']"><mat-icon class="secondary-text s-18">home</mat-icon></a>
-              <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-              <span class="secondary-text">{{ 'blocks' | i18n }}</span>
-          </div>
-          <div class="h1 mt-16">{{ 'blocks' | i18n }}</div>
-      </div>
-  </div>
-  <!-- / HEADER -->
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <a [routerLink]="['/dashboard']">
+                    <mat-icon class="secondary-text s-18">home</mat-icon>
+                </a>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">{{ 'blocks' | i18n }}</span>
+            </div>
+            <div class="h1 mt-16">{{ 'blocks' | i18n }}</div>
+        </div>
 
-  <div class="p-24 content">
-      <mat-table #table [dataSource]="dataSource" matSort>
-          <ng-container matColumnDef="block">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'block' | i18n }}</mat-header-cell>
-              <mat-cell *matCellDef="let block">
-                  <a [routerLink]="['block', block.block]">{{ block.block }}</a>
-              </mat-cell>
-          </ng-container>
+    </div>
+    <!-- / HEADER -->
 
-          <ng-container matColumnDef="height">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>
-                {{ 'height' | i18n }}
-            </mat-header-cell>
-            <mat-cell *matCellDef="let block">
-                {{ block.height }}
-            </mat-cell>
-          </ng-container>
+    <div class="main-widget" *ngIf="chart">
+        <div class="position-relative h-256 pb-16 blue-600">
+            <canvas baseChart [datasets]="chart.datasets" [labels]="chart.labels" [colors]="chart.colors"
+                [options]="chart.options" [chartType]="chart.chartType">
+            </canvas>
+        </div>
+    </div>
 
-          <ng-container matColumnDef="numberOfTransactions">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>
-                {{ 'transactions' | i18n }}
-            </mat-header-cell>
-            <mat-cell *matCellDef="let block">
-                {{ block.numberOfTransactions }}
-            </mat-cell>
-          </ng-container>
 
-          <ng-container matColumnDef="timestamp">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  <mat-icon>schedule</mat-icon>&nbsp;{{ 'date' | i18n }}
-              </mat-header-cell>
-              <mat-cell *matCellDef="let block"
-                  title="{{convertTimestamp(block.timestamp) | date:'MMM d, y, h:mm:ss'}}">
-                  {{convertTimestamp(block.timestamp) | timeAgo}}
-              </mat-cell>
-          </ng-container>
+    <div class="p-24 content">
+        <mat-table #table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="block">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'block' | i18n }}</mat-header-cell>
+                <mat-cell *matCellDef="let block">
+                    <a [routerLink]="['block', block.block]">{{ block.block }}</a>
+                </mat-cell>
+            </ng-container>
 
-          <ng-container matColumnDef="totalAmountNQT">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  <mat-icon>local_atm</mat-icon>&nbsp;{{ 'amount' | i18n }}
-              </mat-header-cell>
-              <mat-cell *matCellDef="let block"> {{ convertNQTStringToNumber(block.totalAmountNQT) | number : '1.0-8' }}</mat-cell>
-          </ng-container>
+            <ng-container matColumnDef="height">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{ 'height' | i18n }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let block">
+                    {{ block.height }}
+                </mat-cell>
+            </ng-container>
 
-          <ng-container matColumnDef="totalFeeNQT">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  <mat-icon>compare_arrows</mat-icon>&nbsp;{{ 'fee' | i18n }}
-              </mat-header-cell>
-              <mat-cell *matCellDef="let block"> {{ convertNQTStringToNumber(block.totalFeeNQT) | number : '1.0-8'}}</mat-cell>
-          </ng-container>
+            <ng-container matColumnDef="numberOfTransactions">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{ 'transactions' | i18n }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let block">
+                    {{ block.numberOfTransactions }}
+                </mat-cell>
+            </ng-container>
 
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-      <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 500]" [showFirstLastButtons]="true">
-      </mat-paginator>
-  </div>
+            <ng-container matColumnDef="timestamp">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>schedule</mat-icon>&nbsp;{{ 'date' | i18n }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let block"
+                    title="{{convertTimestamp(block.timestamp) | date:'MMM d, y, h:mm:ss'}}">
+                    {{convertTimestamp(block.timestamp) | timeAgo}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="totalAmountNQT">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>local_atm</mat-icon>&nbsp;{{ 'amount' | i18n }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let block">
+                    {{ convertNQTStringToNumber(block.totalAmountNQT) | number : '1.0-8' }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="totalFeeNQT">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mat-icon>compare_arrows</mat-icon>&nbsp;{{ 'fee' | i18n }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let block"> {{ convertNQTStringToNumber(block.totalFeeNQT) | number : '1.0-8'}}
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 500]" [showFirstLastButtons]="true">
+        </mat-paginator>
+    </div>
 </div>

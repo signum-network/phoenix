@@ -30,6 +30,7 @@ import { BlockDetailsComponent } from './block-details/block-details.component';
 import { BlockResolver } from './block-details/block.resolver';
 import {PageModule} from '../../components/page/page.module';
 import {BlockRowValueCellComponent} from './block-details/block-row-value-cell/block-row-value-cell.component';
+import { ChartsModule } from 'ng2-charts';
 
 const routes = [
   {
@@ -78,6 +79,7 @@ const routes = [
     ReactiveFormsModule,
     I18nModule,
     MatDialogModule,
+    ChartsModule,
     RouterModule.forChild(routes),
     PageModule
   ],
