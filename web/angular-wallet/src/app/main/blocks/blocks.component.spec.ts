@@ -19,7 +19,7 @@ import { BlocksComponent } from './blocks.component';
 import { NetworkService } from 'app/network/network.service';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { NotifierModule } from 'angular-notifier';
-import { BlocksResolver } from './blocks.resolver';
+import { ChartsModule } from 'ng2-charts';
 
 describe('BlocksComponent', () => {
   let component: BlocksComponent;
@@ -38,6 +38,7 @@ describe('BlocksComponent', () => {
         HttpClientTestingModule,
         ReactiveFormsModule, 
         I18nModule,
+        ChartsModule,
         BrowserAnimationsModule,
         NotifierModule,
         RouterTestingModule.withRoutes(
