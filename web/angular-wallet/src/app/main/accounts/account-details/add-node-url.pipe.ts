@@ -10,6 +10,10 @@ export class AddNodeUrlPipe implements PipeTransform {
     }
 
     transform(value: string): string {
+        if (this.nodeUrl.endsWith('/')) {
+            // remove "/" from end of url to avoid double slashes
+            this.nodeUrl = this.nodeUrl.substr(0, this.nodeUrl.length - 1);
+        }
         return value && `${this.nodeUrl}/${value}`;
     }
 }
