@@ -200,7 +200,7 @@ export const addAccount = createActionFn<Account, Promise<Account>>(
 export const removeAccount = createActionFn<RemoveAccountPayload, Promise<void>>(
   async (dispatch, getState, removeAccountPayload) => {
     // tslint:disable-next-line: max-line-length
-    fetch(`https://burstalerts.com/api/v1/unsubscribe/${removeAccountPayload.deviceId}/${removeAccountPayload.account}`);
+    fetch(`https://burstalerts.com/api/v1/unsubscribe/${removeAccountPayload.deviceId}/${removeAccountPayload.account.accountRS}`);
     dispatch(actions.removeAccount(removeAccountPayload.account));
     await setAccounts(getState().auth.accounts);
     return;
