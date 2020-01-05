@@ -31,9 +31,15 @@ interface TokenResponse {
   os: string;
 }
 
-export default class App extends React.Component<{}, {}> {
+interface AppState {
+  deviceId?: string;
+}
+
+export default class App extends React.Component<{}, AppState> {
 
   navigator?: NavigationContainerComponent | null;
+
+  state: AppState = {};
 
   componentDidMount (): void {
 
@@ -57,6 +63,10 @@ export default class App extends React.Component<{}, {}> {
     PushNotifications.configure({
 
       onRegister: ({ token }: TokenResponse) => {
+        this.setState({
+          deviceId: token
+        });
+
         // Need to wait for the store to be setup
         setTimeout(async () => {
           const accounts = store.getState().auth.accounts;
@@ -145,10 +155,16 @@ export default class App extends React.Component<{}, {}> {
   }
 
   render () {
+    const { deviceId } = this.state;
     return (
       <Provider store={store}>
         <RootView>
-          <AppContainer ref={(nav) => { this.navigator = nav; }} />
+          <AppContainer
+            screenProps={{
+              deviceId
+            }}
+            ref={(nav) => { this.navigator = nav; }}
+          />
         </RootView>
       </Provider>
     );
