@@ -48,7 +48,7 @@ export class BlocksComponent implements OnInit {
           const timeBetween = this.convertTimestamp(block.timestamp).getTime() - this.convertTimestamp(blocks[i + 1].timestamp).getTime();
           return new Date(timeBetween).getMinutes();
         }
-      }).filter((time) => time !== undefined);
+      }).filter((time) => typeof time !== 'undefined');
       this.chart = {
         chartType: 'line',
         datasets: [
@@ -156,7 +156,7 @@ export class BlocksComponent implements OnInit {
   }
 
   public isOwnAccount(address: string): boolean {
-    return address != undefined && address == this.account.accountRS;
+    return address && address === this.account.accountRS;
   }
 
   public convertTimestamp(timestamp: number): Date {
