@@ -61,6 +61,10 @@ Phoenix is comprised of two main applications: a desktop application and a mobil
 
 The project is structured per platform, and further build/installation instruction can be obtained from the `README.md` in their respective folders
 
+### Archlinux
+
+A package is available in [AUR](https://aur.archlinux.org/packages/phoenix/).
+
 ### Required 
 - [BurstJS Library](/lib/README.md)
 
