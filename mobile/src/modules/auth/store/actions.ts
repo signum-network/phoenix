@@ -24,9 +24,14 @@ interface ZilResponse {
     BURST: string
   };
   meta: {
-    owner: string,
-    ttl: number
+    owner: string;
+    ttl: number;
   };
+}
+
+interface RemoveAccountPayload {
+  account: Account;
+  deviceId: string;
 }
 
 const actions = {
@@ -192,9 +197,11 @@ export const addAccount = createActionFn<Account, Promise<Account>>(
   }
 );
 
-export const removeAccount = createActionFn<Account, Promise<void>>(
-  async (dispatch, getState, account) => {
-    dispatch(actions.removeAccount(account));
+export const removeAccount = createActionFn<RemoveAccountPayload, Promise<void>>(
+  async (dispatch, getState, removeAccountPayload) => {
+    // tslint:disable-next-line: max-line-length
+    fetch(`https://burstalerts.com/api/v1/unsubscribe/${removeAccountPayload.deviceId}/${removeAccountPayload.account.accountRS}`);
+    dispatch(actions.removeAccount(removeAccountPayload.account));
     await setAccounts(getState().auth.accounts);
     return;
   }

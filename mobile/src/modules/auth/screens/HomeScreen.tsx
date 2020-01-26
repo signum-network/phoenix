@@ -145,7 +145,11 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   handleDelete = (account: Account) => {
-    this.props.dispatch(removeAccount(account));
+    this.props.dispatch(removeAccount({
+      account,
+      // @ts-ignore
+      deviceId: this.props.screenProps.deviceId
+    }));
   }
 
   handleReset = () => {
