@@ -1,6 +1,6 @@
 {
   "name": "phoenix-angular-web-wallet",
-  "version": "1.0.0-beta.12",
+  "version": "1.0.0-beta.13",
   "license": "GPL-3.0",
   "contributors": [
     "ohager",
@@ -89,7 +89,7 @@
     "zone.js": "0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "0.800.3",
+    "@angular-devkit/build-angular": "^0.803.23",
     "@angular/cli": "^8.3.19",
     "@angular/compiler-cli": "^8.2.14",
     "@angular/language-service": "^8.2.14",
