@@ -4,6 +4,7 @@ const {download} = require('electron-dl');
 
 const {version, update} = require('./package.json');
 const UpdateService = require('./src/updateService');
+const logger = require('./src/logger');
 
 let win;
 let downloadHandle;
