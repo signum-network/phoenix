@@ -1,4 +1,4 @@
-# <img src="./assets/phoenix.png" width="64" /> Phoenix
+# <img src="./assets/phoenix.png" width="64" /> Phoenix Burst Wallet
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/81a6119af03d4a7e8a55c65999884709)](https://www.codacy.com/app/ohager/phoenix?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=burst-apps-team/phoenix&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.org/burst-apps-team/phoenix.svg?branch=develop)](https://travis-ci.org/burst-apps-team/phoenix) 
@@ -9,7 +9,7 @@
 
 ## About
 
-Phoenix was proposed in [CIP-18](https://github.com/burst-apps-team/CIPs/blob/master/cip-0018.md) and is designed to be a cross-platform wallet for the BURST blockchain.
+Phoenix is an open source, cross-platform wallet for the Burstcoin blockchain. It's actually two applications: a mobile app, and a desktop/web app. Oh, and [BurstJS](/lib/README.md) is in here too.
 
 ![image](assets/beta.7/phoenix_1_beta.7.jpg)
 
@@ -59,18 +59,18 @@ Phoenix is comprised of two main applications: a desktop application and a mobil
 
 ## Installation and Build
 
-The project is structured per platform, and further build/installation instruction can be obtained from the `README.md` in their respective folders
+The project is structured per platform, and further build/installation instruction can be obtained from the `README.md` in their respective folders.
 
 ### Archlinux
 
 A package is available in [AUR](https://aur.archlinux.org/packages/phoenix/).
 
-### Required 
-- [BurstJS Library](/lib/README.md)
-
-### Optional
+### Pick A Platform
 - [Web Wallet](/web/angular-wallet/README.md)
 - [Desktop Wallet](/desktop/wallet/README.md)
 - [Mobile Wallet](/mobile/README.md)
+
+### See Also
+- [BurstJS Library](/lib/README.md)
 - [Development Scripts](/scripts/README.md)
 
