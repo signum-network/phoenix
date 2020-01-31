@@ -11,4 +11,3 @@ export const environment = {
   },
   activatorServiceUrl: 'https://burst-account-activator.ohager.now.sh',
 };
-'API'

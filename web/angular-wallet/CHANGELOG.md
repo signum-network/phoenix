@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0-beta.13
+
+### New Features:
+- Added Block Time Graph to Blocks Page
+
+### Bug Fixes:
+- Fixed a bug with QR code generation
+- Security updates
+
 ## 1.0.0-beta.12 
 
 ### New Features:

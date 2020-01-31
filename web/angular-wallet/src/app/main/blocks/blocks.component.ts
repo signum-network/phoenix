@@ -43,12 +43,18 @@ export class BlocksComponent implements OnInit {
     this.networkService.setBlocks(this.dataSource.data);
     this.networkService.blocks.subscribe((blocks) => {
       this.dataSource.data = blocks;
-      const chartData = blocks.slice().splice(0, 20).map((block, i) => {
-        if (blocks[i + 1]) {
-          const timeBetween = this.convertTimestamp(block.timestamp).getTime() - this.convertTimestamp(blocks[i + 1].timestamp).getTime();
-          return new Date(timeBetween).getMinutes();
-        }
-      }).filter((time) => typeof time !== 'undefined');
+      const chartData = blocks
+        .slice()
+        .splice(0, 20)
+        .map((block, i) => {
+          if (blocks[i + 1]) {
+            const timeBetween = this.convertTimestamp(block.timestamp).getTime() - this.convertTimestamp(blocks[i + 1].timestamp).getTime();
+            return new Date(timeBetween).getMinutes();
+          }
+        })
+        .filter((time) => typeof time !== 'undefined')
+        .reverse();
+
       this.chart = {
         chartType: 'line',
         datasets: [
@@ -58,7 +64,11 @@ export class BlocksComponent implements OnInit {
             fill: 'start'
           }
         ],
-        labels: blocks.slice().splice(0, 20).map((block) => block.block),
+        labels: blocks
+          .slice()
+          .splice(0, 20)
+          .map((block) => block.block)
+          .reverse(),
         colors: [
           {
             borderColor: '#42a5f5',
