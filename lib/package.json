@@ -22,7 +22,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-typescript": "^7.7.2",
-    "@types/jest": "^24.0.23",
+    "@types/jest": "^25.1.2",
     "axios-mock-adapter": "^1.16.0",
     "babel-core": "^6.26.3",
     "babel-jest": "^24.1.0",

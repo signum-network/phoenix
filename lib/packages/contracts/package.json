@@ -30,7 +30,7 @@
     ]
   },
   "devDependencies": {
-    "@types/jest": "^24.0.23",
+    "@types/jest": "^25.1.2",
     "bili": "^4.8.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-builtins": "^2.1.2",

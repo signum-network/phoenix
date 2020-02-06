@@ -37,7 +37,7 @@
     ]
   },
   "devDependencies": {
-    "@types/jest": "^24.0.23",
+    "@types/jest": "^25.1.2",
     "bili": "^4.8.1",
     "rollup-plugin-typescript2": "^0.24.2"
   },
