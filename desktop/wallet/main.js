@@ -1,9 +1,10 @@
 const path = require('path');
-const { app, BrowserWindow, Menu, shell, ipcMain, protocol } = require('electron');
-const { download } = require('electron-dl');
+const {app, BrowserWindow, Menu, shell, ipcMain, protocol} = require('electron');
+const {download} = require('electron-dl');
 
-const { version, update } = require('./package.json');
+const {version, update} = require('./package.json');
 const UpdateService = require('./src/updateService');
+const logger = require('./src/logger');
 
 let win;
 let downloadHandle;
@@ -30,15 +31,16 @@ function getBrowserWindowConfig() {
     center: true,
     show: false,
     webPreferences: {
+      devTools: isDevelopment,
       nodeIntegration: true
     }
   };
   return isDevelopment ? {
-    ...commonConfig,
-    fullscreen: false,
-    width: 800,
-    height: 600
-  } :
+      ...commonConfig,
+      fullscreen: false,
+      width: 800,
+      height: 600
+    } :
     {
       ...commonConfig,
     }
@@ -60,34 +62,41 @@ function createWindow() {
     {
       label: 'Edit',
       submenu: [
-        { role: 'undo' },
-        { role: 'redo' },
-        { type: 'separator' },
-        { role: 'cut' },
-        { role: 'copy' },
-        { role: 'paste' },
-        { role: 'pasteandmatchstyle' },
-        { role: 'delete' },
-        { role: 'selectall' }
+        {role: 'undo'},
+        {role: 'redo'},
+        {type: 'separator'},
+        {role: 'cut'},
+        {role: 'copy'},
+        {role: 'paste'},
+        {role: 'pasteandmatchstyle'},
+        {role: 'delete'},
+        {role: 'selectall'}
       ]
     },
     {
       label: 'View',
-      submenu: [
-        { role: 'toggledevtools' },
-        { type: 'separator' },
-        { role: 'resetzoom' },
-        { role: 'zoomin' },
-        { role: 'zoomout' },
-        { type: 'separator' },
-        { role: 'togglefullscreen' }
-      ]
+      submenu: isDevelopment ? [
+          {role: 'toggledevtools'},
+          {type: 'separator'},
+          {role: 'resetzoom'},
+          {role: 'zoomin'},
+          {role: 'zoomout'},
+          {type: 'separator'},
+          {role: 'togglefullscreen'}
+        ] :
+        [
+          {role: 'togglefullscreen'},
+          {type: 'separator'},
+          {role: 'resetzoom'},
+          {role: 'zoomin'},
+          {role: 'zoomout'},
+        ]
     },
     {
       role: 'window',
       submenu: [
-        { role: 'minimize' },
-        { role: 'close' }
+        {role: 'minimize'},
+        {role: 'close'}
       ]
     },
     {
@@ -143,14 +152,14 @@ function createWindow() {
 
       submenu: [
 
-        { label: `About ${app.getName()}`, selector: 'orderFrontStandardAboutPanel:' },
-        { type: 'separator' },
-        { role: 'services' },
-        { type: 'separator' },
-        { role: 'hide' },
-        { role: 'hideothers' },
-        { role: 'unhide' },
-        { type: 'separator' },
+        {label: `About ${app.getName()}`, selector: 'orderFrontStandardAboutPanel:'},
+        {type: 'separator'},
+        {role: 'services'},
+        {type: 'separator'},
+        {role: 'hide'},
+        {role: 'hideothers'},
+        {role: 'unhide'},
+        {type: 'separator'},
         {
           role: 'quit', accelerator: 'Command+Q', click: () => {
             app.quit();
@@ -161,23 +170,23 @@ function createWindow() {
 
     // Edit menu
     template[1].submenu.push(
-      { type: 'separator' },
+      {type: 'separator'},
       {
         label: 'Speech',
         submenu: [
-          { role: 'startspeaking' },
-          { role: 'stopspeaking' }
+          {role: 'startspeaking'},
+          {role: 'stopspeaking'}
         ]
       }
     );
 
     // Window menu
     template[3].submenu = [
-      { role: 'close' },
-      { role: 'minimize' },
-      { role: 'zoom' },
-      { type: 'separator' },
-      { role: 'front' }
+      {role: 'close'},
+      {role: 'minimize'},
+      {role: 'zoom'},
+      {type: 'separator'},
+      {role: 'front'}
     ];
   }
 
@@ -192,13 +201,12 @@ function downloadUpdate($event, assetUrl) {
     onStarted: (handle) => {
       downloadHandle = handle;
       win.webContents.send('new-version-download-started');
-    },
-    onProgress: (progress) => {
-      if (progress === 1) {
+      handle.once('done', () => {
         downloadHandle = null;
         win.webContents.send('new-version-download-finished');
-      }
-    }
+
+      })
+    },
   })
 }
 
@@ -273,7 +281,11 @@ if (!gotTheLock) {
   app.on('window-all-closed', function () {
 
     if (downloadHandle) {
-      downloadHandle.cancel();
+      try {
+        downloadHandle.cancel();
+      } catch (e) {
+        logger.error(e);
+      }
     }
 
     // On macOS specific close process
