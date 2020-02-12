@@ -1,12 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 0.5.0
+## 0.5.0 (TBR)
 
 ___
 __Breaking Changes__
 - `ContractHelper`, `getContractDatablock` moved into new package `contracts`
 - `FeeQuantNQT` renamed to `FeeQuantPlanck`
+- `setRewardRecipient` with argument object now
 ___
 
 - added new methods to contract Api
