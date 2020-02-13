@@ -13,6 +13,7 @@ import {Alias} from '../../typings/alias';
 import {AliasList} from '../../typings/aliasList';
 import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
+import {convertNumberToNQTString} from '@burstjs/util';
 
 
 describe('Account Api', () => {
@@ -91,7 +92,7 @@ describe('Account Api', () => {
         it('should getAccountTransaction without paging', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
             const service = createBurstService(httpMock);
-            const args = { accountId: 'accountId' };
+            const args = {accountId: 'accountId'};
             const transactions = await getAccountTransactions(service)(args);
             expect(transactions.requestProcessingTime).not.toBeNull();
             expect(transactions.transactions).toHaveLength(2);
@@ -103,7 +104,7 @@ describe('Account Api', () => {
             httpMock = HttpMockBuilder.create().onGetThrowError(404, 'Test Error').build();
             const service = createBurstService(httpMock);
             try {
-                const args = { accountId: 'accountId' };
+                const args = {accountId: 'accountId'};
                 await getAccountTransactions(service)(args);
             } catch (e) {
                 expect(e.status).toBe(404);
@@ -114,7 +115,7 @@ describe('Account Api', () => {
         it('should getAccountTransaction with paging', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
             const service = createBurstService(httpMock);
-            const args = { accountId: 'accountId', firstIndex: 0, lastIndex: 10 };
+            const args = {accountId: 'accountId', firstIndex: 0, lastIndex: 10};
             const transactions = await getAccountTransactions(service)(args);
             expect(transactions.requestProcessingTime).not.toBeNull();
             expect(transactions.transactions).toHaveLength(2);
@@ -125,7 +126,7 @@ describe('Account Api', () => {
         it('should getAccountTransaction with number of confirmations', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, mockedTransactions).build();
             const service = createBurstService(httpMock);
-            const args = { accountId: 'accountId', confirmations: 10 };
+            const args = {accountId: 'accountId', confirmations: 10};
             const transactions = await getAccountTransactions(service)(args);
             expect(transactions.requestProcessingTime).not.toBeNull();
             expect(transactions.transactions).toHaveLength(2);
@@ -309,7 +310,7 @@ describe('Account Api', () => {
             generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
 
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse,
                     'relPath?requestType=setAccountInfo&name=name&description=description&deadline=1440&feeNQT=12300000000&publicKey=senderPublicKey')
                 .onPostReply(200, 'fakeTransaction',
@@ -359,9 +360,9 @@ describe('Account Api', () => {
             generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
 
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse,
-                    'relPath?requestType=setRewardRecipient&recipient=recipient&deadline=1440&feeNQT=12300000000&publicKey=senderPublicKey')
+                    'relPath?requestType=setRewardRecipient&publicKey=senderPublicKey&recipient=recipient&feeNQT=12300000000&deadline=1440')
                 .onPostReply(200, 'fakeTransaction',
                     'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
                 .build();
@@ -375,30 +376,31 @@ describe('Account Api', () => {
         });
 
         it('should setRewardRecipient', async () => {
-            const status = await setRewardRecipient(service)(
-                'recipient',
-                '123',
-                'senderPublicKey',
-                'senderPrivateKey',
-                1440,
-            );
+            const status = await setRewardRecipient(service)({
+                feePlanck: convertNumberToNQTString(123),
+                recipientId: 'recipient',
+                senderPrivateKey: 'senderPrivateKey',
+                senderPublicKey: 'senderPublicKey',
+            });
+
             expect(status).toBe('fakeTransaction');
             expect(generateSignature).toBeCalledTimes(1);
             expect(verifySignature).toBeCalledTimes(1);
             expect(generateSignedTransactionBytes).toBeCalledTimes(1);
         });
 
-        it('should throw error if response contains one', async() => {
+        it('should throw error if response contains one', async () => {
             mockBroadcastResponse.unsignedTransactionBytes = undefined;
             // @ts-ignore
             mockBroadcastResponse.error = 'error';
             try {
                 await setRewardRecipient(service)(
-                    'recipient',
-                    '123',
-                    'senderPublicKey',
-                    'senderPrivateKey',
-                    1440,
+                    {
+                        feePlanck: convertNumberToNQTString(123),
+                        recipientId: 'recipient',
+                        senderPrivateKey: 'senderPrivateKey',
+                        senderPublicKey: 'senderPublicKey',
+                    }
                 );
             } catch (e) {
                 expect(e.message).toBe('error');
@@ -406,7 +408,7 @@ describe('Account Api', () => {
                 expect(verifySignature).toBeCalledTimes(0);
                 expect(generateSignedTransactionBytes).toBeCalledTimes(0);
             }
-        })
+        });
     });
 
     describe('getAccountBlocks()', () => {

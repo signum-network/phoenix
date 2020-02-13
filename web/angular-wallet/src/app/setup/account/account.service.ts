@@ -38,9 +38,9 @@ interface SetAccountInfoRequest {
 }
 
 interface SetRewardRecipientRequest {
-  recipient: string;
+  recipientId: string;
   deadline: number;
-  feeNQT: string;
+  feePlanck: string;
   pin: string;
   keys: Keys;
 }
@@ -167,9 +167,15 @@ export class AccountService {
     return this.api.account.setAccountInfo(name, description, feeNQT, keys.publicKey, senderPrivateKey, deadline);
   }
 
-  public setRewardRecipient({recipient, feeNQT, deadline, pin, keys}: SetRewardRecipientRequest): Promise<TransactionId> {
+  public setRewardRecipient({recipientId, feePlanck, deadline, pin, keys}: SetRewardRecipientRequest): Promise<TransactionId> {
     const senderPrivateKey = this.getPrivateKey(keys, pin);
-    return this.api.account.setRewardRecipient(recipient, feeNQT, keys.publicKey, senderPrivateKey, deadline);
+    return this.api.account.setRewardRecipient({
+      recipientId,
+      senderPrivateKey,
+      senderPublicKey: keys.publicKey,
+      deadline,
+      feePlanck,
+    });
   }
 
   public createActiveAccount({passphrase, pin = ''}): Promise<Account> {

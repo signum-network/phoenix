@@ -7,6 +7,7 @@ import { NotifierService } from 'angular-notifier';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { Recipient } from 'app/layout/components/burst-recipient-input/burst-recipient-input.component';
 import { burstAddressPattern } from 'app/util/burstAddressPattern';
+import {convertAddressToNumericId, convertNumberToNQTString} from '@burstjs/util';
 
 @Component({
   selector: 'app-set-reward-recipient',
@@ -15,7 +16,7 @@ import { burstAddressPattern } from 'app/util/burstAddressPattern';
 })
 export class SetRewardRecipientComponent implements OnInit {
   @ViewChild('setRewardRecipientForm', { static: false }) public setRewardRecipientForm: NgForm;
-  public feeNQT: string;
+  public fee: string;
   @ViewChild('recipient', { static: false }) public recipient: Recipient;
   @ViewChild('fullHash', { static: false }) public fullHash: string;
   @ViewChild('pin', { static: false }) public pin: string;
@@ -44,8 +45,8 @@ export class SetRewardRecipientComponent implements OnInit {
     event.stopImmediatePropagation();
     try {
       await this.accountService.setRewardRecipient({
-        recipient: this.recipient.addressRS,
-        feeNQT: this.feeNQT,
+        recipientId: convertAddressToNumericId(this.recipient.addressRS),
+        feePlanck: convertNumberToNQTString(+this.fee),
         deadline: parseFloat(this.deadline) * 60,
         pin: this.pin,
         keys: this.account.keys,
