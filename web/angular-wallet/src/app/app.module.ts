@@ -32,6 +32,7 @@ import {SettingsResolver} from './store/settings.resolver';
 import {registerLocales} from '../app/layout/components/i18n/locales';
 import {NgxElectronModule} from 'ngx-electron';
 import {NewVersionDialogComponent} from './components/new-version-dialog/new-version-dialog.component';
+import { MatProgressBarModule } from '@angular/material';
 
 registerLocales();
 
@@ -76,7 +77,8 @@ const appRoutes: Routes = [
     MatCardModule,
     MatTooltipModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressBarModule
   ],
   providers: [
     StoreService,

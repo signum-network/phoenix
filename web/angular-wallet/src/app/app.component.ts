@@ -1,7 +1,6 @@
 import {Component, Inject, OnDestroy, OnInit, ApplicationRef} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {Platform} from '@angular/cdk/platform';
-import {Subject} from 'rxjs';
 import {AccountService} from './setup/account/account.service';
 import {StoreService} from './store/store.service';
 import {Account, BlockchainStatus} from '@burstjs/core';
@@ -34,6 +33,8 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   newVersionAvailable = false;
   updateInfo: UpdateInfo;
   downloadingBlockchain = false;
+  numberOfBlocks: number;
+  lastBlockchainFeederHeight: number;
   previousLastBlock = '0';
   lastBlock = '0';
   isLoggedIn = false;
@@ -41,6 +42,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   accounts: Account[];
   BLOCKCHAIN_STATUS_INTERVAL = 30000;
   urlSerializer = new DefaultUrlSerializer();
+  percentDownloaded: number;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -70,6 +72,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       .subscribe((ready) => {
         if (ready) {
           this.updateAccounts();
+          this.checkBlockchainStatus();
           setInterval(this.checkBlockchainStatus.bind(this), this.BLOCKCHAIN_STATUS_INTERVAL);
         }
         this.accountService.currentAccount
@@ -150,13 +153,22 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     try {
       const blockchainStatus = await this.networkService.getBlockchainStatus();
       this.isScanning = !this.firstTime && (this.previousLastBlock !== blockchainStatus.lastBlock);
+      this.numberOfBlocks = blockchainStatus.numberOfBlocks;
+      this.lastBlockchainFeederHeight = blockchainStatus.lastBlockchainFeederHeight;
+      this.percentDownloaded = Math.round(blockchainStatus.numberOfBlocks / blockchainStatus.lastBlockchainFeederHeight * 100);
+      this.downloadingBlockchain = this.percentDownloaded < 100;
       this.previousLastBlock = blockchainStatus.lastBlock;
       if (this.isScanning) {
-        await this.updateAccountsAndCheckBlockchainStatus(blockchainStatus);
+        setTimeout(async () => {
+          await this.updateAccountsAndCheckBlockchainStatus(blockchainStatus);
+        }, 1000);
       } else if (this.selectedAccount) {
         await this.accountService.synchronizeAccount(this.selectedAccount).catch(() => {
         });
         this.accountService.setCurrentAccount(this.selectedAccount);
+      // hit this call again every 1 sec if the blockchain is being downloaded
+      } else if (this.downloadingBlockchain) {
+        setTimeout(this.checkBlockchainStatus.bind(this), 1000);
       }
       this.firstTime = false;
     } catch (e) {

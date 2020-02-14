@@ -1,10 +1,16 @@
 # The Phoenix Desktop Wallet
 
+## Installation (End Users)
+
+Download the latest release from the [Releases page](https://github.com/burst-apps-team/phoenix/releases). Find your platform and install it. 
+
+## Installation (Developers)
+
 ## Running the latest release (Linux)
 ```console
-$ wget https://github.com/burst-apps-team/phoenix/releases/download/v1.0.0-beta.6/phoenix-1.0.0-beta.6.tar.gz
-$ tar zxvf phoenix-1.0.0-beta.6.tar.gz
-$ cd phoenix-1.0.0-beta.6/
+$ wget https://github.com/burst-apps-team/phoenix/releases/download/desktop-1.0.0-beta.13/linux-phoenix-burst-wallet.1.0.0-beta.13.tar.gz
+$ tar zxvf linux-phoenix-burst-wallet.1.0.0-beta.13.tar.gz
+$ cd linux-phoenix-burst-wallet.1.0.0-beta.13/
 ```
 ```console
 $ sudo chown root:root ./chrome-sandbox
