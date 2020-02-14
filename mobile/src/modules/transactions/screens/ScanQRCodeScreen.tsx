@@ -6,6 +6,7 @@ import {
   Text
 } from 'react-native';
 
+import { isBurstAddress } from '@burstjs/util';
 import QRCodeScanner, { Event } from 'react-native-qrcode-scanner';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
@@ -16,13 +17,17 @@ import { transactions } from '../translations';
 
 class ScanQRCodeScreenComponent extends React.PureComponent<NavigationInjectedProps> {
   onSuccess = (e: Event) => {
-    if (e.data.indexOf('requestBurst') === -1) {
+    if (e.data.indexOf('requestBurst') === -1 && !isBurstAddress(e.data)) {
       return Alert.alert('Error scanning QR code');
+    }
+    let url = e.data;
+    if (isBurstAddress(e.data)) {
+      url = `requestBurst?receiver=${e.data}`;
     }
     this.props.navigation.navigate({
       routeName: routes.send,
       params: {
-        url: e.data
+        url
       }
     });
   }
