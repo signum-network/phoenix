@@ -11,5 +11,7 @@
   <mat-icon *ngIf="isDownloadingUpdate" class="downloading-icon" matTooltip="{{'downloading_update' | i18n}}">autorenew</mat-icon>
 </button>
 
-
-<!--<div *ngIf="isScanning" class="downloading">{{ 'downloading_blockchain' | i18n }}</div>-->
+<div *ngIf="downloadingBlockchain" class="downloading">
+  {{ 'downloading_blockchain' | i18n }} ({{ numberOfBlocks }} / {{lastBlockchainFeederHeight}})
+  <mat-progress-bar mode="determinate" [value]="percentDownloaded"></mat-progress-bar>
+</div>
