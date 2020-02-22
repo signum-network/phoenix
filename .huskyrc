@@ -1,5 +1,0 @@
-{
-  "hooks": {
-    "pre-push": "./pre-push.sh"
-  }
-}
