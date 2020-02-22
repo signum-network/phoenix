@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0-beta.14 (TBR)
+
+### Bug Fixes:
+- Fixed a bug account creation flow (#1275)
+- Security updates
+
+
 ## 1.0.0-beta.13
 
 ### New Features:
