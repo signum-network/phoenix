@@ -90,11 +90,11 @@ export class AccountActivateComponent {
       await this.createService.createActiveAccount();
       await this.activateAccount();
       this.createService.reset();
-      await this.router.navigate(['/']);
       this.notificationService.notify('success', this.i18nService.getTranslation('account_added'));
     } catch (error) {
       this.notificationService.notify('error', error.toString());
     } finally {
+      await this.router.navigate(['/']);
       this.isActivating = false;
     }
   }
