@@ -1,22 +1,36 @@
-import {Injectable, ApplicationRef} from '@angular/core';
+import {ApplicationRef, Injectable} from '@angular/core';
 
 import {HttpClient} from '@angular/common/http';
 import {Subject} from 'rxjs';
 import {constants} from '../../../constants';
 import {StoreService} from 'app/store/store.service';
-import {Settings} from 'app/settings';
+import {getLocaleNumberFormat, NumberFormatStyle} from '@angular/common';
+import {CurrencyMaskConfig} from 'ngx-currency';
 
 export interface Language {
   name: string;
   code: string;
 }
 
+const DefaultCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: 'left',
+  allowNegative: false,
+  allowZero: true,
+  decimal: ',',
+  precision: 8,
+  prefix: 'BURST ',
+  suffix: '',
+  thousands: '.',
+  nullable: true
+};
+
+
 @Injectable()
 export class I18nService {
 
   public state;
   public data: {};
-  public currentLanguage: any;
+  public currentLanguage: Language;
 
 
   constructor(
@@ -62,7 +76,18 @@ export class I18nService {
     this.fetch(language.code);
   }
 
-  subscribe(sub: any, err: any) {
+  getCurrencyMask(): any {
+    const numberFormat = getLocaleNumberFormat(this.currentLanguage.code, NumberFormatStyle.Decimal);
+
+    console.log('getCurrencyMask', this.currentLanguage.code,  numberFormat);
+    const config: CurrencyMaskConfig = {
+      ...DefaultCurrencyMaskConfig,
+      // thousands: numberFormat
+    };
+    return config;
+  }
+
+  subscribe(sub: any, err: any): any {
     return this.state.subscribe(sub, err);
   }
 

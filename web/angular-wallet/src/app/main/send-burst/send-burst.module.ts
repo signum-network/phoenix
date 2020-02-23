@@ -33,6 +33,8 @@ import { LoginGuard } from 'app/login/login-guard.service';
 import {BatchRecipientsDialogComponent} from './batch-recipients-dialog/batch-recipients-dialog.component';
 import {MatSelectModule} from '@angular/material/select';
 import { DomainService } from './domain/domain.service';
+import {NgxCurrencyModule} from 'ngx-currency';
+import {BurstAmountDirective} from '../../directives/burst-amount-directive/burst-amount.directive';
 
 const routes = [
   {
@@ -61,7 +63,8 @@ const routes = [
     SendBurstFormComponent,
     SendMultiOutFormComponent,
     WarnSendDialogComponent,
-    BatchRecipientsDialogComponent
+    BatchRecipientsDialogComponent,
+    BurstAmountDirective,
   ],
   imports: [
     CommonModule,
@@ -87,14 +90,16 @@ const routes = [
     MatTooltipModule,
     MatDialogModule,
     PageModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxCurrencyModule,
   ],
   entryComponents: [
     WarnSendDialogComponent,
     BatchRecipientsDialogComponent
   ],
   exports: [
-    BurstInputValidatorDirective
+    BurstInputValidatorDirective,
+    BurstAmountDirective
   ]
 })
 export class SendBurstModule { }

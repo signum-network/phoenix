@@ -89,4 +89,4 @@ export const registerLocales = () => {
     registerLocaleData(localeUk, 'uk', localeUkExtra);
     registerLocaleData(localeZhCn, 'zh-cn', localeZhCnExtra);
     registerLocaleData(localeZhTw, 'zh-tw', localeZhTwExtra);
-}
+};

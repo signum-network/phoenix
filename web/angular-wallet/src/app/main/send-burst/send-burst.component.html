@@ -6,7 +6,7 @@
     </div>
     <div class="account-info__field">
       <small class="secondary-text text-uppercase">{{'balance'| i18n}}</small>
-      <p>{{getBalance() | number : '1.0-4' : language}}</p>
+      <p burstAmount [burst]="getBalance()" ></p>
     </div>
   </div>
   <mat-tab-group class="pl-20 pr-20">
