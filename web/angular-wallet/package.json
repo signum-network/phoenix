@@ -108,5 +108,10 @@
     "ts-node": "~8.5.4",
     "tslint": "^5.20.1",
     "typescript": "3.4.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "../../pre-push.sh"
+    }
   }
 }

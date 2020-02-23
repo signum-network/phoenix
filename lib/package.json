@@ -61,7 +61,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm test"
+      "pre-push": "../pre-push.sh"
     }
   }
 }
