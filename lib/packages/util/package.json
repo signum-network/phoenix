@@ -57,6 +57,8 @@
   },
   "gitHead": "9b5a4e07616d783e85bcae6c21b72f50db783f48",
   "dependencies": {
+    "@types/big.js": "^4.0.5",
+    "big.js": "^5.2.2",
     "js-base64": "^2.5.1"
   }
 }
