@@ -2,7 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 # 0.5.0
-
+- New `BurstValue` value object class 
+    - facilitates usage of BURST/Planck
+    - increased numeric precision
 - New `createDeeplink` and `parseDeeplink` methods
     - CIP22 implementation
 - Added Base64 conversion (URI and UTF-8 compatible)

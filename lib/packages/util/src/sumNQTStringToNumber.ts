@@ -6,6 +6,7 @@ import {convertNQTStringToNumber} from './convertNQTStringToNumber';
  */
 
 /**
+ * @deprecated Use [[BurstValue.sum()]] instead
  * Sums various NQT values and returns in Burst
  * @param nqts Variable amount list with NQT string
  * @return The sum of all amounts in BURST
