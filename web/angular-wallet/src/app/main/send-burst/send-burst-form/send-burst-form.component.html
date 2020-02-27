@@ -8,21 +8,13 @@
   </burst-recipient-input>
 
   <div class="amount-wrapper">
-    <mat-form-field>
-      <div class="container" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-        <input
-          matInput
-          [(ngModel)]="amount" name="amount" placeholder="{{ 'amount' | i18n }}" [disabled]="immutable">
-        <mat-icon *ngIf="!immutable"
-                  class="all-icon"
-                  matTooltip="{{'spend_all' | i18n}}"
-                  (click)="onSpendAll()"
-        >
-          all_inclusive
-        </mat-icon>
-      </div>
-    </mat-form-field>
-
+    <burst-amount-input
+      class="amount-input"
+      [immutable]="immutable"
+      [withSpendAll]="!immutable"
+      [(amountBurst)]="amount"
+      (spendAllClick)="onSpendAll()">
+    </burst-amount-input>
     <mat-form-field>
       <input matInput [(ngModel)]="fee" name="fee" placeholder="{{ 'fee' | i18n }}" [disabled]="immutable">
     </mat-form-field>

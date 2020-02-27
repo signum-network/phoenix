@@ -1,5 +1,4 @@
-
-import { registerLocaleData } from '@angular/common';
+import {registerLocaleData} from '@angular/common';
 import localeBg from '@angular/common/locales/bg';
 import localeBgExtra from '@angular/common/locales/extra/bg';
 import localeCa from '@angular/common/locales/ca';
@@ -60,33 +59,73 @@ import localeZhTw from '@angular/common/locales/zh-Hant';
 import localeZhTwExtra from '@angular/common/locales/extra/zh-Hant';
 
 export const registerLocales = () => {
-    registerLocaleData(localeBg, 'bg', localeBgExtra);
-    registerLocaleData(localeCa, 'ca', localeCaExtra);
-    registerLocaleData(localeCs, 'cs', localeCsExtra);
-    registerLocaleData(localeDe, 'de-de', localeDeExtra);
-    registerLocaleData(localeEl, 'el', localeElExtra);
-    registerLocaleData(localeEs, 'es-es', localeEsExtra);
-    registerLocaleData(localeFi, 'fi', localeFiExtra);
-    registerLocaleData(localeFr, 'fr', localeFrExtra);
-    registerLocaleData(localeGl, 'gl', localeGlExtra);
-    registerLocaleData(localeHi, 'hi', localeHiExtra);
-    registerLocaleData(localeHr, 'hr', localeHrExtra);
-    registerLocaleData(localeId, 'id', localeIdExtra);
-    registerLocaleData(localeIt, 'it', localeItExtra);
-    registerLocaleData(localeJa, 'ja', localeJaExtra);
-    registerLocaleData(localeLt, 'lt', localeLtExtra);
-    registerLocaleData(localeNl, 'nl', localeNlExtra);
-    registerLocaleData(localePl, 'pl', localePlExtra);
-    registerLocaleData(localePtBr, 'pt-br', localePtBrExtra);
-    registerLocaleData(localePt, 'pt-pt', localePtExtra);
-    registerLocaleData(localeRo, 'ro', localeRoExtra);
-    registerLocaleData(localeRu, 'ru', localeRuExtra);
-    registerLocaleData(localeSh, 'sh', localeShExtra);
-    registerLocaleData(localeSrCs, 'sr-cs', localeSrCsExtra);
-    registerLocaleData(localeSk, 'sk', localeSkExtra);
-    registerLocaleData(localeSr, 'sr', localeSrExtra);
-    registerLocaleData(localeTr, 'tr', localeTrExtra);
-    registerLocaleData(localeUk, 'uk', localeUkExtra);
-    registerLocaleData(localeZhCn, 'zh-cn', localeZhCnExtra);
-    registerLocaleData(localeZhTw, 'zh-tw', localeZhTwExtra);
+  registerLocaleData(localeBg, 'bg', localeBgExtra);
+  registerLocaleData(localeCa, 'ca', localeCaExtra);
+  registerLocaleData(localeCs, 'cs', localeCsExtra);
+  registerLocaleData(localeDe, 'de-de', localeDeExtra);
+  registerLocaleData(localeEl, 'el', localeElExtra);
+  registerLocaleData(localeEs, 'es-es', localeEsExtra);
+  registerLocaleData(localeFi, 'fi', localeFiExtra);
+  registerLocaleData(localeFr, 'fr', localeFrExtra);
+  registerLocaleData(localeGl, 'gl', localeGlExtra);
+  registerLocaleData(localeHi, 'hi', localeHiExtra);
+  registerLocaleData(localeHr, 'hr', localeHrExtra);
+  registerLocaleData(localeId, 'id', localeIdExtra);
+  registerLocaleData(localeIt, 'it', localeItExtra);
+  registerLocaleData(localeJa, 'ja', localeJaExtra);
+  registerLocaleData(localeLt, 'lt', localeLtExtra);
+  registerLocaleData(localeNl, 'nl', localeNlExtra);
+  registerLocaleData(localePl, 'pl', localePlExtra);
+  registerLocaleData(localePtBr, 'pt-br', localePtBrExtra);
+  registerLocaleData(localePt, 'pt-pt', localePtExtra);
+  registerLocaleData(localeRo, 'ro', localeRoExtra);
+  registerLocaleData(localeRu, 'ru', localeRuExtra);
+  registerLocaleData(localeSh, 'sh', localeShExtra);
+  registerLocaleData(localeSrCs, 'sr-cs', localeSrCsExtra);
+  registerLocaleData(localeSk, 'sk', localeSkExtra);
+  registerLocaleData(localeSr, 'sr', localeSrExtra);
+  registerLocaleData(localeTr, 'tr', localeTrExtra);
+  registerLocaleData(localeUk, 'uk', localeUkExtra);
+  registerLocaleData(localeZhCn, 'zh-cn', localeZhCnExtra);
+  registerLocaleData(localeZhTw, 'zh-tw', localeZhTwExtra);
+};
+
+export interface NumberSeparator {
+  thousand: string;
+  decimal: string;
+}
+export const DecimalDot: NumberSeparator = { thousand: ',', decimal: '.'};
+export const DecimalComma: NumberSeparator = { thousand: '.', decimal: ','};
+
+export const numberFormatLocales = {
+  'bg': DecimalComma,
+  'ca': DecimalComma,
+  'cs': DecimalComma,
+  'de-de': DecimalComma,
+  'el': DecimalComma,
+  'en': DecimalDot,
+  'es-es': DecimalComma,
+  'fi': DecimalComma,
+  'fr': DecimalComma,
+  'gl': DecimalComma,
+  'hi': DecimalDot,
+  'hr': DecimalComma,
+  'id': DecimalComma,
+  'it': DecimalComma,
+  'ja': DecimalDot,
+  'lt': DecimalComma,
+  'nl': DecimalComma,
+  'pl': DecimalComma,
+  'pt-br': DecimalComma,
+  'pt-pt': DecimalComma,
+  'ro': DecimalComma,
+  'ru': DecimalComma,
+  'sh': DecimalComma,
+  'sr-cs': DecimalComma,
+  'sk': DecimalComma,
+  'sr': DecimalComma,
+  'tr': DecimalComma,
+  'uk': DecimalComma,
+  'zh-cn': DecimalDot,
+  'zh-tw': DecimalDot,
 };

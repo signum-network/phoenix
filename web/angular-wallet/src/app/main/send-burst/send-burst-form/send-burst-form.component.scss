@@ -10,23 +10,10 @@
       flex-direction: column;
     }
 
-    mat-form-field:first-child {
+    .amount-input {
+      width: 100%;
       margin-right: 8px;
-      @include media-breakpoint('xs') {
-        margin-right: 0;
-      }
     }
-
-    .all-icon {
-      margin-left: 10px;
-      padding-top: 5px;
-      font-size: 1.25em;
-      font-weight: 700;
-      color: #666;
-      display: inline-block;
-      cursor: pointer;
-    }
-
   }
 
   mat-form-field {

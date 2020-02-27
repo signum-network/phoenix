@@ -57,6 +57,7 @@
     "angular-calendar": "0.28.2",
     "angular-in-memory-web-api": "0.9.0",
     "angular-notifier": "^6.0.1",
+    "bignumber.js": "^9.0.0",
     "bn.js": "^5.0.0",
     "chart.js": "2.8.0",
     "classlist.js": "1.1.20150312",

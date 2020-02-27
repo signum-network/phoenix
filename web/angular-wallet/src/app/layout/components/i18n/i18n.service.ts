@@ -4,26 +4,12 @@ import {HttpClient} from '@angular/common/http';
 import {Subject} from 'rxjs';
 import {constants} from '../../../constants';
 import {StoreService} from 'app/store/store.service';
-import {getLocaleNumberFormat, NumberFormatStyle} from '@angular/common';
-import {CurrencyMaskConfig} from 'ngx-currency';
+import {DecimalDot, numberFormatLocales, NumberSeparator} from './locales';
 
 export interface Language {
   name: string;
   code: string;
 }
-
-const DefaultCurrencyMaskConfig: CurrencyMaskConfig = {
-  align: 'left',
-  allowNegative: false,
-  allowZero: true,
-  decimal: ',',
-  precision: 8,
-  prefix: 'BURST ',
-  suffix: '',
-  thousands: '.',
-  nullable: true
-};
-
 
 @Injectable()
 export class I18nService {
@@ -76,15 +62,9 @@ export class I18nService {
     this.fetch(language.code);
   }
 
-  getCurrencyMask(): any {
-    const numberFormat = getLocaleNumberFormat(this.currentLanguage.code, NumberFormatStyle.Decimal);
-
-    console.log('getCurrencyMask', this.currentLanguage.code,  numberFormat);
-    const config: CurrencyMaskConfig = {
-      ...DefaultCurrencyMaskConfig,
-      // thousands: numberFormat
-    };
-    return config;
+  getNumberSeparator(): NumberSeparator {
+    const numberFormatLocale = numberFormatLocales[this.currentLanguage.code];
+    return numberFormatLocale || DecimalDot;
   }
 
   subscribe(sub: any, err: any): any {

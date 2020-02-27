@@ -1,0 +1,23 @@
+<mat-form-field>
+  <mat-label>{{ 'amount' | i18n }} BURST</mat-label>
+  <input
+    matInput
+    mask="separator"
+    [thousandSeparator]="numberSeparator.thousand"
+    [decimalMarker]="numberSeparator.decimal"
+    [(ngModel)]="value"
+    (ngModelChange)="onValueChange($event)"
+    [disabled]="immutable">
+  <button
+    type="button"
+    *ngIf="showSpendAll()"
+    mat-button
+    matSuffix
+    matTooltip="{{'spend_all' | i18n}}"
+    mat-icon-button
+    (click)="onSpendAllClick()"
+  >
+    <mat-icon class="all-icon">all_inclusive</mat-icon>
+  </button>
+</mat-form-field>
+

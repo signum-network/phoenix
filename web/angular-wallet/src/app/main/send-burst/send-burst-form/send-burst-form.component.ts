@@ -1,16 +1,11 @@
-import {Component, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
+import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {Account, SuggestedFees} from '@burstjs/core';
-import {
-  convertAddressToNumericId,
-  convertNQTStringToNumber,
-  convertNumberToNQTString,
-  sumNQTStringToNumber
-} from '@burstjs/util';
+import {convertAddressToNumericId, convertNQTStringToNumber, convertNumberToNQTString} from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 import {
   Recipient,
@@ -19,8 +14,9 @@ import {
 import {StoreService} from '../../../store/store.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
-import { ActivatedRoute } from '@angular/router';
-import { burstAddressPattern } from 'app/util/burstAddressPattern';
+import {ActivatedRoute} from '@angular/router';
+import {burstAddressPattern} from 'app/util/burstAddressPattern';
+import Big from 'bignumber.js';
 
 
 interface QRData {
@@ -42,13 +38,13 @@ const isNotEmpty = (value: string) => value && value.length > 0;
   styleUrls: ['./send-burst-form.component.scss']
 })
 export class SendBurstFormComponent extends UnsubscribeOnDestroy implements AfterViewInit {
-  @ViewChild('sendBurstForm', { static: true }) public sendBurstForm: NgForm;
-  @ViewChild('amount', { static: true }) public amount: string;
-  @ViewChild('message', { static: true }) public message: string;
-  @ViewChild('fullHash', { static: false }) public fullHash: string;
-  @ViewChild('encrypt', { static: true }) public encrypt: boolean;
-  @ViewChild('pin', { static: true }) public pin: string;
-  @ViewChild('messageIsText', { static: true }) public messageIsText: boolean;
+  @ViewChild('sendBurstForm', {static: true}) public sendBurstForm: NgForm;
+  @ViewChild('amount', {static: true}) public amount: string;
+  @ViewChild('message', {static: true}) public message: string;
+  @ViewChild('fullHash', {static: false}) public fullHash: string;
+  @ViewChild('encrypt', {static: true}) public encrypt: boolean;
+  @ViewChild('pin', {static: true}) public pin: string;
+  @ViewChild('messageIsText', {static: true}) public messageIsText: boolean;
 
   @Input() account: Account;
   @Input() fees: SuggestedFees;
@@ -73,6 +69,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
     private route: ActivatedRoute
   ) {
     super();
+
     this.storeService.settings
       .pipe(
         takeUntil(this.unsubscribeAll)
@@ -191,7 +188,8 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
   }
 
   onSpendAll(): void {
-    const maxAmount = sumNQTStringToNumber(this.account.balanceNQT, `-${convertNumberToNQTString(+this.fee || 0)}`);
-    this.amount = `${maxAmount}`;
+    const balance = new Big(convertNQTStringToNumber(this.account.balanceNQT));
+    const maxAmount = balance.minus(this.fee || 0);
+    this.amount = `${maxAmount.toString()}`;
   }
 }
