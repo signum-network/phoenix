@@ -6,9 +6,9 @@
 
 import Big from 'big.js';
 
-// Big.NE = -9;
+Big.NE = -9;
 
-enum BurstValueFormat {
+export enum BurstValueFormat {
     PLANCK,
     BURST,
 }
@@ -23,7 +23,7 @@ export class BurstValue {
 
     private _planck: Big;
 
-    private constructor(planck: string = '0') {
+    private constructor(planck: string) {
         this._planck = Big(planck);
     }
 
@@ -40,8 +40,8 @@ export class BurstValue {
      * @param burst The value in BURST
      */
     public static fromBurst(burst: number|string) {
-        const b = new BurstValue();
-        b.burst = typeof burst === 'number' ? burst.toString(10) : burst;
+        const b = new BurstValue('0');
+        b.setBurst(typeof burst === 'number' ? burst.toString(10) : burst);
         return b;
     }
 
@@ -49,35 +49,35 @@ export class BurstValue {
      * Leaky value getter
      * @return the underlying value in its big number representation (immutable)
      */
-    get raw(): Big {
+    getRaw(): Big {
         return Big(this._planck);
     }
 
     /**
      * @return Gets Planck representation
      */
-    get planck(): string {
+    getPlanck(): string {
         return this._planck.toString();
     }
 
     /**
      * @param p Sets value as Planck, i.e. overwrites current hold value
      */
-    set planck(p: string) {
+    setPlanck(p: string) {
         this._planck = Big(p);
     }
 
     /**
      * @return Gets BURST representation
      */
-    get burst(): string {
+    getBurst(): string {
         return Big(this._planck).div(1E8).toString();
     }
 
     /**
      * @param b Sets value as BURST, i.e. overwrites current hold value
      */
-    set burst(b: string) {
+    setBurst(b: string) {
         this._planck = Big(b).mul(1E8);
     }
 
@@ -132,37 +132,37 @@ export class BurstValue {
      * @return the mutated BurstValue object;
      */
     public add(burstValue: BurstValue): BurstValue {
-        this._planck.plus(burstValue._planck);
+        this._planck = this._planck.plus(burstValue._planck);
         return this;
     }
 
     /**
-     * Substracts from value
-     * @param burstValue The other value to be substracted
+     * Subtracts from value
+     * @param burstValue The other value to be subtracted
      * @return the mutated BurstValue object;
      */
-    public substract(burstValue: BurstValue): BurstValue {
-        this._planck.minus(burstValue._planck);
+    public subtract(burstValue: BurstValue): BurstValue {
+        this._planck = this._planck.minus(burstValue._planck);
         return this;
     }
 
     /**
-     * Multiplies with value
-     * @param burstValue The other value to be multiplied with
+     * Multiplies with a _numeric_ value (not BurstValue)
+     * @param value A numeric value to be multiplied with
      * @return the mutated BurstValue object;
      */
-    public multiply(burstValue: BurstValue): BurstValue {
-        this._planck.mul(burstValue._planck);
+    public multiply(value: number): BurstValue {
+        this._planck = this._planck.mul(value);
         return this;
     }
 
     /**
-     * Divides by value
-     * @param burstValue The other value to be divided by
+     * Divides by a _numeric_ value (not BurstValue)
+     * @param value A numeric value to be divided by
      * @return the mutated BurstValue object;
      */
-    public divide(burstValue: BurstValue): BurstValue {
-        this._planck.div(burstValue._planck);
+    public divide(value: number): BurstValue {
+        this._planck = this._planck.div(value);
         return this;
     }
 
@@ -172,6 +172,6 @@ export class BurstValue {
      * @return The converted string accordingly the param in burst or Planck
      */
     public toString(format: BurstValueFormat = BurstValueFormat.BURST): string {
-        return format === BurstValueFormat.BURST ? `${this.burst} BURST` : `${this._planck} Planck`;
+        return format === BurstValueFormat.BURST ? `${this.getBurst()} BURST` : `${this._planck} Planck`;
     }
 }
