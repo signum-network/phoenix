@@ -31,7 +31,7 @@ export class BurstValue {
      * Creates a Burst Value object from Planck
      * @param planck The value in Planck
      */
-    public static fromPlanck(planck: string) {
+    public static fromPlanck(planck: string): BurstValue {
         return new BurstValue(planck);
     }
 
@@ -39,7 +39,7 @@ export class BurstValue {
      * Creates a Burst Value object from BURST
      * @param burst The value in BURST
      */
-    public static fromBurst(burst: number | string) {
+    public static fromBurst(burst: number | string): BurstValue {
         const b = new BurstValue('0');
         b.setBurst(typeof burst === 'number' ? burst.toString(10) : burst);
         return b;
@@ -64,7 +64,7 @@ export class BurstValue {
      * Sets value as Planck, i.e. overwrites current hold value
      * @param p The planck value
      */
-    setPlanck(p: string) {
+    setPlanck(p: string): void {
         this._planck = Big(p);
     }
 
