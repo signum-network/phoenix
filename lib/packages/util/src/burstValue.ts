@@ -39,7 +39,7 @@ export class BurstValue {
      * Creates a Burst Value object from BURST
      * @param burst The value in BURST
      */
-    public static fromBurst(burst: number|string) {
+    public static fromBurst(burst: number | string) {
         const b = new BurstValue('0');
         b.setBurst(typeof burst === 'number' ? burst.toString(10) : burst);
         return b;
@@ -61,21 +61,24 @@ export class BurstValue {
     }
 
     /**
-     * @param p Sets value as Planck, i.e. overwrites current hold value
+     * Sets value as Planck, i.e. overwrites current hold value
+     * @param p The planck value
      */
     setPlanck(p: string) {
         this._planck = Big(p);
     }
 
     /**
-     * @return Gets BURST representation
+     * Gets BURST representation
+     * @return value in BURST
      */
     getBurst(): string {
         return Big(this._planck).div(1E8).toString();
     }
 
     /**
-     * @param b Sets value as BURST, i.e. overwrites current hold value
+     * Sets value as BURST, i.e. overwrites current hold value
+     * @param b value in BURST
      */
     setBurst(b: string) {
         this._planck = Big(b).mul(1E8);
@@ -102,7 +105,7 @@ export class BurstValue {
     /**
      * Checks for lesser value
      * @param burstValue The other value to be compared
-     * @return true if equal, otherwise false
+     * @return true if less, otherwise false
      */
     public less(burstValue: BurstValue): boolean {
         return this._planck.lt(burstValue._planck);
@@ -129,7 +132,7 @@ export class BurstValue {
     /**
      * Adds two values
      * @param burstValue The other value to be added
-     * @return the mutated BurstValue object;
+     * @return the mutated BurstValue object
      */
     public add(burstValue: BurstValue): BurstValue {
         this._planck = this._planck.plus(burstValue._planck);
@@ -139,7 +142,7 @@ export class BurstValue {
     /**
      * Subtracts from value
      * @param burstValue The other value to be subtracted
-     * @return the mutated BurstValue object;
+     * @return the mutated BurstValue object
      */
     public subtract(burstValue: BurstValue): BurstValue {
         this._planck = this._planck.minus(burstValue._planck);
@@ -149,7 +152,7 @@ export class BurstValue {
     /**
      * Multiplies with a _numeric_ value (not BurstValue)
      * @param value A numeric value to be multiplied with
-     * @return the mutated BurstValue object;
+     * @return the mutated BurstValue object
      */
     public multiply(value: number): BurstValue {
         this._planck = this._planck.mul(value);
@@ -159,7 +162,7 @@ export class BurstValue {
     /**
      * Divides by a _numeric_ value (not BurstValue)
      * @param value A numeric value to be divided by
-     * @return the mutated BurstValue object;
+     * @return the mutated BurstValue object
      */
     public divide(value: number): BurstValue {
         this._planck = this._planck.div(value);
