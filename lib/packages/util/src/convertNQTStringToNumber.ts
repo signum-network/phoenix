@@ -6,8 +6,9 @@
  */
 
 /**
- * Helper method to convert a String to number
- * @param amount The amount in NQT
+ * @deprecated This method will be substituted in favor of [[BurstValue]]
+ * Helper method to convert a Planck Value (BURST * 1E8) String to BURST number
+ * @param amount The amount in Planck (aka NQT)
  * @return A number expressed in Burst (not NQT)
  * @throws exception if argument is invalid
  */

@@ -6,6 +6,7 @@
  */
 
 /**
+ * @deprecated This method will be substituted in favor of [[BurstValue]]
  * Helper method to Number to String(8 decimals) representation
  * @param n the number
  * @return a NQT number string
