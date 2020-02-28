@@ -44,18 +44,24 @@ export class BurstTime {
     }
 
     /**
-     * @return Gets Burst Timestamp representation
+     * Sets BurstTime using Bursts Timestamp
      */
     setBurstTimestamp(burstTimestamp: number): void {
         this._burstTimestamp = burstTimestamp;
     }
 
     /**
+     * @return Time in seconds since 01.01.1970
+     */
+    getEpoch(): number {
+        return (GenesisBlockTime + this._burstTimestamp) * 1000;
+    }
+
+    /**
      * @return real Date representation
      */
     getDate(): Date {
-        const epochTimestamp = (GenesisBlockTime + this._burstTimestamp) * 1000;
-        return new Date(epochTimestamp);
+        return new Date(this.getEpoch());
     }
 
     /**
