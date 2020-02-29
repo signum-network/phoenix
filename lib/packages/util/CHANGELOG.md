@@ -1,7 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-# 0.5.0
+## 0.5.0
+
+### Added 
+- New `BurstTime` value object class 
+    - facilitates usage of Burst Timestamps
 - New `BurstValue` value object class 
     - facilitates usage of BURST/Planck
     - increased numeric precision
@@ -10,8 +14,15 @@ All notable changes to this project will be documented in this file.
 - Added Base64 conversion (URI and UTF-8 compatible)
     - `convertStringToBase64String`
     - `convertBase64StringToString`
+    
+### Deprecated
+- `convertBurstTimeToDate` and `convertDateToBurstTime`
+    - Use `BurstTime` instead  
+- `convertNumberToNQTString`, `convertNQTStringToNumber`, and `sumNQTStringToNumber`
+    - Use `BurstValue` instead  
 
-# 0.4.0
+
+## 0.4.0
 - Changed License: From GPL-3.0 to Apache 2.0
 
 ## 0.2.0

@@ -8,6 +8,7 @@ import {GenesisBlockTime} from './internal';
  */
 
 /**
+ * @deprecated use [[BurstTime.getEpoch()]]
  * Converts a Burst/Block Time (seconds since genesis block) into Unix Epoch Time (milliseconds since 01.01.1970)
  * @param burstTimestamp The numeric Id
  * @return Unix Epoch Time (milliseconds since 01.01.1970)
