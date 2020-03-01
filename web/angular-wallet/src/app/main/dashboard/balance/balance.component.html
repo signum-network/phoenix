@@ -6,7 +6,7 @@
         BURST
       </div>
       <div [ngClass.gt-md]="'font-size-50'" class="font-size-30 font-weight-300 line-height-1">
-        {{ convertNQTStringToNumber(account.balanceNQT) | number: '1.0-6':this.language }}
+        {{ convertNQTStringToNumber(account.balanceNQT) | burstAmount:'no-unit' }}
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
         BTC
       </div>
       <div [ngClass.gt-md]="'font-size-24'" class="font-size-16 font-weight-300 mt-8">
-        {{ convertBalanceInBtc(account.balanceNQT) | number: '1.0-6':this.language }}
+        {{ convertBalanceInBtc(account.balanceNQT) | number: '1.0-8':this.language }}
       </div>
     </div>
     <div fxLayout="row" fxLayoutAlign="start baseline">

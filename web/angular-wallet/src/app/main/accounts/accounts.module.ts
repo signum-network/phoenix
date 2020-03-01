@@ -29,6 +29,7 @@ import {TransactionsResolver} from '../transactions/transactions.resolver';
 import {TransactionTableModule} from '../transactions/transaction-table/transaction.module';
 import {AddNodeUrlPipe} from './account-details/add-node-url.pipe';
 import { ConvertNQTStringPipe } from './account-details/convert-nqt-string';
+import {AppSharedModule} from '../../shared/shared.module';
 
 
 const routes = [
@@ -53,27 +54,28 @@ const routes = [
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    FuseSharedModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatTooltipModule,
-    MatDialogModule,
-    NotifierModule,
-    I18nModule,
-    RouterModule.forChild(routes),
-    TransactionTableModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        FuseSharedModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatGridListModule,
+        MatIconModule,
+        MatInputModule,
+        MatSortModule,
+        MatTableModule,
+        MatTabsModule,
+        MatCheckboxModule,
+        MatButtonModule,
+        MatTooltipModule,
+        MatDialogModule,
+        NotifierModule,
+        I18nModule,
+        RouterModule.forChild(routes),
+        TransactionTableModule,
+        AppSharedModule
+    ],
   declarations: [
     AccountsComponent,
     DeleteAccountDialogComponent,

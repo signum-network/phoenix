@@ -2,7 +2,10 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { convertNQTStringToNumber } from '@burstjs/util';
 import { SuggestedFees } from '@burstjs/core';
 import { EventEmitter } from '@angular/core';
-import { Options } from 'ng5-slider';
+import {LabelType, Options} from 'ng5-slider';
+import {BurstAmountPipe} from '../../../shared/pipes/burst-amount.pipe';
+import {formatBurstAmount} from '../../../util/formatBurstAmount';
+import {I18nService} from '../i18n/i18n.service';
 
 @Component({
   selector: 'burst-fee-selector',
@@ -13,6 +16,7 @@ export class BurstFeeSelectorComponent implements OnInit {
   @Input('fees') fees: SuggestedFees;
 
   feeNQTValue = 0;
+  burstAmountPipe: BurstAmountPipe;
   options: Options;
 
   @Input()
@@ -32,7 +36,7 @@ export class BurstFeeSelectorComponent implements OnInit {
     this.feeNQTChange.emit(this.feeNQTValue);
   }
 
-  constructor() {
+  constructor(private i18nService: I18nService) {
   }
 
   ngOnInit(): void {
@@ -49,6 +53,13 @@ export class BurstFeeSelectorComponent implements OnInit {
           return 'yellow';
         }
         return '#2AE02A';
+      },
+    translate : (value: number, label: LabelType): string => {
+        return formatBurstAmount(value, {
+          locale: this.i18nService.currentLanguage.code,
+          noUnit: false,
+          isShortForm: false
+        });
       }
     };
   }

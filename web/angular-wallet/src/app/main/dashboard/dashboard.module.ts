@@ -24,6 +24,7 @@ import {BalanceDiagramComponent} from './balance-diagram/balance-diagram.compone
 import {TooltipComponent} from './balance-diagram/tooltip/tooltip.component';
 import {BalanceComponent} from './balance/balance.component';
 import {MatCheckboxModule} from '@angular/material';
+import {AppSharedModule} from '../../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -44,26 +45,27 @@ const routes: Routes = [
     TooltipComponent,
     BalanceComponent
   ],
-  imports: [
-    RouterModule.forChild(routes),
+    imports: [
+        RouterModule.forChild(routes),
 
-    MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatMenuModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatToolbarModule,
-    ChartsModule,
-    NgxChartsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatMenuModule,
+        MatSelectModule,
+        MatTabsModule,
+        MatToolbarModule,
+        ChartsModule,
+        NgxChartsModule,
 
-    FuseSharedModule,
-    FuseWidgetModule,
-    I18nModule,
-    TransactionTableModule,
-    MarketModule,
-    MatCheckboxModule,
-  ],
+        FuseSharedModule,
+        FuseWidgetModule,
+        I18nModule,
+        TransactionTableModule,
+        MarketModule,
+        MatCheckboxModule,
+        AppSharedModule,
+    ],
   providers: [
     DashboardService,
   ]

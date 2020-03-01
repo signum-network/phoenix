@@ -96,7 +96,7 @@
           {{'balance' | i18n }}
         </mat-header-cell>
         <mat-cell
-          *matCellDef="let account">{{convertNQTStringToNumber(account.balanceNQT) | number:'1.0-3':this.locale }}</mat-cell>
+          *matCellDef="let account">{{convertNQTStringToNumber(account.balanceNQT) | burstAmount: 'short' }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="description">

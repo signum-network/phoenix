@@ -79,6 +79,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   }
 
   public isAmountNegative(transaction: Transaction): boolean {
-    return this.isOwnAccount(transaction.senderRS);
+    const isZero = parseFloat(transaction.amountNQT) === 0;
+    return  !isZero && this.isOwnAccount(transaction.senderRS);
   }
 }

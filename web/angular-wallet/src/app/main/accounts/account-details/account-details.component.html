@@ -28,7 +28,7 @@
       <div class="details">
         <h2>{{ account.name || account.accountRS }}</h2>
         <h3>{{ account.account }}</h3>
-        <h4>{{ account.balanceNQT | convertNQTString | number: '1.0-6': this.language }} BURST</h4>
+        <h4>{{ account.balanceNQT | convertNQTString | burstAmount }}</h4>
       </div>
     </div>
 
