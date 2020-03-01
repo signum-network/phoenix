@@ -19,3 +19,4 @@ export * from './isBurstAddress';
 export * from './parseDeeplink';
 export * from './sumNQTStringToNumber';
 export * from './typings';
+export * from './constants';
