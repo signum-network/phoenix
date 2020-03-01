@@ -10,6 +10,7 @@ import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {RouterModule} from '@angular/router';
 import {FuseSharedModule} from '@fuse/shared.module';
 import {MarketService} from './market.service';
+import {AppSharedModule} from '../../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,17 +19,18 @@ import {MarketService} from './market.service';
   exports: [
     MarketOverviewComponent
   ],
-  imports: [
-    CommonModule,
-    I18nModule,
-    FuseSharedModule,
-    MatProgressSpinnerModule,
-    MatListModule,
-    MatTableModule,
-    MatIconModule,
-    MatPaginatorModule,
-    RouterModule
-  ],
+    imports: [
+        CommonModule,
+        I18nModule,
+        FuseSharedModule,
+        MatProgressSpinnerModule,
+        MatListModule,
+        MatTableModule,
+        MatIconModule,
+        MatPaginatorModule,
+        RouterModule,
+        AppSharedModule
+    ],
   providers: [
     MarketService,
 

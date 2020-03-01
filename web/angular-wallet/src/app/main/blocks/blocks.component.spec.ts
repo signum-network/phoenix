@@ -20,6 +20,7 @@ import { NetworkService } from 'app/network/network.service';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { NotifierModule } from 'angular-notifier';
 import { ChartsModule } from 'ng2-charts';
+import {AppSharedModule} from '../../shared/shared.module';
 
 describe('BlocksComponent', () => {
   let component: BlocksComponent;
@@ -28,6 +29,7 @@ describe('BlocksComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        AppSharedModule,
         MatFormFieldModule,
         MatInputModule,
         MatSortModule,
@@ -36,7 +38,7 @@ describe('BlocksComponent', () => {
         MatButtonModule,
         MatPaginatorModule,
         HttpClientTestingModule,
-        ReactiveFormsModule, 
+        ReactiveFormsModule,
         I18nModule,
         ChartsModule,
         BrowserAnimationsModule,

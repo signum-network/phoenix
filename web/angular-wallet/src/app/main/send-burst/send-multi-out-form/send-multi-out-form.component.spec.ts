@@ -35,6 +35,7 @@ import {Account} from '@burstjs/core';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 import { MatProgressBarModule } from '@angular/material';
 import { DomainService } from '../domain/domain.service';
+import {AppSharedModule} from '../../../shared/shared.module';
 
 describe('SendMultiOutFormComponent', () => {
 
@@ -47,6 +48,7 @@ describe('SendMultiOutFormComponent', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
+          AppSharedModule,
           BrowserModule,
           BrowserAnimationsModule,
           NotifierModule,
@@ -83,7 +85,7 @@ describe('SendMultiOutFormComponent', () => {
             useFactory: () => {
               return {
                 ready: new BehaviorSubject(true),
-                settings: new BehaviorSubject(true)
+                settings: new BehaviorSubject(true),
               }
             }
           },

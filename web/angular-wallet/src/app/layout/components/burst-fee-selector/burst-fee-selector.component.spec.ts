@@ -13,6 +13,7 @@ import {TransactionService} from '../../../main/transactions/transaction.service
 import {AccountService} from '../../../setup/account/account.service';
 import {BurstInputValidatorDirective} from '../../../main/send-burst/send-burst-validator.directive';
 import {FeeQuantPlanck} from '@burstjs/core/src';
+import {AppSharedModule} from '../../../shared/shared.module';
 
 describe('BurstFeeSelectorComponent', () => {
   let component: BurstFeeSelectorComponent;
@@ -21,11 +22,13 @@ describe('BurstFeeSelectorComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        AppSharedModule,
         Ng5SliderModule,
         MatTooltipModule,
         MatIconModule,
         I18nModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        AppSharedModule,
       ],
       declarations: [BurstFeeSelectorComponent],
       providers: [
@@ -36,7 +39,7 @@ describe('BurstFeeSelectorComponent', () => {
             return {
               ready: new BehaviorSubject(true),
               getSettings: () => Promise.resolve({language: 'en'}),
-              saveSettings: () => Promise.resolve(true)
+              saveSettings: () => Promise.resolve(true),
             };
           }
         },

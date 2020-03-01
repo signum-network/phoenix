@@ -71,7 +71,7 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
 
   public getPriceUsd = (): string => `${this.asCurrency(this.tickerData.price_usd, '1.0-6')} USD`;
   public get24hVolume = (): string => `${this.asCurrency(this.tickerData['24h_volume_usd'])} USD`;
-  public getAvailableSupply = (): string => `${this.asCurrency(this.tickerData.available_supply)} BURST`;
+  public getAvailableSupply = (): string => this.tickerData.available_supply;
   public getRelativeSupply = (): string => {
     const supply = parseFloat(this.tickerData.available_supply);
     const max_supply = parseFloat(this.tickerData.max_supply);
