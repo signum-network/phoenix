@@ -22,7 +22,8 @@ import {
     getUnconfirmedAccountTransactions,
     setAccountInfo,
     setAlias,
-    setRewardRecipient
+    setRewardRecipient,
+    getAccountSubscriptions,
 } from './factories/account';
 import {getAliasById, getAliasByName} from './factories/alias';
 import {getAllContractIds, getContract, getContractsByAccount, publishContract, callContractMethod} from './factories/contract';
@@ -123,6 +124,7 @@ export function composeApi(settings: ApiSettings): Api {
             getAccountBlockIds,
             setAccountInfo,
             setRewardRecipient,
+            getAccountSubscriptions,
         }).withAliasApi({
             getAliasByName,
             getAliasById,
