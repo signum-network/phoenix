@@ -26,9 +26,8 @@
           <mat-checkbox [(ngModel)]="immutable" name="immutable">{{ "immutable" | i18n }}</mat-checkbox>
 
         </form>
-        <strong>Total:</strong> {{ getTotal() }} BURST
+        <strong>Total:</strong> {{ getTotal() | burstAmount }}
         <br/><br/>
-
         <button type="submit"
                 class="mr-8"
                 mat-raised-button
