@@ -85,7 +85,6 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
 
   ngOnInit(): void {
     this.fee = convertNQTStringToNumber(this.fees['standard'].toString()).toString();
-    console.log(this.fees);
   }
 
   ngAfterViewInit(): void {
