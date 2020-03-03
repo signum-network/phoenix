@@ -10,7 +10,7 @@ import {Subscription} from '../../../typings/subscription';
 /**
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
- * See details at [[TransactionApi.broadcastTransaction]]
+ * See details at [[TransactionApi.getSubscription]]
  */
 export const getSubscription = (service: BurstService):
     (subscriptionId: string) => Promise<Subscription> =>

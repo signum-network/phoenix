@@ -1,7 +1,7 @@
 /** @module core.api.factories */
 
 /**
- * Original work Copyright (c) 2019 Burst Apps Team
+ * Original work Copyright (c) 2020 Burst Apps Team
  */
 import {BurstService} from '../../../service/burstService';
 import {TransactionList} from '../../../typings/transactionList';
