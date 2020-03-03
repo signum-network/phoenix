@@ -12,6 +12,7 @@ import {signAndBroadcastTransaction} from '../../../internal/signAndBroadcastTra
 import {createParametersFromAttachment} from '../../../internal/createParametersFromAttachment';
 
 /**
+ * @deprecated Use send
  * <div class="deprecated">
  *     Use [[TransactionApi.sendAmountToSingleRecipient]] instead
  * </div>

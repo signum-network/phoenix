@@ -6,7 +6,6 @@ export * from './api';
 export * from './attachment';
 export * from './constants';
 export * from './service';
-export * from './subscription';
 export * from './transaction';
 export * from './typings/account';
 export * from './typings/alias';

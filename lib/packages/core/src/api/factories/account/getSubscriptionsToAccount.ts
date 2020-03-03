@@ -11,9 +11,9 @@ import {SubscriptionList} from '../../../typings/subscriptionList';
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
  *
- * See details at [[AccountApi.getAccountSubscriptions]]
+ * See details at [[AccountApi.getSubscriptionsToAccount]]
  */
-export const getAccountSubscriptions = (service: BurstService):
+export const getSubscriptionsToAccount = (service: BurstService):
     (accountId: string) => Promise<SubscriptionList> =>
     (accountId: string): Promise<SubscriptionList> => {
 
@@ -21,5 +21,5 @@ export const getAccountSubscriptions = (service: BurstService):
             account: accountId,
         };
 
-        return service.query('getAccountSubscriptions', parameters);
+        return service.query('getSubscriptionsToAccount', parameters);
     };

@@ -4,8 +4,8 @@ import {TransactionId} from '../transactionId';
 import {Transaction} from '../transaction';
 import {MultioutRecipientAmount} from '../multioutRecipientAmount';
 import {Attachment} from '../attachment';
-import {BurstService} from '../../service';
 import {SendAmountArgs} from '../args/sendAmountArgs';
+import {CancelSubscriptionArgs, CreateSubscriptionArgs} from '../args';
 
 /**
  * Transaction API
@@ -105,4 +105,22 @@ export interface TransactionApi {
      */
     sendAmountToSingleRecipient:
         (args: SendAmountArgs) => Promise<TransactionId>;
+
+    /**
+     * Create a subscription
+     *
+     * @param args The argument object
+     * @return The Transaction Id (as promise)
+     */
+    createSubscription:
+        (args: CreateSubscriptionArgs) => Promise<TransactionId>;
+
+    /**
+     * Cancels a subscription
+     *
+     * @param args The argument object
+     * @return The Transaction Id (as promise)
+     */
+    cancelSubscription:
+        (args: CancelSubscriptionArgs) => Promise<TransactionId>;
 }
