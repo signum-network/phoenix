@@ -2,7 +2,7 @@
 
   <!-- HEADER -->
   <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-    fxLayoutAlign.gt-xs="space-between center">
+       fxLayoutAlign.gt-xs="space-between center">
 
     <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
       <div fxLayout="row" fxLayoutAlign="start center">
@@ -21,7 +21,7 @@
   <div class="main-widget" *ngIf="chart">
     <div class="position-relative h-256 pb-16 blue-600">
       <canvas baseChart [datasets]="chart.datasets" [labels]="chart.labels" [colors]="chart.colors"
-        [options]="chart.options" [chartType]="chart.chartType">
+              [options]="chart.options" [chartType]="chart.chartType">
       </canvas>
     </div>
   </div>
@@ -68,14 +68,14 @@
           <mat-icon>local_atm</mat-icon>&nbsp;{{ 'amount' | i18n }}
         </mat-header-cell>
         <mat-cell *matCellDef="let block">
-          {{ convertNQTStringToNumber(block.totalAmountNQT) | number : '1.0-8' }}</mat-cell>
+          {{ convertNQTStringToNumber(block.totalAmountNQT) | burstAmount }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="totalFeeNQT">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           <mat-icon>compare_arrows</mat-icon>&nbsp;{{ 'fee' | i18n }}
         </mat-header-cell>
-        <mat-cell *matCellDef="let block"> {{ convertNQTStringToNumber(block.totalFeeNQT) | number : '1.0-8'}}
+        <mat-cell *matCellDef="let block"> {{ convertNQTStringToNumber(block.totalFeeNQT) | burstAmount}}
         </mat-cell>
       </ng-container>
 

@@ -27,10 +27,10 @@ import { BurstFeeSelectorComponent } from 'app/layout/components/burst-fee-selec
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { StoreService } from 'app/store/store.service';
 import { BehaviorSubject } from 'rxjs';
-import { TransactionService } from 'app/main/transactions/transaction.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { ActivatedRoute } from '@angular/router';
 import {PageModule} from '../../../components/page/page.module';
+import {AppSharedModule} from '../../../shared/shared.module';
 
 describe('AddAliasComponent', () => {
   let component: AddAliasComponent;
@@ -39,6 +39,7 @@ describe('AddAliasComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        AppSharedModule,
         BrowserModule,
         BrowserAnimationsModule,
         NotifierModule,

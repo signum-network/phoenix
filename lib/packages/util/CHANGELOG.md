@@ -14,7 +14,10 @@ All notable changes to this project will be documented in this file.
 - Added Base64 conversion (URI and UTF-8 compatible)
     - `convertStringToBase64String`
     - `convertBase64StringToString`
-    
+- New Symbols for BURST (Ƀ) and Planck (ƀ)
+    - `BurstSymbol`
+    - `BurstPlanckSymbol`
+     
 ### Deprecated
 - `convertBurstTimeToDate` and `convertDateToBurstTime`
     - Use `BurstTime` instead  

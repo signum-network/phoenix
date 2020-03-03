@@ -78,7 +78,7 @@
   </div>
 
   <strong>Total:&nbsp;</strong>
-  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal() | number: '1.0-6': this.language }} BURST</span> -
+  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal() | burstAmount }}</span> -
   <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
   <br/><br/>
 

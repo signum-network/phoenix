@@ -27,6 +27,7 @@ import { BurstFeeSelectorComponent } from 'app/layout/components/burst-fee-selec
 import { Ng5SliderModule } from 'ng5-slider';
 import { TransactionService } from '../transactions/transaction.service';
 import { MatProgressBarModule } from '@angular/material';
+import {AppSharedModule} from '../../shared/shared.module';
 
 describe('SetAccountInfoComponent', () => {
   let component: SetAccountInfoComponent;
@@ -37,6 +38,7 @@ describe('SetAccountInfoComponent', () => {
       imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        AppSharedModule,
         NotifierModule,
         NgxMaskModule,
         I18nModule,

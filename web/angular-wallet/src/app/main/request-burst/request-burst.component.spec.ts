@@ -26,6 +26,7 @@ import { TransactionService } from '../transactions/transaction.service';
 import { AccountService } from 'app/setup/account/account.service';
 import { BurstFeeSelectorComponent } from 'app/layout/components/burst-fee-selector/burst-fee-selector.component';
 import { Ng5SliderModule } from 'ng5-slider';
+import {AppSharedModule} from '../../shared/shared.module';
 
 describe.skip('RequestBurstComponent', () => {
   let component: RequestBurstComponent;
@@ -34,6 +35,7 @@ describe.skip('RequestBurstComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        AppSharedModule,
         BrowserModule,
         BrowserAnimationsModule,
         NotifierModule,

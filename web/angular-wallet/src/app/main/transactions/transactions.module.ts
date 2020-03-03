@@ -33,6 +33,7 @@ import { AccountResolver } from 'app/setup/account/account.resolver';
 import { TransactionTableModule } from './transaction-table/transaction.module';
 import {PageModule} from '../../components/page/page.module';
 import {TransactionRowValueCellComponent} from './transaction-details/transaction-row-value-cell/transaction-row-value-cell.component';
+import {AppSharedModule} from '../../shared/shared.module';
 
 const routes = [
     {
@@ -55,37 +56,38 @@ const routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    FuseSharedModule,
-    MatButtonModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatDatepickerModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatSelectModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    I18nModule,
-    MatDialogModule,
-    TransactionTableModule,
-    RouterModule.forChild(routes),
-    PageModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        FuseSharedModule,
+        MatButtonModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatChipsModule,
+        MatDatepickerModule,
+        MatDividerModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatGridListModule,
+        MatIconModule,
+        MatInputModule,
+        MatNativeDateModule,
+        MatPaginatorModule,
+        MatSelectModule,
+        MatSortModule,
+        MatTableModule,
+        MatTabsModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        I18nModule,
+        MatDialogModule,
+        TransactionTableModule,
+        RouterModule.forChild(routes),
+        PageModule,
+        AppSharedModule
+    ],
     declarations: [
         TransactionsComponent,
         TransactionDetailsComponent,

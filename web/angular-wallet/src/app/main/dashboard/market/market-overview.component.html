@@ -52,10 +52,10 @@
         </h3>
         <div fxLayout="row" fxLayoutAlign="start end">
           <span>
-            {{getAvailableSupply()}}
+            {{getAvailableSupply() | burstAmount}}
           </span>
           <span class="font-size-10">
-            ({{getRelativeSupply()}})
+            &nbsp;({{getRelativeSupply()}})
           </span>
         </div>
       </div>

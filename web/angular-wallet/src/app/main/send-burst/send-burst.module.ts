@@ -1,38 +1,38 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { AccountResolver } from 'app/setup/account/account.resolver';
-import { SendBurstComponent } from './send-burst.component';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { FormsModule } from '@angular/forms';
-import { SetupModule } from 'app/setup/setup.module';
-import { NotifierModule } from 'angular-notifier';
-import { NgxMaskModule } from 'ngx-mask';
-import { I18nModule } from 'app/layout/components/i18n/i18n.module';
-import { FuseSharedModule } from '@fuse/shared.module';
-import { SuggestFeeResolver } from '../../network/suggest-fee.resolver';
-import { NetworkModule } from 'app/network/network.module';
-import { BurstInputValidatorDirective } from './send-burst-validator.directive';
-import { LayoutModule } from 'app/layout/layout.module';
-import { SendBurstFormComponent } from './send-burst-form/send-burst-form.component';
-import { SendMultiOutFormComponent } from './send-multi-out-form/send-multi-out-form.component';
-import { WarnSendDialogComponent } from './warn-send-dialog/warn-send-dialog.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule} from '@angular/router';
+import {AccountResolver} from 'app/setup/account/account.resolver';
+import {SendBurstComponent} from './send-burst.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {FormsModule} from '@angular/forms';
+import {SetupModule} from 'app/setup/setup.module';
+import {NotifierModule} from 'angular-notifier';
+import {I18nModule} from 'app/layout/components/i18n/i18n.module';
+import {FuseSharedModule} from '@fuse/shared.module';
+import {SuggestFeeResolver} from '../../network/suggest-fee.resolver';
+import {NetworkModule} from 'app/network/network.module';
+import {BurstInputValidatorDirective} from './send-burst-validator.directive';
+import {LayoutModule} from 'app/layout/layout.module';
+import {SendBurstFormComponent} from './send-burst-form/send-burst-form.component';
+import {SendMultiOutFormComponent} from './send-multi-out-form/send-multi-out-form.component';
+import {WarnSendDialogComponent} from './warn-send-dialog/warn-send-dialog.component';
 import {PageModule} from '../../components/page/page.module';
-import { LoginGuard } from 'app/login/login-guard.service';
+import {LoginGuard} from 'app/login/login-guard.service';
 import {BatchRecipientsDialogComponent} from './batch-recipients-dialog/batch-recipients-dialog.component';
 import {MatSelectModule} from '@angular/material/select';
-import { DomainService } from './domain/domain.service';
+import {DomainService} from './domain/domain.service';
+import {AppSharedModule} from '../../shared/shared.module';
 
 const routes = [
   {
@@ -61,7 +61,7 @@ const routes = [
     SendBurstFormComponent,
     SendMultiOutFormComponent,
     WarnSendDialogComponent,
-    BatchRecipientsDialogComponent
+    BatchRecipientsDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -69,7 +69,6 @@ const routes = [
     FuseSharedModule,
     SetupModule,
     NotifierModule,
-    NgxMaskModule,
     I18nModule,
     MatProgressSpinnerModule,
     MatButtonModule,
@@ -87,14 +86,16 @@ const routes = [
     MatTooltipModule,
     MatDialogModule,
     PageModule,
-    MatSelectModule
+    MatSelectModule,
+    AppSharedModule,
   ],
   entryComponents: [
     WarnSendDialogComponent,
     BatchRecipientsDialogComponent
   ],
   exports: [
-    BurstInputValidatorDirective
+    BurstInputValidatorDirective,
   ]
 })
-export class SendBurstModule { }
+export class SendBurstModule {
+}

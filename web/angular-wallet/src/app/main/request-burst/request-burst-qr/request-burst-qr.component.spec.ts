@@ -6,6 +6,7 @@ import {I18nService} from "../../../layout/components/i18n/i18n.service";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {StoreService} from "../../../store/store.service";
 import {BehaviorSubject} from "rxjs";
+import {AppSharedModule} from '../../../shared/shared.module';
 
 describe('RequestBurstQrComponent', () => {
   let component: RequestBurstQrComponent;
@@ -13,7 +14,7 @@ describe('RequestBurstQrComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [I18nModule, HttpClientTestingModule],
+      imports: [I18nModule, HttpClientTestingModule, AppSharedModule],
       declarations: [RequestBurstQrComponent],
       providers: [I18nService,
         {

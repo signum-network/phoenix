@@ -9,20 +9,24 @@
 
   <div class="amount-wrapper">
     <mat-form-field>
-      <div class="container" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-        <input matInput [(ngModel)]="amount" name="amount" placeholder="{{ 'amount' | i18n }}" [disabled]="immutable">
-        <mat-icon *ngIf="!immutable"
-                  class="all-icon"
-                  matTooltip="{{'spend_all' | i18n}}"
-                  (click)="onSpendAll()"
-        >
-          all_inclusive
-        </mat-icon>
-      </div>
+      <mat-label>{{ 'amount' | i18n }}</mat-label>
+      <span matPrefix>Ƀ &nbsp;</span>
+      <input matInput [(ngModel)]="amount" name="amount" [disabled]="immutable">
+      <mat-icon
+        class="all-icon"
+        *ngIf="!immutable"
+        matSuffix
+        matTooltip="{{'spend_all' | i18n}}"
+        (click)="onSpendAll()"
+      >
+        all_inclusive
+      </mat-icon>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput [(ngModel)]="fee" name="fee" placeholder="{{ 'fee' | i18n }}" [disabled]="immutable">
+      <mat-label>{{ 'fee' | i18n }}</mat-label>
+      <span matPrefix>Ƀ &nbsp;</span>
+      <input matInput [(ngModel)]="fee" name="fee" [disabled]="immutable">
     </mat-form-field>
   </div>
 
@@ -88,7 +92,7 @@
 
 
   <strong>Total:&nbsp;</strong>
-  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal() | number: '1.0-6': this.language }} BURST</span> -
+  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal() | burstAmount }}</span> -
   <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
 
 </form>

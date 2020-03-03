@@ -28,6 +28,7 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { TransactionService } from '../transactions/transaction.service';
 import { BurstRecipientInputComponent } from 'app/layout/components/burst-recipient-input/burst-recipient-input.component';
 import { MatProgressBarModule } from '@angular/material';
+import {AppSharedModule} from '../../shared/shared.module';
 
 describe('SetRewardRecipientComponent', () => {
   let component: SetRewardRecipientComponent;
@@ -36,6 +37,7 @@ describe('SetRewardRecipientComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        AppSharedModule,
         BrowserModule,
         BrowserAnimationsModule,
         NotifierModule,
@@ -59,10 +61,10 @@ describe('SetRewardRecipientComponent', () => {
         ),
         MatTooltipModule
       ],
-      declarations: [ 
-        SetRewardRecipientComponent, 
-        BurstFeeSelectorComponent, 
-        BurstRecipientInputComponent 
+      declarations: [
+        SetRewardRecipientComponent,
+        BurstFeeSelectorComponent,
+        BurstRecipientInputComponent
       ],
       providers: [
         I18nService,

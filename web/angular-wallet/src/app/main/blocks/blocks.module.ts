@@ -31,6 +31,7 @@ import { BlockResolver } from './block-details/block.resolver';
 import {PageModule} from '../../components/page/page.module';
 import {BlockRowValueCellComponent} from './block-details/block-row-value-cell/block-row-value-cell.component';
 import { ChartsModule } from 'ng2-charts';
+import {AppSharedModule} from '../../shared/shared.module';
 
 const routes = [
   {
@@ -52,37 +53,38 @@ const routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    FuseSharedModule,
-    MatButtonModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatDatepickerModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatSelectModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    I18nModule,
-    MatDialogModule,
-    ChartsModule,
-    RouterModule.forChild(routes),
-    PageModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        FuseSharedModule,
+        MatButtonModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatChipsModule,
+        MatDatepickerModule,
+        MatDividerModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatGridListModule,
+        MatIconModule,
+        MatInputModule,
+        MatNativeDateModule,
+        MatPaginatorModule,
+        MatSelectModule,
+        MatSortModule,
+        MatTableModule,
+        MatTabsModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        I18nModule,
+        MatDialogModule,
+        ChartsModule,
+        RouterModule.forChild(routes),
+        PageModule,
+        AppSharedModule
+    ],
   declarations: [
     BlocksComponent,
     BlockDetailsComponent,

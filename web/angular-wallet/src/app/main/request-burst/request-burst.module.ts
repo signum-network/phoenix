@@ -20,6 +20,7 @@ import {NetworkModule} from 'app/network/network.module';
 import {LayoutModule} from 'app/layout/layout.module';
 import {RequestBurstQrComponent} from './request-burst-qr/request-burst-qr.component';
 import {PageModule} from '../../components/page/page.module';
+import {AppSharedModule} from '../../shared/shared.module';
 
 const routes = [
   {
@@ -36,25 +37,26 @@ const routes = [
   declarations: [
     RequestBurstComponent, RequestBurstQrComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    FuseSharedModule,
-    SetupModule,
-    NotifierModule,
-    NgxMaskModule,
-    I18nModule,
-    MatButtonModule,
-    MatInputModule,
-    MatIconModule,
-    MatGridListModule,
-    MatCheckboxModule,
-    NetworkModule,
-    LayoutModule,
-    MatStepperModule,
-    RouterModule.forChild(routes),
-    PageModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        FuseSharedModule,
+        SetupModule,
+        NotifierModule,
+        NgxMaskModule,
+        I18nModule,
+        MatButtonModule,
+        MatInputModule,
+        MatIconModule,
+        MatGridListModule,
+        MatCheckboxModule,
+        NetworkModule,
+        LayoutModule,
+        MatStepperModule,
+        RouterModule.forChild(routes),
+        PageModule,
+        AppSharedModule
+    ],
   exports: []
 })
 export class RequestBurstModule {

@@ -5,6 +5,7 @@
  */
 
 import Big from 'big.js';
+import {BurstPlanckSymbol, BurstSymbol} from './constants';
 
 Big.NE = -9;
 
@@ -170,11 +171,11 @@ export class BurstValue {
     }
 
     /**
-     * Gets a string representation in form `100 BURST` or `10000000000 Planck`
+     * Gets a string representation in form `Ƀ 100` for BURST or `ƀ 10000000000` for Planck
      * @param format The format
      * @return The converted string accordingly the param in burst or Planck
      */
     public toString(format: BurstValueFormat = BurstValueFormat.BURST): string {
-        return format === BurstValueFormat.BURST ? `${this.getBurst()} BURST` : `${this._planck} Planck`;
+        return format === BurstValueFormat.BURST ? `${BurstSymbol} ${this.getBurst()}` : `${BurstPlanckSymbol} ${this._planck}`;
     }
 }

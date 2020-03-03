@@ -16,7 +16,10 @@ export class I18nService {
 
   public state;
   public data: {};
-  public currentLanguage: any;
+  public currentLanguage: Language = {
+    name: 'default',
+    code: 'en'
+  };
 
 
   constructor(

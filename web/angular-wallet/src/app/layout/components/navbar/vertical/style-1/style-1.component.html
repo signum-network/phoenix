@@ -28,7 +28,7 @@
        [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
     <div class="h3 username">{{ selectedAccount.accountRS }}</div>
-    <div class="h5 username">{{ getBalance() | number : '1.0-2' : this.language }} BURST</div>
+    <div class="h5 username">{{ getBalance() | burstAmount: 'short' }}</div>
     <div class="h5 alias hint-text mt-4" *ngIf="selectedAccount.type !== 'offline'" [matMenuTriggerFor]="menu">
       <span>{{ getAccountName() }} <mat-icon>keyboard_arrow_down</mat-icon></span>
     </div>

@@ -77,12 +77,12 @@ describe('BurstValue', () => {
     describe('toString', () => {
         it('Return String as Planck', () => {
             const burstValue = BurstValue.fromBurst('10');
-            expect(burstValue.toString(BurstValueFormat.PLANCK)).toEqual('1000000000 Planck');
+            expect(burstValue.toString(BurstValueFormat.PLANCK)).toEqual('ƀ 1000000000');
         });
         it('Return String as BURST', () => {
             const burstValue = BurstValue.fromBurst('10');
-            expect(burstValue.toString()).toEqual('10 BURST');
-            expect(burstValue.toString(BurstValueFormat.BURST)).toEqual('10 BURST');
+            expect(burstValue.toString()).toEqual('Ƀ 10');
+            expect(burstValue.toString(BurstValueFormat.BURST)).toEqual('Ƀ 10');
         });
     });
     describe('equals', () => {

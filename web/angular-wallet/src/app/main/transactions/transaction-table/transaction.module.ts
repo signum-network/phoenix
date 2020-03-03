@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
+import {AppSharedModule} from '../../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,14 +16,15 @@ import { FuseSharedModule } from '@fuse/shared.module';
   exports: [
     TransactionTableComponent
   ],
-  imports: [
-    CommonModule,
-    I18nModule,
-    FuseSharedModule,
-    MatTableModule,
-    MatIconModule,
-    MatPaginatorModule,
-    RouterModule
-  ]
+    imports: [
+        CommonModule,
+        I18nModule,
+        FuseSharedModule,
+        MatTableModule,
+        MatIconModule,
+        MatPaginatorModule,
+        RouterModule,
+        AppSharedModule
+    ]
 })
 export class TransactionTableModule { }

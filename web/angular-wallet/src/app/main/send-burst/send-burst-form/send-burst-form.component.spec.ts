@@ -36,6 +36,7 @@ import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.comp
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatProgressBarModule } from '@angular/material';
 import { DomainService } from '../domain/domain.service';
+import {AppSharedModule} from '../../../shared/shared.module';
 
 describe('SendBurstFormComponent', () => {
   let component: SendBurstFormComponent;
@@ -44,6 +45,7 @@ describe('SendBurstFormComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        AppSharedModule,
         BrowserModule,
         BrowserAnimationsModule,
         NotifierModule,
