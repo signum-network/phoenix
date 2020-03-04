@@ -1,16 +1,20 @@
-import {HttpMockBuilder, Http} from '@burstjs/http';
-import {generateSignature, verifySignature, generateSignedTransactionBytes} from '@burstjs/crypto';
-import {broadcastTransaction} from '../factories/transaction/broadcastTransaction';
-import {getTransaction} from '../factories/transaction/getTransaction';
+import {Http, HttpMockBuilder} from '@burstjs/http';
+import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
 import {Transaction} from '../../typings/transaction';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
-import {sendSameAmountToMultipleRecipients} from '../factories/transaction/sendSameAmountToMultipleRecipients';
-import {sendAmountToMultipleRecipients} from '../factories/transaction/sendAmountToMultipleRecipients';
 import {MultioutRecipientAmount} from '../../typings/multioutRecipientAmount';
 import {Attachment, AttachmentEncryptedMessage, AttachmentMessage} from '../../typings/attachment';
-import {sendAmount, sendAmountToSingleRecipient} from '../factories/transaction';
+import {
+    broadcastTransaction,
+    getSubscription,
+    getTransaction,
+    sendAmount,
+    sendAmountToMultipleRecipients,
+    sendAmountToSingleRecipient,
+    sendSameAmountToMultipleRecipients
+} from '../factories/transaction';
 
-describe('Transaction Api', () => {
+describe('TransactionApi', () => {
 
     let httpMock: Http;
 
@@ -84,7 +88,7 @@ describe('Transaction Api', () => {
 
         it('should send money to multiple recipients', async () => {
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
 
                 .onPostReply(200, mockBroadcastResponse,
                     'relPath?requestType=sendMoneyMultiSame&publicKey=senderPublicKey&recipients=recipient_1%3Brecipient_2&feeNQT=1000&amountNQT=2000&deadline=1440')
@@ -112,7 +116,7 @@ describe('Transaction Api', () => {
 
         it('should not send money to multiple recipients, if recipients are empty', async () => {
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse)
                 .build();
 
@@ -168,7 +172,7 @@ describe('Transaction Api', () => {
 
         it('should send arbitrary amounts to multiple recipients', async () => {
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
 
                 .onPostReply(200, mockBroadcastResponse,
                     'relPath?requestType=sendMoneyMulti&publicKey=senderPublicKey&recipients=recipient_1%3A2000%3Brecipient_2%3A4000&feeNQT=1000&deadline=1440')
@@ -203,7 +207,7 @@ describe('Transaction Api', () => {
 
         it('should not send arbitrary amounts to multiple recipients, if recipients are empty', async () => {
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse)
                 .build();
 
@@ -258,7 +262,7 @@ describe('Transaction Api', () => {
         it('should sendMoney without attachment', async () => {
 
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse,
                     'relPath?requestType=sendMoney&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
                 .onPostReply(200, mockTransaction.transaction,
@@ -284,7 +288,7 @@ describe('Transaction Api', () => {
         it('should sendMoney with encrypted message attachment', async () => {
 
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse,
                     'relPath?requestType=sendMoney&encryptedMessageData=data&encryptedMessageNonce=nonce&messageToEncryptIsText=true&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
                 .onPostReply(200, mockTransaction.transaction,
@@ -315,7 +319,7 @@ describe('Transaction Api', () => {
         it('should sendMoney with plain message attachment', async () => {
 
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse,
                     'relPath?requestType=sendMoney&message=message&messageIsText=true&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
                 .onPostReply(200, mockTransaction.transaction,
@@ -345,7 +349,7 @@ describe('Transaction Api', () => {
         it('should throw error on invalid attachment', async () => {
 
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse,
                     'relPath?requestType=sendMoney&message=message&messageIsText=true&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
                 .onPostReply(200, mockTransaction.transaction,
@@ -407,7 +411,7 @@ describe('Transaction Api', () => {
         it('should send amount without attachment', async () => {
 
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse,
                     'relPath?requestType=sendMoney&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
                 .onPostReply(200, mockTransaction.transaction,
@@ -432,7 +436,7 @@ describe('Transaction Api', () => {
         it('should send amount without attachment, but with recipient public key', async () => {
 
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse,
                     'relPath?requestType=sendMoney&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&recipientPublicKey=recipientPublicKey&feeNQT=1000&deadline=1440')
                 .onPostReply(200, mockTransaction.transaction,
@@ -459,7 +463,7 @@ describe('Transaction Api', () => {
         it('should send amount with encrypted message attachment', async () => {
 
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse,
                     'relPath?requestType=sendMoney&encryptedMessageData=data&encryptedMessageNonce=nonce&messageToEncryptIsText=true&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
                 .onPostReply(200, mockTransaction.transaction,
@@ -492,7 +496,7 @@ describe('Transaction Api', () => {
         it('should send money with plain message attachment', async () => {
 
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse,
                     'relPath?requestType=sendMoney&message=message&messageIsText=true&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
                 .onPostReply(200, mockTransaction.transaction,
@@ -523,7 +527,7 @@ describe('Transaction Api', () => {
         it('should throw error on invalid attachment', async () => {
 
             httpMock = HttpMockBuilder.create()
-            // tslint:disable:max-line-length
+                // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse,
                     'relPath?requestType=sendMoney&message=message&messageIsText=true&amountNQT=2000&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
                 .onPostReply(200, mockTransaction.transaction,
@@ -550,6 +554,40 @@ describe('Transaction Api', () => {
             }
         });
 
+    });
+
+    describe('getSubscription', () => {
+        it('should get subscription', async () => {
+            const mockedSubscription = {
+                id: '11351503202575283428',
+                sender: '6502115112683865257',
+                senderRS: 'BURST-K37B-9V85-FB95-793HN',
+                recipient: '11089308770178933578',
+                recipientRS: 'BURST-9AUC-LCKL-7W2D-B5BTM',
+                amountNQT: '100000000',
+                frequency: 3600,
+                timeNext: 175564349,
+                requestProcessingTime: 7
+            };
+
+            httpMock = HttpMockBuilder.create().onGetReply(200, mockedSubscription).build();
+            const service = createBurstService(httpMock, 'relPath');
+            const subscription = await getSubscription(service)('subscriptionId');
+            expect(subscription).toEqual(mockedSubscription);
+        });
+    });
+
+    describe('createSubscription', () => {
+        it('should get subscription', () => {
+            throw new Error('implement me');
+        });
+
+    });
+
+    describe('cancelSubscription', () => {
+        it('should get subscription', () => {
+            throw new Error('implement me');
+        });
     });
 
 });
