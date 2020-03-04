@@ -5,7 +5,7 @@ import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {MultioutRecipientAmount} from '../../typings/multioutRecipientAmount';
 import {Attachment, AttachmentEncryptedMessage, AttachmentMessage} from '../../typings/attachment';
 import {
-    broadcastTransaction,
+    broadcastTransaction, cancelSubscription, createSubscription,
     getSubscription,
     getTransaction,
     sendAmount,
@@ -13,6 +13,7 @@ import {
     sendAmountToSingleRecipient,
     sendSameAmountToMultipleRecipients
 } from '../factories/transaction';
+import { TransactionId } from '../../typings/transactionId';
 
 describe('TransactionApi', () => {
 
@@ -390,17 +391,13 @@ describe('TransactionApi', () => {
         };
 
         beforeEach(() => {
-
             jest.resetAllMocks();
-
             // @ts-ignore
             generateSignature = jest.fn(() => 'signature');
             // @ts-ignore
             verifySignature = jest.fn(() => true);
             // @ts-ignore
             generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
-
-
         });
 
         afterEach(() => {
@@ -556,38 +553,106 @@ describe('TransactionApi', () => {
 
     });
 
-    describe('getSubscription', () => {
-        it('should get subscription', async () => {
-            const mockedSubscription = {
-                id: '11351503202575283428',
-                sender: '6502115112683865257',
-                senderRS: 'BURST-K37B-9V85-FB95-793HN',
-                recipient: '11089308770178933578',
-                recipientRS: 'BURST-9AUC-LCKL-7W2D-B5BTM',
-                amountNQT: '100000000',
-                frequency: 3600,
-                timeNext: 175564349,
-                requestProcessingTime: 7
-            };
+    describe('Subscriptions ', () => {
 
-            httpMock = HttpMockBuilder.create().onGetReply(200, mockedSubscription).build();
-            const service = createBurstService(httpMock, 'relPath');
-            const subscription = await getSubscription(service)('subscriptionId');
-            expect(subscription).toEqual(mockedSubscription);
-        });
-    });
+        const mockTransaction: TransactionId = {
+            transaction: 'transactionId',
+            fullHash: 'fullHash',
+        };
 
-    describe('createSubscription', () => {
-        it('should get subscription', () => {
-            throw new Error('implement me');
+        const mockBroadcastResponse = {
+            unsignedTransactionBytes: 'unsignedHexMessage'
+        };
+
+        beforeEach(() => {
+            jest.resetAllMocks();
+            // @ts-ignore
+            generateSignature = jest.fn(() => 'signature');
+            // @ts-ignore
+            verifySignature = jest.fn(() => true);
+            // @ts-ignore
+            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
         });
 
-    });
-
-    describe('cancelSubscription', () => {
-        it('should get subscription', () => {
-            throw new Error('implement me');
+        afterEach(() => {
+            // @ts-ignore
+            httpMock.reset();
         });
-    });
 
+
+        describe('getSubscription', () => {
+            it('should get subscription', async () => {
+                const mockedSubscription = {
+                    id: '11351503202575283428',
+                    sender: '6502115112683865257',
+                    senderRS: 'BURST-K37B-9V85-FB95-793HN',
+                    recipient: '11089308770178933578',
+                    recipientRS: 'BURST-9AUC-LCKL-7W2D-B5BTM',
+                    amountNQT: '100000000',
+                    frequency: 3600,
+                    timeNext: 175564349,
+                    requestProcessingTime: 7
+                };
+
+                httpMock = HttpMockBuilder.create().onGetReply(200, mockedSubscription).build();
+                const service = createBurstService(httpMock, 'relPath');
+                const subscription = await getSubscription(service)('subscriptionId');
+                expect(subscription).toEqual(mockedSubscription);
+            });
+        });
+
+        describe('createSubscription', () => {
+            it('should create subscription', async () => {
+                httpMock = HttpMockBuilder.create()
+                    // tslint:disable:max-line-length
+                    .onPostReply(200, mockBroadcastResponse,
+                        'relPath?requestType=sendMoneySubscription&amountNQT=2000&frequency=3600&publicKey=senderPublicKey&recipient=recipientId&feeNQT=1000&deadline=1440')
+                    .onPostReply(200, mockTransaction.transaction,
+                        'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+                    .build();
+
+                const service = createBurstService(httpMock, 'relPath');
+
+                const transactionId = await createSubscription(service)({
+                    amountPlanck: '2000',
+                    feePlanck: '1000',
+                    frequency: 3600,
+                    recipientId: 'recipientId',
+                    senderPublicKey: 'senderPublicKey',
+                    senderPrivateKey: 'senderPrivateKey',
+                });
+                expect(transactionId).toBe('transactionId');
+                expect(generateSignature).toBeCalledTimes(1);
+                expect(verifySignature).toBeCalledTimes(1);
+                expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+            });
+
+        });
+
+        describe('cancelSubscription', () => {
+            it('should get subscription', async () => {
+                httpMock = HttpMockBuilder.create()
+                    // tslint:disable:max-line-length
+                    .onPostReply(200, mockBroadcastResponse,
+                        'relPath?requestType=subscriptionCancel&subscription=subscriptionId&publicKey=senderPublicKey&feeNQT=1000&deadline=1440')
+                    .onPostReply(200, mockTransaction.transaction,
+                        'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
+                    .build();
+
+                const service = createBurstService(httpMock, 'relPath');
+
+                const transactionId = await cancelSubscription(service)({
+                    subscriptionId: 'subscriptionId',
+                    feePlanck: '1000',
+                    senderPublicKey: 'senderPublicKey',
+                    senderPrivateKey: 'senderPrivateKey',
+                });
+                expect(transactionId).toBe('transactionId');
+                expect(generateSignature).toBeCalledTimes(1);
+                expect(verifySignature).toBeCalledTimes(1);
+                expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+            });
+        });
+
+    })
 });
