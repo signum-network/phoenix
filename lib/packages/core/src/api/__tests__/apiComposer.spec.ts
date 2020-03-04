@@ -9,17 +9,27 @@ import {suggestFee} from '../factories/network/suggestFee';
 import {broadcastTransaction} from '../factories/transaction/broadcastTransaction';
 import {getTransaction} from '../factories/transaction/getTransaction';
 import {sendTextMessage} from '../factories/message/sendTextMessage';
-import {getAccountTransactions} from '../factories/account/getAccountTransactions';
-import {getUnconfirmedAccountTransactions} from '../factories/account/getUnconfirmedAccountTransactions';
-import {generateSendTransactionQRCode} from '../factories/account/generateSendTransactionQRCode';
-import {getAccountBalance} from '../factories/account/getAccountBalance';
-import {getAccountBlocks} from '../factories/account/getAccountBlocks';
-import {getAccountBlockIds} from '../factories/account/getAccountBlockIds';
-import {generateSendTransactionQRCodeAddress} from '../factories/account/generateSendTransactionQRCodeAddress';
+import {
+    generateSendTransactionQRCode,
+    generateSendTransactionQRCodeAddress,
+    getAccountBalance,
+    getAccountBlockIds,
+    getAccountBlocks,
+    getAccountTransactions,
+    getUnconfirmedAccountTransactions,
+    getAccountSubscriptions,
+    getSubscriptionsToAccount,
+} from '../factories/account';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
-import {getAllContractIds, getContract} from '../factories/contract';
-import {getContractsByAccount} from '../../../out/api/factories/contract';
-import {sendAmount, sendAmountToSingleRecipient, sendAmountToMultipleRecipients, sendSameAmountToMultipleRecipients} from '../factories/transaction';
+import {getAllContractIds, getContract, getContractsByAccount} from '../factories/contract';
+import {
+    cancelSubscription,
+    createSubscription,
+    sendAmount,
+    sendAmountToMultipleRecipients,
+    sendAmountToSingleRecipient,
+    sendSameAmountToMultipleRecipients
+} from '../factories/transaction';
 import {sendEncryptedTextMessage} from '../factories/message';
 import {getAsset} from '../factories/asset/getAsset';
 import {getAllAssets} from '../factories/asset';
@@ -111,6 +121,8 @@ describe('ApiComposer', () => {
                 sendAmountToSingleRecipient,
                 sendAmountToMultipleRecipients,
                 sendSameAmountToMultipleRecipients,
+                createSubscription,
+                cancelSubscription
             })
             .compose();
 
@@ -122,6 +134,8 @@ describe('ApiComposer', () => {
         expect(api.transaction.sendAmountToSingleRecipient).toBeDefined();
         expect(api.transaction.sendAmountToMultipleRecipients).toBeDefined();
         expect(api.transaction.sendSameAmountToMultipleRecipients).toBeDefined();
+        expect(api.transaction.createSubscription).toBeDefined();
+        expect(api.transaction.cancelSubscription).toBeDefined();
     });
 
     it('should compose message Api', () => {
@@ -148,6 +162,8 @@ describe('ApiComposer', () => {
                 getAccountBalance,
                 generateSendTransactionQRCode,
                 generateSendTransactionQRCodeAddress,
+                getAccountSubscriptions,
+                getSubscriptionsToAccount,
             })
             .compose();
 
@@ -158,6 +174,8 @@ describe('ApiComposer', () => {
         expect(api.account.getAccountBalance).toBeDefined();
         expect(api.account.generateSendTransactionQRCode).toBeDefined();
         expect(api.account.generateSendTransactionQRCodeAddress).toBeDefined();
+        expect(api.account.getAccountSubscriptions).toBeDefined();
+        expect(api.account.getSubscriptionsToAccount).toBeDefined();
 
     });
 
@@ -221,10 +239,10 @@ describe('ApiComposer', () => {
         expect(api.account.generateSendTransactionQRCode).toBeDefined();
         expect(api.account.generateSendTransactionQRCodeAddress).toBeDefined();
 
-       expect(api).toBeDefined();
-       expect(api.message).toBeDefined();
-       expect(api.message.sendTextMessage).toBeDefined();
+        expect(api).toBeDefined();
+        expect(api.message).toBeDefined();
+        expect(api.message.sendTextMessage).toBeDefined();
 
-   });
+    });
 
 });
