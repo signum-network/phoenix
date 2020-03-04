@@ -14,6 +14,15 @@ ___
     - `callContractMethod`
     - `publishContract`
 
+- added new methods to transaction Api
+    - `createSubscription`
+    - `cancelSubscription`
+    - `getSubscription`
+
+- added new methods to account Api
+    - `getAccountSubscriptions`
+    - `getSubscriptionsToAccount`
+
 ## 0.4.3
 ___
 __Breaking Changes__
