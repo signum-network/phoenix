@@ -23,8 +23,6 @@ export const cancelSubscription = (service: BurstService):
         let parameters = {
             subscription: args.subscriptionId,
             publicKey: args.senderPublicKey,
-            recipient: args.recipientId,
-            recipientPublicKey: args.recipientPublicKey || undefined,
             feeNQT: args.feePlanck,
             deadline: args.deadline || DefaultDeadline
         };

@@ -2,11 +2,14 @@ import {convertNQTStringToNumber} from '@burstjs/util';
 import {loadEnvironment} from './helpers/environment';
 import {getAccountIdFromPassphrase} from './helpers/account';
 import {BurstService} from '../../../service/burstService';
-import {getAccountTransactions} from '../../factories/account/getAccountTransactions';
-import {getUnconfirmedAccountTransactions} from '../../factories/account/getUnconfirmedAccountTransactions';
-import {getAccountBalance} from '../../factories/account/getAccountBalance';
 import {TransactionType} from '../../../constants/transactionType';
 import {TransactionPaymentSubtype} from '../../../constants';
+import {
+    getAccountBalance,
+    getAccountSubscriptions,
+    getAccountTransactions,
+    getUnconfirmedAccountTransactions
+} from '../../factories/account';
 
 const environment = loadEnvironment();
 
@@ -88,4 +91,17 @@ describe(`[E2E] Account Api`, () => {
             expect(c(balance.unconfirmedBalanceNQT)).toBeGreaterThan(1);
         });
     });
+
+    describe('getAccountSubscriptions', () => {
+        it('should getAccountTransactions', async () => {
+            const subscriptionList = await getAccountSubscriptions(service)(accountId);
+            expect(subscriptionList).not.toBeUndefined();
+            const {subscriptions} = subscriptionList;
+            expect(subscriptions.length).toBeGreaterThanOrEqual(0);
+            if (subscriptions.length > 0) {
+                expect(subscriptions[0].id).toBeDefined();
+            }
+        });
+    });
+
 });
