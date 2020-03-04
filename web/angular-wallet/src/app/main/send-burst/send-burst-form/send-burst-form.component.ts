@@ -41,7 +41,7 @@ const isNotEmpty = (value: string) => value && value.length > 0;
   templateUrl: './send-burst-form.component.html',
   styleUrls: ['./send-burst-form.component.scss']
 })
-export class SendBurstFormComponent extends UnsubscribeOnDestroy implements AfterViewInit {
+export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
   @ViewChild('sendBurstForm', { static: true }) public sendBurstForm: NgForm;
   @ViewChild('amount', { static: true }) public amount: string;
   @ViewChild('message', { static: true }) public message: string;
@@ -81,6 +81,12 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements Afte
           this.language = language;
         }
       );
+  }
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.fee = convertNQTStringToNumber(this.fees['standard'].toString()).toString();
+    });
   }
 
   ngAfterViewInit(): void {
