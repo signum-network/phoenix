@@ -57,9 +57,9 @@ export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit {
       .pipe(
         takeUntil(this.unsubscribeAll)
       )
-      .subscribe(({price_btc, price_usd}) => {
-        this.priceBtc = parseFloat(price_btc);
-        this.priceUsd = parseFloat(price_usd);
+      .subscribe((data) => {
+        this.priceBtc = data.BTC.PRICE;
+        this.priceUsd = data.USD.PRICE;
       });
 
   }
@@ -68,12 +68,12 @@ export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit {
     this.account = account;
     this.dataSource = new MatTableDataSource<Transaction>();
     this.dataSource.data = account.transactions.concat().splice(0, 10);
-  };
+  }
 
   closeWelcomeNotification = () => {
     this.settings.welcomeMessageHiddenFrom.push(this.account.account);
     this.storeService.saveSettings(this.settings);
-  };
+  }
 
   async activateAccount(): Promise<void> {
     try {
