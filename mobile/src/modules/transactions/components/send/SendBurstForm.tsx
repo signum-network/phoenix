@@ -15,8 +15,7 @@ import {
   StyleSheet,
   TextInputEndEditingEventData,
   TouchableOpacity,
-  View,
-  Alert
+  View
 } from 'react-native';
 import SwipeButton from 'rn-swipe-button';
 import { actionIcons, transactionIcons } from '../../../../assets/icons';
