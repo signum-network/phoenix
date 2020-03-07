@@ -14,7 +14,7 @@ import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
 import { core } from '../../../core/translations';
 import { HomeStackedAreaChart } from '../../home/components/HomeStackedAreaChart';
-import { loadPriceApiData, selectCurrency } from '../../price-api/store/actions';
+import { loadHistoricalPriceApiData, selectCurrency } from '../../price-api/store/actions';
 import { PriceInfoReduxState, PriceType, PriceTypeStrings } from '../../price-api/store/reducer';
 import { AccountsList } from '../components/AccountsList';
 import { AccountsListHeader } from '../components/AccountsListHeader';
@@ -158,7 +158,7 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   handleAccountsListRefresh = () => {
-    this.props.dispatch(loadPriceApiData());
+    this.props.dispatch(loadHistoricalPriceApiData());
     return this.updateAllAccounts();
   }
 

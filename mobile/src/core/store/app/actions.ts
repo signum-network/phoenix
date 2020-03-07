@@ -4,7 +4,7 @@ import { loadAccounts,
   loadPasscodeEnteredTime
 } from '../../../modules/auth/store/actions';
 import { getSuggestedFees } from '../../../modules/network/store/actions';
-import { loadHistoricalPriceApiData, loadPriceApiData } from '../../../modules/price-api/store/actions';
+import { loadHistoricalPriceApiData } from '../../../modules/price-api/store/actions';
 import { AppSettings } from '../../interfaces';
 import { getAppSettings, saveAppSettings } from '../../utils/keychain';
 import { createAction, createActionFn } from '../../utils/store';
@@ -25,7 +25,6 @@ export const loadApp = createActionFn<void, Promise<void>>(
       dispatch(loadAppSettings()),
       dispatch(loadAgreeToTerms())
     ]);
-    dispatch(loadPriceApiData());
     dispatch(loadHistoricalPriceApiData());
     dispatch(getSuggestedFees());
     dispatch(actions.appLoaded());
