@@ -14,7 +14,7 @@ import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 
 export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnInit {
   public isLoading = true;
-  private tickerData: MarketInfoCryptoCompare; // = new MarketInfoCryptoCompareImpl();
+  private tickerData: MarketInfoCryptoCompare;
   private locale: any;
 
   constructor(private marketService: MarketService, private storeService: StoreService) {
@@ -27,7 +27,6 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
           this.locale = language;
         }
       );
-
   }
 
   public ngOnInit(): void {
