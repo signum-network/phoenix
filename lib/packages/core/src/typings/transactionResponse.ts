@@ -14,3 +14,5 @@ export interface TransactionResponse {
     readonly requestProcessingTime: number;
     readonly transactionBytes: string;
 }
+
+

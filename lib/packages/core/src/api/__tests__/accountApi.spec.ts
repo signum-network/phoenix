@@ -14,9 +14,10 @@ import {AliasList} from '../../typings/aliasList';
 import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {convertNumberToNQTString} from '@burstjs/util';
+import {getAccountSubscriptions, getSubscriptionsToAccount} from '../factories/account';
 
 
-describe('Account Api', () => {
+describe('AccountApi', () => {
 
     let httpMock: Http;
 
@@ -412,7 +413,7 @@ describe('Account Api', () => {
     });
 
     describe('getAccountBlocks()', () => {
-
+        // FIXME: The mocked result is not according the BRS HTTP API!
         it('should getAccountBlocks', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, {
                 blocks: [{'block': '1798696848813217050'}]
@@ -427,6 +428,60 @@ describe('Account Api', () => {
             const service = createBurstService(httpMock);
             const blockResponse = await getAccountBlockIds(service)(1);
             expect(blockResponse.blockIds[0]).toBe('123');
+        });
+
+    });
+
+    describe('getAccountSubscriptions()', () => {
+
+        const mockedSubscriptions = {
+            'subscriptions': [
+                {
+                    'id': '11351503202575283428',
+                    'sender': '6502115112683865257',
+                    'senderRS': 'BURST-K37B-9V85-FB95-793HN',
+                    'recipient': '11089308770178933578',
+                    'recipientRS': 'BURST-9AUC-LCKL-7W2D-B5BTM',
+                    'amountNQT': '100000000',
+                    'frequency': 3600,
+                    'timeNext': 175560749
+                }
+            ],
+            'requestProcessingTime': 17
+        };
+
+        it('should get sender subscriptions', async () => {
+            httpMock = HttpMockBuilder.create().onGetReply(200, mockedSubscriptions).build();
+            const service = createBurstService(httpMock);
+            const subscriptionList = await getAccountSubscriptions(service)('1');
+            expect(subscriptionList.subscriptions).toEqual(mockedSubscriptions.subscriptions);
+        });
+
+    });
+
+    describe('getSubscriptionsToAccount()', () => {
+
+        const mockedSubscriptions = {
+            'subscriptions': [
+                {
+                    'id': '11351503202575283428',
+                    'sender': '6502115112683865257',
+                    'senderRS': 'BURST-K37B-9V85-FB95-793HN',
+                    'recipient': '11089308770178933578',
+                    'recipientRS': 'BURST-9AUC-LCKL-7W2D-B5BTM',
+                    'amountNQT': '100000000',
+                    'frequency': 3600,
+                    'timeNext': 175560749
+                }
+            ],
+            'requestProcessingTime': 17
+        };
+
+        it('should get receiver subscriptions', async () => {
+            httpMock = HttpMockBuilder.create().onGetReply(200, mockedSubscriptions).build();
+            const service = createBurstService(httpMock);
+            const subscriptionList = await getSubscriptionsToAccount(service)('1');
+            expect(subscriptionList.subscriptions).toEqual(mockedSubscriptions.subscriptions);
         });
 
     });

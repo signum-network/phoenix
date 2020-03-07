@@ -22,17 +22,21 @@ import {
     getUnconfirmedAccountTransactions,
     setAccountInfo,
     setAlias,
-    setRewardRecipient
+    setRewardRecipient,
+    getAccountSubscriptions,
+    getSubscriptionsToAccount,
 } from './factories/account';
 import {getAliasById, getAliasByName} from './factories/alias';
 import {getAllContractIds, getContract, getContractsByAccount, publishContract, callContractMethod} from './factories/contract';
 import {
     broadcastTransaction,
+    cancelSubscription,
+    createSubscription,
     getTransaction,
     sendAmount,
     sendAmountToMultipleRecipients,
     sendAmountToSingleRecipient,
-    sendSameAmountToMultipleRecipients
+    sendSameAmountToMultipleRecipients,
 } from './factories/transaction';
 import {getAllAssets, getAsset} from './factories/asset';
 import {AxiosRequestConfig} from 'axios';
@@ -103,6 +107,8 @@ export function composeApi(settings: ApiSettings): Api {
             sendAmountToSingleRecipient,
             sendAmountToMultipleRecipients,
             sendSameAmountToMultipleRecipients,
+            createSubscription,
+            cancelSubscription,
         })
         .withMessageApi({
             sendTextMessage,
@@ -123,6 +129,8 @@ export function composeApi(settings: ApiSettings): Api {
             getAccountBlockIds,
             setAccountInfo,
             setRewardRecipient,
+            getAccountSubscriptions,
+            getSubscriptionsToAccount,
         }).withAliasApi({
             getAliasByName,
             getAliasById,

@@ -1,9 +1,10 @@
 /** @module core */
 
-export * from './sendAmountArgs';
-export * from './sendMessageArgs';
-export * from './sendEncryptedMessageArgs';
+export * from './callContractMethodArgs';
+export * from './cancelSubscriptionArgs';
+export * from './createSubscriptionArgs';
 export * from './getAccountTransactionsArgs';
 export * from './publishContractArgs';
-export * from './callContractMethodArgs';
-
+export * from './sendAmountArgs';
+export * from './sendEncryptedMessageArgs';
+export * from './sendMessageArgs';

@@ -1,7 +1,10 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
-import {getTransaction} from '../../factories/transaction/getTransaction';
+import {cancelSubscription, createSubscription, getTransaction} from '../../factories/transaction';
 import {HttpError} from '@burstjs/http';
+import {convertNumberToNQTString} from '@burstjs/util';
+import {FeeQuantPlanck} from '../../../constants';
+import {generateMasterKeys, getAccountIdFromPublicKey} from '@burstjs/crypto';
 
 
 const environment = loadEnvironment();
@@ -14,6 +17,11 @@ describe('[E2E] Transaction Api', () => {
         nodeHost: environment.testNetHost,
         apiRootUrl: environment.testNetApiPath
     });
+
+    const senderKeys = generateMasterKeys(environment.testPassphrase);
+    const recipientKeys = generateMasterKeys(environment.testRecipientPassphrase);
+    const recipientId = getAccountIdFromPublicKey(recipientKeys.publicKey);
+
 
     it('should getTransaction', async () => {
         const transaction = await getTransaction(service)(environment.testTransactionId);
@@ -43,6 +51,23 @@ describe('[E2E] Transaction Api', () => {
             }));
 
         }
+    });
+
+    describe('Subscription', () => {
+        it('should createSubscription', async () => {
+            const Day = 60 * 60 * 24;
+            const subscription = await createSubscription(service)({
+                amountPlanck: convertNumberToNQTString(1),
+                frequency: Day * 30,
+                feePlanck: `${FeeQuantPlanck}`,
+                deadline: 24,
+                recipientId: environment.testRecipientId,
+                senderPublicKey: senderKeys.publicKey,
+                senderPrivateKey: senderKeys.signPrivateKey,
+            });
+
+            expect(subscription.transaction).toBeDefined();
+        });
     });
 
 });

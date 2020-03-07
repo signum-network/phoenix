@@ -6,3 +6,6 @@ export * from './sendAmount';
 export * from './sendAmountToSingleRecipient';
 export * from './sendSameAmountToMultipleRecipients';
 export * from './sendAmountToMultipleRecipients';
+export * from './createSubscription';
+export * from './cancelSubscription';
+export * from './getSubscription';

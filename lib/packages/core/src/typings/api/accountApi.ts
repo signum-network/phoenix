@@ -1,6 +1,7 @@
 /** @module core.api */
 
 import {TransactionList} from '../transactionList';
+import {SubscriptionList} from '../subscriptionList';
 import {UnconfirmedTransactionList} from '../unconfirmedTransactionList';
 import {Balance} from '../balance';
 import {AliasList} from '../aliasList';
@@ -166,4 +167,22 @@ export interface AccountApi {
      * @return The Transaction ID
      */
     setRewardRecipient: ( args: SetRewardRecipientArgs ) => Promise<TransactionId>;
+
+
+    /**
+     * Gets a list of subscriptions for this account (sender)
+     *
+     * @param accountId The sender account Id
+     * @return List of Subscriptions
+     */
+    getAccountSubscriptions: (accountId: string) => Promise<SubscriptionList>;
+
+    /**
+     * Gets a list of subscriptions paying to the given account (recipient)
+     *
+     * @param accountId The recipient account Id
+     * @return List of Subscriptions
+     */
+    getSubscriptionsToAccount: (accountId: string) => Promise<SubscriptionList>;
+
 }
