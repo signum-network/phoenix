@@ -36,7 +36,7 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
         takeUntil(this.unsubscribeAll)
       )
       .subscribe(tickerData => {
-        // this.isLoading = false;
+        this.isLoading = false;
         this.tickerData = tickerData;
       });
   }
