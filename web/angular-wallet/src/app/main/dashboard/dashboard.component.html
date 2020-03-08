@@ -6,49 +6,47 @@
                      [priceEur]="priceEur"
   ></app-balance-chart>
 
-  <div class="content">
-
-    <div class="mr-lg-32" fxFlex="100" *ngIf="account">
-
-      <mat-toolbar-row class="warning" *ngIf="!account.confirmed && account.balanceNQT">
-        <mat-icon>warning</mat-icon>
-        <span>{{ 'no_public_key_warning' | i18n }}</span>
-        <button class="activate" mat-raised-button (click)="activateAccount()"
-                disabled="{{isActivating}}">{{'activate' | i18n}}</button>
-      </mat-toolbar-row>
-
-      <div class="widget" fxFlex="100" fxFlex.gt-sm="40">
-        <div class="fuse-card auto-width mb-32 mr-32" [ngClass.gt-sm]="'mb-0'">
-          <div class="p-16" fxLayout="row wrap" fxLayoutAlign="start end">
-            <div style="width: 100%">
-              <div class="h3 secondary-text">{{ 'market_info' | i18n }}</div>
-              <app-market-overview></app-market-overview>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="widget" fxFlex="100" fxFlex.gt-sm="60">
-        <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
-          <div class="p-16 recent-transactions" fxLayout="column wrap" fxLayoutAlign="start">
-            <div class="h3 secondary-text">{{ 'recent_transactions' | i18n }}</div>
-            <app-transaction-table *ngIf="dataSource && dataSource.data.length"
-                                   [displayedColumns]="['transaction_id', 'attachment', 'timestamp', 'amount', 'account']"
-                                   [dataSource]="dataSource"
-                                   [account]="account"
-                                   [paginationEnabled]="false"
-            ></app-transaction-table>
-            <div *ngIf="!dataSource || !account.transactions.length">
-              <div>
-                {{ 'no_transactions_yet' | i18n }}
-              </div>
+  <div class="body">
+    <mat-grid-list cols="12" rowHeight="64px">
+      <mat-grid-tile colspan="9" rowspan="11">
+        <div class="fuse-card auto-width mr-8">
+          <div class="h3 secondary-text">{{ 'recent_transactions' | i18n }}</div>
+          <app-transaction-table *ngIf="dataSource && dataSource.data.length"
+                                 [dataSource]="dataSource"
+                                 [account]="account"
+                                 [paginationEnabled]="false"
+          ></app-transaction-table>
+          <div *ngIf="!dataSource || !account.transactions.length">
+            <div>
+              {{ 'no_transactions_yet' | i18n }}
             </div>
           </div>
           <a *ngIf="dataSource && dataSource.data.length"
              class="p-16" fxLayoutAlign="end"
              [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</a>
         </div>
-      </div>
-    </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="3" rowspan="4">
+        <div class="fuse-card ml-8">
+            <div class="h3 secondary-text mb-8">Market Performance</div>
+            <app-performance></app-performance>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="3" rowspan="5">
+        <div class="fuse-card ml-8">
+            <div class="h3 secondary-text">{{ 'market_info' | i18n }}</div>
+            <app-market-overview></app-market-overview>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <!--    <div class="mr-lg-32" fxFlex="100" *ngIf="account">-->
+    <!--      <mat-toolbar-row class="warning" *ngIf="!account.confirmed && account.balanceNQT">-->
+    <!--        <mat-icon>warning</mat-icon>-->
+    <!--        <span>{{ 'no_public_key_warning' | i18n }}</span>-->
+    <!--        <button class="activate" mat-raised-button (click)="activateAccount()"-->
+    <!--                disabled="{{isActivating}}">{{'activate' | i18n}}</button>-->
+    <!--      </mat-toolbar-row>-->
+    <!--    </div>-->
   </div>
 </div>

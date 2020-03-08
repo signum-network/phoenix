@@ -1,0 +1,30 @@
+<ng-container *ngIf="isLoading">
+  <div class="skeleton-loader">
+    <ngx-skeleton-loader count="1" [theme]="{height: '32px', 'margin-top':'1rem'}"></ngx-skeleton-loader>
+    <ngx-skeleton-loader count="5"></ngx-skeleton-loader>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!isLoading">
+  <div class="performance">
+    <section class="sparkline">
+      <small>{{'price_chart_7d' | i18n}}</small>
+      <img matTooltip="{{'price_chart_7d' | i18n}}" class="w-80-p" alt="sparkline"
+           src="https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/573.png">
+    </section>
+    <section class="fcas">
+      <small class="label mb-8">Asset Score</small>
+      <mat-chip-list>
+        <mat-chip matTooltip="Fundamental Crypto Asset Score (FCAS)" [style.background-color]="getRankingColor()"
+                  matChipTrailingIcon
+                  (click)="openCMCRating()"
+        >
+          <h1>{{fcasData.grade}}</h1>
+          <small class="fcas-point">{{fcasData.point_change}}</small>
+          <mat-icon *ngIf="fcasData.point_change>=0">arrow_drop_up</mat-icon>
+          <mat-icon *ngIf="fcasData.point_change<0">arrow_drop_down</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </section>
+  </div>
+</ng-container>

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ElectronService} from 'ngx-electron';
+import OpenExternalOptions = Electron.OpenExternalOptions;
 
 
 @Injectable({
@@ -29,6 +30,14 @@ export class AppService {
         title: 'Phoenix'
       });
 
+  }
+
+  public openInBrowser(url: string): Promise<void> {
+    if (!this.electronService.isElectronApp) {
+      console.log('Opening url:', url);
+      return;
+    }
+    return this.electronService.shell.openExternal(url);
   }
 
   public onIpcMessage(eventName: string, handler: (payload: any) => void): void {
