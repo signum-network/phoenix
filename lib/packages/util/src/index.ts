@@ -20,3 +20,5 @@ export * from './parseDeeplink';
 export * from './sumNQTStringToNumber';
 export * from './typings';
 export * from './constants';
+export * from './burstTime';
+export * from './burstValue';
