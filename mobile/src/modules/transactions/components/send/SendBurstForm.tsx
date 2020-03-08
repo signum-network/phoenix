@@ -2,9 +2,11 @@ import { Account, SuggestedFees } from '@burstjs/core';
 import {
   convertAddressToNumericId,
   convertNQTStringToNumber,
+  convertNumberToNQTString,
   convertNumericIdToAddress,
   isBurstAddress,
-  isValid
+  isValid,
+  sumNQTStringToNumber
 } from '@burstjs/util';
 import { last } from 'lodash';
 import React from 'react';
@@ -24,6 +26,7 @@ import { BSelect, SelectItem } from '../../../../core/components/base/BSelect';
 import { Text as BText } from '../../../../core/components/base/Text';
 import { i18n } from '../../../../core/i18n';
 import { Colors } from '../../../../core/theme/colors';
+import { FontSizes } from '../../../../core/theme/sizes';
 import { amountToString } from '../../../../core/utils/numbers';
 import { SendMoneyPayload } from '../../store/actions';
 import { Recipient, RecipientType, RecipientValidationStatus } from '../../store/utils';
@@ -73,7 +76,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10
   },
-  cameraIcon: {
+  inputIcon: {
     marginTop: 3,
     marginRight: 2,
     width: 20,
@@ -85,6 +88,15 @@ const styles = StyleSheet.create({
   },
   swipeButtonContainer: {
     marginTop: 20
+  },
+  chevron: {
+    width: 25,
+    height: 25,
+    marginTop: 3
+  },
+  balance: {
+    marginTop: 3,
+    marginRight: 5
   }
 });
 
@@ -262,6 +274,19 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
     this.setState({ fee: amountToString(fee) });
   }
 
+  onSpendAll = () => {
+    if (this.state.sender) {
+      // @ts-ignore - old version of TS being dumb with nulls
+      const maxAmount = sumNQTStringToNumber(this.state.sender.balanceNQT || 0,
+        `-${convertNumberToNQTString(+this.state.fee || 0)}`);
+      if (Math.sign(maxAmount) !== -1) {
+        this.handleAmountChange(maxAmount.toString());
+      } else {
+        this.handleAmountChange('0');
+      }
+    }
+  }
+
   handleSubmit = () => {
     const { recipient, amount, fee, sender, message, messageIsText, encrypt, immutable } = this.state;
     const address = recipient.addressRS;
@@ -278,7 +303,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
         immutable,
         encrypt
       });
-      this.setState({showSubmitButton: false});
+      this.setState({ showSubmitButton: false });
     }
   }
 
@@ -289,12 +314,32 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
     // @ts-ignore
     const senderRS = sender && sender.accountRS || null;
 
+    const SenderRightIcons = (
+      <View style={{ flexDirection: 'row' }}>
+        {this.state.sender &&
+          <View style={styles.balance}>
+            <BText bebasFont color={Colors.GREY_LIGHT}>
+             Ƀ {convertNQTStringToNumber(this.state.sender.balanceNQT).toString()}
+            </BText>
+          </View>}
+        <Image source={actionIcons.chevronDown} style={styles.chevron} />
+      </View>
+    );
+
     const RecipientRightIcons = (
       <View style={{ flexDirection: 'row' }}>
         {recipient.addressRaw !== burstPrefix &&
           <AccountStatusPill address={recipient.addressRS} type={recipient.type} status={recipient.status} />}
         <TouchableOpacity onPress={this.props.onCameraIconPress}>
-          <Image source={transactionIcons.camera} style={styles.cameraIcon} />
+          <Image source={transactionIcons.camera} style={styles.inputIcon} />
+        </TouchableOpacity>
+      </View>
+    );
+
+    const AmountRightIcons = (
+      <View style={{ flexDirection: 'row' }}>
+        <TouchableOpacity onPress={this.onSpendAll}>
+          <Image source={transactionIcons.sendAll} style={styles.inputIcon} />
         </TouchableOpacity>
       </View>
     );
@@ -308,6 +353,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             onChange={this.handleChangeFromAccount}
             title={i18n.t(transactions.screens.send.from)}
             placeholder={i18n.t(transactions.screens.send.selectAccount)}
+            rightElement={SenderRightIcons}
           />
           <BInput
             autoCapitalize='characters'
@@ -326,6 +372,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             editable={!this.state.immutable}
             title={i18n.t(transactions.screens.send.amountNQT)}
             placeholder={'0'}
+            rightIcons={AmountRightIcons}
           />
           <BInput
             value={fee}
