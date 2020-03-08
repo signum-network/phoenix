@@ -9,8 +9,8 @@ export const environment = {
   version,
   defaultNode: 'http://localhost:4200',
   market: {
-    tickerUrl: 'https://api.coinmarketcap.com/v1/ticker/burst/',
-    tickerInterval: 30 * 1000
+    tickerUrl: 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BURST&tsyms=BTC,USD,EUR',
+    tickerInterval: 60 * 1000
   },
   activatorServiceUrl: 'https://burst-account-activator-testnet.ohager.now.sh',
 };

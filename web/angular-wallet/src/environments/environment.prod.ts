@@ -6,8 +6,8 @@ export const environment = {
   version,
   defaultNode: 'https://wallet.burst-alliance.org:8125',
   market: {
-    tickerUrl: 'https://api.coinmarketcap.com/v1/ticker/burst/',
-    tickerInterval: 30 * 1000
+    tickerUrl: 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BURST&tsyms=BTC,USD,EUR',
+    tickerInterval: 60 * 1000
   },
   activatorServiceUrl: 'https://burst-account-activator.ohager.now.sh',
 };

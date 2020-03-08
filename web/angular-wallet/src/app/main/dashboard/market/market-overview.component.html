@@ -1,6 +1,7 @@
 <ng-container *ngIf="isLoading">
-  <div fxLayoutAlign="center">
-    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  <div class="skeleton-loader">
+    <ngx-skeleton-loader count="1" [theme]="{height: '32px', 'margin-top':'1rem'}"></ngx-skeleton-loader>
+    <ngx-skeleton-loader count="5"></ngx-skeleton-loader>
   </div>
 </ng-container>
 
@@ -47,21 +48,6 @@
     </mat-list-item>
     <mat-list-item>
       <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
-        <h3 class="font-weight-700" fxLayoutAlign="center">
-          {{"available_supply" | i18n}}
-        </h3>
-        <div fxLayout="row" fxLayoutAlign="start end">
-          <span>
-            {{getAvailableSupply() | burstAmount}}
-          </span>
-          <span class="font-size-10">
-            &nbsp;({{getRelativeSupply()}})
-          </span>
-        </div>
-      </div>
-    </mat-list-item>
-    <mat-list-item>
-      <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
         <h3 class="font-weight-700">
           {{"market_capitalization" | i18n}}
         </h3>
@@ -77,16 +63,6 @@
         </h3>
         <div [ngClass]="{fg_green: !isChangeNegative(), fg_red: isChangeNegative()}">
           {{getYesterDaysChange()}}
-        </div>
-      </div>
-    </mat-list-item>
-    <mat-list-item>
-      <div matLine fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
-        <h3 class="font-weight-700">
-          {{"market_rank" | i18n}}
-        </h3>
-        <div>
-          {{getMarketRank()}}
         </div>
       </div>
     </mat-list-item>
