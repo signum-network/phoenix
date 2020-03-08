@@ -80,15 +80,15 @@
     "currency": {
       "BTC": {
         "name": "BTC",
-        "value": "{{value}} BTC"
+        "value": "₿ {{value}}"
       },
       "BURST": {
         "name": "BURST",
-        "value": "{{value}} BURST"
+        "value": "Ƀ {{value}}"
       },
       "USD": {
         "name": "USD",
-        "value": "{{value}} USD"
+        "value": "${{value}}"
       }
     },
     "dates": {
@@ -153,7 +153,7 @@
         "title": "Отправить",
         "button": "Проведите, чтобы отправить",
         "to": "Аккаунт получателя",
-        "total": "Всего: {{value}} BURST",
+        "total": "Всего: Ƀ {{value}}",
         "noPublicKey": "Пожалуйста, подтвердите адрес перед отправкой.",
         "invalidAddress": "Этот адрес недействителен.",
         "zilOutage": "Невозможно получить из ZIL API.",
