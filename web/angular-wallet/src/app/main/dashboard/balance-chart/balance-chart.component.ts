@@ -36,7 +36,6 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
   }
 
   ngOnInit(): void {
-
     this.breakpointObserver
       .observe(Breakpoints.Handset)
       .pipe(takeUntil(this.unsubscribeAll))

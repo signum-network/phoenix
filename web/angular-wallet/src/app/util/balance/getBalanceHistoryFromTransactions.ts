@@ -1,8 +1,5 @@
-import {
-  Transaction,
-  getRecipientsAmount
-} from '@burstjs/core';
-import {BurstValue, convertNQTStringToNumber} from '@burstjs/util';
+import {getRecipientsAmount, Transaction} from '@burstjs/core';
+import {convertNQTStringToNumber} from '@burstjs/util';
 import {BalanceHistoryItem} from './typings';
 
 const isOwnTransaction = (accountId: string, transaction: Transaction): boolean => transaction.sender === accountId;
