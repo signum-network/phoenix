@@ -52,7 +52,7 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
   public getPriceUsd = (): string => `${this.asCurrency(this.tickerData.USD.PRICE, '1.0-6')} USD`;
   public get24hVolume = (): string => `${this.asCurrency(this.tickerData.USD.VOLUME24HOURTO)} USD`;
   public getMarketCap = (): string => `${this.asCurrency(this.tickerData.USD.MKTCAP)} USD`;
-  public getYesterDaysChange = (): string => `${this.asCurrency(this.tickerData.USD.CHANGEDAY)} %`;
-  public isChangeNegative = (): boolean => this.tickerData.USD.CHANGEDAY < 0;
+  public getYesterDaysChange = (): string => `${this.asCurrency(this.tickerData.USD.CHANGEPCTDAY)} %`;
+  public isChangeNegative = (): boolean => this.tickerData.USD.CHANGEPCTDAY < 0;
 
 }

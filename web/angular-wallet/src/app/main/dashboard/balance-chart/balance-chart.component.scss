@@ -1,0 +1,18 @@
+@import "src/@fuse/scss/fuse";
+
+#balance-diagram-charts-wrapper {
+  .balance-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+    @include media-breakpoint('xs') {
+      flex-direction: column;
+    }
+    .conversions {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+  }
+}

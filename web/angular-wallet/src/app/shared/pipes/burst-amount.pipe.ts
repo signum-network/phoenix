@@ -1,6 +1,7 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {I18nService} from '../../layout/components/i18n/i18n.service';
 import {formatBurstAmount} from '../../util/formatBurstAmount';
+import {convertNQTStringToNumber} from '@burstjs/util';
 
 @Pipe({
   name: 'burstAmount',
@@ -13,19 +14,22 @@ export class BurstAmountPipe implements PipeTransform {
   constructor(private i18nService: I18nService) {
   }
 
-  private static hasArgument(args: any[], argName: string): boolean {
-    return args.indexOf(argName) !== -1;
-  }
-
   private shouldUpdate(): boolean {
     return this.i18nService.currentLanguage.code !== this.cachedLanguageCode;
   }
 
-  transform(value: string | number, ...args: any[]): string {
+  transform(value: string | number,
+            inputType: 'planck' | 'burst' = 'burst',
+            isShortForm: boolean = false,
+            noUnit: boolean = false
+  ): string {
     if (this.shouldUpdate()) {
-      return formatBurstAmount(value, {
-        isShortForm: BurstAmountPipe.hasArgument(args, 'short'),
-        noUnit: BurstAmountPipe.hasArgument(args, 'no-unit'),
+
+      const v = inputType === 'planck' ? convertNQTStringToNumber(value.toString()) : value;
+
+      return formatBurstAmount(v, {
+        isShortForm,
+        noUnit,
         locale: this.i18nService.currentLanguage.code
       });
     }

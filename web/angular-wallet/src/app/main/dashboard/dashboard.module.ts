@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatSelectModule } from '@angular/material/select';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatToolbarModule} from '@angular/material/toolbar';
 import {ChartsModule} from 'ng2-charts';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {FuseSharedModule} from '@fuse/shared.module';
@@ -20,9 +20,7 @@ import {TransactionTableModule} from '../transactions/transaction-table/transact
 import {DashboardService} from './dashboard.service';
 import {DashboardComponent} from './dashboard.component';
 import {MarketModule} from './market/market.module';
-import {BalanceDiagramComponent} from './balance-diagram/balance-diagram.component';
-import {TooltipComponent} from './balance-diagram/tooltip/tooltip.component';
-import {BalanceComponent} from './balance/balance.component';
+import {BalanceChartComponent} from './balance-chart/balance-chart.component';
 import {MatCheckboxModule} from '@angular/material';
 import {AppSharedModule} from '../../shared/shared.module';
 
@@ -41,31 +39,29 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     DashboardComponent,
-    BalanceDiagramComponent,
-    TooltipComponent,
-    BalanceComponent
+    BalanceChartComponent,
   ],
-    imports: [
-        RouterModule.forChild(routes),
+  imports: [
+    RouterModule.forChild(routes),
 
-        MatButtonModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatMenuModule,
-        MatSelectModule,
-        MatTabsModule,
-        MatToolbarModule,
-        ChartsModule,
-        NgxChartsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatToolbarModule,
+    ChartsModule,
+    NgxChartsModule,
 
-        FuseSharedModule,
-        FuseWidgetModule,
-        I18nModule,
-        TransactionTableModule,
-        MarketModule,
-        MatCheckboxModule,
-        AppSharedModule,
-    ],
+    FuseSharedModule,
+    FuseWidgetModule,
+    I18nModule,
+    TransactionTableModule,
+    MarketModule,
+    MatCheckboxModule,
+    AppSharedModule,
+  ],
   providers: [
     DashboardService,
   ]

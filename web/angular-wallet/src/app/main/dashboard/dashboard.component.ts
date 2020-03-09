@@ -24,6 +24,7 @@ export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit {
   account: Account;
   priceBtc: number;
   priceUsd: number;
+  priceEur: number;
   settings: Settings;
 
   public dataSource: MatTableDataSource<Transaction>;
@@ -60,6 +61,7 @@ export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit {
       .subscribe((data) => {
         this.priceBtc = data.BTC.PRICE;
         this.priceUsd = data.USD.PRICE;
+        this.priceEur = data.EUR.PRICE;
       });
 
   }

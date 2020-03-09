@@ -1,7 +1,4 @@
-import {
-  Transaction,
-  getRecipientsAmount
-} from '@burstjs/core';
+import {getRecipientsAmount, Transaction} from '@burstjs/core';
 import {convertNQTStringToNumber} from '@burstjs/util';
 import {BalanceHistoryItem} from './typings';
 
