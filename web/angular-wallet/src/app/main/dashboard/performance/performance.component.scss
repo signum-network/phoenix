@@ -12,10 +12,17 @@
       justify-content: center;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
 
-      small {
+      small.label {
         color: darkgray;
+        margin-bottom: 8px;
+        align-self: flex-start;
+      }
+
+      img {
+        width: 80% !important;
+        max-width: 256px !important;
       }
 
       .fcas {
@@ -23,6 +30,12 @@
           cursor: pointer;
           margin: 16px;
           color: #444444;
+        }
+
+        &-body {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
         }
 
         &-point {

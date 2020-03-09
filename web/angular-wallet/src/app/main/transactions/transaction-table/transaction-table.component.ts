@@ -50,7 +50,6 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
     return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction);
   }
 
-
   public ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }

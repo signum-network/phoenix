@@ -7,14 +7,15 @@
   ></app-balance-chart>
 
   <div class="body">
-    <mat-grid-list cols="12" rowHeight="64px">
-      <mat-grid-tile colspan="9" rowspan="11">
+    <mat-grid-list [cols]="gridAttributes.columnCount" rowHeight="32px">
+      <mat-grid-tile [colspan]="gridAttributes.columnSpans.table" rowspan="21">
         <div class="fuse-card auto-width mr-8">
-          <div class="h3 secondary-text">{{ 'recent_transactions' | i18n }}</div>
+          <div class="h3 secondary-text mb-8">{{ 'recent_transactions' | i18n }}</div>
           <app-transaction-table *ngIf="dataSource && dataSource.data.length"
                                  [dataSource]="dataSource"
                                  [account]="account"
                                  [paginationEnabled]="false"
+                                 [displayedColumns]="gridAttributes.tableColumns"
           ></app-transaction-table>
           <div *ngIf="!dataSource || !account.transactions.length">
             <div>
@@ -26,15 +27,15 @@
              [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</a>
         </div>
       </mat-grid-tile>
-      <mat-grid-tile colspan="3" rowspan="4">
+      <mat-grid-tile [colspan]="gridAttributes.columnSpans.performance" rowspan="9">
         <div class="fuse-card ml-8">
-            <div class="h3 secondary-text mb-8">Market Performance</div>
+            <div class="h3 secondary-text mb-8">Coin Performance</div>
             <app-performance></app-performance>
         </div>
       </mat-grid-tile>
-      <mat-grid-tile colspan="3" rowspan="5">
+      <mat-grid-tile [colspan]="gridAttributes.columnSpans.market" rowspan="10">
         <div class="fuse-card ml-8">
-            <div class="h3 secondary-text">{{ 'market_info' | i18n }}</div>
+            <div class="h3 secondary-text ">{{ 'market_info' | i18n }}</div>
             <app-market-overview></app-market-overview>
         </div>
       </mat-grid-tile>
