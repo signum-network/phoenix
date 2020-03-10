@@ -91,7 +91,6 @@ export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit, 
     this.storeService.saveSettings(this.settings);
   }
 
-
   async activateAccount(): Promise<void> {
     try {
       this.isActivating = true;

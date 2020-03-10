@@ -6,6 +6,12 @@
     width: 100%;
     margin: 8px;
     padding: 16px;
+
+    @include media-breakpoint('xs') {
+      margin: 0 !important;
+      border-radius: 0 !important;
+    }
+
   }
 
   .body {
@@ -18,6 +24,10 @@
 
     mat-grid-list {
       height: 100%;
+      margin: 8px;
+      @include media-breakpoint('xs') {
+        margin: 0;
+      }
     }
   }
 

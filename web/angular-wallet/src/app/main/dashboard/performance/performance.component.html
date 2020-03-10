@@ -16,8 +16,9 @@
       <small class="label">Asset Score</small>
       <div class="fcas-body">
         <mat-chip-list class="mr-16">
-          <mat-chip matTooltip="Fundamental Crypto Asset Score (FCAS)" [style.background-color]="getRankingColor()"
+          <mat-chip matTooltip="Fundamental Crypto Asset Score (FCAS)"
                     matChipTrailingIcon
+                    [style.background-color]="getRankingColor()"
                     (click)="openCMCRating()"
           >
             <h1>{{fcasData.grade}}</h1>

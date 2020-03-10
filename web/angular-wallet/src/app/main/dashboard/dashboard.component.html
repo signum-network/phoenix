@@ -19,8 +19,8 @@
                   disabled="{{isActivating}}">{{'activate' | i18n}}</button>
         </div>
       </mat-grid-tile>
-      <mat-grid-tile [colspan]="gridAttributes.columnSpans.table" rowspan="21">
-        <div class="fuse-card auto-width mr-8">
+      <mat-grid-tile [colspan]="gridAttributes.columnSpans.table" [rowspan]="gridAttributes.rowSpans.table">
+        <div class="fuse-card mr-8">
           <div class="h3 secondary-text mb-8">{{ 'recent_transactions' | i18n }}</div>
           <app-transaction-table *ngIf="dataSource && dataSource.data.length"
                                  [dataSource]="dataSource"
@@ -38,13 +38,13 @@
              [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</a>
         </div>
       </mat-grid-tile>
-      <mat-grid-tile [colspan]="gridAttributes.columnSpans.performance" rowspan="9">
+      <mat-grid-tile [colspan]="gridAttributes.columnSpans.performance" [rowspan]="gridAttributes.rowSpans.performance">
         <div class="fuse-card ml-8">
           <div class="h3 secondary-text mb-8">Coin Performance</div>
           <app-performance></app-performance>
         </div>
       </mat-grid-tile>
-      <mat-grid-tile [colspan]="gridAttributes.columnSpans.market" rowspan="10">
+      <mat-grid-tile [colspan]="gridAttributes.columnSpans.market" [rowspan]="gridAttributes.rowSpans.market">
         <div class="fuse-card ml-8">
           <div class="h3 secondary-text ">{{ 'market_info' | i18n }}</div>
           <app-market-overview></app-market-overview>

@@ -26,16 +26,17 @@
       }
 
       .fcas {
-        mat-chip {
-          cursor: pointer;
-          margin: 16px;
-          color: #444444;
-        }
 
         &-body {
           display: flex;
           flex-direction: row;
           align-items: center;
+
+          mat-chip {
+            cursor: pointer;
+            margin: 16px;
+            color: #444444;
+          }
         }
 
         &-point {

@@ -34,28 +34,28 @@ export class DashboardGridSettings {
     this.lg = {
       columnCount: 12,
       columnSpans: new GridSpans(12, 9, 3, 3),
-      rowSpans: new GridSpans(2, 21, 9, 10),
+      rowSpans: new GridSpans(2, 21, 9, 9),
       tableColumns: ['transaction_id', 'timestamp', 'type', 'amount', 'fee', 'account'],
     };
 
     this.md = {
       columnCount: 8,
       columnSpans: new GridSpans(8, 5, 3, 3),
-      rowSpans: new GridSpans(2, 21, 9, 10),
+      rowSpans: new GridSpans(2, 21, 9, 9),
       tableColumns: ['transaction_id', 'timestamp', 'amount', 'account'],
     };
 
     this.sm = {
       columnCount: 4,
       columnSpans: new GridSpans(4, 4, 2, 2),
-      rowSpans: new GridSpans(2, 21, 9, 10),
+      rowSpans: new GridSpans(2, 21, 9, 9),
       tableColumns: ['transaction_id', 'timestamp', 'type', 'amount', 'fee', 'account'],
     };
 
     this.xs = {
       columnCount: 1,
       columnSpans: new GridSpans(1, 1, 1, 1),
-      rowSpans: new GridSpans(4, 21, 9, 10),
+      rowSpans: new GridSpans(4, 21, 8, 12),
       tableColumns: ['transaction_id', 'amount'],
     };
 
