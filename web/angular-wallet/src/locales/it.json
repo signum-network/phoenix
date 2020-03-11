@@ -1016,7 +1016,7 @@
   "wrong_pin": "PIN errato",
   "x_confirmations": "__x__ conferme",
   "yes": "Sì",
-  "yesterdays_change": "Il cambiamento di ieri",
+  "yesterdays_change": "Ultima modifica di 24 ore",
   "you": "Tu",
   "you_received_assets": "You received <a href='#' data-goto-asset='__asset__'>1 __name__ asset</a>.",
   "you_received_assets_plural": "You received <a href='#' data-goto-asset='__asset__'>__count__ __name__ assets</a>.",

@@ -1016,7 +1016,7 @@
   "wrong_pin": "Неверный PIN-код",
   "x_confirmations": "__x__ подтверждений",
   "yes": "Да",
-  "yesterdays_change": "Вчерашние перемены",
+  "yesterdays_change": "Изменение за последние 24 часа",
   "you": "Вы",
   "you_received_assets": "Вы получили <a href='#' data-goto-asset='__asset__'> 1 __name__ активов</a>.",
   "you_received_assets_plural": "Вы получили <a href='#' data-goto-asset='__asset__'> __count__ __name__ активов</a>.",

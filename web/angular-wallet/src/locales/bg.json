@@ -1016,7 +1016,7 @@
   "wrong_pin": "Грешен ПИН",
   "x_confirmations": "__x__ потвърждения",
   "yes": "Да",
-  "yesterdays_change": "Промяна вчера",
+  "yesterdays_change": "Последна 24 часа смяна",
   "you": "Вие",
   "you_received_assets": "Получихте един __name__ актив.",
   "you_received_assets_plural": "Вие получихте __count__ __name__ активи.",

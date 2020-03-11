@@ -1016,7 +1016,7 @@
   "wrong_pin": "Pogrešan PIN",
   "x_confirmations": "__x__ potvrda",
   "yes": "Da",
-  "yesterdays_change": "Jučerašnja promjena",
+  "yesterdays_change": "Zadnja 24 sata promjena",
   "you": "Vi",
   "you_received_assets": "Primili ste <a href='#' data-goto-asset='__asset__'>1 __name__ asset-a</a>.",
   "you_received_assets_plural": "Primili ste <a href='#' data-goto-asset='__asset__'>__count__ __name__ asset-a</a>.",

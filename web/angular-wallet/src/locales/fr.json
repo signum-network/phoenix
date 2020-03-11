@@ -1016,7 +1016,7 @@
   "wrong_pin": "Mauvais NIP",
   "x_confirmations": "__x__ confirmations",
   "yes": "Oui",
-  "yesterdays_change": "Changement d'hier",
+  "yesterdays_change": "Changement des dernières 24 heures",
   "you": "Vous",
   "you_received_assets": "Vous avez reçu <a href='#' data-goto-asset='__asset__'>1 actif __name__</a>.",
   "you_received_assets_plural": "Vous avez reçu <a href='#' data-goto-asset='__asset__'>__count__ actifs __name__</a>.",

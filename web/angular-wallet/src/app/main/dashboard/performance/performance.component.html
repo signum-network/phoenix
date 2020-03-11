@@ -8,12 +8,12 @@
 <ng-container *ngIf="!isLoading">
   <div class="performance">
     <section class="sparkline">
-      <small class="label">{{'price_chart_7d' | i18n}}</small>
+      <small class="label secondary-text">{{'price_chart_7d' | i18n}}</small>
       <img matTooltip="{{'price_chart_7d' | i18n}}" alt="Burst Sparkline"
            src="https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/573.png">
     </section>
     <section class="fcas">
-      <small class="label">Asset Score</small>
+      <small class="label secondary-text">Asset Score</small>
       <div class="fcas-body">
         <mat-chip-list class="mr-16">
           <mat-chip matTooltip="Fundamental Crypto Asset Score (FCAS)"

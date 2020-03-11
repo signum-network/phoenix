@@ -102,6 +102,10 @@ export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit, 
       this.isActivating = false;
     }
   }
+
+  marketServiceName(): string {
+    return this.marketService.serviceName;
+  }
 }
 
 

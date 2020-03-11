@@ -1016,7 +1016,7 @@
   "wrong_pin": "Verkeerde pincode",
   "x_confirmations": "__x__ bevestigingen",
   "yes": "Ja",
-  "yesterdays_change": "Yesterday's Change",
+  "yesterdays_change": "Verandering van de laatste 24 uur",
   "you": "U",
   "you_received_assets": "Je hebt <a href='#' data-goto-asset='__asset__'> 1 __name__ asset</a> ontvangen.",
   "you_received_assets_plural": "Je hebt <a href='#' data-goto-asset='__asset__'> __count__ __name__ assets</a> ontvangen.",

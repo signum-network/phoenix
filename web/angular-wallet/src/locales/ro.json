@@ -1016,7 +1016,7 @@
   "wrong_pin": "Cod PIN greșit",
   "x_confirmations": "__x__ confirmări",
   "yes": "Da",
-  "yesterdays_change": "Schimbarea de ieri",
+  "yesterdays_change": "Ultima schimbare de 24 de ore",
   "you": "Dvs",
   "you_received_assets": "Ai primit 1 __name__ activă.",
   "you_received_assets_plural": "Ai primit __count__ __name__ active.",

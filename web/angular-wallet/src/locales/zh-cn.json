@@ -1016,7 +1016,7 @@
   "wrong_pin": "密码错误",
   "x_confirmations": "__x__ 确认",
   "yes": "是",
-  "yesterdays_change": "昨天的变化",
+  "yesterdays_change": "最近24小时的变更",
   "you": "您",
   "you_received_assets": "您收到 <a href='#' data-goto-asset='__asset__'> 1 __name__ 资产</a>。",
   "you_received_assets_plural": "您收到 <a href='#' data-goto-asset='__asset__'> __count__ __name__ 资产</a>。",

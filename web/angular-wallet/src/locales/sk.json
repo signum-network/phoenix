@@ -1016,7 +1016,7 @@
   "wrong_pin": "Chybný kód PIN",
   "x_confirmations": "__x__ potvrdení",
   "yes": "Áno",
-  "yesterdays_change": "Včerajšia zmena",
+  "yesterdays_change": "Zmena za posledných 24 hodín",
   "you": "Vy",
   "you_received_assets": "Prijali ste majetok <a href='#' data-goto-asset='__asset__'>1 __name__</a>.",
   "you_received_assets_plural": "Prijali ste majetok <a href='#' data-goto-asset='__asset__'>__count__ __name__</a>.",

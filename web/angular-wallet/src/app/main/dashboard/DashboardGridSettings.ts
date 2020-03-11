@@ -27,21 +27,21 @@ export class DashboardGridSettings {
     this.xl = {
       columnCount: 12,
       columnSpans: new GridSpans(12,9, 3, 3),
-      rowSpans: new GridSpans(2, 21, 9, 10),
+      rowSpans: new GridSpans(2, 21, 9, 8),
       tableColumns: ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account'],
     };
 
     this.lg = {
       columnCount: 12,
       columnSpans: new GridSpans(12, 9, 3, 3),
-      rowSpans: new GridSpans(2, 21, 9, 9),
+      rowSpans: new GridSpans(2, 21, 9, 8),
       tableColumns: ['transaction_id', 'timestamp', 'type', 'amount', 'fee', 'account'],
     };
 
     this.md = {
       columnCount: 8,
       columnSpans: new GridSpans(8, 5, 3, 3),
-      rowSpans: new GridSpans(2, 21, 9, 9),
+      rowSpans: new GridSpans(2, 21, 9, 8),
       tableColumns: ['transaction_id', 'timestamp', 'amount', 'account'],
     };
 
@@ -55,7 +55,7 @@ export class DashboardGridSettings {
     this.xs = {
       columnCount: 1,
       columnSpans: new GridSpans(1, 1, 1, 1),
-      rowSpans: new GridSpans(4, 21, 8, 12),
+      rowSpans: new GridSpans(4, 21, 8, 8),
       tableColumns: ['transaction_id', 'amount'],
     };
 
