@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { View, Image } from 'react-native';
+import { Image, View } from 'react-native';
 import RNPickerSelect, { Item } from 'react-native-picker-select';
+import { actionIcons } from '../../../assets/icons';
 import { Colors } from '../../theme/colors';
 import { fonts } from '../../theme/fonts';
 import { FontSizes, Sizes } from '../../theme/sizes';
-// TODO: create BText component
 import { Text as BText } from './Text';
-import { transactionIcons, actionIcons } from '../../../assets/icons';
 
 interface Props {
   value: any;
@@ -87,7 +86,7 @@ export class BSelect extends React.PureComponent<Props> {
           value={value}
           style={styles}
           placeholder={placeholderObject}
-          Icon={rightElement ? rightElement : () => {
+          Icon={rightElement ? () => rightElement : () => {
             return <Image source={actionIcons.chevronDown} style={styles.chevron} />;
           }}
         />

@@ -143,7 +143,6 @@ class Send extends React.PureComponent<Props, State> {
   handleCameraIconPress = () => {
     this.props.navigation.navigate(routes.scan);
   }
-
   componentWillUnmount () {
     if (this.focusListener) {
       this.focusListener.remove();

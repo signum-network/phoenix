@@ -81,15 +81,15 @@
     "currency": {
       "BTC": {
         "name": "BTC",
-        "value": "{{value}} BTC"
+        "value": "₿ {{value}}"
       },
       "BURST": {
         "name": "BURST",
-        "value": "{{value}} BURST"
+        "value": "Ƀ {{value}}"
       },
       "USD": {
         "name": "USD",
-        "value": "{{value}} USD"
+        "value": "${{value}}"
       }
     },
     "dates": {
@@ -154,7 +154,7 @@
         "title": "Send",
         "button": "Swipe to Send",
         "to": "To",
-        "total": "Total: {{value}} BURST",
+        "total": "Total: Ƀ {{value}}",
         "noPublicKey": "Please confirm address before sending.",
         "invalidAddress": "This address is not valid.",
         "zilOutage": "Unable to fetch from the ZIL API.",
