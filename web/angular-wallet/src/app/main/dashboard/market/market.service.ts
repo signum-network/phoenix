@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {interval, Observable} from 'rxjs';
-import {flatMap, pluck, startWith, tap} from 'rxjs/operators';
+import {flatMap, pluck, startWith} from 'rxjs/operators';
 import {environment} from '../../../../environments/environment';
 import {MarketInfoCryptoCompare} from './types';
 
@@ -15,6 +15,10 @@ export class MarketService {
     this._ticker$ = this.createTicker();
   }
 
+  get serviceName(): string {
+    return new URL(environment.market.tickerUrl).hostname;
+  }
+
   get ticker$(): Observable<MarketInfoCryptoCompare> {
     return this._ticker$;
   }
@@ -24,7 +28,7 @@ export class MarketService {
     return interval(tickerInterval)
       .pipe(
         startWith(0),
-        flatMap(_ => this.httpClient.get(tickerUrl) ),
+        flatMap(_ => this.httpClient.get(tickerUrl)),
         pluck('RAW', 'BURST'),
       );
   }

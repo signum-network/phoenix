@@ -1,4 +1,5 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AfterContentInit, Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {MediaChange, MediaObserver} from '@angular/flex-layout';
 import {fuseAnimations} from '@fuse/animations';
 import {takeUntil} from 'rxjs/operators';
 import {Router} from '@angular/router';
@@ -10,6 +11,11 @@ import {MarketService} from './market/market.service';
 import {Settings} from 'app/settings';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {NotifierService} from 'angular-notifier';
+import {MatGridList} from '@angular/material/grid-list';
+import {MarketInfoCryptoCompare} from './market/types';
+import {DashboardGridAttributes, DashboardGridSettings} from './DashboardGridSettings';
+
+const GridSettings = new DashboardGridSettings();
 
 @Component({
   selector: 'dashboard-dashboard',
@@ -18,8 +24,8 @@ import {NotifierService} from 'angular-notifier';
   encapsulation: ViewEncapsulation.None,
   animations: fuseAnimations
 })
-export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit {
-
+export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit, AfterContentInit {
+  @ViewChild('gridList', {static: true}) gridList: MatGridList;
   widgets: any;
   account: Account;
   priceBtc: number;
@@ -30,40 +36,48 @@ export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit {
   public dataSource: MatTableDataSource<Transaction>;
   public isActivating = false;
 
+  columnCount: number;
+  gridAttributes: DashboardGridAttributes = GridSettings.xl;
+  unsubscriber = takeUntil(this.unsubscribeAll);
+
   constructor(private router: Router,
               private storeService: StoreService,
               private accountService: AccountService,
               private notificationService: NotifierService,
-              private marketService: MarketService) {
-
+              private marketService: MarketService,
+              private observableMedia: MediaObserver
+  ) {
     super();
-    this.storeService.settings
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
-      .subscribe((settings) => {
-        this.settings = settings;
-      });
   }
 
   ngOnInit(): void {
 
+    this.storeService.settings
+      .pipe(this.unsubscriber)
+      .subscribe((settings: Settings) => {
+        this.settings = settings;
+      });
+
     this.accountService.currentAccount
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
+      .pipe(this.unsubscriber)
       .subscribe(this.setTransactions);
 
     this.marketService.ticker$
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
-      .subscribe((data) => {
+      .pipe(this.unsubscriber)
+      .subscribe((data: MarketInfoCryptoCompare) => {
         this.priceBtc = data.BTC.PRICE;
         this.priceUsd = data.USD.PRICE;
         this.priceEur = data.EUR.PRICE;
       });
 
+  }
+
+  ngAfterContentInit(): void {
+    this.observableMedia.asObservable()
+      .pipe(this.unsubscriber)
+      .subscribe((change: MediaChange[]) => {
+        this.gridAttributes = GridSettings[change[0].mqAlias];
+      });
   }
 
   setTransactions = account => {
@@ -87,6 +101,10 @@ export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit {
     } finally {
       this.isActivating = false;
     }
+  }
+
+  marketServiceName(): string {
+    return this.marketService.serviceName;
   }
 }
 

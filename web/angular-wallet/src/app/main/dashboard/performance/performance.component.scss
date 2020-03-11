@@ -1,0 +1,67 @@
+@import "src/@fuse/scss/fuse";
+
+:host {
+  .performance {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+
+    section {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 8px;
+
+      small.label {
+        margin-bottom: 8px;
+        align-self: flex-start;
+      }
+
+      img {
+        width: 80% !important;
+        max-width: 256px !important;
+      }
+
+      .fcas {
+
+        &-body {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          mat-chip {
+            cursor: pointer;
+            margin: 16px;
+            color: #444444;
+          }
+        }
+
+        &-point {
+          position: absolute;
+          right: 7px;
+          color: #444444;
+        }
+      }
+    }
+  }
+
+  .fg_green {
+    color: green !important;
+  }
+
+  .fg_red {
+    color: red !important;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  @include media-breakpoint('lt-md') {
+    .mat-list-item {
+      margin: 20px 0;
+    }
+  }
+}

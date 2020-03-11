@@ -19,10 +19,16 @@ import {TransactionTableModule} from '../transactions/transaction-table/transact
 
 import {DashboardService} from './dashboard.service';
 import {DashboardComponent} from './dashboard.component';
-import {MarketModule} from './market/market.module';
 import {BalanceChartComponent} from './balance-chart/balance-chart.component';
 import {MatCheckboxModule} from '@angular/material';
 import {AppSharedModule} from '../../shared/shared.module';
+import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
+import {MarketOverviewComponent} from './market/market-overview.component';
+import {PerformanceComponent} from './performance/performance.component';
+import {MatListModule} from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatChipsModule} from '@angular/material/chips';
 
 const routes: Routes = [
   {
@@ -40,6 +46,8 @@ const routes: Routes = [
   declarations: [
     DashboardComponent,
     BalanceChartComponent,
+    MarketOverviewComponent,
+    PerformanceComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -50,6 +58,7 @@ const routes: Routes = [
     MatMenuModule,
     MatSelectModule,
     MatTabsModule,
+    MatListModule,
     MatToolbarModule,
     ChartsModule,
     NgxChartsModule,
@@ -58,9 +67,12 @@ const routes: Routes = [
     FuseWidgetModule,
     I18nModule,
     TransactionTableModule,
-    MarketModule,
     MatCheckboxModule,
     AppSharedModule,
+    NgxSkeletonLoaderModule,
+    MatGridListModule,
+    MatTooltipModule,
+    MatChipsModule
   ],
   providers: [
     DashboardService,
