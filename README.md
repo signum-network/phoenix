@@ -11,7 +11,7 @@
 
 Phoenix is an open source, cross-platform wallet for the Burstcoin blockchain. It's actually two applications: a mobile app, and a desktop/web app. Oh, and [BurstJS](/lib/README.md) is in here too.
 
-![image](assets/beta.7/phoenix_1_beta.7.jpg)
+![image](assets/beta.14/phoenix_1_beta.14.png)
 
 ### Key features:
 - Improved security - Private keys are encrypted with a hashed PIN, securing them in the event of data breach. That PIN is then used for locally signing transactions and decrypting messages. Passphrases are not stored locally, and never sent to the server. 
@@ -37,17 +37,20 @@ Phoenix is an open source, cross-platform wallet for the Burstcoin blockchain. I
 *Some features not available on mobile.*
 
 ## Screenshots
-![image](assets/beta.7/phoenix_2_beta.7.jpg)
+![image](assets/beta.14/phoenix_2_beta.14.png)
 
-![image](assets/beta.7/phoenix_3_beta.7.jpg)
+![image](assets/beta.14/phoenix_3_beta.14.png)
 
-![image](assets/beta.7/phoenix_4_beta.7.jpg)
+![image](assets/beta.14/phoenix_4_beta.14.png)
 
-![image](assets/beta.7/phoenix_5_beta.7.jpg)
+![image](assets/beta.14/phoenix_5_beta.14.png)
 
-![image](assets/beta.7/phoenix_6_beta.7.jpg)
+![image](assets/beta.14/phoenix_6_beta.14.png)
 
-![image](assets/beta.7/phoenix_7_beta.7.png)
+![image](assets/beta.14/phoenix_7_beta.14.png)
+
+![image](assets/beta.14/phoenix_8_beta.14.png)
+
 
 
 ## Application Architecture

@@ -1,6 +1,6 @@
 # The Phoenix Desktop Wallet
 
-# 1.0.0-beta.14 (TBD)
+# 1.0.0-beta.14
 - Fixed download error (#1218)
 
 # 1.0.0-beta.12

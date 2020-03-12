@@ -8,9 +8,9 @@ Download the latest release from the [Releases page](https://github.com/burst-ap
 
 ## Running the latest release (Linux)
 ```console
-$ wget https://github.com/burst-apps-team/phoenix/releases/download/desktop-1.0.0-beta.13/linux-phoenix-burst-wallet.1.0.0-beta.13.tar.gz
-$ tar zxvf linux-phoenix-burst-wallet.1.0.0-beta.13.tar.gz
-$ cd linux-phoenix-burst-wallet.1.0.0-beta.13/
+$ wget https://github.com/burst-apps-team/phoenix/releases/download/desktop-1.0.0-beta.14/linux-phoenix-burst-wallet.1.0.0-beta.14.tar.gz
+$ tar zxvf linux-phoenix-burst-wallet.1.0.0-beta.14.tar.gz
+$ cd linux-phoenix-burst-wallet.1.0.0-beta.14/
 ```
 ```console
 $ sudo chown root:root ./chrome-sandbox
