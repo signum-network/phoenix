@@ -1,6 +1,16 @@
 # Changelog
 
-## 1.0.0-beta.14 (TBR)
+## 1.0.0-beta.14
+
+### New Features:
+- Revamped Dashboard Layout
+    - New more powerful market info API
+    - New Performance widget
+    - Improved Balance Chart
+    - Better responsiveness
+    - Added EUR
+- Using new Burst Symbol `Ƀ`
+- Send BURST with standard fee (was lowest priorly)
 
 ### Bug Fixes:
 - Fixed a bug account creation flow (#1275)
