@@ -93,14 +93,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Transaction API</p>
-					</div>
-					<p>This module provides methods related to blockchain transactions</p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -117,6 +109,8 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.transactionapi.html#broadcasttransaction" class="tsd-kind-icon">broadcast<wbr>Transaction</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.transactionapi.html#cancelsubscription" class="tsd-kind-icon">cancel<wbr>Subscription</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.transactionapi.html#createsubscription" class="tsd-kind-icon">create<wbr>Subscription</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.transactionapi.html#gettransaction" class="tsd-kind-icon">get<wbr>Transaction</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.transactionapi.html#sendamount" class="tsd-kind-icon">send<wbr>Amount</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.transactionapi.html#sendamounttomultiplerecipients" class="tsd-kind-icon">send<wbr>Amount<wbr>ToMultiple<wbr>Recipients</a></li>
@@ -135,22 +129,9 @@
 					<div class="tsd-signature tsd-kind-icon">broadcast<wbr>Transaction<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/transactionApi.ts#L23">core/src/typings/api/transactionApi.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/transactionApi.ts#L23">core/src/typings/api/transactionApi.ts:23</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Broadcasts a transaction to the network/blockchain</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The <em>signed</em> transaction payload encoded in base64</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction Id</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -174,27 +155,76 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="cancelsubscription" class="tsd-anchor"></a>
+					<h3>cancel<wbr>Subscription</h3>
+					<div class="tsd-signature tsd-kind-icon">cancel<wbr>Subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/transactionApi.ts#L124">core/src/typings/api/transactionApi.ts:124</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><a href="core.cancelsubscriptionargs.html" class="tsd-signature-type">CancelSubscriptionArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>args: <a href="core.cancelsubscriptionargs.html" class="tsd-signature-type">CancelSubscriptionArgs</a></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="createsubscription" class="tsd-anchor"></a>
+					<h3>create<wbr>Subscription</h3>
+					<div class="tsd-signature tsd-kind-icon">create<wbr>Subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/transactionApi.ts#L115">core/src/typings/api/transactionApi.ts:115</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><a href="core.createsubscriptionargs.html" class="tsd-signature-type">CreateSubscriptionArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>args: <a href="core.createsubscriptionargs.html" class="tsd-signature-type">CreateSubscriptionArgs</a></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="gettransaction" class="tsd-anchor"></a>
 					<h3>get<wbr>Transaction</h3>
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Transaction<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/transactionApi.ts#L31">core/src/typings/api/transactionApi.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/transactionApi.ts#L31">core/src/typings/api/transactionApi.ts:31</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Get a transaction and its details from the network/blockchain</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The transaction Id</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -223,51 +253,15 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Amount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/transactionApi.ts#L91">core/src/typings/api/transactionApi.ts:91</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/transactionApi.ts#L91">core/src/typings/api/transactionApi.ts:91</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>deprecated</dt>
-							<dd><div class="deprecated">
-									Use <a href="core.api.transactionapi.html#sendamount">sendAmount</a>, <a href="core.api.transactionapi.html#sendamounttomultiplerecipients">sendAmountToMultipleRecipients</a> instead
-								</div>
-								Sends burst to the blockchain
-								<p>The transaction will be broadcasted in two steps.</p>
-								<ol>
-									<li>Send the sendMoney call with public key to the network</li>
-									<li>Take the returned unsigned message and sign it, i.e. the private key won&#39;t be transmitted.</li>
-								</ol>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The amount to be sent as Planck value</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The fee as Planck value</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The id of the recipient</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders public key for sending an <em>unsigned</em> message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders private key to <em>sign</em> the message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>An optional attachment</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction Id (as promise)</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>amountPlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feePlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, attachment<span class="tsd-signature-symbol">?: </span><a href="../classes/core.attachment.html" class="tsd-signature-type">Attachment</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>amountPlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feePlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, attachment<span class="tsd-signature-symbol">: </span><a href="../classes/core.attachment.html" class="tsd-signature-type">Attachment</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -305,28 +299,9 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Amount<wbr>ToMultiple<wbr>Recipients<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/transactionApi.ts#L64">core/src/typings/api/transactionApi.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/transactionApi.ts#L64">core/src/typings/api/transactionApi.ts:64</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>A list of recipient Ids and their respective amounts to be sent</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The fee to be paid as Planck value</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders public key for sending an <em>unsigned</em> message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders private key to <em>sign</em> the message</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction Id</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -364,22 +339,9 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Amount<wbr>ToSingle<wbr>Recipient<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/transactionApi.ts#L106">core/src/typings/api/transactionApi.ts:106</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/transactionApi.ts#L106">core/src/typings/api/transactionApi.ts:106</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Sends burst to another account/recipient</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The argument object</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction Id (as promise)</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -408,34 +370,9 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Same<wbr>Amount<wbr>ToMultiple<wbr>Recipients<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/transactionApi.ts#L43">core/src/typings/api/transactionApi.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/transactionApi.ts#L43">core/src/typings/api/transactionApi.ts:43</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Sends a multi-out request to the blockchain with <em>same</em> value for all recipients</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The amount to be sent as Planck value</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The fee to be paid as Planck value</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>List of account IDs for the recipients</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders public key for sending an <em>unsigned</em> message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders private key to <em>sign</em> the message</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction Id</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -519,6 +456,12 @@
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core.api.transactionapi.html#broadcasttransaction" class="tsd-kind-icon">broadcast<wbr>Transaction</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.api.transactionapi.html#cancelsubscription" class="tsd-kind-icon">cancel<wbr>Subscription</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.api.transactionapi.html#createsubscription" class="tsd-kind-icon">create<wbr>Subscription</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core.api.transactionapi.html#gettransaction" class="tsd-kind-icon">get<wbr>Transaction</a>

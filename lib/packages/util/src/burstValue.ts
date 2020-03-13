@@ -1,7 +1,7 @@
 /** @module util */
 
 /**
- * Original work Copyright (c) 2019 Burst Apps Team
+ * Original work Copyright (c) 2020 Burst Apps Team
  */
 
 import Big from 'big.js';

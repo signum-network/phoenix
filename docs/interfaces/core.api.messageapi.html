@@ -93,13 +93,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>The Message API</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -132,22 +125,9 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Encrypted<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/messageApi.ts#L82">core/src/typings/api/messageApi.ts:82</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/messageApi.ts#L82">core/src/typings/api/messageApi.ts:82</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Sends an encrypted text message to another account/recipient</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The argument object</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction Id (as promise)</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -176,44 +156,15 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Encrypted<wbr>Text<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/messageApi.ts#L59">core/src/typings/api/messageApi.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/messageApi.ts#L59">core/src/typings/api/messageApi.ts:59</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>deprecated</dt>
-							<dd><div class="deprecated">
-									Use <a href="core.api.messageapi.html#sendencryptedmessage">sendEncryptedMessage</a> instead
-								</div>
-								<p>Broadcasts an <em>encrypted</em> text message to the network/blockchain
-								It&#39;s analogous to sendTextMessage but encrypts the message priorly</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The <em>text</em> message to be encrypted and sent</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The recipients Id, not RS Address</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders key set for encryption and signing</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The optional deadline (in minutes) for the transaction to be confirmed, 1440 minutes maximum</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The optional fee (expressed in Burst) for the message, default is 0.1 Burst.</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction Id</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderKeys<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Keys</span>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, fee<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderKeys<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Keys</span>, deadline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, fee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -251,22 +202,9 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/messageApi.ts#L74">core/src/typings/api/messageApi.ts:74</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/messageApi.ts#L74">core/src/typings/api/messageApi.ts:74</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Sends a plain text message to another account/recipient</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The argument object</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction Id (as promise)</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -295,51 +233,15 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Text<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/messageApi.ts#L33">core/src/typings/api/messageApi.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/messageApi.ts#L33">core/src/typings/api/messageApi.ts:33</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>deprecated</dt>
-							<dd><div class="deprecated">
-									Use <a href="core.api.messageapi.html#sendmessage">sendMessage</a> instead
-								</div>
-								<p>Broadcasts a text message to the network/blockchain</p>
-								<p>The message will be broadcasted in two steps.</p>
-								<ol>
-									<li>Send the message with public key to the network</li>
-									<li>Take the returned unsigned message and sign it, i.e. the private key won&#39;t be transmitted.</li>
-								</ol>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The <em>text</em> message to be sent</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The recipients Id, not RS Address</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders public key for sending an <em>unsigned</em> message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders private key to <em>sign</em> the message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The optional deadline (in minutes) for the transaction to be confirmed, 1440 minutes maximum</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The optional fee (expressed in Burst) for the message, default is 0.1 Burst.</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction Id</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, fee<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, fee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">

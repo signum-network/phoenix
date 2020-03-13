@@ -93,13 +93,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Account API</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -121,8 +114,10 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.accountapi.html#getaccountbalance" class="tsd-kind-icon">get<wbr>Account<wbr>Balance</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.accountapi.html#getaccountblockids" class="tsd-kind-icon">get<wbr>Account<wbr>Block<wbr>Ids</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.accountapi.html#getaccountblocks" class="tsd-kind-icon">get<wbr>Account<wbr>Blocks</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.accountapi.html#getaccountsubscriptions" class="tsd-kind-icon">get<wbr>Account<wbr>Subscriptions</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.accountapi.html#getaccounttransactions" class="tsd-kind-icon">get<wbr>Account<wbr>Transactions</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.accountapi.html#getaliases" class="tsd-kind-icon">get<wbr>Aliases</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.accountapi.html#getsubscriptionstoaccount" class="tsd-kind-icon">get<wbr>Subscriptions<wbr>ToAccount</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.accountapi.html#getunconfirmedaccounttransactions" class="tsd-kind-icon">get<wbr>Unconfirmed<wbr>Account<wbr>Transactions</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.accountapi.html#setaccountinfo" class="tsd-kind-icon">set<wbr>Account<wbr>Info</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.api.accountapi.html#setalias" class="tsd-kind-icon">set<wbr>Alias</a></li>
@@ -140,40 +135,15 @@
 					<div class="tsd-signature tsd-kind-icon">generate<wbr>Send<wbr>TransactionQRCode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/accountApi.ts#L75">core/src/typings/api/accountApi.ts:75</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/accountApi.ts#L77">core/src/typings/api/accountApi.ts:77</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Get QR Code image for a given BURST address</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The recipient burst</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The amount (in NQT) to request (Default = 0)</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The fee suggestion type string (Default = &#39;standard&#39;)</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The fee amount (in NQT)</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>Whether to allow this to be modified</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>QR code image data</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>receiverId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amountNQT<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, feeSuggestionType<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, immutable<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ArrayBufferLike</span><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>receiverId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amountNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, feeSuggestionType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, immutable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ArrayBufferLike</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -208,40 +178,15 @@
 					<div class="tsd-signature tsd-kind-icon">generate<wbr>Send<wbr>TransactionQRCode<wbr>Address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/accountApi.ts#L93">core/src/typings/api/accountApi.ts:93</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/accountApi.ts#L95">core/src/typings/api/accountApi.ts:95</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Generate the URL for a QR Code for a given BURST address. Useful for IMG tags in HTML.</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The recipient burst address</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The amount (in NQT) to request (Default = 0)</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The fee suggestion type string (Default = &#39;standard&#39;)</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The fee amount (in NQT)</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>Whether to allow this to be modified</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The url</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>receiverId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amountNQT<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, feeSuggestionType<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, immutable<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>receiverId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amountNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, feeSuggestionType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, immutable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -276,21 +221,9 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Account<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/accountApi.ts#L48">core/src/typings/api/accountApi.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/accountApi.ts#L50">core/src/typings/api/accountApi.ts:50</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Get an account given an ID</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd></dd>
-							<dt>returns</dt>
-							<dd><p>The account from the backend, not including transactions</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -319,21 +252,9 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Balance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/accountApi.ts#L41">core/src/typings/api/accountApi.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/accountApi.ts#L43">core/src/typings/api/accountApi.ts:43</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Get the balance of an account</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd></dd>
-							<dt>returns</dt>
-							<dd><p>The account&#39;s balance</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -362,25 +283,9 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Block<wbr>Ids<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/accountApi.ts#L64">core/src/typings/api/accountApi.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/accountApi.ts#L66">core/src/typings/api/accountApi.ts:66</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Get blockIds forged by an account</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>first block to retrieve (optional, default is zero or the last block on the blockchain)</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>the last block to retrieve (optional, default is firstIndex + 99)</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The list of blocks</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -409,25 +314,9 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Blocks<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/accountApi.ts#L56">core/src/typings/api/accountApi.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/accountApi.ts#L58">core/src/typings/api/accountApi.ts:58</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Get blocks forged by an account</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>first block to retrieve (optional, default is zero or the last block on the blockchain)</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>the last block to retrieve (optional, default is firstIndex + 99)</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The list of blocks</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -451,27 +340,45 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="getaccountsubscriptions" class="tsd-anchor"></a>
+					<h3>get<wbr>Account<wbr>Subscriptions</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Subscriptions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/accountApi.ts#L178">core/src/typings/api/accountApi.ts:178</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accountId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.subscriptionlist.html" class="tsd-signature-type">SubscriptionList</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>accountId: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.subscriptionlist.html" class="tsd-signature-type">SubscriptionList</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="getaccounttransactions" class="tsd-anchor"></a>
 					<h3>get<wbr>Account<wbr>Transactions</h3>
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Transactions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/accountApi.ts#L22">core/src/typings/api/accountApi.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/accountApi.ts#L24">core/src/typings/api/accountApi.ts:24</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Get transactions of given account</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The arguments</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>List of transactions</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -500,21 +407,9 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Aliases<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/accountApi.ts#L106">core/src/typings/api/accountApi.ts:106</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/accountApi.ts#L108">core/src/typings/api/accountApi.ts:108</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Gets the aliases of an account</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd></dd>
-							<dt>returns</dt>
-							<dd><p>A list of aliases of given account</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -538,37 +433,51 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="getunconfirmedaccounttransactions" class="tsd-anchor"></a>
-					<h3>get<wbr>Unconfirmed<wbr>Account<wbr>Transactions</h3>
-					<div class="tsd-signature tsd-kind-icon">get<wbr>Unconfirmed<wbr>Account<wbr>Transactions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<a name="getsubscriptionstoaccount" class="tsd-anchor"></a>
+					<h3>get<wbr>Subscriptions<wbr>ToAccount</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Subscriptions<wbr>ToAccount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/accountApi.ts#L31">core/src/typings/api/accountApi.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/accountApi.ts#L186">core/src/typings/api/accountApi.ts:186</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Get <em>unconfirmed</em> transactions of given account</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The numeric accountId</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>Includes indirect transaction, i.e. multi out payments.
-								For BRS Versions before 2.3.2 this must be <code>undefined</code></p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>List of unconfirmed transactions</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accountId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, includeIndirect<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.unconfirmedtransactionlist.html" class="tsd-signature-type">UnconfirmedTransactionList</a><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accountId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.subscriptionlist.html" class="tsd-signature-type">SubscriptionList</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>accountId: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.subscriptionlist.html" class="tsd-signature-type">SubscriptionList</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="getunconfirmedaccounttransactions" class="tsd-anchor"></a>
+					<h3>get<wbr>Unconfirmed<wbr>Account<wbr>Transactions</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Unconfirmed<wbr>Account<wbr>Transactions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/accountApi.ts#L33">core/src/typings/api/accountApi.ts:33</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accountId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, includeIndirect<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.unconfirmedtransactionlist.html" class="tsd-signature-type">UnconfirmedTransactionList</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -594,51 +503,15 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Account<wbr>Info<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/accountApi.ts#L150">core/src/typings/api/accountApi.ts:150</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/accountApi.ts#L152">core/src/typings/api/accountApi.ts:152</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Sets account information for an account</p>
-						</div>
-						<p>The transaction will be broadcasted in two steps.</p>
-						<ol>
-							<li>Send the setAccountInfo call with public key to the network</li>
-							<li>Take the returned unsigned message and sign it, i.e. the private key won&#39;t be transmitted.</li>
-						</ol>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The name of the account</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The description for the account</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The fee to pay</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The name of the account</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders public key for sending an <em>unsigned</em> message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders private key to <em>sign</em> the message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The deadline, in minutes, for the transaction to be confirmed</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction ID</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -676,51 +549,15 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Alias<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/accountApi.ts#L124">core/src/typings/api/accountApi.ts:124</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/accountApi.ts#L126">core/src/typings/api/accountApi.ts:126</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Registers an Alias with the Burst blockchain</p>
-						</div>
-						<p>The transaction will be broadcasted in two steps.</p>
-						<ol>
-							<li>Send the setAlias call with public key to the network</li>
-							<li>Take the returned unsigned message and sign it, i.e. the private key won&#39;t be transmitted.</li>
-						</ol>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The alias name</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The alias URI</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The fee to pay</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The name of the account</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders public key for sending an <em>unsigned</em> message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders private key to <em>sign</em> the message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The deadline, in minutes, for the transaction to be confirmed</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction ID</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>aliasName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, aliasURI<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>aliasName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, aliasURI<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -758,67 +595,22 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Reward<wbr>Recipient<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/typings/api/accountApi.ts#L174">core/src/typings/api/accountApi.ts:174</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/typings/api/accountApi.ts#L169">core/src/typings/api/accountApi.ts:169</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Assigns a reward recipient for an account</p>
-						</div>
-						<p>The transaction will be broadcasted in two steps.</p>
-						<ol>
-							<li>Send the setRewardRecipient call with public key to the network</li>
-							<li>Take the returned unsigned message and sign it, i.e. the private key won&#39;t be transmitted.</li>
-						</ol>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The address of the intended reward assignment</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The fee to pay</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The name of the account</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders public key for sending an <em>unsigned</em> message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders private key to <em>sign</em> the message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The deadline, in minutes, for the transaction to be confirmed</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction ID</p>
-							</dd>
-						</dl>
-					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>recipient<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><a href="core.setrewardrecipientargs.html" class="tsd-signature-type">SetRewardRecipientArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>recipient: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5>feeNQT: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5>senderPublicKey: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5>senderPrivateKey: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5><span class="tsd-flag ts-flagOptional">Optional</span> deadline: <span class="tsd-signature-type">number</span></h5>
+												<h5>args: <a href="core.setrewardrecipientargs.html" class="tsd-signature-type">SetRewardRecipientArgs</a></h5>
 											</li>
 										</ul>
 										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -873,10 +665,16 @@
 								<a href="core.api.accountapi.html#getaccountblocks" class="tsd-kind-icon">get<wbr>Account<wbr>Blocks</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.api.accountapi.html#getaccountsubscriptions" class="tsd-kind-icon">get<wbr>Account<wbr>Subscriptions</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core.api.accountapi.html#getaccounttransactions" class="tsd-kind-icon">get<wbr>Account<wbr>Transactions</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core.api.accountapi.html#getaliases" class="tsd-kind-icon">get<wbr>Aliases</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.api.accountapi.html#getsubscriptionstoaccount" class="tsd-kind-icon">get<wbr>Subscriptions<wbr>ToAccount</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core.api.accountapi.html#getunconfirmedaccounttransactions" class="tsd-kind-icon">get<wbr>Unconfirmed<wbr>Account<wbr>Transactions</a>

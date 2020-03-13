@@ -93,10 +93,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-				</div>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -106,12 +102,15 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#broadcasttransaction" class="tsd-kind-icon">broadcast<wbr>Transaction</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#callcontractmethod" class="tsd-kind-icon">call<wbr>Contract<wbr>Method</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#cancelsubscription" class="tsd-kind-icon">cancel<wbr>Subscription</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#createsubscription" class="tsd-kind-icon">create<wbr>Subscription</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#generatesendtransactionqrcode" class="tsd-kind-icon">generate<wbr>Send<wbr>TransactionQRCode</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#generatesendtransactionqrcodeaddress" class="tsd-kind-icon">generate<wbr>Send<wbr>TransactionQRCode<wbr>Address</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getaccount" class="tsd-kind-icon">get<wbr>Account</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getaccountbalance" class="tsd-kind-icon">get<wbr>Account<wbr>Balance</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getaccountblockids" class="tsd-kind-icon">get<wbr>Account<wbr>Block<wbr>Ids</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getaccountblocks" class="tsd-kind-icon">get<wbr>Account<wbr>Blocks</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getaccountsubscriptions" class="tsd-kind-icon">get<wbr>Account<wbr>Subscriptions</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getaccounttransactions" class="tsd-kind-icon">get<wbr>Account<wbr>Transactions</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getaliasbyid" class="tsd-kind-icon">get<wbr>Alias<wbr>ById</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getaliasbyname" class="tsd-kind-icon">get<wbr>Alias<wbr>ByName</a></li>
@@ -130,6 +129,8 @@
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getpeer" class="tsd-kind-icon">get<wbr>Peer</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getpeers" class="tsd-kind-icon">get<wbr>Peers</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getserverstatus" class="tsd-kind-icon">get<wbr>Server<wbr>Status</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getsubscription" class="tsd-kind-icon">get<wbr>Subscription</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getsubscriptionstoaccount" class="tsd-kind-icon">get<wbr>Subscriptions<wbr>ToAccount</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#gettime" class="tsd-kind-icon">get<wbr>Time</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#gettransaction" class="tsd-kind-icon">get<wbr>Transaction</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core.api.factories.html#getunconfirmedaccounttransactions" class="tsd-kind-icon">get<wbr>Unconfirmed<wbr>Account<wbr>Transactions</a></li>
@@ -164,15 +165,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/transaction/broadcastTransaction.ts#L15">core/src/api/factories/transaction/broadcastTransaction.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/transaction/broadcastTransaction.ts#L15">core/src/api/factories/transaction/broadcastTransaction.ts:15</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.transactionapi.html">TransactionApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.transactionapi.html#broadcasttransaction">TransactionApi.broadcastTransaction</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -211,15 +206,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/contract/callContractMethod.ts#L19">core/src/api/factories/contract/callContractMethod.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/contract/callContractMethod.ts#L19">core/src/api/factories/contract/callContractMethod.ts:19</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.contractapi.html">ContractApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.contractapi.html#callcontractmethod">ContractApi.callContractMethod</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -249,24 +238,18 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="generatesendtransactionqrcode" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> generate<wbr>Send<wbr>TransactionQRCode</h3>
+					<a name="cancelsubscription" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> cancel<wbr>Subscription</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">generate<wbr>Send<wbr>TransactionQRCode<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">cancel<wbr>Subscription<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/account/generateSendTransactionQRCode.ts#L13">core/src/api/factories/account/generateSendTransactionQRCode.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/transaction/cancelSubscription.ts#L19">core/src/api/factories/transaction/cancelSubscription.ts:19</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.accountapi.html">AccountApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.accountapi.html#generatesendtransactionqrcode">AccountApi.generateSendTransactionQRCode</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -277,7 +260,89 @@
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>receiverId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amountNQT<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, feeSuggestionType<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, immutable<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ArrayBufferLike</span><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><a href="../interfaces/core.cancelsubscriptionargs.html" class="tsd-signature-type">CancelSubscriptionArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-parameters-title">Parameters</h4>
+											<ul class="tsd-parameters">
+												<li>
+													<h5>args: <a href="../interfaces/core.cancelsubscriptionargs.html" class="tsd-signature-type">CancelSubscriptionArgs</a></h5>
+												</li>
+											</ul>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="createsubscription" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> create<wbr>Subscription</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Subscription<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/transaction/createSubscription.ts#L19">core/src/api/factories/transaction/createSubscription.ts:19</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-siganture">
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><a href="../interfaces/core.createsubscriptionargs.html" class="tsd-signature-type">CreateSubscriptionArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-parameters-title">Parameters</h4>
+											<ul class="tsd-parameters">
+												<li>
+													<h5>args: <a href="../interfaces/core.createsubscriptionargs.html" class="tsd-signature-type">CreateSubscriptionArgs</a></h5>
+												</li>
+											</ul>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="generatesendtransactionqrcode" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> generate<wbr>Send<wbr>TransactionQRCode</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Send<wbr>TransactionQRCode<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/account/generateSendTransactionQRCode.ts#L13">core/src/api/factories/account/generateSendTransactionQRCode.ts:13</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-siganture">
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>receiverId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amountNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, feeSuggestionType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, immutable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ArrayBufferLike</span><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -317,15 +382,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/account/generateSendTransactionQRCodeAddress.ts#L13">core/src/api/factories/account/generateSendTransactionQRCodeAddress.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/account/generateSendTransactionQRCodeAddress.ts#L13">core/src/api/factories/account/generateSendTransactionQRCodeAddress.ts:13</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.accountapi.html">AccountApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.accountapi.html#generatesendtransactionqrcodeaddress">AccountApi.generateSendTransactionQRCodeAddress</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -336,7 +395,7 @@
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>receiverId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amountNQT<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, feeSuggestionType<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, immutable<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>receiverId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amountNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, feeSuggestionType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, immutable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -376,15 +435,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/account/getAccount.ts#L15">core/src/api/factories/account/getAccount.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/account/getAccount.ts#L15">core/src/api/factories/account/getAccount.ts:15</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.accountapi.html">AccountApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.accountapi.html#getaccount">AccountApi.getAccount</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -423,15 +476,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/account/getAccountBalance.ts#L15">core/src/api/factories/account/getAccountBalance.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/account/getAccountBalance.ts#L15">core/src/api/factories/account/getAccountBalance.ts:15</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.accountapi.html">AccountApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.accountapi.html#getaccountbalance">AccountApi.getAccountBalance</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -470,15 +517,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/account/getAccountBlockIds.ts#L13">core/src/api/factories/account/getAccountBlockIds.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/account/getAccountBlockIds.ts#L13">core/src/api/factories/account/getAccountBlockIds.ts:13</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.accountapi.html">AccountApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.accountapi.html#getaccountblockids">AccountApi.getAccountBlockIds</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -489,7 +530,7 @@
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>firstIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, lastIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>firstIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, lastIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -520,15 +561,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/account/getAccountBlocks.ts#L14">core/src/api/factories/account/getAccountBlocks.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/account/getAccountBlocks.ts#L14">core/src/api/factories/account/getAccountBlocks.ts:14</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.accountapi.html">AccountApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.accountapi.html#getaccountblocks">AccountApi.getAccountBlocks</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -539,7 +574,7 @@
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>firstIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, lastIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.block.html" class="tsd-signature-type">Block</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>firstIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, lastIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.block.html" class="tsd-signature-type">Block</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -561,6 +596,47 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getaccountsubscriptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Account<wbr>Subscriptions</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Subscriptions<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/account/getAccountSubscriptions.ts#L16">core/src/api/factories/account/getAccountSubscriptions.ts:16</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-siganture">
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accountId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.subscriptionlist.html" class="tsd-signature-type">SubscriptionList</a><span class="tsd-signature-symbol">&gt;</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-parameters-title">Parameters</h4>
+											<ul class="tsd-parameters">
+												<li>
+													<h5>accountId: <span class="tsd-signature-type">string</span></h5>
+												</li>
+											</ul>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.subscriptionlist.html" class="tsd-signature-type">SubscriptionList</a><span class="tsd-signature-symbol">&gt;</span></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="getaccounttransactions" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Account<wbr>Transactions</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
@@ -570,15 +646,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/account/getAccountTransactions.ts#L15">core/src/api/factories/account/getAccountTransactions.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/account/getAccountTransactions.ts#L15">core/src/api/factories/account/getAccountTransactions.ts:15</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.accountapi.html">AccountApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.accountapi.html#getaccounttransactions">AccountApi.getAccountTransactions</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -617,15 +687,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/alias/getAliasById.ts#L14">core/src/api/factories/alias/getAliasById.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/alias/getAliasById.ts#L14">core/src/api/factories/alias/getAliasById.ts:14</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.aliasapi.html">AliasApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.aliasapi.html#getaliasbyid">AliasApi.getAliasById</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -664,15 +728,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/alias/getAliasByName.ts#L14">core/src/api/factories/alias/getAliasByName.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/alias/getAliasByName.ts#L14">core/src/api/factories/alias/getAliasByName.ts:14</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.aliasapi.html">AliasApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.aliasapi.html#getaliasbyname">AliasApi.getAliasByName</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -711,15 +769,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/account/getAliases.ts#L14">core/src/api/factories/account/getAliases.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/account/getAliases.ts#L14">core/src/api/factories/account/getAliases.ts:14</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.accountapi.html">AccountApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.accountapi.html#getaliases">AccountApi.getAliases</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -758,15 +810,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/asset/getAllAssets.ts#L14">core/src/api/factories/asset/getAllAssets.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/asset/getAllAssets.ts#L14">core/src/api/factories/asset/getAllAssets.ts:14</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.assetapi.html">AssetApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.assetapi.html#getallassets">AssetApi.getAllAssets</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -777,7 +823,7 @@
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>firstIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, lastIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.assetlist.html" class="tsd-signature-type">AssetList</a><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>firstIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, lastIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.assetlist.html" class="tsd-signature-type">AssetList</a><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -808,15 +854,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/contract/getAllContractIds.ts#L15">core/src/api/factories/contract/getAllContractIds.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/contract/getAllContractIds.ts#L15">core/src/api/factories/contract/getAllContractIds.ts:15</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.contractapi.html">ContractApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.contractapi.html#getallcontractids">ContractApi.getAllContractIds</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -849,15 +889,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/asset/getAsset.ts#L14">core/src/api/factories/asset/getAsset.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/asset/getAsset.ts#L14">core/src/api/factories/asset/getAsset.ts:14</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.assetapi.html">AssetApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.assetapi.html#getasset">AssetApi.getAsset</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -896,15 +930,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/block/getBlockByHeight.ts#L15">core/src/api/factories/block/getBlockByHeight.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/block/getBlockByHeight.ts#L15">core/src/api/factories/block/getBlockByHeight.ts:15</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.blockapi.html">BlockApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.blockapi.html#getblockbyheight">BlockApi.getBlockByHeight</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -946,15 +974,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/block/getBlockById.ts#L16">core/src/api/factories/block/getBlockById.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/block/getBlockById.ts#L16">core/src/api/factories/block/getBlockById.ts:16</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.blockapi.html">BlockApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.blockapi.html#getblockbyid">BlockApi.getBlockById</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -996,15 +1018,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/block/getBlockByTimestamp.ts#L14">core/src/api/factories/block/getBlockByTimestamp.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/block/getBlockByTimestamp.ts#L14">core/src/api/factories/block/getBlockByTimestamp.ts:14</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.blockapi.html">BlockApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.blockapi.html#getblockbytimestamp">BlockApi.getBlockByTimestamp</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1046,15 +1062,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/block/getBlockId.ts#L15">core/src/api/factories/block/getBlockId.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/block/getBlockId.ts#L15">core/src/api/factories/block/getBlockId.ts:15</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.blockapi.html">BlockApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.blockapi.html#getblockid">BlockApi.getBlockId</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1093,15 +1103,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/network/getBlockchainStatus.ts#L16">core/src/api/factories/network/getBlockchainStatus.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/network/getBlockchainStatus.ts#L16">core/src/api/factories/network/getBlockchainStatus.ts:16</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.networkapi.html">NetworkApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.networkapi.html#getblockchainstatus">NetworkApi.getBlockchainStatus</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1134,15 +1138,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/block/getBlocks.ts#L14">core/src/api/factories/block/getBlocks.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/block/getBlocks.ts#L14">core/src/api/factories/block/getBlocks.ts:14</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.blockapi.html">BlockApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.blockapi.html#getblocks">BlockApi.getBlocks</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1153,7 +1151,7 @@
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>firstIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, lastIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, includeTransactions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.block.html" class="tsd-signature-type">Block</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>firstIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, lastIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, includeTransactions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.block.html" class="tsd-signature-type">Block</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -1187,15 +1185,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/contract/getContract.ts#L14">core/src/api/factories/contract/getContract.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/contract/getContract.ts#L14">core/src/api/factories/contract/getContract.ts:14</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.contractapi.html">ContractApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.contractapi.html#getcontract">ContractApi.getContract</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1234,15 +1226,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/contract/getContractsByAccount.ts#L15">core/src/api/factories/contract/getContractsByAccount.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/contract/getContractsByAccount.ts#L15">core/src/api/factories/contract/getContractsByAccount.ts:15</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.contractapi.html">ContractApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.contractapi.html#getcontractsbyaccount">ContractApi.getContractsByAccount</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1281,15 +1267,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/network/getPeer.ts#L14">core/src/api/factories/network/getPeer.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/network/getPeer.ts#L14">core/src/api/factories/network/getPeer.ts:14</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.networkapi.html">NetworkApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.networkapi.html#getpeer">NetworkApi.getPeer</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1328,15 +1308,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/network/getPeers.ts#L14">core/src/api/factories/network/getPeers.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/network/getPeers.ts#L14">core/src/api/factories/network/getPeers.ts:14</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.networkapi.html">NetworkApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.networkapi.html#getpeers">NetworkApi.getPeers</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1375,15 +1349,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/network/getServerStatus.ts#L15">core/src/api/factories/network/getServerStatus.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/network/getServerStatus.ts#L15">core/src/api/factories/network/getServerStatus.ts:15</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.networkapi.html">NetworkApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.networkapi.html#getserverstatus">NetworkApi.getServerStatus</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1407,6 +1375,88 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getsubscription" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Subscription</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Subscription<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/transaction/getSubscription.ts#L15">core/src/api/factories/transaction/getSubscription.ts:15</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-siganture">
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>subscriptionId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.subscription.html" class="tsd-signature-type">Subscription</a><span class="tsd-signature-symbol">&gt;</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-parameters-title">Parameters</h4>
+											<ul class="tsd-parameters">
+												<li>
+													<h5>subscriptionId: <span class="tsd-signature-type">string</span></h5>
+												</li>
+											</ul>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.subscription.html" class="tsd-signature-type">Subscription</a><span class="tsd-signature-symbol">&gt;</span></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getsubscriptionstoaccount" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Subscriptions<wbr>ToAccount</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Subscriptions<wbr>ToAccount<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/account/getSubscriptionsToAccount.ts#L16">core/src/api/factories/account/getSubscriptionsToAccount.ts:16</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-siganture">
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accountId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.subscriptionlist.html" class="tsd-signature-type">SubscriptionList</a><span class="tsd-signature-symbol">&gt;</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-parameters-title">Parameters</h4>
+											<ul class="tsd-parameters">
+												<li>
+													<h5>accountId: <span class="tsd-signature-type">string</span></h5>
+												</li>
+											</ul>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.subscriptionlist.html" class="tsd-signature-type">SubscriptionList</a><span class="tsd-signature-symbol">&gt;</span></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="gettime" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Time</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
@@ -1416,15 +1466,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/network/getTime.ts#L15">core/src/api/factories/network/getTime.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/network/getTime.ts#L15">core/src/api/factories/network/getTime.ts:15</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.networkapi.html">NetworkApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.networkapi.html#suggestfee">NetworkApi.suggestFee</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1457,15 +1501,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/transaction/getTransaction.ts#L15">core/src/api/factories/transaction/getTransaction.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/transaction/getTransaction.ts#L15">core/src/api/factories/transaction/getTransaction.ts:15</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.transactionapi.html">TransactionApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.transactionapi.html#broadcasttransaction">TransactionApi.broadcastTransaction</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1504,15 +1542,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/account/getUnconfirmedAccountTransactions.ts#L14">core/src/api/factories/account/getUnconfirmedAccountTransactions.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/account/getUnconfirmedAccountTransactions.ts#L14">core/src/api/factories/account/getUnconfirmedAccountTransactions.ts:14</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.accountapi.html">AccountApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.accountapi.html#getunconfirmedaccounttransactions">AccountApi.getUnconfirmedAccountTransactions</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1523,7 +1555,7 @@
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accountId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, includeIndirect<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.unconfirmedtransactionlist.html" class="tsd-signature-type">UnconfirmedTransactionList</a><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accountId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, includeIndirect<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.unconfirmedtransactionlist.html" class="tsd-signature-type">UnconfirmedTransactionList</a><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -1554,15 +1586,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/contract/publishContract.ts#L20">core/src/api/factories/contract/publishContract.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/contract/publishContract.ts#L20">core/src/api/factories/contract/publishContract.ts:20</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.contractapi.html">ContractApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.contractapi.html#publishcontract">ContractApi.publishContract</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1601,18 +1627,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/transaction/sendAmount.ts#L24">core/src/api/factories/transaction/sendAmount.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/transaction/sendAmount.ts#L25">core/src/api/factories/transaction/sendAmount.ts:25</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<div class="deprecated">
-										Use <a href="../interfaces/core.api.transactionapi.html#sendamounttosinglerecipient">TransactionApi.sendAmountToSingleRecipient</a> instead
-									</div>
-								</div>
-								<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.transactionapi.html">TransactionApi</a>.</p>
-								<p>See details at <a href="../interfaces/core.api.transactionapi.html#sendamount">TransactionApi.sendAmount</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1623,7 +1640,7 @@
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>amountPlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feePlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, attachment<span class="tsd-signature-symbol">?: </span><a href="../classes/core.attachment.html" class="tsd-signature-type">Attachment</a>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>amountPlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feePlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, attachment<span class="tsd-signature-symbol">: </span><a href="../classes/core.attachment.html" class="tsd-signature-type">Attachment</a>, deadline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -1669,15 +1686,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/transaction/sendAmountToMultipleRecipients.ts#L22">core/src/api/factories/transaction/sendAmountToMultipleRecipients.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/transaction/sendAmountToMultipleRecipients.ts#L22">core/src/api/factories/transaction/sendAmountToMultipleRecipients.ts:22</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.transactionapi.html">TransactionApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.transactionapi.html#sendamounttomultiplerecipients">TransactionApi.sendAmountToMultipleRecipients</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1688,7 +1699,7 @@
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>recipientAmounts<span class="tsd-signature-symbol">: </span><a href="../interfaces/core.multioutrecipientamount.html" class="tsd-signature-type">MultioutRecipientAmount</a><span class="tsd-signature-symbol">[]</span>, feePlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>recipientAmounts<span class="tsd-signature-symbol">: </span><a href="../interfaces/core.multioutrecipientamount.html" class="tsd-signature-type">MultioutRecipientAmount</a><span class="tsd-signature-symbol">[]</span>, feePlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -1728,15 +1739,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/transaction/sendAmountToSingleRecipient.ts#L19">core/src/api/factories/transaction/sendAmountToSingleRecipient.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/transaction/sendAmountToSingleRecipient.ts#L19">core/src/api/factories/transaction/sendAmountToSingleRecipient.ts:19</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.transactionapi.html">TransactionApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.transactionapi.html#sendamounttosinglerecipient">TransactionApi.sendAmountToSingleRecipient</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1775,15 +1780,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/message/sendEncryptedMessage.ts#L21">core/src/api/factories/message/sendEncryptedMessage.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/message/sendEncryptedMessage.ts#L21">core/src/api/factories/message/sendEncryptedMessage.ts:21</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.messageapi.html">MessageApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.messageapi.html#sendencryptedmessage">MessageApi.sendEncryptedMessage</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1822,7 +1821,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/message/sendEncryptedTextMessage.ts#L27">core/src/api/factories/message/sendEncryptedTextMessage.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/message/sendEncryptedTextMessage.ts#L27">core/src/api/factories/message/sendEncryptedTextMessage.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1835,7 +1834,7 @@
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderKeys<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Keys</span>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, fee<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderKeys<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Keys</span>, deadline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, fee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -1878,15 +1877,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/message/sendMessage.ts#L18">core/src/api/factories/message/sendMessage.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/message/sendMessage.ts#L18">core/src/api/factories/message/sendMessage.ts:18</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.messageapi.html">MessageApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.messageapi.html#sendmessage">MessageApi.sendMessage</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1925,15 +1918,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/transaction/sendSameAmountToMultipleRecipients.ts#L18">core/src/api/factories/transaction/sendSameAmountToMultipleRecipients.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/transaction/sendSameAmountToMultipleRecipients.ts#L18">core/src/api/factories/transaction/sendSameAmountToMultipleRecipients.ts:18</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.transactionapi.html">TransactionApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.transactionapi.html#sendsameamounttomultiplerecipients">TransactionApi.sendSameAmountToMultipleRecipients</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1944,7 +1931,7 @@
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>amountPlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feePlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientIds<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>amountPlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feePlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientIds<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -1987,7 +1974,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/message/sendTextMessage.ts#L26">core/src/api/factories/message/sendTextMessage.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/message/sendTextMessage.ts#L26">core/src/api/factories/message/sendTextMessage.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2000,7 +1987,7 @@
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, fee<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, fee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -2043,15 +2030,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/account/setAccountInfo.ts#L18">core/src/api/factories/account/setAccountInfo.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/account/setAccountInfo.ts#L18">core/src/api/factories/account/setAccountInfo.ts:18</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.accountapi.html">AccountApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.accountapi.html#setaccountinfo">AccountApi.setAccountInfo</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -2105,15 +2086,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/account/setAlias.ts#L20">core/src/api/factories/account/setAlias.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/account/setAlias.ts#L20">core/src/api/factories/account/setAlias.ts:20</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.accountapi.html">AccountApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.accountapi.html#setalias">AccountApi.setAlias</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -2167,15 +2142,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/alias/setAlias.ts#L20">core/src/api/factories/alias/setAlias.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/alias/setAlias.ts#L20">core/src/api/factories/alias/setAlias.ts:20</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.aliasapi.html">AliasApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.aliasapi.html#setalias">AliasApi.setAlias</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -2229,15 +2198,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/account/setRewardRecipient.ts#L20">core/src/api/factories/account/setRewardRecipient.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/account/setRewardRecipient.ts#L18">core/src/api/factories/account/setRewardRecipient.ts:18</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.accountapi.html">AccountApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.accountapi.html#setrewardrecipient">AccountApi.setRewardRecipient</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -2248,26 +2211,14 @@
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>recipient<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><a href="../interfaces/core.setrewardrecipientargs.html" class="tsd-signature-type">SetRewardRecipientArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
 											<h4 class="tsd-parameters-title">Parameters</h4>
 											<ul class="tsd-parameters">
 												<li>
-													<h5>recipient: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5>feeNQT: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5>senderPublicKey: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5>senderPrivateKey: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5>deadline: <span class="tsd-signature-type">number</span></h5>
+													<h5>args: <a href="../interfaces/core.setrewardrecipientargs.html" class="tsd-signature-type">SetRewardRecipientArgs</a></h5>
 												</li>
 											</ul>
 											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2288,15 +2239,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/api/factories/network/suggestFee.ts#L15">core/src/api/factories/network/suggestFee.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/factories/network/suggestFee.ts#L15">core/src/api/factories/network/suggestFee.ts:15</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core.api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core.api.networkapi.html">NetworkApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core.api.networkapi.html#suggestfee">NetworkApi.suggestFee</a></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -2338,6 +2283,12 @@
 						<a href="core.api.factories.html#callcontractmethod" class="tsd-kind-icon">call<wbr>Contract<wbr>Method</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="core.api.factories.html#cancelsubscription" class="tsd-kind-icon">cancel<wbr>Subscription</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="core.api.factories.html#createsubscription" class="tsd-kind-icon">create<wbr>Subscription</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="core.api.factories.html#generatesendtransactionqrcode" class="tsd-kind-icon">generate<wbr>Send<wbr>TransactionQRCode</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
@@ -2354,6 +2305,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="core.api.factories.html#getaccountblocks" class="tsd-kind-icon">get<wbr>Account<wbr>Blocks</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="core.api.factories.html#getaccountsubscriptions" class="tsd-kind-icon">get<wbr>Account<wbr>Subscriptions</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="core.api.factories.html#getaccounttransactions" class="tsd-kind-icon">get<wbr>Account<wbr>Transactions</a>
@@ -2408,6 +2362,12 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="core.api.factories.html#getserverstatus" class="tsd-kind-icon">get<wbr>Server<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="core.api.factories.html#getsubscription" class="tsd-kind-icon">get<wbr>Subscription</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="core.api.factories.html#getsubscriptionstoaccount" class="tsd-kind-icon">get<wbr>Subscriptions<wbr>ToAccount</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="core.api.factories.html#gettime" class="tsd-kind-icon">get<wbr>Time</a>

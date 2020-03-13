@@ -87,10 +87,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-				</div>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -142,9 +138,11 @@
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.burstservicesettings.html" class="tsd-kind-icon">Burst<wbr>Service<wbr>Settings</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.bursttime.html" class="tsd-kind-icon">Burst<wbr>Time</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.callcontractmethodargs.html" class="tsd-kind-icon">Call<wbr>Contract<wbr>Method<wbr>Args</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.cancelsubscriptionargs.html" class="tsd-kind-icon">Cancel<wbr>Subscription<wbr>Args</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.contract.html" class="tsd-kind-icon">Contract</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.contractidlist.html" class="tsd-kind-icon">Contract<wbr>IdList</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.contractlist.html" class="tsd-kind-icon">Contract<wbr>List</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.createsubscriptionargs.html" class="tsd-kind-icon">Create<wbr>Subscription<wbr>Args</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.getaccounttransactionsargs.html" class="tsd-kind-icon">Get<wbr>Account<wbr>Transactions<wbr>Args</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.multioutrecipientamount.html" class="tsd-kind-icon">Multiout<wbr>Recipient<wbr>Amount</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.peer.html" class="tsd-kind-icon">Peer</a></li>
@@ -154,6 +152,9 @@
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.sendencryptedmessageargs.html" class="tsd-kind-icon">Send<wbr>Encrypted<wbr>Message<wbr>Args</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.sendmessageargs.html" class="tsd-kind-icon">Send<wbr>Message<wbr>Args</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.serverstatus.html" class="tsd-kind-icon">Server<wbr>Status</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.setrewardrecipientargs.html" class="tsd-kind-icon">Set<wbr>Reward<wbr>Recipient<wbr>Args</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.subscription.html" class="tsd-kind-icon">Subscription</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.subscriptionlist.html" class="tsd-kind-icon">Subscription<wbr>List</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.suggestedfees.html" class="tsd-kind-icon">Suggested<wbr>Fees</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.transaction.html" class="tsd-kind-icon">Transaction</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/core.transactionid.html" class="tsd-kind-icon">Transaction<wbr>Id</a></li>
@@ -190,22 +191,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/attachment/getAttachmentVersion.ts#L13">core/src/attachment/getAttachmentVersion.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/attachment/getAttachmentVersion.ts#L13">core/src/attachment/getAttachmentVersion.ts:13</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Get the transaction attachment version identifier</p>
-								</div>
-								<p>Attachment types are identified by a field <em>version.<Identifier></em></p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>transaction: <a href="../interfaces/core.transaction.html" class="tsd-signature-type">Transaction</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The transaction to be checked</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -223,26 +215,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/transaction/getRecipientAmountsFromMultiOutPayment.ts#L14">core/src/transaction/getRecipientAmountsFromMultiOutPayment.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/transaction/getRecipientAmountsFromMultiOutPayment.ts#L14">core/src/transaction/getRecipientAmountsFromMultiOutPayment.ts:14</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Tries to extract recipients and its amounts for multi out payments (different and same amount)</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>throws</dt>
-									<dd><p>An exception in case of wrong transaction types</p>
-									</dd>
-								</dl>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>transaction: <a href="../interfaces/core.transaction.html" class="tsd-signature-type">Transaction</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The transaction</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.multioutrecipientamount.html" class="tsd-signature-type">MultioutRecipientAmount</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -260,27 +239,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/transaction/getRecipientsAmount.ts#L15">core/src/transaction/getRecipientsAmount.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/transaction/getRecipientsAmount.ts#L15">core/src/transaction/getRecipientsAmount.ts:15</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Gets the amount from a transaction, considering ordinary and multi out transactions (with same and different payments)</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>recipientId: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The numeric id of the recipient</p>
-									</div>
 								</li>
 								<li>
 									<h5>transaction: <a href="../interfaces/core.transaction.html" class="tsd-signature-type">Transaction</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The payment transaction</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -298,27 +266,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/attachment/isAttachmentVersion.ts#L11">core/src/attachment/isAttachmentVersion.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/attachment/isAttachmentVersion.ts#L11">core/src/attachment/isAttachmentVersion.ts:11</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Checks if a transaction attachment is of specific version</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>transaction: <a href="../interfaces/core.transaction.html" class="tsd-signature-type">Transaction</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The transaction to be checked</p>
-									</div>
 								</li>
 								<li>
 									<h5>versionIdentifier: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The version string, i.e. MultiOutCreation</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -336,23 +293,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/transaction/isMultiOutSameTransaction.ts#L11">core/src/transaction/isMultiOutSameTransaction.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/transaction/isMultiOutSameTransaction.ts#L11">core/src/transaction/isMultiOutSameTransaction.ts:11</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Checks if a transaction is a multi out transaction with same amounts for each recipient</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>transaction: <a href="../interfaces/core.transaction.html" class="tsd-signature-type">Transaction</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>Transaction to be checked</p>
-										</div>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -370,23 +317,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/7c4a7beb/lib/packages/core/src/transaction/isMultiOutTransaction.ts#L11">core/src/transaction/isMultiOutTransaction.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/transaction/isMultiOutTransaction.ts#L11">core/src/transaction/isMultiOutTransaction.ts:11</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Checks if a transaction is a multi out transaction (with different amounts)</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>transaction: <a href="../interfaces/core.transaction.html" class="tsd-signature-type">Transaction</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>Transaction to be checked</p>
-										</div>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -506,6 +443,9 @@
 						<a href="../interfaces/core.callcontractmethodargs.html" class="tsd-kind-icon">Call<wbr>Contract<wbr>Method<wbr>Args</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.cancelsubscriptionargs.html" class="tsd-kind-icon">Cancel<wbr>Subscription<wbr>Args</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/core.contract.html" class="tsd-kind-icon">Contract</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
@@ -513,6 +453,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/core.contractlist.html" class="tsd-kind-icon">Contract<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.createsubscriptionargs.html" class="tsd-kind-icon">Create<wbr>Subscription<wbr>Args</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/core.getaccounttransactionsargs.html" class="tsd-kind-icon">Get<wbr>Account<wbr>Transactions<wbr>Args</a>
@@ -540,6 +483,15 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/core.serverstatus.html" class="tsd-kind-icon">Server<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.setrewardrecipientargs.html" class="tsd-kind-icon">Set<wbr>Reward<wbr>Recipient<wbr>Args</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.subscription.html" class="tsd-kind-icon">Subscription</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core.subscriptionlist.html" class="tsd-kind-icon">Subscription<wbr>List</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/core.suggestedfees.html" class="tsd-kind-icon">Suggested<wbr>Fees</a>
