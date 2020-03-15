@@ -48,7 +48,7 @@ console.log(value)
 
 See more here:
 
-[@burstjs/util Online Documentation](https://burstappsteam.org/phoenix/modules/util.html)
+[@burstjs/util Online Documentation](https://burst-apps-team.github.io/phoenix/modules/util.html)
 
 ---
 

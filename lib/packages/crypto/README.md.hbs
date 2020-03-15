@@ -54,7 +54,7 @@ console.log(decrypted);
 
 See more here:
 
-[@burstjs/crypto Online Documentation](https://burstappsteam.org/phoenix/modules/crypto.html)
+[@burstjs/crypto Online Documentation](https://burst-apps-team.github.io/phoenix/modules/crypto.html)
 
 ---
 

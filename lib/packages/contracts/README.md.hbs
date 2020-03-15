@@ -44,7 +44,7 @@ Just import the package using the HTML `<script>` tag.
 
 See more here:
 
-[@burstjs/contracts Online Documentation](https://burstappsteam.org/phoenix/modules/contracts.html)
+[@burstjs/contracts Online Documentation](https://burst-apps-team.github.io/phoenix/modules/contracts.html)
 
 ---
 

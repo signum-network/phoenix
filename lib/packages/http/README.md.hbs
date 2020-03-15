@@ -55,7 +55,7 @@ client.get('/todos/1').then(console.log)
 
 See more here:
 
-[@burstjs/http Online Documentation](https://burstappsteam.org/phoenix/modules/http.html)
+[@burstjs/http Online Documentation](https://burst-apps-team.github.io/phoenix/modules/http.html)
 
 ---
 

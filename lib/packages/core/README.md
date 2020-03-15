@@ -70,7 +70,7 @@ api.network.getBlockchainStatus().then(console.log).catch(console.error);
 
 See more here:
 
-[@burstjs/core Online Documentation](https://burstappsteam.org/phoenix/modules/core.html)
+[@burstjs/core Online Documentation](https://burst-apps-team.github.io/phoenix/modules/core.html)
 
 ---
 
