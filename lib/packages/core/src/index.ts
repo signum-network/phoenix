@@ -25,6 +25,8 @@ export * from './typings/peer';
 export * from './typings/peerAddressList';
 export * from './typings/serverStatus';
 export * from './typings/suggestedFees';
+export * from './typings/subscriptionList';
+export * from './typings/subscription';
 export * from './typings/transaction';
 export * from './typings/transactionId';
 export * from './typings/transactionList';
