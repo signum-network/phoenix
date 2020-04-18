@@ -35,7 +35,9 @@ jobs:
     - # parallel run
       name: "Build and Deploy Web App"
       script: './scripts/ci/build-web.sh'
-      before_deploy: 'source ./scripts/ci/get-version.sh'
+      before_deploy:
+      - 'source ./scripts/ci/get-version.sh'
+      - 'echo Checking exported version $PACKAGE_VERSION'
       deploy:
         provider: releases
         token: $GH_TOKEN
