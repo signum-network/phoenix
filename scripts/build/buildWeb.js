@@ -1,16 +1,15 @@
+const {join} = require('path');
 const exep = require('../execAsync');
 
-function navigateToAngularWalletDir()
-{
-    const angularWalletPath = path.join(__dirname, '../../web/angular-wallet');
-    process.chdir(angularWalletPath);
-
+function navigateToAngularWalletDir() {
+  const angularWalletPath = join(__dirname, '../../web/angular-wallet');
+  process.chdir(angularWalletPath);
 }
 
-async function build({type, cwd}){
-    navigateToAngularWalletDir();
-    await exep('ng', ['build', '--prod'] );
-    process.chdir(cwd);
+async function build({cwd}) {
+  navigateToAngularWalletDir();
+  await exep('npm', ['run', 'build:web']);
+  process.chdir(cwd);
 }
 
 module.exports = build;

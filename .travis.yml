@@ -26,12 +26,20 @@ jobs:
     - # parallel run
       name: "Run Angular Tests"
       script: './scripts/ci/test-ng.sh'
-    - stage: desktop-build
+    - stage: build
       name: "Build Desktop App"
       script: './scripts/ci/build-electron.sh'
     - stage: desktop-deploy
       name: "Build and Deploy Desktop App"
       script: './scripts/ci/release-desktop.sh --publish'
+    - stage: web-deploy
+      name: "Build and Deploy Web App"
+      script: './scripts/ci/build-web.sh'
+      deploy:
+        provider: releases
+        api_key: $GH_TOKEN
+        file: "./web/angular-wallet/web-phoenix-burst-wallet.tar.gz"
+        skip_cleanup: true
     - stage: force-deploy
       name: "Forced Build and Deploy Desktop App"
       script: './scripts/ci/release-desktop.sh --publish'
@@ -41,7 +49,7 @@ jobs:
 
 stages:
   - prepare
-  - name: desktop-build
+  - name: build
     if: type != cron AND tag !~ /^desktop-\d+\.\d+\.\d+/ AND branch !~ /^force-deploy/
   - name: desktop-deploy
     if: tag =~ /^desktop-\d+\.\d+\.\d+/
