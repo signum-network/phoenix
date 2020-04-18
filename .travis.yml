@@ -35,12 +35,14 @@ jobs:
     - # parallel run
       name: "Build and Deploy Web App"
       script: './scripts/ci/build-web.sh'
+      before_deploy: 'source ./scripts/ci/get-version.sh'
       deploy:
         provider: releases
         token: $GH_TOKEN
         file: "./web/angular-wallet/web-phoenix-burst-wallet.tar.gz"
         skip_cleanup: true
         draft: true
+        name: $PACKAGE_VERSION
         on:
           all_branches: true
           tags: true
