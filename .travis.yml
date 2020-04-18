@@ -50,6 +50,6 @@ stages:
     if: type != cron AND tag !~ /^desktop-\d+\.\d+\.\d+/ AND branch !~ /^force-deploy/
   - name: deploy
     # TODO: rename tag - but would affect auto updater
-    if: tag =~ /^desktop-\d+\.\d+\.\d+/- OR branch =~ /^force-deploy/
+    if: tag =~ /^desktop-\d+\.\d+\.\d+/ OR branch =~ /^force-deploy/
 #  - name: nightly-release
 #    if: branch=develop AND type=cron
