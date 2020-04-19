@@ -38,6 +38,7 @@ jobs:
       deploy:
         provider: releases
         token: $GH_TOKEN
+        file_glob: true
         file:
          - '/desktop/wallet/release-builds/web-phoenix*'
          - '/desktop/wallet/release-builds/mac-phoenix*'
