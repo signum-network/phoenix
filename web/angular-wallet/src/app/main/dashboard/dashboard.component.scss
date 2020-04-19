@@ -3,6 +3,7 @@
 #dashboard {
   .fuse-card {
     max-width: none !important;
+    min-width: 0 !important;
     width: 100%;
     margin: 8px;
     padding: 16px;
@@ -12,6 +13,10 @@
       border-radius: 0 !important;
     }
 
+  }
+
+  .scroll-y {
+    overflow-y: scroll;
   }
 
   .body {

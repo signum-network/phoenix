@@ -26,7 +26,7 @@ export class DashboardGridSettings {
 
     this.xl = {
       columnCount: 12,
-      columnSpans: new GridSpans(12,9, 3, 3),
+      columnSpans: new GridSpans(12, 9, 3, 3),
       rowSpans: new GridSpans(2, 21, 9, 8),
       tableColumns: ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account'],
     };
@@ -48,14 +48,14 @@ export class DashboardGridSettings {
     this.sm = {
       columnCount: 4,
       columnSpans: new GridSpans(4, 4, 2, 2),
-      rowSpans: new GridSpans(2, 21, 9, 9),
+      rowSpans: new GridSpans(2, 9, 9, 9),
       tableColumns: ['transaction_id', 'timestamp', 'type', 'amount', 'fee', 'account'],
     };
 
     this.xs = {
       columnCount: 1,
       columnSpans: new GridSpans(1, 1, 1, 1),
-      rowSpans: new GridSpans(4, 21, 8, 8),
+      rowSpans: new GridSpans(4, 8, 8, 8),
       tableColumns: ['transaction_id', 'amount'],
     };
 

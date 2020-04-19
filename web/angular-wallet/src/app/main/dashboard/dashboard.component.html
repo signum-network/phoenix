@@ -1,6 +1,7 @@
 <div id="dashboard" class="page-layout blank">
 
-  <app-balance-chart [account]="account"
+  <app-balance-chart 
+                     [account]="account"
                      [priceBtc]="priceBtc"
                      [priceUsd]="priceUsd"
                      [priceEur]="priceEur"
@@ -20,7 +21,7 @@
         </div>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="gridAttributes.columnSpans.table" [rowspan]="gridAttributes.rowSpans.table">
-        <div class="fuse-card mr-8">
+        <div class="fuse-card mr-8 scroll-y">
           <div class="h3 secondary-text mb-8">{{ 'recent_transactions' | i18n }}</div>
           <app-transaction-table *ngIf="dataSource && dataSource.data.length"
                                  [dataSource]="dataSource"

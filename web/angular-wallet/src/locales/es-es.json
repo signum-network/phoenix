@@ -1029,5 +1029,6 @@
   "your_alias_sale_offer": "Ha puesto este alias a la venta.",
   "your_name": "Su Nombre",
   "your_passphrase": "Su Contraseña",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "You've got Burst!",
+  "dashboard_welcome_title": "¡Bienvenido a Phoenix! Sus saldos de cuenta recientes aparecerán aquí."
 }
