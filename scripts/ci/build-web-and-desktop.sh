@@ -44,3 +44,6 @@ mv ./desktop/wallet/release-builds/linux-phoenix* ./deploy
 mv ./desktop/wallet/release-builds/mac-phoenix* ./deploy
 mv ./desktop/wallet/release-builds/win-phoenix* ./deploy
 mv "./web/angular-wallet/dist/${WEB_ARCHIVE}" ./deploy
+cp "./web/angular-wallet/CHANGELOG.md" ./deploy/CHANGELOG.md
+cd deploy
+rm -f *.blockmap
