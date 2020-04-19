@@ -7,7 +7,9 @@ const isOwnTransaction = (accountId: string, transaction: Transaction): boolean 
 function getRelativeTransactionAmount(accountId: string, transaction: Transaction): number {
 
   if (isOwnTransaction(accountId, transaction)) {
-    const amountBurst = convertNQTStringToNumber(transaction.amountNQT);
+    const amountBurst = transaction.type === 2 && transaction.subtype === 3 ?
+      convertNQTStringToNumber((transaction.attachment.quantityQNT * transaction.attachment.priceNQT).toString()) :
+      convertNQTStringToNumber(transaction.amountNQT);
     const feeBurst = convertNQTStringToNumber(transaction.feeNQT);
     return -(amountBurst + feeBurst);
   }
