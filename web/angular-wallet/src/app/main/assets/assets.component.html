@@ -1,0 +1,30 @@
+<app-page [wide]="true" title="{{ 'assets' | i18n }}">
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'asset_name' | i18n }}</mat-header-cell>
+      <mat-cell *matCellDef="let asset">
+        <span>{{ asset.name }}</span>
+        <mat-icon class="icon" matTooltip="{{ asset.description }}">info</mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="decimals">
+      <mat-header-cell *matHeaderCellDef>{{ 'asset_decimals' | i18n }}</mat-header-cell>
+      <mat-cell *matCellDef="let asset">
+        <span>{{ asset.decimals }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <mat-header-cell *matHeaderCellDef>{{ 'balance' | i18n }}</mat-header-cell>
+      <mat-cell *matCellDef="let asset">
+        <span>{{ asset.amount }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</app-page>
