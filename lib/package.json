@@ -22,6 +22,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-typescript": "^7.7.2",
+    "@strictsoftware/typedoc-plugin-monorepo": "^0.3.1",
     "@types/jest": "^24.0.23",
     "axios-mock-adapter": "^1.16.0",
     "babel-core": "^6.26.3",
@@ -38,9 +39,8 @@
     "regenerator-runtime": "^0.13.1",
     "ts-jest": "^24.0.2",
     "tslint": "^5.20.1",
-    "typedoc": "^0.14.2",
-    "typedoc-plugin-external-module-name": "^2.0.0",
-    "typescript": "^3.7.2"
+    "typedoc": "^0.17.4",
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "test": "jest",
@@ -57,7 +57,8 @@
     "clearPackages": "lerna exec 'rm -rf node_modules' && rm -rf node_modules"
   },
   "dependencies": {
-    "axios": "^0.19.0"
+    "axios": "^0.19.0",
+    "typedoc-plugin-external-module-name": "^3.0.0"
   },
   "husky": {
     "hooks": {

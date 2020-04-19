@@ -1,10 +1,11 @@
 {
   "name": "burstjs - The Burstcoin Reference Library",
   "mode": "modules",
-  "source": "./packages",
+  "inputFiles": ["./packages"],
   "out": "../docs",
   "theme": "docstheme/default",
   "excludeNotExported": true,
+  "external-modulemap": ".*packages\/.*",
   "excludePrivate": true,
   "readme": "DOCINDEX.md",
   "exclude": [
