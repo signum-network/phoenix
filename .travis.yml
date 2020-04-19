@@ -9,8 +9,8 @@ addons:
 cache:
   directories:
     # - node_modules
-    - "$HOME/.cache/electron"
-    - "$HOME/.cache/electron-builder"
+    - '$HOME/.cache/electron'
+    - '$HOME/.cache/electron-builder'
 
 before_script:
   - npm i @angular/cli -g
@@ -18,19 +18,19 @@ before_script:
 jobs:
   include:
     - stage: prepare
-      name: "Run BurstJS Tests"
+      name: 'Run BurstJS Tests'
       script: './scripts/ci/test-burstjs.sh'
     - # parallel run
-      name: "Bundle BurstJS"
+      name: 'Bundle BurstJS'
       script: './scripts/ci/bundle-burstjs.sh'
     - # parallel run
-      name: "Run Angular Tests"
+      name: 'Run Angular Tests'
       script: './scripts/ci/test-ng.sh'
     - stage: build
-      name: "Build Desktop App"
+      name: 'Build Desktop App'
       script: './scripts/ci/build-electron.sh'
     - stage: build-and-deploy
-      name: "Build and Deploy App (Web/Desktop)"
+      name: 'Build and Deploy App (Web/Desktop)'
       script: './scripts/ci/build-web-and-desktop.sh'
       before_deploy:
       - 'source ./scripts/ci/get-version.sh'
@@ -39,19 +39,19 @@ jobs:
         provider: releases
         token: $GH_TOKEN
         file:
-         - "./desktop/wallet/release-builds/web-phoenix*"
-         - "./desktop/wallet/release-builds/mac-phoenix*"
-         - "./desktop/wallet/release-builds/linux-phoenix*"
-         - "./desktop/wallet/release-builds/win-phoenix*"
-         - "./web/angular-wallet/CHANGELOG.md"
+         - '/desktop/wallet/release-builds/web-phoenix*'
+         - '/desktop/wallet/release-builds/mac-phoenix*'
+         - '/desktop/wallet/release-builds/linux-phoenix*'
+         - '/desktop/wallet/release-builds/win-phoenix*'
+         - '/web/angular-wallet/CHANGELOG.md'
         skip_cleanup: true
         draft: true
-        name: $PACKAGE_VERSION
+        name: 'Phoenix Desktop Wallet ${PACKAGE_VERSION}'
         on:
           all_branches: true
           tags: true
 #    - stage: nightly-release
-#      name: "Nightly Release of Desktop App"
+#      name: 'Nightly Release of Desktop App'
 #      script: './scripts/ci/nightly-desktop.sh'
 
 stages:
@@ -59,7 +59,6 @@ stages:
   - name: build
     if: type != cron AND tag !~ /^desktop-\d+\.\d+\.\d+/ AND branch !~ /^force-deploy/
   - name: build-and-deploy
-    # TODO: rename tag - but would affect auto updater
     if: tag =~ /^desktop-\d+\.\d+\.\d+/ OR branch =~ /^force-deploy/
 #  - name: nightly-release
 #    if: branch=develop AND type=cron
