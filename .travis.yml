@@ -39,12 +39,7 @@ jobs:
         provider: releases
         token: $GH_TOKEN
         file_glob: true
-        file:
-         - '/desktop/wallet/release-builds/web-phoenix*'
-         - '/desktop/wallet/release-builds/mac-phoenix*'
-         - '/desktop/wallet/release-builds/linux-phoenix*'
-         - '/desktop/wallet/release-builds/win-phoenix*'
-         - '/web/angular-wallet/CHANGELOG.md'
+        file: './deploy/**/*'
         skip_cleanup: true
         draft: true
         name: 'Phoenix Desktop Wallet ${PACKAGE_VERSION}'
