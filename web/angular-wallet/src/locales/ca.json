@@ -1029,5 +1029,6 @@
   "your_alias_sale_offer": "Has posat aquest Àlies a la venta.",
   "your_name": "El vostre nom",
   "your_passphrase": "La vostre Contrasenya",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "You've got Burst!",
+  "dashboard_welcome_title": "Benvingut a Phoenix! Els vostres saldos recents del compte apareixen aquí."
 }
