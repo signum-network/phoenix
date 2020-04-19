@@ -26,8 +26,7 @@ echo "Building Desktop Version"
 echo ----------------------------------
 cd ../../desktop/wallet
 npm install
-npm run pack
-#npm run release:all
+npm run release:all
 
 echo ----------------------------------
 echo "Building Web Version"
