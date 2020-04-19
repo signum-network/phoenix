@@ -8,18 +8,18 @@ source ./scripts/ci/get-version.sh
 
 ## install script deps
 cd scripts
-#npm install
+npm install
 #
 echo ----------------------------------
 echo "Building BurstJS"
 echo ----------------------------------
 cd ../lib
-#npm install
-#npm run bootstrap
+npm install
+npm run bootstrap
 #
 ## install angular deps
 cd ../web/angular-wallet
-#npm install
+npm install
 
 echo ----------------------------------
 echo "Building Desktop Version"

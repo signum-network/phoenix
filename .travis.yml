@@ -55,7 +55,7 @@ jobs:
 #      script: './scripts/ci/nightly-desktop.sh'
 
 stages:
-  - prepare
+#  - prepare
   - name: build
     if: type != cron AND tag !~ /^desktop-\d+\.\d+\.\d+/ AND branch !~ /^force-deploy/
   - name: build-and-deploy
