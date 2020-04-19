@@ -31,7 +31,7 @@ jobs:
       script: './scripts/ci/build-electron.sh'
     - stage: build-and-deploy
       name: "Build and Deploy App (Web/Desktop)"
-      script: './scripts/ci/release-web-and-desktop.sh'
+      script: './scripts/ci/build-web-and-desktop.sh'
       before_deploy:
       - 'source ./scripts/ci/get-version.sh'
       - 'echo Checking exported version $PACKAGE_VERSION'
