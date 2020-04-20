@@ -1,5 +1,3 @@
-/** @module http */
-
 import Http from './http';
 import HttpResponse from './httpResponse';
 import HttpError from './httpError';
@@ -92,6 +90,8 @@ class HttpMock implements Http {
  await mockedHttp.post('/url/post', {faz: 'post'}); // will throw exception
 
  * ```
+ *
+ * @module http
  */
 export default class HttpMockBuilder {
 

@@ -1,5 +1,3 @@
-/** @module util */
-
 /**
  * Original work Copyright (c) 2020 Burst Apps Team
  */
@@ -9,6 +7,8 @@ import {GenesisBlockTime} from './internal';
 
 /**
  * A Value Object to facilitate Burst Timestamp conversions.
+ *
+ * @module util
  */
 export class BurstTime {
 

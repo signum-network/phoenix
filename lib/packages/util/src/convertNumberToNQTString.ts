@@ -1,15 +1,17 @@
-/** @module util */
-
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
 /**
- * @deprecated This method will be substituted in favor of [[BurstValue]]
+ * @deprecated
+ * <div class="deprecated">
+ *     Use [[BurstValue]] instead
+ * </div>
  * Helper method to Number to String(8 decimals) representation
  * @param n the number
  * @return a NQT number string
+ * @module util
  */
 export const convertNumberToNQTString = (n: number): string => {
 

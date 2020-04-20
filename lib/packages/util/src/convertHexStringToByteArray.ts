@@ -1,4 +1,3 @@
-/** @module util */
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
@@ -8,6 +7,7 @@
  * Converts an hexadecimal string to byte array
  * @param hex The hexadecimal string to be converted
  * @return {number[]} An byte array representing the hexadecimal input
+ * @module util
  */
 export const convertHexStringToByteArray = (hex: string): Uint8Array => {
     if (hex.length % 2) {

@@ -1,5 +1,3 @@
-/** @module http */
-
 import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
 import HttpResponse from './httpResponse';
 import HttpError from './httpError';
@@ -8,7 +6,7 @@ import Http from './http';
 const DefaultAxiosOptions = {};
 
 /**
- * Generic Http client
+ * Http Implementation of [[Http]] using https://github.com/axios/axios
  */
 export default class HttpImpl implements Http {
 
@@ -29,6 +27,11 @@ export default class HttpImpl implements Http {
         });
     }
 
+    /**
+     * @internal
+     * @param url The url
+     * @param error The returned error
+     */
     static mountError(url: string, error: any): HttpError {
         if (error.response) {
             return new HttpError(url, error.response.status, error.response.statusText, error.response.data);

@@ -1,17 +1,25 @@
 {
   "name": "burstjs - The Burstcoin Reference Library",
   "mode": "modules",
-  "inputFiles": ["./packages"],
+  "hideGenerator": true,
+  "inputFiles": ["./packages/http/src/**/*.ts"],
   "out": "../docs",
   "theme": "docstheme/default",
+  "excludeExternals": true,
   "excludeNotExported": true,
-  "external-modulemap": ".*packages\/.*",
   "excludePrivate": true,
+  "excludeProtected": true,
+  "stripInternal": true,
   "readme": "DOCINDEX.md",
   "exclude": [
+    "/packages/util/",
+    "/packages/core/",
+    "/packages/contracts/",
+    "/packages/crypto/",
     "/node_modules/",
     "/__tests__/",
     "/dist/",
     "README.md"
   ]
 }
+

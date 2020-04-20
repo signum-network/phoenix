@@ -1,5 +1,4 @@
 // tslint:disable:no-bitwise
-/** @module util */
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
@@ -8,10 +7,13 @@
 import { initialCodeword, alphabet, cwmap, gexp, gmult } from './internal';
 
 
+// TODO: should be split into separate file and get better naming
 /**
+ * @internal
  * Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX, XXXX-XXXX-XXXX-XXXXX)
  * @param {string} address The address
  * @return {boolean} true, if is a valid address, else false
+ * @module util
  */
 export const isValid = (address: string): boolean => {
     if (address.indexOf('BURST-') === 0) {
@@ -68,9 +70,9 @@ export const isValid = (address: string): boolean => {
 
 /**
  * Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX, XXXX-XXXX-XXXX-XXXXX)
- * @note This is with prior quick check
  * @param {string} address The address
  * @return {boolean} true, if is a valid address, else false
+ * @module util
  */
 export const isBurstAddress = (address: string): boolean => {
     return /^BURST\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}/i

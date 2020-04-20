@@ -1,5 +1,3 @@
-/** @module util */
-
 /**
  * Original work Copyright (c) 2020 Burst Apps Team
  */
@@ -19,6 +17,8 @@ export enum BurstValueFormat {
  *
  * Note: This class uses a big number representation (ES5 compatible) under the hood, so
  * number limits and numeric calculations are much more precise than JS number type
+ *
+ * @module util
  */
 export class BurstValue {
 

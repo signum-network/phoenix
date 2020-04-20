@@ -1,8 +1,9 @@
-/** @module http */
 import HttpResponse from './httpResponse';
 
 /**
  * A generic HTTP interface
+ *
+ * @module http
  */
 export default interface Http {
 

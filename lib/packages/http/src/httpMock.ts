@@ -1,5 +1,3 @@
-/** @module http */
-
 import Http from './http';
 import HttpResponse from './httpResponse';
 import HttpError from './httpError';
@@ -56,12 +54,13 @@ class MockBehavior {
 }
 
 /**
+ * @internal
  * Http Mocker for easy to http testing using Jest
  *
  * When using this mocking helper you need to call `Http.onGet()`
  * before Http instance is created
- *
- */
+ * @module http
+ * */
 class HttpMock {
 
     /**
