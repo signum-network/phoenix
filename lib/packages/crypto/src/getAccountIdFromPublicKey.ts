@@ -1,5 +1,3 @@
-/** @module crypto */
-
 import {Converter} from './converter';
 import * as CryptoJS from 'crypto-js';
 
@@ -7,6 +5,7 @@ import * as CryptoJS from 'crypto-js';
  * Convert hex string of the public key to the account id
  * @param publicKey The public key
  * @return The numeric account Id
+ * @module crypto
  */
 export const getAccountIdFromPublicKey = (publicKey: string): string => {
     const hash = CryptoJS.SHA256(CryptoJS.enc.Hex.parse(publicKey));
@@ -14,17 +13,21 @@ export const getAccountIdFromPublicKey = (publicKey: string): string => {
     let result = '';
     for (let i = 0; i < 8; i++) {
         let byte = bytes[i].toString(16);
-        if (byte.length < 2) { byte = '0' + byte; }
+        if (byte.length < 2) {
+            byte = '0' + byte;
+        }
         result = byte + result;
     }
     return hexToDec(result);
 };
 
 /**
+ * @internal
  * Arbitrary length hexadecimal to decimal conversion
  * https://stackoverflow.com/questions/21667377/javascript-hexadecimal-string-to-decimal-string
  * @param s A hexadecimal string
  * @return A decimal string
+ * @module crypto
  */
 function hexToDec(s) {
     const digits = [0];

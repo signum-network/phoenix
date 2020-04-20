@@ -78,32 +78,614 @@
 					<a href="crypto.html">crypto</a>
 				</li>
 			</ul>
-			<h1>crypto</h1>
+			<h1>External module crypto</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>This package contains all cryptographic functions
+						needed for Burstcoin.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>External modules</h3>
+							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class=""><a href="crypto._crypto_src_converter_.html" class="tsd-kind-icon">&quot;crypto/src/converter&quot;</a></li>
-								<li class=""><a href="crypto._crypto_src_decryptdata_.html" class="tsd-kind-icon">&quot;crypto/src/decrypt<wbr>Data&quot;</a></li>
-								<li class=""><a href="crypto._crypto_src_decryptmessage_.html" class="tsd-kind-icon">&quot;crypto/src/decrypt<wbr>Message&quot;</a></li>
-								<li class=""><a href="crypto._crypto_src_encryptdata_.html" class="tsd-kind-icon">&quot;crypto/src/encrypt<wbr>Data&quot;</a></li>
-								<li class=""><a href="crypto._crypto_src_encryptmessage_.html" class="tsd-kind-icon">&quot;crypto/src/encrypt<wbr>Message&quot;</a></li>
-								<li class=""><a href="crypto._crypto_src_generatesignedtransactionbytes_.html" class="tsd-kind-icon">&quot;crypto/src/generate<wbr>Signed<wbr>Transaction<wbr>Bytes&quot;</a></li>
-								<li class=""><a href="crypto._crypto_src_passphrasegenerator_.html" class="tsd-kind-icon">&quot;crypto/src/pass<wbr>Phrase<wbr>Generator&quot;</a></li>
-								<li class=""><a href="crypto._crypto_src_typings_encrypteddata_.html" class="tsd-kind-icon">&quot;crypto/src/typings/encrypted<wbr>Data&quot;</a></li>
-								<li class=""><a href="crypto._crypto_src_typings_encryptedmessage_.html" class="tsd-kind-icon">&quot;crypto/src/typings/encrypted<wbr>Message&quot;</a></li>
-								<li class=""><a href="crypto._crypto_src_typings_keys_.html" class="tsd-kind-icon">&quot;crypto/src/typings/keys&quot;</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="crypto.html#decryptaes" class="tsd-kind-icon">decryptAES</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="crypto.html#decryptdata" class="tsd-kind-icon">decrypt<wbr>Data</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="crypto.html#decryptmessage" class="tsd-kind-icon">decrypt<wbr>Message</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="crypto.html#encryptaes" class="tsd-kind-icon">encryptAES</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="crypto.html#encryptdata" class="tsd-kind-icon">encrypt<wbr>Data</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="crypto.html#encryptmessage" class="tsd-kind-icon">encrypt<wbr>Message</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="crypto.html#generatemasterkeys" class="tsd-kind-icon">generate<wbr>Master<wbr>Keys</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="crypto.html#generatesignature" class="tsd-kind-icon">generate<wbr>Signature</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="crypto.html#generatesignedtransactionbytes" class="tsd-kind-icon">generate<wbr>Signed<wbr>Transaction<wbr>Bytes</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="crypto.html#getaccountidfrompublickey" class="tsd-kind-icon">get<wbr>Account<wbr>IdFrom<wbr>Public<wbr>Key</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="crypto.html#hashsha256" class="tsd-kind-icon">hashSHA256</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="crypto.html#verifysignature" class="tsd-kind-icon">verify<wbr>Signature</a></li>
 							</ul>
 						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/crypto.encrypteddata.html" class="tsd-kind-icon">Encrypted<wbr>Data</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/crypto.encryptedmessage.html" class="tsd-kind-icon">Encrypted<wbr>Message</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/crypto.keys.html" class="tsd-kind-icon">Keys</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/crypto.passphrasegenerator.html" class="tsd-kind-icon">Pass<wbr>Phrase<wbr>Generator</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Call signatures</h3>
+							<ul class="tsd-index-list">
+								<li class=""><a href="crypto.html#generate" class="tsd-kind-icon">generate</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="decryptaes" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> decryptAES</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">decryptAES<span class="tsd-signature-symbol">(</span>encryptedBase64<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e62160ee/lib/packages/crypto/src/decryptAES.ts#L11">crypto/src/decryptAES.ts:11</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Decrypt an encrypted message</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="crypto.html#encryptaes">encryptAES</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>encryptedBase64: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>encrypted data in base64 format</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The secret key</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The decrypted content</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="decryptdata" class="tsd-anchor"></a>
+					<h3>decrypt<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">decrypt<wbr>Data<span class="tsd-signature-symbol">(</span>encryptedData<span class="tsd-signature-symbol">: </span><a href="../interfaces/crypto.encrypteddata.html" class="tsd-signature-type">EncryptedData</a>, senderPublicKeyHex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientPrivateKeyHex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e62160ee/lib/packages/crypto/src/decryptData.ts#L53">crypto/src/decryptData.ts:53</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Decrypts an encrypted cipher text</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>encryptedData: <a href="../interfaces/crypto.encrypteddata.html" class="tsd-signature-type">EncryptedData</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The encrypted data</p>
+									</div>
+								</li>
+								<li>
+									<h5>senderPublicKeyHex: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The senders public key in hex format</p>
+									</div>
+								</li>
+								<li>
+									<h5>recipientPrivateKeyHex: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The recipients private (agreement) key in hex format</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Uint8Array</span></h4>
+							<p>The original plain text</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="decryptmessage" class="tsd-anchor"></a>
+					<h3>decrypt<wbr>Message</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">decrypt<wbr>Message<span class="tsd-signature-symbol">(</span>encryptedMessage<span class="tsd-signature-symbol">: </span><a href="../interfaces/crypto.encryptedmessage.html" class="tsd-signature-type">EncryptedMessage</a>, senderPublicKeyHex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientPrivateKeyHex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e62160ee/lib/packages/crypto/src/decryptMessage.ts#L17">crypto/src/decryptMessage.ts:17</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Decrypts an encrypted Message</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>encryptedMessage: <a href="../interfaces/crypto.encryptedmessage.html" class="tsd-signature-type">EncryptedMessage</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The encrypted message</p>
+									</div>
+								</li>
+								<li>
+									<h5>senderPublicKeyHex: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The senders public key in hex format</p>
+									</div>
+								</li>
+								<li>
+									<h5>recipientPrivateKeyHex: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The recipients private (agreement) key in hex format</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The original message</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="encryptaes" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> encryptAES</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">encryptAES<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e62160ee/lib/packages/crypto/src/encryptAES.ts#L11">crypto/src/encryptAES.ts:11</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Symmetrically encrypts a text using an arbitrary key</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="crypto.html#decryptaes">decryptAES</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>text: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The message/text to be encrypted</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The key used</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The encrypted message as Base64 string</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="encryptdata" class="tsd-anchor"></a>
+					<h3>encrypt<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">encrypt<wbr>Data<span class="tsd-signature-symbol">(</span>plaintext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span>, recipientPublicKeyHex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKeyHex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/crypto.encrypteddata.html" class="tsd-signature-type">EncryptedData</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e62160ee/lib/packages/crypto/src/encryptData.ts#L47">crypto/src/encryptData.ts:47</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Encrypts arbitrary data</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="crypto.html#decryptdata">decryptData</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>plaintext: <span class="tsd-signature-type">Uint8Array</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Data to be encrypted</p>
+									</div>
+								</li>
+								<li>
+									<h5>recipientPublicKeyHex: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The recipients public key in hexadecimal format</p>
+									</div>
+								</li>
+								<li>
+									<h5>senderPrivateKeyHex: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The senders private (agreement) key hexadecimal format</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/crypto.encrypteddata.html" class="tsd-signature-type">EncryptedData</a></h4>
+							<p>The encrypted Data</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="encryptmessage" class="tsd-anchor"></a>
+					<h3>encrypt<wbr>Message</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">encrypt<wbr>Message<span class="tsd-signature-symbol">(</span>plaintext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientPublicKeyHex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKeyHex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/crypto.encryptedmessage.html" class="tsd-signature-type">EncryptedMessage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e62160ee/lib/packages/crypto/src/encryptMessage.ts#L18">crypto/src/encryptMessage.ts:18</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Encrypts a message (UTF-8 compatible)</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="crypto.html#decryptmessage">decryptMessage</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>plaintext: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Message to be encrypted</p>
+									</div>
+								</li>
+								<li>
+									<h5>recipientPublicKeyHex: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The recipients public key hexadecimal format</p>
+									</div>
+								</li>
+								<li>
+									<h5>senderPrivateKeyHex: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The senders private (agreement) key hexadecimal format</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/crypto.encryptedmessage.html" class="tsd-signature-type">EncryptedMessage</a></h4>
+							<p>The encrypted Message</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="generatemasterkeys" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> generate<wbr>Master<wbr>Keys</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Master<wbr>Keys<span class="tsd-signature-symbol">(</span>passPhrase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/crypto.keys.html" class="tsd-signature-type">Keys</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e62160ee/lib/packages/crypto/src/generateMasterKeys.ts#L12">crypto/src/generateMasterKeys.ts:12</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generate the Master Public Key and Master Private Keys for a new passphrase</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>passPhrase: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The passphrase</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/crypto.keys.html" class="tsd-signature-type">Keys</a></h4>
+							<p>EC-KCDSA sign key pair + agreement key</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="generatesignature" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> generate<wbr>Signature</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Signature<span class="tsd-signature-symbol">(</span>messageHex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, privateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e62160ee/lib/packages/crypto/src/generateSignature.ts#L20">crypto/src/generateSignature.ts:20</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generate a signature for a transaction</p>
+								</div>
+								<p>Method:</p>
+								<pre><code> s = sign(<span class="hljs-name">sha256</span>(<span class="hljs-name">sha256</span>(<span class="hljs-name">transactionHex</span>)_keygen(<span class="hljs-name">sha256</span>(<span class="hljs-name">sha256</span>(<span class="hljs-name">transactionHex</span>)_privateKey)).publicKey),
+         sha256(<span class="hljs-name">sha256</span>(<span class="hljs-name">transactionHex</span>)_privateKey),
+         privateKey)
+ p = sha256(<span class="hljs-name">sha256</span>(<span class="hljs-name">transactionHex</span>)_keygen(<span class="hljs-name">sha256</span>(<span class="hljs-name">transactionHex_privateKey</span>)).publicKey)</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>messageHex: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The data in hexadecimal representation</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>privateKey: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The private key for signing</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The signature in hexadecimal format</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="generatesignedtransactionbytes" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> generate<wbr>Signed<wbr>Transaction<wbr>Bytes</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Signed<wbr>Transaction<wbr>Bytes<span class="tsd-signature-symbol">(</span>unsignedTransactionHex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, signature<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e62160ee/lib/packages/crypto/src/generateSignedTransactionBytes.ts#L8">crypto/src/generateSignedTransactionBytes.ts:8</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates a signed message digest, which can be sent to BRS API then</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>unsignedTransactionHex: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The unsigned message</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>signature: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The signature</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The signed message digest</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getaccountidfrompublickey" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Account<wbr>IdFrom<wbr>Public<wbr>Key</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>IdFrom<wbr>Public<wbr>Key<span class="tsd-signature-symbol">(</span>publicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e62160ee/lib/packages/crypto/src/getAccountIdFromPublicKey.ts#L10">crypto/src/getAccountIdFromPublicKey.ts:10</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Convert hex string of the public key to the account id</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>publicKey: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The public key</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The numeric account Id</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="hashsha256" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> hashSHA256</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">hashSHA256<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e62160ee/lib/packages/crypto/src/hashSHA256.ts#L9">crypto/src/hashSHA256.ts:9</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Hash string into hex string</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>input: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>An arbitrary text</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>the hash for that string in hex format</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="verifysignature" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> verify<wbr>Signature</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">verify<wbr>Signature<span class="tsd-signature-symbol">(</span>signature<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, messageHex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, publicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e62160ee/lib/packages/crypto/src/verifySignature.ts#L21">crypto/src/verifySignature.ts:21</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Verify a signature for given message</p>
+								</div>
+								<ul>
+									<li>Method:<pre><code>* h1 = sha256(<span class="hljs-name">sha256</span>(<span class="hljs-name">transactionHex</span>)_keygen(<span class="hljs-name">sha256</span>(<span class="hljs-name">transactionHex_privateKey</span>)).publicKey)
+==
+sha256(<span class="hljs-name">sha256</span>(<span class="hljs-name">transactionHex</span>)_verify(<span class="hljs-name">v</span>, h1, publickey)) = h2</code></pre></li>
+								</ul>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="crypto.html#generatesignature">generateSignature</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>signature: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The signature to be verified</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>messageHex: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The message data in hexadecimal representation</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>publicKey: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The public key</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p><em>true</em>, if signature is valid, otherwise <em>false</em></p>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Call signatures</h2>
+				<section class="tsd-panel tsd-member ">
+					<a name="generate" class="tsd-anchor"></a>
+					<h3>generate</h3>
+					<div class="tsd-signature tsd-kind-icon">generate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e62160ee/lib/packages/crypto/src/passPhraseGenerator.ts#L35">crypto/src/passPhraseGenerator.ts:35</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Generates a passphrase based on priory set</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -114,10 +696,76 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="contracts.html">contracts</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="core.html">core</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="crypto.html">crypto</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="http.html">http</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="util.html">util</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/crypto.passphrasegenerator.html" class="tsd-kind-icon">Pass<wbr>Phrase<wbr>Generator</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/crypto.encrypteddata.html" class="tsd-kind-icon">Encrypted<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/crypto.encryptedmessage.html" class="tsd-kind-icon">Encrypted<wbr>Message</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/crypto.keys.html" class="tsd-kind-icon">Keys</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="crypto.html#decryptaes" class="tsd-kind-icon">decryptAES</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="crypto.html#decryptdata" class="tsd-kind-icon">decrypt<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="crypto.html#decryptmessage" class="tsd-kind-icon">decrypt<wbr>Message</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="crypto.html#encryptaes" class="tsd-kind-icon">encryptAES</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="crypto.html#encryptdata" class="tsd-kind-icon">encrypt<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="crypto.html#encryptmessage" class="tsd-kind-icon">encrypt<wbr>Message</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="crypto.html#generatemasterkeys" class="tsd-kind-icon">generate<wbr>Master<wbr>Keys</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="crypto.html#generatesignature" class="tsd-kind-icon">generate<wbr>Signature</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="crypto.html#generatesignedtransactionbytes" class="tsd-kind-icon">generate<wbr>Signed<wbr>Transaction<wbr>Bytes</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="crypto.html#getaccountidfrompublickey" class="tsd-kind-icon">get<wbr>Account<wbr>IdFrom<wbr>Public<wbr>Key</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="crypto.html#hashsha256" class="tsd-kind-icon">hashSHA256</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="crypto.html#verifysignature" class="tsd-kind-icon">verify<wbr>Signature</a>
+					</li>
+					<li class=" ">
+						<a href="crypto.html#generate" class="tsd-kind-icon">generate</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

@@ -1,5 +1,3 @@
-/** @module crypto */
-
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
  */
@@ -14,6 +12,7 @@ import {EncryptedMessage} from './typings/encryptedMessage';
  * @param senderPublicKeyHex The senders public key in hex format
  * @param recipientPrivateKeyHex The recipients private (agreement) key in hex format
  * @return The original message
+ * @module crypto
  */
 export function decryptMessage(
     encryptedMessage: EncryptedMessage,

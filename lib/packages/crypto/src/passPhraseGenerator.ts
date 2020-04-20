@@ -1,6 +1,4 @@
 /* tslint:disable */
-/** @module crypto */
-
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
@@ -11,6 +9,13 @@ import { words } from './words';
 
 const seedrandom = (_seedrandom as any).default || _seedrandom;
 
+/**
+ * A secure random passphrase generator
+ *
+ * @note For secure randomization [seedrandom](https://www.npmjs.com/package/seedrandom) is used.
+ *
+ * @module crypto
+ */
 export class PassPhraseGenerator {
 
     private static readonly wordCount: number = words.length;
@@ -22,6 +27,11 @@ export class PassPhraseGenerator {
         this.seed = [];
     }
 
+    /**
+     * Generates a passphrase based on priory set
+     * @return The _secret_ twelve-worded passphrase
+     * @module crypto
+     */
 	public generate(): string[] {
         // seed with given seed if seed was given, yep
         this.seed.map(element => seedrandom(element, { "entropy": true, "global":true }));
@@ -36,14 +46,19 @@ export class PassPhraseGenerator {
         return randomWords;
 	}
 
+    /**
+     * Sets a new seed for generation
+     * @param seed
+     */
 	public reSeed(seed) {
 		this.seed = seed;
     }
 
-    /*
-    * Generate a passphrase with the help of the PassPhraseGenerator
-    * pass optional seed for seeding generation
-    */
+    /**
+     * Creates a secure randomized passphrase
+     * @param seed An arbitrary array of elements used for seeding
+     * @return The _secret_ twelve-worded passphrase
+     */
     public generatePassPhrase(seed: any[] = []): Promise<string[]> {
         return new Promise((resolve, reject) => {
             this.reSeed(seed);

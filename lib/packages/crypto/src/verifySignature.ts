@@ -1,5 +1,3 @@
-/** @module crypto */
-
 import { Converter } from './converter';
 import { ECKCDSA } from './ec-kcdsa';
 import * as CryptoJS from 'crypto-js';
@@ -13,9 +11,12 @@ import * as CryptoJS from 'crypto-js';
  * ==
  * sha256(sha256(transactionHex)_verify(v, h1, publickey)) = h2
  * ```
+ * @see [[generateSignature]]
  * @param signature The signature to be verified
  * @param messageHex The message data in hexadecimal representation
  * @param publicKey The public key
+ * @return _true_, if signature is valid, otherwise _false_
+ * @module crypto
  */
 export const verifySignature = (signature: string, messageHex: string, publicKey: string): boolean => {
     // get bytes

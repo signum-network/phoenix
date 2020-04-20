@@ -1,5 +1,3 @@
-/** @module crypto */
-
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
@@ -38,10 +36,13 @@ function encrypt(plaintext: Uint8Array, nonce: Uint8Array, sharedKeyOrig: any[])
 
 /**
  * Encrypts arbitrary data
+ *
+ * @see [[decryptData]]
  * @param plaintext Data to be encrypted
  * @param recipientPublicKeyHex The recipients public key in hexadecimal format
  * @param senderPrivateKeyHex The senders private (agreement) key hexadecimal format
  * @return The encrypted Data
+ * @module crypto
  */
 export function encryptData(
     plaintext: Uint8Array,

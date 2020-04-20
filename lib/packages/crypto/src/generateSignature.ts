@@ -1,11 +1,9 @@
-/** @module crypto */
-
 import {Converter} from './converter';
 import {ECKCDSA} from './ec-kcdsa';
 import * as CryptoJS from 'crypto-js';
 
 /**
- * Generate a signature for the transaction
+ * Generate a signature for a transaction
  *
  * Method:
  * ```
@@ -16,6 +14,8 @@ import * as CryptoJS from 'crypto-js';
  * ```
  * @param messageHex The data in hexadecimal representation
  * @param privateKey The private key for signing
+ * @return The signature in hexadecimal format
+ * @module crypto
  */
 export const generateSignature = (messageHex: string, privateKey: string): string => {
     const s = Converter.convertHexStringToByteArray(privateKey);
