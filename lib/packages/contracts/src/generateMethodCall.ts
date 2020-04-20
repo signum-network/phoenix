@@ -1,5 +1,3 @@
-/** @module contracts */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  *
@@ -12,6 +10,10 @@ import BigNumber from 'bignumber.js';
 import {convertHexEndianess} from '@burstjs/util';
 import {GenerateMethodCallArgs, MethodArgument} from './typings/args';
 
+/**
+ * @internal
+ * @param numeric
+ */
 const numericToHex = (numeric: string): string => {
     let bn = new BigNumber(numeric);
 
@@ -23,6 +25,10 @@ const numericToHex = (numeric: string): string => {
     return hex.length % 2 ? '0' + hex : hex;
 };
 
+/**
+ * @internal
+ * @param bn
+ */
 const twosComplementBinary = (bn: BigNumber) => {
     // we manually implement our own two's complement (flip bits, add one)
     let bin = bn.multipliedBy(-1).toString(2);
@@ -34,6 +40,10 @@ const twosComplementBinary = (bn: BigNumber) => {
     return new BigNumber(prefix + bin, 2).plus(1);
 };
 
+/**
+ * @internal
+ * @param value
+ */
 const convertArgument = (value: MethodArgument): string => {
     if (typeof (value) === 'boolean') {
         return value ? '1' : '0';
@@ -49,6 +59,7 @@ const convertArgument = (value: MethodArgument): string => {
  * [[MessageApi.sendMessage]] with `messageIsText = false` or [[ContractApi.callContractMethod]]]
  * @param args The argument object
  * @return A hex string that can be used as contracts transaction message
+ * @module contracts
  */
 export const generateMethodCall = (args: GenerateMethodCallArgs): string => {
     const MaxArgs = 3;

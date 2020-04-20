@@ -1,4 +1,5 @@
 /** @ignore */
+/** @internal */
 /** @module contracts */
 
 // https://github.com/uxitten/polyfill/blob/master/string.polyfill.js
