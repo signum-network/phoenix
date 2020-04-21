@@ -1,5 +1,3 @@
-/** @module core */
-
 /**
  * The argument object for [[TransactionApi.sendAmountToSingleRecipient]]
  *
@@ -9,6 +7,7 @@
  * @param feePlanck The fee to pay in planck
  * @param deadline The _optional_ transactions deadline in minutes until it's being removed from mempool.
  * This may happen on low fees. Defaults to 1440 (maximum)
+ * @module core
  */
 export interface SetRewardRecipientArgs {
     deadline?: number;

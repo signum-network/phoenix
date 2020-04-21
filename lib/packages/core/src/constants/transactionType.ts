@@ -1,5 +1,3 @@
-/** @module core */
-
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
  */
@@ -10,6 +8,7 @@
  * The transaction type is part of every [[Transaction]] object
  * and used to distinguish block data. Additionally, to the transaction type
  * a subtype is sent, that specifies the kind of transaction more detailly.
+ * @module core
  */
 export enum TransactionType {
     /**

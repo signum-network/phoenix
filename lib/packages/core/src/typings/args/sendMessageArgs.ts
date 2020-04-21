@@ -1,5 +1,3 @@
-/** @module core */
-
 /**
  * The argument object for [[MessageApi.sendMessage]]
  *
@@ -13,6 +11,7 @@
  * @param senderPrivateKey The senders private key to _sign_ the message
  * @param deadline The _optional_ transactions deadline in minutes until it's being removed from mempool.
  * This may happen on low fees. Defaults to 1440 (maximum)
+ * @module core
  */
 export interface SendMessageArgs {
     message: string;

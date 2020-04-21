@@ -1,5 +1,3 @@
-/** @module core */
-
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
@@ -16,6 +14,7 @@ import { UnconfirmedAssetBalance } from './unconfirmedAssetBalance';
 * The account class serves as a model for a Burstcoin account.
 * It's meant to model the response from BRS API, except publicKey
 * has been moved into the keys object.
+ * @module core
 */
 export class Account {
     public account: string;

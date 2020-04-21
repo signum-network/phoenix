@@ -23,7 +23,6 @@ export * from './typings/balance';
 export * from './typings/block';
 export * from './typings/blockchainStatus';
 export * from './typings/blockId';
-export * from './typings/burstNode';
 export * from './typings/burstTime';
 export * from './typings/multioutRecipientAmount';
 export * from './typings/peer';

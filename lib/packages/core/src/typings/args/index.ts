@@ -1,5 +1,3 @@
-/** @module core */
-
 export * from './callContractMethodArgs';
 export * from './cancelSubscriptionArgs';
 export * from './createSubscriptionArgs';

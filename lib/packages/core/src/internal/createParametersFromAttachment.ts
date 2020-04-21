@@ -1,15 +1,16 @@
-/** @module core */
 /** @ignore */
+/** @internal */
 
 import {Attachment, AttachmentEncryptedMessage, AttachmentMessage} from '../typings/attachment';
 
 /**
  * Creates BRS Http send parameters for a transaction from attachment data
  *
- * @hidden
+ * @internal
  * @param attachment The attachment
  * @param params Any object
  * @return HttpParams
+ * @module core
  */
 export const createParametersFromAttachment = (attachment: Attachment, params: any) => {
     if (attachment instanceof AttachmentEncryptedMessage) {

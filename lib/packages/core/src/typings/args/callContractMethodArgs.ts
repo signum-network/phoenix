@@ -1,11 +1,9 @@
-/** @module core */
-
 import {MethodArgument} from '@burstjs/contracts';
 
 /**
  * The argument object for [[ContractApi.callContractMethod]]
  *
- *
+ * @module core
  */
 export interface CallContractMethodArgs {
     amountPlanck: string;

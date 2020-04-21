@@ -1,15 +1,12 @@
-/** @module core */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-
-
 import {Http} from '@burstjs/http';
 import {AxiosRequestConfig} from 'axios';
 
 /**
  * The settings interface for the BurstService class
+ * @module core
  */
 export interface BurstServiceSettings {
     /**

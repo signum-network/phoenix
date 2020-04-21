@@ -1,5 +1,7 @@
-/** @module core */
 
+/**
+ * @module core
+ * */
 export enum ApiVersion {
     /**
      * Currently, the only version.

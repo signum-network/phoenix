@@ -1,6 +1,3 @@
-/** @module core */
-
-
 /**
  * The argument object for [[ContractApi.publishContract]]
  *
@@ -11,7 +8,7 @@
  * @param name {string}
  * @param senderPublicKey {string}
  * @param senderPrivateKey {string}
- *
+ * @module core
  */
 export interface PublishContractArgs {
     activationAmountPlanck: string;
