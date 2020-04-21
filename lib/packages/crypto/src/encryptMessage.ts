@@ -7,7 +7,7 @@ import {encryptData} from './encryptData';
 import {EncryptedMessage} from './typings/encryptedMessage';
 
 /**
- * Encrypts a message (UTF-8 compatible)
+ * Encrypts arbitrary message (UTF-8 compatible) for P2P message/data exchange using asymmetric encryption
  * @see [[decryptMessage]]
  * @param plaintext Message to be encrypted
  * @param recipientPublicKeyHex The recipients public key hexadecimal format

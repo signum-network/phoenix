@@ -1,0 +1,885 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>BurstValue
+	| burstjs - The Burstcoin Reference Library</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="index, follow">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/custom.css">
+</head>
+<body>
+<a href="https://github.com/burst-apps-team/phoenix/tree/master/lib" class="github-corner" aria-label="View source on GitHub">
+	<svg width="80" height="80" viewBox="0 0 250 250"
+	style="fill:rgba(3, 155, 229, 0.90); color:#fff; position: absolute; top: 0; border: 0; left: 0; z-index: 2; transform: scale(-1, 1);"
+	aria-hidden="true">
+	<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+	<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+	fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+	<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+	fill="currentColor" class="octo-body"></path>
+	</svg>
+</a>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="tsd-logo-wrapper">
+				<a href="../index.html" class="title">
+					<img id="tsd-burstjs-logo" alt="burstjs" src="../assets/images/burstjs.png">
+				</a>
+				<a href="https://www.npmjs.com/package/@burstjs/core">
+					<img id="tsd-npm-badge" alt="npm"
+					src="https://img.shields.io/npm/v/@burstjs/core.svg?style=for-the-badge">
+				</a>
+			</div>
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js"
+				data-base="..">
+				<div class="field">
+					<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+					<input id="tsd-search-field" type="text"/>
+				</div>
+				<ul class="results">
+					<li class="state loading">Preparing search index...</li>
+					<li class="state failure">The search index is not available</li>
+				</ul>
+			</div>
+			<div class="table-cell" id="tsd-widgets">
+				<div id="tsd-filter">
+					<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+					<div class="tsd-filter-group">
+						<div class="tsd-select" id="tsd-filter-visibility">
+							<span class="tsd-select-label">All</span>
+							<ul class="tsd-select-list">
+								<li data-value="public">Public</li>
+								<li data-value="protected">Public/Protected</li>
+								<li data-value="private" class="selected">All</li>
+							</ul>
+						</div>
+						<input type="checkbox" id="tsd-filter-inherited" checked/>
+						<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+					</div>
+				</div>
+				<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/util.html">util</a>
+				</li>
+				<li>
+					<a href="util.burstvalue.html">BurstValue</a>
+				</li>
+			</ul>
+			<h1>Class BurstValue</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A Value Object to facilitate BURST and Planck conversions/calculations.</p>
+					</div>
+					<p>Note: This class uses a big number representation (ES5 compatible) under the hood, so
+					number limits and numeric calculations are much more precise than JS number type</p>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">BurstValue</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#add" class="tsd-kind-icon">add</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#divide" class="tsd-kind-icon">divide</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#equals" class="tsd-kind-icon">equals</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#getburst" class="tsd-kind-icon">get<wbr>Burst</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#getplanck" class="tsd-kind-icon">get<wbr>Planck</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#getraw" class="tsd-kind-icon">get<wbr>Raw</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#greater" class="tsd-kind-icon">greater</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#greaterorequal" class="tsd-kind-icon">greater<wbr>OrEqual</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#less" class="tsd-kind-icon">less</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#lessorequal" class="tsd-kind-icon">less<wbr>OrEqual</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#multiply" class="tsd-kind-icon">multiply</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#setburst" class="tsd-kind-icon">set<wbr>Burst</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#setplanck" class="tsd-kind-icon">set<wbr>Planck</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#subtract" class="tsd-kind-icon">subtract</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="util.burstvalue.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="util.burstvalue.html#fromburst" class="tsd-kind-icon">from<wbr>Burst</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="util.burstvalue.html#fromplanck" class="tsd-kind-icon">from<wbr>Planck</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="add" class="tsd-anchor"></a>
+					<h3>add</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>burstValue<span class="tsd-signature-symbol">: </span><a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L138">util/src/burstValue.ts:138</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds two values</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>burstValue: <a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The other value to be added</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></h4>
+							<p>the mutated BurstValue object</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="divide" class="tsd-anchor"></a>
+					<h3>divide</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">divide<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L168">util/src/burstValue.ts:168</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Divides by a <em>numeric</em> value (not BurstValue)</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A numeric value to be divided by</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></h4>
+							<p>the mutated BurstValue object</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="equals" class="tsd-anchor"></a>
+					<h3>equals</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>burstValue<span class="tsd-signature-symbol">: </span><a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L93">util/src/burstValue.ts:93</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks for equality</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>burstValue: <a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The other value to be compared</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if equal, otherwise false</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getburst" class="tsd-anchor"></a>
+					<h3>get<wbr>Burst</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Burst<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L76">util/src/burstValue.ts:76</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets BURST representation</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>value in BURST</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getplanck" class="tsd-anchor"></a>
+					<h3>get<wbr>Planck</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Planck<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L60">util/src/burstValue.ts:60</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>Gets Planck representation</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getraw" class="tsd-anchor"></a>
+					<h3>get<wbr>Raw</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Raw<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Big</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L53">util/src/burstValue.ts:53</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Leaky value getter</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Big</span></h4>
+							<p>the underlying value in its big number representation (immutable)</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="greater" class="tsd-anchor"></a>
+					<h3>greater</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">greater<span class="tsd-signature-symbol">(</span>burstValue<span class="tsd-signature-symbol">: </span><a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L129">util/src/burstValue.ts:129</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks for greater value</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>burstValue: <a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The other value to be compared</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if greater, otherwise false</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="greaterorequal" class="tsd-anchor"></a>
+					<h3>greater<wbr>OrEqual</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">greater<wbr>OrEqual<span class="tsd-signature-symbol">(</span>burstValue<span class="tsd-signature-symbol">: </span><a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L120">util/src/burstValue.ts:120</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks for greater or equality value</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>burstValue: <a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The other value to be compared</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if greater or equal, otherwise false</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="less" class="tsd-anchor"></a>
+					<h3>less</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">less<span class="tsd-signature-symbol">(</span>burstValue<span class="tsd-signature-symbol">: </span><a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L111">util/src/burstValue.ts:111</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks for lesser value</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>burstValue: <a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The other value to be compared</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if less, otherwise false</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="lessorequal" class="tsd-anchor"></a>
+					<h3>less<wbr>OrEqual</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">less<wbr>OrEqual<span class="tsd-signature-symbol">(</span>burstValue<span class="tsd-signature-symbol">: </span><a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L102">util/src/burstValue.ts:102</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks for lesser or equality</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>burstValue: <a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The other value to be compared</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if less or equal, otherwise false</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="multiply" class="tsd-anchor"></a>
+					<h3>multiply</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">multiply<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L158">util/src/burstValue.ts:158</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Multiplies with a <em>numeric</em> value (not BurstValue)</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A numeric value to be multiplied with</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></h4>
+							<p>the mutated BurstValue object</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setburst" class="tsd-anchor"></a>
+					<h3>set<wbr>Burst</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Burst<span class="tsd-signature-symbol">(</span>b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L84">util/src/burstValue.ts:84</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets value as BURST, i.e. overwrites current hold value</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>b: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>value in BURST</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setplanck" class="tsd-anchor"></a>
+					<h3>set<wbr>Planck</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Planck<span class="tsd-signature-symbol">(</span>p<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L68">util/src/burstValue.ts:68</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets value as Planck, i.e. overwrites current hold value</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>p: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The planck value</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="subtract" class="tsd-anchor"></a>
+					<h3>subtract</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">subtract<span class="tsd-signature-symbol">(</span>burstValue<span class="tsd-signature-symbol">: </span><a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L148">util/src/burstValue.ts:148</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Subtracts from value</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>burstValue: <a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The other value to be subtracted</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></h4>
+							<p>the mutated BurstValue object</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="tostring" class="tsd-anchor"></a>
+					<h3>to<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span>format<span class="tsd-signature-symbol">?: </span><a href="../enums/burstvalueformat.html" class="tsd-signature-type">BurstValueFormat</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L178">util/src/burstValue.ts:178</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a string representation in form <code>Ƀ 100</code> for BURST or <code>ƀ 10000000000</code> for Planck</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> format: <a href="../enums/burstvalueformat.html" class="tsd-signature-type">BurstValueFormat</a><span class="tsd-signature-symbol"> = BurstValueFormat.BURST</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The format</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The converted string accordingly the param in burst or Planck</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="fromburst" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> from<wbr>Burst</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">from<wbr>Burst<span class="tsd-signature-symbol">(</span>burst<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L43">util/src/burstValue.ts:43</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a Burst Value object from BURST</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>burst: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value in BURST</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="fromplanck" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> from<wbr>Planck</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">from<wbr>Planck<span class="tsd-signature-symbol">(</span>planck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/util/src/burstValue.ts#L35">util/src/burstValue.ts:35</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a Burst Value object from Planck</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>planck: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value in Planck</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="util.burstvalue.html" class="tsd-signature-type">BurstValue</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/contracts.html">contracts</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/core.html">core</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/crypto.html">crypto</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/http.html">http</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/util.html">util</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="../enums/util.encoderformat.html" class="tsd-kind-icon">Encoder<wbr>Format</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="util.bursttime.html" class="tsd-kind-icon">Burst<wbr>Time</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+						<a href="util.burstvalue.html" class="tsd-kind-icon">Burst<wbr>Value</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#add" class="tsd-kind-icon">add</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#divide" class="tsd-kind-icon">divide</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#equals" class="tsd-kind-icon">equals</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#getburst" class="tsd-kind-icon">get<wbr>Burst</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#getplanck" class="tsd-kind-icon">get<wbr>Planck</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#getraw" class="tsd-kind-icon">get<wbr>Raw</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#greater" class="tsd-kind-icon">greater</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#greaterorequal" class="tsd-kind-icon">greater<wbr>OrEqual</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#less" class="tsd-kind-icon">less</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#lessorequal" class="tsd-kind-icon">less<wbr>OrEqual</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#multiply" class="tsd-kind-icon">multiply</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#setburst" class="tsd-kind-icon">set<wbr>Burst</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#setplanck" class="tsd-kind-icon">set<wbr>Planck</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#subtract" class="tsd-kind-icon">subtract</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="util.burstvalue.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="util.burstvalue.html#fromburst" class="tsd-kind-icon">from<wbr>Burst</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="util.burstvalue.html#fromplanck" class="tsd-kind-icon">from<wbr>Planck</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/util.createdeeplinkargs.html" class="tsd-kind-icon">Create<wbr>Deeplink<wbr>Args</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/util.deeplinkparts.html" class="tsd-kind-icon">Deeplink<wbr>Parts</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+						<a href="../modules/util.html#burstplancksymbol" class="tsd-kind-icon">Burst<wbr>Planck<wbr>Symbol</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+						<a href="../modules/util.html#burstsymbol" class="tsd-kind-icon">Burst<wbr>Symbol</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertaddresstonumericid" class="tsd-kind-icon">convert<wbr>Address<wbr>ToNumeric<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertbase64stringtostring" class="tsd-kind-icon">convert<wbr>Base64<wbr>String<wbr>ToString</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertbursttimetodate" class="tsd-kind-icon">convert<wbr>Burst<wbr>Time<wbr>ToDate</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertbursttimetoepochtime" class="tsd-kind-icon">convert<wbr>Burst<wbr>Time<wbr>ToEpoch<wbr>Time</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertbytearraytohexstring" class="tsd-kind-icon">convert<wbr>Byte<wbr>Array<wbr>ToHex<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertbytearraytostring" class="tsd-kind-icon">convert<wbr>Byte<wbr>Array<wbr>ToString</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertdatetobursttime" class="tsd-kind-icon">convert<wbr>Date<wbr>ToBurst<wbr>Time</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#converthexendianess" class="tsd-kind-icon">convert<wbr>Hex<wbr>Endianess</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#converthexstringtobytearray" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToByte<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#converthexstringtodecstring" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToDec<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#converthexstringtostring" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToString</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertnqtstringtonumber" class="tsd-kind-icon">convertNQTString<wbr>ToNumber</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertnumbertonqtstring" class="tsd-kind-icon">convert<wbr>Number<wbr>ToNQTString</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertnumericidtoaddress" class="tsd-kind-icon">convert<wbr>Numeric<wbr>IdTo<wbr>Address</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertstringtobase64string" class="tsd-kind-icon">convert<wbr>String<wbr>ToBase64<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertstringtobytearray" class="tsd-kind-icon">convert<wbr>String<wbr>ToByte<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertstringtohexstring" class="tsd-kind-icon">convert<wbr>String<wbr>ToHex<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#createdeeplink" class="tsd-kind-icon">create<wbr>Deeplink</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#isburstaddress" class="tsd-kind-icon">is<wbr>Burst<wbr>Address</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#parsedeeplink" class="tsd-kind-icon">parse<wbr>Deeplink</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#sumnqtstringtonumber" class="tsd-kind-icon">sumNQTString<wbr>ToNumber</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

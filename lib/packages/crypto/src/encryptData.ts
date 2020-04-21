@@ -35,7 +35,7 @@ function encrypt(plaintext: Uint8Array, nonce: Uint8Array, sharedKeyOrig: any[])
 
 
 /**
- * Encrypts arbitrary data
+ * Encrypts arbitrary data for P2P message/data exchange using asymmetric encryption
  *
  * @see [[decryptData]]
  * @param plaintext Data to be encrypted
