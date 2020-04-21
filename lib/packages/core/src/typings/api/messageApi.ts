@@ -1,5 +1,3 @@
-/** @module core.api */
-
 import {TransactionId} from '../transactionId';
 import {Keys} from '@burstjs/crypto';
 import {SendMessageArgs} from '../args';
@@ -7,6 +5,7 @@ import {SendEncryptedMessageArgs} from '../args/sendEncryptedMessageArgs';
 
 /**
  * The Message API
+ * @module core.api
  */
 export interface MessageApi {
 

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ApiSettings
+	<title>AssetApi
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,10 +75,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="apisettings.html">ApiSettings</a>
+					<a href="../modules/core_api.html">core.api</a>
+				</li>
+				<li>
+					<a href="core_api.assetapi.html">AssetApi</a>
 				</li>
 			</ul>
-			<h1>Class ApiSettings</h1>
+			<h1>Interface AssetApi</h1>
 		</div>
 	</div>
 </header>
@@ -88,15 +91,16 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Settings for API used in <a href="../globals.html#composeapi">composeApi</a></p>
+						<p>Asset API</p>
 					</div>
+					<p>Work in progress</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ApiSettings</span>
+						<span class="target">AssetApi</span>
 					</li>
 				</ul>
 			</section>
@@ -105,120 +109,109 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="apisettings.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="apisettings.html#apiversion" class="tsd-kind-icon">api<wbr>Version</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="apisettings.html#httpclientoptions" class="tsd-kind-icon">http<wbr>Client<wbr>Options</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="apisettings.html#nodehost" class="tsd-kind-icon">node<wbr>Host</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.assetapi.html#getallassets" class="tsd-kind-icon">get<wbr>All<wbr>Assets</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.assetapi.html#getasset" class="tsd-kind-icon">get<wbr>Asset</a></li>
 							</ul>
 						</section>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Api<wbr>Settings<span class="tsd-signature-symbol">(</span>nodeHost<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, apiVersion<span class="tsd-signature-symbol">?: </span><a href="../enums/core.apiversion.html" class="tsd-signature-type">ApiVersion</a>, httpClientOptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosRequestConfig</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="apisettings.html" class="tsd-signature-type">ApiSettings</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/core/src/api/composeApi.ts#L48">core/src/api/composeApi.ts:48</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>nodeHost: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The url of the Burst peer</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> apiVersion: <a href="../enums/core.apiversion.html" class="tsd-signature-type">ApiVersion</a><span class="tsd-signature-symbol"> = ApiVersion.V1</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>For future usage.</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> httpClientOptions: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosRequestConfig</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>Optional http options, like additional header.
-												The default implementation uses axios. In case of a custom client pass your own options.
-											see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="apisettings.html" class="tsd-signature-type">ApiSettings</a></h4>
-						</li>
-					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="apiversion" class="tsd-anchor"></a>
-					<h3>api<wbr>Version</h3>
-					<div class="tsd-signature tsd-kind-icon">api<wbr>Version<span class="tsd-signature-symbol">:</span> <a href="../enums/core.apiversion.html" class="tsd-signature-type">ApiVersion</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="getallassets" class="tsd-anchor"></a>
+					<h3>get<wbr>All<wbr>Assets</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Assets<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/core/src/api/composeApi.ts#L59">core/src/api/composeApi.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19cd87f8/lib/packages/core/src/typings/api/assetApi.ts#L29">core/src/typings/api/assetApi.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>For future usage.</p>
+							<p>Get all available assets</p>
 						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The first index of range to be returned (begins with 0)</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>The first index of range to be returned (max is 500)</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>List of assets</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>firstIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, lastIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="assetlist.html" class="tsd-signature-type">AssetList</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> firstIndex: <span class="tsd-signature-type">number</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> lastIndex: <span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="assetlist.html" class="tsd-signature-type">AssetList</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="httpclientoptions" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> http<wbr>Client<wbr>Options</h3>
-					<div class="tsd-signature tsd-kind-icon">http<wbr>Client<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosRequestConfig</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="getasset" class="tsd-anchor"></a>
+					<h3>get<wbr>Asset</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Asset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/core/src/api/composeApi.ts#L60">core/src/api/composeApi.ts:60</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19cd87f8/lib/packages/core/src/typings/api/assetApi.ts#L18">core/src/typings/api/assetApi.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Optional http options, like additional header.
-								The default implementation uses axios. In case of a custom client pass your own options.
-							see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p>
+							<p>Get asset information by its id</p>
 						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The asset id</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>The asset, if exists</p>
+							</dd>
+						</dl>
 					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="nodehost" class="tsd-anchor"></a>
-					<h3>node<wbr>Host</h3>
-					<div class="tsd-signature tsd-kind-icon">node<wbr>Host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/core/src/api/composeApi.ts#L58">core/src/api/composeApi.ts:58</a></li>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>assetId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>assetId: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
 						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The url of the Burst peer</p>
-						</div>
 					</div>
 				</section>
 			</section>
@@ -235,6 +228,12 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
 					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/core_api.html">core.api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/core_api_factories.html">core.api.factories</a>
+					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/crypto.html">crypto</a>
 					</li>
@@ -248,27 +247,54 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core_api.api.html" class="tsd-kind-icon">Api</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core_api.apicomposer.html" class="tsd-kind-icon">Api<wbr>Composer</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core_api.apisettings.html" class="tsd-kind-icon">Api<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.accountapi.html" class="tsd-kind-icon">Account<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.aliasapi.html" class="tsd-kind-icon">Alias<wbr>Api</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="apisettings.html" class="tsd-kind-icon">Api<wbr>Settings</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.assetapi.html" class="tsd-kind-icon">Asset<wbr>Api</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="apisettings.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core_api.assetapi.html#getallassets" class="tsd-kind-icon">get<wbr>All<wbr>Assets</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="apisettings.html#apiversion" class="tsd-kind-icon">api<wbr>Version</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="apisettings.html#httpclientoptions" class="tsd-kind-icon">http<wbr>Client<wbr>Options</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="apisettings.html#nodehost" class="tsd-kind-icon">node<wbr>Host</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core_api.assetapi.html#getasset" class="tsd-kind-icon">get<wbr>Asset</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.blockapi.html" class="tsd-kind-icon">Block<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.contractapi.html" class="tsd-kind-icon">Contract<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.messageapi.html" class="tsd-kind-icon">Message<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.networkapi.html" class="tsd-kind-icon">Network<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.transactionapi.html" class="tsd-kind-icon">Transaction<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/core_api.html#composeapi" class="tsd-kind-icon">compose<wbr>Api</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

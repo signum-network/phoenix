@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 export * from './broadcastTransaction';
 export * from './getTransaction';
 export * from './sendAmount';

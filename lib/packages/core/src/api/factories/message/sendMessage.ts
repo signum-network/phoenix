@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -14,6 +12,7 @@ import {signAndBroadcastTransaction} from '../../../internal';
  * Use with [[ApiComposer]] and belongs to [[MessageApi]].
  *
  * See details at [[MessageApi.sendMessage]]
+ * @module core.api.factories
  */
 export const sendMessage = (service: BurstService):
     (args: SendMessageArgs) => Promise<TransactionId> =>

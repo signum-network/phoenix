@@ -1,4 +1,3 @@
-/** @module core.api.factories */
 
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
@@ -11,6 +10,7 @@ import { Account } from '../../../typings/account';
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
  *
  * See details at [[AccountApi.getAccount]]
+ * @module core.api.factories
  */
 export const getAccount = (service: BurstService):
     (accountId: string) => Promise<Account> =>

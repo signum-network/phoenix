@@ -1,5 +1,3 @@
-/** @module core.api */
-
 import {Asset} from '../asset';
 import {AssetList} from '../assetList';
 
@@ -7,6 +5,8 @@ import {AssetList} from '../assetList';
  * Asset API
  *
  * Work in progress
+ *
+ * @module core.api
  * */
 export interface AssetApi {
 

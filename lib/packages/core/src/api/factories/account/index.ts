@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 export * from './generateSendTransactionQRCode';
 export * from './generateSendTransactionQRCodeAddress';
 export * from './getAccount';

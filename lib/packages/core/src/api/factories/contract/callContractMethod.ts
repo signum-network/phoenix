@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -15,6 +13,7 @@ import {generateMethodCall} from '@burstjs/contracts';
  * Use with [[ApiComposer]] and belongs to [[ContractApi]].
  *
  * See details at [[ContractApi.callContractMethod]]
+ * @module core.api.factories
  */
 export const callContractMethod = (service: BurstService):
     (args: CallContractMethodArgs) => Promise<TransactionId> =>

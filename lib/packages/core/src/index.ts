@@ -1,4 +1,9 @@
-/** @module core */
+/**
+ * This is the main package, and almost all you may need to interact with
+ * the Burstcoin API
+ *
+ * @moduledefinition core
+ * */
 
 // order alphabetically, please :)
 

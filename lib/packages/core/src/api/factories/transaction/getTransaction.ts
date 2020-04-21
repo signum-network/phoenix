@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
@@ -11,6 +9,7 @@ import {Transaction} from '../../../typings/transaction';
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
  * See details at [[TransactionApi.broadcastTransaction]]
+ * @module core.api.factories
  */
 export const getTransaction = (service: BurstService):
     (transactionId: string) => Promise<Transaction> =>

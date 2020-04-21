@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -14,6 +12,7 @@ import {DefaultDeadline} from '../../../constants';
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
  * See details at [[TransactionApi.sendSameAmountToMultipleRecipients]]
+ * @module core.api.factories
  */
 export const sendSameAmountToMultipleRecipients = (service: BurstService):
     (amountPlanck: string,

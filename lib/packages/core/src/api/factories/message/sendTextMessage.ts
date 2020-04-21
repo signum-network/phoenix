@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -22,6 +20,7 @@ import {broadcastTransaction} from '../transaction/broadcastTransaction';
  * Use with [[ApiComposer]] and belongs to [[MessageApi]].
  *
  * See details at [[MessageApi.sendTextMessage]]
+ * @module core.api.factories
  */
 export const sendTextMessage = (service: BurstService):
     (message: string,

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AliasApi
+	<title>ApiSettings
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,10 +75,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="aliasapi.html">AliasApi</a>
+					<a href="../modules/core_api.html">core.api</a>
+				</li>
+				<li>
+					<a href="core_api.apisettings.html">ApiSettings</a>
 				</li>
 			</ul>
-			<h1>Interface AliasApi</h1>
+			<h1>Class ApiSettings</h1>
 		</div>
 	</div>
 </header>
@@ -88,16 +91,15 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Alias API</p>
+						<p>Settings for API used in <a href="../modules/core_api.html#composeapi">composeApi</a></p>
 					</div>
-					<p>Work in Progress</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AliasApi</span>
+						<span class="target">ApiSettings</span>
 					</li>
 				</ul>
 			</section>
@@ -106,186 +108,120 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="core_api.apisettings.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="aliasapi.html#getaliasbyid" class="tsd-kind-icon">get<wbr>Alias<wbr>ById</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="aliasapi.html#getaliasbyname" class="tsd-kind-icon">get<wbr>Alias<wbr>ByName</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="aliasapi.html#setalias" class="tsd-kind-icon">set<wbr>Alias</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core_api.apisettings.html#apiversion" class="tsd-kind-icon">api<wbr>Version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core_api.apisettings.html#httpclientoptions" class="tsd-kind-icon">http<wbr>Client<wbr>Options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core_api.apisettings.html#nodehost" class="tsd-kind-icon">node<wbr>Host</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Api<wbr>Settings<span class="tsd-signature-symbol">(</span>nodeHost<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, apiVersion<span class="tsd-signature-symbol">?: </span><a href="../enums/core.apiversion.html" class="tsd-signature-type">ApiVersion</a>, httpClientOptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosRequestConfig</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core_api.apisettings.html" class="tsd-signature-type">ApiSettings</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19cd87f8/lib/packages/core/src/api/composeApi.ts#L55">core/src/api/composeApi.ts:55</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>nodeHost: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The url of the Burst peer</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> apiVersion: <a href="../enums/core.apiversion.html" class="tsd-signature-type">ApiVersion</a><span class="tsd-signature-symbol"> = ApiVersion.V1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>For future usage.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> httpClientOptions: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosRequestConfig</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Optional http options, like additional header.
+												The default implementation uses axios. In case of a custom client pass your own options.
+											see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="core_api.apisettings.html" class="tsd-signature-type">ApiSettings</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="getaliasbyid" class="tsd-anchor"></a>
-					<h3>get<wbr>Alias<wbr>ById</h3>
-					<div class="tsd-signature tsd-kind-icon">get<wbr>Alias<wbr>ById<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="apiversion" class="tsd-anchor"></a>
+					<h3>api<wbr>Version</h3>
+					<div class="tsd-signature tsd-kind-icon">api<wbr>Version<span class="tsd-signature-symbol">:</span> <a href="../enums/core.apiversion.html" class="tsd-signature-type">ApiVersion</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/core/src/typings/api/aliasApi.ts#L18">core/src/typings/api/aliasApi.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19cd87f8/lib/packages/core/src/api/composeApi.ts#L66">core/src/api/composeApi.ts:66</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Get alias by its id, i.e. get basic account info for given alias name</p>
+							<p>For future usage.</p>
 						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The alias id</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Alias object</p>
-							</dd>
-						</dl>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>aliasId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="alias.html" class="tsd-signature-type">Alias</a><span class="tsd-signature-symbol">&gt;</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>aliasId: <span class="tsd-signature-type">string</span></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="alias.html" class="tsd-signature-type">Alias</a><span class="tsd-signature-symbol">&gt;</span></h4>
-									</li>
-								</ul>
-							</li>
-						</ul>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="getaliasbyname" class="tsd-anchor"></a>
-					<h3>get<wbr>Alias<wbr>ByName</h3>
-					<div class="tsd-signature tsd-kind-icon">get<wbr>Alias<wbr>ByName<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="httpclientoptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> http<wbr>Client<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">http<wbr>Client<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosRequestConfig</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/core/src/typings/api/aliasApi.ts#L28">core/src/typings/api/aliasApi.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19cd87f8/lib/packages/core/src/api/composeApi.ts#L67">core/src/api/composeApi.ts:67</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Get alias by name, i.e. get basic account info for given alias name</p>
+							<p>Optional http options, like additional header.
+								The default implementation uses axios. In case of a custom client pass your own options.
+							see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p>
 						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The alias name</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Alias object</p>
-							</dd>
-						</dl>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>aliasName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="alias.html" class="tsd-signature-type">Alias</a><span class="tsd-signature-symbol">&gt;</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>aliasName: <span class="tsd-signature-type">string</span></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="alias.html" class="tsd-signature-type">Alias</a><span class="tsd-signature-symbol">&gt;</span></h4>
-									</li>
-								</ul>
-							</li>
-						</ul>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="setalias" class="tsd-anchor"></a>
-					<h3>set<wbr>Alias</h3>
-					<div class="tsd-signature tsd-kind-icon">set<wbr>Alias<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="nodehost" class="tsd-anchor"></a>
+					<h3>node<wbr>Host</h3>
+					<div class="tsd-signature tsd-kind-icon">node<wbr>Host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/core/src/typings/api/aliasApi.ts#L48">core/src/typings/api/aliasApi.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19cd87f8/lib/packages/core/src/api/composeApi.ts#L65">core/src/api/composeApi.ts:65</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Registers an Alias with the Burst blockchain</p>
+							<p>The url of the Burst peer</p>
 						</div>
-						<p>The transaction will be broadcasted in two steps.</p>
-						<ol>
-							<li>Send the setAlias call with public key to the network</li>
-							<li>Take the returned unsigned message and sign it, i.e. the private key won&#39;t be transmitted.</li>
-						</ol>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The alias name</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The alias URI</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The fee to pay</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The name of the account</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders public key for sending an <em>unsigned</em> message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The senders private key to <em>sign</em> the message</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The deadline, in minutes, for the transaction to be confirmed</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>The Transaction ID</p>
-							</dd>
-						</dl>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>aliasName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, aliasURI<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feeNQT<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>aliasName: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5>aliasURI: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5>feeNQT: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5>senderPublicKey: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5>senderPrivateKey: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5><span class="tsd-flag ts-flagOptional">Optional</span> deadline: <span class="tsd-signature-type">number</span></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
-									</li>
-								</ul>
-							</li>
-						</ul>
 					</div>
 				</section>
 			</section>
@@ -302,6 +238,12 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
 					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/core_api.html">core.api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/core_api_factories.html">core.api.factories</a>
+					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/crypto.html">crypto</a>
 					</li>
@@ -315,24 +257,60 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="core_api.api.html" class="tsd-kind-icon">Api</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="core_api.apicomposer.html" class="tsd-kind-icon">Api<wbr>Composer</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="aliasapi.html" class="tsd-kind-icon">Alias<wbr>Api</a>
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+						<a href="core_api.apisettings.html" class="tsd-kind-icon">Api<wbr>Settings</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="aliasapi.html#getaliasbyid" class="tsd-kind-icon">get<wbr>Alias<wbr>ById</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="core_api.apisettings.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="aliasapi.html#getaliasbyname" class="tsd-kind-icon">get<wbr>Alias<wbr>ByName</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core_api.apisettings.html#apiversion" class="tsd-kind-icon">api<wbr>Version</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="aliasapi.html#setalias" class="tsd-kind-icon">set<wbr>Alias</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core_api.apisettings.html#httpclientoptions" class="tsd-kind-icon">http<wbr>Client<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core_api.apisettings.html#nodehost" class="tsd-kind-icon">node<wbr>Host</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core_api.accountapi.html" class="tsd-kind-icon">Account<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core_api.aliasapi.html" class="tsd-kind-icon">Alias<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core_api.assetapi.html" class="tsd-kind-icon">Asset<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core_api.blockapi.html" class="tsd-kind-icon">Block<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core_api.contractapi.html" class="tsd-kind-icon">Contract<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core_api.messageapi.html" class="tsd-kind-icon">Message<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core_api.networkapi.html" class="tsd-kind-icon">Network<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/core_api.transactionapi.html" class="tsd-kind-icon">Transaction<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/core_api.html#composeapi" class="tsd-kind-icon">compose<wbr>Api</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

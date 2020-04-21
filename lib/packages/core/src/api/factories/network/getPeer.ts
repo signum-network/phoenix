@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -10,6 +8,7 @@ import { Peer } from '../../../typings/peer';
  * Use with [[ApiComposer]] and belongs to [[NetworkApi]].
  *
  * See details at [[NetworkApi.getPeer]]
+ * @module core.api.factories
  */
 export const getPeer = (service: BurstService):
     (peer: string) => Promise<Peer> =>

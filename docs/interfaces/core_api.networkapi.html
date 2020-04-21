@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ContractApi
+	<title>NetworkApi
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,10 +75,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="contractapi.html">ContractApi</a>
+					<a href="../modules/core_api.html">core.api</a>
+				</li>
+				<li>
+					<a href="core_api.networkapi.html">NetworkApi</a>
 				</li>
 			</ul>
-			<h1>Interface ContractApi</h1>
+			<h1>Interface NetworkApi</h1>
 		</div>
 	</div>
 </header>
@@ -88,16 +91,16 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Contract API</p>
+						<p>Network API</p>
 					</div>
-					<p>This module provides methods about the smart contracts</p>
+					<p>This module provides methods about the network itself</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ContractApi</span>
+						<span class="target">NetworkApi</span>
 					</li>
 				</ul>
 			</section>
@@ -108,11 +111,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="contractapi.html#callcontractmethod" class="tsd-kind-icon">call<wbr>Contract<wbr>Method</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="contractapi.html#getallcontractids" class="tsd-kind-icon">get<wbr>All<wbr>Contract<wbr>Ids</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="contractapi.html#getcontract" class="tsd-kind-icon">get<wbr>Contract</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="contractapi.html#getcontractsbyaccount" class="tsd-kind-icon">get<wbr>Contracts<wbr>ByAccount</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="contractapi.html#publishcontract" class="tsd-kind-icon">publish<wbr>Contract</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.networkapi.html#getblockchainstatus" class="tsd-kind-icon">get<wbr>Blockchain<wbr>Status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.networkapi.html#getpeer" class="tsd-kind-icon">get<wbr>Peer</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.networkapi.html#getpeers" class="tsd-kind-icon">get<wbr>Peers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.networkapi.html#getserverstatus" class="tsd-kind-icon">get<wbr>Server<wbr>Status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.networkapi.html#gettime" class="tsd-kind-icon">get<wbr>Time</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.networkapi.html#suggestfee" class="tsd-kind-icon">suggest<wbr>Fee</a></li>
 							</ul>
 						</section>
 					</div>
@@ -121,24 +125,21 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="callcontractmethod" class="tsd-anchor"></a>
-					<h3>call<wbr>Contract<wbr>Method</h3>
-					<div class="tsd-signature tsd-kind-icon">call<wbr>Contract<wbr>Method<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<a name="getblockchainstatus" class="tsd-anchor"></a>
+					<h3>get<wbr>Blockchain<wbr>Status</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Blockchain<wbr>Status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/core/src/typings/api/contractApi.ts#L50">core/src/typings/api/contractApi.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19cd87f8/lib/packages/core/src/typings/api/networkApi.ts#L20">core/src/typings/api/networkApi.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Calls a public method of smart contract</p>
+							<p>Get the blockchain status.</p>
 						</div>
 						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The argument object</p>
-							</dd>
 							<dt>returns</dt>
-							<dd><p>The transaction id in case of success</p>
+							<dd><p>The Blockchain Status</p>
 							</dd>
 						</dl>
 					</div>
@@ -147,17 +148,11 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><a href="callcontractmethodargs.html" class="tsd-signature-type">CallContractMethodArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="blockchainstatus.html" class="tsd-signature-type">BlockchainStatus</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>args: <a href="callcontractmethodargs.html" class="tsd-signature-type">CallContractMethodArgs</a></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="blockchainstatus.html" class="tsd-signature-type">BlockchainStatus</a><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -165,21 +160,24 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="getallcontractids" class="tsd-anchor"></a>
-					<h3>get<wbr>All<wbr>Contract<wbr>Ids</h3>
-					<div class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Contract<wbr>Ids<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<a name="getpeer" class="tsd-anchor"></a>
+					<h3>get<wbr>Peer</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Peer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/core/src/typings/api/contractApi.ts#L35">core/src/typings/api/contractApi.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19cd87f8/lib/packages/core/src/typings/api/networkApi.ts#L40">core/src/typings/api/networkApi.ts:40</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Get all contract Ids of the blockchain</p>
+							<p>Get a peer by a given IP address</p>
 						</div>
 						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The peer&#39;s address</p>
+							</dd>
 							<dt>returns</dt>
-							<dd><p>The list of contract ids</p>
+							<dd><p>The Peer</p>
 							</dd>
 						</dl>
 					</div>
@@ -188,17 +186,17 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="contractidlist.html" class="tsd-signature-type">ContractIdList</a><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>address<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="peer.html" class="tsd-signature-type">Peer</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>id: <span class="tsd-signature-type">string</span></h5>
+												<h5>address: <span class="tsd-signature-type">string</span></h5>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="contractidlist.html" class="tsd-signature-type">ContractIdList</a><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="peer.html" class="tsd-signature-type">Peer</a><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -206,24 +204,24 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="getcontract" class="tsd-anchor"></a>
-					<h3>get<wbr>Contract</h3>
-					<div class="tsd-signature tsd-kind-icon">get<wbr>Contract<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<a name="getpeers" class="tsd-anchor"></a>
+					<h3>get<wbr>Peers</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Peers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/core/src/typings/api/contractApi.ts#L21">core/src/typings/api/contractApi.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19cd87f8/lib/packages/core/src/typings/api/networkApi.ts#L47">core/src/typings/api/networkApi.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Get a contract by its Id</p>
+							<p>Get a list of peers</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>param</dt>
-							<dd><p>The ID of the contract</p>
+							<dd><p>Only return active peers (default: true)</p>
 							</dd>
 							<dt>returns</dt>
-							<dd><p>The contract</p>
+							<dd><p>The Peer Address List</p>
 							</dd>
 						</dl>
 					</div>
@@ -232,17 +230,17 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="contract.html" class="tsd-signature-type">Contract</a><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>active<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="peeraddresslist.html" class="tsd-signature-type">PeerAddressList</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>id: <span class="tsd-signature-type">string</span></h5>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> active: <span class="tsd-signature-type">boolean</span></h5>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="contract.html" class="tsd-signature-type">Contract</a><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="peeraddresslist.html" class="tsd-signature-type">PeerAddressList</a><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -250,24 +248,22 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="getcontractsbyaccount" class="tsd-anchor"></a>
-					<h3>get<wbr>Contracts<wbr>ByAccount</h3>
-					<div class="tsd-signature tsd-kind-icon">get<wbr>Contracts<wbr>ByAccount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<a name="getserverstatus" class="tsd-anchor"></a>
+					<h3>get<wbr>Server<wbr>Status</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Server<wbr>Status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/core/src/typings/api/contractApi.ts#L28">core/src/typings/api/contractApi.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19cd87f8/lib/packages/core/src/typings/api/networkApi.ts#L27">core/src/typings/api/networkApi.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Get all contracts of given account</p>
+							<p>Get the state of the server node and network.
+							Note: This request is pretty slow and might needs several seconds until reply.</p>
 						</div>
 						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The account id (not RS address)</p>
-							</dd>
 							<dt>returns</dt>
-							<dd><p>A list of contracts</p>
+							<dd><p>The server Status</p>
 							</dd>
 						</dl>
 					</div>
@@ -276,17 +272,11 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accountId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="contractlist.html" class="tsd-signature-type">ContractList</a><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="serverstatus.html" class="tsd-signature-type">ServerStatus</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>accountId: <span class="tsd-signature-type">string</span></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="contractlist.html" class="tsd-signature-type">ContractList</a><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="serverstatus.html" class="tsd-signature-type">ServerStatus</a><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -294,24 +284,21 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="publishcontract" class="tsd-anchor"></a>
-					<h3>publish<wbr>Contract</h3>
-					<div class="tsd-signature tsd-kind-icon">publish<wbr>Contract<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<a name="gettime" class="tsd-anchor"></a>
+					<h3>get<wbr>Time</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cb81d195/lib/packages/core/src/typings/api/contractApi.ts#L43">core/src/typings/api/contractApi.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19cd87f8/lib/packages/core/src/typings/api/networkApi.ts#L53">core/src/typings/api/networkApi.ts:53</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Publishes a smart contract to the blockchain</p>
+							<p>Get the current blockchain/Burst timestamp in seconds since Genesis Block</p>
 						</div>
 						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The argument object</p>
-							</dd>
 							<dt>returns</dt>
-							<dd><p>The transaction id in case of success</p>
+							<dd><p>timestamp in seconds since Genesis Block</p>
 							</dd>
 						</dl>
 					</div>
@@ -320,17 +307,46 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><a href="publishcontractargs.html" class="tsd-signature-type">PublishContractArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="bursttime.html" class="tsd-signature-type">BurstTime</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>args: <a href="publishcontractargs.html" class="tsd-signature-type">PublishContractArgs</a></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="bursttime.html" class="tsd-signature-type">BurstTime</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="suggestfee" class="tsd-anchor"></a>
+					<h3>suggest<wbr>Fee</h3>
+					<div class="tsd-signature tsd-kind-icon">suggest<wbr>Fee<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/19cd87f8/lib/packages/core/src/typings/api/networkApi.ts#L33">core/src/typings/api/networkApi.ts:33</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get the current suggested fees</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The Suggested Fees</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="suggestedfees.html" class="tsd-signature-type">SuggestedFees</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="suggestedfees.html" class="tsd-signature-type">SuggestedFees</a><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -351,6 +367,12 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
 					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/core_api.html">core.api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/core_api_factories.html">core.api.factories</a>
+					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/crypto.html">crypto</a>
 					</li>
@@ -364,30 +386,66 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core_api.api.html" class="tsd-kind-icon">Api</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core_api.apicomposer.html" class="tsd-kind-icon">Api<wbr>Composer</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/core_api.apisettings.html" class="tsd-kind-icon">Api<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.accountapi.html" class="tsd-kind-icon">Account<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.aliasapi.html" class="tsd-kind-icon">Alias<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.assetapi.html" class="tsd-kind-icon">Asset<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.blockapi.html" class="tsd-kind-icon">Block<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.contractapi.html" class="tsd-kind-icon">Contract<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.messageapi.html" class="tsd-kind-icon">Message<wbr>Api</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="contractapi.html" class="tsd-kind-icon">Contract<wbr>Api</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.networkapi.html" class="tsd-kind-icon">Network<wbr>Api</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="contractapi.html#callcontractmethod" class="tsd-kind-icon">call<wbr>Contract<wbr>Method</a>
+								<a href="core_api.networkapi.html#getblockchainstatus" class="tsd-kind-icon">get<wbr>Blockchain<wbr>Status</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="contractapi.html#getallcontractids" class="tsd-kind-icon">get<wbr>All<wbr>Contract<wbr>Ids</a>
+								<a href="core_api.networkapi.html#getpeer" class="tsd-kind-icon">get<wbr>Peer</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="contractapi.html#getcontract" class="tsd-kind-icon">get<wbr>Contract</a>
+								<a href="core_api.networkapi.html#getpeers" class="tsd-kind-icon">get<wbr>Peers</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="contractapi.html#getcontractsbyaccount" class="tsd-kind-icon">get<wbr>Contracts<wbr>ByAccount</a>
+								<a href="core_api.networkapi.html#getserverstatus" class="tsd-kind-icon">get<wbr>Server<wbr>Status</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="contractapi.html#publishcontract" class="tsd-kind-icon">publish<wbr>Contract</a>
+								<a href="core_api.networkapi.html#gettime" class="tsd-kind-icon">get<wbr>Time</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core_api.networkapi.html#suggestfee" class="tsd-kind-icon">suggest<wbr>Fee</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_api.transactionapi.html" class="tsd-kind-icon">Transaction<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/core_api.html#composeapi" class="tsd-kind-icon">compose<wbr>Api</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

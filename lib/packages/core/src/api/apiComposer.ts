@@ -1,5 +1,3 @@
-/** @module core.api */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -14,7 +12,6 @@ import {NetworkApi} from '../typings/api/networkApi';
 import {TransactionApi} from '../typings/api/transactionApi';
 import {BurstService} from '../service/burstService';
 import {ContractApi} from '../typings/api/contractApi';
-
 
 class ApiImpl implements Api {
     alias: AliasApi;
@@ -57,8 +54,10 @@ class ApiImpl implements Api {
  * .compose();
  * ```
  *
- * The `with<section>Api` uses factory methods from the [api.core.factories](/phoenix/docs/modules/core.api.factories.html) package
- */
+ * The `with<section>Api` uses factory methods from the [api.core.factories](/phoenix/docs/modules/core_api_factories.html) package
+ *
+ * @module core.api
+ * */
 export class ApiComposer {
     private api: Api = new ApiImpl();
 
@@ -71,7 +70,8 @@ export class ApiComposer {
         return new ApiComposer(service);
     }
 
-    private constructor(private service: BurstService) {}
+    private constructor(private service: BurstService) {
+    }
 
     private mapCreators(apiSection: string, creatorMap: any) {
         this.api[apiSection] = {};
@@ -158,5 +158,7 @@ export class ApiComposer {
      * Composes the API
      * Note: As of being a builder pattern, this need to call this method as last
      */
-    public compose(): Api { return this.api; }
+    public compose(): Api {
+        return this.api;
+    }
 }

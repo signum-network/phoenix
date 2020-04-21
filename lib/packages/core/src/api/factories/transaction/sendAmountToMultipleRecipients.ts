@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -18,6 +16,7 @@ function mountRecipientsString(recipientAmounts: MultioutRecipientAmount[]): str
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
  * See details at [[TransactionApi.sendAmountToMultipleRecipients]]
+ * @module core.api.factories
  */
 export const sendAmountToMultipleRecipients = (service: BurstService):
     (

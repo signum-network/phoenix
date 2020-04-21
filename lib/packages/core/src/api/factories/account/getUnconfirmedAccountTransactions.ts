@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Original work Copyright (c) 2020 Burst Apps Team
  */
@@ -10,6 +8,7 @@ import {UnconfirmedTransactionList} from '../../../typings/unconfirmedTransactio
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
  *
  * See details at [[AccountApi.getUnconfirmedAccountTransactions]]
+ * @module core.api.factories
  */
 export const getUnconfirmedAccountTransactions = (service: BurstService):
     (

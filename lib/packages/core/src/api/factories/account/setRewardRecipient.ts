@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2020 Burst Apps Team
  */
@@ -14,6 +12,7 @@ import {signAndBroadcastTransaction} from '../../../internal';
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
  *
  * See details at [[AccountApi.setRewardRecipient]]
+ * @module core.api.factories
  */
 export const setRewardRecipient = (service: BurstService):
     (args: SetRewardRecipientArgs) => Promise<TransactionId> =>

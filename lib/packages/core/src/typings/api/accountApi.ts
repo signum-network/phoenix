@@ -1,5 +1,3 @@
-/** @module core.api */
-
 import {TransactionList} from '../transactionList';
 import {SubscriptionList} from '../subscriptionList';
 import {UnconfirmedTransactionList} from '../unconfirmedTransactionList';
@@ -13,6 +11,8 @@ import {SetRewardRecipientArgs} from '../args/setRewardRecipientArgs';
 
 /**
  * Account API
+ *
+ * @module core.api
  */
 export interface AccountApi {
 

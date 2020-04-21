@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -20,6 +18,7 @@ import {createParametersFromAttachment} from '../../../internal/createParameters
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
  * See details at [[TransactionApi.sendAmount]]
+ * @module core.api.factories
  *
  */
 export const sendAmount = (service: BurstService):

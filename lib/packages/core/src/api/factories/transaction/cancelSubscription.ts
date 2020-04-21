@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2020 Burst Apps Team
  */
@@ -15,6 +13,7 @@ import {CancelSubscriptionArgs} from '../../../typings/args/cancelSubscriptionAr
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
  * See details at [[TransactionApi.cancelSubscription]]
+ * @module core.api.factories
  */
 export const cancelSubscription = (service: BurstService):
     (args: CancelSubscriptionArgs) => Promise<TransactionId> =>

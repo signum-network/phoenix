@@ -1,5 +1,3 @@
-/** @module core.api */
-
 import {TransactionId} from '../transactionId';
 import {Alias} from '../alias';
 
@@ -7,6 +5,8 @@ import {Alias} from '../alias';
  * Alias API
  *
  * Work in Progress
+ *
+ * @module core.api
  */
 export interface AliasApi {
 

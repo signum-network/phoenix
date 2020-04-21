@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -14,6 +12,7 @@ import {broadcastTransaction} from '../transaction/broadcastTransaction';
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
  *
  * See details at [[AccountApi.setAccountInfo]]
+ * @module core.api.factories
  */
 export const setAccountInfo = (service: BurstService): (
     name: string,

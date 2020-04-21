@@ -1,5 +1,3 @@
-/** @module core.api */
-
 import {BlockApi} from './blockApi';
 import {NetworkApi} from './networkApi';
 import {TransactionApi} from './transactionApi';
@@ -39,6 +37,7 @@ export {
  * who use bundlers like [webpack](https://webpack.js.org/). To reduce the bundle size, one may mount the API
  * conforming his needs using the [[ApiComposer]] class.
  *
+ * @module core.api
  */
 export class Api {
     readonly asset: AssetApi;

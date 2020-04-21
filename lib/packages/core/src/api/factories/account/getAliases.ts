@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -10,6 +8,7 @@ import {AliasList} from '../../../typings/aliasList';
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
  *
  * See details at [[AccountApi.getAliases]]
+ * @module core.api.factories
  */
 export const getAliases = (service: BurstService):
     (accountId: string) => Promise<AliasList> =>
