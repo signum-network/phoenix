@@ -30,7 +30,6 @@ export class PassPhraseGenerator {
     /**
      * Generates a passphrase based on priory set
      * @return The _secret_ twelve-worded passphrase
-     * @module crypto
      */
 	public generate(): string[] {
         // seed with given seed if seed was given, yep

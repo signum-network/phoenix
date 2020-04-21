@@ -1,4 +1,3 @@
-/** @module core */
 /**
  * MultioutRecipientAmount interface
  * @see [[getRecipientAmountsFromMultiOutPayment]]
