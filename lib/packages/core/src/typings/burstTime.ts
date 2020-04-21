@@ -4,6 +4,7 @@
 
 /**
  * BurstTime Interface
+ * @see [[util.BurstTime]] to convert the Burst Timestamp to Date
  * @module core
  * */
 export interface BurstTime {

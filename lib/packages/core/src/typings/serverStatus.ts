@@ -1,8 +1,12 @@
-/** @module core */
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
  */
 
+/**
+ * Server Status
+ *
+ * @module core
+ * */
 export interface ServerStatus {
     readonly application: string;
     readonly availableProcessors: number;
