@@ -61,8 +61,6 @@
 						</div>
 						<input type="checkbox" id="tsd-filter-inherited" checked/>
 						<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-						<input type="checkbox" id="tsd-filter-externals" checked/>
-						<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 					</div>
 				</div>
 				<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -90,6 +88,18 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The interface for encrypted raw data</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>see</dt>
+						<dd><p><a href="../modules/crypto.html#encryptdata">encryptData</a></p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -120,7 +130,7 @@
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Uint8Array</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/crypto/src/typings/encryptedData.ts#L8">crypto/src/typings/encryptedData.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/crypto/src/typings/encryptedData.ts#L11">crypto/src/typings/encryptedData.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -130,7 +140,7 @@
 					<div class="tsd-signature tsd-kind-icon">nonce<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Uint8Array</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/crypto/src/typings/encryptedData.ts#L9">crypto/src/typings/encryptedData.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/crypto/src/typings/encryptedData.ts#L12">crypto/src/typings/encryptedData.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -148,6 +158,12 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/core_api.html">core.api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/core_api_factories.html">core.api.factories</a>
+					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/crypto.html">crypto</a>
 					</li>
@@ -161,9 +177,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/crypto.converter.html" class="tsd-kind-icon">Converter</a>
-					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
 						<a href="../classes/crypto.passphrasegenerator.html" class="tsd-kind-icon">Pass<wbr>Phrase<wbr>Generator</a>
 					</li>
@@ -229,7 +242,7 @@
 		</div>
 	</div>
 </div>
-<footer class="with-border-bottom">
+<footer>
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
@@ -288,9 +301,6 @@
 		</div>
 	</div>
 </footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
 <script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>

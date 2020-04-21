@@ -1,6 +1,6 @@
 /* tslint:disable */
-/** @module crypto */
 /** @ignore */ // internal - shouldn't be used externally
+/** @internal */ // internal - shouldn't be used externally
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium

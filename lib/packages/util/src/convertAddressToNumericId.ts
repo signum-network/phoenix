@@ -1,6 +1,3 @@
-/** @module util */
-// tslint:disable:no-bitwise
-
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
@@ -13,6 +10,7 @@ import { isValid } from './isBurstAddress';
  * Converts BURST-XXXX-XXXX-XXXX-XXXXX into numeric Id
  * @param address The BURST address
  * @return The numeric id, or undefined if address is invalid
+ * @module util
  */
     // @todo review, maybe better throwing exception
 export const convertAddressToNumericId = (address: string): string => {

@@ -1,9 +1,12 @@
-/** @module core */
 
 /**
  * Original work Copyright (c) 2020 Burst Apps Team
  */
 
+/**
+ * Subscription
+ * @module core
+ * */
 export interface Subscription {
     readonly id: string;
     readonly sender: string;

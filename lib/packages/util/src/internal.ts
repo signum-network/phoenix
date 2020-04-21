@@ -1,4 +1,5 @@
 /** @ignore */
+/** @internal */
 /** @module util */
 
 // tslint:disable:max-line-length

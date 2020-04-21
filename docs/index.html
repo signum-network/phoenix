@@ -60,8 +60,6 @@
 						</div>
 						<input type="checkbox" id="tsd-filter-inherited" checked/>
 						<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-						<input type="checkbox" id="tsd-filter-externals" checked/>
-						<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 					</div>
 				</div>
 				<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -76,7 +74,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> burstjs - The Burstcoin Reference Library</h1>
+			<h1>burstjs - The Burstcoin Reference Library</h1>
 		</div>
 	</div>
 </header>
@@ -84,7 +82,7 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<img src="../assets/burstjs.png" alt="burstjs" width="600" align="middle" />
+				<img src="./assets/images/burstjs.png" alt="burstjs" width="600" align="middle" />
 				<blockquote>
 					<p>The BurstCoin Type/Javascript Reference Library</p>
 				</blockquote>
@@ -97,7 +95,9 @@
 				<a href="https://www.jsdelivr.com/package/npm/@burstjs/core"><img src="https://data.jsdelivr.com/v1/package/npm/@burstjs/core/badge" alt="jsDelivr"></a></p>
 				<p><code>@burstjs</code> is a modern library written in Typescript providing common functionalities for <em>browsers</em> and <em>nodejs</em> to interact with the <a href="https://burstcoin.community/">BurstCoin blockchain</a>,
 				an advanced community-driven blockchain technology.</p>
-				<h2 id="packages">Packages</h2>
+				<a href="#packages" id="packages" style="color: inherit; text-decoration: none;">
+					<h2>Packages</h2>
+				</a>
 				<p>The library is separated in the following packages</p>
 				<ul>
 					<li><a href="./modules/core.html">@burstjs/core</a> The main package providing an extense API for blockchain interaction</li>
@@ -106,9 +106,13 @@
 					<li><a href="./modules/util.html">@burstjs/util</a> A package providing useful functions, e.g. common conversion functions </li>
 					<li><a href="./modules/http.html">@burstjs/http</a> A package providing a <em>simplified</em> Http layer, with consistent response types, and exception handling</li>
 				</ul>
-				<h2 id="installation">Installation</h2>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
 				<p><code>@burstjs</code> aims modern browsers and nodejs &gt; v10, but can also be used as bundled JavaScript using <code>&lt;script&gt;</code> </p>
-				<h3 id="using-with-nodejs-and-or-modern-web-frameworks">Using with NodeJS and/or modern web frameworks</h3>
+				<a href="#using-with-nodejs-andor-modern-web-frameworks" id="using-with-nodejs-andor-modern-web-frameworks" style="color: inherit; text-decoration: none;">
+					<h3>Using with NodeJS and/or modern web frameworks</h3>
+				</a>
 				<p>Install using <a href="https://www.npmjs.org/">npm</a>:</p>
 				<pre><code><span class="hljs-built_in">npm</span> install @burstjs/core
 <span class="hljs-built_in">npm</span> install @burstjs/contracts (optional)
@@ -123,7 +127,9 @@ yarn add @burstjs/http (optional)</code></pre>
 				<blockquote>
 					<p>Usually, you won&#39;t need to install other packages than <code>@burstjs/core</code>, which uses the other packages.</p>
 				</blockquote>
-				<h3 id="using-in-classic-script">Using in classic <code>&lt;script&gt;</code></h3>
+				<a href="#using-in-classic-ltscriptgt" id="using-in-classic-ltscriptgt" style="color: inherit; text-decoration: none;">
+					<h3>Using in classic <code>&lt;script&gt;</code></h3>
+				</a>
 				<p>Each package is available as bundled standalone library using IIFE.
 					This way <em>burstJS</em> can be used also within <code>&lt;script&gt;</code>-Tags.
 				This might be useful for Wordpress and/or other PHP applications.</p>
@@ -180,9 +186,13 @@ api.network.getBlockchainStatus().then(<span class="hljs-built_in">console</span
 				<pre><code class="language-js"><span class="hljs-comment">// using http</span>
 <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> b$http.HttpImpl(<span class="hljs-string">'https://jsonplaceholder.typicode.com/'</span>);
 client.get(<span class="hljs-string">'/todos/1'</span>).then(<span class="hljs-built_in">console</span>.log)</code></pre>
-				<h2 id="usage">Usage</h2>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
 				<p>The following example shows how to interact with the blockchain, i.e. getting the balance of a specific account</p>
-				<h3 id="es6-nodejs-style">ES6/NodeJS style</h3>
+				<a href="#es6nodejs-style" id="es6nodejs-style" style="color: inherit; text-decoration: none;">
+					<h3>ES6/NodeJS style</h3>
+				</a>
 				<p>In a separate file, preferribly <code>index.js</code> or <code>main.js</code> write your entry point like this:</p>
 				<pre><code class="language-js"><span class="hljs-keyword">import</span> {composeApi, ApiSettings} <span class="hljs-keyword">from</span> <span class="hljs-string">'@burstjs/core'</span>
 <span class="hljs-keyword">import</span> {convertNQTStringToNumber} <span class="hljs-keyword">from</span> <span class="hljs-string">'@burstjs/util'</span>
@@ -202,7 +212,9 @@ client.get(<span class="hljs-string">'/todos/1'</span>).then(<span class="hljs-b
   }
 })()
 </code></pre>
-				<h3 id="script-style"><code>&lt;script&gt;</code> style</h3>
+				<a href="#ltscriptgt-style" id="ltscriptgt-style" style="color: inherit; text-decoration: none;">
+					<h3><code>&lt;script&gt;</code> style</h3>
+				</a>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> apiSettings = <span class="hljs-keyword">new</span> b$.ApiSettings(<span class="hljs-string">'http://at-testnet.burst-alliance.org:6876'</span>, <span class="hljs-string">'burst'</span>);
 <span class="hljs-keyword">const</span> api = b$.composeApi(apiSettings);
 
@@ -231,6 +243,12 @@ api.account.getAccountBalance(<span class="hljs-string">'13036514135565182944'</
 						<a href="modules/core.html">core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/core_api.html">core.api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/core_api_factories.html">core.api.factories</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/crypto.html">crypto</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -243,12 +261,21 @@ api.account.getAccountBalance(<span class="hljs-string">'13036514135565182944'</
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="enums/burstvalueformat.html" class="tsd-kind-icon">Burst<wbr>Value<wbr>Format</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/httperror.html" class="tsd-kind-icon">Http<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/httpimpl.html" class="tsd-kind-icon">Http<wbr>Impl</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
 	</div>
 </div>
-<footer class="with-border-bottom">
+<footer>
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
@@ -307,9 +334,6 @@ api.account.getAccountBalance(<span class="hljs-string">'13036514135565182944'</
 		</div>
 	</div>
 </footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
 <script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>

@@ -1,5 +1,3 @@
-/** @module util */
-
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
@@ -13,6 +11,7 @@ import {convertByteArrayToHexString} from './convertByteArrayToHexString';
  * Inverse function [[convertHexStringToString]]
  * @param str The Hex string to be converted
  * @return {string} The Hex String representing the input string
+ * @module util
  */
 export const convertStringToHexString = (str: string): string => {
     return convertByteArrayToHexString(convertStringToByteArray(str));

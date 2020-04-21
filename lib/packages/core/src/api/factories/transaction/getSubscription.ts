@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
@@ -11,6 +9,7 @@ import {Subscription} from '../../../typings/subscription';
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
  * See details at [[TransactionApi.getSubscription]]
+ * @module core.api.factories
  */
 export const getSubscription = (service: BurstService):
     (subscriptionId: string) => Promise<Subscription> =>

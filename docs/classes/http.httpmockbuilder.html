@@ -61,8 +61,6 @@
 						</div>
 						<input type="checkbox" id="tsd-filter-inherited" checked/>
 						<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-						<input type="checkbox" id="tsd-filter-externals" checked/>
-						<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 					</div>
 				</div>
 				<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -90,6 +88,26 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Http Mocker Builder for easy to http testing</p>
+					</div>
+					<p>Example:</p>
+					<pre><code><span class="hljs-keyword">const</span> mockedHttp = HttpMockBuilder
+.create()
+.onGetReply(<span class="hljs-number">200</span>, {foo: <span class="hljs-string">'get'</span>})
+.onPostThrowError(<span class="hljs-number">500</span>, <span class="hljs-string">'Post Error'</span>, {e: <span class="hljs-string">'post'</span>})
+.onPutThrowError(<span class="hljs-number">404</span>, <span class="hljs-string">'Put Error'</span>, {e: <span class="hljs-string">'put'</span>})
+.onDeleteThrowError(<span class="hljs-number">403</span>, <span class="hljs-string">'Delete Error'</span>, {e: <span class="hljs-string">'delete'</span>})
+.build();
+
+<span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> mockedHttp.<span class="hljs-keyword">get</span>(<span class="hljs-string">'/url'</span>);
+
+<span class="hljs-keyword">await</span> mockedHttp.post(<span class="hljs-string">'/url/post'</span>, {faz: <span class="hljs-string">'post'</span>}); <span class="hljs-comment">// will throw exception</span>
+</code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -132,9 +150,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/http/src/httpMockBuilder.ts#L211">http/src/httpMockBuilder.ts:211</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/http/src/httpMockBuilder.ts#L211">http/src/httpMockBuilder.ts:211</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Builds the Http mock.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/http.http-1.html" class="tsd-signature-type">Http</a></h4>
 							<p>The mocked Http implementation</p>
 						</li>
@@ -144,15 +167,20 @@
 					<a name="ondeletereply" class="tsd-anchor"></a>
 					<h3>on<wbr>Delete<wbr>Reply</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Delete<wbr>Reply<span class="tsd-signature-symbol">(</span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.httpmockbuilder.html" class="tsd-signature-type">HttpMockBuilder</a></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Delete<wbr>Reply<span class="tsd-signature-symbol">(</span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.httpmockbuilder.html" class="tsd-signature-type">HttpMockBuilder</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/http/src/httpMockBuilder.ts#L196">http/src/httpMockBuilder.ts:196</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/http/src/httpMockBuilder.ts#L196">http/src/httpMockBuilder.ts:196</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Mocks delete requests. Works analog to onGetReply().</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -179,9 +207,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/http/src/httpMockBuilder.ts#L203">http/src/httpMockBuilder.ts:203</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/http/src/httpMockBuilder.ts#L203">http/src/httpMockBuilder.ts:203</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Mocks response exceptions for delete methods. It works like onDeleteReply(), but throws an HttpError instead</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -194,7 +227,7 @@
 									<h5>data: <span class="tsd-signature-type">any</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> url: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;HttpMock.ForAll</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> url: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = HttpMock.ForAll</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="http.httpmockbuilder.html" class="tsd-signature-type">HttpMockBuilder</a></h4>
@@ -205,25 +238,52 @@
 					<a name="ongetreply" class="tsd-anchor"></a>
 					<h3>on<wbr>Get<wbr>Reply</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Get<wbr>Reply<span class="tsd-signature-symbol">(</span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.httpmockbuilder.html" class="tsd-signature-type">HttpMockBuilder</a></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Get<wbr>Reply<span class="tsd-signature-symbol">(</span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.httpmockbuilder.html" class="tsd-signature-type">HttpMockBuilder</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/http/src/httpMockBuilder.ts#L149">http/src/httpMockBuilder.ts:149</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/http/src/httpMockBuilder.ts#L149">http/src/httpMockBuilder.ts:149</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Mocks responses for get methods
+										You may pass a specific endpoint as parameter to mock only selected endpoints.
+										This is very useful, when having methods that do several Http requests,
+									so you can mock them one on one.</p>
+								</div>
+								<p>The following code returns the same content on <em>every</em> get call</p>
+								<pre><code>  HttpMockBuilder
+  .create<span class="hljs-literal">()</span>
+  .on<span class="hljs-constructor">GetReply(200, {<span class="hljs-params">response</span>: '<span class="hljs-params">foo</span>})</span> <span class="hljs-comment">// mocks all get requests</span>
+  .on<span class="hljs-constructor">PostReply(201, {<span class="hljs-params">response</span>: '<span class="hljs-params">foo</span>})</span> <span class="hljs-comment">// mocks all post requests</span>
+  .build<span class="hljs-literal">()</span></code></pre><p> The next code returns the different content depending on the passed endpoint</p>
+								<pre><code>  HttpMockBuilder
+  .create<span class="hljs-literal">()</span>
+  .on<span class="hljs-constructor">GetReply(200, {<span class="hljs-params">response</span>: '<span class="hljs-params">foo</span>}, '<span class="hljs-operator">/</span><span class="hljs-params">url</span><span class="hljs-operator">/</span><span class="hljs-params">specific</span>')</span> <span class="hljs-comment">// mocks get request for '/url/specific'</span>
+  .build<span class="hljs-literal">()</span></code></pre>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>status: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The status to be returned</p>
+									</div>
 								</li>
 								<li>
 									<h5>data: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The data to be returned</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> url: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If given, the mock applies for that specific url, other for all method calls</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="http.httpmockbuilder.html" class="tsd-signature-type">HttpMockBuilder</a></h4>
@@ -241,22 +301,39 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/http/src/httpMockBuilder.ts#L161">http/src/httpMockBuilder.ts:161</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/http/src/httpMockBuilder.ts#L161">http/src/httpMockBuilder.ts:161</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Mocks response exceptions for get methods. It works like onGetReply(), but throws an HttpError instead</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>status: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The status to be returned in exception object</p>
+									</div>
 								</li>
 								<li>
 									<h5>errorMessage: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The error message</p>
+									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> data: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> data: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> = null</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Eventual data carried with the error object</p>
+									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> url: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;HttpMock.ForAll</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> url: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = HttpMock.ForAll</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specific url for which the exception should be thrown</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="http.httpmockbuilder.html" class="tsd-signature-type">HttpMockBuilder</a></h4>
@@ -268,15 +345,20 @@
 					<a name="onpostreply" class="tsd-anchor"></a>
 					<h3>on<wbr>Post<wbr>Reply</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Post<wbr>Reply<span class="tsd-signature-symbol">(</span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.httpmockbuilder.html" class="tsd-signature-type">HttpMockBuilder</a></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Post<wbr>Reply<span class="tsd-signature-symbol">(</span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.httpmockbuilder.html" class="tsd-signature-type">HttpMockBuilder</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/http/src/httpMockBuilder.ts#L168">http/src/httpMockBuilder.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/http/src/httpMockBuilder.ts#L168">http/src/httpMockBuilder.ts:168</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Mocks post requests. Works analog to onGetReply().</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -303,9 +385,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/http/src/httpMockBuilder.ts#L175">http/src/httpMockBuilder.ts:175</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/http/src/httpMockBuilder.ts#L175">http/src/httpMockBuilder.ts:175</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Mocks response exceptions for post methods. It works like onPostReply(), but throws an HttpError instead</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -318,7 +405,7 @@
 									<h5>data: <span class="tsd-signature-type">any</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> url: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;HttpMock.ForAll</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> url: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = HttpMock.ForAll</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="http.httpmockbuilder.html" class="tsd-signature-type">HttpMockBuilder</a></h4>
@@ -329,15 +416,20 @@
 					<a name="onputreply" class="tsd-anchor"></a>
 					<h3>on<wbr>Put<wbr>Reply</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Put<wbr>Reply<span class="tsd-signature-symbol">(</span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.httpmockbuilder.html" class="tsd-signature-type">HttpMockBuilder</a></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Put<wbr>Reply<span class="tsd-signature-symbol">(</span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.httpmockbuilder.html" class="tsd-signature-type">HttpMockBuilder</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/http/src/httpMockBuilder.ts#L182">http/src/httpMockBuilder.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/http/src/httpMockBuilder.ts#L182">http/src/httpMockBuilder.ts:182</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Mocks put requests. Works analog to onGetReply().</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -364,9 +456,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/http/src/httpMockBuilder.ts#L189">http/src/httpMockBuilder.ts:189</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/http/src/httpMockBuilder.ts#L189">http/src/httpMockBuilder.ts:189</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Mocks response exceptions for put methods. It works like onPutReply(), but throws an HttpError instead</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -379,7 +476,7 @@
 									<h5>data: <span class="tsd-signature-type">any</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> url: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;HttpMock.ForAll</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> url: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = HttpMock.ForAll</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="http.httpmockbuilder.html" class="tsd-signature-type">HttpMockBuilder</a></h4>
@@ -396,9 +493,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/http/src/httpMockBuilder.ts#L108">http/src/httpMockBuilder.ts:108</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/http/src/httpMockBuilder.ts#L108">http/src/httpMockBuilder.ts:108</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a builder instance</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="http.httpmockbuilder.html" class="tsd-signature-type">HttpMockBuilder</a></h4>
 							<p>the builder</p>
 						</li>
@@ -419,6 +521,12 @@
 						<a href="../modules/core.html">core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/core_api.html">core.api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/core_api_factories.html">core.api.factories</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/crypto.html">crypto</a>
 					</li>
 					<li class="current tsd-kind-external-module">
@@ -431,12 +539,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="http.httperror.html" class="tsd-kind-icon">Http<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="http.httpimpl.html" class="tsd-kind-icon">Http<wbr>Impl</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
@@ -487,7 +589,7 @@
 		</div>
 	</div>
 </div>
-<footer class="with-border-bottom">
+<footer>
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
@@ -546,9 +648,6 @@
 		</div>
 	</div>
 </footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
 <script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>

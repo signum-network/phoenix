@@ -1,5 +1,3 @@
-/** @module core */
-
 import {Keys} from '@burstjs/crypto';
 
 /**
@@ -12,6 +10,7 @@ import {Keys} from '@burstjs/crypto';
  * @param keys The senders keys used for encryption and signing
  * @param deadline The _optional_ transactions deadline in minutes until it's being removed from mempool.
  * This may happen on low fees. Defaults to 1440 (maximum)
+ * @module core
  */
 export interface SendEncryptedMessageArgs {
     message: string;

@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
  */
@@ -10,6 +8,7 @@ import {Block} from '../../../typings/block';
  * Use with [[ApiComposer]] and belongs to [[BlockApi]].
  *
  * See details at [[BlockApi.getBlockByTimestamp]]
+ * @module core.api.factories
  */
 export const getBlockByTimestamp = (service: BurstService):
     (timestamp: number, includeTransactions: boolean) => Promise<Block> =>

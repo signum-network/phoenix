@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -11,6 +9,7 @@ import {ContractIdList} from '../../../typings/contractIdList';
  * Use with [[ApiComposer]] and belongs to [[ContractApi]].
  *
  * See details at [[ContractApi.getAllContractIds]]
+ * @module core.api.factories
  */
 export const getAllContractIds = (service: BurstService):
     () => Promise<ContractIdList> =>

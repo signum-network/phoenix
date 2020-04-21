@@ -1,6 +1,10 @@
-/** @module crypto */
+/**
+ * This package contains all cryptographic functions
+ * needed for Burstcoin.
+ *
+ * @moduledefinition crypto
+ * */
 
-// export * from './converter';
 export * from './encryptAES';
 export * from './decryptAES';
 export * from './decryptData';

@@ -1,5 +1,3 @@
-/** @module core.api */
-
 import {Contract} from '../contract';
 import {ContractList} from '../contractList';
 import {ContractIdList} from '../contractIdList';
@@ -11,6 +9,8 @@ import {CallContractMethodArgs} from '../args/callContractMethodArgs';
  * Contract API
  *
  * This module provides methods about the smart contracts
+ *
+ * @module core.api
  */
 export interface ContractApi {
     /**

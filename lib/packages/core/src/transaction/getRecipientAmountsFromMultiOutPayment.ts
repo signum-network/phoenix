@@ -1,5 +1,3 @@
-/** @module core */
-
 import {Transaction, MultioutRecipientAmount} from '..';
 import {isMultiOutSameTransaction} from './isMultiOutSameTransaction';
 import {isMultiOutTransaction} from './isMultiOutTransaction';
@@ -10,6 +8,7 @@ import {convertNQTStringToNumber, convertNumberToNQTString} from '@burstjs/util'
  * @param transaction The transaction
  * @return A list of recipients and their payed amount (in NQT)
  * @throws An exception in case of wrong transaction types
+ * @module core
  */
 export function getRecipientAmountsFromMultiOutPayment(transaction: Transaction): Array<MultioutRecipientAmount> {
 

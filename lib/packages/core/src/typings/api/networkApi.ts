@@ -1,5 +1,3 @@
-/** @module core.api */
-
 import {BlockchainStatus} from '../blockchainStatus';
 import {ServerStatus} from '../serverStatus';
 import {SuggestedFees} from '../suggestedFees';
@@ -11,6 +9,8 @@ import {BurstTime} from '../burstTime';
  * Network API
  *
  * This module provides methods about the network itself
+ *
+ * @module core.api
  */
 export interface NetworkApi {
     /**

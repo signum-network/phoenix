@@ -1,9 +1,12 @@
-/** @module core */
-
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
  */
 
+/**
+ * The mighty transaction
+ *
+ * @module core
+ * */
 export interface Transaction {
     readonly senderPublicKey?: string;
     readonly signature?: string;

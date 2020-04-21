@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 export * from './getBlockchainStatus';
 export * from './getPeer';
 export * from './getPeers';

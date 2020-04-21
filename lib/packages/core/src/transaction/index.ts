@@ -1,5 +1,3 @@
-/** @module core */
-
 export * from './isMultiOutSameTransaction';
 export * from './isMultiOutTransaction';
 export * from './getRecipientAmountsFromMultiOutPayment';

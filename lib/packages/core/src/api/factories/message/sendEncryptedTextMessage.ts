@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -23,6 +21,7 @@ const MAX_MESSAGE_LENGTH = 1024;
  * Use with [[ApiComposer]] and belongs to [[MessageApi]].
  *
  * See details at [[MessageApi.sendEncryptedTextMessage]]
+ * @module core.api.factories
  */
 export const sendEncryptedTextMessage = (service: BurstService):
     (message: string,

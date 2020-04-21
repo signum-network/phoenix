@@ -1,5 +1,3 @@
-/** @module core */
-
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
  */
@@ -11,6 +9,7 @@
  * It allows fast, secure, and decentralized trading of Burst Assets.
  * Because of its decentralized nature, there’s no need for outside organizations or agencies
  * to meddle with its affairs, resulting in improved efficiency and reduced costs.
+ * @module core
  */
 export interface Asset {
     account: string;

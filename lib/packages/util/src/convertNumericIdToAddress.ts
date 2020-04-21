@@ -1,5 +1,4 @@
 // tslint:disable:no-bitwise
-/** @module util */
 
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
@@ -8,11 +7,11 @@
 
 import { initialCodeword, base32Length, gmult, alphabet, cwmap } from './internal';
 
-
 /**
  * Encode a numeric id into BURST-XXXX-XXXX-XXXX-XXXXX
  * @param numericId The numeric Id
  * @return the BURST address in Reed-Solomon encoding, or undefined if passed null, undefined
+ * @module util
  */
 export const convertNumericIdToAddress = (numericId: string): string => {
 

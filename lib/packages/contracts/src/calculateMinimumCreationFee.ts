@@ -1,5 +1,3 @@
-/** @module contracts */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -12,6 +10,7 @@ import {countCodePages} from './countCodePages';
  *
  * @param hexCode The contracts code in hex form
  * @return The minimum fee expressed in Planck
+ * @module contracts
  */
 export function calculateMinimumCreationFee(hexCode: string ): string {
     const DataPages = 1; // no data supported yet, so we put minimum value

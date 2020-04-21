@@ -1,11 +1,10 @@
-/** @module core */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
 
 /**
  * The contract interface
+ * @module core
  */
 export interface Contract {
     creator: string;

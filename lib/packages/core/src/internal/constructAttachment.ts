@@ -1,4 +1,4 @@
-/** @module core */
+/** @internal */
 /** @ignore */
 
 import { AttachmentEncryptedMessage, AttachmentMessage } from '../typings/attachment';
@@ -11,10 +11,12 @@ import { Transaction } from '../typings/transaction';
  * </div>
  *
  * Constructs an Attachment
- * @hidden
+ * @internal
+ *
  * @param transaction The transaction with the attachment
  * @param params Some HttpParams
  * @return HttpParams
+ * @module core
  */
 export const constructAttachment = (transaction: Transaction, params: any) => {
     if (transaction.attachment.type === 'encrypted_message') {

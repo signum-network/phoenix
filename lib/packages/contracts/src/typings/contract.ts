@@ -1,11 +1,10 @@
-/** @module contracts */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
 
 /**
- * The contract interface
+ * The contract interface returned from BRS API [[ContractApi.getContract]]
+ * @module contracts
  */
 export interface Contract {
     creator: string;

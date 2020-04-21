@@ -1,4 +1,3 @@
-/** @module core */
 /** @ignore */
 
 /**
@@ -19,10 +18,11 @@ export interface UnsignedTransaction {
 /**
  * Signs and broadcasts a transaction
  *
- * @hidden
+ * @internal
  * @param unsignedTransaction The unsigned transaction context
  * @param service The service used for
  * @return The transaction Id
+ * @module core
  */
 export function signAndBroadcastTransaction(unsignedTransaction: UnsignedTransaction, service: BurstService): Promise<TransactionId> {
 

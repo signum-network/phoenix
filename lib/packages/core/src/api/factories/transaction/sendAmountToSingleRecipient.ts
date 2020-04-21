@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -15,6 +13,7 @@ import {SendAmountArgs} from '../../../typings/args/sendAmountArgs';
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
  * See details at [[TransactionApi.sendAmountToSingleRecipient]]
+ * @module core.api.factories
  */
 export const sendAmountToSingleRecipient = (service: BurstService):
     (args: SendAmountArgs) => Promise<TransactionId> =>

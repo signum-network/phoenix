@@ -1,5 +1,3 @@
-/** @module core */
-
 import {Attachment} from '../attachment';
 
 /**
@@ -15,6 +13,7 @@ import {Attachment} from '../attachment';
  * @param attachment An _optional_ attachment
  * @param deadline The _optional_ transactions deadline in minutes until it's being removed from mempool.
  * This may happen on low fees. Defaults to 1440 (maximum)
+ * @module core
  */
 export interface SendAmountArgs {
     amountPlanck: string;

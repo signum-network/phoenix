@@ -1,5 +1,3 @@
-/** @module core */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -30,6 +28,8 @@ class SettingsImpl implements BurstServiceSettings {
 
 /**
  * Generic BRS Web Service class.
+ *
+ * @module core
  */
 export class BurstService {
     /**

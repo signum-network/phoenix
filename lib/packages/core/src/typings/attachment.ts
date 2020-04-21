@@ -1,5 +1,3 @@
-/** @module core */
-
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
@@ -11,6 +9,7 @@
 *
 * The attachment class is used to appended to transaction where appropriate.
 * It is a super class for Message and EncryptedMessage.
+ * @module core
 */
 export class Attachment {
     constructor(public type: string) {}
@@ -20,6 +19,7 @@ export class Attachment {
 * Message class
 *
 * The Message class is used to model a plain message attached to a transaction.
+ * @module core
 */
 export class AttachmentMessage extends Attachment {
     public messageIsText: boolean;
@@ -37,6 +37,7 @@ export class AttachmentMessage extends Attachment {
 * EncryptedMessage class
 *
 * The EncryptedMessage class is a model for a encrypted message attached to a transaction.
+ * @module core
 */
 export class AttachmentEncryptedMessage extends Attachment {
     public data: string;

@@ -1,5 +1,3 @@
-/** @module core.api */
-
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
  */
@@ -9,6 +7,7 @@ import {BlockId} from '../blockId';
 
 /**
  * Block API
+ * @module core.api
  */
 export interface BlockApi {
     /**

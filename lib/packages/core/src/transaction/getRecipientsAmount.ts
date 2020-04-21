@@ -1,5 +1,3 @@
-/** @module core */
-
 import {convertNQTStringToNumber} from '@burstjs/util';
 import {Transaction} from '../typings/transaction';
 import {getRecipientAmountsFromMultiOutPayment} from './getRecipientAmountsFromMultiOutPayment';
@@ -11,6 +9,7 @@ import {isMultiOutSameTransaction} from './isMultiOutSameTransaction';
  * @param recipientId The numeric id of the recipient
  * @param transaction The payment transaction
  * @return the amount in BURST (not NQT)
+ * @module core
  */
 export function getRecipientsAmount(recipientId: string, transaction: Transaction): number {
 

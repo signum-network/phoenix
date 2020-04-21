@@ -61,8 +61,6 @@
 						</div>
 						<input type="checkbox" id="tsd-filter-inherited" checked/>
 						<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-						<input type="checkbox" id="tsd-filter-externals" checked/>
-						<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 					</div>
 				</div>
 				<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -87,33 +85,24 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The Contracts package provides functions and messages
+							to interact with Bursts Smart Contracts, i.e. generate method calls
+						and inspect contract data</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Classes</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/contracts.contractdataview.html" class="tsd-kind-icon">Contract<wbr>Data<wbr>View</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/contracts.contract.html" class="tsd-kind-icon">Contract</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/contracts.generatemethodcallargs.html" class="tsd-kind-icon">Generate<wbr>Method<wbr>Call<wbr>Args</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Type aliases</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="contracts.html#methodargument" class="tsd-kind-icon">Method<wbr>Argument</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Variables</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="contracts.html#codepagesize" class="tsd-kind-icon">Code<wbr>Page<wbr>Size</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -125,33 +114,19 @@
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="contracts.html#getcontractdatablock" class="tsd-kind-icon">get<wbr>Contract<wbr>Datablock</a></li>
 							</ul>
 						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/contracts.contractdataview.html" class="tsd-kind-icon">Contract<wbr>Data<wbr>View</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="contracts.html#methodargument" class="tsd-kind-icon">Method<wbr>Argument</a></li>
+							</ul>
+						</section>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Type aliases</h2>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
-					<a name="methodargument" class="tsd-anchor"></a>
-					<h3>Method<wbr>Argument</h3>
-					<div class="tsd-signature tsd-kind-icon">Method<wbr>Argument<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/contracts/src/typings/args/generateMethodCallArgs.ts#L9">contracts/src/typings/args/generateMethodCallArgs.ts:9</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
-					<a name="codepagesize" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> Code<wbr>Page<wbr>Size</h3>
-					<div class="tsd-signature tsd-kind-icon">Code<wbr>Page<wbr>Size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">256</span><span class="tsd-signature-symbol"> =&nbsp;256</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/contracts/src/constants.ts#L10">contracts/src/constants.ts:10</a></li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -166,13 +141,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/contracts/src/calculateMinimumCreationFee.ts#L16">contracts/src/calculateMinimumCreationFee.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/contracts/src/calculateMinimumCreationFee.ts#L15">contracts/src/calculateMinimumCreationFee.ts:15</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calculates the minimum creation fee of the contract</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>hexCode: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The contracts code in hex form</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -190,13 +173,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/contracts/src/countCodePages.ts#L15">contracts/src/countCodePages.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/contracts/src/countCodePages.ts#L15">contracts/src/countCodePages.ts:15</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Counts the code pages for given machine code</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>hexCode: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The contracts code in hex form</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -214,13 +205,24 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/contracts/src/generateMethodCall.ts#L53">contracts/src/generateMethodCall.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/contracts/src/generateMethodCall.ts#L64">contracts/src/generateMethodCall.ts:64</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates a method call message of a contracts public method. The message can be sent using for example
+									<a href="../interfaces/core_api.messageapi.html#sendmessage">MessageApi.sendMessage</a> with <code>messageIsText = false</code> or <a href="../interfaces/core_api.contractapi.html#callcontractmethod">ContractApi.callContractMethod</a>]</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>args: <a href="../interfaces/contracts.generatemethodcallargs.html" class="tsd-signature-type">GenerateMethodCallArgs</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The argument object</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -238,25 +240,53 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/contracts/src/getContractDatablock.ts#L20">contracts/src/getContractDatablock.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/contracts/src/getContractDatablock.ts#L19">contracts/src/getContractDatablock.ts:19</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Extracts a variables value as hexadecimal string from a contract&#39;s machine data</p>
+								</div>
+								<p>This is a generic function to extract arbitrary data from a contract. It&#39;s recommended to use the <a href="../classes/contracts.contractdataview.html">ContractDataView</a> class instead</p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>contract: <a href="../interfaces/contracts.contract.html" class="tsd-signature-type">Contract</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The contract</p>
+									</div>
 								</li>
 								<li>
 									<h5>position: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The variables position</p>
+									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> length: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;16</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> length: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 16</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The length of data to be extracted</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 							<p>The value as hexadecimal string (already considering endianness)</p>
 						</li>
 					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+					<a name="methodargument" class="tsd-anchor"></a>
+					<h3>Method<wbr>Argument</h3>
+					<div class="tsd-signature tsd-kind-icon">Method<wbr>Argument<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/contracts/src/typings/args/generateMethodCallArgs.ts#L8">contracts/src/typings/args/generateMethodCallArgs.ts:8</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -271,6 +301,12 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="core.html">core</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="core_api.html">core.api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="core_api_factories.html">core.api.factories</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="crypto.html">crypto</a>
@@ -297,9 +333,6 @@
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 						<a href="contracts.html#methodargument" class="tsd-kind-icon">Method<wbr>Argument</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-						<a href="contracts.html#codepagesize" class="tsd-kind-icon">Code<wbr>Page<wbr>Size</a>
-					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="contracts.html#calculateminimumcreationfee" class="tsd-kind-icon">calculate<wbr>Minimum<wbr>Creation<wbr>Fee</a>
 					</li>
@@ -317,7 +350,7 @@
 		</div>
 	</div>
 </div>
-<footer class="with-border-bottom">
+<footer>
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
@@ -376,9 +409,6 @@
 		</div>
 	</div>
 </footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
 <script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>

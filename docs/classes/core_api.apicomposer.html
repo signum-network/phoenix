@@ -61,8 +61,6 @@
 						</div>
 						<input type="checkbox" id="tsd-filter-inherited" checked/>
 						<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-						<input type="checkbox" id="tsd-filter-externals" checked/>
-						<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 					</div>
 				</div>
 				<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -77,13 +75,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/core.html">core</a>
+					<a href="../modules/core_api.html">core.api</a>
 				</li>
 				<li>
-					<a href="../modules/core.api.html">api</a>
-				</li>
-				<li>
-					<a href="core.api.apicomposer.html">ApiComposer</a>
+					<a href="core_api.apicomposer.html">ApiComposer</a>
 				</li>
 			</ul>
 			<h1>Class ApiComposer</h1>
@@ -93,6 +88,37 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The API composer mounts the API for given service and selected methods</p>
+					</div>
+					<p>Usually you would use <a href="../modules/core_api.html#composeapi">composeApi</a>, which gives you <em>all</em> available API methods.
+						Unfortunately, this will import almost all dependencies, even if you need only a fraction
+						of the methods. To take advantage of tree-shaking (dead code elimination) you can
+					compose your own API with the methods you need. This can reduce your final bundle significantly.</p>
+					<p>Usage:</p>
+					<pre><code class="language-typescript">
+<span class="hljs-keyword">const</span> burstService = <span class="hljs-keyword">new</span> BurstService({
+    nodeHost: <span class="hljs-string">'https://testnet.burst.fun'</span>,
+})
+
+<span class="hljs-keyword">const</span> api = apiComposer
+.create(burstService)
+.withMessageApi({
+               sendTextMessage
+           })
+.withAccountApi({
+               getAccountTransactions,
+               getUnconfirmedAccountTransactions,
+               getAccountBalance,
+               generateSendTransactionQRCode,
+               generateSendTransactionQRCodeAddress,
+           })
+.compose();</code></pre>
+					<p>The <code>with&lt;section&gt;Api</code> uses factory methods from the <a href="/phoenix/docs/modules/core_api_factories.html">api.core.factories</a> package</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -108,16 +134,16 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#compose" class="tsd-kind-icon">compose</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#withaccountapi" class="tsd-kind-icon">with<wbr>Account<wbr>Api</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#withaliasapi" class="tsd-kind-icon">with<wbr>Alias<wbr>Api</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#withassetapi" class="tsd-kind-icon">with<wbr>Asset<wbr>Api</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#withblockapi" class="tsd-kind-icon">with<wbr>Block<wbr>Api</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#withcontractapi" class="tsd-kind-icon">with<wbr>Contract<wbr>Api</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#withmessageapi" class="tsd-kind-icon">with<wbr>Message<wbr>Api</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#withnetworkapi" class="tsd-kind-icon">with<wbr>Network<wbr>Api</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.api.apicomposer.html#withtransactionapi" class="tsd-kind-icon">with<wbr>Transaction<wbr>Api</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="core.api.apicomposer.html#create" class="tsd-kind-icon">create</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core_api.apicomposer.html#compose" class="tsd-kind-icon">compose</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core_api.apicomposer.html#withaccountapi" class="tsd-kind-icon">with<wbr>Account<wbr>Api</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core_api.apicomposer.html#withaliasapi" class="tsd-kind-icon">with<wbr>Alias<wbr>Api</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core_api.apicomposer.html#withassetapi" class="tsd-kind-icon">with<wbr>Asset<wbr>Api</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core_api.apicomposer.html#withblockapi" class="tsd-kind-icon">with<wbr>Block<wbr>Api</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core_api.apicomposer.html#withcontractapi" class="tsd-kind-icon">with<wbr>Contract<wbr>Api</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core_api.apicomposer.html#withmessageapi" class="tsd-kind-icon">with<wbr>Message<wbr>Api</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core_api.apicomposer.html#withnetworkapi" class="tsd-kind-icon">with<wbr>Network<wbr>Api</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core_api.apicomposer.html#withtransactionapi" class="tsd-kind-icon">with<wbr>Transaction<wbr>Api</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="core_api.apicomposer.html#create" class="tsd-kind-icon">create</a></li>
 							</ul>
 						</section>
 					</div>
@@ -129,16 +155,22 @@
 					<a name="compose" class="tsd-anchor"></a>
 					<h3>compose</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">compose<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.api.api.html" class="tsd-signature-type">Api</a></li>
+						<li class="tsd-signature tsd-kind-icon">compose<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core_api.api.html" class="tsd-signature-type">Api</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/apiComposer.ts#L161">core/src/api/apiComposer.ts:161</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/core/src/api/apiComposer.ts#L161">core/src/api/apiComposer.ts:161</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="core.api.api.html" class="tsd-signature-type">Api</a></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Composes the API
+									Note: As of being a builder pattern, this need to call this method as last</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="core_api.api.html" class="tsd-signature-type">Api</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -146,22 +178,30 @@
 					<a name="withaccountapi" class="tsd-anchor"></a>
 					<h3>with<wbr>Account<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">with<wbr>Account<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Account<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/apiComposer.ts#L98">core/src/api/apiComposer.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/core/src/api/apiComposer.ts#L98">core/src/api/apiComposer.ts:98</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds the <a href="../interfaces/core_api.accountapi.html">AccountApi</a>  to be composed</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>creatorMap: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A map of creator/factory functions for the endpoints</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -169,22 +209,30 @@
 					<a name="withaliasapi" class="tsd-anchor"></a>
 					<h3>with<wbr>Alias<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">with<wbr>Alias<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Alias<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/apiComposer.ts#L134">core/src/api/apiComposer.ts:134</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/core/src/api/apiComposer.ts#L134">core/src/api/apiComposer.ts:134</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds the <a href="../interfaces/core_api.aliasapi.html">AliasApi</a>  to be composed</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>creatorMap: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A map of creator/factory functions for the endpoints</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -192,22 +240,30 @@
 					<a name="withassetapi" class="tsd-anchor"></a>
 					<h3>with<wbr>Asset<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">with<wbr>Asset<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Asset<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/apiComposer.ts#L143">core/src/api/apiComposer.ts:143</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/core/src/api/apiComposer.ts#L143">core/src/api/apiComposer.ts:143</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds the <a href="../interfaces/core_api.assetapi.html">AssetApi</a>  to be composed</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>creatorMap: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A map of creator/factory functions for the endpoints</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -215,22 +271,30 @@
 					<a name="withblockapi" class="tsd-anchor"></a>
 					<h3>with<wbr>Block<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">with<wbr>Block<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Block<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/apiComposer.ts#L89">core/src/api/apiComposer.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/core/src/api/apiComposer.ts#L89">core/src/api/apiComposer.ts:89</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds the <a href="../interfaces/core_api.blockapi.html">BlockApi</a> to be composed</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>creatorMap: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A map of creator/factory functions for the endpoints</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -238,22 +302,30 @@
 					<a name="withcontractapi" class="tsd-anchor"></a>
 					<h3>with<wbr>Contract<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">with<wbr>Contract<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Contract<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/apiComposer.ts#L152">core/src/api/apiComposer.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/core/src/api/apiComposer.ts#L152">core/src/api/apiComposer.ts:152</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds the <a href="../interfaces/core_api.contractapi.html">ContractApi</a>  to be composed</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>creatorMap: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A map of creator/factory functions for the endpoints</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -261,22 +333,30 @@
 					<a name="withmessageapi" class="tsd-anchor"></a>
 					<h3>with<wbr>Message<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">with<wbr>Message<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Message<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/apiComposer.ts#L116">core/src/api/apiComposer.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/core/src/api/apiComposer.ts#L116">core/src/api/apiComposer.ts:116</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds the <a href="../interfaces/core_api.messageapi.html">MessageApi</a>  to be composed</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>creatorMap: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A map of creator/factory functions for the endpoints</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -284,22 +364,30 @@
 					<a name="withnetworkapi" class="tsd-anchor"></a>
 					<h3>with<wbr>Network<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">with<wbr>Network<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Network<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/apiComposer.ts#L107">core/src/api/apiComposer.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/core/src/api/apiComposer.ts#L107">core/src/api/apiComposer.ts:107</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds the <a href="../interfaces/core_api.networkapi.html">NetworkApi</a>  to be composed</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>creatorMap: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A map of creator/factory functions for the endpoints</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -307,22 +395,30 @@
 					<a name="withtransactionapi" class="tsd-anchor"></a>
 					<h3>with<wbr>Transaction<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">with<wbr>Transaction<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Transaction<wbr>Api<span class="tsd-signature-symbol">(</span>creatorMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/apiComposer.ts#L125">core/src/api/apiComposer.ts:125</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/core/src/api/apiComposer.ts#L125">core/src/api/apiComposer.ts:125</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds the <a href="../interfaces/core_api.transactionapi.html">TransactionApi</a>  to be composed</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>creatorMap: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A map of creator/factory functions for the endpoints</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -330,22 +426,27 @@
 					<a name="create" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> create</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">create<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
+						<li class="tsd-signature tsd-kind-icon">create<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/core/src/api/apiComposer.ts#L70">core/src/api/apiComposer.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/core/src/api/apiComposer.ts#L69">core/src/api/apiComposer.ts:69</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates the composer instance</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>service: <a href="core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="core.api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="core_api.apicomposer.html" class="tsd-signature-type">ApiComposer</a></h4>
 							<p>the composer instance</p>
 						</li>
 					</ul>
@@ -358,88 +459,109 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/contracts.html">contracts</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/core.html">core</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/core_api.html">core.api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/core_api_factories.html">core.api.factories</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/crypto.html">crypto</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/http.html">http</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/util.html">util</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.api.api.html" class="tsd-kind-icon">Api</a>
+						<a href="core_api.api.html" class="tsd-kind-icon">Api</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.api.apicomposer.html" class="tsd-kind-icon">Api<wbr>Composer</a>
+						<a href="core_api.apicomposer.html" class="tsd-kind-icon">Api<wbr>Composer</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.api.apicomposer.html#compose" class="tsd-kind-icon">compose</a>
+								<a href="core_api.apicomposer.html#compose" class="tsd-kind-icon">compose</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.api.apicomposer.html#withaccountapi" class="tsd-kind-icon">with<wbr>Account<wbr>Api</a>
+								<a href="core_api.apicomposer.html#withaccountapi" class="tsd-kind-icon">with<wbr>Account<wbr>Api</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.api.apicomposer.html#withaliasapi" class="tsd-kind-icon">with<wbr>Alias<wbr>Api</a>
+								<a href="core_api.apicomposer.html#withaliasapi" class="tsd-kind-icon">with<wbr>Alias<wbr>Api</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.api.apicomposer.html#withassetapi" class="tsd-kind-icon">with<wbr>Asset<wbr>Api</a>
+								<a href="core_api.apicomposer.html#withassetapi" class="tsd-kind-icon">with<wbr>Asset<wbr>Api</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.api.apicomposer.html#withblockapi" class="tsd-kind-icon">with<wbr>Block<wbr>Api</a>
+								<a href="core_api.apicomposer.html#withblockapi" class="tsd-kind-icon">with<wbr>Block<wbr>Api</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.api.apicomposer.html#withcontractapi" class="tsd-kind-icon">with<wbr>Contract<wbr>Api</a>
+								<a href="core_api.apicomposer.html#withcontractapi" class="tsd-kind-icon">with<wbr>Contract<wbr>Api</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.api.apicomposer.html#withmessageapi" class="tsd-kind-icon">with<wbr>Message<wbr>Api</a>
+								<a href="core_api.apicomposer.html#withmessageapi" class="tsd-kind-icon">with<wbr>Message<wbr>Api</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.api.apicomposer.html#withnetworkapi" class="tsd-kind-icon">with<wbr>Network<wbr>Api</a>
+								<a href="core_api.apicomposer.html#withnetworkapi" class="tsd-kind-icon">with<wbr>Network<wbr>Api</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.api.apicomposer.html#withtransactionapi" class="tsd-kind-icon">with<wbr>Transaction<wbr>Api</a>
+								<a href="core_api.apicomposer.html#withtransactionapi" class="tsd-kind-icon">with<wbr>Transaction<wbr>Api</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="core.api.apicomposer.html#create" class="tsd-kind-icon">create</a>
+								<a href="core_api.apicomposer.html#create" class="tsd-kind-icon">create</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.api.apisettings.html" class="tsd-kind-icon">Api<wbr>Settings</a>
+						<a href="core_api.apisettings.html" class="tsd-kind-icon">Api<wbr>Settings</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/core.api.accountapi.html" class="tsd-kind-icon">Account<wbr>Api</a>
+						<a href="../interfaces/core_api.accountapi.html" class="tsd-kind-icon">Account<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/core.api.aliasapi.html" class="tsd-kind-icon">Alias<wbr>Api</a>
+						<a href="../interfaces/core_api.aliasapi.html" class="tsd-kind-icon">Alias<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/core.api.assetapi.html" class="tsd-kind-icon">Asset<wbr>Api</a>
+						<a href="../interfaces/core_api.assetapi.html" class="tsd-kind-icon">Asset<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/core.api.blockapi.html" class="tsd-kind-icon">Block<wbr>Api</a>
+						<a href="../interfaces/core_api.blockapi.html" class="tsd-kind-icon">Block<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/core.api.contractapi.html" class="tsd-kind-icon">Contract<wbr>Api</a>
+						<a href="../interfaces/core_api.contractapi.html" class="tsd-kind-icon">Contract<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/core.api.messageapi.html" class="tsd-kind-icon">Message<wbr>Api</a>
+						<a href="../interfaces/core_api.messageapi.html" class="tsd-kind-icon">Message<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/core.api.networkapi.html" class="tsd-kind-icon">Network<wbr>Api</a>
+						<a href="../interfaces/core_api.networkapi.html" class="tsd-kind-icon">Network<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/core.api.transactionapi.html" class="tsd-kind-icon">Transaction<wbr>Api</a>
+						<a href="../interfaces/core_api.transactionapi.html" class="tsd-kind-icon">Transaction<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/core.api.html#composeapi" class="tsd-kind-icon">compose<wbr>Api</a>
+						<a href="../modules/core_api.html#composeapi" class="tsd-kind-icon">compose<wbr>Api</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
 	</div>
 </div>
-<footer class="with-border-bottom">
+<footer>
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
@@ -498,9 +620,6 @@
 		</div>
 	</div>
 </footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
 <script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>

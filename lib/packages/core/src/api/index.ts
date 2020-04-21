@@ -1,8 +1,13 @@
-/** @module core.api */
-
 /**
- * Copyright (c) 2019 Burst Apps Team
- */
+ * This is the API submodule providing
+ * the Burstcoin API functions
+ *
+ * @moduledefinition core.api
+ * @see [[composeApi]] and/or [[ApiComposer]]
+ *
+ *
+ * */
+
 export * from './apiComposer';
 export * from './composeApi';
 export * from './factories';

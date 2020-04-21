@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -11,6 +9,7 @@ import {FeeQuantPlanck} from '../../../constants';
  * Use with [[ApiComposer]] and belongs to [[NetworkApi]].
  *
  * See details at [[NetworkApi.suggestFee]]
+ * @module core.api.factories
  */
 export const suggestFee = (service: BurstService): () => Promise<SuggestedFees> => {
     return async (): Promise<SuggestedFees> => {

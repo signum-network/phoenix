@@ -1,30 +1,28 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import { BurstService } from '../../../service/burstService';
-import { TransactionId } from '../../../typings/transactionId';
-import { TransactionResponse } from '../../../typings/transactionResponse';
-import { generateSignature, decryptAES, Keys } from '@burstjs/crypto';
-import { verifySignature } from '@burstjs/crypto';
-import { generateSignedTransactionBytes } from '@burstjs/crypto';
-import { convertNumberToNQTString } from '@burstjs/util';
-import { broadcastTransaction } from '../transaction/broadcastTransaction';
+import {BurstService} from '../../../service/burstService';
+import {TransactionId} from '../../../typings/transactionId';
+import {TransactionResponse} from '../../../typings/transactionResponse';
+import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
+import {convertNumberToNQTString} from '@burstjs/util';
+import {broadcastTransaction} from '../transaction/broadcastTransaction';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
  *
  * See details at [[AccountApi.setAlias]]
+ *
+ * @module core.api.factories
  */
 export const setAlias = (service: BurstService): (
-        aliasName: string,
-        aliasURI: string,
-        feeNQT: string,
-        senderPublicKey: string,
-        senderPrivateKey: string,
-        deadline: number,
-    ) => Promise<TransactionId> =>
+    aliasName: string,
+    aliasURI: string,
+    feeNQT: string,
+    senderPublicKey: string,
+    senderPrivateKey: string,
+    deadline: number,
+) => Promise<TransactionId> =>
     async (
         aliasName: string,
         aliasURI: string,

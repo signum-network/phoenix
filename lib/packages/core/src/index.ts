@@ -1,4 +1,11 @@
-/** @module core */
+/**
+ * This is the main package, and almost all you may need to interact with
+ * the Burstcoin API
+ *
+ * @see Get started with [[composeApi]]
+ *
+ * @moduledefinition core
+ * */
 
 // order alphabetically, please :)
 
@@ -18,7 +25,6 @@ export * from './typings/balance';
 export * from './typings/block';
 export * from './typings/blockchainStatus';
 export * from './typings/blockId';
-export * from './typings/burstNode';
 export * from './typings/burstTime';
 export * from './typings/multioutRecipientAmount';
 export * from './typings/peer';

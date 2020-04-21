@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -10,6 +8,8 @@ import {Block} from '../../../typings/block';
  * Use with [[ApiComposer]] and belongs to [[BlockApi]].
  *
  * See details at [[BlockApi.getBlocks]]
+ *
+ * @module core.api.factories
  */
 export const getBlocks = (service: BurstService):
     (firstIndex?: number, lastIndex?: number, includeTransactions?: boolean) => Promise<Block[]> =>

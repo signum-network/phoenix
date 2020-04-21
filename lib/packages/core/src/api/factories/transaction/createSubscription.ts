@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Copyright (c) 2020 Burst Apps Team
  */
@@ -15,6 +13,7 @@ import {CreateSubscriptionArgs} from '../../../typings/args';
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
  * See details at [[TransactionApi.createSubscription]]
+ * @module core.api.factories
  */
 export const createSubscription = (service: BurstService):
     (args: CreateSubscriptionArgs) => Promise<TransactionId> =>

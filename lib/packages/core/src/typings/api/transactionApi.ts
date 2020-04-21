@@ -1,16 +1,17 @@
-/** @module core.api */
-
 import {TransactionId} from '../transactionId';
 import {Transaction} from '../transaction';
 import {MultioutRecipientAmount} from '../multioutRecipientAmount';
 import {Attachment} from '../attachment';
 import {SendAmountArgs} from '../args/sendAmountArgs';
 import {CancelSubscriptionArgs, CreateSubscriptionArgs} from '../args';
+import {Subscription} from '../subscription';
 
 /**
  * Transaction API
  *
  * This module provides methods related to blockchain transactions
+ *
+ * @module core.api
  */
 export interface TransactionApi {
 
@@ -105,6 +106,15 @@ export interface TransactionApi {
      */
     sendAmountToSingleRecipient:
         (args: SendAmountArgs) => Promise<TransactionId>;
+
+    /**
+     * Gets a subscription
+     *
+     * @param subscriptionId The id of the subscription
+     * @return The Subscription Object (as promise)
+     */
+    getSubscription:
+        (subscriptionId: string) => Promise<Subscription>;
 
     /**
      * Create a subscription

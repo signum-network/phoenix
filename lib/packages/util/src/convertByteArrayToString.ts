@@ -1,4 +1,3 @@
-/** @module util */
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
@@ -11,6 +10,7 @@
  * @param startIndex The starting index of array to be converted (Default: 0)
  * @param length The number of bytes to be considered, _iff_ startIndex is given. If _null_ the byte array's length is considered
  * @return {string} The converted string
+ * @module util
  */
 export const convertByteArrayToString = (byteArray: Uint8Array, startIndex: number = 0, length: number = null): string => {
     if (length === 0) {

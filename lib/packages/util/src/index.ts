@@ -1,4 +1,8 @@
-/** @module util */
+/**
+ * The utility package for BurstJS, with loads of convenience methods
+ *
+ * @moduledefinition util
+ * */
 export * from './convertAddressToNumericId';
 export * from './convertBurstTimeToDate';
 export * from './convertBurstTimeToEpochTime';

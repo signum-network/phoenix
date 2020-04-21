@@ -1,5 +1,3 @@
-/** @module crypto */
-
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
@@ -50,6 +48,7 @@ function decrypt(ivCiphertext: Uint8Array, nonce: Uint8Array, sharedKeyOrig: any
  * @param senderPublicKeyHex The senders public key in hex format
  * @param recipientPrivateKeyHex The recipients private (agreement) key in hex format
  * @return The original plain text
+ * @module crypto
  */
 export function decryptData(
     encryptedData: EncryptedData,

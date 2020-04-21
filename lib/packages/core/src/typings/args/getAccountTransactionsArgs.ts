@@ -1,5 +1,3 @@
-/** @module core */
-
 /**
  * The argument object for [[AccountApi.getAccountTransactions]]
  *
@@ -11,6 +9,8 @@
  * @param {number?} subtype The subtype of transactions to fetch (see e.g. [[TransactionArbitrarySubtype]])
  * @param {boolean?} includeIndirect Includes indirect transaction, i.e. multi out payments.
  * For BRS Versions before 2.3.1 this must be `undefined`
+ *
+ * @module core
  */
 export interface GetAccountTransactionsArgs {
     accountId: string;

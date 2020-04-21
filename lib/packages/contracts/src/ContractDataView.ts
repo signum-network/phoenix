@@ -1,6 +1,4 @@
-/** @module contracts */
-
-/**
+    /**
  * Copyright (c) 2019 Burst Apps Team
  */
 
@@ -16,6 +14,8 @@ import {countCodePages} from './countCodePages';
  * A contract owns additional data, which is split in 8 byte blocks.
  * The content is encoded in hexadecimal representation and big endianness.
  * This class facilitates access to these data
+ *
+ * @module contracts
  */
 export class ContractDataView {
 

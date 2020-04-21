@@ -1,3 +1,2 @@
-/** @module core */
-
 export * from './burstService';
+export * from './burstServiceSettings';

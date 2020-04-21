@@ -1,5 +1,3 @@
-/** @module core.api.factories */
-
 /**
  * Original work Copyright (c) 2020 Burst Apps Team
  */
@@ -12,6 +10,7 @@ import {SubscriptionList} from '../../../typings/subscriptionList';
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
  *
  * See details at [[AccountApi.getSubscriptionsToAccount]]
+ * @module core.api.factories
  */
 export const getSubscriptionsToAccount = (service: BurstService):
     (accountId: string) => Promise<SubscriptionList> =>

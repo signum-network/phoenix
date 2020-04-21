@@ -1,4 +1,3 @@
-/** @module core.api */
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -9,7 +8,7 @@ import {ApiVersion} from '../constants/apiVersion';
 import {ApiComposer} from './apiComposer';
 import {getBlockByHeight, getBlockById, getBlockByTimestamp, getBlockId, getBlocks} from './factories/block';
 import {getBlockchainStatus, getPeer, getPeers, getServerStatus, getTime, suggestFee} from './factories/network';
-import {sendTextMessage, sendEncryptedTextMessage, sendMessage, sendEncryptedMessage} from './factories/message';
+import {sendEncryptedMessage, sendEncryptedTextMessage, sendMessage, sendTextMessage} from './factories/message';
 import {
     generateSendTransactionQRCode,
     generateSendTransactionQRCodeAddress,
@@ -17,17 +16,23 @@ import {
     getAccountBalance,
     getAccountBlockIds,
     getAccountBlocks,
+    getAccountSubscriptions,
     getAccountTransactions,
     getAliases,
+    getSubscriptionsToAccount,
     getUnconfirmedAccountTransactions,
     setAccountInfo,
     setAlias,
     setRewardRecipient,
-    getAccountSubscriptions,
-    getSubscriptionsToAccount,
 } from './factories/account';
 import {getAliasById, getAliasByName} from './factories/alias';
-import {getAllContractIds, getContract, getContractsByAccount, publishContract, callContractMethod} from './factories/contract';
+import {
+    callContractMethod,
+    getAllContractIds,
+    getContract,
+    getContractsByAccount,
+    publishContract
+} from './factories/contract';
 import {
     broadcastTransaction,
     cancelSubscription,
@@ -44,7 +49,9 @@ import {AxiosRequestConfig} from 'axios';
 
 /**
  * Settings for API used in [[composeApi]]
- */
+ *
+ * @module core.api
+ * */
 export class ApiSettings {
     /**
      * @param nodeHost {string} The url of the Burst peer
@@ -77,6 +84,8 @@ export class ApiSettings {
  *
  * @param settings necessary execution context
  * @return The _complete_ API
+ *
+ * @module core.api
  */
 export function composeApi(settings: ApiSettings): Api {
 

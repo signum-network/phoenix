@@ -61,8 +61,6 @@
 						</div>
 						<input type="checkbox" id="tsd-filter-inherited" checked/>
 						<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-						<input type="checkbox" id="tsd-filter-externals" checked/>
-						<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 					</div>
 				</div>
 				<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -90,6 +88,27 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The argument object for <a href="../modules/util.html#createdeeplink">createDeeplink</a></p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>param</dt>
+						<dd><p>The domain used in the protocol</p>
+						</dd>
+						<dt>param</dt>
+						<dd><p>The actions name</p>
+						</dd>
+						<dt>param</dt>
+						<dd><p>The payload for the action. The payload will be encoded according the <em>encoderFormat</em> parameter</p>
+						</dd>
+						<dt>param</dt>
+						<dd><p>The selected format for the payload encoding</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -122,7 +141,7 @@
 					<div class="tsd-signature tsd-kind-icon">action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/util/src/typings/args/createDeeplinkArgs.ts#L19">util/src/typings/args/createDeeplinkArgs.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/util/src/typings/args/createDeeplinkArgs.ts#L23">util/src/typings/args/createDeeplinkArgs.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -132,7 +151,7 @@
 					<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/util/src/typings/args/createDeeplinkArgs.ts#L18">util/src/typings/args/createDeeplinkArgs.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/util/src/typings/args/createDeeplinkArgs.ts#L22">util/src/typings/args/createDeeplinkArgs.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -142,7 +161,7 @@
 					<div class="tsd-signature tsd-kind-icon">encoder<wbr>Format<span class="tsd-signature-symbol">:</span> <a href="../enums/util.encoderformat.html" class="tsd-signature-type">EncoderFormat</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/util/src/typings/args/createDeeplinkArgs.ts#L21">util/src/typings/args/createDeeplinkArgs.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/util/src/typings/args/createDeeplinkArgs.ts#L25">util/src/typings/args/createDeeplinkArgs.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -152,7 +171,7 @@
 					<div class="tsd-signature tsd-kind-icon">payload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5068e23d/lib/packages/util/src/typings/args/createDeeplinkArgs.ts#L20">util/src/typings/args/createDeeplinkArgs.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/util/src/typings/args/createDeeplinkArgs.ts#L24">util/src/typings/args/createDeeplinkArgs.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -171,6 +190,12 @@
 						<a href="../modules/core.html">core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/core_api.html">core.api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/core_api_factories.html">core.api.factories</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/crypto.html">crypto</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -183,9 +208,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
-						<a href="../enums/util.burstvalueformat.html" class="tsd-kind-icon">Burst<wbr>Value<wbr>Format</a>
-					</li>
 					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
 						<a href="../enums/util.encoderformat.html" class="tsd-kind-icon">Encoder<wbr>Format</a>
 					</li>
@@ -283,9 +305,6 @@
 						<a href="../modules/util.html#isburstaddress" class="tsd-kind-icon">is<wbr>Burst<wbr>Address</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/util.html#isvalid" class="tsd-kind-icon">is<wbr>Valid</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="../modules/util.html#parsedeeplink" class="tsd-kind-icon">parse<wbr>Deeplink</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
@@ -296,7 +315,7 @@
 		</div>
 	</div>
 </div>
-<footer class="with-border-bottom">
+<footer>
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
@@ -355,9 +374,6 @@
 		</div>
 	</div>
 </footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
 <script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>

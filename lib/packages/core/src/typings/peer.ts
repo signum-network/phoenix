@@ -1,9 +1,12 @@
-/** @module core */
 
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
 
+/**
+ * Peer Interface
+ * @module core
+ * */
 export interface Peer {
     announcedAddress: string;
     application: string;
