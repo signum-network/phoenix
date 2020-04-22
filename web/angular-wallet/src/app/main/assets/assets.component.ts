@@ -10,6 +10,7 @@ import { Account, Asset } from '@burstjs/core';
 import { AssetBalance } from '@burstjs/core/out/typings/assetBalance';
 
 interface AssetRow {
+  id: string;
   name: string;
   description: string;
   amount: string;
@@ -35,7 +36,7 @@ export class AssetsComponent implements OnInit {
   ) { }
 
   ngOnInit (): void {
-    this.displayedColumns = ['name', 'decimals', 'amount'];
+    this.displayedColumns = ['id', 'name', 'decimals', 'amount'];
     this.dataSource = new MatTableDataSource<AssetRow>();
     
     this.storeService.ready.subscribe(async (ready) => {
@@ -47,6 +48,7 @@ export class AssetsComponent implements OnInit {
             const { asset, balanceQNT } = this.selectedAccount.assetBalances[assetBalance];
             const assetResponse = await this.accountService.getAsset(asset);
             output.push({
+              id: assetResponse.asset,
               name: assetResponse.name,
               description: assetResponse.description,
               decimals: assetResponse.decimals,

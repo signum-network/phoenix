@@ -2,6 +2,13 @@
 
   <mat-table [dataSource]="dataSource" matSort>
 
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'asset' | i18n }}</mat-header-cell>
+      <mat-cell *matCellDef="let asset">
+        <span>{{ asset.id }}</span>
+      </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'asset_name' | i18n }}</mat-header-cell>
       <mat-cell *matCellDef="let asset">

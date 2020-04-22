@@ -1,13 +1,14 @@
-import {getRecipientsAmount, Transaction} from '@burstjs/core';
+import {getRecipientsAmount, Transaction, TransactionAssetSubtype} from '@burstjs/core';
 import {convertNQTStringToNumber} from '@burstjs/util';
 import {BalanceHistoryItem} from './typings';
+import { TransactionType } from '@burstjs/core/src';
 
 const isOwnTransaction = (accountId: string, transaction: Transaction): boolean => transaction.sender === accountId;
 
 function getRelativeTransactionAmount(accountId: string, transaction: Transaction): number {
 
   if (isOwnTransaction(accountId, transaction)) {
-    const amountBurst = transaction.type === 2 && transaction.subtype === 3 ?
+    const amountBurst = transaction.type === TransactionType.Asset && transaction.subtype === TransactionAssetSubtype.BidOrderPlacement ?
       convertNQTStringToNumber((transaction.attachment.quantityQNT * transaction.attachment.priceNQT).toString()) :
       convertNQTStringToNumber(transaction.amountNQT);
     const feeBurst = convertNQTStringToNumber(transaction.feeNQT);

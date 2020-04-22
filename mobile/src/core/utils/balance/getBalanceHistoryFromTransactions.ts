@@ -1,6 +1,8 @@
 import {
   getRecipientsAmount,
-  Transaction
+  Transaction,
+  TransactionType,
+  TransactionAssetSubtype
 } from '@burstjs/core';
 import { convertNQTStringToNumber } from '@burstjs/util';
 import { BalanceHistoryItem } from './typings';
@@ -13,7 +15,8 @@ function getRelativeTransactionAmount (accountId: string, transaction: Transacti
     // type 2, subtype 3 = BidOrderPlacement
     // Todo: support Ask Order Placement?
     // This logic is flawed/imperfect, but seems to work well enough
-    const amountBurst = transaction.type === 2 && transaction.subtype === 3 ?
+    const amountBurst = transaction.type === TransactionType.Asset &&
+      transaction.subtype === TransactionAssetSubtype.BidOrderPlacement ?
       convertNQTStringToNumber((transaction.attachment.quantityQNT * transaction.attachment.priceNQT).toString()) :
       convertNQTStringToNumber(transaction.amountNQT);
     const feeBurst = convertNQTStringToNumber(transaction.feeNQT);
