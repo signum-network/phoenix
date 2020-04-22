@@ -27,6 +27,8 @@ import {ApiService} from '../../api.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {constants} from 'app/constants';
 import {HttpError, HttpImpl as Http} from '@burstjs/http';
+import { AssetList } from '@burstjs/core/out/typings/assetList';
+import { Asset } from '@burstjs/core/src';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -135,6 +137,14 @@ export class AccountService {
 
   public getAliases(id: string): Promise<AliasList> {
     return this.api.account.getAliases(id);
+  }
+
+  public getAsset(id: string): Promise<Asset> {
+    return this.api.asset.getAsset(id);
+  }
+
+  public getAssets(id: number): Promise<AssetList> {
+    return this.api.asset.getAllAssets(id);
   }
 
   public setAlias({aliasName, aliasURI, feeNQT, deadline, pin, keys}: SetAliasRequest): Promise<TransactionId> {

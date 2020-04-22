@@ -81,7 +81,8 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
           fill: 'start'
         }
       ],
-      labels: this.balanceHistory.map(({timestamp}) => this.toDateString(convertBurstTimeToDate(timestamp))),
+      labels: this.balanceHistory.map(({timestamp}) => timestamp && this.toDateString(convertBurstTimeToDate(timestamp)) ||
+      this.toDateString(new Date())),
       colors: [
         {
           borderColor: '#42a5f5',
