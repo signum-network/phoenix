@@ -4,14 +4,14 @@
  */
 
 /**
- * @deprecated
- *  * <div class="deprecated">
- *     Use [[BurstValue]] instead
- * </div>
- * Helper method to convert a Planck Value (BURST * 1E8) String to BURST number
+ * Helper method to convert a Planck Value (BURST * 1E-8) String to BURST number
  * @param amount The amount in Planck (aka NQT)
  * @return A number expressed in Burst (not NQT)
  * @throws exception if argument is invalid
+ * @deprecated
+ * <div class="deprecated">
+ *     Use [[BurstValue]] instead
+ * </div>
  * @module util
  */
 export const convertNQTStringToNumber = (amount: string): number => {

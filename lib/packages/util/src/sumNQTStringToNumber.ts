@@ -6,13 +6,13 @@ import {convertNQTStringToNumber} from './convertNQTStringToNumber';
  */
 
 /**
- * @deprecated
- * <div class='deprecated>
- *     Use [[BurstValue.sum()]] instead
- * </div>
  * Sums various NQT values and returns in Burst
  * @param nqts Variable amount list with NQT string
  * @return The sum of all amounts in BURST
+ * @deprecated
+ * <div class='deprecated'>
+ *     Use [[BurstValue.add]] instead
+ * </div>
  * @module util
  */
 export function sumNQTStringToNumber(...nqts: string[]): number {

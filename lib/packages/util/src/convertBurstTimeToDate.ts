@@ -4,13 +4,13 @@
 import {convertBurstTimeToEpochTime} from './convertBurstTimeToEpochTime';
 
 /**
- * @deprecated
- * <div class="deprecated">
- *     Use [[BurstTime.getDate()]] instead
- * </div>
  * Converts a Burst/Block Time (seconds since genesis block) into Date
  * @param burstTimestamp The numeric Id
  * @return Date
+ * @deprecated
+ * <div class="deprecated">
+ *     Use [[BurstTime.getDate]] instead
+ * </div>
  * @module util
  */
 export const convertBurstTimeToDate = (burstTimestamp: number): Date => {

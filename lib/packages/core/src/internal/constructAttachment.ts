@@ -5,10 +5,6 @@ import { AttachmentEncryptedMessage, AttachmentMessage } from '../typings/attach
 import { Transaction } from '../typings/transaction';
 
 /**
- * @deprecated
- * <div class="deprecated">
- *     Will be removed with [[TransactionApi.sendMoney]]
- * </div>
  *
  * Constructs an Attachment
  * @internal
@@ -16,6 +12,10 @@ import { Transaction } from '../typings/transaction';
  * @param transaction The transaction with the attachment
  * @param params Some HttpParams
  * @return HttpParams
+ * @deprecated
+ * <div class="deprecated">
+ *     Will be removed with [[TransactionApi.sendMoney]]
+ * </div>
  * @module core
  */
 export const constructAttachment = (transaction: Transaction, params: any) => {
