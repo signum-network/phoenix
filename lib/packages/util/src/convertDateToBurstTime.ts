@@ -4,13 +4,13 @@
 import {GenesisBlockTime} from './internal';
 
 /**
- * @deprecated
- * <div class="deprecated">
- *     Use [[BurstTime.fromDate()]] instead
- * </div>
  * Converts a Date into Burst/Block Time (seconds since genesis block)
  * @param date The date to be converted
  * @return The Burst Timestamp
+ * @deprecated
+ * <div class="deprecated">
+ *     Use [[BurstTime.fromDate]] instead
+ * </div>
  * @module util
  */
 export const convertDateToBurstTime = (date: Date): number => {

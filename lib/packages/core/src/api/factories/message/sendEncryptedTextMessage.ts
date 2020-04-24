@@ -13,14 +13,14 @@ import {broadcastTransaction} from '../transaction/broadcastTransaction';
 const MAX_MESSAGE_LENGTH = 1024;
 
 /**
- * @deprecated
- * <div class="deprecated">
- *     Use [[MessageApi.sendEncryptedMessage]] instead
- * </div>
  *
  * Use with [[ApiComposer]] and belongs to [[MessageApi]].
  *
  * See details at [[MessageApi.sendEncryptedTextMessage]]
+ * @deprecated
+ * <div class="deprecated">
+ *     Use [[MessageApi.sendEncryptedMessage]] instead
+ * </div>
  * @module core.api.factories
  */
 export const sendEncryptedTextMessage = (service: BurstService):

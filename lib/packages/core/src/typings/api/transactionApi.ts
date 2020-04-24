@@ -71,10 +71,6 @@ export interface TransactionApi {
 
 
     /**
-     * @deprecated
-     * <div class="deprecated">
-     *     Use [[sendAmount]], [[sendAmountToMultipleRecipients]] instead
-     * </div>
      * Sends burst to the blockchain
      *
      * The transaction will be broadcasted in two steps.
@@ -87,6 +83,10 @@ export interface TransactionApi {
      * @param senderPublicKey The senders public key for sending an _unsigned_ message
      * @param senderPrivateKey The senders private key to _sign_ the message
      * @param attachment An optional attachment
+     * @deprecated
+     * <div class="deprecated">
+     *     Use [[sendAmount]], [[sendAmountToMultipleRecipients]] instead
+     * </div>
      * @return The Transaction Id (as promise)
      */
     sendAmount: (

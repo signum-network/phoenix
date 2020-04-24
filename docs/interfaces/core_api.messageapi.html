@@ -127,7 +127,7 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Encrypted<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/core/src/typings/api/messageApi.ts#L81">core/src/typings/api/messageApi.ts:81</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/16b6f57d/lib/packages/core/src/typings/api/messageApi.ts#L81">core/src/typings/api/messageApi.ts:81</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -171,18 +171,15 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Encrypted<wbr>Text<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/core/src/typings/api/messageApi.ts#L58">core/src/typings/api/messageApi.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/16b6f57d/lib/packages/core/src/typings/api/messageApi.ts#L58">core/src/typings/api/messageApi.ts:58</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Broadcasts an <em>encrypted</em> text message to the network/blockchain
+							It&#39;s analogous to sendTextMessage but encrypts the message priorly</p>
+						</div>
 						<dl class="tsd-comment-tags">
-							<dt>deprecated</dt>
-							<dd><div class="deprecated">
-									Use <a href="core_api.messageapi.html#sendencryptedmessage">sendEncryptedMessage</a> instead
-								</div>
-								<p>Broadcasts an <em>encrypted</em> text message to the network/blockchain
-								It&#39;s analogous to sendTextMessage but encrypts the message priorly</p>
-							</dd>
 							<dt>param</dt>
 							<dd><p>The <em>text</em> message to be encrypted and sent</p>
 							</dd>
@@ -198,6 +195,10 @@
 							<dt>param</dt>
 							<dd><p>The optional fee (expressed in Burst) for the message, default is 0.1 Burst.</p>
 							</dd>
+							<dt>deprecated</dt>
+							<dd><div class="deprecated">
+									Use <a href="core_api.messageapi.html#sendencryptedmessage">sendEncryptedMessage</a> instead
+							</div></dd>
 							<dt>returns</dt>
 							<dd><p>The Transaction Id</p>
 							</dd>
@@ -246,7 +247,7 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/core/src/typings/api/messageApi.ts#L73">core/src/typings/api/messageApi.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/16b6f57d/lib/packages/core/src/typings/api/messageApi.ts#L73">core/src/typings/api/messageApi.ts:73</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -290,22 +291,19 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Text<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/45e8bbc9/lib/packages/core/src/typings/api/messageApi.ts#L32">core/src/typings/api/messageApi.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/16b6f57d/lib/packages/core/src/typings/api/messageApi.ts#L32">core/src/typings/api/messageApi.ts:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Broadcasts a text message to the network/blockchain</p>
+						</div>
+						<p>The message will be broadcasted in two steps.</p>
+						<ol>
+							<li>Send the message with public key to the network</li>
+							<li>Take the returned unsigned message and sign it, i.e. the private key won&#39;t be transmitted.</li>
+						</ol>
 						<dl class="tsd-comment-tags">
-							<dt>deprecated</dt>
-							<dd><div class="deprecated">
-									Use <a href="core_api.messageapi.html#sendmessage">sendMessage</a> instead
-								</div>
-								<p>Broadcasts a text message to the network/blockchain</p>
-								<p>The message will be broadcasted in two steps.</p>
-								<ol>
-									<li>Send the message with public key to the network</li>
-									<li>Take the returned unsigned message and sign it, i.e. the private key won&#39;t be transmitted.</li>
-								</ol>
-							</dd>
 							<dt>param</dt>
 							<dd><p>The <em>text</em> message to be sent</p>
 							</dd>
@@ -324,6 +322,10 @@
 							<dt>param</dt>
 							<dd><p>The optional fee (expressed in Burst) for the message, default is 0.1 Burst.</p>
 							</dd>
+							<dt>deprecated</dt>
+							<dd><div class="deprecated">
+									Use <a href="core_api.messageapi.html#sendmessage">sendMessage</a> instead
+							</div></dd>
 							<dt>returns</dt>
 							<dd><p>The Transaction Id</p>
 							</dd>

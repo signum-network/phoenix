@@ -4,13 +4,13 @@
  */
 
 /**
+ * @param n the number
+ * @return a NQT number string
  * @deprecated
  * <div class="deprecated">
  *     Use [[BurstValue]] instead
  * </div>
  * Helper method to Number to String(8 decimals) representation
- * @param n the number
- * @return a NQT number string
  * @module util
  */
 export const convertNumberToNQTString = (n: number): string => {

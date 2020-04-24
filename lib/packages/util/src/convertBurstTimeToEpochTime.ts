@@ -7,13 +7,13 @@ import {GenesisBlockTime} from './internal';
  */
 
 /**
- * @deprecated
- * <div class="deprecated">
- *     Use [[BurstTime.getEpoch()]] instead
- * </div>
  * Converts a Burst/Block Time (seconds since genesis block) into Unix Epoch Time (milliseconds since 01.01.1970)
  * @param burstTimestamp The numeric Id
  * @return Unix Epoch Time (milliseconds since 01.01.1970)
+ * @deprecated
+ * <div class="deprecated">
+ *     Use [[BurstTime.getEpoch]] instead
+ * </div>
  * @module util
  */
 export const convertBurstTimeToEpochTime = (burstTimestamp: number): number => {

@@ -10,10 +10,6 @@ import {SendEncryptedMessageArgs} from '../args/sendEncryptedMessageArgs';
 export interface MessageApi {
 
     /**
-     * @deprecated
-     * <div class="deprecated">
-     *     Use [[sendMessage]] instead
-     * </div>
 
      * Broadcasts a text message to the network/blockchain
      *
@@ -27,6 +23,10 @@ export interface MessageApi {
      * @param senderPrivateKey The senders private key to _sign_ the message
      * @param deadline The optional deadline (in minutes) for the transaction to be confirmed, 1440 minutes maximum
      * @param fee The optional fee (expressed in Burst) for the message, default is 0.1 Burst.
+     * @deprecated
+     * <div class="deprecated">
+     *     Use [[sendMessage]] instead
+     * </div>
      * @return The Transaction Id
      */
     sendTextMessage: (
@@ -40,10 +40,6 @@ export interface MessageApi {
 
 
     /**
-     * @deprecated
-     * <div class="deprecated">
-     *     Use [[sendEncryptedMessage]] instead
-     * </div>
 
      * Broadcasts an _encrypted_ text message to the network/blockchain
      * It's analogous to sendTextMessage but encrypts the message priorly
@@ -53,6 +49,10 @@ export interface MessageApi {
      * @param keys The senders key set for encryption and signing
      * @param deadline The optional deadline (in minutes) for the transaction to be confirmed, 1440 minutes maximum
      * @param fee The optional fee (expressed in Burst) for the message, default is 0.1 Burst.
+     * @deprecated
+     * <div class="deprecated">
+     *     Use [[sendEncryptedMessage]] instead
+     * </div>
      * @return The Transaction Id
      */
     sendEncryptedTextMessage: (

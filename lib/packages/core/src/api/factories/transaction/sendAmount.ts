@@ -10,14 +10,14 @@ import {signAndBroadcastTransaction} from '../../../internal/signAndBroadcastTra
 import {createParametersFromAttachment} from '../../../internal/createParametersFromAttachment';
 
 /**
- * @deprecated Use sendAmountToSingleRecipient
- * <div class="deprecated">
- *     Use [[TransactionApi.sendAmountToSingleRecipient]] instead
- * </div>
  *
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
  * See details at [[TransactionApi.sendAmount]]
+ * @deprecated Use sendAmountToSingleRecipient
+ * <div class="deprecated">
+ *     Use [[TransactionApi.sendAmountToSingleRecipient]] instead
+ * </div>
  * @module core.api.factories
  *
  */

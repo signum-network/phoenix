@@ -9,13 +9,14 @@ import './internal/padStartPolyfill';
 import BigNumber from 'bignumber.js';
 import {convertHexEndianess} from '@burstjs/util';
 import {GenerateMethodCallArgs, MethodArgument} from './typings/args';
+import Big from 'big.js'
 
 /**
  * @internal
  * @param numeric
  */
 const numericToHex = (numeric: string): string => {
-    let bn = new BigNumber(numeric);
+    let bn = new Big(numeric);
 
     if (bn.lt(0)) {
         bn = twosComplementBinary(bn);
