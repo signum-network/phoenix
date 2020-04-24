@@ -70,7 +70,7 @@ describe('BurstValue', () => {
             const burstValue = BurstValue.fromBurst('1');
             expect(burstValue.getBurst()).toEqual('1');
             const raw = burstValue.getRaw();
-            raw.add(1);
+            raw.plus(1);
             expect(burstValue.getBurst()).toEqual('1');
         });
     });
@@ -216,7 +216,7 @@ describe('BurstValue', () => {
         it('should throw error div-by-zero', () => {
             const burstValue1 = BurstValue.fromBurst('10');
             expect(() => {
-                burstValue1.divide(0).getBurst()
+                burstValue1.divide(0).getBurst();
             }).toThrow();
         });
     });
