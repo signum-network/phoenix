@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "@types/bignumber.js": "^5.0.0",
     "@types/jest": "^24.0.23",
     "bili": "^4.8.1",
     "rollup-plugin-typescript2": "^0.24.2"
@@ -57,8 +58,7 @@
   },
   "gitHead": "9b5a4e07616d783e85bcae6c21b72f50db783f48",
   "dependencies": {
-    "@types/big.js": "^4.0.5",
-    "big.js": "^5.2.2",
+    "bignumber.js": "^9.0.0",
     "js-base64": "^2.5.1"
   }
 }
