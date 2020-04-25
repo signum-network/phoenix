@@ -13,7 +13,7 @@ import {BehaviorSubject} from 'rxjs';
 import {TransactionService} from '../../../main/transactions/transaction.service';
 import {AccountService} from '../../../setup/account/account.service';
 import {BurstInputValidatorDirective} from '../../../main/send-burst/send-burst-validator.directive';
-import {FeeQuantPlanck} from '@burstjs/core';
+import {FeeQuantPlanck} from '@burstjs/util';
 import { MatProgressBarModule } from '@angular/material';
 import {AppSharedModule} from '../../../shared/shared.module';
 

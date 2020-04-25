@@ -9,6 +9,8 @@ import {countCodePages} from './countCodePages';
  * Calculates the minimum creation fee of the contract
  *
  * @param hexCode The contracts code in hex form
+ * @param isCIP20active If is true, the fee calculation for active CIP20 is applied (lowered fees),
+ * otherwise the legacy calculation (BRS <V2.5) is applied
  * @return The minimum fee expressed in Planck
  * @module contracts
  */
