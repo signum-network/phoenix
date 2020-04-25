@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 ___
 __Breaking Changes__
 - `ContractHelper`, `getContractDatablock` moved into new package `contracts`
-- `FeeQuantNQT` renamed to `FeeQuantPlanck`
+- `FeeQuantNQT`removed 
+    - moved to `FeeQuantPlanck` in `@burstjs/util`
 - `setRewardRecipient` with argument object now
 ___
 
