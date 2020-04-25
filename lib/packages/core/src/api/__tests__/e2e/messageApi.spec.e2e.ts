@@ -6,7 +6,7 @@ import {sendEncryptedTextMessage} from '../../factories/message/sendEncryptedTex
 import {getTransaction} from '../../factories/transaction/getTransaction';
 import {isAttachmentVersion} from '../../../attachment';
 import {sendMessage} from '../../factories/message';
-import {FeeQuantPlanck} from '../../../constants';
+import {FeeQuantPlanck} from '@burstjs/util';
 
 
 describe('[E2E] Message Api', () => {

@@ -8,9 +8,9 @@ import {broadcastTransaction} from '../factories/transaction/broadcastTransactio
 import {sendEncryptedTextMessage} from '../factories/message/sendEncryptedTextMessage';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {sendMessage} from '../factories/message';
-import {FeeQuantPlanck} from '../../constants';
 import {signAndBroadcastTransaction} from '../../internal';
 import {sendEncryptedMessage} from '../factories/message/sendEncryptedMessage';
+import {FeeQuantPlanck} from '@burstjs/util';
 
 describe('Message Api', () => {
 
