@@ -9,11 +9,6 @@ import {TransactionEscrowSubtype} from './transactionEscrowSubtype';
 import {TransactionSmartContractSubtype} from './transactionSmartContractSubtype';
 
 /**
- * The smallest possible fee
- * @module core
- */
-const FeeQuantPlanck = 735000;
-/**
  * The default deadline (in minutes) for Transactions
  * @module core
  */
@@ -26,7 +21,6 @@ const DefaultDeadline = 1440;
 const DefaultApiEndpoint = '/burst';
 
 export {
-    FeeQuantPlanck,
     DefaultDeadline,
     DefaultApiEndpoint,
     TransactionType,

@@ -4,7 +4,7 @@ import {getServerStatus} from '../factories/network/getServerStatus';
 import {getTime} from '../factories/network/getTime';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {suggestFee} from '../factories/network';
-import {FeeQuantPlanck} from '../../constants';
+import {FeeQuantPlanck} from '@burstjs/util';
 
 describe('Network Api', () => {
 

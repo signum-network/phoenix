@@ -9,3 +9,15 @@ export const BurstSymbol = 'Ƀ';
  * @module util
  * */
 export const BurstPlanckSymbol = 'ƀ';
+
+/**
+ * The smallest possible fee
+ * @module util
+ */
+export const FeeQuantPlanck = 735000;
+
+/**
+ * One Burst expressed in Planck
+ * @module util
+ */
+export const OneBurstPlanck = 100000000;
