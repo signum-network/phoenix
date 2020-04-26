@@ -25,7 +25,7 @@ export const sendMessage = (service: BurstService):
             recipientPublicKey: args.recipientPublicKey || undefined,
             feeNQT: args.feePlanck,
             deadline: args.deadline || DefaultDeadline,
-            messageIsText: args.messageIsText === undefined,
+            messageIsText: args.messageIsText !== false,
             broadcast: true,
         };
 
