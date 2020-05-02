@@ -1,6 +1,6 @@
 {
   "/burst": {
-    "target": "http://testnet.getburst.net:6876",
+    "target": "https://testnet-2.burst-alliance.org:6876",
     "changeOrigin": true,
     "secure": false,
     "logLevel": "info"
