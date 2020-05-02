@@ -118,7 +118,7 @@ export const constants = {
       name: 'Testnet',
       region: 'Global',
       location: 'Europe',
-      address: 'https://testnet-2.burst-alliance.org:6876/',
+      address: 'https://testnet-2.burst-alliance.org:6876',
       port: 6876,
       selected: false,
       ping: -1,
