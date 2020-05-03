@@ -72,7 +72,6 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       .subscribe((ready) => {
         if (ready) {
           this.updateAccounts();
-          this.checkBlockchainStatus();
           setInterval(this.checkBlockchainStatus.bind(this), this.BLOCKCHAIN_STATUS_INTERVAL);
         }
         this.accountService.currentAccount
@@ -146,7 +145,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       );
     });
 
-   
+
   }
 
   private async checkBlockchainStatus(): Promise<void> {

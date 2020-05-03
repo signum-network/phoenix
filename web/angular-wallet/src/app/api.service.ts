@@ -25,24 +25,11 @@ export class ApiService {
       )
       .subscribe(this.initApi);
   }
-
-  private static trimTrailingOrLeadingSlashes(path: string): string {
-    let p = path;
-    if (p.startsWith('/')) {
-      p = p.substr(1);
-    }
-
-    if (p.endsWith('/')) {
-      p = p.substr(0, p.length - 1);
-    }
-    return p;
-  }
-
   private initApi(settings: Settings): void {
     this.nodeUrl = settings.node;
     const apiSettings = new ApiSettings(this.nodeUrl);
     this.api = composeApi(apiSettings);
-    this.fetchBrsApiVersion();
+    this.brsVersion = undefined;
   }
 
   async fetchBrsApiVersion(): Promise<string> {
