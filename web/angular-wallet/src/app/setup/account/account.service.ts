@@ -67,12 +67,10 @@ interface NodeDescriptor {
 export class AccountService {
   public currentAccount: BehaviorSubject<Account> = new BehaviorSubject(undefined);
   private api: Api;
-  private selectedNode: NodeDescriptor;
-
   private transactionsSeenInNotifications: string[] = [];
 
   constructor(private storeService: StoreService, private apiService: ApiService, private i18nService: I18nService) {
-    this.storeService.settings.subscribe((settings: Settings) => {
+    this.storeService.settings.subscribe(() => {
       this.api = this.apiService.api;
     });
   }
