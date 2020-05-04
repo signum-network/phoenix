@@ -43,6 +43,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   BLOCKCHAIN_STATUS_INTERVAL = 30000;
   urlSerializer = new DefaultUrlSerializer();
   percentDownloaded: number;
+  blockchainStatusInterval: any = null;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -56,7 +57,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     private appService: AppService,
     private newVersionDialog: MatDialog,
     private router: Router,
-    private applicationRef: ApplicationRef
+    private applicationRef: ApplicationRef,
   ) {
     super();
     if (this._platform.ANDROID || this._platform.IOS) {
@@ -72,7 +73,9 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       .subscribe((ready) => {
         if (ready) {
           this.updateAccounts();
-          setInterval(this.checkBlockchainStatus.bind(this), this.BLOCKCHAIN_STATUS_INTERVAL);
+          const checkBlockchainStatus = this.checkBlockchainStatus.bind(this);
+          setTimeout(checkBlockchainStatus, 1000); // FIXME: dirty hack
+          this.blockchainStatusInterval = setInterval(checkBlockchainStatus, this.BLOCKCHAIN_STATUS_INTERVAL);
         }
         this.accountService.currentAccount
           .pipe(
@@ -88,8 +91,13 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       this.initDesktopUpdater();
       this.initDeepLinkHandler();
     }
-
   }
+
+  ngOnDestroy(): void {
+    super.ngOnDestroy();
+    clearInterval(this.blockchainStatusInterval);
+  }
+
 
   private initDeepLinkHandler(): void {
     this.appService.onIpcMessage('deep-link-clicked', (url) => {
