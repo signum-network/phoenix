@@ -30,7 +30,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   firstTime = true;
   isScanning = false;
   isDownloadingUpdate = false;
-  newVersionAvailable = true;
+  newVersionAvailable = false;
   updateInfo: UpdateInfo;
   downloadingBlockchain = false;
   numberOfBlocks: number;
