@@ -210,6 +210,7 @@
   "current_quantity": "Aktuální množství",
   "current_version": "Současná verze",
   "dashboard": "Přehled",
+  "dashboard_welcome_title": "Vítejte ve Phoenixu! Zde se zobrazí vaše aktuální zůstatky na účtu.",
   "data": "Údaje",
   "data_is_encrypted": "Data jsou šifrována.",
   "date": "Datum",
@@ -246,6 +247,7 @@
   "do_not_delete": "Ne, nemazat",
   "domain": "Doména",
   "download": "Stažení",
+  "download_at_verified_source": "",
   "download_started": "Stahování bylo zahájeno",
   "downloaded": " Staženo",
   "downloaded_hash": "Stažený Hash",
@@ -1029,6 +1031,5 @@
   "your_alias_sale_offer": "Nabízíte tento alias na prodej.",
   "your_name": "Vaše jméno",
   "your_passphrase": "Vaše heslo",
-  "youve_got_burst": "You've got Burst!",
-  "dashboard_welcome_title": "Vítejte ve Phoenixu! Zde se zobrazí vaše aktuální zůstatky na účtu."
+  "youve_got_burst": "You've got Burst!"
 }

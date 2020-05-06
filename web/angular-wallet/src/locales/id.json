@@ -210,6 +210,7 @@
   "current_quantity": "Saat ini jumlah",
   "current_version": "Versi sekarang",
   "dashboard": "Dasbor",
+  "dashboard_welcome_title": "Selamat datang di phoenix! Saldo akun terbaru Anda akan muncul di sini.",
   "data": "Data",
   "data_is_encrypted": "Data dienkripsi.",
   "date": "Tanggal",
@@ -246,6 +247,7 @@
   "do_not_delete": "Tidak, tidak menghapus",
   "domain": "Domain",
   "download": "Unduh",
+  "download_at_verified_source": "",
   "download_started": "Pengunduhan dimulai",
   "downloaded": "Diunduh",
   "downloaded_hash": "Hash yang telah diunduh",
@@ -1029,6 +1031,5 @@
   "your_alias_sale_offer": "Anda menawarkan alias ini untuk dijual.",
   "your_name": "Namamu",
   "your_passphrase": "Kata sandi",
-  "youve_got_burst": "You've got Burst!",
-  "dashboard_welcome_title": "Selamat datang di phoenix! Saldo akun terbaru Anda akan muncul di sini."
+  "youve_got_burst": "You've got Burst!"
 }

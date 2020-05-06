@@ -247,6 +247,7 @@
   "do_not_delete": "No, Do Not Delete",
   "domain": "Domain",
   "download": "Download",
+  "download_at_verified_source": "Download directly from verified source",
   "download_started": "Download started",
   "downloaded": "Downloaded",
   "downloaded_hash": "Downloaded Hash",

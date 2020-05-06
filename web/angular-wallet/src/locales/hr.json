@@ -210,6 +210,7 @@
   "current_quantity": "Trenutna količina",
   "current_version": "Trenutna verzija",
   "dashboard": "Kontrolna ploča",
+  "dashboard_welcome_title": "Dobrodošli u Phoenix! Ovdje će se pojaviti vaša nedavna stanja na računu.",
   "data": "Podaci",
   "data_is_encrypted": "Podaci su zaštićeni.",
   "date": "Datum",
@@ -246,6 +247,7 @@
   "do_not_delete": "Nemoj brisati",
   "domain": "Domena",
   "download": "preuzimanje datoteka",
+  "download_at_verified_source": "",
   "download_started": "Preuzimanje je počelo",
   "downloaded": "Preuzeto",
   "downloaded_hash": "Preuzeti hash",
@@ -1029,6 +1031,5 @@
   "your_alias_sale_offer": "Ponudili ste ovaj pseudonim na prodaju.",
   "your_name": "Vaše ime",
   "your_passphrase": "Vaša lozinka",
-  "youve_got_burst": "You've got Burst!",
-  "dashboard_welcome_title": "Dobrodošli u Phoenix! Ovdje će se pojaviti vaša nedavna stanja na računu."
+  "youve_got_burst": "You've got Burst!"
 }

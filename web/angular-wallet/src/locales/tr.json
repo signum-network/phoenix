@@ -210,6 +210,7 @@
   "current_quantity": "Mevcut miktar",
   "current_version": "Şimdiki versiyonu",
   "dashboard": "Başlangıç",
+  "dashboard_welcome_title": "Phoenix'e Hoşgeldiniz! Son hesap bakiyeleriniz burada görünecektir.",
   "data": "Veriler",
   "data_is_encrypted": "Veriler şifrelenmiştir.",
   "date": "Tarih",
@@ -246,6 +247,7 @@
   "do_not_delete": "Hayır, silme",
   "domain": "domain",
   "download": "İndir",
+  "download_at_verified_source": "",
   "download_started": "İndirme başladı",
   "downloaded": "İndirilenler",
   "downloaded_hash": "İndirilen Hash",
@@ -1029,6 +1031,5 @@
   "your_alias_sale_offer": "Bu rumuzu satışa sunuyorsunuz.",
   "your_name": "Your Name",
   "your_passphrase": "Your Passphrase",
-  "youve_got_burst": "You've got Burst!",
-  "dashboard_welcome_title": "Phoenix'e Hoşgeldiniz! Son hesap bakiyeleriniz burada görünecektir."
+  "youve_got_burst": "You've got Burst!"
 }

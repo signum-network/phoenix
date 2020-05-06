@@ -210,6 +210,7 @@
   "current_quantity": "Einamasis kiekis",
   "current_version": "Dabartinė versija",
   "dashboard": "Skydelis",
+  "dashboard_welcome_title": "Sveiki atvykę į Finiksą! Čia bus rodomi paskutiniai jūsų sąskaitos likučiai.",
   "data": "Duomenys",
   "data_is_encrypted": "Duomenys šifruoti.",
   "date": "Data",
@@ -246,6 +247,7 @@
   "do_not_delete": "Ne, nenaikinti",
   "domain": "Domenas",
   "download": "parsisiųsti",
+  "download_at_verified_source": "",
   "download_started": "Atsisiuntimas prasidėjo",
   "downloaded": "Atsisiųsta",
   "downloaded_hash": "Atsisiųstas \"hash",
@@ -1029,6 +1031,5 @@
   "your_alias_sale_offer": "Jūs siūlote ši pseudonimą pardavimui.",
   "your_name": "Jūsų vardas",
   "your_passphrase": "Jūsų slaptažodis",
-  "youve_got_burst": "Aš gavau Burst!",
-  "dashboard_welcome_title": "Sveiki atvykę į Finiksą! Čia bus rodomi paskutiniai jūsų sąskaitos likučiai."
+  "youve_got_burst": "Aš gavau Burst!"
 }

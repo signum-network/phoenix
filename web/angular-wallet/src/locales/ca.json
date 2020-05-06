@@ -210,6 +210,7 @@
   "current_quantity": "Quantitat Actual",
   "current_version": "Versió actual",
   "dashboard": "Quadre de Control",
+  "dashboard_welcome_title": "Benvingut a Phoenix! Els vostres saldos recents del compte apareixen aquí.",
   "data": "Dades",
   "data_is_encrypted": "Les dades estan encriptades.",
   "date": "Data",
@@ -246,6 +247,7 @@
   "do_not_delete": "No, No Eliminar",
   "domain": "Domini",
   "download": "descarregar",
+  "download_at_verified_source": "",
   "download_started": "La descàrrega es va iniciar",
   "downloaded": "Descarregat",
   "downloaded_hash": "Hash Descarregat",
@@ -1029,6 +1031,5 @@
   "your_alias_sale_offer": "Has posat aquest Àlies a la venta.",
   "your_name": "El vostre nom",
   "your_passphrase": "La vostre Contrasenya",
-  "youve_got_burst": "You've got Burst!",
-  "dashboard_welcome_title": "Benvingut a Phoenix! Els vostres saldos recents del compte apareixen aquí."
+  "youve_got_burst": "You've got Burst!"
 }

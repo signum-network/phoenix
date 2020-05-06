@@ -30,7 +30,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   firstTime = true;
   isScanning = false;
   isDownloadingUpdate = false;
-  newVersionAvailable = false;
+  newVersionAvailable = true;
   updateInfo: UpdateInfo;
   downloadingBlockchain = false;
   numberOfBlocks: number;
@@ -209,8 +209,26 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
 
 
   private openNewVersionDialog(): MatDialogRef<NewVersionDialogComponent> {
+    const data = new UpdateInfo(
+      '1.0.0-beta.14',
+      '1.0.0',
+      'darwin',
+      [],
+      'http://url',
+      new CertificationInfo(false, 'github.com', 'github', new Date()),
+    )
+    // {
+    //   platform: 'linux',
+    //   assets: [],
+    //   htmlUrl: 'http://phoenix-wallet.rocks',
+    //   releaseVersion: '1.0.0-test',
+    //   publishedAt: new Date().toISOString(),
+    //   validCert: {isValid: true}
+    // };
+
     return this.newVersionDialog.open(NewVersionDialogComponent, {
-      data: this.updateInfo
+      data
+      // data: this.updateInfo
     });
   }
 

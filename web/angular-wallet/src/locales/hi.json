@@ -210,6 +210,7 @@
   "current_quantity": "वर्तमान मात्रा",
   "current_version": "वर्तमान संस्करण",
   "dashboard": "डैशबोर्ड",
+  "dashboard_welcome_title": "फीनिक्स में आपका स्वागत है! आपका हालिया खाता शेष यहां दिखाई देगा।",
   "data": "डेटा",
   "data_is_encrypted": "डेटा एन्क्रिप्ट किया गया है।",
   "date": "तिथि",
@@ -246,6 +247,7 @@
   "do_not_delete": "नहीं, मत हटाएँ",
   "domain": "डोमेन",
   "download": "डाउनलोड",
+  "download_at_verified_source": "",
   "download_started": "डाउनलोड शुरू किया",
   "downloaded": "डाउनलोड हो चुकी",
   "downloaded_hash": "डाउनलोड किआ गआ हैश",
@@ -1029,6 +1031,5 @@
   "your_alias_sale_offer": "You are offering this alias for sale.",
   "your_name": "Your Name",
   "your_passphrase": "Your Passphrase",
-  "youve_got_burst": "You've got Burst!",
-  "dashboard_welcome_title": "फीनिक्स में आपका स्वागत है! आपका हालिया खाता शेष यहां दिखाई देगा।"
+  "youve_got_burst": "You've got Burst!"
 }

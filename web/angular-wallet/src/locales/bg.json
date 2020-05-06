@@ -210,6 +210,7 @@
   "current_quantity": "Текущо количество",
   "current_version": "Сегашна версия",
   "dashboard": "Основно табло",
+  "dashboard_welcome_title": "Добре дошли във Phoenix! Вашите скорошни салда в акаунта ще се покажат тук.",
   "data": "Данни",
   "data_is_encrypted": "Данните са криптирани.",
   "date": "Дата",
@@ -246,6 +247,7 @@
   "do_not_delete": "Не, не изтривай",
   "domain": "домейн",
   "download": "Изтегли",
+  "download_at_verified_source": "",
   "download_started": "Изтеглянето започна",
   "downloaded": "Изтеглено",
   "downloaded_hash": "Изтеглени хеш",
@@ -1029,6 +1031,5 @@
   "your_alias_sale_offer": "Вие предлагате този псевдоним за продажба.",
   "your_name": "Вашето име",
   "your_passphrase": "Вашата парола",
-  "youve_got_burst": "You've got Burst!",
-  "dashboard_welcome_title": "Добре дошли във Phoenix! Вашите скорошни салда в акаунта ще се покажат тук."
+  "youve_got_burst": "You've got Burst!"
 }

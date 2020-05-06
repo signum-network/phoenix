@@ -210,6 +210,7 @@
   "current_quantity": "Тренутна Количина",
   "current_version": "Тренутна верзија",
   "dashboard": "Командна табла",
+  "dashboard_welcome_title": "Добродошли у Пхоеник! Овде ће се појавити ваша недавна стања на рачуну.",
   "data": "Подаци",
   "data_is_encrypted": "Подаци су заштићени.",
   "date": "Датум",
@@ -246,6 +247,7 @@
   "do_not_delete": "Не, Немојте да Обришете",
   "domain": "Домаин",
   "download": "Преузимање",
+  "download_at_verified_source": "",
   "download_started": "Преузимање је почело",
   "downloaded": "Преузето",
   "downloaded_hash": "Преузет Hash",
@@ -1029,6 +1031,5 @@
   "your_alias_sale_offer": "Ви нудите овај алиас на продају.",
   "your_name": "Ваше Име",
   "your_passphrase": "Ваша Лозинка",
-  "youve_got_burst": "You've got Burst!",
-  "dashboard_welcome_title": "Добродошли у Пхоеник! Овде ће се појавити ваша недавна стања на рачуну."
+  "youve_got_burst": "You've got Burst!"
 }
