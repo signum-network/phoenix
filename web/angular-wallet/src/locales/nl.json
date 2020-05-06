@@ -210,6 +210,7 @@
   "current_quantity": "Huidige Hoeveelheid",
   "current_version": "Huidige versie",
   "dashboard": "Dashboard",
+  "dashboard_welcome_title": "Welkom bij Phoenix! Hier worden uw recente rekeningsaldi weergegeven.",
   "data": "Gegevens",
   "data_is_encrypted": "Gegevens zijn versleuteld.",
   "date": "Datum",
@@ -246,6 +247,7 @@
   "do_not_delete": "Nee, niet verwijderen",
   "domain": "Domein",
   "download": "Download",
+  "download_at_verified_source": "Download rechtstreeks van geverifieerde bron",
   "download_started": "Downloaden is gestart",
   "downloaded": "Gedownload",
   "downloaded_hash": "Gedownloade Hash",
@@ -1029,6 +1031,5 @@
   "your_alias_sale_offer": "U biedt deze alias te koop aan.",
   "your_name": "Uw naam",
   "your_passphrase": "Uw wachtwoord/passphrase",
-  "youve_got_burst": "You've got Burst!",
-  "dashboard_welcome_title": "Welkom bij Phoenix! Hier worden uw recente rekeningsaldi weergegeven."
+  "youve_got_burst": "Je hebt Burst!"
 }

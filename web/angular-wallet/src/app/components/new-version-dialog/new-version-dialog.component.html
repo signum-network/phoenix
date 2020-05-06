@@ -56,6 +56,14 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <div>
+      <a *ngIf="updateInfo.certInfo.isValid" class="font-size-10 grey-500-fg"
+         href="{{updateInfo.releaseUrl}}">{{'download_at_verified_source' | i18n}}</a>
+      <a *ngIf="!updateInfo.certInfo.isValid" class="font-size-12"
+         href="{{updateInfo.releaseUrl}}">{{'download_at_verified_source' | i18n}}</a>
+    </div>
+
   </div>
 
   <div class="card-footer">

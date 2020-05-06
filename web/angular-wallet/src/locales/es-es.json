@@ -210,6 +210,7 @@
   "current_quantity": "Cantidad Actual",
   "current_version": "Versión actual",
   "dashboard": "Panel de control",
+  "dashboard_welcome_title": "¡Bienvenido a Phoenix! Sus saldos de cuenta recientes aparecerán aquí.",
   "data": "Datos",
   "data_is_encrypted": "Los datos están cifrados.",
   "date": "Fecha",
@@ -246,6 +247,7 @@
   "do_not_delete": "No, No Borrar",
   "domain": "Dominio",
   "download": "Descargar",
+  "download_at_verified_source": "Descargar directamente de la fuente verificada",
   "download_started": "Descarga iniciada",
   "downloaded": "Descargado",
   "downloaded_hash": "Hash Descargado",
@@ -1029,6 +1031,5 @@
   "your_alias_sale_offer": "Ha puesto este alias a la venta.",
   "your_name": "Su Nombre",
   "your_passphrase": "Su Contraseña",
-  "youve_got_burst": "You've got Burst!",
-  "dashboard_welcome_title": "¡Bienvenido a Phoenix! Sus saldos de cuenta recientes aparecerán aquí."
+  "youve_got_burst": "Tienes Burst!"
 }

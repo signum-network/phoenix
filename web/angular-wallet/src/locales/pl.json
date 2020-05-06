@@ -210,6 +210,7 @@
   "current_quantity": "Aktualna ilość",
   "current_version": "Obecna wersja",
   "dashboard": "Dashboard",
+  "dashboard_welcome_title": "Witamy w Phoenix! Twoje ostatnie salda konta pojawią się tutaj.",
   "data": "Dane",
   "data_is_encrypted": "Dane są szyfrowane.",
   "date": "Data",
@@ -246,6 +247,7 @@
   "do_not_delete": "Nie, nie usuwaj",
   "domain": "Domena",
   "download": "Ściągnij",
+  "download_at_verified_source": "Pobierz bezpośrednio ze zweryfikowanego źródła",
   "download_started": "Rozpoczęto pobieranie",
   "downloaded": "Pobrany",
   "downloaded_hash": "Pobrany hash",
@@ -1038,6 +1040,5 @@
   "your_alias_sale_offer": "Ten alias został przez Ciebie wystawiony na sprzedaż.",
   "your_name": "Twoje imię",
   "your_passphrase": "Twoje hasło",
-  "youve_got_burst": "You've got Burst!",
-  "dashboard_welcome_title": "Witamy w Phoenix! Twoje ostatnie salda konta pojawią się tutaj."
+  "youve_got_burst": "Masz wybuch!"
 }

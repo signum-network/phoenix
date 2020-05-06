@@ -209,7 +209,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
 
 
   private openNewVersionDialog(): MatDialogRef<NewVersionDialogComponent> {
-    return this.newVersionDialog.open(NewVersionDialogComponent, {
+     return this.newVersionDialog.open(NewVersionDialogComponent, {
       data: this.updateInfo
     });
   }

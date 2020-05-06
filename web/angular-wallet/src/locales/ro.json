@@ -210,6 +210,7 @@
   "current_quantity": "Cantitate Actuală",
   "current_version": "Versiune curentă",
   "dashboard": "Panou Control",
+  "dashboard_welcome_title": "Bine ați venit la Phoenix! Soldurile dvs. recente ale contului vor apărea aici.",
   "data": "Date",
   "data_is_encrypted": "Datele sunt criptate.",
   "date": "Data",
@@ -246,6 +247,7 @@
   "do_not_delete": "Nu, nu ştergeţi",
   "domain": "Domeniu",
   "download": "Descarca",
+  "download_at_verified_source": "Descărcați direct din sursa verificată",
   "download_started": "Descărcarea a început",
   "downloaded": "Descărcat",
   "downloaded_hash": "Hash Descarcat",
@@ -1029,6 +1031,5 @@
   "your_alias_sale_offer": "Ai pus acest alias la vânzare.",
   "your_name": "Numele tău",
   "your_passphrase": "Parola ta",
-  "youve_got_burst": "You've got Burst!",
-  "dashboard_welcome_title": "Bine ați venit la Phoenix! Soldurile dvs. recente ale contului vor apărea aici."
+  "youve_got_burst": "Ai izbucniri!"
 }

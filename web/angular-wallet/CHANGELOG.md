@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0
+- Asset View
+- Added new Testnet Node Link 
+- Fixed Initial Error Message
+- Added Fallback Link for Download
+
 ## 1.0.0-beta.14
 
 ### New Features:

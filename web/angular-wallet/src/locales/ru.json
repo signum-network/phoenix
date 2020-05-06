@@ -210,6 +210,7 @@
   "current_quantity": "Текущее количество",
   "current_version": "Текущая версия",
   "dashboard": "Обзор",
+  "dashboard_welcome_title": "Добро пожаловать в Феникс! Ваши последние остатки на счетах появятся здесь.",
   "data": "Данные",
   "data_is_encrypted": "Данные зашифрованы.",
   "date": "Дата",
@@ -246,6 +247,7 @@
   "do_not_delete": "Нет, не удалять",
   "domain": "Домен",
   "download": "Скачать",
+  "download_at_verified_source": "Скачать напрямую из проверенного источника",
   "download_started": "Загрузка началась",
   "downloaded": "Загружено",
   "downloaded_hash": "Загруженный хэш",
@@ -1029,6 +1031,5 @@
   "your_alias_sale_offer": "Вы предлагаете этот псевдоним для продажи.",
   "your_name": "Ваше имя",
   "your_passphrase": "Ваш пароль",
-  "youve_got_burst": "You've got Burst!",
-  "dashboard_welcome_title": "Добро пожаловать в Феникс! Ваши последние остатки на счетах появятся здесь."
+  "youve_got_burst": "У тебя есть взрыв!"
 }

@@ -210,6 +210,7 @@
   "current_quantity": "Τρέχουσα ποσότητα",
   "current_version": "Τρέχουσα έκδοση",
   "dashboard": "Πίνακας Ελέγχου",
+  "dashboard_welcome_title": "Καλώς ήλθατε στο Φοίνιξ! Τα πρόσφατα υπόλοιπα του λογαριασμού σας θα εμφανίζονται εδώ.",
   "data": "Δεδομένα",
   "data_is_encrypted": "Τα δεδομένα είναι κρυπτογραφημένα.",
   "date": "Ημερομηνία",
@@ -246,6 +247,7 @@
   "do_not_delete": "Όχι, να μή διαγράφει",
   "domain": "Τομέα",
   "download": "Κατεβάστε",
+  "download_at_verified_source": "Πραγματοποιήστε λήψη απευθείας από επαληθευμένη πηγή",
   "download_started": "Ξεκίνησε η λήψη",
   "downloaded": "Κατεβασμένο",
   "downloaded_hash": "φορτωμένα Hash",
@@ -1029,6 +1031,5 @@
   "your_alias_sale_offer": "Προσφέρετε προς πώληση αυτό το ψευδώνυμο.",
   "your_name": "Το όνομά σου",
   "your_passphrase": "Η φράση πρόσβασης σας",
-  "youve_got_burst": "You've got Burst!",
-  "dashboard_welcome_title": "Καλώς ήλθατε στο Φοίνιξ! Τα πρόσφατα υπόλοιπα του λογαριασμού σας θα εμφανίζονται εδώ."
+  "youve_got_burst": "Έχετε έκρηξη!"
 }
