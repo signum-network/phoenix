@@ -247,7 +247,7 @@
   "do_not_delete": "Não, Não Apagar",
   "domain": "Domínio",
   "download": "Baixar",
-  "download_at_verified_source": "",
+  "download_at_verified_source": "Baixar diretamente da fonte verificada",
   "download_started": "Download iniciado",
   "downloaded": "Recebido",
   "downloaded_hash": "Hash Baixado",
@@ -1035,5 +1035,5 @@
   "your_alias_sale_offer": "Você está oferecendo este pseudônimo para venda.",
   "your_name": "Seu nome",
   "your_passphrase": "Sua senha",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "Você tem Burst!"
 }

@@ -247,7 +247,7 @@
   "do_not_delete": "Ne, nenaikinti",
   "domain": "Domenas",
   "download": "parsisiųsti",
-  "download_at_verified_source": "",
+  "download_at_verified_source": "Atsisiųskite tiesiogiai iš patvirtinto šaltinio",
   "download_started": "Atsisiuntimas prasidėjo",
   "downloaded": "Atsisiųsta",
   "downloaded_hash": "Atsisiųstas \"hash",
@@ -1031,5 +1031,5 @@
   "your_alias_sale_offer": "Jūs siūlote ši pseudonimą pardavimui.",
   "your_name": "Jūsų vardas",
   "your_passphrase": "Jūsų slaptažodis",
-  "youve_got_burst": "Aš gavau Burst!"
+  "youve_got_burst": "Jūs turite „Burst“!"
 }

@@ -247,7 +247,7 @@
   "do_not_delete": "Tidak, tidak menghapus",
   "domain": "Domain",
   "download": "Unduh",
-  "download_at_verified_source": "",
+  "download_at_verified_source": "Unduh langsung dari sumber yang diverifikasi",
   "download_started": "Pengunduhan dimulai",
   "downloaded": "Diunduh",
   "downloaded_hash": "Hash yang telah diunduh",
@@ -1031,5 +1031,5 @@
   "your_alias_sale_offer": "Anda menawarkan alias ini untuk dijual.",
   "your_name": "Namamu",
   "your_passphrase": "Kata sandi",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "Anda punya Burst!"
 }

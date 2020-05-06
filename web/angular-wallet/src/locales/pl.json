@@ -247,7 +247,7 @@
   "do_not_delete": "Nie, nie usuwaj",
   "domain": "Domena",
   "download": "Ściągnij",
-  "download_at_verified_source": "",
+  "download_at_verified_source": "Pobierz bezpośrednio ze zweryfikowanego źródła",
   "download_started": "Rozpoczęto pobieranie",
   "downloaded": "Pobrany",
   "downloaded_hash": "Pobrany hash",
@@ -1040,5 +1040,5 @@
   "your_alias_sale_offer": "Ten alias został przez Ciebie wystawiony na sprzedaż.",
   "your_name": "Twoje imię",
   "your_passphrase": "Twoje hasło",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "Masz wybuch!"
 }

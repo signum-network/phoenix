@@ -247,7 +247,7 @@
   "do_not_delete": "No, non eliminare",
   "domain": "Dominio",
   "download": "Scaricare",
-  "download_at_verified_source": "",
+  "download_at_verified_source": "Scarica direttamente dalla fonte verificata",
   "download_started": "Download avviato",
   "downloaded": "Scaricato",
   "downloaded_hash": "Hash scaricato",
@@ -1031,5 +1031,5 @@
   "your_alias_sale_offer": "Stai per mettere in vendita questo alias.",
   "your_name": "Il tuo nome",
   "your_passphrase": "La tua Passphrase",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "Hai scoppiato!"
 }

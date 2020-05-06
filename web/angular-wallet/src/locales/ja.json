@@ -247,7 +247,7 @@
   "do_not_delete": "いいえ、削除しないでください。",
   "domain": "ドメイン",
   "download": "ダウンロード",
-  "download_at_verified_source": "",
+  "download_at_verified_source": "検証済みのソースから直接ダウンロード",
   "download_started": "ダウンロード開始",
   "downloaded": "ダウンロード済み",
   "downloaded_hash": "ダウンロードされたハッシュ",
@@ -1031,5 +1031,5 @@
   "your_alias_sale_offer": "あなたはこのエイリアスを売りに出しています。",
   "your_name": "名前",
   "your_passphrase": "あなたのパスフレーズ",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "あなたはバーストを持っています！"
 }

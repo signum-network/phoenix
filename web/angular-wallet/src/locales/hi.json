@@ -247,7 +247,7 @@
   "do_not_delete": "नहीं, मत हटाएँ",
   "domain": "डोमेन",
   "download": "डाउनलोड",
-  "download_at_verified_source": "",
+  "download_at_verified_source": "सीधे सत्यापित स्रोत से डाउनलोड करें",
   "download_started": "डाउनलोड शुरू किया",
   "downloaded": "डाउनलोड हो चुकी",
   "downloaded_hash": "डाउनलोड किआ गआ हैश",
@@ -1031,5 +1031,5 @@
   "your_alias_sale_offer": "You are offering this alias for sale.",
   "your_name": "Your Name",
   "your_passphrase": "Your Passphrase",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "आप फट गया है!"
 }

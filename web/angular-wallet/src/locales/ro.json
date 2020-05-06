@@ -247,7 +247,7 @@
   "do_not_delete": "Nu, nu ştergeţi",
   "domain": "Domeniu",
   "download": "Descarca",
-  "download_at_verified_source": "",
+  "download_at_verified_source": "Descărcați direct din sursa verificată",
   "download_started": "Descărcarea a început",
   "downloaded": "Descărcat",
   "downloaded_hash": "Hash Descarcat",
@@ -1031,5 +1031,5 @@
   "your_alias_sale_offer": "Ai pus acest alias la vânzare.",
   "your_name": "Numele tău",
   "your_passphrase": "Parola ta",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "Ai izbucniri!"
 }

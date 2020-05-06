@@ -247,7 +247,7 @@
   "do_not_delete": "Ne, Nemojte da Obrišete",
   "domain": "Домен",
   "download": "Преузимање",
-  "download_at_verified_source": "",
+  "download_at_verified_source": "Преузмите директно из провереног извора",
   "download_brs": "Preuzmite BRS",
   "download_started": "Преузимање је почело",
   "downloaded": "Preuzeto",
@@ -1046,5 +1046,5 @@
   "your_alias_sale_offer": "Vi nudite ovaj alias na prodaju.",
   "your_name": "Vaše Ime",
   "your_passphrase": "Vaša Lozinka",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "Имаш провале!"
 }

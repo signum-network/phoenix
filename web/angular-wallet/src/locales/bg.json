@@ -247,7 +247,7 @@
   "do_not_delete": "Не, не изтривай",
   "domain": "домейн",
   "download": "Изтегли",
-  "download_at_verified_source": "",
+  "download_at_verified_source": "Изтеглете директно от проверен източник",
   "download_started": "Изтеглянето започна",
   "downloaded": "Изтеглено",
   "downloaded_hash": "Изтеглени хеш",
@@ -1031,5 +1031,5 @@
   "your_alias_sale_offer": "Вие предлагате този псевдоним за продажба.",
   "your_name": "Вашето име",
   "your_passphrase": "Вашата парола",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "Имате Burst!"
 }

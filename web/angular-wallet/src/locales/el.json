@@ -247,7 +247,7 @@
   "do_not_delete": "Όχι, να μή διαγράφει",
   "domain": "Τομέα",
   "download": "Κατεβάστε",
-  "download_at_verified_source": "",
+  "download_at_verified_source": "Πραγματοποιήστε λήψη απευθείας από επαληθευμένη πηγή",
   "download_started": "Ξεκίνησε η λήψη",
   "downloaded": "Κατεβασμένο",
   "downloaded_hash": "φορτωμένα Hash",
@@ -1031,5 +1031,5 @@
   "your_alias_sale_offer": "Προσφέρετε προς πώληση αυτό το ψευδώνυμο.",
   "your_name": "Το όνομά σου",
   "your_passphrase": "Η φράση πρόσβασης σας",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "Έχετε έκρηξη!"
 }

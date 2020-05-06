@@ -247,7 +247,7 @@
   "do_not_delete": "不，不要删除",
   "domain": "域",
   "download": "下载",
-  "download_at_verified_source": "",
+  "download_at_verified_source": "直接从已验证的源下载",
   "download_started": "下载开始了",
   "downloaded": "已下载",
   "downloaded_hash": "已下载的哈希",
@@ -1031,5 +1031,5 @@
   "your_alias_sale_offer": "您的该别名正在出售。",
   "your_name": "您的名称",
   "your_passphrase": "您的密码",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "你爆了！"
 }

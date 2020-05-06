@@ -247,7 +247,7 @@
   "do_not_delete": "Не, Немојте да Обришете",
   "domain": "Домаин",
   "download": "Преузимање",
-  "download_at_verified_source": "",
+  "download_at_verified_source": "Преузмите директно из провереног извора",
   "download_started": "Преузимање је почело",
   "downloaded": "Преузето",
   "downloaded_hash": "Преузет Hash",
@@ -1031,5 +1031,5 @@
   "your_alias_sale_offer": "Ви нудите овај алиас на продају.",
   "your_name": "Ваше Име",
   "your_passphrase": "Ваша Лозинка",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "Имаш провале!"
 }

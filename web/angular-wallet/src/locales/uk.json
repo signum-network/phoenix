@@ -247,7 +247,7 @@
   "do_not_delete": "Ні, не видаляти",
   "domain": "Домен",
   "download": "Завантажити",
-  "download_at_verified_source": "",
+  "download_at_verified_source": "Завантажте безпосередньо з перевіреного джерела",
   "download_started": "Завантаження розпочато",
   "downloaded": "Завантажено",
   "downloaded_hash": "Звантаженій хеш",
@@ -1031,5 +1031,5 @@
   "your_alias_sale_offer": "Ви пропонуєте цей псевдонім для продажу.",
   "your_name": "Твоє ім’я",
   "your_passphrase": "Ваша парольна фраза",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "У вас вибух!"
 }
