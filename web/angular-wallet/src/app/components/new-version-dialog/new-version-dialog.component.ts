@@ -49,9 +49,9 @@ export class NewVersionDialogComponent implements OnInit {
 
   get platform(): string {
     switch (this.updateInfo.os) {
-      case 'win':
+      case 'win32':
         return 'Windows';
-      case 'mac':
+      case 'darwin':
         return 'MacOS';
       case 'linux':
         return 'Linux';
