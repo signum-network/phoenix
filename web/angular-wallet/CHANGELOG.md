@@ -1,10 +1,21 @@
 # Changelog
 
+## 1.0.1 (TBR)
+
+### Bug Fixes
+- fixed Windows platform name for New Verison Dialog
+
+
 ## 1.0.0
+
+### New Features:
 - Asset View
 - Added new Testnet Node Link 
-- Fixed Initial Error Message
 - Added Fallback Link for Download
+
+### Bug Fixes
+- Fixed Initial Error Message
+
 
 ## 1.0.0-beta.14
 
