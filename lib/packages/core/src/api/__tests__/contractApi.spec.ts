@@ -93,7 +93,8 @@ describe('Contract Api', () => {
                 description: 'description',
                 name: 'testContract',
                 senderPublicKey: 'publickey',
-                senderPrivateKey: 'privateKey'
+                senderPrivateKey: 'privateKey',
+                isCIP20Active: false
             });
             expect(transaction).toEqual({
                 fullHash: 'fullHash',

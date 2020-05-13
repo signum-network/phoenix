@@ -24,7 +24,7 @@ export const publishContract = (service: BurstService):
             code: args.codeHex,
             deadline: args.deadline || DefaultDeadline,
             description: args.description,
-            feeNQT: calculateMinimumCreationFee(args.codeHex),
+            feeNQT: calculateMinimumCreationFee(args.codeHex, args.isCIP20Active).getPlanck(),
             minActivationAmountNQT: args.activationAmountPlanck,
             name: args.name,
             publicKey: args.senderPublicKey,

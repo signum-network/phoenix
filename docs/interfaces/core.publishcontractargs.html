@@ -95,19 +95,31 @@
 					</div>
 					<dl class="tsd-comment-tags">
 						<dt>param</dt>
-						<dd></dd>
+						<dd><p>The amount in planck needed to execute the contract</p>
+						</dd>
 						<dt>param</dt>
-						<dd></dd>
+						<dd><p>The compiled program in hex form (recommend to use [BlockTalk](<a href="https://github.com/burst-apps-team/blocktalk">https://github.com/burst-apps-team/blocktalk</a> smart contracts compiler)</p>
+						</dd>
 						<dt>param</dt>
-						<dd></dd>
+						<dd><p>Optional deadline in minutes, default is 1440</p>
+						</dd>
 						<dt>param</dt>
-						<dd></dd>
+						<dd><p>The description of your contract (max. 1000 chars)</p>
+						</dd>
 						<dt>param</dt>
-						<dd></dd>
+						<dd><p>This flag is used to determine the minimum creation fee calculation method.
+								Before the &quot;SODIUM&quot; hardfork (BRS Versions &lt;2.5 and blockHeight &lt;765.000) this flag should be false, otherwise true, to have reduced fee costs.
+							This is likely to be removed/ignored once the Hard fork is established</p>
+						</dd>
 						<dt>param</dt>
-						<dd></dd>
+						<dd><p>The name for the contract</p>
+						</dd>
 						<dt>param</dt>
-						<dd></dd>
+						<dd><p>The senders private key to sign the transaction</p>
+						</dd>
+						<dt>param</dt>
+						<dd><p>The senders public key</p>
+						</dd>
 					</dl>
 				</div>
 			</section>
@@ -130,6 +142,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.publishcontractargs.html#codehex" class="tsd-kind-icon">code<wbr>Hex</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.publishcontractargs.html#deadline" class="tsd-kind-icon">deadline</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.publishcontractargs.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.publishcontractargs.html#iscip20active" class="tsd-kind-icon">isCIP20<wbr>Active</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.publishcontractargs.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.publishcontractargs.html#senderprivatekey" class="tsd-kind-icon">sender<wbr>Private<wbr>Key</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.publishcontractargs.html#senderpublickey" class="tsd-kind-icon">sender<wbr>Public<wbr>Key</a></li>
@@ -146,7 +159,7 @@
 					<div class="tsd-signature tsd-kind-icon">activation<wbr>Amount<wbr>Planck<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/16b6f57d/lib/packages/core/src/typings/args/publishContractArgs.ts#L14">core/src/typings/args/publishContractArgs.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/d7150123/lib/packages/core/src/typings/args/publishContractArgs.ts#L17">core/src/typings/args/publishContractArgs.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -156,7 +169,7 @@
 					<div class="tsd-signature tsd-kind-icon">code<wbr>Hex<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/16b6f57d/lib/packages/core/src/typings/args/publishContractArgs.ts#L15">core/src/typings/args/publishContractArgs.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/d7150123/lib/packages/core/src/typings/args/publishContractArgs.ts#L18">core/src/typings/args/publishContractArgs.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -166,7 +179,7 @@
 					<div class="tsd-signature tsd-kind-icon">deadline<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/16b6f57d/lib/packages/core/src/typings/args/publishContractArgs.ts#L16">core/src/typings/args/publishContractArgs.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/d7150123/lib/packages/core/src/typings/args/publishContractArgs.ts#L19">core/src/typings/args/publishContractArgs.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -176,7 +189,17 @@
 					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/16b6f57d/lib/packages/core/src/typings/args/publishContractArgs.ts#L17">core/src/typings/args/publishContractArgs.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/d7150123/lib/packages/core/src/typings/args/publishContractArgs.ts#L20">core/src/typings/args/publishContractArgs.ts:20</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="iscip20active" class="tsd-anchor"></a>
+					<h3>isCIP20<wbr>Active</h3>
+					<div class="tsd-signature tsd-kind-icon">isCIP20<wbr>Active<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/d7150123/lib/packages/core/src/typings/args/publishContractArgs.ts#L21">core/src/typings/args/publishContractArgs.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -186,7 +209,7 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/16b6f57d/lib/packages/core/src/typings/args/publishContractArgs.ts#L18">core/src/typings/args/publishContractArgs.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/d7150123/lib/packages/core/src/typings/args/publishContractArgs.ts#L22">core/src/typings/args/publishContractArgs.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -196,7 +219,7 @@
 					<div class="tsd-signature tsd-kind-icon">sender<wbr>Private<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/16b6f57d/lib/packages/core/src/typings/args/publishContractArgs.ts#L20">core/src/typings/args/publishContractArgs.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/d7150123/lib/packages/core/src/typings/args/publishContractArgs.ts#L24">core/src/typings/args/publishContractArgs.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -206,7 +229,7 @@
 					<div class="tsd-signature tsd-kind-icon">sender<wbr>Public<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/16b6f57d/lib/packages/core/src/typings/args/publishContractArgs.ts#L19">core/src/typings/args/publishContractArgs.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/d7150123/lib/packages/core/src/typings/args/publishContractArgs.ts#L23">core/src/typings/args/publishContractArgs.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -259,6 +282,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core.publishcontractargs.html#description" class="tsd-kind-icon">description</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.publishcontractargs.html#iscip20active" class="tsd-kind-icon">isCIP20<wbr>Active</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core.publishcontractargs.html#name" class="tsd-kind-icon">name</a>
