@@ -183,8 +183,8 @@ navbar {
           left: 50%;
 
           .avatar {
-            width: 72px;
-            height: 72px;
+            width: 100px;
+            height: 100px;
             margin: 0;
             border-radius: 0;
             cursor: pointer;
@@ -208,7 +208,7 @@ navbar {
 
       .navbar-content {
         flex: 1 1 auto;
-        padding-top: 65px;
+        padding-top: 85px;
       }
     }
   }
