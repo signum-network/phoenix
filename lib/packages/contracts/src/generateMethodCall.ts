@@ -6,39 +6,8 @@
  */
 
 import './internal/padStartPolyfill';
-import BigNumber from 'bignumber.js';
-import {convertHexEndianess} from '@burstjs/util';
+import {convertDecStringToHexString, convertHexEndianess} from '@burstjs/util';
 import {GenerateMethodCallArgs, MethodArgument} from './typings/args';
-
-/**
- * @internal
- * @param numeric
- */
-const numericToHex = (numeric: string): string => {
-    let bn = new BigNumber(numeric);
-
-    if (bn.lt(0)) {
-        bn = twosComplementBinary(bn);
-    }
-
-    const hex = bn.toString(16);
-    return hex.length % 2 ? '0' + hex : hex;
-};
-
-/**
- * @internal
- * @param bn
- */
-const twosComplementBinary = (bn: BigNumber) => {
-    // we manually implement our own two's complement (flip bits, add one)
-    let bin = bn.multipliedBy(-1).toString(2);
-    while (bin.length % 8) {
-        bin = '0' + bin;
-    }
-    const prefix = ('1' === bin[0] && -1 !== bin.slice(1).indexOf('1')) ? '11111111' : '';
-    bin = bin.split('').map(i => '0' === i ? '1' : '0').join('');
-    return new BigNumber(prefix + bin, 2).plus(1);
-};
 
 /**
  * @internal
@@ -70,7 +39,7 @@ export const generateMethodCall = (args: GenerateMethodCallArgs): string => {
     return argArray
         .map(convertArgument)
         // @ts-ignore
-        .map(long => numericToHex(long).padStart(16, '0'))
+        .map(long => convertDecStringToHexString(long).padStart(16, '0'))
         .map(convertHexEndianess)
         .join('');
 };
