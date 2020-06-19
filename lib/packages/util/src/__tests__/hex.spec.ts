@@ -3,6 +3,8 @@ import {convertByteArrayToHexString} from '../convertByteArrayToHexString';
 import {convertHexStringToString} from '../convertHexStringToString';
 import {convertStringToHexString} from '../convertStringToHexString';
 import {convertHexEndianess} from '../convertHexEndianess';
+import {convertDecStringToHexString} from '../convertDecStringToHexString';
+import BigNumber from 'bignumber.js';
 
 describe('Hex String Conversions', () => {
     const TestHex = '0123456789ABCDEF';
@@ -80,4 +82,25 @@ describe('Hex String Conversions', () => {
 
     });
 
+    describe('convertDecStringToHexString', () => {
+
+        it('should convert positive number as expected', () => {
+            expect(convertDecStringToHexString('12345678901234567890')).toEqual('ab54a98ceb1f0ad2');
+        });
+
+        it('should convert zero number as expected', () => {
+            expect(convertDecStringToHexString(new BigNumber('0'))).toEqual('00');
+        });
+
+        it('should convert negative number as two\'s complement', () => {
+            expect(convertDecStringToHexString(new BigNumber('-1234567890'))).toEqual('b669fd2e');
+        });
+
+        it('should throw an error on invalid number', () => {
+            expect(() => {
+                convertDecStringToHexString('abc');
+            }).toThrow('Invalid argument: [abc] - Expected a valid decimal value');
+        });
+
+    });
 });

@@ -12,6 +12,7 @@ export * from './convertDateToBurstTime';
 export * from './convertHexEndianess';
 export * from './convertHexStringToByteArray';
 export * from './convertHexStringToDecString';
+export * from './convertDecStringToHexString';
 export * from './convertHexStringToString';
 export * from './convertNQTStringToNumber';
 export * from './convertNumberToNQTString';

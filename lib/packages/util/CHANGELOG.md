@@ -14,6 +14,8 @@ All notable changes to this project will be documented in this file.
 - Added Base64 conversion (URI and UTF-8 compatible)
     - `convertStringToBase64String`
     - `convertBase64StringToString`
+- Added Decimal to Hex conversion (Two's Complement support)
+    - `convertDecStringToHexString`
 - New Symbols for BURST (Ƀ) and Planck (ƀ)
     - `BurstSymbol`
     - `BurstPlanckSymbol`

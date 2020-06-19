@@ -65,6 +65,26 @@ describe('[E2E] Message Api', () => {
 
     });
 
+    it('should sendMessage with messageIsText false', async () => {
+
+        const transactionId = await sendMessage(service)({
+            message: '436f6e76657274656420746f20486578',
+            senderPublicKey: senderKeys.publicKey,
+            senderPrivateKey: senderKeys.signPrivateKey,
+            feePlanck: '' + FeeQuantPlanck,
+            recipientId,
+            recipientPublicKey: recipientKeys.publicKey,
+            deadline: 1440,
+            messageIsText: false
+        });
+
+        expect(transactionId).not.toBeUndefined();
+
+        const transaction = await getTransaction(service)(transactionId.transaction);
+        expect(isAttachmentVersion(transaction, 'PublicKeyAnnouncement')).toBeTruthy();
+
+    });
+
 
     it('should sendEncryptedTextMessage', async () => {
         const transactionId = await sendEncryptedTextMessage(service)(
