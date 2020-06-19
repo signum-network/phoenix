@@ -7,6 +7,7 @@ const DefaultAxiosOptions = {};
 
 /**
  * Http Implementation of [[Http]] using https://github.com/axios/axios
+ * @module http
  */
 export default class HttpImpl implements Http {
 

@@ -8,6 +8,10 @@ BigNumber.config({
     EXPONENTIAL_AT: [-9, 20]
 });
 
+/**
+ * Enum to determine the representation format of [BurstValue] string
+ * @module util
+ */
 export enum BurstValueFormat {
     PLANCK,
     BURST,

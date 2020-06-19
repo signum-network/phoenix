@@ -23,13 +23,12 @@ const twosComplementBinary = (bn: BigNumber) => {
  * Arbitrary length decimal to hexadecimal conversion
  *
  * @note: Negative numbers are expressed as Two's Complement (https://en.wikipedia.org/wiki/Two%27s_complement)
+ * Credits to AJ ONeal for the two's complements stuff
+ * https://coolaj86.com/articles/convert-decimal-to-hex-with-js-bigints/
  *
  * @param decimal A decimal string or BigNumber representation
  * @return A hexadecimal string
  * @module util
- *
- * Credits to AJ ONeal for the two's complements stuff
- * https://coolaj86.com/articles/convert-decimal-to-hex-with-js-bigints/
  */
 export const convertDecStringToHexString = (decimal: BigNumber | string): string => {
     let bn = typeof decimal === 'string' ? new BigNumber(decimal) : decimal;
