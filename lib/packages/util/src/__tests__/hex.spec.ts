@@ -85,6 +85,8 @@ describe('Hex String Conversions', () => {
     describe('convertDecStringToHexString', () => {
 
         it('should convert positive number as expected', () => {
+            expect(convertDecStringToHexString('1')).toEqual('01');
+            expect(convertDecStringToHexString('100')).toEqual('64');
             expect(convertDecStringToHexString('12345678901234567890')).toEqual('ab54a98ceb1f0ad2');
         });
 
@@ -93,13 +95,33 @@ describe('Hex String Conversions', () => {
         });
 
         it('should convert negative number as two\'s complement', () => {
+            expect(convertDecStringToHexString('-1')).toEqual('ff');
+            expect(convertDecStringToHexString('-1000')).toEqual('fc18');
             expect(convertDecStringToHexString(new BigNumber('-1234567890'))).toEqual('b669fd2e');
+            expect(convertDecStringToHexString(new BigNumber('-327803124352370'))).toEqual('fed5dd63377a8e');
         });
+
+        it('should pad accordingly', () => {
+            expect(convertDecStringToHexString('0', 4)).toEqual('0000');
+            expect(convertDecStringToHexString('1000', 6)).toEqual('0003e8');
+            expect(convertDecStringToHexString(new BigNumber('327803124352370' ), 16)).toEqual('00012a229cc88572');
+
+            expect(convertDecStringToHexString('-1', 4)).toEqual('ffff');
+            expect(convertDecStringToHexString('-1000', 6)).toEqual('fffc18');
+            expect(convertDecStringToHexString(new BigNumber('-327803124352370' ), 16)).toEqual('fffed5dd63377a8e');
+        });
+
 
         it('should throw an error on invalid number', () => {
             expect(() => {
                 convertDecStringToHexString('abc');
-            }).toThrow('Invalid argument: [abc] - Expected a valid decimal value');
+            }).toThrow('Invalid decimal argument: [abc] - Expected a valid decimal value');
+        });
+
+        it('should throw an error on invalid padding', () => {
+            expect(() => {
+                convertDecStringToHexString('1000', -3 );
+            }).toThrow('Invalid padding argument: [-3] - Expected a positive value');
         });
 
     });

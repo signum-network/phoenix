@@ -5,7 +5,7 @@
  * https://coolaj86.com/articles/convert-decimal-to-hex-with-js-bigints/
  */
 
-import './internal/padStartPolyfill';
+import '../../util/src/internal/padStartPolyfill';
 import {convertDecStringToHexString, convertHexEndianess} from '@burstjs/util';
 import {GenerateMethodCallArgs, MethodArgument} from './typings/args';
 
@@ -39,7 +39,7 @@ export const generateMethodCall = (args: GenerateMethodCallArgs): string => {
     return argArray
         .map(convertArgument)
         // @ts-ignore
-        .map(long => convertDecStringToHexString(long).padStart(16, '0'))
+        .map(long => convertDecStringToHexString(long, 16))
         .map(convertHexEndianess)
         .join('');
 };
