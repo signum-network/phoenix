@@ -3,8 +3,7 @@
 ## 1.0.1 (TBR)
 
 ### Bug Fixes
-- fixed Windows platform name for New Verison Dialog
-
+- fixed Windows platform name for New Version Dialog
 
 ## 1.0.0
 
