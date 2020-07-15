@@ -1,10 +1,10 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation, Input, Output, OnChanges, SimpleChanges} from '@angular/core';
-import {Subject} from 'rxjs';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {takeUntil} from 'rxjs/operators';
 
 import {MessagesService} from '../../../messages.service';
-import {SuggestedFees} from '@burstjs/core/out';
-import {ActivatedRoute} from '@angular/router';
+import {SuggestedFees} from '@burstjs/core';
+import {UnsubscribeOnDestroy} from '../../../../../util/UnsubscribeOnDestroy';
+import {convertNQTStringToNumber} from '@burstjs/util';
 
 @Component({
   selector: 'message-options-sidenav',
@@ -12,46 +12,28 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./options.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class MessageOptionsSidenavComponent implements OnInit, OnDestroy {
-  @Input('fees') fees: SuggestedFees;
+export class MessageOptionsSidenavComponent extends UnsubscribeOnDestroy implements OnInit {
+  @Input() fees: SuggestedFees;
 
   public encrypt: boolean;
-  public feeNQT: string;
+  public feeBurst: string;
   public options: any;
-
-  private _unsubscribeAll: Subject<any>;
 
   constructor(
     private _messageService: MessagesService,
-    private route: ActivatedRoute
   ) {
-    // Set the private defaults
-    this._unsubscribeAll = new Subject();
-
+    super();
   }
 
-  // -----------------------------------------------------------------------------------------------------
-  // @ Lifecycle hooks
-  // -----------------------------------------------------------------------------------------------------
-
-  /**
-   * On init
-   */
   ngOnInit(): void {
+    setTimeout(() => {
+      this.feeBurst = convertNQTStringToNumber(this.fees.standard.toString()).toString();
+    });
     this._messageService.onOptionsSelected
-      .pipe(takeUntil(this._unsubscribeAll))
+      .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(options => {
         this.options = options;
         this.encrypt = options.encrypt;
       });
-  }
-
-  /**
-   * On destroy
-   */
-  ngOnDestroy(): void {
-    // Unsubscribe from all subscriptions
-    this._unsubscribeAll.next();
-    this._unsubscribeAll.complete();
   }
 }
