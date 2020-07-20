@@ -89,6 +89,34 @@ describe('Encrypt and Decrypt', () => {
         });
 
 
+        it('should decrypt a text message successfully as owner of message', () => {
+
+            const recipientKeys = generateMasterKeys('testSecret_Recipient');
+            const senderKeys = generateMasterKeys('testSecret_Sender');
+
+            // german umlauts to proof UTF-8
+            const originalMessage = `Die Burstcoin-Blockchain ist ein öffentliches Hauptbuch,
+            das jede Transaktion aufzeichnet. Es ist vollständig verteilt und funktioniert
+            ohne eine zentrale vertrauenswürdige Instanz:
+            Die Blockchain wird von einem Netzwerk von Computern verwaltet,
+            die als Knoten bezeichnet werden und die Burstcoin-Software ausführen.`;
+
+            const encrypted = encryptMessage(
+                originalMessage,
+                recipientKeys.publicKey,
+                senderKeys.agreementPrivateKey
+            );
+
+            const message = decryptMessage(
+                encrypted,
+                recipientKeys.publicKey,
+                senderKeys.agreementPrivateKey
+            );
+
+            expect(message).toEqual(originalMessage);
+        });
+
+
         it('should decrypt a text message sent with BRS successfully', () => {
 
             const encrypted = {
