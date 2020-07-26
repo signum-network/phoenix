@@ -41,4 +41,3 @@ export * from './typings/unconfirmedTransactionList';
 export * from './typings/rewardRecipient';
 
 
-

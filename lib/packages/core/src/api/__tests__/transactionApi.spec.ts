@@ -1,19 +1,25 @@
 import {Http, HttpMockBuilder} from '@burstjs/http';
 import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
-import {Transaction} from '../../typings/transaction';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
-import {MultioutRecipientAmount} from '../../typings/multioutRecipientAmount';
-import {Attachment, AttachmentEncryptedMessage, AttachmentMessage} from '../../typings/attachment';
 import {
-    broadcastTransaction, cancelSubscription, createSubscription,
+    Attachment,
+    AttachmentEncryptedMessage,
+    AttachmentMessage, getUnconfirmedTransactions,
+    MultioutRecipientAmount,
+    Transaction,
+    TransactionId
+} from '../..';
+import {
+    broadcastTransaction,
+    cancelSubscription,
+    createSubscription,
     getSubscription,
     getTransaction,
     sendAmount,
     sendAmountToMultipleRecipients,
     sendAmountToSingleRecipient,
-    sendSameAmountToMultipleRecipients
+    sendSameAmountToMultipleRecipients,
 } from '../factories/transaction';
-import { TransactionId } from '../../typings/transactionId';
 
 describe('TransactionApi', () => {
 
@@ -630,7 +636,7 @@ describe('TransactionApi', () => {
         });
 
         describe('cancelSubscription', () => {
-            it('should get subscription', async () => {
+            it('should cancel subscription', async () => {
                 httpMock = HttpMockBuilder.create()
                     // tslint:disable:max-line-length
                     .onPostReply(200, mockBroadcastResponse,
@@ -654,5 +660,17 @@ describe('TransactionApi', () => {
             });
         });
 
-    })
+    });
+
+    describe('getUnconfirmedTransactions', () => {
+        it('should getUnconfirmedTransactions', async () => {
+            httpMock = HttpMockBuilder.create().onGetReply(200, {
+                unconfirmedTransactions: []
+            }).build();
+            const service = createBurstService(httpMock, 'relPath');
+            const response = await getUnconfirmedTransactions(service)();
+            expect(response.unconfirmedTransactions).toHaveLength(0);
+        });
+
+    });
 });

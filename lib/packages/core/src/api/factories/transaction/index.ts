@@ -7,3 +7,4 @@ export * from './sendAmountToMultipleRecipients';
 export * from './createSubscription';
 export * from './cancelSubscription';
 export * from './getSubscription';
+export * from './getUnconfirmedTransactions';
