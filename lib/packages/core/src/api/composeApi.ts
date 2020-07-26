@@ -2,7 +2,7 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 import {BurstService} from '../service';
-import {BurstServiceSettings} from '../service/burstServiceSettings';
+import {BurstServiceSettings} from '../service';
 import {Api} from '../typings/api';
 import {ApiVersion} from '../constants/apiVersion';
 import {ApiComposer} from './apiComposer';
@@ -24,6 +24,7 @@ import {
     setAccountInfo,
     setAlias,
     setRewardRecipient,
+    getRewardRecipient,
 } from './factories/account';
 import {getAliasById, getAliasByName} from './factories/alias';
 import {
@@ -144,6 +145,7 @@ export function composeApi(settings: ApiSettings): Api {
             setRewardRecipient,
             getAccountSubscriptions,
             getSubscriptionsToAccount,
+            getRewardRecipient,
         }).withAliasApi({
             getAliasByName,
             getAliasById,

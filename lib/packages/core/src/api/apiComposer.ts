@@ -3,15 +3,17 @@
  */
 
 import {Api} from '../typings/api';
-import {AssetApi} from '../typings/api/assetApi';
-import {AliasApi} from '../typings/api/aliasApi';
-import {BlockApi} from '../typings/api/blockApi';
-import {AccountApi} from '../typings/api/accountApi';
-import {MessageApi} from '../typings/api/messageApi';
-import {NetworkApi} from '../typings/api/networkApi';
-import {TransactionApi} from '../typings/api/transactionApi';
-import {BurstService} from '../service/burstService';
-import {ContractApi} from '../typings/api/contractApi';
+import {BurstService} from '../service';
+import {
+    AccountApi,
+    AliasApi,
+    AssetApi,
+    BlockApi,
+    ContractApi,
+    MessageApi,
+    NetworkApi,
+    TransactionApi,
+} from '../typings/api';
 
 class ApiImpl implements Api {
     alias: AliasApi;

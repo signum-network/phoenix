@@ -1,20 +1,23 @@
 import {Http, HttpMockBuilder} from '@burstjs/http';
-import {getAccountTransactions} from '../factories/account/getAccountTransactions';
-import {getUnconfirmedAccountTransactions} from '../factories/account/getUnconfirmedAccountTransactions';
-import {getAccountBalance} from '../factories/account/getAccountBalance';
-import {getAccountBlocks} from '../factories/account/getAccountBlocks';
-import {getAccountBlockIds} from '../factories/account/getAccountBlockIds';
-import {generateSendTransactionQRCodeAddress} from '../factories/account/generateSendTransactionQRCodeAddress';
-import {generateSendTransactionQRCode} from '../factories/account/generateSendTransactionQRCode';
-import {getAliases} from '../factories/account/getAliases';
-import {setAccountInfo} from '../factories/account/setAccountInfo';
-import {setRewardRecipient} from '../factories/account/setRewardRecipient';
-import {Alias} from '../../typings/alias';
-import {AliasList} from '../../typings/aliasList';
+import {
+    getUnconfirmedAccountTransactions,
+    getAccountBalance,
+    getAccountBlocks,
+    getAccountBlockIds,
+    generateSendTransactionQRCodeAddress,
+    generateSendTransactionQRCode,
+    getAccountTransactions,
+    getAliases,
+    setAccountInfo,
+    setRewardRecipient,
+    getSubscriptionsToAccount,
+    getAccountSubscriptions, getRewardRecipient
+} from '../factories/account';
+import {Alias} from '../..';
+import {AliasList} from '../..';
 import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {convertNumberToNQTString} from '@burstjs/util';
-import {getAccountSubscriptions, getSubscriptionsToAccount} from '../factories/account';
 
 
 describe('AccountApi', () => {
@@ -482,6 +485,22 @@ describe('AccountApi', () => {
             const service = createBurstService(httpMock);
             const subscriptionList = await getSubscriptionsToAccount(service)('1');
             expect(subscriptionList.subscriptions).toEqual(mockedSubscriptions.subscriptions);
+        });
+
+    });
+
+    describe('getRewardRecipient()', () => {
+
+        const mockedRecipient = {
+            'rewardRecipient': '1',
+            'requestProcessingTime': 17
+        };
+
+        it('should get reward recipient', async () => {
+            httpMock = HttpMockBuilder.create().onGetReply(200, mockedRecipient).build();
+            const service = createBurstService(httpMock);
+            const rewardRecipient = await getRewardRecipient(service)('1');
+            expect(rewardRecipient).toEqual(mockedRecipient);
         });
 
     });

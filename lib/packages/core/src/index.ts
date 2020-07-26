@@ -38,5 +38,6 @@ export * from './typings/transactionId';
 export * from './typings/transactionList';
 export * from './typings/transactionResponse';
 export * from './typings/unconfirmedTransactionList';
+export * from './typings/rewardRecipient';
 
 
