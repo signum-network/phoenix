@@ -4,6 +4,7 @@ import {SuggestedFees} from '../suggestedFees';
 import {Peer} from '../peer';
 import {PeerAddressList} from '../peerAddressList';
 import {BurstTime} from '../burstTime';
+import {TransactionList} from '../transactionList';
 
 /**
  * Network API

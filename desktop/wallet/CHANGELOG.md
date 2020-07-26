@@ -1,9 +1,7 @@
 # The Phoenix Desktop Wallet
 
-# 1.0.1 (TBR)
-
+# 1.0.1
 - Renewed cert fingerprint
-
 
 # 1.0.0-beta.14
 - Fixed download error (#1218)

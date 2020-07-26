@@ -8,6 +8,7 @@ import {
     getAccountBalance,
     getAccountSubscriptions,
     getAccountTransactions,
+    getRewardRecipient,
     getUnconfirmedAccountTransactions
 } from '../../factories/account';
 
@@ -101,6 +102,13 @@ describe(`[E2E] Account Api`, () => {
             if (subscriptions.length > 0) {
                 expect(subscriptions[0].id).toBeDefined();
             }
+        });
+    });
+
+    describe('getRewardRecipient', () => {
+        it('should getRewardRecipient', async () => {
+            const response = await getRewardRecipient(service)(accountId);
+            expect(response.rewardRecipient.length).toBeGreaterThan(10);
         });
     });
 

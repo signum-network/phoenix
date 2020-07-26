@@ -1,4 +1,4 @@
-export function formatMetricNumber(n: number|string): string {
+export function formatMetricNumber(n: number|string, digits = 2): string {
 
   const number = typeof n === 'string' ? parseFloat(n) : n;
 
@@ -7,7 +7,7 @@ export function formatMetricNumber(n: number|string): string {
   }
   let abs = Math.abs(number);
   const rounder = Math.pow(10, 1);
-  const isNegative = number < 0; // will also work for Negetive numbers
+  const isNegative = number < 0;
   let key = '';
 
   const powers = [
@@ -26,6 +26,7 @@ export function formatMetricNumber(n: number|string): string {
       break;
     }
   }
-  return (isNegative ? '-' : '') + abs + key;
+  const value = digits >  0 ? abs.toFixed(2) : abs;
+  return (isNegative ? '-' : '') + value + key;
 }
 

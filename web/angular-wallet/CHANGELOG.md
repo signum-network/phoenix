@@ -1,10 +1,11 @@
 # Changelog
 
-## 1.0.1 (TBR)
+## 1.0.1
 
 ### Bug Fixes
-- fixed Windows platform name for New Verison Dialog
-
+- Increased QR Code size in sidebar (#1326)
+- Fixed a bug preventing asset balances from updating (#1327)
+- Fixed Windows platform name for New Version Dialog
 
 ## 1.0.0
 
