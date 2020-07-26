@@ -116,6 +116,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.transactionapi.html#createsubscription" class="tsd-kind-icon">create<wbr>Subscription</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.transactionapi.html#getsubscription" class="tsd-kind-icon">get<wbr>Subscription</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.transactionapi.html#gettransaction" class="tsd-kind-icon">get<wbr>Transaction</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.transactionapi.html#getunconfirmedtransactions" class="tsd-kind-icon">get<wbr>Unconfirmed<wbr>Transactions</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.transactionapi.html#sendamount" class="tsd-kind-icon">send<wbr>Amount</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.transactionapi.html#sendamounttomultiplerecipients" class="tsd-kind-icon">send<wbr>Amount<wbr>ToMultiple<wbr>Recipients</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.transactionapi.html#sendamounttosinglerecipient" class="tsd-kind-icon">send<wbr>Amount<wbr>ToSingle<wbr>Recipient</a></li>
@@ -133,7 +134,7 @@
 					<div class="tsd-signature tsd-kind-icon">broadcast<wbr>Transaction<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b97776f/lib/packages/core/src/typings/api/transactionApi.ts#L24">core/src/typings/api/transactionApi.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a9cdce93/lib/packages/core/src/typings/api/transactionApi.ts#L26">core/src/typings/api/transactionApi.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -177,7 +178,7 @@
 					<div class="tsd-signature tsd-kind-icon">cancel<wbr>Subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b97776f/lib/packages/core/src/typings/api/transactionApi.ts#L134">core/src/typings/api/transactionApi.ts:134</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a9cdce93/lib/packages/core/src/typings/api/transactionApi.ts#L136">core/src/typings/api/transactionApi.ts:136</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -221,7 +222,7 @@
 					<div class="tsd-signature tsd-kind-icon">create<wbr>Subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b97776f/lib/packages/core/src/typings/api/transactionApi.ts#L125">core/src/typings/api/transactionApi.ts:125</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a9cdce93/lib/packages/core/src/typings/api/transactionApi.ts#L127">core/src/typings/api/transactionApi.ts:127</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -265,7 +266,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b97776f/lib/packages/core/src/typings/api/transactionApi.ts#L116">core/src/typings/api/transactionApi.ts:116</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a9cdce93/lib/packages/core/src/typings/api/transactionApi.ts#L118">core/src/typings/api/transactionApi.ts:118</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -309,7 +310,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Transaction<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b97776f/lib/packages/core/src/typings/api/transactionApi.ts#L32">core/src/typings/api/transactionApi.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a9cdce93/lib/packages/core/src/typings/api/transactionApi.ts#L34">core/src/typings/api/transactionApi.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -348,12 +349,47 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="getunconfirmedtransactions" class="tsd-anchor"></a>
+					<h3>get<wbr>Unconfirmed<wbr>Transactions</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Unconfirmed<wbr>Transactions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a9cdce93/lib/packages/core/src/typings/api/transactionApi.ts#L143">core/src/typings/api/transactionApi.ts:143</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Get the all current unconfirmed transactions</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
+							<dd><p>The UnconfirmedTransactionList of unconfirmed transactions</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.unconfirmedtransactionlist.html" class="tsd-signature-type">UnconfirmedTransactionList</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.unconfirmedtransactionlist.html" class="tsd-signature-type">UnconfirmedTransactionList</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="sendamount" class="tsd-anchor"></a>
 					<h3>send<wbr>Amount</h3>
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Amount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b97776f/lib/packages/core/src/typings/api/transactionApi.ts#L92">core/src/typings/api/transactionApi.ts:92</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a9cdce93/lib/packages/core/src/typings/api/transactionApi.ts#L94">core/src/typings/api/transactionApi.ts:94</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -436,7 +472,7 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Amount<wbr>ToMultiple<wbr>Recipients<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b97776f/lib/packages/core/src/typings/api/transactionApi.ts#L65">core/src/typings/api/transactionApi.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a9cdce93/lib/packages/core/src/typings/api/transactionApi.ts#L67">core/src/typings/api/transactionApi.ts:67</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -495,7 +531,7 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Amount<wbr>ToSingle<wbr>Recipient<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b97776f/lib/packages/core/src/typings/api/transactionApi.ts#L107">core/src/typings/api/transactionApi.ts:107</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a9cdce93/lib/packages/core/src/typings/api/transactionApi.ts#L109">core/src/typings/api/transactionApi.ts:109</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -539,7 +575,7 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Same<wbr>Amount<wbr>ToMultiple<wbr>Recipients<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b97776f/lib/packages/core/src/typings/api/transactionApi.ts#L44">core/src/typings/api/transactionApi.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a9cdce93/lib/packages/core/src/typings/api/transactionApi.ts#L46">core/src/typings/api/transactionApi.ts:46</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -683,6 +719,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core_api.transactionapi.html#gettransaction" class="tsd-kind-icon">get<wbr>Transaction</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core_api.transactionapi.html#getunconfirmedtransactions" class="tsd-kind-icon">get<wbr>Unconfirmed<wbr>Transactions</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core_api.transactionapi.html#sendamount" class="tsd-kind-icon">send<wbr>Amount</a>
