@@ -14,7 +14,7 @@ export const getRewardRecipient = (service: BurstService):
     (accountId: string) => Promise<RewardRecipient> =>
     async (accountId: string): Promise<RewardRecipient> => {
         const parameters = {
-            accountId
+            account: accountId
         };
 
         return await service.query<RewardRecipient>('getRewardRecipient', parameters);
