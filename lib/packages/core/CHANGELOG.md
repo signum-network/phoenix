@@ -19,6 +19,7 @@ ___
     - `createSubscription`
     - `cancelSubscription`
     - `getSubscription`
+    - `getUnconfirmedTransactions`
 
 - added new methods to account Api
     - `getAccountSubscriptions`
