@@ -23,11 +23,12 @@ ___
 - added new methods to account Api
     - `getAccountSubscriptions`
     - `getSubscriptionsToAccount`
+    - `getRewardRecipient`
 
 ## 0.4.3
 ___
 __Breaking Changes__
-- `getAccountTransations` uses an argument object now
+- `getAccountTransactions` uses an argument object now
 ___
 
 - deprecated `sendTextMessage`
