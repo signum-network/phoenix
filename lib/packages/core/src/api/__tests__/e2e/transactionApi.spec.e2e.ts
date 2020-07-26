@@ -1,6 +1,6 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
-import {createSubscription, getTransaction} from '../../factories/transaction';
+import {createSubscription, getTransaction, getUnconfirmedTransactions} from '../../factories/transaction';
 import {HttpError} from '@burstjs/http';
 import {convertNumberToNQTString, FeeQuantPlanck} from '@burstjs/util';
 import {generateMasterKeys, getAccountIdFromPublicKey} from '@burstjs/crypto';
@@ -69,4 +69,12 @@ describe('[E2E] Transaction Api', () => {
         });
     });
 
+    describe('getUnconfirmedTransactions', () => {
+        it('should getUnconfirmedTransactions as expected', async () => {
+            const unconfirmedTransactionList = await getUnconfirmedTransactions(service)();
+            expect(unconfirmedTransactionList).toBeDefined();
+            expect(unconfirmedTransactionList.unconfirmedTransactions).toBeDefined();
+            expect(unconfirmedTransactionList.unconfirmedTransactions.length).toBeGreaterThanOrEqual(0);
+        });
+    });
 });

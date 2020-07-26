@@ -166,7 +166,7 @@ export interface AccountApi {
      * @param {SetRewardRecipientArgs} args The arguments
      * @return The Transaction ID
      */
-    setRewardRecipient: ( args: SetRewardRecipientArgs ) => Promise<TransactionId>;
+    setRewardRecipient: (args: SetRewardRecipientArgs) => Promise<TransactionId>;
 
 
     /**
@@ -184,5 +184,4 @@ export interface AccountApi {
      * @return List of Subscriptions
      */
     getSubscriptionsToAccount: (accountId: string) => Promise<SubscriptionList>;
-
 }

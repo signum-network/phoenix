@@ -42,6 +42,8 @@ import {
     sendAmountToMultipleRecipients,
     sendAmountToSingleRecipient,
     sendSameAmountToMultipleRecipients,
+    getSubscription,
+    getUnconfirmedTransactions
 } from './factories/transaction';
 import {getAllAssets, getAsset} from './factories/asset';
 import {AxiosRequestConfig} from 'axios';
@@ -118,6 +120,8 @@ export function composeApi(settings: ApiSettings): Api {
             sendSameAmountToMultipleRecipients,
             createSubscription,
             cancelSubscription,
+            getSubscription,
+            getUnconfirmedTransactions,
         })
         .withMessageApi({
             sendTextMessage,

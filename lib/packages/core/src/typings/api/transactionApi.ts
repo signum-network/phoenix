@@ -5,6 +5,7 @@ import {Attachment} from '../attachment';
 import {SendAmountArgs} from '../args/sendAmountArgs';
 import {CancelSubscriptionArgs, CreateSubscriptionArgs} from '../args';
 import {Subscription} from '../subscription';
+import {TransactionList} from '../transactionList';
 
 /**
  * Transaction API
@@ -133,4 +134,11 @@ export interface TransactionApi {
      */
     cancelSubscription:
         (args: CancelSubscriptionArgs) => Promise<TransactionId>;
+
+    /**
+     * Get the all current unconfirmed transactions
+     * @return The TransactionList of unconfirmed transactions
+     */
+    getUnconfirmedTransactions: () => Promise<TransactionList>;
+
 }
