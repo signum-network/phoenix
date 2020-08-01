@@ -30,6 +30,7 @@ import { NetworkModule } from 'app/network/network.module';
 import { LoginGuard } from 'app/login/login-guard.service';
 import { LayoutModule } from 'app/layout/layout.module';
 import {PageModule} from '../../components/page/page.module';
+import { AppSharedModule } from 'app/shared/shared.module';
 
 const routes = [
   {
@@ -74,7 +75,8 @@ const routes = [
     I18nModule,
     MatDialogModule,
     RouterModule.forChild(routes),
-    PageModule
+    PageModule,
+    AppSharedModule
   ]
 })
 export class AssetsModule { }
