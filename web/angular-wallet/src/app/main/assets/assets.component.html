@@ -27,7 +27,7 @@
     <ng-container matColumnDef="amount">
       <mat-header-cell *matHeaderCellDef>{{ 'balance' | i18n }}</mat-header-cell>
       <mat-cell *matCellDef="let asset">
-        <span>{{ asset.amount }}</span>
+        <span>{{ asset.amount | assetAmount: asset.decimals }}</span>
       </mat-cell>
     </ng-container>
 

@@ -1,13 +1,10 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { NotifierService } from 'angular-notifier';
 import { StoreService } from 'app/store/store.service';
 import { AccountService } from 'app/setup/account/account.service';
-import { Account, Asset } from '@burstjs/core';
-import { AssetBalance } from '@burstjs/core/out/typings/assetBalance';
+import { Account } from '@burstjs/core';
 
 interface AssetRow {
   id: string;
