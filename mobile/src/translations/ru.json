@@ -38,6 +38,11 @@
         "copiedSuccessfully": "Address copied successfully.",
         "copy": "Copy"
       },
+      "transactionDetails": {
+        "copiedSuccessfully": "Address copied successfully.",
+        "headerTitle": "Transaction Details",
+        "copy": "Copy"
+      },
       "addAccount": {
         "addAccount": "Добавить аккаунт",
         "createAccount": "Создать аккаунт",

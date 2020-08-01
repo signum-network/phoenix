@@ -9,6 +9,7 @@ import { AddAccountScreen } from '../screens/AddAccountScreen';
 import { CreateAccountScreen } from '../screens/CreateAccountScreen';
 import { HomeScreen } from '../screens/HomeScreen';
 import { ImportAccountScreen } from '../screens/ImportAccountScreen';
+import { TransactionDetailsScreen } from '../screens/TransactionDetailsScreen';
 
 const stackConfig: StackNavigatorConfig = {
   initialRouteName: routes.home,
@@ -23,7 +24,8 @@ const routesMap: RoutesMap = {
   [routes.addAccount]: AddAccountScreen,
   [routes.createAccount]: CreateAccountScreen,
   [routes.importAccount]: ImportAccountScreen,
-  [routes.accountDetails]: AccountDetailsScreen
+  [routes.accountDetails]: AccountDetailsScreen,
+  [routes.transactionDetails]: TransactionDetailsScreen
 };
 
 export const mainStack = createStackNavigator(routesMap, stackConfig);

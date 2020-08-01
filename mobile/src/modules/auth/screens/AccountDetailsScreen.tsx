@@ -18,7 +18,7 @@ import { PriceInfoReduxState } from '../../price-api/store/reducer';
 import { AccountDetailsList } from '../components/details/AccountDetailsList';
 import { updateAccountTransactions } from '../store/actions';
 import { auth } from '../translations';
-import { Sizes } from '../../../core/theme/sizes';
+import { routes } from '../../../core/navigation/routes';
 
 interface Props extends InjectedReduxProps {
   accounts: Account[];
@@ -87,7 +87,9 @@ class AccountDetails extends React.PureComponent<TProps> {
   handleTransactionPress = (transaction: Transaction) => {
     // TODO: do something?
     // tslint:disable-next-line
-    console.log(transaction);
+    this.props.navigation.navigate(routes.transactionDetails, {
+      transaction
+    })
   }
 
   render () {
