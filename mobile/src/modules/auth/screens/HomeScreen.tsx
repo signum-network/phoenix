@@ -206,7 +206,7 @@ class Home extends React.PureComponent<IProps, State> {
               priceApi={priceApi}
               accounts={accounts}
               priceTypes={priceTypes}
-              selectCurrency={this.selectCurrency}
+              selectCurrency={this.selectCurrency.bind(this)}
             /> || null}
 
             <AccountsList

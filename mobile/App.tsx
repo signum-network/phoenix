@@ -37,7 +37,6 @@ import { ViewQRCodeScreen } from './src/modules/transactions/screens/ViewQRCodeS
 
 const store: Store = getStore();
 
-
 interface AppState {
   deviceId?: string;
 }
@@ -57,11 +56,16 @@ const rootTabStackConfig = {
   }
 };
 
+export const navigationRef = React.createRef();
+
 export default class App extends React.Component<{}, AppState> {
 
   state: AppState = {};
 
-  componentDidMount (): void {
+  navigator = navigationRef;
+
+  constructor (props) {
+    super(props);
 
     // const onNotification = (notification: PushNotificationIOS) => {
     //   if (!notification.foreground) {
@@ -159,18 +163,9 @@ export default class App extends React.Component<{}, AppState> {
     const routeName = route.split('/')[0];
 
     // user clicked on a deep link to pay someone else burst
-    if (this.navigator && routeName.indexOf('requestBurst') > -1) {
-      this.navigator.dispatch(
-        // NavigationActions.navigate({
-        //   routeName: routes.home
-        // })
-      );
-      this.navigator.dispatch(
-        // NavigationActions.navigate({
-        //   routeName: routes.send,
-        //   params: { url }
-        // })
-      );
+    if (navigationRef && routeName.indexOf('requestBurst') > -1) {
+      navigationRef.current.navigate(routes.home);
+      navigationRef.current.navigate(routes.send, { url });
     }
   }
 
@@ -179,7 +174,7 @@ export default class App extends React.Component<{}, AppState> {
     return (
       <Provider store={store}>
         <SafeAreaProvider>
-          <NavigationContainer>
+          <NavigationContainer ref={navigationRef}>
             <RootView>
               <View />
             </RootView>

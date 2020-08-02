@@ -19,14 +19,19 @@ import { AuthReduxState } from '../../auth/store/reducer';
 import { ReceiveBurstPayload } from '../store/actions';
 import { TransactionsReduxState } from '../store/reducer';
 import { transactions } from '../translations';
+import { RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../../auth/navigation/mainStack';
+
+type ScanRouteProps = RouteProp<RootStackParamList, 'Scan'>;
 
 interface IProps extends InjectedReduxProps {
   app: AppReduxState;
   auth: AuthReduxState;
   transactions: TransactionsReduxState;
+  route: ScanRouteProps;
 }
 
-type Props = ReceiveBurstPayload & IProps & NavigationInjectedProps;
+type Props = ReceiveBurstPayload & IProps;
 
 const styles = StyleSheet.create({
   col: {
@@ -89,7 +94,7 @@ class ViewQRCode extends React.PureComponent<Props, State> {
   }
 
   handleShare = async () => {
-    const { amount, fee, recipient } = this.props.navigation.getParam('form');
+    const { amount, fee, recipient } = this.props.route.params.form;
     try {
       await Share.share({
         message: `BURST Payment Requested from ` +
@@ -113,7 +118,7 @@ class ViewQRCode extends React.PureComponent<Props, State> {
   }
 
   private buildPhoenixDeepLinkURL () {
-    const { amount, fee, recipient, immutable, feeSuggestionType } = this.props.navigation.getParam('form');
+    const { amount, fee, recipient, immutable, feeSuggestionType } = this.props.route.params.form;
 
     return `burst://requestBurst?receiver=${recipient}` +
            `&amountNQT=${amount}` +
@@ -124,7 +129,7 @@ class ViewQRCode extends React.PureComponent<Props, State> {
 
   render () {
 
-    const { amount, fee, recipient, immutable } = this.props.navigation.getParam('form');
+    const { amount, fee, recipient, immutable } = this.props.route.params.form;
 
     const imageUrl = this.props.transactions.imageUrl ?
       this.buildQRCodeImageURL() : false;

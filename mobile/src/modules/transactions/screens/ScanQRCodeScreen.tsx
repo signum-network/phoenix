@@ -3,7 +3,9 @@ import React from 'react';
 import {
   Alert,
   StyleSheet,
-  Text
+  TouchableOpacity,
+  View,
+  Image
 } from 'react-native';
 
 import { isBurstAddress } from '@burstjs/util';
@@ -16,6 +18,12 @@ import { transactions } from '../translations';
 import { RootStackParamList } from '../../auth/navigation/mainStack';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { InjectedReduxProps } from '../../../core/interfaces';
+import { Screen } from '../../../core/layout/Screen';
+import { FullHeightView } from '../../../core/layout/FullHeightView';
+import { actionIcons } from '../../../assets/icons';
+import { core } from '../../../core/translations';
+import { Text } from '../../../core/components/base/Text';
+import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 
 type ScanNavProp = StackNavigationProp<RootStackParamList, 'Scan'>;
 
@@ -32,26 +40,42 @@ class ScanQRCodeScreenComponent extends React.PureComponent<Props> {
     if (isBurstAddress(e.data)) {
       url = `requestBurst?receiver=${e.data}`;
     }
-    this.props.navigation.navigate({
-      routeName: routes.send,
-      params: {
-        url
-      }
+    this.props.navigation.navigate(routes.send, {
+      url
     });
   }
 
   render () {
     return (
-      <QRCodeScanner
-        topViewStyle={styles.topView}
-        bottomViewStyle={styles.topView}
-        onRead={this.onSuccess}
-        topContent={
-          <Text style={styles.centerText}>
-            {i18n.t(transactions.screens.scan.title)}
-          </Text>
-        }
-      />
+      <Screen>
+        <FullHeightView withoutPaddings>
+          <View>
+            <View style={{ backgroundColor: Colors.BLUE_DARKER, flexDirection: 'row' }}>
+            <TouchableOpacity
+              style={{ flexDirection: 'row', position: 'absolute', zIndex: 1, left: 10, top: 10 }}
+              onPress={this.props.navigation.goBack}>
+              <Image source={actionIcons.chevronLeft} style={{ width: 30, height: 30 }} />
+              <Text color={Colors.WHITE}>{i18n.t(core.actions.back)}</Text>
+            </TouchableOpacity>
+            <View style={{ flex: 1, alignItems: 'center', margin: 10 }}>
+              <HeaderTitle>
+                {i18n.t(transactions.screens.scan.title)}
+              </HeaderTitle>
+            </View>
+          </View>
+            <QRCodeScanner
+              topViewStyle={styles.topView}
+              bottomViewStyle={styles.topView}
+              onRead={this.onSuccess}
+              topContent={
+                <Text style={styles.centerText}>
+                  {i18n.t(transactions.screens.scan.title)}
+                </Text>
+              }
+            />
+          </View>
+        </FullHeightView>
+      </Screen>
     );
   }
 }

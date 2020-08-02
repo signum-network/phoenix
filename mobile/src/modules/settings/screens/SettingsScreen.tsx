@@ -52,10 +52,6 @@ class Settings extends React.PureComponent<Props> {
     erasePromptVisible: false
   };
 
-  static navigationOptions = {
-    headerTitle: <HeaderTitle>{i18n.t(settings.screens.settings.title)}</HeaderTitle>
-  };
-
   toggleConfirmDeletePrompt = () => {
     this.setState({ erasePromptVisible: !this.state.erasePromptVisible });
   }
@@ -79,6 +75,8 @@ class Settings extends React.PureComponent<Props> {
     return (
       <Screen>
         <FullHeightView>
+
+          <HeaderTitle>{i18n.t(settings.screens.settings.title)}</HeaderTitle>
           <View style={styles.container}>
             {/* <BSelect
                   // @ts-ignore bad .d.ts
