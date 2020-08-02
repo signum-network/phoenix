@@ -27,12 +27,13 @@ export class BurstFeeSelectorComponent implements OnInit {
   @Output()
   feeNQTChange = new EventEmitter();
 
-  set feeNQT(feeNQT: number) {
-    if (!feeNQT) {
+  // FIXME: this is not NQT, but Burst
+  set feeNQT(feeBurst: number) {
+    if (!feeBurst) {
       this.feeNQTValue = 0;
       return;
     }
-    this.feeNQTValue = parseFloat(feeNQT.toString());
+    this.feeNQTValue = parseFloat(feeBurst.toString());
     this.feeNQTChange.emit(this.feeNQTValue);
   }
 

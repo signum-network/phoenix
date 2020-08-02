@@ -37,8 +37,8 @@ import {burstAddressPattern} from 'app/util/burstAddressPattern';
   encapsulation: ViewEncapsulation.None
 })
 export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
-  @Input('feeNQT') feeNQT: number;
-  @Input('encrypt') encrypt: boolean;
+  @Input() feeBurst: number;
+  @Input() encrypt: boolean;
 
   @ViewChild('pin', { static: false })
   pin: string;
@@ -179,7 +179,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         this.encrypt,
         this.message.contactId,
         this.replyForm.form.value.pin,
-        this.feeNQT);
+        this.feeBurst);
       this.replyForm.reset();
       this.readyToReply();
     } catch (e) {

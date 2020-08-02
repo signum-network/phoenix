@@ -14,8 +14,8 @@
   <div class="mat-form-field">
     <mat-form-field appearance="outline">
       <input matInput
-             [(ngModel)]="feeNQT"
-             name="feeNQT"
+             [(ngModel)]="feeBurst"
+             name="feeBurst"
              placeholder="{{ 'fee' | i18n }}">
       <label matSuffix>BURST</label>
     </mat-form-field>
@@ -24,7 +24,7 @@
   <div class="mat-form-field">
     <burst-fee-selector
       [fees]="fees"
-      [(feeNQT)]="feeNQT"
+      [(feeNQT)]="feeBurst"
     ></burst-fee-selector>
   </div>
 

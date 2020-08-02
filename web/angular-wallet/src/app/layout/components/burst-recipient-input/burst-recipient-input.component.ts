@@ -49,9 +49,9 @@ export class BurstRecipientInputComponent implements OnChanges {
   loading = false;
   fileId = `file-${nextId++}`;
   recipient = new Recipient();
+  _recipientValue = '';
   recipientFieldInputChange$: Subject<string> = new Subject<string>();
 
-  @Input() recipientValue: string;
   @Input() withQrCode = true;
   // tslint:disable-next-line: no-input-rename
   @Input('appearance') appearance = '';
@@ -63,6 +63,16 @@ export class BurstRecipientInputComponent implements OnChanges {
   @Output()
   qrCodeUpload = new EventEmitter();
 
+
+  @Input()
+  get recipientValue(): string {
+    return this._recipientValue;
+  }
+
+  set recipientValue(recipientValue: string) {
+    this._recipientValue = recipientValue;
+    this.onRecipientFieldInputChange(recipientValue);
+  }
 
   @ViewChild('file', {static: false}) file: ElementRef;
 

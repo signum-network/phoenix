@@ -11,7 +11,7 @@
         </mat-sidenav>
         <message-start *ngIf="!selectedMessage"></message-start>
         <message-view *ngIf="selectedMessage"
-                      [feeNQT]="rightSidenav && rightSidenav.options && rightSidenav.options.feeNQT"
+                      [feeBurst]="rightSidenav && rightSidenav.options && rightSidenav.options.feeBurst"
                       [encrypt]="rightSidenav && rightSidenav.options && rightSidenav.options.encrypt"
         >
         </message-view>

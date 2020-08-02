@@ -8,6 +8,7 @@ import {TransactionId} from '../transactionId';
 import {Block} from '../block';
 import {GetAccountTransactionsArgs} from '../args';
 import {SetRewardRecipientArgs} from '../args/setRewardRecipientArgs';
+import {RewardRecipient} from '../rewardRecipient';
 
 /**
  * Account API
@@ -166,7 +167,7 @@ export interface AccountApi {
      * @param {SetRewardRecipientArgs} args The arguments
      * @return The Transaction ID
      */
-    setRewardRecipient: ( args: SetRewardRecipientArgs ) => Promise<TransactionId>;
+    setRewardRecipient: (args: SetRewardRecipientArgs) => Promise<TransactionId>;
 
 
     /**
@@ -184,5 +185,15 @@ export interface AccountApi {
      * @return List of Subscriptions
      */
     getSubscriptionsToAccount: (accountId: string) => Promise<SubscriptionList>;
+
+    /**
+     * Gets the reward recipient for an account
+     *
+     * So you can see, if an account is bound to a pool.
+     *
+     * @param {string} account The account Id
+     * @return The Reward Recipient
+     */
+    getRewardRecipient: ( accountId: string ) => Promise<RewardRecipient>;
 
 }

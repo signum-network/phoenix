@@ -2,8 +2,8 @@
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
-import {Subscription} from '../../../typings/subscription';
+import {BurstService} from '../../../service';
+import {Subscription} from '../../..';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
