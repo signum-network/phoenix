@@ -2,7 +2,8 @@ export const core: any = {
   actions: {
     cancel: 'core.actions.cancel',
     ok: 'core.actions.ok',
-    submit: 'core.actions.submit'
+    submit: 'core.actions.submit',
+    back: 'core.actions.back'
   },
   dates: {
     months: {

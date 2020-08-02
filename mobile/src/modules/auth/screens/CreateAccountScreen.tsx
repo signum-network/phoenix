@@ -1,8 +1,7 @@
 import { Account } from '@burstjs/core';
 import { PassPhraseGenerator } from '@burstjs/crypto';
 import React from 'react';
-import { Alert } from 'react-native';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { Alert, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { i18n } from '../../../core/i18n';
@@ -19,11 +18,18 @@ import { StepCounter } from '../components/create/StepCounter';
 import { addAccount, createActiveAccount, hydrateAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
+import { actionIcons } from '../../../assets/icons';
+import { Text } from '../../../core/components/base/Text';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../navigation/mainStack';
+import { core } from '../../../core/translations';
+
+type CreateAccountNavProp = StackNavigationProp<RootStackParamList, 'CreateAccount'>;
 
 interface IProps extends InjectedReduxProps {
-  auth: AuthReduxState,
+  auth: AuthReduxState;
+  navigation: CreateAccountNavProp;
 }
-type Props = NavigationInjectedProps & IProps;
 
 interface State {
   stage: Stages;
@@ -46,9 +52,16 @@ const getDefaultState = (): State => ({
   account: null
 });
 
+const styles = StyleSheet.create({
+  center: {
+    minHeight: '80%',
+    padding: 10
+  }
+});
+
 const passPhraseGenerator: PassPhraseGenerator = new PassPhraseGenerator();
 
-class CreateAccount extends React.PureComponent<Props, State> {
+class CreateAccount extends React.PureComponent<IProps, State> {
   static navigationOptions = {
     headerTitle: <HeaderTitle>{i18n.t(auth.createAccount.title)}</HeaderTitle>
   };
@@ -103,9 +116,24 @@ class CreateAccount extends React.PureComponent<Props, State> {
   render () {
     return (
       <Screen>
-        <FullHeightView style={{ backgroundColor: Colors.WHITE }}>
-          <StepCounter stage={this.state.stage}/>
-          {this.renderStage()}
+        <FullHeightView style={{ backgroundColor: Colors.WHITE }} withoutPaddings>
+          <View style={{ backgroundColor: Colors.BLUE_DARKER, flexDirection: 'row' }}>
+            <TouchableOpacity
+              style={{ flexDirection: 'row', position: 'absolute', zIndex: 1, left: 10, top: 10 }}
+              onPress={this.props.navigation.goBack}>
+              <Image source={actionIcons.chevronLeft} style={{ width: 30, height: 30 }} />
+              <Text color={Colors.WHITE}>{i18n.t(core.actions.back)}</Text>
+            </TouchableOpacity>
+            <View style={{ flex: 1, alignItems: 'center', margin: 10 }}>
+              <HeaderTitle>
+                {i18n.t(auth.createAccount.title)}
+              </HeaderTitle>
+            </View>
+          </View>
+          <View style={styles.center}>
+            <StepCounter stage={this.state.stage}/>
+            {this.renderStage()}
+          </View>
         </FullHeightView>
       </Screen>
     );
@@ -118,4 +146,4 @@ function mapStateToProps (state: ApplicationState) {
   };
 }
 
-export const CreateAccountScreen = connect(mapStateToProps)(withNavigation(CreateAccount));
+export const CreateAccountScreen = connect(mapStateToProps)(CreateAccount);

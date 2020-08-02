@@ -12,6 +12,7 @@ interface Props {
 
 const styles = StyleSheet.create({
   view: {
+    alignItems: 'center',
     paddingTop: isIOS ? Sizes.SMALL : 0,
     paddingLeft: isIOS ? 0 : defaultSideOffset * 1
   }

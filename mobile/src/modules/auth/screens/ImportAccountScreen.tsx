@@ -74,6 +74,7 @@ class ImportAccount extends React.PureComponent<Props, State> {
     return (
       <Screen>
         <FullHeightView style={{ backgroundColor: Colors.WHITE }}>
+          <HeaderTitle>{i18n.t(auth.importAccount.title)}</HeaderTitle>
           <View style={styles.switchView}>
             <SwitchItem
               onChange={this.handleChangeAccountType}
@@ -98,4 +99,4 @@ function mapStateToProps (state: ApplicationState) {
   };
 }
 
-export const ImportAccountScreen = connect(mapStateToProps)(withNavigation(ImportAccount));
+export const ImportAccountScreen = connect(mapStateToProps)(ImportAccount);

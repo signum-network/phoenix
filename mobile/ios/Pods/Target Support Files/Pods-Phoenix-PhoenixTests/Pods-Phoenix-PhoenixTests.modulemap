@@ -1,0 +1,6 @@
+module Pods_Phoenix_PhoenixTests {
+  umbrella header "Pods-Phoenix-PhoenixTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -8,14 +8,22 @@ import {
 
 import { isBurstAddress } from '@burstjs/util';
 import QRCodeScanner, { Event } from 'react-native-qrcode-scanner';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { i18n } from '../../../core/i18n';
 import { routes } from '../../../core/navigation/routes';
 import { Colors } from '../../../core/theme/colors';
 import { transactions } from '../translations';
+import { RootStackParamList } from '../../auth/navigation/mainStack';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { InjectedReduxProps } from '../../../core/interfaces';
 
-class ScanQRCodeScreenComponent extends React.PureComponent<NavigationInjectedProps> {
+type ScanNavProp = StackNavigationProp<RootStackParamList, 'Scan'>;
+
+interface Props extends InjectedReduxProps {
+  navigation: ScanNavProp;
+}
+
+class ScanQRCodeScreenComponent extends React.PureComponent<Props> {
   onSuccess = (e: Event) => {
     if (e.data.indexOf('requestBurst') === -1 && !isBurstAddress(e.data)) {
       return Alert.alert('Error scanning QR code');
@@ -67,4 +75,4 @@ function mapStateToProps () {
   return {};
 }
 
-export const ScanQRCodeScreen = connect(mapStateToProps)(withNavigation(ScanQRCodeScreenComponent));
+export const ScanQRCodeScreen = connect(mapStateToProps)(ScanQRCodeScreenComponent);

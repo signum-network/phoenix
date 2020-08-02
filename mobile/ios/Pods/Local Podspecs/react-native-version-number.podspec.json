@@ -1,0 +1,26 @@
+{
+  "name": "react-native-version-number",
+  "version": "0.3.6",
+  "summary": "Access app version inside React Native",
+  "homepage": "https://github.com/APSL/react-native-version-number",
+  "license": "MIT",
+  "authors": {
+    "{\"name\"=>\"Alvaro Medina Ballester\", \"email\"=>\"amedina@apsl.net\"}": {
+      "name": "Alvaro Medina Ballester",
+      "email": "amedina@apsl.net"
+    }
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "source": {
+    "git": "git+https://github.com/APSL/react-native-version-number.git.git",
+    "tag": "v0.3.6"
+  },
+  "source_files": "ios/*.{h,m}",
+  "dependencies": {
+    "React": [
+
+    ]
+  }
+}

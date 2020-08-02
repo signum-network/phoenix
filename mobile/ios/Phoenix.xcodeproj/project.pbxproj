@@ -7,44 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
-		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
-		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
-		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
-		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* mobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* mobileTests.m */; };
 		06A98BD8239D8D6E0097C875 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06A98BA2239D8D6E0097C875 /* GoogleService-Info.plist */; };
-		06C68A16239F36D5001AF06B /* libRNCPushNotificationIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A98B88239D86BC0097C875 /* libRNCPushNotificationIOS.a */; };
-		073C939E956D4F0F8B8FA1A4 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B80DB71B164CA6910BDCC6 /* libRNCAsyncStorage.a */; };
-		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
-		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
-		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
+		06C1818E24D6336200BDA033 /* libReact-RCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C1818D24D6336200BDA033 /* libReact-RCTAnimation.a */; };
+		06C1819E24D633D500BDA033 /* libFlipper-RSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C1819D24D633D500BDA033 /* libFlipper-RSocket.a */; };
+		06C181A024D6342100BDA033 /* libReact-RCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C1819F24D6342100BDA033 /* libReact-RCTNetwork.a */; };
+		06C181A224D6342900BDA033 /* libRNCPushNotificationIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C181A124D6342900BDA033 /* libRNCPushNotificationIOS.a */; };
+		06C181A424D6343200BDA033 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C181A324D6343200BDA033 /* libRNCAsyncStorage.a */; };
+		06C181A624D6343900BDA033 /* libReact-RCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C181A524D6343900BDA033 /* libReact-RCTSettings.a */; };
+		06C181A824D6344C00BDA033 /* libReact-RCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C181A724D6344C00BDA033 /* libReact-RCTLinking.a */; };
+		06C181AA24D6345E00BDA033 /* libReact-RCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C181A924D6345E00BDA033 /* libReact-RCTVibration.a */; };
+		06C181AC24D6346600BDA033 /* libReact-RCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C181AB24D6346600BDA033 /* libReact-RCTImage.a */; };
+		06C181B524D63A5E00BDA033 /* Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C181B424D63A5E00BDA033 /* Void.swift */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		32D766E0222840C3B02F6E52 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAFCEF47598C43EEA34F878A /* libRNSVG.a */; };
+		35B2E635A79833A4B1E83C22 /* libPods-Phoenix-PhoenixTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C8EFFF4EE37B7BCE39E24C /* libPods-Phoenix-PhoenixTests.a */; };
 		36DDFCA022F9A4AA0052F51C /* BebasNeueBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 053007F692194BFEA17AF0A7 /* BebasNeueBold.ttf */; };
 		36DDFCA122F9A4AA0052F51C /* BebasNeueRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A2E65CA979E4606A8DAEDD4 /* BebasNeueRegular.ttf */; };
 		36DDFCA222F9A4AA0052F51C /* BebasNeueThin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D50A95B03084411E85695488 /* BebasNeueThin.ttf */; };
 		36DDFCA322F9A4AA0052F51C /* NotoSansBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0676B825FFCA423D81DCEE4E /* NotoSansBold.ttf */; };
 		36DDFCA422F9A4AA0052F51C /* NotoSansItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ECB4FA76CC94681A4ECA150 /* NotoSansItalic.ttf */; };
 		36DDFCA522F9A4AA0052F51C /* NotoSansRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5081692570B6421A9693EE84 /* NotoSansRegular.ttf */; };
-		3984153BF98D42068CEEF6ED /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B2C7C45EE84F83838EC8DB /* libReactNativePermissions.a */; };
-		6E9C1588E5534F02A7221F4E /* libRNVersionNumber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB9CBA995534AA6BEF8FB97 /* libRNVersionNumber.a */; };
-		8046952F7D0F4071BA0746F7 /* libTouchID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 199DDEAAB7164980844BDFA1 /* libTouchID.a */; };
-		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		9E83DB2219A24D1E86E6BBED /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD42D1B2A7264B93ABD11D00 /* libRNKeychain.a */; };
-		A26F61C584674C858E6E7A5F /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5840882FF6B4CBAAD1FED9C /* libRNCamera.a */; };
-		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
-		C10F74BBDC264969A900C61D /* libRNCSlider.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9DECC6766FE4ABCB5B2DDF9 /* libRNCSlider.a */; };
+		94AED6D9C2DE40FF813621E9 /* libPods-Phoenix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 535433A517A006E81C7ADB16 /* libPods-Phoenix.a */; };
 		C90134BA8E574059940CBFB6 /* NotoSansThin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 786C443697504720BB6FEF24 /* NotoSansThin.ttf */; };
-		E065FB5B8C7244F48F33380C /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57254E1F3C3543F986D9EF8B /* libRNGestureHandler.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
-		F805058258BA4CC2BE7D2D6A /* libRNLocalize.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCA47CDB31F4986B77292F6 /* libRNLocalize.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,48 +79,6 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = mobile;
 		};
-		0615CC7C232453DC00F37F1E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CD1428FF68E54B3896E66970 /* RNSVG.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
-			remoteInfo = RNSVG;
-		};
-		0615CC7E232453DC00F37F1E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CD1428FF68E54B3896E66970 /* RNSVG.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 94DDAC5C1F3D024300EED511;
-			remoteInfo = "RNSVG-tvOS";
-		};
-		062757512341391100AAA530 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5EFCF335626540B5943618C9 /* RNCSlider.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 28C79A09220DC4CC0061DE82;
-			remoteInfo = RNCSlider;
-		};
-		06A98B87239D86BC0097C875 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 35368DEE432D42C5AF5B790B /* PushNotificationIOS.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9B97F66B220DEC6000B61540;
-			remoteInfo = RNCPushNotificationIOS;
-		};
-		06C2EA0F234CDCD600D08E54 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 33D3418BCFD4408ABBB10084 /* RNVersionNumber.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNVersionNumber;
-		};
-		06C2EA11234CDCD600D08E54 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 33D3418BCFD4408ABBB10084 /* RNVersionNumber.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2858ECD01F8B91B400610575;
-			remoteInfo = "RNVersionNumber-tvOS";
-		};
 		06C68A11239F35BC001AF06B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 06C68A0C239F35BC001AF06B /* RCTPushNotification.xcodeproj */;
@@ -152,20 +99,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9D23B34F1C767B80008B4819;
 			remoteInfo = ReactNativePermissions;
-		};
-		06EB6AAC2342D7B0005E3203 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B9D4829814EA4BAB95547152 /* RNCamera.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
-			remoteInfo = RNCamera;
-		};
-		06EB6AB12342D7B0005E3203 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2C2E8083624A4CFCAD5FF2E8 /* RNCAsyncStorage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNCAsyncStorage;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -278,55 +211,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = ED296FEE214C9CF800B7C4FE;
 			remoteInfo = "jsiexecutor-tvOS";
-		};
-		36A32F7922F99F4A000B740F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B6DFE4F6F2AF44FC9D0C372E /* RNGestureHandler.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNGestureHandler;
-		};
-		36A32F7B22F99F4A000B740F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B6DFE4F6F2AF44FC9D0C372E /* RNGestureHandler.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B5C32A36220C603B000FFB8D;
-			remoteInfo = "RNGestureHandler-tvOS";
-		};
-		36A32F7F22F99F4A000B740F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3BD74A520DBD4CD6A3F89A89 /* RNKeychain.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5D82366F1B0CE05B005A9EF3;
-			remoteInfo = RNKeychain;
-		};
-		36A32F8122F99F4A000B740F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3BD74A520DBD4CD6A3F89A89 /* RNKeychain.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6478985F1F38BF9100DA1C12;
-			remoteInfo = "RNKeychain-tvOS";
-		};
-		36A32F8522F99F4A000B740F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F41A8C9F2E1B44CC8CC5BBAA /* RNLocalize.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNLocalize;
-		};
-		36A32F8722F99F4A000B740F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F41A8C9F2E1B44CC8CC5BBAA /* RNLocalize.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A28471D9B043800D4039D;
-			remoteInfo = "RNLocalize-tvOS";
-		};
-		36A32F8A22F99F4A000B740F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3F6C3FA8B8264950B588BB10 /* TouchID.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = TouchID;
 		};
 		3DAD3E831DF850E9000B6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -480,10 +364,22 @@
 		06BE147A239CDA4600EA9673 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		06BE147C239CDA4600EA9673 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06BE147D239CDA4600EA9673 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		06C1818924D6324300BDA033 /* libReact-RCTBlob.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTBlob.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C1818B24D632D600BDA033 /* libReact-RCTBlob.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTBlob.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C1818D24D6336200BDA033 /* libReact-RCTAnimation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTAnimation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C1819D24D633D500BDA033 /* libFlipper-RSocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libFlipper-RSocket.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C1819F24D6342100BDA033 /* libReact-RCTNetwork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTNetwork.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C181A124D6342900BDA033 /* libRNCPushNotificationIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNCPushNotificationIOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C181A324D6343200BDA033 /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNCAsyncStorage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C181A524D6343900BDA033 /* libReact-RCTSettings.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTSettings.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C181A724D6344C00BDA033 /* libReact-RCTLinking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTLinking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C181A924D6345E00BDA033 /* libReact-RCTVibration.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTVibration.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C181AB24D6346600BDA033 /* libReact-RCTImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTImage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C181AD24D635CB00BDA033 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		06C181B124D639E200BDA033 /* Phoenix-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Phoenix-Bridging-Header.h"; sourceTree = "<group>"; };
+		06C181B424D63A5E00BDA033 /* Void.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Void.swift; sourceTree = "<group>"; };
 		06C68A02239F3227001AF06B /* Phoenix.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Phoenix.entitlements; sourceTree = "<group>"; };
 		06C68A0C239F35BC001AF06B /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
-		0BB9CBA995534AA6BEF8FB97 /* libRNVersionNumber.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVersionNumber.a; sourceTree = "<group>"; };
-		1328A3827230435088115FE0 /* libRNVersionNumber-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNVersionNumber-tvOS.a"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Phoenix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phoenix.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -495,41 +391,25 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = mobile/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		17B2C7C45EE84F83838EC8DB /* libReactNativePermissions.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativePermissions.a; sourceTree = "<group>"; };
-		199DDEAAB7164980844BDFA1 /* libTouchID.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libTouchID.a; sourceTree = "<group>"; };
 		1ECB4FA76CC94681A4ECA150 /* NotoSansItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = NotoSansItalic.ttf; path = ../src/assets/fonts/NotoSansItalic.ttf; sourceTree = "<group>"; };
-		2C2E8083624A4CFCAD5FF2E8 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		33D3418BCFD4408ABBB10084 /* RNVersionNumber.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVersionNumber.xcodeproj; path = "../node_modules/react-native-version-number/ios/RNVersionNumber.xcodeproj"; sourceTree = "<group>"; };
-		35368DEE432D42C5AF5B790B /* PushNotificationIOS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = PushNotificationIOS.xcodeproj; path = "../node_modules/@react-native-community/push-notification-ios/ios/PushNotificationIOS.xcodeproj"; sourceTree = "<group>"; };
-		3739409551C84189A413D1C7 /* libRNCPushNotificationIOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCPushNotificationIOS.a; sourceTree = "<group>"; };
-		3BD74A520DBD4CD6A3F89A89 /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
-		3F6C3FA8B8264950B588BB10 /* TouchID.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = TouchID.xcodeproj; path = "../node_modules/react-native-touch-id/TouchID.xcodeproj"; sourceTree = "<group>"; };
+		490F98EAB0C6C7DD69A02A96 /* Pods-Phoenix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Phoenix.debug.xcconfig"; path = "Target Support Files/Pods-Phoenix/Pods-Phoenix.debug.xcconfig"; sourceTree = "<group>"; };
 		5081692570B6421A9693EE84 /* NotoSansRegular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = NotoSansRegular.ttf; path = ../src/assets/fonts/NotoSansRegular.ttf; sourceTree = "<group>"; };
-		57254E1F3C3543F986D9EF8B /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
+		535433A517A006E81C7ADB16 /* libPods-Phoenix.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Phoenix.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A2E65CA979E4606A8DAEDD4 /* BebasNeueRegular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = BebasNeueRegular.ttf; path = ../src/assets/fonts/BebasNeueRegular.ttf; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
-		5EFCF335626540B5943618C9 /* RNCSlider.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCSlider.xcodeproj; path = "../node_modules/@react-native-community/slider/ios/RNCSlider.xcodeproj"; sourceTree = "<group>"; };
-		61EC6C1E5E67429AAA1EC248 /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; };
-		624BB8ECC2E04DB0A5902645 /* libRNLocalize-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNLocalize-tvOS.a"; sourceTree = "<group>"; };
+		600178195116B26C9092E5A5 /* Pods-Phoenix-PhoenixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Phoenix-PhoenixTests.debug.xcconfig"; path = "Target Support Files/Pods-Phoenix-PhoenixTests/Pods-Phoenix-PhoenixTests.debug.xcconfig"; sourceTree = "<group>"; };
 		786C443697504720BB6FEF24 /* NotoSansThin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = NotoSansThin.ttf; path = ../src/assets/fonts/NotoSansThin.ttf; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		84C8EFFF4EE37B7BCE39E24C /* libPods-Phoenix-PhoenixTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Phoenix-PhoenixTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A24198E5CBD54CF5A0DC9A8C /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ios/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
-		A5840882FF6B4CBAAD1FED9C /* libRNCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCamera.a; sourceTree = "<group>"; };
-		AAFCEF47598C43EEA34F878A /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSVG.a; sourceTree = "<group>"; };
+		AA0267B5D5393264053E64EC /* Pods-Phoenix-PhoenixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Phoenix-PhoenixTests.release.xcconfig"; path = "Target Support Files/Pods-Phoenix-PhoenixTests/Pods-Phoenix-PhoenixTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
-		B6DFE4F6F2AF44FC9D0C372E /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
-		B9D4829814EA4BAB95547152 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
-		BD42D1B2A7264B93ABD11D00 /* libRNKeychain.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNKeychain.a; sourceTree = "<group>"; };
-		BFCA47CDB31F4986B77292F6 /* libRNLocalize.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNLocalize.a; sourceTree = "<group>"; };
-		C6B80DB71B164CA6910BDCC6 /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCAsyncStorage.a; sourceTree = "<group>"; };
-		CD1428FF68E54B3896E66970 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
+		B22058530ACEC37AEA98E85B /* Pods-Phoenix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Phoenix.release.xcconfig"; path = "Target Support Files/Pods-Phoenix/Pods-Phoenix.release.xcconfig"; sourceTree = "<group>"; };
 		D50A95B03084411E85695488 /* BebasNeueThin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = BebasNeueThin.ttf; path = ../src/assets/fonts/BebasNeueThin.ttf; sourceTree = "<group>"; };
-		DE3FDB933D4C49E1A297C6C7 /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F41A8C9F2E1B44CC8CC5BBAA /* RNLocalize.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNLocalize.xcodeproj; path = "../node_modules/react-native-localize/ios/RNLocalize.xcodeproj"; sourceTree = "<group>"; };
-		F9DECC6766FE4ABCB5B2DDF9 /* libRNCSlider.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCSlider.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -538,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
+				35B2E635A79833A4B1E83C22 /* libPods-Phoenix-PhoenixTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,30 +426,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06C181AC24D6346600BDA033 /* libReact-RCTImage.a in Frameworks */,
+				06C181AA24D6345E00BDA033 /* libReact-RCTVibration.a in Frameworks */,
+				06C181A824D6344C00BDA033 /* libReact-RCTLinking.a in Frameworks */,
+				06C181A624D6343900BDA033 /* libReact-RCTSettings.a in Frameworks */,
+				06C181A424D6343200BDA033 /* libRNCAsyncStorage.a in Frameworks */,
+				06C181A224D6342900BDA033 /* libRNCPushNotificationIOS.a in Frameworks */,
+				06C181A024D6342100BDA033 /* libReact-RCTNetwork.a in Frameworks */,
+				06C1819E24D633D500BDA033 /* libFlipper-RSocket.a in Frameworks */,
+				06C1818E24D6336200BDA033 /* libReact-RCTAnimation.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
-				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
-				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
-				146834051AC3E58100842450 /* libReact.a in Frameworks */,
-				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
-				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
-				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
-				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
-				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
-				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
-				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
-				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
-				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				E065FB5B8C7244F48F33380C /* libRNGestureHandler.a in Frameworks */,
-				9E83DB2219A24D1E86E6BBED /* libRNKeychain.a in Frameworks */,
-				F805058258BA4CC2BE7D2D6A /* libRNLocalize.a in Frameworks */,
-				8046952F7D0F4071BA0746F7 /* libTouchID.a in Frameworks */,
-				32D766E0222840C3B02F6E52 /* libRNSVG.a in Frameworks */,
-				C10F74BBDC264969A900C61D /* libRNCSlider.a in Frameworks */,
-				3984153BF98D42068CEEF6ED /* libReactNativePermissions.a in Frameworks */,
-				06C68A16239F36D5001AF06B /* libRNCPushNotificationIOS.a in Frameworks */,
-				A26F61C584674C858E6E7A5F /* libRNCamera.a in Frameworks */,
-				073C939E956D4F0F8B8FA1A4 /* libRNCAsyncStorage.a in Frameworks */,
-				6E9C1588E5534F02A7221F4E /* libRNVersionNumber.a in Frameworks */,
+				94AED6D9C2DE40FF813621E9 /* libPods-Phoenix.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,31 +502,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0615CC78232453DA00F37F1E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0615CC7D232453DC00F37F1E /* libRNSVG.a */,
-				0615CC7F232453DC00F37F1E /* libRNSVG-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		0627574E2341391000AAA530 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				062757522341391100AAA530 /* libRNCSlider.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		06A98B84239D86BC0097C875 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				06A98B88239D86BC0097C875 /* libRNCPushNotificationIOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		06BE145D239CDA4200EA9673 /* PhoenixWatch */ = {
 			isa = PBXGroup;
 			children = (
@@ -693,15 +536,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		06C2EA0B234CDCD500D08E54 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				06C2EA10234CDCD600D08E54 /* libRNVersionNumber.a */,
-				06C2EA12234CDCD600D08E54 /* libRNVersionNumber-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		06C68A0D239F35BC001AF06B /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -719,20 +553,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		06EB6AA42342D7B0005E3203 /* Products */ = {
+		11E2C1DE808E10CECF4B9BF0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				06EB6AAD2342D7B0005E3203 /* libRNCamera.a */,
+				490F98EAB0C6C7DD69A02A96 /* Pods-Phoenix.debug.xcconfig */,
+				B22058530ACEC37AEA98E85B /* Pods-Phoenix.release.xcconfig */,
+				600178195116B26C9092E5A5 /* Pods-Phoenix-PhoenixTests.debug.xcconfig */,
+				AA0267B5D5393264053E64EC /* Pods-Phoenix-PhoenixTests.release.xcconfig */,
 			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		06EB6AAE2342D7B0005E3203 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				06EB6AB22342D7B0005E3203 /* libRNCAsyncStorage.a */,
-			);
-			name = Products;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		139105B71AF99BAD00B5F7CC /* Products */ = {
@@ -761,11 +590,13 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				06C181B424D63A5E00BDA033 /* Void.swift */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				06A98BA2239D8D6E0097C875 /* GoogleService-Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				06C181B124D639E200BDA033 /* Phoenix-Bridging-Header.h */,
 			);
 			name = mobile;
 			sourceTree = "<group>";
@@ -796,9 +627,23 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				06C181AD24D635CB00BDA033 /* SwiftUI.framework */,
+				06C181AB24D6346600BDA033 /* libReact-RCTImage.a */,
+				06C181A924D6345E00BDA033 /* libReact-RCTVibration.a */,
+				06C181A724D6344C00BDA033 /* libReact-RCTLinking.a */,
+				06C181A524D6343900BDA033 /* libReact-RCTSettings.a */,
+				06C181A324D6343200BDA033 /* libRNCAsyncStorage.a */,
+				06C181A124D6342900BDA033 /* libRNCPushNotificationIOS.a */,
+				06C1819F24D6342100BDA033 /* libReact-RCTNetwork.a */,
+				06C1819D24D633D500BDA033 /* libFlipper-RSocket.a */,
+				06C1818D24D6336200BDA033 /* libReact-RCTAnimation.a */,
+				06C1818B24D632D600BDA033 /* libReact-RCTBlob.a */,
+				06C1818924D6324300BDA033 /* libReact-RCTBlob.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
+				535433A517A006E81C7ADB16 /* libPods-Phoenix.a */,
+				84C8EFFF4EE37B7BCE39E24C /* libPods-Phoenix-PhoenixTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -806,58 +651,9 @@
 		36A32F4122F99F44000B740F /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				57254E1F3C3543F986D9EF8B /* libRNGestureHandler.a */,
-				BD42D1B2A7264B93ABD11D00 /* libRNKeychain.a */,
-				BFCA47CDB31F4986B77292F6 /* libRNLocalize.a */,
-				199DDEAAB7164980844BDFA1 /* libTouchID.a */,
-				61EC6C1E5E67429AAA1EC248 /* libRNGestureHandler-tvOS.a */,
-				624BB8ECC2E04DB0A5902645 /* libRNLocalize-tvOS.a */,
-				AAFCEF47598C43EEA34F878A /* libRNSVG.a */,
-				DE3FDB933D4C49E1A297C6C7 /* libRNSVG-tvOS.a */,
-				F9DECC6766FE4ABCB5B2DDF9 /* libRNCSlider.a */,
 				17B2C7C45EE84F83838EC8DB /* libReactNativePermissions.a */,
-				A5840882FF6B4CBAAD1FED9C /* libRNCamera.a */,
-				C6B80DB71B164CA6910BDCC6 /* libRNCAsyncStorage.a */,
-				0BB9CBA995534AA6BEF8FB97 /* libRNVersionNumber.a */,
-				1328A3827230435088115FE0 /* libRNVersionNumber-tvOS.a */,
-				3739409551C84189A413D1C7 /* libRNCPushNotificationIOS.a */,
 			);
 			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		36A32F6F22F99F49000B740F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				36A32F8022F99F4A000B740F /* libRNKeychain.a */,
-				36A32F8222F99F4A000B740F /* libRNKeychain.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		36A32F7122F99F49000B740F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				36A32F8B22F99F4A000B740F /* libTouchID.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		36A32F7322F99F49000B740F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				36A32F7A22F99F4A000B740F /* libRNGestureHandler.a */,
-				36A32F7C22F99F4A000B740F /* libRNGestureHandler-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		36A32F7522F99F49000B740F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				36A32F8622F99F4A000B740F /* libRNLocalize.a */,
-				36A32F8822F99F4A000B740F /* libRNLocalize-tvOS.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		5BDC9A2041A2406E91CDC6DD /* Resources */ = {
@@ -908,17 +704,7 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				B6DFE4F6F2AF44FC9D0C372E /* RNGestureHandler.xcodeproj */,
-				3BD74A520DBD4CD6A3F89A89 /* RNKeychain.xcodeproj */,
-				F41A8C9F2E1B44CC8CC5BBAA /* RNLocalize.xcodeproj */,
-				3F6C3FA8B8264950B588BB10 /* TouchID.xcodeproj */,
-				CD1428FF68E54B3896E66970 /* RNSVG.xcodeproj */,
-				5EFCF335626540B5943618C9 /* RNCSlider.xcodeproj */,
 				A24198E5CBD54CF5A0DC9A8C /* ReactNativePermissions.xcodeproj */,
-				B9D4829814EA4BAB95547152 /* RNCamera.xcodeproj */,
-				2C2E8083624A4CFCAD5FF2E8 /* RNCAsyncStorage.xcodeproj */,
-				33D3418BCFD4408ABBB10084 /* RNVersionNumber.xcodeproj */,
-				35368DEE432D42C5AF5B790B /* PushNotificationIOS.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -945,6 +731,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				5BDC9A2041A2406E91CDC6DD /* Resources */,
 				36A32F4122F99F44000B740F /* Recovered References */,
+				11E2C1DE808E10CECF4B9BF0 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -976,9 +763,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "PhoenixTests" */;
 			buildPhases = (
+				BC1F663A2F4B3177F52B963C /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				4F8D5DBDB35004764F2C78E4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -994,11 +783,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Phoenix" */;
 			buildPhases = (
+				CFDE5D02902D19A6E493834B /* [CP] Check Pods Manifest.lock */,
+				06C181B624D63B6D00BDA033 /* Start packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				06C4D6C4239CA9F400D94AC2 /* Embed Watch Content */,
+				E7C178C0A07646AA3D495621 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1016,7 +808,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 940;
+				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = "Burst Apps Team";
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -1026,6 +818,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = P3QNZ4665B;
+						LastSwiftMigration = 1160;
 					};
 				};
 			};
@@ -1041,10 +834,6 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = 06A98B84239D86BC0097C875 /* Products */;
-					ProjectRef = 35368DEE432D42C5AF5B790B /* PushNotificationIOS.xcodeproj */;
-				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -1101,42 +890,6 @@
 					ProductGroup = 06EB6AA22342D7B0005E3203 /* Products */;
 					ProjectRef = A24198E5CBD54CF5A0DC9A8C /* ReactNativePermissions.xcodeproj */;
 				},
-				{
-					ProductGroup = 06EB6AA42342D7B0005E3203 /* Products */;
-					ProjectRef = B9D4829814EA4BAB95547152 /* RNCamera.xcodeproj */;
-				},
-				{
-					ProductGroup = 06EB6AAE2342D7B0005E3203 /* Products */;
-					ProjectRef = 2C2E8083624A4CFCAD5FF2E8 /* RNCAsyncStorage.xcodeproj */;
-				},
-				{
-					ProductGroup = 0627574E2341391000AAA530 /* Products */;
-					ProjectRef = 5EFCF335626540B5943618C9 /* RNCSlider.xcodeproj */;
-				},
-				{
-					ProductGroup = 36A32F7322F99F49000B740F /* Products */;
-					ProjectRef = B6DFE4F6F2AF44FC9D0C372E /* RNGestureHandler.xcodeproj */;
-				},
-				{
-					ProductGroup = 36A32F6F22F99F49000B740F /* Products */;
-					ProjectRef = 3BD74A520DBD4CD6A3F89A89 /* RNKeychain.xcodeproj */;
-				},
-				{
-					ProductGroup = 36A32F7522F99F49000B740F /* Products */;
-					ProjectRef = F41A8C9F2E1B44CC8CC5BBAA /* RNLocalize.xcodeproj */;
-				},
-				{
-					ProductGroup = 0615CC78232453DA00F37F1E /* Products */;
-					ProjectRef = CD1428FF68E54B3896E66970 /* RNSVG.xcodeproj */;
-				},
-				{
-					ProductGroup = 06C2EA0B234CDCD500D08E54 /* Products */;
-					ProjectRef = 33D3418BCFD4408ABBB10084 /* RNVersionNumber.xcodeproj */;
-				},
-				{
-					ProductGroup = 36A32F7122F99F49000B740F /* Products */;
-					ProjectRef = 3F6C3FA8B8264950B588BB10 /* TouchID.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1182,48 +935,6 @@
 			remoteRef = 00C302E31ABCB9EE00DB3ED1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0615CC7D232453DC00F37F1E /* libRNSVG.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNSVG.a;
-			remoteRef = 0615CC7C232453DC00F37F1E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0615CC7F232453DC00F37F1E /* libRNSVG-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRNSVG-tvOS.a";
-			remoteRef = 0615CC7E232453DC00F37F1E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		062757522341391100AAA530 /* libRNCSlider.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNCSlider.a;
-			remoteRef = 062757512341391100AAA530 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		06A98B88239D86BC0097C875 /* libRNCPushNotificationIOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNCPushNotificationIOS.a;
-			remoteRef = 06A98B87239D86BC0097C875 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		06C2EA10234CDCD600D08E54 /* libRNVersionNumber.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNVersionNumber.a;
-			remoteRef = 06C2EA0F234CDCD600D08E54 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		06C2EA12234CDCD600D08E54 /* libRNVersionNumber-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRNVersionNumber-tvOS.a";
-			remoteRef = 06C2EA11234CDCD600D08E54 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		06C68A12239F35BC001AF06B /* libRCTPushNotification.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1243,20 +954,6 @@
 			fileType = archive.ar;
 			path = libReactNativePermissions.a;
 			remoteRef = 06EB6AA92342D7B0005E3203 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		06EB6AAD2342D7B0005E3203 /* libRNCamera.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNCamera.a;
-			remoteRef = 06EB6AAC2342D7B0005E3203 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		06EB6AB22342D7B0005E3203 /* libRNCAsyncStorage.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNCAsyncStorage.a;
-			remoteRef = 06EB6AB12342D7B0005E3203 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		139105C11AF99BAD00B5F7CC /* libRCTSettings.a */ = {
@@ -1369,55 +1066,6 @@
 			fileType = archive.ar;
 			path = "libjsiexecutor-tvOS.a";
 			remoteRef = 36A32F6D22F99F47000B740F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		36A32F7A22F99F4A000B740F /* libRNGestureHandler.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNGestureHandler.a;
-			remoteRef = 36A32F7922F99F4A000B740F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		36A32F7C22F99F4A000B740F /* libRNGestureHandler-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRNGestureHandler-tvOS.a";
-			remoteRef = 36A32F7B22F99F4A000B740F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		36A32F8022F99F4A000B740F /* libRNKeychain.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNKeychain.a;
-			remoteRef = 36A32F7F22F99F4A000B740F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		36A32F8222F99F4A000B740F /* libRNKeychain.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNKeychain.a;
-			remoteRef = 36A32F8122F99F4A000B740F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		36A32F8622F99F4A000B740F /* libRNLocalize.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNLocalize.a;
-			remoteRef = 36A32F8522F99F4A000B740F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		36A32F8822F99F4A000B740F /* libRNLocalize-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRNLocalize-tvOS.a";
-			remoteRef = 36A32F8722F99F4A000B740F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		36A32F8B22F99F4A000B740F /* libTouchID.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libTouchID.a;
-			remoteRef = 36A32F8A22F99F4A000B740F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */ = {
@@ -1576,6 +1224,104 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
+		06C181B624D63B6D00BDA033 /* Start packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\nif nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\nif ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\necho \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\nexit 2\nfi\nelse\nopen \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\nfi\nfi\n";
+		};
+		4F8D5DBDB35004764F2C78E4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Phoenix-PhoenixTests/Pods-Phoenix-PhoenixTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Phoenix-PhoenixTests/Pods-Phoenix-PhoenixTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC1F663A2F4B3177F52B963C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Phoenix-PhoenixTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CFDE5D02902D19A6E493834B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Phoenix-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7C178C0A07646AA3D495621 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Phoenix/Pods-Phoenix-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Phoenix/Pods-Phoenix-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1593,6 +1339,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				06C181B524D63A5E00BDA033 /* Void.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1629,7 +1376,9 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 600178195116B26C9092E5A5 /* Pods-Phoenix-PhoenixTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = P3QNZ4665B;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1638,36 +1387,13 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
-					"$(SRCROOT)/../node_modules/react-native-localize/ios",
-					"$(SRCROOT)/../node_modules/react-native-touch-id",
-					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)/../node_modules/@react-native-community/slider/ios",
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
-					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
-					"$(SRCROOT)/../node_modules/@react-native-community/push-notification-ios/ios",
 				);
 				INFOPLIST_FILE = mobileTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1680,42 +1406,21 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA0267B5D5393264053E64EC /* Pods-Phoenix-PhoenixTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 7BH8AJK3Z7;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
-					"$(SRCROOT)/../node_modules/react-native-localize/ios",
-					"$(SRCROOT)/../node_modules/react-native-touch-id",
-					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)/../node_modules/@react-native-community/slider/ios",
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
-					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
-					"$(SRCROOT)/../node_modules/@react-native-community/push-notification-ios/ios",
 				);
 				INFOPLIST_FILE = mobileTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1728,28 +1433,71 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 490F98EAB0C6C7DD69A02A96 /* Pods-Phoenix.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Phoenix.entitlements;
 				CURRENT_PROJECT_VERSION = 9;
-				DEAD_CODE_STRIPPING = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = P3QNZ4665B;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
-					"$(SRCROOT)/../node_modules/react-native-localize/ios",
-					"$(SRCROOT)/../node_modules/react-native-touch-id",
-					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)/../node_modules/@react-native-community/slider/ios",
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
-					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
-					"$(SRCROOT)/../node_modules/@react-native-community/push-notification-ios/ios",
 				);
 				INFOPLIST_FILE = mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_VERIFY_BITCODE = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaAsyncSocket\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Flipper\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Flipper-DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Flipper-Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Flipper-Glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Flipper-PeerTalk\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Flipper-RSocket\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FlipperKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNKeychain\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNLocalize\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactNativeNavigation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TouchID\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-camera\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-slider\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
+					"\"${PODS_ROOT}/CocoaLibEvent/lib\"",
+					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+				);
 				MARKETING_VERSION = 1.2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1758,33 +1506,72 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.burstcoin.phoenix;
 				PRODUCT_NAME = Phoenix;
+				SWIFT_OBJC_BRIDGING_HEADER = "Phoenix-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B22058530ACEC37AEA98E85B /* Pods-Phoenix.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Phoenix.entitlements;
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = P3QNZ4665B;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
-					"$(SRCROOT)/../node_modules/react-native-localize/ios",
-					"$(SRCROOT)/../node_modules/react-native-touch-id",
-					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)/../node_modules/@react-native-community/slider/ios",
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
-					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
-					"$(SRCROOT)/../node_modules/@react-native-community/push-notification-ios/ios",
 				);
 				INFOPLIST_FILE = mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_VERIFY_BITCODE = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaAsyncSocket\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNKeychain\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNLocalize\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactNativeNavigation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TouchID\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-camera\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-slider\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-version-number\"",
+					"\"${PODS_ROOT}/CocoaLibEvent/lib\"",
+					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+				);
 				MARKETING_VERSION = 1.2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1793,6 +1580,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.burstcoin.phoenix;
 				PRODUCT_NAME = Phoenix;
+				SWIFT_OBJC_BRIDGING_HEADER = "Phoenix-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1828,7 +1617,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = P3QNZ4665B;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1898,6 +1687,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.burstcoin.phoenix;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = NO;
 			};
 			name = Release;

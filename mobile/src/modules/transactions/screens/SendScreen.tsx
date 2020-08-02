@@ -145,10 +145,10 @@ class Send extends React.PureComponent<Props, State> {
   }
   componentWillUnmount () {
     if (this.focusListener) {
-      this.focusListener.remove();
+      // this.focusListener.remove();
     }
     if (this.blurListener) {
-      this.blurListener.remove();
+      // this.blurListener.remove();
     }
   }
 
@@ -161,6 +161,7 @@ class Send extends React.PureComponent<Props, State> {
       <Screen>
         <FullHeightView>
           <View>
+            <HeaderTitle>{i18n.t(transactions.screens.send.title)}</HeaderTitle>
             <SendBurstForm
               accounts={accounts}
               loading={isLoading}
@@ -195,4 +196,4 @@ function mapStateToProps (state: ApplicationState) {
   };
 }
 
-export const SendScreen = connect(mapStateToProps)(withNavigation(Send));
+export const SendScreen = connect(mapStateToProps)(Send);

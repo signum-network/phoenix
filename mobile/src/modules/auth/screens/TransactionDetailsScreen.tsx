@@ -1,7 +1,8 @@
 import { Account } from '@burstjs/core';
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { Alert, Clipboard, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { FlatList, NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { Alert, Clipboard, FlatList, StyleSheet, TouchableOpacity, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Text } from '../../../core/components/base/Text';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
@@ -11,15 +12,21 @@ import { FullHeightView } from '../../../core/layout/FullHeightView';
 import { Screen } from '../../../core/layout/Screen';
 import { ApplicationState } from '../../../core/store/initialState';
 import { Colors } from '../../../core/theme/colors';
+import { core } from '../../../core/translations';
 import { PriceInfoReduxState } from '../../price-api/store/reducer';
+import { RootStackParamList } from '../navigation/mainStack';
 import { auth } from '../translations';
+import { actionIcons } from '../../../assets/icons';
+
+type TransactionDetailsRouteProps = RouteProp<RootStackParamList, 'TransactionDetails'>;
+type TransactionDetailsNavProp = StackNavigationProp<RootStackParamList, 'TransactionDetails'>;
 
 interface Props extends InjectedReduxProps {
   accounts: Account[];
   priceApi: PriceInfoReduxState;
+  route: TransactionDetailsRouteProps;
+  navigation: TransactionDetailsNavProp;
 }
-
-type TProps = NavigationInjectedProps & Props;
 
 const styles = StyleSheet.create({
   copyIcon: {
@@ -36,22 +43,12 @@ const styles = StyleSheet.create({
 
 const Item = ({ item, onPress }) => (
   <TouchableOpacity onPress={onPress} style={styles.listItem}>
-    <Text color={Colors.WHITE} bebasFont>{item.key}</Text>
-    <Text color={Colors.WHITE} bold>{item.value.toString()}</Text>
+    <Text color={Colors.WHITE} bold bebasFont>{item.key}</Text>
+    <Text color={Colors.WHITE}>{item.value.toString()}</Text>
   </TouchableOpacity>
 );
 
-class TransactionDetails extends React.PureComponent<TProps> {
-
-  static navigationOptions = () => {
-    return {
-      headerTitle: (
-        <HeaderTitle>
-          {i18n.t(auth.transactionDetails.headerTitle)}
-        </HeaderTitle>
-      )
-    };
-  }
+class TransactionDetails extends React.PureComponent<Props> {
 
   copyItem = (val) => {
     Clipboard.setString(val);
@@ -69,7 +66,7 @@ class TransactionDetails extends React.PureComponent<TProps> {
   }
 
   render () {
-    const transaction = this.props.navigation.getParam('transaction');
+    const transaction = this.props.route.params.transaction;
     const data = Object.keys(transaction).map((key) => {
       return {
         key,
@@ -79,8 +76,21 @@ class TransactionDetails extends React.PureComponent<TProps> {
 
     return (
       <Screen style={{ backgroundColor: Colors.BLUE_DARKER }}>
-        <FullHeightView>
-          <View>
+        <FullHeightView withoutPaddings>
+          <View style={{ flexDirection: 'row' }}>
+            <TouchableOpacity
+              style={{ flexDirection: 'row', position: 'absolute', zIndex: 1, left: 10, top: 10 }}
+              onPress={this.props.navigation.goBack}>
+              <Image source={actionIcons.chevronLeft} style={{width:30, height:30}} />
+              <Text color={Colors.WHITE}>{i18n.t(core.actions.back)}</Text>
+            </TouchableOpacity>
+            <View style={{ flex: 1, alignItems: 'center', margin: 10 }}>
+              <HeaderTitle>
+                {i18n.t(auth.transactionDetails.headerTitle)}
+              </HeaderTitle>
+            </View>
+          </View>
+          <View style={{padding:10}}>
             <FlatList
               data={data}
               renderItem={this.renderItem}
@@ -99,4 +109,4 @@ function mapStateToProps (state: ApplicationState) {
   };
 }
 
-export const TransactionDetailsScreen = connect(mapStateToProps)(withNavigation(TransactionDetails));
+export const TransactionDetailsScreen = connect(mapStateToProps)(TransactionDetails);

@@ -81,7 +81,8 @@
       "next": "Next",
       "ok": "OK",
       "save": "Save",
-      "submit": "Submit"
+      "submit": "Submit",
+      "back": "Back"
     },
     "currency": {
       "BTC": {

@@ -71,9 +71,6 @@ interface State {
 }
 
 class ViewQRCode extends React.PureComponent<Props, State> {
-  static navigationOptions = {
-    headerTitle: <HeaderTitle>{i18n.t(transactions.screens.receive.title)}</HeaderTitle>
-  };
 
   state = {
     isPINModalVisible: false
@@ -135,6 +132,7 @@ class ViewQRCode extends React.PureComponent<Props, State> {
     return (
       <Screen>
         <FullHeightView>
+          <HeaderTitle>{i18n.t(transactions.screens.receive.title)}</HeaderTitle>
           <View style={styles.details}>
             {imageUrl &&
               <View style={[styles.row, styles.qrImage, styles.imageWrapper]}>

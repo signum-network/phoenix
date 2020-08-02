@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  SafeAreaView,
   StatusBar,
   StatusBarStyle,
   StyleSheet
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '../theme/colors';
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
 
 const styles = StyleSheet.create({
   area: {
-    backgroundColor: Colors.GREY_LIGHT
+    backgroundColor: Colors.BLUE_DARKER
   }
 });
 

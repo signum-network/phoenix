@@ -1,8 +1,6 @@
 import { Account, Transaction } from '@burstjs/core';
 import React from 'react';
-import { Alert, Clipboard, Image, StyleSheet, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { Alert, Clipboard, Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { actionIcons } from '../../../assets/icons';
 import { Button as BButton, ButtonSizes, ButtonThemes } from '../../../core/components/base/Button';
@@ -19,13 +17,22 @@ import { AccountDetailsList } from '../components/details/AccountDetailsList';
 import { updateAccountTransactions } from '../store/actions';
 import { auth } from '../translations';
 import { routes } from '../../../core/navigation/routes';
+import { RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../navigation/mainStack';
+import { Text } from '../../../core/components/base/Text';
+import { core } from '../../../core/translations';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { FontSizes } from '../../../core/theme/sizes';
+
+type AccountDetailsRouteProps = RouteProp<RootStackParamList, 'AccountDetails'>;
+type AccountDetailsNavProp = StackNavigationProp<RootStackParamList, 'AccountDetails'>;
 
 interface Props extends InjectedReduxProps {
   accounts: Account[];
   priceApi: PriceInfoReduxState;
+  route: AccountDetailsRouteProps;
+  navigation: AccountDetailsNavProp;
 }
-
-type TProps = NavigationInjectedProps & Props;
 
 const styles = StyleSheet.create({
   copyIcon: {
@@ -35,45 +42,15 @@ const styles = StyleSheet.create({
   }
 });
 
-class AccountDetails extends React.PureComponent<TProps> {
+class AccountDetails extends React.PureComponent<Props> {
 
-  static navigationOptions = ({ navigation }: NavigationInjectedProps) => {
-    const { params = {} } = navigation.state;
-
-    const handleCopy = () => {
-      Clipboard.setString(params.accountRS);
-      Alert.alert(i18n.t(auth.accountDetails.copiedSuccessfully));
-    };
-
-    return {
-      headerTitle: (
-        <HeaderTitle>
-          {params.accountRS}
-        </HeaderTitle>
-
-      ),
-
-      // This makes no sense because BButton _is_ a TouchableOpacity, but it works
-      headerRight: isIOS ?
-        (
-          <TouchableOpacity onPress={handleCopy}>
-            <Image style={styles.copyIcon} source={actionIcons.copy} />
-          </TouchableOpacity>
-        ) :
-        (
-          <BButton theme={ButtonThemes.ACCENT} size={ButtonSizes.SMALL} onPress={handleCopy}>
-            <Image style={styles.copyIcon} source={actionIcons.copy} />
-          </BButton>
-        )
-    };
-  }
-
-  componentDidMount () {
+  constructor (props) {
+    super(props);
     this.updateTransactions();
   }
 
   getAccount = () => {
-    const accountRS = this.props.navigation.getParam('accountRS');
+    const accountRS = this.props.route.params.accountRS;
     return this.props.accounts.find((acc) => acc.accountRS === accountRS);
   }
 
@@ -92,8 +69,16 @@ class AccountDetails extends React.PureComponent<TProps> {
     })
   }
 
+  handleCopy = () => {
+    const { route } = this.props;
+    if (route.params.accountRS) {
+      Clipboard.setString(route.params.accountRS);
+      Alert.alert(i18n.t(auth.accountDetails.copiedSuccessfully));
+    }
+  }
+
   render () {
-    const { priceApi } = this.props;
+    const { priceApi, route } = this.props;
     const account = this.getAccount();
     if (!account) {
       return null;
@@ -102,6 +87,33 @@ class AccountDetails extends React.PureComponent<TProps> {
     return (
       <Screen style={{ backgroundColor: Colors.BLUE_DARKER }}>
         <FullHeightView withoutPaddings>
+          <View style={{ flexDirection: 'row' }}>
+            <TouchableOpacity
+              style={{ flexDirection: 'row', position: 'absolute', zIndex: 3, left: 10, top: 10 }}
+              onPress={this.props.navigation.goBack}>
+              <Image source={actionIcons.chevronLeft} style={{width:30, height:30}} />
+              <Text color={Colors.WHITE}>{i18n.t(core.actions.back)}</Text>
+            </TouchableOpacity>
+            <View style={{ flex: 1, alignItems: 'center', margin: 10 }}>
+              <HeaderTitle>
+                {route.params.accountRS || 'Account Details'}
+              </HeaderTitle>
+            </View>
+            <View style={{ position: 'absolute',right: 10, top: 0 }}>
+              {isIOS ?
+                (
+                  <TouchableOpacity onPress={this.handleCopy}>
+                    <Image style={styles.copyIcon} source={actionIcons.copy} />
+                  </TouchableOpacity>
+                ) :
+                (
+                  <BButton theme={ButtonThemes.ACCENT} size={ButtonSizes.SMALL} onPress={handleCopy}>
+                    <Image style={styles.copyIcon} source={actionIcons.copy} />
+                  </BButton>
+                )
+              }
+            </View>
+          </View>
           <View>
             <AccountDetailsList
                 account={account}
@@ -122,4 +134,4 @@ function mapStateToProps (state: ApplicationState) {
   };
 }
 
-export const AccountDetailsScreen = connect(mapStateToProps)(withNavigation(AccountDetails));
+export const AccountDetailsScreen = connect(mapStateToProps)(AccountDetails);

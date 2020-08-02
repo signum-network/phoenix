@@ -1,0 +1,26 @@
+{
+  "name": "RNPermissions",
+  "dependencies": {
+    "React": [
+
+    ]
+  },
+  "version": "2.1.5",
+  "license": "MIT",
+  "summary": "An unified permissions API for React Native on iOS and Android",
+  "authors": {
+    "name": "Mathieu Acthernoene",
+    "email": "zoontek@gmail.com"
+  },
+  "homepage": "https://github.com/react-native-community/react-native-permissions#readme",
+  "platforms": {
+    "ios": "9.0",
+    "tvos": "11.0"
+  },
+  "requires_arc": true,
+  "source": {
+    "git": "git+https://github.com/react-native-community/react-native-permissions.git",
+    "tag": "2.1.5"
+  },
+  "source_files": "ios/*.{h,m}"
+}
