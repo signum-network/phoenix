@@ -107,7 +107,7 @@ class AccountDetails extends React.PureComponent<Props> {
                   </TouchableOpacity>
                 ) :
                 (
-                  <BButton theme={ButtonThemes.ACCENT} size={ButtonSizes.SMALL} onPress={handleCopy}>
+                  <BButton theme={ButtonThemes.ACCENT} size={ButtonSizes.SMALL} onPress={this.handleCopy}>
                     <Image style={styles.copyIcon} source={actionIcons.copy} />
                   </BButton>
                 )
