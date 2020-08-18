@@ -3,7 +3,7 @@ import { defaultSettings } from '../../environment';
 import { AppSettings, BurstSettings, Reducer } from '../../interfaces';
 import { createReducers } from '../../utils/store';
 import { actionTypes } from './actionTypes';
-
+1
 export interface AppReduxState {
   isAppLoaded: boolean;
   appSettings: AppSettings;
@@ -61,10 +61,22 @@ const setAppSettings: Reducer<AppReduxState, AppSettings> = (state, action) => {
   };
 };
 
+const setNode: Reducer<AppReduxState, string> = (state, action) => {
+  console.log('setNode', action);
+  return {
+    ...state,
+    burstService: new BurstService({
+      nodeHost: action.payload,
+      apiRootUrl: state.burstService.settings.apiRootUrl
+    })
+  };
+};
+
 const reducers = {
   [actionTypes.appLoaded]: appLoaded,
   [actionTypes.appSettingsLoaded]: appSettingsLoaded,
-  [actionTypes.setAppSettings]: setAppSettings
+  [actionTypes.setAppSettings]: setAppSettings,
+  [actionTypes.setNode]: setNode
 };
 
 export const app = createReducers<AppReduxState>(appState(), reducers);

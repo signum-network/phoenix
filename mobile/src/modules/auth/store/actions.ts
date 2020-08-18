@@ -101,6 +101,7 @@ export const hydrateAccount = createActionFn<Account, Promise<Account>>(
   async (dispatch, getState, account) => {
     const state = getState();
     const { nodeHost, apiRootUrl } = state.app.burstService.settings;
+    console.log(nodeHost);
 
     // TODO: unify network request actions, add proper error handling and so on
     const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));

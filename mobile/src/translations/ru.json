@@ -179,6 +179,7 @@
         "confirmReset": "Вы уверены? Вы не можете отменить это действие.",
         "confirmErase": "Удалить и сбросить",
         "changeLanguage": "Выбрать язык",
+        "selectNode": "Select Node",
         "copyright": "Copyright © Burst Apps Team"
       }
     }

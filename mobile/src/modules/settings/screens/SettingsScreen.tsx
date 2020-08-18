@@ -4,6 +4,7 @@ import { Modal, SafeAreaView, StyleSheet, View } from 'react-native';
 import VersionNumber from 'react-native-version-number';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
+import { BSelect } from '../../../core/components/base/BSelect';
 import { Button, ButtonThemes } from '../../../core/components/base/Button';
 import { Text } from '../../../core/components/base/Text';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
@@ -19,6 +20,7 @@ import { FontSizes, Sizes } from '../../../core/theme/sizes';
 import { resetAuthState } from '../../auth/store/actions';
 import { AuthReduxState } from '../../auth/store/reducer';
 import { settings } from '../translations';
+import { saveNode } from '../../../core/store/app/actions';
 
 interface IProps extends InjectedReduxProps {
   auth: AuthReduxState,
@@ -49,7 +51,8 @@ const styles = StyleSheet.create({
 class Settings extends React.PureComponent<Props> {
 
   state = {
-    erasePromptVisible: false
+    erasePromptVisible: false,
+    selectedNode: this.props.app.burstService.settings.nodeHost
   };
 
   toggleConfirmDeletePrompt = () => {
@@ -71,21 +74,44 @@ class Settings extends React.PureComponent<Props> {
     });
   }
 
+  handleNodeSelect = (selectedNode: string) => {
+    this.setState({
+      selectedNode
+    });
+    this.props.dispatch(saveNode(selectedNode));
+    this.forceUpdate();
+  }
+
   render () {
+    const nodes = [
+      'https://wallet.burst-alliance.org:8125',
+      'https://wallet1.burst-team.us:2083',
+      'https://wallet.burstcoin.ro:443',
+      'https://wallet2.burstcoin.ro:443',
+      'https://testnet-2.burst-alliance.org:6876'
+    ];
+
+    const { selectedNode } = this.state;
+
     return (
       <Screen>
         <FullHeightView>
 
           <HeaderTitle>{i18n.t(settings.screens.settings.title)}</HeaderTitle>
           <View style={styles.container}>
-            {/* <BSelect
+            <BSelect
                   // @ts-ignore bad .d.ts
-                  value={currentLocale.locale}
-                  items={this.getLocales()}
-                  onChange={this.handleLanguageChange}
-                  title={i18n.t(settings.screens.settings.changeLanguage)}
-                  placeholder={i18n.t(settings.screens.settings.changeLanguage)}
-            /> */}
+                  value={selectedNode}
+                  items={nodes.map((node) => {
+                    return {
+                      label: node,
+                      value: node
+                    };
+                  })}
+                  onChange={this.handleNodeSelect}
+                  title={i18n.t(settings.screens.settings.selectNode)}
+                  placeholder={i18n.t(settings.screens.settings.selectNode)}
+            />
 
             <Button onPress={this.toggleConfirmDeletePrompt}>
               {i18n.t(settings.screens.settings.erase)}
@@ -136,7 +162,8 @@ class Settings extends React.PureComponent<Props> {
 
 function mapStateToProps (state: ApplicationState) {
   return {
-    auth: state.auth
+    auth: state.auth,
+    app: state.app
   };
 }
 
