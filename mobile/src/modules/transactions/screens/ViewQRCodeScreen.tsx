@@ -1,7 +1,7 @@
 import { convertNQTStringToNumber } from '@burstjs/util';
 import React from 'react';
 import { Clipboard, Image, Share, StyleSheet, View } from 'react-native';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Button } from '../../../core/components/base/Button';
 import { Text, TextAlign } from '../../../core/components/base/Text';

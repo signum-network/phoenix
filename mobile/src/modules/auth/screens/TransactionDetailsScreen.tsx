@@ -2,8 +2,9 @@ import { Account } from '@burstjs/core';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { Alert, Clipboard, FlatList, StyleSheet, TouchableOpacity, View, Image } from 'react-native';
+import { Alert, Clipboard, FlatList, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
+import { actionIcons } from '../../../assets/icons';
 import { Text } from '../../../core/components/base/Text';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { i18n } from '../../../core/i18n';
@@ -16,7 +17,6 @@ import { core } from '../../../core/translations';
 import { PriceInfoReduxState } from '../../price-api/store/reducer';
 import { RootStackParamList } from '../navigation/mainStack';
 import { auth } from '../translations';
-import { actionIcons } from '../../../assets/icons';
 
 type TransactionDetailsRouteProps = RouteProp<RootStackParamList, 'TransactionDetails'>;
 type TransactionDetailsNavProp = StackNavigationProp<RootStackParamList, 'TransactionDetails'>;
@@ -67,12 +67,16 @@ class TransactionDetails extends React.PureComponent<Props> {
 
   render () {
     const transaction = this.props.route.params.transaction;
-    const data = Object.keys(transaction).map((key) => {
-      return {
-        key,
-        value: transaction[key].toString()
-      };
-    });
+    const data = Object.keys(transaction)
+      .filter((key) => {
+        return typeof transaction[key] !== 'object'
+      })
+      .map((key) => {
+        return {
+          key,
+          value: transaction[key].toString()
+        };
+      });
 
     return (
       <Screen style={{ backgroundColor: Colors.BLUE_DARKER }}>
@@ -81,7 +85,7 @@ class TransactionDetails extends React.PureComponent<Props> {
             <TouchableOpacity
               style={{ flexDirection: 'row', position: 'absolute', zIndex: 1, left: 10, top: 10 }}
               onPress={this.props.navigation.goBack}>
-              <Image source={actionIcons.chevronLeft} style={{width:30, height:30}} />
+              <Image source={actionIcons.chevronLeft} style={{ width: 30, height: 30 }} />
               <Text color={Colors.WHITE}>{i18n.t(core.actions.back)}</Text>
             </TouchableOpacity>
             <View style={{ flex: 1, alignItems: 'center', margin: 10 }}>
@@ -90,7 +94,7 @@ class TransactionDetails extends React.PureComponent<Props> {
               </HeaderTitle>
             </View>
           </View>
-          <View style={{padding:10}}>
+          <View style={{ padding: 10 }}>
             <FlatList
               data={data}
               renderItem={this.renderItem}

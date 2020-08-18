@@ -1,10 +1,10 @@
 // @ts-ignore
-import 'react-native-gesture-handler';
 import React from 'react';
 import { Image, Linking, Platform, View } from 'react-native';
+import 'react-native-gesture-handler';
 import { addEventListener, removeEventListener } from 'react-native-localize';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { i18n } from './src/core/i18n';
@@ -14,26 +14,26 @@ import { routes } from './src/core/navigation/routes';
 import { getStore } from './src/core/store/store';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 // @ts-ignore
 import * as PushNotifications from 'react-native-push-notification';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { tabbarIcons } from './src/assets/icons';
 import { Colors } from './src/core/theme/colors';
 import { core } from './src/core/translations';
-import { HomeScreen } from './src/modules/auth/screens/HomeScreen';
-import { settings } from './src/modules/settings/translations';
-import { SendScreen } from './src/modules/transactions/screens/SendScreen';
-import { ReceiveScreen } from './src/modules/transactions/screens/ReceiveScreen';
-import { transactions } from './src/modules/transactions/translations';
-import { SettingsScreen } from './src/modules/settings/screens/SettingsScreen';
-import { createStackNavigator } from '@react-navigation/stack';
+import { AccountDetailsScreen } from './src/modules/auth/screens/AccountDetailsScreen';
 import { AddAccountScreen } from './src/modules/auth/screens/AddAccountScreen';
 import { CreateAccountScreen } from './src/modules/auth/screens/CreateAccountScreen';
+import { HomeScreen } from './src/modules/auth/screens/HomeScreen';
 import { ImportAccountScreen } from './src/modules/auth/screens/ImportAccountScreen';
-import { AccountDetailsScreen } from './src/modules/auth/screens/AccountDetailsScreen';
 import { TransactionDetailsScreen } from './src/modules/auth/screens/TransactionDetailsScreen';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SettingsScreen } from './src/modules/settings/screens/SettingsScreen';
+import { settings } from './src/modules/settings/translations';
+import { ReceiveScreen } from './src/modules/transactions/screens/ReceiveScreen';
 import { ScanQRCodeScreen } from './src/modules/transactions/screens/ScanQRCodeScreen';
+import { SendScreen } from './src/modules/transactions/screens/SendScreen';
 import { ViewQRCodeScreen } from './src/modules/transactions/screens/ViewQRCodeScreen';
+import { transactions } from './src/modules/transactions/translations';
 
 const store: Store = getStore();
 
@@ -56,7 +56,7 @@ const rootTabStackConfig = {
   }
 };
 
-export const navigationRef = React.createRef();
+export const navigationRef: React.RefObject<NavigationContainerRef> = React.createRef();
 
 export default class App extends React.Component<{}, AppState> {
 
@@ -132,15 +132,13 @@ export default class App extends React.Component<{}, AppState> {
 
     addEventListener('change', this.handleLanguagesChange);
 
-    if (Platform.OS === 'android') {
-      Linking.getInitialURL().then((url) => {
-        if (url) {
-          this.navigate(url);
-        }
-      });
-    } else {
-      Linking.addEventListener('url', this.handleOpenURL);
-    }
+    Linking.getInitialURL().then((url) => {
+      console.log('deep link clicked!', url);
+      if (url) {
+        this.navigate(url);
+      }
+    });
+    Linking.addEventListener('url', this.handleOpenURL);
   }
 
   componentWillUnmount (): void {
@@ -164,8 +162,8 @@ export default class App extends React.Component<{}, AppState> {
 
     // user clicked on a deep link to pay someone else burst
     if (navigationRef && routeName.indexOf('requestBurst') > -1) {
-      navigationRef.current.navigate(routes.home);
-      navigationRef.current.navigate(routes.send, { url });
+      navigationRef.current?.navigate(routes.send, { url });
+      navigationRef.current?.setParams({ url });
     }
   }
 
@@ -230,7 +228,7 @@ export default class App extends React.Component<{}, AppState> {
                         1 : .5, width: 25, height: 25
                       }}
                     />
-                  ) 
+                  )
                 }}  name={routes.settings} component={SettingsScreen} />
             </RootTabStack.Navigator>
             </NavigationContainer>
@@ -244,7 +242,7 @@ const Stack = createStackNavigator();
 
 export const MainStack = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={routes.home} component={HomeScreen} />
       <Stack.Screen name={routes.addAccount} component={AddAccountScreen} />
       <Stack.Screen name={routes.createAccount} component={CreateAccountScreen} />
@@ -257,7 +255,7 @@ export const MainStack = () => {
 
 export const SendStack = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={routes.send} component={SendScreen} />
       <Stack.Screen name={routes.scan} component={ScanQRCodeScreen} />
     </Stack.Navigator>
@@ -266,7 +264,7 @@ export const SendStack = () => {
 
 export const ReceiveStack = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={routes.receive} component={ReceiveScreen} />
       <Stack.Screen name={routes.viewQRCode} component={ViewQRCodeScreen} />
     </Stack.Navigator>

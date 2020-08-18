@@ -1,9 +1,9 @@
 import { Account } from '@burstjs/core';
-import { convertNQTStringToNumber, convertNumericIdToAddress, isBurstAddress } from '@burstjs/util';
+import { convertNQTStringToNumber, convertNumericIdToAddress, isBurstAddress, convertBurstTimeToEpochTime } from '@burstjs/util';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React from 'react';
-import { View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Linking, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Text, TextThemes } from '../../../core/components/base/Text';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
@@ -26,9 +26,10 @@ import { sendMoney, SendMoneyPayload } from '../store/actions';
 import { TransactionsReduxState } from '../store/reducer';
 import { parseURLParams } from '../store/utils';
 import { transactions } from '../translations';
+import { withNavigation } from 'react-navigation';
 
-type SendNavProp = StackNavigationProp<RootStackParamList, 'Send'>;
-type SendRouteProp = RouteProp<RootStackParamList, 'Send'>;
+type SendNavProp = StackNavigationProp<RootStackParamList, 'send'>;
+type SendRouteProp = RouteProp<RootStackParamList, 'send'>;
 
 interface IProps extends InjectedReduxProps {
   app: AppReduxState;
@@ -40,8 +41,8 @@ interface IProps extends InjectedReduxProps {
 }
 
 interface State {
-  isPINModalVisible: boolean,
-  deepLinkProps?: SendBurstFormState
+  isPINModalVisible: boolean;
+  deepLinkProps?: SendBurstFormState;
 }
 
 class Send extends React.PureComponent<IProps, State> {
@@ -58,22 +59,30 @@ class Send extends React.PureComponent<IProps, State> {
   }
 
   willFocus = () => {
-    const deepLink = this.props.route.params?.url;
-    if (deepLink) {
-      const params = parseURLParams(deepLink);
-      this.setState({
-        deepLinkProps: {
-          sender: null,
-          address: isBurstAddress(params.receiver) ? params.receiver : convertNumericIdToAddress(params.receiver),
-          fee: params.feeNQT ? this.getFee(params.feeNQT, params.feeSuggestionType) : undefined,
-          amount: params.amountNQT ? convertNQTStringToNumber(params.amountNQT).toString() : undefined,
-          message: params.message,
-          messageIsText: params.messageIsText === 'false' ? false : true,
-          encrypt: params.encrypt,
-          immutable: params.immutable === 'true' ? true : false
-        }
-      });
-    }
+    setTimeout(() => {
+      const deepLink = this.props.route.params?.url;
+
+      console.log(deepLink);
+      if (deepLink) {
+        const params = parseURLParams(deepLink);
+        this.setState({
+          deepLinkProps: {
+            sender: null,
+            address: isBurstAddress(params.receiver) ? params.receiver : convertNumericIdToAddress(params.receiver),
+            fee: params.feeNQT ? this.getFee(params.feeNQT, params.feeSuggestionType) : undefined,
+            amount: params.amountNQT ? convertNQTStringToNumber(params.amountNQT).toString() : undefined,
+            message: params.message,
+            messageIsText: params.messageIsText === 'false' ? false : true,
+            encrypt: params.encrypt,
+            immutable: params.immutable === 'true' ? true : false
+          }
+        });
+      }
+    }, 500);
+  }
+
+  componentDidMount() {
+    this.forceUpdate();
   }
 
   willBlur = () => {
@@ -187,4 +196,4 @@ function mapStateToProps (state: ApplicationState) {
   };
 }
 
-export const SendScreen = connect(mapStateToProps)(Send);
+export const SendScreen = connect(mapStateToProps)(withNavigation(Send));

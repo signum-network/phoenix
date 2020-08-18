@@ -6,7 +6,7 @@ export type RootStackParamList = {
   Receive: {
     accountRS?: string;
   };
-  Send: {
+  send: {
     accountRS?: string;
     url?: string;
   };

@@ -1442,6 +1442,7 @@
 				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = P3QNZ4665B;
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
@@ -1523,6 +1524,7 @@
 				CODE_SIGN_ENTITLEMENTS = Phoenix.entitlements;
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = P3QNZ4665B;
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",

@@ -1,7 +1,7 @@
 import { Account } from '@burstjs/core';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { NavigationInjectedProps } from 'react-navigation';
 import { connect } from 'react-redux';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { PlusHeaderButton } from '../../../core/components/header/PlusHeaderButton';
@@ -12,7 +12,6 @@ import { Screen } from '../../../core/layout/Screen';
 import { routes } from '../../../core/navigation/routes';
 import { AppReduxState } from '../../../core/store/app/reducer';
 import { ApplicationState } from '../../../core/store/initialState';
-import { Colors } from '../../../core/theme/colors';
 import { core } from '../../../core/translations';
 import { HomeStackedAreaChart } from '../../home/components/HomeStackedAreaChart';
 import { loadHistoricalPriceApiData, selectCurrency } from '../../price-api/store/actions';
@@ -21,11 +20,10 @@ import { AccountsList } from '../components/AccountsList';
 import { AccountsListHeader } from '../components/AccountsListHeader';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
 import { TermsModal } from '../components/terms/TermsModal';
+import { RootStackParamList } from '../navigation/mainStack';
 import { hydrateAccount, removeAccount, resetAuthState, setAgreeToTerms } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { shouldEnterPIN } from '../store/utils';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../navigation/mainStack';
 
 type HomeNavProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -75,7 +73,9 @@ class Home extends React.PureComponent<IProps, State> {
 
   constructor (props: IProps) {
     super(props);
-    this.updateAllAccounts();
+    setTimeout(() => {
+      this.updateAllAccounts();
+    }, 500);
 
     // this.props.navigation.setParams({
     //   handleAddAccountPress: this.handleAddAccountPress
@@ -96,9 +96,7 @@ class Home extends React.PureComponent<IProps, State> {
       if (shouldEnterPIN(passcodeTime, passcodeEnteredTime)) {
         this.setPINModalVisible(true);
       }
-      if (!this.state.isTermsModalVisible) {
-        this.checkTermsModal();
-      }
+      this.checkTermsModal();
     };
     checkSessionExpiry();
     this._checkPinExpiryInterval = setInterval(checkSessionExpiry, 1000);
