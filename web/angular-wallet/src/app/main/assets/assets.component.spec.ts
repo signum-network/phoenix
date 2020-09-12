@@ -19,6 +19,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PageModule} from '../../components/page/page.module';
+import { AppSharedModule } from 'app/shared/shared.module';
 
 describe('AssetsComponent', () => {
   let component: AssetsComponent;
@@ -36,6 +37,7 @@ describe('AssetsComponent', () => {
         HttpClientTestingModule,
         ReactiveFormsModule,
         I18nModule,
+        AppSharedModule,
         BrowserAnimationsModule,
         RouterTestingModule.withRoutes(
           [{path: 'aliases', component: AssetsComponent}]
