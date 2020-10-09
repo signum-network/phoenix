@@ -36,6 +36,8 @@ export default class HttpImpl implements Http {
     static mountError(url: string, error: any): HttpError {
         if (error.response) {
             return new HttpError(url, error.response.status, error.response.statusText, error.response.data);
+        } else if (error.message) {
+            return new HttpError(url, 0, 'Request failed', error.message);
         } else if (error.request) {
             return new HttpError(url, 0, 'Request failed', error.request);
         }
