@@ -60,17 +60,16 @@ function createWindow() {
 
   const template = [
     {
-      label: 'Edit',
+      label: 'File',
       submenu: [
-        {role: 'undo'},
-        {role: 'redo'},
+        {
+          label: 'Settings',
+          click() {
+            win.webContents.send('route-to', '/settings');
+          }
+        },
         {type: 'separator'},
-        {role: 'cut'},
-        {role: 'copy'},
-        {role: 'paste'},
-        {role: 'pasteandmatchstyle'},
-        {role: 'delete'},
-        {role: 'selectall'}
+        {role: 'quit'},
       ]
     },
     {
@@ -102,12 +101,6 @@ function createWindow() {
     {
       role: 'help',
       submenu: [
-        {
-          label: 'Settings',
-          click() {
-            win.webContents.send('route-to', '/settings');
-          }
-        },
         {
           label: 'Burst Wiki',
           click() {

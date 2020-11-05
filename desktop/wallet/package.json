@@ -29,7 +29,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--max_old_space_size=4096 node ../../scripts/build.js --target desktop",
-    "start": "cross-env NODE_ENV=develop npm run build && electron .",
+    "start": "cross-env NODE_ENV=develop npm run build electron .",
     "start:fast": "cross-env NODE_ENV=develop electron .",
     "pack": "rimraf -rf ./release-builds && npm run build && electron-builder -p 'never' --config electron-builder.json",
     "release:all": "npm run pack -- -wml",

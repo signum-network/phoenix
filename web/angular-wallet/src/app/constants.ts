@@ -124,6 +124,15 @@ export const constants = {
       ping: -1,
     },
     {
+      name: 'Testnet',
+      region: 'Global',
+      location: 'Europe',
+      address: 'https://testnet.burstcoin.network',
+      port: 6876,
+      selected: false,
+      ping: -1,
+    },
+    {
       name: 'Local Peer',
       region: 'Global',
       location: 'Europe',
