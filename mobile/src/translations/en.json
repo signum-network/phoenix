@@ -38,6 +38,11 @@
         "copiedSuccessfully": "Address copied successfully.",
         "copy": "Copy"
       },
+      "transactionDetails": {
+        "copiedSuccessfully": "Value copied successfully.",
+        "headerTitle": "Transaction Details",
+        "copy": "Copy"
+      },
       "addAccount": {
         "createAccount": "Create account",
         "hint": "Do you have an account?",
@@ -76,7 +81,8 @@
       "next": "Next",
       "ok": "OK",
       "save": "Save",
-      "submit": "Submit"
+      "submit": "Submit",
+      "back": "Back"
     },
     "currency": {
       "BTC": {
@@ -174,6 +180,7 @@
         "confirmReset": "Are you sure? You cannot undo this action.",
         "confirmErase": "Confirm - Erase and Reset",
         "changeLanguage": "Select Language",
+        "selectNode": "Select Node",
         "copyright": "Copyright © Burst Apps Team"
       }
     }

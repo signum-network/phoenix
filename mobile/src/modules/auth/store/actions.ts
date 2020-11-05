@@ -29,11 +29,6 @@ interface ZilResponse {
   };
 }
 
-interface RemoveAccountPayload {
-  account: Account;
-  deviceId: string;
-}
-
 const actions = {
   addAccount: createAction<Account>(actionTypes.addAccount),
   getAccount: createAction<string>(actionTypes.getAccount),
@@ -106,6 +101,7 @@ export const hydrateAccount = createActionFn<Account, Promise<Account>>(
   async (dispatch, getState, account) => {
     const state = getState();
     const { nodeHost, apiRootUrl } = state.app.burstService.settings;
+    console.log(nodeHost);
 
     // TODO: unify network request actions, add proper error handling and so on
     const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
@@ -197,11 +193,11 @@ export const addAccount = createActionFn<Account, Promise<Account>>(
   }
 );
 
-export const removeAccount = createActionFn<RemoveAccountPayload, Promise<void>>(
-  async (dispatch, getState, removeAccountPayload) => {
+export const removeAccount = createActionFn<Account, Promise<void>>(
+  async (dispatch, getState, account) => {
     // tslint:disable-next-line: max-line-length
-    fetch(`https://burstalerts.com/api/v1/unsubscribe/${removeAccountPayload.deviceId}/${removeAccountPayload.account.accountRS}`);
-    dispatch(actions.removeAccount(removeAccountPayload.account));
+    // fetch(`https://burstalerts.com/api/v1/unsubscribe/${removeAccountPayload.deviceId}/${removeAccountPayload.account.accountRS}`);
+    dispatch(actions.removeAccount(account));
     await setAccounts(getState().auth.accounts);
     return;
   }

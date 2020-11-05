@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1120"
+   LastUpgradeVersion = "1160"
    version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -56,7 +56,7 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2"
-      notificationPayloadFile = "Burst Extension/PushNotificationPayload.apns">
+      notificationPayloadFile = "PushNotificationPayload.apns">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"

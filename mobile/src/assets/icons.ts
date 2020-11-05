@@ -13,6 +13,7 @@ export const actionIcons = {
   del: require('./icons/delete.png'),
   chevronDown: require('./icons/chevron-down.png'),
   chevronRight: require('./icons/chevron-right.png'),
+  chevronLeft: require('./icons/chevron-left.png'),
   copy: require('./icons/content-copy.png')
 };
 

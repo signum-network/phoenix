@@ -76,6 +76,7 @@ const setPasscodeEnteredTime: Reducer<AuthReduxState, number> = (state, action) 
 
 const setAgreeToTerms: Reducer<AuthReduxState, boolean> = (state, action) => {
   const agree = action.payload;
+  console.log('agreeing to terms', agree);
   return {
     ...state,
     agreeToTerms: agree

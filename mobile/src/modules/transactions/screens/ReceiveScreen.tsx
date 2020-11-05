@@ -17,24 +17,23 @@ import { NetworkReduxState } from '../../network/store/reducer';
 import { ReceiveBurstForm } from '../components/receive/ReceiveBurstForm';
 import { generateQRAddress, ReceiveBurstPayload } from '../store/actions';
 import { transactions } from '../translations';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../auth/navigation/mainStack';
 
-interface IProps extends InjectedReduxProps {
+type ReceiveNavProps = StackNavigationProp<RootStackParamList, 'Receive'>;
+
+interface Props extends InjectedReduxProps {
   app: AppReduxState;
   auth: AuthReduxState;
   network: NetworkReduxState;
+  navigation: ReceiveNavProps;
 }
-
-type Props = IProps & NavigationInjectedProps;
 
 interface State {
   isPINModalVisible: boolean;
 }
 
 class Receive extends React.PureComponent<Props, State> {
-  static navigationOptions = {
-    headerTitle: <HeaderTitle>{i18n.t(transactions.screens.receive.title)}</HeaderTitle>
-  };
-
   state = {
     isPINModalVisible: false
   };
@@ -63,6 +62,7 @@ class Receive extends React.PureComponent<Props, State> {
     return (
       <Screen>
         <FullHeightView>
+          <HeaderTitle>{i18n.t(transactions.screens.receive.title)}</HeaderTitle>
           <View>
             <ReceiveBurstForm
               accounts={accounts}
@@ -90,4 +90,4 @@ function mapStateToProps (state: ApplicationState) {
   };
 }
 
-export const ReceiveScreen = connect(mapStateToProps)(withNavigation(Receive));
+export const ReceiveScreen = connect(mapStateToProps)(Receive);

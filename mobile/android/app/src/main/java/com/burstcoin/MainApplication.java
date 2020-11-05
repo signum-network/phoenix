@@ -16,7 +16,9 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
+import com.reactnativecommunity.rnpermissions.RNPermissionsPackage;
+import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
+// import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +35,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+          new RNPermissionsPackage(),
           new RNVersionNumberPackage(),
           new AsyncStoragePackage(),
           new RNCameraPackage(),
@@ -42,7 +45,8 @@ public class MainApplication extends Application implements ReactApplication {
           new RNLocalizePackage(),
           new KeychainPackage(),
           new RNGestureHandlerPackage(),
-          new ReactNativePushNotificationPackage()
+          new SafeAreaContextPackage()
+          // new ReactNativePushNotificationPackage()
       );
     }
 

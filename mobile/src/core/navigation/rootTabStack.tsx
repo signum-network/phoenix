@@ -3,6 +3,8 @@ import {
   createBottomTabNavigator,
   NavigationContainer
 } from 'react-navigation';
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { mainStack } from '../../modules/auth/navigation/mainStack';
 import { settingsStack } from '../../modules/settings/navigation/settingsStack';
 import { receiveStack } from '../../modules/transactions/navigation/receiveStack';
@@ -41,3 +43,4 @@ export const rootTabStack: NavigationContainer = createBottomTabNavigator(
   routesMap,
   rootTabStackConfig
 );
+

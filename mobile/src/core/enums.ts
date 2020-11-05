@@ -12,7 +12,8 @@ export enum KeyChainKeys {
 }
 
 export enum AsyncStorageKeys {
-  agreeToTerms = 'AGREE_TO_TERMS'
+  agreeToTerms = 'AGREE_TO_TERMS',
+  currentNode = 'CURRENT_NODE'
 }
 
 export enum AsyncParticleStates {

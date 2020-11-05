@@ -1,11 +1,13 @@
 import React from 'react';
 import {
-  SafeAreaView,
   StatusBar,
   StatusBarStyle,
-  StyleSheet
+  StyleSheet,
+  Platform
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '../theme/colors';
+import { isIOS } from '../utils/platform';
 
 interface Props {
   children: JSX.Element | JSX.Element[]
@@ -13,10 +15,16 @@ interface Props {
   style?: any
 }
 
+const area: any = {
+  backgroundColor: Colors.BLUE_DARKER
+};
+
+if (!isIOS) {
+  area.paddingBottom = 40;
+}
+
 const styles = StyleSheet.create({
-  area: {
-    backgroundColor: Colors.GREY_LIGHT
-  }
+  area
 });
 
 export class Screen extends React.PureComponent<Props> {

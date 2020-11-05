@@ -27,6 +27,11 @@ export const auth = {
     copiedSuccessfully: 'auth.screens.accountDetails.copiedSuccessfully',
     copy: 'auth.screens.accountDetails.copy'
   },
+  transactionDetails: {
+    copiedSuccessfully: 'auth.screens.transactionDetails.copiedSuccessfully',
+    copy: 'auth.screens.transactionDetails.copy',
+    headerTitle: 'auth.screens.transactionDetails.headerTitle'
+  },
   createAccount: {
     step: 'auth.screens.createAccount.step',
     title: 'auth.screens.createAccount.title',

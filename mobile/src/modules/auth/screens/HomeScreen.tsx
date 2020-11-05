@@ -1,7 +1,7 @@
 import { Account } from '@burstjs/core';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { PlusHeaderButton } from '../../../core/components/header/PlusHeaderButton';
@@ -20,17 +20,19 @@ import { AccountsList } from '../components/AccountsList';
 import { AccountsListHeader } from '../components/AccountsListHeader';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
 import { TermsModal } from '../components/terms/TermsModal';
+import { RootStackParamList } from '../navigation/mainStack';
 import { hydrateAccount, removeAccount, resetAuthState, setAgreeToTerms } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { shouldEnterPIN } from '../store/utils';
 
-interface CustomProps extends InjectedReduxProps {
+type HomeNavProp = StackNavigationProp<RootStackParamList, 'Home'>;
+
+interface IProps extends InjectedReduxProps {
   app: AppReduxState,
   auth: AuthReduxState,
-  priceApi: PriceInfoReduxState
+  priceApi: PriceInfoReduxState,
+  navigation: HomeNavProp
 }
-
-type TProps = NavigationInjectedProps & CustomProps;
 
 interface State {
   isPINModalVisible: boolean,
@@ -59,45 +61,46 @@ const styles = StyleSheet.create({
 
 const priceTypes = [PriceType.BURST, PriceType.BTC, PriceType.USD];
 
-class Home extends React.PureComponent<TProps, State> {
+class Home extends React.PureComponent<IProps, State> {
 
   _checkPinExpiryInterval?: any;
 
   state = {
     isPINModalVisible: false,
-    isTermsModalVisible: !this.props.auth.agreeToTerms,
+    isTermsModalVisible: false,
     selectedCurrency: priceTypes[0]
   };
 
-  static navigationOptions = ({ navigation }: NavigationInjectedProps) => {
-    const { params = {} } = navigation.state;
+  constructor (props: IProps) {
+    super(props);
+    setTimeout(() => {
+      this.updateAllAccounts();
+    }, 500);
 
-    return {
-      headerTitle: <HeaderTitle>{i18n.t(core.screens.home.title)}</HeaderTitle>,
-      headerRight: <PlusHeaderButton onPress={params.handleAddAccountPress} />
-    };
+    // this.props.navigation.setParams({
+    //   handleAddAccountPress: this.handleAddAccountPress
+    // });
   }
 
   handleChangeAccount = () => {
     this.props.navigation.navigate(routes.accounts);
   }
 
-  componentDidMount () {
-    this.selectCurrency = this.selectCurrency.bind(this);
-
-    this.props.navigation.setParams({
-      handleAddAccountPress: this.handleAddAccountPress
-    });
-
-    this._checkPinExpiryInterval = setInterval(() => {
+  componentDidUpdate () {
+    if (this._checkPinExpiryInterval) {
+      clearInterval(this._checkPinExpiryInterval);
+    }
+    const checkSessionExpiry = () => {
       const { passcodeTime } = this.props.app.appSettings;
       const { passcodeEnteredTime } = this.props.auth;
       if (shouldEnterPIN(passcodeTime, passcodeEnteredTime)) {
         this.setPINModalVisible(true);
       }
-    }, 1000);
+      this.checkTermsModal();
+    };
+    checkSessionExpiry();
+    this._checkPinExpiryInterval = setInterval(checkSessionExpiry, 1000);
 
-    this.updateAllAccounts();
   }
 
   updateAllAccounts = () => {
@@ -111,6 +114,10 @@ class Home extends React.PureComponent<TProps, State> {
 
   setPINModalVisible = (isPINModalVisible: boolean) => {
     this.setState({ isPINModalVisible });
+  }
+
+  checkTermsModal = () => {
+    this.setTermsModalVisible(!this.props.auth.agreeToTerms);
   }
 
   setTermsModalVisible = (isTermsModalVisible: boolean) => {
@@ -145,11 +152,7 @@ class Home extends React.PureComponent<TProps, State> {
   }
 
   handleDelete = (account: Account) => {
-    this.props.dispatch(removeAccount({
-      account,
-      // @ts-ignore
-      deviceId: this.props.screenProps.deviceId
-    }));
+    this.props.dispatch(removeAccount(account));
   }
 
   handleReset = () => {
@@ -181,16 +184,27 @@ class Home extends React.PureComponent<TProps, State> {
     const accounts: Account[] = this.props.auth.accounts || [];
     const priceApi = this.props.priceApi;
     const shouldShowChart = accounts.length && priceApi.priceInfo && priceApi.historicalPriceInfo;
+    const { isTermsModalVisible } = this.state;
     return (
       <Screen>
         <FullHeightView withoutPaddings>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ flex: 1, alignItems: 'center', margin: 10 }}>
+              <HeaderTitle>
+                {i18n.t(core.screens.home.title)}
+              </HeaderTitle>
+            </View>
+            <View style={{ position: 'absolute',right: 10, top: 0 }}>
+              <PlusHeaderButton onPress={this.handleAddAccountPress} />
+            </View>
+          </View>
           <AccountsListHeader priceApi={priceApi} accounts={accounts} />
           <View style={styles.wrapper}>
             {shouldShowChart && <HomeStackedAreaChart
               priceApi={priceApi}
               accounts={accounts}
               priceTypes={priceTypes}
-              selectCurrency={this.selectCurrency}
+              selectCurrency={this.selectCurrency.bind(this)}
             /> || null}
 
             <AccountsList
@@ -208,7 +222,7 @@ class Home extends React.PureComponent<TProps, State> {
               onReset={this.handleReset}
             />
             <TermsModal
-              visible={this.state.isTermsModalVisible}
+              visible={isTermsModalVisible}
               onAgree={this.handleTermsAgreed}
             />
           </View>
@@ -226,4 +240,4 @@ function mapStateToProps (state: ApplicationState) {
   };
 }
 
-export const HomeScreen = connect(mapStateToProps)(withNavigation(Home));
+export const HomeScreen = connect(mapStateToProps)(Home);
