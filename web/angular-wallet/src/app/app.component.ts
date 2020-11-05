@@ -90,6 +90,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     if (this.appService.isDesktop()) {
       this.initDesktopUpdater();
       this.initDeepLinkHandler();
+      this.initRouteToHandler();
     }
   }
 
@@ -109,6 +110,15 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         queryParamsHandling: 'merge'
       });
       // fixes an issue with the view not rendering
+      setTimeout(() => {
+        this.applicationRef.tick();
+      }, 1000);
+    });
+  }
+
+  private initRouteToHandler(): void {
+    this.appService.onIpcMessage('route-to', (url) => {
+      this.router.navigate([url]);
       setTimeout(() => {
         this.applicationRef.tick();
       }, 1000);

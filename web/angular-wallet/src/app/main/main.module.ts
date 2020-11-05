@@ -57,7 +57,7 @@ const mainRoutes: Routes = [
     loadChildren: () => import('./request-burst/request-burst.module').then(r => r.RequestBurstModule)
   },
   {
-    path: 'setup',
+    path: 'settings',
     loadChildren: () => import('./settings/settings.module').then(s => s.SettingsModule)
   }
 ];

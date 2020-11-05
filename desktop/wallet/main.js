@@ -13,7 +13,7 @@ const updateService = new UpdateService({
   currentVersion: version,
   ...update
 });
-const isDevelopment = process.env.development;
+const isDevelopment = process.env.NODE_ENV === 'develop';
 
 const isLinux = () => process.platform === 'linux';
 const isMacOS = () => process.platform === 'darwin';
@@ -102,6 +102,12 @@ function createWindow() {
     {
       role: 'help',
       submenu: [
+        {
+          label: 'Settings',
+          click() {
+            win.webContents.send('route-to', '/settings');
+          }
+        },
         {
           label: 'Burst Wiki',
           click() {

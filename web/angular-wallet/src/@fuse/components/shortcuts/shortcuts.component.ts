@@ -128,7 +128,7 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
             'title': this.i18nService.getTranslation('settings'),
             'type': 'item',
             'icon': 'settings',
-            'url': '/setup'
+            'url': '/settings'
         });
     }
 
