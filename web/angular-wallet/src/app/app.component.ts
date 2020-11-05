@@ -19,7 +19,7 @@ import {version} from '../../package.json';
 import {AppService} from './app.service';
 import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
-import { Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET } from '@angular/router';
+import {Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET} from '@angular/router';
 
 @Component({
   selector: 'app',
@@ -73,9 +73,11 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       .subscribe((ready) => {
         if (ready) {
           this.updateAccounts();
-          const checkBlockchainStatus = this.checkBlockchainStatus.bind(this);
-          setTimeout(checkBlockchainStatus, 1000); // FIXME: dirty hack
-          this.blockchainStatusInterval = setInterval(checkBlockchainStatus, this.BLOCKCHAIN_STATUS_INTERVAL);
+          if (!this.appService.isDesktop()) {
+            const checkBlockchainStatus = this.checkBlockchainStatus.bind(this);
+            setTimeout(checkBlockchainStatus, 1000); // FIXME: dirty hack
+            this.blockchainStatusInterval = setInterval(checkBlockchainStatus, this.BLOCKCHAIN_STATUS_INTERVAL);
+          }
         }
         this.accountService.currentAccount
           .pipe(
@@ -173,7 +175,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         await this.accountService.synchronizeAccount(this.selectedAccount).catch(() => {
         });
         this.accountService.setCurrentAccount(this.selectedAccount);
-      // hit this call again every 1 sec if the blockchain is being downloaded
+        // hit this call again every 1 sec if the blockchain is being downloaded
       } else if (this.downloadingBlockchain) {
         setTimeout(this.checkBlockchainStatus.bind(this), 1000);
       }
@@ -209,14 +211,16 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
 
 
   private openNewVersionDialog(): MatDialogRef<NewVersionDialogComponent> {
-     return this.newVersionDialog.open(NewVersionDialogComponent, {
+    return this.newVersionDialog.open(NewVersionDialogComponent, {
       data: this.updateInfo
     });
   }
 
   onClickedNewVersion(): void {
 
-    if (this.isDownloadingUpdate) { return; }
+    if (this.isDownloadingUpdate) {
+      return;
+    }
 
     this.openNewVersionDialog()
       .afterClosed()
