@@ -57,7 +57,7 @@ const mainRoutes: Routes = [
     loadChildren: () => import('./request-burst/request-burst.module').then(r => r.RequestBurstModule)
   },
   {
-    path: 'setup',
+    path: 'settings',
     loadChildren: () => import('./settings/settings.module').then(s => s.SettingsModule)
   }
 ];
@@ -67,33 +67,23 @@ const mainRoutes: Routes = [
     MainComponent,
   ],
   imports: [
-    HttpClientModule,
-    RouterModule.forChild(mainRoutes),
-
-    TranslateModule.forRoot(),
-
-    // Material moment date module
-    MatMomentDateModule,
-
-    // Material
-    MatButtonModule,
-    MatIconModule,
-
-    // Fuse modules
+    AccountsModule,
+    DashboardModule,
     FuseModule.forRoot(fuseConfig),
     FuseProgressBarModule,
     FuseSharedModule,
-
     FuseSidebarModule,
     FuseThemeOptionsModule,
-
-    // App modules
+    HttpClientModule,
     LayoutModule,
-    DashboardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMomentDateModule,
+    RouterModule.forChild(mainRoutes),
     SendBurstModule,
-    AccountsModule,
     SetAccountInfoModule,
-    SetRewardRecipientModule
+    SetRewardRecipientModule,
+    TranslateModule.forRoot(),
   ],
   exports: [
     MainComponent

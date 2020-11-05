@@ -27,7 +27,8 @@ import {NetworkModule} from './network/network.module';
 import {NotifierModule} from 'angular-notifier';
 import {UtilService} from './util.service';
 import {I18nModule} from './layout/components/i18n/i18n.module';
-import {DisclaimerModule} from './disclaimer/disclaimer.module';
+import {DisclaimerModule} from './startup/disclaimer/disclaimer.module';
+import {RepairModule} from './startup/repair/repair.module';
 import {SettingsResolver} from './store/settings.resolver';
 import {registerLocales} from './layout/components/i18n/locales';
 import {NgxElectronModule} from 'ngx-electron';
@@ -54,31 +55,29 @@ const appRoutes: Routes = [
     NewVersionDialogComponent
   ],
   imports: [
-    BrowserModule,
     BrowserAnimationsModule,
+    BrowserModule,
+    DisclaimerModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes,
-      {enableTracing: true}),
-
-    TranslateModule.forRoot(),
-
-    MatMomentDateModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDialogModule,
+    I18nModule,
     LoginModule,
     MainModule,
-    SetupModule,
-    NetworkModule,
-    NotifierModule,
-    I18nModule,
-    DisclaimerModule,
-    NgxElectronModule,
+    MatButtonModule,
     MatCardModule,
-    MatTooltipModule,
+    MatDialogModule,
     MatFormFieldModule,
+    MatIconModule,
+    MatMomentDateModule,
+    MatProgressBarModule,
     MatSelectModule,
-    MatProgressBarModule
+    MatTooltipModule,
+    NetworkModule,
+    NgxElectronModule,
+    NotifierModule,
+    RepairModule,
+    RouterModule.forRoot(appRoutes, {enableTracing: true}),
+    SetupModule,
+    TranslateModule.forRoot(),
   ],
   providers: [
     StoreService,

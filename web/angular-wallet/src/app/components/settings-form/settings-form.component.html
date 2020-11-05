@@ -1,0 +1,43 @@
+<div class="p-24" fxLayout="column">
+  <div class="node-selector">
+    <small class="mb-8">
+      {{ 'select_node_description' | i18n }}
+    </small>
+    <mat-form-field>
+      <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+        <input type="text"
+               placeholder="{{ 'select_node' | i18n }}"
+               matInput
+               [formControl]="selectedNode"
+               [matAutocomplete]="auto">
+        <div class="version-info secondary-text font-size-10">
+          {{getVersion()}}
+          <mat-icon *ngIf="showConnectionErrorIcon"
+                    class="error-icon"
+                    matTooltip="{{'error_server_connect' | i18n}}"
+          >
+            error_outline
+          </mat-icon>
+        </div>
+      </div>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let node of nodes" [value]="node">
+          {{node}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+
+    <div class="button-wrapper">
+      <ul class="unfeatures">
+        <li *ngFor="let feature of getUnsupportedFeatures()"
+            class="secondary-text font-size-10"
+        >
+          {{feature}}
+        </li>
+      </ul>
+      <button mat-raised-button color="accent" (click)="selectNode()"
+              disabled="{{isFetchingNodeInfo}}">{{'select_node' | i18n }}</button>
+    </div>
+  </div>
+</div>

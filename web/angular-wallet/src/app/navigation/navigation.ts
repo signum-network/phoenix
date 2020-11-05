@@ -19,34 +19,9 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'compare_arrows',
                 url      : '/transactions'
-                // badge    : {
-                //     title    : '5',
-                //     translate: '5',
-                //     bg       : '#F44336',
-                //     fg       : '#FFFFFF'
-                // }
             },
-            // {
-            //     id       : 'escrow',
-            //     title    : 'Escrow',
-            //     type     : 'item',
-            //     icon     : 'check_circle',
-            //     url      : 'transactions/escrow'
-            // },
-            // {
-            //     id       : 'subscriptions',
-            //     title    : 'Subscriptions',
-            //     type     : 'item',
-            //     icon     : 'subscriptions',
-            //     url      : 'transactions/subscriptions'
-            // },
-            // {
-            //     id       : 'smart_contracts',
-            //     title    : 'Smart Contracts',
-            //     type     : 'item',
-            //     icon     : 'computer',
-            //     url      : 'transactions/smart-contracts'
-            // }
+
+            // add more here!
         ]
     },
     {
@@ -54,13 +29,6 @@ export const navigation: FuseNavigation[] = [
         title: 'Account',
         type: 'group',
         children: [
-            // {
-            //     id: 'contacts',
-            //     title: 'Contacts',
-            //     type: 'item',
-            //     icon: 'contacts',
-            //     url: 'contacts'
-            // },
             {
                 id: 'messages',
                 title: 'Messages',

@@ -1,0 +1,68 @@
+@import "../../../@fuse/scss/fuse";
+
+disclaimer {
+
+    #repair {
+        width: 100%;
+        background: linear-gradient(230deg, #002341, #039be5);
+        background-size: 400% 400%;
+
+        -webkit-animation: bg 30s ease infinite;
+        -moz-animation: bg 30s ease infinite;
+        animation: bg 30s ease infinite;
+
+        #repair-form-wrapper {
+            flex: 1 0 auto;
+            padding: 32px;
+
+            @include media-breakpoint('xs') {
+                padding: 16px;
+            }
+
+            #repair-form {
+                max-width: 684px;
+                padding: 48px;
+                text-align: center;
+                @include mat-elevation(16);
+
+                @include media-breakpoint('xs') {
+                    padding: 24px;
+                    width: 100%;
+                }
+
+                .logo {
+                    width: 128px;
+                    margin: 32px auto;
+                }
+
+                .title {
+                    font-size: 28px;
+                    margin-top: 16px;
+                }
+
+                .subtitle {
+                    margin: 16px 0;
+                    max-width: 600px;
+                    color: rgba(0, 0, 0, 0.54);
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+
+@-webkit-keyframes bg {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes bg {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes bg {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}

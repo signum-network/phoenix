@@ -10,6 +10,7 @@ import {FuseSharedModule} from '../../../@fuse/shared.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIconModule} from '@angular/material/icon';
+import {SettingsFormComponent} from '../../components/settings-form/settings-form.component';
 
 const routes = [
   {
@@ -22,7 +23,7 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [SettingsComponent],
+  declarations: [SettingsComponent, SettingsFormComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -36,6 +37,9 @@ const routes = [
     MatCheckboxModule,
     MatTooltipModule,
     MatIconModule
+  ],
+  exports: [
+    SettingsFormComponent
   ],
   providers: [
     SettingsResolver,

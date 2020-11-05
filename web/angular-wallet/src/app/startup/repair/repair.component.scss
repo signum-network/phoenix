@@ -1,17 +1,13 @@
-@import "src/@fuse/scss/fuse";
+@import "../../../@fuse/scss/fuse";
 
-disclaimer {
+repair {
 
-    #disclaimer {
+    #repair {
         width: 100%;
         background: linear-gradient(230deg, #002341, #039be5);
         background-size: 400% 400%;
 
-        -webkit-animation: bg 30s ease infinite;
-        -moz-animation: bg 30s ease infinite;
-        animation: bg 30s ease infinite;
-
-        #disclaimer-form-wrapper {
+        #repair-form-wrapper {
             flex: 1 0 auto;
             padding: 32px;
 
@@ -19,7 +15,8 @@ disclaimer {
                 padding: 16px;
             }
 
-            #disclaimer-form {
+            #repair-form {
+                background: white;
                 max-width: 684px;
                 padding: 48px;
                 text-align: center;
@@ -61,7 +58,7 @@ disclaimer {
     50%{background-position:100% 50%}
     100%{background-position:0% 50%}
 }
-@keyframes bg { 
+@keyframes bg {
     0%{background-position:0% 50%}
     50%{background-position:100% 50%}
     100%{background-position:0% 50%}
