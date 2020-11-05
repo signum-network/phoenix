@@ -13,7 +13,7 @@ const updateService = new UpdateService({
   currentVersion: version,
   ...update
 });
-const isDevelopment = process.env.development;
+const isDevelopment = process.env.NODE_ENV === 'develop';
 
 const isLinux = () => process.platform === 'linux';
 const isMacOS = () => process.platform === 'darwin';
@@ -60,17 +60,16 @@ function createWindow() {
 
   const template = [
     {
-      label: 'Edit',
+      label: 'File',
       submenu: [
-        {role: 'undo'},
-        {role: 'redo'},
+        {
+          label: 'Settings',
+          click() {
+            win.webContents.send('route-to', '/settings');
+          }
+        },
         {type: 'separator'},
-        {role: 'cut'},
-        {role: 'copy'},
-        {role: 'paste'},
-        {role: 'pasteandmatchstyle'},
-        {role: 'delete'},
-        {role: 'selectall'}
+        {role: 'quit'},
       ]
     },
     {
