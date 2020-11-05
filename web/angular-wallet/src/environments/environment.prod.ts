@@ -4,7 +4,7 @@ export const environment = {
   production: true,
   hmr: false,
   version,
-  defaultNode: 'https://wallet.burst-alliance.org:8125',
+  defaultNode: 'https://wallet.burstcoin.ro',
   market: {
     tickerUrl: 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BURST&tsyms=BTC,USD,EUR',
     tickerInterval: 60 * 1000

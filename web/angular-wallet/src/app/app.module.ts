@@ -43,7 +43,7 @@ const appRoutes: Routes = [
     component: LoginComponent
   },
   {
-    path: '**',
+    path: '*',
     redirectTo: 'dashboard',
     canActivate: [LoginGuard]
   },

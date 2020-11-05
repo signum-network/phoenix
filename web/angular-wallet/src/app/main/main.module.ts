@@ -59,7 +59,7 @@ const mainRoutes: Routes = [
   {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then(s => s.SettingsModule)
-  }
+  },
 ];
 
 @NgModule({

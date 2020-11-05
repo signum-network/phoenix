@@ -47,4 +47,7 @@ export class RepairComponent implements OnInit {
     });
   }
 
+  apply() {
+    this.router.navigate(['/dashboard']);
+  }
 }

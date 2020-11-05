@@ -6,8 +6,6 @@ import {StoreService} from 'app/store/store.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {ApiService} from '../api.service';
 
-const errorHandler = console.error;
-
 @Injectable({
   providedIn: 'root',
 })
@@ -24,13 +22,14 @@ export class LoginGuard implements CanActivate {
     return this.storeService.ready.pipe(
       filter(Boolean),
       switchMap(async () => {
-        const settings = await this.storeService.getSettings().catch(errorHandler);
-        const selectedAccount = await this.storeService.getSelectedAccount().catch(errorHandler);
-        const allAccounts = await this.storeService.getAllAccounts().catch(errorHandler);
-        // caches the current nodes api version
+        const settings = await this.storeService.getSettings();
+        const selectedAccount = await this.storeService.getSelectedAccount();
+        const allAccounts = await this.storeService.getAllAccounts();
         try {
+          // caches the current nodes api version
           await this.apiService.fetchBrsApiVersion();
         } catch (e) {
+          console.error("Fecthing error", e);
           await this.router.navigate(['/repair']);
           return false;
         }
