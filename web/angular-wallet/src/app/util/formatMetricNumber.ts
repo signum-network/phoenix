@@ -2,7 +2,7 @@ export function formatMetricNumber(n: number|string, digits = 2): string {
 
   const number = typeof n === 'string' ? parseFloat(n) : n;
 
-  if (isNaN(number) || number === null || number === 0) {
+  if (isNaN(number) || number === null) {
     return null;
   }
   let abs = Math.abs(number);

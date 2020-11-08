@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2
+
+### Bug Fixes
+- Added Settings Option in File Menu for Desktop version (#1371)
+- Updated image path for Performance widget on Dashboard
+
 ## 1.0.1
 
 ### Bug Fixes
