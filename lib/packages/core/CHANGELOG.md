@@ -10,6 +10,7 @@ __Breaking Changes__
 - added new methods to transction Api
   - `signAndBroadcastTransaction`
 - added new methods to assets Api
+  - `issueAsset`
 
 ---
 __Fixes__
