@@ -65,7 +65,11 @@ import {
     getUnconfirmedTransactions,
     signAndBroadcastTransaction
 } from './factories/transaction';
-import {getAllAssets, getAsset} from './factories/asset';
+import {
+    getAllAssets,
+    getAsset,
+    issueAsset,
+} from './factories/asset';
 import {AxiosRequestConfig} from 'axios';
 
 /**
@@ -178,6 +182,7 @@ export function composeApi(settings: ApiSettings): Api {
         }).withAssetApi({
             getAsset,
             getAllAssets,
+            issueAsset
         })
         .compose();
 }
