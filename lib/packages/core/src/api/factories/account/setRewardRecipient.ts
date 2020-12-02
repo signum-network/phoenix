@@ -6,7 +6,7 @@ import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {SetRewardRecipientArgs} from '../../../typings/args/setRewardRecipientArgs';
 import {DefaultDeadline} from '../../../constants';
-import {signAndBroadcastTransaction} from '../../../internal';
+import {signAndBroadcastTransaction} from '../transaction';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
@@ -26,10 +26,10 @@ export const setRewardRecipient = (service: BurstService):
 
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('setRewardRecipient', parameters);
 
-        return signAndBroadcastTransaction({
+        return signAndBroadcastTransaction(service)({
             senderPublicKey: args.senderPublicKey,
             senderPrivateKey: args.senderPrivateKey,
             unsignedHexMessage
-        }, service);
+        });
 
     };

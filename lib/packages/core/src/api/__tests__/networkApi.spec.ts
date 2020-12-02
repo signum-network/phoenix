@@ -3,7 +3,7 @@ import {getBlockchainStatus} from '../factories/network/getBlockchainStatus';
 import {getServerStatus} from '../factories/network/getServerStatus';
 import {getTime} from '../factories/network/getTime';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
-import {suggestFee} from '../factories/network';
+import {getSuggestedFees} from '../factories/network';
 import {FeeQuantPlanck} from '@burstjs/util';
 
 describe('Network Api', () => {
@@ -92,7 +92,7 @@ describe('Network Api', () => {
                 requestProcessingTime: 100
             }).build();
             const service = createBurstService(httpMock, 'relPath');
-            const status = await suggestFee(service)();
+            const status = await getSuggestedFees(service)();
             expect(status).toEqual({
                 minimum: FeeQuantPlanck,
                 standard: 1,

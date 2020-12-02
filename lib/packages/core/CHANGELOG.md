@@ -1,7 +1,22 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 0.5.0 (TBR)
+## 0.6.0
+___
+__Breaking Changes__
+- `suggestFee` renamed to `getSuggestedFees`
+---
+
+- added new methods to transction Api
+  - `signAndBroadcastTransaction`
+- added new methods to assets Api
+
+---
+__Fixes__
+- Fixed return types of Block Api (`BlockIdList` and `BlockList`)
+---
+
+## 0.5.0
 
 ___
 __Breaking Changes__

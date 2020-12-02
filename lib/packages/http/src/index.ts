@@ -11,8 +11,11 @@ import HttpError from './httpError';
 import HttpMockBuilder from './httpMockBuilder';
 import HttpImpl from './httpImpl';
 
+const HttpClient = HttpImpl;
+
 export {
     Http,
+    HttpClient,
     HttpImpl,
     HttpResponse,
     HttpMockBuilder,

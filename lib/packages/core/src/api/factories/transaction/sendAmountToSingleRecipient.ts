@@ -5,7 +5,7 @@ import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
-import {signAndBroadcastTransaction} from '../../../internal/signAndBroadcastTransaction';
+import {signAndBroadcastTransaction} from './signAndBroadcastTransaction';
 import {createParametersFromAttachment} from '../../../internal/createParametersFromAttachment';
 import {SendAmountArgs} from '../../../typings/args/sendAmountArgs';
 
@@ -34,10 +34,10 @@ export const sendAmountToSingleRecipient = (service: BurstService):
 
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('sendMoney', parameters);
 
-        return signAndBroadcastTransaction({
+        return signAndBroadcastTransaction(service)({
             senderPublicKey: args.senderPublicKey,
             senderPrivateKey: args.senderPrivateKey,
             unsignedHexMessage
-        }, service);
+        });
 
     };

@@ -31,13 +31,13 @@
     ]
   },
   "devDependencies": {
-    "@types/jest": "^24.0.23",
+    "@types/jest": "^26.0.16",
     "bili": "^4.8.1",
     "dotenv": "^8.2.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-typescript2": "^0.24.2"
+    "rollup-plugin-typescript2": "^0.29.0"
   },
   "scripts": {
     "test": "jest",

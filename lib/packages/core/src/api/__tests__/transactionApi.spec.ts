@@ -19,6 +19,7 @@ import {
     sendAmountToMultipleRecipients,
     sendAmountToSingleRecipient,
     sendSameAmountToMultipleRecipients,
+    signAndBroadcastTransaction,
 } from '../factories/transaction';
 
 describe('TransactionApi', () => {
@@ -670,6 +671,74 @@ describe('TransactionApi', () => {
             const service = createBurstService(httpMock, 'relPath');
             const response = await getUnconfirmedTransactions(service)();
             expect(response.unconfirmedTransactions).toHaveLength(0);
+        });
+
+    });
+
+    describe('signAndBroadcastTransaction', () => {
+        beforeEach(() => {
+            // @ts-ignore
+            generateSignature = jest.fn(() => 'signature');
+            // @ts-ignore
+            verifySignature = jest.fn(() => true);
+            // @ts-ignore
+            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
+
+        });
+
+        afterEach(() => {
+            if (httpMock) {
+                // @ts-ignore
+                httpMock.reset();
+            }
+            jest.restoreAllMocks();
+        });
+
+        it('should sign as expected', async () => {
+            httpMock = HttpMockBuilder.create().onPostReply(200, {
+                fullHash: 'fullHash',
+                transaction: 'transaction'
+            }).build();
+            const service = createBurstService(httpMock, 'relPath');
+            const transactionId = await signAndBroadcastTransaction(service)({
+                unsignedHexMessage: 'unsignedHexMessage',
+                senderPrivateKey: 'senderPrivateKey',
+                senderPublicKey: 'senderPublicKey',
+            });
+
+
+            expect(transactionId.fullHash).toBe('fullHash');
+            expect(transactionId.transaction).toBe('transaction');
+            expect(generateSignature).toBeCalled();
+            expect(verifySignature).toBeCalled();
+            expect(generateSignedTransactionBytes).toBeCalled();
+        });
+
+        it('should throw exception if verification fails', async () => {
+            httpMock = HttpMockBuilder.create().onPostReply(200, {
+                fullHash: 'fullHash',
+                transaction: 'transaction'
+            }).build();
+
+            // @ts-ignore
+            verifySignature = jest.fn(() => false);
+
+            const service = createBurstService(httpMock, 'relPath');
+            try {
+
+                await signAndBroadcastTransaction(service)({
+                    unsignedHexMessage: 'unsignedHexMessage',
+                    senderPrivateKey: 'senderPrivateKey',
+                    senderPublicKey: 'senderPublicKey',
+                });
+                expect(false).toBe('Expected Exception');
+            } catch (e) {
+                expect(e.message).toBe('The signed message could not be verified! Transaction not broadcasted!');
+            }
+
+            expect(generateSignature).toBeCalled();
+            expect(verifySignature).toBeCalled();
+            expect(generateSignedTransactionBytes).not.toBeCalled();
         });
 
     });

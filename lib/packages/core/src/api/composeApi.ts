@@ -6,9 +6,27 @@ import {BurstServiceSettings} from '../service';
 import {Api} from '../typings/api';
 import {ApiVersion} from '../constants/apiVersion';
 import {ApiComposer} from './apiComposer';
-import {getBlockByHeight, getBlockById, getBlockByTimestamp, getBlockId, getBlocks} from './factories/block';
-import {getBlockchainStatus, getPeer, getPeers, getServerStatus, getTime, suggestFee} from './factories/network';
-import {sendEncryptedMessage, sendEncryptedTextMessage, sendMessage, sendTextMessage} from './factories/message';
+import {
+    getBlockByHeight,
+    getBlockById,
+    getBlockByTimestamp,
+    getBlockId,
+    getBlocks
+} from './factories/block';
+import {
+    getBlockchainStatus,
+    getPeer,
+    getPeers,
+    getServerStatus,
+    getTime,
+    getSuggestedFees
+} from './factories/network';
+import {
+    sendEncryptedMessage,
+    sendEncryptedTextMessage,
+    sendMessage,
+    sendTextMessage
+} from './factories/message';
 import {
     generateSendTransactionQRCode,
     generateSendTransactionQRCodeAddress,
@@ -44,11 +62,11 @@ import {
     sendAmountToSingleRecipient,
     sendSameAmountToMultipleRecipients,
     getSubscription,
-    getUnconfirmedTransactions
+    getUnconfirmedTransactions,
+    signAndBroadcastTransaction
 } from './factories/transaction';
 import {getAllAssets, getAsset} from './factories/asset';
 import {AxiosRequestConfig} from 'axios';
-
 
 /**
  * Settings for API used in [[composeApi]]
@@ -107,7 +125,7 @@ export function composeApi(settings: ApiSettings): Api {
         .withNetworkApi({
             getBlockchainStatus,
             getServerStatus,
-            suggestFee,
+            getSuggestedFees,
             getPeers,
             getPeer,
             getTime,
@@ -123,6 +141,7 @@ export function composeApi(settings: ApiSettings): Api {
             cancelSubscription,
             getSubscription,
             getUnconfirmedTransactions,
+            signAndBroadcastTransaction,
         })
         .withMessageApi({
             sendTextMessage,

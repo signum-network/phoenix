@@ -1,14 +1,12 @@
 import {HttpMockBuilder, Http} from '@burstjs/http';
 import {BurstService} from '../../service/burstService';
-import {generateSignedTransactionBytes, generateSignature, encryptMessage} from '@burstjs/crypto';
-import {verifySignature} from '@burstjs/crypto';
+import {encryptMessage} from '@burstjs/crypto';
 import {constructAttachment} from '../../internal/constructAttachment';
 import {sendTextMessage} from '../factories/message/sendTextMessage';
-import {broadcastTransaction} from '../factories/transaction/broadcastTransaction';
+import {signAndBroadcastTransaction} from '../factories/transaction/signAndBroadcastTransaction';
 import {sendEncryptedTextMessage} from '../factories/message/sendEncryptedTextMessage';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {sendMessage} from '../factories/message';
-import {signAndBroadcastTransaction} from '../../internal';
 import {sendEncryptedMessage} from '../factories/message/sendEncryptedMessage';
 import {FeeQuantPlanck} from '@burstjs/util';
 
@@ -25,24 +23,10 @@ describe('Message Api', () => {
 
         beforeEach(() => {
             jest.resetAllMocks();
-
-            // @ts-ignore
-            broadcastTransaction = jest.fn().mockImplementation(s => (_) => Promise.resolve({
-                fullHash: 'fullHash',
-                transaction: 'transaction'
-            }));
-            // @ts-ignore
-            generateSignature = jest.fn(() => 'signature');
-            // @ts-ignore
-            verifySignature = jest.fn(() => true);
-            // @ts-ignore
-            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
-
             httpMock = HttpMockBuilder.create().onPostReply(200, {
                 unsignedTransactionBytes: 'unsignedHexMessage'
             }).build();
             service = createBurstService(httpMock, 'relPath');
-
         });
 
         afterEach(() => {
@@ -52,6 +36,12 @@ describe('Message Api', () => {
 
 
         it('should sendTextMessage', async () => {
+
+            // @ts-ignore
+            signAndBroadcastTransaction = jest.fn().mockImplementation(s => (_) => Promise.resolve({
+                fullHash: 'fullHash',
+                transaction: 'transaction'
+            }));
 
             const {fullHash, transaction} = await sendTextMessage(service)(
                 'Message Text',
@@ -64,17 +54,13 @@ describe('Message Api', () => {
 
             expect(fullHash).toBe('fullHash');
             expect(transaction).toBe('transaction');
-            expect(broadcastTransaction).toBeCalledTimes(1);
-            expect(generateSignature).toBeCalledTimes(1);
-            expect(verifySignature).toBeCalledTimes(1);
-            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
-
+            expect(signAndBroadcastTransaction).toBeCalledTimes(1);
         });
 
         it('try sendTextMessage, but verification fails', async () => {
 
             // @ts-ignore
-            verifySignature = jest.fn(() => false); // verification fails
+            signAndBroadcastTransaction = jest.fn().mockImplementation(s => (_) => Promise.reject());
 
             try {
 
@@ -86,10 +72,7 @@ describe('Message Api', () => {
 
                 expect(true).toBe('Expected Verification Exception');
             } catch (e) {
-                expect(generateSignature).toBeCalledTimes(1);
-                expect(verifySignature).toBeCalledTimes(1);
-                expect(generateSignedTransactionBytes).toBeCalledTimes(0);
-                expect(broadcastTransaction).toBeCalledTimes(0);
+                expect(signAndBroadcastTransaction).toBeCalledTimes(1);
             }
         });
 
@@ -132,12 +115,6 @@ describe('Message Api', () => {
             jest.resetAllMocks();
 
             // @ts-ignore
-            broadcastTransaction = jest.fn().mockImplementation(s => (_) => Promise.resolve({
-                fullHash: 'fullHash',
-                transaction: 'transaction'
-            }));
-
-            // @ts-ignore
             encryptMessage = jest.fn(
                 () =>
                     ({
@@ -145,13 +122,13 @@ describe('Message Api', () => {
                         nonce: 'nonce'
                     })
             );
-
-            // @ts-ignore
-            generateSignature = jest.fn(() => 'signature');
-            // @ts-ignore
-            verifySignature = jest.fn(() => true);
-            // @ts-ignore
-            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
+            //
+            // // @ts-ignore
+            // generateSignature = jest.fn(() => 'signature');
+            // // @ts-ignore
+            // verifySignature = jest.fn(() => true);
+            // // @ts-ignore
+            // generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
 
             httpMock = HttpMockBuilder.create().onPostReply(200, {
                 unsignedTransactionBytes: 'unsignedHexMessage'
@@ -171,6 +148,12 @@ describe('Message Api', () => {
                 agreementPrivateKey: 'agreementPrivateKey',
             };
 
+            // @ts-ignore
+            signAndBroadcastTransaction = jest.fn().mockImplementation(s => (_) => Promise.resolve({
+                fullHash: 'fullHash',
+                transaction: 'transaction'
+            }));
+
             const {fullHash, transaction} = await sendEncryptedTextMessage(service)(
                 'Message Text',
                 'recipientId',
@@ -182,11 +165,7 @@ describe('Message Api', () => {
 
             expect(fullHash).toBe('fullHash');
             expect(transaction).toBe('transaction');
-            expect(broadcastTransaction).toBeCalledTimes(1);
-            expect(encryptMessage).toBeCalledTimes(1);
-            expect(generateSignature).toBeCalledTimes(1);
-            expect(verifySignature).toBeCalledTimes(1);
-            expect(generateSignedTransactionBytes).toBeCalledTimes(1);
+            expect(signAndBroadcastTransaction).toBeCalledTimes(1);
         });
 
         it('should throw error for sendEncryptedTextMessage, when encrypted message is too large', async () => {
@@ -199,6 +178,12 @@ describe('Message Api', () => {
                         nonce: 'nonce'
                     })
             );
+
+            // @ts-ignore
+            signAndBroadcastTransaction = jest.fn().mockImplementation(s => (_) => Promise.resolve({
+                fullHash: 'fullHash',
+                transaction: 'transaction'
+            }));
 
             const senderKeys = {
                 publicKey: 'publicKey',
@@ -221,10 +206,7 @@ describe('Message Api', () => {
             }
 
             expect(encryptMessage).toBeCalledTimes(1);
-            expect(broadcastTransaction).not.toBeCalled();
-            expect(generateSignature).not.toBeCalled();
-            expect(verifySignature).not.toBeCalled();
-            expect(generateSignedTransactionBytes).not.toBeCalled();
+            expect(signAndBroadcastTransaction).not.toBeCalled();
         });
 
     });
@@ -236,8 +218,7 @@ describe('Message Api', () => {
 
         beforeEach(() => {
             jest.resetAllMocks();
-            // @ts-ignore
-            signAndBroadcastTransaction = jest.fn();
+
             httpMock = HttpMockBuilder.create().onPostReply(200, {
                 unsignedTransactionBytes: 'unsignedHexMessage'
             }).build();
@@ -251,8 +232,12 @@ describe('Message Api', () => {
             httpMock.reset();
         });
 
-
         it('should sendMessage', async () => {
+            // @ts-ignore
+            signAndBroadcastTransaction = jest.fn().mockImplementation(s => (_) => Promise.resolve({
+                fullHash: 'fullHash',
+                transaction: 'transaction'
+            }));
 
             await sendMessage(service)({
                 message: 'Message Text',
@@ -277,6 +262,13 @@ describe('Message Api', () => {
         });
 
         it('should sendEncryptedMessage', async () => {
+
+            // @ts-ignore
+            signAndBroadcastTransaction = jest.fn().mockImplementation(s => (_) => Promise.resolve({
+                fullHash: 'fullHash',
+                transaction: 'transaction'
+            }));
+
 
             // @ts-ignore
             encryptMessage = jest.fn(
