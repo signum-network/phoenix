@@ -1,0 +1,68 @@
+# @burstjs/monitor
+
+A monitor to watch for specific changes on the the Burst blockchain
+
+Due to average blocktime of 240 seconds, transactions stay pending for a certain time. It is a repeating pattern
+to watch for such changes and waiting for confirmation. This package simplifies this task.
+
+## Installation
+
+`@burstjs/monitor` can be used with NodeJS or Web. Two formats are available
+
+### Using with NodeJS and/or modern web frameworks
+
+Install using [npm](https://www.npmjs.org/):
+
+```
+npm install @burstjs/monitor
+```
+
+or using [yarn](https://yarnpkg.com/):
+
+``` yarn
+yarn add @burstjs/monitor
+```
+
+#### Example
+
+// TODO:
+
+```js
+import {HttpImpl} from '@burstjs/http'
+
+try{
+    const client = new HttpImpl('https://jsonplaceholder.typicode.com/');
+    const response = client.get('/todos/1')
+    console.log(response)
+}
+catch(httpError){
+    console.error(httpError.message)
+}
+
+```
+
+### Using in classic `<script>`
+
+Each package is available as bundled standalone library using IIFE.
+This way _burstJS_ can be used also within `<script>`-Tags.
+This might be useful for Wordpress and/or other PHP applications.
+
+Just import the package using the HTML `<script>` tag.
+
+`<script src='https://cdn.jsdelivr.net/npm/@burstjs/monitor/dist/burstjs.monitor.min.js'></script>`
+
+#### Example
+
+```js
+const client = new b$http.HttpImpl('https://jsonplaceholder.typicode.com/');
+client.get('/todos/1').then(console.log)
+```
+
+See more here:
+
+[@burstjs/monitor Online Documentation](https://burst-apps-team.github.io/phoenix/modules/monitor.html)
+
+---
+
+## API Reference
+{{>main}}

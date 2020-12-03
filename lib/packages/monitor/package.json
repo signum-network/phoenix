@@ -1,0 +1,55 @@
+{
+  "name": "@burstjs/monitor",
+  "version": "0.5.1",
+  "description": "Monitor transactions on Burst blockchain",
+  "contributors": [
+    "ohager"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/burst-apps-team/phoenix"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "license": "Apache-2.0",
+  "main": "./out/index.js",
+  "typings": "./out/index.d.ts",
+  "private": false,
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "bili": "^4.8.1",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.24.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "tsc": "tsc",
+    "bundle": "bili",
+    "readme": "jsdoc2md  --files ./src/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
+  },
+  "dependencies": {
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
