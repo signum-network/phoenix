@@ -30,8 +30,11 @@
     ]
   },
   "devDependencies": {
+    "acorn": "^6.4.2",
+    "typescript": "2.4.2",
     "@types/jest": "^24.0.23",
     "bili": "^4.8.1",
+    "node-localstorage": "^2.1.6",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript2": "^0.24.2"
@@ -42,8 +45,7 @@
     "bundle": "bili",
     "readme": "jsdoc2md  --files ./src/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "husky": {
     "hooks": {
       "pre-push": "npm test"

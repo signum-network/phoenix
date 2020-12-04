@@ -11,9 +11,9 @@
         "node_modules/@types"
     ],
     "include": [
-        "./src",
-        "README.md"
-    ],
+      "./src",
+      "README.md",
+      ],
   "autogenerate-readme": {
     "srcFiles": [
       "./src/**/*.ts"

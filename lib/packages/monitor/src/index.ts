@@ -1,3 +1,5 @@
+import { MonitorService } from './monitorService';
+
 /**
  * The Monitor Module is useful to poll for changes on the Burst blockchain, especially for confirmations of transactions
  *
@@ -5,7 +7,7 @@
  *
  * @moduledefinition monitor
  */
-// TODO: implement
 export {
+    MonitorService
 };
 
