@@ -1,7 +1,7 @@
-import {Monitor} from './Monitor';
 import {MonitorRepository} from './typings/monitorRepository';
-import {Logger} from './typings/Logger';
-import {voidLogger} from "./typings/voidLogger";
+import {voidLogger} from './typings/voidLogger';
+import { Logger } from './typings/logger';
+import {Monitor} from './monitor';
 
 
 interface MonitorServiceArgs {

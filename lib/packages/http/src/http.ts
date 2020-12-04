@@ -39,6 +39,6 @@ export default interface Http {
      * @param options [optional] Option/Configuration object for the http clients configuration
      * @returns request result in case of success or error
      */
-    delete(url: string, options: any): Promise<HttpResponse>;
+    delete(url: string, options?: any): Promise<HttpResponse>;
 }
 

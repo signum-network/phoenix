@@ -43,9 +43,9 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:ci": "jest --coverage && codecov",
+    "test": "jest --detectOpenHandles",
+    "test:watch": "jest --watch --detectOpenHandles",
+    "test:ci": "jest --coverage --detectOpenHandles && codecov",
     "test:e2e": "jest --config jest.config.e2e.js --runInBand --detectOpenHandles --forceExit",
     "doc": "typedoc --options tsdoc.json --listInvalidSymbolLinks",
     "readme": "lerna exec 'npm run readme'",
