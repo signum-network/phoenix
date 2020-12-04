@@ -30,8 +30,6 @@
     ]
   },
   "devDependencies": {
-    "acorn": "^6.4.2",
-    "typescript": "2.4.2",
     "@types/jest": "^24.0.23",
     "bili": "^4.8.1",
     "node-localstorage": "^2.1.6",
