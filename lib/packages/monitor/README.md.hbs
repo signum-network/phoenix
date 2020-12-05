@@ -28,16 +28,48 @@ yarn add @burstjs/monitor
 // TODO:
 
 ```js
-import {HttpImpl} from '@burstjs/http'
+import {Monitor} from '@burstjs/monitor'
+import {composeApi} from "@burstjs/core";
 
-try{
-    const client = new HttpImpl('https://jsonplaceholder.typicode.com/');
-    const response = client.get('/todos/1')
-    console.log(response)
+// A method that checks if an account exists
+// > IMPORTANT: Do not use closures, when you need to serialize the monitor
+async function tryFetchAccount() {
+    const BurstApi = composeApi({ nodeHost: 'https://testnet.burstcoin.network:6876/'})
+    try{
+        const {account} = await BurstApi.account.getAccount('1234')
+        return account;
+    }catch (e){
+        // ignore error
+        return null;
+    }
 }
-catch(httpError){
-    console.error(httpError.message)
+
+// A comparing function to check if a certain condition for the returned data from fetch function
+// is true. If it's true the monitor stops
+function checkIfAccountExists(account) {
+    return account !== null;
 }
+
+// Create your monitor
+const monitor = new Monitor({
+    asyncFetcherFn: tryFetchAccount,
+    compareFn: checkIfAccountExists,
+    intervalSecs: 10, // polling interval in seconds
+    key: 'monitor-account',
+    timeoutSecs: 2 * 240 // when reached timeout the monitor stops
+});
+// starts monitor
+monitor.start();
+
+// called when `checkIfAccountExists` returns true
+monitor.onFulfilled(() => {
+    console.log('Yay, account active');
+});
+
+// called when `timeoutSecs` is reached
+monitor.onTimeout(() => {
+    console.log('Hmm, something went wrong');
+});
 
 ```
 
@@ -54,8 +86,13 @@ Just import the package using the HTML `<script>` tag.
 #### Example
 
 ```js
-const client = new b$http.HttpImpl('https://jsonplaceholder.typicode.com/');
-client.get('/todos/1').then(console.log)
+const monitor = new b$monitor.Monitor({
+    //...
+});
+monitor.start()
+monitor.onFulFilled(() => {
+    //...
+})
 ```
 
 See more here:
