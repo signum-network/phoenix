@@ -1,28 +1,17 @@
 import {voidLogger} from './typings/voidLogger';
 import {Logger} from './typings/logger';
 import {EventEmitter} from './internal/eventEmitter';
-
-type FetchFunction = () => Promise<any>;
-type PredicateFunction = (obj: any) => boolean;
-
-interface MonitorArgs {
-    key: string;
-    intervalSecs: number;
-    timeoutSecs: number;
-    logger?: Logger;
-    asyncFetcherFn: FetchFunction;
-    compareFn: PredicateFunction;
-}
+import {FetchFunction, MonitorArgs, PredicateFunction} from './typings/args/monitorArgs';
 
 const MonitorEvents = {
     Fulfilled: '@burstjs/monitor/fulfilled',
     Timeout: '@burstjs/monitor/timeout',
 };
 
-export class Monitor {
+export class Monitor<T> {
     private readonly _timeoutSecs: number = -1;
-    private readonly _asyncFetcher: FetchFunction;
-    private readonly _compareFn: PredicateFunction;
+    private readonly _asyncFetcher: FetchFunction<T>;
+    private readonly _compareFn: PredicateFunction<T>;
     private readonly _emitter = new EventEmitter();
     private readonly _intervalSecs: number = -1;
     private readonly _key: string;
@@ -30,7 +19,7 @@ export class Monitor {
     private _logger: Logger;
     private _handle: any = undefined;
 
-    constructor(args: MonitorArgs) {
+    constructor(args: MonitorArgs<T>) {
         const {
             timeoutSecs,
             asyncFetcherFn,
@@ -68,7 +57,7 @@ export class Monitor {
         return this._timeoutSecs;
     }
 
-    public static deserialize(data: string): Monitor {
+    public static deserialize<T>(data: string): Monitor<T> {
         const args = JSON.parse(data);
         return new Monitor({
             ...args,

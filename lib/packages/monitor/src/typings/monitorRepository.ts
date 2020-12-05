@@ -1,8 +1,8 @@
-import {MonitorModel} from './monitorModel';
+import {GenericMonitor} from './GenericMonitor';
 
 export interface MonitorRepository {
-    getAll(): Promise<MonitorModel[]>;
-    get(monitorId): Promise<MonitorModel>;
-    insert(monitor: MonitorModel): Promise<void>;
-    remove(monitorId): Promise<void>;
+    getAll(): Promise<GenericMonitor[]>;
+    get(monitorKey): Promise<GenericMonitor|null>;
+    insert(monitor: GenericMonitor): Promise<void>;
+    remove(monitorKey): Promise<void>;
 }
