@@ -98,7 +98,7 @@ export class MonitorService {
         }
         const monitor = new Monitor({
             key,
-            abortAfterSecs: this.monitorTimeoutSecs,
+            timeoutSecs: this.monitorTimeoutSecs,
             intervalSecs: this.monitorIntervalSecs,
         });
         monitor.start({

@@ -33,10 +33,6 @@ describe('MonitorService', () => {
             });
 
             const monitors = await monitorRepository.getAll();
-
-            expect()
-            expect(monitor.serialize()).toEqual('{"intervalSecs":1,"abortAfterSecs":5,"key":"test-key","startTime":-1}');
-
         });
 
         it('should deserialize a monitor', () => {
@@ -51,7 +47,7 @@ describe('MonitorService', () => {
             const monitor = new Monitor({
                 intervalSecs: 1,
                 key: 'test-key',
-                abortAfterSecs: 5
+                timeoutSecs: 5
             });
 
             expect(monitor.hasStarted()).toBeFalsy();
@@ -73,7 +69,7 @@ describe('MonitorService', () => {
             const monitor = new Monitor({
                 intervalSecs: 1,
                 key: 'test-key',
-                abortAfterSecs: 5
+                timeoutSecs: 5
             });
             let counter = 0;
             monitor.start({
@@ -92,7 +88,7 @@ describe('MonitorService', () => {
             const monitor = new Monitor({
                 intervalSecs: 1,
                 key: 'test-key',
-                abortAfterSecs: 2
+                timeoutSecs: 2
             });
             monitor.start({
                 asyncFetcher: () => Promise.resolve(),

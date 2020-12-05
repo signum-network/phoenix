@@ -30,7 +30,7 @@ export class EventEmitter {
                     // @ts-ignore
                     window.removeEventListener(name, cb);
                 },
-                emit: (name: string | symbol, payload: object) => {
+                emit: (name: string | symbol, payload?: unknown) => {
                     // @ts-ignore
                     window.dispatchEvent(new window.CustomEvent(name, payload));
                 },
@@ -50,7 +50,7 @@ export class EventEmitter {
         this._emitter.once(eventName, fn);
     }
 
-    public emit(eventName: string | symbol, payload: object) {
+    public emit(eventName: string | symbol, payload?: unknown) {
         this._emitter.emit(eventName, payload);
     }
 }
