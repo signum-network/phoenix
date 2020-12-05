@@ -54,7 +54,7 @@ describe('MemoryMonitorRepository', () => {
             const gotMonitor = await repository.get('monitor-2');
             expect(gotMonitor.key).toBe('monitor-2');
         });
-        it('should return undefined for an unknown monitor model', async () => {
+        it('should return null for an unknown monitor model', async () => {
             const repository = new MemoryMonitorRepository();
             await repository.insert(monitor1);
             const gotMonitor = await repository.get('monitor-2');

@@ -10,7 +10,7 @@ export class MemoryMonitorRepository implements MonitorRepository {
     private monitors: Dictionary<GenericMonitor> = {};
 
     get(key): Promise<GenericMonitor | null> {
-        return Promise.resolve(this.monitors[key]);
+        return Promise.resolve(this.monitors[key] || null);
     }
 
     getAll(): Promise<GenericMonitor[]> {

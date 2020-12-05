@@ -19,7 +19,7 @@ export class LocalStorageMonitorRepository implements MonitorRepository {
     get(key): Promise<GenericMonitor|null> {
         const item = this.storage.getItem(key);
         const monitor = item && Monitor.deserialize(item);
-        return Promise.resolve(monitor);
+        return Promise.resolve(monitor || null);
     }
 
     getAll(): Promise<GenericMonitor[]> {

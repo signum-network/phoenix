@@ -7,11 +7,19 @@ import {LocalStorage} from 'node-localstorage';
 
 const NodeLocalStoragePath = join(__dirname, './storage');
 
+function clearStorage() {
+    if (existsSync(NodeLocalStoragePath)) {
+        rmdirSync(NodeLocalStoragePath, {recursive: true});
+    }
+}
+
 describe('LocalStorageMonitorRepository', () => {
 
     let monitor1, monitor2;
 
     beforeAll(() => {
+        clearStorage();
+
         monitor1 = new Monitor({
             key: 'monitor-1',
             compareFn: () => true,
@@ -30,9 +38,7 @@ describe('LocalStorageMonitorRepository', () => {
     });
 
     afterAll(() => {
-        if (existsSync(NodeLocalStoragePath)) {
-            rmdirSync(NodeLocalStoragePath, {recursive: true});
-        }
+        clearStorage();
     });
 
     describe('getAll', () => {
@@ -66,7 +72,7 @@ describe('LocalStorageMonitorRepository', () => {
             const gotMonitor = await repository.get('monitor-2');
             expect(gotMonitor.key).toBe('monitor-2');
         });
-        it('should return undefined for an unknown monitor model', async () => {
+        it('should return null for an unknown monitor model', async () => {
             const repository = new LocalStorageMonitorRepository(new LocalStorage(join(NodeLocalStoragePath, './get-2')));
             await repository.insert(monitor1);
             const gotMonitor = await repository.get('monitor-2');
