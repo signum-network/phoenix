@@ -1,21 +1,41 @@
 import {Monitor} from '../monitor';
+import {MonitorService} from '../monitorService';
+import {MemoryMonitorRepository} from '../repositories/MemoryMonitorRepository';
+import {MonitorRepository} from '../typings/monitorRepository';
 
-describe('Monitor', () => {
-    describe('serialize/deserialize', () => {
+describe('MonitorService', () => {
+
+    let monitorService: MonitorService;
+    let monitorRepository: MonitorRepository;
+
+    beforeEach(() => {
+        monitorRepository = new MemoryMonitorRepository();
+        monitorService = new MonitorService({
+            monitorTimeoutSecs: 5,
+            monitorIntervalSecs: 1,
+            monitorRepository
+        });
+    });
+
+
+    describe('start', () => {
         it('should be serialized correctly', async () => {
 
-            const monitor = new Monitor({
-                asyncFetcher: () => {
-                    console.log('Some method');
-                    return Promise.resolve({test:1});
+            await monitorService.startMonitor({
+                key: 'test',
+                asyncFetcher: () => Promise.resolve({foo: 'bar'}),
+                targetFieldName: 'foo',
+                targetValue: 'bar',
+                timeoutCallback: () => {
                 },
-                intervalSecs: 1,
-                key: 'test-key',
-                abortAfterSecs: 5
+                fulfilledCallback: () => {
+                }
             });
 
-            const serialized = await monitor.serialize();
-            expect(serialized).toEqual('{"intervalSecs":1,"abortAfterSecs":5,"key":"test-key","startTime":-1}');
+            const monitors = await monitorRepository.getAll();
+
+            expect()
+            expect(monitor.serialize()).toEqual('{"intervalSecs":1,"abortAfterSecs":5,"key":"test-key","startTime":-1}');
 
         });
 
@@ -29,10 +49,6 @@ describe('Monitor', () => {
     describe('hasStarted', () => {
         it('should behave correctly', () => {
             const monitor = new Monitor({
-                asyncFetcher: () => {
-                    console.log('Some method')
-                    return Promise.resolve({})
-                },
                 intervalSecs: 1,
                 key: 'test-key',
                 abortAfterSecs: 5
@@ -40,7 +56,7 @@ describe('Monitor', () => {
 
             expect(monitor.hasStarted()).toBeFalsy();
             monitor.start({
-                // asyncFetcher: () => Promise.resolve({foo: 'bar'}),
+                asyncFetcher: () => Promise.resolve({foo: 'bar'}),
                 callback: () => {
                 },
                 predicateFn: () => false,
@@ -55,17 +71,13 @@ describe('Monitor', () => {
         it('should call predicateFunction periodically', (done) => {
             jest.setTimeout(5000);
             const monitor = new Monitor({
-                asyncFetcher: () => {
-                    console.log('Some method');
-                    return Promise.resolve({});
-                },
                 intervalSecs: 1,
                 key: 'test-key',
                 abortAfterSecs: 5
             });
             let counter = 0;
             monitor.start({
-                // asyncFetcher: () => Promise.resolve({counter: counter++}),
+                asyncFetcher: () => Promise.resolve({counter: counter++}),
                 predicateFn: (data) => data.counter === 2,
                 callback: (data, fulfilled) => {
                     expect(data.counter).toBe(2);
@@ -78,16 +90,12 @@ describe('Monitor', () => {
         it('should timeout as expected', (done) => {
             jest.setTimeout(5000);
             const monitor = new Monitor({
-                asyncFetcher: () => {
-                    console.log('Some method');
-                    return Promise.resolve({});
-                },
                 intervalSecs: 1,
                 key: 'test-key',
                 abortAfterSecs: 2
             });
             monitor.start({
-                // asyncFetcher: () => Promise.resolve(),
+                asyncFetcher: () => Promise.resolve(),
                 predicateFn: () => false,
                 callback: (data, fulfilled) => {
                     expect(fulfilled).toBeFalsy();
@@ -97,35 +105,4 @@ describe('Monitor', () => {
             });
         });
     });
-
-    describe('abort', () => {
-        it('should stop a started monitor as expected', (done) => {
-            jest.setTimeout(5000);
-            const monitor = new Monitor({
-                asyncFetcher: () => {
-                    console.log('Some method');
-                    return Promise.resolve({});
-                },
-                intervalSecs: 1,
-                key: 'test-key',
-                abortAfterSecs: 2
-            });
-            monitor.start({
-                // asyncFetcher: () => Promise.resolve(),
-                predicateFn: () => false,
-                callback: (data, fulfilled) => {
-                    expect(fulfilled).toBeFalsy();
-                    expect(true).toBe('Should not call here');
-                }
-            });
-
-            monitor.abort();
-            setTimeout(() => {
-                expect(monitor.hasStarted()).toBeFalsy()
-                done();
-            }, 1500);
-
-        })
-
-    })
 });

@@ -1,6 +1,8 @@
 
 export interface MonitorModel {
-    id: string;
+    key: string;
     startTime: number;
-    [key: string]: any;
+    expected: {
+        [key: string]: string;
+    };
 }

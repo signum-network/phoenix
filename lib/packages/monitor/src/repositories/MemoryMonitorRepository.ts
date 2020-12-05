@@ -19,10 +19,10 @@ export class MemoryMonitorRepository implements MonitorRepository {
     }
 
     insert(model: MonitorModel): Promise<void> {
-        if (this.monitors[model.id]) {
-            return Promise.reject(`Object with id '[${model.id}]' already exists`);
+        if (this.monitors[model.key]) {
+            return Promise.reject(`Object with id '[${model.key}]' already exists`);
         }
-        this.monitors[model.id] = model;
+        this.monitors[model.key] = model;
         return Promise.resolve();
     }
 

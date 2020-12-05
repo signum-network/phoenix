@@ -1,6 +1,6 @@
 import {MonitorRepository} from './typings/monitorRepository';
 import {voidLogger} from './typings/voidLogger';
-import { Logger } from './typings/logger';
+import {Logger} from './typings/logger';
 import {Monitor} from './monitor';
 
 
@@ -27,13 +27,12 @@ interface MonitorServiceArgs {
 }
 
 
-
 export class MonitorService {
     private readonly monitorRepository: MonitorRepository;
     private readonly monitorIntervalSecs: number;
     private readonly monitorTimeoutSecs: number;
     private readonly logger: Logger;
-    private _activeMonitors: string[] = [];
+    private _activeMonitors: Monitor[] = [];
 
     constructor(args: MonitorServiceArgs) {
         this.monitorRepository = args.monitorRepository;
@@ -42,32 +41,35 @@ export class MonitorService {
         this.logger = args.logger || voidLogger;
     }
 
-    get activeMonitors() {
+    get activeMonitors(): Monitor[] {
         return this._activeMonitors;
     }
 
-    async restoreMonitors() {
+    async restoreMonitors(): Promise<Monitor[]> {
         const monitors = await this.monitorRepository.getAll();
-        monitors.forEach(monitor => {
+        const monitorPromises = monitors.map(monitor => {
             this.restoreMonitor(monitor.key);
         });
+
+        return await Promise.all(monitorPromises)
     }
 
-    async restoreMonitor(key) {
+    async restoreMonitor(key): Promise<Monitor> {
         const {expected, startTime} = await this.monitorRepository.get(key);
         const fieldName = Object.keys(expected)[0];
         const expectedValue = expected[fieldName];
         const expired = (Date.now() - startTime) / 1000 > this.monitorTimeoutSecs;
         if (expired) {
             this.logger.debug(`Expired Monitor: ${key}`);
-            return this.removeMonitor(key);
+            await this.removeMonitor(key);
+            return;
         }
-        // await this.startMonitor({
-        //     key,
-        //     fieldName,
-        //     expectedValue,
-        //     startTime,
-        // });
+        return this.startMonitor({
+            key,
+            fieldName,
+            expectedValue,
+            startTime,
+        });
     }
 
     /**
@@ -88,12 +90,11 @@ export class MonitorService {
                            targetValue,
                            timeoutCallback,
                            fulfilledCallback,
-                           startTime = Date.now(),
-                       }) {
+                       }): Promise<Monitor | null> {
         const isMonitorActive = this._activeMonitors.indexOf(key) !== -1;
         if (isMonitorActive) {
             this.logger.debug(`Monitor [${key}] already active - ignored`);
-            return Promise.resolve();
+            return Promise.resolve(null);
         }
         const monitor = new Monitor({
             key,
@@ -111,18 +112,20 @@ export class MonitorService {
                     fulfilledCallback(data);
                 }
             },
-            // startTime,
         });
 
+
+        // const monitorModel= new MonitorModel
         await this.monitorRepository.insert({
-            id: key,
+            key,
             expected: {
                 [targetFieldName]: targetValue,
             },
-            startTime,
+            startTime: monitor.startTime,
         });
 
         this._activeMonitors.push(key);
+        this.
     }
 
     async removeMonitor(key) {

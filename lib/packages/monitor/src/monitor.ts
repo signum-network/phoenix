@@ -6,38 +6,58 @@ interface MonitorArgs {
     intervalSecs: number;
     abortAfterSecs: number;
     logger?: Logger;
+    asyncFetcher: () => Promise<unknown>;
 }
 
 export class Monitor {
 
-    constructor({key, intervalSecs, abortAfterSecs, logger}: MonitorArgs) {
+    protected constructor({key, asyncFetcher, intervalSecs, abortAfterSecs, logger}: MonitorArgs) {
         if (intervalSecs < 1) {
             throw new Error('interval must be greater than zero');
         }
         this._key = key;
         this._intervalSecs = intervalSecs;
         this._abortAfterSecs = abortAfterSecs;
+        this._asyncFetcher = asyncFetcher;
         this._logger = logger || voidLogger;
+    }
+
+    public get startTime(): number {
+        return this._startTime;
     }
 
     private readonly _key: string;
     private readonly _intervalSecs: number = -1;
     private readonly _abortAfterSecs: number = -1;
+    private  _asyncFetcher: () => Promise<unknown>;
     private _startTime = -1;
     private _logger: Logger;
     private _handle: any = undefined;
 
+    public abstract fetcher();
+
     public static deserialize(data: string): Monitor {
         const args = JSON.parse(data) as MonitorArgs;
+
         return new Monitor(args);
     }
 
-    public serialize(): string {
+    public async serialize(): Promise<string> {
+
+        const t = this._asyncFetcher.toString()
+            .replace(/\s+/g, ' ')
+        // const p = JSON.parse(t);
+        // tslint:disable-next-line:no-eval
+        const x = eval(t);
+
+        const y  = await x() as () => Promise<unknown>;
+
         return JSON.stringify({
             intervalSecs: this._intervalSecs,
             abortAfterSecs: this._abortAfterSecs,
             key: this._key,
-            startTime: this._startTime
+            startTime: this._startTime,
+            fetcher: this.fetcher.toString()
         });
     }
 
@@ -50,7 +70,7 @@ export class Monitor {
     }
 
     hasStarted(): boolean {
-        return this._startTime !== -1;
+        return this.startTime !== -1;
     }
 
     isExpired(): boolean {
@@ -59,7 +79,7 @@ export class Monitor {
             : false;
     }
 
-    start({asyncFetcher, predicateFn, callback}) {
+    start({predicateFn, callback}) {
         this._debug('Monitoring...');
 
         if (this.isExpired()) {
@@ -70,7 +90,7 @@ export class Monitor {
         // @ts-ignore
         this._handle = setTimeout(async () => {
             try {
-                const data = await asyncFetcher();
+                const data = await this.fetch();
                 this._debug(`Fetched: ${JSON.stringify(data, null, '\t')}`);
                 if (predicateFn(data)) {
                     this._debug('Monitor predicate fulfilled');
@@ -78,7 +98,7 @@ export class Monitor {
                     this._resetStartTime();
                 }
                 if (!this.isExpired()) {
-                    this.start({asyncFetcher, predicateFn, callback});
+                    this.start({predicateFn, callback});
                 } else {
                     this._debug('Monitor timed out');
                     callback(data, false);
