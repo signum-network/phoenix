@@ -1,6 +1,10 @@
 import {Monitor} from '../monitor';
 import {consoleLogger} from '../typings/consoleLogger';
 
+interface MonitorData {
+    foo: number;
+}
+
 const fetcher = () => Promise.resolve({foo: 1});
 const comparer = ({foo}) => foo === 1;
 
@@ -9,7 +13,7 @@ describe('Monitor', () => {
 
         let serializedMonitor;
         beforeEach(() => {
-            const monitor = new Monitor({
+            const monitor = new Monitor<MonitorData>({
                 compareFn: comparer,
                 asyncFetcherFn: fetcher,
                 intervalSecs: 1,
@@ -32,8 +36,9 @@ describe('Monitor', () => {
 
         it('deserialized monitor should function as expected', (done) => {
             jest.setTimeout(4000);
-            const newMonitor = Monitor.deserialize(serializedMonitor);
-            newMonitor.onFulfilled((data) => {
+            const newMonitor = Monitor.deserialize<MonitorData>(serializedMonitor);
+            newMonitor.onFulfilled(({key, data}) => {
+                expect(key).toBe('test-key');
                 expect(data.foo).toBe(1);
                 done();
             });
@@ -55,7 +60,7 @@ describe('Monitor', () => {
             expect(monitor.hasStarted()).toBeFalsy();
             monitor.start();
             expect(monitor.hasStarted()).toBeTruthy();
-            monitor.abort();
+            monitor.stop();
             expect(monitor.hasStarted()).toBeFalsy();
         });
     });
@@ -91,7 +96,9 @@ describe('Monitor', () => {
                 timeoutSecs: 3
             });
             monitor.start();
-            monitor.onTimeout(done);
+            monitor.onTimeout(() => {
+                done();
+            });
         });
     });
 
@@ -108,7 +115,7 @@ describe('Monitor', () => {
 
             monitor.start();
             expect(monitor.hasStarted()).toBeTruthy();
-            monitor.abort();
+            monitor.stop();
             monitor.onFulfilled(() => {
                 throw new Error('Should not be called');
             });

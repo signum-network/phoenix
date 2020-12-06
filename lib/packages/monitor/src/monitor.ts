@@ -1,13 +1,69 @@
 import {voidLogger} from './typings/voidLogger';
 import {Logger} from './typings/logger';
 import {EventEmitter} from './internal/eventEmitter';
-import {FetchFunction, MonitorArgs, PredicateFunction} from './typings/args/monitorArgs';
+import {
+    FetchFunction,
+    FulfilledFunction,
+    MonitorArgs,
+    PredicateFunction,
+    TimeoutFunction
+} from './typings/args/monitorArgs';
 
 const MonitorEvents = {
     Fulfilled: '@burstjs/monitor/fulfilled',
     Timeout: '@burstjs/monitor/timeout',
 };
 
+/**
+ * The generic monitor class.
+ *
+ * A monitor can be used to check periodically for a certain situation, e.g. confirmation of a transactions,
+ * activation on an account, or even something completely different.
+ *
+ * Example: (checking for the existence of an account)
+ * ```js
+ * // A method that checks if an account exists
+ * // > IMPORTANT: Do not use closures, when you need to serialize the monitor
+ * async function tryFetchAccount() {
+ *    const BurstApi = composeApi({ nodeHost: 'https://testnet.burstcoin.network:6876/'})
+ *    try{
+ *        const {account} = await BurstApi.account.getAccount('1234')
+ *        return account;
+ *    }catch (e){
+ *        // ignore error
+ *        return null;
+ *    }
+ *}
+ *
+ * // A comparing function to check if a certain condition for the returned data from fetch function
+ * // is true. If it's true the monitor stops
+ * function checkIfAccountExists(account) {
+ *    return account !== null;
+ *}
+ *
+ * // Create your monitor
+ * const monitor = new Monitor<Account>({
+ *    asyncFetcherFn: tryFetchAccount,
+ *    compareFn: checkIfAccountExists,
+ *    intervalSecs: 10, // polling interval in seconds
+ *    key: 'monitor-account',
+ *    timeoutSecs: 2 * 240 // when reached timeout the monitor stops
+ *});
+ * // starts monitor
+ * monitor.start();
+ *
+ * // called when `checkIfAccountExists` returns true
+ * monitor.onFulfilled(() => {
+ *    console.log('Yay, account active');
+ *});
+ *
+ * // called when `timeoutSecs` is reached
+ * monitor.onTimeout(() => {
+ *    console.log('Hmm, something went wrong');
+ *});
+ *```
+ *
+ */
 export class Monitor<T> {
     private readonly _timeoutSecs: number = -1;
     private readonly _asyncFetcher: FetchFunction<T>;
@@ -19,14 +75,18 @@ export class Monitor<T> {
     private _logger: Logger;
     private _handle: any = undefined;
 
+    /**
+     * The monitors constructor
+     * @param args The arguments
+     */
     constructor(args: MonitorArgs<T>) {
         const {
-            timeoutSecs,
             asyncFetcherFn,
             compareFn,
             intervalSecs,
             key,
             logger,
+            timeoutSecs,
         } = args;
 
         if (intervalSecs < 1) {
@@ -41,24 +101,42 @@ export class Monitor<T> {
         this._logger = logger || voidLogger;
     }
 
+    /**
+     * The start timestamp if started, or -1
+     */
     public get startTime(): number {
         return this._startTime;
     }
 
+    /**
+     * The interval
+     */
     public get intervalSecs(): number {
         return this._intervalSecs;
     }
 
+    /**
+     * The key aka identifier
+     */
     public get key(): string {
         return this._key;
     }
 
+    /**
+     * The timeout
+     */
     public get timeoutSecs(): number {
         return this._timeoutSecs;
     }
 
-    public static deserialize<T>(data: string): Monitor<T> {
-        const args = JSON.parse(data);
+    /**
+     * Deserializes a serialized monitor
+     * @see [[Monitor.serialize]]
+     * @param serializedMonitor The serialized monitor
+     * @return The monitor instance
+     */
+    public static deserialize<T>(serializedMonitor: string): Monitor<T> {
+        const args = JSON.parse(serializedMonitor);
         return new Monitor({
             ...args,
             asyncFetcherFn: Monitor._deserializeFunction<FetchFunction>(args.asyncFetcherFn),
@@ -75,6 +153,12 @@ export class Monitor<T> {
         return eval(serialized) as T;
     }
 
+    /**
+     * Serializes the monitor, such it can be stored.
+     * This serializes also the `asyncFetcher` and `compareFn`
+     * It is important that these functions are not closures, i.e. the must not reference
+     * outer data/variables, otherwise the behavior on deserialization is not deterministic
+     */
     public serialize(): string {
         return JSON.stringify({
             intervalSecs: this._intervalSecs,
@@ -94,22 +178,31 @@ export class Monitor<T> {
         this._startTime = -1;
     }
 
+    /**
+     * @return true, if monitor was started and is running
+     */
     hasStarted(): boolean {
         return this.startTime !== -1;
     }
 
+    /**
+     * @returns true, if a started monitor timed out.
+     */
     isExpired(): boolean {
         return this.hasStarted()
             ? (Date.now() - this._startTime) / 1000 >= this._timeoutSecs
             : false;
     }
 
+    /**
+     * Starts the monitor
+     */
     start() {
         this._debug('Monitoring...');
 
         if (this.isExpired()) {
             this._debug('Monitor expired');
-            this.abort();
+            this.stop();
             return;
         }
 
@@ -121,13 +214,18 @@ export class Monitor<T> {
                 const predicateFulfilled = this._compareFn(data);
                 if (predicateFulfilled) {
                     this._debug('Monitor predicate fulfilled');
-                    this._emitter.emit(MonitorEvents.Fulfilled, data);
+                    this._emitter.emit(MonitorEvents.Fulfilled, {
+                        key: this.key,
+                        data
+                    });
                     this._resetStartTime();
                 } else if (!this.isExpired()) {
                     this.start();
                 } else {
                     this._debug('Monitor timed out');
-                    this._emitter.emit(MonitorEvents.Timeout);
+                    this._emitter.emit(MonitorEvents.Timeout, {
+                        key: this.key,
+                    });
                     this._resetStartTime();
                 }
             } catch (e) {
@@ -140,17 +238,28 @@ export class Monitor<T> {
         }
     }
 
-    abort() {
+    /**
+     * Stops the monitor
+     */
+    stop() {
         // @ts-ignore
         clearTimeout(this._handle);
         this._startTime = -1;
     }
 
-    onTimeout(fn: Function): void {
+    /**
+     * Callback function for timeout event. You can add multiple event listener if you want
+     * @param fn The callback
+     */
+    onTimeout(fn: TimeoutFunction): void {
         this._emitter.on(MonitorEvents.Timeout, fn);
     }
 
-    onFulfilled(fn: Function): void {
+    /**
+     * Callback function for fulfilled event. You can add multiple event listener if you want
+     * @param fn The callback
+     */
+    onFulfilled(fn: FulfilledFunction<T>): void {
         this._emitter.on(MonitorEvents.Fulfilled, fn);
     }
 
