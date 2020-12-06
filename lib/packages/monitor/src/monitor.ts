@@ -17,10 +17,10 @@ const MonitorEvents = {
 /**
  * The generic monitor class.
  *
- * A monitor can be used to check periodically for a certain situation, e.g. confirmation of a transactions,
+ * A monitor can be used to check periodically for a certain situation, e.g. confirmation of a transaction,
  * activation on an account, or even something completely different.
  *
- * Example: (checking for the existence of an account)
+ * Example: (checking for the existence of an account aka account activation)
  * ```js
  * // A method that checks if an account exists
  * // > IMPORTANT: Do not use closures, when you need to serialize the monitor
@@ -62,7 +62,7 @@ const MonitorEvents = {
  *    console.log('Hmm, something went wrong');
  *});
  *```
- *
+ * @module monitor
  */
 export class Monitor<T> {
     private readonly _timeoutSecs: number = -1;
@@ -133,15 +133,21 @@ export class Monitor<T> {
      * Deserializes a serialized monitor
      * @see [[Monitor.serialize]]
      * @param serializedMonitor The serialized monitor
+     * @param autoStart If monitor was started on serialization the monitor starts automatically, if set true (default)
      * @return The monitor instance
      */
-    public static deserialize<T>(serializedMonitor: string): Monitor<T> {
+    public static deserialize<T>(serializedMonitor: string, autoStart = true): Monitor<T> {
         const args = JSON.parse(serializedMonitor);
-        return new Monitor({
+        const monitor = new Monitor<T>({
             ...args,
             asyncFetcherFn: Monitor._deserializeFunction<FetchFunction>(args.asyncFetcherFn),
             compareFn: Monitor._deserializeFunction<PredicateFunction>(args.compareFn),
         });
+        monitor._startTime = args.startTime;
+        if (autoStart && args.startTime > -1) {
+            monitor.start();
+        }
+        return monitor;
     }
 
     private static _serializeFunction(fn): string {

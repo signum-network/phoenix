@@ -2,6 +2,11 @@
 
 import {Logger} from './logger';
 
+/**
+ * Simple console logger implementation
+ *
+ * @module monitor
+ */
 export class ConsoleLogger implements Logger {
     debug(msg: string): void {
         // @ts-ignore

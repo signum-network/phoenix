@@ -34,6 +34,28 @@ describe('Monitor', () => {
             expect(newMonitor.hasStarted()).toBeFalsy();
         });
 
+        it('should have set startTime when serialized/deserialized', () => {
+            const monitor = new Monitor<MonitorData>({
+                compareFn: comparer,
+                asyncFetcherFn: fetcher,
+                intervalSecs: 1,
+                key: 'test-key',
+                timeoutSecs: 5,
+                logger: consoleLogger,
+            });
+            monitor.start();
+            const startedMonitor = monitor.serialize();
+            const newMonitor = Monitor.deserialize(startedMonitor);
+            expect(newMonitor.timeoutSecs).toBe(5);
+            expect(newMonitor.intervalSecs).toBe(1);
+            expect(newMonitor.key).toBe('test-key');
+            expect(newMonitor.isExpired()).toBeFalsy();
+            expect(newMonitor.hasStarted()).toBeTruthy();
+
+            monitor.stop();
+            newMonitor.stop();
+        });
+
         it('deserialized monitor should function as expected', (done) => {
             jest.setTimeout(4000);
             const newMonitor = Monitor.deserialize<MonitorData>(serializedMonitor);

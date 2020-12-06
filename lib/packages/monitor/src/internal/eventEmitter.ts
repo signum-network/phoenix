@@ -1,6 +1,12 @@
 /* global window */
 import {isNode} from './isNode';
 
+/**
+ *
+ * The internal isomorphic event emitter
+ * @internal
+ ** @module monitor
+ */
 export class EventEmitter {
     private readonly _emitter: any;
 
