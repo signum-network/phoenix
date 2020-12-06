@@ -6,6 +6,8 @@ import {GenericMonitor} from './GenericMonitor';
 
 /**
  * The repository for monitor storing
+ *
+ * @module monitor
  */
 export interface MonitorRepository {
 

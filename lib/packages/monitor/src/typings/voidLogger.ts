@@ -20,4 +20,8 @@ export class VoidLogger implements Logger {
     }
 }
 
+/**
+ * A singleton instance of the VoidLogger
+ * @module monitor
+ */
 export const voidLogger = new VoidLogger();

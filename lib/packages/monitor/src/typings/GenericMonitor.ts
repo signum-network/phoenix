@@ -4,5 +4,9 @@
 
 import {Monitor} from '../monitor';
 
+/**
+ * @ignore
+ * @module monitor
+ */
 export type GenericMonitor = Monitor<any>;
 

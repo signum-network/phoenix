@@ -4,18 +4,26 @@
 
 import {Logger} from '../logger';
 
-interface KeyArgs {
-    key: string;
-}
+/**
+ * This is the type definition for the monitor's fetch function.
+ * The fetch function will be called periodically by the monitor. It returns
+ * arbitrary data that will be processed by the [[MonitorPredicateFunction]]
+ *
+ * @module monitor
+ */
+export type MonitorFetchFunction<T = any> = () => Promise<T>;
 
-interface FulfilledArgs<T> extends KeyArgs {
-    data: T;
-}
 
-export type FetchFunction<T = any> = () => Promise<T>;
-export type PredicateFunction<T = any> = (fetchData: T) => boolean;
-export type TimeoutFunction = (args: KeyArgs) => void;
-export type FulfilledFunction<T = any> = (args: FulfilledArgs<T>) => void;
+/**
+ * This is the type definition for the monitor's post-fetch processing function.
+ * This predicate function will be called immediately after the monitor fetched
+ * data using the [[MonitorFetchFunction]]. This function checks for
+ * a certain condition and returns true or false. On `true` the monitor stops fetching
+ * and triggers the [[Monitor.onFulfilled]] callback
+ *
+ * @module monitor
+ */
+export type MonitorPredicateFunction<T = any> = (fetchData: T) => boolean;
 
 /**
  * The monitor creation Arguments
@@ -45,12 +53,12 @@ export interface MonitorArgs<T> {
      * @note If you intend to serialize, e.g. using [[LocalStorageMonitorRepository]], the monitor
      * you must not use closures, as this might lead to non-deterministic behavior.
      */
-    asyncFetcherFn: FetchFunction<T>;
+    asyncFetcherFn: MonitorFetchFunction<T>;
     /**
      * Once the `asyncFetcher` has fetched the data, the result will be compared
      * herein. Return `true`, if a certain condition is met
      * @note If you intend to serialize, e.g. using [[LocalStorageMonitorRepository]], the monitor
      * you must not use closures, as this might lead to non-deterministic behavior.
      */
-    compareFn: PredicateFunction<T>;
+    compareFn: MonitorPredicateFunction<T>;
 }

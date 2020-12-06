@@ -1,7 +1,7 @@
 import {Asset} from '../asset';
 import {AssetList} from '../assetList';
-import {IssueAssetArgs} from "../args";
-import {TransactionId} from "../transactionId";
+import {IssueAssetArgs} from '../args';
+import {TransactionId} from '../transactionId';
 
 /**
  * Asset API
@@ -38,6 +38,6 @@ export interface AssetApi {
      * @param args The argument object
      * @return The Transaction Id (as promise)
      */
-    (args: IssueAssetArgs): Promise<TransactionId>
+    issueAsset: (args: IssueAssetArgs) => Promise<TransactionId>;
 
 }

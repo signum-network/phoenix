@@ -6,12 +6,22 @@ import {voidLogger} from './typings/voidLogger';
 import {Logger} from './typings/logger';
 import {EventEmitter} from './internal/eventEmitter';
 import {
-    FetchFunction,
-    FulfilledFunction,
+    MonitorFetchFunction,
     MonitorArgs,
-    PredicateFunction,
-    TimeoutFunction
+    MonitorPredicateFunction,
 } from './typings/args/monitorArgs';
+
+interface KeyArgs {
+    key: string;
+}
+
+interface FulfilledArgs<T> extends KeyArgs {
+    data: T;
+}
+
+type TimeoutFunction = (args: KeyArgs) => void;
+type FulfilledFunction<T = any> = (args: FulfilledArgs<T>) => void;
+
 
 const MonitorEvents = {
     Fulfilled: '@burstjs/monitor/fulfilled',
@@ -70,8 +80,8 @@ const MonitorEvents = {
  */
 export class Monitor<T> {
     private readonly _timeoutSecs: number = -1;
-    private readonly _asyncFetcher: FetchFunction<T>;
-    private readonly _compareFn: PredicateFunction<T>;
+    private readonly _asyncFetcher: MonitorFetchFunction<T>;
+    private readonly _compareFn: MonitorPredicateFunction<T>;
     private readonly _emitter = new EventEmitter();
     private readonly _intervalSecs: number = -1;
     private readonly _key: string;
@@ -144,8 +154,8 @@ export class Monitor<T> {
         const args = JSON.parse(serializedMonitor);
         const monitor = new Monitor<T>({
             ...args,
-            asyncFetcherFn: Monitor._deserializeFunction<FetchFunction>(args.asyncFetcherFn),
-            compareFn: Monitor._deserializeFunction<PredicateFunction>(args.compareFn),
+            asyncFetcherFn: Monitor._deserializeFunction<MonitorFetchFunction>(args.asyncFetcherFn),
+            compareFn: Monitor._deserializeFunction<MonitorPredicateFunction>(args.compareFn),
         });
         monitor._startTime = args.startTime;
         if (autoStart && args.startTime > -1) {

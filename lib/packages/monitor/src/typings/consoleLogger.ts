@@ -28,4 +28,8 @@ export class ConsoleLogger implements Logger {
     }
 }
 
+/**
+ * A singleton instance of the ConsoleLogger
+ * @module monitor
+ */
 export const consoleLogger = new ConsoleLogger();
