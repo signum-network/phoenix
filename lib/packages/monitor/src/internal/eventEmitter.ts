@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2020 Burst Apps Team
+ */
+
 /* global window */
 import {isNode} from './isNode';
 

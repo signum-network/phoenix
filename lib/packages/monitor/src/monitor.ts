@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2020 Burst Apps Team
+ */
+
 import {voidLogger} from './typings/voidLogger';
 import {Logger} from './typings/logger';
 import {EventEmitter} from './internal/eventEmitter';

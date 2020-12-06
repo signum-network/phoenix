@@ -37,6 +37,7 @@ function decrypt(ivCiphertext: Uint8Array, nonce: Uint8Array, sharedKeyOrig: any
         key: key
     });
 
+    // @ts-ignore
     const decrypted = CryptoJS.AES.decrypt(encrypted, key, {iv});
 
     return Converter.convertWordArrayToUint8Array(decrypted);

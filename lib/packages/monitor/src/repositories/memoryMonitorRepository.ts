@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2020 Burst Apps Team
+ */
+
 import {MonitorRepository} from '../typings/monitorRepository';
 import {GenericMonitor} from '../typings/GenericMonitor';
 

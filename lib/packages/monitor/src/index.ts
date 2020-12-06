@@ -1,10 +1,3 @@
-import {Monitor} from './monitor';
-import {MonitorRepository} from './typings/monitorRepository';
-import {MemoryMonitorRepository} from './repositories/memoryMonitorRepository';
-import {LocalStorageMonitorRepository} from './repositories/localStorageMonitorRepository';
-import {Logger} from './typings/logger';
-import {ConsoleLogger} from './typings/consoleLogger';
-
 /**
  * The Monitor Module is useful to poll for changes, e.g. on the Burst blockchain, especially for confirmations of transactions
  *
@@ -14,6 +7,12 @@ import {ConsoleLogger} from './typings/consoleLogger';
  *
  * @moduledefinition monitor
  */
+import {Monitor} from './monitor';
+import {MonitorRepository} from './typings/monitorRepository';
+import {MemoryMonitorRepository} from './repositories/memoryMonitorRepository';
+import {LocalStorageMonitorRepository} from './repositories/localStorageMonitorRepository';
+import {Logger} from './typings/logger';
+import {ConsoleLogger} from './typings/consoleLogger';
 export {
     Monitor,
     MonitorRepository,

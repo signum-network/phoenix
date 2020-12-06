@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2020 Burst Apps Team
+ */
+
 type LoggerFn = (msg: string) => void;
 
 /**
