@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/crypto",
-  "version": "0.6.0-alpha.5",
+  "version": "0.6.0-alpha.6",
   "description": "Cryptographic functions for building Burstcoin apps.",
   "contributors": [
     "ohager",
