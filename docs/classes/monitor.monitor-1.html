@@ -96,10 +96,10 @@
 					<p>A monitor can be used to check periodically for a certain situation, e.g. confirmation of a transaction,
 					activation on an account, or even something completely different.</p>
 					<p>Example: (checking for the existence of an account aka account activation)</p>
-					<pre><code class="language-js"><span class="hljs-comment">// A method that checks if an account exists</span>
+					<pre><code class="language-ts"><span class="hljs-comment">// A method that checks if an account exists</span>
 <span class="hljs-comment">// &gt; IMPORTANT: Do not use closures, when you need to serialize the monitor</span>
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tryFetchAccount</span>(<span class="hljs-params"></span>) </span>{
-   <span class="hljs-keyword">const</span> BurstApi = composeApi({ <span class="hljs-attr">nodeHost</span>: <span class="hljs-string">'https://testnet.burstcoin.network:6876/'</span>})
+   <span class="hljs-keyword">const</span> BurstApi = composeApi({ nodeHost: <span class="hljs-string">'https://testnet.burstcoin.network:6876/'</span>})
    <span class="hljs-keyword">try</span>{
        <span class="hljs-keyword">const</span> {account} = <span class="hljs-keyword">await</span> BurstApi.account.getAccount(<span class="hljs-string">'1234'</span>)
        <span class="hljs-keyword">return</span> account;
@@ -117,24 +117,21 @@
 
 <span class="hljs-comment">// Create your monitor</span>
 <span class="hljs-keyword">const</span> monitor = <span class="hljs-keyword">new</span> Monitor&lt;Account&gt;({
-   <span class="hljs-attr">asyncFetcherFn</span>: tryFetchAccount,
-   <span class="hljs-attr">compareFn</span>: checkIfAccountExists,
-   <span class="hljs-attr">intervalSecs</span>: <span class="hljs-number">10</span>, <span class="hljs-comment">// polling interval in seconds</span>
-   <span class="hljs-attr">key</span>: <span class="hljs-string">'monitor-account'</span>,
-   <span class="hljs-attr">timeoutSecs</span>: <span class="hljs-number">2</span> * <span class="hljs-number">240</span> <span class="hljs-comment">// when reached timeout the monitor stops</span>
-});
-<span class="hljs-comment">// starts monitor</span>
-monitor.start();
-
-<span class="hljs-comment">// called when `checkIfAccountExists` returns true</span>
-monitor.onFulfilled(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+   asyncFetcherFn: tryFetchAccount,
+   compareFn: checkIfAccountExists,
+   intervalSecs: <span class="hljs-number">10</span>, <span class="hljs-comment">// polling interval in seconds</span>
+   key: <span class="hljs-string">'monitor-account'</span>,
+   timeoutSecs: <span class="hljs-number">2</span> * <span class="hljs-number">240</span> <span class="hljs-comment">// when reached timeout the monitor stops</span>
+})
+.onFulfilled(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+   <span class="hljs-comment">// called when `checkIfAccountExists` returns true</span>
    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Yay, account active'</span>);
-});
-
-<span class="hljs-comment">// called when `timeoutSecs` is reached</span>
-monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+})
+.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+   <span class="hljs-comment">// called when `timeoutSecs` is reached</span>
    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hmm, something went wrong'</span>);
-});</code></pre>
+}).start();
+</code></pre>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-type-parameters">
@@ -202,7 +199,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L90">monitor/src/monitor.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L87">monitor/src/monitor.ts:87</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -238,7 +235,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L128">monitor/src/monitor.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L125">monitor/src/monitor.ts:125</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -260,7 +257,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L135">monitor/src/monitor.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L132">monitor/src/monitor.ts:132</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -282,7 +279,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L121">monitor/src/monitor.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L118">monitor/src/monitor.ts:118</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -304,7 +301,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L142">monitor/src/monitor.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L139">monitor/src/monitor.ts:139</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -329,7 +326,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L193">monitor/src/monitor.ts:193</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L190">monitor/src/monitor.ts:190</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -352,7 +349,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L197">monitor/src/monitor.ts:197</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L194">monitor/src/monitor.ts:194</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -369,7 +366,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L204">monitor/src/monitor.ts:204</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L201">monitor/src/monitor.ts:201</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -389,7 +386,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L211">monitor/src/monitor.ts:211</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L208">monitor/src/monitor.ts:208</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -403,13 +400,13 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 					<a name="onfulfilled" class="tsd-anchor"></a>
 					<h3>on<wbr>Fulfilled</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Fulfilled<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FulfilledFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Fulfilled<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FulfilledFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monitor.monitor-1.html" class="tsd-signature-type">Monitor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L282">monitor/src/monitor.ts:282</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L282">monitor/src/monitor.ts:282</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -426,7 +423,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="monitor.monitor-1.html" class="tsd-signature-type">Monitor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -434,13 +431,13 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 					<a name="ontimeout" class="tsd-anchor"></a>
 					<h3>on<wbr>Timeout</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Timeout<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TimeoutFunction</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Timeout<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TimeoutFunction</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monitor.monitor-1.html" class="tsd-signature-type">Monitor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L274">monitor/src/monitor.ts:274</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L273">monitor/src/monitor.ts:273</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -457,7 +454,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="monitor.monitor-1.html" class="tsd-signature-type">Monitor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -471,7 +468,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L182">monitor/src/monitor.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L179">monitor/src/monitor.ts:179</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -490,13 +487,13 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 					<a name="start" class="tsd-anchor"></a>
 					<h3>start</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monitor.monitor-1.html" class="tsd-signature-type">Monitor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L220">monitor/src/monitor.ts:220</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L217">monitor/src/monitor.ts:217</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -504,7 +501,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 									<p>Starts the monitor</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="monitor.monitor-1.html" class="tsd-signature-type">Monitor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -518,7 +515,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L264">monitor/src/monitor.ts:264</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L263">monitor/src/monitor.ts:263</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -540,7 +537,7 @@ monitor.onTimeout(<span class="hljs-function"><span class="hljs-params">()</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/e5a1c688/lib/packages/monitor/src/monitor.ts#L153">monitor/src/monitor.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1b375ded/lib/packages/monitor/src/monitor.ts#L150">monitor/src/monitor.ts:150</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

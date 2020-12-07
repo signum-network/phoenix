@@ -56,7 +56,7 @@
       "pre-push": "npm test"
     }
   },
-  "gitHead": "dbbf32c4b417c6a9f403187d0b3d85e8683a1f07",
+  "gitHead": "1b375dedd063baa0933556cc50f87b5c926ba12d",
   "publishConfig": {
     "access": "public"
   }
