@@ -35,7 +35,7 @@ const MonitorEvents = {
  * activation on an account, or even something completely different.
  *
  * Example: (checking for the existence of an account aka account activation)
- * ```js
+ * ```ts
  * // A method that checks if an account exists
  * // > IMPORTANT: Do not use closures, when you need to serialize the monitor
  * async function tryFetchAccount() {
@@ -62,19 +62,16 @@ const MonitorEvents = {
  *    intervalSecs: 10, // polling interval in seconds
  *    key: 'monitor-account',
  *    timeoutSecs: 2 * 240 // when reached timeout the monitor stops
- *});
- * // starts monitor
- * monitor.start();
- *
- * // called when `checkIfAccountExists` returns true
- * monitor.onFulfilled(() => {
+ *})
+ * .onFulfilled(() => {
+ *    // called when `checkIfAccountExists` returns true
  *    console.log('Yay, account active');
- *});
- *
- * // called when `timeoutSecs` is reached
- * monitor.onTimeout(() => {
+ *})
+ * .onTimeout(() => {
+ *    // called when `timeoutSecs` is reached
  *    console.log('Hmm, something went wrong');
- *});
+ *}).start();
+ *
  *```
  * @module monitor
  */
@@ -217,7 +214,7 @@ export class Monitor<T> {
     /**
      * Starts the monitor
      */
-    start() {
+    start(): Monitor<T> {
         this._debug('Monitoring...');
 
         if (this.isExpired()) {
@@ -256,12 +253,14 @@ export class Monitor<T> {
         if (!this.hasStarted()) {
             this._startTime = Date.now();
         }
+
+        return this;
     }
 
     /**
      * Stops the monitor
      */
-    stop() {
+    stop(): void {
         // @ts-ignore
         clearTimeout(this._handle);
         this._startTime = -1;
@@ -271,16 +270,18 @@ export class Monitor<T> {
      * Callback function for timeout event. You can add multiple event listener if you want
      * @param fn The callback
      */
-    onTimeout(fn: TimeoutFunction): void {
+    onTimeout(fn: TimeoutFunction): Monitor<T> {
         this._emitter.on(MonitorEvents.Timeout, fn);
+        return this;
     }
 
     /**
      * Callback function for fulfilled event. You can add multiple event listener if you want
      * @param fn The callback
      */
-    onFulfilled(fn: FulfilledFunction<T>): void {
+    onFulfilled(fn: FulfilledFunction<T>): Monitor<T> {
         this._emitter.on(MonitorEvents.Fulfilled, fn);
+        return this;
     }
 
 }
