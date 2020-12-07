@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/monitor",
-  "version": "0.6.0-alpha.4",
+  "version": "0.6.0-alpha.5",
   "description": "Monitor transactions on Burst blockchain",
   "contributors": [
     "ohager"
