@@ -8,7 +8,7 @@ import {FeeQuantPlanck} from '@burstjs/util';
 /**
  * Use with [[ApiComposer]] and belongs to [[NetworkApi]].
  *
- * See details at [[NetworkApi.suggestFee]]
+ * See details at [[NetworkApi.getSuggestedFees]]
  * @module core.api.factories
  */
 export const getSuggestedFees = (service: BurstService): () => Promise<SuggestedFees> => {

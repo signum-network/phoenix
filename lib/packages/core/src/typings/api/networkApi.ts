@@ -31,7 +31,7 @@ export interface NetworkApi {
      * Get the current suggested fees
      * @return {SuggestedFees} The Suggested Fees
      */
-    suggestFee: () => Promise<SuggestedFees>;
+    getSuggestedFees: () => Promise<SuggestedFees>;
 
     /**
      * Get a peer by a given IP address
