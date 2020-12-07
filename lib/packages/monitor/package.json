@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/monitor",
-  "version": "0.5.1",
+  "version": "0.6.0-alpha.0",
   "description": "Monitor transactions on Burst blockchain",
   "contributors": [
     "ohager"
@@ -43,7 +43,6 @@
     "bundle": "bili",
     "readme": "jsdoc2md  --files ./src/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
   },
-  "dependencies": {},
   "husky": {
     "hooks": {
       "pre-push": "npm test"
