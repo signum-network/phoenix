@@ -18,11 +18,11 @@ export interface DefaultSendArgs {
      */
     feePlanck: string;
     /**
-     * The senders public key
+     * The senders public key,  i.e. the [[crypto.Keys.publicKey]]
      */
     senderPublicKey: string;
     /**
-     * The senders private key, i.e. the [[crypto.signPrivateKey]]
+     * The senders private key, i.e. the [[crypto.Keys.signPrivateKey]]
      */
     senderPrivateKey: string;
     /**

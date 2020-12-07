@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Keys
+	<title>TransferAssetArgs
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,13 +75,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/crypto.html">crypto</a>
+					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="crypto.keys.html">Keys</a>
+					<a href="core.transferassetargs.html">TransferAssetArgs</a>
 				</li>
 			</ul>
-			<h1>Interface Keys</h1>
+			<h1>Interface TransferAssetArgs</h1>
 		</div>
 	</div>
 </header>
@@ -91,16 +91,20 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Keys interface</p>
+						<p>The argument object for <a href="core_api.assetapi.html#transferasset">AssetApi.transferAsset</a></p>
 					</div>
-					<p>The Keys class is used to encompass keys associated to an account.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Keys</span>
+						<a href="core.defaultsendargs.html" class="tsd-signature-type">DefaultSendArgs</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">TransferAssetArgs</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -111,9 +115,15 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crypto.keys.html#agreementprivatekey" class="tsd-kind-icon">agreement<wbr>Private<wbr>Key</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crypto.keys.html#publickey" class="tsd-kind-icon">public<wbr>Key</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crypto.keys.html#signprivatekey" class="tsd-kind-icon">sign<wbr>Private<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.transferassetargs.html#asset" class="tsd-kind-icon">asset</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="core.transferassetargs.html#attachment" class="tsd-kind-icon">attachment</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="core.transferassetargs.html#deadline" class="tsd-kind-icon">deadline</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="core.transferassetargs.html#feeplanck" class="tsd-kind-icon">fee<wbr>Planck</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.transferassetargs.html#quantity" class="tsd-kind-icon">quantity</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.transferassetargs.html#recipientid" class="tsd-kind-icon">recipient<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.transferassetargs.html#recipientpublickey" class="tsd-kind-icon">recipient<wbr>Public<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="core.transferassetargs.html#senderprivatekey" class="tsd-kind-icon">sender<wbr>Private<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="core.transferassetargs.html#senderpublickey" class="tsd-kind-icon">sender<wbr>Public<wbr>Key</a></li>
 							</ul>
 						</section>
 					</div>
@@ -122,47 +132,148 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="agreementprivatekey" class="tsd-anchor"></a>
-					<h3>agreement<wbr>Private<wbr>Key</h3>
-					<div class="tsd-signature tsd-kind-icon">agreement<wbr>Private<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="asset" class="tsd-anchor"></a>
+					<h3>asset</h3>
+					<div class="tsd-signature tsd-kind-icon">asset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/crypto/src/typings/keys.ts#L17">crypto/src/typings/keys.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/transferAssetArgs.ts#L13">core/src/typings/args/transferAssetArgs.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The private key used for P2P message encryption</p>
+							<p>The assets id to be transferred</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="attachment" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> attachment</h3>
+					<div class="tsd-signature tsd-kind-icon">attachment<span class="tsd-signature-symbol">:</span> <a href="../classes/core.attachment.html" class="tsd-signature-type">Attachment</a></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#attachment">attachment</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/defaultSendArgs.ts#L31">core/src/typings/args/defaultSendArgs.ts:31</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An optional attachment</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="deadline" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> deadline</h3>
+					<div class="tsd-signature tsd-kind-icon">deadline<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#deadline">deadline</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/defaultSendArgs.ts#L36">core/src/typings/args/defaultSendArgs.ts:36</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The deadline when after how many minutes the transaction will be discarded, if it was not
+							processed, e.g. due to very low fee</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="feeplanck" class="tsd-anchor"></a>
+					<h3>fee<wbr>Planck</h3>
+					<div class="tsd-signature tsd-kind-icon">fee<wbr>Planck<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#feeplanck">feePlanck</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/defaultSendArgs.ts#L19">core/src/typings/args/defaultSendArgs.ts:19</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The fee expressed in Planck</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>note</dt>
+							<dd><p>It&#39;s recommended to use <a href="../classes/util.burstvalue.html">util.BurstValue</a></p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="quantity" class="tsd-anchor"></a>
+					<h3>quantity</h3>
+					<div class="tsd-signature tsd-kind-icon">quantity<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/transferAssetArgs.ts#L17">core/src/typings/args/transferAssetArgs.ts:17</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>he amount of assets to be transferred</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="publickey" class="tsd-anchor"></a>
-					<h3>public<wbr>Key</h3>
-					<div class="tsd-signature tsd-kind-icon">public<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="recipientid" class="tsd-anchor"></a>
+					<h3>recipient<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">recipient<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/crypto/src/typings/keys.ts#L21">crypto/src/typings/keys.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/transferAssetArgs.ts#L21">core/src/typings/args/transferAssetArgs.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The public key</p>
+							<p>The id of the recipient</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="signprivatekey" class="tsd-anchor"></a>
-					<h3>sign<wbr>Private<wbr>Key</h3>
-					<div class="tsd-signature tsd-kind-icon">sign<wbr>Private<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="recipientpublickey" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> recipient<wbr>Public<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">recipient<wbr>Public<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/crypto/src/typings/keys.ts#L25">crypto/src/typings/keys.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/transferAssetArgs.ts#L25">core/src/typings/args/transferAssetArgs.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The private key used for transaction signing</p>
+							<p>The <em>optional</em> recipients public key in hex format.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="senderprivatekey" class="tsd-anchor"></a>
+					<h3>sender<wbr>Private<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">sender<wbr>Private<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#senderprivatekey">senderPrivateKey</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/defaultSendArgs.ts#L27">core/src/typings/args/defaultSendArgs.ts:27</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The senders private key, i.e. the <a href="crypto.keys.html#signprivatekey">crypto.Keys.signPrivateKey</a></p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="senderpublickey" class="tsd-anchor"></a>
+					<h3>sender<wbr>Public<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">sender<wbr>Public<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#senderpublickey">senderPublicKey</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/defaultSendArgs.ts#L23">core/src/typings/args/defaultSendArgs.ts:23</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The senders public key,  i.e. the <a href="crypto.keys.html#publickey">crypto.Keys.publicKey</a></p>
 						</div>
 					</div>
 				</section>
@@ -177,7 +288,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/contracts.html">contracts</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -186,7 +297,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/core_api_factories.html">core.api.factories</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/crypto.html">crypto</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -202,69 +313,42 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/crypto.passphrasegenerator.html" class="tsd-kind-icon">Pass<wbr>Phrase<wbr>Generator</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="crypto.encrypteddata.html" class="tsd-kind-icon">Encrypted<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="crypto.encryptedmessage.html" class="tsd-kind-icon">Encrypted<wbr>Message</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="crypto.keys.html" class="tsd-kind-icon">Keys</a>
+						<a href="core.transferassetargs.html" class="tsd-kind-icon">Transfer<wbr>Asset<wbr>Args</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="crypto.keys.html#agreementprivatekey" class="tsd-kind-icon">agreement<wbr>Private<wbr>Key</a>
+								<a href="core.transferassetargs.html#asset" class="tsd-kind-icon">asset</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="core.transferassetargs.html#attachment" class="tsd-kind-icon">attachment</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="core.transferassetargs.html#deadline" class="tsd-kind-icon">deadline</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="core.transferassetargs.html#feeplanck" class="tsd-kind-icon">fee<wbr>Planck</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="crypto.keys.html#publickey" class="tsd-kind-icon">public<wbr>Key</a>
+								<a href="core.transferassetargs.html#quantity" class="tsd-kind-icon">quantity</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="crypto.keys.html#signprivatekey" class="tsd-kind-icon">sign<wbr>Private<wbr>Key</a>
+								<a href="core.transferassetargs.html#recipientid" class="tsd-kind-icon">recipient<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.transferassetargs.html#recipientpublickey" class="tsd-kind-icon">recipient<wbr>Public<wbr>Key</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="core.transferassetargs.html#senderprivatekey" class="tsd-kind-icon">sender<wbr>Private<wbr>Key</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="core.transferassetargs.html#senderpublickey" class="tsd-kind-icon">sender<wbr>Public<wbr>Key</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#decryptaes" class="tsd-kind-icon">decryptAES</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#decryptdata" class="tsd-kind-icon">decrypt<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#decryptmessage" class="tsd-kind-icon">decrypt<wbr>Message</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#encryptaes" class="tsd-kind-icon">encryptAES</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#encryptdata" class="tsd-kind-icon">encrypt<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#encryptmessage" class="tsd-kind-icon">encrypt<wbr>Message</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#generatemasterkeys" class="tsd-kind-icon">generate<wbr>Master<wbr>Keys</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#generatesignature" class="tsd-kind-icon">generate<wbr>Signature</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#generatesignedtransactionbytes" class="tsd-kind-icon">generate<wbr>Signed<wbr>Transaction<wbr>Bytes</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#getaccountidfrompublickey" class="tsd-kind-icon">get<wbr>Account<wbr>IdFrom<wbr>Public<wbr>Key</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#hashsha256" class="tsd-kind-icon">hashSHA256</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/crypto.html#verifysignature" class="tsd-kind-icon">verify<wbr>Signature</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

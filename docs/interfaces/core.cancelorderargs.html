@@ -93,11 +93,6 @@
 					<div class="lead">
 						<p>The argument object for <a href="core_api.assetapi.html#cancelaskorder">AssetApi.cancelAskOrder</a> and <a href="core_api.assetapi.html#cancelbidorder">AssetApi.cancelBidOrder</a></p>
 					</div>
-					<dl class="tsd-comment-tags">
-						<dt>param</dt>
-						<dd><p>The order id</p>
-						</dd>
-					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -140,7 +135,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#attachment">attachment</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/args/defaultSendArgs.ts#L31">core/src/typings/args/defaultSendArgs.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/defaultSendArgs.ts#L31">core/src/typings/args/defaultSendArgs.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -156,7 +151,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#deadline">deadline</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/args/defaultSendArgs.ts#L36">core/src/typings/args/defaultSendArgs.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/defaultSendArgs.ts#L36">core/src/typings/args/defaultSendArgs.ts:36</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -173,7 +168,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#feeplanck">feePlanck</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/args/defaultSendArgs.ts#L19">core/src/typings/args/defaultSendArgs.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/defaultSendArgs.ts#L19">core/src/typings/args/defaultSendArgs.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -193,9 +188,14 @@
 					<div class="tsd-signature tsd-kind-icon">order<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/args/cancelOrderArgs.ts#L10">core/src/typings/args/cancelOrderArgs.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/cancelOrderArgs.ts#L12">core/src/typings/args/cancelOrderArgs.ts:12</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The order (transaction id) to be cancelled</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="senderprivatekey" class="tsd-anchor"></a>
@@ -204,12 +204,12 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#senderprivatekey">senderPrivateKey</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/args/defaultSendArgs.ts#L27">core/src/typings/args/defaultSendArgs.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/defaultSendArgs.ts#L27">core/src/typings/args/defaultSendArgs.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The senders private key, i.e. the signPrivateKey</p>
+							<p>The senders private key, i.e. the <a href="crypto.keys.html#signprivatekey">crypto.Keys.signPrivateKey</a></p>
 						</div>
 					</div>
 				</section>
@@ -220,12 +220,12 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#senderpublickey">senderPublicKey</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/args/defaultSendArgs.ts#L23">core/src/typings/args/defaultSendArgs.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/59087374/lib/packages/core/src/typings/args/defaultSendArgs.ts#L23">core/src/typings/args/defaultSendArgs.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The senders public key</p>
+							<p>The senders public key,  i.e. the <a href="crypto.keys.html#publickey">crypto.Keys.publicKey</a></p>
 						</div>
 					</div>
 				</section>
