@@ -66,11 +66,14 @@ import {
     signAndBroadcastTransaction
 } from './factories/transaction';
 import {
+    cancelAskOrder,
+    cancelBidOrder,
     getAllAssets,
     getAsset,
     issueAsset,
     placeAskOrder,
     placeBidOrder,
+    transferAsset,
 } from './factories/asset';
 import {AxiosRequestConfig} from 'axios';
 
@@ -185,8 +188,11 @@ export function composeApi(settings: ApiSettings): Api {
             getAsset,
             getAllAssets,
             issueAsset,
+            transferAsset,
             placeAskOrder,
             placeBidOrder,
+            cancelAskOrder,
+            cancelBidOrder,
         })
         .compose();
 }

@@ -3,7 +3,7 @@ import {DefaultSendArgs} from './defaultSendArgs';
 
 
 /**
- * The argument object for [[AssetApi.placeAskOrderArgs]] and [[AssetApi.placeBidOrderArgs]]
+ * The argument object for [[AssetApi.placeAskOrder]] and [[AssetApi.placeBidOrder]]
  *
  * @param asset The asset id
  * @param price The price that is offered for bid/ask

@@ -91,7 +91,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The argument object for <a href="core_api.transactionapi.html#sendamounttosinglerecipient">TransactionApi.sendAmountToSingleRecipient</a></p>
+						<p>The base argument object for common transactions</p>
 					</div>
 					<dl class="tsd-comment-tags">
 						<dt>param</dt>
@@ -122,6 +122,12 @@
 							<li>
 								<a href="core.sendamountargs.html" class="tsd-signature-type">SendAmountArgs</a>
 							</li>
+							<li>
+								<a href="core.placeorderargs.html" class="tsd-signature-type">PlaceOrderArgs</a>
+							</li>
+							<li>
+								<a href="core.cancelorderargs.html" class="tsd-signature-type">CancelOrderArgs</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
@@ -151,9 +157,14 @@
 					<div class="tsd-signature tsd-kind-icon">attachment<span class="tsd-signature-symbol">:</span> <a href="../classes/core.attachment.html" class="tsd-signature-type">Attachment</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cd6c73c9/lib/packages/core/src/typings/args/defaultSendArgs.ts#L19">core/src/typings/args/defaultSendArgs.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/args/defaultSendArgs.ts#L31">core/src/typings/args/defaultSendArgs.ts:31</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An optional attachment</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="deadline" class="tsd-anchor"></a>
@@ -161,9 +172,15 @@
 					<div class="tsd-signature tsd-kind-icon">deadline<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cd6c73c9/lib/packages/core/src/typings/args/defaultSendArgs.ts#L20">core/src/typings/args/defaultSendArgs.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/args/defaultSendArgs.ts#L36">core/src/typings/args/defaultSendArgs.ts:36</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The deadline when after how many minutes the transaction will be discarded, if it was not
+							processed, e.g. due to very low fee</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="feeplanck" class="tsd-anchor"></a>
@@ -171,9 +188,19 @@
 					<div class="tsd-signature tsd-kind-icon">fee<wbr>Planck<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cd6c73c9/lib/packages/core/src/typings/args/defaultSendArgs.ts#L16">core/src/typings/args/defaultSendArgs.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/args/defaultSendArgs.ts#L19">core/src/typings/args/defaultSendArgs.ts:19</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The fee expressed in Planck</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>note</dt>
+							<dd><p>It&#39;s recommended to use <a href="../classes/util.burstvalue.html">util.BurstValue</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="senderprivatekey" class="tsd-anchor"></a>
@@ -181,9 +208,14 @@
 					<div class="tsd-signature tsd-kind-icon">sender<wbr>Private<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cd6c73c9/lib/packages/core/src/typings/args/defaultSendArgs.ts#L18">core/src/typings/args/defaultSendArgs.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/args/defaultSendArgs.ts#L27">core/src/typings/args/defaultSendArgs.ts:27</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The senders private key, i.e. the signPrivateKey</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="senderpublickey" class="tsd-anchor"></a>
@@ -191,9 +223,14 @@
 					<div class="tsd-signature tsd-kind-icon">sender<wbr>Public<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cd6c73c9/lib/packages/core/src/typings/args/defaultSendArgs.ts#L17">core/src/typings/args/defaultSendArgs.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/args/defaultSendArgs.ts#L23">core/src/typings/args/defaultSendArgs.ts:23</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The senders public key</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>

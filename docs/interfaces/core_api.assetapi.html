@@ -111,9 +111,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.assetapi.html#cancelaskorder" class="tsd-kind-icon">cancel<wbr>Ask<wbr>Order</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.assetapi.html#cancelbidorder" class="tsd-kind-icon">cancel<wbr>Bid<wbr>Order</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.assetapi.html#getallassets" class="tsd-kind-icon">get<wbr>All<wbr>Assets</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.assetapi.html#getasset" class="tsd-kind-icon">get<wbr>Asset</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.assetapi.html#issueasset" class="tsd-kind-icon">issue<wbr>Asset</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.assetapi.html#placeaskorder" class="tsd-kind-icon">place<wbr>Ask<wbr>Order</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_api.assetapi.html#placebidorder" class="tsd-kind-icon">place<wbr>Bid<wbr>Order</a></li>
 							</ul>
 						</section>
 					</div>
@@ -122,12 +126,100 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="cancelaskorder" class="tsd-anchor"></a>
+					<h3>cancel<wbr>Ask<wbr>Order</h3>
+					<div class="tsd-signature tsd-kind-icon">cancel<wbr>Ask<wbr>Order<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/api/assetApi.ts#L62">core/src/typings/api/assetApi.ts:62</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Cancel Ask Order</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The argument object</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>The Transaction Id (as promise)</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><a href="core.cancelorderargs.html" class="tsd-signature-type">CancelOrderArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>args: <a href="core.cancelorderargs.html" class="tsd-signature-type">CancelOrderArgs</a></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="cancelbidorder" class="tsd-anchor"></a>
+					<h3>cancel<wbr>Bid<wbr>Order</h3>
+					<div class="tsd-signature tsd-kind-icon">cancel<wbr>Bid<wbr>Order<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/api/assetApi.ts#L69">core/src/typings/api/assetApi.ts:69</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Cancel Bid Order</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The argument object</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>The Transaction Id (as promise)</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><a href="core.cancelorderargs.html" class="tsd-signature-type">CancelOrderArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>args: <a href="core.cancelorderargs.html" class="tsd-signature-type">CancelOrderArgs</a></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="getallassets" class="tsd-anchor"></a>
 					<h3>get<wbr>All<wbr>Assets</h3>
 					<div class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Assets<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cd6c73c9/lib/packages/core/src/typings/api/assetApi.ts#L31">core/src/typings/api/assetApi.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/api/assetApi.ts#L31">core/src/typings/api/assetApi.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -177,7 +269,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Asset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cd6c73c9/lib/packages/core/src/typings/api/assetApi.ts#L20">core/src/typings/api/assetApi.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/api/assetApi.ts#L20">core/src/typings/api/assetApi.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -221,7 +313,7 @@
 					<div class="tsd-signature tsd-kind-icon">issue<wbr>Asset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/cd6c73c9/lib/packages/core/src/typings/api/assetApi.ts#L41">core/src/typings/api/assetApi.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/api/assetApi.ts#L41">core/src/typings/api/assetApi.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -250,6 +342,94 @@
 										<ul class="tsd-parameters">
 											<li>
 												<h5>args: <a href="core.issueassetargs.html" class="tsd-signature-type">IssueAssetArgs</a></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="placeaskorder" class="tsd-anchor"></a>
+					<h3>place<wbr>Ask<wbr>Order</h3>
+					<div class="tsd-signature tsd-kind-icon">place<wbr>Ask<wbr>Order<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/api/assetApi.ts#L48">core/src/typings/api/assetApi.ts:48</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Place Ask Order</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The argument object</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>The Transaction Id (as promise)</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><a href="core.placeorderargs.html" class="tsd-signature-type">PlaceOrderArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>args: <a href="core.placeorderargs.html" class="tsd-signature-type">PlaceOrderArgs</a></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="placebidorder" class="tsd-anchor"></a>
+					<h3>place<wbr>Bid<wbr>Order</h3>
+					<div class="tsd-signature tsd-kind-icon">place<wbr>Bid<wbr>Order<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/babce554/lib/packages/core/src/typings/api/assetApi.ts#L55">core/src/typings/api/assetApi.ts:55</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Place Ask Order</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The argument object</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>The Transaction Id (as promise)</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><a href="core.placeorderargs.html" class="tsd-signature-type">PlaceOrderArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>args: <a href="core.placeorderargs.html" class="tsd-signature-type">PlaceOrderArgs</a></h5>
 											</li>
 										</ul>
 										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -316,6 +496,12 @@
 						<a href="core_api.assetapi.html" class="tsd-kind-icon">Asset<wbr>Api</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core_api.assetapi.html#cancelaskorder" class="tsd-kind-icon">cancel<wbr>Ask<wbr>Order</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core_api.assetapi.html#cancelbidorder" class="tsd-kind-icon">cancel<wbr>Bid<wbr>Order</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core_api.assetapi.html#getallassets" class="tsd-kind-icon">get<wbr>All<wbr>Assets</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
@@ -323,6 +509,12 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core_api.assetapi.html#issueasset" class="tsd-kind-icon">issue<wbr>Asset</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core_api.assetapi.html#placeaskorder" class="tsd-kind-icon">place<wbr>Ask<wbr>Order</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core_api.assetapi.html#placebidorder" class="tsd-kind-icon">place<wbr>Bid<wbr>Order</a>
 							</li>
 						</ul>
 					</li>

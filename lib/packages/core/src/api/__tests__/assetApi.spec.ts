@@ -1,10 +1,9 @@
 import {HttpMockBuilder, Http} from '@burstjs/http';
 import {getBlockchainStatus} from '../factories/network/getBlockchainStatus';
-import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {getAsset} from '../factories/asset/getAsset';
-import {signAndBroadcastTransaction} from '../factories/transaction/signAndBroadcastTransaction';
-import {placeAskOrder, placeBidOrder} from '../factories';
+import {cancelAskOrder, cancelBidOrder, placeAskOrder, placeBidOrder, transferAsset} from '../factories';
 import {BurstValue, FeeQuantPlanck} from '@burstjs/util';
+import {mockSignAndBroadcastTransaction, createBurstService} from '../../__tests__/helpers';
 
 describe('Asset Api', () => {
 
@@ -12,7 +11,7 @@ describe('Asset Api', () => {
 
     beforeAll(() => {
         // @ts-ignore
-        signAndBroadcastTransaction = jest.fn().mockImplementation(() => () => Promise.resolve({transaction: 'transactionId'}));
+        mockSignAndBroadcastTransaction();
     });
 
     afterEach(() => {
@@ -111,4 +110,72 @@ describe('Asset Api', () => {
             expect(transaction).toBe('transactionId');
         });
     });
+
+    describe('cancelAskOrder', () => {
+        it('should cancelAskOrder', async () => {
+            httpMock = HttpMockBuilder.create()
+                // tslint:disable:max-line-length
+                .onPostReply(200, {
+                        unsignedTransactionBytes: 'unsignedHexMessage'
+                    },
+                    'relPath?requestType=cancelAskOrder&order=123&publicKey=senderPublicKey&feeNQT=735000&deadline=1440')
+                .build();
+
+            const service = createBurstService(httpMock, 'relPath');
+            const {transaction} = await cancelAskOrder(service)({
+                feePlanck: FeeQuantPlanck + '',
+                order: '123',
+                senderPrivateKey: 'senderPrivateKey',
+                senderPublicKey: 'senderPublicKey'
+            });
+
+            expect(transaction).toBe('transactionId');
+        });
+    });
+
+    describe('cancelBidOrder', () => {
+        it('should cancelBidOrder', async () => {
+            httpMock = HttpMockBuilder.create()
+                // tslint:disable:max-line-length
+                .onPostReply(200, {
+                        unsignedTransactionBytes: 'unsignedHexMessage'
+                    },
+                    'relPath?requestType=cancelBidOrder&order=123&publicKey=senderPublicKey&feeNQT=735000&deadline=1440')
+                .build();
+
+            const service = createBurstService(httpMock, 'relPath');
+            const {transaction} = await cancelBidOrder(service)({
+                feePlanck: FeeQuantPlanck + '',
+                order: '123',
+                senderPrivateKey: 'senderPrivateKey',
+                senderPublicKey: 'senderPublicKey'
+            });
+
+            expect(transaction).toBe('transactionId');
+        });
+    });
+
+    describe('transferAsset', () => {
+        it('should transferAsset', async () => {
+            httpMock = HttpMockBuilder.create()
+                .onPostReply(200, {
+                        unsignedTransactionBytes: 'unsignedHexMessage'
+                    },
+                    'relPath?requestType=transferAsset&asset=123&quantityQNT=100&publicKey=senderPublicKey&recipient=recipientId&feeNQT=735000&deadline=1440'
+                ).build();
+
+            const service = createBurstService(httpMock, 'relPath');
+            const {transaction} = await transferAsset(service)({
+                asset: '123',
+                feePlanck: FeeQuantPlanck + '',
+                quantity: 100,
+                recipientId: 'recipientId',
+                senderPrivateKey: 'senderPrivateKey',
+                senderPublicKey: 'senderPublicKey',
+            });
+
+            expect(transaction).toBe('transactionId');
+        });
+    });
+
 });

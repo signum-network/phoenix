@@ -1,7 +1,7 @@
 import {Http, HttpMockBuilder} from '@burstjs/http';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {getContract, getContractsByAccount, publishContract} from '../factories/contract';
-import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
+import {signAndBroadcastTransaction} from '../factories/transaction/signAndBroadcastTransaction';
 
 describe('Contract Api', () => {
 
@@ -70,12 +70,14 @@ describe('Contract Api', () => {
 
         beforeEach(() => {
             jest.resetAllMocks();
+
             // @ts-ignore
-            generateSignature = jest.fn(() => 'signature');
-            // @ts-ignore
-            verifySignature = jest.fn(() => true);
-            // @ts-ignore
-            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
+            signAndBroadcastTransaction = jest.fn().mockImplementation(() => () => Promise.resolve({transaction: 'transactionId'}));
+            // generateSignature = jest.fn(() => 'signature');
+            // // @ts-ignore
+            // verifySignature = jest.fn(() => true);
+            // // @ts-ignore
+            // generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
         });
 
 
@@ -90,7 +92,7 @@ describe('Contract Api', () => {
                 .onPostReply(200, testResponse).build();
 
             const service = createBurstService(httpMock, 'relPath');
-            const transaction = await publishContract(service)({
+            const {transaction} = await publishContract(service)({
                 activationAmountPlanck: '20000000',
                 codeHex: 'creationBytes',
                 description: 'description',
@@ -99,10 +101,7 @@ describe('Contract Api', () => {
                 senderPrivateKey: 'privateKey',
                 isCIP20Active: false
             });
-            expect(transaction).toEqual({
-                fullHash: 'fullHash',
-                transaction: 'transactionId'
-            });
+            expect(transaction).toEqual('transactionId');
         });
     });
 });

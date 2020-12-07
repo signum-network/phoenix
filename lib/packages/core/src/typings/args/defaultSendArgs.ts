@@ -1,9 +1,7 @@
 import {Attachment} from '../attachment';
-import {BurstValue} from '@burstjs/util';
-
 
 /**
- * The argument object for [[TransactionApi.sendAmountToSingleRecipient]]
+ * The base argument object for common transactions
  *
  * @param feePlanck The fee as Planck value
  * @param senderPublicKey The senders public key for sending an _unsigned_ message
@@ -14,9 +12,26 @@ import {BurstValue} from '@burstjs/util';
  * @module core
  */
 export interface DefaultSendArgs {
+    /**
+     * The fee expressed in Planck
+     * @note It's recommended to use [[util.BurstValue]]
+     */
     feePlanck: string;
+    /**
+     * The senders public key
+     */
     senderPublicKey: string;
+    /**
+     * The senders private key, i.e. the [[crypto.signPrivateKey]]
+     */
     senderPrivateKey: string;
+    /**
+     * An optional attachment
+     */
     attachment?: Attachment;
+    /**
+     * The deadline when after how many minutes the transaction will be discarded, if it was not
+     * processed, e.g. due to very low fee
+     */
     deadline?: number;
 }
