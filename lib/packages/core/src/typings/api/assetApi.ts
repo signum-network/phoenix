@@ -1,6 +1,6 @@
 import {Asset} from '../asset';
 import {AssetList} from '../assetList';
-import {IssueAssetArgs} from '../args';
+import {IssueAssetArgs, PlaceOrderArgs} from '../args';
 import {TransactionId} from '../transactionId';
 
 /**
@@ -39,5 +39,19 @@ export interface AssetApi {
      * @return The Transaction Id (as promise)
      */
     issueAsset: (args: IssueAssetArgs) => Promise<TransactionId>;
+
+    /**
+     * Place Ask Order
+     * @param args The argument object
+     * @return The Transaction Id (as promise)
+     */
+    placeAskOrder: (args: PlaceOrderArgs) => Promise<TransactionId>;
+
+    /**
+     * Place Ask Order
+     * @param args The argument object
+     * @return The Transaction Id (as promise)
+     */
+    placeBidOrder: (args: PlaceOrderArgs) => Promise<TransactionId>;
 
 }

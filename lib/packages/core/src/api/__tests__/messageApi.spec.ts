@@ -122,13 +122,6 @@ describe('Message Api', () => {
                         nonce: 'nonce'
                     })
             );
-            //
-            // // @ts-ignore
-            // generateSignature = jest.fn(() => 'signature');
-            // // @ts-ignore
-            // verifySignature = jest.fn(() => true);
-            // // @ts-ignore
-            // generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
 
             httpMock = HttpMockBuilder.create().onPostReply(200, {
                 unsignedTransactionBytes: 'unsignedHexMessage'

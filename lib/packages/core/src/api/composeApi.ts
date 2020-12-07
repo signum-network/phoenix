@@ -69,6 +69,8 @@ import {
     getAllAssets,
     getAsset,
     issueAsset,
+    placeAskOrder,
+    placeBidOrder,
 } from './factories/asset';
 import {AxiosRequestConfig} from 'axios';
 
@@ -182,7 +184,9 @@ export function composeApi(settings: ApiSettings): Api {
         }).withAssetApi({
             getAsset,
             getAllAssets,
-            issueAsset
+            issueAsset,
+            placeAskOrder,
+            placeBidOrder,
         })
         .compose();
 }

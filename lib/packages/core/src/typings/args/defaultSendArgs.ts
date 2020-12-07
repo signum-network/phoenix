@@ -1,4 +1,5 @@
-import {Attachment} from "../attachment";
+import {Attachment} from '../attachment';
+import {BurstValue} from '@burstjs/util';
 
 
 /**
