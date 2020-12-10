@@ -220,7 +220,7 @@ export class Monitor<T> {
         if (this.isExpired()) {
             this._debug('Monitor expired');
             this.stop();
-            return;
+            return this;
         }
 
         // @ts-ignore

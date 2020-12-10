@@ -8,6 +8,7 @@ import {DefaultDeadline} from '../../../constants';
 import {createParametersFromAttachment} from '../../../internal/createParametersFromAttachment';
 import {IssueAssetArgs, PlaceOrderArgs} from '../../../typings/args';
 import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransaction';
+import {BurstValue} from "@burstjs/util";
 
 interface GenericPlaceOrderArgs extends PlaceOrderArgs {
     type: 'bid' | 'ask';
@@ -27,7 +28,7 @@ export const placeOrder = (service: BurstService):
 
         let parameters = {
             asset: args.asset,
-            priceNQT: args.price.getPlanck(),
+            priceNQT: args.pricePlanck,
             quantityQNT: args.quantity,
             publicKey: senderPublicKey,
             feeNQT: args.feePlanck,

@@ -1,9 +1,9 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
-import {getAllAssets, getAsset} from '../../factories/asset';
+import {getAllAssets, getAsset, placeBidOrder} from '../../factories/asset';
 import {issueAsset} from '../../factories/asset/issueAsset';
 import {generateMasterKeys, getAccountIdFromPublicKey} from '@burstjs/crypto';
-import {BurstValue} from '@burstjs/util';
+import {BurstValue, FeeQuantPlanck} from '@burstjs/util';
 
 
 describe(`[E2E] Asset Api`, () => {
@@ -41,11 +41,23 @@ describe(`[E2E] Asset Api`, () => {
         const response = await issueAsset(service)({
             senderPublicKey: senderKeys.publicKey,
             senderPrivateKey: senderKeys.signPrivateKey,
-            amount: BurstValue.fromBurst(1000),
+            amountPlanck: BurstValue.fromBurst(1000).getPlanck(),
             quantity: 50 * 1000,
             decimals: 4,
             name: 'BurstJS',
             description: '[E2E] BurstJS Test Asset'
+        });
+        expect(response.transaction).toBeDefined();
+    });
+
+    it('should placeBidOrder', async () => {
+        const response = await placeBidOrder(service)({
+            senderPublicKey: senderKeys.publicKey,
+            senderPrivateKey: senderKeys.signPrivateKey,
+            pricePlanck: BurstValue.fromBurst(1).getPlanck(),
+            feePlanck: FeeQuantPlanck + '',
+            quantity: 1,
+            asset: environment.testAssetId,
         });
         expect(response.transaction).toBeDefined();
     });

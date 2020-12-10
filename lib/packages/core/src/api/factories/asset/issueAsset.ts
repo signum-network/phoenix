@@ -29,7 +29,7 @@ export const issueAsset = (service: BurstService):
             quantityQNT: args.quantity,
             decimals: args.decimals,
             publicKey: senderPublicKey,
-            feeNQT: args.amount.getPlanck(),
+            feeNQT: args.amountPlanck,
             deadline: args.deadline || DefaultDeadline,
         };
 

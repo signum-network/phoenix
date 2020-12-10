@@ -11,7 +11,7 @@ export interface IssueAssetArgs {
     /**
      * The amount to be split (_quantity_), must be at least 1000 BURST
      */
-    amount: BurstValue;
+    amountPlanck: string;
     /**
      * The decimals supported for this asset.
      * Example:

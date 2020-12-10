@@ -78,7 +78,7 @@ describe('Asset Api', () => {
                 feePlanck: FeeQuantPlanck + '',
                 asset: '123',
                 quantity: 100,
-                price: BurstValue.fromBurst(10),
+                pricePlanck: BurstValue.fromBurst(10).getPlanck(),
                 senderPrivateKey: 'senderPrivateKey',
                 senderPublicKey: 'senderPublicKey'
             });
@@ -102,7 +102,7 @@ describe('Asset Api', () => {
                 feePlanck: FeeQuantPlanck + '',
                 asset: '123',
                 quantity: 100,
-                price: BurstValue.fromBurst(10),
+                pricePlanck: BurstValue.fromBurst(10).getPlanck(),
                 senderPrivateKey: 'senderPrivateKey',
                 senderPublicKey: 'senderPublicKey'
             });

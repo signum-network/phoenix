@@ -15,7 +15,7 @@ export interface PlaceOrderArgs extends DefaultSendArgs {
     /**
      * The price that is offered for bid/ask
      */
-    price: BurstValue;
+    pricePlanck: string;
     /**
      * The amount of assets to ask/bid for
      */

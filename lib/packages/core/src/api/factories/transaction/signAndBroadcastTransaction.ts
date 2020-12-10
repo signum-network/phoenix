@@ -1,5 +1,3 @@
-/** @ignore */
-
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
@@ -18,7 +16,7 @@ export interface UnsignedTransaction {
 /**
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
  *
- * See details at [[TransactionApi.broadcastTransaction]]
+ * See details at [[TransactionApi.signAndBroadcastTransaction]]
  * @module core.api.factories
  */
 export const signAndBroadcastTransaction = (burstService: BurstService):
@@ -34,4 +32,5 @@ export const signAndBroadcastTransaction = (burstService: BurstService):
 
         const signedMessage = generateSignedTransactionBytes(unsignedHexMessage, signature);
         return broadcastTransaction(burstService)(signedMessage);
-    }
+    };
+

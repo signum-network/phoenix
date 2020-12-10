@@ -23,15 +23,15 @@ export class EventEmitter {
             this._emitter = {
                 on: (name: string | symbol, cb: Function) => {
                     // @ts-ignore
-                    window.addEventListener(name, cb);
+                    window.addEventListener(name, e => cb(e.detail));
                 },
                 once: (name: string | symbol, cb: Function) => {
                     const singleCallback = (data) => {
                         cb(data);
                     };
                     // @ts-ignore
-                    window.addEventListener(name, (data) => {
-                        singleCallback(data);
+                    window.addEventListener(name, (e) => {
+                        singleCallback(e.detail);
                         // @ts-ignore
                         window.removeEventListener(name, singleCallback);
                     });
@@ -42,7 +42,9 @@ export class EventEmitter {
                 },
                 emit: (name: string | symbol, payload?: unknown) => {
                     // @ts-ignore
-                    window.dispatchEvent(new window.CustomEvent(name, payload));
+                    window.dispatchEvent(new window.CustomEvent(name, {
+                        detail: payload
+                    }));
                 },
             };
         }
