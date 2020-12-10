@@ -1,6 +1,6 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
-import {getAllAssets, getAsset, placeBidOrder} from '../../factories/asset';
+import {cancelBidOrder, getAllAssets, getAsset, placeBidOrder} from '../../factories/asset';
 import {issueAsset} from '../../factories/asset/issueAsset';
 import {generateMasterKeys, getAccountIdFromPublicKey} from '@burstjs/crypto';
 import {BurstValue, FeeQuantPlanck} from '@burstjs/util';
@@ -57,7 +57,18 @@ describe(`[E2E] Asset Api`, () => {
             pricePlanck: BurstValue.fromBurst(1).getPlanck(),
             feePlanck: FeeQuantPlanck + '',
             quantity: 1,
-            asset: environment.testAssetId,
+            asset: '8485879651352780597',
+        });
+
+        expect(response.transaction).toBeDefined();
+    });
+
+    it('should cancelBidOrder', async () => {
+        const response = await cancelBidOrder(service)({
+            order: '16628182565696352125',
+            senderPublicKey: senderKeys.publicKey,
+            senderPrivateKey: senderKeys.signPrivateKey,
+            feePlanck: FeeQuantPlanck + '',
         });
         expect(response.transaction).toBeDefined();
     });
