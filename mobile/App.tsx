@@ -161,10 +161,12 @@ export default class App extends React.Component<{}, AppState> {
     const routeName = route.split('/')[0];
 
     // user clicked on a deep link to pay someone else burst
-    if (navigationRef && routeName.indexOf('requestBurst') > -1) {
-      navigationRef.current?.navigate(routes.send, { url });
-      navigationRef.current?.setParams({ url });
-    }
+    setTimeout(() => {
+      if (navigationRef && routeName.indexOf('requestBurst') > -1) {
+        navigationRef.current?.navigate(routes.send, { url });
+        navigationRef.current?.setParams({ url });
+      }
+    }, 500);
   }
 
   render () {
