@@ -19,7 +19,7 @@ export interface UnsignedTransaction {
  * See details at [[TransactionApi.signAndBroadcastTransaction]]
  * @module core.api.factories
  */
-export const signAndBroadcastTransaction = (burstService: BurstService):
+export let signAndBroadcastTransaction = (burstService: BurstService):
     (unsignedTransaction: UnsignedTransaction) => Promise<TransactionId> =>
     async (unsignedTransaction): Promise<TransactionId> => {
 

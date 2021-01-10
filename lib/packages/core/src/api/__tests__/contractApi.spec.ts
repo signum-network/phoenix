@@ -1,7 +1,7 @@
 import {Http, HttpMockBuilder} from '@burstjs/http';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {getContract, getContractsByAccount, publishContract} from '../factories/contract';
-import {signAndBroadcastTransaction} from '../factories/transaction/signAndBroadcastTransaction';
+import {signAndBroadcastTransaction} from '../factories/transaction';
 
 describe('Contract Api', () => {
 
@@ -70,22 +70,16 @@ describe('Contract Api', () => {
 
         beforeEach(() => {
             jest.resetAllMocks();
-
-            // @ts-ignore
-            signAndBroadcastTransaction = jest.fn().mockImplementation(() => () => Promise.resolve({transaction: 'transactionId'}));
-            // generateSignature = jest.fn(() => 'signature');
-            // // @ts-ignore
-            // verifySignature = jest.fn(() => true);
-            // // @ts-ignore
-            // generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
         });
 
 
         it('should publishContract', async () => {
 
+            // @ts-ignore
+            signAndBroadcastTransaction = jest.fn().mockImplementation(() => () => Promise.resolve({transaction: 'transactionId'}));
+
             const testResponse = {
-                fullHash: 'fullHash',
-                transaction: 'transactionId'
+                unsignedTransactionBytes: 'unsignedHexMessage'
             };
 
             httpMock = HttpMockBuilder.create()

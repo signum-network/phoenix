@@ -27,11 +27,6 @@ describe('TransactionApi', () => {
 
     let httpMock: Http;
 
-    beforeAll(() => {
-        // @ts-ignore
-        mockSignAndBroadcastTransaction();
-    });
-
     afterEach(() => {
         if (httpMock) {
             // @ts-ignore
