@@ -19,7 +19,7 @@ import {
 import {StoreService} from '../../../store/store.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { burstAddressPattern } from 'app/util/burstAddressPattern';
 
 
@@ -70,7 +70,8 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
     private notifierService: NotifierService,
     private i18nService: I18nService,
     private storeService: StoreService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     super();
     this.storeService.settings
@@ -81,6 +82,12 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
           this.language = language;
         }
       );
+
+      router.events.forEach((event) => {
+        if(event instanceof NavigationEnd) {
+          this.applyDeepLinkParams();
+        }
+      });
   }
 
   ngOnInit(): void {
@@ -94,29 +101,33 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
 
     if (this.route.snapshot.queryParams) {
       setTimeout(() => {
-        this.onRecipientChange(new Recipient(this.route.snapshot.queryParams.receiver));
-        if (this.route.snapshot.queryParams.feeNQT) {
-          this.fee = convertNQTStringToNumber(this.route.snapshot.queryParams.feeNQT).toString();
-        }
-
-        if (this.route.snapshot.queryParams.amountNQT) {
-          this.amount = convertNQTStringToNumber(this.route.snapshot.queryParams.amountNQT).toString();
-        }
-        this.message = this.route.snapshot.queryParams.message;
-        this.encrypt = this.route.snapshot.queryParams.encrypt;
-        this.immutable = this.route.snapshot.queryParams.immutable || this.immutable;
-        if (this.immutable === 'false') {
-          this.immutable = false;
-        }
-        if (this.route.snapshot.queryParams.messageIsText === 'false') {
-          this.messageIsText = false;
-        }
-        if (this.route.snapshot.queryParams.feeSuggestionType && this.fees[this.route.snapshot.queryParams.feeSuggestionType]) {
-          this.fee = convertNQTStringToNumber(this.fees[this.route.snapshot.queryParams.feeSuggestionType]).toString();
-        }
-        this.showMessage = !!this.message;
-      }, 500); // delay needed for ng5 slider to catch up
+        this.applyDeepLinkParams();
+      }, 500);
     }
+  }
+
+  private applyDeepLinkParams() {
+      this.onRecipientChange(new Recipient(this.route.snapshot.queryParams.receiver));
+      if (this.route.snapshot.queryParams.feeNQT) {
+        this.fee = convertNQTStringToNumber(this.route.snapshot.queryParams.feeNQT).toString();
+      }
+
+      if (this.route.snapshot.queryParams.amountNQT) {
+        this.amount = convertNQTStringToNumber(this.route.snapshot.queryParams.amountNQT).toString();
+      }
+      this.message = this.route.snapshot.queryParams.message;
+      this.encrypt = this.route.snapshot.queryParams.encrypt;
+      this.immutable = this.route.snapshot.queryParams.immutable || this.immutable;
+      if (this.immutable === 'false') {
+        this.immutable = false;
+      }
+      if (this.route.snapshot.queryParams.messageIsText === 'false') {
+        this.messageIsText = false;
+      }
+      if (this.route.snapshot.queryParams.feeSuggestionType && this.fees[this.route.snapshot.queryParams.feeSuggestionType]) {
+        this.fee = convertNQTStringToNumber(this.fees[this.route.snapshot.queryParams.feeSuggestionType]).toString();
+      }
+      this.showMessage = !!this.message;
   }
 
   getTotal(): number {
