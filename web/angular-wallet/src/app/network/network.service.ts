@@ -28,7 +28,7 @@ export class NetworkService {
   }
 
   public suggestFee(): Promise<SuggestedFees> {
-    return this.api.network.suggestFee();
+    return this.api.network.getSuggestedFees();
   }
 
   public getBlockchainStatus(): Promise<BlockchainStatus> {
