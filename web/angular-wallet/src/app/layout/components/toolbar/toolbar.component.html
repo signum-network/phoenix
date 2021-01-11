@@ -1,5 +1,7 @@
 <mat-toolbar class="p-0 mat-elevation-z1">
 
+  <div *ngIf="!isMainNet" class="testnet-stamp">TestNet</div>
+
     <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
 
         <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">

@@ -12,8 +12,9 @@ import {
 } from '@burstjs/core';
 
 import {ApiService} from '../api.service';
-import { StoreService } from 'app/store/store.service';
-import { BehaviorSubject } from 'rxjs';
+import {StoreService} from 'app/store/store.service';
+import {BehaviorSubject} from 'rxjs';
+import {constants} from '../constants';
 
 
 @Injectable()
@@ -57,5 +58,14 @@ export class NetworkService {
 
   public addBlock(block: Block) {
     this.setBlocks([block].concat(this.blocks.value));
+  }
+
+  public async isMainNet(): Promise<boolean> {
+    try {
+      const {previousBlockHash} = await this.api.block.getBlockByHeight(constants.mainnetIndicator.block, false);
+      return previousBlockHash === constants.mainnetIndicator.previousHash;
+    } catch (e) {
+      return false;
+    }
   }
 }
