@@ -66,9 +66,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.storeService.settings
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(async ({node}) => {
-
-        console.log('node', node)
-
         this.isMainNet = await this.networkService.isMainNet();
       });
 
@@ -90,10 +87,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   }
 
   setLanguage(lang): void {
-    // Set the selected language for the toolbar
     this.selectedLanguage = lang;
-
-    // Use the selected language for translations
     this.i18nService.setLanguage(lang);
 
   }
