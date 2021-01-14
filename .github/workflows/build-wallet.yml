@@ -9,6 +9,8 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
+        package_manager: [npm]
+        package_root: ["./desktop/wallet"]
 
     steps:
       - name: Check out Git repository
