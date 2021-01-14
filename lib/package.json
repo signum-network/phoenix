@@ -61,5 +61,8 @@
     "hooks": {
       "pre-push": "../pre-push.sh"
     }
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
   }
 }
