@@ -30,3 +30,11 @@ jobs:
       - name: Build/Bundle BurstJS
         run: npm run build
 
+      - name: Build Angular Web App
+        run: |
+          cd ../web/angular-wallet
+          npm ci
+          npm t
+          npm run build:ci
+
+
