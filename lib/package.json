@@ -49,7 +49,7 @@
     "doc": "typedoc --options tsdoc.json --listInvalidSymbolLinks",
     "lint": "tslint -p tsconfig.json -t stylish -s node_modules/custom-tslint-formatters/formatters -t grouped",
     "postinstall": "npm run bootstrap",
-    "publish": "npm run build && lerna publish --force-publish",
+    "publish": "npm run build && lerna publish --force-publish --tag-version-prefix='burstjs-'",
     "readme": "lerna exec 'npm run readme'",
     "test": "jest",
     "test:ci": "jest --coverage && codecov",

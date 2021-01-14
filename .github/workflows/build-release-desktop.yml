@@ -32,6 +32,8 @@ jobs:
           cd ../web/angular-wallet
           npm ci
 
+      # TODO: add the web version
+
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:

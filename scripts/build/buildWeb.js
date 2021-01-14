@@ -8,7 +8,7 @@ function navigateToAngularWalletDir() {
 
 async function build({cwd}) {
   navigateToAngularWalletDir();
-  await exep('npm', ['run', 'build:web']);
+  await exep(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['run', 'build:web']);
   process.chdir(cwd);
 }
 

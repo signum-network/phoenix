@@ -19,7 +19,7 @@ Phoenix is an open source, cross-platform wallet for the Burstcoin blockchain. I
 - Offline account support - Add an account using just a BURST address for maximum security.
 - Cross-platform - Runs on all popular platforms without any additional software requirements.
 - Dashboard - with Market Information and Interactive Balance History Diagram.
-- Powered by <img src="./assets/burstjs.png" width="80" />
+- Powered by <a href="https://burst-apps-team.github.io/phoenix/"><img src="./assets/burstjs.png" width="80" /></a>
 
 ## Additional features:
 - Multi-out support - Send and view Multi-out & Multi-out-same Payments (BRS 2.3.1 and above).
