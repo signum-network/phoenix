@@ -7,7 +7,6 @@
     "blankey1337"
   ],
   "scripts": {
-    "version:nightly": "node version.js --nightly"
   },
   "repository": {
     "type": "git",
