@@ -20,6 +20,11 @@ jobs:
         with:
           node-version: 12
 
+      - name: Run BurstJS Tests
+        run: |
+          cd ./lib
+          npm ci
+
       - name: Build Angular Web App
         run: |
           cd ./web/angular-wallet
