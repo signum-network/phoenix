@@ -15,10 +15,12 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v1
 
-      - name: Prepare Node.js environment
+      - name: Install Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 12
+
+      - name: Install dependencies
         run: |
           cd ./scripts
           npm ci
