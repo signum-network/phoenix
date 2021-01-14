@@ -15,10 +15,15 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v1
 
-      - name: Install Node.js, NPM and Yarn
+      - name: Prepare Node.js environment
         uses: actions/setup-node@v1
         with:
           node-version: 12
+        run: |
+          cd ./scripts
+          npm ci
+          cd ../web/angular-wallet
+          npm ci
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
