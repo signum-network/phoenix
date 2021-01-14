@@ -3,6 +3,7 @@ name: Test and Build Angular App
 on:
   push:
     paths:
+      - "web/**"
       - "desktop/**"
 
 jobs:
@@ -25,5 +26,3 @@ jobs:
           npm ci
           npm t
           npm run build:ci
-
-
