@@ -1,6 +1,9 @@
 name: Test and Build Angular App
 
-on: push
+on:
+  push:
+    paths:
+      - "desktop/**"
 
 jobs:
   build-ng:
@@ -15,12 +18,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-
-      - name: Run BurstJS Tests
-        run: |
-          cd ./lib
-          npm ci
-          npm t
 
       - name: Build Angular Web App
         run: |
