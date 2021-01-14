@@ -3,12 +3,12 @@ name: Test and Build Angular App
 on: push
 
 jobs:
-  release:
+  build-ng:
+    name: Test and Build Angular App
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out Git repository
-        if: github.event.pull_request.merged
         uses: actions/checkout@v1
 
       - name: Install Node.js
