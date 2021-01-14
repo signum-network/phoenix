@@ -20,12 +20,14 @@ export class ApiService {
     this.storeService.ready.subscribe(this.initApi);
 
     this.storeService.settings
-      .pipe(
-        distinctUntilChanged((s: Settings, t: Settings) => s.node === t.node),
-      )
       .subscribe(this.initApi);
   }
+
   private initApi(settings: Settings): void {
+    if (this.nodeUrl === settings.node) {
+      return;
+    }
+
     this.nodeUrl = settings.node;
     const apiSettings = new ApiSettings(this.nodeUrl);
     this.api = composeApi(apiSettings);

@@ -43,21 +43,22 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
+    "bootstrap": "lerna exec npm install && lerna bootstrap && lerna run tsc",
+    "build": "npm run tsc && lerna exec npm run bundle",
+    "clear": "lerna exec 'rm -rf node_modules out dist' && rm -rf node_modules",
+    "doc": "typedoc --options tsdoc.json --listInvalidSymbolLinks",
+    "lint": "tslint -p tsconfig.json -t stylish -s node_modules/custom-tslint-formatters/formatters -t grouped",
+    "postinstall": "npm run bootstrap",
+    "publish": "npm run build && lerna publish --force-publish",
+    "readme": "lerna exec 'npm run readme'",
     "test": "jest",
-    "test:watch": "jest --watch",
     "test:ci": "jest --coverage && codecov",
     "test:e2e": "jest --config jest.config.e2e.js --runInBand --detectOpenHandles --forceExit",
-    "doc": "typedoc --options tsdoc.json --listInvalidSymbolLinks",
-    "readme": "lerna exec 'npm run readme'",
-    "bootstrap": "lerna exec npm install && lerna bootstrap && lerna run tsc",
-    "lint": "tslint -p tsconfig.json -t stylish -s node_modules/custom-tslint-formatters/formatters -t grouped",
-    "publish": "npm run build && lerna publish --force-publish",
-    "tsc": "lerna run tsc",
-    "build": "npm run tsc && lerna exec npm run bundle",
-    "clearPackages": "lerna exec 'rm -rf node_modules' && rm -rf node_modules"
+    "test:watch": "jest --watch",
+    "tsc": "lerna run tsc"
   },
   "dependencies": {
-    "axios": "^0.19.0"
+    "axios": "^0.21.1"
   },
   "husky": {
     "hooks": {

@@ -2,3 +2,5 @@
 
 .rpt2_cache
 packages/**/dist
+*.log
+

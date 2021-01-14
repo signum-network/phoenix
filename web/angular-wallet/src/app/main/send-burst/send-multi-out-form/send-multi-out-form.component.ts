@@ -19,6 +19,7 @@ import {burstAddressPattern} from 'app/util/burstAddressPattern';
 import {BatchRecipientsDialogComponent} from '../batch-recipients-dialog/batch-recipients-dialog.component';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {constants} from '../../../constants';
+import {Router} from '@angular/router';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -60,6 +61,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     private i18nService: I18nService,
     private storeService: StoreService,
     private breakpointObserver: BreakpointObserver,
+    private router: Router,
   ) {
     super();
     this.storeService.settings
@@ -130,6 +132,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       this.sendBurstForm.resetForm();
       this.resetRecipients();
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
+      await this.router.navigate(['/']);
     } catch (e) {
       this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
     }

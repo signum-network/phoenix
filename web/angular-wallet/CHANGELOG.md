@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.3
+
+### New Feature
+- Adding Testnet detection
+
+### Bug Fixes
+- Fixing issues with deep links (#1331, #1393)
+- Fixed a subtle bug on node selection
+
+
 ## 1.0.2
 
 ### Bug Fixes
