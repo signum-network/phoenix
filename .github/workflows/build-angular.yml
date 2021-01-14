@@ -1,0 +1,32 @@
+name: Test and Build Angular App
+
+on: push
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        if: github.event.pull_request.merged
+        uses: actions/checkout@v1
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Run BurstJS Tests
+        run: |
+          cd ./lib
+          npm ci
+          npm t
+
+      - name: Build Angular Web App
+        run: |
+          cd ./web/angular-wallet
+          npm ci
+          npm t
+          npm run build:ci
+
+
