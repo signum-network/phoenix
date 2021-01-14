@@ -1,5 +1,4 @@
 const path = require('path');
-const chalk = require('chalk');
 const fs = require('fs-extra');
 const {prompt} = require('inquirer')
 const semver = require('semver')
@@ -60,14 +59,12 @@ async function getNewVersion() {
 }
 
 async function createAndPushTag(newVersion) {
-
     const newTag = `desktop-${newVersion}`
-
     await exec('git', ['tag', newTag]);
-    // await exec('git', ['push', 'origin', 'tag', newTag]);
+    await exec('git', ['push', 'origin', 'tag', newTag]);
 }
 
-async function publish({cwd}) {
+async function publish() {
     const newVersion = await getNewVersion()
     await bumpVersion(newVersion)
     await createAndPushTag(newVersion)
