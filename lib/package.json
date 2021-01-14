@@ -11,7 +11,7 @@
     "url": "https://github.com/burst-apps-team/phoenix"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "license": "Apache-2.0",
   "private": false,
@@ -56,9 +56,6 @@
     "test:e2e": "jest --config jest.config.e2e.js --runInBand --detectOpenHandles --forceExit",
     "test:watch": "jest --watch",
     "tsc": "lerna run tsc"
-  },
-  "dependencies": {
-    "axios": "^0.21.1"
   },
   "husky": {
     "hooks": {
