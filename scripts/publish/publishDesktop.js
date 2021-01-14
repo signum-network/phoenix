@@ -61,9 +61,9 @@ async function getNewVersion() {
 async function createAndPushTag(newVersion) {
     const newTag = `desktop-${newVersion}`
     await exec('git', ['commit', `-am New Version: ${newVersion}`]);
-    await exec('git', ['push', '--no-verify']);
-    await exec('git', ['tag', newTag]);
-    await exec('git', ['push', 'origin', 'tag', newTag]);
+    await exec('git', ['push']); // runs pre-push script
+    await exec('git', ['tag', '-s', newTag]);
+    await exec('git', ['push', 'origin', 'tag', newTag, '--no-verify']);
 }
 
 async function publish() {
