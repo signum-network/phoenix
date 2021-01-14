@@ -9,7 +9,6 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
-        package_manager: [npm,yarn]
         package_root: ["./desktop/wallet"]
 
     steps:
