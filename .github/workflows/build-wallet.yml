@@ -24,6 +24,8 @@ jobs:
         run: |
           cd ./scripts
           npm ci
+          cd ../lib
+          npm ci
           cd ../web/angular-wallet
           npm ci
 
