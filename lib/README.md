@@ -10,8 +10,6 @@
 [![codecov](https://codecov.io/gh/burst-apps-team/phoenix/branch/develop/graph/badge.svg)](https://codecov.io/gh/burst-apps-team/phoenix)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@burstjs/core/badge)](https://www.jsdelivr.com/package/npm/@burstjs/core)
 
---- some test << remove later
-
 `@burstjs` is a modern library written in Typescript providing common functionalities for _browsers_ and _nodejs_ to interact with the [BurstCoin blockchain](https://burstcoin.community/), 
 an advanced community-driven blockchain technology.
 
