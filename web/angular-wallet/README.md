@@ -36,7 +36,7 @@ Once pushed the [build pipeline](../../.github/workflows/build-release-desktop.y
 ## Using Phoenix Wallet as web version
 
 Run `npm run build:web`. The output of `dist` is the web version.
-It can be dropped into the `html/ui` folder in the BRS jar file, or served statically elsewhere 
+It can be dropped into the `html/ui` folder in the BRS jar file, or served statically elsewhere. 
 
 ## Running a full node
 
