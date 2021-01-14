@@ -29,7 +29,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "bundle-report": "webpack-bundle-analyzer dist/stats.json",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "release": "npm run build:ci node ../../scripts/publish.js --desktop"
   },
   "private": true,
   "dependencies": {
