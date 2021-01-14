@@ -3,7 +3,7 @@ name: Build BurstJS
 on:
   push:
     paths:
-      - "./lib"
+      - "lib/**"
 
 jobs:
   build-burstjs:
