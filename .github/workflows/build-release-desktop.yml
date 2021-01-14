@@ -16,7 +16,6 @@ jobs:
 
     steps:
       - name: Check out Git repository
-        if: github.event.pull_request.merged
         uses: actions/checkout@v1
 
       - name: Install Node.js
@@ -32,9 +31,6 @@ jobs:
           npm ci
           cd ../web/angular-wallet
           npm ci
-
-      - name Run Tests
-        cd ../lib
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
