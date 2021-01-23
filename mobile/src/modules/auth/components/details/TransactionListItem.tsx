@@ -5,7 +5,7 @@ import { Image, TouchableOpacity, View } from 'react-native';
 import { actionIcons, transactionIcons } from '../../../../assets/icons';
 import { Text, TextAlign } from '../../../../core/components/base/Text';
 import { Colors } from '../../../../core/theme/colors';
-import { BorderRadiusSizes, defaultSideOffset, FontSizes, Sizes } from '../../../../core/theme/sizes';
+import { defaultSideOffset, FontSizes, Sizes } from '../../../../core/theme/sizes';
 import { getShortDateFromTimestamp } from '../../../../core/utils/date';
 
 interface Props {
