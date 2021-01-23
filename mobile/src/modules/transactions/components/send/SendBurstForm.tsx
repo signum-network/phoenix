@@ -102,27 +102,6 @@ const styles = StyleSheet.create({
 
 export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
-  setupState = (props?: SendBurstFormState) => {
-    return {
-      sender: null,
-      amount: props && props.amount || '',
-      fee: props && props.fee ||
-           this.props.suggestedFees &&
-           convertNQTStringToNumber(this.props.suggestedFees.standard.toString()).toString() || '',
-      message: props && props.message || undefined,
-      messageIsText: props && props.messageIsText || true,
-      encrypt: props && props.encrypt || false,
-      immutable: props && props.immutable || false,
-      recipient: new Recipient(props && props.address || 'BURST-', props && props.address || ''),
-      showSubmitButton: true
-    };
-  }
-
-  state = this.setupState(this.props.deepLinkProps);
-
-  componentWillReceiveProps = ({ deepLinkProps }: Props) => {
-    this.setState(this.setupState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
-  }
 
   getAccounts = (): Array<SelectItem<string>> => {
     return this.props.accounts
@@ -136,6 +115,29 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
   getAccount = (address: string): Account | null => {
     return this.props.accounts
       .find(({ accountRS }) => accountRS === address) || null;
+  }
+
+  setupState = (props?: SendBurstFormState) => {
+    const accounts = this.getAccounts();
+    return {
+      sender: accounts.length === 1 ? this.getAccount(accounts[0].value) : null,
+      amount: props && props.amount || '',
+      fee: props && props.fee ||
+           this.props.suggestedFees &&
+           convertNQTStringToNumber(this.props.suggestedFees.standard.toString()).toString() || '',
+      message: props && props.message || undefined,
+      messageIsText: props && typeof props.messageIsText !== 'undefined' ? props.messageIsText : true,
+      encrypt: props && props.encrypt || false,
+      immutable: props && props.immutable || false,
+      recipient: new Recipient(props && props.address || 'BURST-', props && props.address || ''),
+      showSubmitButton: true
+    };
+  }
+
+  state = this.setupState(this.props.deepLinkProps);
+
+  componentWillReceiveProps = ({ deepLinkProps }: Props) => {
+    this.setState(this.setupState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
   }
 
   applyRecipientType (recipient: string): void {
@@ -403,6 +405,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             thumbIconBackgroundColor={Colors.WHITE}
             thumbIconImageSource={actionIcons.chevronRight}
             onSwipeSuccess={this.handleSubmit}
+            shouldResetAfterSuccess={true}
             title={i18n.t(transactions.screens.send.button)}
             railBackgroundColor={Colors.BLACK}
             railBorderColor={Colors.BLUE_DARKER}

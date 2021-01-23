@@ -5,7 +5,7 @@ import { Image, TouchableOpacity, View } from 'react-native';
 import { actionIcons, transactionIcons } from '../../../../assets/icons';
 import { Text, TextAlign } from '../../../../core/components/base/Text';
 import { Colors } from '../../../../core/theme/colors';
-import { defaultSideOffset, FontSizes, Sizes } from '../../../../core/theme/sizes';
+import { BorderRadiusSizes, defaultSideOffset, FontSizes, Sizes } from '../../../../core/theme/sizes';
 import { getShortDateFromTimestamp } from '../../../../core/utils/date';
 
 interface Props {
@@ -45,7 +45,9 @@ const styles: any = {
   dataView: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+    maxWidth: '90%'
   },
   icon: {
     width: 20,
@@ -58,6 +60,9 @@ const styles: any = {
   outcomingAmount: {
     marginLeft: Sizes.MEDIUM,
     flexDirection: 'row'
+  },
+  account: {
+    flexWrap: 'wrap',
   }
 };
 
