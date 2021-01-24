@@ -6,7 +6,7 @@
   },
   "productName": "Phoenix Burstcoin Wallet",
   "description": "The Burstcoin web wallet",
-  "version": "1.0.3",
+  "version": "1.0.4-testci.0",
   "license": "GPL-3.0",
   "contributors": [
     "ohager",
@@ -15,7 +15,6 @@
     "shefass"
   ],
   "scripts": {
-    "bump-version": "node ../../scripts/version.js --target ng",
     "ng": "ng",
     "start": "ng serve --open --proxy-config proxy.config.json",
     "start-hmr": "ng serve --configuration hmr --source-map=false --hmr-warning=false",
@@ -30,7 +29,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "bundle-report": "webpack-bundle-analyzer dist/stats.json",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "release": "npm run build:ci && node ../../scripts/publish.js --desktop"
   },
   "private": true,
   "dependencies": {

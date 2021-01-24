@@ -6,9 +6,7 @@
     "ohager",
     "blankey1337"
   ],
-  "scripts": {
-    "version:nightly": "node version.js --nightly"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/burst-apps-team/phoenix"
@@ -17,9 +15,12 @@
   "devDependencies": {
     "args": "^5.0.1",
     "chalk": "^2.4.2",
-    "fs-extra": "^8.1.0"
+    "fs-extra": "^8.1.0",
+    "inquirer": "^7.3.3",
+    "semver": "^7.3.4"
   },
   "engines": {
-    "node": ">=10"
-  }
+    "node": ">=12"
+  },
+  "dependencies": {}
 }

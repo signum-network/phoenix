@@ -19,6 +19,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 import SwipeButton from 'rn-swipe-button';
 import { actionIcons, transactionIcons } from '../../../../assets/icons';
 import { BInput, KeyboardTypes } from '../../../../core/components/base/BInput';
@@ -26,7 +27,6 @@ import { BSelect, SelectItem } from '../../../../core/components/base/BSelect';
 import { Text as BText } from '../../../../core/components/base/Text';
 import { i18n } from '../../../../core/i18n';
 import { Colors } from '../../../../core/theme/colors';
-import { FontSizes } from '../../../../core/theme/sizes';
 import { amountToString } from '../../../../core/utils/numbers';
 import { SendMoneyPayload } from '../../store/actions';
 import { Recipient, RecipientType, RecipientValidationStatus } from '../../store/utils';
@@ -60,6 +60,7 @@ export interface SendBurstFormState {
   recipient?: Recipient;
   recipientType?: string;
   showSubmitButton?: boolean;
+  addMessage?: boolean;
 }
 
 const styles = StyleSheet.create({
@@ -102,27 +103,6 @@ const styles = StyleSheet.create({
 
 export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
-  setupState = (props?: SendBurstFormState) => {
-    return {
-      sender: null,
-      amount: props && props.amount || '',
-      fee: props && props.fee ||
-           this.props.suggestedFees &&
-           convertNQTStringToNumber(this.props.suggestedFees.standard.toString()).toString() || '',
-      message: props && props.message || undefined,
-      messageIsText: props && props.messageIsText || true,
-      encrypt: props && props.encrypt || false,
-      immutable: props && props.immutable || false,
-      recipient: new Recipient(props && props.address || 'BURST-', props && props.address || ''),
-      showSubmitButton: true
-    };
-  }
-
-  state = this.setupState(this.props.deepLinkProps);
-
-  componentWillReceiveProps = ({ deepLinkProps }: Props) => {
-    this.setState(this.setupState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
-  }
 
   getAccounts = (): Array<SelectItem<string>> => {
     return this.props.accounts
@@ -136,6 +116,30 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
   getAccount = (address: string): Account | null => {
     return this.props.accounts
       .find(({ accountRS }) => accountRS === address) || null;
+  }
+
+  setupState = (props?: SendBurstFormState) => {
+    const accounts = this.getAccounts();
+    return {
+      sender: accounts.length === 1 ? this.getAccount(accounts[0].value) : null,
+      amount: props && props.amount || '',
+      fee: props && props.fee ||
+           this.props.suggestedFees &&
+           convertNQTStringToNumber(this.props.suggestedFees.standard.toString()).toString() || '',
+      message: props && props.message || undefined,
+      messageIsText: props && typeof props.messageIsText !== 'undefined' ? props.messageIsText : true,
+      encrypt: props && props.encrypt || false,
+      immutable: props && props.immutable || false,
+      recipient: new Recipient(props && props.address || 'BURST-', props && props.address || ''),
+      showSubmitButton: true,
+      addMessage: props && !!props.message || false
+    };
+  }
+
+  state = this.setupState(this.props.deepLinkProps);
+
+  componentWillReceiveProps = ({ deepLinkProps }: Props) => {
+    this.setState(this.setupState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
   }
 
   applyRecipientType (recipient: string): void {
@@ -270,6 +274,22 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
     this.setState({ fee: fee.replace(',', '.') });
   }
 
+  handleMessageChange = (message: string) => {
+    this.setState({ message });
+  }
+
+  setEncryptMessage (encrypt: boolean) {
+    this.setState({
+      encrypt
+    })
+  }
+
+  setAddMessage (addMessage: boolean) {
+    this.setState({
+      addMessage
+    })
+  }
+
   handleFeeChangeFromSlider = (fee: number) => {
     this.setState({ fee: amountToString(fee) });
   }
@@ -308,7 +328,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
   }
 
   render () {
-    const { sender, recipient, amount, fee } = this.state;
+    const { sender, recipient, amount, fee, encrypt, addMessage, message } = this.state;
     const { suggestedFees } = this.props;
     const total = Number(amount) + Number(fee);
     // @ts-ignore
@@ -389,6 +409,46 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             onSlidingComplete={this.handleFeeChangeFromSlider}
             suggestedFees={suggestedFees}
            />}
+
+          <View style={{flexDirection:'row', marginLeft: 5}}>
+            <CheckBox
+              disabled={false}
+              value={addMessage}
+              onValueChange={() => addMessage ? this.setAddMessage(false) : this.setAddMessage(true)}
+            />
+            <View style={{marginTop:10, marginLeft:10}}>
+              <TouchableOpacity onPress={() => addMessage ? this.setAddMessage(false) : this.setAddMessage(true)}>
+                <BText bebasFont color={Colors.GREY_LIGHT}>
+                  {i18n.t(transactions.screens.send.addMessage)}
+                </BText>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          {addMessage && (
+              <>
+                <BInput
+                  value={message || ''}
+                  onChange={this.handleMessageChange}
+                  title={i18n.t(transactions.screens.send.message)}
+                />
+
+                <View style={{flexDirection:'row', marginTop:10, marginLeft: 5}}>
+                  <CheckBox
+                    disabled={false}
+                    value={encrypt}
+                    onValueChange={() => encrypt ? this.setEncryptMessage(false) : this.setEncryptMessage(true)}
+                  />
+                  <View style={{marginTop:10, marginLeft:10}}>
+                    <TouchableOpacity onPress={() => encrypt ? this.setEncryptMessage(false) : this.setEncryptMessage(true)}>
+                      <BText bebasFont color={Colors.GREY_LIGHT}>
+                        {i18n.t(transactions.screens.send.encrypt)}
+                      </BText>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </>
+            )}
            <View style={styles.total}>
             <BText bebasFont color={Colors.WHITE}>
               {i18n.t(transactions.screens.send.total, { value: amountToString(total) })}
@@ -403,6 +463,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             thumbIconBackgroundColor={Colors.WHITE}
             thumbIconImageSource={actionIcons.chevronRight}
             onSwipeSuccess={this.handleSubmit}
+            shouldResetAfterSuccess={true}
             title={i18n.t(transactions.screens.send.button)}
             railBackgroundColor={Colors.BLACK}
             railBorderColor={Colors.BLUE_DARKER}

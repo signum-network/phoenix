@@ -164,7 +164,10 @@
         "invalidAddress": "Этот адрес недействителен.",
         "zilOutage": "Невозможно получить из ZIL API.",
         "success": "Успешно отправлено {{amount}} BURST на {{address}}.",
-        "failure": "Не удалось отправить BURST. Пожалуйста, проверьте ваши записи и попробуйте снова."
+        "failure": "Не удалось отправить BURST. Пожалуйста, проверьте ваши записи и попробуйте снова.",
+        "encrypt": "Encrypt Message?",
+        "addMessage": "Add a Message?",
+        "message": "Message"
       },
       "scan": {
         "title": "Сканировать BURST QR-код"

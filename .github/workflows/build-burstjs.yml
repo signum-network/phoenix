@@ -1,0 +1,42 @@
+name: Build BurstJS
+
+on:
+  push:
+    paths:
+      - "lib/**"
+    tags-ignore:
+        - desktop-[0-9]+.[0-9]+.[0-9]+*
+
+jobs:
+  build-burstjs:
+    name: Test and Build BurstJS
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./lib
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Run BurstJS Tests
+        run: |
+          npm ci
+          npm t
+
+      - name: Build/Bundle BurstJS
+        run: npm run build
+
+      - name: Build Angular Web App
+        run: |
+          cd ../web/angular-wallet
+          npm ci
+          npm t
+          npm run build:ci
+
+
