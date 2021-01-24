@@ -60,7 +60,7 @@ export interface SendBurstFormState {
   recipient?: Recipient;
   recipientType?: string;
   showSubmitButton?: boolean;
-  addMessage: boolean;
+  addMessage?: boolean;
 }
 
 const styles = StyleSheet.create({
