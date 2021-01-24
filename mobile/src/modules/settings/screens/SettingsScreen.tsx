@@ -84,7 +84,7 @@ class Settings extends React.PureComponent<Props> {
 
   render () {
     const nodes = [
-      'https://wallet.burst-alliance.org:8125',
+      // 'https://wallet.burst-alliance.org:8125',
       'https://wallet1.burst-team.us:2083',
       'https://wallet.burstcoin.ro:443',
       'https://wallet2.burstcoin.ro:443',
