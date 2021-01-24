@@ -68,7 +68,7 @@ export const sendMoney = createActionFn<SendMoneyPayload, Promise<TransactionId>
 
     if (message && encrypt) {
       const encryptedMessage: EncryptedMessage | EncryptedData =
-          getEncryptedMessage(dispatch, address, sender, messageIsText, message);
+          await getEncryptedMessage(dispatch, address, sender, messageIsText, message, state.auth.passcode);
 
       sendMoneyPayload.attachment = new AttachmentEncryptedMessage(encryptedMessage);
     } else if (message) {
@@ -125,13 +125,14 @@ export const generateQRAddress = createActionFn<ReceiveBurstPayload, Promise<str
   }
 );
 
-function getEncryptedMessage (dispatch: any,
+async function getEncryptedMessage (dispatch: any,
                               address: string,
                               sender: Account,
                               messageIsText: boolean | undefined,
-                              message: string) {
-  const recipient = dispatch(getAccount(address));
-  const agreementPrivateKey = sender.keys.agreementPrivateKey;
+                              message: string,
+                              passcode: string) {
+  const recipient = await dispatch(getAccount(address));
+  const agreementPrivateKey = decryptAES(sender.keys.agreementPrivateKey, hashSHA256(passcode));
   let encryptedMessage: EncryptedMessage | EncryptedData;
   if (messageIsText) {
     encryptedMessage = encryptMessage(message,

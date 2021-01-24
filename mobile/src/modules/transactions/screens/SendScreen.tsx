@@ -73,7 +73,7 @@ class Send extends React.PureComponent<IProps, State> {
             amount: params.amountNQT ? convertNQTStringToNumber(params.amountNQT).toString() : undefined,
             message: params.message,
             messageIsText: params.messageIsText === 'false' ? false : true,
-            encrypt: params.encrypt,
+            encrypt: params.encrypt === 'true' ? true : false,
             immutable: params.immutable === 'true' ? true : false
           }
         });
