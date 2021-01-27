@@ -2,12 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## 0.6.0
-___
-__Breaking Changes__
-- `suggestFee` renamed to `getSuggestedFees`
----
 
-- added new methods to transction Api
+- deprecated `suggestFee`
+  - use `getSuggestedFees`
+- added new methods to transaction Api
   - `signAndBroadcastTransaction`
 - added new methods to assets Api
   - `issueAsset`

@@ -19,7 +19,8 @@ import {
     getPeers,
     getServerStatus,
     getTime,
-    getSuggestedFees
+    getSuggestedFees,
+    suggestFee,
 } from './factories/network';
 import {
     sendEncryptedMessage,
@@ -135,6 +136,7 @@ export function composeApi(settings: ApiSettings): Api {
             getBlockchainStatus,
             getServerStatus,
             getSuggestedFees,
+            suggestFee,
             getPeers,
             getPeer,
             getTime,
