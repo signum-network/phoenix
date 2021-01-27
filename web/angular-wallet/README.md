@@ -26,8 +26,17 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Releasing
 
-- Electron: Tag the release (e.g. desktop-1.0.0) and push it up. Travis will build and deploy the electron app. 
-- BRS: Run `npm run build:web`. The output of `dist` can then be dropped into the `html/ui` folder in the BRS jar file, or zipped up for web. Todo: Automate this step.
+Just run `npm run release`
+
+This skript automates the following steps:
+- Bumps to a new semantic version
+- creates and pushes a tag in format `desktop-[semversion]`
+Once pushed the [build pipeline](../../.github/workflows/build-release-desktop.yml) for new releases triggers. All automated 
+
+## Using Phoenix Wallet as web version
+
+Run `npm run build:web`. The output of `dist` is the web version.
+It can be dropped into the `html/ui` folder in the BRS jar file, or served statically elsewhere. 
 
 ## Running a full node
 

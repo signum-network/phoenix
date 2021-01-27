@@ -11,7 +11,7 @@
     "url": "https://github.com/burst-apps-team/phoenix"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "license": "Apache-2.0",
   "private": false,
@@ -45,24 +45,24 @@
   "scripts": {
     "bootstrap": "lerna exec npm install && lerna bootstrap && lerna run tsc",
     "build": "npm run tsc && lerna exec npm run bundle",
-    "clearPackages": "lerna exec 'rm -rf node_modules' && rm -rf node_modules",
+    "clear": "lerna exec 'rm -rf node_modules out dist' && rm -rf node_modules",
     "doc": "typedoc --options tsdoc.json --listInvalidSymbolLinks",
     "lint": "tslint -p tsconfig.json -t stylish -s node_modules/custom-tslint-formatters/formatters -t grouped",
     "postinstall": "npm run bootstrap",
-    "publish": "npm run build && lerna publish --force-publish",
+    "publish": "npm run build && lerna publish --force-publish --tag-version-prefix='burstjs-'",
     "readme": "lerna exec 'npm run readme'",
-    "test": "jest --detectOpenHandles",
-    "test:ci": "jest --coverage --detectOpenHandles && codecov",
+    "test": "jest",
+    "test:ci": "jest --coverage && codecov",
     "test:e2e": "jest --config jest.config.e2e.js --runInBand --detectOpenHandles --forceExit",
-    "test:watch": "jest --watch --detectOpenHandles",
+    "test:watch": "jest --watch",
     "tsc": "lerna run tsc"
-  },
-  "dependencies": {
-    "axios": "^0.21.1"
   },
   "husky": {
     "hooks": {
       "pre-push": "../pre-push.sh"
     }
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
   }
 }

@@ -14,4 +14,4 @@ check
 cd ../web/angular-wallet
 npm run test
 check
-npx ng build --aot --source-map=false
+npm run build:ci

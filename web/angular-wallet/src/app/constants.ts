@@ -85,16 +85,6 @@ export const constants = {
       address: 'https://wallet1.burst-team.us',
       port: 2083,
       selected: false,
-      ping: -1,
-    },
-    {
-      name: 'Burst Alliance',
-      region: 'Global',
-      location: 'Europe',
-      address: 'https://wallet.burst-alliance.org',
-      port: 8125,
-      selected: false,
-      ping: -1,
     },
     {
       name: 'Burstcoin.ro #1',
@@ -103,7 +93,6 @@ export const constants = {
       address: 'https://wallet.burstcoin.ro',
       port: 443,
       selected: false,
-      ping: -1,
     },
     {
       name: 'Burstcoin.ro #2',
@@ -112,25 +101,22 @@ export const constants = {
       address: 'https://wallet2.burstcoin.ro',
       port: 443,
       selected: false,
-      ping: -1,
     },
     {
-      name: 'Testnet',
+      name: 'Testnet Burstcoin.ro #2',
       region: 'Global',
       location: 'Europe',
-      address: 'https://testnet-2.burst-alliance.org',
-      port: 6876,
+      address: 'https://testnetwallet.burstcoin.ro',
+      port: 443,
       selected: false,
-      ping: -1,
     },
     {
-      name: 'Testnet',
+      name: 'Testnet Zoh',
       region: 'Global',
       location: 'Europe',
       address: 'https://testnet.burstcoin.network',
       port: 6876,
       selected: false,
-      ping: -1,
     },
     {
       name: 'Local Peer',
@@ -139,10 +125,13 @@ export const constants = {
       address: 'http://localhost',
       port: 8125,
       selected: false,
-      ping: -1,
     }
   ],
   supportUrl: 'https://github.com/burst-apps-team/phoenix/issues',
   transactionCount: '100',
-  multiOutMinVersion: '2.3.1'
+  multiOutMinVersion: '2.3.1',
+  mainnetIndicator: {
+    block: 834000,
+    previousHash: '1fab995caf67530a90b69df0b512e0e434bd7f2f1b0fe1caae2414688c2d8f16'
+  }
 };

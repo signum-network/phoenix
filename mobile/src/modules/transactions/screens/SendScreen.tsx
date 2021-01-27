@@ -73,7 +73,7 @@ class Send extends React.PureComponent<IProps, State> {
             amount: params.amountNQT ? convertNQTStringToNumber(params.amountNQT).toString() : undefined,
             message: params.message,
             messageIsText: params.messageIsText === 'false' ? false : true,
-            encrypt: params.encrypt,
+            encrypt: params.encrypt === 'true' ? true : false,
             immutable: params.immutable === 'true' ? true : false
           }
         });
@@ -173,7 +173,6 @@ class Send extends React.PureComponent<IProps, State> {
               deepLinkProps={this.state.deepLinkProps}
               suggestedFees={this.props.network.suggestedFees}
             />
-            {data && <Text theme={TextThemes.ACCENT}>{i18n.t(transactions.screens.send.sent)}</Text>}
             {error && <Text theme={TextThemes.DANGER}>{error.message}</Text>}
           </View>
           <EnterPasscodeModal

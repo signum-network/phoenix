@@ -10,55 +10,72 @@ toolbar {
     z-index: 2;
   }
 
-  .mat-toolbar {
-    position: relative;
-    background: inherit !important;
-    color: inherit !important;
+  .testnet-stamp {
+    position: absolute;
+    left: calc(50% - 60px);
+    color: #D23;
+    border: 0.5rem double #D23;
+    -webkit-mask-position: 2rem 3rem;
+    font-size: 2rem;
+    font-weight: 700;
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    text-transform: uppercase;
+    border-radius: 1rem;
+    font-family: 'Courier', serif;
+    -webkit-mask-image: url('../../../../assets/images/stamp_texture.png');
+    -webkit-mask-size: 256px 256px;
+    mix-blend-mode: multiply;
   }
+}
 
-  .logo {
-    display: flex;
-    align-items: center;
+.mat-toolbar {
+  position: relative;
+  background: inherit !important;
+  color: inherit !important;
+}
 
-    .logo-icon {
-      width: 38px;
-    }
+.logo {
+  display: flex;
+  align-items: center;
+
+  .logo-icon {
+    width: 38px;
   }
+}
 
-  fuse-search-bar,
-  .user-button,
-  .language-button,
-  .chat-panel-toggle-button,
-  .quick-panel-toggle-button {
-    min-width: 64px;
-    height: 64px;
+fuse-search-bar,
+.user-button,
+.language-button,
+.chat-panel-toggle-button,
+.quick-panel-toggle-button {
+  min-width: 64px;
+  height: 64px;
 
-    @include media-breakpoint('xs') {
-      height: 56px;
-    }
-  }
-
-  .navbar-toggle-button {
-    min-width: 56px;
+  @include media-breakpoint('xs') {
     height: 56px;
   }
+}
 
-  .toolbar-separator {
-    height: 64px;
-    width: 1px;
+.navbar-toggle-button {
+  min-width: 56px;
+  height: 56px;
+}
 
-    @include media-breakpoint('xs') {
-      height: 56px;
-    }
+.toolbar-separator {
+  height: 64px;
+  width: 1px;
+
+  @include media-breakpoint('xs') {
+    height: 56px;
   }
+}
 
-  .username mat-icon {
-    position: relative;
-    top: 6px;
-    margin-right: 8px;
-    line-height: 12px;
-  }
-
+.username mat-icon {
+  position: relative;
+  top: 6px;
+  margin-right: 8px;
+  line-height: 12px;
 }
 
 

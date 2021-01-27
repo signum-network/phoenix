@@ -45,7 +45,9 @@ const styles: any = {
   dataView: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+    maxWidth: '90%'
   },
   icon: {
     width: 20,
@@ -58,6 +60,9 @@ const styles: any = {
   outcomingAmount: {
     marginLeft: Sizes.MEDIUM,
     flexDirection: 'row'
+  },
+  account: {
+    flexWrap: 'wrap',
   }
 };
 

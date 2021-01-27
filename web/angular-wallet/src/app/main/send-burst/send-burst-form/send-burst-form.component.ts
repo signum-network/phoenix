@@ -10,7 +10,7 @@ import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 import {
   Recipient,
@@ -19,8 +19,8 @@ import {
 import {StoreService} from '../../../store/store.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { burstAddressPattern } from 'app/util/burstAddressPattern';
+import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
+import {burstAddressPattern} from 'app/util/burstAddressPattern';
 
 
 interface QRData {
@@ -42,13 +42,13 @@ const isNotEmpty = (value: string) => value && value.length > 0;
   styleUrls: ['./send-burst-form.component.scss']
 })
 export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
-  @ViewChild('sendBurstForm', { static: true }) public sendBurstForm: NgForm;
-  @ViewChild('amount', { static: true }) public amount: string;
-  @ViewChild('message', { static: true }) public message: string;
-  @ViewChild('fullHash', { static: false }) public fullHash: string;
-  @ViewChild('encrypt', { static: true }) public encrypt: boolean;
-  @ViewChild('pin', { static: true }) public pin: string;
-  @ViewChild('messageIsText', { static: true }) public messageIsText: boolean;
+  @ViewChild('sendBurstForm', {static: true}) public sendBurstForm: NgForm;
+  @ViewChild('amount', {static: true}) public amount: string;
+  @ViewChild('message', {static: true}) public message: string;
+  @ViewChild('fullHash', {static: false}) public fullHash: string;
+  @ViewChild('encrypt', {static: true}) public encrypt: boolean;
+  @ViewChild('pin', {static: true}) public pin: string;
+  @ViewChild('messageIsText', {static: true}) public messageIsText: boolean;
 
   @Input() account: Account;
   @Input() fees: SuggestedFees;
@@ -83,11 +83,11 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
         }
       );
 
-      router.events.forEach((event) => {
-        if(event instanceof NavigationEnd) {
-          this.applyDeepLinkParams();
-        }
-      });
+    router.events.forEach((event) => {
+      if (event instanceof NavigationEnd) {
+        this.applyDeepLinkParams();
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -107,27 +107,27 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   private applyDeepLinkParams() {
-      this.onRecipientChange(new Recipient(this.route.snapshot.queryParams.receiver));
-      if (this.route.snapshot.queryParams.feeNQT) {
-        this.fee = convertNQTStringToNumber(this.route.snapshot.queryParams.feeNQT).toString();
-      }
+    this.onRecipientChange(new Recipient(this.route.snapshot.queryParams.receiver));
+    if (this.route.snapshot.queryParams.feeNQT) {
+      this.fee = convertNQTStringToNumber(this.route.snapshot.queryParams.feeNQT).toString();
+    }
 
-      if (this.route.snapshot.queryParams.amountNQT) {
-        this.amount = convertNQTStringToNumber(this.route.snapshot.queryParams.amountNQT).toString();
-      }
-      this.message = this.route.snapshot.queryParams.message;
-      this.encrypt = this.route.snapshot.queryParams.encrypt;
-      this.immutable = this.route.snapshot.queryParams.immutable || this.immutable;
-      if (this.immutable === 'false') {
-        this.immutable = false;
-      }
-      if (this.route.snapshot.queryParams.messageIsText === 'false') {
-        this.messageIsText = false;
-      }
-      if (this.route.snapshot.queryParams.feeSuggestionType && this.fees[this.route.snapshot.queryParams.feeSuggestionType]) {
-        this.fee = convertNQTStringToNumber(this.fees[this.route.snapshot.queryParams.feeSuggestionType]).toString();
-      }
-      this.showMessage = !!this.message;
+    if (this.route.snapshot.queryParams.amountNQT) {
+      this.amount = convertNQTStringToNumber(this.route.snapshot.queryParams.amountNQT).toString();
+    }
+    this.message = this.route.snapshot.queryParams.message;
+    this.encrypt = this.route.snapshot.queryParams.encrypt;
+    this.immutable = this.route.snapshot.queryParams.immutable || this.immutable;
+    if (this.immutable === 'false') {
+      this.immutable = false;
+    }
+    if (this.route.snapshot.queryParams.messageIsText === 'false') {
+      this.messageIsText = false;
+    }
+    if (this.route.snapshot.queryParams.feeSuggestionType && this.fees[this.route.snapshot.queryParams.feeSuggestionType]) {
+      this.fee = convertNQTStringToNumber(this.fees[this.route.snapshot.queryParams.feeSuggestionType]).toString();
+    }
+    this.showMessage = !!this.message;
   }
 
   getTotal(): number {
@@ -165,11 +165,13 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
       });
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
       this.sendBurstForm.resetForm();
+      await this.router.navigate(['/']);
     } catch (e) {
       this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
+    } finally {
+      this.immutable = false;
+      this.isSending = false;
     }
-    this.immutable = false;
-    this.isSending = false;
   }
 
 
