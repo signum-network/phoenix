@@ -1,4 +1,4 @@
-import {Attachment} from '../attachment';
+import {DefaultSendArgs} from './defaultSendArgs';
 
 /**
  * The argument object for [[TransactionApi.sendAmountToSingleRecipient]]
@@ -15,13 +15,8 @@ import {Attachment} from '../attachment';
  * This may happen on low fees. Defaults to 1440 (maximum)
  * @module core
  */
-export interface SendAmountArgs {
+export interface SendAmountArgs extends DefaultSendArgs {
     amountPlanck: string;
-    feePlanck: string;
     recipientId: string;
     recipientPublicKey?: string;
-    senderPublicKey: string;
-    senderPrivateKey: string;
-    attachment?: Attachment;
-    deadline?: number;
 }

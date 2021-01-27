@@ -1,7 +1,7 @@
 import {Http, HttpMockBuilder} from '@burstjs/http';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {getContract, getContractsByAccount, publishContract} from '../factories/contract';
-import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
+import {signAndBroadcastTransaction} from '../factories/transaction';
 
 describe('Contract Api', () => {
 
@@ -70,24 +70,23 @@ describe('Contract Api', () => {
 
         beforeEach(() => {
             jest.resetAllMocks();
-            generateSignature = jest.fn(() => 'signature');
-            verifySignature = jest.fn(() => true);
-            generateSignedTransactionBytes = jest.fn(() => 'signedTransactionBytes');
         });
 
 
         it('should publishContract', async () => {
 
+            // @ts-ignore
+            signAndBroadcastTransaction = jest.fn().mockImplementation(() => () => Promise.resolve({transaction: 'transactionId'}));
+
             const testResponse = {
-                fullHash: 'fullHash',
-                transaction: 'transactionId'
+                unsignedTransactionBytes: 'unsignedHexMessage'
             };
 
             httpMock = HttpMockBuilder.create()
                 .onPostReply(200, testResponse).build();
 
             const service = createBurstService(httpMock, 'relPath');
-            const transaction = await publishContract(service)({
+            const {transaction} = await publishContract(service)({
                 activationAmountPlanck: '20000000',
                 codeHex: 'creationBytes',
                 description: 'description',
@@ -96,10 +95,7 @@ describe('Contract Api', () => {
                 senderPrivateKey: 'privateKey',
                 isCIP20Active: false
             });
-            expect(transaction).toEqual({
-                fullHash: 'fullHash',
-                transaction: 'transactionId'
-            });
+            expect(transaction).toEqual('transactionId');
         });
     });
 });

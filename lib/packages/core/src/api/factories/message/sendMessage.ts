@@ -6,7 +6,7 @@ import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
 import {SendMessageArgs} from '../../../typings/args';
-import {signAndBroadcastTransaction} from '../../../internal';
+import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransaction';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[MessageApi]].
@@ -31,10 +31,10 @@ export const sendMessage = (service: BurstService):
 
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('sendMessage', parameters);
 
-        return signAndBroadcastTransaction({
+        return signAndBroadcastTransaction(service)({
             senderPublicKey: args.senderPublicKey,
             senderPrivateKey: args.senderPrivateKey,
             unsignedHexMessage
-        }, service);
+        });
 
     };

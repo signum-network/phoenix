@@ -1,0 +1,105 @@
+# @burstjs/monitor
+
+A monitor to watch for specific changes on the the Burst blockchain
+
+Due to average blocktime of 240 seconds, transactions stay pending for a certain time. It is a repeating pattern
+to watch for such changes and waiting for confirmation. This package simplifies this task.
+
+## Installation
+
+`@burstjs/monitor` can be used with NodeJS or Web. Two formats are available
+
+### Using with NodeJS and/or modern web frameworks
+
+Install using [npm](https://www.npmjs.org/):
+
+```
+npm install @burstjs/monitor
+```
+
+or using [yarn](https://yarnpkg.com/):
+
+``` yarn
+yarn add @burstjs/monitor
+```
+
+#### Example
+
+// TODO:
+
+```js
+import {Monitor} from '@burstjs/monitor'
+import {composeApi} from "@burstjs/core";
+
+// A method that checks if an account exists
+// > IMPORTANT: Do not use closures, when you need to serialize the monitor
+async function tryFetchAccount() {
+    const BurstApi = composeApi({ nodeHost: 'https://testnet.burstcoin.network:6876/'})
+    try{
+        const {account} = await BurstApi.account.getAccount('1234')
+        return account;
+    }catch (e){
+        // ignore error
+        return null;
+    }
+}
+
+// A comparing function to check if a certain condition for the returned data from fetch function
+// is true. If it's true the monitor stops
+function checkIfAccountExists(account) {
+    return account !== null;
+}
+
+// Create your monitor
+const monitor = new Monitor({
+    asyncFetcherFn: tryFetchAccount,
+    compareFn: checkIfAccountExists,
+    intervalSecs: 10, // polling interval in seconds
+    key: 'monitor-account',
+    timeoutSecs: 2 * 240 // when reached timeout the monitor stops
+});
+// starts monitor
+monitor.start();
+
+// called when `checkIfAccountExists` returns true
+monitor.onFulfilled(() => {
+    console.log('Yay, account active');
+});
+
+// called when `timeoutSecs` is reached
+monitor.onTimeout(() => {
+    console.log('Hmm, something went wrong');
+});
+
+```
+
+### Using in classic `<script>`
+
+Each package is available as bundled standalone library using IIFE.
+This way _burstJS_ can be used also within `<script>`-Tags.
+This might be useful for Wordpress and/or other PHP applications.
+
+Just import the package using the HTML `<script>` tag.
+
+`<script src='https://cdn.jsdelivr.net/npm/@burstjs/monitor/dist/burstjs.monitor.min.js'></script>`
+
+#### Example
+
+```js
+const monitor = new b$monitor.Monitor({
+    //...
+});
+monitor.start()
+monitor.onFulFilled(() => {
+    //...
+})
+```
+
+See more here:
+
+[@burstjs/monitor Online Documentation](https://burst-apps-team.github.io/phoenix/modules/monitor.html)
+
+---
+
+## API Reference
+{{>main}}

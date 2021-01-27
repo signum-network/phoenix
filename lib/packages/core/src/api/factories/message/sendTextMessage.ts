@@ -5,11 +5,8 @@ import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
-import {generateSignature} from '@burstjs/crypto';
-import {verifySignature} from '@burstjs/crypto';
-import {generateSignedTransactionBytes} from '@burstjs/crypto';
 import {convertNumberToNQTString} from '@burstjs/util';
-import {broadcastTransaction} from '../transaction/broadcastTransaction';
+import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransaction';
 
 /**
  *
@@ -49,11 +46,10 @@ export const sendTextMessage = (service: BurstService):
         };
 
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('sendMessage', parameters);
-        const signature = generateSignature(unsignedHexMessage, senderPrivateKey);
-        if (!verifySignature(signature, unsignedHexMessage, senderPublicKey)) {
-            throw new Error('The signed message could not be verified! Message not broadcasted!');
-        }
 
-        const signedMessage = generateSignedTransactionBytes(unsignedHexMessage, signature);
-        return broadcastTransaction(service)(signedMessage);
+        return signAndBroadcastTransaction(service)({
+            senderPublicKey: senderPublicKey,
+            senderPrivateKey: senderPrivateKey,
+            unsignedHexMessage
+        });
     };

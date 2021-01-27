@@ -7,6 +7,7 @@ import {TransactionResponse} from '../../../typings/transactionResponse';
 import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
 import {convertNumberToNQTString} from '@burstjs/util';
 import {broadcastTransaction} from '../transaction/broadcastTransaction';
+import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransaction';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
@@ -39,13 +40,12 @@ export const setAlias = (service: BurstService): (
             feeNQT: convertNumberToNQTString(parseFloat(feeNQT)),
             publicKey: senderPublicKey
         };
-        const {unsignedTransactionBytes} = await service.send<TransactionResponse>('setAlias', parameters);
-        const signature = generateSignature(unsignedTransactionBytes, senderPrivateKey);
-        if (!verifySignature(signature, unsignedTransactionBytes, senderPublicKey)) {
-            throw new Error('The signed message could not be verified! Transaction not broadcasted!');
-        }
+        const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('setAlias', parameters);
+        return signAndBroadcastTransaction(service)({
+            senderPrivateKey,
+            senderPublicKey,
+            unsignedHexMessage
+        });
 
-        const signedMessage = generateSignedTransactionBytes(unsignedTransactionBytes, signature);
-        return broadcastTransaction(service)(signedMessage);
 
     };

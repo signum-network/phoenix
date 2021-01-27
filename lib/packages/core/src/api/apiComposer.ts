@@ -75,7 +75,7 @@ export class ApiComposer {
     private constructor(private service: BurstService) {
     }
 
-    private mapCreators(apiSection: string, creatorMap: any) {
+    private mapCreators(apiSection: string, creatorMap: any): void {
         this.api[apiSection] = {};
 
         Object.keys(creatorMap)

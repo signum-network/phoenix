@@ -7,6 +7,9 @@ const DefaultAxiosOptions = {};
 
 /**
  * Http Implementation of [[Http]] using https://github.com/axios/axios
+ *
+ * You can use [[HttpClient]] as alias
+ *
  * @module http
  */
 export default class HttpImpl implements Http {

@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/contracts",
-  "version": "0.5.1",
+  "version": "0.6.0-alpha.8",
   "description": "Smart Contracts package for BURST",
   "contributors": [
     "ohager"
@@ -44,14 +44,14 @@
     "readme": "jsdoc2md  --files ./src/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
   },
   "dependencies": {
-    "@burstjs/util": "^0.5.1"
+    "@burstjs/util": "^0.6.0-alpha.8"
   },
   "husky": {
     "hooks": {
       "pre-push": "npm test"
     }
   },
-  "gitHead": "9b5a4e07616d783e85bcae6c21b72f50db783f48",
+  "gitHead": "1b375dedd063baa0933556cc50f87b5c926ba12d",
   "publishConfig": {
     "access": "public"
   }

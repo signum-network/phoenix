@@ -11,8 +11,16 @@ import HttpError from './httpError';
 import HttpMockBuilder from './httpMockBuilder';
 import HttpImpl from './httpImpl';
 
+/**
+ * Alias for HttpImpl
+ *
+ * @module http
+ */
+const HttpClient = HttpImpl;
+
 export {
     Http,
+    HttpClient,
     HttpImpl,
     HttpResponse,
     HttpMockBuilder,

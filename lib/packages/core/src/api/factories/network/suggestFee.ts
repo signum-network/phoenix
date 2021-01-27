@@ -1,22 +1,16 @@
 /**
- * Copyright (c) 2019 Burst Apps Team
+ * Copyright (c) 2020 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
-import {SuggestedFees} from '../../../typings/suggestedFees';
-import {FeeQuantPlanck} from '@burstjs/util';
+import {getSuggestedFees} from './getSuggestedFees';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[NetworkApi]].
  *
- * See details at [[NetworkApi.suggestFee]]
+ * See details at [[NetworkApi.getSuggestedFees]]
+ * @deprecated Use getSuggestedFees
+ * <div class="deprecated">
+ *     Use [[NetworkApi.getSuggestedFees]] instead
+ * </div>
  * @module core.api.factories
  */
-export const suggestFee = (service: BurstService): () => Promise<SuggestedFees> => {
-    return async (): Promise<SuggestedFees> => {
-        const suggestedFees: SuggestedFees = await service.query('suggestFee');
-        return {
-            ...suggestedFees,
-            minimum: FeeQuantPlanck
-        };
-    };
-};
+export const suggestFee = getSuggestedFees;
