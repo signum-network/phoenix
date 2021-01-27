@@ -6,12 +6,8 @@ import {generateSignature, generateSignedTransactionBytes, verifySignature} from
 import {broadcastTransaction} from './broadcastTransaction';
 import {BurstService} from '../../../service';
 import {TransactionId} from '../../../typings/transactionId';
+import {UnsignedTransactionArgs} from '../../../typings/args/unsignedTransactionArgs';
 
-export interface UnsignedTransaction {
-    unsignedHexMessage: string;
-    senderPrivateKey: string;
-    senderPublicKey: string;
-}
 
 /**
  * Use with [[ApiComposer]] and belongs to [[TransactionApi]].
@@ -20,7 +16,7 @@ export interface UnsignedTransaction {
  * @module core.api.factories
  */
 export let signAndBroadcastTransaction = (burstService: BurstService):
-    (unsignedTransaction: UnsignedTransaction) => Promise<TransactionId> =>
+    (unsignedTransaction: UnsignedTransactionArgs) => Promise<TransactionId> =>
     async (unsignedTransaction): Promise<TransactionId> => {
 
         const {unsignedHexMessage, senderPrivateKey, senderPublicKey} = unsignedTransaction;

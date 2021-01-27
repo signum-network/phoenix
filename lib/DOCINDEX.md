@@ -21,8 +21,9 @@ The library is separated in the following packages
 - [@burstjs/core](./modules/core.html) The main package providing an extense API for blockchain interaction
 - [@burstjs/contracts](./modules/contracts.html) A package providing BURST relevant functions for _smart contracts_
 - [@burstjs/crypto](./modules/crypto.html) A package providing BURST relevant crypto functions
-- [@burstjs/util](./modules/util.html) A package providing useful functions, e.g. common conversion functions 
 - [@burstjs/http](./modules/http.html) A package providing a _simplified_ Http layer, with consistent response types, and exception handling
+- [@burstjs/monitor](./modules/monitor.html) A package providing a helper that executes functions periodically. Useful for monitoring pending transactions, or accounts 
+- [@burstjs/util](./modules/util.html) A package providing useful functions, e.g. common conversion functions 
 
 
 ## Installation

@@ -1,9 +1,13 @@
 # @burstjs/monitor
 
-A monitor to watch for specific changes on the the Burst blockchain
+A monitor to watch for specific changes on the Burst blockchain
 
 Due to average blocktime of 240 seconds, transactions stay pending for a certain time. It is a repeating pattern
 to watch for such changes and waiting for confirmation. This package simplifies this task.
+
+As additional feature, a monitor is serializable, that means it can be stored e restored.
+This is especially useful for web applications, as it allows reloading pages without losing the ability
+to check whether a transaction is still pending or already concluded.
 
 ## Installation
 
@@ -24,8 +28,6 @@ yarn add @burstjs/monitor
 ```
 
 #### Example
-
-// TODO:
 
 ```js
 import {Monitor} from '@burstjs/monitor'
@@ -95,6 +97,12 @@ monitor.onFulFilled(() => {
 })
 ```
 
+
+## Monitor Serialization
+
+TO DO
+
+---
 See more here:
 
 [@burstjs/monitor Online Documentation](https://burst-apps-team.github.io/phoenix/modules/monitor.html)

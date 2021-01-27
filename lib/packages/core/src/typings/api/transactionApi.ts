@@ -2,11 +2,14 @@ import {TransactionId} from '../transactionId';
 import {Transaction} from '../transaction';
 import {MultioutRecipientAmount} from '../multioutRecipientAmount';
 import {Attachment} from '../attachment';
-import {CancelSubscriptionArgs, CreateSubscriptionArgs, SendAmountArgs} from '../args';
 import {Subscription} from '../subscription';
-import {TransactionList} from '../transactionList';
 import {UnconfirmedTransactionList} from '../unconfirmedTransactionList';
-import {UnsignedTransaction} from '../../api';
+import {
+    CancelSubscriptionArgs,
+    CreateSubscriptionArgs,
+    SendAmountArgs,
+    UnsignedTransactionArgs
+} from '../args';
 
 /**
  * Transaction API
@@ -152,5 +155,5 @@ export interface TransactionApi {
      * @param unsignedTransaction The unsigned Transaction Object (returned by [[BurstService.send]])
      * @return The TransactionId
      */
-    signAndBroadcastTransaction: (unsignedTransaction: UnsignedTransaction) => Promise<TransactionId>;
+    signAndBroadcastTransaction: (unsignedTransaction: UnsignedTransactionArgs) => Promise<TransactionId>;
 }
