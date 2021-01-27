@@ -105,9 +105,7 @@ export class ApiSettings {
  * with its functions.
  *
  * ```ts
- * const api = composeApi({
- *   nodeHost: 'https://wallet1.burst-team.us:2083', // one of the mainnet nodes
- * })
+ * const api = composeApi(new ApiSettings('https://wallet1.burst-team.us:2083')), // one of the mainnet nodes
  * ```
  *
  * > Note, that this method mounts the __entire__ API, i.e. all available methods. One may also customize the API composition

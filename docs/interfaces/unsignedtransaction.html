@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BlockId
+	<title>UnsignedTransaction
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,31 +75,21 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/core.html">core</a>
-				</li>
-				<li>
-					<a href="core.blockid.html">BlockId</a>
+					<a href="unsignedtransaction.html">UnsignedTransaction</a>
 				</li>
 			</ul>
-			<h1>Interface BlockId</h1>
+			<h1>Interface UnsignedTransaction</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Block Id</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">BlockId</span>
+						<span class="target">UnsignedTransaction</span>
 					</li>
 				</ul>
 			</section>
@@ -110,7 +100,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.blockid.html#block" class="tsd-kind-icon">block</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="unsignedtransaction.html#senderprivatekey" class="tsd-kind-icon">sender<wbr>Private<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="unsignedtransaction.html#senderpublickey" class="tsd-kind-icon">sender<wbr>Public<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="unsignedtransaction.html#unsignedhexmessage" class="tsd-kind-icon">unsigned<wbr>Hex<wbr>Message</a></li>
 							</ul>
 						</section>
 					</div>
@@ -119,12 +111,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="block" class="tsd-anchor"></a>
-					<h3>block</h3>
-					<div class="tsd-signature tsd-kind-icon">block<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="senderprivatekey" class="tsd-anchor"></a>
+					<h3>sender<wbr>Private<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">sender<wbr>Private<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5cb84a83/lib/packages/core/src/typings/blockId.ts#L11">core/src/typings/blockId.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5cb84a83/lib/packages/core/src/api/factories/transaction/signAndBroadcastTransaction.ts#L12">core/src/api/factories/transaction/signAndBroadcastTransaction.ts:12</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="senderpublickey" class="tsd-anchor"></a>
+					<h3>sender<wbr>Public<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">sender<wbr>Public<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5cb84a83/lib/packages/core/src/api/factories/transaction/signAndBroadcastTransaction.ts#L13">core/src/api/factories/transaction/signAndBroadcastTransaction.ts:13</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="unsignedhexmessage" class="tsd-anchor"></a>
+					<h3>unsigned<wbr>Hex<wbr>Message</h3>
+					<div class="tsd-signature tsd-kind-icon">unsigned<wbr>Hex<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/5cb84a83/lib/packages/core/src/api/factories/transaction/signAndBroadcastTransaction.ts#L11">core/src/api/factories/transaction/signAndBroadcastTransaction.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -139,7 +151,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/contracts.html">contracts</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -166,11 +178,17 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="core.blockid.html" class="tsd-kind-icon">Block<wbr>Id</a>
+					<li class="current tsd-kind-interface">
+						<a href="unsignedtransaction.html" class="tsd-kind-icon">Unsigned<wbr>Transaction</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.blockid.html#block" class="tsd-kind-icon">block</a>
+								<a href="unsignedtransaction.html#senderprivatekey" class="tsd-kind-icon">sender<wbr>Private<wbr>Key</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="unsignedtransaction.html#senderpublickey" class="tsd-kind-icon">sender<wbr>Public<wbr>Key</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="unsignedtransaction.html#unsignedhexmessage" class="tsd-kind-icon">unsigned<wbr>Hex<wbr>Message</a>
 							</li>
 						</ul>
 					</li>

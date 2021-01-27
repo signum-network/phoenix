@@ -9,6 +9,11 @@ All notable changes to this project will be documented in this file.
   - `signAndBroadcastTransaction`
 - added new methods to assets Api
   - `issueAsset`
+  - `cancelAskOrder`
+  - `cancelBidOrder`
+  - `placeAskOrder`
+  - `placeBidOrder`
+  - `transferAsset`
 
 ---
 __Fixes__

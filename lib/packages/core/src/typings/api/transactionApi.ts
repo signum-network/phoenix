@@ -2,11 +2,11 @@ import {TransactionId} from '../transactionId';
 import {Transaction} from '../transaction';
 import {MultioutRecipientAmount} from '../multioutRecipientAmount';
 import {Attachment} from '../attachment';
-import {SendAmountArgs} from '../args/sendAmountArgs';
-import {CancelSubscriptionArgs, CreateSubscriptionArgs} from '../args';
+import {CancelSubscriptionArgs, CreateSubscriptionArgs, SendAmountArgs} from '../args';
 import {Subscription} from '../subscription';
 import {TransactionList} from '../transactionList';
 import {UnconfirmedTransactionList} from '../unconfirmedTransactionList';
+import {UnsignedTransaction} from '../../api';
 
 /**
  * Transaction API
@@ -142,4 +142,15 @@ export interface TransactionApi {
      */
     getUnconfirmedTransactions: () => Promise<UnconfirmedTransactionList>;
 
+    /**
+     * Signs and broadcasts a transaction
+     *
+     * Usually, you don't need this, as all sending methods in BurstJS sign and broadcast.
+     * As not all BRS API functions are implemented yet in BurstJS this method is handy for those,
+     * i.e. all direct calls to [[BurstService.send]]
+     *
+     * @param unsignedTransaction The unsigned Transaction Object (returned by [[BurstService.send]])
+     * @return The TransactionId
+     */
+    signAndBroadcastTransaction: (unsignedTransaction: UnsignedTransaction) => Promise<TransactionId>;
 }

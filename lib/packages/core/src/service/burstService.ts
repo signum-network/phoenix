@@ -48,7 +48,7 @@ export class BurstService {
     public readonly settings: BurstServiceSettings;
     private readonly _relPath: string = DefaultApiEndpoint;
 
-    private static throwAsHttpError(url: string, apiError: ApiError) {
+    private static throwAsHttpError(url: string, apiError: ApiError): void {
         const errorCode = apiError.errorCode && ` (Code: ${apiError.errorCode})` || '';
         throw new HttpError(url,
             400,
