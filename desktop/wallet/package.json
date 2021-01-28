@@ -44,7 +44,7 @@
   "devDependencies": {
     "ajv": "^6.10.2",
     "cross-env": "^7.0.0",
-    "electron": "^6.1.4",
+    "electron": "^9.4.0",
     "electron-builder": "^22.9.1",
     "jest": "^24.9.0",
     "rimraf": "^3.0.0"
