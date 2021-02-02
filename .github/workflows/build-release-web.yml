@@ -16,7 +16,7 @@ jobs:
         id: get-version
         uses: actions/github-script@v3
         with:
-          script: return context.ref.replace('desktop-','')
+          script: return context.ref.replace('refs/tags/desktop-','')
           result-encoding: string
 
       - name: Show Version
@@ -29,6 +29,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
+
+      - name: Build BurstJS
+        run: |
+          cd ./lib
+          npm ci
+          npm run build
 
       - name: Build Angular Web App Asset
         id: build-asset
