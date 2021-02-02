@@ -34,7 +34,7 @@ jobs:
         run: |
           cd ./lib
           npm ci
-          npm run build
+          npm run tsc
 
       - name: Build Angular Web App Asset
         id: build-asset
@@ -43,6 +43,7 @@ jobs:
           npm ci
           npm run build:web
           assetFile=web-phoenix-burst-wallet.${{steps.get-version.outputs.result}}.zip
+          echo "Zipping into $assetFile"
           zip -r $assetFile ./dist
           echo "::set-output name=assetFile::$assetFile"
 
@@ -50,6 +51,6 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: $${{steps.build-asset.outputs.assetFile}}
+          file: ./web/angular-wallet/${{steps.build-asset.outputs.assetFile}}
           tag: ${{ github.ref }}
           overwrite: true
