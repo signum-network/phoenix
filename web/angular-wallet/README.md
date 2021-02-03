@@ -31,6 +31,9 @@ Just run `npm run release`
 This skript automates the following steps:
 - Bumps to a new semantic version
 - creates and pushes a tag in format `desktop-[semversion]`
+- Builds Win, MacOS and Linux executables
+- Builds Web version
+- Attaches all to a new pre-release version in Github Releases.
 Once pushed the [build pipeline](../../.github/workflows/build-release-desktop.yml) for new releases triggers. All automated 
 
 ## Using Phoenix Wallet as web version

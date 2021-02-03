@@ -6,7 +6,7 @@
   },
   "productName": "Phoenix Burstcoin Wallet",
   "description": "The Burstcoin web wallet",
-  "version": "1.0.4-testci.0",
+  "version": "1.0.3",
   "license": "GPL-3.0",
   "contributors": [
     "ohager",
@@ -30,7 +30,7 @@
     "e2e": "ng e2e",
     "bundle-report": "webpack-bundle-analyzer dist/stats.json",
     "test:watch": "jest --watch",
-    "release": "npm run build:ci && node ../../scripts/publish.js --desktop"
+    "release": "node ../../scripts/publish.js --desktop"
   },
   "private": true,
   "dependencies": {
