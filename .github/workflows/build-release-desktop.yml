@@ -69,6 +69,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./web/angular-wallet/${{steps.build-asset.outputs.assetFile}}
-          tag: ${{ github.ref }}
+          tag: v${{ steps.get-version.outputs.result }}
           overwrite: true
           prerelease: true
+          body: "YAY! Released. To make this release available in Phoenix, change tag to _dektop-${{ steps.get-version.outputs.result }}_ and remove [prerelease] state"
