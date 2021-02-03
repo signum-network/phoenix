@@ -6,14 +6,8 @@ on:
       - desktop-[0-9]+.[0-9]+.[0-9]+*
 
 jobs:
-  release:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-        package_manager: [npm]
-
+  release-web:
+    runs-on: ubuntu-latest
     steps:
       - name: Get Version String
         id: get-version
@@ -21,9 +15,6 @@ jobs:
         with:
           script: return context.ref.replace('refs/tags/desktop-','')
           result-encoding: string
-
-      - name: Show Version
-        run: echo "Building Phoenix Version ${{steps.get-version.outputs.result}} on [${{matrix.os}}]"
 
       - name: Check out Git repository
         uses: actions/checkout@v2
@@ -42,9 +33,8 @@ jobs:
           cd ../web/angular-wallet
           npm ci
 
-      - name: Build Angular Web App Asset
-        id: build-asset
-        if: matrix.os == 'ubuntu-latest'
+      - name: Build Angular Web App
+        id: build-web
         run: |
           cd ./web/angular-wallet
           npm run build:web
@@ -55,19 +45,42 @@ jobs:
 
       - name: Upload Web App Asset
         uses: svenstaro/upload-release-action@v2
-        if: matrix.os == 'ubuntu-latest'
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./web/angular-wallet/${{steps.build-asset.outputs.assetFile}}
+          file: ./web/angular-wallet/${{steps.build-web.outputs.assetFile}}
           tag: v${{ steps.get-version.outputs.result }}
           prerelease: true
           body: YAY! New release. To make this release available in Phoenix, change tag to _desktop-${{ steps.get-version.outputs.result }}_ and remove [prerelease] state
+
+  release-electron:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
+        package_manager: [ npm ]
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12
+
+      - name: Prepare build environment
+        run: |
+          cd ./scripts
+          npm ci
+          cd ../lib
+          npm ci
+          cd ../web/angular-wallet
+          npm ci
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
           package_root: "./desktop/wallet"
-          # GitHub token, automatically provided to the action
-          # (No need to define this secret in the repo settings)
           github_token: ${{ secrets.github_token }}
           release: true
