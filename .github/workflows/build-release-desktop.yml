@@ -15,6 +15,16 @@ jobs:
         package_manager: [npm]
 
     steps:
+      - name: Get Version String
+        id: get-version
+        uses: actions/github-script@v3
+        with:
+          script: return context.ref.replace('refs/tags/desktop-','')
+          result-encoding: string
+
+      - name: Show Version
+        run: echo "Building Phoenix Version ${{steps.get-version.outputs.result}} on [${{matrix.os}}]"
+
       - name: Check out Git repository
         uses: actions/checkout@v1
 
@@ -32,7 +42,6 @@ jobs:
           cd ../web/angular-wallet
           npm ci
 
-      # TODO: add the web version
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
@@ -41,7 +50,25 @@ jobs:
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
           github_token: ${{ secrets.github_token }}
+          release: true
 
-          # If the commit is tagged with a version (e.g. "v1.0.0"),
-          # release the app after building
-          release: ${{ startsWith(github.ref, 'refs/tags/desktop-') }}
+      - name: Build Angular Web App Asset
+        id: build-asset
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          cd ./web/angular-wallet
+          npm ci
+          npm run build:web
+          assetFile=web-phoenix-burst-wallet.${{steps.get-version.outputs.result}}.zip
+          echo "Zipping into $assetFile"
+          zip -r $assetFile ./dist
+          echo "::set-output name=assetFile::$assetFile"
+
+      - name: Upload Web App Asset
+        uses: svenstaro/upload-release-action@v2
+        if: matrix.os == 'ubuntu-latest'
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./web/angular-wallet/${{steps.build-asset.outputs.assetFile}}
+          tag: ${{ github.ref }}
+          overwrite: true
