@@ -56,7 +56,6 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           cd ./web/angular-wallet
-          npm ci
           npm run build:web
           assetFile=web-phoenix-burst-wallet.${{steps.get-version.outputs.result}}.zip
           echo "Zipping into $assetFile"
@@ -70,6 +69,5 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./web/angular-wallet/${{steps.build-asset.outputs.assetFile}}
           tag: v${{ steps.get-version.outputs.result }}
-          overwrite: true
           prerelease: true
-          body: "YAY! Released. To make this release available in Phoenix, change tag to _dektop-${{ steps.get-version.outputs.result }}_ and remove [prerelease] state"
+          body: YAY! Released. To make this release available in Phoenix, change tag to _desktop-${{ steps.get-version.outputs.result }}_ and remove [prerelease] state
