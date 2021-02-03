@@ -42,15 +42,6 @@ jobs:
           cd ../web/angular-wallet
           npm ci
 
-      - name: Build/release Electron app
-        uses: samuelmeuli/action-electron-builder@v1
-        with:
-          package_root: "./desktop/wallet"
-          # GitHub token, automatically provided to the action
-          # (No need to define this secret in the repo settings)
-          github_token: ${{ secrets.github_token }}
-          release: true
-
       - name: Build Angular Web App Asset
         id: build-asset
         if: matrix.os == 'ubuntu-latest'
@@ -70,4 +61,13 @@ jobs:
           file: ./web/angular-wallet/${{steps.build-asset.outputs.assetFile}}
           tag: v${{ steps.get-version.outputs.result }}
           prerelease: true
-          body: YAY! Released. To make this release available in Phoenix, change tag to _desktop-${{ steps.get-version.outputs.result }}_ and remove [prerelease] state
+          body: YAY! New release. To make this release available in Phoenix, change tag to _desktop-${{ steps.get-version.outputs.result }}_ and remove [prerelease] state
+
+      - name: Build/release Electron app
+        uses: samuelmeuli/action-electron-builder@v1
+        with:
+          package_root: "./desktop/wallet"
+          # GitHub token, automatically provided to the action
+          # (No need to define this secret in the repo settings)
+          github_token: ${{ secrets.github_token }}
+          release: true

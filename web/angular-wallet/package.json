@@ -6,7 +6,7 @@
   },
   "productName": "Phoenix Burstcoin Wallet",
   "description": "The Burstcoin web wallet",
-  "version": "1.0.4-testci.7",
+  "version": "1.0.4-testci.8",
   "license": "GPL-3.0",
   "contributors": [
     "ohager",
