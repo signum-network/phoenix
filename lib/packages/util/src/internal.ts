@@ -10,6 +10,9 @@
 
 
 // Internal helper functions and structures
+import BigNumber from 'bignumber.js';
+
+export const AddressPrefix = 'BURST';
 export const GenesisBlockTime = Date.UTC(2014, 7, 11, 2, 0, 0, 0) / 1000;
 export const initialCodeword = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 export const gexp: number[] = [1, 2, 4, 8, 16, 5, 10, 20, 13, 26, 17, 7, 14, 28, 29, 31, 27, 19, 3, 6, 12, 24, 21, 15, 30, 25, 23, 11, 22, 9, 18, 1];
@@ -31,4 +34,3 @@ export const gmult = (a, b) => {
 
     return gexp[idx];
 };
-

@@ -3,7 +3,7 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-import { base32Length, cwmap, alphabet, initialCodeword } from './internal';
+import {base32Length, cwmap, alphabet, initialCodeword, AddressPrefix} from './internal';
 import { isValid } from './isBurstAddress';
 
 /**
@@ -21,7 +21,7 @@ export const convertAddressToNumericId = (address: string): string => {
         return undefined;
     }
 
-    if (address.indexOf('BURST-') === 0) {
+    if (address.indexOf(`${AddressPrefix}-`) === 0) {
         address = address.substr(6);
     } else {
         return undefined;

@@ -5,7 +5,7 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-import { initialCodeword, base32Length, gmult, alphabet, cwmap } from './internal';
+import {initialCodeword, base32Length, gmult, alphabet, cwmap, AddressPrefix} from './internal';
 
 /**
  * Encode a numeric id into BURST-XXXX-XXXX-XXXX-XXXXX
@@ -70,7 +70,7 @@ export const convertNumericIdToAddress = (numericId: string): string => {
     codeword[15] = p[2];
     codeword[16] = p[3];
 
-    let out = 'BURST-';
+    let out = AddressPrefix + '-';
 
     for (let i = 0; i < 17; i++) {
         out += alphabet[codeword[cwmap[i]]];

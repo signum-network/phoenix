@@ -49,6 +49,7 @@ describe('Address Utils', () => {
 
         it('isBurstAddress() true', () => {
             expect(isBurstAddress('BURST-K37B-9V85-FB95-793HN')).toBeTruthy();
+            expect(isBurstAddress('BURST-K37B-9V85-FB95-793HN-2UCGWTUEEY66TN7RNC189PM19C4ATCEUGQV929IY1N24H0Y82Z')).toBeTruthy();
         });
 
         it('isBurstAddress() false', () => {
@@ -58,6 +59,6 @@ describe('Address Utils', () => {
             expect(isBurstAddress(undefined)).toBeFalsy();
             expect(isBurstAddress('  ')).toBeFalsy();
         });
-    });
+     });
 
 });
