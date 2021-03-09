@@ -16,11 +16,13 @@ export const convertHexStringToDecString = (hexStr: string): string => {
         carry = parseInt(hexStr.charAt(i), 16);
         for (j = 0; j < digits.length; j += 1) {
             digits[j] = digits[j] * 16 + carry;
+            // tslint:disable-next-line:no-bitwise
             carry = digits[j] / 10 | 0;
             digits[j] %= 10;
         }
         while (carry > 0) {
             digits.push(carry % 10);
+            // tslint:disable-next-line:no-bitwise
             carry = carry / 10 | 0;
         }
     }
