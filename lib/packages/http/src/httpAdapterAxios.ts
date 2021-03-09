@@ -1,7 +1,7 @@
 import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
-import HttpResponse from './httpResponse';
-import HttpError from './httpError';
-import Http from './http';
+import {HttpResponse} from './httpResponse';
+import {HttpError} from './httpError';
+import {Http} from './http';
 
 const DefaultAxiosOptions = {};
 
@@ -12,7 +12,7 @@ const DefaultAxiosOptions = {};
  *
  * @module http
  */
-export default class HttpImpl implements Http {
+export class HttpAdapterAxios implements Http {
 
     private _clientImpl: AxiosInstance;
 
@@ -36,7 +36,7 @@ export default class HttpImpl implements Http {
      * @param url The url
      * @param error The returned error
      */
-    static mountError(url: string, error: any): HttpError {
+    private static mountError(url: string, error: any): HttpError {
         if (error.response) {
             return new HttpError(url, error.response.status, error.response.statusText, error.response.data);
         } else if (error.message) {
@@ -52,7 +52,7 @@ export default class HttpImpl implements Http {
             const {status, data} = await this._clientImpl.get(url, options);
             return new HttpResponse(status, data);
         } catch (error) {
-            throw HttpImpl.mountError(url, error);
+            throw HttpAdapterAxios.mountError(url, error);
         }
     }
 
@@ -61,7 +61,7 @@ export default class HttpImpl implements Http {
             const {status, data} = await this._clientImpl.post(url, payload, options);
             return new HttpResponse(status, data);
         } catch (error) {
-            throw HttpImpl.mountError(url, error);
+            throw HttpAdapterAxios.mountError(url, error);
         }
     }
 
@@ -70,7 +70,7 @@ export default class HttpImpl implements Http {
             const {status, data} = await this._clientImpl.put(url, payload, options);
             return new HttpResponse(status, data);
         } catch (error) {
-            throw HttpImpl.mountError(url, error);
+            throw HttpAdapterAxios.mountError(url, error);
         }
     }
 
@@ -79,7 +79,7 @@ export default class HttpImpl implements Http {
             const {status, data} = await this._clientImpl.delete(url, options);
             return new HttpResponse(status, data);
         } catch (error) {
-            throw HttpImpl.mountError(url, error);
+            throw HttpAdapterAxios.mountError(url, error);
         }
     }
 }

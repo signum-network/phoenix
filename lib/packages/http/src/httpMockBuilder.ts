@@ -1,6 +1,6 @@
-import Http from './http';
-import HttpResponse from './httpResponse';
-import HttpError from './httpError';
+import {Http} from './http';
+import {HttpResponse} from './httpResponse';
+import {HttpError} from './httpError';
 
 class HttpMock implements Http {
 
@@ -93,7 +93,7 @@ class HttpMock implements Http {
  *
  * @module http
  */
-export default class HttpMockBuilder {
+export class HttpMockBuilder {
 
     private readonly _httpMock: HttpMock;
 

@@ -1,11 +1,11 @@
-import HttpResponse from './httpResponse';
+import {HttpResponse} from './httpResponse';
 
 /**
  * A generic HTTP interface
  *
  * @module http
  */
-export default interface Http {
+export interface Http {
 
     /**
      * Get Method

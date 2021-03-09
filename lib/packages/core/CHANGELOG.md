@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
   - `placeAskOrder`
   - `placeBidOrder`
   - `transferAsset`
+- Added BurstAddress Value Object
 
 ---
 __Fixes__
