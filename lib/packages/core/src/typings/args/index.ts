@@ -1,3 +1,4 @@
+export * from './addCommitmentArgs';
 export * from './callContractMethodArgs';
 export * from './cancelOrderArgs';
 export * from './cancelSubscriptionArgs';

@@ -43,7 +43,7 @@ import {
     setAccountInfo,
     setAlias,
     setRewardRecipient,
-    getRewardRecipient,
+    getRewardRecipient, addCommitment, removeCommitment,
 } from './factories/account';
 import {getAliasById, getAliasByName} from './factories/alias';
 import {
@@ -159,6 +159,8 @@ export function composeApi(settings: ApiSettings): Api {
             sendEncryptedMessage,
         })
         .withAccountApi({
+            addCommitment,
+            removeCommitment,
             getAccountTransactions,
             getUnconfirmedAccountTransactions,
             getAccountBalance,
