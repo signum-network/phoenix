@@ -1,4 +1,4 @@
-import Http from './http';
+import {Http} from './http';
 import {HttpResponse} from './httpResponse';
 import {HttpError} from './httpError';
 

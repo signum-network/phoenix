@@ -2,7 +2,7 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 
-import {Http, HttpError, HttpImpl} from '@burstjs/http';
+import {Http, HttpError, HttpClientFactory} from '@burstjs/http';
 import {BurstServiceSettings} from './burstServiceSettings';
 import {AxiosRequestConfig} from 'axios';
 import {DefaultApiEndpoint} from '../constants';
@@ -18,7 +18,7 @@ class SettingsImpl implements BurstServiceSettings {
     constructor(settings: BurstServiceSettings) {
         this.apiRootUrl = settings.apiRootUrl || DefaultApiEndpoint;
         this.nodeHost = settings.nodeHost;
-        this.httpClient = settings.httpClient || new HttpImpl(settings.nodeHost, settings.httpClientOptions);
+        this.httpClient = settings.httpClient || HttpClientFactory.createHttpClient(settings.nodeHost, settings.httpClientOptions);
     }
 
     readonly apiRootUrl: string;
