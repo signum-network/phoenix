@@ -1,6 +1,6 @@
 import Http from './http';
 import HttpResponse from './httpResponse';
-import HttpError from './httpError';
+import {HttpError} from './httpError';
 
 const FOR_ALL_ENDPOINTS = '__all';
 
