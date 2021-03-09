@@ -11,7 +11,7 @@ import {CommitmentArgs} from '../../../typings/args/commitmentArgs';
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
  *
- * See details at [[AccountApi.addCommitment]]
+ * See details at [[AccountApi.removeCommitment]]
  * @module core.api.factories
  */
 export const removeCommitment = (service: BurstService):
