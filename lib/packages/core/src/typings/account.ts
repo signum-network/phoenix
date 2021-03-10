@@ -8,6 +8,8 @@ import { Transaction } from './transaction';
 import { AssetBalance } from './assetBalance';
 import { UnconfirmedAssetBalance } from './unconfirmedAssetBalance';
 
+// TODO: reduce this to simple response type (DTO). All the info her inside is application dependendent (i.e. Phoenix)
+// - move this class to Phoenix (Web/Desktop/Mobile) and substitute by DTO
 /**
 * Account class
 *
@@ -19,6 +21,7 @@ import { UnconfirmedAssetBalance } from './unconfirmedAssetBalance';
 export class Account {
     public account: string;
     public accountRS: string;
+    public accountRSExtended: string;
     public assetBalances: AssetBalance[];
     public balanceNQT: string;
     public description: string;
@@ -31,13 +34,16 @@ export class Account {
     public type: string;
     public unconfirmedAssetBalances: UnconfirmedAssetBalance[];
     public unconfirmedBalanceNQT: string;
+    public commitmentNQT: string;
     public confirmed: boolean;
 
     constructor(data: any = {}) {
         this.account = data.account || undefined;
         this.accountRS = data.accountRS || undefined;
+        this.accountRSExtended = data.accountRSExtended || undefined;
         this.assetBalances = data.assetBalances || undefined;
         this.balanceNQT = data.balanceNQT || 0;
+        this.commitmentNQT = data.commitmentNQT || 0;
         this.description = data.description || undefined;
         this.effectiveBalanceNQT = data.effectiveBalanceNQT || 0;
         if (data.publicKey || data.keys !== undefined) {

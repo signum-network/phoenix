@@ -6,7 +6,7 @@ import {AliasList} from '../aliasList';
 import {Account} from '../account';
 import {TransactionId} from '../transactionId';
 import {Block} from '../block';
-import {GetAccountTransactionsArgs} from '../args';
+import {CommitmentArgs, GetAccountTransactionsArgs} from '../args';
 import {SetRewardRecipientArgs} from '../args/setRewardRecipientArgs';
 import {RewardRecipient} from '../rewardRecipient';
 
@@ -196,4 +196,27 @@ export interface AccountApi {
      */
     getRewardRecipient: ( accountId: string ) => Promise<RewardRecipient>;
 
+    /**
+     * Adds an additional amount as commitment
+     *
+     * The commitment is part of the PoC+ consensus, and allows miners
+     * to improve their mining power through additionally locked amount
+     *
+     * @param {CommitmentArgs} args The args
+     * @return The Transaction Id
+     * @see [[AccountApi.removeCommitment]]
+     */
+    addCommitment: (args: CommitmentArgs) => Promise<TransactionId>;
+
+    /**
+     * Removes/Reduces a miners commitment
+     *
+     * The commitment is part of the PoC+ consensus, and allows miners
+     * to improve their mining power through additionally locked amount
+     *
+     * @param {CommitmentArgs} args The args
+     * @return The Transaction Id
+     * @see [[AccountApi.addCommitment]]
+     */
+    removeCommitment: (args: CommitmentArgs) => Promise<TransactionId>;
 }

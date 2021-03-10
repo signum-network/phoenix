@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
   - `placeBidOrder`
   - `transferAsset`
 - Added BurstAddress Value Object
+- Added `addCommitment`, `removeCommitment`
 
 ---
 __Fixes__

@@ -11,14 +11,13 @@ import {
     setAccountInfo,
     setRewardRecipient,
     getSubscriptionsToAccount,
-    getAccountSubscriptions, getRewardRecipient
+    getAccountSubscriptions, getRewardRecipient, addCommitment, removeCommitment
 } from '../factories/account';
-import {Alias} from '../..';
-import {AliasList} from '../..';
+import {Alias, AliasList} from '../..';
 import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
-import {convertNumberToNQTString} from '@burstjs/util';
-
+import {BurstValue, convertNumberToNQTString} from '@burstjs/util';
+import {signAndBroadcastTransaction} from '../factories/transaction';
 
 describe('AccountApi', () => {
 
@@ -501,6 +500,64 @@ describe('AccountApi', () => {
             const service = createBurstService(httpMock);
             const rewardRecipient = await getRewardRecipient(service)('1');
             expect(rewardRecipient).toEqual(mockedRecipient);
+        });
+
+    });
+
+    describe('add/removeCommitment()', () => {
+
+        let service;
+
+        const mockBroadcastResponse = {
+            unsignedTransactionBytes: 'unsignedHexMessage'
+        };
+
+        beforeEach(() => {
+
+            jest.resetAllMocks();
+
+            // @ts-ignore
+            signAndBroadcastTransaction = () => jest.fn( () => Promise.resolve('transactionId'))
+
+            httpMock = HttpMockBuilder.create()
+                .onPostReply(200, mockBroadcastResponse,
+                    'relPath?requestType=addCommitment&amountNQT=10000000000&publicKey=senderPublicKey&feeNQT=100000000&deadline=1440')
+                .onPostReply(200, mockBroadcastResponse,
+                    'relPath?requestType=removeCommitment&amountNQT=10000000000&publicKey=senderPublicKey&feeNQT=100000000&deadline=1440')
+                .build();
+
+            service = createBurstService(httpMock, 'relPath');
+        });
+
+        afterEach(() => {
+            // @ts-ignore
+            httpMock.reset();
+        });
+
+        it('should add commitment', async () => {
+            const amount = BurstValue.fromBurst(100);
+            const fee = BurstValue.fromBurst(1);
+            const status = await addCommitment(service)({
+                feePlanck: fee.getPlanck(),
+                amountPlanck: amount.getPlanck(),
+                senderPrivateKey: 'senderPrivateKey',
+                senderPublicKey: 'senderPublicKey',
+            });
+
+            expect(status).toBe('transactionId');
+        });
+
+        it('should remove commitment', async () => {
+            const amount = BurstValue.fromBurst(100);
+            const fee = BurstValue.fromBurst(1);
+            const status = await removeCommitment(service)({
+                feePlanck: fee.getPlanck(),
+                amountPlanck: amount.getPlanck(),
+                senderPrivateKey: 'senderPrivateKey',
+                senderPublicKey: 'senderPublicKey',
+            });
+
+            expect(status).toBe('transactionId');
         });
 
     });
