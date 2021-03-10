@@ -53,25 +53,6 @@
       <label>{{ 'deadline_hours' | i18n }}</label>
       <input matInput [(ngModel)]="deadline" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}">
     </mat-form-field>
-
-    <!--    FUTURE FEATURE-->
-    <!--
-        <mat-form-field >
-          <input matInput [(ngModel)]="fullHash" name="fullHash"
-                 placeholder="{{ 'referenced_transaction_full_hash' | i18n }}" disabled>
-        </mat-form-field>
-
-        <mat-checkbox [(ngModel)]="broadcast" name="broadcast" disabled>{{ "do_not_broadcast" | i18n }}</mat-checkbox>
-        <br/>
-
-        <mat-checkbox [(ngModel)]="note" name="note" disabled>{{ "add_note_to_self_q" | i18n }}</mat-checkbox>
-
-        <div *ngIf="note">
-          <mat-form-field >
-            <textarea matInput [(ngModel)]="note_text" name="note_text" placeholder="{{ 'note' | i18n }}"></textarea>
-          </mat-form-field>
-        </div>
-    -->
   </div>
 
   <div class="send-button-wrapper">

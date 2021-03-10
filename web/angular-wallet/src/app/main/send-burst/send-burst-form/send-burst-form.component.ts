@@ -55,7 +55,6 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
 
   advanced = false;
   showMessage = false;
-  burstAddressPatternRef = burstAddressPattern;
   deadline = '24';
   immutable: string | boolean = false;
 

@@ -3,12 +3,13 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {Account} from '@burstjs/core';
 import {BurstValue, convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
 import {getBalanceHistoryFromTransactions} from '../../../util/balance/getBalanceHistoryFromTransactions';
-import {BalanceHistoryItem} from '../../../util/balance/typings';
+import {AccountBalances, BalanceHistoryItem} from '../../../util/balance/typings';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {I18nService} from '../../../layout/components/i18n/i18n.service';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {formatDate} from '@angular/common';
+import {getBalancesFromAccount} from '../../../util/balance/getBalancesFromAccount';
 
 @Component({
   selector: 'app-balance-chart',
@@ -27,6 +28,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
   transactionCount = 50;
 
   private balanceHistory: BalanceHistoryItem[];
+  private accountBalances: AccountBalances;
   private isMobile = false;
 
   constructor(private router: Router,
@@ -60,6 +62,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
   private updateChart(): void {
     const transactions = this.account.transactions.slice(0, this.transactionCount);
     const {account, balanceNQT} = this.account;
+    this.accountBalances = getBalancesFromAccount(this.account);
     this.balanceHistory = getBalanceHistoryFromTransactions(
       account,
       convertNQTStringToNumber(balanceNQT),
@@ -153,17 +156,18 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
     return parseFloat(BurstValue.fromPlanck(this.account.balanceNQT || '0').multiply(unitPrice).getBurst());
   }
 
-  calculateLockedAmount(): number {
-    const  balance = BurstValue.fromPlanck(this.account.balanceNQT || '0');
-    const  unconfirmed = BurstValue.fromPlanck(this.account.unconfirmedBalanceNQT || '0');
-    return parseFloat(balance.subtract(unconfirmed).getBurst());
-  }
-
-  calculateAvailableAmount(): number {
-    const  balance = BurstValue.fromPlanck(this.account.balanceNQT || '0');
-    const  locked = BurstValue.fromBurst(this.calculateLockedAmount());
-    return parseFloat(balance.subtract(locked).getBurst());
-  }
+  // calculateLockedAmount(): number {
+  //   const {} = getBalancesFromAccount(this.account)
+  //   const  balance = BurstValue.fromPlanck(this.account.balanceNQT || '0');
+  //   const  unconfirmed = BurstValue.fromPlanck(this.account.unconfirmedBalanceNQT || '0');
+  //   return parseFloat(balance.subtract(unconfirmed).getBurst());
+  // }
+  //
+  // calculateAvailableAmount(): number {
+  //   const  balance = BurstValue.fromPlanck(this.account.balanceNQT || '0');
+  //   const  locked = BurstValue.fromBurst(this.calculateLockedAmount());
+  //   return parseFloat(balance.subtract(locked).getBurst());
+  // }
 
 
   hidePoints(): void {
