@@ -1031,5 +1031,7 @@
   "your_alias_sale_offer": "Tarjoat tätä aliasta myytäväksi.",
   "your_name": "Nimesi",
   "your_passphrase": "Tunnuslauseesi",
-  "youve_got_burst": "Sinulla on Burst!"
+  "youve_got_burst": "Sinulla on Burst!",
+  "balance_locked": "Lukittu saldo",
+  "balance_available": "Käytettävissä oleva saldo"
 }

@@ -1040,5 +1040,7 @@
   "your_alias_sale_offer": "Ten alias został przez Ciebie wystawiony na sprzedaż.",
   "your_name": "Twoje imię",
   "your_passphrase": "Twoje hasło",
-  "youve_got_burst": "Masz wybuch!"
+  "youve_got_burst": "Masz wybuch!",
+  "balance_locked": "Zablokowana równowaga",
+  "balance_available": "Dostępne saldo"
 }

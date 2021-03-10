@@ -1031,5 +1031,7 @@
   "your_alias_sale_offer": "You are offering this alias for sale.",
   "your_name": "Your Name",
   "your_passphrase": "Your Passphrase",
-  "youve_got_burst": "आप फट गया है!"
+  "youve_got_burst": "आप फट गया है!",
+  "balance_locked": "ताला लगा हुआ शेष",
+  "balance_available": "उपलब्ध शेष राशि"
 }

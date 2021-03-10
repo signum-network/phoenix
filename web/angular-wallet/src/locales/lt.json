@@ -1031,5 +1031,7 @@
   "your_alias_sale_offer": "Jūs siūlote ši pseudonimą pardavimui.",
   "your_name": "Jūsų vardas",
   "your_passphrase": "Jūsų slaptažodis",
-  "youve_got_burst": "Jūs turite „Burst“!"
+  "youve_got_burst": "Jūs turite „Burst“!",
+  "balance_locked": "Užrakinta pusiausvyra",
+  "balance_available": "Turimas balansas"
 }

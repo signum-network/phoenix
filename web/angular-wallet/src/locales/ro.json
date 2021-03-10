@@ -1031,5 +1031,7 @@
   "your_alias_sale_offer": "Ai pus acest alias la vânzare.",
   "your_name": "Numele tău",
   "your_passphrase": "Parola ta",
-  "youve_got_burst": "Ai izbucniri!"
+  "youve_got_burst": "Ai izbucniri!",
+  "balance_locked": "Sold blocat",
+  "balance_available": "Sold disponibil"
 }

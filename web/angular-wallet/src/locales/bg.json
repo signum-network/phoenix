@@ -1031,5 +1031,7 @@
   "your_alias_sale_offer": "Вие предлагате този псевдоним за продажба.",
   "your_name": "Вашето име",
   "your_passphrase": "Вашата парола",
-  "youve_got_burst": "Имате Burst!"
+  "youve_got_burst": "Имате Burst!",
+  "balance_locked": "Заключен баланс",
+  "balance_available": "Наличен баланс"
 }

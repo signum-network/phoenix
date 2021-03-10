@@ -1031,5 +1031,7 @@
   "your_alias_sale_offer": "Ponudili ste ovaj pseudonim na prodaju.",
   "your_name": "Vaše ime",
   "your_passphrase": "Vaša lozinka",
-  "youve_got_burst": "Zaspao si!"
+  "youve_got_burst": "Zaspao si!",
+  "balance_locked": "Zaključana ravnoteža",
+  "balance_available": "Dostupno Stanje"
 }

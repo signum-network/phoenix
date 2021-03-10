@@ -1031,5 +1031,7 @@
   "your_alias_sale_offer": "Προσφέρετε προς πώληση αυτό το ψευδώνυμο.",
   "your_name": "Το όνομά σου",
   "your_passphrase": "Η φράση πρόσβασης σας",
-  "youve_got_burst": "Έχετε έκρηξη!"
+  "youve_got_burst": "Έχετε έκρηξη!",
+  "balance_locked": "Κλειδωμένο υπόλοιπο",
+  "balance_available": "διαθέσιμο υπόλοιπο"
 }

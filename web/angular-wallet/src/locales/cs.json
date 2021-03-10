@@ -1031,5 +1031,7 @@
   "your_alias_sale_offer": "Nabízíte tento alias na prodej.",
   "your_name": "Vaše jméno",
   "your_passphrase": "Vaše heslo",
-  "youve_got_burst": "Máte Burst!"
+  "youve_got_burst": "Máte Burst!",
+  "balance_locked": "Uzamčená rovnováha",
+  "balance_available": "Dostupná částka"
 }

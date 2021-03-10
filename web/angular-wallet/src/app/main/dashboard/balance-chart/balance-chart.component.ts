@@ -153,6 +153,19 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
     return parseFloat(BurstValue.fromPlanck(this.account.balanceNQT || '0').multiply(unitPrice).getBurst());
   }
 
+  calculateLockedAmount(): number {
+    const  balance = BurstValue.fromPlanck(this.account.balanceNQT || '0');
+    const  unconfirmed = BurstValue.fromPlanck(this.account.unconfirmedBalanceNQT || '0');
+    return parseFloat(balance.subtract(unconfirmed).getBurst());
+  }
+
+  calculateAvailableAmount(): number {
+    const  balance = BurstValue.fromPlanck(this.account.balanceNQT || '0');
+    const  locked = BurstValue.fromBurst(this.calculateLockedAmount());
+    return parseFloat(balance.subtract(locked).getBurst());
+  }
+
+
   hidePoints(): void {
     if (this.isMobile) {
       return;

@@ -1046,5 +1046,7 @@
   "your_alias_sale_offer": "Vi nudite ovaj alias na prodaju.",
   "your_name": "Vaše Ime",
   "your_passphrase": "Vaša Lozinka",
-  "youve_got_burst": "Имаш провале!"
+  "youve_got_burst": "Имаш провале!",
+  "balance_locked": "Лоцкед Баланце",
+  "balance_available": "Доступно Стање"
 }

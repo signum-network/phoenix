@@ -1031,5 +1031,7 @@
   "your_alias_sale_offer": "Bu rumuzu satışa sunuyorsunuz.",
   "your_name": "Your Name",
   "your_passphrase": "Your Passphrase",
-  "youve_got_burst": "Patlama var!"
+  "youve_got_burst": "Patlama var!",
+  "balance_locked": "Kilitli Bakiye",
+  "balance_available": "Kalan bakiye"
 }

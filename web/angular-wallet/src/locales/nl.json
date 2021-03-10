@@ -1031,5 +1031,7 @@
   "your_alias_sale_offer": "U biedt deze alias te koop aan.",
   "your_name": "Uw naam",
   "your_passphrase": "Uw wachtwoord/passphrase",
-  "youve_got_burst": "Je hebt Burst!"
+  "youve_got_burst": "Je hebt Burst!",
+  "balance_locked": "Vergrendeld saldo",
+  "balance_available": "beschikbaar saldo"
 }

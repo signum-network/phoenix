@@ -1031,5 +1031,7 @@
   "your_alias_sale_offer": "Anda menawarkan alias ini untuk dijual.",
   "your_name": "Namamu",
   "your_passphrase": "Kata sandi",
-  "youve_got_burst": "Anda punya Burst!"
+  "youve_got_burst": "Anda punya Burst!",
+  "balance_locked": "Saldo Terkunci",
+  "balance_available": "Saldo Tersedia"
 }

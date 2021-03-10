@@ -1031,5 +1031,7 @@
   "your_alias_sale_offer": "您的该别名正在出售。",
   "your_name": "您的名称",
   "your_passphrase": "您的密码",
-  "youve_got_burst": "你爆了！"
+  "youve_got_burst": "你爆了！",
+  "balance_locked": "锁定余额",
+  "balance_available": "可用余额"
 }

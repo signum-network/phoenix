@@ -1031,5 +1031,7 @@
   "your_alias_sale_offer": "Вы предлагаете этот псевдоним для продажи.",
   "your_name": "Ваше имя",
   "your_passphrase": "Ваш пароль",
-  "youve_got_burst": "У тебя есть взрыв!"
+  "youve_got_burst": "У тебя есть взрыв!",
+  "balance_locked": "Заблокированный баланс",
+  "balance_available": "доступные средства"
 }
