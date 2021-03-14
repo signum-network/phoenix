@@ -4,7 +4,9 @@ import {NotifierService} from 'angular-notifier';
 import {
   convertNumberToNQTString,
   convertAddressToNumericId,
-  convertNQTStringToNumber, convertNumericIdToAddress
+  convertNQTStringToNumber,
+  convertNumericIdToAddress,
+  BurstValue
 } from '@burstjs/util';
 import {SuggestedFees, Account, TransactionId, MultioutRecipientAmount} from '@burstjs/core';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
@@ -15,11 +17,11 @@ import {Recipient} from '../../../layout/components/burst-recipient-input/burst-
 import {filter, takeUntil} from 'rxjs/operators';
 import {StoreService} from '../../../store/store.service';
 import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
-import {burstAddressPattern} from 'app/util/burstAddressPattern';
 import {BatchRecipientsDialogComponent} from '../batch-recipients-dialog/batch-recipients-dialog.component';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {constants} from '../../../constants';
 import {Router} from '@angular/router';
+import {AccountBalances, getBalancesFromAccount} from '../../../util/balance';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -47,11 +49,11 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   sameAmount = false;
   advanced = false;
   showMessage = false;
-  burstAddressPatternRef = burstAddressPattern;
 
   deadline = '24';
   isSending = false;
   language: string;
+  private balances: AccountBalances;
 
   constructor(
     private warnDialog: MatDialog,
@@ -73,6 +75,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   ngOnInit(): void {
+    this.balances = getBalancesFromAccount(this.account);
     this.resetRecipients();
   }
 
@@ -93,10 +96,14 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   private async sendBurstSameAmount(): Promise<void> {
+
+    const fee = BurstValue.fromBurst(this.fee || 0);
+    const amount = BurstValue.fromBurst(this.amount || 0);
+
     const request = {
       recipientIds: this.recipients.map(r => convertAddressToNumericId(r.addressRS)),
-      fee: convertNumberToNQTString(parseFloat(this.fee)),
-      amountNQT: convertNumberToNQTString(parseFloat(this.amount)),
+      fee: fee.getPlanck(),
+      amountNQT: amount.getPlanck(),
       pin: this.pin,
       keys: this.account.keys,
     };
@@ -104,12 +111,15 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   private async sendBurstArbitraryAmount(): Promise<void> {
+
+    const fee = BurstValue.fromBurst(this.fee || 0);
+
     const request = {
       recipientAmounts: this.recipients.map(r => ({
         recipient: convertAddressToNumericId(r.addressRS),
-        amountNQT: convertNumberToNQTString(parseFloat(r.amount))
+        amountNQT:  BurstValue.fromBurst(r.amount || 0).getPlanck(),
       })),
-      fee: convertNumberToNQTString(parseFloat(this.fee)),
+      fee: fee.getPlanck(),
       pin: this.pin,
       keys: this.account.keys,
     };
@@ -177,19 +187,25 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       .subscribe(this.handleBatchRecipients.bind(this));
   }
 
-  private getTotalForMultiOut(): number {
+  // private getTotalForMultiOut(): number {
+  //   return this.nonEmptyRecipients()
+  //     .map(({amount}) => parseFloat(amount) || 0)
+  //     .reduce((acc, curr) => acc + curr, 0);
+  // }
+  private getTotalForMultiOut(): BurstValue {
     return this.nonEmptyRecipients()
-      .map(({amount}) => parseFloat(amount) || 0)
-      .reduce((acc, curr) => acc + curr, 0);
+      .map(({amount}) => BurstValue.fromBurst(amount || 0))
+      .reduce((acc, curr) => acc.add(curr), BurstValue.Zero());
   }
 
-  private getTotalForSameAmount(): number {
-    return parseFloat(this.amount) * this.recipients.length;
+  private getTotalForSameAmount(): BurstValue {
+    return BurstValue.fromBurst(this.amount || 0).multiply(this.recipients.length);
+    // return parseFloat(this.amount) * this.recipients.length;
   }
 
-  getTotal(): number {
-    const calculateAmount = this.sameAmount ? this.getTotalForSameAmount() : this.getTotalForMultiOut();
-    return calculateAmount + parseFloat(this.fee) || 0;
+  getTotal(): BurstValue {
+    const total = this.sameAmount ? this.getTotalForSameAmount() : this.getTotalForMultiOut();
+    return total.add(BurstValue.fromBurst(this.fee || 0));
   }
 
   private nonEmptyRecipients(): Array<Recipient> {
@@ -203,7 +219,12 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   hasSufficientBalance(): boolean {
-    return convertNQTStringToNumber(this.account.balanceNQT) - this.getTotal() > Number.EPSILON;
+    const available = this.balances.availableBalance.clone();
+    const total = this.getTotal();
+
+    return available.subtract(total).greaterOrEqual(BurstValue.Zero());
+
+    // return convertNQTStringToNumber(this.account.balanceNQT) - this.getTotal() > Number.EPSILON;
   }
 
 
