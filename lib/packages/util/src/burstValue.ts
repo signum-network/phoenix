@@ -40,6 +40,10 @@ export class BurstValue {
         this._planck = new BigNumber(planck);
     }
 
+    public static Zero(): BurstValue {
+        return new BurstValue('0');
+    }
+
     /**
      * Creates a Burst Value object from Planck
      * @param planck The value in Planck

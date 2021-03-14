@@ -4,7 +4,8 @@ import {
   convertAddressToNumericId,
   convertNQTStringToNumber,
   convertNumberToNQTString,
-  sumNQTStringToNumber
+  sumNQTStringToNumber,
+  BurstValue
 } from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
@@ -20,7 +21,7 @@ import {StoreService} from '../../../store/store.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
-import {burstAddressPattern} from 'app/util/burstAddressPattern';
+import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
 
 
 interface QRData {
@@ -63,6 +64,8 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   isSending = false;
   language: string;
 
+  private balances: AccountBalances;
+
   constructor(
     private warnDialog: MatDialog,
     private transactionService: TransactionService,
@@ -91,7 +94,8 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.fee = convertNQTStringToNumber(this.fees['standard'].toString()).toString();
+      this.fee = BurstValue.fromPlanck(this.fees.standard.toString(10)).getBurst();
+      this.balances = getBalancesFromAccount(this.account);
     });
   }
 
@@ -105,7 +109,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
     }
   }
 
-  private applyDeepLinkParams() {
+  private applyDeepLinkParams(): void {
     this.onRecipientChange(new Recipient(this.route.snapshot.queryParams.receiver));
     if (this.route.snapshot.queryParams.feeNQT) {
       this.fee = convertNQTStringToNumber(this.route.snapshot.queryParams.feeNQT).toString();
@@ -129,8 +133,14 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
     this.showMessage = !!this.message;
   }
 
-  getTotal(): number {
-    return parseFloat(this.amount) + parseFloat(this.fee) || 0;
+  // getTotal(): number {
+  //   return parseFloat(this.amount) + parseFloat(this.fee) || 0;
+  // }
+
+  getTotal(): BurstValue {
+    return this.amount !== undefined && this.fee !== undefined
+      ? BurstValue.fromBurst(this.amount).add(BurstValue.fromBurst(this.fee))
+      : BurstValue.fromPlanck('0');
   }
 
   onSubmit(event): void {
@@ -152,8 +162,8 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
     try {
       this.isSending = true;
       await this.transactionService.sendBurst({
-        amount: convertNumberToNQTString(parseFloat(this.amount)),
-        fee: convertNumberToNQTString(parseFloat(this.fee)),
+        amount: BurstValue.fromBurst(this.amount).getPlanck(),
+        fee: BurstValue.fromBurst(this.fee).getPlanck(),
         recipientId: convertAddressToNumericId(addressRS),
         keys: this.account.keys,
         pin: this.pin,
@@ -182,7 +192,12 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   hasSufficientBalance(): boolean {
-    return convertNQTStringToNumber(this.account.balanceNQT) - this.getTotal() >= 0;
+    if (!this.balances) { return false; }
+
+    const available = this.balances.availableBalance.clone();
+    return available
+      .subtract(this.getTotal())
+      .greaterOrEqual(BurstValue.Zero());
   }
 
   canSubmit(): boolean {
@@ -197,6 +212,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   onQRUpload(qrData: QRData): void {
+    // TODO: remove deprecated convertNQTStringToNumber and migrate to BurstValue
     this.amount = convertNQTStringToNumber(qrData.amountNQT).toString();
     this.fee = convertNQTStringToNumber(qrData.feeNQT).toString();
     this.immutable = qrData.immutable;
@@ -209,7 +225,10 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   onSpendAll(): void {
-    const maxAmount = sumNQTStringToNumber(this.account.balanceNQT, `-${convertNumberToNQTString(+this.fee || 0)}`);
-    this.amount = `${maxAmount}`;
+    if (!this.balances) { return; }
+
+    const available  = this.balances.availableBalance.clone();
+    const fee = BurstValue.fromBurst(this.fee || '0');
+    this.amount = available.subtract(fee).getBurst();
   }
 }
