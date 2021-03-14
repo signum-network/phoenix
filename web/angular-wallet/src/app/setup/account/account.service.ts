@@ -27,8 +27,8 @@ import {ApiService} from '../../api.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {constants} from 'app/constants';
 import {HttpError, HttpClientFactory} from '@burstjs/http';
-import { AssetList } from '@burstjs/core/out/typings/assetList';
-import { Asset } from '@burstjs/core/src';
+import {AssetList} from '@burstjs/core/out/typings/assetList';
+import {Asset} from '@burstjs/core/src';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -277,11 +277,13 @@ export class AccountService {
     const totalAmountBurst = sumNQTStringToNumber(transaction.amountNQT, transaction.feeNQT);
 
     // @ts-ignore
-    return window.Notification && new window.Notification(incoming ?
-      this.i18nService.getTranslation('youve_got_burst') :
-      this.i18nService.getTranslation('you_sent_burst'),
+    return window.Notification && new window.Notification(
+      incoming
+        ? this.i18nService.getTranslation('youve_got_burst')
+        : this.i18nService.getTranslation('you_sent_burst'),
       {
         body: `${totalAmountBurst} BURST`,
+        // @ts-ignore
         title: 'Phoenix'
       });
 
