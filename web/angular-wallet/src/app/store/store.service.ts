@@ -74,6 +74,7 @@ export class StoreService {
           } else {
             accounts.chain().find({account: account.account}).update(w => {
               w.balanceNQT = account.balanceNQT;
+              w.unconfirmedBalanceNQT = account.unconfirmedBalanceNQT;
               w.assetBalances = account.assetBalances;
               w.type = account.type;
               w.selected = account.selected;
