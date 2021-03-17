@@ -7,6 +7,7 @@ import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {broadcastTransaction} from '../transaction/broadcastTransaction';
+import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransaction';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
@@ -39,12 +40,10 @@ export const setAccountInfo = (service: BurstService): (
             publicKey: senderPublicKey
         };
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('setAccountInfo', parameters);
-        const signature = generateSignature(unsignedHexMessage, senderPrivateKey);
-        if (!verifySignature(signature, unsignedHexMessage, senderPublicKey)) {
-            throw new Error('The signed message could not be verified! Transaction not broadcasted!');
-        }
 
-        const signedMessage = generateSignedTransactionBytes(unsignedHexMessage, signature);
-        return broadcastTransaction(service)(signedMessage);
-
+        return signAndBroadcastTransaction(service)({
+            senderPrivateKey,
+            senderPublicKey,
+            unsignedHexMessage
+        });
     };

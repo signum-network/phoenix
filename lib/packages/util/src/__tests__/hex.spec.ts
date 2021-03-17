@@ -4,6 +4,9 @@ import {convertHexStringToString} from '../convertHexStringToString';
 import {convertStringToHexString} from '../convertStringToHexString';
 import {convertHexEndianess} from '../convertHexEndianess';
 import {convertDecStringToHexString} from '../convertDecStringToHexString';
+import {convertHexStringToBase36String} from '../convertHexStringToBase36String';
+import {convertBase36StringToHexString} from '../convertBase36StringToHexString';
+
 import BigNumber from 'bignumber.js';
 
 describe('Hex String Conversions', () => {
@@ -104,11 +107,11 @@ describe('Hex String Conversions', () => {
         it('should pad accordingly', () => {
             expect(convertDecStringToHexString('0', 4)).toEqual('0000');
             expect(convertDecStringToHexString('1000', 6)).toEqual('0003e8');
-            expect(convertDecStringToHexString(new BigNumber('327803124352370' ), 16)).toEqual('00012a229cc88572');
+            expect(convertDecStringToHexString(new BigNumber('327803124352370'), 16)).toEqual('00012a229cc88572');
 
             expect(convertDecStringToHexString('-1', 4)).toEqual('ffff');
             expect(convertDecStringToHexString('-1000', 6)).toEqual('fffc18');
-            expect(convertDecStringToHexString(new BigNumber('-327803124352370' ), 16)).toEqual('fffed5dd63377a8e');
+            expect(convertDecStringToHexString(new BigNumber('-327803124352370'), 16)).toEqual('fffed5dd63377a8e');
         });
 
 
@@ -120,9 +123,23 @@ describe('Hex String Conversions', () => {
 
         it('should throw an error on invalid padding', () => {
             expect(() => {
-                convertDecStringToHexString('1000', -3 );
+                convertDecStringToHexString('1000', -3);
             }).toThrow('Invalid padding argument: [-3] - Expected a positive value');
         });
 
+    });
+
+    describe('convertBase36StringToHexString', () => {
+        it('should return the correct hex string', () => {
+            expect(convertBase36StringToHexString('52M12IVV2RO5B03A568CVA5AO59D0Z1IF8ILFD11CS8M7N3AQE').toUpperCase()).toBe('CB85806964BB888E9AE1C2F27A3DB85D448B84FE9CB2BCCEAFBC49729A03AC16');
+            expect(convertBase36StringToHexString('1UQDBIWHL54TH1HBIK1ZEQWQ3DR4MW6E5B3SNDK1HM9TMLL1T2').toUpperCase()).toBe('4A5FA0EE4E40BA8D322EF75963D6B8E71BD206897326CC9683960C9D2FF25966');
+        });
+    });
+
+    describe('convertHexStringToBase36String', () => {
+        it('should return the correct base36 string', () => {
+            expect(convertHexStringToBase36String('CB85806964BB888E9AE1C2F27A3DB85D448B84FE9CB2BCCEAFBC49729A03AC16').toUpperCase()).toBe('52M12IVV2RO5B03A568CVA5AO59D0Z1IF8ILFD11CS8M7N3AQE');
+            expect(convertHexStringToBase36String('4A5FA0EE4E40BA8D322EF75963D6B8E71BD206897326CC9683960C9D2FF25966').toUpperCase()).toBe('1UQDBIWHL54TH1HBIK1ZEQWQ3DR4MW6E5B3SNDK1HM9TMLL1T2');
+        });
     });
 });

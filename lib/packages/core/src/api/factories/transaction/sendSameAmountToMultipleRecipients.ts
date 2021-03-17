@@ -4,7 +4,7 @@
 import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
-import {signAndBroadcastTransaction} from '../../../internal/signAndBroadcastTransaction';
+import {signAndBroadcastTransaction} from './signAndBroadcastTransaction';
 import {DefaultDeadline} from '../../../constants';
 
 
@@ -46,10 +46,10 @@ export const sendSameAmountToMultipleRecipients = (service: BurstService):
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>(
             'sendMoneyMultiSame', parameters);
 
-        return signAndBroadcastTransaction({
+        return signAndBroadcastTransaction(service)({
             unsignedHexMessage,
             senderPublicKey,
             senderPrivateKey
-        }, service);
+        });
 
     };

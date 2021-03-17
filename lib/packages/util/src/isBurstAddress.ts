@@ -4,19 +4,19 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-import { initialCodeword, alphabet, cwmap, gexp, gmult } from './internal';
+import {initialCodeword, alphabet, cwmap, gexp, gmult, AddressPrefix} from './internal';
 
 
 // TODO: should be split into separate file and get better naming
 /**
  * @internal
- * Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX, XXXX-XXXX-XXXX-XXXXX)
+ * Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX)
  * @param {string} address The address
  * @return {boolean} true, if is a valid address, else false
  * @module util
  */
 export const isValid = (address: string): boolean => {
-    if (address.indexOf('BURST-') === 0) {
+    if (address.indexOf(`${AddressPrefix}-`) === 0) {
         address = address.substr(6);
     }
 
@@ -67,16 +67,28 @@ export const isValid = (address: string): boolean => {
     return (sum === 0);
 };
 
-
+// TODO: make this deprectated in favor of Address in core package
 /**
- * Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX, XXXX-XXXX-XXXX-XXXXX)
+ * Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX)
  * @param {string} address The address
  * @return {boolean} true, if is a valid address, else false
  * @module util
  */
 export const isBurstAddress = (address: string): boolean => {
-    return /^BURST\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}/i
-        .test(address) && isValid(address);
+    const addressRegExp = new RegExp(`${AddressPrefix}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}(-\w+)?`, 'i');
+
+    if (!addressRegExp.test(address)) {
+        return false;
+    }
+
+    const index = address.lastIndexOf('-');
+    const extension = address.substr(index + 1);
+    const hasExtension = extension.length > 5;
+    address = hasExtension ? address.substr(0, index ) : address;
+
+    // ignoring public key validation as this is involved crypto package.
+
+    return isValid(address);
 };
 
 

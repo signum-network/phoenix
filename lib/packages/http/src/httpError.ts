@@ -8,7 +8,7 @@
  * Thrown on HTTP errors
  * @module http
  */
-export default class HttpError {
+export class HttpError {
     public timestamp: number = Date.now();
 
     constructor(public requestUrl: string,

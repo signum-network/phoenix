@@ -4,7 +4,7 @@
 import {calculateMinimumCreationFee} from '@burstjs/contracts';
 import {BurstService} from '../../../service';
 import {PublishContractArgs} from '../../../typings/args';
-import {signAndBroadcastTransaction} from '../../../internal';
+import {signAndBroadcastTransaction} from '../transaction';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
@@ -36,9 +36,9 @@ export const publishContract = (service: BurstService):
 
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('createATProgram', parameters);
 
-        return signAndBroadcastTransaction({
+        return signAndBroadcastTransaction(service)({
             senderPublicKey: args.senderPublicKey,
             senderPrivateKey: args.senderPrivateKey,
             unsignedHexMessage
-        }, service);
+        });
     };

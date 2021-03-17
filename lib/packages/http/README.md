@@ -64,337 +64,59 @@ See more here:
 
 <dl>
 <dt><a href="#module_http">http</a></dt>
+<dd><p>HttpError class</p>
+<p>Thrown on HTTP errors</p></dd>
+<dt><a href="#module_http">http</a></dt>
+<dd><p>Http Implementation of [[Http]] using https://github.com/axios/axios</p>
+<p>You can use [[HttpClient]] as alias</p></dd>
+<dt><a href="#module_http">http</a></dt>
 <dd></dd>
+<dt><a href="#module_http">http</a></dt>
+<dd><p>Http Mocker Builder for easy to http testing</p>
+<p>Example:</p>
+<pre class="prettyprint source"><code> const mockedHttp = HttpMockBuilder
+ .create()
+ .onGetReply(200, {foo: 'get'})
+ .onPostThrowError(500, 'Post Error', {e: 'post'})
+ .onPutThrowError(404, 'Put Error', {e: 'put'})
+ .onDeleteThrowError(403, 'Delete Error', {e: 'delete'})
+ .build();
+
+<p> const response = await mockedHttp.get(&#39;/url&#39;);</p>
+<p> await mockedHttp.post(&#39;/url/post&#39;, {faz: &#39;post&#39;}); // will throw exception
+</code></pre></p>
+</dd>
+<dt><a href="#module_http">http</a></dt>
+<dd><p>Http Response</p>
+<p>Returned by Http request</p></dd>
+<dt><a href="#module_http">http</a></dt>
+<dd><p>Alias for HttpImpl</p></dd>
 </dl>
 
-## Classes
-
-<dl>
-<dt><a href="#HttpImpl">HttpImpl</a></dt>
-<dd><p>Generic Http client</p></dd>
-</dl>
-
 <a name="module_http"></a>
 
 ## http
-
-* [http](#module_http)
-    * [~HttpError](#module_http..HttpError)
-    * [~HttpMock](#module_http..HttpMock)
-        * [.onGet(endpoint?)](#module_http..HttpMock.onGet)
-        * [.onPost(endpoint?)](#module_http..HttpMock.onPost)
-        * [.onPut(endpoint?)](#module_http..HttpMock.onPut)
-        * [.onDelete(endpoint?)](#module_http..HttpMock.onDelete)
-        * [.reset()](#module_http..HttpMock.reset)
-    * [~HttpResponse](#module_http..HttpResponse)
-
-<a name="module_http..HttpError"></a>
-
-### http~HttpError
 <p>HttpError class</p>
 <p>Thrown on HTTP errors</p>
 
-**Kind**: inner class of [<code>http</code>](#module_http)  
-<a name="module_http..HttpMock"></a>
-
-### http~HttpMock
-<p>Http Mocker for easy to http testing using Jest</p>
-<p>When using this mocking helper you need to call <code>Http.onGet()</code>
-before Http instance is created</p>
-
-**Kind**: inner class of [<code>http</code>](#module_http)  
-
-* [~HttpMock](#module_http..HttpMock)
-    * [.onGet(endpoint?)](#module_http..HttpMock.onGet)
-    * [.onPost(endpoint?)](#module_http..HttpMock.onPost)
-    * [.onPut(endpoint?)](#module_http..HttpMock.onPut)
-    * [.onDelete(endpoint?)](#module_http..HttpMock.onDelete)
-    * [.reset()](#module_http..HttpMock.reset)
-
-<a name="module_http..HttpMock.onGet"></a>
-
-#### HttpMock.onGet(endpoint?)
-<p>Mocks responses for get methods
-You may pass a specific endpoint as parameter to mock only selected endpoints.
-This is very useful, when having methods that do several Http requests,
-so you can mock them one on one.</p>
-<p>The following code returns the same content on <em>every</em> get call</p>
-<pre class="prettyprint source"><code>  HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);
-</code></pre>
-<p>The next code returns the different content depending on the passed endpoint</p>
-<pre class="prettyprint source"><code>  HttpMock.onGet('/foo').reply(200, {data: 'foo'});
-  HttpMock.onGet('/bar').reply(200, {data: 'bar'});
-</code></pre>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.onPost"></a>
-
-#### HttpMock.onPost(endpoint?)
-<p>Mocks responses for post methods</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.onPut"></a>
-
-#### HttpMock.onPut(endpoint?)
-<p>Mocks responses for put methods</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.onDelete"></a>
-
-#### HttpMock.onDelete(endpoint?)
-<p>Mocks responses for delete methods</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.reset"></a>
-
-#### HttpMock.reset()
-<p>Resets all mocked behavior</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-<a name="module_http..HttpResponse"></a>
-
-### http~HttpResponse
-<p>Http Response</p>
-<p>Returned by Http request</p>
-
-**Kind**: inner class of [<code>http</code>](#module_http)  
-<a name="module_http"></a>
-
-## http
 
 * [http](#module_http)
-    * [~HttpError](#module_http..HttpError)
-    * [~HttpMock](#module_http..HttpMock)
-        * [.onGet(endpoint?)](#module_http..HttpMock.onGet)
-        * [.onPost(endpoint?)](#module_http..HttpMock.onPost)
-        * [.onPut(endpoint?)](#module_http..HttpMock.onPut)
-        * [.onDelete(endpoint?)](#module_http..HttpMock.onDelete)
-        * [.reset()](#module_http..HttpMock.reset)
-    * [~HttpResponse](#module_http..HttpResponse)
+    * [~HttpImpl](#module_http..HttpImpl)
+        * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
+        * [.mountError(url, error)](#module_http..HttpImpl.mountError)
 
-<a name="module_http..HttpError"></a>
+<a name="module_http..HttpImpl"></a>
 
-### http~HttpError
-<p>HttpError class</p>
-<p>Thrown on HTTP errors</p>
-
-**Kind**: inner class of [<code>http</code>](#module_http)  
-<a name="module_http..HttpMock"></a>
-
-### http~HttpMock
-<p>Http Mocker for easy to http testing using Jest</p>
-<p>When using this mocking helper you need to call <code>Http.onGet()</code>
-before Http instance is created</p>
-
+### http~HttpImpl
 **Kind**: inner class of [<code>http</code>](#module_http)  
 
-* [~HttpMock](#module_http..HttpMock)
-    * [.onGet(endpoint?)](#module_http..HttpMock.onGet)
-    * [.onPost(endpoint?)](#module_http..HttpMock.onPost)
-    * [.onPut(endpoint?)](#module_http..HttpMock.onPut)
-    * [.onDelete(endpoint?)](#module_http..HttpMock.onDelete)
-    * [.reset()](#module_http..HttpMock.reset)
+* [~HttpImpl](#module_http..HttpImpl)
+    * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
+    * [.mountError(url, error)](#module_http..HttpImpl.mountError)
 
-<a name="module_http..HttpMock.onGet"></a>
+<a name="new_module_http..HttpImpl_new"></a>
 
-#### HttpMock.onGet(endpoint?)
-<p>Mocks responses for get methods
-You may pass a specific endpoint as parameter to mock only selected endpoints.
-This is very useful, when having methods that do several Http requests,
-so you can mock them one on one.</p>
-<p>The following code returns the same content on <em>every</em> get call</p>
-<pre class="prettyprint source"><code>  HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);
-</code></pre>
-<p>The next code returns the different content depending on the passed endpoint</p>
-<pre class="prettyprint source"><code>  HttpMock.onGet('/foo').reply(200, {data: 'foo'});
-  HttpMock.onGet('/bar').reply(200, {data: 'bar'});
-</code></pre>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.onPost"></a>
-
-#### HttpMock.onPost(endpoint?)
-<p>Mocks responses for post methods</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.onPut"></a>
-
-#### HttpMock.onPut(endpoint?)
-<p>Mocks responses for put methods</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.onDelete"></a>
-
-#### HttpMock.onDelete(endpoint?)
-<p>Mocks responses for delete methods</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.reset"></a>
-
-#### HttpMock.reset()
-<p>Resets all mocked behavior</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-<a name="module_http..HttpResponse"></a>
-
-### http~HttpResponse
-<p>Http Response</p>
-<p>Returned by Http request</p>
-
-**Kind**: inner class of [<code>http</code>](#module_http)  
-<a name="module_http"></a>
-
-## http
-
-* [http](#module_http)
-    * [~HttpError](#module_http..HttpError)
-    * [~HttpMock](#module_http..HttpMock)
-        * [.onGet(endpoint?)](#module_http..HttpMock.onGet)
-        * [.onPost(endpoint?)](#module_http..HttpMock.onPost)
-        * [.onPut(endpoint?)](#module_http..HttpMock.onPut)
-        * [.onDelete(endpoint?)](#module_http..HttpMock.onDelete)
-        * [.reset()](#module_http..HttpMock.reset)
-    * [~HttpResponse](#module_http..HttpResponse)
-
-<a name="module_http..HttpError"></a>
-
-### http~HttpError
-<p>HttpError class</p>
-<p>Thrown on HTTP errors</p>
-
-**Kind**: inner class of [<code>http</code>](#module_http)  
-<a name="module_http..HttpMock"></a>
-
-### http~HttpMock
-<p>Http Mocker for easy to http testing using Jest</p>
-<p>When using this mocking helper you need to call <code>Http.onGet()</code>
-before Http instance is created</p>
-
-**Kind**: inner class of [<code>http</code>](#module_http)  
-
-* [~HttpMock](#module_http..HttpMock)
-    * [.onGet(endpoint?)](#module_http..HttpMock.onGet)
-    * [.onPost(endpoint?)](#module_http..HttpMock.onPost)
-    * [.onPut(endpoint?)](#module_http..HttpMock.onPut)
-    * [.onDelete(endpoint?)](#module_http..HttpMock.onDelete)
-    * [.reset()](#module_http..HttpMock.reset)
-
-<a name="module_http..HttpMock.onGet"></a>
-
-#### HttpMock.onGet(endpoint?)
-<p>Mocks responses for get methods
-You may pass a specific endpoint as parameter to mock only selected endpoints.
-This is very useful, when having methods that do several Http requests,
-so you can mock them one on one.</p>
-<p>The following code returns the same content on <em>every</em> get call</p>
-<pre class="prettyprint source"><code>  HttpMock.onGet().reply(200, [{login: 'foo'}, {login: 'bar'}]);
-</code></pre>
-<p>The next code returns the different content depending on the passed endpoint</p>
-<pre class="prettyprint source"><code>  HttpMock.onGet('/foo').reply(200, {data: 'foo'});
-  HttpMock.onGet('/bar').reply(200, {data: 'bar'});
-</code></pre>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.onPost"></a>
-
-#### HttpMock.onPost(endpoint?)
-<p>Mocks responses for post methods</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.onPut"></a>
-
-#### HttpMock.onPut(endpoint?)
-<p>Mocks responses for put methods</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.onDelete"></a>
-
-#### HttpMock.onDelete(endpoint?)
-<p>Mocks responses for delete methods</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-
-| Param | Description |
-| --- | --- |
-| endpoint? | <p>An endpoint, to allow specific behavior on that endpoint</p> |
-
-<a name="module_http..HttpMock.reset"></a>
-
-#### HttpMock.reset()
-<p>Resets all mocked behavior</p>
-
-**Kind**: static method of [<code>HttpMock</code>](#module_http..HttpMock)  
-<a name="module_http..HttpResponse"></a>
-
-### http~HttpResponse
-<p>Http Response</p>
-<p>Returned by Http request</p>
-
-**Kind**: inner class of [<code>http</code>](#module_http)  
-<a name="HttpImpl"></a>
-
-## HttpImpl
-<p>Generic Http client</p>
-
-**Kind**: global class  
-<a name="new_HttpImpl_new"></a>
-
-### new HttpImpl(baseURL, options)
+#### new HttpImpl(baseURL, options)
 <p>Creates your Http client</p>
 
 
@@ -402,4 +124,242 @@ so you can mock them one on one.</p>
 | --- | --- |
 | baseURL | <p>The baseUrl, i.e host url</p> |
 | options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
+
+<a name="module_http..HttpImpl.mountError"></a>
+
+#### HttpImpl.mountError(url, error)
+**Kind**: static method of [<code>HttpImpl</code>](#module_http..HttpImpl)  
+**Internal**:   
+
+| Param | Description |
+| --- | --- |
+| url | <p>The url</p> |
+| error | <p>The returned error</p> |
+
+<a name="module_http"></a>
+
+## http
+<p>Http Implementation of [[Http]] using https://github.com/axios/axios</p>
+<p>You can use [[HttpClient]] as alias</p>
+
+
+* [http](#module_http)
+    * [~HttpImpl](#module_http..HttpImpl)
+        * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
+        * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+
+<a name="module_http..HttpImpl"></a>
+
+### http~HttpImpl
+**Kind**: inner class of [<code>http</code>](#module_http)  
+
+* [~HttpImpl](#module_http..HttpImpl)
+    * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
+    * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+
+<a name="new_module_http..HttpImpl_new"></a>
+
+#### new HttpImpl(baseURL, options)
+<p>Creates your Http client</p>
+
+
+| Param | Description |
+| --- | --- |
+| baseURL | <p>The baseUrl, i.e host url</p> |
+| options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
+
+<a name="module_http..HttpImpl.mountError"></a>
+
+#### HttpImpl.mountError(url, error)
+**Kind**: static method of [<code>HttpImpl</code>](#module_http..HttpImpl)  
+**Internal**:   
+
+| Param | Description |
+| --- | --- |
+| url | <p>The url</p> |
+| error | <p>The returned error</p> |
+
+<a name="module_http"></a>
+
+## http
+**Internal**: Http Mocker for easy to http testing using Jest
+
+When using this mocking helper you need to call `Http.onGet()`
+before Http instance is created  
+
+* [http](#module_http)
+    * [~HttpImpl](#module_http..HttpImpl)
+        * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
+        * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+
+<a name="module_http..HttpImpl"></a>
+
+### http~HttpImpl
+**Kind**: inner class of [<code>http</code>](#module_http)  
+
+* [~HttpImpl](#module_http..HttpImpl)
+    * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
+    * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+
+<a name="new_module_http..HttpImpl_new"></a>
+
+#### new HttpImpl(baseURL, options)
+<p>Creates your Http client</p>
+
+
+| Param | Description |
+| --- | --- |
+| baseURL | <p>The baseUrl, i.e host url</p> |
+| options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
+
+<a name="module_http..HttpImpl.mountError"></a>
+
+#### HttpImpl.mountError(url, error)
+**Kind**: static method of [<code>HttpImpl</code>](#module_http..HttpImpl)  
+**Internal**:   
+
+| Param | Description |
+| --- | --- |
+| url | <p>The url</p> |
+| error | <p>The returned error</p> |
+
+<a name="module_http"></a>
+
+## http
+<p>Http Mocker Builder for easy to http testing</p>
+<p>Example:</p>
+<pre class="prettyprint source"><code> const mockedHttp = HttpMockBuilder
+ .create()
+ .onGetReply(200, {foo: 'get'})
+ .onPostThrowError(500, 'Post Error', {e: 'post'})
+ .onPutThrowError(404, 'Put Error', {e: 'put'})
+ .onDeleteThrowError(403, 'Delete Error', {e: 'delete'})
+ .build();
+
+ const response = await mockedHttp.get('/url');
+
+ await mockedHttp.post('/url/post', {faz: 'post'}); // will throw exception
+</code></pre>
+
+
+* [http](#module_http)
+    * [~HttpImpl](#module_http..HttpImpl)
+        * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
+        * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+
+<a name="module_http..HttpImpl"></a>
+
+### http~HttpImpl
+**Kind**: inner class of [<code>http</code>](#module_http)  
+
+* [~HttpImpl](#module_http..HttpImpl)
+    * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
+    * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+
+<a name="new_module_http..HttpImpl_new"></a>
+
+#### new HttpImpl(baseURL, options)
+<p>Creates your Http client</p>
+
+
+| Param | Description |
+| --- | --- |
+| baseURL | <p>The baseUrl, i.e host url</p> |
+| options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
+
+<a name="module_http..HttpImpl.mountError"></a>
+
+#### HttpImpl.mountError(url, error)
+**Kind**: static method of [<code>HttpImpl</code>](#module_http..HttpImpl)  
+**Internal**:   
+
+| Param | Description |
+| --- | --- |
+| url | <p>The url</p> |
+| error | <p>The returned error</p> |
+
+<a name="module_http"></a>
+
+## http
+<p>Http Response</p>
+<p>Returned by Http request</p>
+
+
+* [http](#module_http)
+    * [~HttpImpl](#module_http..HttpImpl)
+        * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
+        * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+
+<a name="module_http..HttpImpl"></a>
+
+### http~HttpImpl
+**Kind**: inner class of [<code>http</code>](#module_http)  
+
+* [~HttpImpl](#module_http..HttpImpl)
+    * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
+    * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+
+<a name="new_module_http..HttpImpl_new"></a>
+
+#### new HttpImpl(baseURL, options)
+<p>Creates your Http client</p>
+
+
+| Param | Description |
+| --- | --- |
+| baseURL | <p>The baseUrl, i.e host url</p> |
+| options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
+
+<a name="module_http..HttpImpl.mountError"></a>
+
+#### HttpImpl.mountError(url, error)
+**Kind**: static method of [<code>HttpImpl</code>](#module_http..HttpImpl)  
+**Internal**:   
+
+| Param | Description |
+| --- | --- |
+| url | <p>The url</p> |
+| error | <p>The returned error</p> |
+
+<a name="module_http"></a>
+
+## http
+<p>Alias for HttpImpl</p>
+
+
+* [http](#module_http)
+    * [~HttpImpl](#module_http..HttpImpl)
+        * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
+        * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+
+<a name="module_http..HttpImpl"></a>
+
+### http~HttpImpl
+**Kind**: inner class of [<code>http</code>](#module_http)  
+
+* [~HttpImpl](#module_http..HttpImpl)
+    * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
+    * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+
+<a name="new_module_http..HttpImpl_new"></a>
+
+#### new HttpImpl(baseURL, options)
+<p>Creates your Http client</p>
+
+
+| Param | Description |
+| --- | --- |
+| baseURL | <p>The baseUrl, i.e host url</p> |
+| options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
+
+<a name="module_http..HttpImpl.mountError"></a>
+
+#### HttpImpl.mountError(url, error)
+**Kind**: static method of [<code>HttpImpl</code>](#module_http..HttpImpl)  
+**Internal**:   
+
+| Param | Description |
+| --- | --- |
+| url | <p>The url</p> |
+| error | <p>The returned error</p> |
 

@@ -8,6 +8,6 @@
  * Returned by Http request
  * @module http
  */
-export default class HttpResponse {
+export class HttpResponse {
     constructor(public status: number, public response: any) {}
 }

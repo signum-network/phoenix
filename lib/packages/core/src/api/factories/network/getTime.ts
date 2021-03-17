@@ -8,7 +8,7 @@ import {BurstTime} from '../../../typings/burstTime';
 /**
  * Use with [[ApiComposer]] and belongs to [[NetworkApi]].
  *
- * See details at [[NetworkApi.suggestFee]]
+ * See details at [[NetworkApi.getSuggestedFees]]
  * @module core.api.factories
  */
 export const getTime = (service: BurstService): () => Promise<BurstTime> =>

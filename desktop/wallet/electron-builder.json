@@ -25,7 +25,10 @@
   "mac": {
     "artifactName": "${os}-phoenix-burst-wallet.${version}.${ext}",
     "publish": [
-      "github"
+      {
+        "provider": "github",
+        "releaseType": "prerelease"
+      }
     ],
     "category": "public.app-category.finance"
   },
@@ -37,7 +40,10 @@
       "tar.gz"
     ],
     "publish": [
-      "github"
+      {
+        "provider": "github",
+        "releaseType": "prerelease"
+      }
     ],
     "category": "Finance"
   },
@@ -48,7 +54,10 @@
       "portable"
     ],
     "publish": [
-      "github"
+      {
+        "provider": "github",
+        "releaseType": "prerelease"
+      }
     ]
   },
   "nsis": {

@@ -17,7 +17,7 @@ export enum BurstValueFormat {
     BURST,
 }
 
-function assureValidValue(b: string) {
+function assureValidValue(b: string): void {
     if (!(b && /^-?\d*(\.\d+)?$/.test(b))) {
         throw new Error(`Invalid value: ${b}`);
     }
@@ -94,7 +94,7 @@ export class BurstValue {
      * Sets value as BURST, i.e. overwrites current hold value
      * @param b value in BURST
      */
-    setBurst(b: string) {
+    setBurst(b: string): void {
         assureValidValue(b);
         this._planck = new BigNumber(b).multipliedBy(1E8);
     }
@@ -147,7 +147,7 @@ export class BurstValue {
     /**
      * Adds two values
      * @param burstValue The other value to be added
-     * @return the mutated BurstValue object
+     * @return the _mutated_ BurstValue object
      */
     public add(burstValue: BurstValue): BurstValue {
         this._planck = this._planck.plus(burstValue._planck);
@@ -157,7 +157,7 @@ export class BurstValue {
     /**
      * Subtracts from value
      * @param burstValue The other value to be subtracted
-     * @return the mutated BurstValue object
+     * @return the _mutated_ BurstValue object
      */
     public subtract(burstValue: BurstValue): BurstValue {
         this._planck = this._planck.minus(burstValue._planck);
@@ -167,7 +167,7 @@ export class BurstValue {
     /**
      * Multiplies with a _numeric_ value (not BurstValue)
      * @param value A numeric value to be multiplied with
-     * @return the mutated BurstValue object
+     * @return the _mutated_ BurstValue object
      */
     public multiply(value: number): BurstValue {
         this._planck = this._planck.multipliedBy(value);
@@ -177,10 +177,12 @@ export class BurstValue {
     /**
      * Divides by a _numeric_ value (not BurstValue)
      * @param value A numeric value to be divided by
-     * @return the mutated BurstValue object
+     * @return the _mutated_ BurstValue object
      */
     public divide(value: number): BurstValue {
-        if (value === 0) { throw new Error('Division by zero'); }
+        if (value === 0) {
+            throw new Error('Division by zero');
+        }
         this._planck = this._planck.div(value);
         return this;
     }
@@ -192,5 +194,13 @@ export class BurstValue {
      */
     public toString(format: BurstValueFormat = BurstValueFormat.BURST): string {
         return format === BurstValueFormat.BURST ? `${BurstSymbol} ${this.getBurst()}` : `${BurstPlanckSymbol} ${this._planck}`;
+    }
+
+    /**
+     * Clones/Copies the current BurstValue to a new object
+     * @return new BurstValue instance
+     */
+    public clone(): BurstValue {
+        return BurstValue.fromPlanck(this.getPlanck());
     }
 }

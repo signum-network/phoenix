@@ -1,7 +1,28 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 0.5.0 (TBR)
+## 0.6.0
+
+- deprecated `suggestFee`
+  - use `getSuggestedFees`
+- added new methods to transaction Api
+  - `signAndBroadcastTransaction`
+- added new methods to assets Api
+  - `issueAsset`
+  - `cancelAskOrder`
+  - `cancelBidOrder`
+  - `placeAskOrder`
+  - `placeBidOrder`
+  - `transferAsset`
+- Added BurstAddress Value Object
+- Added `addCommitment`, `removeCommitment`
+
+---
+__Fixes__
+- Fixed return types of Block Api (`BlockIdList` and `BlockList`)
+---
+
+## 0.5.0
 
 ___
 __Breaking Changes__

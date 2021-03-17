@@ -2,7 +2,7 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 import { BurstService } from '../../../service/burstService';
-import { Block } from '../../../typings/block';
+import {BlockList} from '../../../typings/blockList';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
@@ -11,8 +11,8 @@ import { Block } from '../../../typings/block';
  * @module core.api.factories
  */
 export const getAccountBlocks = (service: BurstService):
-    (firstIndex?: number, lastIndex?: number) => Promise<Block[]> =>
-    (firstIndex?: number, lastIndex?: number): Promise<Block[]> =>
+    (firstIndex?: number, lastIndex?: number) => Promise<BlockList> =>
+    (firstIndex?: number, lastIndex?: number): Promise<BlockList> =>
         service.query('getAccountBlocks', {
             firstIndex,
             lastIndex

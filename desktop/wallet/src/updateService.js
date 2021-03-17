@@ -94,7 +94,10 @@ class UpdateService {
       .then(({response: releases}) => {
         return _.chain(releases)
           /* eslint-disable camelcase */
-          .filter(release => !release.draft && release.tag_name.startsWith(this.config.tagPrefix))
+          .filter(release =>
+              !release.draft &&
+              !release.prerelease &&
+              release.tag_name.startsWith(this.config.tagPrefix))
           .sortBy('published_at')
           .reverse()
           .head()

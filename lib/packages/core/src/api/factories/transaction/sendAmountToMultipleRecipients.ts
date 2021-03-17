@@ -5,7 +5,7 @@ import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {MultioutRecipientAmount} from '../../../typings/multioutRecipientAmount';
-import {signAndBroadcastTransaction} from '../../../internal/signAndBroadcastTransaction';
+import {signAndBroadcastTransaction} from './signAndBroadcastTransaction';
 import {DefaultDeadline} from '../../../constants';
 
 function mountRecipientsString(recipientAmounts: MultioutRecipientAmount[]): string {
@@ -48,10 +48,10 @@ export const sendAmountToMultipleRecipients = (service: BurstService):
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>(
             'sendMoneyMulti', parameters);
 
-        return signAndBroadcastTransaction({
+        return signAndBroadcastTransaction(service)({
             unsignedHexMessage,
             senderPublicKey,
             senderPrivateKey
-        }, service);
+        });
 
     };

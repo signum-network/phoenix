@@ -1,11 +1,11 @@
-import HttpResponse from './httpResponse';
+import {HttpResponse} from './httpResponse';
 
 /**
  * A generic HTTP interface
  *
  * @module http
  */
-export default interface Http {
+export interface Http {
 
     /**
      * Get Method
@@ -39,6 +39,6 @@ export default interface Http {
      * @param options [optional] Option/Configuration object for the http clients configuration
      * @returns request result in case of success or error
      */
-    delete(url: string, options: any): Promise<HttpResponse>;
+    delete(url: string, options?: any): Promise<HttpResponse>;
 }
 

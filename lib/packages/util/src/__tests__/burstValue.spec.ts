@@ -220,4 +220,13 @@ describe('BurstValue', () => {
             }).toThrow();
         });
     });
+
+    describe('clone', () => {
+        it('should return cloned instance value', () => {
+            const burstValue = BurstValue.fromBurst('10');
+            const cloned = burstValue.clone();
+            burstValue.add(BurstValue.fromBurst('2'));
+            expect(cloned.getBurst()).toBe('10');
+        });
+    });
 });

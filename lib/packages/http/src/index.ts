@@ -5,17 +5,17 @@
  * @moduledefinition http
  */
 
-import Http from './http';
-import HttpResponse from './httpResponse';
-import HttpError from './httpError';
-import HttpMockBuilder from './httpMockBuilder';
-import HttpImpl from './httpImpl';
+import {Http} from './http';
+import {HttpResponse} from './httpResponse';
+import {HttpError} from './httpError';
+import {HttpMockBuilder} from './httpMockBuilder';
+import {HttpClientFactory} from './httpClientFactory';
 
 export {
     Http,
-    HttpImpl,
+    HttpClientFactory,
     HttpResponse,
     HttpMockBuilder,
-    HttpError
+    HttpError,
 };
 

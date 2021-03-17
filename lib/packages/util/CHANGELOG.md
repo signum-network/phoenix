@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 0.6.0
+- `BurstValue.clone()` added
+- Added hex <> base36 conversion
+
+
 ## 0.5.0
 
 ### Added 

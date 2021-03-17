@@ -1,8 +1,13 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
-import {createSubscription, getTransaction, getUnconfirmedTransactions} from '../../factories/transaction';
+import {
+    createSubscription,
+    getTransaction,
+    getUnconfirmedTransactions,
+    sendAmountToSingleRecipient
+} from '../../factories/transaction';
 import {HttpError} from '@burstjs/http';
-import {convertNumberToNQTString, FeeQuantPlanck} from '@burstjs/util';
+import {BurstValue, convertNumberToNQTString, FeeQuantPlanck} from '@burstjs/util';
 import {generateMasterKeys, getAccountIdFromPublicKey} from '@burstjs/crypto';
 
 
@@ -33,6 +38,19 @@ describe('[E2E] Transaction Api', () => {
         expect(transaction.recipient).toBeDefined();
         expect(transaction.recipientRS.startsWith('BURST-')).toBeTruthy();
         // ... more here, if you want :P
+    });
+
+
+     it('should sendAmountToSingleRecipient', async () => {
+        const transaction = await sendAmountToSingleRecipient(service)({
+            feePlanck: FeeQuantPlanck + '',
+            senderPrivateKey: senderKeys.signPrivateKey,
+            senderPublicKey: senderKeys.publicKey,
+            amountPlanck: BurstValue.fromBurst(1).getPlanck(),
+            recipientId,
+            recipientPublicKey: recipientKeys.publicKey
+        });
+        expect(transaction.transaction).toBeDefined();
     });
 
     it('should fail getTransaction on unknown transaction', async () => {

@@ -54,6 +54,7 @@ describe('[E2E] Contract Api', () => {
                 senderPrivateKey: senderKeys.signPrivateKey,
                 description: '[E2E] burstjs publishContract Test',
                 name: 'Echo',
+                isCIP20Active: true,
             }
         );
         expect(transactionId.transaction).toBeDefined();

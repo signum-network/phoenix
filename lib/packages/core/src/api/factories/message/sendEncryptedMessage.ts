@@ -6,8 +6,8 @@ import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
 import {encryptMessage} from '@burstjs/crypto';
-import {signAndBroadcastTransaction} from '../../../internal';
 import {SendEncryptedMessageArgs} from '../../../typings/args/sendEncryptedMessageArgs';
+import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransaction';
 
 const MAX_MESSAGE_LENGTH = 1024;
 
@@ -40,10 +40,10 @@ export const sendEncryptedMessage = (service: BurstService):
 
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('sendMessage', parameters);
 
-        return signAndBroadcastTransaction({
+        return signAndBroadcastTransaction(service)({
             senderPublicKey: args.senderKeys.publicKey,
             senderPrivateKey: args.senderKeys.signPrivateKey,
             unsignedHexMessage
-        }, service);
+        });
 
     };

@@ -29,18 +29,18 @@
     "babel-jest": "^24.1.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "codecov": "^3.6.1",
+    "codecov": "^3.8.1",
     "custom-tslint-formatters": "^2.4.0",
-    "husky": "^3.1.0",
+    "husky": "^4.3.0",
     "jest": "^24.1.0",
     "jsdoc-babel": "^0.5.0",
     "jsdoc-to-markdown": "^5.0.2",
-    "lerna": "^3.18.4",
-    "regenerator-runtime": "^0.13.1",
+    "lerna": "^3.22.1",
+    "regenerator-runtime": "^0.13.7",
     "ts-jest": "^24.0.2",
     "tslint": "^5.20.1",
     "typedoc": "^0.16.11",
-    "typescript": "^3.8.3"
+    "typescript": "3.8.3"
   },
   "scripts": {
     "bootstrap": "lerna exec npm install && lerna bootstrap && lerna run tsc",

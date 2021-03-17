@@ -5,7 +5,7 @@ import {getBlockId} from '../factories/block/getBlockId';
 import {getBlockByTimestamp} from '../factories/block/getBlockByTimestamp';
 import {getBlockchainStatus} from '../factories/network/getBlockchainStatus';
 import {getServerStatus} from '../factories/network/getServerStatus';
-import {suggestFee} from '../factories/network/suggestFee';
+import {getSuggestedFees} from '../factories/network/getSuggestedFees';
 import {broadcastTransaction} from '../factories/transaction/broadcastTransaction';
 import {getTransaction} from '../factories/transaction/getTransaction';
 import {sendTextMessage} from '../factories/message/sendTextMessage';
@@ -99,7 +99,7 @@ describe('ApiComposer', () => {
             .withNetworkApi({
                 getBlockchainStatus,
                 getServerStatus,
-                suggestFee,
+                getSuggestedFees,
             })
             .compose();
 
@@ -107,7 +107,7 @@ describe('ApiComposer', () => {
         expect(api.network).toBeDefined();
         expect(api.network.getBlockchainStatus).toBeDefined();
         expect(api.network.getServerStatus).toBeDefined();
-        expect(api.network.suggestFee).toBeDefined();
+        expect(api.network.getSuggestedFees).toBeDefined();
 
     });
 

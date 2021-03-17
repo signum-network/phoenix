@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+# 0.6.0
+Breaking Change
+---------------------
+- Access to Http client through new `HttpClientFactory`
+
 # 0.5.1
 - Better message handling in case of errors
 

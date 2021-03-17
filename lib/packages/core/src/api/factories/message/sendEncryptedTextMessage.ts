@@ -5,10 +5,10 @@ import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
-import {generateSignature, Keys} from '@burstjs/crypto';
-import {verifySignature, generateSignedTransactionBytes, encryptMessage} from '@burstjs/crypto';
+import {Keys} from '@burstjs/crypto';
+import {encryptMessage} from '@burstjs/crypto';
 import {convertNumberToNQTString} from '@burstjs/util';
-import {broadcastTransaction} from '../transaction/broadcastTransaction';
+import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransaction';
 
 const MAX_MESSAGE_LENGTH = 1024;
 
@@ -55,13 +55,11 @@ export const sendEncryptedTextMessage = (service: BurstService):
             feeNQT: convertNumberToNQTString(fee),
         };
 
-
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('sendMessage', parameters);
-        const signature = generateSignature(unsignedHexMessage, senderKeys.signPrivateKey);
-        if (!verifySignature(signature, unsignedHexMessage, senderKeys.publicKey)) {
-            throw new Error('The signed message could not be verified! Message not broadcasted!');
-        }
+        return signAndBroadcastTransaction(service)({
+            senderPublicKey: senderKeys.publicKey,
+            senderPrivateKey: senderKeys.signPrivateKey,
+            unsignedHexMessage
+        });
 
-        const signedMessage = generateSignedTransactionBytes(unsignedHexMessage, signature);
-        return broadcastTransaction(service)(signedMessage);
     };

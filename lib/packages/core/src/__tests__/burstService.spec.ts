@@ -1,5 +1,5 @@
 import {BurstService} from '../service/burstService';
-import {Http, HttpError, HttpImpl, HttpMockBuilder, HttpResponse} from '@burstjs/http';
+import {HttpError, HttpMockBuilder, HttpResponse, Http} from '@burstjs/http';
 import {BurstServiceSettings} from '../service/burstServiceSettings';
 import {createBurstService} from './helpers/createBurstService';
 import {DefaultApiEndpoint} from '../constants';
@@ -31,7 +31,7 @@ describe('BurstService', () => {
             });
             expect(settings.nodeHost).toBe('nodeHost');
             expect(settings.apiRootUrl).toBe(DefaultApiEndpoint);
-            expect(settings.httpClient instanceof HttpImpl).toBeTruthy();
+            expect(settings.httpClient instanceof TestHttpClient).toBeFalsy();
         });
 
         it('should create with other HttpClient', () => {

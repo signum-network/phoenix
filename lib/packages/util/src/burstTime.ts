@@ -68,7 +68,7 @@ export class BurstTime {
      * Sets BurstTime using native Date
      * @param date Any Date object
      */
-    setDate(date: Date) {
+    setDate(date: Date): void {
         this._burstTimestamp = Math.round(date.getTime() / 1000) - GenesisBlockTime;
     }
 

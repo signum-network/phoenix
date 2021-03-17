@@ -8,3 +8,4 @@ export * from './createSubscription';
 export * from './cancelSubscription';
 export * from './getSubscription';
 export * from './getUnconfirmedTransactions';
+export * from './signAndBroadcastTransaction';

@@ -26,7 +26,7 @@ import {
 import {ApiService} from '../../api.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {constants} from 'app/constants';
-import {HttpError, HttpImpl as Http} from '@burstjs/http';
+import {HttpError, HttpClientFactory} from '@burstjs/http';
 import { AssetList } from '@burstjs/core/out/typings/assetList';
 import { Asset } from '@burstjs/core/src';
 
@@ -341,7 +341,7 @@ export class AccountService {
         return;
       }
 
-      const http = new Http(environment.activatorServiceUrl);
+      const http = HttpClientFactory.createHttpClient(environment.activatorServiceUrl);
       const payload = {
         account: account.account,
         publickey: account.keys.publicKey

@@ -1,4 +1,6 @@
 # The Phoenix Desktop Wallet
+# 1.0.4 (TBR)
+- releases are marked as pre-release now (formerly draft)
 
 # 1.0.1
 - Renewed cert fingerprint

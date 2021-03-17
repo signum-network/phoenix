@@ -6,9 +6,28 @@ import {BurstServiceSettings} from '../service';
 import {Api} from '../typings/api';
 import {ApiVersion} from '../constants/apiVersion';
 import {ApiComposer} from './apiComposer';
-import {getBlockByHeight, getBlockById, getBlockByTimestamp, getBlockId, getBlocks} from './factories/block';
-import {getBlockchainStatus, getPeer, getPeers, getServerStatus, getTime, suggestFee} from './factories/network';
-import {sendEncryptedMessage, sendEncryptedTextMessage, sendMessage, sendTextMessage} from './factories/message';
+import {
+    getBlockByHeight,
+    getBlockById,
+    getBlockByTimestamp,
+    getBlockId,
+    getBlocks
+} from './factories/block';
+import {
+    getBlockchainStatus,
+    getPeer,
+    getPeers,
+    getServerStatus,
+    getTime,
+    getSuggestedFees,
+    suggestFee,
+} from './factories/network';
+import {
+    sendEncryptedMessage,
+    sendEncryptedTextMessage,
+    sendMessage,
+    sendTextMessage
+} from './factories/message';
 import {
     generateSendTransactionQRCode,
     generateSendTransactionQRCodeAddress,
@@ -24,7 +43,7 @@ import {
     setAccountInfo,
     setAlias,
     setRewardRecipient,
-    getRewardRecipient,
+    getRewardRecipient, addCommitment, removeCommitment,
 } from './factories/account';
 import {getAliasById, getAliasByName} from './factories/alias';
 import {
@@ -44,11 +63,20 @@ import {
     sendAmountToSingleRecipient,
     sendSameAmountToMultipleRecipients,
     getSubscription,
-    getUnconfirmedTransactions
+    getUnconfirmedTransactions,
+    signAndBroadcastTransaction
 } from './factories/transaction';
-import {getAllAssets, getAsset} from './factories/asset';
+import {
+    cancelAskOrder,
+    cancelBidOrder,
+    getAllAssets,
+    getAsset,
+    issueAsset,
+    placeAskOrder,
+    placeBidOrder,
+    transferAsset,
+} from './factories/asset';
 import {AxiosRequestConfig} from 'axios';
-
 
 /**
  * Settings for API used in [[composeApi]]
@@ -77,9 +105,7 @@ export class ApiSettings {
  * with its functions.
  *
  * ```ts
- * const api = composeApi({
- *   nodeHost: 'https://wallet1.burst-team.us:2083', // one of the mainnet nodes
- * })
+ * const api = composeApi(new ApiSettings('https://wallet1.burst-team.us:2083')), // one of the mainnet nodes
  * ```
  *
  * > Note, that this method mounts the __entire__ API, i.e. all available methods. One may also customize the API composition
@@ -107,6 +133,7 @@ export function composeApi(settings: ApiSettings): Api {
         .withNetworkApi({
             getBlockchainStatus,
             getServerStatus,
+            getSuggestedFees,
             suggestFee,
             getPeers,
             getPeer,
@@ -123,6 +150,7 @@ export function composeApi(settings: ApiSettings): Api {
             cancelSubscription,
             getSubscription,
             getUnconfirmedTransactions,
+            signAndBroadcastTransaction,
         })
         .withMessageApi({
             sendTextMessage,
@@ -131,6 +159,8 @@ export function composeApi(settings: ApiSettings): Api {
             sendEncryptedMessage,
         })
         .withAccountApi({
+            addCommitment,
+            removeCommitment,
             getAccountTransactions,
             getUnconfirmedAccountTransactions,
             getAccountBalance,
@@ -159,6 +189,12 @@ export function composeApi(settings: ApiSettings): Api {
         }).withAssetApi({
             getAsset,
             getAllAssets,
+            issueAsset,
+            transferAsset,
+            placeAskOrder,
+            placeBidOrder,
+            cancelAskOrder,
+            cancelBidOrder,
         })
         .compose();
 }
