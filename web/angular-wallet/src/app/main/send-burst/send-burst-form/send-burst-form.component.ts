@@ -3,8 +3,6 @@ import {Account, SuggestedFees} from '@burstjs/core';
 import {
   convertAddressToNumericId,
   convertNQTStringToNumber,
-  convertNumberToNQTString,
-  sumNQTStringToNumber,
   BurstValue
 } from '@burstjs/util';
 import {NgForm} from '@angular/forms';
@@ -133,14 +131,10 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
     this.showMessage = !!this.message;
   }
 
-  // getTotal(): number {
-  //   return parseFloat(this.amount) + parseFloat(this.fee) || 0;
-  // }
-
   getTotal(): BurstValue {
     return this.amount !== undefined && this.fee !== undefined
       ? BurstValue.fromBurst(this.amount).add(BurstValue.fromBurst(this.fee))
-      : BurstValue.fromPlanck('0');
+      : BurstValue.Zero();
   }
 
   onSubmit(event): void {

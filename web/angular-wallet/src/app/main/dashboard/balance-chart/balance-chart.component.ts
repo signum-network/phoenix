@@ -1,7 +1,7 @@
 import {Router} from '@angular/router';
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Account} from '@burstjs/core';
-import {BurstValue, convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
+import {BurstValue, convertBurstTimeToDate} from '@burstjs/util';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {I18nService} from '../../../layout/components/i18n/i18n.service';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
@@ -158,20 +158,6 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
   calculateValue(unitPrice: number = 0): number {
     return parseFloat(BurstValue.fromPlanck(this.account.balanceNQT || '0').multiply(unitPrice).getBurst());
   }
-
-  // calculateLockedAmount(): number {
-  //   const {} = getBalancesFromAccount(this.account)
-  //   const  balance = BurstValue.fromPlanck(this.account.balanceNQT || '0');
-  //   const  unconfirmed = BurstValue.fromPlanck(this.account.unconfirmedBalanceNQT || '0');
-  //   return parseFloat(balance.subtract(unconfirmed).getBurst());
-  // }
-  //
-  // calculateAvailableAmount(): number {
-  //   const  balance = BurstValue.fromPlanck(this.account.balanceNQT || '0');
-  //   const  locked = BurstValue.fromBurst(this.calculateLockedAmount());
-  //   return parseFloat(balance.subtract(locked).getBurst());
-  // }
-
 
   hidePoints(): void {
     if (this.isMobile) {

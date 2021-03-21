@@ -2,13 +2,12 @@ import {Component, OnInit, ViewChild, Input} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {NotifierService} from 'angular-notifier';
 import {
-  convertNumberToNQTString,
   convertAddressToNumericId,
   convertNQTStringToNumber,
   convertNumericIdToAddress,
   BurstValue
 } from '@burstjs/util';
-import {SuggestedFees, Account, TransactionId, MultioutRecipientAmount} from '@burstjs/core';
+import {SuggestedFees, Account, MultioutRecipientAmount} from '@burstjs/core';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
@@ -187,11 +186,6 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       .subscribe(this.handleBatchRecipients.bind(this));
   }
 
-  // private getTotalForMultiOut(): number {
-  //   return this.nonEmptyRecipients()
-  //     .map(({amount}) => parseFloat(amount) || 0)
-  //     .reduce((acc, curr) => acc + curr, 0);
-  // }
   private getTotalForMultiOut(): BurstValue {
     return this.nonEmptyRecipients()
       .map(({amount}) => BurstValue.fromBurst(amount || 0))
@@ -200,7 +194,6 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   private getTotalForSameAmount(): BurstValue {
     return BurstValue.fromBurst(this.amount || 0).multiply(this.recipients.length);
-    // return parseFloat(this.amount) * this.recipients.length;
   }
 
   getTotal(): BurstValue {
@@ -223,8 +216,6 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     const total = this.getTotal();
 
     return available.subtract(total).greaterOrEqual(BurstValue.Zero());
-
-    // return convertNQTStringToNumber(this.account.balanceNQT) - this.getTotal() > Number.EPSILON;
   }
 
 
