@@ -1033,5 +1033,15 @@
   "your_passphrase": "Su Contraseña",
   "youve_got_burst": "Tienes Burst!",
   "balance_locked": "Saldo bloqueado",
-  "balance_available": "Saldo disponible"
+  "balance_available": "Saldo disponible",
+  "commitment": "Compromiso",
+  "set_commitment": "Establecer compromiso",
+  "add_commitment": "Agregar compromiso",
+  "revoke_commitment": "Revocar compromiso",
+  "reward_recipient_assignment": "Asignación de destinatario de recompensa",
+  "mining": "Minería",
+  "applied_commitment": "Compromiso aplicado",
+  "toggle_commitment_mode": "Alternar aquí entre agregar y revocar el compromiso de minería",
+  "success_set_commitment": "Actualizó con éxito su compromiso de minería",
+  "error_set_commitment": "Error al actualizar el compromiso de minería. Tenga en cuenta que debe esperar 1440 bloques antes de poder revocar su compromiso."
 }

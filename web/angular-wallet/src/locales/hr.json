@@ -1033,5 +1033,15 @@
   "your_passphrase": "Vaša lozinka",
   "youve_got_burst": "Zaspao si!",
   "balance_locked": "Zaključana ravnoteža",
-  "balance_available": "Dostupno Stanje"
+  "balance_available": "Dostupno Stanje",
+  "commitment": "Predanost",
+  "set_commitment": "Postavite predanost",
+  "add_commitment": "Dodaj obvezu",
+  "revoke_commitment": "Opozovi obvezu",
+  "reward_recipient_assignment": "Dodjela primatelja nagrade",
+  "mining": "Rudarstvo",
+  "applied_commitment": "Primijenjena predanost",
+  "toggle_commitment_mode": "Ovdje se prebacujte između dodavanja i opoziva rudarske obveze",
+  "success_set_commitment": "Uspješno ste ažurirali svoju obvezu rudarenja",
+  "error_set_commitment": "Pogreška prilikom ažuriranja obveze rudarstva. Imajte na umu da trebate pričekati 1440 blokova prije nego što možete opozvati svoju obvezu."
 }

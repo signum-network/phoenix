@@ -9,6 +9,7 @@ import {Block} from '../block';
 import {CommitmentArgs, GetAccountTransactionsArgs} from '../args';
 import {SetRewardRecipientArgs} from '../args/setRewardRecipientArgs';
 import {RewardRecipient} from '../rewardRecipient';
+import {GetAccountArgs} from '../args/getAccountArgs';
 
 /**
  * Account API
@@ -45,10 +46,10 @@ export interface AccountApi {
 
     /**
      * Get an account given an ID
-     * @param {string} accountId
+     * @param {GetAccountArgs} args The arguments
      * @return {Promise<Account>} The account from the backend, not including transactions
      */
-    getAccount: (accountId: string) => Promise<Account>;
+    getAccount: (args: GetAccountArgs) => Promise<Account>;
 
     /**
      * Get blocks forged by an account

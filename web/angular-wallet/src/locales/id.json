@@ -1033,5 +1033,15 @@
   "your_passphrase": "Kata sandi",
   "youve_got_burst": "Anda punya Burst!",
   "balance_locked": "Saldo Terkunci",
-  "balance_available": "Saldo Tersedia"
+  "balance_available": "Saldo Tersedia",
+  "commitment": "Komitmen",
+  "set_commitment": "Tetapkan Komitmen",
+  "add_commitment": "Tambahkan Komitmen",
+  "revoke_commitment": "Cabut Komitmen",
+  "reward_recipient_assignment": "Tugas Penerima Hadiah",
+  "mining": "Pertambangan",
+  "applied_commitment": "Komitmen yang Diterapkan",
+  "toggle_commitment_mode": "Alihkan di sini antara menambah dan mencabut komitmen pertambangan",
+  "success_set_commitment": "Berhasil memperbarui komitmen penambangan Anda",
+  "error_set_commitment": "Kesalahan saat memperbarui komitmen penambangan. Ingatlah bahwa Anda perlu menunggu 1.440 blok sebelum Anda dapat mencabut komitmen Anda."
 }

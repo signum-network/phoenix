@@ -1033,5 +1033,15 @@
   "your_passphrase": "Ваша Лозинка",
   "youve_got_burst": "Имаш провале!",
   "balance_locked": "Лоцкед Баланце",
-  "balance_available": "Доступно Стање"
+  "balance_available": "Доступно Стање",
+  "commitment": "Приврженост",
+  "set_commitment": "Поставите обавезу",
+  "add_commitment": "Додајте обавезу",
+  "revoke_commitment": "Опозови обавезу",
+  "reward_recipient_assignment": "Додељивање награде добитнику",
+  "mining": "Рударство",
+  "applied_commitment": "Примењена обавеза",
+  "toggle_commitment_mode": "Овде се пребацујте између додавања и опозивања рударске обавезе",
+  "success_set_commitment": "Успешно сте ажурирали обавезу рударства",
+  "error_set_commitment": "Грешка приликом ажурирања обавезе о рударству. Имајте на уму да требате сачекати 1440 блокова да бисте могли опозвати своју обавезу."
 }

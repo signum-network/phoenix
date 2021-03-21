@@ -1033,5 +1033,15 @@
   "your_passphrase": "Uw wachtwoord/passphrase",
   "youve_got_burst": "Je hebt Burst!",
   "balance_locked": "Vergrendeld saldo",
-  "balance_available": "beschikbaar saldo"
+  "balance_available": "beschikbaar saldo",
+  "commitment": "Inzet",
+  "set_commitment": "Stel toewijding vast",
+  "add_commitment": "Toewijding toevoegen",
+  "revoke_commitment": "Toezegging intrekken",
+  "reward_recipient_assignment": "Toewijzing van de ontvanger van de beloning",
+  "mining": "Mijnbouw",
+  "applied_commitment": "Toegepaste toewijding",
+  "toggle_commitment_mode": "Schakel hier tussen het toevoegen en intrekken van de mijnverplichting",
+  "success_set_commitment": "Uw mijnverplichting succesvol bijgewerkt",
+  "error_set_commitment": "Fout bij het bijwerken van mijnverplichting. Houd er rekening mee dat u 1440 blokken moet wachten voordat u uw toezegging kunt herroepen."
 }

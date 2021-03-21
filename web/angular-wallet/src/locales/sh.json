@@ -1032,5 +1032,15 @@
   "your_passphrase": "Vaša lozinka",
   "youve_got_burst": "You've got Burst!",
   "balance_locked": "",
-  "balance_available": ""
+  "balance_available": "",
+  "commitment": "",
+  "set_commitment": "",
+  "add_commitment": "",
+  "revoke_commitment": "",
+  "reward_recipient_assignment": "",
+  "mining": "",
+  "applied_commitment": "",
+  "toggle_commitment_mode": "",
+  "success_set_commitment": "",
+  "error_set_commitment": ""
 }

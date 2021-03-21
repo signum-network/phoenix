@@ -1033,5 +1033,15 @@
   "your_passphrase": "Vaše heslo",
   "youve_got_burst": "Máte Burst!",
   "balance_locked": "Uzamčená rovnováha",
-  "balance_available": "Dostupná částka"
+  "balance_available": "Dostupná částka",
+  "commitment": "Závazek",
+  "set_commitment": "Stanovit závazek",
+  "add_commitment": "Přidat závazek",
+  "revoke_commitment": "Odvolat závazek",
+  "reward_recipient_assignment": "Odměna za přiřazení příjemce",
+  "mining": "Hornictví",
+  "applied_commitment": "Použitý závazek",
+  "toggle_commitment_mode": "Zde přepínejte mezi přidáním a odvoláním závazku těžby",
+  "success_set_commitment": "Úspěšně aktualizován váš závazek k těžbě",
+  "error_set_commitment": "Chyba při aktualizaci závazku těžby. Mějte na paměti, že než budete moci svůj závazek odvolat, musíte počkat 1440 bloků."
 }

@@ -1033,5 +1033,15 @@
   "your_passphrase": "Tunnuslauseesi",
   "youve_got_burst": "Sinulla on Burst!",
   "balance_locked": "Lukittu saldo",
-  "balance_available": "Käytettävissä oleva saldo"
+  "balance_available": "Käytettävissä oleva saldo",
+  "commitment": "Sitoutuminen",
+  "set_commitment": "Aseta sitoutuminen",
+  "add_commitment": "Lisää sitoutuminen",
+  "revoke_commitment": "Peruuta sitoumus",
+  "reward_recipient_assignment": "Palkitse vastaanottajan tehtävä",
+  "mining": "Kaivostoiminta",
+  "applied_commitment": "Sovellettu sitoutuminen",
+  "toggle_commitment_mode": "Vaihda täältä kaivositoumuksen lisäämisen ja peruuttamisen välillä",
+  "success_set_commitment": "Kaivos sitoutumisen päivittäminen onnistui",
+  "error_set_commitment": "Virhe kaivos sitoutumista päivitettäessä. Muista, että sinun on odotettava 1440 lohkoa, ennen kuin voit peruuttaa sitoumuksesi."
 }

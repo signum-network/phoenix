@@ -1033,5 +1033,15 @@
   "your_passphrase": "Jūsų slaptažodis",
   "youve_got_burst": "Jūs turite „Burst“!",
   "balance_locked": "Užrakinta pusiausvyra",
-  "balance_available": "Turimas balansas"
+  "balance_available": "Turimas balansas",
+  "commitment": "Įsipareigojimas",
+  "set_commitment": "Nustatykite įsipareigojimą",
+  "add_commitment": "Pridėti įsipareigojimą",
+  "revoke_commitment": "Atšaukti įsipareigojimą",
+  "reward_recipient_assignment": "Apdovanoti gavėjo užduotį",
+  "mining": "Kasyba",
+  "applied_commitment": "Taikomas įsipareigojimas",
+  "toggle_commitment_mode": "Čia perjunkite kasybos įsipareigojimo pridėjimą ir atšaukimą",
+  "success_set_commitment": "Sėkmingai atnaujinote įsipareigojimą kasybos srityje",
+  "error_set_commitment": "Atnaujinant kasybos įsipareigojimą įvyko klaida. Atminkite, kad jums reikia palaukti 1440 blokų, kad galėtumėte atšaukti savo įsipareigojimą."
 }

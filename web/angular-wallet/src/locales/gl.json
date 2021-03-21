@@ -1033,5 +1033,15 @@
   "your_passphrase": "O seu contrasinal",
   "youve_got_burst": "Ten estouro!",
   "balance_locked": "Saldo bloqueado",
-  "balance_available": "Saldo dispoñible"
+  "balance_available": "Saldo dispoñible",
+  "commitment": "Compromiso",
+  "set_commitment": "Establecer compromiso",
+  "add_commitment": "Engadir compromiso",
+  "revoke_commitment": "Revocar o compromiso",
+  "reward_recipient_assignment": "Recompensa do destinatario",
+  "mining": "Minaría",
+  "applied_commitment": "Compromiso aplicado",
+  "toggle_commitment_mode": "Alternar entre engadir e revogar o compromiso mineiro",
+  "success_set_commitment": "Actualizouse correctamente o seu compromiso coa minería",
+  "error_set_commitment": "Erro ao actualizar o compromiso mineiro. Ten en conta que debes esperar 1440 bloques antes de poder revogar o teu compromiso."
 }

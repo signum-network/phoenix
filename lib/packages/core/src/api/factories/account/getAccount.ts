@@ -1,10 +1,10 @@
-
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
  */
 
 import {BurstService} from '../../../service/burstService';
-import { Account } from '../../../typings/account';
+import {Account} from '../../../typings/account';
+import {GetAccountArgs} from '../../../typings/args/getAccountArgs';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
@@ -13,7 +13,15 @@ import { Account } from '../../../typings/account';
  * @module core.api.factories
  */
 export const getAccount = (service: BurstService):
-    (accountId: string) => Promise<Account> =>
-    (accountId: string): Promise<Account> => service.query('getAccount', {
-        account: accountId,
-    });
+    (args: GetAccountArgs) => Promise<Account> =>
+    (args: GetAccountArgs): Promise<Account> => {
+
+        const params = {
+            account: args.accountId,
+            height : args.commitmentAtHeight || undefined,
+            getCommittedAmount : args.includeCommittedAmount || false,
+            estimateCommitment : args.includeEstimatedCommitment || false
+        };
+
+        return service.query('getAccount', params);
+    };

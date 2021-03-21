@@ -1033,5 +1033,15 @@
   "your_passphrase": "Your Passphrase",
   "youve_got_burst": "आप फट गया है!",
   "balance_locked": "ताला लगा हुआ शेष",
-  "balance_available": "उपलब्ध शेष राशि"
+  "balance_available": "उपलब्ध शेष राशि",
+  "commitment": "प्रतिबद्धता",
+  "set_commitment": "कमिटमेंट सेट करें",
+  "add_commitment": "प्रतिबद्धता जोड़ें",
+  "revoke_commitment": "रेवोक कमिटमेंट",
+  "reward_recipient_assignment": "इनाम प्राप्तकर्ता असाइनमेंट",
+  "mining": "खुदाई",
+  "applied_commitment": "लागू की गई प्रतिबद्धता",
+  "toggle_commitment_mode": "खनन प्रतिबद्धता को जोड़ने और रद्द करने के बीच यहां टॉगल करें",
+  "success_set_commitment": "सफलतापूर्वक अपनी खनन प्रतिबद्धता को अद्यतन किया",
+  "error_set_commitment": "खनन प्रतिबद्धता को अपडेट करते समय त्रुटि। मन कि आप अपनी प्रतिबद्धता को रद्द कर सकते हैं इससे पहले कि आप 1440 ब्लॉक इंतजार करने की जरूरत है।"
 }

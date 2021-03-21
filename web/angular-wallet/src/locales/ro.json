@@ -1033,5 +1033,15 @@
   "your_passphrase": "Parola ta",
   "youve_got_burst": "Ai izbucniri!",
   "balance_locked": "Sold blocat",
-  "balance_available": "Sold disponibil"
+  "balance_available": "Sold disponibil",
+  "commitment": "Angajament",
+  "set_commitment": "Setați angajamentul",
+  "add_commitment": "Adăugați angajament",
+  "revoke_commitment": "Revocați angajamentul",
+  "reward_recipient_assignment": "Recompensarea atribuirii destinatarului",
+  "mining": "Minerit",
+  "applied_commitment": "Angajament aplicat",
+  "toggle_commitment_mode": "Comutați aici între adăugarea și revocarea angajamentului minier",
+  "success_set_commitment": "V-ați actualizat cu succes angajamentul minier",
+  "error_set_commitment": "Eroare la actualizarea angajamentului minier. Rețineți că trebuie să așteptați 1440 de blocuri înainte de a vă putea revoca angajamentul."
 }

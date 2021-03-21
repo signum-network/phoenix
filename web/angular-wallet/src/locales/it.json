@@ -1033,5 +1033,15 @@
   "your_passphrase": "La tua Passphrase",
   "youve_got_burst": "Hai scoppiato!",
   "balance_locked": "Bilanciamento bloccato",
-  "balance_available": "saldo disponibile"
+  "balance_available": "saldo disponibile",
+  "commitment": "Impegno",
+  "set_commitment": "Imposta impegno",
+  "add_commitment": "Aggiungi impegno",
+  "revoke_commitment": "Revoca impegno",
+  "reward_recipient_assignment": "Assegnazione del destinatario del premio",
+  "mining": "Estrazione",
+  "applied_commitment": "Impegno applicato",
+  "toggle_commitment_mode": "Passa qui tra l'aggiunta e la revoca dell'impegno di mining",
+  "success_set_commitment": "Aggiornato con successo il tuo impegno minerario",
+  "error_set_commitment": "Errore durante l'aggiornamento dell'impegno di mining. Tieni presente che devi attendere 1440 blocchi prima di poter revocare il tuo impegno."
 }

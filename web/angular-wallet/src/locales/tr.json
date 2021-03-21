@@ -1033,5 +1033,15 @@
   "your_passphrase": "Your Passphrase",
   "youve_got_burst": "Patlama var!",
   "balance_locked": "Kilitli Bakiye",
-  "balance_available": "Kalan bakiye"
+  "balance_available": "Kalan bakiye",
+  "commitment": "Taahhüt",
+  "set_commitment": "Taahhüdü Ayarla",
+  "add_commitment": "Taahhüt Ekle",
+  "revoke_commitment": "Taahhüdü İptal Et",
+  "reward_recipient_assignment": "Ödül Alıcı Ataması",
+  "mining": "Madencilik",
+  "applied_commitment": "Uygulamalı Taahhüt",
+  "toggle_commitment_mode": "Madencilik taahhüdünü ekleme ve iptal etme arasında buradan geçiş yapın",
+  "success_set_commitment": "Madencilik taahhüdünüzü başarıyla güncelledi",
+  "error_set_commitment": "Madencilik taahhüdü güncellenirken hata oluştu. Taahhüdünüzü iptal etmeden önce 1440 blok beklemeniz gerektiğini unutmayın."
 }

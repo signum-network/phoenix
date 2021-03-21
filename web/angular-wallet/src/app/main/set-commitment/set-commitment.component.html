@@ -1,0 +1,19 @@
+<app-page title="{{ 'set_commitment' | i18n }}" *ngIf="fees" [wide]="true">
+  <div class="account-info pl-20 pr-20 mb-8">
+    <div class="account-info__field">
+      <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>
+      <p class="pb-8">{{account.accountRS}}</p>
+    </div>
+    <div class="account-info__field">
+      <small class="secondary-text text-uppercase">{{'applied_commitment'| i18n}}</small>
+      <p class="pb-8 "><strong>{{account.committedBalanceNQT | burstAmount:'planck':true}}</strong></p>
+    </div>
+    <div class="account-info__field">
+      <small class="secondary-text text-uppercase">{{'balance_available'| i18n}}</small>
+      <p>{{getBalance() | burstAmount }}</p>
+    </div>
+  </div>
+  <div class="pl-20 pr-20">
+    <app-set-commitment-form [fees]="fees" [account]="account"></app-set-commitment-form>
+  </div>
+</app-page>

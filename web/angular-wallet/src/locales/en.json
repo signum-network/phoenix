@@ -1046,5 +1046,15 @@
   "your_passphrase": "Your Passphrase",
   "youve_got_burst": "You've got Burst!",
   "balance_locked": "Locked Balance",
-  "balance_available": "Available Balance"
+  "balance_available": "Available Balance",
+  "commitment": "Commitment",
+  "set_commitment": "Set Commitment",
+  "add_commitment": "Add Commitment",
+  "revoke_commitment": "Revoke Commitment",
+  "reward_recipient_assignment": "Reward Recipient Assignment",
+  "mining": "Mining",
+  "applied_commitment": "Applied Commitment",
+  "toggle_commitment_mode": "Toggle here between adding and revoking the mining commitment",
+  "success_set_commitment": "Successfully updated your mining commitment",
+  "error_set_commitment": "Error while updating mining commitment. Mind that you need to wait 1440 blocks before you can revoke your commitment."
 }

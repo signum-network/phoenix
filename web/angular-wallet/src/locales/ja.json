@@ -1033,5 +1033,15 @@
   "your_passphrase": "あなたのパスフレーズ",
   "youve_got_burst": "あなたはバーストを持っています！",
   "balance_locked": "ロックされたバランス",
-  "balance_available": "利用可能残高"
+  "balance_available": "利用可能残高",
+  "commitment": "コミットメント",
+  "set_commitment": "コミットメントを設定する",
+  "add_commitment": "コミットメントを追加",
+  "revoke_commitment": "コミットメントを取り消す",
+  "reward_recipient_assignment": "報酬受領者の割り当て",
+  "mining": "鉱業",
+  "applied_commitment": "適用されたコミットメント",
+  "toggle_commitment_mode": "ここで、マイニングコミットメントの追加と取り消しを切り替えます",
+  "success_set_commitment": "マイニングコミットメントを正常に更新しました",
+  "error_set_commitment": "マイニングコミットメントの更新中にエラーが発生しました。コミットメントを取り消すには、1440ブロック待つ必要があることに注意してください。"
 }

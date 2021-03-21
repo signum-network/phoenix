@@ -1,0 +1,53 @@
+<form (ngSubmit)="onSubmit($event);" #sendForm="ngForm">
+  <div>
+    <mat-slide-toggle
+      [(ngModel)]="isRevoking" name="isRevoking"
+      matTooltip="{{'toggle_commitment_mode' | i18n}}"
+    >
+      {{(isRevoking ? 'revoke_commitment' : "add_commitment") | i18n}}
+    </mat-slide-toggle>
+  </div>
+  <div class="amount-wrapper">
+    <mat-form-field>
+      <mat-label>{{ 'amount' | i18n }}</mat-label>
+      <span matPrefix>Ƀ &nbsp;</span>
+      <input matInput [(ngModel)]="amount" name="amount">
+      <mat-icon
+        class="all-icon"
+        matSuffix
+        matTooltip="{{'spend_all' | i18n}}"
+        (click)="onSpendAll()"
+      >
+        all_inclusive
+      </mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'fee' | i18n }}</mat-label>
+      <span matPrefix>Ƀ &nbsp;</span>
+      <input matInput [(ngModel)]="fee" name="fee">
+    </mat-form-field>
+  </div>
+
+  <burst-fee-selector [fees]="fees" [(feeNQT)]="fee"></burst-fee-selector>
+
+  <div class="send-button-wrapper">
+    <mat-form-field class="message-text password-field" floatLabel="never" appearance="standard">
+      <input type="password" matInput required placeholder="{{'enter_pin' | i18n}}" [(ngModel)]="pin" name="pin">
+    </mat-form-field>
+
+    <button class="send-button" mat-icon-button type="submit" aria-label="Send message"
+            [disabled]="!canSubmit()">
+      <ng-container *ngIf="!isSending">
+        <mat-icon [class.enabled]="canSubmit() || false">send</mat-icon>
+      </ng-container>
+      <ng-container *ngIf="isSending">
+        <mat-spinner diameter="20"></mat-spinner>
+      </ng-container>
+    </button>
+  </div>
+
+  <strong>Total:&nbsp;</strong>
+  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getBurst() | burstAmount }}</span>
+
+</form>

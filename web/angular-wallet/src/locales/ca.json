@@ -1033,5 +1033,15 @@
   "your_passphrase": "La vostre Contrasenya",
   "youve_got_burst": "Tens Burst!",
   "balance_locked": "Saldo bloquejat",
-  "balance_available": "Saldo disponible"
+  "balance_available": "Saldo disponible",
+  "commitment": "Compromís",
+  "set_commitment": "Estableix el compromís",
+  "add_commitment": "Afegeix compromís",
+  "revoke_commitment": "Revocar el compromís",
+  "reward_recipient_assignment": "Recompensa d'assignació del destinatari",
+  "mining": "Mineria",
+  "applied_commitment": "Compromís aplicat",
+  "toggle_commitment_mode": "Canvieu aquí entre afegir i revocar el compromís de mineria",
+  "success_set_commitment": "S'ha actualitzat correctament el compromís de mineria",
+  "error_set_commitment": "Error en actualitzar el compromís de mineria. Tingueu en compte que cal esperar 1.440 blocs per poder revocar el vostre compromís."
 }

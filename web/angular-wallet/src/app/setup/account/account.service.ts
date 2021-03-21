@@ -56,8 +56,12 @@ interface SetAliasRequest {
   keys: Keys;
 }
 
-interface NodeDescriptor {
-  url: string;
+interface SetCommitmentRequest {
+  amountPlanck: string;
+  feePlanck: string;
+  pin: string;
+  keys: Keys;
+  isRevoking: boolean;
 }
 
 
@@ -162,8 +166,11 @@ export class AccountService {
     return this.api.account.getUnconfirmedAccountTransactions(id);
   }
 
-  public getAccount(id: string): Promise<Account> {
-    return this.api.account.getAccount(id);
+  public getAccount(accountId: string): Promise<Account> {
+    return this.api.account.getAccount({
+      accountId,
+      includeCommittedAmount: true,
+    });
   }
 
   public getCurrentAccount(): Promise<Account> {
@@ -184,6 +191,21 @@ export class AccountService {
       deadline,
       feePlanck,
     });
+  }
+
+  public setCommitment({amountPlanck, feePlanck, pin, keys, isRevoking}: SetCommitmentRequest): Promise<TransactionId> {
+    const senderPrivateKey = this.getPrivateKey(keys, pin);
+
+    const args = {
+      amountPlanck,
+      senderPrivateKey,
+      senderPublicKey: keys.publicKey,
+      feePlanck,
+    };
+
+    return isRevoking
+      ? this.api.account.removeCommitment(args)
+      : this.api.account.addCommitment(args);
   }
 
   public createActiveAccount({passphrase, pin = ''}): Promise<Account> {
@@ -325,6 +347,7 @@ export class AccountService {
       account.description = remoteAccount.description;
       account.assetBalances = remoteAccount.assetBalances;
       account.unconfirmedAssetBalances = remoteAccount.unconfirmedAssetBalances;
+      account.committedBalanceNQT = remoteAccount.committedBalanceNQT;
       account.balanceNQT = remoteAccount.balanceNQT;
       account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
       // @ts-ignore

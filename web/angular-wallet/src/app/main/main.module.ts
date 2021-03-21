@@ -21,6 +21,7 @@ import {SendBurstModule} from './send-burst/send-burst.module';
 import {AccountsModule} from './accounts/accounts.module';
 import {SetAccountInfoModule} from './set-account-info/set-account-info.module';
 import {SetRewardRecipientModule} from './set-reward-recipient/set-reward-recipient.module';
+import {SetCommitmentModule} from './set-commitment/set-commitment.module';
 
 const mainRoutes: Routes = [
   {
@@ -93,7 +94,8 @@ const mainRoutes: Routes = [
     SendBurstModule,
     AccountsModule,
     SetAccountInfoModule,
-    SetRewardRecipientModule
+    SetRewardRecipientModule,
+    SetCommitmentModule
   ],
   exports: [
     MainComponent

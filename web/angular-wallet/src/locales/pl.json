@@ -1042,5 +1042,15 @@
   "your_passphrase": "Twoje hasło",
   "youve_got_burst": "Masz wybuch!",
   "balance_locked": "Zablokowana równowaga",
-  "balance_available": "Dostępne saldo"
+  "balance_available": "Dostępne saldo",
+  "commitment": "Zaangażowanie",
+  "set_commitment": "Ustaw zobowiązanie",
+  "add_commitment": "Dodaj zobowiązanie",
+  "revoke_commitment": "Odwołaj zobowiązanie",
+  "reward_recipient_assignment": "Przypisanie odbiorcy nagrody",
+  "mining": "Górnictwo",
+  "applied_commitment": "Zastosowane zobowiązanie",
+  "toggle_commitment_mode": "Przełączaj się tutaj między dodawaniem a odwołaniem zobowiązania do wydobywania",
+  "success_set_commitment": "Pomyślnie zaktualizowano Twoje zobowiązanie do wydobycia",
+  "error_set_commitment": "Błąd podczas aktualizowania zobowiązania do wydobywania. Pamiętaj, że musisz odczekać 1440 bloków, zanim będziesz mógł odwołać swoje zobowiązanie."
 }

@@ -2,17 +2,20 @@ import {
   Component,
   Input,
   ViewChild,
-  AfterViewInit} from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+  AfterViewInit
+} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 import {
   Transaction,
   Account,
   isMultiOutSameTransaction,
   isMultiOutTransaction,
-  getRecipientsAmount
+  getRecipientsAmount,
+  TransactionMiningSubtype,
+  TransactionType
 } from '@burstjs/core';
-import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
+import {convertBurstTimeToDate, convertNQTStringToNumber, BurstValue} from '@burstjs/util';
 import {UtilService} from 'app/util.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
@@ -44,7 +47,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   @Input() public displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
   @Input() account: Account;
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   public isMultiOutPayment(transaction: Transaction): boolean {
     return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction);
@@ -79,6 +82,17 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
   public isAmountNegative(transaction: Transaction): boolean {
     const isZero = parseFloat(transaction.amountNQT) === 0;
-    return  !isZero && this.isOwnAccount(transaction.senderRS);
+    return !isZero && this.isOwnAccount(transaction.senderRS);
+  }
+
+  public isCommitment(transaction: Transaction): boolean {
+    return transaction.type === TransactionType.Mining && (
+      transaction.subtype === TransactionMiningSubtype.AddCommitment ||
+      transaction.subtype === TransactionMiningSubtype.RemoveCommitment
+    );
+  }
+
+  getCommitmentAmount(transaction): string {
+    return BurstValue.fromPlanck(transaction.attachment.amountNQT || '0').getBurst();
   }
 }

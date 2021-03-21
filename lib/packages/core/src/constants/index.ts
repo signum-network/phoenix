@@ -4,7 +4,7 @@ import {TransactionAssetSubtype} from './transactionAssetSubtype';
 import {TransactionLeasingSubtype} from './transactionLeasingSubtype';
 import {TransactionMarketplaceSubtype} from './transactionMarketplaceSubtype';
 import {TransactionPaymentSubtype} from './transactionPaymentSubtype';
-import {TransactionRewardRecipientSubtype} from './transactionRewardRecipientSubtype';
+import {TransactionMiningSubtype} from './transactionMiningSubtype';
 import {TransactionEscrowSubtype} from './transactionEscrowSubtype';
 import {TransactionSmartContractSubtype} from './transactionSmartContractSubtype';
 
@@ -29,7 +29,7 @@ export {
     TransactionLeasingSubtype,
     TransactionAssetSubtype,
     TransactionArbitrarySubtype,
-    TransactionRewardRecipientSubtype,
+    TransactionMiningSubtype,
     TransactionEscrowSubtype,
     TransactionSmartContractSubtype
 };

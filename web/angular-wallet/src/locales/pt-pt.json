@@ -1033,5 +1033,15 @@
   "your_passphrase": "A sua senha",
   "youve_got_burst": "Você tem Burst!",
   "balance_locked": "Saldo Bloqueado",
-  "balance_available": "Saldo disponível"
+  "balance_available": "Saldo disponível",
+  "commitment": "Comprometimento",
+  "set_commitment": "Definir Compromisso",
+  "add_commitment": "Adicionar Compromisso",
+  "revoke_commitment": "Revogar Compromisso",
+  "reward_recipient_assignment": "Atribuição de Destinatário de Recompensa",
+  "mining": "Mineração",
+  "applied_commitment": "Compromisso Aplicado",
+  "toggle_commitment_mode": "Alterne aqui entre adicionar e revogar o compromisso de mineração",
+  "success_set_commitment": "Atualizou com sucesso seu compromisso de mineração",
+  "error_set_commitment": "Erro ao atualizar o compromisso de mineração. Lembre-se de que você precisa esperar 1440 blocos antes de cancelar seu compromisso."
 }

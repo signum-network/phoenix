@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
 
 ## 0.6.0
 
+__Breaking Changes__
+
+- `getAccount` accepts an argument object now
+- `TransactionRewardRecipentSubtype` renamed to `TransactionMiningSubtype`
+
+------------------------
+
+__New__
+
 - deprecated `suggestFee`
   - use `getSuggestedFees`
 - added new methods to transaction Api
@@ -16,6 +25,7 @@ All notable changes to this project will be documented in this file.
   - `transferAsset`
 - Added BurstAddress Value Object
 - Added `addCommitment`, `removeCommitment`
+- `Api` interface "leaks" the underlying BRS service instance
 
 ---
 __Fixes__

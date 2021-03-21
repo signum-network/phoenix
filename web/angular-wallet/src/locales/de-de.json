@@ -1033,5 +1033,15 @@
   "your_passphrase": "Ihre Passphrase",
   "youve_got_burst": "Du hast Burst!",
   "balance_locked": "Geblocktes Guthaben",
-  "balance_available": "Verfügbares Guthaben"
+  "balance_available": "Verfügbares Guthaben",
+  "commitment": "Einsatz",
+  "set_commitment": "Einsatz festlegen",
+  "add_commitment": "Einsatz hinzufügen",
+  "revoke_commitment": "Einsatz widerrufen",
+  "reward_recipient_assignment": "Belohnungsempfängerzuweisung",
+  "mining": "Bergbau",
+  "applied_commitment": "Angewandter Einsatz",
+  "toggle_commitment_mode": "Wechseln Sie hier zwischen dem Hinzufügen und Widerrufen des Mining-Einsatzes",
+  "success_set_commitment": "Ihr Mining-Einsatz wurde erfolgreich aktualisiert",
+  "error_set_commitment": "Fehler beim Aktualisieren des Mining-Einsatzes. Beachten Sie, dass Sie 1440 Blöcke warten müssen, bevor Sie Ihren Einsatz widerrufen können."
 }

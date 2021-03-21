@@ -1033,5 +1033,15 @@
   "your_passphrase": "Vaše heslo",
   "youve_got_burst": "Máte Burst!",
   "balance_locked": "Uzamknutý zostatok",
-  "balance_available": "Disponibilný zostatok"
+  "balance_available": "Disponibilný zostatok",
+  "commitment": "Viazanosť",
+  "set_commitment": "Stanoviť záväzok",
+  "add_commitment": "Pridajte záväzok",
+  "revoke_commitment": "Odvolať záväzok",
+  "reward_recipient_assignment": "Odmena Priradenie príjemcu",
+  "mining": "Ťažba",
+  "applied_commitment": "Uplatnený záväzok",
+  "toggle_commitment_mode": "Tu prepnite medzi pridaním a odvolaním záväzku ťažby",
+  "success_set_commitment": "Úspešne ste aktualizovali svoj záväzok k ťažbe",
+  "error_set_commitment": "Chyba pri aktualizácii záväzku ťažby. Nezabudnite, že pred odvolaním svojho záväzku musíte počkať 1 440 blokov."
 }
