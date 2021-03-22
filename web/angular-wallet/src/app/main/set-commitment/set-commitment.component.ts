@@ -23,29 +23,27 @@ export class SetCommitmentComponent extends UnsubscribeOnDestroy implements OnIn
     super();
   }
 
-
   ngOnInit(): void {
     this.account = this.route.snapshot.data.account as Account;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
 
+    const unsubscribeAll = takeUntil(this.unsubscribeAll);
     this.storeService.settings
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
-      .subscribe(async ({language}) => {
+      .pipe(unsubscribeAll)
+      .subscribe(({language}) => {
           this.language = language;
         }
       );
 
     this.storeService.ready
-      .pipe(takeUntil(this.unsubscribeAll))
+      .pipe(unsubscribeAll)
       .subscribe((ready) => {
         if (!ready) {
           return;
         }
         this.accountService.currentAccount
-          .pipe(takeUntil(this.unsubscribeAll))
-          .subscribe((account) => {
+          .pipe(unsubscribeAll)
+          .subscribe((account: Account) => {
             this.account = account;
           });
       });
