@@ -3,9 +3,9 @@ name: Build BurstJS
 on:
   push:
     branches:
-      - "*"
-    #    paths:
-#      - "lib/**"
+      - "**"
+    paths:
+      - "lib/**"
     tags-ignore:
         - desktop-[0-9]+.[0-9]+.[0-9]+*
 
