@@ -67,7 +67,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
   getTotal(): BurstValue {
     return this.amount !== undefined && this.fee !== undefined
       ? BurstValue.fromBurst(this.amount).add(BurstValue.fromBurst(this.fee))
-      : BurstValue.fromPlanck('0');
+      : BurstValue.Zero();
   }
 
   async onSubmit(): Promise<void> {
