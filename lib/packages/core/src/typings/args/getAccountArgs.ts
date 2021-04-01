@@ -15,5 +15,5 @@ export interface GetAccountArgs {
     accountId: string;
     commitmentAtHeight?: number;
     includeCommittedAmount?: boolean;
-    includeEstimatedCommitment?: true;
+    includeEstimatedCommitment?: boolean;
 }
