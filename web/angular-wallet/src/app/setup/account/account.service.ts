@@ -5,7 +5,8 @@ import 'rxjs/add/operator/timeout';
 import semver from 'semver';
 import {environment} from 'environments/environment';
 import {StoreService} from 'app/store/store.service';
-import {Settings} from 'app/settings';
+
+
 import {
   Account,
   AliasList,
@@ -28,7 +29,7 @@ import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {constants} from 'app/constants';
 import {HttpError, HttpClientFactory} from '@burstjs/http';
 import {AssetList} from '@burstjs/core/out/typings/assetList';
-import {Asset} from '@burstjs/core/src';
+import {Asset, BlockList, TransactionMiningSubtype, TransactionType} from '@burstjs/core/src';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -83,6 +84,15 @@ export class AccountService {
     this.currentAccount.next(account);
   }
 
+  public async getAddedCommitments(account: Account):  Promise<TransactionList> {
+    return this.api.account.getAccountTransactions({
+      accountId: account.account,
+      type: TransactionType.Mining,
+      subtype: TransactionMiningSubtype.AddCommitment,
+      includeIndirect: false,
+    });
+  }
+
   public async getAccountTransactions(
     accountId: string,
     firstIndex?: number,
@@ -101,6 +111,7 @@ export class AccountService {
       subtype,
     };
     try {
+      // TODO: this can be removed in the next iterations.
       const apiVersion = await this.apiService.fetchBrsApiVersion();
       const includeMultiouts = semver.gte(apiVersion, constants.multiOutMinVersion, {includePrerelease: true}) || undefined;
       const transactions = await this.api.account.getAccountTransactions({
@@ -379,4 +390,10 @@ export class AccountService {
       throw e;
     }
   }
+
+  public async getMintedBlocks(account: Account): Promise<BlockList> {
+    return this.api.account.getAccountBlocks({accountId: account.account});
+  }
+
+
 }

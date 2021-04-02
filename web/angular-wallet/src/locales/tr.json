@@ -1043,5 +1043,6 @@
   "applied_commitment": "Uygulamalı Taahhüt",
   "toggle_commitment_mode": "Madencilik taahhüdünü ekleme ve iptal etme arasında buradan geçiş yapın",
   "success_set_commitment": "Madencilik taahhüdünüzü başarıyla güncelledi",
-  "error_set_commitment": "Madencilik taahhüdü güncellenirken hata oluştu. Taahhüdünüzü iptal etmeden önce 1440 blok beklemeniz gerektiğini unutmayın."
+  "error_set_commitment": "Madencilik taahhüdü güncellenirken hata oluştu. Taahhüdünüzü iptal etmeden önce 1440 blok beklemeniz gerektiğini unutmayın.",
+  "commitment_blocks_enabled": "taahhüt iptal edilebilene kadar eksik bloklar"
 }

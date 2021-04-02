@@ -1043,5 +1043,6 @@
   "applied_commitment": "Uplatnený záväzok",
   "toggle_commitment_mode": "Tu prepnite medzi pridaním a odvolaním záväzku ťažby",
   "success_set_commitment": "Úspešne ste aktualizovali svoj záväzok k ťažbe",
-  "error_set_commitment": "Chyba pri aktualizácii záväzku ťažby. Nezabudnite, že pred odvolaním svojho záväzku musíte počkať 1 440 blokov."
+  "error_set_commitment": "Chyba pri aktualizácii záväzku ťažby. Nezabudnite, že pred odvolaním svojho záväzku musíte počkať 1 440 blokov.",
+  "commitment_blocks_enabled": "bloky chýbajú, kým nie je možné odvolať záväzok"
 }

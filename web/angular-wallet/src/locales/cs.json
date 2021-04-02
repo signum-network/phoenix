@@ -1043,5 +1043,6 @@
   "applied_commitment": "Použitý závazek",
   "toggle_commitment_mode": "Zde přepínejte mezi přidáním a odvoláním závazku těžby",
   "success_set_commitment": "Úspěšně aktualizován váš závazek k těžbě",
-  "error_set_commitment": "Chyba při aktualizaci závazku těžby. Mějte na paměti, že než budete moci svůj závazek odvolat, musíte počkat 1440 bloků."
+  "error_set_commitment": "Chyba při aktualizaci závazku těžby. Mějte na paměti, že než budete moci svůj závazek odvolat, musíte počkat 1440 bloků.",
+  "commitment_blocks_enabled": "bloky chybí do odvolání závazku"
 }

@@ -1042,5 +1042,6 @@
   "applied_commitment": "",
   "toggle_commitment_mode": "",
   "success_set_commitment": "",
-  "error_set_commitment": ""
+  "error_set_commitment": "",
+  "commitment_blocks_enabled": ""
 }

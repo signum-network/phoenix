@@ -1043,5 +1043,6 @@
   "applied_commitment": "Toegepaste toewijding",
   "toggle_commitment_mode": "Schakel hier tussen het toevoegen en intrekken van de mijnverplichting",
   "success_set_commitment": "Uw mijnverplichting succesvol bijgewerkt",
-  "error_set_commitment": "Fout bij het bijwerken van mijnverplichting. Houd er rekening mee dat u 1440 blokken moet wachten voordat u uw toezegging kunt herroepen."
+  "error_set_commitment": "Fout bij het bijwerken van mijnverplichting. Houd er rekening mee dat u 1440 blokken moet wachten voordat u uw toezegging kunt herroepen.",
+  "commitment_blocks_enabled": "blokken ontbreken totdat de toezegging kan worden herroepen"
 }

@@ -1043,5 +1043,6 @@
   "applied_commitment": "Komitmen yang Diterapkan",
   "toggle_commitment_mode": "Alihkan di sini antara menambah dan mencabut komitmen pertambangan",
   "success_set_commitment": "Berhasil memperbarui komitmen penambangan Anda",
-  "error_set_commitment": "Kesalahan saat memperbarui komitmen penambangan. Ingatlah bahwa Anda perlu menunggu 1.440 blok sebelum Anda dapat mencabut komitmen Anda."
+  "error_set_commitment": "Kesalahan saat memperbarui komitmen penambangan. Ingatlah bahwa Anda perlu menunggu 1.440 blok sebelum Anda dapat mencabut komitmen Anda.",
+  "commitment_blocks_enabled": "blok hilang sampai komitmen dapat dicabut"
 }

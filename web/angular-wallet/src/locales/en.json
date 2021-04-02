@@ -1056,5 +1056,6 @@
   "applied_commitment": "Applied Commitment",
   "toggle_commitment_mode": "Toggle here between adding and revoking the mining commitment",
   "success_set_commitment": "Successfully updated your mining commitment",
-  "error_set_commitment": "Error while updating mining commitment. Mind that you need to wait 1440 blocks before you can revoke your commitment."
+  "error_set_commitment": "Error while updating mining commitment. Mind that you need to wait 1440 blocks before you can revoke your commitment.",
+  "commitment_blocks_enabled": "blocks missing until commitment can be revoked"
 }

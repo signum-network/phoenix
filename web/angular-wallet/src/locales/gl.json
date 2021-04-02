@@ -1043,5 +1043,6 @@
   "applied_commitment": "Compromiso aplicado",
   "toggle_commitment_mode": "Alternar entre engadir e revogar o compromiso mineiro",
   "success_set_commitment": "Actualizouse correctamente o seu compromiso coa minería",
-  "error_set_commitment": "Erro ao actualizar o compromiso mineiro. Ten en conta que debes esperar 1440 bloques antes de poder revogar o teu compromiso."
+  "error_set_commitment": "Erro ao actualizar o compromiso mineiro. Ten en conta que debes esperar 1440 bloques antes de poder revogar o teu compromiso.",
+  "commitment_blocks_enabled": "faltan bloques ata que se poida revogar o compromiso"
 }

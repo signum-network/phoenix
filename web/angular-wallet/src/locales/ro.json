@@ -1043,5 +1043,6 @@
   "applied_commitment": "Angajament aplicat",
   "toggle_commitment_mode": "Comutați aici între adăugarea și revocarea angajamentului minier",
   "success_set_commitment": "V-ați actualizat cu succes angajamentul minier",
-  "error_set_commitment": "Eroare la actualizarea angajamentului minier. Rețineți că trebuie să așteptați 1440 de blocuri înainte de a vă putea revoca angajamentul."
+  "error_set_commitment": "Eroare la actualizarea angajamentului minier. Rețineți că trebuie să așteptați 1440 de blocuri înainte de a vă putea revoca angajamentul.",
+  "commitment_blocks_enabled": "blocurile lipsesc până când angajamentul poate fi revocat"
 }

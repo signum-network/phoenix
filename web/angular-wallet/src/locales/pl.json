@@ -1052,5 +1052,6 @@
   "applied_commitment": "Zastosowane zobowiązanie",
   "toggle_commitment_mode": "Przełączaj się tutaj między dodawaniem a odwołaniem zobowiązania do wydobywania",
   "success_set_commitment": "Pomyślnie zaktualizowano Twoje zobowiązanie do wydobycia",
-  "error_set_commitment": "Błąd podczas aktualizowania zobowiązania do wydobywania. Pamiętaj, że musisz odczekać 1440 bloków, zanim będziesz mógł odwołać swoje zobowiązanie."
+  "error_set_commitment": "Błąd podczas aktualizowania zobowiązania do wydobywania. Pamiętaj, że musisz odczekać 1440 bloków, zanim będziesz mógł odwołać swoje zobowiązanie.",
+  "commitment_blocks_enabled": "brakujące bloki do czasu odwołania zobowiązania"
 }

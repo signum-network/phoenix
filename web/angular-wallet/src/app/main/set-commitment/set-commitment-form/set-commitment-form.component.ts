@@ -13,6 +13,7 @@ import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {ActivatedRoute, Router} from '@angular/router';
 import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
 import {AccountService} from '../../../setup/account/account.service';
+import {NetworkService} from '../../../network/network.service';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -33,12 +34,14 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
   public fee: string;
   public isRevoking: boolean;
   isSending = false;
+  blocksMissingUntilRevoke = 0;
   language: string;
 
   private balances: AccountBalances;
 
   constructor(
     private accountService: AccountService,
+    private networkService: NetworkService,
     private transactionService: TransactionService,
     private notifierService: NotifierService,
     private i18nService: I18nService,
@@ -62,6 +65,32 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       this.fee = BurstValue.fromPlanck(this.fees.standard.toString(10)).getBurst();
       this.balances = getBalancesFromAccount(this.account);
     });
+    this.checkForCommitmentRemoval();
+  }
+
+  private async checkForCommitmentRemoval(): Promise<void> {
+
+    const [
+      {blocks},
+      {transactions},
+      {numberOfBlocks}
+      ] = await Promise.all([
+      this.accountService.getMintedBlocks(this.account),
+      this.accountService.getAddedCommitments(this.account),
+      this.networkService.getBlockchainStatus()
+    ]);
+
+    /**
+     * Rules for being eligible for revocation
+     * rule 1: at least 60 blocks since last add commitment
+     * rule 2: at least 1440 blocks since last minted block
+     */
+    const blocksMissingSinceLastAddedCommitment = transactions.length ? numberOfBlocks - transactions[0].height : 60;
+    const blocksMissingSinceLastMintedBlock =  blocks.length ? numberOfBlocks - blocks[0].height : 1440;
+
+    this.blocksMissingUntilRevoke = Math.max(
+      60 - blocksMissingSinceLastAddedCommitment,
+      1440 - blocksMissingSinceLastMintedBlock);
   }
 
   getTotal(): BurstValue {
@@ -100,9 +129,6 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       const hasBalanceToPayFee = this.balances.availableBalance.clone()
         .greaterOrEqual(fee);
 
-      // FIXME: I cannot only pick the committedBalance, but also need to
-      // consider the last mined block or (if not exists) the latest addCommitment
-      // I can "withdraw" only after 1440 blocks after one of the mentioned events
       const revokableCommitment = this.balances.committedBalance.clone();
 
       return hasBalanceToPayFee &&
@@ -129,5 +155,9 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
     this.amount = this.isRevoking
       ? this.balances.committedBalance.clone().getBurst()
       : this.balances.availableBalance.clone().subtract(fee).getBurst();
+  }
+
+  canRevoke(): boolean {
+    return this.blocksMissingUntilRevoke === 0;
   }
 }

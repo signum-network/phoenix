@@ -1043,5 +1043,6 @@
   "applied_commitment": "Sovellettu sitoutuminen",
   "toggle_commitment_mode": "Vaihda täältä kaivositoumuksen lisäämisen ja peruuttamisen välillä",
   "success_set_commitment": "Kaivos sitoutumisen päivittäminen onnistui",
-  "error_set_commitment": "Virhe kaivos sitoutumista päivitettäessä. Muista, että sinun on odotettava 1440 lohkoa, ennen kuin voit peruuttaa sitoumuksesi."
+  "error_set_commitment": "Virhe kaivos sitoutumista päivitettäessä. Muista, että sinun on odotettava 1440 lohkoa, ennen kuin voit peruuttaa sitoumuksesi.",
+  "commitment_blocks_enabled": "lohkot puuttuvat, kunnes sitoumus voidaan peruuttaa"
 }

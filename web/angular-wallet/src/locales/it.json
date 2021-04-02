@@ -1043,5 +1043,6 @@
   "applied_commitment": "Impegno applicato",
   "toggle_commitment_mode": "Passa qui tra l'aggiunta e la revoca dell'impegno di mining",
   "success_set_commitment": "Aggiornato con successo il tuo impegno minerario",
-  "error_set_commitment": "Errore durante l'aggiornamento dell'impegno di mining. Tieni presente che devi attendere 1440 blocchi prima di poter revocare il tuo impegno."
+  "error_set_commitment": "Errore durante l'aggiornamento dell'impegno di mining. Tieni presente che devi attendere 1440 blocchi prima di poter revocare il tuo impegno.",
+  "commitment_blocks_enabled": "blocchi mancanti fino alla revoca dell'impegno"
 }

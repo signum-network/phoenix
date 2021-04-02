@@ -1047,5 +1047,6 @@
   "applied_commitment": "Compromisso Aplicado",
   "toggle_commitment_mode": "Alterne aqui entre adicionar e revogar o compromisso de mineração",
   "success_set_commitment": "Atualizou com sucesso seu compromisso de mineração",
-  "error_set_commitment": "Erro ao atualizar o compromisso de mineração. Lembre-se de que você precisa esperar 1440 blocos antes de cancelar seu compromisso."
+  "error_set_commitment": "Erro ao atualizar o compromisso de mineração. Lembre-se de que você precisa esperar 1440 blocos antes de cancelar seu compromisso.",
+  "commitment_blocks_enabled": "blocos ausentes até que o compromisso possa ser revogado"
 }

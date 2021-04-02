@@ -1043,5 +1043,6 @@
   "applied_commitment": "Primijenjena predanost",
   "toggle_commitment_mode": "Ovdje se prebacujte između dodavanja i opoziva rudarske obveze",
   "success_set_commitment": "Uspješno ste ažurirali svoju obvezu rudarenja",
-  "error_set_commitment": "Pogreška prilikom ažuriranja obveze rudarstva. Imajte na umu da trebate pričekati 1440 blokova prije nego što možete opozvati svoju obvezu."
+  "error_set_commitment": "Pogreška prilikom ažuriranja obveze rudarstva. Imajte na umu da trebate pričekati 1440 blokova prije nego što možete opozvati svoju obvezu.",
+  "commitment_blocks_enabled": "nedostaju blokovi dok se obveza ne može opozvati"
 }

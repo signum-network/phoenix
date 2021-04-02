@@ -1043,5 +1043,6 @@
   "applied_commitment": "Engagement appliqué",
   "toggle_commitment_mode": "Basculer ici entre l'ajout et la révocation de l'engagement minier",
   "success_set_commitment": "Mise à jour réussie de votre engagement minier",
-  "error_set_commitment": "Erreur lors de la mise à jour de l'engagement de minage. N'oubliez pas que vous devez attendre 1440 blocs avant de pouvoir révoquer votre engagement."
+  "error_set_commitment": "Erreur lors de la mise à jour de l'engagement de minage. N'oubliez pas que vous devez attendre 1440 blocs avant de pouvoir révoquer votre engagement.",
+  "commitment_blocks_enabled": "blocs manquants jusqu'à ce que l'engagement puisse être révoqué"
 }

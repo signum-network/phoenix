@@ -1043,5 +1043,6 @@
   "applied_commitment": "Compromís aplicat",
   "toggle_commitment_mode": "Canvieu aquí entre afegir i revocar el compromís de mineria",
   "success_set_commitment": "S'ha actualitzat correctament el compromís de mineria",
-  "error_set_commitment": "Error en actualitzar el compromís de mineria. Tingueu en compte que cal esperar 1.440 blocs per poder revocar el vostre compromís."
+  "error_set_commitment": "Error en actualitzar el compromís de mineria. Tingueu en compte que cal esperar 1.440 blocs per poder revocar el vostre compromís.",
+  "commitment_blocks_enabled": "falten blocs fins que es pugui revocar el compromís"
 }

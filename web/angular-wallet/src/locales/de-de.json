@@ -1043,5 +1043,6 @@
   "applied_commitment": "Angewandter Einsatz",
   "toggle_commitment_mode": "Wechseln Sie hier zwischen dem Hinzufügen und Widerrufen des Mining-Einsatzes",
   "success_set_commitment": "Ihr Mining-Einsatz wurde erfolgreich aktualisiert",
-  "error_set_commitment": "Fehler beim Aktualisieren des Mining-Einsatzes. Beachten Sie, dass Sie 1440 Blöcke warten müssen, bevor Sie Ihren Einsatz widerrufen können."
+  "error_set_commitment": "Fehler beim Aktualisieren des Mining-Einsatzes. Beachten Sie, dass Sie 1440 Blöcke warten müssen, bevor Sie Ihren Einsatz widerrufen können.",
+  "commitment_blocks_enabled": "Blöcke fehlen, bis der Einsatz widerrufen werden kann"
 }

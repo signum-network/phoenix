@@ -1043,5 +1043,6 @@
   "applied_commitment": "Taikomas įsipareigojimas",
   "toggle_commitment_mode": "Čia perjunkite kasybos įsipareigojimo pridėjimą ir atšaukimą",
   "success_set_commitment": "Sėkmingai atnaujinote įsipareigojimą kasybos srityje",
-  "error_set_commitment": "Atnaujinant kasybos įsipareigojimą įvyko klaida. Atminkite, kad jums reikia palaukti 1440 blokų, kad galėtumėte atšaukti savo įsipareigojimą."
+  "error_set_commitment": "Atnaujinant kasybos įsipareigojimą įvyko klaida. Atminkite, kad jums reikia palaukti 1440 blokų, kad galėtumėte atšaukti savo įsipareigojimą.",
+  "commitment_blocks_enabled": "blokų trūksta, kol nebus galima atšaukti įsipareigojimų"
 }
