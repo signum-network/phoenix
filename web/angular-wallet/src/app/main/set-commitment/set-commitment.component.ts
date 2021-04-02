@@ -7,10 +7,6 @@ import {takeUntil} from 'rxjs/operators';
 import {getBalancesFromAccount} from '../../util/balance';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 
-// test
-
-
-
 @Component({
   selector: 'app-set-commitment',
   templateUrl: './set-commitment.component.html',

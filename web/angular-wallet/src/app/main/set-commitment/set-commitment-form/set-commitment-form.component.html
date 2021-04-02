@@ -37,21 +37,10 @@
 
     <burst-fee-selector [fees]="fees" [(fee)]="fee"></burst-fee-selector>
 
-    <div class="send-button-wrapper">
-      <mat-form-field class="message-text password-field" floatLabel="never" appearance="standard">
-        <input type="password" matInput required placeholder="{{'enter_pin' | i18n}}" [(ngModel)]="pin" name="pin">
-      </mat-form-field>
-
-      <button class="send-button" mat-icon-button type="submit" aria-label="Send message"
-              [disabled]="!canSubmit()">
-        <ng-container *ngIf="!isSending">
-          <mat-icon [class.enabled]="canSubmit() || false">send</mat-icon>
-        </ng-container>
-        <ng-container *ngIf="isSending">
-          <mat-spinner diameter="20"></mat-spinner>
-        </ng-container>
-      </button>
-    </div>
+    <app-submit-transaction [disabled]="!canSubmit()"
+                             [isSubmitting]="isSending"
+                             (pinChange)="setPin($event)">
+    </app-submit-transaction>
 
     <strong>Total:&nbsp;</strong>
     <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getBurst() | burstAmount }}</span>

@@ -20,6 +20,8 @@ import { SuggestFeeResolver } from '../../network/suggest-fee.resolver';
 import { NetworkModule } from 'app/network/network.module';
 import { LayoutModule } from 'app/layout/layout.module';
 import { LoginGuard } from 'app/login/login-guard.service';
+import {PageModule} from '../../components/page/page.module';
+import {SubmitTransactionModule} from '../../components/submit-transaction/submit-transaction.module';
 
 const routes = [
   {
@@ -27,15 +29,15 @@ const routes = [
     component: SetRewardRecipientComponent,
     canActivate: [LoginGuard],
     resolve: {
-      account: AccountResolver, 
+      account: AccountResolver,
       suggestedFees: SuggestFeeResolver
     }
   }
 ];
 
 @NgModule({
-  declarations: [ 
-    SetRewardRecipientComponent, 
+  declarations: [
+    SetRewardRecipientComponent,
   ],
   imports: [
     CommonModule,
@@ -54,7 +56,9 @@ const routes = [
     MatCheckboxModule,
     NetworkModule,
     LayoutModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    PageModule,
+    SubmitTransactionModule
   ]
 })
 export class SetRewardRecipientModule { }

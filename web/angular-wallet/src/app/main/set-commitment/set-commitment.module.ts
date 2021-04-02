@@ -24,6 +24,7 @@ import {AppSharedModule} from '../../shared/shared.module';
 import {PageModule} from '../../components/page/page.module';
 import {MatProgressSpinnerModule, MatSlideToggleModule, MatTabsModule, MatTooltipModule} from '@angular/material';
 import {SetCommitmentFormComponent} from './set-commitment-form/set-commitment-form.component';
+import {SubmitTransactionModule} from '../../components/submit-transaction/submit-transaction.module';
 
 const routes = [
   {
@@ -66,6 +67,8 @@ const routes = [
     MatTooltipModule,
     MatProgressSpinnerModule,
     MatSlideToggleModule,
+    SubmitTransactionModule,
+    SubmitTransactionModule,
   ]
 })
 export class SetCommitmentModule {

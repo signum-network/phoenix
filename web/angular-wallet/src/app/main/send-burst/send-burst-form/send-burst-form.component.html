@@ -55,7 +55,7 @@
     </mat-form-field>
   </div>
 
-  <div class="send-button-wrapper">
+  <div class="submit-transaction">
     <mat-form-field class="message-text password-field" floatLabel="never" appearance="standard">
       <input type="password" matInput required placeholder="{{'enter_pin' | i18n}}" [(ngModel)]="pin" name="pin">
     </mat-form-field>
@@ -71,9 +71,7 @@
     </button>
   </div>
 
-
   <strong>Total:&nbsp;</strong>
   <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getBurst() | burstAmount }}</span> -
   <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
-
 </form>

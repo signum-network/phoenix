@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, AfterViewInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Account, SuggestedFees} from '@burstjs/core';
 import {
   BurstValue
@@ -22,20 +22,21 @@ const isNotEmpty = (value: string) => value && value.length > 0;
   templateUrl: './set-commitment-form.component.html',
   styleUrls: ['./set-commitment-form.component.scss']
 })
-export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
+export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements OnInit {
   @ViewChild('sendForm', {static: true}) public sendForm: NgForm;
   @ViewChild('amount', {static: true}) public amount: string;
   @ViewChild('message', {static: true}) public message: string;
-  @ViewChild('pin', {static: true}) public pin: string;
 
   @Input() account: Account;
   @Input() fees: SuggestedFees;
 
-  public fee: string;
-  public isRevoking: boolean;
+  fee: string;
+  isRevoking: boolean;
   isSending = false;
   blocksMissingUntilRevoke = 0;
   language: string;
+  pin: string;
+
 
   private balances: AccountBalances;
 
@@ -65,10 +66,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       this.fee = BurstValue.fromPlanck(this.fees.standard.toString(10)).getBurst();
       this.balances = getBalancesFromAccount(this.account);
     }, 0);
-  }
-
-  ngAfterViewInit(): void {
-
+    this.checkForCommitmentRemoval();
   }
 
   private async checkForCommitmentRemoval(): Promise<void> {
@@ -116,6 +114,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       this.sendForm.resetForm();
       await this.router.navigate(['/']);
     } catch (e) {
+      // FIXME: need to chek the pin stuff - this error does not apply in all cases
       this.notifierService.notify('error', this.i18nService.getTranslation('error_set_commitment'));
     } finally {
       this.isSending = false;
@@ -162,5 +161,9 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
 
   canRevoke(): boolean {
     return this.blocksMissingUntilRevoke === 0;
+  }
+
+  setPin(pin: string): void {
+    this.pin = pin;
   }
 }
