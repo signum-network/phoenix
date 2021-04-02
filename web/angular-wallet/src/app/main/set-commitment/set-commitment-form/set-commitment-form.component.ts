@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, AfterViewInit, ViewChild} from '@angular/core';
 import {Account, SuggestedFees} from '@burstjs/core';
 import {
   BurstValue
@@ -22,7 +22,7 @@ const isNotEmpty = (value: string) => value && value.length > 0;
   templateUrl: './set-commitment-form.component.html',
   styleUrls: ['./set-commitment-form.component.scss']
 })
-export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements OnInit {
+export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
   @ViewChild('sendForm', {static: true}) public sendForm: NgForm;
   @ViewChild('amount', {static: true}) public amount: string;
   @ViewChild('message', {static: true}) public message: string;
@@ -64,8 +64,11 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
     setTimeout(() => {
       this.fee = BurstValue.fromPlanck(this.fees.standard.toString(10)).getBurst();
       this.balances = getBalancesFromAccount(this.account);
-    });
-    this.checkForCommitmentRemoval();
+    }, 0);
+  }
+
+  ngAfterViewInit(): void {
+
   }
 
   private async checkForCommitmentRemoval(): Promise<void> {
@@ -74,7 +77,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       {blocks},
       {transactions},
       {numberOfBlocks}
-      ] = await Promise.all([
+    ] = await Promise.all([
       this.accountService.getMintedBlocks(this.account),
       this.accountService.getAddedCommitments(this.account),
       this.networkService.getBlockchainStatus()
@@ -86,7 +89,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
      * rule 2: at least 1440 blocks since last minted block
      */
     const blocksMissingSinceLastAddedCommitment = transactions.length ? numberOfBlocks - transactions[0].height : 60;
-    const blocksMissingSinceLastMintedBlock =  blocks.length ? numberOfBlocks - blocks[0].height : 1440;
+    const blocksMissingSinceLastMintedBlock = blocks.length ? numberOfBlocks - blocks[0].height : 1440;
 
     this.blocksMissingUntilRevoke = Math.max(
       60 - blocksMissingSinceLastAddedCommitment,
