@@ -415,20 +415,35 @@ describe('AccountApi', () => {
     });
 
     describe('getAccountBlocks()', () => {
-        // FIXME: The mocked result is not according the BRS HTTP API!
         it('should getAccountBlocks', async () => {
-            httpMock = HttpMockBuilder.create().onGetReply(200, {
-                blocks: [{'block': '1798696848813217050'}]
-            }).build();
+            httpMock = HttpMockBuilder.create().onGetReply(
+                200,
+                {blocks: []}, // no need to test the mocked result... focus is the correctly mounted url
+                '/burst?requestType=getAccountBlocks&account=accountId&firstIndex=1000&lastIndex=0&includeTransactions=true'
+            ).build();
             const service = createBurstService(httpMock);
-            const blockResponse = await getAccountBlocks(service)(1);
-            expect(blockResponse.blocks[0].block).toBe('1798696848813217050');
+            const blockResponse = await getAccountBlocks(service)({
+                accountId: 'accountId',
+                lastIndex: 0,
+                firstIndex: 1000,
+                includeTransactions: true
+            });
+            expect(blockResponse.blocks).toEqual([]);
         });
 
         it('should getAccountBlockIds', async () => {
-            httpMock = HttpMockBuilder.create().onGetReply(200, {blockIds: ['123', '456']}).build();
+            httpMock = HttpMockBuilder.create().onGetReply(
+                200,
+                {blockIds: ['123', '456']},
+                '/burst?requestType=getAccountBlockIds&account=accountId&firstIndex=1000&lastIndex=0&includeTransactions=true'
+            ).build();
             const service = createBurstService(httpMock);
-            const blockResponse = await getAccountBlockIds(service)(1);
+            const blockResponse = await getAccountBlockIds(service)({
+                accountId: 'accountId',
+                lastIndex: 0,
+                firstIndex: 1000,
+                includeTransactions: true
+            });
             expect(blockResponse.blockIds[0]).toBe('123');
         });
 
@@ -517,7 +532,7 @@ describe('AccountApi', () => {
             jest.resetAllMocks();
 
             // @ts-ignore
-            signAndBroadcastTransaction = () => jest.fn( () => Promise.resolve('transactionId'))
+            signAndBroadcastTransaction = () => jest.fn(() => Promise.resolve('transactionId'));
 
             httpMock = HttpMockBuilder.create()
                 .onPostReply(200, mockBroadcastResponse,

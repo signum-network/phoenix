@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0
+
+- PoC+ Mining Features
+  - Add Commitment
+  - Refined Reward Recipient
+  
+
+### Bug fixes
+- Market Info with true 24h change 
+
 ## 1.0.3
 
 ### New Feature

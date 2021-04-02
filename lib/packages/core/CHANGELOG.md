@@ -30,6 +30,7 @@ __New__
 ---
 __Fixes__
 - Fixed return types of Block Api (`BlockIdList` and `BlockList`)
+- Fixed `getAccountBlocks` and `getAccountBlockIds`
 ---
 
 ## 0.5.0

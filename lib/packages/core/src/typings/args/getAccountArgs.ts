@@ -1,5 +1,5 @@
 /**
- * The argument object for [[AccountApi.getAccountArgs]]
+ * The argument object for [[AccountApi.getAccount]]
  *
  * @param {string} accountId The numeric accountId
  * @param {number?} commitmentAtHeight The height for the commitment, if one wants to see the commitment in the past

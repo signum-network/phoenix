@@ -18,9 +18,9 @@ export const getAccount = (service: BurstService):
 
         const params = {
             account: args.accountId,
-            height : args.commitmentAtHeight || undefined,
-            getCommittedAmount : args.includeCommittedAmount || undefined,
-            estimateCommitment : args.includeEstimatedCommitment || undefined
+            height : args.commitmentAtHeight, // || undefined,
+            getCommittedAmount : args.includeCommittedAmount, // || undefined,
+            estimateCommitment : args.includeEstimatedCommitment, // || undefined
         };
 
         return service.query('getAccount', params);
