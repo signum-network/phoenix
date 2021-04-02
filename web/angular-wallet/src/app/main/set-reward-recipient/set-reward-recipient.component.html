@@ -3,7 +3,12 @@
     <div class="account-info__field">
       <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>
       <p class="pb-8">{{account.accountRS}}</p>
-      <h1>Show the current reward recipient here!</h1>
+
+    </div>
+    <div *ngIf="rewardRecipient">
+      <p>{{rewardRecipient.accountRS}}</p>
+      <p>{{rewardRecipient.name}}</p>
+      <p>{{rewardRecipient.description}}</p>
     </div>
   </div>
 

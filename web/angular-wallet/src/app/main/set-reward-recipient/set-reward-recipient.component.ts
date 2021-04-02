@@ -24,11 +24,10 @@ export class SetRewardRecipientComponent implements OnInit {
   advanced = false;
   showMessage = false;
   isSending = false;
-  burstAddressPatternRef = burstAddressPattern;
   deadline = '24';
-
   account: Account;
   fees: SuggestedFees;
+  rewardRecipient: Account;
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
@@ -39,6 +38,11 @@ export class SetRewardRecipientComponent implements OnInit {
   ngOnInit(): void {
     this.account = this.route.snapshot.data.account as Account;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
+    this.fetchRewardRecipient();
+  }
+
+  async fetchRewardRecipient(): Promise<void> {
+    this.rewardRecipient = await this.accountService.getRewardRecipient(this.account.account);
   }
 
   async onSubmit(event): Promise<void> {

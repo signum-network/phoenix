@@ -84,7 +84,7 @@ export class AccountService {
     this.currentAccount.next(account);
   }
 
-  public async getAddedCommitments(account: Account):  Promise<TransactionList> {
+  public async getAddedCommitments(account: Account): Promise<TransactionList> {
     return this.api.account.getAccountTransactions({
       accountId: account.account,
       type: TransactionType.Mining,
@@ -202,6 +202,11 @@ export class AccountService {
       deadline,
       feePlanck,
     });
+  }
+
+  public async getRewardRecipient(recipientId: string): Promise<Account> {
+    const {rewardRecipient} = await this.api.account.getRewardRecipient(recipientId);
+    return this.api.account.getAccount({accountId: rewardRecipient});
   }
 
   public setCommitment({amountPlanck, feePlanck, pin, keys, isRevoking}: SetCommitmentRequest): Promise<TransactionId> {
