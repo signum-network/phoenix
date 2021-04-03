@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import _ from 'lodash';
+import {sample} from 'lodash';
 
 const BackgroundImages = [
-  '/assets/images/bg/polygones0.svg',
-  '/assets/images/bg/polygones1.svg',
-  '/assets/images/bg/polygones2.svg',
-  '/assets/images/bg/polygones3.svg',
-  '/assets/images/bg/polygones4.svg',
+  'assets/images/bg/polygones0.svg',
+  'assets/images/bg/polygones1.svg',
+  'assets/images/bg/polygones2.svg',
+  'assets/images/bg/polygones3.svg',
+  'assets/images/bg/polygones4.svg',
 ];
 
 export interface BreadcrumbInfo {
@@ -36,7 +36,7 @@ export class PageComponent implements OnInit{
   bgImgSrc: string;
 
   ngOnInit(): void {
-    const bgSrc = _.sample(BackgroundImages);
+    const bgSrc = sample(BackgroundImages);
     this.bgImgSrc = `url(${bgSrc})`;
   }
 
