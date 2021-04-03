@@ -1045,5 +1045,6 @@
   "success_set_commitment": "Ihr Mining-Einsatz wurde erfolgreich aktualisiert",
   "error_set_commitment": "Fehler beim Aktualisieren des Mining-Einsatzes. Beachten Sie, dass Sie 1440 Blöcke warten müssen, bevor Sie Ihren Einsatz widerrufen können.",
   "commitment_blocks_enabled": "Blöcke fehlen, bis der Einsatz widerrufen werden kann",
-  "no_reward_recipient": "Sie haben noch keinen Belohnungsempfänger festgelegt"
+  "no_reward_recipient": "Sie haben noch keinen Belohnungsempfänger festgelegt",
+  "commitment_unsupported": "Der aktuell ausgewählte Knoten unterstützt kein Mining-Commitment. Bitte wählen Sie einen Knoten mit mindestens Version 3+ aus."
 }

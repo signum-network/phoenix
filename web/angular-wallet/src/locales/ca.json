@@ -1045,5 +1045,6 @@
   "success_set_commitment": "S'ha actualitzat correctament el compromís de mineria",
   "error_set_commitment": "Error en actualitzar el compromís de mineria. Tingueu en compte que cal esperar 1.440 blocs per poder revocar el vostre compromís.",
   "commitment_blocks_enabled": "falten blocs fins que es pugui revocar el compromís",
-  "no_reward_recipient": "Encara no teniu cap destinatari de recompensa definit"
+  "no_reward_recipient": "Encara no teniu cap destinatari de recompensa definit",
+  "commitment_unsupported": "El node seleccionat actualment no admet el compromís de mineria. Seleccioneu un node amb almenys la versió 3+."
 }

@@ -111,12 +111,9 @@ export class AccountService {
       subtype,
     };
     try {
-      // TODO: this can be removed in the next iterations.
-      const apiVersion = await this.apiService.fetchBrsApiVersion();
-      const includeMultiouts = semver.gte(apiVersion, constants.multiOutMinVersion, {includePrerelease: true}) || undefined;
       const transactions = await this.api.account.getAccountTransactions({
         ...args,
-        includeIndirect: includeMultiouts
+        includeIndirect: true
       });
       return Promise.resolve(transactions);
     } catch (e) {
@@ -177,10 +174,12 @@ export class AccountService {
     return this.api.account.getUnconfirmedAccountTransactions(id);
   }
 
-  public getAccount(accountId: string): Promise<Account> {
+  public async getAccount(accountId: string): Promise<Account> {
+    const supportsPocPlus = await this.apiService.supportsPocPlus();
+    const includeCommittedAmount = supportsPocPlus || undefined;
     return this.api.account.getAccount({
       accountId,
-      includeCommittedAmount: true,
+      includeCommittedAmount,
     });
   }
 

@@ -6,6 +6,7 @@ import {StoreService} from '../../store/store.service';
 import {takeUntil} from 'rxjs/operators';
 import {getBalancesFromAccount} from '../../util/balance';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
+import {ApiService} from '../../api.service';
 
 @Component({
   selector: 'app-set-commitment',
@@ -16,8 +17,10 @@ export class SetCommitmentComponent extends UnsubscribeOnDestroy implements OnIn
   account: Account;
   fees: SuggestedFees;
   language: string;
+  isSupported = false;
 
   constructor(private route: ActivatedRoute,
+              private apiService: ApiService,
               private accountService: AccountService,
               private storeService: StoreService) {
     super();
@@ -26,6 +29,10 @@ export class SetCommitmentComponent extends UnsubscribeOnDestroy implements OnIn
   ngOnInit(): void {
     this.account = this.route.snapshot.data.account as Account;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
+
+    this.apiService.supportsPocPlus().then(supportsPocPlus =>
+      this.isSupported = supportsPocPlus
+    );
 
     const unsubscribeAll = takeUntil(this.unsubscribeAll);
     this.storeService.settings

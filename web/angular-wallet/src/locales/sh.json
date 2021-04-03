@@ -1044,5 +1044,6 @@
   "success_set_commitment": "",
   "error_set_commitment": "",
   "commitment_blocks_enabled": "",
-  "no_reward_recipient": ""
+  "no_reward_recipient": "",
+  "commitment_unsupported": ""
 }

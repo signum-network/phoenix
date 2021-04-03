@@ -1045,5 +1045,6 @@
   "success_set_commitment": "Aggiornato con successo il tuo impegno minerario",
   "error_set_commitment": "Errore durante l'aggiornamento dell'impegno di mining. Tieni presente che devi attendere 1440 blocchi prima di poter revocare il tuo impegno.",
   "commitment_blocks_enabled": "blocchi mancanti fino alla revoca dell'impegno",
-  "no_reward_recipient": "Non hai ancora impostato un destinatario della ricompensa"
+  "no_reward_recipient": "Non hai ancora impostato un destinatario della ricompensa",
+  "commitment_unsupported": "Il nodo attualmente selezionato non supporta l'impegno di mining. Seleziona un nodo con almeno la versione 3+."
 }

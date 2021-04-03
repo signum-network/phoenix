@@ -1054,5 +1054,6 @@
   "success_set_commitment": "Pomyślnie zaktualizowano Twoje zobowiązanie do wydobycia",
   "error_set_commitment": "Błąd podczas aktualizowania zobowiązania do wydobywania. Pamiętaj, że musisz odczekać 1440 bloków, zanim będziesz mógł odwołać swoje zobowiązanie.",
   "commitment_blocks_enabled": "brakujące bloki do czasu odwołania zobowiązania",
-  "no_reward_recipient": "Nie masz jeszcze ustawionego odbiorcy nagrody"
+  "no_reward_recipient": "Nie masz jeszcze ustawionego odbiorcy nagrody",
+  "commitment_unsupported": "Aktualnie wybrany węzeł nie obsługuje zobowiązania do wydobywania. Wybierz węzeł z co najmniej wersją 3+."
 }

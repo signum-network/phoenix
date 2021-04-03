@@ -1045,5 +1045,6 @@
   "success_set_commitment": "Madencilik taahhüdünüzü başarıyla güncelledi",
   "error_set_commitment": "Madencilik taahhüdü güncellenirken hata oluştu. Taahhüdünüzü iptal etmeden önce 1440 blok beklemeniz gerektiğini unutmayın.",
   "commitment_blocks_enabled": "taahhüt iptal edilebilene kadar eksik bloklar",
-  "no_reward_recipient": "Henüz bir ödül alıcınız yok"
+  "no_reward_recipient": "Henüz bir ödül alıcınız yok",
+  "commitment_unsupported": "Şu anda seçili olan Düğüm, Madencilik Taahhütünü desteklemiyor. Lütfen en az Sürüm 3+ olan bir Düğüm seçin."
 }

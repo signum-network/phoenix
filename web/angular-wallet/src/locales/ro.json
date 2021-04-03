@@ -1045,5 +1045,6 @@
   "success_set_commitment": "V-ați actualizat cu succes angajamentul minier",
   "error_set_commitment": "Eroare la actualizarea angajamentului minier. Rețineți că trebuie să așteptați 1440 de blocuri înainte de a vă putea revoca angajamentul.",
   "commitment_blocks_enabled": "blocurile lipsesc până când angajamentul poate fi revocat",
-  "no_reward_recipient": "Nu aveți încă set de destinatar de recompensă"
+  "no_reward_recipient": "Nu aveți încă set de destinatar de recompensă",
+  "commitment_unsupported": "Nodul selectat în prezent nu acceptă Angajamentul minier. Vă rugăm să selectați un nod cu cel puțin versiunea 3+."
 }

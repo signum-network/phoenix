@@ -27,7 +27,7 @@ function handleLatestUpdate(newVersion) {
 
 function getBrowserWindowConfig() {
   const commonConfig = {
-    icon: path.join(__dirname, 'assets/images/png/64x64.png'),
+    icon: path.join(__dirname, 'assets/images/logos/phoenix.png'),
     center: true,
     show: false,
     webPreferences: {

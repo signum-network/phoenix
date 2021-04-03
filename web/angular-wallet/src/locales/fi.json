@@ -1045,5 +1045,6 @@
   "success_set_commitment": "Kaivos sitoutumisen päivittäminen onnistui",
   "error_set_commitment": "Virhe kaivos sitoutumista päivitettäessä. Muista, että sinun on odotettava 1440 lohkoa, ennen kuin voit peruuttaa sitoumuksesi.",
   "commitment_blocks_enabled": "lohkot puuttuvat, kunnes sitoumus voidaan peruuttaa",
-  "no_reward_recipient": "Sinulla ei ole vielä palkkion vastaanottajaa"
+  "no_reward_recipient": "Sinulla ei ole vielä palkkion vastaanottajaa",
+  "commitment_unsupported": "Tällä hetkellä valittu solmu ei tue kaivositoumuksia. Valitse solmu, jolla on vähintään versio 3+."
 }

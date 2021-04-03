@@ -1045,5 +1045,6 @@
   "success_set_commitment": "Uspješno ste ažurirali svoju obvezu rudarenja",
   "error_set_commitment": "Pogreška prilikom ažuriranja obveze rudarstva. Imajte na umu da trebate pričekati 1440 blokova prije nego što možete opozvati svoju obvezu.",
   "commitment_blocks_enabled": "nedostaju blokovi dok se obveza ne može opozvati",
-  "no_reward_recipient": "Još niste postavili primatelja nagrade"
+  "no_reward_recipient": "Još niste postavili primatelja nagrade",
+  "commitment_unsupported": "Trenutno odabrani čvor ne podržava obvezu rudarstva. Odaberite čvor s najmanje verzijom 3+."
 }
