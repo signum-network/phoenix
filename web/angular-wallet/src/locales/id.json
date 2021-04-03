@@ -841,7 +841,7 @@
   "sender_public_key": "Public Key Pengirim",
   "server_error_unknown": "Terjadi kesalahan yang tidak dikenal.",
   "set_account_info": "Mengatur Catatan Info",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Tetapkan Penerima Hadiah",
   "settings": "Pengaturan",
   "share_address": "Berbagi alamat",
   "show_console_log_button": "Tampilkan tombol Log konsol",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "Perintah untuk menjual telah dikirim.",
   "success_send_money": "BURST telah dikirim.",
   "success_set_account_info": "Info akun Anda telah berhasil diselamatkan.",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "Penerima hadiah Anda telah berhasil disetel!",
   "success_start_forging": "Sukses memulai forging.",
   "success_stop_forging": "Penyusunan berhenti berhasil.",
   "success_transfer_alias": "Alias anda telah berhasil ditransfer!",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "Alihkan di sini antara menambah dan mencabut komitmen pertambangan",
   "success_set_commitment": "Berhasil memperbarui komitmen penambangan Anda",
   "error_set_commitment": "Kesalahan saat memperbarui komitmen penambangan. Ingatlah bahwa Anda perlu menunggu 1.440 blok sebelum Anda dapat mencabut komitmen Anda.",
-  "commitment_blocks_enabled": "blok hilang sampai komitmen dapat dicabut"
+  "commitment_blocks_enabled": "blok hilang sampai komitmen dapat dicabut",
+  "no_reward_recipient": "Anda belum menetapkan penerima hadiah"
 }

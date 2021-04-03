@@ -841,7 +841,7 @@
   "sender_public_key": "Cheia Publică Expeditor",
   "server_error_unknown": "S-a produs o eroare necunoscută.",
   "set_account_info": "Setaţi informațiile contului",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Setați destinatarul recompensei",
   "settings": "Setări",
   "share_address": "Partajează Adresa",
   "show_console_log_button": "Arată butonul de logare al consolei",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "Ordinul de vânzare a fost trimis.",
   "success_send_money": "burst a fost trimis.",
   "success_set_account_info": "Setările tale de cont au fost salvate cu succes.",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "Destinatarul recompensei dvs. a fost setat cu succes!",
   "success_start_forging": "Forjarea a început cu succes.",
   "success_stop_forging": "Forjarea oprită cu succes.",
   "success_transfer_alias": "Aliasul tău a fost transferat cu succes!",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "Comutați aici între adăugarea și revocarea angajamentului minier",
   "success_set_commitment": "V-ați actualizat cu succes angajamentul minier",
   "error_set_commitment": "Eroare la actualizarea angajamentului minier. Rețineți că trebuie să așteptați 1440 de blocuri înainte de a vă putea revoca angajamentul.",
-  "commitment_blocks_enabled": "blocurile lipsesc până când angajamentul poate fi revocat"
+  "commitment_blocks_enabled": "blocurile lipsesc până când angajamentul poate fi revocat",
+  "no_reward_recipient": "Nu aveți încă set de destinatar de recompensă"
 }

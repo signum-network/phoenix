@@ -921,7 +921,7 @@
   "success_sell_order_asset": "Pardavimo užsakymo paraiška pateikta.",
   "success_send_money": "BURST išsiųsti.",
   "success_set_account_info": "Jūsų sąskaitos informaciją įrašyta sėkmingai.",
-  "success_set_reward_recipient": "Jūsų atlygio gavėjas nustatytas sėkmyngai!",
+  "success_set_reward_recipient": "Jūsų premijos gavėjas sėkmingai nustatytas!",
   "success_start_forging": "Kalimas prasidėjo sėkmingai.",
   "success_stop_forging": "Kalimas\" sustabdytas sėkmingai.",
   "success_transfer_alias": "Jūsų pseudonimas buvo persiųstas sėkmingai!",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "Čia perjunkite kasybos įsipareigojimo pridėjimą ir atšaukimą",
   "success_set_commitment": "Sėkmingai atnaujinote įsipareigojimą kasybos srityje",
   "error_set_commitment": "Atnaujinant kasybos įsipareigojimą įvyko klaida. Atminkite, kad jums reikia palaukti 1440 blokų, kad galėtumėte atšaukti savo įsipareigojimą.",
-  "commitment_blocks_enabled": "blokų trūksta, kol nebus galima atšaukti įsipareigojimų"
+  "commitment_blocks_enabled": "blokų trūksta, kol nebus galima atšaukti įsipareigojimų",
+  "no_reward_recipient": "Jūs dar nenustatėte premijos gavėjo"
 }

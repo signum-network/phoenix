@@ -4,6 +4,7 @@ import {I18nModule} from '../../layout/components/i18n/i18n.module';
 import { MatIconModule } from '@angular/material/icon';
 import {PageComponent} from './page.component';
 import {RouterModule} from '@angular/router';
+import {FlexModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [PageComponent],
@@ -14,7 +15,8 @@ import {RouterModule} from '@angular/router';
     CommonModule,
     I18nModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    FlexModule
   ]
 })
 export class PageModule {

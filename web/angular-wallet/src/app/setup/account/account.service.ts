@@ -204,9 +204,11 @@ export class AccountService {
     });
   }
 
-  public async getRewardRecipient(recipientId: string): Promise<Account> {
+  public async getRewardRecipient(recipientId: string): Promise<Account | null> {
     const {rewardRecipient} = await this.api.account.getRewardRecipient(recipientId);
-    return this.api.account.getAccount({accountId: rewardRecipient});
+    return rewardRecipient
+      ? this.api.account.getAccount({accountId: rewardRecipient})
+      : null;
   }
 
   public setCommitment({amountPlanck, feePlanck, pin, keys, isRevoking}: SetCommitmentRequest): Promise<TransactionId> {

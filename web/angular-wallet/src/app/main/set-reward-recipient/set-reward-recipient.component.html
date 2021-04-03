@@ -3,12 +3,25 @@
     <div class="account-info__field">
       <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>
       <p class="pb-8">{{account.accountRS}}</p>
-
     </div>
-    <div *ngIf="rewardRecipient">
-      <p>{{rewardRecipient.accountRS}}</p>
-      <p>{{rewardRecipient.name}}</p>
-      <p>{{rewardRecipient.description}}</p>
+    <div class="account-info__field reward-recipient">
+      <small class="secondary-text text-uppercase">{{'reward_recipient'| i18n}}</small>
+      <ng-container *ngIf="isLoadingRewardRecipient">
+        <div class="skeleton">
+          <ngx-skeleton-loader count="1" [theme]="{height: '16px', margin: '0'}"></ngx-skeleton-loader>
+          <ngx-skeleton-loader count="2" [theme]="{height: '10px', margin: '0'}"></ngx-skeleton-loader>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!isLoadingRewardRecipient">
+        <div *ngIf="rewardRecipient">
+          <p>{{rewardRecipient.accountRS}}</p>
+          <div class="secondary-text font-size-10">{{rewardRecipient.name}}</div>
+          <div class="secondary-text font-size-10">{{rewardRecipient.description}}</div>
+        </div>
+        <ng-container *ngIf="!rewardRecipient">
+          <p>{{'no_reward_recipient' | i18n}}</p>
+        </ng-container>
+      </ng-container>
     </div>
   </div>
 

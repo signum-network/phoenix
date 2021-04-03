@@ -841,7 +841,7 @@
   "sender_public_key": "Javni ključ pošiljatelja",
   "server_error_unknown": "Pojavila se nepoznata greška.",
   "set_account_info": "Postavi Info računa",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Postavite primatelja nagrade",
   "settings": "Postavke",
   "share_address": "Dijeljene adrese",
   "show_console_log_button": "Prikaži Log gumb konzole",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "Prodajni nalog je predan.",
   "success_send_money": "BURST je poslan.",
   "success_set_account_info": "Podaci vašeg računa uspješno su spremljeni.",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "Vaš je primatelj nagrade uspješno postavljen!",
   "success_start_forging": "Kovanje (forging) uspješno započeto.",
   "success_stop_forging": "Kovanje uspješno završeno.",
   "success_transfer_alias": "Vaš pseudonim je uspješno transferiran!",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "Ovdje se prebacujte između dodavanja i opoziva rudarske obveze",
   "success_set_commitment": "Uspješno ste ažurirali svoju obvezu rudarenja",
   "error_set_commitment": "Pogreška prilikom ažuriranja obveze rudarstva. Imajte na umu da trebate pričekati 1440 blokova prije nego što možete opozvati svoju obvezu.",
-  "commitment_blocks_enabled": "nedostaju blokovi dok se obveza ne može opozvati"
+  "commitment_blocks_enabled": "nedostaju blokovi dok se obveza ne može opozvati",
+  "no_reward_recipient": "Još niste postavili primatelja nagrade"
 }

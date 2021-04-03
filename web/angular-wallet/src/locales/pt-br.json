@@ -845,7 +845,7 @@
   "sender_public_key": "Chave Publica do remetente",
   "server_error_unknown": "Ocorreu um erro desconhecido.",
   "set_account_info": "Definir a informação da conta",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Definir Destinatário da Recompensa",
   "settings": "Configurações",
   "share_address": "Compartilhar endereço",
   "show_console_log_button": "Mostrar botão de Log do Console",
@@ -925,7 +925,7 @@
   "success_sell_order_asset": "A ordem de venda foi submetida.",
   "success_send_money": "burst foi enviado.",
   "success_set_account_info": "Sua informação de conta foi salva com sucesso.",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "O destinatário do seu prêmio foi definido com sucesso!",
   "success_start_forging": "Forjamento iniciado.",
   "success_stop_forging": "Forjamento foi interrompido.",
   "success_transfer_alias": "O seu pseudônimo foi transferido com sucesso!",
@@ -1048,5 +1048,6 @@
   "toggle_commitment_mode": "Alterne aqui entre adicionar e revogar o compromisso de mineração",
   "success_set_commitment": "Atualizou com sucesso seu compromisso de mineração",
   "error_set_commitment": "Erro ao atualizar o compromisso de mineração. Lembre-se de que você precisa esperar 1440 blocos antes de cancelar seu compromisso.",
-  "commitment_blocks_enabled": "blocos ausentes até que o compromisso possa ser revogado"
+  "commitment_blocks_enabled": "blocos ausentes até que o compromisso possa ser revogado",
+  "no_reward_recipient": "Você ainda não tem nenhum destinatário de recompensa definido"
 }

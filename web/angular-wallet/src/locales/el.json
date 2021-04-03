@@ -841,7 +841,7 @@
   "sender_public_key": "Δημόσιο κλειδί αποστολέα",
   "server_error_unknown": "Παρουσιάστηκε ένα άγνωστο σφάλμα.",
   "set_account_info": "Θέτω πληροφορίες λογαριασμού",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Ορισμός παραλήπτη ανταμοιβής",
   "settings": "Ρυθμίσεις",
   "share_address": "Μοιραστείτε τη διεύθυνση",
   "show_console_log_button": "Show Console Log Button",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "Έχει υποβληθεί η εντολή πώλησης.",
   "success_send_money": "burst έχουν σταλεί.",
   "success_set_account_info": "Your account info has been saved successfully.",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "Ο παραλήπτης επιβράβευσης έχει οριστεί με επιτυχία!",
   "success_start_forging": "Η εξόριξη έχει ξεκινήσει.",
   "success_stop_forging": "Η εξόρυξη έχει σταματήσει.",
   "success_transfer_alias": "Το ψευδώνυμό σας έχει μεταφερθεί με επιτυχία!",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "Εναλλαγή εδώ μεταξύ προσθήκης και ανάκλησης της δέσμευσης εξόρυξης",
   "success_set_commitment": "Ενημερώθηκε με επιτυχία η δέσμευσή σας για εξόρυξη",
   "error_set_commitment": "Σφάλμα κατά την ενημέρωση της δέσμευσης εξόρυξης. Λάβετε υπόψη ότι πρέπει να περιμένετε 1440 τετράγωνα για να μπορέσετε να ανακαλέσετε τη δέσμευσή σας.",
-  "commitment_blocks_enabled": "λείπουν μπλοκ μέχρι να ανακληθεί η δέσμευση"
+  "commitment_blocks_enabled": "λείπουν μπλοκ μέχρι να ανακληθεί η δέσμευση",
+  "no_reward_recipient": "Δεν έχετε ακόμη σύνολο παραληπτών ανταμοιβής"
 }

@@ -841,7 +841,7 @@
   "sender_public_key": "Lähettäjän julkinen avain",
   "server_error_unknown": "Tuntematon virhe.",
   "set_account_info": "Määritä tilin tiedot",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Aseta palkinnon vastaanottaja",
   "settings": "Asetukset",
   "share_address": "Jaa tilinumero",
   "show_console_log_button": "Näytä Konsoli Loki-painike",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "Myyntitoimeksianto on syötetty.",
   "success_send_money": "BURST lähetetty.",
   "success_set_account_info": "Tilin tiedot tallennettu.",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "Palkinnon saajasi on asetettu onnistuneesti!",
   "success_start_forging": "Taonta käynnistetty.",
   "success_stop_forging": "Taonta pysäytetty.",
   "success_transfer_alias": "Alias siirretty onnistuneesti!",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "Vaihda täältä kaivositoumuksen lisäämisen ja peruuttamisen välillä",
   "success_set_commitment": "Kaivos sitoutumisen päivittäminen onnistui",
   "error_set_commitment": "Virhe kaivos sitoutumista päivitettäessä. Muista, että sinun on odotettava 1440 lohkoa, ennen kuin voit peruuttaa sitoumuksesi.",
-  "commitment_blocks_enabled": "lohkot puuttuvat, kunnes sitoumus voidaan peruuttaa"
+  "commitment_blocks_enabled": "lohkot puuttuvat, kunnes sitoumus voidaan peruuttaa",
+  "no_reward_recipient": "Sinulla ei ole vielä palkkion vastaanottajaa"
 }

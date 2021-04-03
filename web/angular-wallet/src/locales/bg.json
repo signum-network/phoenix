@@ -841,7 +841,7 @@
   "sender_public_key": "Публичен ключ на подателя",
   "server_error_unknown": "Възникна неизвестна грешка.",
   "set_account_info": "Задайте информация за сметка",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Задайте получател на наградата",
   "settings": "Настройки",
   "share_address": "Сподели адрес",
   "show_console_log_button": "Показване на бутон дневник конзола",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "Заявката за продажба е изпратена.",
   "success_send_money": "BURST са изпратени.",
   "success_set_account_info": "Информацията за вашата сметка беше запазена успешно.",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "Получателят на вашата награда е зададен успешно!",
   "success_start_forging": "Коването стартира успешно.",
   "success_stop_forging": "Коването спря успешно.",
   "success_transfer_alias": "Вашият псевдоним е прехвърлен успешно!",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "Превключете тук между добавяне и отмяна на ангажимента за копаене",
   "success_set_commitment": "Успешно актуализиран ангажимент за добив",
   "error_set_commitment": "Грешка при актуализиране на ангажимента за добив. Имайте предвид, че трябва да изчакате 1440 блока, преди да можете да оттеглите ангажимента си.",
-  "commitment_blocks_enabled": "блокира липсващи, докато ангажиментът може да бъде отменен"
+  "commitment_blocks_enabled": "блокира липсващи, докато ангажиментът може да бъде отменен",
+  "no_reward_recipient": "Все още нямате настроен получател на награда"
 }

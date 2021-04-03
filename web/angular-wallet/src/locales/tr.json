@@ -841,7 +841,7 @@
   "sender_public_key": "Sender Public Key",
   "server_error_unknown": "Bilinmeyen bir hata oluştu.",
   "set_account_info": "Hesap bilgileri ekle",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Ödül Alıcısını Belirleyin",
   "settings": "Ayarlar",
   "share_address": "Share Address",
   "show_console_log_button": "Show Console Log Button",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "The sell order has been submitted.",
   "success_send_money": "BURST has been sent.",
   "success_set_account_info": "Your account info has been saved successfully.",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "Ödül alıcınız başarıyla belirlendi!",
   "success_start_forging": "Forging started successfully.",
   "success_stop_forging": "Forging stopped successfully.",
   "success_transfer_alias": "Your alias has been transferred successfully!",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "Madencilik taahhüdünü ekleme ve iptal etme arasında buradan geçiş yapın",
   "success_set_commitment": "Madencilik taahhüdünüzü başarıyla güncelledi",
   "error_set_commitment": "Madencilik taahhüdü güncellenirken hata oluştu. Taahhüdünüzü iptal etmeden önce 1440 blok beklemeniz gerektiğini unutmayın.",
-  "commitment_blocks_enabled": "taahhüt iptal edilebilene kadar eksik bloklar"
+  "commitment_blocks_enabled": "taahhüt iptal edilebilene kadar eksik bloklar",
+  "no_reward_recipient": "Henüz bir ödül alıcınız yok"
 }

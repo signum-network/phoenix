@@ -841,7 +841,7 @@
   "sender_public_key": "送信者の公開キー",
   "server_error_unknown": "不明なエラーが発生しました。",
   "set_account_info": "アカウント情報を設定",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "報酬の受取人を設定する",
   "settings": "設定",
   "share_address": "アドレスを共有",
   "show_console_log_button": "コンソールのログボタンを表示",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "売り注文が送信されました。",
   "success_send_money": "BURST は送信されました。",
   "success_set_account_info": "アカウント情報が保存されました。",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "報酬の受取人が正常に設定されました。",
   "success_start_forging": "鋳造は開始されました。",
   "success_stop_forging": "鋳造が正常に停止しました。",
   "success_transfer_alias": "あなたのエイリアスが転送されました！",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "ここで、マイニングコミットメントの追加と取り消しを切り替えます",
   "success_set_commitment": "マイニングコミットメントを正常に更新しました",
   "error_set_commitment": "マイニングコミットメントの更新中にエラーが発生しました。コミットメントを取り消すには、1440ブロック待つ必要があることに注意してください。",
-  "commitment_blocks_enabled": "コミットメントを取り消すことができるまでブロックが欠落している"
+  "commitment_blocks_enabled": "コミットメントを取り消すことができるまでブロックが欠落している",
+  "no_reward_recipient": "報酬の受取人はまだ設定されていません"
 }

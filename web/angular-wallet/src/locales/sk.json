@@ -841,7 +841,7 @@
   "sender_public_key": "Verejný kľúč odosielateľa",
   "server_error_unknown": "Vyskytla sa neznáma chyba.",
   "set_account_info": "Nastaviť info účtu",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Nastaviť príjemcu odmeny",
   "settings": "Nastavenia",
   "share_address": "Zdieľať adresu",
   "show_console_log_button": "Ukázať tlačidlo Log konzoly",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "Príkaz na predaj bol zadaný.",
   "success_send_money": "BURST bolo odoslané.",
   "success_set_account_info": "Vaše informácie o účte boli úspešne uložené.",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "Váš príjemca odmeny bol úspešne nastavený!",
   "success_start_forging": "Kovanie sa úspešne spustilo.",
   "success_stop_forging": "Kovanie sa úspešne zastavilo.",
   "success_transfer_alias": "Alias bol úspešne prevedný!",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "Tu prepnite medzi pridaním a odvolaním záväzku ťažby",
   "success_set_commitment": "Úspešne ste aktualizovali svoj záväzok k ťažbe",
   "error_set_commitment": "Chyba pri aktualizácii záväzku ťažby. Nezabudnite, že pred odvolaním svojho záväzku musíte počkať 1 440 blokov.",
-  "commitment_blocks_enabled": "bloky chýbajú, kým nie je možné odvolať záväzok"
+  "commitment_blocks_enabled": "bloky chýbajú, kým nie je možné odvolať záväzok",
+  "no_reward_recipient": "Zatiaľ nemáte nastaveného žiadneho príjemcu odmeny"
 }

@@ -841,7 +841,7 @@
   "sender_public_key": "Chave pública do remitente",
   "server_error_unknown": "Produciuse un erro descoñecido.",
   "set_account_info": "Establecela información da conta",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Establecer destinatario da recompensa",
   "settings": "Configuración",
   "share_address": "Compartir dirección",
   "show_console_log_button": "Amosar botón de rexistro de consola",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "A orde de venta foi introducida.",
   "success_send_money": "BURST enviadas.",
   "success_set_account_info": "A súa información da conta gardouse con éxito.",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "O seu destinatario da recompensa configurouse correctamente.",
   "success_start_forging": "Forxa iniciada con éxito.",
   "success_stop_forging": "Forxa detida con éxito.",
   "success_transfer_alias": "Your alias has been transferred successfully!",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "Alternar entre engadir e revogar o compromiso mineiro",
   "success_set_commitment": "Actualizouse correctamente o seu compromiso coa minería",
   "error_set_commitment": "Erro ao actualizar o compromiso mineiro. Ten en conta que debes esperar 1440 bloques antes de poder revogar o teu compromiso.",
-  "commitment_blocks_enabled": "faltan bloques ata que se poida revogar o compromiso"
+  "commitment_blocks_enabled": "faltan bloques ata que se poida revogar o compromiso",
+  "no_reward_recipient": "Aínda non tes definido ningún destinatario de recompensa"
 }

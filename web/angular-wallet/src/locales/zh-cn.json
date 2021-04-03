@@ -841,7 +841,7 @@
   "sender_public_key": "发送者公钥",
   "server_error_unknown": "出现未知错误。",
   "set_account_info": "设置帐户信息",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "设置奖励收件人",
   "settings": "设置",
   "share_address": "共享地址",
   "show_console_log_button": "显示控制台日志按钮",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "卖单已提交。",
   "success_send_money": "BURST 已发送。",
   "success_set_account_info": "您的帐户信息已保存成功。",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "您的奖励接收者已成功设置！",
   "success_start_forging": "锻造启动成功。",
   "success_stop_forging": "锻造成功停止。",
   "success_transfer_alias": "您的别名已成功转移 ！",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "在添加和撤销采矿承诺之间切换",
   "success_set_commitment": "成功更新您的采矿承诺",
   "error_set_commitment": "更新挖矿承诺时出错。请注意，您需要等待1440块才能撤消承诺。",
-  "commitment_blocks_enabled": "直到承诺可以被取消之前，缺少的块"
+  "commitment_blocks_enabled": "直到承诺可以被取消之前，缺少的块",
+  "no_reward_recipient": "您尚未设置奖励接收者"
 }

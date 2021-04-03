@@ -841,7 +841,7 @@
   "sender_public_key": "Öffentlicher Schlüssel des Absenders",
   "server_error_unknown": "Ein unbekannter Fehler ist aufgetreten.",
   "set_account_info": "Kontoinformationen angeben",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Belohnungsempfänger einstellen",
   "settings": "Einstellungen",
   "share_address": "Adresse weitergeben",
   "show_console_log_button": "Schaltfläche für Konsole anzeigen",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "Die Verkaufsorder wurde abgeschickt.",
   "success_send_money": "BURST wurden überwiesen.",
   "success_set_account_info": "Die Accountinformationen wurden erfolgreich gespeichert.",
-  "success_set_reward_recipient": "Dein reward recipient wurde erfolgreich gesetzt!",
+  "success_set_reward_recipient": "Ihr Belohnungsempfänger wurde erfolgreich festgelegt!",
   "success_start_forging": "Blockgenerierung wurde erfolgreich gestartet.",
   "success_stop_forging": "Blockgenerierung wurde erfolgreich beendet.",
   "success_transfer_alias": "Ihr Alias wurde erfolgreich übertragen!",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "Wechseln Sie hier zwischen dem Hinzufügen und Widerrufen des Mining-Einsatzes",
   "success_set_commitment": "Ihr Mining-Einsatz wurde erfolgreich aktualisiert",
   "error_set_commitment": "Fehler beim Aktualisieren des Mining-Einsatzes. Beachten Sie, dass Sie 1440 Blöcke warten müssen, bevor Sie Ihren Einsatz widerrufen können.",
-  "commitment_blocks_enabled": "Blöcke fehlen, bis der Einsatz widerrufen werden kann"
+  "commitment_blocks_enabled": "Blöcke fehlen, bis der Einsatz widerrufen werden kann",
+  "no_reward_recipient": "Sie haben noch keinen Belohnungsempfänger festgelegt"
 }

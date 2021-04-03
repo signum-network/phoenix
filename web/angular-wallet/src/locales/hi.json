@@ -841,7 +841,7 @@
   "sender_public_key": "Sender Public Key",
   "server_error_unknown": "कोई अज्ञात त्रुटि उत्पन्न हुई।",
   "set_account_info": "खाता जानकारी भरें",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "पुरस्कार प्राप्तकर्ता सेट करें",
   "settings": "सेटिंग्स",
   "share_address": "Share Address",
   "show_console_log_button": "कंसोल लॉग बटन दिखाएँ",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "बेचने के आदेश प्रस्तुत हो गया है।",
   "success_send_money": "burst भेजे दिए।",
   "success_set_account_info": "Your account info has been saved successfully.",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "आपका इनाम प्राप्तकर्ता सफलतापूर्वक सेट कर दिया गया है!",
   "success_start_forging": "फोर्जिंग सफलतापूर्वक शुरू हो गई।",
   "success_stop_forging": "फोर्जिंग सफलतापूर्वक बंद कर दी।",
   "success_transfer_alias": "अपका उपनाम सफलतापूर्वक स्थानांतरित किया गया है!",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "खनन प्रतिबद्धता को जोड़ने और रद्द करने के बीच यहां टॉगल करें",
   "success_set_commitment": "सफलतापूर्वक अपनी खनन प्रतिबद्धता को अद्यतन किया",
   "error_set_commitment": "खनन प्रतिबद्धता को अपडेट करते समय त्रुटि। मन कि आप अपनी प्रतिबद्धता को रद्द कर सकते हैं इससे पहले कि आप 1440 ब्लॉक इंतजार करने की जरूरत है।",
-  "commitment_blocks_enabled": "जब तक प्रतिबद्धता को रद्द नहीं किया जा सकता तब तक ब्लॉक"
+  "commitment_blocks_enabled": "जब तक प्रतिबद्धता को रद्द नहीं किया जा सकता तब तक ब्लॉक",
+  "no_reward_recipient": "आपके पास अभी तक कोई पुरस्कार प्राप्तकर्ता सेट नहीं है"
 }

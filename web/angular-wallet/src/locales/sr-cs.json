@@ -856,7 +856,7 @@
   "sender_public_key": "Javni Ključ Pošiljaoca",
   "server_error_unknown": "Pojavila se nepoznata greška.",
   "set_account_info": "Postavite Informacije Naloga",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Постави примаоца награде",
   "settings": "Podešavanja",
   "share_address": "Podeli Adresu",
   "show_console_log_button": "Prikaži Log Dugme Konzole",
@@ -936,7 +936,7 @@
   "success_sell_order_asset": "Uspešno ste podneli nalog za prodaju.",
   "success_send_money": "BURST je poslat.",
   "success_set_account_info": "Informacije vašeg naloga su uspešno sačuvane.",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "Прималац награде је успешно постављен!",
   "success_start_forging": "Kovanje uspešno započeto.",
   "success_stop_forging": "Kovanje uspešno zaustavljeno.",
   "success_transfer_alias": "Vaš alias je uspešno premešten!",
@@ -1059,5 +1059,6 @@
   "toggle_commitment_mode": "Овде се пребацујте између додавања и опозивања рударске обавезе",
   "success_set_commitment": "Успешно сте ажурирали обавезу рударства",
   "error_set_commitment": "Грешка приликом ажурирања обавезе о рударству. Имајте на уму да требате сачекати 1440 блокова да бисте могли опозвати своју обавезу.",
-  "commitment_blocks_enabled": "недостају блокови док се не може опозвати обавеза"
+  "commitment_blocks_enabled": "недостају блокови док се не може опозвати обавеза",
+  "no_reward_recipient": "Још увек нисте поставили примаоца награде"
 }

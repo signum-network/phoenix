@@ -27,6 +27,7 @@ export class SetRewardRecipientComponent implements OnInit {
   deadline = '24';
   account: Account;
   fees: SuggestedFees;
+  isLoadingRewardRecipient = true;
   rewardRecipient: Account;
 
   constructor(private route: ActivatedRoute,
@@ -43,6 +44,7 @@ export class SetRewardRecipientComponent implements OnInit {
 
   async fetchRewardRecipient(): Promise<void> {
     this.rewardRecipient = await this.accountService.getRewardRecipient(this.account.account);
+    this.isLoadingRewardRecipient = false;
   }
 
   async onSubmit(event): Promise<void> {

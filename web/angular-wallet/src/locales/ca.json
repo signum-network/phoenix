@@ -841,7 +841,7 @@
   "sender_public_key": "Clau Pública del remitent",
   "server_error_unknown": "S'ha produït un error desconegut.",
   "set_account_info": "Establiu la Informació del Compte",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Estableix el destinatari de la recompensa",
   "settings": "Configuració",
   "share_address": "Compartir Adreça",
   "show_console_log_button": "Mostrar el botó per Iniciar la Consola",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "L'ordre de venda s'ha enviat.",
   "success_send_money": "burst enviats.",
   "success_set_account_info": "La informació del seu compte s'ha desat correctament.",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "El vostre destinatari de recompensa s'ha definit correctament.",
   "success_start_forging": "Forja iniciada amb èxit.",
   "success_stop_forging": "Forja aturada amb èxit.",
   "success_transfer_alias": "L'Àlies ha estat transferit amb èxit!",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "Canvieu aquí entre afegir i revocar el compromís de mineria",
   "success_set_commitment": "S'ha actualitzat correctament el compromís de mineria",
   "error_set_commitment": "Error en actualitzar el compromís de mineria. Tingueu en compte que cal esperar 1.440 blocs per poder revocar el vostre compromís.",
-  "commitment_blocks_enabled": "falten blocs fins que es pugui revocar el compromís"
+  "commitment_blocks_enabled": "falten blocs fins que es pugui revocar el compromís",
+  "no_reward_recipient": "Encara no teniu cap destinatari de recompensa definit"
 }

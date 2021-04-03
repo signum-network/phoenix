@@ -841,7 +841,7 @@
   "sender_public_key": "Clé publique de l'expéditeur",
   "server_error_unknown": "Une erreur inconnue est survenue.",
   "set_account_info": "Paramétrer les infos liées au compte",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Définir le destinataire de la récompense",
   "settings": "Paramètres",
   "share_address": "Partager l'adresse",
   "show_console_log_button": "Afficher le bouton de la console de log",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "L'ordre de vente a été soumis.",
   "success_send_money": "Les BURST ont été envoyés.",
   "success_set_account_info": "Vos informations ont été enregistrées.",
-  "success_set_reward_recipient": "Votre destinataire de récompense a été configuré avec succès!",
+  "success_set_reward_recipient": "Votre récipiendaire de récompense a été défini avec succès!",
   "success_start_forging": "Vous êtes désormais en train de forger.",
   "success_stop_forging": "Le forgeage a été arrêté avec succès.",
   "success_transfer_alias": "Votre alias a été transféré avec succès !",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "Basculer ici entre l'ajout et la révocation de l'engagement minier",
   "success_set_commitment": "Mise à jour réussie de votre engagement minier",
   "error_set_commitment": "Erreur lors de la mise à jour de l'engagement de minage. N'oubliez pas que vous devez attendre 1440 blocs avant de pouvoir révoquer votre engagement.",
-  "commitment_blocks_enabled": "blocs manquants jusqu'à ce que l'engagement puisse être révoqué"
+  "commitment_blocks_enabled": "blocs manquants jusqu'à ce que l'engagement puisse être révoqué",
+  "no_reward_recipient": "Vous n'avez pas encore défini de récipiendaires de récompense"
 }

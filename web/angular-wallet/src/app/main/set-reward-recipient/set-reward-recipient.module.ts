@@ -22,6 +22,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { LoginGuard } from 'app/login/login-guard.service';
 import {PageModule} from '../../components/page/page.module';
 import {SubmitTransactionModule} from '../../components/submit-transaction/submit-transaction.module';
+import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 
 const routes = [
   {
@@ -58,7 +59,8 @@ const routes = [
     LayoutModule,
     RouterModule.forChild(routes),
     PageModule,
-    SubmitTransactionModule
+    SubmitTransactionModule,
+    NgxSkeletonLoaderModule
   ]
 })
 export class SetRewardRecipientModule { }

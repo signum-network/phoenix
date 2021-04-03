@@ -841,7 +841,7 @@
   "sender_public_key": "Veřejný klíč odesilatele",
   "server_error_unknown": "Došlo k neznámé chybě.",
   "set_account_info": "Nastavení účtu",
-  "set_reward_recipient": "Set Reward Recipient",
+  "set_reward_recipient": "Nastavit příjemce odměny",
   "settings": "Nastavení",
   "share_address": "Sdílet adresu",
   "show_console_log_button": "Zobrazit tlačítko logovací konzole",
@@ -921,7 +921,7 @@
   "success_sell_order_asset": "Požadavek na prodej byl odeslán.",
   "success_send_money": "burst bylo odesláno.",
   "success_set_account_info": "Informace o Vašem účtu byly úspěšně uloženy.",
-  "success_set_reward_recipient": "Your reward recipient has been set successfully!",
+  "success_set_reward_recipient": "Váš příjemce odměny byl úspěšně nastaven!",
   "success_start_forging": "Kování bylo zahájeno.",
   "success_stop_forging": "Kování bylo zastaveno.",
   "success_transfer_alias": "Váš alias byl úspěšně přenesen!",
@@ -1044,5 +1044,6 @@
   "toggle_commitment_mode": "Zde přepínejte mezi přidáním a odvoláním závazku těžby",
   "success_set_commitment": "Úspěšně aktualizován váš závazek k těžbě",
   "error_set_commitment": "Chyba při aktualizaci závazku těžby. Mějte na paměti, že než budete moci svůj závazek odvolat, musíte počkat 1440 bloků.",
-  "commitment_blocks_enabled": "bloky chybí do odvolání závazku"
+  "commitment_blocks_enabled": "bloky chybí do odvolání závazku",
+  "no_reward_recipient": "Zatím nemáte nastaveného žádného příjemce odměny"
 }
