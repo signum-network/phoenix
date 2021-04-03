@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {sample} from 'lodash';
 
 const BackgroundImages = [
+  // ATTENTION: do not put trailing slashes here, otherwise in electron the images won't show up
   'assets/images/bg/polygones0.svg',
   'assets/images/bg/polygones1.svg',
   'assets/images/bg/polygones2.svg',
