@@ -9,6 +9,17 @@
     display: flex;
     flex: 1;
     justify-content: center;
+    animation: appear 500ms ease-in-out;
+
+    @keyframes appear {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
     @include media-breakpoint('xs') {
       height: 100%;
       background: white;

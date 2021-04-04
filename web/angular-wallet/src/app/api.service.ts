@@ -4,6 +4,8 @@ import {environment} from '../environments/environment';
 import {Settings} from './settings';
 import {StoreService} from './store/store.service';
 import {distinctUntilChanged} from 'rxjs/operators';
+import semver from 'semver';
+import {constants} from './constants';
 
 
 @Injectable({
@@ -32,6 +34,12 @@ export class ApiService {
     const apiSettings = new ApiSettings(this.nodeUrl);
     this.api = composeApi(apiSettings);
     this.brsVersion = undefined;
+  }
+
+  async supportsPocPlus(): Promise<boolean> {
+    const brsApiVersion = await this.fetchBrsApiVersion();
+    const version = semver.coerce(brsApiVersion);
+    return semver.gte(version, constants.pocPlusVersion, {includePrerelease: true});
   }
 
   async fetchBrsApiVersion(): Promise<string> {

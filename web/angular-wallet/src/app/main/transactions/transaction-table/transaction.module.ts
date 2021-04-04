@@ -8,6 +8,7 @@ import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
 import {AppSharedModule} from '../../../shared/shared.module';
+import {MatSortModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {AppSharedModule} from '../../../shared/shared.module';
         MatIconModule,
         MatPaginatorModule,
         RouterModule,
-        AppSharedModule
+        AppSharedModule,
+        MatSortModule
     ]
 })
 export class TransactionTableModule { }

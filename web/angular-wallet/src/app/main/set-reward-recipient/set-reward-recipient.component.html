@@ -1,49 +1,48 @@
-<div class="page-layout blank simple" fusePerfectScrollbar *ngIf="fees">
-
-  <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-      fxLayoutAlign.gt-xs="space-between center">
-
-      <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
-          <div fxLayout="row" fxLayoutAlign="start center">
-              <a [routerLink]="['/dashboard']"><mat-icon class="secondary-text s-18">home</mat-icon></a>
-              <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-              <span class="secondary-text">{{ 'set_reward_recipient' | i18n }}</span>
-          </div>
-          <div class="h1 mt-16">{{ 'set_reward_recipient' | i18n }}</div>
-      </div>
+<app-page title="{{ 'set_reward_recipient' | i18n }}" *ngIf="fees" [wide]="true">
+  <div class="account-info pl-20 pr-20 mb-8">
+    <div class="account-info__field">
+      <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>
+      <p class="pb-8">{{account.accountRS}}</p>
+    </div>
+    <div class="account-info__field reward-recipient">
+      <small class="secondary-text text-uppercase">{{'reward_recipient'| i18n}}</small>
+      <ng-container *ngIf="isLoadingRewardRecipient">
+        <div class="skeleton">
+          <ngx-skeleton-loader count="1" [theme]="{height: '16px', margin: '0'}"></ngx-skeleton-loader>
+          <ngx-skeleton-loader count="2" [theme]="{height: '10px', margin: '0'}"></ngx-skeleton-loader>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!isLoadingRewardRecipient">
+        <div *ngIf="rewardRecipient">
+          <p>{{rewardRecipient.accountRS}}</p>
+          <div class="secondary-text font-size-10">{{rewardRecipient.name}}</div>
+          <div class="secondary-text font-size-10">{{rewardRecipient.description}}</div>
+        </div>
+        <ng-container *ngIf="!rewardRecipient">
+          <p>{{'no_reward_recipient' | i18n}}</p>
+        </ng-container>
+      </ng-container>
+    </div>
   </div>
 
-  <div class="p-24 content">
-
+  <div class="pl-20 pr-20">
     <form (ngSubmit)="onSubmit($event);" #setRewardRecipientForm="ngForm">
+      <burst-recipient-input (recipientChange)="onRecipientChange($event)"></burst-recipient-input>
 
-      <burst-recipient-input appearance="outline" (recipientChange)="onRecipientChange($event)"></burst-recipient-input>
-
-      <mat-form-field appearance="outline">
-        <input matInput [(ngModel)]="fee" name="fee" placeholder="{{ 'fee' | i18n }}">
-        <label matSuffix>BURST</label>
-      </mat-form-field>
-
-      <burst-fee-selector [fees]="fees" [(feeNQT)]="fee"></burst-fee-selector>
-
-      <mat-form-field class="pin" appearance="outline">
-        <input type="password" matInput [(ngModel)]="pin" name="pin" placeholder="Your PIN">
-      </mat-form-field>
+      <burst-fee-selector [fees]="fees" [(fee)]="fee"></burst-fee-selector>
 
       <div *ngIf="advanced">
-        <mat-form-field appearance="outline">
+        <mat-form-field>
           <label>{{ 'deadline_hours' | i18n }}</label>
           <input matInput [(ngModel)]="deadline" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}">
         </mat-form-field>
-
         <mat-checkbox [(ngModel)]="broadcast" name="broadcast" disabled>{{ "do_not_broadcast" | i18n }}</mat-checkbox>
-
       </div>
+
+      <app-submit-transaction [disabled]="canSubmit()"
+                              [isSubmitting]="isSending"
+                              (pinChange)="setPin($event)"></app-submit-transaction>
     </form>
-
     <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
-    <br /><br />
-
-    <button type="submit" class="mr-8" mat-raised-button mat-button color="primary" (click)="onSubmit($event)">{{ "set_reward_recipient" | i18n }}</button>
   </div>
-</div>
+</app-page>

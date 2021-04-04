@@ -130,6 +130,7 @@ export const constants = {
   supportUrl: 'https://github.com/burst-apps-team/phoenix/issues',
   transactionCount: '100',
   multiOutMinVersion: '2.3.1',
+  pocPlusVersion: '3.0.0',
   mainnetIndicator: {
     block: 834000,
     previousHash: '1fab995caf67530a90b69df0b512e0e434bd7f2f1b0fe1caae2414688c2d8f16'

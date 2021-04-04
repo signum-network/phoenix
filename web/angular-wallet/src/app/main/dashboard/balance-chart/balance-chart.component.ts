@@ -1,14 +1,18 @@
 import {Router} from '@angular/router';
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Account} from '@burstjs/core';
-import {BurstValue, convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
-import {getBalanceHistoryFromTransactions} from '../../../util/balance/getBalanceHistoryFromTransactions';
-import {BalanceHistoryItem} from '../../../util/balance/typings';
+import {BurstValue, convertBurstTimeToDate} from '@burstjs/util';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {I18nService} from '../../../layout/components/i18n/i18n.service';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {formatDate} from '@angular/common';
+import {
+  AccountBalances,
+  BalanceHistoryItem,
+  getBalanceHistoryFromTransactions,
+  getBalancesFromAccount
+} from '../../../util/balance';
 
 @Component({
   selector: 'app-balance-chart',
@@ -27,6 +31,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
   transactionCount = 50;
 
   private balanceHistory: BalanceHistoryItem[];
+  private accountBalances: AccountBalances;
   private isMobile = false;
 
   constructor(private router: Router,
@@ -60,9 +65,10 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
   private updateChart(): void {
     const transactions = this.account.transactions.slice(0, this.transactionCount);
     const {account, balanceNQT} = this.account;
+    this.accountBalances = getBalancesFromAccount(this.account);
     this.balanceHistory = getBalanceHistoryFromTransactions(
       account,
-      convertNQTStringToNumber(balanceNQT),
+      parseFloat(BurstValue.fromPlanck(balanceNQT).getBurst()),
       transactions).reverse();
 
     const chartData = this.balanceHistory.map(item => parseFloat(item.balance.toFixed(2)));
@@ -82,7 +88,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
         }
       ],
       labels: this.balanceHistory.map(({timestamp}) => timestamp && this.toDateString(convertBurstTimeToDate(timestamp)) ||
-      this.toDateString(new Date())),
+        this.toDateString(new Date())),
       colors: [
         {
           borderColor: '#42a5f5',

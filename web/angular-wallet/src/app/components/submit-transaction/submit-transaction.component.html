@@ -1,0 +1,16 @@
+<div class="submit-transaction">
+  <mat-form-field class="message-text password-field" floatLabel="never" appearance="standard">
+    <input type="password" matInput required placeholder="{{'enter_pin' | i18n}}" [(ngModel)]="pin" name="pin">
+  </mat-form-field>
+  <button class="send-button"
+          mat-icon-button type="submit"
+          aria-label="Send message"
+          [disabled]="disabled">
+    <ng-container *ngIf="!isSubmitting">
+      <mat-icon [class.enabled]="!disabled">send</mat-icon>
+    </ng-container>
+    <ng-container *ngIf="isSubmitting">
+      <mat-spinner diameter="20"></mat-spinner>
+    </ng-container>
+  </button>
+</div>

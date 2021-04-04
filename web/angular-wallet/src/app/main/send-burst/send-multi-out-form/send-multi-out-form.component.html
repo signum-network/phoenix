@@ -53,7 +53,7 @@
     <input matInput [(ngModel)]="fee" name="fee" placeholder="{{ 'fee' | i18n }}">
   </mat-form-field>
 
-  <burst-fee-selector [fees]="fees" [(feeNQT)]="fee"></burst-fee-selector>
+  <burst-fee-selector [fees]="fees" [(fee)]="fee"></burst-fee-selector>
 
   <div *ngIf="advanced">
     <mat-form-field>
@@ -77,8 +77,8 @@
     </button>
   </div>
 
-  <strong>Total:&nbsp;</strong>
-  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal() | burstAmount }}</span> -
+  <strong>{{'total' | i18n}}:&nbsp;</strong>
+  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getBurst() | burstAmount }}</span> -
   <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
   <br/><br/>
 

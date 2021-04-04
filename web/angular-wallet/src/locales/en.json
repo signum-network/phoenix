@@ -1044,5 +1044,20 @@
   "your_alias_sale_offer": "You are offering this alias for sale.",
   "your_name": "Your Name",
   "your_passphrase": "Your Passphrase",
-  "youve_got_burst": "You've got Burst!"
+  "youve_got_burst": "You've got Burst!",
+  "balance_locked": "Locked Balance",
+  "balance_available": "Available Balance",
+  "commitment": "Commitment",
+  "set_commitment": "Set Commitment",
+  "add_commitment": "Add Commitment",
+  "revoke_commitment": "Revoke Commitment",
+  "reward_recipient_assignment": "Reward Recipient Assignment",
+  "mining": "Mining",
+  "applied_commitment": "Applied Commitment",
+  "toggle_commitment_mode": "Toggle here between adding and revoking the mining commitment",
+  "success_set_commitment": "Successfully updated your mining commitment",
+  "error_set_commitment": "Error while updating mining commitment. Mind that you need to wait 1440 blocks before you can revoke your commitment.",
+  "commitment_blocks_enabled": "blocks missing until commitment can be revoked",
+  "no_reward_recipient": "You have no reward recipient set yet",
+  "commitment_unsupported": "The currently selected Node does not support Mining Commitment. Please select a Node with at least Version 3+."
 }

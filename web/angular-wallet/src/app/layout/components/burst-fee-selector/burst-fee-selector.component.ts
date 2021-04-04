@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { convertNQTStringToNumber } from '@burstjs/util';
-import { SuggestedFees } from '@burstjs/core';
-import { EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output} from '@angular/core';
+import {convertNQTStringToNumber} from '@burstjs/util';
+import {SuggestedFees} from '@burstjs/core';
+import {EventEmitter} from '@angular/core';
 import {LabelType, Options} from 'ng5-slider';
 import {BurstAmountPipe} from '../../../shared/pipes/burst-amount.pipe';
 import {formatBurstAmount} from '../../../util/formatBurstAmount';
@@ -13,34 +13,34 @@ import {I18nService} from '../i18n/i18n.service';
   styleUrls: ['./burst-fee-selector.component.scss']
 })
 export class BurstFeeSelectorComponent implements OnInit {
-  @Input('fees') fees: SuggestedFees;
+  @Input() fees: SuggestedFees;
 
-  feeNQTValue = 0;
+  feeValue = 0;
   burstAmountPipe: BurstAmountPipe;
   options: Options;
 
   @Input()
-  get feeNQT(): number {
-    return this.feeNQTValue;
+  get fee(): number {
+    return this.feeValue;
   }
 
   @Output()
-  feeNQTChange = new EventEmitter();
+  feeChange = new EventEmitter();
 
-  // FIXME: this is not NQT, but Burst
-  set feeNQT(feeBurst: number) {
-    if (!feeBurst) {
-      this.feeNQTValue = 0;
+  set fee(feeValue: number) { // not Planck
+    if (!feeValue) {
+      this.feeValue = 0;
       return;
     }
-    this.feeNQTValue = parseFloat(feeBurst.toString());
-    this.feeNQTChange.emit(this.feeNQTValue);
+    this.feeValue = feeValue;
+    this.feeChange.emit(this.feeValue);
   }
 
   constructor(private i18nService: I18nService) {
   }
 
   ngOnInit(): void {
+
     this.options = {
       step: 0.0000001,
       floor: this.convertFeeToBurst(this.fees.minimum),
@@ -55,7 +55,7 @@ export class BurstFeeSelectorComponent implements OnInit {
         }
         return '#2AE02A';
       },
-    translate : (value: number, label: LabelType): string => {
+      translate: (value: number, label: LabelType): string => {
         return formatBurstAmount(value, {
           locale: this.i18nService.currentLanguage.code,
           noUnit: false,

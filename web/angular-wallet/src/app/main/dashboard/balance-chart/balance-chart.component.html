@@ -2,21 +2,29 @@
   <div class="main-widget" *ngIf="chart">
     <div class="h-256 pb-16 blue-600">
       <div class="pl-16 balance-info">
-        <h1 class="mb-8 pr-8">{{account.balanceNQT | burstAmount:'planck'}}</h1>
-        <div class="conversions">
-          <small class="font-size-14">{{calculateValue(priceBtc) | currency:'฿'}}</small>
-          <small class="pl-8 font-size-14">{{calculateValue(priceUsd) | currency:'USD'}}</small>
-          <small class="pl-8 font-size-14">{{calculateValue(priceEur) | currency:'EUR'}}</small>
+        <div class="inline responsive">
+          <h1 class="pr-8 mb-0">{{accountBalances.totalBalance.getBurst() | burstAmount:'burst'}}</h1>
+          <div class="inline">
+            <small class="font-size-14 pr-8">{{calculateValue(priceBtc) | currency:'฿'}}</small>
+            <small class="font-size-14 pr-8">{{calculateValue(priceUsd) | currency:'USD'}}</small>
+            <small class="font-size-14">{{calculateValue(priceEur) | currency:'EUR'}}</small>
+          </div>
+        </div>
+        <div class="inline responsive">
+          <small class="font-size-14 pr-8">{{"balance_available"| i18n}}
+            : {{accountBalances.availableBalance.getBurst() | burstAmount:'burst'}}</small>
+          <small class="font-size-14">{{"balance_locked"| i18n}}
+            : {{accountBalances.lockedBalance.getBurst() | burstAmount:'burst'}}</small>
         </div>
       </div>
       <div *ngIf="account.transactions.length">
         <div class="position-relative">
           <canvas baseChart
-            chartType="line"
-            [datasets]="chart.datasets"
-            [labels]="chart.labels"
-            [colors]="chart.colors"
-            [options]="chart.options"
+                  chartType="line"
+                  [datasets]="chart.datasets"
+                  [labels]="chart.labels"
+                  [colors]="chart.colors"
+                  [options]="chart.options"
           >
           </canvas>
         </div>

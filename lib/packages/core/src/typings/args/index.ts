@@ -12,3 +12,4 @@ export * from './sendEncryptedMessageArgs';
 export * from './sendMessageArgs';
 export * from './transferAssetArgs';
 export * from './unsignedTransactionArgs';
+export * from './getAccountBlocksArgs';

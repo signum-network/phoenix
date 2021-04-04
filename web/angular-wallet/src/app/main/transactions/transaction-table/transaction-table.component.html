@@ -47,12 +47,16 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       <mat-icon>local_atm</mat-icon>
     </mat-header-cell>
-    <mat-cell *matCellDef="let transaction">
-      <div [ngClass]="{fg_green: !isAmountNegative(transaction), fg_red: isAmountNegative(transaction)}">
+    <mat-cell  *matCellDef="let transaction">
+      <div *ngIf="!isCommitment(transaction)" [ngClass]="{fg_green: !isAmountNegative(transaction), fg_red: isAmountNegative(transaction)}">
         {{getAmount(transaction) | burstAmount:'burst':true}}
+      </div>
+      <div *ngIf="isCommitment(transaction)" class="fg_green">
+        {{getCommitmentAmount(transaction) | burstAmount:'burst':true}}
       </div>
     </mat-cell>
   </ng-container>
+
 
   <ng-container matColumnDef="fee">
     <mat-header-cell *matHeaderCellDef mat-sort-header>

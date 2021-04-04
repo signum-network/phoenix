@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/core",
-  "version": "0.6.0-alpha.9",
+  "version": "0.6.0-beta.3",
   "description": "Burst-related functions and models for building Burstcoin applications.",
   "contributors": [
     "ohager",
@@ -46,10 +46,10 @@
     "readme": "jsdoc2md  --files ./src/**/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
   },
   "dependencies": {
-    "@burstjs/contracts": "^0.6.0-alpha.9",
-    "@burstjs/crypto": "^0.6.0-alpha.9",
-    "@burstjs/http": "^0.6.0-alpha.9",
-    "@burstjs/util": "^0.6.0-alpha.9"
+    "@burstjs/contracts": "^0.6.0-beta.3",
+    "@burstjs/crypto": "^0.6.0-beta.3",
+    "@burstjs/http": "^0.6.0-beta.3",
+    "@burstjs/util": "^0.6.0-beta.3"
   },
   "husky": {
     "hooks": {

@@ -2,7 +2,6 @@ import {Component, Input, ViewChild} from '@angular/core';
 import {Transaction} from '@burstjs/core';
 import {convertAddressToNumericId, convertNQTStringToNumber, convertNumericIdToAddress} from '@burstjs/util';
 import {decryptMessage, decryptAES, hashSHA256, EncryptedMessage} from '@burstjs/crypto';
-import {} from '@burstjs/crypto';
 import {AccountService} from 'app/setup/account/account.service';
 import {CellValue} from '../cell-value-mapper';
 import {NotifierService} from 'angular-notifier';

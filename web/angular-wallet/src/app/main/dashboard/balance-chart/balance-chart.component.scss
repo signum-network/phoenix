@@ -3,27 +3,29 @@
 #balance-diagram-charts-wrapper {
   .balance-info{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: baseline;
-    @include media-breakpoint('xs') {
-      flex-direction: column;
-    }
-    .conversions {
+    .inline {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
+      align-items: baseline;
+      &.responsive {
+        @include media-breakpoint('xs') {
+          flex-direction: column;
+        }
+      }
     }
   }
 }
 
 .no-transactions {
-  text-align:center; 
-  display: flex; 
+  text-align:center;
+  display: flex;
   height: 59%;
 }
 
 .align-center {
-  align-self: center; 
+  align-self: center;
   flex: 1;
 }

@@ -1,0 +1,46 @@
+@import "src/@fuse/scss/fuse";
+
+:host {
+  .amount-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    @include media-breakpoint('xs') {
+      flex-direction: column;
+    }
+
+    mat-form-field:first-child {
+      margin-right: 8px;
+      @include media-breakpoint('xs') {
+        margin-right: 0;
+      }
+    }
+
+    .all-icon {
+      font-size: 1.25em;
+      font-weight: 700;
+      color: #666;
+      cursor: pointer;
+    }
+
+  }
+
+  mat-form-field {
+    width: 100%;
+    display: block;
+  }
+
+  form {
+    margin: 20px 0;
+  }
+
+  .no-balance {
+    color: red;
+    font-weight: bold;
+  }
+
+  a {
+    cursor: pointer;
+  }
+}
+

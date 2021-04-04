@@ -23,12 +23,7 @@ export class AppService {
 
     // @ts-ignore
     // tslint:disable-next-line:no-unused-expression
-    new window.Notification(
-      title,
-      {
-        body,
-        title: 'Phoenix'
-      });
+    new window.Notification(title, {body, title: 'Phoenix'});
 
   }
 

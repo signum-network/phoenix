@@ -16,6 +16,12 @@ import {
 } from '../typings/api';
 
 class ApiImpl implements Api {
+
+    constructor(service: BurstService) {
+        this.service = service
+    }
+
+    service: BurstService;
     alias: AliasApi;
     account: AccountApi;
     asset: AssetApi;
@@ -61,8 +67,7 @@ class ApiImpl implements Api {
  * @module core.api
  * */
 export class ApiComposer {
-    private api: Api = new ApiImpl();
-
+    private readonly api: Api;
     /**
      * Creates the composer instance
      * @param service
@@ -73,6 +78,7 @@ export class ApiComposer {
     }
 
     private constructor(private service: BurstService) {
+        this.api = new ApiImpl(service);
     }
 
     private mapCreators(apiSection: string, creatorMap: any): void {

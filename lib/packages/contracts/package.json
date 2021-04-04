@@ -1,6 +1,6 @@
 {
   "name": "@burstjs/contracts",
-  "version": "0.6.0-alpha.9",
+  "version": "0.6.0-beta.3",
   "description": "Smart Contracts package for BURST",
   "contributors": [
     "ohager"
@@ -44,7 +44,7 @@
     "readme": "jsdoc2md  --files ./src/*.ts --template ./README.md.hbs --configure ../../jsdoc2md.json > ./README.md"
   },
   "dependencies": {
-    "@burstjs/util": "^0.6.0-alpha.9"
+    "@burstjs/util": "^0.6.0-beta.3"
   },
   "husky": {
     "hooks": {

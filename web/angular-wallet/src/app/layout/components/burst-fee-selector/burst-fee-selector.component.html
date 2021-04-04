@@ -11,14 +11,14 @@
   </div>
   <div class="__fees">
     {{'minimum_fee' | i18n}}:&nbsp;
-    <em (click)="feeNQT=convertFeeToBurst(fees.minimum)">{{ convertFeeToBurst(fees.minimum) | burstAmount }}</em>
+    <em (click)="fee=convertFeeToBurst(fees.minimum)">{{ convertFeeToBurst(fees.minimum) | burstAmount }}</em>
     {{'cheap_fee' | i18n}}:&nbsp;
-    <em (click)="feeNQT=convertFeeToBurst(fees.cheap)">{{ convertFeeToBurst(fees.cheap) | burstAmount }}</em>
+    <em (click)="fee=convertFeeToBurst(fees.cheap)">{{ convertFeeToBurst(fees.cheap) | burstAmount }}</em>
     {{'standard_fee' | i18n}}:&nbsp;
-    <em (click)="feeNQT=convertFeeToBurst(fees.standard)">{{ convertFeeToBurst(fees.standard) | burstAmount }}</em>
+    <em (click)="fee=convertFeeToBurst(fees.standard)">{{ convertFeeToBurst(fees.standard) | burstAmount }}</em>
     {{'priority_fee' | i18n}}:&nbsp;
-    <em (click)="feeNQT=convertFeeToBurst(fees.priority)">{{ convertFeeToBurst(fees.priority)  | burstAmount }}</em>
+    <em (click)="fee=convertFeeToBurst(fees.priority)">{{ convertFeeToBurst(fees.priority)  | burstAmount }}</em>
   </div>
 </div>
 
-<ng5-slider #slider [(value)]="feeNQT" [options]="options"></ng5-slider>
+<ng5-slider #slider [(value)]="fee" [options]="options"></ng5-slider>

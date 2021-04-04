@@ -1,1 +1,1 @@
-export { SendBurstComponent } from './send-burst.component';
+export {SendBurstComponent} from './send-burst.component';

@@ -6,6 +6,8 @@ import {AccountApi} from './accountApi';
 import {AliasApi} from './aliasApi';
 import {ContractApi} from './contractApi';
 import {AssetApi} from './assetApi';
+import {BurstValue} from '@burstjs/util';
+import {BurstService} from '../../service';
 
 export {
     AccountApi,
@@ -40,6 +42,11 @@ export {
  * @module core.api
  */
 export class Api {
+    /**
+     * This leaks the underlying service instance to interact with the BRS API directly, e.g. to use an API method that
+     * is not supported yet by BurstJS yet.
+     */
+    readonly service: BurstService;
     readonly asset: AssetApi;
     readonly block: BlockApi;
     readonly network: NetworkApi;

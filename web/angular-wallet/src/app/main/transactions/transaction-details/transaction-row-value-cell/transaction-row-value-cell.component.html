@@ -73,10 +73,25 @@
     <div class="chip-list">
       <span *ngFor="let payment of value.data.recipients" class="chip">
         <a [routerLink]="['/account', payment[0]]">{{convertNumericIdToAddress(payment[0])}}
-          ({{convertNQTStringToNumber(payment[1]) | burstAmount}})</a>
+          ({{payment[1] | burstAmount:'planck':true}})</a>
       </span>
     </div>
   </div>
+
+  <div *ngSwitchCase="'CommitmentAdd'">
+    <div>
+      <label class="mr-8">{{'amount' | i18n}}:</label>
+      <span>{{value.data.amountNQT | burstAmount:'planck':true}}</span>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'CommitmentRemove'">
+    <div>
+      <label class="mr-8">{{'amount' | i18n}}:</label>
+      <span>{{value.data.amountNQT | burstAmount:'planck':true}}</span>
+    </div>
+  </div>
+
 
   <div *ngSwitchDefault>{{value.data | i18n}}</div>
 </div>

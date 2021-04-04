@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.0 TBR
+
+- PoC+ Mining Features
+  - Add Commitment
+  - Refined Reward Recipient
+- Some face lifting
+  - new splash screen
+  - changing bg images on pages
+
+### Bug fixes
+- Market Info with true 24h change 
+
 ## 1.0.3
 
 ### New Feature
