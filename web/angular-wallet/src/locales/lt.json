@@ -1046,5 +1046,8 @@
   "error_set_commitment": "Atnaujinant kasybos įsipareigojimą įvyko klaida. Atminkite, kad jums reikia palaukti 1440 blokų, kad galėtumėte atšaukti savo įsipareigojimą.",
   "commitment_blocks_enabled": "blokų trūksta, kol nebus galima atšaukti įsipareigojimų",
   "no_reward_recipient": "Jūs dar nenustatėte premijos gavėjo",
-  "commitment_unsupported": "Šiuo metu pasirinktas mazgas nepalaiko Kasybos įsipareigojimų. Pasirinkite mazgą, kurio versija yra bent 3+."
+  "commitment_unsupported": "Šiuo metu pasirinktas mazgas nepalaiko Kasybos įsipareigojimų. Pasirinkite mazgą, kurio versija yra bent 3+.",
+  "click_for_request": "Spustelėkite, jei norite sukurti mokėjimo užklausą, kurią gali naudoti trečiosios šalys",
+  "copy_account_address_extended": "Kopijuoti išplėstinį adresą",
+  "copy_account_publickey": "Kopijuoti viešąjį raktą"
 }

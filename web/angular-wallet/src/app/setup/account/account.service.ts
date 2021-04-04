@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
-import semver from 'semver';
 import {environment} from 'environments/environment';
 import {StoreService} from 'app/store/store.service';
 
@@ -15,9 +14,21 @@ import {
   Transaction,
   TransactionId,
   TransactionList,
-  UnconfirmedTransactionList
+  UnconfirmedTransactionList,
+  Asset,
+  AssetList,
+  BlockList,
+  TransactionMiningSubtype,
+  TransactionType,
 } from '@burstjs/core';
-import {decryptAES, encryptAES, generateMasterKeys, getAccountIdFromPublicKey, hashSHA256, Keys} from '@burstjs/crypto';
+import {
+  decryptAES,
+  encryptAES,
+  generateMasterKeys,
+  getAccountIdFromPublicKey,
+  hashSHA256,
+  Keys
+} from '@burstjs/crypto';
 import {
   convertAddressToNumericId,
   convertNumericIdToAddress,
@@ -26,16 +37,13 @@ import {
 } from '@burstjs/util';
 import {ApiService} from '../../api.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {constants} from 'app/constants';
 import {HttpError, HttpClientFactory} from '@burstjs/http';
-import {AssetList} from '@burstjs/core/out/typings/assetList';
-import {Asset, BlockList, TransactionMiningSubtype, TransactionType} from '@burstjs/core/src';
 
 interface SetAccountInfoRequest {
   name: string;
   description: string;
   deadline: number;
-  feeNQT: string;
+  feePlanck: string;
   pin: string;
   keys: Keys;
 }
@@ -187,9 +195,16 @@ export class AccountService {
     return Promise.resolve(this.currentAccount.getValue());
   }
 
-  public setAccountInfo({name, description, feeNQT, deadline, pin, keys}: SetAccountInfoRequest): Promise<TransactionId> {
+  public setAccountInfo({name, description, feePlanck, deadline, pin, keys}: SetAccountInfoRequest): Promise<TransactionId> {
     const senderPrivateKey = this.getPrivateKey(keys, pin);
-    return this.api.account.setAccountInfo(name, description, feeNQT, keys.publicKey, senderPrivateKey, deadline);
+    return this.api.account.setAccountInfo({
+      name,
+      description,
+      feePlanck,
+      senderPrivateKey,
+      senderPublicKey: keys.publicKey,
+      deadline
+    });
   }
 
   public setRewardRecipient({recipientId, feePlanck, deadline, pin, keys}: SetRewardRecipientRequest): Promise<TransactionId> {

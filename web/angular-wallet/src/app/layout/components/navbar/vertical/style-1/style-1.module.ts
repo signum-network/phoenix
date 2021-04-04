@@ -10,6 +10,7 @@ import { NavbarVerticalStyle1Component } from 'app/layout/components/navbar/vert
 import { RouterModule } from '@angular/router';
 import {I18nModule} from '../../../i18n/i18n.module';
 import {AppSharedModule} from '../../../../../shared/shared.module';
+import {MatTooltipModule} from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import {AppSharedModule} from '../../../../../shared/shared.module';
         FuseSharedModule,
         FuseNavigationModule,
         I18nModule,
-        AppSharedModule
+        AppSharedModule,
+        MatTooltipModule
     ],
     exports     : [
         NavbarVerticalStyle1Component

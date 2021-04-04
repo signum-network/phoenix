@@ -42,6 +42,13 @@ export const navigation: FuseNavigation[] = [
     type: 'group',
     children: [
       {
+        id: 'info',
+        title: 'Account Info',
+        type: 'item',
+        icon: 'account_balance_wallet',
+        url: '/set-account-info'
+      },
+      {
         id: 'messages',
         title: 'Messages',
         type: 'item',

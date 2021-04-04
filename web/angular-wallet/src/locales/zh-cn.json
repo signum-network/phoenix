@@ -1046,5 +1046,8 @@
   "error_set_commitment": "更新挖矿承诺时出错。请注意，您需要等待1440块才能撤消承诺。",
   "commitment_blocks_enabled": "直到承诺可以被取消之前，缺少的块",
   "no_reward_recipient": "您尚未设置奖励接收者",
-  "commitment_unsupported": "当前选择的节点不支持采矿承诺。请选择一个版本至少为3+的节点。"
+  "commitment_unsupported": "当前选择的节点不支持采矿承诺。请选择一个版本至少为3+的节点。",
+  "click_for_request": "单击以创建可以由第三方使用的付款请求",
+  "copy_account_address_extended": "复制扩展地址",
+  "copy_account_publickey": "复制公钥"
 }

@@ -1046,5 +1046,8 @@
   "error_set_commitment": "Fehler beim Aktualisieren des Mining-Einsatzes. Beachten Sie, dass Sie 1440 Blöcke warten müssen, bevor Sie Ihren Einsatz widerrufen können.",
   "commitment_blocks_enabled": "Blöcke fehlen, bis der Einsatz widerrufen werden kann",
   "no_reward_recipient": "Sie haben noch keinen Belohnungsempfänger festgelegt",
-  "commitment_unsupported": "Der aktuell ausgewählte Knoten unterstützt kein Mining-Commitment. Bitte wählen Sie einen Knoten mit mindestens Version 3+ aus."
+  "commitment_unsupported": "Der aktuell ausgewählte Knoten unterstützt kein Mining-Commitment. Bitte wählen Sie einen Knoten mit mindestens Version 3+ aus.",
+  "click_for_request": "Klicken Sie hier, um eine Zahlungsanforderung zu erstellen, die von Dritten verwendet werden kann",
+  "copy_account_address_extended": "Erweiterte Adresse kopieren",
+  "copy_account_publickey": "Öffentlichen Schlüssel kopieren"
 }
