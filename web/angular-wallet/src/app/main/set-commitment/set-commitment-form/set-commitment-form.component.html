@@ -42,7 +42,7 @@
                              (pinChange)="setPin($event)">
     </app-submit-transaction>
 
-    <strong>Total:&nbsp;</strong>
+    <strong>{{'total' | i18n}}:&nbsp;</strong>
     <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getBurst() | burstAmount }}</span>
   </ng-container>
 
