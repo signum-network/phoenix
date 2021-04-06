@@ -17,12 +17,6 @@
                   placeholder="{{ 'description' | i18n }}"></textarea>
       </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>{{ 'fee' | i18n }}</mat-label>
-        <label matPrefix>Ƀ &nbsp;</label>
-        <input matInput [(ngModel)]="fee" name="fee">
-      </mat-form-field>
-
       <burst-fee-selector [fees]="fees" [(fee)]="fee"></burst-fee-selector>
 
       <div *ngIf="advanced">

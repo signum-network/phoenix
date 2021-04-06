@@ -75,7 +75,7 @@ export const navigation: FuseNavigation[] = [
   {
     id: 'mining',
     title: 'Mining',
-    type: 'group',
+    type: 'collapsable',
     children: [
       {
         id: 'commitment',
@@ -96,7 +96,7 @@ export const navigation: FuseNavigation[] = [
   {
     id: 'network',
     title: 'Network',
-    type: 'group',
+    type: 'collapsable',
     children: [
       {
         id: 'blocks',

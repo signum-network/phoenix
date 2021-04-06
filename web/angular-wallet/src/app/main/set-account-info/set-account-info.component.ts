@@ -14,7 +14,7 @@ import {burstAddressPattern} from 'app/util/burstAddressPattern';
   templateUrl: './set-account-info.component.html',
   styleUrls: ['./set-account-info.component.scss']
 })
-export class SetAccountInfoComponent implements OnInit, AfterViewInit {
+export class SetAccountInfoComponent implements OnInit {
   @ViewChild('setAccountInfoForm', {static: false}) public setAccountInfoForm: NgForm;
   @ViewChild('name', {static: false}) public name: string;
   @ViewChild('description', {static: false}) public description: string;
@@ -41,11 +41,7 @@ export class SetAccountInfoComponent implements OnInit, AfterViewInit {
     this.account = this.route.snapshot.data.account as Account;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
     setTimeout(() => {
-    }, 0);
-  }
-
-  ngAfterViewInit(): void {
-    setTimeout(() => {
+      this.fee = BurstValue.fromPlanck(this.fees.standard + '').getBurst();
       this.name = this.account.name;
       this.description = this.account.description;
     }, 0);
