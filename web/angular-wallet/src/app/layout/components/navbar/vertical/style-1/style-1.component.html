@@ -30,17 +30,18 @@
     <div class="h3 username">{{ selectedAccount.accountRS }}</div>
     <div class="h5 username">{{ getBalance() | burstAmount:'burst':true }}</div>
     <div class="h5 alias hint-text mt-4" *ngIf="selectedAccount.type !== 'offline'" [matMenuTriggerFor]="menu">
-      <span>{{ getAccountName() }} <mat-icon>keyboard_arrow_down</mat-icon></span>
+      <span>{{ getAccountName() }}
+        <mat-icon>keyboard_arrow_down</mat-icon></span>
     </div>
     <div class="h5 alias hint-text mt-4" *ngIf="selectedAccount.type === 'offline'">
       <span>{{'hint_offline_account' | i18n}}</span>
     </div>
-    <div
-      class="avatar-container fuse-navy-700"
-      matTooltip="{{'click_for_request' | i18n }}"
+    <a
+      class="avatar-container"
+      [routerLink]="['set-account-info']"
     >
-      <img class="avatar" [routerLink]="['request']" [src]="selectedAccountQRCode">
-    </div>
+      <canvas #avatar></canvas>
+    </a>
   </div>
 
   <mat-menu #menu="matMenu">
