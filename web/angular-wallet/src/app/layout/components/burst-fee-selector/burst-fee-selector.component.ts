@@ -6,6 +6,7 @@ import {LabelType, Options} from 'ng5-slider';
 import {BurstAmountPipe} from '../../../shared/pipes/burst-amount.pipe';
 import {formatBurstAmount} from '../../../util/formatBurstAmount';
 import {I18nService} from '../i18n/i18n.service';
+// @ts-ignore
 import Color from 'color';
 
 const SliderAxisBaseColor = Color('#039be5');
