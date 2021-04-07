@@ -5,12 +5,19 @@
 - PoC+ Mining Features
   - Add Commitment
   - Refined Reward Recipient
-- Some face lifting
+- New face lifting
   - new splash screen
   - changing bg images on pages
+- Extended Address Support  
+- Modernized Pages
+  - Set Reward Recipient
+  - Set Account Info
+  
 
 ### Bug fixes
 - Market Info with true 24h change 
+- Cleanup (#1408)
+- Set Account Info (#412)
 
 ## 1.0.3
 
