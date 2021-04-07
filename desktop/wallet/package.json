@@ -5,7 +5,7 @@
     "email": "contact@burst-coin.org"
   },
   "productName": "Phoenix BURST Wallet",
-  "version": "1.1.0-alpha.1",
+  "version": "1.1.0-beta.1",
   "contributors": [
     "ohager",
     "blankey1337",
@@ -49,7 +49,6 @@
     "jest": "^24.9.0",
     "rimraf": "^3.0.0"
   },
-
   "update": {
     "repositoryRootUrl": "https://api.github.com/repos/burst-apps-team/phoenix",
     "certFingerprint": "0A:E3:84:BF:D4:DD:E9:D1:3E:50:C5:85:7C:05:A4:42:C9:3F:8E:01:44:5E:E4:B3:45:40:D2:2B:D1:E3:7F:1B",
