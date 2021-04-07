@@ -54,7 +54,7 @@
     <button *ngIf="selectedAccount.accountRSExtended" mat-menu-item (click)="copy(selectedAccount.accountRSExtended)">
       <span>{{ 'copy_account_address_extended' | i18n }}</span>
     </button>
-    <button *ngIf="selectedAccount.keys.publicKey" mat-menu-item (click)="copy(selectedAccount.keys.publicKey)">
+    <button *ngIf="selectedAccount.keys && selectedAccount.keys.publicKey" mat-menu-item (click)="copy(selectedAccount.keys.publicKey)">
       <span>{{ 'copy_account_publickey' | i18n }}</span>
     </button>
   </mat-menu>

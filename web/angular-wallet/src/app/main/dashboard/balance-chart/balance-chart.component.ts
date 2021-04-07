@@ -68,7 +68,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
     this.accountBalances = getBalancesFromAccount(this.account);
     this.balanceHistory = getBalanceHistoryFromTransactions(
       account,
-      parseFloat(BurstValue.fromPlanck(balanceNQT).getBurst()),
+      parseFloat(BurstValue.fromPlanck(balanceNQT || '0').getBurst()),
       transactions).reverse();
 
     const chartData = this.balanceHistory.map(item => parseFloat(item.balance.toFixed(2)));

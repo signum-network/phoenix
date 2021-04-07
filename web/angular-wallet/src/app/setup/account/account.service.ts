@@ -369,9 +369,17 @@ export class AccountService {
   private async syncAccountDetails(account: Account): Promise<void> {
     try {
       const remoteAccount = await this.getAccount(account.account);
-      Object.keys(remoteAccount).forEach(k => {
-        account[k] = remoteAccount[k];
-      });
+      // Only update what you really need...
+      // ATTENTION: Do not try to iterate over all keys and update then
+      // It will fail :shrug
+      account.name = remoteAccount.name;
+      account.description = remoteAccount.description;
+      account.assetBalances = remoteAccount.assetBalances;
+      account.unconfirmedAssetBalances = remoteAccount.unconfirmedAssetBalances;
+      account.committedBalanceNQT = remoteAccount.committedBalanceNQT;
+      account.balanceNQT = remoteAccount.balanceNQT;
+      account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
+      account.accountRSExtended = remoteAccount.accountRSExtended
       // @ts-ignore
       account.confirmed = !!remoteAccount.publicKey;
     } catch (e) {
@@ -396,7 +404,8 @@ export class AccountService {
       await http.post('/api/activate', payload);
     } catch (e) {
       if (e instanceof HttpError) {
-        throw new Error(e.data || 'Unknown Error while requesting activation service');
+        const message = e.data && e.data.message;
+        throw new Error(message || 'Unknown Error while requesting activation service');
       }
       throw e;
     }

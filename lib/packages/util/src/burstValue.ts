@@ -35,8 +35,10 @@ export class BurstValue {
 
     private _planck: BigNumber;
 
-    private constructor(planck: string) {
-        assureValidValue(planck);
+    private constructor(planck: number | string) {
+        if (typeof planck === 'string') {
+            assureValidValue(planck);
+        }
         this._planck = new BigNumber(planck);
     }
 
@@ -48,7 +50,7 @@ export class BurstValue {
      * Creates a Burst Value object from Planck
      * @param planck The value in Planck
      */
-    public static fromPlanck(planck: string): BurstValue {
+    public static fromPlanck(planck: number | string): BurstValue {
         return new BurstValue(planck);
     }
 
