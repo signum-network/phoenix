@@ -5,7 +5,6 @@ import 'rxjs/add/operator/timeout';
 import {environment} from 'environments/environment';
 import {StoreService} from 'app/store/store.service';
 
-
 import {
   Account,
   AliasList,
@@ -307,16 +306,12 @@ export class AccountService {
     });
   }
 
-
   public synchronizeAccount(account: Account): Promise<Account> {
     return new Promise(async (resolve, reject) => {
       await this.syncAccountDetails(account);
       await this.syncAccountTransactions(account);
       await this.syncAccountUnconfirmedTransactions(account);
-
-      this.storeService.saveAccount(account).catch(error => {
-        reject(error);
-      });
+      this.storeService.saveAccount(account).catch(reject);
       resolve(account);
     });
   }
@@ -368,20 +363,15 @@ export class AccountService {
       account.transactions = transactionList.transactions;
     } catch (e) {
       account.transactions = [];
-      console.log(e);
     }
   }
 
   private async syncAccountDetails(account: Account): Promise<void> {
     try {
       const remoteAccount = await this.getAccount(account.account);
-      account.name = remoteAccount.name;
-      account.description = remoteAccount.description;
-      account.assetBalances = remoteAccount.assetBalances;
-      account.unconfirmedAssetBalances = remoteAccount.unconfirmedAssetBalances;
-      account.committedBalanceNQT = remoteAccount.committedBalanceNQT;
-      account.balanceNQT = remoteAccount.balanceNQT;
-      account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
+      Object.keys(remoteAccount).forEach(k => {
+        account[k] = remoteAccount[k];
+      });
       // @ts-ignore
       account.confirmed = !!remoteAccount.publicKey;
     } catch (e) {
