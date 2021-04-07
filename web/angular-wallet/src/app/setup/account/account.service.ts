@@ -399,7 +399,8 @@ export class AccountService {
       const http = HttpClientFactory.createHttpClient(environment.activatorServiceUrl);
       const payload = {
         account: account.account,
-        publickey: account.keys.publicKey
+        publickey: account.keys.publicKey,
+        ref: `phoenix-${environment.version}`
       };
       await http.post('/api/activate', payload);
     } catch (e) {
