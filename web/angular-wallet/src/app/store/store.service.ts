@@ -103,8 +103,8 @@ export class StoreService {
           } else {
             rs = accounts.find();
             if (rs.length > 0) {
-              accounts.chain().find({account: rs[0].account}).update(w => {
-                w.selected = true;
+              accounts.chain().find({account: rs[0].account}).update(a => {
+                a.selected = true;
               });
               const w = new Account(rs[0]);
               this.store.saveDatabase();
