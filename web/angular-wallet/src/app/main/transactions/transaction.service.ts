@@ -53,6 +53,7 @@ interface SendBurstRequest {
   message?: string;
   pin: string;
   recipientId: string;
+  recipientPublicKey: string;
   messageIsText: boolean;
   shouldEncryptMessage?: boolean;
 }
@@ -103,7 +104,7 @@ export class TransactionService {
 
   public async sendBurst(request: SendBurstRequest): Promise<TransactionId> {
 
-    const {pin, amount, fee, recipientId, message, messageIsText, shouldEncryptMessage, keys} = request;
+    const {pin, amount, fee, recipientId, message, messageIsText, shouldEncryptMessage, keys, recipientPublicKey} = request;
 
     let attachment: Attachment;
     if (message && shouldEncryptMessage) {
@@ -131,13 +132,23 @@ export class TransactionService {
       attachment = new AttachmentMessage({message, messageIsText});
     }
 
-    return this.transactionApi.sendAmount(
-      amount,
-      fee,
+    return this.transactionApi.sendAmountToSingleRecipient({
+      amountPlanck: amount,
+      feePlanck: fee,
       recipientId,
-      keys.publicKey,
-      this.getSendersPrivateKey(pin, keys),
-      attachment);
+      recipientPublicKey,
+      senderPrivateKey: this.getSendersPrivateKey(pin, keys),
+      senderPublicKey: keys.publicKey,
+      attachment
+    });
+
+    // return this.transactionApi.sendAmount(
+    //   amount,
+    //   fee,
+    //   recipientId,
+    //   keys.publicKey,
+    //   this.getSendersPrivateKey(pin, keys),
+    //   attachment);
   }
 
 }

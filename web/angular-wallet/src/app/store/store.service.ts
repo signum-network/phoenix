@@ -4,7 +4,6 @@ import * as Loki from 'lokijs';
 import {StoreConfig} from './store.config';
 import {Settings} from 'app/settings';
 import {Account} from '@burstjs/core';
-import {cloneDeep} from 'lodash';
 
 const CollectionName = {
   Account: 'accounts',
@@ -73,21 +72,9 @@ export class StoreService {
             accounts.insert(account);
           } else {
             accounts.chain().find({account: account.account}).update(w => {
-              w = cloneDeep(account);
-              // Object.keys(account).forEach( k => {
-              //   w[k] = account[k]
-              // })
-              // w.balanceNQT = account.balanceNQT;
-              // w.unconfirmedBalanceNQT = account.unconfirmedBalanceNQT;
-              // w.committedBalanceNQT = account.committedBalanceNQT;
-              // w.assetBalances = account.assetBalances;
-              // w.type = account.type;
-              // w.selected = account.selected;
-              // w.name = account.name;
-              // w.description = account.description;
-              // w.keys = account.keys;
-              // w.transactions = account.transactions;
-              // w.confirmed = account.confirmed;
+              Object.keys(account).forEach( k => {
+                w[k] = account[k];
+              });
             });
           }
           this.store.saveDatabase();

@@ -3,10 +3,10 @@ import {convertAddressToNumericId, convertNumericIdToAddress, isBurstAddress} fr
 import {AccountService} from '../../../setup/account/account.service';
 import jsQR from 'jsqr';
 import {NotifierService} from 'angular-notifier';
-import { DomainService } from 'app/main/send-burst/domain/domain.service';
-import { Subject } from 'rxjs';
-import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
-import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
+import {DomainService} from 'app/main/send-burst/domain/domain.service';
+import {Subject} from 'rxjs';
+import {distinctUntilChanged, debounceTime} from 'rxjs/operators';
+import {Address} from '@burstjs/core/src';
 
 // generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
 let nextId = 0;
@@ -34,6 +34,7 @@ export class Recipient {
     public addressRS = '',
     public status = RecipientValidationStatus.UNKNOWN,
     public type = RecipientType.UNKNOWN,
+    public publicKey = ''
   ) {
 
   }
@@ -83,10 +84,10 @@ export class BurstRecipientInputComponent implements OnChanges {
     this.recipientFieldInputChange$.pipe(
       debounceTime(500), distinctUntilChanged()
     )
-    .subscribe((model: string) => {
-      this.applyRecipientType(model);
-      this.validateRecipient(model);
-    });
+      .subscribe((model: string) => {
+        this.applyRecipientType(model);
+        this.validateRecipient(model);
+      });
   }
 
   onRecipientFieldInputChange(query: string): void {
@@ -128,7 +129,14 @@ export class BurstRecipientInputComponent implements OnChanges {
         accountFetchFn = this.accountService.getAlias;
         break;
       case RecipientType.ADDRESS:
-        id = convertAddressToNumericId(id);
+        try {
+          const address = Address.fromExtendedRSAddress(id);
+          this.recipient.addressRaw = address.getReedSolomonAddress();
+          this.recipient.publicKey = address.getPublicKey();
+          id = address.getAccountId();
+        } catch (e) {
+          id = convertAddressToNumericId(id);
+        }
         accountFetchFn = this.accountService.getAccount;
         break;
       case RecipientType.ZIL:
