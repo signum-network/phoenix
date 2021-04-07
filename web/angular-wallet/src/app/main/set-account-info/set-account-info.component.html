@@ -1,68 +1,36 @@
-<div class="page-layout blank simple" fusePerfectScrollbar *ngIf="fees">
-
-  <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-      fxLayoutAlign.gt-xs="space-between center">
-
-      <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
-          <div fxLayout="row" fxLayoutAlign="start center">
-              <a [routerLink]="['/dashboard']"><mat-icon class="secondary-text s-18">home</mat-icon></a>
-              <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-              <span class="secondary-text">{{ 'set_account_info' | i18n }}</span>
-          </div>
-          <div class="h1 mt-16">{{ 'set_account_info' | i18n }}</div>
-      </div>
+<app-page title="{{ 'set_account_info' | i18n }}" *ngIf="fees">
+  <div class="account-info pl-20 pr-20 mb-8">
+    <div class="account-info__field">
+      <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>
+      <p class="pb-8">{{account.accountRS}}</p>
+    </div>
   </div>
 
-  <div class="p-24 content">
-
+  <div class="p-24">
     <form (ngSubmit)="onSubmit($event);" #setAccountInfoForm="ngForm">
-      <mat-form-field appearance="outline">
+      <mat-form-field>
         <input matInput [(ngModel)]="name" name="name" placeholder="{{ 'your_name' | i18n }}">
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <textarea matInput [(ngModel)]="description" name="description" placeholder="{{ 'description' | i18n }}"></textarea>
+      <mat-form-field>
+        <textarea matInput [(ngModel)]="description" name="description"
+                  placeholder="{{ 'description' | i18n }}"></textarea>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
-        <label matSuffix>BURST</label>
-      </mat-form-field>
-
-      <burst-fee-selector [fees]="fees" [(fee)]="feeNQT"></burst-fee-selector>
-
-      <mat-form-field class="pin" appearance="outline">
-        <input type="password" matInput [(ngModel)]="pin" name="pin" placeholder="Your PIN">
-      </mat-form-field>
+      <burst-fee-selector [fees]="fees" [(fee)]="fee"></burst-fee-selector>
 
       <div *ngIf="advanced">
-        <mat-form-field appearance="outline">
+        <mat-form-field>
           <label>{{ 'deadline_hours' | i18n }}</label>
           <input matInput [(ngModel)]="deadline" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}">
         </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <input matInput [(ngModel)]="fullHash" name="fullHash"
-            placeholder="{{ 'referenced_transaction_full_hash' | i18n }}" disabled>
-        </mat-form-field>
-
-        <mat-checkbox [(ngModel)]="broadcast" name="broadcast" disabled>{{ "do_not_broadcast" | i18n }}</mat-checkbox>
-        <br />
-
-        <mat-checkbox [(ngModel)]="note" name="note" disabled>{{ "add_note_to_self_q" | i18n }}</mat-checkbox>
-
-        <div *ngIf="note">
-          <mat-form-field appearance="outline">
-            <textarea matInput [(ngModel)]="note_text" name="note_text" placeholder="{{ 'note' | i18n }}"></textarea>
-          </mat-form-field>
-        </div>
-
       </div>
+
+      <app-submit-transaction [disabled]="!canSubmit()"
+                              [isSubmitting]="isSending"
+                              (pinChange)="setPin($event)"></app-submit-transaction>
     </form>
 
     <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
-    <br /><br />
-
-    <button type="submit" class="mr-8" mat-raised-button mat-button color="primary" (click)="onSubmit($event)">{{ "send_burst" | i18n }}</button>
   </div>
-</div>
+</app-page>

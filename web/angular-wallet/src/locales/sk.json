@@ -1046,5 +1046,8 @@
   "error_set_commitment": "Chyba pri aktualizácii záväzku ťažby. Nezabudnite, že pred odvolaním svojho záväzku musíte počkať 1 440 blokov.",
   "commitment_blocks_enabled": "bloky chýbajú, kým nie je možné odvolať záväzok",
   "no_reward_recipient": "Zatiaľ nemáte nastaveného žiadneho príjemcu odmeny",
-  "commitment_unsupported": "Aktuálne vybraný uzol nepodporuje ťažobný záväzok. Vyberte uzol s minimálne verziou 3+."
+  "commitment_unsupported": "Aktuálne vybraný uzol nepodporuje ťažobný záväzok. Vyberte uzol s minimálne verziou 3+.",
+  "click_for_request": "Kliknutím vytvoríte žiadosť o platbu, ktorú môžu použiť tretie strany",
+  "copy_account_address_extended": "Skopírujte rozšírenú adresu",
+  "copy_account_publickey": "Kopírovať verejný kľúč"
 }

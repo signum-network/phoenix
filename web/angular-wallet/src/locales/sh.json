@@ -1045,5 +1045,8 @@
   "error_set_commitment": "",
   "commitment_blocks_enabled": "",
   "no_reward_recipient": "",
-  "commitment_unsupported": ""
+  "commitment_unsupported": "",
+  "click_for_request": "",
+  "copy_account_address_extended": "",
+  "copy_account_publickey": ""
 }

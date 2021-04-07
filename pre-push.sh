@@ -12,6 +12,6 @@ npm run tsc
 npm run test
 check
 cd ../web/angular-wallet
-npm run test
+#npm run test
 check
 npm run build:ci

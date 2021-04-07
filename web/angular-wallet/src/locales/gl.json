@@ -1046,5 +1046,8 @@
   "error_set_commitment": "Erro ao actualizar o compromiso mineiro. Ten en conta que debes esperar 1440 bloques antes de poder revogar o teu compromiso.",
   "commitment_blocks_enabled": "faltan bloques ata que se poida revogar o compromiso",
   "no_reward_recipient": "Aínda non tes definido ningún destinatario de recompensa",
-  "commitment_unsupported": "O nodo seleccionado actualmente non admite o compromiso de minería. Seleccione un nodo con polo menos a versión 3+."
+  "commitment_unsupported": "O nodo seleccionado actualmente non admite o compromiso de minería. Seleccione un nodo con polo menos a versión 3+.",
+  "click_for_request": "Fai clic para crear unha solicitude de pagamento que poida ser utilizada por terceiros",
+  "copy_account_address_extended": "Copia o enderezo ampliado",
+  "copy_account_publickey": "Copiar clave pública"
 }

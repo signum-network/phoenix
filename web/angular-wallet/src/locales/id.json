@@ -1046,5 +1046,8 @@
   "error_set_commitment": "Kesalahan saat memperbarui komitmen penambangan. Ingatlah bahwa Anda perlu menunggu 1.440 blok sebelum Anda dapat mencabut komitmen Anda.",
   "commitment_blocks_enabled": "blok hilang sampai komitmen dapat dicabut",
   "no_reward_recipient": "Anda belum menetapkan penerima hadiah",
-  "commitment_unsupported": "Node yang saat ini dipilih tidak mendukung Mining Commitment. Pilih Node dengan setidaknya Versi 3+."
+  "commitment_unsupported": "Node yang saat ini dipilih tidak mendukung Mining Commitment. Pilih Node dengan setidaknya Versi 3+.",
+  "click_for_request": "Klik untuk membuat permintaan pembayaran yang dapat digunakan oleh pihak ketiga",
+  "copy_account_address_extended": "Salin Alamat Lengkap",
+  "copy_account_publickey": "Salin Kunci Publik"
 }

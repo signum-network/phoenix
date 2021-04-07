@@ -315,7 +315,7 @@ describe('AccountApi', () => {
             httpMock = HttpMockBuilder.create()
                 // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse,
-                    'relPath?requestType=setAccountInfo&name=name&description=description&deadline=1440&feeNQT=12300000000&publicKey=senderPublicKey')
+                    'relPath?requestType=setAccountInfo&name=name&description=description&deadline=1440&feeNQT=100000000&publicKey=senderPublicKey')
                 .onPostReply(200, 'fakeTransaction',
                     'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
                 .build();
@@ -329,14 +329,13 @@ describe('AccountApi', () => {
         });
 
         it('should setAccountInfo', async () => {
-            const status = await setAccountInfo(service)(
-                'name',
-                'description',
-                '123',
-                'senderPublicKey',
-                'senderPrivateKey',
-                1440,
-            );
+            const status = await setAccountInfo(service)({
+                name: 'name',
+                description: 'description',
+                feePlanck: BurstValue.fromBurst(1).getPlanck(),
+                senderPublicKey: 'senderPublicKey',
+                senderPrivateKey: 'senderPrivateKey'
+            })
             expect(status).toBe('fakeTransaction');
             expect(generateSignature).toBeCalledTimes(1);
             expect(verifySignature).toBeCalledTimes(1);

@@ -1046,5 +1046,8 @@
   "error_set_commitment": "Error al actualizar el compromiso de minería. Tenga en cuenta que debe esperar 1440 bloques antes de poder revocar su compromiso.",
   "commitment_blocks_enabled": "faltan bloques hasta que se pueda revocar el compromiso",
   "no_reward_recipient": "Aún no tienes un destinatario de recompensa establecido",
-  "commitment_unsupported": "El nodo seleccionado actualmente no es compatible con el compromiso de minería. Seleccione un nodo con al menos la versión 3+."
+  "commitment_unsupported": "El nodo seleccionado actualmente no es compatible con el compromiso de minería. Seleccione un nodo con al menos la versión 3+.",
+  "click_for_request": "Haga clic para crear una solicitud de pago que pueda ser utilizada por terceros",
+  "copy_account_address_extended": "Copiar dirección extendida",
+  "copy_account_publickey": "Copiar clave pública"
 }

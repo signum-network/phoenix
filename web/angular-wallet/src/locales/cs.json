@@ -1046,5 +1046,8 @@
   "error_set_commitment": "Chyba při aktualizaci závazku těžby. Mějte na paměti, že než budete moci svůj závazek odvolat, musíte počkat 1440 bloků.",
   "commitment_blocks_enabled": "bloky chybí do odvolání závazku",
   "no_reward_recipient": "Zatím nemáte nastaveného žádného příjemce odměny",
-  "commitment_unsupported": "Aktuálně vybraný uzel nepodporuje těžební závazek. Vyberte uzel alespoň s verzí 3+."
+  "commitment_unsupported": "Aktuálně vybraný uzel nepodporuje těžební závazek. Vyberte uzel alespoň s verzí 3+.",
+  "click_for_request": "Kliknutím vytvoříte žádost o platbu, kterou mohou použít třetí strany",
+  "copy_account_address_extended": "Zkopírujte rozšířenou adresu",
+  "copy_account_publickey": "Zkopírujte veřejný klíč"
 }

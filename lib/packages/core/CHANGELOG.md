@@ -7,7 +7,7 @@ __Breaking Changes__
 
 - `getAccount` accepts an argument object now
 - `TransactionRewardRecipentSubtype` renamed to `TransactionMiningSubtype`
-
+- `setAccountInfo` accepts an argument object now
 ------------------------
 
 __New__
@@ -31,6 +31,7 @@ __New__
 __Fixes__
 - Fixed return types of Block Api (`BlockIdList` and `BlockList`)
 - Fixed `getAccountBlocks` and `getAccountBlockIds`
+- Fixed missing export for `AssetList`
 ---
 
 ## 0.5.0

@@ -144,21 +144,23 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
       const dialogRef = this.openWarningDialog([this.recipient]);
       dialogRef.afterClosed().subscribe(ok => {
         if (ok) {
-          this.sendBurst(this.recipient.addressRaw);
+          this.sendBurst(this.recipient.addressRaw, this.recipient.publicKey);
         }
       });
     } else {
-      this.sendBurst(this.recipient.addressRS);
+      this.sendBurst(this.recipient.addressRS, this.recipient.publicKey);
     }
   }
 
-  async sendBurst(addressRS: string): Promise<void> {
+  async sendBurst(addressRS: string, recipientPublicKey = ''): Promise<void> {
     try {
       this.isSending = true;
+
       await this.transactionService.sendBurst({
         amount: BurstValue.fromBurst(this.amount).getPlanck(),
         fee: BurstValue.fromBurst(this.fee).getPlanck(),
         recipientId: convertAddressToNumericId(addressRS),
+        recipientPublicKey,
         keys: this.account.keys,
         pin: this.pin,
         message: this.message,

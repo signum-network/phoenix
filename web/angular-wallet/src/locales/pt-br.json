@@ -1050,5 +1050,8 @@
   "error_set_commitment": "Erro ao atualizar o compromisso de mineração. Lembre-se de que você precisa esperar 1440 blocos antes de cancelar seu compromisso.",
   "commitment_blocks_enabled": "blocos ausentes até que o compromisso possa ser revogado",
   "no_reward_recipient": "Você ainda não tem nenhum destinatário de recompensa definido",
-  "commitment_unsupported": "O Nó selecionado atualmente não suporta o Compromisso de Mineração. Selecione um nó com pelo menos a versão 3+."
+  "commitment_unsupported": "O Nó selecionado atualmente não suporta o Compromisso de Mineração. Selecione um nó com pelo menos a versão 3+.",
+  "click_for_request": "Clique para criar uma solicitação de pagamento que pode ser usada por terceiros",
+  "copy_account_address_extended": "Copiar endereço estendido",
+  "copy_account_publickey": "Copiar chave pública"
 }

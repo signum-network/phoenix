@@ -6,6 +6,10 @@ import {LabelType, Options} from 'ng5-slider';
 import {BurstAmountPipe} from '../../../shared/pipes/burst-amount.pipe';
 import {formatBurstAmount} from '../../../util/formatBurstAmount';
 import {I18nService} from '../i18n/i18n.service';
+import Color from 'color';
+
+// @ts-ignore
+const SliderAxisBaseColor = Color('#039be5');
 
 @Component({
   selector: 'burst-fee-selector',
@@ -41,19 +45,20 @@ export class BurstFeeSelectorComponent implements OnInit {
 
   ngOnInit(): void {
 
+    const floor = this.convertFeeToBurst(this.fees.minimum);
+    const ceil = this.convertFeeToBurst(this.fees.priority);
+
+    const normalize = (v): number => (v - floor) / (ceil - floor);
+
     this.options = {
       step: 0.0000001,
-      floor: this.convertFeeToBurst(this.fees.minimum),
-      ceil: this.convertFeeToBurst(this.fees.priority),
+      floor,
+      ceil,
       showSelectionBar: true,
       getSelectionBarColor: (value: number): string => {
-        if (value < this.convertFeeToBurst(this.fees.standard)) {
-          return 'orange';
-        }
-        if (value < this.convertFeeToBurst(this.fees.priority)) {
-          return 'yellow';
-        }
-        return '#2AE02A';
+        const n = normalize(value);
+        const color = SliderAxisBaseColor.fade(1 - n);
+        return color.hsl();
       },
       translate: (value: number, label: LabelType): string => {
         return formatBurstAmount(value, {
@@ -68,5 +73,4 @@ export class BurstFeeSelectorComponent implements OnInit {
   convertFeeToBurst(feeNQT: number): number {
     return convertNQTStringToNumber(feeNQT.toString());
   }
-
 }

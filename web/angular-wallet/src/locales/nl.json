@@ -1046,5 +1046,8 @@
   "error_set_commitment": "Fout bij het bijwerken van mijnverplichting. Houd er rekening mee dat u 1440 blokken moet wachten voordat u uw toezegging kunt herroepen.",
   "commitment_blocks_enabled": "blokken ontbreken totdat de toezegging kan worden herroepen",
   "no_reward_recipient": "U heeft nog geen beloningsontvanger ingesteld",
-  "commitment_unsupported": "Het momenteel geselecteerde knooppunt ondersteunt geen mijnbouwverplichting. Selecteer een knooppunt met ten minste versie 3+."
+  "commitment_unsupported": "Het momenteel geselecteerde knooppunt ondersteunt geen mijnbouwverplichting. Selecteer een knooppunt met ten minste versie 3+.",
+  "click_for_request": "Klik om een betalingsverzoek aan te maken dat door derden kan worden gebruikt",
+  "copy_account_address_extended": "Kopieer uitgebreid adres",
+  "copy_account_publickey": "Kopieer de openbare sleutel"
 }
