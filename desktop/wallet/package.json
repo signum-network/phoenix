@@ -49,9 +49,10 @@
     "jest": "^24.9.0",
     "rimraf": "^3.0.0"
   },
+
   "update": {
     "repositoryRootUrl": "https://api.github.com/repos/burst-apps-team/phoenix",
-    "certFingerprint": "B6:B9:A6:AF:3E:86:6C:BE:0E:6A:30:7E:7D:DA:17:3B:37:2B:2D:3A:C3:F0:6A:F1:5F:97:71:87:73:84:80:08",
+    "certFingerprint": "0A:E3:84:BF:D4:DD:E9:D1:3E:50:C5:85:7C:05:A4:42:C9:3F:8E:01:44:5E:E4:B3:45:40:D2:2B:D1:E3:7F:1B",
     "checkIntervalMins": 10,
     "tagPrefix": "desktop-"
   },
