@@ -12,7 +12,7 @@ on:
 
 jobs:
   build-ng:
-    name: Test and Build Angular App
+    name: Build Angular App
     runs-on: ubuntu-latest
 
     steps:
