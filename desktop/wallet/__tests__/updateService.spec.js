@@ -3,6 +3,7 @@ const UpdateService = require('../src/updateService');
 
 const releaseMock = require('./releaseMock.json');
 const releasesMock = require('./releasesMock.json');
+const {createVoidLogger} = require("../src/logger");
 
 const containsUrlThatEndsWith = urls => suffix => urls.filter(url => url.endsWith(suffix)).length > 0;
 
@@ -13,6 +14,8 @@ const config = {
   tagPrefix: 'desktop-',
   certFingerprint: 'fingerprint'
 };
+
+const logger = createVoidLogger()
 
 describe('Update Service', () => {
 
@@ -25,7 +28,7 @@ describe('Update Service', () => {
 
   describe('_getPlatformSpecificAssets', () => {
 
-    const updateService = new UpdateService(config);
+    const updateService = new UpdateService(config,logger);
 
     it('for darwin (MacOS)', () => {
       const platformSpecificAssets = updateService._getPlatformSpecificAssets(releaseMock.assets, 'darwin');
@@ -59,7 +62,7 @@ describe('Update Service', () => {
 
     it('get the latest desktop release', async () => {
       const httpMock = HttpMockBuilder.create().onGetReply(200, releasesMock).build();
-      const updateService = new UpdateService(config, httpMock);
+      const updateService = new UpdateService(config, logger, httpMock);
 
       updateService.validateCertificate = jest.fn(() => ({
         isValid: true,
@@ -82,7 +85,7 @@ describe('Update Service', () => {
       };
 
       const httpMock = HttpMockBuilder.create().onGetReply(200, releasesMock).build();
-      const updateService = new UpdateService(_config, httpMock);
+      const updateService = new UpdateService(_config, logger, httpMock);
 
       updateService.validateCertificate = jest.fn(() => ({
         isValid: true,
@@ -99,7 +102,7 @@ describe('Update Service', () => {
     it('error on invocation', async () => {
 
       const httpMock = HttpMockBuilder.create().onGetThrowError(404, 'error message').build();
-      const updateService = new UpdateService(config, httpMock);
+      const updateService = new UpdateService(config, logger, httpMock);
 
       updateService.validateCertificate = jest.fn(() => ({
         isValid: true,
@@ -124,7 +127,7 @@ describe('Update Service', () => {
 
     it('calls callback with newest version info', (done) => {
       const httpMock = HttpMockBuilder.create().onGetReply(200, releasesMock).build();
-      const updateService = new UpdateService(config, httpMock);
+      const updateService = new UpdateService(config, logger, httpMock);
 
       const validThruDate = new Date();
       updateService.validateCertificate = jest.fn(() => ({
@@ -166,7 +169,7 @@ describe('Update Service', () => {
         checkIntervalMins: 1,
         tagPrefix: 'desktop-'
       };
-      const updateService = new UpdateService(_config, httpMock);
+      const updateService = new UpdateService(_config, logger, httpMock);
 
       const validThruDate = new Date();
       updateService.validateCertificate = jest.fn(() => ({
