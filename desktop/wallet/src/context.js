@@ -39,8 +39,7 @@ class Context {
     }
 
     isDevToolsEnabled() {
-        // FIXME:
-        return true; //this.isDevelopmentMode() || this._args.isDevToolsEnabled
+        return this.isDevelopmentMode() || this._args.isDevToolsEnabled
     }
 
     isDevelopmentMode() {
