@@ -116,7 +116,7 @@ export class BurstService {
 
     /**
      * Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)
-     * @param reconfigure An optional flag to set automatic reconfiguration. Default is `true`
+     * @param reconfigure An optional flag to set automatic reconfiguration. Default is `false`
      * Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!
      * @param checkMethod The optional API method to be called. This applies only for GET methods. Default is `getBlockchainStatus`
      * @throws Error If `trustedNodeHosts` is empty

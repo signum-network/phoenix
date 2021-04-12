@@ -1,15 +1,11 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
-import {getBlockchainStatus, getServerStatus, getTime, suggestFee} from '../../factories/network';
-import {FeeQuantPlanck} from '@burstjs/util';
 
 const environment = loadEnvironment();
 
 jest.setTimeout(environment.timeout);
 
 describe('[E2E] Burst Service', () => {
-
-
 
     it('should selectBestNode and reconfigure accordingly', async () => {
         const service = new BurstService({
