@@ -116,7 +116,7 @@ export class BurstService {
 
     /**
      * Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)
-     * @param reconfigure An optional flag to set automatic reconfiguration. Default is `false`
+     * @param reconfigure An optional flag to set automatic reconfiguration. Default is `true`
      * Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!
      * @param checkMethod The optional API method to be called. This applies only for GET methods. Default is `getBlockchainStatus`
      * @throws Error If `trustedNodeHosts` is empty
@@ -126,14 +126,32 @@ export class BurstService {
             throw new Error('No trustedNodeHosts configured');
         }
         const checkEndpoint = this.toBRSEndpoint(checkMethod);
+        let timeout = null;
         const requests = this.settings.trustedNodeHosts.map(host => {
             const absoluteUrl = host.endsWith('/') ? `${host}${checkEndpoint}` : `${host}/${checkEndpoint}`;
-            return this.settings.httpClient.get(absoluteUrl)
-                .then(() => host)
-                .catch(() => null);
+            return new Promise<string>(async (resolve, reject) => {
+                try {
+                    await this.settings.httpClient.get(absoluteUrl);
+                    resolve(host);
+                } catch (e) {
+                    if (timeout) {
+                        // @ts-ignore
+                        clearTimeout(timeout);
+                    }
+                    // @ts-ignore
+                    timeout = setTimeout(() => {
+                        reject(null);
+                    }, 10 * 1000);
+                }
+            });
         });
 
         const bestHost = await Promise.race(requests);
+        // @ts-ignore
+        clearTimeout(timeout);
+        if (!bestHost) {
+            throw new Error('All trustedHosts failed');
+        }
         if (reconfigure) {
             this.settings = new SettingsImpl({
                 ...this.settings,
