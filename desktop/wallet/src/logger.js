@@ -1,18 +1,6 @@
 const path = require('path');
 const {createLogger, transports, format} = require('winston');
 
-const isLoggingEnabled = () => {
-    let isEnabled = false;
-
-    // TODO: support more flags, i.e. devtools and extract to main!
-    process.argv.forEach(function (val, index, array) {
-        if (val === '--log') {
-            isEnabled = true;
-        }
-    });
-    return isEnabled;
-};
-
 const createFilename = (type) => {
     const z = (n) => n < 10 ? '0' + n : '' + n;
 

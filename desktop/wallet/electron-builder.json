@@ -36,7 +36,9 @@
     "icon": "../assets/images/png/512x512.png",
     "artifactName": "${os}-phoenix-burst-wallet.${version}.${ext}",
     "target": [
-      "deb"
+      "AppImage",
+      "deb",
+      "tar.gz"
     ],
     "publish": [
       {
