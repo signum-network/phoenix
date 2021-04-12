@@ -227,6 +227,26 @@ describe('BurstService', () => {
 
             const bestHost = await service.selectBestHost();
             expect(bestHost).toContain('trustedHost');
+            expect(service.settings.nodeHost).not.toContain('trustedHost');
+            expect(service.settings.httpClient).toBe(testClient);
+        });
+
+        it('should reconfigure the host', async () => {
+
+            const testClient = new TestHttpClient();
+            testClient.get = jest.fn().mockResolvedValue('get');
+
+            const service = new BurstService({
+                nodeHost: 'nodeHost',
+                apiRootUrl: 'apiRootUrl',
+                trustedNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
+                httpClient: testClient
+            });
+
+            const bestHost = await service.selectBestHost(true);
+            expect(bestHost).toContain('trustedHost');
+            expect(service.settings.nodeHost).toContain('trustedHost');
+            expect(service.settings.httpClient).not.toBe(testClient);
         });
 
         it('should throw error if not enough trustedHosts are set', async () => {

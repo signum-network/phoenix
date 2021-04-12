@@ -47,7 +47,7 @@ export class BurstService {
         }
     }
 
-    public readonly settings: BurstServiceSettings;
+    public settings: BurstServiceSettings;
     private readonly _relPath: string = DefaultApiEndpoint;
 
     private static throwAsHttpError(url: string, apiError: ApiError): void {
@@ -116,10 +116,12 @@ export class BurstService {
 
     /**
      * Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)
-     * @param checkMethod The optional API method to be called. This applies only for GET methods. Default is 'getBlockchainStatus'
+     * @param reconfigure An optional flag to set automatic reconfiguration. Default is `false`
+     * Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!
+     * @param checkMethod The optional API method to be called. This applies only for GET methods. Default is `getBlockchainStatus`
      * @throws Error If `trustedNodeHosts` is empty
      */
-    public async selectBestHost(checkMethod = 'getBlockchainStatus'): Promise<string> {
+    public async selectBestHost(reconfigure = false, checkMethod = 'getBlockchainStatus'): Promise<string> {
         if (!this.settings.trustedNodeHosts.length) {
             throw new Error('No trustedNodeHosts configured');
         }
@@ -132,8 +134,13 @@ export class BurstService {
         });
 
         const bestHost = await Promise.race(requests);
-        // TODO:
-        // this.settings.nodeHost = bestHost
+        if (reconfigure) {
+            this.settings = new SettingsImpl({
+                ...this.settings,
+                httpClient: HttpClientFactory.createHttpClient(bestHost, this.settings.httpClientOptions),
+                nodeHost: bestHost,
+            });
+        }
         return bestHost;
     }
 }
