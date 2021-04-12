@@ -19,11 +19,13 @@ class SettingsImpl implements BurstServiceSettings {
         this.apiRootUrl = settings.apiRootUrl || DefaultApiEndpoint;
         this.nodeHost = settings.nodeHost;
         this.httpClient = settings.httpClient || HttpClientFactory.createHttpClient(settings.nodeHost, settings.httpClientOptions);
+        this.trustedNodeHosts = settings.trustedNodeHosts || [];
     }
 
     readonly apiRootUrl: string;
     readonly httpClient: Http;
     readonly nodeHost: string;
+    readonly trustedNodeHosts: string[];
 }
 
 /**
@@ -110,5 +112,28 @@ export class BurstService {
             BurstService.throwAsHttpError(brsUrl, response);
         }
         return response;
+    }
+
+    /**
+     * Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)
+     * @param checkMethod The optional API method to be called. This applies only for GET methods. Default is 'getBlockchainStatus'
+     * @throws Error If `trustedNodeHosts` is empty
+     */
+    public async selectBestHost(checkMethod = 'getBlockchainStatus'): Promise<string> {
+        if (!this.settings.trustedNodeHosts.length) {
+            throw new Error('No trustedNodeHosts configured');
+        }
+        const checkEndpoint = this.toBRSEndpoint(checkMethod);
+        const requests = this.settings.trustedNodeHosts.map(host => {
+            const absoluteUrl = host.endsWith('/') ? `${host}${checkEndpoint}` : `${host}/${checkEndpoint}`;
+            return this.settings.httpClient.get(absoluteUrl)
+                .then(() => host)
+                .catch(() => null);
+        });
+
+        const bestHost = await Promise.race(requests);
+        // TODO:
+        // this.settings.nodeHost = bestHost
+        return bestHost;
     }
 }

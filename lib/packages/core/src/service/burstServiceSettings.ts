@@ -10,9 +10,16 @@ import {AxiosRequestConfig} from 'axios';
  */
 export interface BurstServiceSettings {
     /**
-     * The node/peer host url with protocol and port, e.g. https://testnet.burst.fun:8080
+     * The node/peer host url with protocol and port, e.g. https://testnet.burst.fun:443
      */
     readonly nodeHost: string;
+
+    /**
+     * A list of node/peer hosts that can be chosen of, usually a list of reliable/trusted nodes. This is necessary for the automatic
+     * node selection.
+     */
+    readonly trustedNodeHosts?: string[];
+
     /**
      * The relative path the Burst API endpoint, default is '/burst' - must begin with slash.
      * Usually, you don't use this.

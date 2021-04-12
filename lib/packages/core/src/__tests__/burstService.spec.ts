@@ -10,7 +10,7 @@ class TestHttpClient implements Http {
     }
 
     get(url: string): Promise<HttpResponse> {
-        return undefined;
+        return Promise.resolve(null);
     }
 
     post(url: string, payload: any): Promise<HttpResponse> {
@@ -31,6 +31,7 @@ describe('BurstService', () => {
             });
             expect(settings.nodeHost).toBe('nodeHost');
             expect(settings.apiRootUrl).toBe(DefaultApiEndpoint);
+            expect(settings.trustedNodeHosts).toEqual([]);
             expect(settings.httpClient instanceof TestHttpClient).toBeFalsy();
         });
 
@@ -38,10 +39,12 @@ describe('BurstService', () => {
             const {settings} = new BurstService({
                 nodeHost: 'nodeHost',
                 apiRootUrl: 'apiRootUrl',
+                trustedNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
                 httpClient: new TestHttpClient()
             });
             expect(settings.nodeHost).toBe('nodeHost');
             expect(settings.apiRootUrl).toBe('apiRootUrl');
+            expect(settings.trustedNodeHosts).toEqual(['trustedHost1', 'trustedHost2', 'trustedHost3']);
             expect(settings.httpClient instanceof TestHttpClient).toBeTruthy();
         });
     });
@@ -208,4 +211,37 @@ describe('BurstService', () => {
         });
     });
 
+
+    describe('selectBestHost()', () => {
+        it('should return some host', async () => {
+
+            const testClient = new TestHttpClient();
+            testClient.get = jest.fn().mockResolvedValue('get');
+
+            const service = new BurstService({
+                nodeHost: 'nodeHost',
+                apiRootUrl: 'apiRootUrl',
+                trustedNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
+                httpClient: testClient
+            });
+
+            const bestHost = await service.selectBestHost();
+            expect(bestHost).toContain('trustedHost');
+        });
+
+        it('should throw error if not enough trustedHosts are set', async () => {
+            const service = new BurstService({
+                nodeHost: 'nodeHost',
+                apiRootUrl: 'apiRootUrl',
+                httpClient: new TestHttpClient()
+            });
+
+            try {
+                await service.selectBestHost();
+                expect('Expected exception').toBeFalsy();
+            } catch (e) {
+                expect(e.message).toBe('No trustedNodeHosts configured');
+            }
+        });
+    });
 });
