@@ -14,5 +14,5 @@ export const environment = {
     fcasInterval: 60 * 5 * 1000
   },
 
-  activatorServiceUrl: 'https://burst-account-activator-testnet.now.sh',
+  activatorServiceUrl: 'https://burst-account-activator-testnet.vercel.app',
 };
