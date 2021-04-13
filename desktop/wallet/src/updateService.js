@@ -3,7 +3,6 @@ const _ = require('lodash');
 const semver = require('semver');
 const {HttpImpl} = require('@burstjs/http');
 const getSSL = require('get-ssl-certificate');
-const logger = require('./logger');
 
 const PlatformFilePatterns = {
   darwin: [
@@ -31,11 +30,12 @@ const ConfigPropTypes = {
 
 class UpdateService {
 
-  constructor(config, httpImpl = null) {
+  constructor(config, logger, httpImpl = null) {
 
     PropTypes.checkPropTypes(ConfigPropTypes, config);
 
     this.config = config;
+    this.logger = logger;
     this.http = httpImpl ? httpImpl : new HttpImpl(config.repositoryRootUrl);
   }
 
@@ -78,7 +78,7 @@ class UpdateService {
       }
     } catch (e) {
       delete e.data;
-      logger.error(`Certificate check failed: ${e.message}`, e);
+      this.logger.error(`Certificate check failed: ${e.message}`, e);
       return {
         isValid: false,
         reason: e.message,
@@ -107,7 +107,7 @@ class UpdateService {
 
   async checkForLatestRelease(callback) {
     try {
-      logger.info('Checking for new version...');
+      this.logger.info('Checking for new version...');
 
       const release = await this.getLatestRelease();
       if (!release) return callback(null);
@@ -123,11 +123,11 @@ class UpdateService {
 
       const releaseVersion = tag_name.replace(tagPrefix, '');
       if (!semver.lt(currentVersion, releaseVersion)) {
-        logger.info(`Latest version installed: ${currentVersion}`);
+        this.logger.info(`Latest version installed: ${currentVersion}`);
         return callback(null);
       }
 
-      logger.info(`Found a new version: ${releaseVersion}`);
+      this.logger.info(`Found a new version: ${releaseVersion}`);
       const domain = this._getRepositoryDomain();
       const validCert = await this.validateCertificate(domain, certFingerprint);
       callback({
@@ -140,7 +140,7 @@ class UpdateService {
       })
     } catch (e) {
       delete e.data;
-      logger.error(e.message, e);
+      this.logger.error(e.message, e);
     }
   }
 

@@ -57,8 +57,7 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes,
-      {enableTracing: true}),
+    RouterModule.forRoot(appRoutes, {useHash: true}),
 
     TranslateModule.forRoot(),
 
