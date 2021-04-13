@@ -119,7 +119,7 @@ export class BurstService {
      * @param reconfigure An optional flag to set automatic reconfiguration. Default is `false`
      * Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!
      * @param checkMethod The optional API method to be called. This applies only for GET methods. Default is `getBlockchainStatus`
-     * @throws Error If `trustedNodeHosts` is empty
+     * @throws Error If `trustedNodeHosts` is empty, or if all requests to the trustedNodeHosts fail
      */
     public async selectBestHost(reconfigure = false, checkMethod = 'getBlockchainStatus'): Promise<string> {
         if (!this.settings.trustedNodeHosts.length) {
