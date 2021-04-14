@@ -8,7 +8,7 @@ import {AxiosRequestConfig} from 'axios';
 import {DefaultApiEndpoint} from '../constants';
 import {asyncRetry} from '../../../util/src/asyncRetry';
 
-// BRS is inconsistent in it's error responses
+// BRS is inconsistent in its error responses
 interface ApiError {
     readonly errorCode?: number;
     readonly errorDescription?: string;

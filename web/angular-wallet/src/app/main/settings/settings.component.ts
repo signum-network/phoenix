@@ -43,6 +43,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   public showAdvancedOptions = false;
   public showConnectionErrorIcon = false;
   public selectedNodeVersion: string;
+  public isManual = false;
 
   private static createNodeList(): Array<any> {
     const nodes = constants.nodes.map(({address, port}) => `${address}:${port}`);
