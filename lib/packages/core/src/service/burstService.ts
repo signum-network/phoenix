@@ -2,10 +2,11 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 
-import {Http, HttpError, HttpClientFactory} from '@burstjs/http';
+import {Http, HttpError, HttpClientFactory, HttpResponse} from '@burstjs/http';
 import {BurstServiceSettings} from './burstServiceSettings';
 import {AxiosRequestConfig} from 'axios';
 import {DefaultApiEndpoint} from '../constants';
+import {asyncRetry} from '../../../util/src/asyncRetry';
 
 // BRS is inconsistent in it's error responses
 interface ApiError {
@@ -58,6 +59,7 @@ export class BurstService {
             apiError);
     }
 
+
     /**
      * Mounts a BRS conform API (V1) endpoint of format `<host>?requestType=getBlock&height=123`
      *
@@ -87,8 +89,10 @@ export class BurstService {
      */
     public async query<T>(method: string, args: any = {}, options?: any | AxiosRequestConfig): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
-        const {response} = await this.settings.httpClient.get(brsUrl, options);
-        if (response.errorCode) {
+
+        const {response} = await this.faultTolerantRequest(() => this.settings.httpClient.get(brsUrl, options));
+
+        if (response.errorCode || response.error || response.errorDescription) {
             BurstService.throwAsHttpError(brsUrl, response);
         }
         return response;
@@ -107,11 +111,28 @@ export class BurstService {
      */
     public async send<T>(method: string, args: any = {}, body: any = {}, options?: any | AxiosRequestConfig): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
-        const {response} = await this.settings.httpClient.post(brsUrl, body, options);
+
+        const {response} = await this.faultTolerantRequest(() => this.settings.httpClient.post(brsUrl, body, options));
+
         if (response.errorCode || response.error || response.errorDescription) {
             BurstService.throwAsHttpError(brsUrl, response);
         }
         return response;
+    }
+
+    private async faultTolerantRequest(requestFn: () => Promise<HttpResponse>): Promise<HttpResponse> {
+        const onFailureAsync = async (e, retrialCount): Promise<boolean> => {
+            const shouldRetry = this.settings.trustedNodeHosts.length && retrialCount < this.settings.trustedNodeHosts.length;
+            if (shouldRetry) {
+                await this.selectBestHost(true);
+            }
+            return shouldRetry;
+        };
+
+        return await asyncRetry({
+            asyncFn: requestFn,
+            onFailureAsync
+        });
     }
 
     /**

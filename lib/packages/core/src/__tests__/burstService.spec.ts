@@ -177,7 +177,6 @@ describe('BurstService', () => {
                 {data: 'any'}
             ).build();
 
-
             try {
                 const burstService = createBurstService(httpMock);
                 await burstService.query('someMethod');

@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## 0.6.0
 
+__New__
+
+- Added `asyncRetry` 
+
 __Breaking Changes__
 
 - `getAccount` accepts an argument object now
@@ -11,7 +15,7 @@ __Breaking Changes__
 ------------------------
 
 __New__
-
+- Added `BurstService.selectBestNode`
 - deprecated `suggestFee`
   - use `getSuggestedFees`
 - added new methods to transaction Api
