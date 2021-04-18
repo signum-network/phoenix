@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "Şu anda seçili olan Düğüm, Madencilik Taahhütünü desteklemiyor. Lütfen en az Sürüm 3+ olan bir Düğüm seçin.",
   "click_for_request": "Üçüncü şahıslar tarafından kullanılabilecek bir ödeme talebi oluşturmak için tıklayın",
   "copy_account_address_extended": "Genişletilmiş Adresi Kopyala",
-  "copy_account_publickey": "Genel Anahtarı Kopyala"
+  "copy_account_publickey": "Genel Anahtarı Kopyala",
+  "manual_nodeselection": "Manuel Düğüm Seçimi",
+  "automatic_nodeselection": "Otomatik Düğüm Seçimi",
+  "no_reliable_node_reachable": "Herhangi bir güvenilir düğüme ulaşılamadı. Lütfen internet bağlantınız olup olmadığını kontrol edin.",
+  "node_successfully_connected": "Düğüme başarıyla bağlandı",
+  "selected_node": "Şu anda seçili düğüm",
+  "toggle_nodeselection_mode": "Manuel veya otomatik düğüm seçimi arasında geçiş yapmak için geçiş yapın"
 }

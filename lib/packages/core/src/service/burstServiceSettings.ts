@@ -15,10 +15,10 @@ export interface BurstServiceSettings {
     readonly nodeHost: string;
 
     /**
-     * A list of node/peer hosts that can be chosen of, usually a list of reliable/trusted nodes. This is necessary for the automatic
+     * A list of node/peer hosts that can be chosen of, usually a list of reliable nodes. This is necessary for the automatic
      * node selection.
      */
-    readonly trustedNodeHosts?: string[];
+    readonly reliableNodeHosts?: string[];
 
     /**
      * The relative path the Burst API endpoint, default is '/burst' - must begin with slash.

@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "Nodul selectat în prezent nu acceptă Angajamentul minier. Vă rugăm să selectați un nod cu cel puțin versiunea 3+.",
   "click_for_request": "Faceți clic pentru a crea o solicitare de plată care poate fi utilizată de terți",
   "copy_account_address_extended": "Copiați adresa extinsă",
-  "copy_account_publickey": "Copiați cheia publică"
+  "copy_account_publickey": "Copiați cheia publică",
+  "manual_nodeselection": "Selectarea manuală a nodului",
+  "automatic_nodeselection": "Selectarea automată a nodului",
+  "no_reliable_node_reachable": "Nu s-a putut ajunge la niciun nod de încredere. Vă rugăm să verificați dacă aveți o conexiune la internet.",
+  "node_successfully_connected": "Conectat cu succes la nod",
+  "selected_node": "Nodul selectat în prezent",
+  "toggle_nodeselection_mode": "Comutați pentru a comuta între selecția manuală sau automată a nodului"
 }

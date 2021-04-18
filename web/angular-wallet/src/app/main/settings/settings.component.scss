@@ -2,6 +2,10 @@
 
 :host {
 
+  mat-icon.isFetching {
+    animation: rotate 1s linear infinite;
+  }
+
   .node-selector {
       display: block;
 

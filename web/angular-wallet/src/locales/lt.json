@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "Šiuo metu pasirinktas mazgas nepalaiko Kasybos įsipareigojimų. Pasirinkite mazgą, kurio versija yra bent 3+.",
   "click_for_request": "Spustelėkite, jei norite sukurti mokėjimo užklausą, kurią gali naudoti trečiosios šalys",
   "copy_account_address_extended": "Kopijuoti išplėstinį adresą",
-  "copy_account_publickey": "Kopijuoti viešąjį raktą"
+  "copy_account_publickey": "Kopijuoti viešąjį raktą",
+  "manual_nodeselection": "Rankinis mazgo pasirinkimas",
+  "automatic_nodeselection": "Automatinis mazgo pasirinkimas",
+  "no_reliable_node_reachable": "Nepavyko pasiekti jokio patikimo mazgo. Patikrinkite, ar turite interneto ryšį.",
+  "node_successfully_connected": "Sėkmingai prisijungta prie mazgo",
+  "selected_node": "Šiuo metu pasirinktas mazgas",
+  "toggle_nodeselection_mode": "Perjunkite, jei norite perjungti rankinį ar automatinį mazgų pasirinkimą"
 }

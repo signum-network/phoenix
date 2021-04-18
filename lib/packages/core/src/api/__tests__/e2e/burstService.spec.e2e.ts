@@ -10,7 +10,7 @@ describe('[E2E] Burst Service', () => {
     it('should selectBestNode and reconfigure accordingly', async () => {
         const service = new BurstService({
             nodeHost: environment.testNetHost,
-            trustedNodeHosts: [
+            reliableNodeHosts: [
                 'https://invalid.signum.network',
                 'https://europe.signum.network',
                 'https://brazil.signum.network',
@@ -32,7 +32,7 @@ describe('[E2E] Burst Service', () => {
         jest.setTimeout(15 * 1000);
         const service = new BurstService({
             nodeHost: environment.testNetHost,
-            trustedNodeHosts: [
+            reliableNodeHosts: [
                 'https://invalid.signum.network',
                 'https://invalid1.signum.network',
                 'https://invalid2.signum.network',

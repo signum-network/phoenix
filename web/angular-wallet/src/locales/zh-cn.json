@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "当前选择的节点不支持采矿承诺。请选择一个版本至少为3+的节点。",
   "click_for_request": "单击以创建可以由第三方使用的付款请求",
   "copy_account_address_extended": "复制扩展地址",
-  "copy_account_publickey": "复制公钥"
+  "copy_account_publickey": "复制公钥",
+  "manual_nodeselection": "手动节点选择",
+  "automatic_nodeselection": "自动节点选择",
+  "no_reliable_node_reachable": "无法到达任何可靠的节点。请确认您是否有互联网连接。",
+  "node_successfully_connected": "成功连接到节点",
+  "selected_node": "当前选择的节点",
+  "toggle_nodeselection_mode": "切换以在手动或自动节点选择之间切换"
 }

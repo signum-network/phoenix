@@ -1062,5 +1062,11 @@
   "commitment_unsupported": "The currently selected Node does not support Mining Commitment. Please select a Node with at least Version 3+.",
   "click_for_request": "Click to create a payment request that can be used by third parties",
   "copy_account_address_extended": "Copy Extended Address",
-  "copy_account_publickey": "Copy Public Key"
+  "copy_account_publickey": "Copy Public Key",
+  "manual_nodeselection": "Manual Node Selection",
+  "automatic_nodeselection": "Automatic Node Selection",
+  "no_reliable_node_reachable": "Could not reach any reliable node. Please, verify if you have an internet connection.",
+  "node_successfully_connected": "Successfully connected to the node",
+  "selected_node": "Currently selected node",
+  "toggle_nodeselection_mode": "Toggle to switch between manual or automatic node selection"
 }

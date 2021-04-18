@@ -19,6 +19,7 @@ export class Settings {
     public currency: string;
     public language: string;
     public node: string;
+    public nodeAutoSelectionEnabled: boolean;
     public theme: string;
     public version: string;
     public marketUrl: string;
@@ -39,6 +40,7 @@ export class Settings {
         this.currency = data.currency || constants.defaultCurrency;
         this.language = data.language || constants.defaultLanguage;
         this.node = data.node || environment.defaultNode;
+        this.nodeAutoSelectionEnabled = data.nodeAutoSelectionEnabled || true;
         this.marketUrl = data.marketUrl || environment.market.tickerUrl;
         this.theme = data.theme || constants.defaultTheme;
         this.version = data.version || version;

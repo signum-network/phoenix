@@ -3,10 +3,10 @@
  */
 
 import {Http, HttpError, HttpClientFactory, HttpResponse} from '@burstjs/http';
+import {asyncRetry} from '@burstjs/util';
 import {BurstServiceSettings} from './burstServiceSettings';
 import {AxiosRequestConfig} from 'axios';
 import {DefaultApiEndpoint} from '../constants';
-import {asyncRetry} from '../../../util/src/asyncRetry';
 
 // BRS is inconsistent in its error responses
 interface ApiError {
@@ -20,13 +20,13 @@ class SettingsImpl implements BurstServiceSettings {
         this.apiRootUrl = settings.apiRootUrl || DefaultApiEndpoint;
         this.nodeHost = settings.nodeHost;
         this.httpClient = settings.httpClient || HttpClientFactory.createHttpClient(settings.nodeHost, settings.httpClientOptions);
-        this.trustedNodeHosts = settings.trustedNodeHosts || [];
+        this.reliableNodeHosts = settings.reliableNodeHosts || [];
     }
 
     readonly apiRootUrl: string;
     readonly httpClient: Http;
     readonly nodeHost: string;
-    readonly trustedNodeHosts: string[];
+    readonly reliableNodeHosts: string[];
 }
 
 /**
@@ -122,7 +122,7 @@ export class BurstService {
 
     private async faultTolerantRequest(requestFn: () => Promise<HttpResponse>): Promise<HttpResponse> {
         const onFailureAsync = async (e, retrialCount): Promise<boolean> => {
-            const shouldRetry = this.settings.trustedNodeHosts.length && retrialCount < this.settings.trustedNodeHosts.length;
+            const shouldRetry = this.settings.reliableNodeHosts.length && retrialCount < this.settings.reliableNodeHosts.length;
             if (shouldRetry) {
                 await this.selectBestHost(true);
             }
@@ -140,16 +140,16 @@ export class BurstService {
      * @param reconfigure An optional flag to set automatic reconfiguration. Default is `false`
      * Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!
      * @param checkMethod The optional API method to be called. This applies only for GET methods. Default is `getBlockchainStatus`
-     * @throws Error If `trustedNodeHosts` is empty, or if all requests to the trustedNodeHosts fail
+     * @throws Error If `reliableNodeHosts` is empty, or if all requests to the reliableNodeHosts fail
      */
     public async selectBestHost(reconfigure = false, checkMethod = 'getBlockchainStatus'): Promise<string> {
-        if (!this.settings.trustedNodeHosts.length) {
-            throw new Error('No trustedNodeHosts configured');
+        if (!this.settings.reliableNodeHosts.length) {
+            throw new Error('No reliableNodeHosts configured');
         }
         const checkEndpoint = this.toBRSEndpoint(checkMethod);
         let timeout = null;
-        const requests = this.settings.trustedNodeHosts.map(host => {
-            const absoluteUrl = host.endsWith('/') ? `${host}${checkEndpoint}` : `${host}/${checkEndpoint}`;
+        const requests = this.settings.reliableNodeHosts.map(host => {
+            const absoluteUrl = `${host}${checkEndpoint}`;
             return new Promise<string>(async (resolve, reject) => {
                 try {
                     await this.settings.httpClient.get(absoluteUrl);
@@ -171,7 +171,7 @@ export class BurstService {
         // @ts-ignore
         clearTimeout(timeout);
         if (!bestHost) {
-            throw new Error('All trustedHosts failed');
+            throw new Error('All reliableNodeHosts failed');
         }
         if (reconfigure) {
             this.settings = new SettingsImpl({

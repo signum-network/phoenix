@@ -3,6 +3,7 @@
  *
  * @moduledefinition util
  * */
+export * from './asyncRetry';
 export * from './burstTime';
 export * from './burstValue';
 export * from './constants';

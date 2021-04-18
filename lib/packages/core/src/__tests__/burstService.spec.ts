@@ -31,7 +31,7 @@ describe('BurstService', () => {
             });
             expect(settings.nodeHost).toBe('nodeHost');
             expect(settings.apiRootUrl).toBe(DefaultApiEndpoint);
-            expect(settings.trustedNodeHosts).toEqual([]);
+            expect(settings.reliableNodeHosts).toEqual([]);
             expect(settings.httpClient instanceof TestHttpClient).toBeFalsy();
         });
 
@@ -39,12 +39,12 @@ describe('BurstService', () => {
             const {settings} = new BurstService({
                 nodeHost: 'nodeHost',
                 apiRootUrl: 'apiRootUrl',
-                trustedNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
+                reliableNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
                 httpClient: new TestHttpClient()
             });
             expect(settings.nodeHost).toBe('nodeHost');
             expect(settings.apiRootUrl).toBe('apiRootUrl');
-            expect(settings.trustedNodeHosts).toEqual(['trustedHost1', 'trustedHost2', 'trustedHost3']);
+            expect(settings.reliableNodeHosts).toEqual(['trustedHost1', 'trustedHost2', 'trustedHost3']);
             expect(settings.httpClient instanceof TestHttpClient).toBeTruthy();
         });
     });
@@ -170,6 +170,17 @@ describe('BurstService', () => {
 
         });
 
+        it('should call successfully query data', async () => {
+            const httpMock = HttpMockBuilder.create().onGetReply(200, {
+                foo: 'someData'
+            }).build();
+            const burstService = createBurstService(httpMock);
+            const result = await burstService.query('someMethod');
+
+            expect(result).toEqual({foo: 'someData'});
+
+        });
+
         it('should throw normal Http error', async () => {
             const httpMock = HttpMockBuilder.create().onGetThrowError(
                 500,
@@ -220,7 +231,7 @@ describe('BurstService', () => {
             const service = new BurstService({
                 nodeHost: 'nodeHost',
                 apiRootUrl: 'apiRootUrl',
-                trustedNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
+                reliableNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
                 httpClient: testClient
             });
 
@@ -238,7 +249,7 @@ describe('BurstService', () => {
             const service = new BurstService({
                 nodeHost: 'nodeHost',
                 apiRootUrl: 'apiRootUrl',
-                trustedNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
+                reliableNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
                 httpClient: testClient
             });
 
@@ -259,7 +270,7 @@ describe('BurstService', () => {
                 await service.selectBestHost();
                 expect('Expected exception').toBeFalsy();
             } catch (e) {
-                expect(e.message).toBe('No trustedNodeHosts configured');
+                expect(e.message).toBe('No reliableNodeHosts configured');
             }
         });
     });

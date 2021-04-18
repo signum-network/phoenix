@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "Le nœud actuellement sélectionné ne prend pas en charge l'engagement minier. Veuillez sélectionner un nœud avec au moins la version 3+.",
   "click_for_request": "Cliquez pour créer une demande de paiement utilisable par des tiers",
   "copy_account_address_extended": "Copier l'adresse étendue",
-  "copy_account_publickey": "Copier la clé publique"
+  "copy_account_publickey": "Copier la clé publique",
+  "manual_nodeselection": "Sélection manuelle des nœuds",
+  "automatic_nodeselection": "Sélection automatique des nœuds",
+  "no_reliable_node_reachable": "Impossible d'atteindre un nœud fiable. Veuillez vérifier si vous disposez d'une connexion Internet.",
+  "node_successfully_connected": "Connexion réussie au nœud",
+  "selected_node": "Noeud actuellement sélectionné",
+  "toggle_nodeselection_mode": "Basculer pour basculer entre la sélection manuelle ou automatique des nœuds"
 }

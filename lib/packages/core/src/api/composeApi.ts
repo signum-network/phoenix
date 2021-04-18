@@ -87,14 +87,16 @@ export class ApiSettings {
     /**
      * @param nodeHost {string} The url of the Burst peer
      * @param apiVersion {ApiVersion} For future usage.
+     * @param reliableNodeHosts A list of node/peer hosts that can be chosen of, usually a list of reliable/trusted nodes. This is necessary for the automatic
+     * node selection.
      * @param httpClientOptions {any | AxiosRequestSettings}   Optional http options, like additional header.
      * The default implementation uses axios. In case of a custom client pass your own options.
      * see [Axios Configuration](https://github.com/axios/axios#request-config)
-
      */
     constructor(
         public nodeHost: string,
         public apiVersion: ApiVersion = ApiVersion.V1,
+        public reliableNodeHosts?: string[],
         public httpClientOptions?: any | AxiosRequestConfig,
     ) {
     }

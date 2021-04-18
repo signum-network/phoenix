@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "現在選択されているノードは、マイニングコミットメントをサポートしていません。バージョン3以降のノードを選択してください。",
   "click_for_request": "クリックして、サードパーティが使用できる支払いリクエストを作成します",
   "copy_account_address_extended": "拡張アドレスをコピーする",
-  "copy_account_publickey": "公開鍵をコピーする"
+  "copy_account_publickey": "公開鍵をコピーする",
+  "manual_nodeselection": "手動ノード選択",
+  "automatic_nodeselection": "自動ノード選択",
+  "no_reliable_node_reachable": "信頼できるノードに到達できませんでした。インターネットに接続しているかどうかを確認してください。",
+  "node_successfully_connected": "ノードに正常に接続されました",
+  "selected_node": "現在選択されているノード",
+  "toggle_nodeselection_mode": "手動または自動のノード選択を切り替えるために切り替えます"
 }

@@ -2,12 +2,11 @@
   <div class="p-24" fxLayout="column">
     <div class="node-selector">
       <div class="node-selector__automatic">
-        <small class="mb-8">
-          Currently selected node
-          <!--          {{ 'select_node_description' | i18n }}-->
+        <small>
+          {{ 'selected_node' | i18n }}
         </small>
         <div class="selected">
-          <p class="font-size-16">
+          <p class="font-size-16 font-weight-700">
             {{selectedNode.value}}
           </p>
           <div>
@@ -22,9 +21,16 @@
             </mat-icon>
             <mat-icon *ngIf="!showConnectionErrorIcon"
                       class="ok-icon"
-                      matTooltip="{{'error_server_connect' | i18n}}"
+                      matTooltip="{{'node_successfully_connected' | i18n}}"
             >
               check_circle_outline
+            </mat-icon>
+            <mat-icon class="cursor-pointer secondary-text"
+                      [class.isFetching]="isFetchingNodeInfo"
+                      matTooltip="{{'click_to_refresh' | i18n}}"
+                      (click)="autoSelectNode()"
+            >
+              refresh
             </mat-icon>
           </div>
         </div>
@@ -32,8 +38,14 @@
 
         </div>
       </div>
-      <a (click)="isManual=!isManual"><em>{{ isManual ? "basic" : "advanced" | i18n }}</em></a>
-      <div class="node-selector__manual mt-20" *ngIf="isManual">
+      <mat-slide-toggle
+        [(ngModel)]="isAutomatic" name="isManual"
+        (change)="setSelectionMode()"
+        matTooltip="{{'toggle_nodeselection_mode' | i18n}}"
+      >
+        {{(isAutomatic ? 'automatic_nodeselection' : "manual_nodeselection") | i18n}}
+      </mat-slide-toggle>
+      <div class="node-selector__manual mt-20" *ngIf="!isAutomatic">
         <small class="mb-8">
           {{ 'select_node_description' | i18n }}
         </small>

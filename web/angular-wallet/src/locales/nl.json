@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "Het momenteel geselecteerde knooppunt ondersteunt geen mijnbouwverplichting. Selecteer een knooppunt met ten minste versie 3+.",
   "click_for_request": "Klik om een betalingsverzoek aan te maken dat door derden kan worden gebruikt",
   "copy_account_address_extended": "Kopieer uitgebreid adres",
-  "copy_account_publickey": "Kopieer de openbare sleutel"
+  "copy_account_publickey": "Kopieer de openbare sleutel",
+  "manual_nodeselection": "Handmatige knooppuntselectie",
+  "automatic_nodeselection": "Automatische knooppuntselectie",
+  "no_reliable_node_reachable": "Kan geen betrouwbaar knooppunt bereiken. Controleer alsjeblieft of je een internetverbinding hebt.",
+  "node_successfully_connected": "Succesvol verbonden met het knooppunt",
+  "selected_node": "Momenteel geselecteerde knoop",
+  "toggle_nodeselection_mode": "Wisselen om te schakelen tussen handmatige of automatische knooppuntselectie"
 }
