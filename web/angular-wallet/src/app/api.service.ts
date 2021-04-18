@@ -17,12 +17,7 @@ export class ApiService {
   public nodeUrl = environment.defaultNode;
 
   constructor(private storeService: StoreService) {
-    this.initApi = this.initApi.bind(this);
-
-    // this.storeService.ready.subscribe((isReady) => isReady && this.initApi);
-
-    this.storeService.settings
-      .subscribe(this.initApi);
+    this.storeService.settings.subscribe(this.initApi.bind(this));
   }
 
   private async initApi(settings: Settings): Promise<void> {
@@ -34,7 +29,6 @@ export class ApiService {
 
     if (settings.nodeAutoSelectionEnabled) {
       this.nodeUrl = await this.selectBestNode();
-      // const settings = await this.storeService.getSettings();
       settings.node = this.nodeUrl;
       await this.storeService.saveSettings(settings);
     }
