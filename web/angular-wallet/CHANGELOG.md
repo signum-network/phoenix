@@ -12,6 +12,9 @@
 - Modernized Pages
   - Set Reward Recipient
   - Set Account Info
+- Node Settings
+  - Revisited Node List
+  - Automatic Node Selection using new reliable nodes
   
 
 ### Bug fixes

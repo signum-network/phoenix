@@ -44,7 +44,7 @@ export {
 export class Api {
     /**
      * This leaks the underlying service instance to interact with the BRS API directly, e.g. to use an API method that
-     * is not supported yet by BurstJS yet.
+     * is not supported by BurstJS yet.
      */
     readonly service: BurstService;
     readonly asset: AssetApi;

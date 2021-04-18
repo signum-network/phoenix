@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {ElectronService} from 'ngx-electron';
-import OpenExternalOptions = Electron.OpenExternalOptions;
 
 
 @Injectable({

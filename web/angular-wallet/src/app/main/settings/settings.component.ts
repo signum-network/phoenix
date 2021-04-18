@@ -11,6 +11,8 @@ import {ApiComposer, BurstService, getBlockchainStatus} from '@burstjs/core';
 import {NotifierService} from 'angular-notifier';
 import {debounceTime, takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
+import {ApiService} from '../../api.service';
+import {MatSlideToggleChange} from '@angular/material';
 
 interface NodeInformation {
   url: string;
@@ -31,6 +33,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   constructor(private i18nService: I18nService,
               private storeService: StoreService,
               private notifierService: NotifierService,
+              private apiService: ApiService,
               private route: ActivatedRoute) {
     super();
   }
@@ -43,6 +46,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   public showAdvancedOptions = false;
   public showConnectionErrorIcon = false;
   public selectedNodeVersion: string;
+  public isAutomatic = true;
 
   private static createNodeList(): Array<any> {
     const nodes = constants.nodes.map(({address, port}) => `${address}:${port}`);
@@ -72,6 +76,8 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   async ngOnInit(): Promise<void> {
     this.settings = this.route.snapshot.data.settings as Settings;
     this.selectedNode.setValue(this.settings.node);
+    this.isAutomatic = this.settings.nodeAutoSelectionEnabled;
+
     const waitASecond = debounceTime(1000);
     const updateVersion = () => {
       this.fetchNodeVersion();
@@ -84,6 +90,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
 
     updateVersion();
   }
+
 
   private async updateNodeSettings(value: NodeInformation): Promise<void> {
     const currentSettings = await this.storeService.getSettings();
@@ -137,6 +144,31 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
       this.showConnectionErrorIcon = false;
     } catch (e) {
       this.showConnectionErrorIcon = true;
+    }
+  }
+
+  async autoSelectNode(): Promise<void> {
+    if (this.isFetchingNodeInfo) {
+      return;
+    }
+
+    this.isFetchingNodeInfo = true;
+    const bestNode = await this.apiService.selectBestNode();
+    if (!bestNode) {
+      this.notifierService.notify('error', this.i18nService.getTranslation('no_reliable_node_reachable'));
+    } else if (bestNode !== this.selectedNode.value) {
+      this.selectedNode.setValue(bestNode);
+      await this.selectNode();
+    }
+    this.isFetchingNodeInfo = false;
+  }
+
+  async setSelectionMode(): Promise<void> {
+    const currentSettings = await this.storeService.getSettings();
+    currentSettings.nodeAutoSelectionEnabled = this.isAutomatic;
+    await this.storeService.saveSettings(currentSettings);
+    if (this.isAutomatic) {
+      await this.autoSelectNode();
     }
   }
 }

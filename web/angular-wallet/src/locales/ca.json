@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "El node seleccionat actualment no admet el compromís de mineria. Seleccioneu un node amb almenys la versió 3+.",
   "click_for_request": "Feu clic per crear una sol·licitud de pagament que puguin utilitzar tercers",
   "copy_account_address_extended": "Copia l'adreça ampliada",
-  "copy_account_publickey": "Copia la clau pública"
+  "copy_account_publickey": "Copia la clau pública",
+  "manual_nodeselection": "Selecció manual de nodes",
+  "automatic_nodeselection": "Selecció automàtica de nodes",
+  "no_reliable_node_reachable": "No s'ha pogut arribar a cap node fiable. Si us plau, verifiqueu si teniu connexió a Internet.",
+  "node_successfully_connected": "S'ha connectat correctament al node",
+  "selected_node": "Node seleccionat actualment",
+  "toggle_nodeselection_mode": "Alterna per canviar entre la selecció manual o automàtica de nodes"
 }

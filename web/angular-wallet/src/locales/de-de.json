@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "Der aktuell ausgewählte Knoten unterstützt kein Mining-Commitment. Bitte wählen Sie einen Knoten mit mindestens Version 3+ aus.",
   "click_for_request": "Klicken Sie hier, um eine Zahlungsanforderung zu erstellen, die von Dritten verwendet werden kann",
   "copy_account_address_extended": "Erweiterte Adresse kopieren",
-  "copy_account_publickey": "Öffentlichen Schlüssel kopieren"
+  "copy_account_publickey": "Öffentlichen Schlüssel kopieren",
+  "manual_nodeselection": "Manuelle Knotenauswahl",
+  "automatic_nodeselection": "Automatische Knotenauswahl",
+  "no_reliable_node_reachable": "Konnte keinen zuverlässigen Knoten erreichen. Bitte überprüfen Sie, ob Sie eine Internetverbindung haben.",
+  "node_successfully_connected": "Erfolgreich mit dem Knoten verbunden",
+  "selected_node": "Derzeit ausgewählter Knoten",
+  "toggle_nodeselection_mode": "Schalten Sie um, um zwischen manueller oder automatischer Knotenauswahl zu wechseln"
 }

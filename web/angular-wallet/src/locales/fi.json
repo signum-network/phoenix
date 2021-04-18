@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "Tällä hetkellä valittu solmu ei tue kaivositoumuksia. Valitse solmu, jolla on vähintään versio 3+.",
   "click_for_request": "Napsauta luodaksesi maksupyynnön, jota kolmannet osapuolet voivat käyttää",
   "copy_account_address_extended": "Kopioi laajennettu osoite",
-  "copy_account_publickey": "Kopioi julkinen avain"
+  "copy_account_publickey": "Kopioi julkinen avain",
+  "manual_nodeselection": "Manuaalinen solmun valinta",
+  "automatic_nodeselection": "Automaattinen solmun valinta",
+  "no_reliable_node_reachable": "Ei voitu saavuttaa luotettavaa solmua. Tarkista, onko sinulla Internet-yhteys.",
+  "node_successfully_connected": "Yhdistäminen solmuun onnistui",
+  "selected_node": "Tällä hetkellä valittu solmu",
+  "toggle_nodeselection_mode": "Vaihda vaihtaaksesi manuaalisen tai automaattisen solmuvalinnan välillä"
 }

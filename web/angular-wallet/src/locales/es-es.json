@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "El nodo seleccionado actualmente no es compatible con el compromiso de minería. Seleccione un nodo con al menos la versión 3+.",
   "click_for_request": "Haga clic para crear una solicitud de pago que pueda ser utilizada por terceros",
   "copy_account_address_extended": "Copiar dirección extendida",
-  "copy_account_publickey": "Copiar clave pública"
+  "copy_account_publickey": "Copiar clave pública",
+  "manual_nodeselection": "Selección de nodo manual",
+  "automatic_nodeselection": "Selección automática de nodo",
+  "no_reliable_node_reachable": "No se pudo alcanzar ningún nodo confiable. Por favor, verifique si tiene conexión a Internet.",
+  "node_successfully_connected": "Conectado con éxito al nodo",
+  "selected_node": "Nodo seleccionado actualmente",
+  "toggle_nodeselection_mode": "Alternar para cambiar entre selección de nodo manual o automática"
 }
