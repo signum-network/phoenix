@@ -5,7 +5,7 @@ import {RouterModule} from '@angular/router';
 import {SettingsResolver} from './settings.resolver';
 import {PageModule} from '../../components/page/page.module';
 import {I18nModule} from '../../layout/components/i18n/i18n.module';
-import {MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSlideToggleModule} from '@angular/material';
 import {FuseSharedModule} from '../../../@fuse/shared.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -23,20 +23,21 @@ const routes = [
 
 @NgModule({
   declarations: [SettingsComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    PageModule,
-    I18nModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatAutocompleteModule,
-    FuseSharedModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatTooltipModule,
-    MatIconModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        PageModule,
+        I18nModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatAutocompleteModule,
+        FuseSharedModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatTooltipModule,
+        MatIconModule,
+        MatSlideToggleModule
+    ],
   providers: [
     SettingsResolver,
   ]

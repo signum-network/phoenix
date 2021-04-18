@@ -10,7 +10,7 @@ class TestHttpClient implements Http {
     }
 
     get(url: string): Promise<HttpResponse> {
-        return undefined;
+        return Promise.resolve(null);
     }
 
     post(url: string, payload: any): Promise<HttpResponse> {
@@ -31,6 +31,7 @@ describe('BurstService', () => {
             });
             expect(settings.nodeHost).toBe('nodeHost');
             expect(settings.apiRootUrl).toBe(DefaultApiEndpoint);
+            expect(settings.reliableNodeHosts).toEqual([]);
             expect(settings.httpClient instanceof TestHttpClient).toBeFalsy();
         });
 
@@ -38,10 +39,12 @@ describe('BurstService', () => {
             const {settings} = new BurstService({
                 nodeHost: 'nodeHost',
                 apiRootUrl: 'apiRootUrl',
+                reliableNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
                 httpClient: new TestHttpClient()
             });
             expect(settings.nodeHost).toBe('nodeHost');
             expect(settings.apiRootUrl).toBe('apiRootUrl');
+            expect(settings.reliableNodeHosts).toEqual(['trustedHost1', 'trustedHost2', 'trustedHost3']);
             expect(settings.httpClient instanceof TestHttpClient).toBeTruthy();
         });
     });
@@ -167,13 +170,23 @@ describe('BurstService', () => {
 
         });
 
+        it('should call successfully query data', async () => {
+            const httpMock = HttpMockBuilder.create().onGetReply(200, {
+                foo: 'someData'
+            }).build();
+            const burstService = createBurstService(httpMock);
+            const result = await burstService.query('someMethod');
+
+            expect(result).toEqual({foo: 'someData'});
+
+        });
+
         it('should throw normal Http error', async () => {
             const httpMock = HttpMockBuilder.create().onGetThrowError(
                 500,
                 'error',
                 {data: 'any'}
             ).build();
-
 
             try {
                 const burstService = createBurstService(httpMock);
@@ -208,4 +221,57 @@ describe('BurstService', () => {
         });
     });
 
+
+    describe('selectBestHost()', () => {
+        it('should return some host', async () => {
+
+            const testClient = new TestHttpClient();
+            testClient.get = jest.fn().mockResolvedValue('get');
+
+            const service = new BurstService({
+                nodeHost: 'nodeHost',
+                apiRootUrl: 'apiRootUrl',
+                reliableNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
+                httpClient: testClient
+            });
+
+            const bestHost = await service.selectBestHost();
+            expect(bestHost).toContain('trustedHost');
+            expect(service.settings.nodeHost).not.toContain('trustedHost');
+            expect(service.settings.httpClient).toBe(testClient);
+        });
+
+        it('should reconfigure the host', async () => {
+
+            const testClient = new TestHttpClient();
+            testClient.get = jest.fn().mockResolvedValue('get');
+
+            const service = new BurstService({
+                nodeHost: 'nodeHost',
+                apiRootUrl: 'apiRootUrl',
+                reliableNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
+                httpClient: testClient
+            });
+
+            const bestHost = await service.selectBestHost(true);
+            expect(bestHost).toContain('trustedHost');
+            expect(service.settings.nodeHost).toContain('trustedHost');
+            expect(service.settings.httpClient).not.toBe(testClient);
+        });
+
+        it('should throw error if not enough trustedHosts are set', async () => {
+            const service = new BurstService({
+                nodeHost: 'nodeHost',
+                apiRootUrl: 'apiRootUrl',
+                httpClient: new TestHttpClient()
+            });
+
+            try {
+                await service.selectBestHost();
+                expect('Expected exception').toBeFalsy();
+            } catch (e) {
+                expect(e.message).toBe('No reliableNodeHosts configured');
+            }
+        });
+    });
 });

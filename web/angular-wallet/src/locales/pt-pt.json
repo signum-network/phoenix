@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "O Nó selecionado atualmente não suporta o Compromisso de Mineração. Selecione um nó com pelo menos a versão 3+.",
   "click_for_request": "Clique para criar uma solicitação de pagamento que pode ser usada por terceiros",
   "copy_account_address_extended": "Copiar endereço estendido",
-  "copy_account_publickey": "Copiar chave pública"
+  "copy_account_publickey": "Copiar chave pública",
+  "manual_nodeselection": "Seleção manual de nós",
+  "automatic_nodeselection": "Seleção Automática de Nó",
+  "no_reliable_node_reachable": "Não foi possível alcançar nenhum nó confiável. Por favor, verifique se você tem uma conexão com a internet.",
+  "node_successfully_connected": "Conectado com sucesso ao nó",
+  "selected_node": "Nó selecionado atualmente",
+  "toggle_nodeselection_mode": "Alterne para alternar entre seleção de nó manual ou automática"
 }

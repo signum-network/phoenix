@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "Node yang saat ini dipilih tidak mendukung Mining Commitment. Pilih Node dengan setidaknya Versi 3+.",
   "click_for_request": "Klik untuk membuat permintaan pembayaran yang dapat digunakan oleh pihak ketiga",
   "copy_account_address_extended": "Salin Alamat Lengkap",
-  "copy_account_publickey": "Salin Kunci Publik"
+  "copy_account_publickey": "Salin Kunci Publik",
+  "manual_nodeselection": "Pemilihan Node Manual",
+  "automatic_nodeselection": "Pemilihan Node Otomatis",
+  "no_reliable_node_reachable": "Tidak dapat menjangkau simpul yang dapat diandalkan. Harap verifikasi jika Anda memiliki koneksi internet.",
+  "node_successfully_connected": "Berhasil terhubung ke node",
+  "selected_node": "Node yang dipilih saat ini",
+  "toggle_nodeselection_mode": "Beralih untuk beralih antara pemilihan node manual atau otomatis"
 }

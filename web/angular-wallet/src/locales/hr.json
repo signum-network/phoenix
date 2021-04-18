@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "Trenutno odabrani čvor ne podržava obvezu rudarstva. Odaberite čvor s najmanje verzijom 3+.",
   "click_for_request": "Kliknite da biste stvorili zahtjev za plaćanje koji mogu koristiti treće strane",
   "copy_account_address_extended": "Kopirajte proširenu adresu",
-  "copy_account_publickey": "Kopiraj javni ključ"
+  "copy_account_publickey": "Kopiraj javni ključ",
+  "manual_nodeselection": "Ručni odabir čvora",
+  "automatic_nodeselection": "Automatski odabir čvora",
+  "no_reliable_node_reachable": "Nije moguće doći do nijednog pouzdanog čvora. Molimo provjerite imate li internetsku vezu.",
+  "node_successfully_connected": "Uspješno povezan s čvorom",
+  "selected_node": "Trenutno odabrani čvor",
+  "toggle_nodeselection_mode": "Prebacite za prebacivanje između ručnog ili automatskog odabira čvora"
 }

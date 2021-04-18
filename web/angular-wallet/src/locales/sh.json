@@ -1048,5 +1048,11 @@
   "commitment_unsupported": "",
   "click_for_request": "",
   "copy_account_address_extended": "",
-  "copy_account_publickey": ""
+  "copy_account_publickey": "",
+  "manual_nodeselection": "",
+  "automatic_nodeselection": "",
+  "no_reliable_node_reachable": "",
+  "node_successfully_connected": "",
+  "selected_node": "",
+  "toggle_nodeselection_mode": ""
 }

@@ -1058,5 +1058,11 @@
   "commitment_unsupported": "Aktualnie wybrany węzeł nie obsługuje zobowiązania do wydobywania. Wybierz węzeł z co najmniej wersją 3+.",
   "click_for_request": "Kliknij, aby utworzyć żądanie płatności, z którego mogą korzystać osoby trzecie",
   "copy_account_address_extended": "Kopiuj adres rozszerzony",
-  "copy_account_publickey": "Kopiuj klucz publiczny"
+  "copy_account_publickey": "Kopiuj klucz publiczny",
+  "manual_nodeselection": "Ręczny wybór węzłów",
+  "automatic_nodeselection": "Automatyczny wybór węzłów",
+  "no_reliable_node_reachable": "Nie udało się dotrzeć do żadnego niezawodnego węzła. Sprawdź, czy masz połączenie z Internetem.",
+  "node_successfully_connected": "Pomyślnie połączono z węzłem",
+  "selected_node": "Aktualnie wybrany węzeł",
+  "toggle_nodeselection_mode": "Przełącz, aby przełączać się między ręcznym lub automatycznym wyborem węzłów"
 }

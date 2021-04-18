@@ -1049,5 +1049,11 @@
   "commitment_unsupported": "Aktuálně vybraný uzel nepodporuje těžební závazek. Vyberte uzel alespoň s verzí 3+.",
   "click_for_request": "Kliknutím vytvoříte žádost o platbu, kterou mohou použít třetí strany",
   "copy_account_address_extended": "Zkopírujte rozšířenou adresu",
-  "copy_account_publickey": "Zkopírujte veřejný klíč"
+  "copy_account_publickey": "Zkopírujte veřejný klíč",
+  "manual_nodeselection": "Ruční výběr uzlu",
+  "automatic_nodeselection": "Automatický výběr uzlu",
+  "no_reliable_node_reachable": "Nelze dosáhnout žádného spolehlivého uzlu. Ověřte, zda máte připojení k internetu.",
+  "node_successfully_connected": "Úspěšně připojeno k uzlu",
+  "selected_node": "Aktuálně vybraný uzel",
+  "toggle_nodeselection_mode": "Přepnutím přepínáte mezi ručním nebo automatickým výběrem uzlu"
 }
