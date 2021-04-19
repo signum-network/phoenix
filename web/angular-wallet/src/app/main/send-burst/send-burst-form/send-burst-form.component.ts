@@ -19,9 +19,8 @@ import {
 import {StoreService} from '../../../store/store.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
-import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
+import {ActivatedRoute, Router, NavigationEnd, Params} from '@angular/router';
 import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
-import apply = Reflect.apply;
 import {DeeplinkParts} from '@burstjs/util/dist';
 
 
@@ -88,7 +87,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
 
     router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
-        this.applyDeepLinkParams();
+        this.applyDeepLinkParams(this.route.snapshot.queryParams);
       }
     });
   }
@@ -105,44 +104,44 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
 
     if (this.route.snapshot.queryParams) {
       setTimeout(() => {
-        this.applyDeepLinkParams();
+        this.applyDeepLinkParams(this.route.snapshot.queryParams);
       }, 500);
     }
   }
 
-  private applyDeepLinkParams(): void {
-    try {
-      const parts = parseDeeplink(this.route.snapshot.toString());
-      this.applyCIP22DeepLinkParams(parts);
-    } catch (e) {
-      this.applyLegacyDeepLinkParams();
+  private applyDeepLinkParams(queryParams: Params): void {
+    if (queryParams.cip22) {
+      this.applyCIP22DeepLinkParams(queryParams);
+    } else {
+      this.applyLegacyDeepLinkParams(queryParams);
     }
   }
 
-  private applyCIP22DeepLinkParams(parts: DeeplinkParts): void {
-    console.log('applyDeepLinkParams', JSON.stringify(parts));
+  private applyCIP22DeepLinkParams(queryParams: Params): void {
+    console.log('applyDeepLinkParams', queryParams);
   }
 
-  private applyLegacyDeepLinkParams(): void {
-    this.onRecipientChange(new Recipient(this.route.snapshot.queryParams.receiver));
-    if (this.route.snapshot.queryParams.feeNQT) {
-      this.fee = convertNQTStringToNumber(this.route.snapshot.queryParams.feeNQT).toString();
+  private applyLegacyDeepLinkParams(queryParams: Params): void {
+    const {receiver, feeNQT, amountNQT, message, encrypt, immutable, messageIsText, feeSuggestionType} = queryParams;
+    this.onRecipientChange(new Recipient(receiver));
+    if (feeNQT) {
+      this.fee = convertNQTStringToNumber(feeNQT).toString();
     }
 
-    if (this.route.snapshot.queryParams.amountNQT) {
-      this.amount = convertNQTStringToNumber(this.route.snapshot.queryParams.amountNQT).toString();
+    if (amountNQT) {
+      this.amount = convertNQTStringToNumber(amountNQT).toString();
     }
-    this.message = this.route.snapshot.queryParams.message;
-    this.encrypt = this.route.snapshot.queryParams.encrypt;
-    this.immutable = this.route.snapshot.queryParams.immutable || this.immutable;
+    this.message = message;
+    this.encrypt = encrypt;
+    this.immutable = immutable || this.immutable;
     if (this.immutable === 'false') {
       this.immutable = false;
     }
-    if (this.route.snapshot.queryParams.messageIsText === 'false') {
+    if (messageIsText === 'false') {
       this.messageIsText = false;
     }
-    if (this.route.snapshot.queryParams.feeSuggestionType && this.fees[this.route.snapshot.queryParams.feeSuggestionType]) {
-      this.fee = convertNQTStringToNumber(this.fees[this.route.snapshot.queryParams.feeSuggestionType]).toString();
+    if (feeSuggestionType && this.fees[feeSuggestionType]) {
+      this.fee = convertNQTStringToNumber(this.fees[feeSuggestionType]).toString();
     }
     this.showMessage = !!this.message;
   }

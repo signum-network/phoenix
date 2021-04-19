@@ -4,6 +4,7 @@ import {Platform} from '@angular/cdk/platform';
 import {AccountService} from './setup/account/account.service';
 import {StoreService} from './store/store.service';
 import {Account, BlockchainStatus} from '@burstjs/core';
+import {parseDeeplink} from '@burstjs/util';
 import {NotifierService} from 'angular-notifier';
 import {NetworkService} from './network/network.service';
 import {UtilService} from './util.service';
@@ -20,7 +21,6 @@ import {AppService} from './app.service';
 import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET} from '@angular/router';
-import {parseDeeplink} from '@burstjs/util/dist';
 
 @Component({
   selector: 'app',
@@ -100,7 +100,6 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     clearInterval(this.blockchainStatusInterval);
   }
 
-
   private initDeepLinkHandler(): void {
     this.appService.onIpcMessage('deep-link-clicked', async (url) => {
       const deeplinkUrl = new URL(url);
@@ -125,11 +124,11 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         route = 'send-burst';
         break;
       default:
-        this.notifierService.notify('warning', `Unknown deep link action: ${parts.action}`)
-
+        this.notifierService.notify('warning', `Unknown deep link action: ${parts.action}`);
     }
 
-    this.router.navigate([route], { queryParams: parts. })
+    const {payload} = parts;
+    await this.router.navigate([route], {queryParams: {cip22: true, payload}});
   }
 
   private async routeLegacyDeeplink(url: string): Promise<void> {
