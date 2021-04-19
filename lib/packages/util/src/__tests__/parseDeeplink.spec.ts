@@ -10,6 +10,15 @@ describe('parseDeeplink', () => {
         });
     });
 
+    it('should parse a deeplink without domain', () => {
+        expect(parseDeeplink('burst://v1')).toEqual({
+            domain: undefined,
+            version: 'v1',
+            action: undefined,
+            payload: undefined,
+        });
+    });
+
     it('should parse a deeplink with action but without payload', () => {
         expect(parseDeeplink('burst.testdomain://v1?action=testAction')).toEqual({
             domain: 'testdomain',

@@ -3,7 +3,8 @@ import {Account, SuggestedFees} from '@burstjs/core';
 import {
   convertAddressToNumericId,
   convertNQTStringToNumber,
-  BurstValue
+  BurstValue,
+  parseDeeplink
 } from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
@@ -20,6 +21,8 @@ import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
+import apply = Reflect.apply;
+import {DeeplinkParts} from '@burstjs/util/dist';
 
 
 interface QRData {
@@ -108,6 +111,19 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   private applyDeepLinkParams(): void {
+    try {
+      const parts = parseDeeplink(this.route.snapshot.toString());
+      this.applyCIP22DeepLinkParams(parts);
+    } catch (e) {
+      this.applyLegacyDeepLinkParams();
+    }
+  }
+
+  private applyCIP22DeepLinkParams(parts: DeeplinkParts): void {
+    console.log('applyDeepLinkParams', JSON.stringify(parts));
+  }
+
+  private applyLegacyDeepLinkParams(): void {
     this.onRecipientChange(new Recipient(this.route.snapshot.queryParams.receiver));
     if (this.route.snapshot.queryParams.feeNQT) {
       this.fee = convertNQTStringToNumber(this.route.snapshot.queryParams.feeNQT).toString();
@@ -188,7 +204,9 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   hasSufficientBalance(): boolean {
-    if (!this.balances) { return false; }
+    if (!this.balances) {
+      return false;
+    }
 
     const available = this.balances.availableBalance.clone();
     return available
@@ -221,9 +239,11 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   onSpendAll(): void {
-    if (!this.balances) { return; }
+    if (!this.balances) {
+      return;
+    }
 
-    const available  = this.balances.availableBalance.clone();
+    const available = this.balances.availableBalance.clone();
     const fee = BurstValue.fromBurst(this.fee || '0');
     this.amount = available.subtract(fee).getBurst();
   }

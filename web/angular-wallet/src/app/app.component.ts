@@ -19,7 +19,8 @@ import {version} from '../../package.json';
 import {AppService} from './app.service';
 import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
-import { Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET } from '@angular/router';
+import {Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET} from '@angular/router';
+import {parseDeeplink} from '@burstjs/util/dist';
 
 @Component({
   selector: 'app',
@@ -101,20 +102,46 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
 
 
   private initDeepLinkHandler(): void {
-    this.appService.onIpcMessage('deep-link-clicked', (url) => {
-      const parsedUrl = this.urlSerializer.parse(url.replace('burst://', ''));
-      const g: UrlSegmentGroup = parsedUrl.root.children[PRIMARY_OUTLET];
-      const s: UrlSegment[] = g.segments;
-      this.router.navigate([s[0].path.replace('requestBurst', 'send')], {
-        queryParams: parsedUrl.queryParams,
-        queryParamsHandling: 'merge'
-      });
+    this.appService.onIpcMessage('deep-link-clicked', async (url) => {
+      const deeplinkUrl = new URL(url);
+      if (deeplinkUrl.pathname === '//v1') {
+        await this.routeCIP22Deeplink(url);
+      } else {
+        await this.routeLegacyDeeplink(url);
+      }
       // fixes an issue with the view not rendering
       setTimeout(() => {
         this.applicationRef.tick();
       }, 1000);
     });
   }
+
+  private async routeCIP22Deeplink(url: string): Promise<void> {
+    const parts = parseDeeplink(url);
+    let route = '';
+    switch (parts.action) {
+      case 'sendAmount':
+      case 'pay':
+        route = 'send-burst';
+        break;
+      default:
+        this.notifierService.notify('warning', `Unknown deep link action: ${parts.action}`)
+
+    }
+
+    this.router.navigate([route], { queryParams: parts. })
+  }
+
+  private async routeLegacyDeeplink(url: string): Promise<void> {
+    const parsedUrl = this.urlSerializer.parse(url.replace('burst://', ''));
+    const g: UrlSegmentGroup = parsedUrl.root.children[PRIMARY_OUTLET];
+    const s: UrlSegment[] = g.segments;
+    await this.router.navigate([s[0].path.replace('requestBurst', 'send')], {
+      queryParams: parsedUrl.queryParams,
+      queryParamsHandling: 'merge'
+    });
+  }
+
 
   private initRouteToHandler(): void {
     this.appService.onIpcMessage('route-to', (url) => {
@@ -183,7 +210,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         await this.accountService.synchronizeAccount(this.selectedAccount).catch(() => {
         });
         this.accountService.setCurrentAccount(this.selectedAccount);
-      // hit this call again every 1 sec if the blockchain is being downloaded
+        // hit this call again every 1 sec if the blockchain is being downloaded
       } else if (this.downloadingBlockchain) {
         setTimeout(this.checkBlockchainStatus.bind(this), 1000);
       }
@@ -219,14 +246,16 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
 
 
   private openNewVersionDialog(): MatDialogRef<NewVersionDialogComponent> {
-     return this.newVersionDialog.open(NewVersionDialogComponent, {
+    return this.newVersionDialog.open(NewVersionDialogComponent, {
       data: this.updateInfo
     });
   }
 
   onClickedNewVersion(): void {
 
-    if (this.isDownloadingUpdate) { return; }
+    if (this.isDownloadingUpdate) {
+      return;
+    }
 
     this.openNewVersionDialog()
       .afterClosed()
