@@ -1,11 +1,15 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { convertNQTStringToNumber } from '@burstjs/util';
-import { SuggestedFees } from '@burstjs/core';
-import { EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output} from '@angular/core';
+import {convertNQTStringToNumber} from '@burstjs/util';
+import {SuggestedFees} from '@burstjs/core';
+import {EventEmitter} from '@angular/core';
 import {LabelType, Options} from 'ng5-slider';
 import {BurstAmountPipe} from '../../../shared/pipes/burst-amount.pipe';
 import {formatBurstAmount} from '../../../util/formatBurstAmount';
 import {I18nService} from '../i18n/i18n.service';
+import Color from 'color';
+
+// @ts-ignore
+const SliderAxisBaseColor = Color('#039be5');
 
 @Component({
   selector: 'burst-fee-selector',
@@ -13,49 +17,50 @@ import {I18nService} from '../i18n/i18n.service';
   styleUrls: ['./burst-fee-selector.component.scss']
 })
 export class BurstFeeSelectorComponent implements OnInit {
-  @Input('fees') fees: SuggestedFees;
+  @Input() fees: SuggestedFees;
 
-  feeNQTValue = 0;
+  feeValue = 0;
   burstAmountPipe: BurstAmountPipe;
   options: Options;
 
   @Input()
-  get feeNQT(): number {
-    return this.feeNQTValue;
+  get fee(): number {
+    return this.feeValue;
   }
 
   @Output()
-  feeNQTChange = new EventEmitter();
+  feeChange = new EventEmitter();
 
-  // FIXME: this is not NQT, but Burst
-  set feeNQT(feeBurst: number) {
-    if (!feeBurst) {
-      this.feeNQTValue = 0;
+  set fee(feeValue: number) { // not Planck
+    if (!feeValue) {
+      this.feeValue = 0;
       return;
     }
-    this.feeNQTValue = parseFloat(feeBurst.toString());
-    this.feeNQTChange.emit(this.feeNQTValue);
+    this.feeValue = feeValue;
+    this.feeChange.emit(this.feeValue);
   }
 
   constructor(private i18nService: I18nService) {
   }
 
   ngOnInit(): void {
+
+    const floor = this.convertFeeToBurst(this.fees.minimum);
+    const ceil = this.convertFeeToBurst(this.fees.priority);
+
+    const normalize = (v): number => (v - floor) / (ceil - floor);
+
     this.options = {
       step: 0.0000001,
-      floor: this.convertFeeToBurst(this.fees.minimum),
-      ceil: this.convertFeeToBurst(this.fees.priority),
+      floor,
+      ceil,
       showSelectionBar: true,
       getSelectionBarColor: (value: number): string => {
-        if (value < this.convertFeeToBurst(this.fees.standard)) {
-          return 'orange';
-        }
-        if (value < this.convertFeeToBurst(this.fees.priority)) {
-          return 'yellow';
-        }
-        return '#2AE02A';
+        const n = normalize(value);
+        const color = SliderAxisBaseColor.fade(1 - n);
+        return color.hsl();
       },
-    translate : (value: number, label: LabelType): string => {
+      translate: (value: number, label: LabelType): string => {
         return formatBurstAmount(value, {
           locale: this.i18nService.currentLanguage.code,
           noUnit: false,
@@ -68,5 +73,4 @@ export class BurstFeeSelectorComponent implements OnInit {
   convertFeeToBurst(feeNQT: number): number {
     return convertNQTStringToNumber(feeNQT.toString());
   }
-
 }

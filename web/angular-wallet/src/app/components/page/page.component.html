@@ -1,6 +1,4 @@
 <div class="page-layout blank simple" fusePerfectScrollbar>
-
-
   <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
        fxLayoutAlign.gt-xs="space-between center">
 
@@ -23,7 +21,7 @@
   </div>
 
   <!-- CENTER -->
-  <div class="content-container">
+  <div class="content-container" [style.background-image]="bgImgSrc">
     <div [ngClass]="{content: true, wide:wide===true}">
       <ng-content></ng-content>
     </div>

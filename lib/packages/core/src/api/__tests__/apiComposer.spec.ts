@@ -66,8 +66,8 @@ describe('ApiComposer', () => {
 
     it('should compose (empty) Api', () => {
         const api = apiComposer.compose();
-
         expect(api).toBeDefined();
+        expect(api.service).toBeDefined();
         expect(api.block).not.toBeDefined();
         expect(api.account).not.toBeDefined();
         expect(api.message).not.toBeDefined();

@@ -13,6 +13,7 @@ describe('BurstValue', () => {
     });
     describe('fromPlanck', () => {
         it('Should create an instance correctly', () => {
+            expect(BurstValue.fromPlanck(1).getBurst()).toEqual('0.00000001');
             expect(BurstValue.fromPlanck('1').getBurst()).toEqual('0.00000001');
             expect(BurstValue.fromPlanck('100').getBurst()).toEqual('0.000001');
         });
@@ -25,6 +26,7 @@ describe('BurstValue', () => {
         it('Should return value correctly', () => {
             expect(BurstValue.fromPlanck('1').getPlanck()).toEqual('1');
             expect(BurstValue.fromPlanck('0').getPlanck()).toEqual('0');
+            expect(BurstValue.fromPlanck(0).getPlanck()).toEqual('0');
             expect(BurstValue.fromBurst('1').getPlanck()).toEqual('100000000');
         });
     });

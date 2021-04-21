@@ -1,13 +1,12 @@
 /**
- * Copyright (c) 2019 Burst Apps Team
+ * Copyright (c) 2021 Burst Apps Team
  */
-import {convertNumberToNQTString} from '@burstjs/util';
-import {generateSignature, verifySignature, generateSignedTransactionBytes} from '@burstjs/crypto';
 import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
-import {broadcastTransaction} from '../transaction/broadcastTransaction';
 import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransaction';
+import {DefaultDeadline} from '../../../constants';
+import {SetAccountInfoArgs} from '../../../typings/args/setAccountInfoArgs';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
@@ -15,35 +14,23 @@ import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransa
  * See details at [[AccountApi.setAccountInfo]]
  * @module core.api.factories
  */
-export const setAccountInfo = (service: BurstService): (
-    name: string,
-    description: string,
-    feeNQT: string,
-    senderPublicKey: string,
-    senderPrivateKey: string,
-    deadline: number,
-) => Promise<TransactionId> =>
-    async (
-        name: string,
-        description: string,
-        feeNQT: string,
-        senderPublicKey: string,
-        senderPrivateKey: string,
-        deadline: number,
-    ): Promise<TransactionId> => {
+export const setAccountInfo = (service: BurstService):
+    (args: SetAccountInfoArgs) => Promise<TransactionId> =>
+    async (args: SetAccountInfoArgs): Promise<TransactionId> => {
+
 
         const parameters = {
-            name,
-            description,
-            deadline: 1440,
-            feeNQT: convertNumberToNQTString(parseFloat(feeNQT)),
-            publicKey: senderPublicKey
+            name: args.name,
+            description: args.description,
+            deadline: DefaultDeadline,
+            feeNQT: args.feePlanck,
+            publicKey: args.senderPublicKey
         };
         const {unsignedTransactionBytes: unsignedHexMessage} = await service.send<TransactionResponse>('setAccountInfo', parameters);
 
         return signAndBroadcastTransaction(service)({
-            senderPrivateKey,
-            senderPublicKey,
+            senderPrivateKey: args.senderPrivateKey,
+            senderPublicKey: args.senderPublicKey,
             unsignedHexMessage
         });
     };

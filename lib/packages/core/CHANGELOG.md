@@ -3,6 +3,19 @@ All notable changes to this project will be documented in this file.
 
 ## 0.6.0
 
+__New__
+
+- Added `asyncRetry` 
+
+__Breaking Changes__
+
+- `getAccount` accepts an argument object now
+- `TransactionRewardRecipentSubtype` renamed to `TransactionMiningSubtype`
+- `setAccountInfo` accepts an argument object now
+------------------------
+
+__New__
+- Added `BurstService.selectBestNode`
 - deprecated `suggestFee`
   - use `getSuggestedFees`
 - added new methods to transaction Api
@@ -16,10 +29,13 @@ All notable changes to this project will be documented in this file.
   - `transferAsset`
 - Added BurstAddress Value Object
 - Added `addCommitment`, `removeCommitment`
+- `Api` interface "leaks" the underlying BRS service instance
 
 ---
 __Fixes__
 - Fixed return types of Block Api (`BlockIdList` and `BlockList`)
+- Fixed `getAccountBlocks` and `getAccountBlockIds`
+- Fixed missing export for `AssetList`
 ---
 
 ## 0.5.0

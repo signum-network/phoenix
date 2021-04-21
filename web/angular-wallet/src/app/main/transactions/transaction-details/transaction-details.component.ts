@@ -52,7 +52,6 @@ export class TransactionDetailsComponent implements OnInit {
       });
   }
 
-
   trackRows(index, row): any {
     return row ? row.id : undefined;
   }

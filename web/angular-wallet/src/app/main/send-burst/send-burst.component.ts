@@ -6,6 +6,7 @@ import {StoreService} from 'app/store/store.service';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {convertNQTStringToNumber} from '@burstjs/util';
+import {getBalancesFromAccount} from '../../util/balance/getBalancesFromAccount';
 
 @Component({
   selector: 'app-send-burst',
@@ -51,7 +52,7 @@ export class SendBurstComponent extends UnsubscribeOnDestroy implements OnInit {
       });
   }
 
-  getBalance(): number {
-      return convertNQTStringToNumber(this.account.balanceNQT);
+  getBalance(): string {
+      return getBalancesFromAccount(this.account).availableBalance.getBurst();
   }
 }

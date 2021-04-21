@@ -21,12 +21,12 @@
             <label matSuffix>BURST</label>
           </mat-form-field>
 
-          <burst-fee-selector [fees]="fees" [(feeNQT)]="feeNQT"></burst-fee-selector>
+          <burst-fee-selector [fees]="fees" [(fee)]="feeNQT"></burst-fee-selector>
 
           <mat-checkbox [(ngModel)]="immutable" name="immutable">{{ "immutable" | i18n }}</mat-checkbox>
 
         </form>
-        <strong>Total:</strong> {{ getTotal() | burstAmount }}
+        <strong>{{'total' | i18n}}:</strong> {{ getTotal() | burstAmount }}
         <br/><br/>
         <button type="submit"
                 class="mr-8"

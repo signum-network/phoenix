@@ -35,6 +35,7 @@ export class Account {
     public unconfirmedAssetBalances: UnconfirmedAssetBalance[];
     public unconfirmedBalanceNQT: string;
     public commitmentNQT: string;
+    public committedBalanceNQT: string;
     public confirmed: boolean;
 
     constructor(data: any = {}) {
@@ -44,6 +45,7 @@ export class Account {
         this.assetBalances = data.assetBalances || undefined;
         this.balanceNQT = data.balanceNQT || 0;
         this.commitmentNQT = data.commitmentNQT || 0;
+        this.committedBalanceNQT = data.committedBalanceNQT || 0;
         this.description = data.description || undefined;
         this.effectiveBalanceNQT = data.effectiveBalanceNQT || 0;
         if (data.publicKey || data.keys !== undefined) {

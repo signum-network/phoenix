@@ -2,9 +2,12 @@
 
 :host {
 
+  mat-icon.isFetching {
+    animation: rotate 1s linear infinite;
+  }
+
   .node-selector {
-    display: flex;
-    flex-direction: column;
+      display: block;
 
     .version-info {
       text-align: right;
@@ -15,26 +18,54 @@
       color: darkred;
     }
 
-    .button-wrapper {
+    .ok-icon {
+      color: darkgreen;
+    }
+
+    &__automatic{
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      @include media-breakpoint('xs') {
-        flex-direction: column;
-        margin-top: 12px;
-        justify-content: normal;
-      }
+      flex-direction: column;
 
-      .unfeatures {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+      .selected {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        div {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          align-items: center;
+        }
       }
+    }
 
-      button {
+    &__manual {
+      display: flex;
+      flex-direction: column;
+
+
+      .button-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         @include media-breakpoint('xs') {
+          flex-direction: column;
           margin-top: 12px;
+          justify-content: normal;
+        }
+
+        .unfeatures {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        button {
+          @include media-breakpoint('xs') {
+            margin-top: 12px;
+          }
         }
       }
     }

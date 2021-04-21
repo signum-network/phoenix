@@ -6,7 +6,7 @@ import {
   getAttachmentVersion
 } from '@burstjs/core';
 import {UtilService} from '../../../util.service';
-import {convertBurstTimeToDate, convertHexStringToString, convertNQTStringToNumber} from '@burstjs/util';
+import {BurstValue, convertBurstTimeToDate, convertHexStringToString} from '@burstjs/util';
 
 
 export enum CellValueType {
@@ -22,6 +22,8 @@ export enum CellValueType {
   Message = 'Message',
   MultiSameOutCreation = 'MultiSameOutCreation',
   MultiOutCreation = 'MultiOutCreation',
+  CommitmentAdd = 'CommitmentAdd',
+  CommitmentRemove = 'CommitmentRemove',
 }
 
 export class CellValue {
@@ -94,6 +96,10 @@ export class CellValueMapper {
         return new CellValue(attachment, CellValueType.MultiSameOutCreation);
       case 'MultiOutCreation':
         return new CellValue(attachment, CellValueType.MultiOutCreation);
+      case 'CommitmentAdd':
+        return new CellValue(attachment, CellValueType.CommitmentAdd);
+      case 'CommitmentRemove':
+        return new CellValue(attachment, CellValueType.CommitmentRemove);
       default:
         return this.transaction['attachment'];
     }
@@ -101,7 +107,7 @@ export class CellValueMapper {
   }
 
   private getAmount(nqt: string): CellValue {
-    const valueStr = `${convertNQTStringToNumber(nqt)} BURST`;
+    const valueStr = `${BurstValue.fromPlanck(nqt).toString()}`;
     return new CellValue(valueStr);
   }
 

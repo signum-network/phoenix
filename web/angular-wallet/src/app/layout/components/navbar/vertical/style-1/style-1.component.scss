@@ -49,13 +49,6 @@ fuse-sidebar {
                 position: relative;
                 top: auto;
                 padding: 0;
-                transform: translateX(0);
-                left: auto;
-
-                .avatar {
-                  width: 40px;
-                  height: 40px;
-                }
               }
 
               .username,
@@ -176,18 +169,14 @@ navbar {
         padding: 24px 0 64px 0;
 
         .avatar-container {
-          position: absolute;
-          top: 92px;
-          padding: 8px;
-          transform: translateX(-50%);
-          left: 50%;
+          cursor: pointer;
+          filter: drop-shadow(0 0 4px black);
 
-          .avatar {
-            width: 100px;
-            height: 100px;
-            margin: 0;
-            border-radius: 0;
-            cursor: pointer;
+          canvas {
+            display: block;
+            position: relative;
+            width: 100%;
+            transform: translateX(33%);
           }
         }
       }

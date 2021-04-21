@@ -6,9 +6,12 @@ import {AliasList} from '../aliasList';
 import {Account} from '../account';
 import {TransactionId} from '../transactionId';
 import {Block} from '../block';
-import {CommitmentArgs, GetAccountTransactionsArgs} from '../args';
+import {CommitmentArgs, GetAccountBlocksArgs, GetAccountTransactionsArgs} from '../args';
 import {SetRewardRecipientArgs} from '../args/setRewardRecipientArgs';
 import {RewardRecipient} from '../rewardRecipient';
+import {GetAccountArgs} from '../args/getAccountArgs';
+import {BlockList} from '../blockList';
+import {SetAccountInfoArgs} from '../args/setAccountInfoArgs';
 
 /**
  * Account API
@@ -45,26 +48,24 @@ export interface AccountApi {
 
     /**
      * Get an account given an ID
-     * @param {string} accountId
+     * @param {GetAccountArgs} args The arguments
      * @return {Promise<Account>} The account from the backend, not including transactions
      */
-    getAccount: (accountId: string) => Promise<Account>;
+    getAccount: (args: GetAccountArgs) => Promise<Account>;
 
     /**
      * Get blocks forged by an account
-     * @param firstIndex first block to retrieve (optional, default is zero or the last block on the blockchain)
-     * @param lastIndex the last block to retrieve (optional, default is firstIndex + 99)
+     * @param {GetAccountBlocksArgs} args The arguments
      * @return {Promise<Block[]>} The list of blocks
      */
-    getAccountBlocks: (accountId: string) => Promise<Block[]>;
+    getAccountBlocks: (args: GetAccountBlocksArgs) => Promise<BlockList>;
 
     /**
      * Get blockIds forged by an account
-     * @param firstIndex first block to retrieve (optional, default is zero or the last block on the blockchain)
-     * @param lastIndex the last block to retrieve (optional, default is firstIndex + 99)
+     * @param {GetAccountBlocksArgs} args The arguments
      * @return {Promise<string[]>} The list of blocks
      */
-    getAccountBlockIds: (accountId: string) => Promise<string[]>;
+    getAccountBlockIds: (args: GetAccountBlocksArgs) => Promise<string[]>;
 
     /**
      * Get QR Code image for a given BURST address
@@ -136,28 +137,11 @@ export interface AccountApi {
 
     /**
      * Sets account information for an account
-     *
-     * The transaction will be broadcasted in two steps.
-     * 1. Send the setAccountInfo call with public key to the network
-     * 2. Take the returned unsigned message and sign it, i.e. the private key won't be transmitted.
-     *
-     * @param name The name of the account
-     * @param description The description for the account
-     * @param feeNQT The fee to pay
-     * @param name The name of the account
-     * @param senderPublicKey The senders public key for sending an _unsigned_ message
-     * @param senderPrivateKey The senders private key to _sign_ the message
-     * @param deadline The deadline, in minutes, for the transaction to be confirmed
+     * @param {SetAccountInfoArgs} args The arguments
+
      * @return The Transaction ID
      */
-    setAccountInfo: (
-        name: string,
-        description: string,
-        feeNQT: string,
-        senderPublicKey: string,
-        senderPrivateKey: string,
-        deadline?: number,
-    ) => Promise<TransactionId>;
+    setAccountInfo: (args: SetAccountInfoArgs) => Promise<TransactionId>;
 
     /**
      * Assigns a reward recipient for an account

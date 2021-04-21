@@ -52,11 +52,11 @@ export class NetworkService {
     return this.api.network.getPeers();
   }
 
-  public setBlocks(blocks: Block[]) {
+  public setBlocks(blocks: Block[]): void {
     this.blocks.next(blocks);
   }
 
-  public addBlock(block: Block) {
+  public addBlock(block: Block): void {
     this.setBlocks([block].concat(this.blocks.value));
   }
 

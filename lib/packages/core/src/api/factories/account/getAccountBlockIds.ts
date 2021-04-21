@@ -3,6 +3,7 @@
  */
 import {BurstService} from '../../../service/burstService';
 import {BlockIdList} from '../../../typings/blockIdList';
+import {GetAccountBlocksArgs} from '../../../typings/args/getAccountBlocksArgs';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
@@ -11,9 +12,17 @@ import {BlockIdList} from '../../../typings/blockIdList';
  * @module core.api.factories
  */
 export const getAccountBlockIds = (service: BurstService):
-    (firstIndex?: number, lastIndex?: number) => Promise<BlockIdList> =>
-    (firstIndex?: number, lastIndex?: number): Promise<BlockIdList> =>
-        service.query('getAccountBlockIds', {
-            firstIndex,
-            lastIndex
-        });
+    (args: GetAccountBlocksArgs) => Promise<BlockIdList> =>
+    (args): Promise<BlockIdList> => {
+
+        const params = {
+            account: args.accountId,
+            firstIndex: args.firstIndex,
+            lastIndex: args.lastIndex,
+            includeTransactions: args.includeTransactions || false
+        };
+
+        return service.query('getAccountBlockIds', params);
+    };
+
+

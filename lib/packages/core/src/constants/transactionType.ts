@@ -31,8 +31,10 @@ export enum TransactionType {
      * @see TransactionLeasingSubtype
      */
     Leasing,
-
-    RewardRecipient = 20,
+    /**
+     * @see TransactionMiningSubtype
+     */
+    Mining = 20,
     Escrow = 21,
     AT = 22,
 }

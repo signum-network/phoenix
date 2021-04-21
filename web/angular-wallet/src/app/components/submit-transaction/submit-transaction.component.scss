@@ -1,0 +1,30 @@
+@import "src/@fuse/scss/fuse";
+
+.submit-transaction {
+  position: relative;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .send-button {
+    position: absolute;
+    right: 16px;
+    bottom: 21px;
+
+    &:disabled {
+      opacity: 0.2;
+    }
+
+    mat-icon {
+      &.enabled {
+        color: #039be5;
+      }
+    }
+
+    mat-spinner {
+      top: 1px;
+      left: 10px;
+    }
+  }
+}

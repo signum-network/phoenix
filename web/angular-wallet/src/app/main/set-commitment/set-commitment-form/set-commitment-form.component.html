@@ -1,0 +1,49 @@
+<form (ngSubmit)="onSubmit();" #sendForm="ngForm">
+  <mat-slide-toggle
+    [(ngModel)]="isRevoking" name="isRevoking"
+    matTooltip="{{'toggle_commitment_mode' | i18n}}"
+  >
+    {{(isRevoking ? 'revoke_commitment' : "add_commitment") | i18n}}
+  </mat-slide-toggle>
+
+  <ng-container *ngIf="isRevoking && !canRevoke()">
+    <div class="mt-24 p-24 full-width message-box warning">
+      {{blocksMissingUntilRevoke}}&nbsp;{{'commitment_blocks_enabled' | i18n}}
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!isRevoking || (isRevoking && canRevoke())">
+    <div class="amount-wrapper">
+      <mat-form-field>
+        <mat-label>{{ 'amount' | i18n }}</mat-label>
+        <span matPrefix>Ƀ &nbsp;</span>
+        <input matInput [(ngModel)]="amount" name="amount">
+        <mat-icon
+          class="all-icon"
+          matSuffix
+          matTooltip="{{'spend_all' | i18n}}"
+          (click)="onSpendAll()"
+        >
+          all_inclusive
+        </mat-icon>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ 'fee' | i18n }}</mat-label>
+        <span matPrefix>Ƀ &nbsp;</span>
+        <input matInput [(ngModel)]="fee" name="fee">
+      </mat-form-field>
+    </div>
+
+    <burst-fee-selector [fees]="fees" [(fee)]="fee"></burst-fee-selector>
+
+    <app-submit-transaction [disabled]="!canSubmit()"
+                             [isSubmitting]="isSending"
+                             (pinChange)="setPin($event)">
+    </app-submit-transaction>
+
+    <strong>{{'total' | i18n}}:&nbsp;</strong>
+    <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getBurst() | burstAmount }}</span>
+  </ng-container>
+
+</form>

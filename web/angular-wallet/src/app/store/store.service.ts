@@ -5,7 +5,6 @@ import {StoreConfig} from './store.config';
 import {Settings} from 'app/settings';
 import {Account} from '@burstjs/core';
 
-
 const CollectionName = {
   Account: 'accounts',
   Settings: 'settings',
@@ -60,9 +59,6 @@ export class StoreService {
     this.settings.next(state);
   }
 
-  /*
-  * Method reponsible for saving/updating Account objects to the database.
-  */
   public saveAccount(account: Account): Promise<Account> {
     return new Promise((resolve, reject) => {
       if (this.ready.value) {
@@ -73,11 +69,19 @@ export class StoreService {
             accounts.insert(account);
           } else {
             accounts.chain().find({account: account.account}).update(w => {
+              // Only update what you really need...
+              // ATTENTION: Do not try to iterate over all keys and update then
+              // It will fail :shrug
+              // look at account.service.ts for the counter part
               w.balanceNQT = account.balanceNQT;
+              w.unconfirmedBalanceNQT = account.unconfirmedBalanceNQT;
+              w.committedBalanceNQT = account.committedBalanceNQT;
+              w.accountRSExtended = account.accountRSExtended;
               w.assetBalances = account.assetBalances;
               w.type = account.type;
               w.selected = account.selected;
               w.name = account.name;
+              w.description = account.description;
               w.keys = account.keys;
               w.transactions = account.transactions;
               w.confirmed = account.confirmed;
@@ -109,8 +113,8 @@ export class StoreService {
           } else {
             rs = accounts.find();
             if (rs.length > 0) {
-              accounts.chain().find({account: rs[0].account}).update(w => {
-                w.selected = true;
+              accounts.chain().find({account: rs[0].account}).update(a => {
+                a.selected = true;
               });
               const w = new Account(rs[0]);
               this.store.saveDatabase();

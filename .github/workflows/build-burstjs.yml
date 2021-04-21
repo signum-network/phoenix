@@ -2,8 +2,10 @@ name: Build BurstJS
 
 on:
   push:
-#    paths:
-#      - "lib/**"
+    branches:
+      - "**"
+    paths:
+      - "lib/**"
     tags-ignore:
         - desktop-[0-9]+.[0-9]+.[0-9]+*
 
@@ -36,7 +38,6 @@ jobs:
         run: |
           cd ../web/angular-wallet
           npm ci
-          npm t
           npm run build:ci
 
 

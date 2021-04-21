@@ -46,7 +46,7 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
   }
 
   public getPriceSats = (): string => {
-    const sats = this.tickerData.BTC.PRICE * 10 * 10e6;
+    const sats = this.tickerData.BTC.PRICE * 10e7;
     return `${this.asCurrency(sats, '', '1.0-0')}`;
   }
   public getPriceUsd = (): string => `${this.asCurrency(this.tickerData.USD.PRICE, '$', '1.0-6')}`;
@@ -60,7 +60,7 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
   public getMarketCapUsd = (): string => `$${formatMetricNumber(this.tickerData.USD.MKTCAP)}`;
   public getMarketCapEur = (): string => `€${formatMetricNumber(this.tickerData.EUR.MKTCAP)}`;
 
-  public getYesterDaysChange = (): string => `${this.asCurrency(this.tickerData.USD.CHANGEPCTDAY, '')} %`;
-  public isChangeNegative = (): boolean => this.tickerData.USD.CHANGEPCTDAY < 0;
+  public getYesterDaysChange = (): string => `${this.asCurrency(this.tickerData.USD.CHANGEPCT24HOUR, '')} %`;
+  public isChangeNegative = (): boolean => this.tickerData.USD.CHANGEPCT24HOUR < 0;
 
 }

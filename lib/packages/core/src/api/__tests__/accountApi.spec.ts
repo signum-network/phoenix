@@ -315,7 +315,7 @@ describe('AccountApi', () => {
             httpMock = HttpMockBuilder.create()
                 // tslint:disable:max-line-length
                 .onPostReply(200, mockBroadcastResponse,
-                    'relPath?requestType=setAccountInfo&name=name&description=description&deadline=1440&feeNQT=12300000000&publicKey=senderPublicKey')
+                    'relPath?requestType=setAccountInfo&name=name&description=description&deadline=1440&feeNQT=100000000&publicKey=senderPublicKey')
                 .onPostReply(200, 'fakeTransaction',
                     'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
                 .build();
@@ -329,14 +329,13 @@ describe('AccountApi', () => {
         });
 
         it('should setAccountInfo', async () => {
-            const status = await setAccountInfo(service)(
-                'name',
-                'description',
-                '123',
-                'senderPublicKey',
-                'senderPrivateKey',
-                1440,
-            );
+            const status = await setAccountInfo(service)({
+                name: 'name',
+                description: 'description',
+                feePlanck: BurstValue.fromBurst(1).getPlanck(),
+                senderPublicKey: 'senderPublicKey',
+                senderPrivateKey: 'senderPrivateKey'
+            })
             expect(status).toBe('fakeTransaction');
             expect(generateSignature).toBeCalledTimes(1);
             expect(verifySignature).toBeCalledTimes(1);
@@ -415,20 +414,35 @@ describe('AccountApi', () => {
     });
 
     describe('getAccountBlocks()', () => {
-        // FIXME: The mocked result is not according the BRS HTTP API!
         it('should getAccountBlocks', async () => {
-            httpMock = HttpMockBuilder.create().onGetReply(200, {
-                blocks: [{'block': '1798696848813217050'}]
-            }).build();
+            httpMock = HttpMockBuilder.create().onGetReply(
+                200,
+                {blocks: []}, // no need to test the mocked result... focus is the correctly mounted url
+                '/burst?requestType=getAccountBlocks&account=accountId&firstIndex=1000&lastIndex=0&includeTransactions=true'
+            ).build();
             const service = createBurstService(httpMock);
-            const blockResponse = await getAccountBlocks(service)(1);
-            expect(blockResponse.blocks[0].block).toBe('1798696848813217050');
+            const blockResponse = await getAccountBlocks(service)({
+                accountId: 'accountId',
+                lastIndex: 0,
+                firstIndex: 1000,
+                includeTransactions: true
+            });
+            expect(blockResponse.blocks).toEqual([]);
         });
 
         it('should getAccountBlockIds', async () => {
-            httpMock = HttpMockBuilder.create().onGetReply(200, {blockIds: ['123', '456']}).build();
+            httpMock = HttpMockBuilder.create().onGetReply(
+                200,
+                {blockIds: ['123', '456']},
+                '/burst?requestType=getAccountBlockIds&account=accountId&firstIndex=1000&lastIndex=0&includeTransactions=true'
+            ).build();
             const service = createBurstService(httpMock);
-            const blockResponse = await getAccountBlockIds(service)(1);
+            const blockResponse = await getAccountBlockIds(service)({
+                accountId: 'accountId',
+                lastIndex: 0,
+                firstIndex: 1000,
+                includeTransactions: true
+            });
             expect(blockResponse.blockIds[0]).toBe('123');
         });
 
@@ -517,7 +531,7 @@ describe('AccountApi', () => {
             jest.resetAllMocks();
 
             // @ts-ignore
-            signAndBroadcastTransaction = () => jest.fn( () => Promise.resolve('transactionId'))
+            signAndBroadcastTransaction = () => jest.fn(() => Promise.resolve('transactionId'));
 
             httpMock = HttpMockBuilder.create()
                 .onPostReply(200, mockBroadcastResponse,

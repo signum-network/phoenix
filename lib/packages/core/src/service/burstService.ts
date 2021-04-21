@@ -2,12 +2,13 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 
-import {Http, HttpError, HttpClientFactory} from '@burstjs/http';
+import {Http, HttpError, HttpClientFactory, HttpResponse} from '@burstjs/http';
+import {asyncRetry} from '@burstjs/util';
 import {BurstServiceSettings} from './burstServiceSettings';
 import {AxiosRequestConfig} from 'axios';
 import {DefaultApiEndpoint} from '../constants';
 
-// BRS is inconsistent in it's error responses
+// BRS is inconsistent in its error responses
 interface ApiError {
     readonly errorCode?: number;
     readonly errorDescription?: string;
@@ -19,11 +20,13 @@ class SettingsImpl implements BurstServiceSettings {
         this.apiRootUrl = settings.apiRootUrl || DefaultApiEndpoint;
         this.nodeHost = settings.nodeHost;
         this.httpClient = settings.httpClient || HttpClientFactory.createHttpClient(settings.nodeHost, settings.httpClientOptions);
+        this.reliableNodeHosts = settings.reliableNodeHosts || [];
     }
 
     readonly apiRootUrl: string;
     readonly httpClient: Http;
     readonly nodeHost: string;
+    readonly reliableNodeHosts: string[];
 }
 
 /**
@@ -45,7 +48,7 @@ export class BurstService {
         }
     }
 
-    public readonly settings: BurstServiceSettings;
+    public settings: BurstServiceSettings;
     private readonly _relPath: string = DefaultApiEndpoint;
 
     private static throwAsHttpError(url: string, apiError: ApiError): void {
@@ -55,6 +58,7 @@ export class BurstService {
             `${apiError.errorDescription || apiError.error}${errorCode}`,
             apiError);
     }
+
 
     /**
      * Mounts a BRS conform API (V1) endpoint of format `<host>?requestType=getBlock&height=123`
@@ -85,8 +89,10 @@ export class BurstService {
      */
     public async query<T>(method: string, args: any = {}, options?: any | AxiosRequestConfig): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
-        const {response} = await this.settings.httpClient.get(brsUrl, options);
-        if (response.errorCode) {
+
+        const {response} = await this.faultTolerantRequest(() => this.settings.httpClient.get(brsUrl, options));
+
+        if (response.errorCode || response.error || response.errorDescription) {
             BurstService.throwAsHttpError(brsUrl, response);
         }
         return response;
@@ -105,10 +111,75 @@ export class BurstService {
      */
     public async send<T>(method: string, args: any = {}, body: any = {}, options?: any | AxiosRequestConfig): Promise<T> {
         const brsUrl = this.toBRSEndpoint(method, args);
-        const {response} = await this.settings.httpClient.post(brsUrl, body, options);
+
+        const {response} = await this.faultTolerantRequest(() => this.settings.httpClient.post(brsUrl, body, options));
+
         if (response.errorCode || response.error || response.errorDescription) {
             BurstService.throwAsHttpError(brsUrl, response);
         }
         return response;
+    }
+
+    private async faultTolerantRequest(requestFn: () => Promise<HttpResponse>): Promise<HttpResponse> {
+        const onFailureAsync = async (e, retrialCount): Promise<boolean> => {
+            const shouldRetry = this.settings.reliableNodeHosts.length && retrialCount < this.settings.reliableNodeHosts.length;
+            if (shouldRetry) {
+                await this.selectBestHost(true);
+            }
+            return shouldRetry;
+        };
+
+        return await asyncRetry({
+            asyncFn: requestFn,
+            onFailureAsync
+        });
+    }
+
+    /**
+     * Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)
+     * @param reconfigure An optional flag to set automatic reconfiguration. Default is `false`
+     * Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!
+     * @param checkMethod The optional API method to be called. This applies only for GET methods. Default is `getBlockchainStatus`
+     * @throws Error If `reliableNodeHosts` is empty, or if all requests to the reliableNodeHosts fail
+     */
+    public async selectBestHost(reconfigure = false, checkMethod = 'getBlockchainStatus'): Promise<string> {
+        if (!this.settings.reliableNodeHosts.length) {
+            throw new Error('No reliableNodeHosts configured');
+        }
+        const checkEndpoint = this.toBRSEndpoint(checkMethod);
+        let timeout = null;
+        const requests = this.settings.reliableNodeHosts.map(host => {
+            const absoluteUrl = `${host}${checkEndpoint}`;
+            return new Promise<string>(async (resolve, reject) => {
+                try {
+                    await this.settings.httpClient.get(absoluteUrl);
+                    resolve(host);
+                } catch (e) {
+                    if (timeout) {
+                        // @ts-ignore
+                        clearTimeout(timeout);
+                    }
+                    // @ts-ignore
+                    timeout = setTimeout(() => {
+                        reject(null);
+                    }, 10 * 1000);
+                }
+            });
+        });
+
+        const bestHost = await Promise.race(requests);
+        // @ts-ignore
+        clearTimeout(timeout);
+        if (!bestHost) {
+            throw new Error('All reliableNodeHosts failed');
+        }
+        if (reconfigure) {
+            this.settings = new SettingsImpl({
+                ...this.settings,
+                httpClient: HttpClientFactory.createHttpClient(bestHost, this.settings.httpClientOptions),
+                nodeHost: bestHost,
+            });
+        }
+        return bestHost;
     }
 }

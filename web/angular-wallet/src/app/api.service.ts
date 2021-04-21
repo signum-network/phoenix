@@ -3,7 +3,9 @@ import {Api, ApiSettings, composeApi} from '@burstjs/core';
 import {environment} from '../environments/environment';
 import {Settings} from './settings';
 import {StoreService} from './store/store.service';
-import {distinctUntilChanged} from 'rxjs/operators';
+import semver from 'semver';
+import {constants} from './constants';
+import {ApiVersion} from '@burstjs/core/src/constants/apiVersion';
 
 
 @Injectable({
@@ -15,23 +17,49 @@ export class ApiService {
   public nodeUrl = environment.defaultNode;
 
   constructor(private storeService: StoreService) {
-    this.initApi = this.initApi.bind(this);
-
-    this.storeService.ready.subscribe(this.initApi);
-
-    this.storeService.settings
-      .subscribe(this.initApi);
+    this.storeService.settings.subscribe(this.initApi.bind(this));
   }
 
-  private initApi(settings: Settings): void {
+  private async initApi(settings: Settings): Promise<void> {
     if (this.nodeUrl === settings.node) {
       return;
     }
 
     this.nodeUrl = settings.node;
-    const apiSettings = new ApiSettings(this.nodeUrl);
+
+    if (settings.nodeAutoSelectionEnabled) {
+      this.nodeUrl = await this.selectBestNode();
+      settings.node = this.nodeUrl;
+      await this.storeService.saveSettings(settings);
+    }
+
+    const reliablePeers = constants.nodes
+      .filter(({reliable}) => reliable)
+      .map(({address, port}) => `${address}:${port}`);
+
+    const apiSettings = new ApiSettings(
+      this.nodeUrl,
+      ApiVersion.V1,
+      reliablePeers,
+    );
     this.api = composeApi(apiSettings);
     this.brsVersion = undefined;
+  }
+
+  async selectBestNode(): Promise<string> {
+    let bestNode = '';
+    try {
+      bestNode = await this.api.service.selectBestHost(false);
+    } catch (e) {
+      console.log(e);
+    }
+    return bestNode;
+  }
+
+  async supportsPocPlus(): Promise<boolean> {
+    const brsApiVersion = await this.fetchBrsApiVersion();
+    const version = semver.coerce(brsApiVersion);
+    return semver.gte(version, constants.pocPlusVersion, {includePrerelease: true});
   }
 
   async fetchBrsApiVersion(): Promise<string> {

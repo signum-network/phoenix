@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation, Input} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation, Input, ElementRef} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {delay, filter, take, takeUntil} from 'rxjs/operators';
@@ -15,6 +15,8 @@ import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {NotifierService} from 'angular-notifier';
 import {convertNQTStringToNumber} from '@burstjs/util';
 
+import hashicon from 'hashicon';
+
 @Component({
   selector: 'navbar-vertical-style-1',
   templateUrl: './style-1.component.html',
@@ -22,9 +24,11 @@ import {convertNQTStringToNumber} from '@burstjs/util';
   encapsulation: ViewEncapsulation.None
 })
 export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
-  fuseConfig: any;
+
+  @ViewChild('avatar', {static: false}) avatar: ElementRef<HTMLCanvasElement>;
+  @Input() selectedAccount: Account;
   navigation: any;
-  @Input('selectedAccount') selectedAccount: Account;
+  fuseConfig: any;
   selectedAccountQRCode: string;
   language: string;
   node = environment.defaultNode;
@@ -47,7 +51,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
     this._unsubscribeAll = new Subject();
   }
 
-  @ViewChild(FusePerfectScrollbarDirective, { static: true })
+  @ViewChild(FusePerfectScrollbarDirective, {static: true})
   set directive(theDirective: FusePerfectScrollbarDirective) {
     if (!theDirective) {
       return;
@@ -108,7 +112,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
           this.language = language;
           this.node = node;
           // Get QR Code
-          await this.updateQRCode();
+          await this.updateAvatar();
         }
       );
     // Subscribe to the config changes
@@ -126,7 +130,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
       )
       .subscribe(async () => {
         this.navigation = this._fuseNavigationService.getCurrentNavigation();
-        await this.updateQRCode();
+        await this.updateAvatar();
       });
 
     this._accountService.currentAccount
@@ -135,13 +139,17 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
         takeUntil(this._unsubscribeAll)
       )
       .subscribe(async () => {
-        await this.updateQRCode();
+        await this.updateAvatar();
       });
   }
 
-  private async updateQRCode(): Promise<void> {
-    const path = await this.getQRCode(this.selectedAccount.accountRS);
-    this.selectedAccountQRCode = this.node + path;
+  private async updateAvatar(): Promise<void> {
+    if (this.avatar) {
+      hashicon(this.selectedAccount.account, {
+        size: 100,
+        createCanvas: () => this.avatar.nativeElement
+      });
+    }
   }
 
   /**

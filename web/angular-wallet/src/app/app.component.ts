@@ -74,7 +74,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         if (ready) {
           this.updateAccounts();
           const checkBlockchainStatus = this.checkBlockchainStatus.bind(this);
-          setTimeout(checkBlockchainStatus, 1000); // FIXME: dirty hack
+          setTimeout(checkBlockchainStatus, 1000);
           this.blockchainStatusInterval = setInterval(checkBlockchainStatus, this.BLOCKCHAIN_STATUS_INTERVAL);
         }
         this.accountService.currentAccount

@@ -1,6 +1,6 @@
 {
   "/burst": {
-    "target": "https://testnet.burstcoin.network:6876",
+    "target": "https://testnetwallet.burstcoin.ro",
     "changeOrigin": true,
     "secure": false,
     "logLevel": "info"

@@ -31,16 +31,16 @@ class HttpMock implements Http {
         };
     }
 
-    public reset() {
+    public reset(): void {
         this._replyFunctions = HttpMock.initialReplyFunctions();
     }
 
-    public registerResponse(method: string, url: string, status: number, data: any) {
+    public registerResponse(method: string, url: string, status: number, data: any) : void {
         // @ts-ignore
         this._replyFunctions[method][url] = this.createReplyFn(status, data);
     }
 
-    public registerError(method: string, url: string, status: number, message: string, data: any) {
+    public registerError(method: string, url: string, status: number, message: string, data: any) : void {
         // @ts-ignore
         this._replyFunctions[method][url] = this.createErrorFn(url, status, message, data);
     }

@@ -1,25 +1,18 @@
 const path = require('path');
 const {app, BrowserWindow, Menu, shell, ipcMain, protocol} = require('electron');
 const {download} = require('electron-dl');
-
-const {version, update} = require('./package.json');
-const UpdateService = require('./src/updateService');
-const logger = require('./src/logger');
+const {context} =require('./src/context')
 
 let win;
 let downloadHandle;
-
-const updateService = new UpdateService({
-  currentVersion: version,
-  ...update
-});
-const isDevelopment = process.env.NODE_ENV === 'develop';
 
 const isLinux = () => process.platform === 'linux';
 const isMacOS = () => process.platform === 'darwin';
 const isWindows = () => process.platform === 'win32';
 
 const gotTheLock = app.requestSingleInstanceLock();
+const logger = context.getLogger()
+const updateService = context.getUpdateService()
 
 function handleLatestUpdate(newVersion) {
   win.webContents.send('new-version', newVersion);
@@ -27,15 +20,16 @@ function handleLatestUpdate(newVersion) {
 
 function getBrowserWindowConfig() {
   const commonConfig = {
-    icon: path.join(__dirname, 'assets/images/png/64x64.png'),
+    icon: path.join(__dirname, 'assets/images/logos/phoenix.png'),
     center: true,
     show: false,
     webPreferences: {
-      devTools: isDevelopment,
-      nodeIntegration: true
+      devTools: context.isDevToolsEnabled(),
+      nodeIntegration: true,
+      contextIsolation: false,
     }
   };
-  return isDevelopment ? {
+  return context.isDevelopmentMode() ? {
       ...commonConfig,
       fullscreen: false,
       width: 800,
@@ -112,7 +106,7 @@ function createWindow() {
     },
     {
       label: 'View',
-      submenu: isDevelopment ? [
+      submenu: context.isDevToolsEnabled() ? [
           {role: 'toggledevtools'},
           {type: 'separator'},
           {role: 'resetzoom'},
@@ -143,12 +137,6 @@ function createWindow() {
           label: 'Burst Wiki',
           click() {
             shell.openExternal('https://burstwiki.org/');
-          }
-        },
-        {
-          label: 'Burst Faucet',
-          click() {
-            shell.openExternal('http://faucet.burst-alliance.org:8080/');
           }
         },
         {
@@ -271,12 +259,6 @@ function onReady() {
   app.setAsDefaultProtocolClient('burst');
 }
 
-function logEverywhere(s) {
-  if (win && win.webContents) {
-    win.webContents.executeJavaScript(`console.log("${s}")`);
-  }
-}
-
 if (!gotTheLock) {
   app.quit();
 } else {
@@ -308,7 +290,7 @@ if (!gotTheLock) {
     app.on('open-url', (e, url) => {
       e.preventDefault();
       if (win && win.webContents) {
-        logEverywhere(url);
+        logger.info(`open-url: ${url}`)
         win.webContents.send('deep-link-clicked', url);
       }
     })

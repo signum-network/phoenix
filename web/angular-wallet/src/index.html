@@ -3,7 +3,7 @@
 
 <head>
 
-  <title>BURST</title>
+  <title>Phoenix Wallet</title>
   <base href="/">
 
   <meta charset="utf-8">
@@ -14,7 +14,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="assets/icons/meteocons/style.css" rel="stylesheet">
   <link href="assets/icons/material-icons/outline/style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700" rel="stylesheet">
 
@@ -46,6 +45,7 @@
       right: 0;
       bottom: 0;
       background-color: #00579D;
+      background-image: url('assets/images/bg/hexagon.svg');
       z-index: 99999;
       pointer-events: none;
     }
@@ -57,22 +57,16 @@
       top: 50%;
       transform: translateY(-50%);
       text-align: center;
-      color: aliceblue;
     }
 
     #fuse-splash-screen .logo {
       width: 92px;
       margin: 0 auto;
-      animation: appear 2s ease-out, heartbeat 2s linear infinite;
+      animation: zoom 8s linear infinite alternate;
     }
 
     #fuse-splash-screen .logo img {
-      animation: appear 2s ease-out, heartbeat 2s linear infinite;
       filter: drop-shadow(0px 10px 6px rgba(0, 0, 0, 0.2))
-    }
-
-    #fuse-splash-screen h2 {
-      animation: appear 2s ease-out;
     }
 
     @keyframes appear {
@@ -81,6 +75,17 @@
       }
       100% {
         opacity: 1;
+      }
+    }
+
+    @keyframes zoom {
+      0% {
+        opacity: 0;
+        transform: scale(0.01);
+      }
+      100% {
+        opacity: 0.85;
+        transform: scale(4);
       }
     }
 
@@ -107,14 +112,13 @@
 
 <body>
 
-<fuse-splash-screen  id="fuse-splash-screen">
+<fuse-splash-screen id="fuse-splash-screen">
   <div class="center">
     <div class="logo">
-      <img width="128" src="assets/images/logos/logo_white.svg">
+      <img width="128" src="assets/images/logos/phoenix_v.svg">
     </div>
-    <h2>Starting Phoenix</h2>
   </div>
-</fuse-splash-screen >
+</fuse-splash-screen>
 
 <app></app>
 

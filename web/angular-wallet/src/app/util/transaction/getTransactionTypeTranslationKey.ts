@@ -8,8 +8,8 @@ import {
   TransactionLeasingSubtype,
   TransactionMarketplaceSubtype,
   TransactionEscrowSubtype,
-  TransactionRewardRecipientSubtype,
-  TransactionSmartContractSubtype
+  TransactionSmartContractSubtype,
+  TransactionMiningSubtype,
 } from '@burstjs/core';
 
 function getKeyForPaymentSubtype(transaction: Transaction): string {
@@ -99,11 +99,14 @@ function getKeyForLeasingSubtype(transaction: Transaction): string {
   }
 }
 
-// FIXME: complete the translations
-function getKeyForRewardRecipientSubtype(transaction: Transaction): string {
+function getKeyForMiningSubtype(transaction: Transaction): string {
   switch (transaction.subtype) {
-    case TransactionRewardRecipientSubtype.RewardRecipientAssignment:
-      return 'Reward Recipient Assignment';
+    case TransactionMiningSubtype.RewardRecipientAssignment:
+      return 'reward_recipient_assignment';
+    case TransactionMiningSubtype.AddCommitment:
+      return 'add_commitment';
+    case TransactionMiningSubtype.RemoveCommitment:
+      return 'revoke_commitment';
   }
 }
 
@@ -146,8 +149,8 @@ export function getTransactionTypeTranslationKey(transaction: Transaction): stri
       return 'marketplace';
     case TransactionType.Leasing:
       return 'leasing';
-    case TransactionType.RewardRecipient:
-      return 'reward_recipient';
+    case TransactionType.Mining:
+      return 'mining';
     case TransactionType.Escrow:
       return 'escrow';
     case TransactionType.AT:
@@ -177,8 +180,8 @@ export function getTransactionSubtypeTranslationKey(transaction: Transaction, ac
     case TransactionType.Leasing:
       translationKey = getKeyForLeasingSubtype(transaction);
       break;
-    case TransactionType.RewardRecipient:
-      translationKey = getKeyForRewardRecipientSubtype(transaction);
+    case TransactionType.Mining:
+      translationKey = getKeyForMiningSubtype(transaction);
       break;
     case TransactionType.Escrow:
       translationKey = getKeyForEscrowSubtype(transaction);

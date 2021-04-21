@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.1.0 TBR
+
+- PoC+ Mining Features
+  - Add Commitment
+  - Refined Reward Recipient
+- New face lifting
+  - new splash screen
+  - changing bg images on pages
+- Extended Address Support  
+- Modernized Pages
+  - Set Reward Recipient
+  - Set Account Info
+- Node Settings
+  - Revisited Node List
+  - Automatic Node Selection using new reliable nodes
+  
+
+### Bug fixes
+- Market Info with true 24h change 
+- Cleanup (#1408)
+- Set Account Info (#412)
+
 ## 1.0.3
 
 ### New Feature
