@@ -33,7 +33,7 @@ __Payload__
 
 | Parameter  | Description  | Example | Required |
 |---|---|---|---|
-| recipient | The receivers RS address or account id  | BURST-LJRV-9LE8-VJ5B-57W4C | yes |
+| recipient | The receivers (extended) RS address or account id  | BURST-LJRV-9LE8-VJ5B-57W4C | yes |
 | amountPlanck | The amount to be sent in Plancks  | 20000000000 | yes |
 | feePlanck  | The tx fees in Plancks  | 2205000 | yes |
 | message | Any kind of message  |  Hello, World  | no |
@@ -61,10 +61,7 @@ __Example__
 burst://v1?action=pay&payload=eyJyZWNpcGllbnQiOiJCVVJTVC05SzlMLTRDQjUtODhZNS1GNUc0WiIsImFtb3VudFBsYW5jayI6MTAwMDAwMDAsImZlZVBsYW5jayI6NzM1MDAwLCJtZXNzYWdlIjoiSGksIGZyb20gYSBkZWVwIGxpbmsiLCJtZXNzYWdlSXNUZXh0Ijp0cnVlLCJpbW11dGFibGUiOnRydWUsImRlYWRsaW5lIjoyNH0K
 ```
 
-```
-```
-
-> More actions will be provided in the future
+### More actions will be provided in the future
 
 ## Legacy Support
 
