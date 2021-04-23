@@ -118,6 +118,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   private async routeCIP22Deeplink(url: string): Promise<void> {
     const parts = parseDeeplink(url);
     let route = '';
+    // do the routing here
     switch (parts.action) {
       case 'sendAmount':
       case 'pay':
