@@ -66,7 +66,7 @@ burst://v1?action=pay&payload=eyJyZWNpcGllbnQiOiJCVVJTVC05SzlMLTRDQjUtODhZNS1GNU
 ## Legacy Support
 
 The deep linking was initially introduced in Burst for only one single action. Phoenix does support the legacy format,
-but we highly suggest to use the new spec as it offers more versatility. The legacy link is of the following form:
+but we highly suggest using the new spec as it offers more versatility. The legacy link is of the following form:
 
 ### Send Amount to single recipient
 

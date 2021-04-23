@@ -24,10 +24,12 @@ Phoenix is an open source, cross-platform wallet for the Burstcoin blockchain. I
 ## Additional features:
 - Multi-out support - Send and view Multi-out & Multi-out-same Payments (BRS 2.3.1 and above).
 - QR Codes - View account QR codes and create custom QR codes for merchants/POS terminals.
+- Deep Linking - Make your apps interact with Phoenix (see [here](./DEEPLINKING.md))
 - Alias support - View and register BURST Aliases.
 - Messages support - Send and receive encrypted and unencrypted messages.
+- Mining Setup - Allows to set your reward recipient and commitment (Poc+)
 - View peers, blocks, and transactions.
-- Node Configuration - Select from a predefined list of nodes or use your own.
+- Node Configuration - Select from a predefined list of nodes or use your own, or just let select automatically
 - Update Notification - Be up-to-date with inbuilt update download
 - Localized in 30 languages.
 - Responsive UI
