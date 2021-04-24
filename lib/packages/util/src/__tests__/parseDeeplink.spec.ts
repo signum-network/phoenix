@@ -1,4 +1,5 @@
 import {parseDeeplink} from '../parseDeeplink';
+import {EncoderFormat} from '../typings';
 
 describe('parseDeeplink', () => {
     it('should parse a deeplink without action and payload', () => {
@@ -29,20 +30,25 @@ describe('parseDeeplink', () => {
     });
 
     it('should parse a deeplink with action and payload - unencoded', () => {
-        expect(parseDeeplink('burst.testdomain://v1?action=testAction&payload=testPayload')).toEqual({
+        expect(parseDeeplink('burst.testdomain://v1?action=testAction&payload=testPayload', EncoderFormat.Text)).toEqual({
             domain: 'testdomain',
             version: 'v1',
             action: 'testAction',
             payload: 'testPayload',
+            decodedPayload: 'testPayload'
         });
     });
 
     it('should parse a deeplink with action and payload - hex Encoded', () => {
-        expect(parseDeeplink('burst.testdomain://v1?action=testAction&payload=7b22666f6f223a22626172f09f9880222c22626172223a5b312c322c335d7d')).toEqual({
+        expect(parseDeeplink('burst.testdomain://v1?action=testAction&payload=7b22666f6f223a22626172f09f9880222c22626172223a5b312c322c335d7d', EncoderFormat.Hexadecimal)).toEqual({
             domain: 'testdomain',
             version: 'v1',
             action: 'testAction',
             payload: '7b22666f6f223a22626172f09f9880222c22626172223a5b312c322c335d7d',
+            decodedPayload: {
+                bar: [1, 2, 3],
+                foo: 'bar😀'
+            }
         });
     });
 
@@ -52,6 +58,10 @@ describe('parseDeeplink', () => {
             version: 'v1',
             action: 'testAction',
             payload: 'eyJmb28iOiJiYXLwn5iAIiwiYmFyIjpbMSwyLDNdfQ',
+            decodedPayload: {
+                bar: [1, 2, 3],
+                foo: 'bar😀'
+            }
         });
     });
 
