@@ -9,6 +9,26 @@ describe('createDeeplink', () => {
         })).toBe(expected);
     });
 
+    it('should', () => {
+        const expected = 'burst.testdomain://v1';
+        const payload = {
+            'recipient': 'BURST-9K9L-4CB5-88Y5-F5G4Z',
+            'amountPlanck': 10000000,
+            'feePlanck': 735000,
+            'message': 'Hi, from a deep link',
+            'messageIsText': true,
+            'immutable': true,
+            'deadline': 24,
+            'encrypt': false
+        };
+
+        const deeplink = createDeeplink({
+            action: 'pay',
+            payload
+        });
+        const x = deeplink;
+    });
+
     it('should create a deeplink with action but without payload', () => {
         const expected = 'burst.testdomain://v1?action=testAction';
         expect(createDeeplink({

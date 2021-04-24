@@ -5,7 +5,6 @@ import {AccountService} from 'app/setup/account/account.service';
 import {StoreService} from 'app/store/store.service';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
-import {convertNQTStringToNumber} from '@burstjs/util';
 import {getBalancesFromAccount} from '../../util/balance/getBalancesFromAccount';
 
 @Component({

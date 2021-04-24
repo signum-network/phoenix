@@ -18,6 +18,57 @@ The generally supported link format is `burst://v1?action=<name>&payload=<b64-en
 
 > Mind that the payload has to be a JSON object being [encoded in base64](https://www.base64encode.org/)
 
+
+## Creating Deep Links
+
+The easiest way is to use the [utility package from burstjs](https://www.npmjs.com/package/@burstjs/util), as it provides
+convenience functions for the deep link creation: `createDeeplink`
+
+To create a deep link for [sending amount](#send-amount-to-single-recipient) the relatedcode snippet looks like this:
+
+```ts
+import {createDeeplink} from './createDeeplink';
+
+const payload = {
+    "recipient": "BURST-9K9L-4CB5-88Y5-F5G4Z",
+    "amountPlanck": 10000000,
+    "feePlanck": 735000,
+    "message": "Hi, from a deep link",
+    "messageIsText": true,
+    "immutable": true,
+    "deadline": 24,
+    "encrypt": false
+}
+
+const deeplink = createDeeplink({
+    action: 'pay',
+    payload
+})
+
+// deeplink = 'burst://v1?action=pay&payload=eyJyZWNpcGllbnQiOiJCVVJTVC05SzlMLTRDQjUtODhZNS1GNUc0WiIsImFtb3VudFBsYW5jayI6MTAwMDAwMDAsImZlZVBsYW5jayI6NzM1MDAwLCJtZXNzYWdlIjoiSGksIGZyb20gYSBkZWVwIGxpbmsiLCJtZXNzYWdlSXNUZXh0Ijp0cnVlLCJpbW11dGFibGUiOnRydWUsImRlYWRsaW5lIjoyNCwiZW5jcnlwdCI6ZmFsc2V9' 
+```
+
+### Providing deeplinks to open Phoenix from a web page
+
+Imagine you have a web page with a payment button. This button shall use the deep link to open Phoenix for the payment.
+Due to limitations of supported "custom" URI protocols, the deep link itself needs to be "wrapped" into a redirecting http-Url.
+We provide a small redirection service for that you can use for such a case:
+
+`https://burst-balance-alert.vercel.app/api/redirect?url=`
+
+To make it work you need to add the generated deep link in URI encoded form to that service url
+
+```ts
+import {createDeeplink} from './createDeeplink';
+const serviceBaseUrl = 'https://burst-balance-alert.vercel.app/api/redirect?url='
+const data = {
+    // your data
+}
+const webDeeplink = serviceBaseUrl + encodeURIComponent(createDeeplink(data))
+
+// now you can add `webDeeplink` as url to your button or link
+```
+
 ## Actions
 
 ### Send Amount to single recipient
