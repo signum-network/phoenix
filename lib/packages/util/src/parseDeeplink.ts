@@ -2,23 +2,49 @@
  * Original work Copyright (c) 2019 Burst Apps Team
  */
 
-import {DeeplinkParts} from './typings/DeeplinkParts';
+import {DeeplinkParts, EncoderFormat} from './typings';
+import {convertHexStringToString} from './convertHexStringToString';
+import {convertBase64StringToString} from './convertBase64StringToString';
 
-const MandatoryPattern = /^burst.(.+):\/\/(v.+?)\??/i;
+const MandatoryPattern = /^burst.?(.+)?:\/\/(v.+?)\??/i;
 /**
  * Parses a deeplink according the [CIP22 spec](https://github.com/burst-apps-team/CIPs/blob/master/cip-0022.md)
  *
- * `burst.[domain]://v1?action=[action]&payload=[encodedData]`
+ * `burst[.domain]://v1?action=[action]&payload=[encodedData]`
  *
  * @see [[createDeeplink]] as inverse function
  * @param {string} deeplink The deeplink to be parsed
+ * @param encoderFormat Optional encoding format, used to decode the payload. Default: Base64
  * @return The parsed deeplink parts.
  * @throws Error if parsing fails
  * @module util
  */
-export const parseDeeplink = (deeplink: string): DeeplinkParts => {
+export const parseDeeplink = (deeplink: string, encoderFormat: EncoderFormat = EncoderFormat.Base64): DeeplinkParts => {
     const throwError = () => {
         throw new Error('Invalid deeplink: ' + deeplink);
+    };
+
+    const decodePayload = (payload: string, format: EncoderFormat): string | object => {
+
+        let decoded = payload;
+
+        switch (format) {
+            case EncoderFormat.Hexadecimal:
+                decoded = convertHexStringToString(payload);
+                break;
+            case EncoderFormat.Base64:
+                decoded = convertBase64StringToString(payload);
+                break;
+            case EncoderFormat.Text:
+            default:
+            // noop
+        }
+
+        try {
+            return JSON.parse(decoded);
+        } catch (e) {
+            return decoded;
+        }
     };
 
     const extractQueryValue = (query, paramName) => {
@@ -52,6 +78,7 @@ export const parseDeeplink = (deeplink: string): DeeplinkParts => {
                 result.action = extractQueryValue(queries[0], 'action');
                 if (queries.length === 2) {
                     result.payload = extractQueryValue(queries[1], 'payload');
+                    result.decodedPayload = decodePayload(result.payload, encoderFormat);
                 }
             }
         }

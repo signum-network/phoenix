@@ -45,7 +45,7 @@ export const createDeeplink = (args: CreateDeeplinkArgs): string => {
 
     const {encoderFormat = EncoderFormat.Base64, domain, action, payload} = args;
 
-    let link = `burst.${domain}://v1`;
+    let link = domain ? `burst.${domain}://v1` : `burst://v1`;
 
     if (action) {
         link += `?action=${action}`;

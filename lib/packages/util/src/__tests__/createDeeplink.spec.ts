@@ -27,6 +27,15 @@ describe('createDeeplink', () => {
         })).toBe(expected);
     });
 
+    it('should create a deeplink with action and payload - but no domain', () => {
+        const expected = 'burst://v1?action=testAction&payload=testPayload';
+        expect(createDeeplink({
+            action: 'testAction',
+            payload: 'testPayload',
+            encoderFormat: EncoderFormat.Text
+        })).toBe(expected);
+    });
+
     it('should create a deeplink with action and payload - hex Encoded', () => {
         const expected = 'burst.testdomain://v1?action=testAction&payload=7b22666f6f223a22626172f09f9880222c22626172223a5b312c322c335d7d';
         expect(createDeeplink({
