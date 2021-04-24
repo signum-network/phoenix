@@ -4,6 +4,7 @@ import {
   convertAddressToNumericId,
   convertNQTStringToNumber,
   BurstValue,
+  convertBase64StringToString
 } from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
@@ -132,7 +133,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
 
   private applyCIP22DeepLinkParams(queryParams: Params): void {
     const {payload} = queryParams;
-    const decodedPayload = atob(payload);
+    const decodedPayload = convertBase64StringToString(payload);
     const {
       amountPlanck,
       deadline,

@@ -4,7 +4,7 @@ import {Platform} from '@angular/cdk/platform';
 import {AccountService} from './setup/account/account.service';
 import {StoreService} from './store/store.service';
 import {Account, BlockchainStatus} from '@burstjs/core';
-import {parseDeeplink} from '@burstjs/util';
+import {parseDeeplink, EncoderFormat} from '@burstjs/util';
 import {NotifierService} from 'angular-notifier';
 import {NetworkService} from './network/network.service';
 import {UtilService} from './util.service';
