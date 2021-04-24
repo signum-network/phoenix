@@ -120,7 +120,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     let route = '';
     // do the routing here
     switch (parts.action) {
-      case 'sendAmount':
+      case 'send-amount':
       case 'pay':
         route = 'send-burst';
         break;

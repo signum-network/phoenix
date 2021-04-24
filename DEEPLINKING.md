@@ -40,6 +40,7 @@ __Payload__
 | messageIsText | Determine if the message is a human readable text message  |  true  | yes, if message is set |
 | immutable | If true, the form stays immutable avoiding accidental changes  |  false  | no |
 | deadline | A thru valid deadline for the tx (discarded if not processed until then) in hours (1 to 24)  |  6  | no |
+| encrypt | Encrypts attached message|  true  | no |
 
 
 __JSON Form__
@@ -51,7 +52,8 @@ __JSON Form__
   "message": "Hi, from a deep link",
   "messageIsText": true,
   "immutable": true,
-  "deadline": 24
+  "deadline": 24,
+  "encrypt": false
 }
 ```
 

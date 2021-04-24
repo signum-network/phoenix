@@ -4,7 +4,6 @@ import {
   convertAddressToNumericId,
   convertNQTStringToNumber,
   BurstValue,
-  parseDeeplink
 } from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
@@ -21,8 +20,17 @@ import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {ActivatedRoute, Router, NavigationEnd, Params} from '@angular/router';
 import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
-import {DeeplinkParts} from '@burstjs/util/dist';
 
+interface CIP22Payload {
+  amountPlanck: string | number;
+  deadline: string | number;
+  encrypt: string | boolean;
+  feePlanck: string | number;
+  immutable: string | boolean;
+  message: string;
+  messageIsText: string | boolean;
+  recipient: string;
+}
 
 interface QRData {
   recipient: Recipient;
@@ -36,6 +44,7 @@ interface QRData {
 }
 
 const isNotEmpty = (value: string) => value && value.length > 0;
+const isTrue = (value: any): boolean => value === 'true' || value === true;
 
 @Component({
   selector: 'app-send-burst-form',
@@ -110,15 +119,40 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   private applyDeepLinkParams(queryParams: Params): void {
-    if (queryParams.cip22) {
-      this.applyCIP22DeepLinkParams(queryParams);
-    } else {
-      this.applyLegacyDeepLinkParams(queryParams);
+    try {
+      if (queryParams.cip22) {
+        this.applyCIP22DeepLinkParams(queryParams);
+      } else {
+        this.applyLegacyDeepLinkParams(queryParams);
+      }
+    } catch (e) {
+      this.notifierService.notify('warning', 'Invalid Deeplink parameters. Ignored');
     }
   }
 
   private applyCIP22DeepLinkParams(queryParams: Params): void {
-    console.log('applyDeepLinkParams', queryParams);
+    const {payload} = queryParams;
+    const decodedPayload = atob(payload);
+    const {
+      amountPlanck,
+      deadline,
+      encrypt,
+      feePlanck,
+      immutable,
+      message,
+      messageIsText,
+      recipient,
+    } = JSON.parse(decodedPayload) as CIP22Payload;
+
+    this.onRecipientChange(new Recipient(recipient));
+
+    this.amount = amountPlanck ? BurstValue.fromPlanck(amountPlanck).getBurst() : this.amount;
+    this.fee = feePlanck ? BurstValue.fromPlanck(feePlanck).getBurst() : this.fee;
+    this.message = message;
+    this.messageIsText = isTrue(messageIsText) || this.messageIsText;
+    this.immutable = isTrue(immutable) || this.immutable;
+    this.encrypt = isTrue(encrypt) || this.encrypt;
+    this.deadline = typeof deadline === 'number' && deadline > 0 ? '' + deadline : deadline as string;
   }
 
   private applyLegacyDeepLinkParams(queryParams: Params): void {
