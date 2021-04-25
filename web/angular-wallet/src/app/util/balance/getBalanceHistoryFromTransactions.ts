@@ -1,18 +1,18 @@
-import {getRecipientsAmount, Transaction, TransactionAssetSubtype} from '@burstjs/core';
-import {convertNQTStringToNumber} from '@burstjs/util';
+import {getRecipientsAmount, Transaction} from '@burstjs/core';
+import {BurstValue} from '@burstjs/util';
 import {BalanceHistoryItem} from './typings';
-import { TransactionType } from '@burstjs/core/src';
+import {TransactionType} from '@burstjs/core/src';
+import {flow, map, filter} from 'lodash/fp';
 
 const isOwnTransaction = (accountId: string, transaction: Transaction): boolean => transaction.sender === accountId;
 
 function getRelativeTransactionAmount(accountId: string, transaction: Transaction): number {
 
   if (isOwnTransaction(accountId, transaction)) {
-    const amountBurst = transaction.type === TransactionType.Asset && transaction.subtype === TransactionAssetSubtype.BidOrderPlacement ?
-      convertNQTStringToNumber((transaction.attachment.quantityQNT * transaction.attachment.priceNQT).toString()) :
-      convertNQTStringToNumber(transaction.amountNQT);
-    const feeBurst = convertNQTStringToNumber(transaction.feeNQT);
-    return -(amountBurst + feeBurst);
+    const amount = BurstValue.fromPlanck(transaction.amountNQT)
+      .add(BurstValue.fromPlanck(transaction.feeNQT))
+      .getBurst()
+    return -parseFloat(amount);
   }
 
   return getRecipientsAmount(accountId, transaction);
@@ -33,15 +33,17 @@ export function getBalanceHistoryFromTransactions(
 
   let balance = currentBalance;
 
-  return transactions.map((t: Transaction) => {
-    const relativeAmount = getRelativeTransactionAmount(accountId, t);
-    const deducedBalances = {
-      timestamp: t.blockTimestamp,
-      transactionId: t.transaction,
-      balance,
-      transaction: t
-    };
-    balance = balance - relativeAmount;
-    return deducedBalances;
-  });
+  return flow(
+    filter((t: Transaction) => t.type === TransactionType.Payment),
+    map((t: Transaction) => {
+      const relativeAmount = getRelativeTransactionAmount(accountId, t);
+      const deducedBalances = {
+        timestamp: t.blockTimestamp,
+        transactionId: t.transaction,
+        balance,
+        transaction: t
+      };
+      balance = balance - relativeAmount;
+      return deducedBalances;
+    }))(transactions);
 }
