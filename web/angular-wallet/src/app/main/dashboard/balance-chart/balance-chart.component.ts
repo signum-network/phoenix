@@ -100,6 +100,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
         }
       ],
       options: {
+        animation: false,
         spanGaps: false,
         legend: {
           display: false
