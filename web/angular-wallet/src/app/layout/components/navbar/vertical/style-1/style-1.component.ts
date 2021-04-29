@@ -16,6 +16,7 @@ import {NotifierService} from 'angular-notifier';
 import {convertNQTStringToNumber} from '@burstjs/util';
 
 import hashicon from 'hashicon';
+import {FuseNavigation} from '../../../../../../@fuse/types';
 
 @Component({
   selector: 'navbar-vertical-style-1',
@@ -111,7 +112,6 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
       .subscribe(async ({language, node}) => {
           this.language = language;
           this.node = node;
-          // Get QR Code
           await this.updateAvatar();
         }
       );
@@ -129,7 +129,6 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
         takeUntil(this._unsubscribeAll)
       )
       .subscribe(async () => {
-        this.navigation = this._fuseNavigationService.getCurrentNavigation();
         await this.updateAvatar();
       });
 
@@ -139,6 +138,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
         takeUntil(this._unsubscribeAll)
       )
       .subscribe(async () => {
+        this.updateNavigation();
         await this.updateAvatar();
       });
   }
@@ -217,5 +217,23 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
 
   getBalance(): number {
     return convertNQTStringToNumber(this.selectedAccount.balanceNQT);
+  }
+
+  private updateNavigation(): void {
+
+    const navigation = this._fuseNavigationService.getCurrentNavigation() as FuseNavigation[];
+
+    const isFullAccount = this.selectedAccount.type !== 'offline';
+
+    const traverse = (n: FuseNavigation) => {
+      n.hidden = n.fullAccountOnly && !isFullAccount;
+      if (n.children) {
+        n.children.forEach(traverse);
+      }
+    };
+
+    navigation.forEach(traverse);
+
+    this.navigation = navigation;
   }
 }

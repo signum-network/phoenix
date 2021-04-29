@@ -102,13 +102,15 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy {
 
   private updateShortcuts(): void {
     this.shortcutItems = [];
+    const isOfflineAccount = this.currentAccount && this.currentAccount.type === 'offline';
+
     this.shortcutItems.push({
-      'title': this.i18nService.getTranslation('dashboard'),
-      'type': 'item',
-      'icon': 'dashboard',
-      'url': '/dashboard'
+      title: this.i18nService.getTranslation('dashboard'),
+      type: 'item',
+      icon: 'dashboard',
+      url: '/dashboard'
     });
-    if (this.currentAccount && this.currentAccount.type !== 'offline') {
+    if (!isOfflineAccount) {
       this.shortcutItems.push({
         'title': this.i18nService.getTranslation('send_burst'),
         'type': 'item',
@@ -117,23 +119,26 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy {
       });
     }
     this.shortcutItems.push({
-        'title': this.i18nService.getTranslation('request_burst'),
-        'type': 'item',
-        'icon': 'vertical_align_bottom',
-        'url': '/request'
-      },
-      {
-        'title': this.i18nService.getTranslation('messages'),
-        'type': 'item',
-        'icon': 'message',
-        'url': '/messages'
-      },
-      {
-        'title': this.i18nService.getTranslation('settings'),
-        'type': 'item',
-        'icon': 'settings',
-        'url': '/settings'
-      });
+      'title': this.i18nService.getTranslation('request_burst'),
+      'type': 'item',
+      'icon': 'vertical_align_bottom',
+      'url': '/request'
+    });
+    if (!isOfflineAccount) {
+      this.shortcutItems.push(
+        {
+          'title': this.i18nService.getTranslation('messages'),
+          'type': 'item',
+          'icon': 'message',
+          'url': '/messages'
+        });
+    }
+    this.shortcutItems.push({
+      'title': this.i18nService.getTranslation('settings'),
+      'type': 'item',
+      'icon': 'settings',
+      'url': '/settings'
+    });
   }
 
   /**
