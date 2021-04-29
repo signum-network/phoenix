@@ -13,11 +13,11 @@
 
   <ng-container matColumnDef="attachment">
     <mat-header-cell *matHeaderCellDef mat-sort-header>
-      <mat-icon>mail</mat-icon>
+      <mat-icon>attach_file</mat-icon>
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
       <span *ngIf="transaction.attachment">
-        <mat-icon>mail</mat-icon>
+        <mat-icon>done</mat-icon>
       </span>
     </mat-cell>
   </ng-container>
