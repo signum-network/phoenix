@@ -1,62 +1,51 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {Component, OnDestroy, OnInit, ViewEncapsulation, Input} from '@angular/core';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
-import { FuseConfigService } from '@fuse/services/config.service';
-import { navigation } from 'app/navigation/navigation';
+import {FuseConfigService} from '@fuse/services/config.service';
+import {navigation} from 'app/navigation/navigation';
+import {Account} from '@burstjs/core';
 
 @Component({
-    selector: 'vertical-layout-1',
-    templateUrl: './layout-1.component.html',
-    styleUrls: ['./layout-1.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'vertical-layout-1',
+  templateUrl: './layout-1.component.html',
+  styleUrls: ['./layout-1.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class VerticalLayout1Component implements OnInit, OnDestroy {
-    fuseConfig: any;
-    navigation: any;
-    @Input('selectedAccount') selectedAccount: Account;
-    @Input('accounts') accounts: Account[];
+  fuseConfig: any;
+  navigation: any;
+  @Input() selectedAccount: Account;
+  @Input() accounts: Account[];
 
-    // Private
-    private _unsubscribeAll: Subject<any>;
+  // Private
+  private _unsubscribeAll: Subject<any>;
 
-    /**
-     * Constructor
-     *
-     * @param {FuseConfigService} _fuseConfigService
-     */
-    constructor(
-        private _fuseConfigService: FuseConfigService
-    ) {
-        // Set the defaults
-        this.navigation = navigation;
+  /**
+   * Constructor
+   *
+   * @param {FuseConfigService} _fuseConfigService
+   */
+  constructor(
+    private _fuseConfigService: FuseConfigService
+  ) {
+    this.navigation = navigation;
+    this._unsubscribeAll = new Subject();
+  }
 
-        // Set the private defaults
-        this._unsubscribeAll = new Subject();
-    }
+  ngOnInit(): void {
+    // Subscribe to config changes
+    this._fuseConfigService.config
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((config) => {
+        this.fuseConfig = config;
+        console.log('V-layout-1', this.selectedAccount);
+      });
+  }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * On init
-     */
-    ngOnInit(): void {
-        // Subscribe to config changes
-        this._fuseConfigService.config
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((config) => {
-                this.fuseConfig = config;
-            });
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
-    }
+  ngOnDestroy(): void {
+    // Unsubscribe from all subscriptions
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
+  }
 }

@@ -19,6 +19,7 @@ export interface FuseNavigationItem
         fg?: string;
     };
     children?: FuseNavigationItem[];
+    fullAccountOnly?: boolean;
 }
 
 export interface FuseNavigation extends FuseNavigationItem
