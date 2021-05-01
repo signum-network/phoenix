@@ -14,8 +14,15 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
 import {AccountService} from '../../../setup/account/account.service';
 import {NetworkService} from '../../../network/network.service';
+import {KeyDecryptionException} from '../../../util/exceptions/KeyDecryptionException';
+import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
+
+const CommitmentMode = {
+  Add: 'add',
+  Revoke: 'revoke'
+};
 
 @Component({
   selector: 'app-set-commitment-form',
@@ -31,11 +38,11 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
   @Input() fees: SuggestedFees;
 
   fee: string;
-  isRevoking: boolean;
   isSending = false;
   blocksMissingUntilRevoke = 0;
   language: string;
   pin: string;
+  mode: string;
 
 
   private balances: AccountBalances;
@@ -67,6 +74,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       this.balances = getBalancesFromAccount(this.account);
     }, 0);
     this.checkForCommitmentRemoval();
+    this.mode = CommitmentMode.Add;
   }
 
   private async checkForCommitmentRemoval(): Promise<void> {
@@ -104,7 +112,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
     try {
       this.isSending = true;
       await this.accountService.setCommitment({
-        isRevoking: this.isRevoking,
+        isRevoking: this.isRevoking(),
         amountPlanck: BurstValue.fromBurst(this.amount).getPlanck(),
         feePlanck: BurstValue.fromBurst(this.fee).getPlanck(),
         keys: this.account.keys,
@@ -114,8 +122,11 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       this.sendForm.resetForm();
       await this.router.navigate(['/']);
     } catch (e) {
-      // FIXME: need to chek the pin stuff - this error does not apply in all cases
-      this.notifierService.notify('error', this.i18nService.getTranslation('error_set_commitment'));
+      if (isKeyDecryptionError(e)) {
+        this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
+      } else {
+        this.notifierService.notify('error', this.i18nService.getTranslation('error_set_commitment'));
+      }
     } finally {
       this.isSending = false;
     }
@@ -126,7 +137,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       return false;
     }
 
-    if (this.isRevoking) {
+    if (this.isRevoking()) {
       const fee = BurstValue.fromBurst(this.fee || '0');
       const hasBalanceToPayFee = this.balances.availableBalance.clone()
         .greaterOrEqual(fee);
@@ -154,16 +165,24 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
 
     const fee = BurstValue.fromBurst(this.fee || '0');
 
-    this.amount = this.isRevoking
+    this.amount = this.isRevoking()
       ? this.balances.committedBalance.clone().getBurst()
       : this.balances.availableBalance.clone().subtract(fee).getBurst();
   }
 
-  canRevoke(): boolean {
-    return this.blocksMissingUntilRevoke === 0;
+  hasMissingBlocks(): boolean {
+    return this.blocksMissingUntilRevoke > 0;
+  }
+
+  isRevoking(): boolean {
+    return this.mode === CommitmentMode.Revoke;
   }
 
   setPin(pin: string): void {
     this.pin = pin;
+  }
+
+  hasNothingCommitted(): boolean {
+    return this.balances.committedBalance.equals(BurstValue.Zero());
   }
 }

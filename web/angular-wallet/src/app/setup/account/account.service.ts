@@ -38,6 +38,7 @@ import {ApiService} from '../../api.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {HttpError, HttpClientFactory} from '@burstjs/http';
 import {NetworkService} from '../../network/network.service';
+import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -174,7 +175,11 @@ export class AccountService {
   }
 
   private getPrivateKey(keys, pin): string {
-    return decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    try {
+      return decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    } catch (e) {
+      throw new KeyDecryptionException();
+    }
   }
 
   public getAccountBalance(id: string): Promise<Balance> {

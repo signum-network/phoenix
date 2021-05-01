@@ -1064,5 +1064,7 @@
   "no_reliable_node_reachable": "Nie udało się dotrzeć do żadnego niezawodnego węzła. Sprawdź, czy masz połączenie z Internetem.",
   "node_successfully_connected": "Pomyślnie połączono z węzłem",
   "selected_node": "Aktualnie wybrany węzeł",
-  "toggle_nodeselection_mode": "Przełącz, aby przełączać się między ręcznym lub automatycznym wyborem węzłów"
+  "toggle_nodeselection_mode": "Przełącz, aby przełączać się między ręcznym lub automatycznym wyborem węzłów",
+  "commitment_zero_balance": "Nie masz jeszcze dodanego zobowiązania",
+  "network": "Sieć"
 }

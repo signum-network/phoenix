@@ -21,6 +21,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {constants} from '../../../constants';
 import {Router} from '@angular/router';
 import {AccountBalances, getBalancesFromAccount} from '../../../util/balance';
+import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -116,7 +117,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     const request = {
       recipientAmounts: this.recipients.map(r => ({
         recipient: convertAddressToNumericId(r.addressRS),
-        amountNQT:  BurstValue.fromBurst(r.amount || 0).getPlanck(),
+        amountNQT: BurstValue.fromBurst(r.amount || 0).getPlanck(),
       })),
       fee: fee.getPlanck(),
       pin: this.pin,
@@ -143,7 +144,11 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
       await this.router.navigate(['/']);
     } catch (e) {
-      this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
+      if (isKeyDecryptionError(e)) {
+        this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
+      } else {
+        this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
+      }
     }
     this.isSending = false;
   }

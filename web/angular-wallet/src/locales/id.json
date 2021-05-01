@@ -1055,5 +1055,7 @@
   "no_reliable_node_reachable": "Tidak dapat menjangkau simpul yang dapat diandalkan. Harap verifikasi jika Anda memiliki koneksi internet.",
   "node_successfully_connected": "Berhasil terhubung ke node",
   "selected_node": "Node yang dipilih saat ini",
-  "toggle_nodeselection_mode": "Beralih untuk beralih antara pemilihan node manual atau otomatis"
+  "toggle_nodeselection_mode": "Beralih untuk beralih antara pemilihan node manual atau otomatis",
+  "commitment_zero_balance": "Anda belum menambahkan komitmen",
+  "network": "Jaringan"
 }

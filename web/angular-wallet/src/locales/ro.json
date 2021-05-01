@@ -1055,5 +1055,7 @@
   "no_reliable_node_reachable": "Nu s-a putut ajunge la niciun nod de încredere. Vă rugăm să verificați dacă aveți o conexiune la internet.",
   "node_successfully_connected": "Conectat cu succes la nod",
   "selected_node": "Nodul selectat în prezent",
-  "toggle_nodeselection_mode": "Comutați pentru a comuta între selecția manuală sau automată a nodului"
+  "toggle_nodeselection_mode": "Comutați pentru a comuta între selecția manuală sau automată a nodului",
+  "commitment_zero_balance": "Nu ați adăugat încă niciun angajament",
+  "network": "Reţea"
 }

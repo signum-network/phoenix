@@ -29,6 +29,7 @@ import {UtilService} from 'app/util.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {decryptAES, hashSHA256, decryptMessage} from '@burstjs/crypto';
 import {burstAddressPattern} from 'app/util/burstAddressPattern';
+import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 
 @Component({
   selector: 'message-view',
@@ -183,7 +184,11 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
       this.replyForm.reset();
       this.readyToReply();
     } catch (e) {
-      this.notifierService.notify('error', this.utilService.translateServerError(e.data || e));
+      if (isKeyDecryptionError(e)) {
+        this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
+      } else {
+        this.notifierService.notify('error', this.utilService.translateServerError(e.data || e));
+      }
     }
     this.isSending = false;
   }

@@ -1068,5 +1068,6 @@
   "no_reliable_node_reachable": "Could not reach any reliable node. Please, verify if you have an internet connection.",
   "node_successfully_connected": "Successfully connected to the node",
   "selected_node": "Currently selected node",
-  "toggle_nodeselection_mode": "Toggle to switch between manual or automatic node selection"
+  "toggle_nodeselection_mode": "Toggle to switch between manual or automatic node selection",
+  "commitment_zero_balance": "You have no commitment added yet"
 }

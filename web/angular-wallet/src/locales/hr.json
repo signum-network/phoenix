@@ -1055,5 +1055,7 @@
   "no_reliable_node_reachable": "Nije moguće doći do nijednog pouzdanog čvora. Molimo provjerite imate li internetsku vezu.",
   "node_successfully_connected": "Uspješno povezan s čvorom",
   "selected_node": "Trenutno odabrani čvor",
-  "toggle_nodeselection_mode": "Prebacite za prebacivanje između ručnog ili automatskog odabira čvora"
+  "toggle_nodeselection_mode": "Prebacite za prebacivanje između ručnog ili automatskog odabira čvora",
+  "commitment_zero_balance": "Još niste dodali obvezu",
+  "network": "Mreža"
 }
