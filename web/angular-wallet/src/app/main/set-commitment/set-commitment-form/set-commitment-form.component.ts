@@ -14,6 +14,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
 import {AccountService} from '../../../setup/account/account.service';
 import {NetworkService} from '../../../network/network.service';
+import {KeyDecryptionException} from '../../../util/exceptions/KeyDecryptionException';
+import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -120,8 +122,11 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       this.sendForm.resetForm();
       await this.router.navigate(['/']);
     } catch (e) {
-      // FIXME: need to chek the pin stuff - this error does not apply in all cases
-      this.notifierService.notify('error', this.i18nService.getTranslation('error_set_commitment'));
+      if (isKeyDecryptionError(e)) {
+        this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
+      } else {
+        this.notifierService.notify('error', this.i18nService.getTranslation('error_set_commitment'));
+      }
     } finally {
       this.isSending = false;
     }

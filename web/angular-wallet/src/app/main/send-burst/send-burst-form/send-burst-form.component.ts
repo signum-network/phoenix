@@ -21,6 +21,7 @@ import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {ActivatedRoute, Router, NavigationEnd, Params} from '@angular/router';
 import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
+import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 
 interface CIP22Payload {
   amountPlanck: string | number;
@@ -222,7 +223,11 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
       this.sendBurstForm.resetForm();
       await this.router.navigate(['/']);
     } catch (e) {
-      this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
+      if (isKeyDecryptionError(e)) {
+        this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
+      } else {
+        this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
+      }
     } finally {
       this.immutable = false;
       this.isSending = false;

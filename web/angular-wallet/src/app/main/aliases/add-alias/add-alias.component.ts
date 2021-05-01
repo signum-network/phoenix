@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { SuggestedFees, Account } from '@burstjs/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { AccountService } from 'app/setup/account/account.service';
-import { NotifierService } from 'angular-notifier';
-import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
+import {SuggestedFees, Account} from '@burstjs/core';
+import {NgForm} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {AccountService} from 'app/setup/account/account.service';
+import {NotifierService} from 'angular-notifier';
+import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {burstAddressPattern} from 'app/util/burstAddressPattern';
+import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 
 @Component({
   selector: 'app-add-alias',
@@ -13,13 +14,13 @@ import {burstAddressPattern} from 'app/util/burstAddressPattern';
   styleUrls: ['./add-alias.component.scss']
 })
 export class AddAliasComponent implements OnInit {
-  @ViewChild('setAliasForm', { static: false }) public setAliasForm: NgForm;
-  @ViewChild('alias', { static: false }) public alias: string;
-  @ViewChild('description', { static: false }) public description: string;
-  @ViewChild('fullHash', { static: false }) public fullHash: string;
-  @ViewChild('pin', { static: false }) public pin: string;
-  @ViewChild('uri', { static: false }) public uri: string;
-  @ViewChild('accountAliasURI', { static: true }) public accountAliasURI: string;
+  @ViewChild('setAliasForm', {static: false}) public setAliasForm: NgForm;
+  @ViewChild('alias', {static: false}) public alias: string;
+  @ViewChild('description', {static: false}) public description: string;
+  @ViewChild('fullHash', {static: false}) public fullHash: string;
+  @ViewChild('pin', {static: false}) public pin: string;
+  @ViewChild('uri', {static: false}) public uri: string;
+  @ViewChild('accountAliasURI', {static: true}) public accountAliasURI: string;
   @Output() submit = new EventEmitter<any>();
 
   public feeNQT: string;
@@ -32,9 +33,9 @@ export class AddAliasComponent implements OnInit {
   fees: SuggestedFees;
 
   constructor(private route: ActivatedRoute,
-    private accountService: AccountService,
-    private notifierService: NotifierService,
-    private i18nService: I18nService) {
+              private accountService: AccountService,
+              private notifierService: NotifierService,
+              private i18nService: I18nService) {
   }
 
   ngOnInit() {
@@ -58,7 +59,11 @@ export class AddAliasComponent implements OnInit {
       this.notifierService.notify('success', this.i18nService.getTranslation('success_alias_register'));
       this.setAliasForm.resetForm();
     } catch (e) {
-      this.notifierService.notify('error', this.i18nService.getTranslation('error_unknown'));
+      if (isKeyDecryptionError(e)) {
+        this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
+      } else {
+        this.notifierService.notify('error', this.i18nService.getTranslation('error_unknown'));
+      }
     }
   }
 
