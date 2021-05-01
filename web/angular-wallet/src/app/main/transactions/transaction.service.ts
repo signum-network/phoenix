@@ -14,6 +14,7 @@ import {AccountService} from 'app/setup/account/account.service';
 import {convertHexStringToByteArray} from '@burstjs/util';
 import {StoreService} from 'app/store/store.service';
 import {Settings} from 'app/settings';
+import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';
 
 interface SendMoneyMultiOutRequest {
   transaction: {
@@ -78,7 +79,11 @@ export class TransactionService {
   }
 
   private getSendersPrivateKey(pin: string, keys: Keys): string {
-    return decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    try{
+      return decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    }catch(e){
+      throw new KeyDecryptionException();
+    }
   }
 
   public async sendBurstToMultipleRecipients(request: SendBurstMultipleRequest): Promise<TransactionId> {

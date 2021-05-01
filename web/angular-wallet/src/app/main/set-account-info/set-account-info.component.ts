@@ -8,6 +8,7 @@ import {StoreService} from 'app/store/store.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {burstAddressPattern} from 'app/util/burstAddressPattern';
+import {isKeyDecryptionError} from '../../util/exceptions/isKeyDecryptionError';
 
 @Component({
   selector: 'app-set-account-info',
@@ -62,7 +63,11 @@ export class SetAccountInfoComponent implements OnInit {
       this.notifierService.notify('success', this.i18nService.getTranslation('success_set_account_info'));
       this.setPin('');
     } catch (e) {
-      this.notifierService.notify('error', this.i18nService.getTranslation('error_unknown'));
+      if (isKeyDecryptionError(e)) {
+        this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
+      } else {
+        this.notifierService.notify('error', this.i18nService.getTranslation('error_unknown'));
+      }
     } finally {
       this.isSending = false;
     }

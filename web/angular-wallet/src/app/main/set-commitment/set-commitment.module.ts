@@ -22,7 +22,7 @@ import {LayoutModule} from 'app/layout/layout.module';
 import {LoginGuard} from 'app/login/login-guard.service';
 import {AppSharedModule} from '../../shared/shared.module';
 import {PageModule} from '../../components/page/page.module';
-import {MatProgressSpinnerModule, MatSlideToggleModule, MatTabsModule, MatTooltipModule} from '@angular/material';
+import {MatProgressSpinnerModule, MatRadioModule, MatSlideToggleModule, MatTabsModule, MatTooltipModule} from '@angular/material';
 import {SetCommitmentFormComponent} from './set-commitment-form/set-commitment-form.component';
 import {SubmitTransactionModule} from '../../components/submit-transaction/submit-transaction.module';
 
@@ -69,6 +69,7 @@ const routes = [
     MatSlideToggleModule,
     SubmitTransactionModule,
     SubmitTransactionModule,
+    MatRadioModule,
   ]
 })
 export class SetCommitmentModule {
