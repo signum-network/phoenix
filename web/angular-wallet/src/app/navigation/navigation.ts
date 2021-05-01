@@ -88,8 +88,8 @@ export const navigation: FuseNavigation[] = [
         url: '/commitment'
       },
       {
-        id: 'reward_recipient',
-        title: 'Reward Recipient',
+        id: 'reward_recipient_assignment',
+        title: 'Reward Assignment',
         type: 'item',
         icon: 'directions',
         url: '/set-reward-recipient'
