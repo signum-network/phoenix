@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "Συνδέθηκε με επιτυχία στον κόμβο",
   "selected_node": "Επιλεγμένος κόμβος",
   "toggle_nodeselection_mode": "Εναλλαγή για εναλλαγή μεταξύ χειροκίνητης ή αυτόματης επιλογής κόμβων",
-  "commitment_zero_balance": "Δεν έχετε προσθέσει ακόμη δέσμευση"
+  "commitment_zero_balance": "Δεν έχετε προσθέσει ακόμη δέσμευση",
+  "network": "Δίκτυο"
 }

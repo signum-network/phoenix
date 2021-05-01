@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "Успешно свързан с възела",
   "selected_node": "В момента избран възел",
   "toggle_nodeselection_mode": "Превключете, за да превключвате между ръчен или автоматичен избор на възел",
-  "commitment_zero_balance": "Все още не сте добавили ангажимент"
+  "commitment_zero_balance": "Все още не сте добавили ангажимент",
+  "network": "Мрежа"
 }

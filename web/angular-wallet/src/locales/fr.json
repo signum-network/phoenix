@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "Connexion réussie au nœud",
   "selected_node": "Noeud actuellement sélectionné",
   "toggle_nodeselection_mode": "Basculer pour basculer entre la sélection manuelle ou automatique des nœuds",
-  "commitment_zero_balance": "Vous n'avez pas encore d'engagement ajouté"
+  "commitment_zero_balance": "Vous n'avez pas encore d'engagement ajouté",
+  "network": "Réseau"
 }

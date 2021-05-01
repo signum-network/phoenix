@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "सफलतापूर्वक नोड से जुड़ा है",
   "selected_node": "वर्तमान में चयनित नोड",
   "toggle_nodeselection_mode": "मैन्युअल या स्वचालित नोड चयन के बीच स्विच करने के लिए टॉगल करें",
-  "commitment_zero_balance": "आपकी अभी तक कोई प्रतिबद्धता नहीं है"
+  "commitment_zero_balance": "आपकी अभी तक कोई प्रतिबद्धता नहीं है",
+  "network": "नेटवर्क"
 }

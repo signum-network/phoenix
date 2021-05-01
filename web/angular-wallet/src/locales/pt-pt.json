@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "Conectado com sucesso ao nó",
   "selected_node": "Nó selecionado atualmente",
   "toggle_nodeselection_mode": "Alterne para alternar entre seleção de nó manual ou automática",
-  "commitment_zero_balance": "Você ainda não adicionou nenhum compromisso"
+  "commitment_zero_balance": "Você ainda não adicionou nenhum compromisso",
+  "network": "Rede"
 }

@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "Успішно підключено до вузла",
   "selected_node": "Наразі вибраний вузол",
   "toggle_nodeselection_mode": "Перемикайте, щоб перемикатися між ручним або автоматичним вибором вузлів",
-  "commitment_zero_balance": "Ви ще не додали жодного зобов’язання"
+  "commitment_zero_balance": "Ви ще не додали жодного зобов’язання",
+  "network": "Мережа"
 }

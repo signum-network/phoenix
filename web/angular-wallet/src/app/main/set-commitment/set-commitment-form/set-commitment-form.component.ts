@@ -72,6 +72,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       this.balances = getBalancesFromAccount(this.account);
     }, 0);
     this.checkForCommitmentRemoval();
+    this.mode = CommitmentMode.Add;
   }
 
   private async checkForCommitmentRemoval(): Promise<void> {

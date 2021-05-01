@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "Succesvol verbonden met het knooppunt",
   "selected_node": "Momenteel geselecteerde knoop",
   "toggle_nodeselection_mode": "Wisselen om te schakelen tussen handmatige of automatische knooppuntselectie",
-  "commitment_zero_balance": "U heeft nog geen toezegging toegevoegd"
+  "commitment_zero_balance": "U heeft nog geen toezegging toegevoegd",
+  "network": "Netwerk"
 }

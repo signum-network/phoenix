@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "Berhasil terhubung ke node",
   "selected_node": "Node yang dipilih saat ini",
   "toggle_nodeselection_mode": "Beralih untuk beralih antara pemilihan node manual atau otomatis",
-  "commitment_zero_balance": "Anda belum menambahkan komitmen"
+  "commitment_zero_balance": "Anda belum menambahkan komitmen",
+  "network": "Jaringan"
 }

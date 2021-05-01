@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "Úspešne pripojené k uzlu",
   "selected_node": "Aktuálne vybraný uzol",
   "toggle_nodeselection_mode": "Prepínaním prepínate medzi manuálnym alebo automatickým výberom uzla",
-  "commitment_zero_balance": "Zatiaľ nemáte pridaný žiadny záväzok"
+  "commitment_zero_balance": "Zatiaľ nemáte pridaný žiadny záväzok",
+  "network": "Sieť"
 }

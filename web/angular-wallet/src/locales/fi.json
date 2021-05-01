@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "Yhdistäminen solmuun onnistui",
   "selected_node": "Tällä hetkellä valittu solmu",
   "toggle_nodeselection_mode": "Vaihda vaihtaaksesi manuaalisen tai automaattisen solmuvalinnan välillä",
-  "commitment_zero_balance": "Sinulle ei ole vielä lisätty sitoumusta"
+  "commitment_zero_balance": "Sinulle ei ole vielä lisätty sitoumusta",
+  "network": "Verkko"
 }

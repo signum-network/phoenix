@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "Connesso con successo al nodo",
   "selected_node": "Nodo attualmente selezionato",
   "toggle_nodeselection_mode": "Toggle per passare dalla selezione del nodo manuale o automatica",
-  "commitment_zero_balance": "Non hai ancora alcun impegno aggiunto"
+  "commitment_zero_balance": "Non hai ancora alcun impegno aggiunto",
+  "network": "Rete"
 }

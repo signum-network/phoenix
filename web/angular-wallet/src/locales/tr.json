@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "Düğüme başarıyla bağlandı",
   "selected_node": "Şu anda seçili düğüm",
   "toggle_nodeselection_mode": "Manuel veya otomatik düğüm seçimi arasında geçiş yapmak için geçiş yapın",
-  "commitment_zero_balance": "Henüz taahhüt eklemediniz"
+  "commitment_zero_balance": "Henüz taahhüt eklemediniz",
+  "network": "Ağ"
 }

@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "S'ha connectat correctament al node",
   "selected_node": "Node seleccionat actualment",
   "toggle_nodeselection_mode": "Alterna per canviar entre la selecció manual o automàtica de nodes",
-  "commitment_zero_balance": "Encara no teniu cap compromís afegit"
+  "commitment_zero_balance": "Encara no teniu cap compromís afegit",
+  "network": "Xarxa"
 }

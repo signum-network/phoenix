@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "成功连接到节点",
   "selected_node": "当前选择的节点",
   "toggle_nodeselection_mode": "切换以在手动或自动节点选择之间切换",
-  "commitment_zero_balance": "您尚未添加任何承诺"
+  "commitment_zero_balance": "您尚未添加任何承诺",
+  "network": "网络"
 }

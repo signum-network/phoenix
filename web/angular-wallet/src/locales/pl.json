@@ -1065,5 +1065,6 @@
   "node_successfully_connected": "Pomyślnie połączono z węzłem",
   "selected_node": "Aktualnie wybrany węzeł",
   "toggle_nodeselection_mode": "Przełącz, aby przełączać się między ręcznym lub automatycznym wyborem węzłów",
-  "commitment_zero_balance": "Nie masz jeszcze dodanego zobowiązania"
+  "commitment_zero_balance": "Nie masz jeszcze dodanego zobowiązania",
+  "network": "Sieć"
 }

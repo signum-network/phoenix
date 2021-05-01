@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "Успешно подключился к узлу",
   "selected_node": "Текущий выбранный узел",
   "toggle_nodeselection_mode": "Переключитесь, чтобы переключаться между ручным или автоматическим выбором узла",
-  "commitment_zero_balance": "У вас еще нет добавленных обязательств"
+  "commitment_zero_balance": "У вас еще нет добавленных обязательств",
+  "network": "Сеть"
 }

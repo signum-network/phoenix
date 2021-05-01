@@ -1056,5 +1056,6 @@
   "node_successfully_connected": "Успешно повезан са чвором",
   "selected_node": "Тренутно изабрани чвор",
   "toggle_nodeselection_mode": "Пребаците за пребацивање између ручног или аутоматског избора чвора",
-  "commitment_zero_balance": "Још увек нисте додали обавезу"
+  "commitment_zero_balance": "Још увек нисте додали обавезу",
+  "network": "Мрежа"
 }
