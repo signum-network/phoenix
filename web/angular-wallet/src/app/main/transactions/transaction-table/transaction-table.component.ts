@@ -20,6 +20,7 @@ import {UtilService} from 'app/util.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {StoreService} from '../../../store/store.service';
+import {TransactionPaymentSubtype} from '@burstjs/core/src';
 
 @Component({
   selector: 'app-transaction-table',
@@ -94,5 +95,24 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
   getCommitmentAmount(transaction): string {
     return BurstValue.fromPlanck(transaction.attachment.amountNQT || '0').getBurst();
+  }
+
+  getTransactionDirection(row: Transaction): string {
+
+    if (
+      (!row.recipient && (row.type !== TransactionType.Payment)) ||
+      (row.recipient === this.account.account && row.sender === this.account.account)
+    ) {
+      return 'self';
+    }
+
+    if (
+      (row.recipient === this.account.account && row.sender !== this.account.account) ||
+      (!row.recipient && (row.type === TransactionType.Payment)) //
+    ) {
+      return 'incoming';
+    }
+
+    return 'outgoing';
   }
 }
