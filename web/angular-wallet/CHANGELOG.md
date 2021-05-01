@@ -1,13 +1,14 @@
 # Changelog
 
-## 1.1.0 TBR
+## 1.1.0 (In Beta)
 
 - PoC+ Mining Features
-  - Add Commitment
-  - Refined Reward Recipient
+  - Add/Revoke Commitment
+  - Refined Reward Assignment
 - New face lifting
-  - new splash screen
-  - changing bg images on pages
+  - New splash screen
+  - Changing bg images on pages
+  - Hash icon
 - Extended Address Support  
 - Modernized Pages
   - Set Reward Recipient
@@ -15,6 +16,12 @@
 - Node Settings
   - Revisited Node List
   - Automatic Node Selection using new reliable nodes
+- [CIP22 Deeplinking support started](../../DEEPLINKING.md)
+  - Works for simple payments now 
+- Many minor improvements for better usability
+  - Colorful transaction table
+  - Wrong PIN error message
+  - and many more
   
 
 ### Bug fixes
