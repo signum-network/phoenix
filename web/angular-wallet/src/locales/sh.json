@@ -1054,5 +1054,6 @@
   "no_reliable_node_reachable": "",
   "node_successfully_connected": "",
   "selected_node": "",
-  "toggle_nodeselection_mode": ""
+  "toggle_nodeselection_mode": "",
+  "commitment_zero_balance": ""
 }

@@ -17,6 +17,11 @@ import {NetworkService} from '../../../network/network.service';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
+const CommitmentMode = {
+  Add: 'add',
+  Revoke: 'revoke'
+};
+
 @Component({
   selector: 'app-set-commitment-form',
   templateUrl: './set-commitment-form.component.html',
@@ -31,11 +36,11 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
   @Input() fees: SuggestedFees;
 
   fee: string;
-  isRevoking: boolean;
   isSending = false;
   blocksMissingUntilRevoke = 0;
   language: string;
   pin: string;
+  mode: string;
 
 
   private balances: AccountBalances;
@@ -104,7 +109,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
     try {
       this.isSending = true;
       await this.accountService.setCommitment({
-        isRevoking: this.isRevoking,
+        isRevoking: this.isRevoking(),
         amountPlanck: BurstValue.fromBurst(this.amount).getPlanck(),
         feePlanck: BurstValue.fromBurst(this.fee).getPlanck(),
         keys: this.account.keys,
@@ -126,7 +131,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       return false;
     }
 
-    if (this.isRevoking) {
+    if (this.isRevoking()) {
       const fee = BurstValue.fromBurst(this.fee || '0');
       const hasBalanceToPayFee = this.balances.availableBalance.clone()
         .greaterOrEqual(fee);
@@ -154,16 +159,24 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
 
     const fee = BurstValue.fromBurst(this.fee || '0');
 
-    this.amount = this.isRevoking
+    this.amount = this.isRevoking()
       ? this.balances.committedBalance.clone().getBurst()
       : this.balances.availableBalance.clone().subtract(fee).getBurst();
   }
 
-  canRevoke(): boolean {
-    return this.blocksMissingUntilRevoke === 0;
+  hasMissingBlocks(): boolean {
+    return this.blocksMissingUntilRevoke > 0;
+  }
+
+  isRevoking(): boolean {
+    return this.mode === CommitmentMode.Revoke;
   }
 
   setPin(pin: string): void {
     this.pin = pin;
+  }
+
+  hasNothingCommitted(): boolean {
+    return this.balances.committedBalance.equals(BurstValue.Zero());
   }
 }
