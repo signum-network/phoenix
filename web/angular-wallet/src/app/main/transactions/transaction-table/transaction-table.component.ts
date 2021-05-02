@@ -97,22 +97,24 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
     return BurstValue.fromPlanck(transaction.attachment.amountNQT || '0').getBurst();
   }
 
-  getTransactionDirection(row: Transaction): string {
+  getRowClass(row: Transaction): string {
+
+    const cx = className => !row.confirmations ? `${className} unconfirmed` : className;
 
     if (
       (!row.recipient && (row.type !== TransactionType.Payment)) ||
       (row.recipient === this.account.account && row.sender === this.account.account)
     ) {
-      return 'self';
+      return cx('self');
     }
 
     if (
       (row.recipient === this.account.account && row.sender !== this.account.account) ||
       (!row.recipient && (row.type === TransactionType.Payment)) //
     ) {
-      return 'incoming';
+      return cx('incoming');
     }
 
-    return 'outgoing';
+    return cx('outgoing');
   }
 }

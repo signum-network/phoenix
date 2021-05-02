@@ -104,16 +104,14 @@
       "confirmations" | i18n
       }}</mat-header-cell>
     <mat-cell *matCellDef="let transaction">
-      <span *ngIf="transaction.confirmations">{{
-        transaction.confirmations
-        }}</span>
+      <span *ngIf="transaction.confirmations">{{transaction.confirmations}}</span>
+      <span *ngIf="!transaction.confirmations">{{'pending' | i18n}}</span>
     </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"
-           [class.unconfirmed]="row.confirmations === 0"
-           [class]="getTransactionDirection(row)"
+           [class]="getRowClass(row)"
   >
   </mat-row>
 </mat-table>
