@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>LocalStorageMonitorRepository
+	<title>Address
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,13 +75,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/monitor.html">monitor</a>
+					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="monitor.localstoragemonitorrepository.html">LocalStorageMonitorRepository</a>
+					<a href="core.address.html">Address</a>
 				</li>
 			</ul>
-			<h1>Class LocalStorageMonitorRepository</h1>
+			<h1>Class Address</h1>
 		</div>
 	</div>
 </header>
@@ -91,7 +91,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A repository to persist a monitor in a <em>localStorage</em> like/compliant storage</p>
+						<p>A Value Object to facilitate Address conversions.</p>
 					</div>
 				</div>
 			</section>
@@ -99,14 +99,8 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">LocalStorageMonitorRepository</span>
+						<span class="target">Address</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/monitor.monitorrepository.html" class="tsd-signature-type">MonitorRepository</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -114,207 +108,211 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="monitor.localstoragemonitorrepository.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="monitor.localstoragemonitorrepository.html#get" class="tsd-kind-icon">get</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="monitor.localstoragemonitorrepository.html#getall" class="tsd-kind-icon">get<wbr>All</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="monitor.localstoragemonitorrepository.html#insert" class="tsd-kind-icon">insert</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="monitor.localstoragemonitorrepository.html#remove" class="tsd-kind-icon">remove</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.address.html#equals" class="tsd-kind-icon">equals</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.address.html#getaccountid" class="tsd-kind-icon">get<wbr>Account<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.address.html#getpublickey" class="tsd-kind-icon">get<wbr>Public<wbr>Key</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.address.html#getreedsolomonaddress" class="tsd-kind-icon">get<wbr>Reed<wbr>Solomon<wbr>Address</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.address.html#getreedsolomonaddressextended" class="tsd-kind-icon">get<wbr>Reed<wbr>Solomon<wbr>Address<wbr>Extended</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="core.address.html#fromextendedrsaddress" class="tsd-kind-icon">from<wbr>ExtendedRSAddress</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="core.address.html#frompublickey" class="tsd-kind-icon">from<wbr>Public<wbr>Key</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Local<wbr>Storage<wbr>Monitor<wbr>Repository<span class="tsd-signature-symbol">(</span>storage<span class="tsd-signature-symbol">: </span><a href="../interfaces/monitor.localstorage.html" class="tsd-signature-type">LocalStorage</a>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Options</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monitor.localstoragemonitorrepository.html" class="tsd-signature-type">LocalStorageMonitorRepository</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/repositories/localStorageMonitorRepository.ts#L30">monitor/src/repositories/localStorageMonitorRepository.ts:30</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>storage: <a href="../interfaces/monitor.localstorage.html" class="tsd-signature-type">LocalStorage</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>a <em>localStorage</em> compliant implementation
-											Usually, you will use the browser localStorage, so</p>
-											<p><code>new LocalStorageMonitorRepository(window.localStorage)</code></p>
-											<p>would be your way to go</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">Options</span><span class="tsd-signature-symbol"> = DefaultOptions</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>Additional options</p>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="monitor.localstoragemonitorrepository.html" class="tsd-signature-type">LocalStorageMonitorRepository</a></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="get" class="tsd-anchor"></a>
-					<h3>get</h3>
+					<a name="equals" class="tsd-anchor"></a>
+					<h3>equals</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">GenericMonitor</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>address<span class="tsd-signature-symbol">: </span><a href="core.address.html" class="tsd-signature-type">Address</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/monitor.monitorrepository.html">MonitorRepository</a>.<a href="../interfaces/monitor.monitorrepository.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/repositories/localStorageMonitorRepository.ts#L50">monitor/src/repositories/localStorageMonitorRepository.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/address/address.ts#L105">core/src/address/address.ts:105</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets a specific monitor by key</p>
+									<p>Checks for equality</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>note</dt>
-									<dd><p>The monitor will be deserialized and eventually started (see options)</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>key: <span class="tsd-signature-type">any</span></h5>
+									<h5>address: <a href="core.address.html" class="tsd-signature-type">Address</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The identifier of the monitor</p>
+										<p>The other address to be compared</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">GenericMonitor</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>the monitor instance, or null if not found</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if equal, otherwise false</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getall" class="tsd-anchor"></a>
-					<h3>get<wbr>All</h3>
+					<a name="getaccountid" class="tsd-anchor"></a>
+					<h3>get<wbr>Account<wbr>Id</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">GenericMonitor</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/monitor.monitorrepository.html">MonitorRepository</a>.<a href="../interfaces/monitor.monitorrepository.html#getall">getAll</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/repositories/localStorageMonitorRepository.ts#L61">monitor/src/repositories/localStorageMonitorRepository.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/address/address.ts#L77">core/src/address/address.ts:77</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>Gets numeric Account Id</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getpublickey" class="tsd-anchor"></a>
+					<h3>get<wbr>Public<wbr>Key</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Public<wbr>Key<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/address/address.ts#L70">core/src/address/address.ts:70</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getreedsolomonaddress" class="tsd-anchor"></a>
+					<h3>get<wbr>Reed<wbr>Solomon<wbr>Address</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Reed<wbr>Solomon<wbr>Address<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/address/address.ts#L86">core/src/address/address.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets all stored monitors</p>
+									<p>Gets as Reed Solomon representation</p>
 								</div>
 								<dl class="tsd-comment-tags">
-									<dt>note</dt>
-									<dd><p>The monitors will be deserialized and eventually started (see options)</p>
+									<dt>see</dt>
+									<dd><p><a href="core.address.html#getreedsolomonaddressextended">Address.getReedSolomonAddressExtended</a></p>
 									</dd>
 								</dl>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">GenericMonitor</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>the monitor instances</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>Reed Solomon Address Format</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="insert" class="tsd-anchor"></a>
-					<h3>insert</h3>
+					<a name="getreedsolomonaddressextended" class="tsd-anchor"></a>
+					<h3>get<wbr>Reed<wbr>Solomon<wbr>Address<wbr>Extended</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">insert<span class="tsd-signature-symbol">(</span>monitor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">GenericMonitor</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Reed<wbr>Solomon<wbr>Address<wbr>Extended<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/monitor.monitorrepository.html">MonitorRepository</a>.<a href="../interfaces/monitor.monitorrepository.html#insert">insert</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/repositories/localStorageMonitorRepository.ts#L76">monitor/src/repositories/localStorageMonitorRepository.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/address/address.ts#L95">core/src/address/address.ts:95</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Inserts/Serializes a monitor, if not exists already</p>
+									<p>Gets as extended Reed Solomon representation carrying the public key as suffix in base36 encoding</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="core.address.html#getreedsolomonaddress">Address.getReedSolomonAddress</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>Extended Reed Solomon Address Format</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="fromextendedrsaddress" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> from<wbr>ExtendedRSAddress</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">from<wbr>ExtendedRSAddress<span class="tsd-signature-symbol">(</span>extendedRSAddress<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.address.html" class="tsd-signature-type">Address</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/address/address.ts#L48">core/src/address/address.ts:48</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a Burst Address object from public key</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>throws</dt>
-									<dd><p>If monitor already stored</p>
+									<dd><p>Error if the passed address is invalid, i.e. not extended format , or extension aka base36 encoded public key does not match address</p>
 									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>monitor: <span class="tsd-signature-type">GenericMonitor</span></h5>
+									<h5>extendedRSAddress: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The monitor instance</p>
+										<p>The Reed-Solomon address in extended format (with base36 suffix)</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="core.address.html" class="tsd-signature-type">Address</a></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="remove" class="tsd-anchor"></a>
-					<h3>remove</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">remove<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="frompublickey" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> from<wbr>Public<wbr>Key</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">from<wbr>Public<wbr>Key<span class="tsd-signature-symbol">(</span>publicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.address.html" class="tsd-signature-type">Address</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/monitor.monitorrepository.html">MonitorRepository</a>.<a href="../interfaces/monitor.monitorrepository.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/repositories/localStorageMonitorRepository.ts#L89">monitor/src/repositories/localStorageMonitorRepository.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/address/address.ts#L39">core/src/address/address.ts:39</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Removes a monitor</p>
+									<p>Creates a Burst Address object from public key</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>note</dt>
-									<dd><p>If no monitor with given key is stored, the method does nothing</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>key: <span class="tsd-signature-type">any</span></h5>
+									<h5>publicKey: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The monitors key</p>
+										<p>The public key of that address (in hex format)</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="core.address.html" class="tsd-signature-type">Address</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -329,7 +327,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/contracts.html">contracts</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -344,7 +342,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/http.html">http</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/monitor.html">monitor</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -354,66 +352,36 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="monitor.consolelogger.html" class="tsd-kind-icon">Console<wbr>Logger</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="monitor.localstoragemonitorrepository.html" class="tsd-kind-icon">Local<wbr>Storage<wbr>Monitor<wbr>Repository</a>
+						<a href="core.address.html" class="tsd-kind-icon">Address</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="monitor.localstoragemonitorrepository.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="core.address.html#equals" class="tsd-kind-icon">equals</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="monitor.localstoragemonitorrepository.html#get" class="tsd-kind-icon">get</a>
+								<a href="core.address.html#getaccountid" class="tsd-kind-icon">get<wbr>Account<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="monitor.localstoragemonitorrepository.html#getall" class="tsd-kind-icon">get<wbr>All</a>
+								<a href="core.address.html#getpublickey" class="tsd-kind-icon">get<wbr>Public<wbr>Key</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="monitor.localstoragemonitorrepository.html#insert" class="tsd-kind-icon">insert</a>
+								<a href="core.address.html#getreedsolomonaddress" class="tsd-kind-icon">get<wbr>Reed<wbr>Solomon<wbr>Address</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="monitor.localstoragemonitorrepository.html#remove" class="tsd-kind-icon">remove</a>
+								<a href="core.address.html#getreedsolomonaddressextended" class="tsd-kind-icon">get<wbr>Reed<wbr>Solomon<wbr>Address<wbr>Extended</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="core.address.html#fromextendedrsaddress" class="tsd-kind-icon">from<wbr>ExtendedRSAddress</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="core.address.html#frompublickey" class="tsd-kind-icon">from<wbr>Public<wbr>Key</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="monitor.memorymonitorrepository.html" class="tsd-kind-icon">Memory<wbr>Monitor<wbr>Repository</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="monitor.monitor-1.html" class="tsd-kind-icon">Monitor</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="monitor.voidlogger.html" class="tsd-kind-icon">Void<wbr>Logger</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/monitor.localstorage.html" class="tsd-kind-icon">Local<wbr>Storage</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/monitor.logger.html" class="tsd-kind-icon">Logger</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../interfaces/monitor.monitorargs.html" class="tsd-kind-icon">Monitor<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/monitor.monitorrepository.html" class="tsd-kind-icon">Monitor<wbr>Repository</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../modules/monitor.html#monitorfetchfunction" class="tsd-kind-icon">Monitor<wbr>Fetch<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../modules/monitor.html#monitorpredicatefunction" class="tsd-kind-icon">Monitor<wbr>Predicate<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-						<a href="../modules/monitor.html#consolelogger-1" class="tsd-kind-icon">console<wbr>Logger</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-						<a href="../modules/monitor.html#voidlogger-1" class="tsd-kind-icon">void<wbr>Logger</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

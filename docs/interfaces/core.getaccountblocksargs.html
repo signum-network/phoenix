@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RewardRecipient
+	<title>GetAccountBlocksArgs
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,10 +78,10 @@
 					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="core.rewardrecipient.html">RewardRecipient</a>
+					<a href="core.getaccountblocksargs.html">GetAccountBlocksArgs</a>
 				</li>
 			</ul>
-			<h1>Interface RewardRecipient</h1>
+			<h1>Interface GetAccountBlocksArgs</h1>
 		</div>
 	</div>
 </header>
@@ -91,15 +91,33 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Reward Recipient</p>
+						<p>The argument object for <a href="core_api.accountapi.html#getaccountblocks">AccountApi.getAccountBlocks</a> and <a href="core_api.accountapi.html#getaccountblockids">AccountApi.getAccountBlockIds</a></p>
 					</div>
+					<dl class="tsd-comment-tags">
+						<dt>param</dt>
+						<dd><p>The numeric accountId</p>
+						</dd>
+						<dt>param</dt>
+						<dd><p>The first index of a chunk of the list you want fetch. Use indices to paginate your calls</p>
+						</dd>
+						<dt>param</dt>
+						<dd><p>The last index of a chunk of the list you want fetch. Use indices to paginate your calls</p>
+							<p>Currently, the indices do not work on BRS API :(</p>
+						</dd>
+						<dt>see</dt>
+						<dd><p><a href="https://github.com/burst-apps-team/burstcoin/issues/477">https://github.com/burst-apps-team/burstcoin/issues/477</a></p>
+						</dd>
+						<dt>param</dt>
+						<dd><p>Includes the transactions also. Note, that this is call may take time</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">RewardRecipient</span>
+						<span class="target">GetAccountBlocksArgs</span>
 					</li>
 				</ul>
 			</section>
@@ -110,8 +128,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.rewardrecipient.html#requestprocessingtime" class="tsd-kind-icon">request<wbr>Processing<wbr>Time</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.rewardrecipient.html#rewardrecipient" class="tsd-kind-icon">reward<wbr>Recipient</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.getaccountblocksargs.html#accountid" class="tsd-kind-icon">account<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.getaccountblocksargs.html#firstindex" class="tsd-kind-icon">first<wbr>Index</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.getaccountblocksargs.html#includetransactions" class="tsd-kind-icon">include<wbr>Transactions</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.getaccountblocksargs.html#lastindex" class="tsd-kind-icon">last<wbr>Index</a></li>
 							</ul>
 						</section>
 					</div>
@@ -120,22 +140,42 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="requestprocessingtime" class="tsd-anchor"></a>
-					<h3>request<wbr>Processing<wbr>Time</h3>
-					<div class="tsd-signature tsd-kind-icon">request<wbr>Processing<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="accountid" class="tsd-anchor"></a>
+					<h3>account<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">account<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/rewardRecipient.ts#L11">core/src/typings/rewardRecipient.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/args/getAccountBlocksArgs.ts#L15">core/src/typings/args/getAccountBlocksArgs.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="rewardrecipient" class="tsd-anchor"></a>
-					<h3>reward<wbr>Recipient</h3>
-					<div class="tsd-signature tsd-kind-icon">reward<wbr>Recipient<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="firstindex" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> first<wbr>Index</h3>
+					<div class="tsd-signature tsd-kind-icon">first<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/rewardRecipient.ts#L10">core/src/typings/rewardRecipient.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/args/getAccountBlocksArgs.ts#L16">core/src/typings/args/getAccountBlocksArgs.ts:16</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="includetransactions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> include<wbr>Transactions</h3>
+					<div class="tsd-signature tsd-kind-icon">include<wbr>Transactions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/args/getAccountBlocksArgs.ts#L18">core/src/typings/args/getAccountBlocksArgs.ts:18</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="lastindex" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> last<wbr>Index</h3>
+					<div class="tsd-signature tsd-kind-icon">last<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/args/getAccountBlocksArgs.ts#L17">core/src/typings/args/getAccountBlocksArgs.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -178,13 +218,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="core.rewardrecipient.html" class="tsd-kind-icon">Reward<wbr>Recipient</a>
+						<a href="core.getaccountblocksargs.html" class="tsd-kind-icon">Get<wbr>Account<wbr>Blocks<wbr>Args</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.rewardrecipient.html#requestprocessingtime" class="tsd-kind-icon">request<wbr>Processing<wbr>Time</a>
+								<a href="core.getaccountblocksargs.html#accountid" class="tsd-kind-icon">account<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.rewardrecipient.html#rewardrecipient" class="tsd-kind-icon">reward<wbr>Recipient</a>
+								<a href="core.getaccountblocksargs.html#firstindex" class="tsd-kind-icon">first<wbr>Index</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.getaccountblocksargs.html#includetransactions" class="tsd-kind-icon">include<wbr>Transactions</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.getaccountblocksargs.html#lastindex" class="tsd-kind-icon">last<wbr>Index</a>
 							</li>
 						</ul>
 					</li>

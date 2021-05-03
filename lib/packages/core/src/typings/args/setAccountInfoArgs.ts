@@ -2,7 +2,7 @@ import {DefaultSendArgs} from './defaultSendArgs';
 
 
 /**
- * The argument object for [[AssetApi.setAccountInfo]]
+ * The argument object for [[AccountApi.setAccountInfo]]
  *
  * @module core
  */

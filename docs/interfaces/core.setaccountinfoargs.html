@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RewardRecipient
+	<title>SetAccountInfoArgs
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,10 +78,10 @@
 					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="core.rewardrecipient.html">RewardRecipient</a>
+					<a href="core.setaccountinfoargs.html">SetAccountInfoArgs</a>
 				</li>
 			</ul>
-			<h1>Interface RewardRecipient</h1>
+			<h1>Interface SetAccountInfoArgs</h1>
 		</div>
 	</div>
 </header>
@@ -91,7 +91,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Reward Recipient</p>
+						<p>The argument object for <a href="core_api.accountapi.html#setaccountinfo">AccountApi.setAccountInfo</a></p>
 					</div>
 				</div>
 			</section>
@@ -99,7 +99,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">RewardRecipient</span>
+						<a href="core.defaultsendargs.html" class="tsd-signature-type">DefaultSendArgs</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">SetAccountInfoArgs</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -110,8 +115,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.rewardrecipient.html#requestprocessingtime" class="tsd-kind-icon">request<wbr>Processing<wbr>Time</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.rewardrecipient.html#rewardrecipient" class="tsd-kind-icon">reward<wbr>Recipient</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="core.setaccountinfoargs.html#attachment" class="tsd-kind-icon">attachment</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="core.setaccountinfoargs.html#deadline" class="tsd-kind-icon">deadline</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.setaccountinfoargs.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="core.setaccountinfoargs.html#feeplanck" class="tsd-kind-icon">fee<wbr>Planck</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.setaccountinfoargs.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="core.setaccountinfoargs.html#senderprivatekey" class="tsd-kind-icon">sender<wbr>Private<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="core.setaccountinfoargs.html#senderpublickey" class="tsd-kind-icon">sender<wbr>Public<wbr>Key</a></li>
 							</ul>
 						</section>
 					</div>
@@ -119,25 +129,121 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="requestprocessingtime" class="tsd-anchor"></a>
-					<h3>request<wbr>Processing<wbr>Time</h3>
-					<div class="tsd-signature tsd-kind-icon">request<wbr>Processing<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="attachment" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> attachment</h3>
+					<div class="tsd-signature tsd-kind-icon">attachment<span class="tsd-signature-symbol">:</span> <a href="../classes/core.attachment.html" class="tsd-signature-type">Attachment</a></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#attachment">attachment</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/rewardRecipient.ts#L11">core/src/typings/rewardRecipient.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/args/defaultSendArgs.ts#L31">core/src/typings/args/defaultSendArgs.ts:31</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An optional attachment</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="deadline" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> deadline</h3>
+					<div class="tsd-signature tsd-kind-icon">deadline<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#deadline">deadline</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/args/defaultSendArgs.ts#L36">core/src/typings/args/defaultSendArgs.ts:36</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The deadline when after how many minutes the transaction will be discarded, if it was not
+							processed, e.g. due to very low fee</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="rewardrecipient" class="tsd-anchor"></a>
-					<h3>reward<wbr>Recipient</h3>
-					<div class="tsd-signature tsd-kind-icon">reward<wbr>Recipient<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="description" class="tsd-anchor"></a>
+					<h3>description</h3>
+					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/rewardRecipient.ts#L10">core/src/typings/rewardRecipient.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/args/setAccountInfoArgs.ts#L17">core/src/typings/args/setAccountInfoArgs.ts:17</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The accounts description</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="feeplanck" class="tsd-anchor"></a>
+					<h3>fee<wbr>Planck</h3>
+					<div class="tsd-signature tsd-kind-icon">fee<wbr>Planck<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#feeplanck">feePlanck</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/args/defaultSendArgs.ts#L19">core/src/typings/args/defaultSendArgs.ts:19</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The fee expressed in Planck</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>note</dt>
+							<dd><p>It&#39;s recommended to use <a href="../classes/util.burstvalue.html">util.BurstValue</a></p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/args/setAccountInfoArgs.ts#L13">core/src/typings/args/setAccountInfoArgs.ts:13</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The accounts name</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="senderprivatekey" class="tsd-anchor"></a>
+					<h3>sender<wbr>Private<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">sender<wbr>Private<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#senderprivatekey">senderPrivateKey</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/args/defaultSendArgs.ts#L27">core/src/typings/args/defaultSendArgs.ts:27</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The senders private key, i.e. the <a href="crypto.keys.html#signprivatekey">crypto.Keys.signPrivateKey</a></p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="senderpublickey" class="tsd-anchor"></a>
+					<h3>sender<wbr>Public<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">sender<wbr>Public<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="core.defaultsendargs.html">DefaultSendArgs</a>.<a href="core.defaultsendargs.html#senderpublickey">senderPublicKey</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/args/defaultSendArgs.ts#L23">core/src/typings/args/defaultSendArgs.ts:23</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The senders public key,  i.e. the <a href="crypto.keys.html#publickey">crypto.Keys.publicKey</a></p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -178,13 +284,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="core.rewardrecipient.html" class="tsd-kind-icon">Reward<wbr>Recipient</a>
+						<a href="core.setaccountinfoargs.html" class="tsd-kind-icon">Set<wbr>Account<wbr>Info<wbr>Args</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.rewardrecipient.html#requestprocessingtime" class="tsd-kind-icon">request<wbr>Processing<wbr>Time</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="core.setaccountinfoargs.html#attachment" class="tsd-kind-icon">attachment</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="core.setaccountinfoargs.html#deadline" class="tsd-kind-icon">deadline</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.rewardrecipient.html#rewardrecipient" class="tsd-kind-icon">reward<wbr>Recipient</a>
+								<a href="core.setaccountinfoargs.html#description" class="tsd-kind-icon">description</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="core.setaccountinfoargs.html#feeplanck" class="tsd-kind-icon">fee<wbr>Planck</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.setaccountinfoargs.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="core.setaccountinfoargs.html#senderprivatekey" class="tsd-kind-icon">sender<wbr>Private<wbr>Key</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="core.setaccountinfoargs.html#senderpublickey" class="tsd-kind-icon">sender<wbr>Public<wbr>Key</a>
 							</li>
 						</ul>
 					</li>

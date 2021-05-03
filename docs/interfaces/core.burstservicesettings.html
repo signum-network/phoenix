@@ -114,6 +114,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.burstservicesettings.html#httpclient" class="tsd-kind-icon">http<wbr>Client</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.burstservicesettings.html#httpclientoptions" class="tsd-kind-icon">http<wbr>Client<wbr>Options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.burstservicesettings.html#nodehost" class="tsd-kind-icon">node<wbr>Host</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.burstservicesettings.html#reliablenodehosts" class="tsd-kind-icon">reliable<wbr>Node<wbr>Hosts</a></li>
 							</ul>
 						</section>
 					</div>
@@ -127,7 +128,7 @@
 					<div class="tsd-signature tsd-kind-icon">api<wbr>Root<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3f11bb5d/lib/packages/core/src/service/burstServiceSettings.ts#L20">core/src/service/burstServiceSettings.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstServiceSettings.ts#L27">core/src/service/burstServiceSettings.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -143,7 +144,7 @@
 					<div class="tsd-signature tsd-kind-icon">http<wbr>Client<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Http</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3f11bb5d/lib/packages/core/src/service/burstServiceSettings.ts#L33">core/src/service/burstServiceSettings.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstServiceSettings.ts#L40">core/src/service/burstServiceSettings.ts:40</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -159,7 +160,7 @@
 					<div class="tsd-signature tsd-kind-icon">http<wbr>Client<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosRequestConfig</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3f11bb5d/lib/packages/core/src/service/burstServiceSettings.ts#L27">core/src/service/burstServiceSettings.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstServiceSettings.ts#L34">core/src/service/burstServiceSettings.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -176,12 +177,28 @@
 					<div class="tsd-signature tsd-kind-icon">node<wbr>Host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3f11bb5d/lib/packages/core/src/service/burstServiceSettings.ts#L15">core/src/service/burstServiceSettings.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstServiceSettings.ts#L15">core/src/service/burstServiceSettings.ts:15</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The node/peer host url with protocol and port, e.g. <a href="https://testnet.burst.fun:8080">https://testnet.burst.fun:8080</a></p>
+							<p>The node/peer host url with protocol and port, e.g. <a href="https://testnet.burst.fun:443">https://testnet.burst.fun:443</a></p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="reliablenodehosts" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> reliable<wbr>Node<wbr>Hosts</h3>
+					<div class="tsd-signature tsd-kind-icon">reliable<wbr>Node<wbr>Hosts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstServiceSettings.ts#L21">core/src/service/burstServiceSettings.ts:21</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A list of node/peer hosts that can be chosen of, usually a list of reliable nodes. This is necessary for the automatic
+							node selection.</p>
 						</div>
 					</div>
 				</section>
@@ -237,6 +254,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="core.burstservicesettings.html#nodehost" class="tsd-kind-icon">node<wbr>Host</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core.burstservicesettings.html#reliablenodehosts" class="tsd-kind-icon">reliable<wbr>Node<wbr>Hosts</a>
 							</li>
 						</ul>
 					</li>
