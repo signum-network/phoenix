@@ -22,6 +22,7 @@ import {AccountsModule} from './accounts/accounts.module';
 import {SetAccountInfoModule} from './set-account-info/set-account-info.module';
 import {SetRewardRecipientModule} from './set-reward-recipient/set-reward-recipient.module';
 import {SetCommitmentModule} from './set-commitment/set-commitment.module';
+import {MiningCalculatorModule} from './mining-calculator/mining-calculator.module';
 
 const mainRoutes: Routes = [
   {
@@ -95,6 +96,7 @@ const mainRoutes: Routes = [
     AccountsModule,
     SetAccountInfoModule,
     SetRewardRecipientModule,
+    MiningCalculatorModule,
     SetCommitmentModule
   ],
   exports: [
