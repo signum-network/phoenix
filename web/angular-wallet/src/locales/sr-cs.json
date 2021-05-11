@@ -1072,5 +1072,11 @@
   "toggle_nodeselection_mode": "Пребаците за пребацивање између ручног или аутоматског избора чвора",
   "commitment_zero_balance": "Још увек нисте додали обавезу",
   "multiple_recipients": "Више прималаца",
-  "self": "себе"
+  "self": "себе",
+  "mining_calculator": "Рударски калкулатор",
+  "avg_network_commitment": "Просечна преданост мрежи",
+  "calculated_burst_day_estimate": "Процењена зарада",
+  "select_commitment_per_tb": "Подесите однос обавеза",
+  "select_plot_size": "Подесите величину парцеле",
+  "total_burst_needed": "Укупан износ обавеза"
 }

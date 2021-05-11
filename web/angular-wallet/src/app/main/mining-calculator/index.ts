@@ -1,0 +1,1 @@
+export { MiningCalculatorComponent } from './mining-calculator.component';

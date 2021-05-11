@@ -1,0 +1,34 @@
+<app-page title="{{ 'mining_calculator' | i18n }}" [wide]="true">
+    <div class="account-info pl-20 pr-20 mb-8">
+        <div class="account-info__field">
+            <small class="secondary-text text-uppercase">{{'avg_network_commitment'| i18n}}</small>
+            <p class="pb-8">{{avg_network_commitment}}</p>
+        </div>
+        <div class="account-info__field">
+            <small class="secondary-text text-uppercase">{{'base_target'| i18n}}</small>
+            <p class="pb-8">{{base_target}}</p>
+        </div>
+        <div class="account-info__field reward-recipient">
+            <small class="secondary-text text-uppercase">{{'block_reward'| i18n}}</small>
+            <p>{{network_block_reward}}</p>
+        </div>
+    </div>
+
+    <div class="pl-20 pr-20">
+
+        <mining-calc-plot-size (plotChange)="plotChange($event)"></mining-calc-plot-size>
+        <mining-calc-commitment (commitChange)="commitChange($event)"></mining-calc-commitment>
+
+    </div>
+
+
+    <div class="account-info__field ">
+        <small class="secondary-text text-uppercase">{{'total_burst_needed'| i18n}}</small>
+        <p class="pb-8">{{burst_total_output}} BURST</p>
+    </div>
+
+    <div class="account-info__field reward-recipient">
+        <small class="secondary-text text-uppercase">{{'calculated_burst_day_estimate'| i18n}}</small>
+        <p class="pb-8">{{burst_per_day_output}} BURST/Day</p>
+    </div>
+</app-page>

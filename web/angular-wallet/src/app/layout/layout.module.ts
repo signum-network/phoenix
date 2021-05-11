@@ -18,6 +18,8 @@ import {BurstFeeSelectorComponent} from './components/burst-fee-selector/burst-f
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatProgressBarModule} from '@angular/material';
 import {AppSharedModule} from '../shared/shared.module';
+import { MiningCalcCommitmentComponent } from './components/mining-calc-commitment/mining-calc-commitment.component';
+import { MiningCalcPlotSizeComponent } from './components/mining-calc-plot-size/mining-calc-plot-size.component';
 
 @NgModule({
   imports: [
@@ -45,10 +47,14 @@ import {AppSharedModule} from '../shared/shared.module';
     HorizontalLayout1Module,
     BurstFeeSelectorComponent,
     BurstRecipientInputComponent,
+    MiningCalcCommitmentComponent,
+    MiningCalcPlotSizeComponent
   ],
   declarations: [
     BurstFeeSelectorComponent,
     BurstRecipientInputComponent,
+    MiningCalcCommitmentComponent,
+    MiningCalcPlotSizeComponent
   ]
 })
 export class LayoutModule {

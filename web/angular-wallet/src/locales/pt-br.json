@@ -1061,5 +1061,20 @@
   "toggle_nodeselection_mode": "Alterne para alternar entre seleção de nó manual ou automática",
   "commitment_zero_balance": "Você ainda não adicionou nenhum compromisso",
   "multiple_recipients": "Vários Destinatários",
-  "self": "auto"
+  "self": "auto",
+  "mining_calculator": "Calculadora de Mineração",
+  "avg_network_commitment": "Compromisso médio da rede",
+  "calculated_burst_day_estimate": "ganhos estimados",
+  "lease_balance": "Saldo da locação",
+  "lease_balance_help": "O número de blocos que o aluguel vai durar. 9.000 blocos são cerca de 10 dias.",
+  "lease_balance_help_2": "Um arrendamento de 9.000 blocos é de cerca de 10 dias.",
+  "lease_balance_help_var": "Um aluguel de blocos __blocks__ é de cerca de __ dias__ dias.",
+  "lease_balance_to_account": "Alugue seu saldo para outra conta.",
+  "lease_balance_warning": "Lembre-se: uma vez enviado, o aluguel não pode ser cancelado.",
+  "lease_your_balance": "Alugue o seu saldo",
+  "leased_out": "Alugado",
+  "leased_soon": "Alugado em breve",
+  "select_commitment_per_tb": "Definir taxa de compromisso",
+  "select_plot_size": "Definir tamanho do lote",
+  "total_burst_needed": "Valor total do compromisso"
 }

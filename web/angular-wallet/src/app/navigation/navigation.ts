@@ -94,6 +94,13 @@ export const navigation: FuseNavigation[] = [
         icon: 'directions',
         url: '/set-reward-recipient'
       },
+      {
+        id: 'mining_calculator',
+        title: 'Mining Calculator',
+        type: 'item',
+        icon: 'account_balance_wallet',
+        url: '/mining-calculator'
+      },
     ]
   },
   {

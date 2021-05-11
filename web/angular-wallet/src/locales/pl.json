@@ -1067,5 +1067,14 @@
   "commitment_zero_balance": "Nie masz jeszcze dodanego zobowiązania",
   "network": "Sieć",
   "multiple_recipients": "Wielu odbiorców",
-  "self": "samego siebie"
+  "self": "samego siebie",
+  "mining_calculator": "Kalkulator górniczy",
+  "avg_network_commitment": "Średnie zaangażowanie w sieć",
+  "calculated_burst_day_estimate": "przewidywane zarobki",
+  "new_message": "Nowa wiadomość",
+  "search": "Szukaj",
+  "search_or_start_message": "Wyszukaj lub rozpocznij nową wiadomość",
+  "select_commitment_per_tb": "Ustaw współczynnik zaangażowania",
+  "select_plot_size": "Ustaw rozmiar działki",
+  "total_burst_needed": "Całkowita kwota zobowiązania"
 }

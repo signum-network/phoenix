@@ -1,6 +1,7 @@
 {
   "Bid Order": "Bid Order",
   "Purchased Products": "Purchased Products",
+  "mining_calculator": "Mining Calculator",
   "account": "Account",
   "account_added": "Account added successfully",
   "account_balance": "Account Balance",
@@ -1070,5 +1071,10 @@
   "toggle_nodeselection_mode": "Toggle to switch between manual or automatic node selection",
   "commitment_zero_balance": "You have no commitment added yet",
   "multiple_recipients": "Multiple Recipients",
-  "self": "self"
+  "self": "self",
+  "total_burst_needed": "Total Commitment Amount",
+  "select_commitment_per_tb": "Set Commitment Ratio",
+  "select_plot_size": "Set Plot Size",
+  "calculated_burst_day_estimate": "Estimated Earnings",
+  "avg_network_commitment": "Average Network Commitment"
 }
