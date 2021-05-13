@@ -8,8 +8,10 @@ import {
   BlockchainStatus,
   SuggestedFees,
   Peer,
-  PeerAddressList
+  PeerAddressList,
+  MiningInfo
 } from '@burstjs/core';
+
 
 import {ApiService} from '../api.service';
 import {StoreService} from 'app/store/store.service';
@@ -34,6 +36,10 @@ export class NetworkService {
 
   public getBlockchainStatus(): Promise<BlockchainStatus> {
     return this.api.network.getBlockchainStatus();
+  }
+
+  public getMiningInfo(): Promise<MiningInfo> {
+    return this.api.network.getMiningInfo();
   }
 
   public getBlockById(id?: string): Promise<Block> {

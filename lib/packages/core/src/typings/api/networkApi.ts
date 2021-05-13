@@ -5,7 +5,7 @@ import {Peer} from '../peer';
 import {PeerAddressList} from '../peerAddressList';
 import {BurstTime} from '../burstTime';
 import {TransactionList} from '../transactionList';
-
+import {MiningInfo} from '../miningInfo';
 /**
  * Network API
  *
@@ -14,6 +14,12 @@ import {TransactionList} from '../transactionList';
  * @module core.api
  */
 export interface NetworkApi {
+    /**
+     * Get the mining info response.
+     * @return {MiningInfo} The Mining Info Response
+     */
+     getMiningInfo: () => Promise<MiningInfo>;
+
     /**
      * Get the blockchain status.
      * @return {BlockchainStatus} The Blockchain Status

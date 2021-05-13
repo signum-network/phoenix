@@ -5,3 +5,4 @@ export * from './getServerStatus';
 export * from './getTime';
 export * from './getSuggestedFees';
 export * from './suggestFee';
+export * from './getMiningInfo';
