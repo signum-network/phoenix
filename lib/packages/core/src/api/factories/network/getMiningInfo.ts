@@ -12,5 +12,17 @@ import {MiningInfo} from '../../../typings/miningInfo';
  * See details at [[NetworkApi.getMiningInfo]]
  * @module core.api.factories
  */
-export const getMiningInfo = (service: BurstService): () => Promise<MiningInfo> =>
-    (): Promise<MiningInfo> => service.query('getMiningInfo');
+export const getMiningInfo = (service: BurstService): () => Promise<MiningInfo> =>{
+ return async (): Promise<MiningInfo> => {
+     
+    const miningInfo: MiningInfo = await service.query('getMiningInfo');
+        return {
+            ...miningInfo
+                };
+
+                
+    
+
+
+        };
+    };

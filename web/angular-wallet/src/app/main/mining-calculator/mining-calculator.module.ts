@@ -16,7 +16,7 @@ import { NotifierModule } from 'angular-notifier';
 import { NgxMaskModule } from 'ngx-mask';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { SuggestFeeResolver } from '../../network/suggest-fee.resolver';
+import { MiningInfoResolver} from '../../network/mining-info.resolver';
 import { NetworkModule } from 'app/network/network.module';
 import { LayoutModule } from 'app/layout/layout.module';
 import { LoginGuard } from 'app/login/login-guard.service';
@@ -31,7 +31,7 @@ const routes = [
     canActivate: [LoginGuard],
     resolve: {
       account: AccountResolver,
-      suggestedFees: SuggestFeeResolver
+     // getMiningInfo: MiningInfoResolver
     }
   }
 ];

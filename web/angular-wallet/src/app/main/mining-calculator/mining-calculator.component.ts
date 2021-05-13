@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild, Output, EventEmitter, Input, ViewChildren} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {MiningInfo} from '@burstjs/core';
+import {BurstValue} from '@burstjs/util';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import { MiningCalcCommitmentComponent } from 'app/layout/components/mining-calc-commitment/mining-calc-commitment.component';
-import { MiningCalcPlotSizeComponent } from 'app/layout/components/mining-calc-plot-size/mining-calc-plot-size.component';
 
 
 @Component({
@@ -12,8 +12,7 @@ import { MiningCalcPlotSizeComponent } from 'app/layout/components/mining-calc-p
 })
 export class MiningCalculatorComponent implements OnInit {
 
-    stepsArray: any [];
-   plotCapacity: number;
+  plotCapacity: number;
    committedSize: number;
    total_burst: number;
    burst_per_day: number;
@@ -22,16 +21,30 @@ export class MiningCalculatorComponent implements OnInit {
    avg_network_commitment: number;
    network_block_reward: number;
    base_target: number;
+  // miningInfo: MiningInfo;
 
    burst_total_output: string;
    burst_per_day_output: string;
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+              private route: ActivatedRoute,
               private i18nService: I18nService) {
+
+                
   }
 
   ngOnInit(): void {
 
+
+    //this.miningInfo = this.route.snapshot.data.getMiningInfo as MiningInfo;    
+
+    //this.network_block_reward = this.miningInfo.lastBlockReward.;
+    //this.avg_network_commitment = 2500;
+
+   // this.avg_network_commitment = BurstValue.fromPlanck(this.miningInfo.averageCommitmentNQT);
+    //this.base_target = this.miningInfo.baseTarget;
+
+    //re-enable to try dummy data
     this.fetchBlockChainData();
 
     this.committedSize = 2000;
