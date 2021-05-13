@@ -16,8 +16,8 @@
 
     <div class="pl-20 pr-20">
 
-        <mining-calc-plot-size (plotChange)="plotChange($event)"></mining-calc-plot-size>
-        <mining-calc-commitment (commitChange)="commitChange($event)"></mining-calc-commitment>
+        <mining-calc-plot-size (plotChange)="plotChange($event)" [plot]="plotCapacity"></mining-calc-plot-size>
+        <mining-calc-commitment (commitChange)="commitChange($event)" [commit]="committedSize" [networkCommit]="avg_network_commitment"></mining-calc-commitment>
 
     </div>
 

@@ -1,7 +1,8 @@
 import {Component, OnInit, Input, Output} from '@angular/core';
 
 import {EventEmitter} from '@angular/core';
-import {LabelType, Options} from 'ng5-slider';
+import {CustomStepDefinition, LabelType, Options} from 'ng5-slider';
+
 import {I18nService} from '../i18n/i18n.service';
 import Color from 'color';
 
@@ -14,9 +15,10 @@ const SliderAxisBaseColor = Color('#039be5');
   styleUrls: ['./mining-calc-commitment.component.scss']
 })
 export class MiningCalcCommitmentComponent implements OnInit {
-  @Input() commits: number;
-
+  //@Input() commits: number;
+  @Input() networkCommit: number;
   public commitValue = 0;
+  networkCommitValue = 0;
   options: Options;
 
   @Input()  
@@ -24,12 +26,14 @@ export class MiningCalcCommitmentComponent implements OnInit {
     return this.commitValue;
   }
 
-  @Output()
-  commitChange = new EventEmitter<number>();
 
-  public comChange(number: any): void {
-    this.commitChange.emit(number);
-  }
+
+  @Output()
+    commitChange = new EventEmitter<number>();
+
+ // public comChange(number: any): void {
+ //   this.commitChange.emit(number);
+ // }
 
   set commit(commitValue: number) {
     if (!commitValue) {
@@ -43,23 +47,25 @@ export class MiningCalcCommitmentComponent implements OnInit {
 
 
 
+
+
+
   constructor(private i18nService: I18nService) {
   }
 
   ngOnInit(): void {
 
-    this.commitValue = 1800;  
+   // this.commitValue = 1800;  
 
     const floor = 0;
-    const ceil = 350000;
 
-    const normalize = (v): number => (v - floor) / (ceil - floor);
+    const normalize = (v): number => (v - floor) / (this.networkCommit*101 - floor);
 
     this.options = {
       
       step: 100,
       floor,
-      ceil,    
+      ceil: this.networkCommit*101,   
       
       showSelectionBar: true,
       

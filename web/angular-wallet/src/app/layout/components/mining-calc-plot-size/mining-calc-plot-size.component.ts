@@ -47,8 +47,6 @@ export class MiningCalcPlotSizeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.plotValue = 120;
     
     const floor = 0;
     const ceil = 500;

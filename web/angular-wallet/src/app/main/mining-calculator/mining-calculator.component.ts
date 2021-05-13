@@ -12,6 +12,7 @@ import { MiningCalcPlotSizeComponent } from 'app/layout/components/mining-calc-p
 })
 export class MiningCalculatorComponent implements OnInit {
 
+    stepsArray: any [];
    plotCapacity: number;
    committedSize: number;
    total_burst: number;
@@ -38,6 +39,8 @@ export class MiningCalculatorComponent implements OnInit {
 
     this.POCpluc();
 
+   //this.stepsArray = [{value:0}, {value:1},{value:10}, {value:100}, {value:1000},{value:10000},{value:100000}, {value:200000}, {Value:300000}];
+
     
   }
 
@@ -47,7 +50,7 @@ export class MiningCalculatorComponent implements OnInit {
 
     //This is dummy data :
     this.network_block_reward = 156;
-    this.avg_network_commitment = 2300;
+    this.avg_network_commitment = 2500;
     this.base_target = 484515;
 
 
