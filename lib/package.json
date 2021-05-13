@@ -59,7 +59,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-push": "../pre-push.sh --no-verify"
+            "pre-push": "../pre-push.sh"
         }
     },
     "dependencies": {
