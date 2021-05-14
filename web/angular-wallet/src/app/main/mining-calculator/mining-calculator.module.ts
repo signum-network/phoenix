@@ -31,7 +31,7 @@ const routes = [
     canActivate: [LoginGuard],
     resolve: {
       account: AccountResolver,
-     // getMiningInfo: MiningInfoResolver
+      getMiningInfo: MiningInfoResolver
     }
   }
 ];

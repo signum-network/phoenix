@@ -21,7 +21,7 @@ export class MiningCalculatorComponent implements OnInit {
    avg_network_commitment: number;
    network_block_reward: number;
    base_target: number;
-  // miningInfo: MiningInfo;
+   miningInfo: MiningInfo;
 
    burst_total_output: string;
    burst_per_day_output: string;
@@ -36,7 +36,8 @@ export class MiningCalculatorComponent implements OnInit {
   ngOnInit(): void {
 
 
-    //this.miningInfo = this.route.snapshot.data.getMiningInfo as MiningInfo;    
+    this.miningInfo = this.route.snapshot.data.getMiningInfo as MiningInfo;    
+   
 
     //this.network_block_reward = this.miningInfo.lastBlockReward.;
     //this.avg_network_commitment = 2500;
@@ -51,8 +52,6 @@ export class MiningCalculatorComponent implements OnInit {
     this.plotCapacity = 100;      
 
     this.POCpluc();
-
-   //this.stepsArray = [{value:0}, {value:1},{value:10}, {value:100}, {value:1000},{value:10000},{value:100000}, {value:200000}, {Value:300000}];
 
     
   }
