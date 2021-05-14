@@ -3,6 +3,7 @@ import {EventEmitter} from '@angular/core';
 import {CustomStepDefinition, LabelType, Options} from '@angular-slider/ngx-slider';
 import {I18nService} from '../i18n/i18n.service';
 import Color from 'color';
+import { formatBurstAmount } from 'app/util/formatBurstAmount';
 
 // @ts-ignore
 const SliderAxisBaseColor = Color('#039be5');
@@ -43,11 +44,6 @@ export class MiningCalcCommitmentComponent implements OnInit {
 
   }
 
-
-
-
-
-
   constructor(private i18nService: I18nService) {
   }
 
@@ -74,11 +70,11 @@ export class MiningCalcCommitmentComponent implements OnInit {
       },
       translate: ( value: number, label: LabelType): string => { 
         
-        return (value.toString() + " BURST/TB"); }
-     
+        return (value.toString() + " Burst/TB"); }
           
-      
     };
+
+
   }
 
 

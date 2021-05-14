@@ -23,6 +23,7 @@ import { LoginGuard } from 'app/login/login-guard.service';
 import {PageModule} from '../../components/page/page.module';
 import {SubmitTransactionModule} from '../../components/submit-transaction/submit-transaction.module';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
+import {AppSharedModule} from 'app/shared/shared.module';
 
 const routes = [
   {
@@ -50,6 +51,7 @@ const routes = [
     NotifierModule,
     NgxMaskModule,
     I18nModule,
+    AppSharedModule,
     MatButtonModule,
     MatInputModule,
     MatIconModule,

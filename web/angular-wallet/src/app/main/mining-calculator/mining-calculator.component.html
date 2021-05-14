@@ -10,7 +10,7 @@
         </div>
         <div class="account-info__field reward-recipient">
             <small class="secondary-text text-uppercase">{{'block_reward'| i18n}}</small>
-            <p>{{network_block_reward}}</p>
+            <p>{{network_block_reward | burstAmount}}</p>
         </div>
     </div>
 
@@ -24,12 +24,20 @@
 
     <div class="account-info__field ">
         <small class="secondary-text text-uppercase">{{'total_burst_needed'| i18n}}</small>
-        <p class="pb-8">{{burst_total_output}} BURST</p>
+        <p class="pb-8">{{burst_total_output | burstAmount}} </p>
     </div>
 
     <div class="account-info__field reward-recipient">
         <small class="secondary-text text-uppercase">{{'calculated_burst_day_estimate'| i18n}}</small>
         <p class="pb-8">{{burst_per_day_output}} BURST/Day</p>
+    </div>
+    <div *ngIf="isSupported" class="account-info__field">
+        <small class="secondary-text text-uppercase">{{'applied_commitment'| i18n}}</small>
+        <p class="pb-8 "><strong>{{account.committedBalanceNQT | burstAmount:'planck':true}}</strong></p>
+    </div>
+    <div class="account-info__field">
+        <small class="secondary-text text-uppercase">{{'balance_available'| i18n}}</small>
+        <p>{{getBalance() | burstAmount }}</p>
     </div>
 
 </app-page>

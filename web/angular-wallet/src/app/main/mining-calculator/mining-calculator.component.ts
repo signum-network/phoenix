@@ -1,8 +1,14 @@
-import {Component, OnInit, ViewChild, Output, EventEmitter, Input, ViewChildren} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {MiningInfo} from '@burstjs/core';
+import {MiningInfo, Account} from '@burstjs/core';
 import {BurstValue} from '@burstjs/util';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
+import {AccountService} from 'app/setup/account/account.service';
+import { StoreService } from 'app/store/store.service';
+import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
+import {ApiService} from '../../api.service';
+import {getBalancesFromAccount} from '../../util/balance';
+import {takeUntil} from 'rxjs/operators';
 
 
 @Component({
@@ -10,7 +16,7 @@ import {I18nService} from 'app/layout/components/i18n/i18n.service';
   templateUrl: './mining-calculator.component.html',
   styleUrls: ['./mining-calculator.component.scss']
 })
-export class MiningCalculatorComponent implements OnInit {
+export class MiningCalculatorComponent extends UnsubscribeOnDestroy implements OnInit {
 
   plotCapacity: number;
    committedSize: number;
@@ -24,12 +30,20 @@ export class MiningCalculatorComponent implements OnInit {
    miningInfo: MiningInfo;
    avgcommit: BurstValue;
 
+   account: Account;
+   language: string;
+   isSupported = false;
+
    burst_total_output: string;
    burst_per_day_output: string;
 
   constructor(
-              private route: ActivatedRoute,
+              private route: ActivatedRoute,              
+              private apiService: ApiService,
+              private accountService: AccountService,              
+              private storeService: StoreService,
               private i18nService: I18nService) {
+                super();
 
                 
   }
@@ -37,7 +51,15 @@ export class MiningCalculatorComponent implements OnInit {
   ngOnInit(): void {
 
     //API query for getMiningInfo
-    this.miningInfo = this.route.snapshot.data.getMiningInfo as MiningInfo;    
+    this.miningInfo = this.route.snapshot.data.getMiningInfo as MiningInfo;  
+    
+    //Account
+    this.account = this.route.snapshot.data.account as Account;  
+    
+    //POC+  
+    this.apiService.supportsPocPlus().then(supportsPocPlus =>
+      this.isSupported = supportsPocPlus
+    );
    
     //Assign data to fields
     this.avgcommit = BurstValue.fromPlanck(this.miningInfo.averageCommitmentNQT);   
@@ -55,6 +77,28 @@ export class MiningCalculatorComponent implements OnInit {
 
     //do magic after data set.
     this.POCpluc();
+
+
+    const unsubscribeAll = takeUntil(this.unsubscribeAll);
+    this.storeService.settings
+      .pipe(unsubscribeAll)
+      .subscribe(({language}) => {
+          this.language = language;
+        }
+      );
+
+    this.storeService.ready
+      .pipe(unsubscribeAll)
+      .subscribe((ready) => {
+        if (!ready) {
+          return;
+        }
+        this.accountService.currentAccount
+          .pipe(unsubscribeAll)
+          .subscribe((account: Account) => {
+            this.account = account;
+          });
+      });
 
   }
 
@@ -85,6 +129,10 @@ export class MiningCalculatorComponent implements OnInit {
     this.burst_per_day_output = this.burst_day_total.toFixed(3);
 
 
+  }
+
+  getBalance(): string {
+    return getBalancesFromAccount(this.account).availableBalance.getBurst();
   }
 
 
