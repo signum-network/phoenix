@@ -22,6 +22,7 @@ export class MiningCalculatorComponent implements OnInit {
    network_block_reward: number;
    base_target: number;
    miningInfo: MiningInfo;
+   avgcommit: BurstValue;
 
    burst_total_output: string;
    burst_per_day_output: string;
@@ -35,36 +36,25 @@ export class MiningCalculatorComponent implements OnInit {
 
   ngOnInit(): void {
 
-
+    //API query for getMiningInfo
     this.miningInfo = this.route.snapshot.data.getMiningInfo as MiningInfo;    
    
+    //Assign data to fields
+    this.avgcommit = BurstValue.fromPlanck(this.miningInfo.averageCommitmentNQT);   
+    this.network_block_reward = this.miningInfo.lastBlockReward;
+    this.base_target = this.miningInfo.baseTarget;
 
-    //this.network_block_reward = this.miningInfo.lastBlockReward.;
-    //this.avg_network_commitment = 2500;
+    //convert Burst to Int for slider (can implement BurstValue at late date.)
+    this.avg_network_commitment = parseInt(this.avgcommit.getBurst());
 
-   // this.avg_network_commitment = BurstValue.fromPlanck(this.miningInfo.averageCommitmentNQT);
-    //this.base_target = this.miningInfo.baseTarget;
 
-    //re-enable to try dummy data
-    this.fetchBlockChainData();
-
+    //Set some initial setting for the sliders
     this.committedSize = 2000;
-    this.plotCapacity = 100;      
+    this.plotCapacity = 50;      
 
+
+    //do magic after data set.
     this.POCpluc();
-
-    
-  }
-
-  fetchBlockChainData(): void {
-
-    //Need to query blockchain for data here:
-
-    //This is dummy data :
-    this.network_block_reward = 156;
-    this.avg_network_commitment = 2500;
-    this.base_target = 484515;
-
 
   }
 
@@ -91,8 +81,8 @@ export class MiningCalculatorComponent implements OnInit {
  
     this.burst_per_day = 360 / (18325193796 / this.base_target / 1.83) * this.network_block_reward;
 
-   this.burst_day_total =  this.burst_per_day * Math.max(.123, Math.min(8,Math.pow(this.commit_ratio, .4515449935))) * this.plotCapacity;
-   this.burst_per_day_output = this.burst_day_total.toFixed(3);
+     this.burst_day_total =  this.burst_per_day * Math.max(.123, Math.min(8,Math.pow(this.commit_ratio, .4515449935))) * this.plotCapacity;
+    this.burst_per_day_output = this.burst_day_total.toFixed(3);
 
 
   }
