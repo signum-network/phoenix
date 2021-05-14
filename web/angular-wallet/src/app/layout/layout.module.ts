@@ -5,7 +5,7 @@ import {VerticalLayout2Module} from 'app/layout/vertical/layout-2/layout-2.modul
 import {VerticalLayout3Module} from 'app/layout/vertical/layout-3/layout-3.module';
 
 import {HorizontalLayout1Module} from 'app/layout/horizontal/layout-1/layout-1.module';
-import {Ng5SliderModule} from 'ng5-slider';
+import {NgxSliderModule} from '@angular-slider/ngx-slider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
@@ -28,7 +28,7 @@ import { MiningCalcPlotSizeComponent } from './components/mining-calc-plot-size/
     VerticalLayout3Module,
 
     HorizontalLayout1Module,
-    Ng5SliderModule,
+    NgxSliderModule,
     MatTooltipModule,
     MatIconModule,
     I18nModule,

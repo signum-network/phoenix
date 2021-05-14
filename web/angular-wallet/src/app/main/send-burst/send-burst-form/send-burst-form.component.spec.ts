@@ -24,7 +24,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {FormsModule} from '@angular/forms';
 import {BurstFeeSelectorComponent} from 'app/layout/components/burst-fee-selector/burst-fee-selector.component';
 import {BurstRecipientInputComponent} from 'app/layout/components/burst-recipient-input/burst-recipient-input.component';
-import {Ng5SliderModule} from 'ng5-slider';
+import {NgxSliderModule} from '@angular-slider/ngx-slider';
 
 
 import {SendBurstFormComponent} from './send-burst-form.component';
@@ -58,7 +58,7 @@ describe('SendBurstFormComponent', () => {
         MatFormFieldModule,
         MatCardModule,
         MatSelectModule,
-        Ng5SliderModule,
+        NgxSliderModule,
         MatGridListModule,
         MatCheckboxModule,
         FormsModule,

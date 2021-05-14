@@ -30,7 +30,7 @@ import {TransactionService} from '../transactions/transaction.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {BurstFeeSelectorComponent} from 'app/layout/components/burst-fee-selector/burst-fee-selector.component';
 import {BurstRecipientInputComponent} from 'app/layout/components/burst-recipient-input/burst-recipient-input.component';
-import {Ng5SliderModule} from 'ng5-slider';
+import {NgxSliderModule} from '@angular-slider/ngx-slider';
 import {SendBurstFormComponent} from './send-burst-form/send-burst-form.component';
 import {SendMultiOutFormComponent} from './send-multi-out-form/send-multi-out-form.component';
 import {WarnSendDialogComponent} from './warn-send-dialog/warn-send-dialog.component';
@@ -60,7 +60,7 @@ describe('SendBurstComponent', () => {
         MatTabsModule,
         MatTooltipModule,
         MatSelectModule,
-        Ng5SliderModule,
+        NgxSliderModule,
         MatGridListModule,
         MatCheckboxModule,
         FormsModule,

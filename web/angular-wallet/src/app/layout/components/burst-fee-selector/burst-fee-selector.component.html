@@ -1,24 +1,17 @@
 <div class="fee-selector">
-  <div class="__info">
-    <label class="pill">{{'suggested_fee' | i18n}}</label>
-    <a class="--help"
-       href="https://www.burstcoin.community/burstcoin-transaction-types-and-fees/"
-       target="_blank"
-       matTooltip="{{'click_here_for_help' | i18n}}"
-    >
-      <mat-icon class="primary-100-fg font-size-20">help_outline</mat-icon>
-    </a>
-  </div>
-  <div class="__fees">
-    {{'minimum_fee' | i18n}}:&nbsp;
-    <em (click)="fee=convertFeeToBurst(fees.minimum)">{{ convertFeeToBurst(fees.minimum) | burstAmount }}</em>
-    {{'cheap_fee' | i18n}}:&nbsp;
-    <em (click)="fee=convertFeeToBurst(fees.cheap)">{{ convertFeeToBurst(fees.cheap) | burstAmount }}</em>
-    {{'standard_fee' | i18n}}:&nbsp;
-    <em (click)="fee=convertFeeToBurst(fees.standard)">{{ convertFeeToBurst(fees.standard) | burstAmount }}</em>
-    {{'priority_fee' | i18n}}:&nbsp;
-    <em (click)="fee=convertFeeToBurst(fees.priority)">{{ convertFeeToBurst(fees.priority)  | burstAmount }}</em>
-  </div>
+    <div class="__info">
+        <label class="pill">{{'suggested_fee' | i18n}}</label>
+        <a class="--help" href="https://www.burstcoin.community/burstcoin-transaction-types-and-fees/" target="_blank" matTooltip="{{'click_here_for_help' | i18n}}">
+            <mat-icon class="primary-100-fg font-size-20">help_outline</mat-icon>
+        </a>
+    </div>
+    <div class="__fees">
+        {{'minimum_fee' | i18n}}:&nbsp;
+        <em (click)="fee=convertFeeToBurst(fees.minimum)">{{ convertFeeToBurst(fees.minimum) | burstAmount }}</em> {{'cheap_fee' | i18n}}:&nbsp;
+        <em (click)="fee=convertFeeToBurst(fees.cheap)">{{ convertFeeToBurst(fees.cheap) | burstAmount }}</em> {{'standard_fee' | i18n}}:&nbsp;
+        <em (click)="fee=convertFeeToBurst(fees.standard)">{{ convertFeeToBurst(fees.standard) | burstAmount }}</em> {{'priority_fee' | i18n}}:&nbsp;
+        <em (click)="fee=convertFeeToBurst(fees.priority)">{{ convertFeeToBurst(fees.priority)  | burstAmount }}</em>
+    </div>
 </div>
 
-<ng5-slider #slider [(value)]="fee" [options]="options"></ng5-slider>
+<ngx-slider #slider [(value)]="fee" [options]="options"></ngx-slider>

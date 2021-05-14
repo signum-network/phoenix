@@ -2,7 +2,7 @@ import {Component, OnInit, Input, Output} from '@angular/core';
 import {convertNQTStringToNumber} from '@burstjs/util';
 import {SuggestedFees} from '@burstjs/core';
 import {EventEmitter} from '@angular/core';
-import {LabelType, Options} from 'ng5-slider';
+import {LabelType, Options} from '@angular-slider/ngx-slider';
 import {BurstAmountPipe} from '../../../shared/pipes/burst-amount.pipe';
 import {formatBurstAmount} from '../../../util/formatBurstAmount';
 import {I18nService} from '../i18n/i18n.service';

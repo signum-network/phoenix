@@ -1,8 +1,6 @@
 import {Component, OnInit, Input, Output} from '@angular/core';
-
 import {EventEmitter} from '@angular/core';
-import {CustomStepDefinition, LabelType, Options} from 'ng5-slider';
-
+import {CustomStepDefinition, LabelType, Options} from '@angular-slider/ngx-slider';
 import {I18nService} from '../i18n/i18n.service';
 import Color from 'color';
 
