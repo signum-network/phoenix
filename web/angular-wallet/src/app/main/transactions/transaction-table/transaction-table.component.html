@@ -29,11 +29,8 @@
     <mat-cell
       class="font-size-8"
       *matCellDef="let transaction"
-      title="{{
-        convertTimestamp(transaction.timestamp) | date: 'MMM d, y, h:mm:ss'
-      }}"
     >
-      {{ convertTimestamp(transaction.timestamp) | timeAgo }}
+      {{ getDate(transaction)}}
     </mat-cell>
   </ng-container>
 

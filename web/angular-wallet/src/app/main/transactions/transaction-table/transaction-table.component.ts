@@ -15,12 +15,13 @@ import {
   TransactionMiningSubtype,
   TransactionType
 } from '@burstjs/core';
-import {convertBurstTimeToDate, convertNQTStringToNumber, BurstValue} from '@burstjs/util';
+import {convertBurstTimeToDate, convertNQTStringToNumber, BurstValue, BurstTime} from '@burstjs/util';
 import {UtilService} from 'app/util.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {StoreService} from '../../../store/store.service';
-import {TransactionPaymentSubtype} from '@burstjs/core/src';
+import {DatePipe, formatDate} from '@angular/common';
+import {memoize, ngMemoize} from '../../../util/decorators/memoize.decorator';
 
 @Component({
   selector: 'app-transaction-table',
@@ -70,15 +71,15 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
     return address && address === this.account.accountRS;
   }
 
-  public getAmount(transaction: Transaction): number {
+  public getAmount(transaction: Transaction): string {
 
     if (this.isOwnAccount(transaction.senderRS)) {
-      return -this.convertNQTStringToNumber(transaction.amountNQT);
+      return BurstValue.fromPlanck(transaction.amountNQT).multiply(-1).getBurst();
     }
 
     return this.isMultiOutPayment(transaction)
-      ? getRecipientsAmount(this.account.account, transaction)
-      : this.convertNQTStringToNumber(transaction.amountNQT);
+      ? getRecipientsAmount(this.account.account, transaction).toString(10)
+      : BurstValue.fromPlanck(transaction.amountNQT).getBurst();
   }
 
   public isAmountNegative(transaction: Transaction): boolean {
@@ -95,6 +96,11 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
   getCommitmentAmount(transaction): string {
     return BurstValue.fromPlanck(transaction.attachment.amountNQT || '0').getBurst();
+  }
+
+  getDate(tx: Transaction): string {
+    const time = BurstTime.fromBurstTimestamp(tx.timestamp);
+    return formatDate(time.getDate(), 'short', this.locale);
   }
 
   getRowClass(row: Transaction): string {
