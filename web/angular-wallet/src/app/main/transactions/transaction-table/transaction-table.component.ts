@@ -20,8 +20,7 @@ import {UtilService} from 'app/util.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {StoreService} from '../../../store/store.service';
-import {DatePipe, formatDate} from '@angular/common';
-import {memoize, ngMemoize} from '../../../util/decorators/memoize.decorator';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-transaction-table',
