@@ -60,7 +60,7 @@
     "electron-dl": "^3.0.0",
     "get-ssl-certificate": "^2.3.3",
     "js-yaml": "^3.13.1",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "semver": "^6.3.0",
     "snyk": "^1.425.4",
