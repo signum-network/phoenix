@@ -19,7 +19,7 @@ function getKeyForPaymentSubtype(transaction: Transaction): string {
     case TransactionPaymentSubtype.MultiOut:
       return 'multi_out_payment';
     case TransactionPaymentSubtype.MultiOutSameAmount:
-      return 'multi_out_same_payment';
+      return 'multi_out_payment';
   }
 }
 

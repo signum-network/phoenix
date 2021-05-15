@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TransactionRewardRecipientSubtype
+	<title>TransactionMiningSubtype
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,10 +78,10 @@
 					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="core.transactionrewardrecipientsubtype.html">TransactionRewardRecipientSubtype</a>
+					<a href="core.transactionminingsubtype.html">TransactionMiningSubtype</a>
 				</li>
 			</ul>
-			<h1>Enumeration TransactionRewardRecipientSubtype</h1>
+			<h1>Enumeration TransactionMiningSubtype</h1>
 		</div>
 	</div>
 </header>
@@ -91,7 +91,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Constants for reward recipient subtypes (Pool Operation)</p>
+						<p>Constants for mining subtypes</p>
 					</div>
 				</div>
 			</section>
@@ -102,7 +102,9 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionrewardrecipientsubtype.html#rewardrecipientassignment" class="tsd-kind-icon">Reward<wbr>Recipient<wbr>Assignment</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionminingsubtype.html#addcommitment" class="tsd-kind-icon">Add<wbr>Commitment</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionminingsubtype.html#removecommitment" class="tsd-kind-icon">Remove<wbr>Commitment</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="core.transactionminingsubtype.html#rewardrecipientassignment" class="tsd-kind-icon">Reward<wbr>Recipient<wbr>Assignment</a></li>
 							</ul>
 						</section>
 					</div>
@@ -111,12 +113,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="addcommitment" class="tsd-anchor"></a>
+					<h3>Add<wbr>Commitment</h3>
+					<div class="tsd-signature tsd-kind-icon">Add<wbr>Commitment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/constants/transactionMiningSubtype.ts#L12">core/src/constants/transactionMiningSubtype.ts:12</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="removecommitment" class="tsd-anchor"></a>
+					<h3>Remove<wbr>Commitment</h3>
+					<div class="tsd-signature tsd-kind-icon">Remove<wbr>Commitment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 2</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/constants/transactionMiningSubtype.ts#L13">core/src/constants/transactionMiningSubtype.ts:13</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="rewardrecipientassignment" class="tsd-anchor"></a>
 					<h3>Reward<wbr>Recipient<wbr>Assignment</h3>
 					<div class="tsd-signature tsd-kind-icon">Reward<wbr>Recipient<wbr>Assignment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3f11bb5d/lib/packages/core/src/constants/transactionRewardRecipientSubtype.ts#L11">core/src/constants/transactionRewardRecipientSubtype.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/constants/transactionMiningSubtype.ts#L11">core/src/constants/transactionMiningSubtype.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -159,10 +181,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-enum tsd-parent-kind-external-module">
-						<a href="core.transactionrewardrecipientsubtype.html" class="tsd-kind-icon">Transaction<wbr>Reward<wbr>Recipient<wbr>Subtype</a>
+						<a href="core.transactionminingsubtype.html" class="tsd-kind-icon">Transaction<wbr>Mining<wbr>Subtype</a>
 						<ul>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="core.transactionrewardrecipientsubtype.html#rewardrecipientassignment" class="tsd-kind-icon">Reward<wbr>Recipient<wbr>Assignment</a>
+								<a href="core.transactionminingsubtype.html#addcommitment" class="tsd-kind-icon">Add<wbr>Commitment</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="core.transactionminingsubtype.html#removecommitment" class="tsd-kind-icon">Remove<wbr>Commitment</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="core.transactionminingsubtype.html#rewardrecipientassignment" class="tsd-kind-icon">Reward<wbr>Recipient<wbr>Assignment</a>
 							</li>
 						</ul>
 					</li>

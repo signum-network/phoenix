@@ -26,13 +26,6 @@ export class ApiService {
     }
 
     this.nodeUrl = settings.node;
-
-    if (settings.nodeAutoSelectionEnabled) {
-      this.nodeUrl = await this.selectBestNode();
-      settings.node = this.nodeUrl;
-      await this.storeService.saveSettings(settings);
-    }
-
     const reliablePeers = constants.nodes
       .filter(({reliable}) => reliable)
       .map(({address, port}) => `${address}:${port}`);
@@ -44,6 +37,12 @@ export class ApiService {
     );
     this.api = composeApi(apiSettings);
     this.brsVersion = undefined;
+
+    if (settings.nodeAutoSelectionEnabled) {
+      this.nodeUrl = await this.selectBestNode();
+      settings.node = this.nodeUrl;
+      await this.storeService.saveSettings(settings);
+    }
   }
 
   async selectBestNode(): Promise<string> {

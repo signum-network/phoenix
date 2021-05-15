@@ -111,6 +111,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="util.deeplinkparts.html#action" class="tsd-kind-icon">action</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="util.deeplinkparts.html#decodedpayload" class="tsd-kind-icon">decoded<wbr>Payload</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="util.deeplinkparts.html#domain" class="tsd-kind-icon">domain</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="util.deeplinkparts.html#payload" class="tsd-kind-icon">payload</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="util.deeplinkparts.html#version" class="tsd-kind-icon">version</a></li>
@@ -127,19 +128,45 @@
 					<div class="tsd-signature tsd-kind-icon">action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3f11bb5d/lib/packages/util/src/typings/DeeplinkParts.ts#L10">util/src/typings/DeeplinkParts.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/util/src/typings/DeeplinkParts.ts#L19">util/src/typings/DeeplinkParts.ts:19</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The actions name, if given</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="decodedpayload" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> decoded<wbr>Payload</h3>
+					<div class="tsd-signature tsd-kind-icon">decoded<wbr>Payload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/util/src/typings/DeeplinkParts.ts#L28">util/src/typings/DeeplinkParts.ts:28</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The decoded payload. As per default parseDeeplink tries to parse the content
+							as JSON object. If this does not work the decoded string will be returned.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="domain" class="tsd-anchor"></a>
-					<h3>domain</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> domain</h3>
 					<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3f11bb5d/lib/packages/util/src/typings/DeeplinkParts.ts#L8">util/src/typings/DeeplinkParts.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/util/src/typings/DeeplinkParts.ts#L11">util/src/typings/DeeplinkParts.ts:11</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The domain, if given</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="payload" class="tsd-anchor"></a>
@@ -147,9 +174,14 @@
 					<div class="tsd-signature tsd-kind-icon">payload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3f11bb5d/lib/packages/util/src/typings/DeeplinkParts.ts#L11">util/src/typings/DeeplinkParts.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/util/src/typings/DeeplinkParts.ts#L23">util/src/typings/DeeplinkParts.ts:23</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The raw/encoded payload</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="version" class="tsd-anchor"></a>
@@ -157,9 +189,14 @@
 					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3f11bb5d/lib/packages/util/src/typings/DeeplinkParts.ts#L9">util/src/typings/DeeplinkParts.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/util/src/typings/DeeplinkParts.ts#L15">util/src/typings/DeeplinkParts.ts:15</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The version</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -209,6 +246,9 @@
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
 						<a href="../classes/util.burstvalue.html" class="tsd-kind-icon">Burst<wbr>Value</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="util.asyncretryargs.html" class="tsd-kind-icon">Async<wbr>Retry<wbr>Args</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="util.createdeeplinkargs.html" class="tsd-kind-icon">Create<wbr>Deeplink<wbr>Args</a>
 					</li>
@@ -219,6 +259,9 @@
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="util.deeplinkparts.html#action" class="tsd-kind-icon">action</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="util.deeplinkparts.html#decodedpayload" class="tsd-kind-icon">decoded<wbr>Payload</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="util.deeplinkparts.html#domain" class="tsd-kind-icon">domain</a>
@@ -245,8 +288,14 @@
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
 						<a href="../modules/util.html#oneburstplanck" class="tsd-kind-icon">One<wbr>Burst<wbr>Planck</a>
 					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="../modules/util.html#asyncretry" class="tsd-kind-icon">async<wbr>Retry</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="../modules/util.html#convertaddresstonumericid" class="tsd-kind-icon">convert<wbr>Address<wbr>ToNumeric<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertbase36stringtohexstring" class="tsd-kind-icon">convert<wbr>Base36<wbr>String<wbr>ToHex<wbr>String</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="../modules/util.html#convertbase64stringtostring" class="tsd-kind-icon">convert<wbr>Base64<wbr>String<wbr>ToString</a>
@@ -271,6 +320,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="../modules/util.html#converthexendianess" class="tsd-kind-icon">convert<wbr>Hex<wbr>Endianess</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#converthexstringtobase36string" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToBase36<wbr>String</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="../modules/util.html#converthexstringtobytearray" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToByte<wbr>Array</a>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HttpImpl
+	<title>HttpAdapterAxios
 	| burstjs - The Burstcoin Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,10 +78,10 @@
 					<a href="../modules/http.html">http</a>
 				</li>
 				<li>
-					<a href="http.httpimpl.html">HttpImpl</a>
+					<a href="http.httpadapteraxios.html">HttpAdapterAxios</a>
 				</li>
 			</ul>
-			<h1>Class HttpImpl</h1>
+			<h1>Class HttpAdapterAxios</h1>
 		</div>
 	</div>
 </header>
@@ -93,14 +93,14 @@
 					<div class="lead">
 						<p>Http Implementation of <a href="../interfaces/http.http-1.html">Http</a> using <a href="https://github.com/axios/axios">https://github.com/axios/axios</a></p>
 					</div>
-					<p>You can use <a href="../modules/http.html#httpclient">HttpClient</a> as alias</p>
+					<p>Prefer <a href="http.httpclientfactory.html#createhttpclient">HttpClientFactory.createHttpClient</a> to create an instance</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">HttpImpl</span>
+						<span class="target">HttpAdapterAxios</span>
 					</li>
 				</ul>
 			</section>
@@ -117,16 +117,16 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="http.httpimpl.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="http.httpadapteraxios.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="http.httpimpl.html#delete" class="tsd-kind-icon">delete</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="http.httpimpl.html#get" class="tsd-kind-icon">get</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="http.httpimpl.html#post" class="tsd-kind-icon">post</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="http.httpimpl.html#put" class="tsd-kind-icon">put</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="http.httpadapteraxios.html#delete" class="tsd-kind-icon">delete</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="http.httpadapteraxios.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="http.httpadapteraxios.html#post" class="tsd-kind-icon">post</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="http.httpadapteraxios.html#put" class="tsd-kind-icon">put</a></li>
 							</ul>
 						</section>
 					</div>
@@ -138,13 +138,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Http<wbr>Impl<span class="tsd-signature-symbol">(</span>baseURL<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">AxiosRequestConfig</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.httpimpl.html" class="tsd-signature-type">HttpImpl</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Http<wbr>Adapter<wbr>Axios<span class="tsd-signature-symbol">(</span>baseURL<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">AxiosRequestConfig</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.httpadapteraxios.html" class="tsd-signature-type">HttpAdapterAxios</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3f11bb5d/lib/packages/http/src/httpImpl.ts#L17">http/src/httpImpl.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/http/src/httpAdapterAxios.ts#L17">http/src/httpAdapterAxios.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -173,7 +173,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="http.httpimpl.html" class="tsd-signature-type">HttpImpl</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="http.httpadapteraxios.html" class="tsd-signature-type">HttpAdapterAxios</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -190,7 +190,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3f11bb5d/lib/packages/http/src/httpImpl.ts#L77">http/src/httpImpl.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/http/src/httpAdapterAxios.ts#L77">http/src/httpAdapterAxios.ts:77</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -216,7 +216,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3f11bb5d/lib/packages/http/src/httpImpl.ts#L50">http/src/httpImpl.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/http/src/httpAdapterAxios.ts#L50">http/src/httpAdapterAxios.ts:50</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -242,7 +242,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3f11bb5d/lib/packages/http/src/httpImpl.ts#L59">http/src/httpImpl.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/http/src/httpAdapterAxios.ts#L59">http/src/httpAdapterAxios.ts:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -271,7 +271,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/3f11bb5d/lib/packages/http/src/httpImpl.ts#L68">http/src/httpImpl.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/http/src/httpAdapterAxios.ts#L68">http/src/httpAdapterAxios.ts:68</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -326,33 +326,36 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="http.httperror.html" class="tsd-kind-icon">Http<wbr>Error</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="http.httpimpl.html" class="tsd-kind-icon">Http<wbr>Impl</a>
+						<a href="http.httpadapteraxios.html" class="tsd-kind-icon">Http<wbr>Adapter<wbr>Axios</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="http.httpimpl.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="http.httpadapteraxios.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="http.httpimpl.html#delete" class="tsd-kind-icon">delete</a>
+								<a href="http.httpadapteraxios.html#delete" class="tsd-kind-icon">delete</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="http.httpimpl.html#get" class="tsd-kind-icon">get</a>
+								<a href="http.httpadapteraxios.html#get" class="tsd-kind-icon">get</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="http.httpimpl.html#post" class="tsd-kind-icon">post</a>
+								<a href="http.httpadapteraxios.html#post" class="tsd-kind-icon">post</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="http.httpimpl.html#put" class="tsd-kind-icon">put</a>
+								<a href="http.httpadapteraxios.html#put" class="tsd-kind-icon">put</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="http.httpclientfactory.html" class="tsd-kind-icon">Http<wbr>Client<wbr>Factory</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="http.httperror.html" class="tsd-kind-icon">Http<wbr>Error</a>
+					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
 						<a href="http.httpmockbuilder.html" class="tsd-kind-icon">Http<wbr>Mock<wbr>Builder</a>
 					</li>
@@ -361,9 +364,6 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/http.http-1.html" class="tsd-kind-icon">Http</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-						<a href="../modules/http.html#httpclient" class="tsd-kind-icon">Http<wbr>Client</a>
 					</li>
 				</ul>
 			</nav>

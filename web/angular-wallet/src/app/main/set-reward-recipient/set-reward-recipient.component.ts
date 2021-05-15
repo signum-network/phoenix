@@ -8,6 +8,7 @@ import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {Recipient} from 'app/layout/components/burst-recipient-input/burst-recipient-input.component';
 import {burstAddressPattern} from 'app/util/burstAddressPattern';
 import {convertAddressToNumericId, convertNumberToNQTString} from '@burstjs/util';
+import {isKeyDecryptionError} from '../../util/exceptions/isKeyDecryptionError';
 
 @Component({
   selector: 'app-set-reward-recipient',
@@ -61,7 +62,11 @@ export class SetRewardRecipientComponent implements OnInit {
       this.notifierService.notify('success', this.i18nService.getTranslation('success_set_reward_recipient'));
       this.setRewardRecipientForm.resetForm();
     } catch (e) {
-      this.notifierService.notify('error', e.message || this.i18nService.getTranslation('error_set_reward_recipient'));
+      if (isKeyDecryptionError(e)) {
+        this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
+      } else {
+        this.notifierService.notify('error', e.message || this.i18nService.getTranslation('error_set_reward_recipient'));
+      }
     } finally {
       this.isSending = false;
     }

@@ -1,18 +1,21 @@
 <form (ngSubmit)="onSubmit();" #sendForm="ngForm">
-  <mat-slide-toggle
-    [(ngModel)]="isRevoking" name="isRevoking"
-    matTooltip="{{'toggle_commitment_mode' | i18n}}"
-  >
-    {{(isRevoking ? 'revoke_commitment' : "add_commitment") | i18n}}
-  </mat-slide-toggle>
+  <mat-radio-group fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center" fxLayout.sm="column"
+                   fxLayoutAlign.sm="start start" [(ngModel)]="mode" name="mode">
+    <mat-radio-button class="mb-12" value="add"
+                      [checked]="mode === 'add'">{{'add_commitment' | i18n}}</mat-radio-button>
+    <mat-radio-button class="mb-12" value="revoke">{{'revoke_commitment' | i18n}}</mat-radio-button>
+  </mat-radio-group>
 
-  <ng-container *ngIf="isRevoking && !canRevoke()">
-    <div class="mt-24 p-24 full-width message-box warning">
+  <ng-container *ngIf="isRevoking()">
+    <div *ngIf="hasMissingBlocks()" class="mt-24 p-24 full-width message-box warning">
       {{blocksMissingUntilRevoke}}&nbsp;{{'commitment_blocks_enabled' | i18n}}
+    </div>
+    <div *ngIf="hasNothingCommitted()" class="mt-24 p-24 full-width message-box warning">
+      {{'commitment_zero_balance'| i18n}}
     </div>
   </ng-container>
 
-  <ng-container *ngIf="!isRevoking || (isRevoking && canRevoke())">
+  <ng-container *ngIf="!isRevoking() || (isRevoking() && !hasMissingBlocks() && !hasNothingCommitted())">
     <div class="amount-wrapper">
       <mat-form-field>
         <mat-label>{{ 'amount' | i18n }}</mat-label>
@@ -38,8 +41,8 @@
     <burst-fee-selector [fees]="fees" [(fee)]="fee"></burst-fee-selector>
 
     <app-submit-transaction [disabled]="!canSubmit()"
-                             [isSubmitting]="isSending"
-                             (pinChange)="setPin($event)">
+                            [isSubmitting]="isSending"
+                            (pinChange)="setPin($event)">
     </app-submit-transaction>
 
     <strong>{{'total' | i18n}}:&nbsp;</strong>

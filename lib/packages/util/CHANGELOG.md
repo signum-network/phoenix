@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 - `BurstValue.fromPlanck()` accepts number now
 - Added hex <> base36 conversion
 
+### Improved
+- `parseDeeplink`, `createDeeplink`
+  - made domain optional
+  - builtin decoding of payload
 
 ## 0.5.0
 

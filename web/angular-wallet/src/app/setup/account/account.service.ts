@@ -37,6 +37,8 @@ import {
 import {ApiService} from '../../api.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {HttpError, HttpClientFactory} from '@burstjs/http';
+import {NetworkService} from '../../network/network.service';
+import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -81,7 +83,10 @@ export class AccountService {
   private api: Api;
   private transactionsSeenInNotifications: string[] = [];
 
-  constructor(private storeService: StoreService, private apiService: ApiService, private i18nService: I18nService) {
+  constructor(private storeService: StoreService,
+              private networkService: NetworkService,
+              private apiService: ApiService,
+              private i18nService: I18nService) {
     this.storeService.settings.subscribe(() => {
       this.api = this.apiService.api;
     });
@@ -170,7 +175,11 @@ export class AccountService {
   }
 
   private getPrivateKey(keys, pin): string {
-    return decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    try {
+      return decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    } catch (e) {
+      throw new KeyDecryptionException();
+    }
   }
 
   public getAccountBalance(id: string): Promise<Balance> {
@@ -379,7 +388,7 @@ export class AccountService {
       account.committedBalanceNQT = remoteAccount.committedBalanceNQT;
       account.balanceNQT = remoteAccount.balanceNQT;
       account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
-      account.accountRSExtended = remoteAccount.accountRSExtended
+      account.accountRSExtended = remoteAccount.accountRSExtended;
       // @ts-ignore
       account.confirmed = !!remoteAccount.publicKey;
     } catch (e) {
@@ -396,10 +405,16 @@ export class AccountService {
         return;
       }
 
-      const http = HttpClientFactory.createHttpClient(environment.activatorServiceUrl);
+      const isMainNet = await this.networkService.isMainNet();
+      const activatorUrl = isMainNet
+        ? environment.activatorServiceUrl.mainNet
+        : environment.activatorServiceUrl.testNet;
+
+      const http = HttpClientFactory.createHttpClient(activatorUrl);
       const payload = {
         account: account.account,
-        publickey: account.keys.publicKey
+        publickey: account.keys.publicKey,
+        ref: `phoenix-${environment.version}`
       };
       await http.post('/api/activate', payload);
     } catch (e) {

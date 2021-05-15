@@ -12,12 +12,12 @@
   </ng-container>
 
   <ng-container matColumnDef="attachment">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      <mat-icon>mail</mat-icon>
+    <mat-header-cell *matHeaderCellDef>
+      <mat-icon>attach_file</mat-icon>
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
       <span *ngIf="transaction.attachment">
-        <mat-icon>mail</mat-icon>
+        <mat-icon>done</mat-icon>
       </span>
     </mat-cell>
   </ng-container>
@@ -27,12 +27,10 @@
       <mat-icon>schedule</mat-icon>&nbsp;{{"date" | i18n}}
     </mat-header-cell>
     <mat-cell
+      class="font-size-8"
       *matCellDef="let transaction"
-      title="{{
-        convertTimestamp(transaction.timestamp) | date: 'MMM d, y, h:mm:ss'
-      }}"
     >
-      {{ convertTimestamp(transaction.timestamp) | timeAgo }}
+      {{ getDate(transaction)}}
     </mat-cell>
   </ng-container>
 
@@ -47,8 +45,9 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       <mat-icon>local_atm</mat-icon>
     </mat-header-cell>
-    <mat-cell  *matCellDef="let transaction">
-      <div *ngIf="!isCommitment(transaction)" [ngClass]="{fg_green: !isAmountNegative(transaction), fg_red: isAmountNegative(transaction)}">
+    <mat-cell *matCellDef="let transaction">
+      <div *ngIf="!isCommitment(transaction)"
+           [ngClass]="{fg_green: !isAmountNegative(transaction), fg_red: isAmountNegative(transaction)}">
         {{getAmount(transaction) | burstAmount:'burst':true}}
       </div>
       <div *ngIf="isCommitment(transaction)" class="fg_green">
@@ -73,17 +72,27 @@
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
       <ng-container *ngIf="isOwnAccount(transaction.senderRS)">
-        <a *ngIf="!isMultiOutPayment(transaction)"
+        <div *ngIf="!isMultiOutPayment(transaction) && !transaction.recipientRS"
+             class="centered text-uppercase"
+        >
+          {{"self" | i18n}}
+        </div>
+        <a *ngIf="!isMultiOutPayment(transaction) && transaction.recipientRS"
+           class="centered"
            [routerLink]="['/account', transaction.recipient]">{{
           transaction.recipientRS
           }}</a>
-        <div *ngIf="isMultiOutPayment(transaction)">
-          Multiple Recipients
+        <div *ngIf="isMultiOutPayment(transaction)"
+             class="centered text-uppercase"
+        >
+          {{"multiple_recipients" | i18n}}
         </div>
       </ng-container>
-      <a [routerLink]="['/account', transaction.sender]" *ngIf="!isOwnAccount(transaction.senderRS)">{{
-        transaction.senderRS
-        }}</a>
+      <a *ngIf="!isOwnAccount(transaction.senderRS)"
+         class="centered"
+         [routerLink]="['/account', transaction.sender]"
+      >{{transaction.senderRS}}</a>
+
     </mat-cell>
   </ng-container>
 
@@ -92,15 +101,16 @@
       "confirmations" | i18n
       }}</mat-header-cell>
     <mat-cell *matCellDef="let transaction">
-      <span *ngIf="transaction.confirmations">{{
-        transaction.confirmations
-        }}</span>
+      <span *ngIf="transaction.confirmations">{{transaction.confirmations}}</span>
+      <span *ngIf="!transaction.confirmations">{{'pending' | i18n}}</span>
     </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"
-           [class]="row.confirmations ? 'confirmed': 'unconfirmed'"></mat-row>
+           [class]="getRowClass(row)"
+  >
+  </mat-row>
 </mat-table>
 
 <mat-paginator

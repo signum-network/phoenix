@@ -25,7 +25,8 @@ export const navigation: FuseNavigation[] = [
         title: 'Send Burst',
         type: 'item',
         icon: 'vertical_align_top',
-        url: '/send'
+        url: '/send',
+        fullAccountOnly: true
       },
       {
         id: 'request_burst',
@@ -53,14 +54,15 @@ export const navigation: FuseNavigation[] = [
         title: 'Messages',
         type: 'item',
         icon: 'messages',
-        url: '/messages'
+        url: '/messages',
+        fullAccountOnly: true
       },
       {
         id: 'aliases',
         title: 'Aliases',
         type: 'item',
         icon: 'group',
-        url: '/aliases'
+        url: '/aliases',
       },
       {
         id: 'my_assets',
@@ -76,6 +78,7 @@ export const navigation: FuseNavigation[] = [
     id: 'mining',
     title: 'Mining',
     type: 'collapsable',
+    fullAccountOnly: true,
     children: [
       {
         id: 'commitment',
@@ -85,8 +88,8 @@ export const navigation: FuseNavigation[] = [
         url: '/commitment'
       },
       {
-        id: 'reward_recipient',
-        title: 'Reward Recipient',
+        id: 'reward_recipient_assignment',
+        title: 'Reward Assignment',
         type: 'item',
         icon: 'directions',
         url: '/set-reward-recipient'

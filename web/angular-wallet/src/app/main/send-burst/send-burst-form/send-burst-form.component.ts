@@ -3,7 +3,8 @@ import {Account, SuggestedFees} from '@burstjs/core';
 import {
   convertAddressToNumericId,
   convertNQTStringToNumber,
-  BurstValue
+  BurstValue,
+  convertBase64StringToString
 } from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
@@ -18,9 +19,20 @@ import {
 import {StoreService} from '../../../store/store.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
-import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
+import {ActivatedRoute, Router, NavigationEnd, Params} from '@angular/router';
 import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
+import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 
+interface CIP22Payload {
+  amountPlanck: string | number;
+  deadline: string | number;
+  encrypt: string | boolean;
+  feePlanck: string | number;
+  immutable: string | boolean;
+  message: string;
+  messageIsText: string | boolean;
+  recipient: string;
+}
 
 interface QRData {
   recipient: Recipient;
@@ -34,6 +46,7 @@ interface QRData {
 }
 
 const isNotEmpty = (value: string) => value && value.length > 0;
+const isTrue = (value: any): boolean => value === 'true' || value === true;
 
 @Component({
   selector: 'app-send-burst-form',
@@ -85,7 +98,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
 
     router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
-        this.applyDeepLinkParams();
+        this.applyDeepLinkParams(this.route.snapshot.queryParams);
       }
     });
   }
@@ -102,31 +115,69 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
 
     if (this.route.snapshot.queryParams) {
       setTimeout(() => {
-        this.applyDeepLinkParams();
+        this.applyDeepLinkParams(this.route.snapshot.queryParams);
       }, 500);
     }
   }
 
-  private applyDeepLinkParams(): void {
-    this.onRecipientChange(new Recipient(this.route.snapshot.queryParams.receiver));
-    if (this.route.snapshot.queryParams.feeNQT) {
-      this.fee = convertNQTStringToNumber(this.route.snapshot.queryParams.feeNQT).toString();
+  private applyDeepLinkParams(queryParams: Params): void {
+    try {
+      if (queryParams.cip22) {
+        this.applyCIP22DeepLinkParams(queryParams);
+      } else {
+        this.applyLegacyDeepLinkParams(queryParams);
+      }
+    } catch (e) {
+      this.notifierService.notify('warning', 'Invalid Deeplink parameters. Ignored');
+    }
+  }
+
+  private applyCIP22DeepLinkParams(queryParams: Params): void {
+    const {payload} = queryParams;
+    const decodedPayload = convertBase64StringToString(payload);
+    const {
+      amountPlanck,
+      deadline,
+      encrypt,
+      feePlanck,
+      immutable,
+      message,
+      messageIsText,
+      recipient,
+    } = JSON.parse(decodedPayload) as CIP22Payload;
+
+    this.onRecipientChange(new Recipient(recipient));
+
+    this.amount = amountPlanck ? BurstValue.fromPlanck(amountPlanck).getBurst() : this.amount;
+    this.fee = feePlanck ? BurstValue.fromPlanck(feePlanck).getBurst() : this.fee;
+    this.message = message;
+    this.messageIsText = isTrue(messageIsText) || this.messageIsText;
+    this.immutable = isTrue(immutable) || this.immutable;
+    this.encrypt = isTrue(encrypt) || this.encrypt;
+    this.deadline = typeof deadline === 'number' && deadline > 0 ? '' + deadline : deadline as string;
+  }
+
+  private applyLegacyDeepLinkParams(queryParams: Params): void {
+    const {receiver, feeNQT, amountNQT, message, encrypt, immutable, messageIsText, feeSuggestionType} = queryParams;
+    this.onRecipientChange(new Recipient(receiver));
+    if (feeNQT) {
+      this.fee = convertNQTStringToNumber(feeNQT).toString();
     }
 
-    if (this.route.snapshot.queryParams.amountNQT) {
-      this.amount = convertNQTStringToNumber(this.route.snapshot.queryParams.amountNQT).toString();
+    if (amountNQT) {
+      this.amount = convertNQTStringToNumber(amountNQT).toString();
     }
-    this.message = this.route.snapshot.queryParams.message;
-    this.encrypt = this.route.snapshot.queryParams.encrypt;
-    this.immutable = this.route.snapshot.queryParams.immutable || this.immutable;
+    this.message = message;
+    this.encrypt = encrypt;
+    this.immutable = immutable || this.immutable;
     if (this.immutable === 'false') {
       this.immutable = false;
     }
-    if (this.route.snapshot.queryParams.messageIsText === 'false') {
+    if (messageIsText === 'false') {
       this.messageIsText = false;
     }
-    if (this.route.snapshot.queryParams.feeSuggestionType && this.fees[this.route.snapshot.queryParams.feeSuggestionType]) {
-      this.fee = convertNQTStringToNumber(this.fees[this.route.snapshot.queryParams.feeSuggestionType]).toString();
+    if (feeSuggestionType && this.fees[feeSuggestionType]) {
+      this.fee = convertNQTStringToNumber(this.fees[feeSuggestionType]).toString();
     }
     this.showMessage = !!this.message;
   }
@@ -172,7 +223,11 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
       this.sendBurstForm.resetForm();
       await this.router.navigate(['/']);
     } catch (e) {
-      this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
+      if (isKeyDecryptionError(e)) {
+        this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
+      } else {
+        this.notifierService.notify('error', this.i18nService.getTranslation('error_send_money'));
+      }
     } finally {
       this.immutable = false;
       this.isSending = false;
@@ -188,7 +243,9 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   hasSufficientBalance(): boolean {
-    if (!this.balances) { return false; }
+    if (!this.balances) {
+      return false;
+    }
 
     const available = this.balances.availableBalance.clone();
     return available
@@ -221,9 +278,11 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   onSpendAll(): void {
-    if (!this.balances) { return; }
+    if (!this.balances) {
+      return;
+    }
 
-    const available  = this.balances.availableBalance.clone();
+    const available = this.balances.availableBalance.clone();
     const fee = BurstValue.fromBurst(this.fee || '0');
     this.amount = available.subtract(fee).getBurst();
   }
