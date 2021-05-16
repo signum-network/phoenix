@@ -84,11 +84,14 @@ class Settings extends React.PureComponent<Props> {
 
   render () {
     const nodes = [
-      // 'https://wallet.burst-alliance.org:8125',
-      'https://wallet1.burst-team.us:2083',
-      'https://wallet.burstcoin.ro:443',
-      'https://wallet2.burstcoin.ro:443',
-      'https://testnet-2.burst-alliance.org:6876'
+      'https://wallet.burstcoin.ro',
+      'https://wallet2.burstcoin.ro',
+      'https://uk.signum.network',
+      'https://brazil.signum.network',
+      'https://europe.signum.network',
+      'https://australia.signum.network',
+      'https://testnetwallet.burstcoin.ro',
+      'https://testnet.burstcoin.network'
     ];
 
     const { selectedNode } = this.state;
