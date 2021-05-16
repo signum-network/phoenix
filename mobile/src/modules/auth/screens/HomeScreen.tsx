@@ -117,12 +117,10 @@ class Home extends React.PureComponent<IProps, State> {
   }
 
   checkTermsModal = () => {
-    console.log('did user agree?', this.props.auth.agreeToTerms);
     this.setTermsModalVisible(!this.props.auth.agreeToTerms);
   }
 
   setTermsModalVisible = (isTermsModalVisible: boolean) => {
-    console.log('setting terms modal visible', isTermsModalVisible);
     this.setState({ isTermsModalVisible });
   }
 
@@ -141,7 +139,6 @@ class Home extends React.PureComponent<IProps, State> {
   }
 
   handleTermsAgreed = () => {
-    console.log('agreed')
     this.props.dispatch(setAgreeToTerms(true));
     this.setTermsModalVisible(false);
   }
@@ -188,7 +185,6 @@ class Home extends React.PureComponent<IProps, State> {
     const priceApi = this.props.priceApi;
     const shouldShowChart = accounts.length && priceApi.priceInfo && priceApi.historicalPriceInfo;
     const { isTermsModalVisible } = this.state;
-    console.log('should it be visible?', isTermsModalVisible);
     return (
       <Screen>
         <FullHeightView withoutPaddings>
