@@ -147,7 +147,7 @@ export const constants = {
   multiOutMinVersion: '2.3.1',
   pocPlusVersion: '3.0.0',
   mainnetIndicator: {
-    block: 834000,
-    previousHash: '1fab995caf67530a90b69df0b512e0e434bd7f2f1b0fe1caae2414688c2d8f16'
+    block: 23,
+    previousHash: '520d5647e77106c98eeab9d1cc5753daab2a3b3e1ba0b2da388be305dd97e5f7'
   }
 };
