@@ -14,7 +14,12 @@ interface Props {
 
 const styles = StyleSheet.create({
   view: {
-    backgroundColor: Colors.BLUE
+    backgroundColor: Colors.BLUE_DARKER,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: '100%',
+    zIndex: 10 // must be >9
   },
   heading1: {
     fontSize: 18,
@@ -39,7 +44,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export class TermsModal extends React.PureComponent<Props> {
+export class TermsScreen extends React.PureComponent<Props> {
   handleAgree = () => {
     this.props.onAgree();
   }
@@ -48,11 +53,6 @@ export class TermsModal extends React.PureComponent<Props> {
     const { visible } = this.props;
 
     return (
-      <Modal
-        animationType={'slide'}
-        visible={visible}
-        transparent={false}
-      >
         <Screen style={styles.view} >
           <SafeAreaView>
             <ScrollView style={{ paddingLeft: 15, paddingRight: 15 }}>
@@ -61,7 +61,6 @@ export class TermsModal extends React.PureComponent<Props> {
             </ScrollView>
           </SafeAreaView>
         </Screen>
-      </Modal>
     );
   }
 }

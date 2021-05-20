@@ -27,9 +27,9 @@ export const loadApp = createActionFn<void, Promise<void>>(
       dispatch(loadPasscode()),
       dispatch(loadPasscodeEnteredTime()),
       dispatch(loadAppSettings()),
-      dispatch(loadAgreeToTerms())
+      dispatch(loadAgreeToTerms()),
+      dispatch(loadCurrentNode())
     ]);
-    dispatch(loadCurrentNode());
     dispatch(loadHistoricalPriceApiData());
     dispatch(getSuggestedFees());
     dispatch(actions.appLoaded());
