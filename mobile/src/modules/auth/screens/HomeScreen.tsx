@@ -36,7 +36,7 @@ interface IProps extends InjectedReduxProps {
 
 interface State {
   isPINModalVisible: boolean,
-  isTermsModalVisible: boolean,
+  isTermsScreenVisible: boolean,
   selectedCurrency: PriceTypeStrings;
 }
 
@@ -67,7 +67,7 @@ class Home extends React.PureComponent<IProps, State> {
 
   state = {
     isPINModalVisible: false,
-    isTermsModalVisible: false,
+    isTermsScreenVisible: false,
     selectedCurrency: priceTypes[0]
   };
 
@@ -96,7 +96,7 @@ class Home extends React.PureComponent<IProps, State> {
       if (shouldEnterPIN(passcodeTime, passcodeEnteredTime)) {
         this.setPINModalVisible(true);
       }
-      this.checkTermsModal();
+      this.checkTermsScreen();
     };
     checkSessionExpiry();
     this._checkPinExpiryInterval = setInterval(checkSessionExpiry, 1000);
@@ -116,12 +116,12 @@ class Home extends React.PureComponent<IProps, State> {
     this.setState({ isPINModalVisible });
   }
 
-  checkTermsModal = () => {
-    this.setTermsModalVisible(!this.props.auth.agreeToTerms);
+  checkTermsScreen = () => {
+    this.setTermsScreenVisible(!this.props.auth.agreeToTerms);
   }
 
-  setTermsModalVisible = (isTermsModalVisible: boolean) => {
-    this.setState({ isTermsModalVisible });
+  setTermsScreenVisible = (isTermsScreenVisible: boolean) => {
+    this.setState({ isTermsScreenVisible });
   }
 
   handleAccountPress = (account: Account) => {
@@ -140,7 +140,7 @@ class Home extends React.PureComponent<IProps, State> {
 
   handleTermsAgreed = () => {
     this.props.dispatch(setAgreeToTerms(true));
-    this.setTermsModalVisible(false);
+    this.setTermsScreenVisible(false);
   }
 
   handleAddAccount = () => {
@@ -184,7 +184,7 @@ class Home extends React.PureComponent<IProps, State> {
     const accounts: Account[] = this.props.auth.accounts || [];
     const priceApi = this.props.priceApi;
     const shouldShowChart = accounts.length && priceApi.priceInfo && priceApi.historicalPriceInfo;
-    const { isTermsModalVisible } = this.state;
+    const { isTermsScreenVisible } = this.state;
     return (
       <Screen>
         <FullHeightView withoutPaddings>
@@ -221,8 +221,8 @@ class Home extends React.PureComponent<IProps, State> {
               onCancel={this.handlePINCancel}
               onReset={this.handleReset}
             />
-            {isTermsModalVisible && !this.state.isPINModalVisible && <TermsScreen
-              visible={isTermsModalVisible}
+            {isTermsScreenVisible && !this.state.isPINModalVisible && <TermsScreen
+              visible={isTermsScreenVisible}
               onAgree={this.handleTermsAgreed}
             />}
           </View>
