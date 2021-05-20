@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export class TermsModal extends React.PureComponent<Props> {
+export class TermsScreen extends React.PureComponent<Props> {
   handleAgree = () => {
     this.props.onAgree();
   }
@@ -53,12 +53,6 @@ export class TermsModal extends React.PureComponent<Props> {
     const { visible } = this.props;
 
     return (
-      // This used to be a modal but has a freezing glitch - blankey
-      // <Modal
-      //   animationType={'slide'}
-      //   visible={visible}
-      //   transparent={false}
-      // >
         <Screen style={styles.view} >
           <SafeAreaView>
             <ScrollView style={{ paddingLeft: 15, paddingRight: 15 }}>
@@ -67,7 +61,6 @@ export class TermsModal extends React.PureComponent<Props> {
             </ScrollView>
           </SafeAreaView>
         </Screen>
-      // </Modal>
     );
   }
 }

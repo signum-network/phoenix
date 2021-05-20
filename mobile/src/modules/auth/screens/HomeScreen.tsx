@@ -19,7 +19,7 @@ import { PriceInfoReduxState, PriceType, PriceTypeStrings } from '../../price-ap
 import { AccountsList } from '../components/AccountsList';
 import { AccountsListHeader } from '../components/AccountsListHeader';
 import { EnterPasscodeModal } from '../components/passcode/EnterPasscodeModal';
-import { TermsModal } from '../components/terms/TermsModal';
+import { TermsScreen } from '../components/terms/TermsScreen';
 import { RootStackParamList } from '../navigation/mainStack';
 import { hydrateAccount, removeAccount, resetAuthState, setAgreeToTerms } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
@@ -221,7 +221,7 @@ class Home extends React.PureComponent<IProps, State> {
               onCancel={this.handlePINCancel}
               onReset={this.handleReset}
             />
-            {isTermsModalVisible && !this.state.isPINModalVisible && <TermsModal
+            {isTermsModalVisible && !this.state.isPINModalVisible && <TermsScreen
               visible={isTermsModalVisible}
               onAgree={this.handleTermsAgreed}
             />}
