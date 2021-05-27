@@ -125,16 +125,25 @@ navbar {
 
       .logo {
         display: flex;
-        align-items: baseline;
+        flex-direction: column;
+        justify-content: flex-end;
+        //align-items: baseline;
 
         .logo-folded {
           display: none;
         }
 
         img {
-          width: 100px;
+          width: 80%;
+          margin: 0 auto;
         }
 
+        #version {
+          position: absolute;
+          left: 160px;
+          top: 44px;
+          font-size: 60%;
+        }
       }
 
       .buttons {

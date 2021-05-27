@@ -139,7 +139,7 @@ export const constants = {
       location: 'Local',
       address: 'http://localhost',
       port: 8125,
-      reliable: false,
+      reliable: true,
     }
   ],
   supportUrl: 'https://github.com/burst-apps-team/phoenix/issues',

@@ -1,6 +1,6 @@
-# BURST Angular Wallet
+# Signum Wallet
 
-The BURST Angular wallet is a JavaScript application written in Angular and TypeScript. 
+The Signum wallet is a JavaScript application written in Angular and TypeScript. 
 
 ## The Community
 
@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Just run `npm run release`
 
-This skript automates the following steps:
+This script automates the following steps:
 - Bumps to a new semantic version
 - creates and pushes a tag in format `desktop-[semversion]`
 - Builds Win, MacOS and Linux executables
@@ -43,6 +43,8 @@ It can be dropped into the `html/ui` folder in the BRS jar file, or served stati
 
 ## Running a full node
 
+> TODO: revisit this part as it maybe outdated in 2021
+
 Running a full node strengthens the network and adds security. Running a full node allows one to verify transactions without trusting any third parties. To run a full node:
 
 1. Download and configure the [Burst Reference Software (BRS)](https://github.com/burst-apps-team/burstcoin/releases).
@@ -55,7 +57,7 @@ Running a full node strengthens the network and adds security. Running a full no
 
     `npm run build:web`
 
-4. Copy the files from `dist` into your BRS isntallation's `html/ui` folder.
+4. Copy the files from `dist` into your BRS installation's `html/ui` folder.
 
     `cp dist/* [path to your BRS]/html/ui`
 
