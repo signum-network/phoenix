@@ -41,15 +41,15 @@ describe('tokenizeReedSolomonAddress', () => {
     it('should throw error for invalid addresses', () => {
         expect(() => {
             tokenizeReedSolomonAddress('somestring');
-        }).toThrow('Invalid Reed-Solomon Address: somestring');
+        }).toThrow('Invalid Reed-Solomon Address Format: somestring');
         expect(() => {
             tokenizeReedSolomonAddress('');
-        }).toThrow('Invalid Reed-Solomon Address: ');
+        }).toThrow('Invalid Reed-Solomon Address Format: ');
         expect(() => {
             tokenizeReedSolomonAddress('TS-9K9L-4CB5-88Y5');
-        }).toThrow('Invalid Reed-Solomon Address: ');
+        }).toThrow('Invalid Reed-Solomon Address Format: ');
         expect(() => {
             tokenizeReedSolomonAddress('TS-9K9L-4CB5-88Y5-09e38e-00727-ihagsg');
-        }).toThrow('Invalid Reed-Solomon Address: ');
+        }).toThrow('Invalid Reed-Solomon Address Format: ');
     });
 });
