@@ -10,6 +10,9 @@ import {
     isBurstAddress,
     convertAddressToNumericId,
 } from '@burstjs/util';
+import {ensureReedSolomonAddress} from './ensureReedSolomonAddress';
+import {tokenizeReedSolomonAddress} from './tokenizeReedSolomonAddress';
+import {convertReedSolomonAddressToNumericId} from './convertReedSolomonAddressToNumericId';
 
 function assertValidPublicKey(publicKey: string): void {
     if (!(publicKey && /^[a-fA-F0-9]{64}/.test(publicKey))) {
@@ -47,42 +50,26 @@ export class Address {
     }
 
     /**
-     * Creates an Account Address object from simple Reed-Solomon address
-     *
-     * Note: This address format does not carry any information about public key, therefore the public key will stay empty
-     *
-     * @param rsAddress The Reed-Solomon address
-     * @throws Error if the passed address is invalid
-     */
-    public static fromRSAddress(rsAddress: string): Address {
-        return new Address({address: rsAddress});
-    }
-
-    /**
      * Creates an Account Address object from extended Reed-Solomon address
-     * @param extendedRSAddress The Reed-Solomon address in extended format (with base36 suffix)
+     * @param address The Reed-Solomon address in extended format (with base36 suffix)
      * @throws Error if the passed address is invalid, i.e. not extended format , or extension aka base36 encoded public key does not match address
      */
-    public static fromExtendedRSAddress(extendedRSAddress: string): Address {
+    public static fromReedSolomonAddress(address: string): Address {
 
-        if (!isBurstAddress(extendedRSAddress)) {
-            throw new Error('Not a valid RS address');
+        ensureReedSolomonAddress(address);
+
+        const {extension} = tokenizeReedSolomonAddress(address);
+
+        if (extension) {
+            const publicKey = convertBase36StringToHexString(extension);
+
+            if (convertReedSolomonAddressToNumericId(address) !== getAccountIdFromPublicKey(publicKey)) {
+                throw Error('Address and Public Key do not match');
+            }
+            return new Address({publicKey});
         }
 
-        const index = extendedRSAddress.lastIndexOf('-');
-        const extension = extendedRSAddress.substr(index + 1);
-        const hasExtension = extension.length > 5;
-        if (!hasExtension) {
-            throw Error('Address is not an extended address');
-        }
-        const rsAddress = extendedRSAddress.substr(0, index);
-        const publicKey = convertBase36StringToHexString(extension);
-
-        if (convertAddressToNumericId(rsAddress) !== getAccountIdFromPublicKey(publicKey)) {
-            throw Error('Address and Public Key do not match');
-        }
-
-        return Address.fromPublicKey(publicKey);
+        return new Address({address});
     }
 
     /**

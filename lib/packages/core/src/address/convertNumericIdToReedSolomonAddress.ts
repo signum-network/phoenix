@@ -18,10 +18,8 @@ import {initialCodeword, base32Length, gmult, alphabet, cwmap} from './internal'
  */
 export const convertNumericIdToReedSolomonAddress = (numericId: string, prefix: string): string => {
 
-    if (numericId  === undefined ||
-        numericId  === null ||
-        numericId.trim().length === 0) {
-        return undefined;
+    if (!(numericId && prefix)) {
+        throw new Error('Invalid arguments');
     }
 
     const plainString10 = [],

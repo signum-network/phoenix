@@ -8,25 +8,28 @@ const TestAddress = {
 };
 
 describe('Address', () => {
-    describe('fromExtendedRSAddress', () => {
-        it('should construct as expected', () => {
-           Address.fromExtendedRSAddress(`${TestAddress.rs}-${TestAddress.ex}`);
+    describe('fromReedSolomonAddress', () => {
+        it('should construct as expected with simple address', () => {
+           const address = Address.fromReedSolomonAddress(TestAddress.rs);
+           expect(address.getPublicKey()).toHaveLength(0);
+        });
+        it('should construct as expected with simple address - ignoring prefix', () => {
+           const address = Address.fromReedSolomonAddress(TestAddress.rs.replace('BURST', 'FOOBAR'));
+           expect(address.getPublicKey()).toHaveLength(0);
+        });
+        it('should construct as expected with extended address', () => {
+           const address = Address.fromReedSolomonAddress(`${TestAddress.rs}-${TestAddress.ex}`);
+           expect(address.getPublicKey().toUpperCase()).toBe(TestAddress.pk);
         });
         it('should throw error on invalid address ', () => {
             expect(() => {
-                Address.fromExtendedRSAddress('invalid');
-            }).toThrow('Not a valid RS address');
-        });
-        it('should throw error on invalid address - just RS', () => {
-            expect(() => {
-                Address.fromExtendedRSAddress(TestAddress.rs);
-            }).toThrow('Address is not an extended address');
+                Address.fromReedSolomonAddress('invalid');
+            }).toThrow('Invalid Reed-Solomon Address Format: invalid');
         });
         it('should throw error on invalid address - not matching key', () => {
             expect(() => {
-                Address.fromExtendedRSAddress(`${TestAddress.rs}-2UCGWTUEEY66TN7RNC189PM19C4ATCEUGQV929IY1N24H0Y810`);
+                Address.fromReedSolomonAddress(`${TestAddress.rs}-2UCGWTUEEY66TN7RNC189PM19C4ATCEUGQV929IY1N24H0Y810`);
             }).toThrow('Address and Public Key do not match');
-
         });
     });
 
@@ -66,7 +69,7 @@ describe('Address', () => {
     describe('equals', () => {
         it('should be equal', () => {
             const address1 = Address.fromPublicKey(TestAddress.pk);
-            const address2 = Address.fromExtendedRSAddress(TestAddress.rs + '-' + TestAddress.ex);
+            const address2 = Address.fromReedSolomonAddress(TestAddress.rs + '-' + TestAddress.ex);
             expect(address1.equals(address2)).toBeTruthy();
         });
         it('should not be equal', () => {

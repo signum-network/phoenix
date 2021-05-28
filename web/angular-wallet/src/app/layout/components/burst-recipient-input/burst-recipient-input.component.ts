@@ -130,7 +130,7 @@ export class BurstRecipientInputComponent implements OnChanges {
         break;
       case RecipientType.ADDRESS:
         try {
-          const address = Address.fromExtendedRSAddress(id);
+          const address = Address.fromReedSolomonAddress(id);
           this.recipient.addressRaw = address.getReedSolomonAddress();
           this.recipient.publicKey = address.getPublicKey();
           id = address.getAccountId();

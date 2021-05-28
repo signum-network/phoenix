@@ -5,44 +5,33 @@
  */
 
 import {base32Length, cwmap, alphabet, initialCodeword} from './internal';
-import { ensureReedSolomonAddress } from './ensureReedSolomonAddress';
+import {ensureReedSolomonAddress} from './ensureReedSolomonAddress';
+import {tokenizeReedSolomonAddress} from './tokenizeReedSolomonAddress';
 
 /**
  * @internal
  * Converts <Prefix>-XXXX-XXXX-XXXX-XXXXX into numeric Id
  * @param address The Reed-Solomon address
- * @param prefix The prefix used in the address
  * @return The numeric id, or undefined if address is invalid
  * @module core
  */
-export const convertReedSolomonAddressToNumericId = (address: string, prefix: string): string => {
+export const convertReedSolomonAddressToNumericId = (address: string): string => {
 
     ensureReedSolomonAddress(address);
-
-    if (address === undefined ||
-        address === null ||
-        address.trim().length === 0) {
-        return undefined;
-    }
-
-    if (address.indexOf(`${prefix}-`) === 0) {
-        address = address.substr(prefix.length + 1);
-    } else {
-        return undefined;
-    }
+    const {rs} = tokenizeReedSolomonAddress(address);
 
     const codeword = initialCodeword.slice();
     let codewordLength = 0;
 
-    for (let i = 0; i < address.length; i++) {
-        const pos = alphabet.indexOf(address.charAt(i));
+    for (let i = 0; i < rs.length; i++) {
+        const pos = alphabet.indexOf(rs.charAt(i));
 
         if (pos <= -1 || pos > alphabet.length) {
             continue;
         }
 
         if (codewordLength > 16) {
-            return undefined;
+            throw new Error('Invalid codeword length');
         }
 
         const codeworkIndex = cwmap[codewordLength];
