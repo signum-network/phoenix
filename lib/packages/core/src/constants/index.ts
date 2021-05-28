@@ -20,7 +20,20 @@ const DefaultDeadline = 1440;
  */
 const DefaultApiEndpoint = '/burst';
 
+
+/**
+ *
+ * Address prefixes used in [[Address]]
+ * @module core
+ * */
+enum AddressPrefix {
+    MainNet = 'S',
+    TestNet = 'TS',
+}
+
+
 export {
+    AddressPrefix,
     DefaultDeadline,
     DefaultApiEndpoint,
     TransactionType,

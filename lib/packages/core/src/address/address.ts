@@ -4,15 +4,14 @@
  */
 import {getAccountIdFromPublicKey} from '@burstjs/crypto';
 import {
-    convertNumericIdToAddress,
     convertBase36StringToHexString,
     convertHexStringToBase36String,
-    isBurstAddress,
-    convertAddressToNumericId,
 } from '@burstjs/util';
 import {ensureReedSolomonAddress} from './ensureReedSolomonAddress';
 import {tokenizeReedSolomonAddress} from './tokenizeReedSolomonAddress';
 import {convertReedSolomonAddressToNumericId} from './convertReedSolomonAddressToNumericId';
+import {convertNumericIdToReedSolomonAddress} from './convertNumericIdToReedSolomonAddress';
+import {AddressPrefix} from '../constants';
 
 function assertValidPublicKey(publicKey: string): void {
     if (!(publicKey && /^[a-fA-F0-9]{64}/.test(publicKey))) {
@@ -31,9 +30,9 @@ export class Address {
     private _accountId: string;
     private _rs: string;
 
-    private constructor(args: { publicKey?: string, address?: string }) {
+    private constructor(args: { publicKey?: string, prefix?: string, address?: string }) {
         if (args.publicKey) {
-            this.constructFromPublicKey(args.publicKey);
+            this.constructFromPublicKey(args.publicKey, args.prefix);
         } else if (args.address) {
             this.constructFromAddress(args.address);
         } else {
@@ -44,9 +43,10 @@ export class Address {
     /**
      * Creates an Account Address object from public key
      * @param publicKey The public key of that address (in hex format)
+     * @param prefix The Reed-Solomon Address prefix
      */
-    public static fromPublicKey(publicKey: string): Address {
-        return new Address({publicKey: publicKey.toUpperCase()});
+    public static fromPublicKey(publicKey: string, prefix: string = AddressPrefix.MainNet): Address {
+        return new Address({publicKey: publicKey.toUpperCase(), prefix});
     }
 
     /**
@@ -58,7 +58,7 @@ export class Address {
 
         ensureReedSolomonAddress(address);
 
-        const {extension} = tokenizeReedSolomonAddress(address);
+        const {extension, prefix} = tokenizeReedSolomonAddress(address);
 
         if (extension) {
             const publicKey = convertBase36StringToHexString(extension);
@@ -66,7 +66,7 @@ export class Address {
             if (convertReedSolomonAddressToNumericId(address) !== getAccountIdFromPublicKey(publicKey)) {
                 throw Error('Address and Public Key do not match');
             }
-            return new Address({publicKey});
+            return new Address({publicKey, prefix});
         }
 
         return new Address({address});
@@ -97,10 +97,17 @@ export class Address {
 
     /**
      * Gets as extended Reed Solomon representation carrying the public key as suffix in base36 encoding
+     *
+     * This method requires that the address was created from a public key or extended address.
+     *
      * @return Extended Reed Solomon Address Format
+     * @throws if no public key is available
      * @see [[Address.getReedSolomonAddress]]
      */
     getReedSolomonAddressExtended(): string {
+        if (!this._publicKey) {
+            throw new Error('No public key available');
+        }
         return `${this._rs}-${convertHexStringToBase36String(this._publicKey)}`.toUpperCase();
     }
 
@@ -113,17 +120,17 @@ export class Address {
         return this._accountId === address._accountId;
     }
 
-    private constructFromPublicKey(publicKey: string): void {
+    private constructFromPublicKey(publicKey: string, prefix: string): void {
         assertValidPublicKey(publicKey);
         this._publicKey = publicKey;
         this._accountId = getAccountIdFromPublicKey(publicKey);
-        this._rs = convertNumericIdToAddress(this._accountId);
+        this._rs = convertNumericIdToReedSolomonAddress(this._accountId, prefix);
     }
 
     private constructFromAddress(address: string): void {
         this._publicKey = '';
         this._rs = address;
-        this._accountId = convertAddressToNumericId(address);
+        this._accountId = convertReedSolomonAddressToNumericId(address);
     }
 
 }

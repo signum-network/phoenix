@@ -1,8 +1,9 @@
 /**
- * Copyright (c) 2019 Burst Apps Team
+ * Original Work Copyright (c) 2019 Burst Apps Team
+ * Modified Work Copyright (c) 2021 Signum Network
  */
 
-import {BurstValue, FeeQuantPlanck, OneBurstPlanck} from '@burstjs/util';
+import {Amount, FeeQuantPlanck, OneSignaPlanck} from '@burstjs/util';
 import {countCodePages} from './countCodePages';
 
 /**
@@ -14,8 +15,8 @@ import {countCodePages} from './countCodePages';
  * @return The minimum fee
  * @module contracts
  */
-export function calculateMinimumCreationFee(hexCode: string, isCIP20active: boolean = false): BurstValue {
+export function calculateMinimumCreationFee(hexCode: string, isCIP20active: boolean = false): Amount {
     const DataPages = 1; // no data supported yet, so we put minimum value
-    const baseFee = BurstValue.fromPlanck((isCIP20active ? FeeQuantPlanck * 10 : OneBurstPlanck).toString(10));
+    const baseFee = Amount.fromPlanck((isCIP20active ? FeeQuantPlanck * 10 : OneSignaPlanck).toString(10));
     return baseFee.multiply(2 + countCodePages(hexCode) + DataPages);
 }

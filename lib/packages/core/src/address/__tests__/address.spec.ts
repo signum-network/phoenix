@@ -1,7 +1,8 @@
 import {Address} from '../address';
+import {AddressPrefix} from '../../constants';
 
 const TestAddress = {
-    rs: 'BURST-K37B-9V85-FB95-793HN',
+    rs: 'FOOBAR-K37B-9V85-FB95-793HN',
     ex: '2UCGWTUEEY66TN7RNC189PM19C4ATCEUGQV929IY1N24H0Y82Z',
     id: '6502115112683865257',
     pk: '7210B8941929030324540238450E985899989A7AD0267E0C76F668FDE3B1016B'
@@ -12,6 +13,8 @@ describe('Address', () => {
         it('should construct as expected with simple address', () => {
            const address = Address.fromReedSolomonAddress(TestAddress.rs);
            expect(address.getPublicKey()).toHaveLength(0);
+           expect(address.getReedSolomonAddress()).toBe(TestAddress.rs);
+           expect(address.getAccountId()).toBe(TestAddress.id);
         });
         it('should construct as expected with simple address - ignoring prefix', () => {
            const address = Address.fromReedSolomonAddress(TestAddress.rs.replace('BURST', 'FOOBAR'));
@@ -47,15 +50,19 @@ describe('Address', () => {
 
     describe('getReedSolomonAddress', () => {
         it('should return RS address', () => {
-            const address = Address.fromPublicKey(TestAddress.pk);
+            const address = Address.fromPublicKey(TestAddress.pk, 'FOOBAR');
             expect(address.getReedSolomonAddress()).toBe(TestAddress.rs);
         });
     });
 
     describe('getReedSolomonAddressExtended', () => {
-        it('should return extended RS address', () => {
-            const address = Address.fromPublicKey(TestAddress.pk);
+        it('should return extended RS address with custom prefix', () => {
+            const address = Address.fromPublicKey(TestAddress.pk, 'FOOBAR');
             expect(address.getReedSolomonAddressExtended()).toBe(TestAddress.rs + '-' + TestAddress.ex);
+        });
+        it('should return extended RS address with default', () => {
+            const address = Address.fromPublicKey(TestAddress.pk);
+            expect(address.getReedSolomonAddressExtended()).toBe(TestAddress.rs.replace('FOOBAR', AddressPrefix.MainNet) + '-' + TestAddress.ex);
         });
     });
 
