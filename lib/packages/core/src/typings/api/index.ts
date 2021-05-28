@@ -6,7 +6,6 @@ import {AccountApi} from './accountApi';
 import {AliasApi} from './aliasApi';
 import {ContractApi} from './contractApi';
 import {AssetApi} from './assetApi';
-import {BurstValue} from '@burstjs/util';
 import {BurstService} from '../../service';
 
 export {

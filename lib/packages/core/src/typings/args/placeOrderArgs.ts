@@ -1,4 +1,3 @@
-import {BurstValue} from '@burstjs/util';
 import {DefaultSendArgs} from './defaultSendArgs';
 
 

@@ -6,9 +6,8 @@ import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
 import {createParametersFromAttachment} from '../../../internal/createParametersFromAttachment';
-import {IssueAssetArgs, PlaceOrderArgs} from '../../../typings/args';
+import {PlaceOrderArgs} from '../../../typings/args';
 import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransaction';
-import {BurstValue} from "@burstjs/util";
 
 interface GenericPlaceOrderArgs extends PlaceOrderArgs {
     type: 'bid' | 'ask';

@@ -2,7 +2,7 @@ import {HttpMockBuilder, Http} from '@burstjs/http';
 import {getBlockchainStatus} from '../factories/network/getBlockchainStatus';
 import {getAsset} from '../factories/asset/getAsset';
 import {cancelAskOrder, cancelBidOrder, placeAskOrder, placeBidOrder, transferAsset} from '../factories';
-import {BurstValue, FeeQuantPlanck} from '@burstjs/util';
+import {Amount, FeeQuantPlanck} from '@burstjs/util';
 import {mockSignAndBroadcastTransaction, createBurstService} from '../../__tests__/helpers';
 
 describe('Asset Api', () => {
@@ -78,7 +78,7 @@ describe('Asset Api', () => {
                 feePlanck: FeeQuantPlanck + '',
                 asset: '123',
                 quantity: 100,
-                pricePlanck: BurstValue.fromBurst(10).getPlanck(),
+                pricePlanck: Amount.fromSigna(10).getPlanck(),
                 senderPrivateKey: 'senderPrivateKey',
                 senderPublicKey: 'senderPublicKey'
             });
@@ -102,7 +102,7 @@ describe('Asset Api', () => {
                 feePlanck: FeeQuantPlanck + '',
                 asset: '123',
                 quantity: 100,
-                pricePlanck: BurstValue.fromBurst(10).getPlanck(),
+                pricePlanck: Amount.fromSigna(10).getPlanck(),
                 senderPrivateKey: 'senderPrivateKey',
                 senderPublicKey: 'senderPublicKey'
             });

@@ -16,7 +16,7 @@ import {
 import {Alias, AliasList} from '../..';
 import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
-import {BurstValue, convertNumberToNQTString} from '@burstjs/util';
+import {Amount, convertNumberToNQTString} from '@burstjs/util';
 import {signAndBroadcastTransaction} from '../factories/transaction';
 
 describe('AccountApi', () => {
@@ -332,10 +332,10 @@ describe('AccountApi', () => {
             const status = await setAccountInfo(service)({
                 name: 'name',
                 description: 'description',
-                feePlanck: BurstValue.fromBurst(1).getPlanck(),
+                feePlanck: Amount.fromSigna(1).getPlanck(),
                 senderPublicKey: 'senderPublicKey',
                 senderPrivateKey: 'senderPrivateKey'
-            })
+            });
             expect(status).toBe('fakeTransaction');
             expect(generateSignature).toBeCalledTimes(1);
             expect(verifySignature).toBeCalledTimes(1);
@@ -549,8 +549,8 @@ describe('AccountApi', () => {
         });
 
         it('should add commitment', async () => {
-            const amount = BurstValue.fromBurst(100);
-            const fee = BurstValue.fromBurst(1);
+            const amount = Amount.fromSigna(100);
+            const fee = Amount.fromSigna(1);
             const status = await addCommitment(service)({
                 feePlanck: fee.getPlanck(),
                 amountPlanck: amount.getPlanck(),
@@ -562,8 +562,8 @@ describe('AccountApi', () => {
         });
 
         it('should remove commitment', async () => {
-            const amount = BurstValue.fromBurst(100);
-            const fee = BurstValue.fromBurst(1);
+            const amount = Amount.fromSigna(100);
+            const fee = Amount.fromSigna(1);
             const status = await removeCommitment(service)({
                 feePlanck: fee.getPlanck(),
                 amountPlanck: amount.getPlanck(),
