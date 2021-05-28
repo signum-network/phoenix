@@ -3,6 +3,7 @@
 /** @module core */
 
 // tslint:disable:max-line-length
+// tslint:disable:no-bitwise
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
@@ -15,7 +16,7 @@ export const cwmap: number[] = [3, 2, 1, 0, 7, 6, 5, 4, 13, 14, 15, 16, 12, 8, 9
 export const alphabet: string[] = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ'.split('');
 export const base32Length = 13;
 
-export const ginv = (a) => {
+const ginv = (a) => {
     return gexp[31 - glog[a]];
 };
 
@@ -27,4 +28,54 @@ export const gmult = (a, b) => {
     const idx = (glog[a] + glog[b]) % 31;
 
     return gexp[idx];
+};
+
+
+export const isDeeplyValidAddress = (address: string): boolean => {
+
+    const codeword = initialCodeword.slice();
+    let codewordLength = 0;
+
+    for (let i = 0; i < address.length; i++) {
+        const pos = alphabet.indexOf(address.charAt(i));
+
+        if (pos <= -1 || pos > alphabet.length) {
+            continue;
+        }
+
+        if (codewordLength > 16) {
+            return false;
+        }
+
+        const codeworkIndex = cwmap[codewordLength];
+        codeword[codeworkIndex] = pos;
+        codewordLength++;
+    }
+
+    if (codewordLength !== 17) {
+        return false;
+    }
+
+    let sum = 0;
+
+    for (let i = 1; i < 5; i++) {
+        let t = 0;
+
+        for (let j = 0; j < 31; j++) {
+            if (j > 12 && j < 27) {
+                continue;
+            }
+
+            let pos = j;
+            if (j > 26) {
+                pos -= 14;
+            }
+
+            t ^= gmult(codeword[pos], gexp[(i * j) % 31]);
+        }
+
+        sum |= t;
+    }
+
+    return (sum === 0);
 };

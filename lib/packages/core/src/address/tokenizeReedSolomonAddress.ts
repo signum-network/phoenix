@@ -22,7 +22,7 @@ export const tokenizeReedSolomonAddress = (address: string): AddressParts => {
     const isExtended = tokens.length === 6;
 
     if (tokens.length < 5 || tokens.length > 6) {
-        throw new Error(`Invalid Reed-Solomon Address: ${address}`);
+        throw new Error(`Invalid Reed-Solomon Address Format: ${address}`);
     }
 
     const prefix = tokens[0];

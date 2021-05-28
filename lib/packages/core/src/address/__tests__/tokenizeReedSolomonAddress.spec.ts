@@ -1,6 +1,6 @@
 import {tokenizeReedSolomonAddress} from '../tokenizeReedSolomonAddress';
 
-describe('parseAddressParts', () => {
+describe('tokenizeReedSolomonAddress', () => {
 
     it('should return all parts as expected - non-extended address', () => {
         expect(tokenizeReedSolomonAddress('BURST-K37B-9V85-FB95-793HN')).toStrictEqual({

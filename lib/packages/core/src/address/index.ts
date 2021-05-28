@@ -1,2 +1,2 @@
-export * from './address';
+export {Address} from './address';
 

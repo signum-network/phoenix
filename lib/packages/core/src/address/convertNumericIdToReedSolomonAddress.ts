@@ -6,17 +6,17 @@
  * Modified work Copyright (c) 2021 Signum Network
  */
 
-import {initialCodeword, base32Length, gmult, alphabet, cwmap, AddressPrefix} from './internal';
+import {initialCodeword, base32Length, gmult, alphabet, cwmap} from './internal';
 
 /**
  * @internal
- * Encode a numeric id into <Prefix>-XXXX-XXXX-XXXX-XXXXX
+ * Encode a numeric id into Reed-Solomon address <Prefix>-XXXX-XXXX-XXXX-XXXXX
  * @param numericId The numeric Id
  * @param prefix The prefix for the address
  * @return the Reed-Solomon address encoding, or undefined if passed null, undefined
  * @module core
  */
-export const convertNumericIdToAddress = (numericId: string, prefix: string): string => {
+export const convertNumericIdToReedSolomonAddress = (numericId: string, prefix: string): string => {
 
     if (numericId  === undefined ||
         numericId  === null ||

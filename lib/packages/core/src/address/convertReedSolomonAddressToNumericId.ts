@@ -5,7 +5,7 @@
  */
 
 import {base32Length, cwmap, alphabet, initialCodeword} from './internal';
-import { ensureReedSolomonAddress } from './isReedSolomonAddress';
+import { ensureReedSolomonAddress } from './ensureReedSolomonAddress';
 
 /**
  * @internal
@@ -15,7 +15,7 @@ import { ensureReedSolomonAddress } from './isReedSolomonAddress';
  * @return The numeric id, or undefined if address is invalid
  * @module core
  */
-export const convertAddressToNumericId = (address: string, prefix: string): string => {
+export const convertReedSolomonAddressToNumericId = (address: string, prefix: string): string => {
 
     ensureReedSolomonAddress(address);
 
@@ -48,10 +48,6 @@ export const convertAddressToNumericId = (address: string, prefix: string): stri
         const codeworkIndex = cwmap[codewordLength];
         codeword[codeworkIndex] = pos;
         codewordLength++;
-    }
-
-    if (!ensureReedSolomonAddress(address)) {
-        return undefined;
     }
 
     let length = base32Length;
