@@ -38,7 +38,7 @@ jobs:
         run: |
           cd ./web/angular-wallet
           npm run build:web
-          assetFile=web-phoenix-burst-wallet.${{steps.get-version.outputs.result}}.zip
+          assetFile=web-phoenix-signum-wallet.${{steps.get-version.outputs.result}}.zip
           echo "Zipping into $assetFile"
           zip -r $assetFile ./dist
           echo "::set-output name=assetFile::$assetFile"

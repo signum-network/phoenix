@@ -1,19 +1,23 @@
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
+ * Modified work Copyright (c) 2021 Signum Network
  */
 
-import {base32Length, cwmap, alphabet, initialCodeword, AddressPrefix} from './internal';
-import { isValid } from './isBurstAddress';
+import {base32Length, cwmap, alphabet, initialCodeword} from './internal';
+import { ensureReedSolomonAddress } from './isReedSolomonAddress';
 
 /**
- * Converts BURST-XXXX-XXXX-XXXX-XXXXX into numeric Id
- * @param address The BURST address
+ * @internal
+ * Converts <Prefix>-XXXX-XXXX-XXXX-XXXXX into numeric Id
+ * @param address The Reed-Solomon address
+ * @param prefix The prefix used in the address
  * @return The numeric id, or undefined if address is invalid
- * @module util
+ * @module core
  */
-    // @todo review, maybe better throwing exception
-export const convertAddressToNumericId = (address: string): string => {
+export const convertAddressToNumericId = (address: string, prefix: string): string => {
+
+    ensureReedSolomonAddress(address);
 
     if (address === undefined ||
         address === null ||
@@ -21,8 +25,8 @@ export const convertAddressToNumericId = (address: string): string => {
         return undefined;
     }
 
-    if (address.indexOf(`${AddressPrefix}-`) === 0) {
-        address = address.substr(6);
+    if (address.indexOf(`${prefix}-`) === 0) {
+        address = address.substr(prefix.length + 1);
     } else {
         return undefined;
     }
@@ -46,7 +50,7 @@ export const convertAddressToNumericId = (address: string): string => {
         codewordLength++;
     }
 
-    if (!isValid(address)) {
+    if (!ensureReedSolomonAddress(address)) {
         return undefined;
     }
 

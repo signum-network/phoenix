@@ -1,6 +1,6 @@
 import {convertAddressToNumericId} from '../convertAddressToNumericId';
 import {convertNumericIdToAddress} from '../convertNumericIdToAddress';
-import {isBurstAddress} from '../isBurstAddress';
+import {isCorrectAddress} from '../isBurstAddress';
 
 describe('Address Utils', () => {
 
@@ -48,16 +48,16 @@ describe('Address Utils', () => {
      describe('isBurstAddress', () => {
 
         it('isBurstAddress() true', () => {
-            expect(isBurstAddress('BURST-K37B-9V85-FB95-793HN')).toBeTruthy();
-            expect(isBurstAddress('BURST-K37B-9V85-FB95-793HN-2UCGWTUEEY66TN7RNC189PM19C4ATCEUGQV929IY1N24H0Y82Z')).toBeTruthy();
+            expect(isCorrectAddress('BURST-K37B-9V85-FB95-793HN')).toBeTruthy();
+            expect(isCorrectAddress('BURST-K37B-9V85-FB95-793HN-2UCGWTUEEY66TN7RNC189PM19C4ATCEUGQV929IY1N24H0Y82Z')).toBeTruthy();
         });
 
         it('isBurstAddress() false', () => {
-            expect(isBurstAddress('BURST-K37B-9V85-FB95-793H5')).toBeFalsy();
-            expect(isBurstAddress('K37B-9V85-FB95-793HN')).toBeFalsy();
-            expect(isBurstAddress(null)).toBeFalsy();
-            expect(isBurstAddress(undefined)).toBeFalsy();
-            expect(isBurstAddress('  ')).toBeFalsy();
+            expect(isCorrectAddress('BURST-K37B-9V85-FB95-793H5')).toBeFalsy();
+            expect(isCorrectAddress('K37B-9V85-FB95-793HN')).toBeFalsy();
+            expect(isCorrectAddress(null)).toBeFalsy();
+            expect(isCorrectAddress(undefined)).toBeFalsy();
+            expect(isCorrectAddress('  ')).toBeFalsy();
         });
      });
 

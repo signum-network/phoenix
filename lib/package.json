@@ -1,14 +1,14 @@
 {
-  "name": "burstjs",
+  "name": "signumjs",
   "version": "0.6.0",
-  "description": "BurstCoin Reference Library",
+  "description": "Signum Network Reference Library",
   "contributors": [
     "ohager",
     "blankey1337"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/burst-apps-team/phoenix"
+    "url": "https://github.com/signum-network/phoenix"
   },
   "engines": {
     "node": ">=12"

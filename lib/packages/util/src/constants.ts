@@ -1,14 +1,14 @@
 /**
- * Symbol/Character for BURST unit
+ * Symbol/Character for SIGNA unit
  * @module util
  * */
-export const BurstSymbol = 'Ƀ';
+export const SignaSymbol = 'Ꞩ';
 
 /**
- * Symbol/Character for Planck (the smallest possible unit in Burstcoin)
+ * Symbol/Character for Planck (the smallest possible unit)
  * @module util
  * */
-export const BurstPlanckSymbol = 'ƀ';
+export const SignaPlanckSymbol = 'ꞩ';
 
 /**
  * The smallest possible fee
@@ -17,7 +17,7 @@ export const BurstPlanckSymbol = 'ƀ';
 export const FeeQuantPlanck = 735000;
 
 /**
- * One Burst expressed in Planck
+ * One SIGNA expressed in Planck
  * @module util
  */
-export const OneBurstPlanck = 100000000;
+export const OneSignaPlanck = 100000000;

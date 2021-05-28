@@ -1,4 +1,4 @@
-name: Build BurstJS
+name: Build SignumJS
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
           npm ci
           npm t
 
-      - name: Build/Bundle BurstJS
+      - name: Build/Bundle SignumJS
         run: npm run build
 
       - name: Build Angular Web App

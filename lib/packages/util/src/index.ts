@@ -4,8 +4,8 @@
  * @moduledefinition util
  * */
 export * from './asyncRetry';
-export * from './burstTime';
-export * from './burstValue';
+export * from './blockTime';
+export * from './amount';
 export * from './constants';
 export * from './convertAddressToNumericId';
 export * from './convertBase36StringToHexString';
@@ -28,7 +28,7 @@ export * from './convertStringToBase64String';
 export * from './convertStringToByteArray';
 export * from './convertStringToHexString';
 export * from './createDeeplink';
-export * from './isBurstAddress';
+export * from './isReedSolomonAddress';
 export * from './parseDeeplink';
 export * from './sumNQTStringToNumber';
 export * from './typings';

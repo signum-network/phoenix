@@ -4,21 +4,16 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-import {initialCodeword, alphabet, cwmap, gexp, gmult, AddressPrefix} from './internal';
-
-
+import {initialCodeword, alphabet, cwmap, gexp, gmult, AddressPrefix, LegacyAddressPrefix} from './internal';
 // TODO: should be split into separate file and get better naming
 /**
  * @internal
- * Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX)
+ * Check for valid address (format: XXXX-XXXX-XXXX-XXXXX)
  * @param {string} address The address
  * @return {boolean} true, if is a valid address, else false
  * @module util
  */
-export const isValid = (address: string): boolean => {
-    if (address.indexOf(`${AddressPrefix}-`) === 0) {
-        address = address.substr(6);
-    }
+const isDeeplyValidAddress = (address: string): boolean => {
 
     const codeword = initialCodeword.slice();
     let codewordLength = 0;
@@ -67,28 +62,21 @@ export const isValid = (address: string): boolean => {
     return (sum === 0);
 };
 
-// TODO: make this deprectated in favor of Address in core package
+// TODO: make this deprecated in favor of Address in core package
 /**
  * Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX)
  * @param {string} address The address
  * @return {boolean} true, if is a valid address, else false
  * @module util
  */
-export const isBurstAddress = (address: string): boolean => {
-    const addressRegExp = new RegExp(`${AddressPrefix}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}(-\w+)?`, 'i');
+export const isReedSolomonAddress = (address: string): boolean => {
+    // const addressRegExp = new RegExp(`${AddressPrefix}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{5}(-\w+)?`, 'i');
 
-    if (!addressRegExp.test(address)) {
-        return false;
-    }
+    const tokens = tokenizeRSAddressParts(address);
 
-    const index = address.lastIndexOf('-');
-    const extension = address.substr(index + 1);
-    const hasExtension = extension.length > 5;
-    address = hasExtension ? address.substr(0, index ) : address;
+    // ignoring public key validation as this involves crypto package.
 
-    // ignoring public key validation as this is involved crypto package.
-
-    return isValid(address);
+    return isDeeplyValidAddress(address);
 };
 
 

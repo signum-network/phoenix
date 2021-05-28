@@ -1,5 +1,6 @@
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
+ * Modified work Copyright (c) 2021 Signum Network
  */
 
 import {CreateDeeplinkArgs, EncoderFormat} from './typings/args/createDeeplinkArgs';
@@ -31,7 +32,7 @@ function encodePayload(payload: any, encoderFormat: EncoderFormat): string {
 /**
  * Creates a deeplink according the [CIP22 spec](https://github.com/burst-apps-team/CIPs/blob/master/cip-0022.md)
  *
- * `burst.[domain]://v1?action=[action]&payload=[encodedData]`
+ * `signum.[domain]://v1?action=[action]&payload=[encodedData]`
  *
  * Deeplinks are a way to call/open applications and do certain actions within it, e.g. Phoenix wallet
  * can redirect to the "Send Burst" screen a fill out the form according the passed payload.
@@ -45,7 +46,7 @@ export const createDeeplink = (args: CreateDeeplinkArgs): string => {
 
     const {encoderFormat = EncoderFormat.Base64, domain, action, payload} = args;
 
-    let link = domain ? `burst.${domain}://v1` : `burst://v1`;
+    let link = domain ? `signum.${domain}://v1` : `signum://v1`;
 
     if (action) {
         link += `?action=${action}`;

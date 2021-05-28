@@ -3,17 +3,20 @@
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
+ * Modified work Copyright (c) 2021 Signum Network
  */
 
 import {initialCodeword, base32Length, gmult, alphabet, cwmap, AddressPrefix} from './internal';
 
 /**
- * Encode a numeric id into BURST-XXXX-XXXX-XXXX-XXXXX
+ * @internal
+ * Encode a numeric id into <Prefix>-XXXX-XXXX-XXXX-XXXXX
  * @param numericId The numeric Id
- * @return the BURST address in Reed-Solomon encoding, or undefined if passed null, undefined
- * @module util
+ * @param prefix The prefix for the address
+ * @return the Reed-Solomon address encoding, or undefined if passed null, undefined
+ * @module core
  */
-export const convertNumericIdToAddress = (numericId: string): string => {
+export const convertNumericIdToAddress = (numericId: string, prefix: string): string => {
 
     if (numericId  === undefined ||
         numericId  === null ||
@@ -70,7 +73,7 @@ export const convertNumericIdToAddress = (numericId: string): string => {
     codeword[15] = p[2];
     codeword[16] = p[3];
 
-    let out = AddressPrefix + '-';
+    let out = prefix + '-';
 
     for (let i = 0; i < 17; i++) {
         out += alphabet[codeword[cwmap[i]]];
