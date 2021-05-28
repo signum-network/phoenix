@@ -1,7 +1,17 @@
 {
-  "name": "@burstjs/core",
-  "version": "0.6.0-beta.6",
-  "description": "Burst-related functions and models for building Burstcoin applications.",
+  "name": "@signumjs/core",
+  "version": "1.0.0",
+  "description": "Principal package with functions and models for building Signum Network applications.",
+  "keywords": [
+    "signum",
+    "signum-network",
+    "blockchain",
+    "smartcontracts",
+    "crypto",
+    "cryptography",
+    "cryptocoin",
+    "signumjs"
+  ],
   "contributors": [
     "ohager",
     "blankey1337"

@@ -1,7 +1,15 @@
 {
-  "name": "@burstjs/monitor",
-  "version": "0.6.0-beta.6",
-  "description": "Monitor transactions on Burst blockchain",
+  "name": "@signumjs/monitor",
+  "description": "Monitor transactions on Signum Network blockchain",
+  "version": "1.0.0",
+  "keywords": [
+    "signum",
+    "signum-network",
+    "blockchain",
+    "smartcontracts",
+    "monitor",
+    "signumjs"
+  ],
   "contributors": [
     "ohager"
   ],

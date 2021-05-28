@@ -1,7 +1,15 @@
 {
-  "name": "@burstjs/http",
-  "version": "0.6.0-beta.6",
-  "description": "Send commands to BURST over HTTP",
+  "name": "@signumjs/http",
+  "description": "SignumJS Generic Http Module",
+  "version": "1.0.0",
+  "keywords": [
+    "signum",
+    "signum-network",
+    "blockchain",
+    "smartcontracts",
+    "http",
+    "signumjs"
+  ],
   "contributors": [
     "ohager",
     "blankey1337"

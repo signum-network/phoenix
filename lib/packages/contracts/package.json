@@ -1,7 +1,17 @@
 {
-  "name": "@burstjs/contracts",
-  "version": "0.6.0-beta.6",
-  "description": "Smart Contracts package for BURST",
+  "name": "@signumjs/contracts",
+  "version": "1.0.0",
+  "description": "Smart Contracts package for Signum Network",
+  "keywords": [
+    "signum",
+    "signum-network",
+    "blockchain",
+    "smartcontracts",
+    "crypto",
+    "cryptography",
+    "cryptocoin",
+    "signumjs"
+  ],
   "contributors": [
     "ohager"
   ],

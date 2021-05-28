@@ -1,7 +1,16 @@
 {
-  "name": "@burstjs/crypto",
-  "version": "0.6.0-beta.6",
-  "description": "Cryptographic functions for building Burstcoin apps.",
+  "name": "@signumjs/crypto",
+  "version": "1.0.0",
+  "description": "Cryptographic functions for building Signum Network apps.",
+  "keywords": [
+    "signum",
+    "signum-network",
+    "blockchain",
+    "smartcontracts",
+    "crypto",
+    "cryptography",
+    "signumjs"
+  ],
   "contributors": [
     "ohager",
     "blankey1337"
