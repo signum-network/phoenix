@@ -11,18 +11,18 @@ const TestAddress = {
 describe('Address', () => {
     describe('fromReedSolomonAddress', () => {
         it('should construct as expected with simple address', () => {
-           const address = Address.fromReedSolomonAddress(TestAddress.rs);
-           expect(address.getPublicKey()).toHaveLength(0);
-           expect(address.getReedSolomonAddress()).toBe(TestAddress.rs);
-           expect(address.getAccountId()).toBe(TestAddress.id);
+            const address = Address.fromReedSolomonAddress(TestAddress.rs);
+            expect(address.getPublicKey()).toHaveLength(0);
+            expect(address.getReedSolomonAddress()).toBe(TestAddress.rs);
+            expect(address.getNumericId()).toBe(TestAddress.id);
         });
         it('should construct as expected with simple address - ignoring prefix', () => {
-           const address = Address.fromReedSolomonAddress(TestAddress.rs.replace('BURST', 'FOOBAR'));
-           expect(address.getPublicKey()).toHaveLength(0);
+            const address = Address.fromReedSolomonAddress(TestAddress.rs.replace('BURST', 'FOOBAR'));
+            expect(address.getPublicKey()).toHaveLength(0);
         });
         it('should construct as expected with extended address', () => {
-           const address = Address.fromReedSolomonAddress(`${TestAddress.rs}-${TestAddress.ex}`);
-           expect(address.getPublicKey().toUpperCase()).toBe(TestAddress.pk);
+            const address = Address.fromReedSolomonAddress(`${TestAddress.rs}-${TestAddress.ex}`);
+            expect(address.getPublicKey().toUpperCase()).toBe(TestAddress.pk);
         });
         it('should throw error on invalid address ', () => {
             expect(() => {
@@ -36,10 +36,27 @@ describe('Address', () => {
         });
     });
 
+    describe('fromNumericId', () => {
+        it('should construct as expected', () => {
+            const address = Address.fromNumericId(TestAddress.id, 'FOOBAR');
+            expect(address.getReedSolomonAddress()).toBe(TestAddress.rs);
+            expect(address.getPublicKey()).toHaveLength(0);
+            expect(address.getNumericId()).toBe(TestAddress.id);
+        });
+        it('should throw error on invalid key', () => {
+            expect(() => {
+                Address.fromNumericId('wrong-format');
+            }).toThrow(`Invalid numeric id: wrong-format`);
+            expect(() => {
+                Address.fromNumericId('');
+            }).toThrow(`Invalid arguments`);
+        });
+    });
+
     describe('fromPublicKey', () => {
         it('should construct as expected', () => {
             const address = Address.fromPublicKey(TestAddress.pk);
-            expect(address.getAccountId()).toBe(TestAddress.id);
+            expect(address.getNumericId()).toBe(TestAddress.id);
         });
         it('should throw error on invalid key', () => {
             expect(() => {
@@ -69,7 +86,7 @@ describe('Address', () => {
     describe('getAccountId', () => {
         it('should return account Id', () => {
             const address = Address.fromPublicKey(TestAddress.pk);
-            expect(address.getAccountId()).toBe(TestAddress.id);
+            expect(address.getNumericId()).toBe(TestAddress.id);
         });
     });
 

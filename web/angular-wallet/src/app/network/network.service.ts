@@ -20,11 +20,13 @@ import {constants} from '../constants';
 @Injectable()
 export class NetworkService {
   private api: Api;
+  private isMainnet = true;
   public blocks: BehaviorSubject<any> = new BehaviorSubject([]);
 
   constructor(apiService: ApiService, private storeService: StoreService) {
-    this.storeService.settings.subscribe(() => {
+    this.storeService.settings.subscribe(async () => {
       this.api = apiService.api;
+      this.isMainnet = await this.fetchIsMainNet();
     });
   }
 
@@ -60,12 +62,16 @@ export class NetworkService {
     this.setBlocks([block].concat(this.blocks.value));
   }
 
-  public async isMainNet(): Promise<boolean> {
+  private async fetchIsMainNet(): Promise<boolean> {
     try {
       const {previousBlockHash} = await this.api.block.getBlockByHeight(constants.mainnetIndicator.block, false);
       return previousBlockHash === constants.mainnetIndicator.previousHash;
     } catch (e) {
       return false;
     }
+  }
+
+  public isMainNet(): boolean {
+    return this.isMainnet;
   }
 }

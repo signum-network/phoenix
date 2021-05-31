@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {SuggestedFees, Account} from '@burstjs/core';
-import {BurstValue} from '@burstjs/util';
+import {Amount} from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {AccountService} from 'app/setup/account/account.service';
@@ -42,7 +42,7 @@ export class SetAccountInfoComponent implements OnInit {
     this.account = this.route.snapshot.data.account as Account;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
     setTimeout(() => {
-      this.fee = BurstValue.fromPlanck(this.fees.standard + '').getBurst();
+      this.fee = Amount.fromPlanck(this.fees.standard + '').getSigna();
       this.name = this.account.name;
       this.description = this.account.description;
     }, 0);
@@ -55,7 +55,7 @@ export class SetAccountInfoComponent implements OnInit {
       await this.accountService.setAccountInfo({
         name: this.name,
         description: this.description,
-        feePlanck: BurstValue.fromBurst(this.fee).getPlanck(),
+        feePlanck: Amount.fromSigna(this.fee).getPlanck(),
         deadline: parseFloat(this.deadline) * 60,
         pin: this.pin,
         keys: this.account.keys,

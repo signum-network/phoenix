@@ -3,7 +3,7 @@
   <div *ngSwitchCase="'Message'">{{value.data.message}}</div>
 
   <div *ngSwitchCase="'AccountAddress'">
-    <a [routerLink]="['/account', convertAddressToNumericId(value.data)]">{{value.data}}</a>
+    <a [routerLink]="['/account', getNumericId(value.data)]">{{value.data}}</a>
   </div>
 
   <div *ngSwitchCase="'AccountId'">

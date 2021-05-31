@@ -1,6 +1,5 @@
 import {Component, Input, ViewChild} from '@angular/core';
-import {Block} from '@burstjs/core';
-import {convertAddressToNumericId, convertNQTStringToNumber, convertNumericIdToAddress} from '@burstjs/util';
+import {Block, Address} from '@burstjs/core';
 import {AccountService} from 'app/setup/account/account.service';
 import {BlockCellValue} from '../block-cell-value-mapper';
 import {NotifierService} from 'angular-notifier';
@@ -18,18 +17,15 @@ export class BlockRowValueCellComponent {
   @ViewChild('pin', {static: false}) pin: string;
 
   decryptedMessage = '';
-  public convertAddressToNumericId: (address: string) => string;
-  public convertNQTStringToNumber: (amount: string) => number;
-  private convertNumericIdToAddress: (numericId: string) => string;
-
   constructor(
     private accountService: AccountService,
     private notifierService: NotifierService,
     private i18nService: I18nService,
   ) {
-    this.convertNumericIdToAddress = convertNumericIdToAddress;
-    this.convertAddressToNumericId = convertAddressToNumericId;
-    this.convertNQTStringToNumber = convertNQTStringToNumber;
+  }
+
+  getNumericId(data: any): string {
+    return Address.fromReedSolomonAddress(data).getNumericId()
   }
 }
 

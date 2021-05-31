@@ -1,5 +1,5 @@
 import {Transaction} from '@burstjs/core';
-import {BurstValue} from '@burstjs/util';
+import {Amount} from '@burstjs/util';
 
 export interface BalanceHistoryItem {
   readonly timestamp: number;
@@ -9,8 +9,8 @@ export interface BalanceHistoryItem {
 }
 
 export interface AccountBalances {
-  readonly availableBalance: BurstValue;
-  readonly lockedBalance: BurstValue;
-  readonly committedBalance: BurstValue;
-  readonly totalBalance: BurstValue;
+  readonly availableBalance: Amount;
+  readonly lockedBalance: Amount;
+  readonly committedBalance: Amount;
+  readonly totalBalance: Amount;
 }

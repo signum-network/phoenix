@@ -1,13 +1,12 @@
 import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
-import {SuggestedFees, Account} from '@burstjs/core';
+import {Address, SuggestedFees, Account} from '@burstjs/core';
+import {Amount} from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {AccountService} from 'app/setup/account/account.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {Recipient} from 'app/layout/components/burst-recipient-input/burst-recipient-input.component';
-import {burstAddressPattern} from 'app/util/burstAddressPattern';
-import {convertAddressToNumericId, convertNumberToNQTString} from '@burstjs/util';
 import {isKeyDecryptionError} from '../../util/exceptions/isKeyDecryptionError';
 
 @Component({
@@ -53,8 +52,8 @@ export class SetRewardRecipientComponent implements OnInit {
     this.isSending = true;
     try {
       await this.accountService.setRewardRecipient({
-        recipientId: convertAddressToNumericId(this.recipient.addressRS),
-        feePlanck: convertNumberToNQTString(+this.fee),
+        recipientId: Address.fromReedSolomonAddress(this.recipient.addressRS).getNumericId(),
+        feePlanck: Amount.fromSigna(this.fee).getPlanck(),
         deadline: parseFloat(this.deadline) * 60,
         pin: this.pin,
         keys: this.account.keys,

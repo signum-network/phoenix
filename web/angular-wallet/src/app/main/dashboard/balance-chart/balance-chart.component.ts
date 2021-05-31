@@ -1,7 +1,7 @@
 import {Router} from '@angular/router';
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Account} from '@burstjs/core';
-import {BurstValue, convertBurstTimeToDate} from '@burstjs/util';
+import {Amount, BlockTime} from '@burstjs/util';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {I18nService} from '../../../layout/components/i18n/i18n.service';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
@@ -68,7 +68,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
     this.accountBalances = getBalancesFromAccount(this.account);
     this.balanceHistory = getBalanceHistoryFromTransactions(
       account,
-      parseFloat(BurstValue.fromPlanck(balanceNQT || '0').getBurst()),
+      parseFloat(Amount.fromPlanck(balanceNQT || '0').getSigna()),
       transactions).reverse();
 
     const chartData = this.balanceHistory.map(item => parseFloat(item.balance.toFixed(2)));
@@ -76,7 +76,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
     const min = Math.min(...chartData);
     this.firstDate = this.balanceHistory.length &&
       this.balanceHistory[0].timestamp &&
-      this.toDateString(convertBurstTimeToDate(this.balanceHistory[0].timestamp)) ||
+      this.toDateString(BlockTime.fromBlockTimestamp(this.balanceHistory[0].timestamp).getDate()) ||
       this.toDateString(new Date());
 
     this.chart = {
@@ -87,7 +87,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
           fill: 'start'
         }
       ],
-      labels: this.balanceHistory.map(({timestamp}) => timestamp && this.toDateString(convertBurstTimeToDate(timestamp)) ||
+      labels: this.balanceHistory.map(({timestamp}) => timestamp && this.toDateString(BlockTime.fromBlockTimestamp(timestamp).getDate()) ||
         this.toDateString(new Date())),
       colors: [
         {
@@ -157,7 +157,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
   }
 
   calculateValue(unitPrice: number = 0): number {
-    return parseFloat(BurstValue.fromPlanck(this.account.balanceNQT || '0').multiply(unitPrice).getBurst());
+    return parseFloat(Amount.fromPlanck(this.account.balanceNQT || '0').multiply(unitPrice).getSigna());
   }
 
   hidePoints(): void {

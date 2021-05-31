@@ -1,12 +1,11 @@
-import {Component, EventEmitter, Input, Output, ViewChild, ElementRef, OnChanges} from '@angular/core';
-import {convertAddressToNumericId, convertNumericIdToAddress, isBurstAddress} from '@burstjs/util';
+import {Component, ElementRef, EventEmitter, Input, OnChanges, Output, ViewChild} from '@angular/core';
 import {AccountService} from '../../../setup/account/account.service';
 import jsQR from 'jsqr';
 import {NotifierService} from 'angular-notifier';
 import {DomainService} from 'app/main/send-burst/domain/domain.service';
 import {Subject} from 'rxjs';
-import {distinctUntilChanged, debounceTime} from 'rxjs/operators';
-import {Address} from '@burstjs/core/src';
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {Address, AddressPrefix} from '@burstjs/core';
 
 // generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
 let nextId = 0;
@@ -58,6 +57,8 @@ export class BurstRecipientInputComponent implements OnChanges {
   @Input('appearance') appearance = '';
   // tslint:disable-next-line: no-input-rename
   @Input('disabled') disabled = false;
+  // tslint:disable-next-line: no-input-rename
+  @Input('isTestNet') isTestNet = false;
 
   @Output()
   recipientChange = new EventEmitter();
@@ -101,6 +102,15 @@ export class BurstRecipientInputComponent implements OnChanges {
     }
   }
 
+  private isReedSolomonAddress(address: string): boolean {
+    try {
+      Address.fromReedSolomonAddress(address);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   applyRecipientType(recipient: string): void {
     const r = recipient.trim();
     this.recipient.addressRaw = r;
@@ -108,7 +118,7 @@ export class BurstRecipientInputComponent implements OnChanges {
     this.recipient.status = RecipientValidationStatus.UNKNOWN;
     if (r.length === 0) {
       this.recipient.type = RecipientType.UNKNOWN;
-    } else if (r.toUpperCase().startsWith('BURST-')) {
+    } else if (this.isReedSolomonAddress(r)) {
       this.recipient.type = RecipientType.ADDRESS;
     } else if (r.toUpperCase().endsWith('.ZIL') || r.toUpperCase().endsWith('.CRYPTO')) {
       this.recipient.type = RecipientType.ZIL;
@@ -129,14 +139,10 @@ export class BurstRecipientInputComponent implements OnChanges {
         accountFetchFn = this.accountService.getAlias;
         break;
       case RecipientType.ADDRESS:
-        try {
-          const address = Address.fromReedSolomonAddress(id);
-          this.recipient.addressRaw = address.getReedSolomonAddress();
-          this.recipient.publicKey = address.getPublicKey();
-          id = address.getAccountId();
-        } catch (e) {
-          id = convertAddressToNumericId(id);
-        }
+        const address = Address.fromReedSolomonAddress(id);
+        this.recipient.addressRaw = address.getReedSolomonAddress();
+        this.recipient.publicKey = address.getPublicKey();
+        id = address.getNumericId();
         accountFetchFn = this.accountService.getAccount;
         break;
       case RecipientType.ZIL:
@@ -169,12 +175,13 @@ export class BurstRecipientInputComponent implements OnChanges {
       this.recipient.addressRS = accountRS;
       this.recipient.status = RecipientValidationStatus.VALID;
     }).catch(() => {
-      if (isBurstAddress(this.recipient.addressRaw)) {
+      if (this.isReedSolomonAddress(this.recipient.addressRaw)) {
         this.recipient.addressRS = this.recipient.addressRaw;
       } else if (this.recipient.type === RecipientType.ZIL) {
         this.recipient.addressRS = id;
       } else {
-        this.recipient.addressRS = convertNumericIdToAddress(this.recipient.addressRaw);
+        const prefix = this.isTestNet ? AddressPrefix.TestNet : AddressPrefix.MainNet;
+        this.recipient.addressRS = Address.fromNumericId(this.recipient.addressRaw, prefix).getReedSolomonAddress();
       }
       this.recipient.status = RecipientValidationStatus.INVALID;
     }).finally(() => {

@@ -110,6 +110,22 @@ export const constants = {
       reliable: true,
     },
     {
+      name: 'Signum Node EU #2',
+      region: 'Europe',
+      location: 'Frankfurt',
+      address: 'https://europe2.signum.network',
+      port: 443,
+      reliable: true,
+    },
+    {
+      name: 'Signum Node EU #3',
+      region: 'Europe',
+      location: 'Frankfurt',
+      address: 'https://europe3.signum.network',
+      port: 443,
+      reliable: true,
+    },
+    {
       name: 'Signum Node AU',
       region: 'Australia',
       location: 'Sydney',

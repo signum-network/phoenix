@@ -27,7 +27,7 @@ function assertValidPublicKey(publicKey: string): void {
 export class Address {
 
     private _publicKey: string;
-    private _accountId: string;
+    private _numericId: string;
     private _rs: string;
 
     private constructor(args: { publicKey?: string, prefix?: string, address?: string }) {
@@ -38,6 +38,11 @@ export class Address {
         } else {
             throw new Error('Invalid arguments');
         }
+    }
+
+    public static fromNumericId(numericId: string, prefix: string = AddressPrefix.MainNet): Address {
+        const address = convertNumericIdToReedSolomonAddress(numericId, prefix);
+        return new Address({address});
     }
 
     /**
@@ -51,8 +56,8 @@ export class Address {
 
     /**
      * Creates an Account Address object from extended Reed-Solomon address
-     * @param address The Reed-Solomon address in extended format (with base36 suffix)
-     * @throws Error if the passed address is invalid, i.e. not extended format , or extension aka base36 encoded public key does not match address
+     * @param address The Reed-Solomon address in simple or extended format (with base36 suffix)
+     * @throws Error if the passed address is invalid
      */
     public static fromReedSolomonAddress(address: string): Address {
 
@@ -82,8 +87,8 @@ export class Address {
     /**
      * @return Gets numeric Account Id
      */
-    getAccountId(): string {
-        return this._accountId;
+    getNumericId(): string {
+        return this._numericId;
     }
 
     /**
@@ -117,20 +122,20 @@ export class Address {
      * @return true if equal, otherwise false
      */
     public equals(address: Address): boolean {
-        return this._accountId === address._accountId;
+        return this._numericId === address._numericId;
     }
 
     private constructFromPublicKey(publicKey: string, prefix: string): void {
         assertValidPublicKey(publicKey);
         this._publicKey = publicKey;
-        this._accountId = getAccountIdFromPublicKey(publicKey);
-        this._rs = convertNumericIdToReedSolomonAddress(this._accountId, prefix);
+        this._numericId = getAccountIdFromPublicKey(publicKey);
+        this._rs = convertNumericIdToReedSolomonAddress(this._numericId, prefix);
     }
 
     private constructFromAddress(address: string): void {
         this._publicKey = '';
         this._rs = address;
-        this._accountId = convertReedSolomonAddressToNumericId(address);
+        this._numericId = convertReedSolomonAddressToNumericId(address);
     }
 
 }

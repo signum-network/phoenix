@@ -1,5 +1,5 @@
 import {getRecipientsAmount, Transaction} from '@burstjs/core';
-import {BurstValue} from '@burstjs/util';
+import {Amount} from '@burstjs/util';
 import {BalanceHistoryItem} from './typings';
 import {TransactionType} from '@burstjs/core/src';
 import {flow, map, filter} from 'lodash/fp';
@@ -9,9 +9,9 @@ const isOwnTransaction = (accountId: string, transaction: Transaction): boolean 
 function getRelativeTransactionAmount(accountId: string, transaction: Transaction): number {
 
   if (isOwnTransaction(accountId, transaction)) {
-    const amount = BurstValue.fromPlanck(transaction.amountNQT)
-      .add(BurstValue.fromPlanck(transaction.feeNQT))
-      .getBurst()
+    const amount = Amount.fromPlanck(transaction.amountNQT)
+      .add(Amount.fromPlanck(transaction.feeNQT))
+      .getSigna();
     return -parseFloat(amount);
   }
 

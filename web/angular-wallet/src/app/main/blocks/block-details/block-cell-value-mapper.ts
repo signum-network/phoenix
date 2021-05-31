@@ -1,7 +1,8 @@
 import {Block} from '@burstjs/core';
-import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
+import {BlockTime} from '@burstjs/util';
 import {CellValue, CellValueType} from '../../transactions/transaction-details/cell-value-mapper';
-import {formatBurstAmount} from '../../../util/formatBurstAmount';
+import {formatAmount} from '../../../util/formatAmount';
+import {Amount} from '@burstjs/util';
 
 
 export enum BlockCellValueType {
@@ -51,12 +52,13 @@ export class BlockCellValueMapper {
   }
 
   private getTime(blockTimestamp: number): CellValue {
-    const date = convertBurstTimeToDate(blockTimestamp);
+    const date = BlockTime.fromBlockTimestamp(blockTimestamp).getDate();
     return new CellValue(date, CellValueType.Date);
   }
 
   private getAmount(value: string, isPlanck = true): BlockCellValue {
-    const valueStr = `${formatBurstAmount(isPlanck ? convertNQTStringToNumber(value) : value)}`;
+    const amount = isPlanck ? Amount.fromPlanck(value) : Amount.fromSigna(value);
+    const valueStr = `${formatAmount(amount.getSigna())}`;
     return new BlockCellValue(valueStr);
   }
 

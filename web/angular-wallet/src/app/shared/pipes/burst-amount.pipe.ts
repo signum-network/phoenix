@@ -1,8 +1,9 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {I18nService} from '../../layout/components/i18n/i18n.service';
-import {formatBurstAmount} from '../../util/formatBurstAmount';
-import {convertNQTStringToNumber} from '@burstjs/util';
+import {formatAmount} from '../../util/formatAmount';
+import {Amount} from '@burstjs/util';
 
+// FIXME: rename to signa
 @Pipe({
   name: 'burstAmount',
   pure: false
@@ -25,9 +26,9 @@ export class BurstAmountPipe implements PipeTransform {
   ): string {
     if (this.shouldUpdate()) {
 
-      const v = inputType === 'planck' ? convertNQTStringToNumber(value.toString()) : value;
+      const v = inputType === 'planck' ? Amount.fromPlanck(value).getSigna() : value;
 
-      return formatBurstAmount(v, {
+      return formatAmount(v, {
         isShortForm,
         noUnit,
         locale: this.i18nService.currentLanguage.code

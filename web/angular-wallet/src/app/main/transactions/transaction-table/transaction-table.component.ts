@@ -15,7 +15,7 @@ import {
   TransactionMiningSubtype,
   TransactionType
 } from '@burstjs/core';
-import {convertBurstTimeToDate, convertNQTStringToNumber, BurstValue, BurstTime} from '@burstjs/util';
+import {Amount, BlockTime} from '@burstjs/util';
 import {UtilService} from 'app/util.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
@@ -42,8 +42,6 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
       });
   }
 
-  public convertNQTStringToNumber = convertNQTStringToNumber;
-
   @Input() dataSource: MatTableDataSource<Transaction>;
   @Input() public displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
@@ -59,7 +57,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   }
 
   public convertTimestamp(timestamp: number): Date {
-    return convertBurstTimeToDate(timestamp);
+    return BlockTime.fromBlockTimestamp(timestamp).getDate();
   }
 
   public getTransactionNameFromType(transaction: Transaction): string {
@@ -73,12 +71,12 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   public getAmount(transaction: Transaction): string {
 
     if (this.isOwnAccount(transaction.senderRS)) {
-      return BurstValue.fromPlanck(transaction.amountNQT).multiply(-1).getBurst();
+      return Amount.fromPlanck(transaction.amountNQT).multiply(-1).getSigna();
     }
 
     return this.isMultiOutPayment(transaction)
       ? getRecipientsAmount(this.account.account, transaction).toString(10)
-      : BurstValue.fromPlanck(transaction.amountNQT).getBurst();
+      : Amount.fromPlanck(transaction.amountNQT).getSigna();
   }
 
   public isAmountNegative(transaction: Transaction): boolean {
@@ -94,11 +92,11 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   }
 
   getCommitmentAmount(transaction): string {
-    return BurstValue.fromPlanck(transaction.attachment.amountNQT || '0').getBurst();
+    return Amount.fromPlanck(transaction.attachment.amountNQT || '0').getSigna();
   }
 
   getDate(tx: Transaction): string {
-    const time = BurstTime.fromBurstTimestamp(tx.timestamp);
+    const time = BlockTime.fromBlockTimestamp(tx.timestamp);
     return formatDate(time.getDate(), 'short', this.locale);
   }
 

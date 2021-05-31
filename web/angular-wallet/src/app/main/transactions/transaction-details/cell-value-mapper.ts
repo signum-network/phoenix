@@ -6,7 +6,7 @@ import {
   getAttachmentVersion
 } from '@burstjs/core';
 import {UtilService} from '../../../util.service';
-import {BurstValue, convertBurstTimeToDate, convertHexStringToString} from '@burstjs/util';
+import {Amount, BlockTime, convertHexStringToString} from '@burstjs/util';
 
 
 export enum CellValueType {
@@ -107,7 +107,7 @@ export class CellValueMapper {
   }
 
   private getAmount(nqt: string): CellValue {
-    const valueStr = `${BurstValue.fromPlanck(nqt).toString()}`;
+    const valueStr = `${Amount.fromPlanck(nqt).toString()}`;
     return new CellValue(valueStr);
   }
 
@@ -116,7 +116,7 @@ export class CellValueMapper {
   }
 
   private getTime(blockTimestamp: number): CellValue {
-    const date = convertBurstTimeToDate(blockTimestamp);
+    const date = BlockTime.fromBlockTimestamp(blockTimestamp).getDate();
     return new CellValue(date, CellValueType.Date);
   }
 

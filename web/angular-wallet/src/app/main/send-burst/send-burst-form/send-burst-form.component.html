@@ -10,7 +10,7 @@
   <div class="amount-wrapper">
     <mat-form-field>
       <mat-label>{{ 'amount' | i18n }}</mat-label>
-      <span matPrefix>Ƀ &nbsp;</span>
+      <span class="mr-8" matPrefix>{{symbol}}</span>
       <input matInput [(ngModel)]="amount" name="amount" [disabled]="immutable">
       <mat-icon
         class="all-icon"
@@ -25,7 +25,7 @@
 
     <mat-form-field>
       <mat-label>{{ 'fee' | i18n }}</mat-label>
-      <span matPrefix>Ƀ &nbsp;</span>
+      <span class="mr-8" matPrefix>{{symbol}}</span>
       <input matInput [(ngModel)]="fee" name="fee" [disabled]="immutable">
     </mat-form-field>
   </div>
@@ -72,6 +72,6 @@
   </div>
 
   <strong>{{'total' | i18n}}:&nbsp;</strong>
-  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getBurst() | burstAmount }}</span> -
+  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getSigna() | burstAmount }}</span> -
   <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
 </form>

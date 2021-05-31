@@ -5,16 +5,15 @@ import {MatTableDataSource} from '@angular/material/table';
 import {FormControl} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {Transaction, Account} from '@burstjs/core';
-import {convertBurstTimeToDate, convertNQTStringToNumber} from '@burstjs/util';
+import {BlockTime} from '@burstjs/util';
 
 @Component({
   selector: 'app-transactions',
   styleUrls: ['./transactions.component.scss'],
   templateUrl: './transactions.component.html'
 })
-export class TransactionsComponent implements OnInit, AfterViewInit{
+export class TransactionsComponent implements OnInit, AfterViewInit {
   public dataSource: MatTableDataSource<Transaction>;
-  public convertNQTStringToNumber = convertNQTStringToNumber;
   public account: Account;
   pickerFromField = new FormControl();
   pickerToField = new FormControl();
@@ -58,6 +57,6 @@ export class TransactionsComponent implements OnInit, AfterViewInit{
   }
 
   public convertTimestamp(timestamp: number): Date {
-    return convertBurstTimeToDate(timestamp);
+    return BlockTime.fromBlockTimestamp(timestamp).getDate();
   }
 }

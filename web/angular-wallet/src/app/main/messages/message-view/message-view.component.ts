@@ -1,35 +1,20 @@
-import {
-  AfterViewInit,
-  Component,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-  ViewChildren,
-  ViewEncapsulation,
-  Input
-} from '@angular/core';
+import {AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild, ViewChildren, ViewEncapsulation} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Subject} from 'rxjs';
-import {map, takeUntil} from 'rxjs/operators';
-
-import {FusePerfectScrollbarDirective} from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
-
-import {MessagesService, Messages} from '../messages.service';
-import {AccountService} from 'app/setup/account/account.service';
-import {Account} from '@burstjs/core';
+import {takeUntil} from 'rxjs/operators';
+import {Account, Address, AddressPrefix} from '@burstjs/core';
+import {BlockTime} from '@burstjs/util';
+import {decryptAES, decryptMessage, hashSHA256} from '@burstjs/crypto';
 import {Router} from '@angular/router';
-import {
-  convertAddressToNumericId,
-  isValid,
-  convertDateToBurstTime,
-  convertBurstTimeToDate
-} from '@burstjs/util';
+import {FusePerfectScrollbarDirective} from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
+import {Messages, MessagesService} from '../messages.service';
+import {AccountService} from 'app/setup/account/account.service';
 import {NotifierService} from 'angular-notifier';
 import {UtilService} from 'app/util.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {decryptAES, hashSHA256, decryptMessage} from '@burstjs/crypto';
 import {burstAddressPattern} from 'app/util/burstAddressPattern';
 import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
+import {NetworkService} from '../../../network/network.service';
 
 @Component({
   selector: 'message-view',
@@ -41,15 +26,16 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() feeBurst: number;
   @Input() encrypt: boolean;
 
-  @ViewChild('pin', { static: false })
+  @ViewChild('pin', {static: false})
   pin: string;
-  @ViewChild(FusePerfectScrollbarDirective, { static: true })
+  @ViewChild(FusePerfectScrollbarDirective, {static: true})
   directiveScroll: FusePerfectScrollbarDirective;
   @ViewChildren('replyInput')
   replyInputField;
-  @ViewChild('replyForm', { static: false })
+  @ViewChild('replyForm', {static: false})
   replyForm: NgForm;
 
+  addressPrefix = AddressPrefix.MainNet;
   message: Messages;
   replyInput: any;
   pinInput: any;
@@ -67,12 +53,14 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     private router: Router,
     private notifierService: NotifierService,
     private utilService: UtilService,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private networkService: NetworkService
   ) {
     this._unsubscribeAll = new Subject();
   }
 
   ngOnInit(): void {
+    this.addressPrefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
     this.selectedUser = this.messageService.user;
     this.messageService.onMessageSelected
       .pipe(takeUntil(this._unsubscribeAll))
@@ -88,12 +76,12 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     this.messageService.onMessagesUpdated
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((messages) => {
-          messages.map((message) => {
-            if (message.contactId === this.message.contactId) {
-              this.message = message;
-              this.scrollToBottom();
-            }
-          });
+        messages.map((message) => {
+          if (message.contactId === this.message.contactId) {
+            this.message = message;
+            this.scrollToBottom();
+          }
+        });
       });
   }
 
@@ -159,18 +147,20 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     if (this.isNewMessage) {
-      if (!isValid(this.message.senderRS)) {
-        return this.notifierService.notify('error', this.i18nService.getTranslation('error_invalid_account_id'));
+      try {
+        this.message.senderRS = `${this.addressPrefix}-${this.message.senderRS}`;
+        this.message.contactId = Address.fromReedSolomonAddress(this.message.senderRS).getNumericId();
+        this.isNewMessage = false;
+      } catch (e) {
+        // TODO: i1n8
+        return this.notifierService.notify('error', e);
       }
-      this.message.senderRS = `BURST-${this.message.senderRS}`;
-      this.message.contactId = convertAddressToNumericId(this.message.senderRS);
-      this.isNewMessage = false;
     }
 
     const message = {
       contactId: this.selectedUser.account,
       message: this.replyForm.form.value.message,
-      timestamp: parseInt(convertDateToBurstTime(new Date()).toString(), 10)
+      timestamp: BlockTime.fromDate(new Date()).getBlockTimestamp()
     };
 
     try {
@@ -214,7 +204,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   convertTimestampToDate(timestamp): Date {
-    return convertBurstTimeToDate(timestamp);
+    return BlockTime.fromBlockTimestamp(timestamp).getDate();
   }
 
   canSubmitReply(): boolean {

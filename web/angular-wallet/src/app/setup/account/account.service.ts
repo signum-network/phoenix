@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/timeout';
+// TODO: not sure why this was imported here
+// import 'rxjs/add/operator/toPromise';
+// import 'rxjs/add/operator/timeout';
 import {environment} from 'environments/environment';
 import {StoreService} from 'app/store/store.service';
 
@@ -9,34 +10,23 @@ import {
   Account,
   AliasList,
   Api,
+  Asset,
+  AssetList,
   Balance,
+  BlockList,
   Transaction,
   TransactionId,
   TransactionList,
-  UnconfirmedTransactionList,
-  Asset,
-  AssetList,
-  BlockList,
   TransactionMiningSubtype,
   TransactionType,
+  UnconfirmedTransactionList,
+  Address
 } from '@burstjs/core';
-import {
-  decryptAES,
-  encryptAES,
-  generateMasterKeys,
-  getAccountIdFromPublicKey,
-  hashSHA256,
-  Keys
-} from '@burstjs/crypto';
-import {
-  convertAddressToNumericId,
-  convertNumericIdToAddress,
-  isBurstAddress,
-  sumNQTStringToNumber
-} from '@burstjs/util';
+import {decryptAES, encryptAES, generateMasterKeys, hashSHA256, Keys} from '@burstjs/crypto';
+import {Amount} from '@burstjs/util';
+import {HttpClientFactory, HttpError} from '@burstjs/http';
 import {ApiService} from '../../api.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {HttpError, HttpClientFactory} from '@burstjs/http';
 import {NetworkService} from '../../network/network.service';
 import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';
 
@@ -265,9 +255,9 @@ export class AccountService {
       };
       account.pinHash = hashSHA256(pin + keys.publicKey);
 
-      const id = getAccountIdFromPublicKey(keys.publicKey);
-      account.account = id;
-      account.accountRS = convertNumericIdToAddress(id);
+      const address = Address.fromPublicKey(keys.publicKey);
+      account.account = address.getNumericId();
+      account.accountRS = address.getReedSolomonAddress();
 
       await this.selectAccount(account);
       const savedAccount = await this.synchronizeAccount(account);
@@ -275,29 +265,21 @@ export class AccountService {
     });
   }
 
-  public createOfflineAccount(address: string): Promise<Account> {
-    return new Promise(async (resolve, reject) => {
-
-      if (!isBurstAddress(address)) {
-        reject('Invalid Burst Address');
-      }
-
-      const account: Account = new Account();
-      const accountId = convertAddressToNumericId(address);
-      const existingAccount = await this.storeService.findAccount(accountId);
-      if (existingAccount === undefined) {
-        // import offline account
-        account.type = 'offline';
-        account.confirmed = false;
-        account.accountRS = address;
-        account.account = accountId;
-        await this.selectAccount(account);
-        const savedAccount = await this.synchronizeAccount(account);
-        resolve(savedAccount);
-      } else {
-        reject('Burstcoin address already imported!');
-      }
-    });
+  public async createOfflineAccount(reedSolomonAddress: string): Promise<Account> {
+    const account: Account = new Account();
+    const address = Address.fromReedSolomonAddress(reedSolomonAddress);
+    const existingAccount = await this.storeService.findAccount(address.getNumericId());
+    if (existingAccount === undefined) {
+      // import offline account
+      account.type = 'offline';
+      account.confirmed = false;
+      account.accountRS = reedSolomonAddress;
+      account.account = address.getNumericId();
+      await this.selectAccount(account);
+      return this.synchronizeAccount(account);
+    } else {
+      throw new Error('Burstcoin address already imported!');
+    }
   }
 
   public removeAccount(account: Account): Promise<boolean> {
@@ -332,7 +314,7 @@ export class AccountService {
   public sendNewTransactionNotification(transaction: Transaction): void {
     this.transactionsSeenInNotifications[transaction.transaction] = true;
     const incoming = transaction.recipientRS === this.currentAccount.value.accountRS;
-    const totalAmountBurst = sumNQTStringToNumber(transaction.amountNQT, transaction.feeNQT);
+    const totalAmount = Amount.fromPlanck(transaction.amountNQT).add(Amount.fromPlanck(transaction.feeNQT));
 
     // @ts-ignore
     return window.Notification && new window.Notification(
@@ -340,8 +322,7 @@ export class AccountService {
         ? this.i18nService.getTranslation('youve_got_burst')
         : this.i18nService.getTranslation('you_sent_burst'),
       {
-        body: `${totalAmountBurst} BURST`,
-        // @ts-ignore
+        body: totalAmount.toString(),
         title: 'Phoenix'
       });
 

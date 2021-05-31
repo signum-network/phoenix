@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 
 import {
   Account,
+  Address,
   Api,
   AttachmentEncryptedMessage,
   SuggestedFees,
@@ -15,7 +16,7 @@ import {
 import {AccountService} from 'app/setup/account/account.service';
 import {decryptAES, hashSHA256} from '@burstjs/crypto';
 import {NetworkService} from 'app/network/network.service';
-import {convertAddressToNumericId, convertDateToBurstTime, convertNumberToNQTString} from '@burstjs/util';
+import {Amount, BlockTime} from '@burstjs/util';
 import {ApiService} from '../../api.service';
 
 export interface ChatMessage {
@@ -29,7 +30,7 @@ export interface Messages {
   dialog: ChatMessage[];
   contactId: string;
   senderRS: string;
-  timestamp: string;
+  timestamp: number;
 }
 
 export interface MessageOptions {
@@ -148,14 +149,14 @@ export class MessagesService implements Resolve<any> {
         // @ts-ignore
         recipientPublicKey: recipient.publicKey,
         message: message.message,
-        feePlanck: convertNumberToNQTString(fee),
+        feePlanck: Amount.fromSigna(fee).getPlanck(),
         senderKeys,
       });
     } else {
       transactionId = await this.api.message.sendMessage({
         recipientId,
         message: message.message,
-        feePlanck: convertNumberToNQTString(fee),
+        feePlanck: Amount.fromSigna(fee).getPlanck(),
         senderPrivateKey: senderKeys.signPrivateKey,
         senderPublicKey: senderKeys.publicKey,
       });
@@ -200,10 +201,10 @@ export class MessagesService implements Resolve<any> {
 
   sendNewMessage(recipient): void {
     const message = {
-      contactId: convertAddressToNumericId(recipient) || 'new',
+      contactId: Address.fromReedSolomonAddress(recipient).getNumericId() || 'new',
       dialog: [],
       senderRS: recipient,
-      timestamp: convertDateToBurstTime(new Date()).toString()
+      timestamp: BlockTime.fromDate(new Date()).getBlockTimestamp()
     };
     if (recipient) {
       this.messages.push(message);

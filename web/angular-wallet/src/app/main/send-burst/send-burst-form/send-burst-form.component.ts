@@ -1,11 +1,6 @@
 import {Component, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {Account, SuggestedFees} from '@burstjs/core';
-import {
-  convertAddressToNumericId,
-  convertNQTStringToNumber,
-  BurstValue,
-  convertBase64StringToString
-} from '@burstjs/util';
+import {Amount, convertBase64StringToString} from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
@@ -22,6 +17,8 @@ import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {ActivatedRoute, Router, NavigationEnd, Params} from '@angular/router';
 import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
 import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
+import {Address} from '@burstjs/core';
+import {SignaSymbol} from '@burstjs/util';
 
 interface CIP22Payload {
   amountPlanck: string | number;
@@ -76,6 +73,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   language: string;
 
   private balances: AccountBalances;
+  symbol = SignaSymbol;
 
   constructor(
     private warnDialog: MatDialog,
@@ -105,7 +103,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.fee = BurstValue.fromPlanck(this.fees.standard.toString(10)).getBurst();
+      this.fee = Amount.fromPlanck(this.fees.standard.toString(10)).getSigna();
       this.balances = getBalancesFromAccount(this.account);
     });
   }
@@ -148,8 +146,8 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
 
     this.onRecipientChange(new Recipient(recipient));
 
-    this.amount = amountPlanck ? BurstValue.fromPlanck(amountPlanck).getBurst() : this.amount;
-    this.fee = feePlanck ? BurstValue.fromPlanck(feePlanck).getBurst() : this.fee;
+    this.amount = amountPlanck ? Amount.fromPlanck(amountPlanck).getSigna() : this.amount;
+    this.fee = feePlanck ? Amount.fromPlanck(feePlanck).getSigna() : this.fee;
     this.message = message;
     this.messageIsText = isTrue(messageIsText) || this.messageIsText;
     this.immutable = isTrue(immutable) || this.immutable;
@@ -161,11 +159,11 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
     const {receiver, feeNQT, amountNQT, message, encrypt, immutable, messageIsText, feeSuggestionType} = queryParams;
     this.onRecipientChange(new Recipient(receiver));
     if (feeNQT) {
-      this.fee = convertNQTStringToNumber(feeNQT).toString();
+      this.fee = Amount.fromPlanck(feeNQT).getSigna();
     }
 
     if (amountNQT) {
-      this.amount = convertNQTStringToNumber(amountNQT).toString();
+      this.amount = Amount.fromPlanck(amountNQT).getSigna();
     }
     this.message = message;
     this.encrypt = encrypt;
@@ -177,15 +175,15 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
       this.messageIsText = false;
     }
     if (feeSuggestionType && this.fees[feeSuggestionType]) {
-      this.fee = convertNQTStringToNumber(this.fees[feeSuggestionType]).toString();
+      this.fee = Amount.fromPlanck(this.fees[feeSuggestionType]).getSigna();
     }
     this.showMessage = !!this.message;
   }
 
-  getTotal(): BurstValue {
+  getTotal(): Amount {
     return this.amount !== undefined && this.fee !== undefined
-      ? BurstValue.fromBurst(this.amount).add(BurstValue.fromBurst(this.fee))
-      : BurstValue.Zero();
+      ? Amount.fromSigna(this.amount).add(Amount.fromSigna(this.fee))
+      : Amount.Zero();
   }
 
   onSubmit(event): void {
@@ -208,9 +206,9 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
       this.isSending = true;
 
       await this.transactionService.sendBurst({
-        amount: BurstValue.fromBurst(this.amount).getPlanck(),
-        fee: BurstValue.fromBurst(this.fee).getPlanck(),
-        recipientId: convertAddressToNumericId(addressRS),
+        amount: Amount.fromSigna(this.amount).getPlanck(),
+        fee: Amount.fromSigna(this.fee).getPlanck(),
+        recipientId: Address.fromReedSolomonAddress(addressRS).getNumericId(),
         recipientPublicKey,
         keys: this.account.keys,
         pin: this.pin,
@@ -250,7 +248,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
     const available = this.balances.availableBalance.clone();
     return available
       .subtract(this.getTotal())
-      .greaterOrEqual(BurstValue.Zero());
+      .greaterOrEqual(Amount.Zero());
   }
 
   canSubmit(): boolean {
@@ -265,15 +263,14 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   onQRUpload(qrData: QRData): void {
-    // TODO: remove deprecated convertNQTStringToNumber and migrate to BurstValue
-    this.amount = convertNQTStringToNumber(qrData.amountNQT).toString();
-    this.fee = convertNQTStringToNumber(qrData.feeNQT).toString();
+    this.amount = Amount.fromPlanck(qrData.amountNQT).getSigna();
+    this.fee = Amount.fromPlanck(qrData.feeNQT).getSigna();
     this.immutable = qrData.immutable;
     this.encrypt = qrData.encrypt;
     this.message = qrData.message;
     this.messageIsText = qrData.messageIsText;
     if (qrData.feeSuggestionType && this.fees[qrData.feeSuggestionType]) {
-      this.fee = convertNQTStringToNumber(this.fees[qrData.feeSuggestionType]).toString();
+      this.fee = Amount.fromPlanck(this.fees[qrData.feeSuggestionType]).getSigna();
     }
   }
 
@@ -283,7 +280,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
     }
 
     const available = this.balances.availableBalance.clone();
-    const fee = BurstValue.fromBurst(this.fee || '0');
-    this.amount = available.subtract(fee).getBurst();
+    const fee = Amount.fromSigna(this.fee || '0');
+    this.amount = available.subtract(fee).getSigna();
   }
 }

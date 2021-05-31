@@ -5,7 +5,7 @@ import {AccountService} from 'app/setup/account/account.service';
 import {StoreService} from 'app/store/store.service';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
-import {getBalancesFromAccount} from '../../util/balance/getBalancesFromAccount';
+import {getBalancesFromAccount} from '../../util/balance';
 
 @Component({
   selector: 'app-send-burst',
@@ -52,6 +52,6 @@ export class SendBurstComponent extends UnsubscribeOnDestroy implements OnInit {
   }
 
   getBalance(): string {
-      return getBalancesFromAccount(this.account).availableBalance.getBurst();
+      return getBalancesFromAccount(this.account).availableBalance.getSigna();
   }
 }

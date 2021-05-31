@@ -4,7 +4,7 @@ import {SuggestedFees} from '@burstjs/core';
 import {EventEmitter} from '@angular/core';
 import {LabelType, Options} from 'ng5-slider';
 import {BurstAmountPipe} from '../../../shared/pipes/burst-amount.pipe';
-import {formatBurstAmount} from '../../../util/formatBurstAmount';
+import {formatAmount} from '../../../util/formatAmount';
 import {I18nService} from '../i18n/i18n.service';
 import Color from 'color';
 
@@ -61,7 +61,7 @@ export class BurstFeeSelectorComponent implements OnInit {
         return color.hsl();
       },
       translate: (value: number, label: LabelType): string => {
-        return formatBurstAmount(value, {
+        return formatAmount(value, {
           locale: this.i18nService.currentLanguage.code,
           noUnit: false,
           isShortForm: false

@@ -28,7 +28,7 @@
 
           <div *ngIf="isNewMessage" class="message-contact-name-input">
             <mat-form-field floatLabel="never" appearance="standard">
-              <input matInput prefix="BURST-" burstInputValidator [patterns]="burstAddressPatternRef"
+              <input matInput prefix="{{isMainNet ? 'S-' : 'TS-'}}getAddressPrefix" burstInputValidator [patterns]="burstAddressPatternRef"
                      mask="____-____-____-_____" [dropSpecialCharacters]="false" [showMaskTyped]="true"
                      [(ngModel)]="message.senderRS" name="message.senderRS" placeholder="{{ 'recipient' | i18n }}">
             </mat-form-field>

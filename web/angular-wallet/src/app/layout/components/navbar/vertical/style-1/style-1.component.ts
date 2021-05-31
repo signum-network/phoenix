@@ -13,7 +13,7 @@ import {AccountService} from 'app/setup/account/account.service';
 import {environment} from 'environments/environment';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {NotifierService} from 'angular-notifier';
-import {convertNQTStringToNumber} from '@burstjs/util';
+import {Amount} from '@burstjs/util';
 
 import hashicon from 'hashicon';
 import {FuseNavigation} from '../../../../../../@fuse/types';
@@ -215,8 +215,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
     }
   }
 
-  getBalance(): number {
-    return convertNQTStringToNumber(this.selectedAccount.balanceNQT);
+  getBalance(): string {
+    return this.selectedAccount.balanceNQT;
   }
 
   private updateNavigation(): void {

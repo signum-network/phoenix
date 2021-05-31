@@ -1,22 +1,23 @@
 import {formatNumber} from '@angular/common';
-import {BurstSymbol} from '@burstjs/util';
+import {SignaSymbol} from '@burstjs/util';
 
-export interface BurstAmountFormattingOptions {
+export interface AmountFormattingOptions {
   isShortForm: boolean;
   noUnit: boolean;
   locale: string;
 }
 
-const DefaultFormattingOptions: BurstAmountFormattingOptions = {
+const DefaultFormattingOptions: AmountFormattingOptions = {
   isShortForm: false,
   noUnit: false,
   locale: 'en',
 };
 
-export function formatBurstAmount(value: string | number, formattingOptions: BurstAmountFormattingOptions = DefaultFormattingOptions): string {
+export function formatAmount(value: string | number, formattingOptions: AmountFormattingOptions = DefaultFormattingOptions): string {
+
   const v = typeof value === 'string' ? parseFloat(value) : value;
   const {isShortForm, noUnit, locale} = formattingOptions;
   const digitsInfo = isShortForm ? '1.0-6' : '1.0-8';
-  const unit = noUnit ? '' : BurstSymbol + ' ';
+  const unit = noUnit ? '' : SignaSymbol + ' ';
   return `${unit}${formatNumber(v, locale, digitsInfo)}`;
 }

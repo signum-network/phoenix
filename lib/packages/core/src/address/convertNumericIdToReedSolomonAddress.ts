@@ -22,6 +22,10 @@ export const convertNumericIdToReedSolomonAddress = (numericId: string, prefix: 
         throw new Error('Invalid arguments');
     }
 
+    if (!/^\d+$/.test(numericId)) {
+        throw new Error(`Invalid numeric id: ${numericId}`);
+    }
+
     const plainString10 = [],
         codeword = initialCodeword.slice();
     let pos = 0;

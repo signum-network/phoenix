@@ -57,6 +57,6 @@ export class SetCommitmentComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   getBalance(): string {
-    return getBalancesFromAccount(this.account).availableBalance.getBurst();
+    return getBalancesFromAccount(this.account).availableBalance.getSigna();
   }
 }

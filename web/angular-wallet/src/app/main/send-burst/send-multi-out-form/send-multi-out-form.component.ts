@@ -1,13 +1,8 @@
 import {Component, OnInit, ViewChild, Input} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {NotifierService} from 'angular-notifier';
-import {
-  convertAddressToNumericId,
-  convertNQTStringToNumber,
-  convertNumericIdToAddress,
-  BurstValue
-} from '@burstjs/util';
-import {SuggestedFees, Account, MultioutRecipientAmount} from '@burstjs/core';
+import {Amount} from '@burstjs/util';
+import {SuggestedFees, Account, MultioutRecipientAmount, Address, AddressPrefix} from '@burstjs/core';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
@@ -22,6 +17,7 @@ import {constants} from '../../../constants';
 import {Router} from '@angular/router';
 import {AccountBalances, getBalancesFromAccount} from '../../../util/balance';
 import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
+import {NetworkService} from '../../../network/network.service';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -62,6 +58,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     private notifierService: NotifierService,
     private i18nService: I18nService,
     private storeService: StoreService,
+    private networkService: NetworkService,
     private breakpointObserver: BreakpointObserver,
     private router: Router,
   ) {
@@ -97,11 +94,11 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   private async sendBurstSameAmount(): Promise<void> {
 
-    const fee = BurstValue.fromBurst(this.fee || 0);
-    const amount = BurstValue.fromBurst(this.amount || 0);
+    const fee = Amount.fromSigna(this.fee || 0);
+    const amount = Amount.fromSigna(this.amount || 0);
 
     const request = {
-      recipientIds: this.recipients.map(r => convertAddressToNumericId(r.addressRS)),
+      recipientIds: this.recipients.map(r => Address.fromReedSolomonAddress(r.addressRS).getNumericId()),
       fee: fee.getPlanck(),
       amountNQT: amount.getPlanck(),
       pin: this.pin,
@@ -112,12 +109,12 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   private async sendBurstArbitraryAmount(): Promise<void> {
 
-    const fee = BurstValue.fromBurst(this.fee || 0);
+    const fee = Amount.fromSigna(this.fee || 0);
 
     const request = {
       recipientAmounts: this.recipients.map(r => ({
-        recipient: convertAddressToNumericId(r.addressRS),
-        amountNQT: BurstValue.fromBurst(r.amount || 0).getPlanck(),
+        recipient: Address.fromReedSolomonAddress(r.addressRS).getNumericId(),
+        amountNQT: Amount.fromSigna(r.amount || 0).getPlanck(),
       })),
       fee: fee.getPlanck(),
       pin: this.pin,
@@ -191,19 +188,19 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       .subscribe(this.handleBatchRecipients.bind(this));
   }
 
-  private getTotalForMultiOut(): BurstValue {
+  private getTotalForMultiOut(): Amount {
     return this.nonEmptyRecipients()
-      .map(({amount}) => BurstValue.fromBurst(amount || 0))
-      .reduce((acc, curr) => acc.add(curr), BurstValue.Zero());
+      .map(({amount}) => Amount.fromSigna(amount || 0))
+      .reduce((acc, curr) => acc.add(curr), Amount.Zero());
   }
 
-  private getTotalForSameAmount(): BurstValue {
-    return BurstValue.fromBurst(this.amount || 0).multiply(this.recipients.length);
+  private getTotalForSameAmount(): Amount {
+    return Amount.fromSigna(this.amount || 0).multiply(this.recipients.length);
   }
 
-  getTotal(): BurstValue {
+  getTotal(): Amount {
     const total = this.sameAmount ? this.getTotalForSameAmount() : this.getTotalForMultiOut();
-    return total.add(BurstValue.fromBurst(this.fee || 0));
+    return total.add(Amount.fromSigna(this.fee || 0));
   }
 
   private nonEmptyRecipients(): Array<Recipient> {
@@ -220,7 +217,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     const available = this.balances.availableBalance.clone();
     const total = this.getTotal();
 
-    return available.subtract(total).greaterOrEqual(BurstValue.Zero());
+    return available.subtract(total).greaterOrEqual(Amount.Zero());
   }
 
 
@@ -262,11 +259,13 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     let previousAmount = null;
     let isSameAmount = true;
 
+    const prefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
+
     this.recipients = recipientAmounts.map(ra => {
       const r = new Recipient();
-      r.amount = convertNQTStringToNumber(ra.amountNQT).toString(10);
+      r.amount = Amount.fromPlanck(ra.amountNQT).getSigna();
       r.addressRaw = ra.recipient;
-      r.addressRS = convertNumericIdToAddress(ra.recipient);
+      r.addressRS = Address.fromNumericId(ra.recipient, prefix).getReedSolomonAddress();
 
       if (previousAmount) {
         isSameAmount = isSameAmount && (previousAmount === r.amount);

@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Account, Block } from '@burstjs/core';
 import { FormControl } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
-import { convertBurstTimeToDate, convertNQTStringToNumber } from '@burstjs/util';
+import { Amount, BlockTime } from '@burstjs/util';
 import { NetworkService } from 'app/network/network.service';
 import { ActivatedRoute } from '@angular/router';
 import { StoreService } from 'app/store/store.service';
@@ -17,7 +17,6 @@ import { StoreService } from 'app/store/store.service';
 })
 export class BlocksComponent implements OnInit {
   public dataSource: MatTableDataSource<Block>;
-  public convertNQTStringToNumber = convertNQTStringToNumber;
   public displayedColumns: string[];
   private account: Account;
   pickerFromField = new FormControl();
@@ -36,7 +35,7 @@ export class BlocksComponent implements OnInit {
   ) {
   }
 
-  public async ngOnInit() {
+  public async ngOnInit(): Promise<void> {
     this.displayedColumns = ['block', 'height', 'numberOfTransactions', 'timestamp', 'totalAmountNQT', 'totalFeeNQT'];
     this.dataSource = new MatTableDataSource<Block>();
     this.dataSource.data = this.route.snapshot.data.blocks.blocks;
@@ -141,7 +140,7 @@ export class BlocksComponent implements OnInit {
     });
   }
 
-  public ngAfterViewInit() {
+  public ngAfterViewInit(): void {
     const defaultFilterPredicate = this.dataSource.filterPredicate;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -159,7 +158,7 @@ export class BlocksComponent implements OnInit {
     };
   }
 
-  public applyFilter(filterValue: string) {
+  public applyFilter(filterValue: string): void {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue || 'burst';
@@ -170,6 +169,10 @@ export class BlocksComponent implements OnInit {
   }
 
   public convertTimestamp(timestamp: number): Date {
-    return convertBurstTimeToDate(timestamp);
+    return BlockTime.fromBlockTimestamp(timestamp).getDate();
+  }
+
+  getAmountFromPlanck(totalFeeNQT: any): string {
+    return Amount.fromPlanck(totalFeeNQT).getSigna();
   }
 }

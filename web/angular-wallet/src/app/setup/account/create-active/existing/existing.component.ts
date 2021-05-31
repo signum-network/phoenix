@@ -1,9 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CreateService} from '../../create.service';
-import {convertNumericIdToAddress} from '@burstjs/util';
+import {Address} from '@burstjs/core';
 import {
   generateMasterKeys,
-  getAccountIdFromPublicKey,
   PassPhraseGenerator
 } from '@burstjs/crypto';
 
@@ -26,10 +25,9 @@ export class AccountCreateExistingComponent {
   public setPassphraseAndGenerateMasterKeys(phrase: string[]): void {
     this.createService.setPassphrase(phrase);
     const keys = generateMasterKeys(this.createService.getCompletePassphrase());
-    const id = getAccountIdFromPublicKey(keys.publicKey);
-    this.createService.setId(id);
-    const address = convertNumericIdToAddress(id);
-    this.createService.setAddress(address);
+    const address = Address.fromPublicKey(keys.publicKey);
+    this.createService.setId(address.getNumericId());
+    this.createService.setAddress(address.getReedSolomonAddress());
     setTimeout(x => {
       this.createService.setStep(1);
     }, 0);

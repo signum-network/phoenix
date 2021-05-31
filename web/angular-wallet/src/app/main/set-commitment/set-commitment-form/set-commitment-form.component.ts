@@ -1,8 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Account, SuggestedFees} from '@burstjs/core';
-import {
-  BurstValue
-} from '@burstjs/util';
+import {Amount} from '@burstjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
@@ -70,7 +68,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.fee = BurstValue.fromPlanck(this.fees.standard.toString(10)).getBurst();
+      this.fee = Amount.fromPlanck(this.fees.standard.toString(10)).getSigna();
       this.balances = getBalancesFromAccount(this.account);
     }, 0);
     this.checkForCommitmentRemoval();
@@ -102,10 +100,10 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       1440 - blocksMissingSinceLastMintedBlock);
   }
 
-  getTotal(): BurstValue {
+  getTotal(): Amount {
     return this.amount !== undefined && this.fee !== undefined
-      ? BurstValue.fromBurst(this.amount).add(BurstValue.fromBurst(this.fee))
-      : BurstValue.Zero();
+      ? Amount.fromSigna(this.amount).add(Amount.fromSigna(this.fee))
+      : Amount.Zero();
   }
 
   async onSubmit(): Promise<void> {
@@ -113,8 +111,8 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       this.isSending = true;
       await this.accountService.setCommitment({
         isRevoking: this.isRevoking(),
-        amountPlanck: BurstValue.fromBurst(this.amount).getPlanck(),
-        feePlanck: BurstValue.fromBurst(this.fee).getPlanck(),
+        amountPlanck: Amount.fromSigna(this.amount).getPlanck(),
+        feePlanck: Amount.fromSigna(this.fee).getPlanck(),
         keys: this.account.keys,
         pin: this.pin,
       });
@@ -138,14 +136,14 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
     }
 
     if (this.isRevoking()) {
-      const fee = BurstValue.fromBurst(this.fee || '0');
+      const fee = Amount.fromSigna(this.fee || '0');
       const hasBalanceToPayFee = this.balances.availableBalance.clone()
         .greaterOrEqual(fee);
 
       const revokableCommitment = this.balances.committedBalance.clone();
 
       return hasBalanceToPayFee &&
-        revokableCommitment.greaterOrEqual(BurstValue.fromBurst(this.amount || '0'));
+        revokableCommitment.greaterOrEqual(Amount.fromSigna(this.amount || '0'));
     }
 
     return this.balances.availableBalance.clone()
@@ -163,11 +161,11 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       return;
     }
 
-    const fee = BurstValue.fromBurst(this.fee || '0');
+    const fee = Amount.fromSigna(this.fee || '0');
 
     this.amount = this.isRevoking()
-      ? this.balances.committedBalance.clone().getBurst()
-      : this.balances.availableBalance.clone().subtract(fee).getBurst();
+      ? this.balances.committedBalance.clone().getSigna()
+      : this.balances.availableBalance.clone().subtract(fee).getSigna();
   }
 
   hasMissingBlocks(): boolean {
@@ -183,6 +181,6 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
   }
 
   hasNothingCommitted(): boolean {
-    return this.balances.committedBalance.equals(BurstValue.Zero());
+    return this.balances.committedBalance.equals(Amount.Zero());
   }
 }
