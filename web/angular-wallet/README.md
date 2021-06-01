@@ -47,7 +47,7 @@ It can be dropped into the `html/ui` folder in the BRS jar file, or served stati
 
 Running a full node strengthens the network and adds security. Running a full node allows one to verify transactions without trusting any third parties. To run a full node:
 
-1. Download and configure the [Burst Reference Software (BRS)](https://github.com/burst-apps-team/burstcoin/releases).
+1. Download and configure the [Signum Node](https://github.com/signum-network/signum-core/releases).
 
 2. Install Phoenix from source. 
 

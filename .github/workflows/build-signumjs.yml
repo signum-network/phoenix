@@ -11,7 +11,7 @@ on:
 
 jobs:
   build-burstjs:
-    name: Test and Build BurstJS
+    name: Test and Build SignumJS
     runs-on: ubuntu-latest
     defaults:
       run:

@@ -13,12 +13,12 @@
         </div>
       </ng-container>
       <ng-container *ngIf="!isLoadingRewardRecipient">
-        <div *ngIf="rewardRecipient">
+        <div *ngIf="rewardRecipient && rewardRecipient.account !== account.account">
           <p>{{rewardRecipient.accountRS}}</p>
           <div class="secondary-text font-size-10">{{rewardRecipient.name}}</div>
           <div class="secondary-text font-size-10">{{rewardRecipient.description}}</div>
         </div>
-        <ng-container *ngIf="!rewardRecipient">
+        <ng-container *ngIf="!rewardRecipient || rewardRecipient.account === account.account">
           <p>{{'no_reward_recipient' | i18n}}</p>
         </ng-container>
       </ng-container>
