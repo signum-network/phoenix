@@ -13,7 +13,7 @@ import {convertReedSolomonAddressToNumericId} from './convertReedSolomonAddressT
 import {convertNumericIdToReedSolomonAddress} from './convertNumericIdToReedSolomonAddress';
 import {AddressPrefix} from '../constants';
 
-function assertValidPublicKey(publicKey: string): void {
+function ensureValidPublicKey(publicKey: string): void {
     if (!(publicKey && /^[a-fA-F0-9]{64}/.test(publicKey))) {
         throw new Error('Invalid Public Key Format');
     }
@@ -37,6 +37,27 @@ export class Address {
             this.constructFromAddress(args.address);
         } else {
             throw new Error('Invalid arguments');
+        }
+    }
+
+    /**
+     * Tries to create the address from whatever input is given
+     * @param anyValidAddress Any valid address, may it be Reed Solomon address, numeric ID, or public key
+     * @param prefix An optional prefix, which can be used to substitute the default [[AddressPrefix.MainNet]]
+     * @return The new address, if the input was valid
+     * @throws when no valid format
+     */
+    public static create(anyValidAddress: string, prefix: string = AddressPrefix.MainNet): Address {
+        try {
+            tokenizeReedSolomonAddress(anyValidAddress);
+            return Address.fromReedSolomonAddress(anyValidAddress);
+        } catch (e) {
+            try {
+                ensureValidPublicKey(anyValidAddress);
+                return Address.fromPublicKey(anyValidAddress, prefix);
+            } catch (innerError) {
+                return Address.fromNumericId(anyValidAddress, prefix);
+            }
         }
     }
 
@@ -128,7 +149,7 @@ export class Address {
     }
 
     private constructFromPublicKey(publicKey: string, prefix: string): void {
-        assertValidPublicKey(publicKey);
+        ensureValidPublicKey(publicKey);
         this._publicKey = publicKey;
         this._numericId = getAccountIdFromPublicKey(publicKey);
         this._rs = convertNumericIdToReedSolomonAddress(this._numericId, prefix);

@@ -111,4 +111,44 @@ describe('Address', () => {
         });
     });
 
+
+    describe('create', () => {
+        it('should create from public key address', () => {
+            const address = Address.create(TestAddress.pk, 'FOOBAR');
+            expect(address.getReedSolomonAddress()).toEqual(TestAddress.rs);
+            expect(address.getReedSolomonAddressExtended()).toEqual(TestAddress.rs + '-' + TestAddress.ex);
+            expect(address.getNumericId()).toEqual(TestAddress.id);
+            expect(address.getPublicKey()).toEqual(TestAddress.pk);
+        });
+
+        it('should create from RS address - no pub key', () => {
+            const address = Address.create(TestAddress.rs);
+            expect(address.getReedSolomonAddress()).toEqual(TestAddress.rs);
+            expect(address.getNumericId()).toEqual(TestAddress.id);
+            expect(address.getPublicKey()).toHaveLength(0);
+            expect(() => address.getReedSolomonAddressExtended()).toThrow('No public key available');
+        });
+
+        it('should create from numeric Id - no pub key', () => {
+            const address = Address.create(TestAddress.id, 'FOOBAR');
+            expect(address.getReedSolomonAddress()).toEqual(TestAddress.rs);
+            expect(address.getNumericId()).toEqual(TestAddress.id);
+            expect(address.getPublicKey()).toHaveLength(0);
+            expect(() => address.getReedSolomonAddressExtended()).toThrow('No public key available');
+        });
+
+        it('should create from extended RS address - with pub key', () => {
+            const address = Address.create(TestAddress.rs + '-' + TestAddress.ex);
+            expect(address.getReedSolomonAddress()).toEqual(TestAddress.rs);
+            expect(address.getNumericId()).toEqual(TestAddress.id);
+            expect(address.getPublicKey().toUpperCase()).toEqual(TestAddress.pk);
+        });
+
+        it('should throw error on invalid address', () => {
+            expect(() => Address.create('invalid-address')).toThrow();
+            expect(() => Address.create(null)).toThrow();
+            expect(() => Address.create('')).toThrow();
+        });
+    });
+
 });
