@@ -1,7 +1,7 @@
 import {Router} from '@angular/router';
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Account} from '@burstjs/core';
-import {Amount, BlockTime} from '@burstjs/util';
+import {Account} from '@signumjs/core';
+import {Amount, BlockTime} from '@signumjs/util';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {I18nService} from '../../../layout/components/i18n/i18n.service';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';

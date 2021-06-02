@@ -3,9 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
-import { convertNQTStringToNumber } from '@burstjs/util';
+import { convertNQTStringToNumber } from '@signumjs/util';
 import { ActivatedRoute } from '@angular/router';
-import { Peer } from '@burstjs/core/out/typings/peer';
+import { Peer } from '@signumjs/core/out/typings/peer';
 
 @Component({
     selector: 'app-peers',

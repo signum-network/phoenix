@@ -5,10 +5,10 @@ import {takeUntil} from 'rxjs/operators';
 import {fuseAnimations} from '@fuse/animations';
 
 import {MessagesService} from './messages.service';
-import {SuggestedFees} from '@burstjs/core/out';
+import {SuggestedFees} from '@signumjs/core/out';
 import {ActivatedRoute} from '@angular/router';
 import {MessageRightSidenavComponent} from './sidenavs/right/right.component';
-import {convertNQTStringToNumber} from '@burstjs/util/out';
+import {convertNQTStringToNumber} from '@signumjs/util/out';
 
 @Component({
   selector: 'messages',

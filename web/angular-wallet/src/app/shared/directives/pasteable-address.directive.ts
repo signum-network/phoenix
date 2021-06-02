@@ -1,6 +1,6 @@
 import {Directive, ElementRef, HostListener} from '@angular/core';
 import {NgControl} from '@angular/forms';
-import {Address} from '@burstjs/core';
+import {Address} from '@signumjs/core';
 
 @Directive({
   selector: '[pasteableAddress]',

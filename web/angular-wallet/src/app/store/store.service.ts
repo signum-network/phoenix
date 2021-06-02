@@ -3,7 +3,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import * as Loki from 'lokijs';
 import {StoreConfig} from './store.config';
 import {Settings} from 'app/settings';
-import {Account} from '@burstjs/core';
+import {Account} from '@signumjs/core';
 
 const CollectionName = {
   Account: 'accounts',

@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { StoreService } from 'app/store/store.service';
 import { AccountService } from 'app/setup/account/account.service';
-import { Account } from '@burstjs/core';
+import { Account } from '@signumjs/core';
 
 interface AssetRow {
   id: string;
@@ -35,7 +35,7 @@ export class AssetsComponent implements OnInit {
   ngOnInit (): void {
     this.displayedColumns = ['id', 'name', 'decimals', 'amount'];
     this.dataSource = new MatTableDataSource<AssetRow>();
-    
+
     this.storeService.ready.subscribe(async (ready) => {
       const output = [];
       try {

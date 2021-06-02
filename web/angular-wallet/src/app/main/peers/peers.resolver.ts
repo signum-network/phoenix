@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { NetworkService } from 'app/network/network.service';
-import { Peer } from '@burstjs/core/out/typings/peer';
+import { Peer } from '@signumjs/core/out/typings/peer';
 
 @Injectable()
 export class PeersResolver implements Resolve<Peer[]> {

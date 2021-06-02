@@ -4,7 +4,7 @@ import {NotifierService} from 'angular-notifier';
 import {Router} from '@angular/router';
 import {burstAddressPattern} from 'app/util/burstAddressPattern';
 import {NetworkService} from '../../../network/network.service';
-import {AddressPrefix} from '@burstjs/core/src';
+import {AddressPrefix} from '@signumjs/core/src';
 
 @Injectable()
 @Component({

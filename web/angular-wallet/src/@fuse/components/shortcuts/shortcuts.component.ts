@@ -8,7 +8,7 @@ import {FuseNavigationService} from '@fuse/components/navigation/navigation.serv
 import {AccountService} from 'app/setup/account/account.service';
 import {MediaObserver} from '@angular/flex-layout';
 import {I18nService} from '../../../app/layout/components/i18n/i18n.service';
-import {Account} from '@burstjs/core';
+import {Account} from '@signumjs/core';
 
 @Component({
   selector: 'fuse-shortcuts',

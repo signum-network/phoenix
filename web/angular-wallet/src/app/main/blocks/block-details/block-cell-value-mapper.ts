@@ -1,8 +1,8 @@
-import {Block} from '@burstjs/core';
-import {BlockTime} from '@burstjs/util';
+import {Block} from '@signumjs/core';
+import {BlockTime} from '@signumjs/util';
 import {CellValue, CellValueType} from '../../transactions/transaction-details/cell-value-mapper';
 import {formatAmount} from '../../../util/formatAmount';
-import {Amount} from '@burstjs/util';
+import {Amount} from '@signumjs/util';
 
 
 export enum BlockCellValueType {

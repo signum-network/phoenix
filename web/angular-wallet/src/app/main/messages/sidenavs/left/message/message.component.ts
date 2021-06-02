@@ -7,7 +7,7 @@ import {fuseAnimations} from '@fuse/animations';
 import {FuseMatSidenavHelperService} from '@fuse/directives/fuse-mat-sidenav/fuse-mat-sidenav.service';
 
 import {MessagesService} from '../../../messages.service';
-import {BlockTime} from '@burstjs/util';
+import {BlockTime} from '@signumjs/util';
 
 @Component({
   selector: 'message-sidenav',

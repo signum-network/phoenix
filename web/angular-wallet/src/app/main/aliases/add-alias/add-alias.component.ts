@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
-import {SuggestedFees, Account, AddressPrefix} from '@burstjs/core';
+import {SuggestedFees, Account, AddressPrefix} from '@signumjs/core';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {AccountService} from 'app/setup/account/account.service';

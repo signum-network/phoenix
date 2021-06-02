@@ -21,10 +21,10 @@ import {
   TransactionType,
   UnconfirmedTransactionList,
   Address
-} from '@burstjs/core';
-import {decryptAES, encryptAES, generateMasterKeys, hashSHA256, Keys} from '@burstjs/crypto';
-import {Amount} from '@burstjs/util';
-import {HttpClientFactory, HttpError} from '@burstjs/http';
+} from '@signumjs/core';
+import {decryptAES, encryptAES, generateMasterKeys, hashSHA256, Keys} from '@signumjs/crypto';
+import {Amount} from '@signumjs/util';
+import {HttpClientFactory, HttpError} from '@signumjs/http';
 import {ApiService} from '../../api.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {NetworkService} from '../../network/network.service';

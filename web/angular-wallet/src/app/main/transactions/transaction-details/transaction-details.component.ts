@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {
   Account,
   Transaction
-} from '@burstjs/core';
+} from '@signumjs/core';
 import {StoreService} from 'app/store/store.service';
 import {ActivatedRoute} from '@angular/router';
 import {UtilService} from '../../../util.service';

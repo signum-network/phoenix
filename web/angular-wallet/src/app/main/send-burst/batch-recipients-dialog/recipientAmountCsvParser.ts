@@ -1,6 +1,6 @@
-import {MultioutRecipientAmount} from '@burstjs/core';
+import {MultioutRecipientAmount} from '@signumjs/core';
 import {I18nService} from '../../../layout/components/i18n/i18n.service';
-import {convertNQTStringToNumber, convertNumberToNQTString} from '@burstjs/util';
+import {convertNQTStringToNumber, convertNumberToNQTString} from '@signumjs/util';
 import {constants} from '../../../constants';
 
 export interface RecipientAmountCsvParserOptions {

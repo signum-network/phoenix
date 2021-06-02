@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { NotifierService } from 'angular-notifier';
 import { StoreService } from 'app/store/store.service';
 import { AccountService } from 'app/setup/account/account.service';
-import { Account, Alias } from '@burstjs/core';
+import { Account, Alias } from '@signumjs/core';
 
 @Component({
   selector: 'app-aliases',

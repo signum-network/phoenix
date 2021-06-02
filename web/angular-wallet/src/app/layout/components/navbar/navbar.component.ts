@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, Renderer2, ViewEncapsulation } from '@angular/core';
-import { Account } from '@burstjs/core';
+import { Account } from '@signumjs/core';
 
 @Component({
     selector     : 'navbar',

@@ -1,6 +1,6 @@
 import {Component, Input, ViewChild} from '@angular/core';
-import {Address, AddressPrefix, Transaction} from '@burstjs/core';
-import {decryptAES, decryptMessage, EncryptedMessage, hashSHA256} from '@burstjs/crypto';
+import {Address, AddressPrefix, Transaction} from '@signumjs/core';
+import {decryptAES, decryptMessage, EncryptedMessage, hashSHA256} from '@signumjs/crypto';
 import {AccountService} from 'app/setup/account/account.service';
 import {CellValue} from '../cell-value-mapper';
 import {NotifierService} from 'angular-notifier';

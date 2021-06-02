@@ -7,11 +7,11 @@ import {
   AttachmentMessage,
   Attachment,
   MultioutRecipientAmount, Transaction
-} from '@burstjs/core';
-import {Keys, decryptAES, hashSHA256, encryptMessage, encryptData, EncryptedMessage, EncryptedData} from '@burstjs/crypto';
+} from '@signumjs/core';
+import {Keys, decryptAES, hashSHA256, encryptMessage, encryptData, EncryptedMessage, EncryptedData} from '@signumjs/crypto';
 import {ApiService} from '../../api.service';
 import {AccountService} from 'app/setup/account/account.service';
-import {convertHexStringToByteArray} from '@burstjs/util';
+import {convertHexStringToByteArray} from '@signumjs/util';
 import {StoreService} from 'app/store/store.service';
 import {Settings} from 'app/settings';
 import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';

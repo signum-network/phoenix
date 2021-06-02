@@ -31,7 +31,7 @@ import {SendBurstFormComponent} from './send-burst-form.component';
 import {BurstInputValidatorDirective} from '../send-burst-validator.directive';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {AccountService} from 'app/setup/account/account.service';
-import {Account} from '@burstjs/core';
+import {Account} from '@signumjs/core';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatProgressBarModule } from '@angular/material';

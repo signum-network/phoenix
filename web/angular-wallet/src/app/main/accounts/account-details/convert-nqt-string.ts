@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { convertNQTStringToNumber } from '@burstjs/util';
+import { convertNQTStringToNumber } from '@signumjs/util';
 
 @Pipe({ name: 'convertNQTString' })
 export class ConvertNQTStringPipe implements PipeTransform {

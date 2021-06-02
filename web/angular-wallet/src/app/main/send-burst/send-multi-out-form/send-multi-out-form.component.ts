@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild, Input} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {NotifierService} from 'angular-notifier';
-import {Amount} from '@burstjs/util';
-import {SuggestedFees, Account, MultioutRecipientAmount, Address, AddressPrefix} from '@burstjs/core';
+import {Amount} from '@signumjs/util';
+import {SuggestedFees, Account, MultioutRecipientAmount, Address, AddressPrefix} from '@signumjs/core';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';

@@ -4,7 +4,7 @@ import {takeUntil} from 'rxjs/operators';
 
 import {FuseConfigService} from '@fuse/services/config.service';
 import {navigation} from 'app/navigation/navigation';
-import {Account} from '@burstjs/core';
+import {Account} from '@signumjs/core';
 
 @Component({
   selector: 'vertical-layout-1',

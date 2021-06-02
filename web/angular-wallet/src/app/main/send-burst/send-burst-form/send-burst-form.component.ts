@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-import {Account, SuggestedFees} from '@burstjs/core';
-import {Amount, convertBase64StringToString} from '@burstjs/util';
+import {Account, SuggestedFees} from '@signumjs/core';
+import {Amount, convertBase64StringToString} from '@signumjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
@@ -17,8 +17,8 @@ import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {ActivatedRoute, Router, NavigationEnd, Params} from '@angular/router';
 import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
 import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
-import {Address} from '@burstjs/core';
-import {SignaSymbol} from '@burstjs/util';
+import {Address} from '@signumjs/core';
+import {SignaSymbol} from '@signumjs/util';
 
 interface CIP22Payload {
   amountPlanck: string | number;

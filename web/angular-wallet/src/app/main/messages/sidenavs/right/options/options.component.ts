@@ -2,9 +2,9 @@ import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {takeUntil} from 'rxjs/operators';
 
 import {MessagesService} from '../../../messages.service';
-import {SuggestedFees} from '@burstjs/core';
+import {SuggestedFees} from '@signumjs/core';
 import {UnsubscribeOnDestroy} from '../../../../../util/UnsubscribeOnDestroy';
-import {convertNQTStringToNumber} from '@burstjs/util';
+import {convertNQTStringToNumber} from '@signumjs/util';
 
 @Component({
   selector: 'message-options-sidenav',

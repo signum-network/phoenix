@@ -1,5 +1,5 @@
 import {formatNumber} from '@angular/common';
-import {SignaSymbol} from '@burstjs/util';
+import {SignaSymbol} from '@signumjs/util';
 
 export interface AmountFormattingOptions {
   isShortForm: boolean;

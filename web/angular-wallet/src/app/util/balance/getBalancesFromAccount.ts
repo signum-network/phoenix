@@ -1,6 +1,6 @@
-import {Account} from '@burstjs/core';
+import {Account} from '@signumjs/core';
 import {AccountBalances} from './typings';
-import {Amount} from '@burstjs/util';
+import {Amount} from '@signumjs/util';
 
 export function getBalancesFromAccount(account: Account): AccountBalances {
   const totalBalance = Amount.fromPlanck(account.balanceNQT || '0');

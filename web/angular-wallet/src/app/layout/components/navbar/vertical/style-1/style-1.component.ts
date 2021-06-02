@@ -8,12 +8,12 @@ import {FuseNavigationService} from '@fuse/components/navigation/navigation.serv
 import {FusePerfectScrollbarDirective} from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import {FuseSidebarService} from '@fuse/components/sidebar/sidebar.service';
 import {StoreService} from 'app/store/store.service';
-import {Account} from '@burstjs/core';
+import {Account} from '@signumjs/core';
 import {AccountService} from 'app/setup/account/account.service';
 import {environment} from 'environments/environment';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {NotifierService} from 'angular-notifier';
-import {Amount} from '@burstjs/util';
+import {Amount} from '@signumjs/util';
 
 import hashicon from 'hashicon';
 import {FuseNavigation} from '../../../../../../@fuse/types';

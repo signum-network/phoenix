@@ -12,7 +12,7 @@
     "skipLibCheck": true,
     "paths": {
       "@fuse": ["@fuse/"],
-      "@burstjs/*": ["../../../lib/packages/*"]
+      "@signumjs/*": ["../../../lib/packages/*"]
     },
     "target": "es5",
     "typeRoots": [

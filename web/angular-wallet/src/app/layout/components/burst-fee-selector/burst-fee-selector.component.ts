@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, Output} from '@angular/core';
-import {convertNQTStringToNumber} from '@burstjs/util';
-import {SuggestedFees} from '@burstjs/core';
+import {convertNQTStringToNumber} from '@signumjs/util';
+import {SuggestedFees} from '@signumjs/core';
 import {EventEmitter} from '@angular/core';
 import {LabelType, Options} from 'ng5-slider';
 import {BurstAmountPipe} from '../../../shared/pipes/burst-amount.pipe';

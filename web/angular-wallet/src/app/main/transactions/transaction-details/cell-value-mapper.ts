@@ -4,9 +4,9 @@ import {
   TransactionSmartContractSubtype,
   TransactionType,
   getAttachmentVersion
-} from '@burstjs/core';
+} from '@signumjs/core';
 import {UtilService} from '../../../util.service';
-import {Amount, BlockTime, convertHexStringToString} from '@burstjs/util';
+import {Amount, BlockTime, convertHexStringToString} from '@signumjs/util';
 
 
 export enum CellValueType {

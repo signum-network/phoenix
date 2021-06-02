@@ -1,10 +1,10 @@
 import {Component, Input} from '@angular/core';
 import {CreateService} from '../../create.service';
-import {Address} from '@burstjs/core';
+import {Address} from '@signumjs/core';
 import {
   generateMasterKeys,
   PassPhraseGenerator
-} from '@burstjs/crypto';
+} from '@signumjs/crypto';
 
 
 @Component({

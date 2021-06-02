@@ -1,5 +1,5 @@
 import {Component, Input, ViewChild} from '@angular/core';
-import {Block, Address} from '@burstjs/core';
+import {Block, Address} from '@signumjs/core';
 import {AccountService} from 'app/setup/account/account.service';
 import {BlockCellValue} from '../block-cell-value-mapper';
 import {NotifierService} from 'angular-notifier';

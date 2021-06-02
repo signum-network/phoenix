@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {MultioutRecipientAmount} from '@burstjs/core';
+import {MultioutRecipientAmount} from '@signumjs/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';

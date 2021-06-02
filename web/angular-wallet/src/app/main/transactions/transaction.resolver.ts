@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { TransactionService } from './transaction.service';
-import { Transaction } from '@burstjs/core';
+import { Transaction } from '@signumjs/core';
 
 @Injectable()
 export class TransactionResolver implements Resolve<Promise<Transaction>> {

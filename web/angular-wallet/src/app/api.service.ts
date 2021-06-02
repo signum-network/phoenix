@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Api, ApiSettings, composeApi} from '@burstjs/core';
+import {Api, ApiSettings, composeApi} from '@signumjs/core';
 import {environment} from '../environments/environment';
 import {Settings} from './settings';
 import {StoreService} from './store/store.service';
 import semver from 'semver';
 import {constants} from './constants';
-import {ApiVersion} from '@burstjs/core/src/constants/apiVersion';
+import {ApiVersion} from '@signumjs/core/src/constants/apiVersion';
 
 
 @Injectable({

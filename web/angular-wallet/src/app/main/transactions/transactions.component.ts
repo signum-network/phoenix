@@ -4,8 +4,8 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {FormControl} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {Transaction, Account} from '@burstjs/core';
-import {BlockTime} from '@burstjs/util';
+import {Transaction, Account} from '@signumjs/core';
+import {BlockTime} from '@signumjs/util';
 
 @Component({
   selector: 'app-transactions',

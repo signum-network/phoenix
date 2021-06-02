@@ -9,7 +9,7 @@ import {
   SuggestedFees,
   Peer,
   PeerAddressList
-} from '@burstjs/core';
+} from '@signumjs/core';
 
 import {ApiService} from '../api.service';
 import {StoreService} from 'app/store/store.service';

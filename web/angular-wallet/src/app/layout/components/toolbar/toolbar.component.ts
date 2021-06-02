@@ -11,7 +11,7 @@ import {I18nService} from '../i18n/i18n.service';
 import {constants} from 'app/constants';
 import {StoreService} from 'app/store/store.service';
 import {AccountService} from 'app/setup/account/account.service';
-import {Account} from '@burstjs/core';
+import {Account} from '@signumjs/core';
 import {Router} from '@angular/router';
 import {NetworkService} from '../../../network/network.service';
 

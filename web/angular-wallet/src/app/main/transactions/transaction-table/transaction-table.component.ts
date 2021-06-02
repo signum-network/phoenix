@@ -14,8 +14,8 @@ import {
   getRecipientsAmount,
   TransactionMiningSubtype,
   TransactionType
-} from '@burstjs/core';
-import {Amount, BlockTime} from '@burstjs/util';
+} from '@signumjs/core';
+import {Amount, BlockTime} from '@signumjs/util';
 import {UtilService} from 'app/util.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';

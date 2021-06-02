@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AccountService} from './account.service';
-import {Account} from '@burstjs/core';
+import {Account} from '@signumjs/core';
 
 export enum StepsEnum {
   Start,

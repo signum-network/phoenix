@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
 import {Resolve, ActivatedRouteSnapshot} from '@angular/router';
-import {Transaction} from '@burstjs/core';
+import {Transaction} from '@signumjs/core';
 import {AccountService} from 'app/setup/account/account.service';
 
 @Injectable({

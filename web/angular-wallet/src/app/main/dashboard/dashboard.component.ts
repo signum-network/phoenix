@@ -4,7 +4,7 @@ import {fuseAnimations} from '@fuse/animations';
 import {takeUntil} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {StoreService} from 'app/store/store.service';
-import {Account, Transaction} from '@burstjs/core';
+import {Account, Transaction} from '@signumjs/core';
 import {AccountService} from 'app/setup/account/account.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MarketService} from './market/market.service';

@@ -5,7 +5,7 @@ import {NotifierService} from 'angular-notifier';
 import {DomainService} from 'app/main/send-burst/domain/domain.service';
 import {Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {Address, AddressPrefix} from '@burstjs/core';
+import {Address, AddressPrefix} from '@signumjs/core';
 
 // generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
 let nextId = 0;

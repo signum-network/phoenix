@@ -8,9 +8,9 @@ import {
   TransactionPaymentSubtype,
   TransactionType,
   TransactionArbitrarySubtype
-} from '@burstjs/core';
+} from '@signumjs/core';
 import {I18nService} from './layout/components/i18n/i18n.service';
-import {HttpError} from '@burstjs/http';
+import {HttpError} from '@signumjs/http';
 import {
   getTransactionSubtypeTranslationKey,
   getTransactionTypeTranslationKey

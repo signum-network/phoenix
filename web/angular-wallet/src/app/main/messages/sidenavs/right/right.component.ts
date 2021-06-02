@@ -5,7 +5,7 @@ import {takeUntil} from 'rxjs/operators';
 import {fuseAnimations} from '@fuse/animations';
 
 import {MessagesService} from '../../messages.service';
-import {SuggestedFees} from '@burstjs/core/out';
+import {SuggestedFees} from '@signumjs/core/out';
 import {MessageOptionsSidenavComponent} from './options/options.component';
 
 @Component({

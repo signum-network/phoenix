@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {Account, SuggestedFees} from '@burstjs/core';
-import {Amount} from '@burstjs/util';
+import {Account, SuggestedFees} from '@signumjs/core';
+import {Amount} from '@signumjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';

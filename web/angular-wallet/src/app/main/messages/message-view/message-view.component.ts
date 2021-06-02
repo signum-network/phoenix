@@ -2,9 +2,9 @@ import {AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild, ViewChild
 import {NgForm} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {Account, Address, AddressPrefix} from '@burstjs/core';
-import {BlockTime} from '@burstjs/util';
-import {decryptAES, decryptMessage, hashSHA256} from '@burstjs/crypto';
+import {Account, Address, AddressPrefix} from '@signumjs/core';
+import {BlockTime} from '@signumjs/util';
+import {decryptAES, decryptMessage, hashSHA256} from '@signumjs/crypto';
 import {Router} from '@angular/router';
 import {FusePerfectScrollbarDirective} from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import {Messages, MessagesService} from '../messages.service';

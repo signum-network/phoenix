@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { SuggestedFees } from '@burstjs/core';
+import { SuggestedFees } from '@signumjs/core';
 import { NetworkService } from './network.service';
 
 @Injectable()

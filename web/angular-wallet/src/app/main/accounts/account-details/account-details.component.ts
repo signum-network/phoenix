@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AttachmentEncryptedMessage, AttachmentMessage, Account, Transaction } from '@burstjs/core';
+import { AttachmentEncryptedMessage, AttachmentMessage, Account, Transaction } from '@signumjs/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { AccountService } from 'app/setup/account/account.service';

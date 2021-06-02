@@ -12,11 +12,11 @@ import {
   TransactionArbitrarySubtype,
   TransactionId,
   TransactionType,
-} from '@burstjs/core';
+} from '@signumjs/core';
 import {AccountService} from 'app/setup/account/account.service';
-import {decryptAES, hashSHA256} from '@burstjs/crypto';
+import {decryptAES, hashSHA256} from '@signumjs/crypto';
 import {NetworkService} from 'app/network/network.service';
-import {Amount, BlockTime} from '@burstjs/util';
+import {Amount, BlockTime} from '@signumjs/util';
 import {ApiService} from '../../api.service';
 
 export interface ChatMessage {

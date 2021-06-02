@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {CreateService, StepsEnum} from '../../create.service';
-import {generateMasterKeys, PassPhraseGenerator} from '@burstjs/crypto';
-import {Address} from '@burstjs/core/src';
+import {generateMasterKeys, PassPhraseGenerator} from '@signumjs/crypto';
+import {Address} from '@signumjs/core/src';
 
 
 @Component({

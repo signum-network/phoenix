@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {Account, SuggestedFees} from '@burstjs/core';
+import {Account, SuggestedFees} from '@signumjs/core';
 import {NgForm} from '@angular/forms';
-import {convertNumberToNQTString} from '@burstjs/util';
+import {convertNumberToNQTString} from '@signumjs/util';
 import {ActivatedRoute} from '@angular/router';
 import {AccountService} from 'app/setup/account/account.service';
 import {StoreService} from 'app/store/store.service';

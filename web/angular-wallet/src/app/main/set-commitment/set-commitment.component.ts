@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SuggestedFees, Account} from '@burstjs/core';
+import {SuggestedFees, Account} from '@signumjs/core';
 import {ActivatedRoute} from '@angular/router';
 import {AccountService} from 'app/setup/account/account.service';
 import {StoreService} from '../../store/store.service';

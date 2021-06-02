@@ -10,7 +10,7 @@ import {
   TransactionEscrowSubtype,
   TransactionSmartContractSubtype,
   TransactionMiningSubtype,
-} from '@burstjs/core';
+} from '@signumjs/core';
 
 function getKeyForPaymentSubtype(transaction: Transaction): string {
   switch (transaction.subtype) {

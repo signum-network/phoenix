@@ -4,8 +4,8 @@ import {CreateService, StepsEnum} from '../../create.service';
 import {NotifierService} from 'angular-notifier';
 import {sampleSize} from 'lodash';
 import {AccountService} from '../../account.service';
-import {Account} from '@burstjs/core';
-import {generateMasterKeys} from '@burstjs/crypto';
+import {Account} from '@signumjs/core';
+import {generateMasterKeys} from '@signumjs/crypto';
 import {I18nService} from '../../../../layout/components/i18n/i18n.service';
 
 interface Token {
