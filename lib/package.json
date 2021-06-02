@@ -1,6 +1,5 @@
 {
   "name": "signumjs",
-  "version": "1.0.0-rc.1",
   "description": "Signum Network Reference Library",
   "contributors": [
     "ohager",
