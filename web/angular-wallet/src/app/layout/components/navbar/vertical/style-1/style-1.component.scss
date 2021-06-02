@@ -21,6 +21,7 @@ fuse-sidebar {
             }
 
             .logo {
+              position: relative;
 
               img {
                 width: 40px;
@@ -124,24 +125,23 @@ navbar {
       }
 
       .logo {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        //align-items: baseline;
-
+        width: 80%
+      ;
         .logo-folded {
           display: none;
         }
 
         img {
-          width: 80%;
-          margin: 0 auto;
         }
 
         #version {
           position: absolute;
-          left: 160px;
-          top: 44px;
+          right: 0;
+          top: 40px;
           font-size: 60%;
         }
       }

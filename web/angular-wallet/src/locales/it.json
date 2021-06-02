@@ -415,5 +415,6 @@
   "toggle_nodeselection_mode": "Attiva/disattiva per passare dalla selezione del nodo manuale a quella automatica",
   "commitment_zero_balance": "Non hai ancora aggiunto alcun impegno",
   "multiple_recipients": "Destinatari multipli",
-  "self": "se stesso"
+  "self": "se stesso",
+  "select_message_contact": "Seleziona un contatto per iniziare un messaggio"
 }

@@ -10,11 +10,11 @@
     </span>
 
     <span fxHide fxShow.gt-md class="app-message" [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
-        Select a contact to start a message!
+        {{'select_message_contact' | i18n}}
     </span>
 
     <button mat-raised-button fxHide.gt-md fuseMatSidenavToggler="message-left-sidenav">
-        Select a contact to start a message!
+        {{'select_message_contact' | i18n}}
     </button>
 
 </div>

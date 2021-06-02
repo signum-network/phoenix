@@ -415,5 +415,6 @@
   "toggle_nodeselection_mode": "Prebacite za prebacivanje između ručnog ili automatskog odabira čvora",
   "commitment_zero_balance": "Još niste dodali obvezu",
   "multiple_recipients": "Više primatelja",
-  "self": "sebe"
+  "self": "sebe",
+  "select_message_contact": "Odaberite kontakt da biste započeli poruku"
 }

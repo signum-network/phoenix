@@ -415,5 +415,6 @@
   "toggle_nodeselection_mode": "Пребаците за пребацивање између ручног или аутоматског избора чвора",
   "commitment_zero_balance": "Још увек нисте додали обавезу",
   "multiple_recipients": "Више прималаца",
-  "self": "себе"
+  "self": "себе",
+  "select_message_contact": "Изаберите контакт да бисте започели поруку"
 }

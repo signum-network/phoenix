@@ -415,5 +415,6 @@
   "toggle_nodeselection_mode": "Schakelen tussen handmatige of automatische knooppuntselectie",
   "commitment_zero_balance": "Je hebt nog geen toezegging toegevoegd",
   "multiple_recipients": "Meerdere ontvangers",
-  "self": "zelf"
+  "self": "zelf",
+  "select_message_contact": "Selecteer een contact om een bericht te starten"
 }

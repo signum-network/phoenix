@@ -415,5 +415,6 @@
   "toggle_nodeselection_mode": "Przełącz, aby przełączać się między ręcznym a automatycznym wyborem węzła",
   "commitment_zero_balance": "Nie masz jeszcze dodanego zobowiązania",
   "multiple_recipients": "Wielu odbiorców",
-  "self": "samego siebie"
+  "self": "samego siebie",
+  "select_message_contact": "Wybierz kontakt, aby rozpocząć wiadomość"
 }

@@ -415,5 +415,6 @@
   "toggle_nodeselection_mode": "Basculer pour basculer entre la sélection de nœud manuelle ou automatique",
   "commitment_zero_balance": "Vous n'avez pas encore d'engagement ajouté",
   "multiple_recipients": "Des destinataires multiples",
-  "self": "soi"
+  "self": "soi",
+  "select_message_contact": "Sélectionnez un contact pour commencer un message"
 }

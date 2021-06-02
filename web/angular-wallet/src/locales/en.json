@@ -415,5 +415,6 @@
   "toggle_nodeselection_mode": "Toggle to switch between manual or automatic node selection",
   "commitment_zero_balance": "You have no commitment added yet",
   "multiple_recipients": "Multiple Recipients",
-  "self": "self"
+  "self": "self",
+  "select_message_contact": "Select a contact to start a message"
 }

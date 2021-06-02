@@ -415,5 +415,6 @@
   "toggle_nodeselection_mode": "Prepínaním prepínate medzi manuálnym alebo automatickým výberom uzla",
   "commitment_zero_balance": "Zatiaľ nemáte pridaný žiadny záväzok",
   "multiple_recipients": "Viac príjemcov",
-  "self": "ja"
+  "self": "ja",
+  "select_message_contact": "Vyberte kontakt, ktorý chcete spustiť"
 }

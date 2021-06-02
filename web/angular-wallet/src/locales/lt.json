@@ -415,5 +415,6 @@
   "toggle_nodeselection_mode": "Perjunkite, jei norite perjungti rankinį ar automatinį mazgų pasirinkimą",
   "commitment_zero_balance": "Dar neturite jokių įsipareigojimų",
   "multiple_recipients": "Keli gavėjai",
-  "self": "savarankiškai"
+  "self": "savarankiškai",
+  "select_message_contact": "Pasirinkite kontaktą, kad pradėtumėte pranešimą"
 }

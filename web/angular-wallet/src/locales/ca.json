@@ -415,5 +415,6 @@
   "toggle_nodeselection_mode": "Alterna per canviar entre la selecció manual o automàtica de nodes",
   "commitment_zero_balance": "Encara no teniu cap compromís afegit",
   "multiple_recipients": "Destinataris múltiples",
-  "self": "jo mateix"
+  "self": "jo mateix",
+  "select_message_contact": "Seleccioneu un contacte per iniciar un missatge"
 }

@@ -415,5 +415,6 @@
   "toggle_nodeselection_mode": "Beralih untuk beralih antara pemilihan simpul manual atau otomatis",
   "commitment_zero_balance": "Anda belum memiliki komitmen yang ditambahkan",
   "multiple_recipients": "Beberapa Penerima",
-  "self": "diri"
+  "self": "diri",
+  "select_message_contact": "Pilih kontak untuk memulai pesan"
 }

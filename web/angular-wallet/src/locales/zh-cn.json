@@ -415,5 +415,6 @@
   "toggle_nodeselection_mode": "在手动或自动节点选择之间切换",
   "commitment_zero_balance": "您还没有添加承诺",
   "multiple_recipients": "多个收件人",
-  "self": "自己"
+  "self": "自己",
+  "select_message_contact": "选择联系人以开始消息"
 }

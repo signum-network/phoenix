@@ -415,5 +415,6 @@
   "toggle_nodeselection_mode": "Manuel veya otomatik düğüm seçimi arasında geçiş yapmak için geçiş yapın",
   "commitment_zero_balance": "Henüz eklenmiş bir taahhüdünüz yok",
   "multiple_recipients": "Birden Çok Alıcı",
-  "self": "öz"
+  "self": "öz",
+  "select_message_contact": "Mesaj başlatmak için bir kişi seçin"
 }
