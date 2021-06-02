@@ -58,7 +58,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "1b375dedd063baa0933556cc50f87b5c926ba12d",
+  "gitHead": "56895a005233449585f1914d7ff244e132b35a39",
   "dependencies": {
     "bignumber.js": "^9.0.0",
     "js-base64": "^3.6.0"
