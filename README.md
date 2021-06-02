@@ -9,14 +9,14 @@
 
 ## About
 
-Phoenix is an open source, cross-platform wallet for the Burstcoin blockchain. It's actually two applications: a mobile app, and a desktop/web app. Oh, and [BurstJS](/lib/README.md) is in here too.
+Phoenix is an open source, cross-platform wallet for the Signum (former Burstcoint) blockchain. It's actually two applications: a mobile app, and a desktop/web app. Oh, and [BurstJS](/lib/README.md) is in here too.
 
 ![image](assets/beta.14/phoenix_1_beta.14.png)
 
 ### Key features:
 - Improved security - Private keys are encrypted with a hashed PIN, securing them in the event of data breach. That PIN is then used for locally signing transactions and decrypting messages. Passphrases are not stored locally, and never sent to the server. 
-- Multi-account support - Manage multiple BURST accounts within your wallet.
-- Offline account support - Add an account using just a BURST address for maximum security.
+- Multi-account support - Manage multiple accounts within your wallet.
+- Offline account support - Add an account using just a address for maximum security.
 - Cross-platform - Runs on all popular platforms without any additional software requirements.
 - Dashboard - with Market Information and Interactive Balance History Diagram.
 - Powered by <a href="https://burst-apps-team.github.io/phoenix/"><img src="./assets/burstjs.png" width="80" /></a>
@@ -74,6 +74,6 @@ A package is available in [AUR](https://aur.archlinux.org/packages/phoenix/).
 - [Mobile Wallet](/mobile/README.md)
 
 ### See Also
-- [BurstJS Library](/lib/README.md)
+- [SignumJS Library](/lib/README.md)
 - [Development Scripts](/scripts/README.md)
 

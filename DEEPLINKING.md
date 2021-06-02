@@ -21,7 +21,7 @@ The generally supported link format is `burst://v1?action=<name>&payload=<b64-en
 
 ## Creating Deep Links
 
-The easiest way is to use the [utility package from burstjs](https://www.npmjs.com/package/@burstjs/util), as it provides
+The easiest way is to use the [utility package from burstjs](https://www.npmjs.com/package/@signumjs/util), as it provides
 convenience functions for the deep link creation: `createDeeplink`
 
 To create a deep link for [sending amount](#send-amount-to-single-recipient) the relatedcode snippet looks like this:
@@ -30,7 +30,7 @@ To create a deep link for [sending amount](#send-amount-to-single-recipient) the
 import {createDeeplink} from './createDeeplink';
 
 const payload = {
-    "recipient": "BURST-9K9L-4CB5-88Y5-F5G4Z",
+    "recipient": "S-9K9L-4CB5-88Y5-F5G4Z",
     "amountPlanck": 10000000,
     "feePlanck": 735000,
     "message": "Hi, from a deep link",
@@ -84,7 +84,7 @@ __Payload__
 
 | Parameter  | Description  | Example | Required |
 |---|---|---|---|
-| recipient | The receivers (extended) RS address or account id  | BURST-LJRV-9LE8-VJ5B-57W4C | yes |
+| recipient | The receivers (extended) RS address or account id  | S-LJRV-9LE8-VJ5B-57W4C | yes |
 | amountPlanck | The amount to be sent in Plancks  | 20000000000 | yes |
 | feePlanck  | The tx fees in Plancks  | 2205000 | yes |
 | message | Any kind of message  |  Hello, World  | no |
@@ -97,7 +97,7 @@ __Payload__
 __JSON Form__
 ```json
 {
-  "recipient": "BURST-9K9L-4CB5-88Y5-F5G4Z",
+  "recipient": "S-9K9L-4CB5-88Y5-F5G4Z",
   "amountPlanck": 10000000,
   "feePlanck": 735000,
   "message": "Hi, from a deep link",
@@ -126,12 +126,12 @@ but we highly suggest using the new spec as it offers more versatility. The lega
 The link is used to fill out the "Send Amount" form for a single recipient.
 
 ```
-burst://requestBurst?receiver=BURST-LJRV-9LE8-VJ5B-57W4C&amountNQT=20000000000&feeNQT=2205000&immutable=false&message=4c956fdb7701&messageIsText=false
+burst://requestBurst?receiver=S-LJRV-9LE8-VJ5B-57W4C&amountNQT=20000000000&feeNQT=2205000&immutable=false&message=4c956fdb7701&messageIsText=false
 ```
 
 | Parameter  | Description  | Example | Required |
 |---|---|---|---|
-| receiver | The receivers RS address or account id  | BURST-LJRV-9LE8-VJ5B-57W4C | yes |
+| receiver | The receivers RS address or account id  | S-LJRV-9LE8-VJ5B-57W4C | yes |
 | amountNQT | The amount to be sent in Plancks  | 20000000000 | yes |
 | feeNQT  | The tx fees in Plancks  | 2205000 | yes |
 | message | Any kind of message  |  Hello, World  | no |

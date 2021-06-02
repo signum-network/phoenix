@@ -1,29 +1,29 @@
-# @burstjs/http
+# @signumjs/http
 
 Generic HTTP client that is used as a network provider for @burst/core.
 
 ## Installation
 
-`@burstjs/http` can be used with NodeJS or Web. Two formats are available
+`@signumjs/http` can be used with NodeJS or Web. Two formats are available
 
 ### Using with NodeJS and/or modern web frameworks
 
 Install using [npm](https://www.npmjs.org/):
 
 ```
-npm install @burstjs/http
+npm install @signumjs/http
 ```
 
 or using [yarn](https://yarnpkg.com/):
 
 ``` yarn
-yarn add @burstjs/http
+yarn add @signumjs/http
 ```
 
 #### Example
 
 ```js
-import {HttpImpl} from '@burstjs/http'
+import {HttpImpl} from '@signumjs/http'
 
 try{
     const client = new HttpImpl('https://jsonplaceholder.typicode.com/');
@@ -44,7 +44,7 @@ This might be useful for Wordpress and/or other PHP applications.
 
 Just import the package using the HTML `<script>` tag.
 
-`<script src='https://cdn.jsdelivr.net/npm/@burstjs/http/dist/burstjs.http.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/http/dist/burstjs.http.min.js'></script>`
 
 #### Example
 
@@ -55,7 +55,7 @@ client.get('/todos/1').then(console.log)
 
 See more here:
 
-[@burstjs/http Online Documentation](https://burst-apps-team.github.io/phoenix/modules/http.html)
+[@signumjs/http Online Documentation](https://burst-apps-team.github.io/phoenix/modules/http.html)
 
 ---
 

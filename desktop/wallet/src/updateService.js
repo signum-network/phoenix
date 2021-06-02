@@ -1,7 +1,7 @@
 const PropTypes = require('prop-types');
 const _ = require('lodash');
 const semver = require('semver');
-const {HttpImpl} = require('@burstjs/http');
+const {HttpImpl} = require('@signumjs/http');
 const getSSL = require('get-ssl-certificate');
 
 const PlatformFilePatterns = {

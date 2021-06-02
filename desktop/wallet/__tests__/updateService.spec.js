@@ -1,4 +1,4 @@
-const {HttpMockBuilder} = require('@burstjs/http');
+const {HttpMockBuilder} = require('@signumjs/http');
 const UpdateService = require('../src/updateService');
 
 const releaseMock = require('./releaseMock.json');

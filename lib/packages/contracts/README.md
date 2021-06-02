@@ -1,23 +1,23 @@
-# @burstjs/contracts
+# @signumjs/contracts
 
 Generic HTTP client that is used as a network provider for @burst/core.
 
 ## Installation
 
-`@burstjs/contracts` can be used with NodeJS or Web. Two formats are available
+`@signumjs/contracts` can be used with NodeJS or Web. Two formats are available
 
 ### Using with NodeJS and/or modern web frameworks
 
 Install using [npm](https://www.npmjs.org/):
 
 ```
-npm install @burstjs/contracts
+npm install @signumjs/contracts
 ```
 
 or using [yarn](https://yarnpkg.com/):
 
 ``` yarn
-yarn add @burstjs/contracts
+yarn add @signumjs/contracts
 ```
 
 #### Example
@@ -34,7 +34,7 @@ This might be useful for Wordpress and/or other PHP applications.
 
 Just import the package using the HTML `<script>` tag.
 
-`<script src='https://cdn.jsdelivr.net/npm/@burstjs/http/dist/burstjs.http.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/http/dist/burstjs.http.min.js'></script>`
 
 #### Example
 
@@ -44,7 +44,7 @@ Just import the package using the HTML `<script>` tag.
 
 See more here:
 
-[@burstjs/contracts Online Documentation](https://burst-apps-team.github.io/phoenix/modules/contracts.html)
+[@signumjs/contracts Online Documentation](https://burst-apps-team.github.io/phoenix/modules/contracts.html)
 
 ---
 

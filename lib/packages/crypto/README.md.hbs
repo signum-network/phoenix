@@ -1,4 +1,4 @@
-# @burstjs/crypto
+# @signumjs/crypto
 
 Cryptographic functions for building Burstcoin apps.
 
@@ -11,19 +11,19 @@ burstJS can be used with NodeJS or Web. Two formats are available
 Install using [npm](https://www.npmjs.org/):
 
 ```
-npm install @burstjs/crypto
+npm install @signumjs/crypto
 ```
 
 or using [yarn](https://yarnpkg.com/):
 
 ``` yarn
-yarn add @burstjs/crypto
+yarn add @signumjs/crypto
 ```
 
 #### Example
 
 ```js
-import {encryptAES, decryptAES, hashSHA256} from '@burstjs/crypto'
+import {encryptAES, decryptAES, hashSHA256} from '@signumjs/crypto'
 
 const encrypted = encryptAES('test', 'key')
 const decrypted = decryptAES(encrypted, 'key')
@@ -40,7 +40,7 @@ This might be useful for Wordpress and/or other PHP applications.
 
 Just import the package using the HTML `<script>` tag.
 
-`<script src='https://cdn.jsdelivr.net/npm/@burstjs/crypto/dist/burstjs.crypto.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/crypto/dist/burstjs.crypto.min.js'></script>`
 
 
 #### Example
@@ -54,7 +54,7 @@ console.log(decrypted);
 
 See more here:
 
-[@burstjs/crypto Online Documentation](https://burst-apps-team.github.io/phoenix/modules/crypto.html)
+[@signumjs/crypto Online Documentation](https://burst-apps-team.github.io/phoenix/modules/crypto.html)
 
 ---
 

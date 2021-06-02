@@ -1,29 +1,29 @@
-# @burstjs/util
+# @signumjs/util
 
 Useful utilities and tools for building Burstcoin applications
 
 ## Installation
 
-`@burstjs/http` can be used with NodeJS or Web. Two formats are available
+`@signumjs/http` can be used with NodeJS or Web. Two formats are available
 
 ### Using with NodeJS and/or modern web frameworks
 
 Install using [npm](https://www.npmjs.org/):
 
 ```
-npm install @burstjs/util
+npm install @signumjs/util
 ```
 
 or using [yarn](https://yarnpkg.com/):
 
 ``` yarn
-yarn add @burstjs/util
+yarn add @signumjs/util
 ```
 
 #### Example
 
 ```js
-import {convertNumberToNQTString} from '@burstjs/util'
+import {convertNumberToNQTString} from '@signumjs/util'
 
 const value = convertNumberToNQTString(1000)
 console.log(value)
@@ -37,7 +37,7 @@ This might be useful for Wordpress and/or other PHP applications.
 
 Just import the package using the HTML `<script>` tag.
 
-`<script src='https://cdn.jsdelivr.net/npm/@burstjs/util/dist/util.crypto.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/util/dist/util.crypto.min.js'></script>`
 
 #### Example
 
@@ -48,7 +48,7 @@ console.log(value)
 
 See more here:
 
-[@burstjs/util Online Documentation](https://burst-apps-team.github.io/phoenix/modules/util.html)
+[@signumjs/util Online Documentation](https://burst-apps-team.github.io/phoenix/modules/util.html)
 
 ---
 

@@ -44,7 +44,7 @@ ___
 __Breaking Changes__
 - `ContractHelper`, `getContractDatablock` moved into new package `contracts`
 - `FeeQuantNQT`removed 
-    - moved to `FeeQuantPlanck` in `@burstjs/util`
+    - moved to `FeeQuantPlanck` in `@signumjs/util`
 - `setRewardRecipient` with argument object now
 ___
 

@@ -3,10 +3,10 @@ module.exports = {
   preset: 'jest-preset-angular',
   roots: ['src'],
   moduleNameMapper: {
-    '@burstjs/core': '<rootDir>../../lib/packages/core',
-    '@burstjs/crypto': '<rootDir>../../lib/packages/crypto',
-    '@burstjs/util': '<rootDir>../../lib/packages/util',
-    '@burstjs/http': '<rootDir>../../lib/packages/http',
+    '@signumjs/core': '<rootDir>../../lib/packages/core',
+    '@signumjs/crypto': '<rootDir>../../lib/packages/crypto',
+    '@signumjs/util': '<rootDir>../../lib/packages/util',
+    '@signumjs/http': '<rootDir>../../lib/packages/http',
     '@fuse': '<rootDir>/src'
   },
   setupFilesAfterEnv: ['<rootDir>/src/setup-jest.ts'],
