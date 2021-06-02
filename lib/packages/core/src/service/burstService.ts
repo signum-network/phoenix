@@ -2,8 +2,8 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 
-import {Http, HttpError, HttpClientFactory, HttpResponse} from '@burstjs/http';
-import {asyncRetry} from '@burstjs/util';
+import {Http, HttpError, HttpClientFactory, HttpResponse} from '@signumjs/http';
+import {asyncRetry} from '@signumjs/util';
 import {BurstServiceSettings} from './burstServiceSettings';
 import {AxiosRequestConfig} from 'axios';
 import {DefaultApiEndpoint} from '../constants';

@@ -2,8 +2,8 @@ import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
 import {cancelBidOrder, getAllAssets, getAsset, placeBidOrder} from '../../factories/asset';
 import {issueAsset} from '../../factories/asset/issueAsset';
-import {generateMasterKeys, getAccountIdFromPublicKey} from '@burstjs/crypto';
-import {BurstValue, FeeQuantPlanck} from '@burstjs/util';
+import {generateMasterKeys, getAccountIdFromPublicKey} from '@signumjs/crypto';
+import {BurstValue, FeeQuantPlanck} from '@signumjs/util';
 
 
 describe(`[E2E] Asset Api`, () => {

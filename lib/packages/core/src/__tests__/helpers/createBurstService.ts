@@ -1,4 +1,4 @@
-import {Http} from '@burstjs/http';
+import {Http} from '@signumjs/http';
 import {BurstService} from '../../service';
 
 export const createBurstService = (

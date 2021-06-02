@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {calculateMinimumCreationFee} from '@burstjs/contracts';
+import {calculateMinimumCreationFee} from '@signumjs/contracts';
 import {BurstService} from '../../../service';
 import {PublishContractArgs} from '../../../typings/args';
 import {signAndBroadcastTransaction} from '../transaction';

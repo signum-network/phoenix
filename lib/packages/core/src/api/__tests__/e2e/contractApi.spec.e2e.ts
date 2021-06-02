@@ -3,8 +3,8 @@ import {BurstService} from '../../../service/burstService';
 import {getContractsByAccount} from '../../factories/contract/getContractsByAccount';
 import {getContract} from '../../factories/contract/getContract';
 import {getAllContractIds, publishContract} from '../../factories/contract';
-import {convertNumberToNQTString} from '@burstjs/util';
-import {generateMasterKeys, getAccountIdFromPublicKey} from '@burstjs/crypto';
+import {convertNumberToNQTString} from '@signumjs/util';
+import {generateMasterKeys, getAccountIdFromPublicKey} from '@signumjs/crypto';
 
 const environment = loadEnvironment();
 

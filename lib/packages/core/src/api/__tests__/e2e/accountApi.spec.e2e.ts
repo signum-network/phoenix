@@ -1,4 +1,4 @@
-import {convertNQTStringToNumber} from '@burstjs/util';
+import {convertNQTStringToNumber} from '@signumjs/util';
 import {loadEnvironment} from './helpers/environment';
 import {getAccountIdFromPassphrase} from './helpers/account';
 import {BurstService} from '../../../service/burstService';

@@ -2,11 +2,11 @@
  * Original work Copyright (c) 2021 Burst Apps Team
  * Modified work Copyright (c) 2021 Signum Network
  */
-import {getAccountIdFromPublicKey} from '@burstjs/crypto';
+import {getAccountIdFromPublicKey} from '@signumjs/crypto';
 import {
     convertBase36StringToHexString,
     convertHexStringToBase36String,
-} from '@burstjs/util';
+} from '@signumjs/util';
 import {ensureReedSolomonAddress} from './ensureReedSolomonAddress';
 import {tokenizeReedSolomonAddress} from './tokenizeReedSolomonAddress';
 import {convertReedSolomonAddressToNumericId} from './convertReedSolomonAddressToNumericId';

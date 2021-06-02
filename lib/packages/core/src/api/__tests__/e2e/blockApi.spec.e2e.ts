@@ -4,7 +4,7 @@ import {getBlockByTimestamp} from '../../factories/block/getBlockByTimestamp';
 import {getBlockByHeight} from '../../factories/block/getBlockByHeight';
 import {getBlockById} from '../../factories/block/getBlockById';
 import {getBlockId} from '../../factories/block/getBlockId';
-import {HttpError} from '@burstjs/http';
+import {HttpError} from '@signumjs/http';
 
 const environment = loadEnvironment();
 

@@ -1,4 +1,4 @@
-import {HttpMockBuilder, Http} from '@burstjs/http';
+import {HttpMockBuilder, Http} from '@signumjs/http';
 
 import {BurstService} from '../../service/burstService';
 import {getBlockByTimestamp} from '../factories/block/getBlockByTimestamp';

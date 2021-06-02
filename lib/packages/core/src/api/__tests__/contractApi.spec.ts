@@ -1,4 +1,4 @@
-import {Http, HttpMockBuilder} from '@burstjs/http';
+import {Http, HttpMockBuilder} from '@signumjs/http';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {getContract, getContractsByAccount, publishContract} from '../factories/contract';
 import {signAndBroadcastTransaction} from '../factories/transaction';

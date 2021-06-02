@@ -1,4 +1,4 @@
-import {MethodArgument} from '@burstjs/contracts';
+import {MethodArgument} from '@signumjs/contracts';
 
 /**
  * The argument object for [[ContractApi.callContractMethod]]

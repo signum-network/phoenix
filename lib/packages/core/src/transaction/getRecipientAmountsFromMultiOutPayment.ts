@@ -1,7 +1,7 @@
 import {Transaction, MultioutRecipientAmount} from '..';
 import {isMultiOutSameTransaction} from './isMultiOutSameTransaction';
 import {isMultiOutTransaction} from './isMultiOutTransaction';
-import {convertNQTStringToNumber, convertNumberToNQTString} from '@burstjs/util';
+import {convertNQTStringToNumber, convertNumberToNQTString} from '@signumjs/util';
 
 /**
  * Tries to extract recipients and its amounts for multi out payments (different and same amount)

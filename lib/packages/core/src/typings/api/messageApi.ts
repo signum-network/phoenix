@@ -1,5 +1,5 @@
 import {TransactionId} from '../transactionId';
-import {Keys} from '@burstjs/crypto';
+import {Keys} from '@signumjs/crypto';
 import {SendMessageArgs} from '../args';
 import {SendEncryptedMessageArgs} from '../args/sendEncryptedMessageArgs';
 

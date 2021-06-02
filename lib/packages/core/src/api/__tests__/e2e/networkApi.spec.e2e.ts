@@ -1,7 +1,7 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
 import {getBlockchainStatus, getServerStatus, getTime, suggestFee} from '../../factories/network';
-import {FeeQuantPlanck} from '@burstjs/util';
+import {FeeQuantPlanck} from '@signumjs/util';
 
 const environment = loadEnvironment();
 

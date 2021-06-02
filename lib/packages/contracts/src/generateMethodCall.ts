@@ -5,7 +5,7 @@
  * https://coolaj86.com/articles/convert-decimal-to-hex-with-js-bigints/
  */
 
-import {convertDecStringToHexString, convertHexEndianess} from '@burstjs/util';
+import {convertDecStringToHexString, convertHexEndianess} from '@signumjs/util';
 import {GenerateMethodCallArgs, MethodArgument} from './typings/args';
 
 /**

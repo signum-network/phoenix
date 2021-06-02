@@ -1,5 +1,5 @@
-import {Http, HttpMockBuilder} from '@burstjs/http';
-import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
+import {Http, HttpMockBuilder} from '@signumjs/http';
+import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@signumjs/crypto';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {
     Attachment,

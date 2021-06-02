@@ -1,4 +1,4 @@
-import {Keys} from '@burstjs/crypto';
+import {Keys} from '@signumjs/crypto';
 
 /**
  * The argument object for [[MessageApi.sendTextMessage]]

@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {Http} from '@burstjs/http';
+import {Http} from '@signumjs/http';
 import {AxiosRequestConfig} from 'axios';
 
 /**

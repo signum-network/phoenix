@@ -24,8 +24,8 @@ type FulfilledFunction<T = any> = (args: FulfilledArgs<T>) => void;
 
 
 const MonitorEvents = {
-    Fulfilled: '@burstjs/monitor/fulfilled',
-    Timeout: '@burstjs/monitor/timeout',
+    Fulfilled: '@signumjs/monitor/fulfilled',
+    Timeout: '@signumjs/monitor/timeout',
 };
 
 /**

@@ -5,7 +5,7 @@ import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
-import {encryptMessage} from '@burstjs/crypto';
+import {encryptMessage} from '@signumjs/crypto';
 import {SendEncryptedMessageArgs} from '../../../typings/args/sendEncryptedMessageArgs';
 import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransaction';
 

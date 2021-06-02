@@ -1,6 +1,6 @@
-import {HttpMockBuilder, Http} from '@burstjs/http';
+import {HttpMockBuilder, Http} from '@signumjs/http';
 import {BurstService} from '../../service/burstService';
-import {encryptMessage} from '@burstjs/crypto';
+import {encryptMessage} from '@signumjs/crypto';
 import {constructAttachment} from '../../internal/constructAttachment';
 import {sendTextMessage} from '../factories/message/sendTextMessage';
 import {signAndBroadcastTransaction} from '../factories/transaction/signAndBroadcastTransaction';
@@ -8,7 +8,7 @@ import {sendEncryptedTextMessage} from '../factories/message/sendEncryptedTextMe
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {sendMessage} from '../factories/message';
 import {sendEncryptedMessage} from '../factories/message/sendEncryptedMessage';
-import {FeeQuantPlanck} from '@burstjs/util';
+import {FeeQuantPlanck} from '@signumjs/util';
 
 describe('Message Api', () => {
 

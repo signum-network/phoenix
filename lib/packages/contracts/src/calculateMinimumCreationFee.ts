@@ -3,7 +3,7 @@
  * Modified Work Copyright (c) 2021 Signum Network
  */
 
-import {Amount, FeeQuantPlanck, OneSignaPlanck} from '@burstjs/util';
+import {Amount, FeeQuantPlanck, OneSignaPlanck} from '@signumjs/util';
 import {countCodePages} from './countCodePages';
 
 /**

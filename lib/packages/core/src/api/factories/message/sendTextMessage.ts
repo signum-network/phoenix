@@ -5,7 +5,7 @@ import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
-import {convertNumberToNQTString} from '@burstjs/util';
+import {convertNumberToNQTString} from '@signumjs/util';
 import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransaction';
 
 /**

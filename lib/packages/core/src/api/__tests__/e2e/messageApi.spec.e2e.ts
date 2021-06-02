@@ -1,12 +1,12 @@
 import {loadEnvironment} from './helpers/environment';
 import {BurstService} from '../../../service/burstService';
-import {decryptMessage, generateMasterKeys, getAccountIdFromPublicKey} from '@burstjs/crypto';
+import {decryptMessage, generateMasterKeys, getAccountIdFromPublicKey} from '@signumjs/crypto';
 import {sendTextMessage} from '../../factories/message/sendTextMessage';
 import {sendEncryptedTextMessage} from '../../factories/message/sendEncryptedTextMessage';
 import {getTransaction} from '../../factories/transaction/getTransaction';
 import {isAttachmentVersion} from '../../../attachment';
 import {sendMessage} from '../../factories/message';
-import {FeeQuantPlanck} from '@burstjs/util';
+import {FeeQuantPlanck} from '@signumjs/util';
 
 
 describe('[E2E] Message Api', () => {

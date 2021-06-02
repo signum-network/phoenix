@@ -1,4 +1,4 @@
-import {Http, HttpMockBuilder} from '@burstjs/http';
+import {Http, HttpMockBuilder} from '@signumjs/http';
 import {
     getUnconfirmedAccountTransactions,
     getAccountBalance,
@@ -14,9 +14,9 @@ import {
     getAccountSubscriptions, getRewardRecipient, addCommitment, removeCommitment
 } from '../factories/account';
 import {Alias, AliasList} from '../..';
-import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
+import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@signumjs/crypto';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
-import {Amount, convertNumberToNQTString} from '@burstjs/util';
+import {Amount, convertNumberToNQTString} from '@signumjs/util';
 import {signAndBroadcastTransaction} from '../factories/transaction';
 
 describe('AccountApi', () => {

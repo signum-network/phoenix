@@ -6,9 +6,9 @@ import {
     getUnconfirmedTransactions,
     sendAmountToSingleRecipient
 } from '../../factories/transaction';
-import {HttpError} from '@burstjs/http';
-import {BurstValue, convertNumberToNQTString, FeeQuantPlanck} from '@burstjs/util';
-import {generateMasterKeys, getAccountIdFromPublicKey} from '@burstjs/crypto';
+import {HttpError} from '@signumjs/http';
+import {BurstValue, convertNumberToNQTString, FeeQuantPlanck} from '@signumjs/util';
+import {generateMasterKeys, getAccountIdFromPublicKey} from '@signumjs/crypto';
 
 
 const environment = loadEnvironment();

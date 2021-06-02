@@ -1,5 +1,5 @@
 import {BurstService} from '../service/burstService';
-import {HttpError, HttpMockBuilder, HttpResponse, Http} from '@burstjs/http';
+import {HttpError, HttpMockBuilder, HttpResponse, Http} from '@signumjs/http';
 import {BurstServiceSettings} from '../service/burstServiceSettings';
 import {createBurstService} from './helpers/createBurstService';
 import {DefaultApiEndpoint} from '../constants';

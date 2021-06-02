@@ -5,9 +5,9 @@ import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
-import {Keys} from '@burstjs/crypto';
-import {encryptMessage} from '@burstjs/crypto';
-import {convertNumberToNQTString} from '@burstjs/util';
+import {Keys} from '@signumjs/crypto';
+import {encryptMessage} from '@signumjs/crypto';
+import {convertNumberToNQTString} from '@signumjs/util';
 import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransaction';
 
 const MAX_MESSAGE_LENGTH = 1024;

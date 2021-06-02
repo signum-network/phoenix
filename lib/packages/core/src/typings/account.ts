@@ -3,7 +3,7 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 
-import { Keys } from '@burstjs/crypto';
+import { Keys } from '@signumjs/crypto';
 import { Transaction } from './transaction';
 import { AssetBalance } from './assetBalance';
 import { UnconfirmedAssetBalance } from './unconfirmedAssetBalance';

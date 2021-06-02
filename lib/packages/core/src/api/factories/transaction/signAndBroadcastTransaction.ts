@@ -2,7 +2,7 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 
-import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@burstjs/crypto';
+import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@signumjs/crypto';
 import {broadcastTransaction} from './broadcastTransaction';
 import {BurstService} from '../../../service';
 import {TransactionId} from '../../../typings/transactionId';

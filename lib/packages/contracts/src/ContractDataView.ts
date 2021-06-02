@@ -2,7 +2,7 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 
-import {convertHexStringToDecString, convertHexStringToString} from '@burstjs/util';
+import {convertHexStringToDecString, convertHexStringToString} from '@signumjs/util';
 import {Contract} from './typings/contract';
 import {getContractDatablock} from './getContractDatablock';
 import {CodePageSize} from './constants';

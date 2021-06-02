@@ -4,10 +4,10 @@
 import {BurstService} from '../../../service/burstService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
-import {generateSignature} from '@burstjs/crypto';
-import {verifySignature} from '@burstjs/crypto';
-import {generateSignedTransactionBytes} from '@burstjs/crypto';
-import {convertNumberToNQTString} from '@burstjs/util';
+import {generateSignature} from '@signumjs/crypto';
+import {verifySignature} from '@signumjs/crypto';
+import {generateSignedTransactionBytes} from '@signumjs/crypto';
+import {convertNumberToNQTString} from '@signumjs/util';
 import {broadcastTransaction} from '../transaction/broadcastTransaction';
 
 /**

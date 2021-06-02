@@ -3,7 +3,7 @@
  */
 import {BurstService} from '../../../service/burstService';
 import {SuggestedFees} from '../../../typings/suggestedFees';
-import {FeeQuantPlanck} from '@burstjs/util';
+import {FeeQuantPlanck} from '@signumjs/util';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[NetworkApi]].

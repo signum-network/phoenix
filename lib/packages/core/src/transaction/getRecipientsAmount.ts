@@ -1,4 +1,4 @@
-import {convertNQTStringToNumber} from '@burstjs/util';
+import {convertNQTStringToNumber} from '@signumjs/util';
 import {Transaction} from '../typings/transaction';
 import {getRecipientAmountsFromMultiOutPayment} from './getRecipientAmountsFromMultiOutPayment';
 import {isMultiOutTransaction} from './isMultiOutTransaction';

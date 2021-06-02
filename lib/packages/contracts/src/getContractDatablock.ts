@@ -2,7 +2,7 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 
-import {convertHexEndianess} from '@burstjs/util';
+import {convertHexEndianess} from '@signumjs/util';
 import {Contract} from './typings/contract';
 
 /**

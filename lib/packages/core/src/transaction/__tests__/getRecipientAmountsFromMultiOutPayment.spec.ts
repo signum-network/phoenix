@@ -1,7 +1,7 @@
 import {getRecipientAmountsFromMultiOutPayment} from '../getRecipientAmountsFromMultiOutPayment';
 import {TransactionType} from '../../constants/transactionType';
 import {TransactionPaymentSubtype} from '../../constants';
-import {convertNumberToNQTString} from '@burstjs/util';
+import {convertNumberToNQTString} from '@signumjs/util';
 
 
 const nqt = convertNumberToNQTString;

@@ -6,7 +6,7 @@ import {CallContractMethodArgs, SendAmountArgs} from '../../../typings/args';
 import {TransactionId} from '../../../typings/transactionId';
 import {AttachmentMessage} from '../../../typings/attachment';
 import {sendAmountToSingleRecipient} from '../transaction';
-import {generateMethodCall} from '@burstjs/contracts';
+import {generateMethodCall} from '@signumjs/contracts';
 
 
 /**

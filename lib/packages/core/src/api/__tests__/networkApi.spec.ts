@@ -1,10 +1,10 @@
-import {HttpMockBuilder, Http} from '@burstjs/http';
+import {HttpMockBuilder, Http} from '@signumjs/http';
 import {getBlockchainStatus} from '../factories/network/getBlockchainStatus';
 import {getServerStatus} from '../factories/network/getServerStatus';
 import {getTime} from '../factories/network/getTime';
 import {createBurstService} from '../../__tests__/helpers/createBurstService';
 import {getSuggestedFees} from '../factories/network';
-import {FeeQuantPlanck} from '@burstjs/util';
+import {FeeQuantPlanck} from '@signumjs/util';
 
 describe('Network Api', () => {
 

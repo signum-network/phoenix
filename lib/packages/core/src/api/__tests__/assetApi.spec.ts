@@ -1,8 +1,8 @@
-import {HttpMockBuilder, Http} from '@burstjs/http';
+import {HttpMockBuilder, Http} from '@signumjs/http';
 import {getBlockchainStatus} from '../factories/network/getBlockchainStatus';
 import {getAsset} from '../factories/asset/getAsset';
 import {cancelAskOrder, cancelBidOrder, placeAskOrder, placeBidOrder, transferAsset} from '../factories';
-import {Amount, FeeQuantPlanck} from '@burstjs/util';
+import {Amount, FeeQuantPlanck} from '@signumjs/util';
 import {mockSignAndBroadcastTransaction, createBurstService} from '../../__tests__/helpers';
 
 describe('Asset Api', () => {
