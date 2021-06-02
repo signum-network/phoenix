@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { constants } from '../../../../constants'
-import { I18nService } from "../i18n.service";
+import {Component, OnInit} from '@angular/core';
+import {constants} from '../../../../constants';
+import {I18nService} from '../i18n.service';
 
 @Component({
   selector: 'burst-language-selector',
@@ -14,14 +14,14 @@ export class LanguageSelectorComponent implements OnInit {
   constructor(private i18n: I18nService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.languages = constants.languages;
     this.currentLanguage = this.i18n.currentLanguage;
   }
 
-  setLanguage(language){
+  setLanguage(language): void {
     this.currentLanguage = language;
-    this.i18n.setLanguage(language)
+    this.i18n.setLanguage(language);
   }
 
 }

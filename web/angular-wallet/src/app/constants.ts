@@ -63,18 +63,14 @@ export const constants = {
     {code: 'ja', name: '日本語'},
     {code: 'lt', name: 'Lietuviškai'},
     {code: 'nl', name: 'Nederlands'},
-    {code: 'sh', name: 'Hrvatski'},
     {code: 'sk', name: 'Slovensky'},
-    {code: 'pt-pt', name: 'Português (Portugal)'},
-    {code: 'pt-br', name: 'Português (Brazil)'},
+    {code: 'pt-br', name: 'Português (Brasil)'},
     {code: 'sr', name: 'Српски'},
-    {code: 'sr-cs', name: 'Srpski'},
     {code: 'tr', name: 'Türk'},
     {code: 'uk', name: 'Yкраiнска'},
     {code: 'ro', name: 'Român'},
     {code: 'ru', name: 'Русский'},
     {code: 'zh-cn', name: '中文 (simplified)'},
-    {code: 'zh-tw', name: '中文 (traditional)'}
   ],
   nodes: [
     {

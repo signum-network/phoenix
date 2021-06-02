@@ -48,16 +48,12 @@ import localeSk from '@angular/common/locales/sk';
 import localeSkExtra from '@angular/common/locales/extra/sk';
 import localeSr from '@angular/common/locales/sr';
 import localeSrExtra from '@angular/common/locales/extra/sr';
-import localeSrCs from '@angular/common/locales/sr-Cyrl';
-import localeSrCsExtra from '@angular/common/locales/extra/sr-Cyrl';
 import localeTr from '@angular/common/locales/tr';
 import localeTrExtra from '@angular/common/locales/extra/tr';
 import localeUk from '@angular/common/locales/uk';
 import localeUkExtra from '@angular/common/locales/extra/uk';
 import localeZhCn from '@angular/common/locales/zh-Hans';
 import localeZhCnExtra from '@angular/common/locales/extra/zh-Hans';
-import localeZhTw from '@angular/common/locales/zh-Hant';
-import localeZhTwExtra from '@angular/common/locales/extra/zh-Hant';
 
 export const registerLocales = () => {
     registerLocaleData(localeBg, 'bg', localeBgExtra);
@@ -78,15 +74,12 @@ export const registerLocales = () => {
     registerLocaleData(localeNl, 'nl', localeNlExtra);
     registerLocaleData(localePl, 'pl', localePlExtra);
     registerLocaleData(localePtBr, 'pt-br', localePtBrExtra);
-    registerLocaleData(localePt, 'pt-pt', localePtExtra);
     registerLocaleData(localeRo, 'ro', localeRoExtra);
     registerLocaleData(localeRu, 'ru', localeRuExtra);
     registerLocaleData(localeSh, 'sh', localeShExtra);
-    registerLocaleData(localeSrCs, 'sr-cs', localeSrCsExtra);
     registerLocaleData(localeSk, 'sk', localeSkExtra);
     registerLocaleData(localeSr, 'sr', localeSrExtra);
     registerLocaleData(localeTr, 'tr', localeTrExtra);
     registerLocaleData(localeUk, 'uk', localeUkExtra);
-    registerLocaleData(localeZhCn, 'zh-cn', localeZhCnExtra);
-    registerLocaleData(localeZhTw, 'zh-tw', localeZhTwExtra);
+    registerLocaleData(localeZhCn, 'zh', localeZhCnExtra);
 }
