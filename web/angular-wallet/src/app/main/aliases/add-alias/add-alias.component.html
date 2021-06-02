@@ -23,7 +23,7 @@
     </mat-form-field>
 
     <mat-form-field *ngIf="type==='account'">
-      <input matInput prefix="BURST-" burstInputValidator [patterns]="burstAddressPatternRef"
+      <input matInput prefix="{{addressPrefix}}" pasteableAddress [patterns]="burstAddressPatternRef"
              mask="____-____-____-_____" [dropSpecialCharacters]="false" [showMaskTyped]="true"
              [(ngModel)]="accountAliasURI" name="accountAliasURI" placeholder="{{ 'account_id' | i18n }}">
     </mat-form-field>

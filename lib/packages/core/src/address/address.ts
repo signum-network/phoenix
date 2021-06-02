@@ -93,11 +93,12 @@ export class Address {
 
     /**
      * Gets as Reed Solomon representation
+     * @param withPrefix If false, the address without prefix will be returned. Default: true
      * @return Reed Solomon Address Format
      * @see [[Address.getReedSolomonAddressExtended]]
      */
-    getReedSolomonAddress(): string {
-        return this._rs;
+    getReedSolomonAddress(withPrefix = true): string {
+        return withPrefix ? this._rs : this._rs.substr(this._rs.indexOf('-') + 1);
     }
 
     /**
@@ -105,15 +106,16 @@ export class Address {
      *
      * This method requires that the address was created from a public key or extended address.
      *
+     * @param withPrefix If false, the address without prefix will be returned. Default: true
      * @return Extended Reed Solomon Address Format
      * @throws if no public key is available
      * @see [[Address.getReedSolomonAddress]]
      */
-    getReedSolomonAddressExtended(): string {
+    getReedSolomonAddressExtended(withPrefix = true): string {
         if (!this._publicKey) {
             throw new Error('No public key available');
         }
-        return `${this._rs}-${convertHexStringToBase36String(this._publicKey)}`.toUpperCase();
+        return `${this.getReedSolomonAddress(withPrefix)}-${convertHexStringToBase36String(this._publicKey)}`.toUpperCase();
     }
 
     /**

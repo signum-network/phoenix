@@ -36,6 +36,7 @@ import { AccountResolver } from './account/account.resolver';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {PageModule} from '../components/page/page.module';
 import {AccountActivateComponent} from './account/create-active/activate/activate.component';
+import {AppSharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -63,7 +64,8 @@ import {AccountActivateComponent} from './account/create-active/activate/activat
     I18nModule,
     NgxMaskModule.forRoot(),
     MatTooltipModule,
-    PageModule
+    PageModule,
+    AppSharedModule,
   ],
     declarations: [
         CreateActiveAccountComponent,

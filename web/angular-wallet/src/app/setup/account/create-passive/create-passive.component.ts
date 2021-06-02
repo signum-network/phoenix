@@ -1,8 +1,10 @@
-import {Component, OnInit, Injectable, Input} from '@angular/core';
-import { CreateService } from '../create.service';
-import { NotifierService } from 'angular-notifier';
-import { Router } from '@angular/router';
-import { burstAddressPattern } from 'app/util/burstAddressPattern';
+import {Component, Injectable, OnInit} from '@angular/core';
+import {CreateService} from '../create.service';
+import {NotifierService} from 'angular-notifier';
+import {Router} from '@angular/router';
+import {burstAddressPattern} from 'app/util/burstAddressPattern';
+import {NetworkService} from '../../../network/network.service';
+import {AddressPrefix} from '@burstjs/core/src';
 
 @Injectable()
 @Component({
@@ -15,17 +17,21 @@ export class CreatePassiveAccountComponent implements OnInit {
   address = '';
 
   burstAddressPattern = burstAddressPattern;
+  addressPrefix: AddressPrefix.TestNet | AddressPrefix.MainNet;
 
   constructor(private createService: CreateService,
               private notificationService: NotifierService,
-              private router: Router) { }
-
-  ngOnInit() {
+              private networkService: NetworkService,
+              private router: Router) {
   }
 
-  public submit(address: string) {
-      this.createService.setAddress(address);
-      this.createService.createPassiveAccount().then((success) => {
+  ngOnInit(): void {
+    this.addressPrefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
+  }
+
+  public submit(address: string): void {
+    this.createService.setAddress(address);
+    this.createService.createPassiveAccount().then((success) => {
         this.notificationService.notify('success', `Account added: ${address}`);
         this.createService.reset();
         this.router.navigate(['/']);

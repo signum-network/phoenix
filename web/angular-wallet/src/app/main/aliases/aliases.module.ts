@@ -28,7 +28,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { AddAliasComponent } from './add-alias/add-alias.component';
 import { SetupModule } from 'app/setup/setup.module';
-import { NotifierModule } from 'angular-notifier';
 import { NgxMaskModule } from 'ngx-mask';
 import { NetworkModule } from 'app/network/network.module';
 import { LoginGuard } from 'app/login/login-guard.service';
@@ -36,6 +35,7 @@ import { AccountResolver } from 'app/setup/account/account.resolver';
 import { SuggestFeeResolver } from 'app/network/suggest-fee.resolver';
 import { LayoutModule } from 'app/layout/layout.module';
 import {PageModule} from '../../components/page/page.module';
+import {AppSharedModule} from '../../shared/shared.module';
 
 const routes = [
   {
@@ -89,7 +89,8 @@ const routes = [
     I18nModule,
     MatDialogModule,
     RouterModule.forChild(routes),
-    PageModule
+    PageModule,
+    AppSharedModule,
   ]
 })
 export class AliasesModule { }

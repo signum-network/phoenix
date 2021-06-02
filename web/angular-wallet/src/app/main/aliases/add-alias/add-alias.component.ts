@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
-import {SuggestedFees, Account} from '@burstjs/core';
+import {SuggestedFees, Account, AddressPrefix} from '@burstjs/core';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {AccountService} from 'app/setup/account/account.service';
@@ -7,6 +7,7 @@ import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {burstAddressPattern} from 'app/util/burstAddressPattern';
 import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
+import {NetworkService} from '../../../network/network.service';
 
 @Component({
   selector: 'app-add-alias',
@@ -31,21 +32,24 @@ export class AddAliasComponent implements OnInit {
   account: Account;
   deadline = '24';
   fees: SuggestedFees;
+  addressPrefix: AddressPrefix.MainNet | AddressPrefix.TestNet;
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
               private notifierService: NotifierService,
+              private networkService: NetworkService,
               private i18nService: I18nService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.account = this.route.snapshot.data.account as Account;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
 
+    this.addressPrefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
     this.accountAliasURI = this.account.accountRS;
   }
 
-  async onSubmit(event) {
+  async onSubmit(event): Promise<void> {
     event.stopImmediatePropagation();
     try {
       await this.accountService.setAlias({

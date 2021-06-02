@@ -70,12 +70,20 @@ describe('Address', () => {
             const address = Address.fromPublicKey(TestAddress.pk, 'FOOBAR');
             expect(address.getReedSolomonAddress()).toBe(TestAddress.rs);
         });
+        it('should return RS address without prefix', () => {
+            const address = Address.fromPublicKey(TestAddress.pk, 'FOOBAR');
+            expect(address.getReedSolomonAddress(false)).toBe(TestAddress.rs.replace('FOOBAR-', ''));
+        });
     });
 
     describe('getReedSolomonAddressExtended', () => {
         it('should return extended RS address with custom prefix', () => {
             const address = Address.fromPublicKey(TestAddress.pk, 'FOOBAR');
             expect(address.getReedSolomonAddressExtended()).toBe(TestAddress.rs + '-' + TestAddress.ex);
+        });
+        it('should return extended RS address without prefix', () => {
+            const address = Address.fromPublicKey(TestAddress.pk, 'FOOBAR');
+            expect(address.getReedSolomonAddressExtended(false)).toBe(TestAddress.rs.replace('FOOBAR-', '') + '-' + TestAddress.ex);
         });
         it('should return extended RS address with default', () => {
             const address = Address.fromPublicKey(TestAddress.pk);

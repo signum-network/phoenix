@@ -22,7 +22,6 @@ import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {FuseSharedModule} from '@fuse/shared.module';
 import {SuggestFeeResolver} from '../../network/suggest-fee.resolver';
 import {NetworkModule} from 'app/network/network.module';
-import {BurstInputValidatorDirective} from './send-burst-validator.directive';
 import {LayoutModule} from 'app/layout/layout.module';
 import {SendBurstFormComponent} from './send-burst-form/send-burst-form.component';
 import {SendMultiOutFormComponent} from './send-multi-out-form/send-multi-out-form.component';
@@ -57,7 +56,6 @@ const routes = [
   ],
   declarations: [
     SendBurstComponent,
-    BurstInputValidatorDirective,
     SendBurstFormComponent,
     SendMultiOutFormComponent,
     WarnSendDialogComponent,
@@ -93,9 +91,7 @@ const routes = [
     WarnSendDialogComponent,
     BatchRecipientsDialogComponent
   ],
-  exports: [
-    BurstInputValidatorDirective,
-  ]
+  exports: []
 })
 export class SendBurstModule {
 }

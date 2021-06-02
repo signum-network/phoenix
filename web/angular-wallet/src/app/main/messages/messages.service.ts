@@ -201,7 +201,7 @@ export class MessagesService implements Resolve<any> {
 
   sendNewMessage(recipient): void {
     const message = {
-      contactId: Address.fromReedSolomonAddress(recipient).getNumericId() || 'new',
+      contactId: recipient ? Address.fromReedSolomonAddress(recipient).getNumericId() : 'new',
       dialog: [],
       senderRS: recipient,
       timestamp: BlockTime.fromDate(new Date()).getBlockTimestamp()
