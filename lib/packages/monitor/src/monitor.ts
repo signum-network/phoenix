@@ -39,9 +39,9 @@ const MonitorEvents = {
  * // A method that checks if an account exists
  * // > IMPORTANT: Do not use closures, when you need to serialize the monitor
  * async function tryFetchAccount() {
- *    const BurstApi = composeApi({ nodeHost: 'https://testnet.burstcoin.network:6876/'})
+ *    const Api = composeApi({ nodeHost: 'https://testnet.signum.network:6876/'})
  *    try{
- *        const {account} = await BurstApi.account.getAccount('1234')
+ *        const {account} = await Api.account.getAccount('1234')
  *        return account;
  *    }catch (e){
  *        // ignore error

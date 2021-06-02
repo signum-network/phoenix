@@ -22,6 +22,7 @@ The library is separated in the following packages
 - [@signumjs/crypto](./modules/crypto.html) A package providing Signum relevant crypto functions
 - [@signumjs/util](./modules/util.html) A package providing useful functions, e.g. common conversion functions 
 - [@signumjs/http](./modules/http.html) A package providing a _simplified_ Http layer, with consistent response types, and exception handling
+- [@signumjs/monitor](./modules/monitor.html) A package providing a class to execute recurring async operations with de/serialization feature, good for listening to blockchain transactions 
 
 
 ## Installation
@@ -55,21 +56,21 @@ yarn add @signumjs/http (optional)
 
 ### Using in classic `<script>`
 
-Each package is available as bundled standalone library using IIFE. 
+Each package is available as bundled standalone library using UMD. 
 This way _SignumJS_ can be used also within `<script>`-Tags. 
 This might be useful for Wordpress and/or other PHP applications.
 
 Just import one of the packages using the HTML `<script>` tag.
 
-`<script src='https://cdn.jsdelivr.net/npm/@signumjs/core/dist/burstjs.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/core/dist/signumjs.min.js'></script>`
 
-`<script src='https://cdn.jsdelivr.net/npm/@signumjs/contracts/dist/burstjs.contracts.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/contracts/dist/signumjs.contracts.min.js'></script>`
 
-`<script src='https://cdn.jsdelivr.net/npm/@signumjs/crypto/dist/burstjs.crypto.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/crypto/dist/signumjs.crypto.min.js'></script>`
 
-`<script src='https://cdn.jsdelivr.net/npm/@signumjs/http/dist/burstjs.http.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/http/dist/signumjs.http.min.js'></script>`
 
-`<script src='https://cdn.jsdelivr.net/npm/@signumjs/util/dist/burstjs.util.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/util/dist/signumjs.util.min.js'></script>`
 
 Due to the way a package is imported following global variables are provided
 
@@ -77,7 +78,7 @@ Due to the way a package is imported following global variables are provided
 | Package | Variable |
 |---------|----------|
 |  core   |`sig$`      |
-|  crypto |`sig$contracts`|
+|  contracts |`sig$contracts`|
 |  crypto |`sig$crypto`|
 |  http   |`sig$http`  |
 |  monitor   |`sig$monitor`  |
@@ -112,8 +113,48 @@ const value = sig$util.Value.fromSigna("1000")
 
 ```js
 // using http
-const client = new sig$http.HttpImpl('https://jsonplaceholder.typicode.com/');
+const client = new sig$http.HttpClientFactory.createHttpClient('https://jsonplaceholder.typicode.com/');
 client.get('/todos/1').then(console.log)
+```
+
+```js
+ // using monitor
+ 
+ // A method that checks if an account exists
+ // > IMPORTANT: Do not use closures, when you need to serialize the monitor
+ async function tryFetchAccount() {
+     const Api = composeApi({nodeHost: 'https://testnet.signum.network:6876/'})
+     try {
+         const {account} = await Api.account.getAccount('1234')
+         return account;
+     } catch (e) {
+         // ignore error
+         return null;
+     }
+ }
+ 
+ // A comparing function to check if a certain condition for the returned data from fetch function
+ // is true. If it's true the monitor stops
+ function checkIfAccountExists(account) {
+     return account !== null;
+ }
+ 
+ // Create your monitor
+ const monitor = new Monitor < Account > ({
+     asyncFetcherFn: tryFetchAccount,
+     compareFn: checkIfAccountExists,
+     intervalSecs: 10, // polling interval in seconds
+     key: 'monitor-account',
+     timeoutSecs: 2 * 240 // when reached timeout the monitor stops
+ })
+ .onFulfilled(() => {
+     // called when `checkIfAccountExists` returns true
+     console.log('Yay, account active');
+ })
+ .onTimeout(() => {
+     // called when `timeoutSecs` is reached
+     console.log('Hmm, something went wrong');
+ }).start();
 ```
 
 
@@ -185,6 +226,6 @@ That's it!
 
 ## Documentation
 
-- [BurstJS Online Documentation](https://burst-apps-team.github.io/phoenix/)
+- [SignumJS Online Documentation](https://burst-apps-team.github.io/phoenix/)
 - To generate esdocs: `npm run doc`
 - To update the README.md files: `lerna run readme`

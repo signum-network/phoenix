@@ -1,4 +1,4 @@
-    /**
+/**
  * Copyright (c) 2019 Burst Apps Team
  */
 
@@ -30,14 +30,14 @@ export class ContractDataView {
     /**
      * @return Get the contract
      */
-    getContract() {
+    getContract(): Contract {
         return this._contract;
     }
 
     /**
      * @return The number of code pages
      */
-    countCodePages() {
+    countCodePages(): number {
         return countCodePages(this._contract.machineCode);
     }
 

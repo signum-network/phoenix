@@ -1,10 +1,10 @@
 # @signumjs/util
 
-Useful utilities and tools for building Burstcoin applications
+Useful utilities and tools for building Signum blockchain applications
 
 ## Installation
 
-`@signumjs/http` can be used with NodeJS or Web. Two formats are available
+`@signumjs/util` can be used with NodeJS or Web. Two formats are available
 
 ### Using with NodeJS and/or modern web frameworks
 
@@ -23,27 +23,28 @@ yarn add @signumjs/util
 #### Example
 
 ```js
-import {convertNumberToNQTString} from '@signumjs/util'
+import {Amount} from '@signumjs/util'
 
-const value = convertNumberToNQTString(1000)
-console.log(value)
+const value = Amount.fromSigna(1000)
+console.log(value.toString())
 ```
 
 ### Using in classic `<script>`
 
-Each package is available as bundled standalone library using IIFE.
-This way _burstJS_ can be used also within `<script>`-Tags.
+Each package is available as bundled standalone library using UMD.
+This way _signumJS_ can be used also within `<script>`-Tags.
 This might be useful for Wordpress and/or other PHP applications.
 
 Just import the package using the HTML `<script>` tag.
 
-`<script src='https://cdn.jsdelivr.net/npm/@signumjs/util/dist/util.crypto.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/util/dist/signumjs.util.min.js'></script>`
 
 #### Example
 
 ```js
-const value = b$util.convertNumberToNQTString(1000)
-console.log(value)
+const {Amount} = sig$util
+const value = Amount.fromSigna(1000)
+console.log(value.toString())
 ```
 
 See more here:
@@ -57,38 +58,35 @@ See more here:
 
 <dl>
 <dt><a href="#module_util">util</a></dt>
-<dd><p>A Value Object to facilitate Burst Timestamp conversions.</p></dd>
-<dt><a href="#module_util">util</a></dt>
 <dd><p>Enum to determine the representation format of [BurstValue] string</p></dd>
 <dt><a href="#module_util">util</a></dt>
-<dd><p>A Value Object to facilitate BURST and Planck conversions/calculations.</p>
+<dd><p>A Value Object to facilitate SIGNA and Planck conversions/calculations.</p>
 <p>Note: This class uses a big number representation (ES5 compatible) under the hood, so
 number limits and numeric calculations are much more precise than JS number type</p></dd>
 <dt><a href="#module_util">util</a></dt>
-<dd><p>Symbol/Character for BURST unit</p></dd>
+<dd><p>Utility function to retry async functions.</p></dd>
 <dt><a href="#module_util">util</a></dt>
-<dd><p>Symbol/Character for Planck (the smallest possible unit in Burstcoin)</p></dd>
+<dd><p>A Value Object to facilitate Burst Timestamp conversions.</p></dd>
+<dt><a href="#module_util">util</a></dt>
+<dd><p>Symbol/Character for SIGNA unit</p></dd>
+<dt><a href="#module_util">util</a></dt>
+<dd><p>Symbol/Character for Planck (the smallest possible unit)</p></dd>
 <dt><a href="#module_util">util</a></dt>
 <dd><p>The smallest possible fee</p></dd>
 <dt><a href="#module_util">util</a></dt>
-<dd><p>One Burst expressed in Planck</p></dd>
-<dt><a href="#module_util">util</a> ⇒</dt>
-<dd><p>Converts BURST-XXXX-XXXX-XXXX-XXXXX into numeric Id</p></dd>
+<dd><p>One SIGNA expressed in Planck</p></dd>
+<dt><a href="#module_util">util</a> ⇒ <code>string</code></dt>
+<dd><p>Converts/Decodes a Base36 encoded string into hex string. UTF-8 is supported
+Inverse function [[convertHexStringToBase36String]]</p></dd>
 <dt><a href="#module_util">util</a> ⇒ <code>string</code></dt>
 <dd><p>Converts/Decodes a Base64 encoded string to string. UTF-8 is supported
 Inverse function [[convertStringToBase64String]]</p></dd>
-<dt><del><a href="#module_util">util</a> ⇒</del></dt>
-<dd><p>Converts a Burst/Block Time (seconds since genesis block) into Date</p></dd>
-<dt><del><a href="#module_util">util</a> ⇒</del></dt>
-<dd><p>Converts a Burst/Block Time (seconds since genesis block) into Unix Epoch Time (milliseconds since 01.01.1970)</p></dd>
 <dt><a href="#module_util">util</a> ⇒ <code>string</code></dt>
 <dd><p>Converts byte array to hexadecimal string
 Inverse operation of [[convertHexStringToByteArray]]</p></dd>
 <dt><a href="#module_util">util</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a byte array into string
 Inverse function [[convertStringToByteArray]]</p></dd>
-<dt><del><a href="#module_util">util</a> ⇒</del></dt>
-<dd><p>Converts a Date into Burst/Block Time (seconds since genesis block)</p></dd>
 <dt><a href="#module_util">util</a> ⇒</dt>
 <dd><p>Arbitrary length decimal to hexadecimal conversion</p></dd>
 <dt><a href="#module_util">util</a> ⇒</dt>
@@ -98,6 +96,9 @@ If string is little Endianess it turns into Big Endianess, and vice versa</p>
 <blockquote>
 <p>This method is mainly used for Smart Contract messaging and data inspection</p>
 </blockquote></dd>
+<dt><a href="#module_util">util</a> ⇒ <code>string</code></dt>
+<dd><p>Converts/Decodes a Hex encoded string into Base36 string. UTF-8 is supported
+Inverse function [[convertBase36StringToHexString]]</p></dd>
 <dt><a href="#module_util">util</a> ⇒ <code>Array.&lt;number&gt;</code></dt>
 <dd><p>Converts an hexadecimal string to byte array</p></dd>
 <dt><a href="#module_util">util</a> ⇒</dt>
@@ -110,8 +111,6 @@ Inverse function [[convertStringToHexString]]</p></dd>
 <dd><p>Helper method to convert a Planck Value (BURST * 1E-8) String to BURST number</p></dd>
 <dt><del><a href="#module_util">util</a> ⇒</del></dt>
 <dd></dd>
-<dt><a href="#module_util">util</a> ⇒</dt>
-<dd><p>Encode a numeric id into BURST-XXXX-XXXX-XXXX-XXXXX</p></dd>
 <dt><a href="#module_util">util</a> ⇒ <code>string</code></dt>
 <dd><p>Converts/Encodes a String into Base64 (URI) encoded string. UTF-8 is supported.
 Inverse function [[convertBase64StringToString]]</p></dd>
@@ -123,18 +122,14 @@ Inverse function [[convertByteArrayToString]]</p></dd>
 Inverse function [[convertHexStringToString]]</p></dd>
 <dt><a href="#module_util">util</a> ⇒</dt>
 <dd><p>Creates a deeplink according the <a href="https://github.com/burst-apps-team/CIPs/blob/master/cip-0022.md">CIP22 spec</a></p>
-<p><code>burst.[domain]://v1?action=[action]&amp;payload=[encodedData]</code></p>
+<p><code>signum.[domain]://v1?action=[action]&amp;payload=[encodedData]</code></p>
 <p>Deeplinks are a way to call/open applications and do certain actions within it, e.g. Phoenix wallet
 can redirect to the &quot;Send Burst&quot; screen a fill out the form according the passed payload.</p></dd>
 <dt><a href="#module_util">util</a></dt>
 <dd></dd>
-<dt><a href="#module_util">util</a> ⇒ <code>boolean</code></dt>
-<dd></dd>
-<dt><a href="#module_util">util</a> ⇒ <code>boolean</code></dt>
-<dd><p>Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX, XXXX-XXXX-XXXX-XXXXX)</p></dd>
 <dt><a href="#module_util">util</a> ⇒</dt>
 <dd><p>Parses a deeplink according the <a href="https://github.com/burst-apps-team/CIPs/blob/master/cip-0022.md">CIP22 spec</a></p>
-<p><code>burst.[domain]://v1?action=[action]&amp;payload=[encodedData]</code></p></dd>
+<p><code>burst[.domain]://v1?action=[action]&amp;payload=[encodedData]</code></p></dd>
 <dt><a href="#module_util">util</a></dt>
 <dd></dd>
 <dt><del><a href="#module_util">util</a> ⇒</del></dt>
@@ -144,6 +139,9 @@ can redirect to the &quot;Send Burst&quot; screen a fill out the form according 
 ## Constants
 
 <dl>
+<dt><a href="#GenesisBlockTime">GenesisBlockTime</a></dt>
+<dd><p>Original work Copyright (c) 2020 Burst Apps Team
+Modfied work Copyright (c) 2021 Signum Network</p></dd>
 <dt><a href="#MandatoryPattern">MandatoryPattern</a></dt>
 <dd><p>Original work Copyright (c) 2019 Burst Apps Team</p></dd>
 </dl>
@@ -151,16 +149,9 @@ can redirect to the &quot;Send Burst&quot; screen a fill out the form according 
 ## Functions
 
 <dl>
-<dt><a href="#twosComplementBinary">twosComplementBinary(bn)</a></dt>
-<dd></dd>
 <dt><a href="#encodePayload">encodePayload()</a></dt>
 <dd></dd>
 </dl>
-
-<a name="module_util"></a>
-
-## util
-<p>A Value Object to facilitate Burst Timestamp conversions.</p>
 
 <a name="module_util"></a>
 
@@ -170,19 +161,34 @@ can redirect to the &quot;Send Burst&quot; screen a fill out the form according 
 <a name="module_util"></a>
 
 ## util
-<p>A Value Object to facilitate BURST and Planck conversions/calculations.</p>
+<p>A Value Object to facilitate SIGNA and Planck conversions/calculations.</p>
 <p>Note: This class uses a big number representation (ES5 compatible) under the hood, so
 number limits and numeric calculations are much more precise than JS number type</p>
 
 <a name="module_util"></a>
 
 ## util
-<p>Symbol/Character for BURST unit</p>
+<p>Utility function to retry async functions.</p>
+
+
+| Param | Description |
+| --- | --- |
+| args | <p>The argument object*</p> |
 
 <a name="module_util"></a>
 
 ## util
-<p>Symbol/Character for Planck (the smallest possible unit in Burstcoin)</p>
+<p>A Value Object to facilitate Burst Timestamp conversions.</p>
+
+<a name="module_util"></a>
+
+## util
+<p>Symbol/Character for SIGNA unit</p>
+
+<a name="module_util"></a>
+
+## util
+<p>Symbol/Character for Planck (the smallest possible unit)</p>
 
 <a name="module_util"></a>
 
@@ -192,18 +198,19 @@ number limits and numeric calculations are much more precise than JS number type
 <a name="module_util"></a>
 
 ## util
-<p>One Burst expressed in Planck</p>
+<p>One SIGNA expressed in Planck</p>
 
 <a name="module_util"></a>
 
-## util ⇒
-<p>Converts BURST-XXXX-XXXX-XXXX-XXXXX into numeric Id</p>
+## util ⇒ <code>string</code>
+<p>Converts/Decodes a Base36 encoded string into hex string. UTF-8 is supported
+Inverse function [[convertHexStringToBase36String]]</p>
 
-**Returns**: <p>The numeric id, or undefined if address is invalid</p>  
+**Returns**: <code>string</code> - <p>The hex representation of input string</p>  
 
 | Param | Description |
 | --- | --- |
-| address | <p>The BURST address</p> |
+| b36 | <p>The string to be decoded (either URI encoded or not)</p> |
 
 <a name="module_util"></a>
 
@@ -211,37 +218,11 @@ number limits and numeric calculations are much more precise than JS number type
 <p>Converts/Decodes a Base64 encoded string to string. UTF-8 is supported
 Inverse function [[convertStringToBase64String]]</p>
 
-**Returns**: <code>string</code> - <p>The orginal string</p>  
+**Returns**: <code>string</code> - <p>The original string</p>  
 
 | Param | Description |
 | --- | --- |
 | b64 | <p>The string to be decoded (either URI encoded or not)</p> |
-
-<a name="module_util"></a>
-
-## ~~util ⇒~~
-***Deprecated***
-
-<p>Converts a Burst/Block Time (seconds since genesis block) into Date</p>
-
-**Returns**: <p>Date</p>  
-
-| Param | Description |
-| --- | --- |
-| burstTimestamp | <p>The numeric Id</p> |
-
-<a name="module_util"></a>
-
-## ~~util ⇒~~
-***Deprecated***
-
-<p>Converts a Burst/Block Time (seconds since genesis block) into Unix Epoch Time (milliseconds since 01.01.1970)</p>
-
-**Returns**: <p>Unix Epoch Time (milliseconds since 01.01.1970)</p>  
-
-| Param | Description |
-| --- | --- |
-| burstTimestamp | <p>The numeric Id</p> |
 
 <a name="module_util"></a>
 
@@ -269,19 +250,6 @@ Inverse function [[convertStringToByteArray]]</p>
 | byteArray | <p>The byte array to be converted</p> |
 | startIndex | <p>The starting index of array to be converted (Default: 0)</p> |
 | length | <p>The number of bytes to be considered, <em>iff</em> startIndex is given. If <em>null</em> the byte array's length is considered</p> |
-
-<a name="module_util"></a>
-
-## ~~util ⇒~~
-***Deprecated***
-
-<p>Converts a Date into Burst/Block Time (seconds since genesis block)</p>
-
-**Returns**: <p>The Burst Timestamp</p>  
-
-| Param | Description |
-| --- | --- |
-| date | <p>The date to be converted</p> |
 
 <a name="module_util"></a>
 
@@ -313,6 +281,18 @@ If string is little Endianess it turns into Big Endianess, and vice versa</p>
 | Param | Description |
 | --- | --- |
 | hexString | <p>The hex string to be converted</p> |
+
+<a name="module_util"></a>
+
+## util ⇒ <code>string</code>
+<p>Converts/Decodes a Hex encoded string into Base36 string. UTF-8 is supported
+Inverse function [[convertBase36StringToHexString]]</p>
+
+**Returns**: <code>string</code> - <p>The hex representation of input string</p>  
+
+| Param | Description |
+| --- | --- |
+| hex | <p>The string to be decoded (either URI encoded or not)</p> |
 
 <a name="module_util"></a>
 
@@ -379,17 +359,6 @@ Inverse function [[convertStringToHexString]]</p>
 
 <a name="module_util"></a>
 
-## util ⇒
-<p>Encode a numeric id into BURST-XXXX-XXXX-XXXX-XXXXX</p>
-
-**Returns**: <p>the BURST address in Reed-Solomon encoding, or undefined if passed null, undefined</p>  
-
-| Param | Description |
-| --- | --- |
-| numericId | <p>The numeric Id</p> |
-
-<a name="module_util"></a>
-
 ## util ⇒ <code>string</code>
 <p>Converts/Encodes a String into Base64 (URI) encoded string. UTF-8 is supported.
 Inverse function [[convertBase64StringToString]]</p>
@@ -429,7 +398,7 @@ Inverse function [[convertHexStringToString]]</p>
 
 ## util ⇒
 <p>Creates a deeplink according the <a href="https://github.com/burst-apps-team/CIPs/blob/master/cip-0022.md">CIP22 spec</a></p>
-<p><code>burst.[domain]://v1?action=[action]&amp;payload=[encodedData]</code></p>
+<p><code>signum.[domain]://v1?action=[action]&amp;payload=[encodedData]</code></p>
 <p>Deeplinks are a way to call/open applications and do certain actions within it, e.g. Phoenix wallet
 can redirect to the &quot;Send Burst&quot; screen a fill out the form according the passed payload.</p>
 
@@ -445,30 +414,9 @@ can redirect to the &quot;Send Burst&quot; screen a fill out the form according 
 ## util
 <a name="module_util"></a>
 
-## util ⇒ <code>boolean</code>
-**Returns**: <code>boolean</code> - <p>true, if is a valid address, else false</p>  
-**Internal**: Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX, XXXX-XXXX-XXXX-XXXXX)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| address | <code>string</code> | <p>The address</p> |
-
-<a name="module_util"></a>
-
-## util ⇒ <code>boolean</code>
-<p>Check for valid Burst address (format: BURST-XXXX-XXXX-XXXX-XXXXX, XXXX-XXXX-XXXX-XXXXX)</p>
-
-**Returns**: <code>boolean</code> - <p>true, if is a valid address, else false</p>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| address | <code>string</code> | <p>The address</p> |
-
-<a name="module_util"></a>
-
 ## util ⇒
 <p>Parses a deeplink according the <a href="https://github.com/burst-apps-team/CIPs/blob/master/cip-0022.md">CIP22 spec</a></p>
-<p><code>burst.[domain]://v1?action=[action]&amp;payload=[encodedData]</code></p>
+<p><code>burst[.domain]://v1?action=[action]&amp;payload=[encodedData]</code></p>
 
 **Returns**: <p>The parsed deeplink parts.</p>  
 **Throws**:
@@ -480,6 +428,7 @@ can redirect to the &quot;Send Burst&quot; screen a fill out the form according 
 | Param | Type | Description |
 | --- | --- | --- |
 | deeplink | <code>string</code> | <p>The deeplink to be parsed</p> |
+| encoderFormat |  | <p>Optional encoding format, used to decode the payload. Default: Base64</p> |
 
 <a name="module_util"></a>
 
@@ -497,22 +446,19 @@ can redirect to the &quot;Send Burst&quot; screen a fill out the form according 
 | --- | --- |
 | nqts | <p>Variable amount list with NQT string</p> |
 
+<a name="GenesisBlockTime"></a>
+
+## GenesisBlockTime
+<p>Original work Copyright (c) 2020 Burst Apps Team
+Modfied work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: global constant  
 <a name="MandatoryPattern"></a>
 
 ## MandatoryPattern
 <p>Original work Copyright (c) 2019 Burst Apps Team</p>
 
 **Kind**: global constant  
-<a name="twosComplementBinary"></a>
-
-## twosComplementBinary(bn)
-**Kind**: global function  
-**Internal**:   
-
-| Param |
-| --- |
-| bn | 
-
 <a name="encodePayload"></a>
 
 ## encodePayload()

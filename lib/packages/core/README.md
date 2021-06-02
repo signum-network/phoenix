@@ -1,12 +1,10 @@
 # @signumjs/core
 
-
-
-Burst-related functions and models for building Burstcoin applications.
+Burst-related functions and models for building Signum blockchain applications.
 
 ## Installation
 
-burstJS can be used with NodeJS or Web. Two formats are available
+SignumJS can be used with NodeJS or Web. Two formats are available
 
 ### Using with NodeJS and/or modern web frameworks
 
@@ -26,21 +24,21 @@ yarn add @signumjs/core
 
 ```js
 import {composeApi, ApiSettings} from '@signumjs/core'
-import {BurstValue} from '@signumjs/util'
+import {Amount} from '@signumjs/util'
 
-const apiSettings = new ApiSettings('https://testnet.burstcoin.network:6876');
+const apiSettings = new ApiSettings('https://testnet.signum.network:6876');
 const api = composeApi(apiSettings);
 
 // this self-executing file makes turns this file into a starting point of your app
 
 (async () => {
-try{
-const {balanceNQT} = await api.account.getAccountBalance('13036514135565182944')
-console.log(`Account Balance: ${BurstValue.fromPlanck(balanceNQT).toString()}`)
-}
-catch(e){ // e is of type HttpError (as part of @signumjs/http)
-console.error(`Whooops, something went wrong: ${e.message}`)
-}
+    try{
+        const {balanceNQT} = await api.account.getAccountBalance('13036514135565182944')
+        console.log(`Account Balance: ${Amount.fromPlanck(balanceNQT).toString()}`)
+    }
+        catch(e){ // e is of type HttpError (as part of @signumjs/http)
+        console.error(`Whooops, something went wrong: ${e.message}`)
+    }
 })()
 ```
 
@@ -53,16 +51,15 @@ This might be useful for Wordpress and/or other PHP applications.
 
 Just import the package using the HTML `<script>` tag.
 
-`<script src='https://cdn.jsdelivr.net/npm/@signumjs/core/dist/burstjs.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/core/dist/signumjs.min.js'></script>`
 
 
 #### Example
 
 ```js
 (function(){
-const api = b$.composeApi({nodeHost: "https://testnet.burstcoin.network:6876"});
-
-api.network.getBlockchainStatus().then(console.log).catch(console.error);
+    const api = sig$.composeApi({nodeHost: "https://testnet.burstcoin.network:6876"});
+    api.network.getBlockchainStatus().then(console.log).catch(console.error);
 })()
 ```
 
@@ -77,6 +74,18 @@ See more here:
 ## Modules
 
 <dl>
+<dt><a href="#module_core">core</a></dt>
+<dd><p>A Value Object to facilitate Address conversions.</p></dd>
+<dt><a href="#module_core">core</a> ⇒</dt>
+<dd></dd>
+<dt><a href="#module_core">core</a> ⇒</dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a></dt>
+<dd></dd>
+<dt><a href="#module_core">core</a> ⇒</dt>
+<dd></dd>
 <dt><a href="#core.module_api">api</a></dt>
 <dd><p>The API composer mounts the API for given service and selected methods</p>
 <p>Usually you would use [[composeApi]], which gives you <em>all</em> available API methods.
@@ -127,6 +136,8 @@ using [[ApiComposer]].</p>
 <dt><a href="#module_core">core</a></dt>
 <dd><p>The default endpoint for [[ApiSettings]]</p></dd>
 <dt><a href="#module_core">core</a></dt>
+<dd><p>Address prefixes used in [[Address]]</p></dd>
+<dt><a href="#module_core">core</a></dt>
 <dd><p>Constants for arbitrary subtypes</p></dd>
 <dt><a href="#module_core">core</a></dt>
 <dd><p>Constants for asset subtypes</p></dd>
@@ -137,9 +148,9 @@ using [[ApiComposer]].</p>
 <dt><a href="#module_core">core</a></dt>
 <dd><p>Constants for marketplace subtypes</p></dd>
 <dt><a href="#module_core">core</a></dt>
-<dd><p>Constants for payment subtypes</p></dd>
+<dd><p>Constants for mining subtypes</p></dd>
 <dt><a href="#module_core">core</a></dt>
-<dd><p>Constants for reward recipient subtypes (Pool Operation)</p></dd>
+<dd><p>Constants for payment subtypes</p></dd>
 <dt><a href="#module_core">core</a></dt>
 <dd><p>Constants for smart contract (aka AT) subtypes</p></dd>
 <dt><a href="#module_core">core</a></dt>
@@ -185,6 +196,704 @@ It is a super class for Message and EncryptedMessage.</p></dd>
 <dd><p>Copyright (c) 2019 Burst Apps Team</p></dd>
 </dl>
 
+<a name="module_core"></a>
+
+## core
+<p>A Value Object to facilitate Address conversions.</p>
+
+
+* [core](#module_core)
+    * [~BurstService](#module_core..BurstService)
+        * [new BurstService(settings)](#new_module_core..BurstService_new)
+        * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+        * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
+
+<a name="module_core..BurstService"></a>
+
+### core~BurstService
+**Kind**: inner class of [<code>core</code>](#module_core)  
+
+* [~BurstService](#module_core..BurstService)
+    * [new BurstService(settings)](#new_module_core..BurstService_new)
+    * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+    * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+
+<a name="new_module_core..BurstService_new"></a>
+
+#### new BurstService(settings)
+<p>Creates Service instance</p>
+
+
+| Param | Description |
+| --- | --- |
+| settings | <p>The settings for the service</p> |
+
+<a name="module_core..BurstService+toBRSEndpoint"></a>
+
+#### burstService.toBRSEndpoint(method, data) ⇒ <code>string</code>
+<p>Mounts a BRS conform API (V1) endpoint of format <code>&lt;host&gt;?requestType=getBlock&amp;height=123</code></p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>string</code> - <p>The mounted url (without host)</p>  
+**See**: https://burstwiki.org/wiki/The_Burst_API  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The method name for <code>requestType</code></p> |
+| data | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+
+<a name="module_core..BurstService+query"></a>
+
+#### burstService.query(method, args, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Requests a query to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+send"></a>
+
+#### burstService.send(method, args, body, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Send data to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API. Note that there are only a few POST methods</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
+<a name="module_core"></a>
+
+## core ⇒
+**Returns**: <p>the Reed-Solomon address encoding, or undefined if passed null, undefined</p>  
+**Internal**: Encode a numeric id into Reed-Solomon address <Prefix>-XXXX-XXXX-XXXX-XXXXX  
+
+| Param | Description |
+| --- | --- |
+| numericId | <p>The numeric Id</p> |
+| prefix | <p>The prefix for the address</p> |
+
+
+* [core](#module_core) ⇒
+    * [~BurstService](#module_core..BurstService)
+        * [new BurstService(settings)](#new_module_core..BurstService_new)
+        * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+        * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
+
+<a name="module_core..BurstService"></a>
+
+### core~BurstService
+**Kind**: inner class of [<code>core</code>](#module_core)  
+
+* [~BurstService](#module_core..BurstService)
+    * [new BurstService(settings)](#new_module_core..BurstService_new)
+    * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+    * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+
+<a name="new_module_core..BurstService_new"></a>
+
+#### new BurstService(settings)
+<p>Creates Service instance</p>
+
+
+| Param | Description |
+| --- | --- |
+| settings | <p>The settings for the service</p> |
+
+<a name="module_core..BurstService+toBRSEndpoint"></a>
+
+#### burstService.toBRSEndpoint(method, data) ⇒ <code>string</code>
+<p>Mounts a BRS conform API (V1) endpoint of format <code>&lt;host&gt;?requestType=getBlock&amp;height=123</code></p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>string</code> - <p>The mounted url (without host)</p>  
+**See**: https://burstwiki.org/wiki/The_Burst_API  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The method name for <code>requestType</code></p> |
+| data | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+
+<a name="module_core..BurstService+query"></a>
+
+#### burstService.query(method, args, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Requests a query to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+send"></a>
+
+#### burstService.send(method, args, body, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Send data to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API. Note that there are only a few POST methods</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
+<a name="module_core"></a>
+
+## core ⇒
+**Returns**: <p>The numeric id, or undefined if address is invalid</p>  
+**Internal**: Converts <Prefix>-XXXX-XXXX-XXXX-XXXXX into numeric Id  
+
+| Param | Description |
+| --- | --- |
+| address | <p>The Reed-Solomon address</p> |
+
+
+* [core](#module_core) ⇒
+    * [~BurstService](#module_core..BurstService)
+        * [new BurstService(settings)](#new_module_core..BurstService_new)
+        * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+        * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
+
+<a name="module_core..BurstService"></a>
+
+### core~BurstService
+**Kind**: inner class of [<code>core</code>](#module_core)  
+
+* [~BurstService](#module_core..BurstService)
+    * [new BurstService(settings)](#new_module_core..BurstService_new)
+    * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+    * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+
+<a name="new_module_core..BurstService_new"></a>
+
+#### new BurstService(settings)
+<p>Creates Service instance</p>
+
+
+| Param | Description |
+| --- | --- |
+| settings | <p>The settings for the service</p> |
+
+<a name="module_core..BurstService+toBRSEndpoint"></a>
+
+#### burstService.toBRSEndpoint(method, data) ⇒ <code>string</code>
+<p>Mounts a BRS conform API (V1) endpoint of format <code>&lt;host&gt;?requestType=getBlock&amp;height=123</code></p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>string</code> - <p>The mounted url (without host)</p>  
+**See**: https://burstwiki.org/wiki/The_Burst_API  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The method name for <code>requestType</code></p> |
+| data | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+
+<a name="module_core..BurstService+query"></a>
+
+#### burstService.query(method, args, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Requests a query to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+send"></a>
+
+#### burstService.send(method, args, body, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Send data to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API. Note that there are only a few POST methods</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
+<a name="module_core"></a>
+
+## core
+**Throws**:
+
+- <p>if is not a valid address</p>
+
+**Internal**: Ensures a valid Reed Solomon address format, like <Prefix>-XXXX-XXXX-XXXX-XXXXX  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| address | <code>string</code> | <p>The address string</p> |
+
+
+* [core](#module_core)
+    * [~BurstService](#module_core..BurstService)
+        * [new BurstService(settings)](#new_module_core..BurstService_new)
+        * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+        * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
+
+<a name="module_core..BurstService"></a>
+
+### core~BurstService
+**Kind**: inner class of [<code>core</code>](#module_core)  
+
+* [~BurstService](#module_core..BurstService)
+    * [new BurstService(settings)](#new_module_core..BurstService_new)
+    * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+    * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+
+<a name="new_module_core..BurstService_new"></a>
+
+#### new BurstService(settings)
+<p>Creates Service instance</p>
+
+
+| Param | Description |
+| --- | --- |
+| settings | <p>The settings for the service</p> |
+
+<a name="module_core..BurstService+toBRSEndpoint"></a>
+
+#### burstService.toBRSEndpoint(method, data) ⇒ <code>string</code>
+<p>Mounts a BRS conform API (V1) endpoint of format <code>&lt;host&gt;?requestType=getBlock&amp;height=123</code></p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>string</code> - <p>The mounted url (without host)</p>  
+**See**: https://burstwiki.org/wiki/The_Burst_API  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The method name for <code>requestType</code></p> |
+| data | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+
+<a name="module_core..BurstService+query"></a>
+
+#### burstService.query(method, args, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Requests a query to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+send"></a>
+
+#### burstService.send(method, args, body, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Send data to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API. Note that there are only a few POST methods</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
+<a name="module_core"></a>
+
+## core
+
+* [core](#module_core)
+    * [~BurstService](#module_core..BurstService)
+        * [new BurstService(settings)](#new_module_core..BurstService_new)
+        * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+        * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
+
+<a name="module_core..BurstService"></a>
+
+### core~BurstService
+**Kind**: inner class of [<code>core</code>](#module_core)  
+
+* [~BurstService](#module_core..BurstService)
+    * [new BurstService(settings)](#new_module_core..BurstService_new)
+    * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+    * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+
+<a name="new_module_core..BurstService_new"></a>
+
+#### new BurstService(settings)
+<p>Creates Service instance</p>
+
+
+| Param | Description |
+| --- | --- |
+| settings | <p>The settings for the service</p> |
+
+<a name="module_core..BurstService+toBRSEndpoint"></a>
+
+#### burstService.toBRSEndpoint(method, data) ⇒ <code>string</code>
+<p>Mounts a BRS conform API (V1) endpoint of format <code>&lt;host&gt;?requestType=getBlock&amp;height=123</code></p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>string</code> - <p>The mounted url (without host)</p>  
+**See**: https://burstwiki.org/wiki/The_Burst_API  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The method name for <code>requestType</code></p> |
+| data | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+
+<a name="module_core..BurstService+query"></a>
+
+#### burstService.query(method, args, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Requests a query to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+send"></a>
+
+#### burstService.send(method, args, body, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Send data to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API. Note that there are only a few POST methods</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
+<a name="module_core"></a>
+
+## core ⇒
+**Returns**: <p>object with prefix, address and eventual extension</p>  
+**Throws**:
+
+- <p>Error in case of invalid format</p>
+
+**Internal**: Tokenizes a Reed-Solomon address  
+
+| Param | Description |
+| --- | --- |
+| address | <p>The address in Reed-Solomon format</p> |
+
+
+* [core](#module_core) ⇒
+    * [~BurstService](#module_core..BurstService)
+        * [new BurstService(settings)](#new_module_core..BurstService_new)
+        * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+        * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
+
+<a name="module_core..BurstService"></a>
+
+### core~BurstService
+**Kind**: inner class of [<code>core</code>](#module_core)  
+
+* [~BurstService](#module_core..BurstService)
+    * [new BurstService(settings)](#new_module_core..BurstService_new)
+    * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+    * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+
+<a name="new_module_core..BurstService_new"></a>
+
+#### new BurstService(settings)
+<p>Creates Service instance</p>
+
+
+| Param | Description |
+| --- | --- |
+| settings | <p>The settings for the service</p> |
+
+<a name="module_core..BurstService+toBRSEndpoint"></a>
+
+#### burstService.toBRSEndpoint(method, data) ⇒ <code>string</code>
+<p>Mounts a BRS conform API (V1) endpoint of format <code>&lt;host&gt;?requestType=getBlock&amp;height=123</code></p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>string</code> - <p>The mounted url (without host)</p>  
+**See**: https://burstwiki.org/wiki/The_Burst_API  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The method name for <code>requestType</code></p> |
+| data | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+
+<a name="module_core..BurstService+query"></a>
+
+#### burstService.query(method, args, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Requests a query to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+send"></a>
+
+#### burstService.send(method, args, body, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Send data to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API. Note that there are only a few POST methods</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="core.module_api"></a>
 
 ## api
@@ -218,7 +927,7 @@ const api = apiComposer
 
 * [api](#core.module_api)
     * [~ApiSettings](#core.module_api..ApiSettings)
-        * [new ApiSettings(nodeHost, apiVersion, httpClientOptions)](#new_core.module_api..ApiSettings_new)
+        * [new ApiSettings(nodeHost, apiVersion, reliableNodeHosts, httpClientOptions)](#new_core.module_api..ApiSettings_new)
 
 <a name="core.module_api..ApiSettings"></a>
 
@@ -226,12 +935,13 @@ const api = apiComposer
 **Kind**: inner class of [<code>api</code>](#core.module_api)  
 <a name="new_core.module_api..ApiSettings_new"></a>
 
-#### new ApiSettings(nodeHost, apiVersion, httpClientOptions)
+#### new ApiSettings(nodeHost, apiVersion, reliableNodeHosts, httpClientOptions)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | nodeHost | <code>string</code> | <p>The url of the Burst peer</p> |
 | apiVersion | <code>ApiVersion</code> | <p>For future usage.</p> |
+| reliableNodeHosts |  | <p>A list of node/peer hosts that can be chosen of, usually a list of reliable/trusted nodes. This is necessary for the automatic node selection.</p> |
 | httpClientOptions | <code>any</code> \| <code>AxiosRequestSettings</code> | <p>Optional http options, like additional header. The default implementation uses axios. In case of a custom client pass your own options. see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
 
 <a name="core.module_api"></a>
@@ -242,7 +952,7 @@ const api = apiComposer
 
 * [api](#core.module_api)
     * [~ApiSettings](#core.module_api..ApiSettings)
-        * [new ApiSettings(nodeHost, apiVersion, httpClientOptions)](#new_core.module_api..ApiSettings_new)
+        * [new ApiSettings(nodeHost, apiVersion, reliableNodeHosts, httpClientOptions)](#new_core.module_api..ApiSettings_new)
 
 <a name="core.module_api..ApiSettings"></a>
 
@@ -250,12 +960,13 @@ const api = apiComposer
 **Kind**: inner class of [<code>api</code>](#core.module_api)  
 <a name="new_core.module_api..ApiSettings_new"></a>
 
-#### new ApiSettings(nodeHost, apiVersion, httpClientOptions)
+#### new ApiSettings(nodeHost, apiVersion, reliableNodeHosts, httpClientOptions)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | nodeHost | <code>string</code> | <p>The url of the Burst peer</p> |
 | apiVersion | <code>ApiVersion</code> | <p>For future usage.</p> |
+| reliableNodeHosts |  | <p>A list of node/peer hosts that can be chosen of, usually a list of reliable/trusted nodes. This is necessary for the automatic node selection.</p> |
 | httpClientOptions | <code>any</code> \| <code>AxiosRequestSettings</code> | <p>Optional http options, like additional header. The default implementation uses axios. In case of a custom client pass your own options. see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
 
 <a name="core.module_api"></a>
@@ -279,7 +990,7 @@ using [[ApiComposer]].</p>
 
 * [api](#core.module_api) ⇒
     * [~ApiSettings](#core.module_api..ApiSettings)
-        * [new ApiSettings(nodeHost, apiVersion, httpClientOptions)](#new_core.module_api..ApiSettings_new)
+        * [new ApiSettings(nodeHost, apiVersion, reliableNodeHosts, httpClientOptions)](#new_core.module_api..ApiSettings_new)
 
 <a name="core.module_api..ApiSettings"></a>
 
@@ -287,12 +998,13 @@ using [[ApiComposer]].</p>
 **Kind**: inner class of [<code>api</code>](#core.module_api)  
 <a name="new_core.module_api..ApiSettings_new"></a>
 
-#### new ApiSettings(nodeHost, apiVersion, httpClientOptions)
+#### new ApiSettings(nodeHost, apiVersion, reliableNodeHosts, httpClientOptions)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | nodeHost | <code>string</code> | <p>The url of the Burst peer</p> |
 | apiVersion | <code>ApiVersion</code> | <p>For future usage.</p> |
+| reliableNodeHosts |  | <p>A list of node/peer hosts that can be chosen of, usually a list of reliable/trusted nodes. This is necessary for the automatic node selection.</p> |
 | httpClientOptions | <code>any</code> \| <code>AxiosRequestSettings</code> | <p>Optional http options, like additional header. The default implementation uses axios. In case of a custom client pass your own options. see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
 
 <a name="module_core"></a>
@@ -314,6 +1026,8 @@ using [[ApiComposer]].</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -325,6 +1039,7 @@ using [[ApiComposer]].</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -387,6 +1102,30 @@ using [[ApiComposer]].</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core ⇒
@@ -406,6 +1145,8 @@ using [[ApiComposer]].</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -417,6 +1158,7 @@ using [[ApiComposer]].</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -479,6 +1221,30 @@ using [[ApiComposer]].</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -489,6 +1255,8 @@ using [[ApiComposer]].</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -500,6 +1268,7 @@ using [[ApiComposer]].</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -562,6 +1331,30 @@ using [[ApiComposer]].</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -574,6 +1367,8 @@ using [[ApiComposer]].</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -585,6 +1380,7 @@ using [[ApiComposer]].</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -647,6 +1443,30 @@ using [[ApiComposer]].</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -659,6 +1479,8 @@ using [[ApiComposer]].</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -670,6 +1492,7 @@ using [[ApiComposer]].</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -732,6 +1555,142 @@ using [[ApiComposer]].</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
+<a name="module_core"></a>
+
+## core
+<p>Address prefixes used in [[Address]]</p>
+
+
+* [core](#module_core)
+    * [~BurstService](#module_core..BurstService)
+        * [new BurstService(settings)](#new_module_core..BurstService_new)
+        * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+        * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
+
+<a name="module_core..BurstService"></a>
+
+### core~BurstService
+**Kind**: inner class of [<code>core</code>](#module_core)  
+
+* [~BurstService](#module_core..BurstService)
+    * [new BurstService(settings)](#new_module_core..BurstService_new)
+    * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+    * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+
+<a name="new_module_core..BurstService_new"></a>
+
+#### new BurstService(settings)
+<p>Creates Service instance</p>
+
+
+| Param | Description |
+| --- | --- |
+| settings | <p>The settings for the service</p> |
+
+<a name="module_core..BurstService+toBRSEndpoint"></a>
+
+#### burstService.toBRSEndpoint(method, data) ⇒ <code>string</code>
+<p>Mounts a BRS conform API (V1) endpoint of format <code>&lt;host&gt;?requestType=getBlock&amp;height=123</code></p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>string</code> - <p>The mounted url (without host)</p>  
+**See**: https://burstwiki.org/wiki/The_Burst_API  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The method name for <code>requestType</code></p> |
+| data | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+
+<a name="module_core..BurstService+query"></a>
+
+#### burstService.query(method, args, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Requests a query to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+send"></a>
+
+#### burstService.send(method, args, body, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Send data to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API. Note that there are only a few POST methods</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -744,6 +1703,8 @@ using [[ApiComposer]].</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -755,6 +1716,7 @@ using [[ApiComposer]].</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -817,6 +1779,30 @@ using [[ApiComposer]].</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -829,6 +1815,8 @@ using [[ApiComposer]].</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -840,6 +1828,7 @@ using [[ApiComposer]].</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -902,6 +1891,30 @@ using [[ApiComposer]].</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -914,6 +1927,8 @@ using [[ApiComposer]].</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -925,6 +1940,7 @@ using [[ApiComposer]].</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -987,6 +2003,30 @@ using [[ApiComposer]].</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -999,6 +2039,8 @@ using [[ApiComposer]].</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -1010,6 +2052,7 @@ using [[ApiComposer]].</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -1072,6 +2115,30 @@ using [[ApiComposer]].</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -1084,6 +2151,8 @@ using [[ApiComposer]].</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -1095,6 +2164,7 @@ using [[ApiComposer]].</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -1157,6 +2227,142 @@ using [[ApiComposer]].</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
+<a name="module_core"></a>
+
+## core
+<p>Constants for mining subtypes</p>
+
+
+* [core](#module_core)
+    * [~BurstService](#module_core..BurstService)
+        * [new BurstService(settings)](#new_module_core..BurstService_new)
+        * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+        * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
+
+<a name="module_core..BurstService"></a>
+
+### core~BurstService
+**Kind**: inner class of [<code>core</code>](#module_core)  
+
+* [~BurstService](#module_core..BurstService)
+    * [new BurstService(settings)](#new_module_core..BurstService_new)
+    * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
+    * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+
+<a name="new_module_core..BurstService_new"></a>
+
+#### new BurstService(settings)
+<p>Creates Service instance</p>
+
+
+| Param | Description |
+| --- | --- |
+| settings | <p>The settings for the service</p> |
+
+<a name="module_core..BurstService+toBRSEndpoint"></a>
+
+#### burstService.toBRSEndpoint(method, data) ⇒ <code>string</code>
+<p>Mounts a BRS conform API (V1) endpoint of format <code>&lt;host&gt;?requestType=getBlock&amp;height=123</code></p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>string</code> - <p>The mounted url (without host)</p>  
+**See**: https://burstwiki.org/wiki/The_Burst_API  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The method name for <code>requestType</code></p> |
+| data | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+
+<a name="module_core..BurstService+query"></a>
+
+#### burstService.query(method, args, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Requests a query to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+send"></a>
+
+#### burstService.send(method, args, body, options) ⇒ <code>Promise.&lt;T&gt;</code>
+<p>Send data to BRS</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
+**Throws**:
+
+- <p>HttpError in case of failure</p>
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API. Note that there are only a few POST methods</p> |
+| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
+| body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
+| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -1169,6 +2375,8 @@ using [[ApiComposer]].</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -1180,6 +2388,7 @@ using [[ApiComposer]].</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -1242,91 +2451,30 @@ using [[ApiComposer]].</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
-<a name="module_core"></a>
+<a name="module_core..BurstService+selectBestHost"></a>
 
-## core
-<p>Constants for reward recipient subtypes (Pool Operation)</p>
-
-
-* [core](#module_core)
-    * [~BurstService](#module_core..BurstService)
-        * [new BurstService(settings)](#new_module_core..BurstService_new)
-        * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
-        * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
-        * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
-
-<a name="module_core..BurstService"></a>
-
-### core~BurstService
-**Kind**: inner class of [<code>core</code>](#module_core)  
-
-* [~BurstService](#module_core..BurstService)
-    * [new BurstService(settings)](#new_module_core..BurstService_new)
-    * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
-    * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
-    * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
-
-<a name="new_module_core..BurstService_new"></a>
-
-#### new BurstService(settings)
-<p>Creates Service instance</p>
-
-
-| Param | Description |
-| --- | --- |
-| settings | <p>The settings for the service</p> |
-
-<a name="module_core..BurstService+toBRSEndpoint"></a>
-
-#### burstService.toBRSEndpoint(method, data) ⇒ <code>string</code>
-<p>Mounts a BRS conform API (V1) endpoint of format <code>&lt;host&gt;?requestType=getBlock&amp;height=123</code></p>
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
 
 **Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
-**Returns**: <code>string</code> - <p>The mounted url (without host)</p>  
-**See**: https://burstwiki.org/wiki/The_Burst_API  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| method | <code>string</code> | <p>The method name for <code>requestType</code></p> |
-| data | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
-
-<a name="module_core..BurstService+query"></a>
-
-#### burstService.query(method, args, options) ⇒ <code>Promise.&lt;T&gt;</code>
-<p>Requests a query to BRS</p>
-
-**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
-**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
 **Throws**:
 
-- <p>HttpError in case of failure</p>
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
 
 
-| Param | Type | Description |
+| Param | Default | Description |
 | --- | --- | --- |
-| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API</p> |
-| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
-| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
 
-<a name="module_core..BurstService+send"></a>
+<a name="module_core..initialCodeword"></a>
 
-#### burstService.send(method, args, body, options) ⇒ <code>Promise.&lt;T&gt;</code>
-<p>Send data to BRS</p>
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
 
-**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
-**Returns**: <code>Promise.&lt;T&gt;</code> - <p>The response data of success</p>  
-**Throws**:
-
-- <p>HttpError in case of failure</p>
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| method | <code>string</code> | <p>The BRS method according https://burstwiki.org/wiki/The_Burst_API. Note that there are only a few POST methods</p> |
-| args | <code>any</code> | <p>A JSON object which will be mapped to url params</p> |
-| body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
-| options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
-
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -1339,6 +2487,8 @@ using [[ApiComposer]].</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -1350,6 +2500,7 @@ using [[ApiComposer]].</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -1412,6 +2563,30 @@ using [[ApiComposer]].</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -1427,6 +2602,8 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -1438,6 +2615,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -1500,6 +2678,30 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## ~~core ⇒~~
@@ -1522,6 +2724,8 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -1533,6 +2737,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -1595,6 +2800,30 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core ⇒
@@ -1615,6 +2844,8 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -1626,6 +2857,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -1688,6 +2920,30 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -1700,6 +2956,8 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -1711,6 +2969,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -1773,6 +3032,30 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core ⇒
@@ -1795,6 +3078,8 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -1806,6 +3091,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -1868,6 +3154,30 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core ⇒
@@ -1887,6 +3197,8 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -1898,6 +3210,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -1960,6 +3273,30 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core ⇒
@@ -1978,6 +3315,8 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -1989,6 +3328,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -2051,6 +3391,30 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core ⇒
@@ -2069,6 +3433,8 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -2080,6 +3446,7 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -2142,6 +3509,30 @@ a subtype is sent, that specifies the kind of transaction more detailly.</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -2157,6 +3548,8 @@ has been moved into the keys object.</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -2168,6 +3561,7 @@ has been moved into the keys object.</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -2230,6 +3624,30 @@ has been moved into the keys object.</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -2244,6 +3662,8 @@ It is a super class for Message and EncryptedMessage.</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -2255,6 +3675,7 @@ It is a super class for Message and EncryptedMessage.</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -2317,6 +3738,30 @@ It is a super class for Message and EncryptedMessage.</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -2330,6 +3775,8 @@ It is a super class for Message and EncryptedMessage.</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -2341,6 +3788,7 @@ It is a super class for Message and EncryptedMessage.</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -2403,6 +3851,30 @@ It is a super class for Message and EncryptedMessage.</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="module_core"></a>
 
 ## core
@@ -2416,6 +3888,8 @@ It is a super class for Message and EncryptedMessage.</p>
         * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
         * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
         * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
+    * [~initialCodeword](#module_core..initialCodeword)
 
 <a name="module_core..BurstService"></a>
 
@@ -2427,6 +3901,7 @@ It is a super class for Message and EncryptedMessage.</p>
     * [.toBRSEndpoint(method, data)](#module_core..BurstService+toBRSEndpoint) ⇒ <code>string</code>
     * [.query(method, args, options)](#module_core..BurstService+query) ⇒ <code>Promise.&lt;T&gt;</code>
     * [.send(method, args, body, options)](#module_core..BurstService+send) ⇒ <code>Promise.&lt;T&gt;</code>
+    * [.selectBestHost(reconfigure, checkMethod)](#module_core..BurstService+selectBestHost)
 
 <a name="new_module_core..BurstService_new"></a>
 
@@ -2489,6 +3964,30 @@ It is a super class for Message and EncryptedMessage.</p>
 | body | <code>any</code> | <p>An object with key value pairs to submit as post body</p> |
 | options | <code>any</code> \| <code>AxiosRequestConfig</code> | <p>The optional request configuration for the passed Http client</p> |
 
+<a name="module_core..BurstService+selectBestHost"></a>
+
+#### burstService.selectBestHost(reconfigure, checkMethod)
+<p>Automatically selects the best host, according to its response time, i.e. the fastest node host will be returned (and set as nodeHost internally)</p>
+
+**Kind**: instance method of [<code>BurstService</code>](#module_core..BurstService)  
+**Throws**:
+
+- <p>Error If <code>reliableNodeHosts</code> is empty, or if all requests to the reliableNodeHosts fail</p>
+
+
+| Param | Default | Description |
+| --- | --- | --- |
+| reconfigure | <code>false</code> | <p>An optional flag to set automatic reconfiguration. Default is <code>false</code> Attention: Reconfiguration works only, if you use the default http client. Otherwise, you need to reconfigure manually!</p> |
+| checkMethod | <code>getBlockchainStatus</code> | <p>The optional API method to be called. This applies only for GET methods. Default is <code>getBlockchainStatus</code></p> |
+
+<a name="module_core..initialCodeword"></a>
+
+### core~initialCodeword
+<p>Original work Copyright (c) 2018 PoC-Consortium
+Modified work Copyright (c) 2019 Burst Apps Team
+Modified work Copyright (c) 2021 Signum Network</p>
+
+**Kind**: inner constant of [<code>core</code>](#module_core)  
 <a name="ApiImpl"></a>
 
 ## ApiImpl

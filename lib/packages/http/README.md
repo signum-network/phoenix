@@ -1,6 +1,6 @@
 # @signumjs/http
 
-Generic HTTP client that is used as a network provider for @burst/core.
+Generic HTTP client that is used as a network provider for @signumjs/core.
 
 ## Installation
 
@@ -25,31 +25,33 @@ yarn add @signumjs/http
 ```js
 import {HttpImpl} from '@signumjs/http'
 
-try{
-    const client = new HttpImpl('https://jsonplaceholder.typicode.com/');
-    const response = client.get('/todos/1')
-    console.log(response)
+async function getTodos() {
+    try{
+        const client = new HttpClientFactory.createHttpClient('https://jsonplaceholder.typicode.com/');
+        const result = await client.get('/todos/1')
+        console.log(result)
+    }
+    catch(httpError){
+        console.error(httpError.message)
+    }
 }
-catch(httpError){
-    console.error(httpError.message)
-}
-
 ```
 
 ### Using in classic `<script>`
 
-Each package is available as bundled standalone library using IIFE.
-This way _burstJS_ can be used also within `<script>`-Tags.
+Each package is available as bundled standalone library using UMD.
+This way _signumJS_ can be used also within `<script>`-Tags.
 This might be useful for Wordpress and/or other PHP applications.
 
 Just import the package using the HTML `<script>` tag.
 
-`<script src='https://cdn.jsdelivr.net/npm/@signumjs/http/dist/burstjs.http.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/http/dist/signumjs.http.min.js'></script>`
 
 #### Example
 
 ```js
-const client = new b$http.HttpImpl('https://jsonplaceholder.typicode.com/');
+const {HttpClientFactory} = sig$http
+const client = new HttpClientFactory.createHttpClient('https://jsonplaceholder.typicode.com/');
 client.get('/todos/1').then(console.log)
 ```
 
@@ -64,13 +66,13 @@ See more here:
 
 <dl>
 <dt><a href="#module_http">http</a></dt>
+<dd><p>Http Implementation of [[Http]] using https://github.com/axios/axios</p>
+<p>Prefer [[HttpClientFactory.createHttpClient]] to create an instance</p></dd>
+<dt><a href="#module_http">http</a></dt>
+<dd><p>Factory for clients of [[Http]]</p></dd>
+<dt><a href="#module_http">http</a></dt>
 <dd><p>HttpError class</p>
 <p>Thrown on HTTP errors</p></dd>
-<dt><a href="#module_http">http</a></dt>
-<dd><p>Http Implementation of [[Http]] using https://github.com/axios/axios</p>
-<p>You can use [[HttpClient]] as alias</p></dd>
-<dt><a href="#module_http">http</a></dt>
-<dd></dd>
 <dt><a href="#module_http">http</a></dt>
 <dd><p>Http Mocker Builder for easy to http testing</p>
 <p>Example:</p>
@@ -89,9 +91,92 @@ See more here:
 <dt><a href="#module_http">http</a></dt>
 <dd><p>Http Response</p>
 <p>Returned by Http request</p></dd>
-<dt><a href="#module_http">http</a></dt>
-<dd><p>Alias for HttpImpl</p></dd>
 </dl>
+
+<a name="module_http"></a>
+
+## http
+<p>Http Implementation of [[Http]] using https://github.com/axios/axios</p>
+<p>Prefer [[HttpClientFactory.createHttpClient]] to create an instance</p>
+
+
+* [http](#module_http)
+    * [~HttpAdapterAxios](#module_http..HttpAdapterAxios)
+        * [new HttpAdapterAxios(baseURL, options)](#new_module_http..HttpAdapterAxios_new)
+        * [.mountError(url, error)](#module_http..HttpAdapterAxios.mountError)
+
+<a name="module_http..HttpAdapterAxios"></a>
+
+### http~HttpAdapterAxios
+**Kind**: inner class of [<code>http</code>](#module_http)  
+
+* [~HttpAdapterAxios](#module_http..HttpAdapterAxios)
+    * [new HttpAdapterAxios(baseURL, options)](#new_module_http..HttpAdapterAxios_new)
+    * [.mountError(url, error)](#module_http..HttpAdapterAxios.mountError)
+
+<a name="new_module_http..HttpAdapterAxios_new"></a>
+
+#### new HttpAdapterAxios(baseURL, options)
+<p>Creates your Http client</p>
+
+
+| Param | Description |
+| --- | --- |
+| baseURL | <p>The baseUrl, i.e host url</p> |
+| options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
+
+<a name="module_http..HttpAdapterAxios.mountError"></a>
+
+#### HttpAdapterAxios.mountError(url, error)
+**Kind**: static method of [<code>HttpAdapterAxios</code>](#module_http..HttpAdapterAxios)  
+**Internal**:   
+
+| Param | Description |
+| --- | --- |
+| url | <p>The url</p> |
+| error | <p>The returned error</p> |
+
+<a name="module_http"></a>
+
+## http
+<p>Factory for clients of [[Http]]</p>
+
+
+* [http](#module_http)
+    * [~HttpAdapterAxios](#module_http..HttpAdapterAxios)
+        * [new HttpAdapterAxios(baseURL, options)](#new_module_http..HttpAdapterAxios_new)
+        * [.mountError(url, error)](#module_http..HttpAdapterAxios.mountError)
+
+<a name="module_http..HttpAdapterAxios"></a>
+
+### http~HttpAdapterAxios
+**Kind**: inner class of [<code>http</code>](#module_http)  
+
+* [~HttpAdapterAxios](#module_http..HttpAdapterAxios)
+    * [new HttpAdapterAxios(baseURL, options)](#new_module_http..HttpAdapterAxios_new)
+    * [.mountError(url, error)](#module_http..HttpAdapterAxios.mountError)
+
+<a name="new_module_http..HttpAdapterAxios_new"></a>
+
+#### new HttpAdapterAxios(baseURL, options)
+<p>Creates your Http client</p>
+
+
+| Param | Description |
+| --- | --- |
+| baseURL | <p>The baseUrl, i.e host url</p> |
+| options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
+
+<a name="module_http..HttpAdapterAxios.mountError"></a>
+
+#### HttpAdapterAxios.mountError(url, error)
+**Kind**: static method of [<code>HttpAdapterAxios</code>](#module_http..HttpAdapterAxios)  
+**Internal**:   
+
+| Param | Description |
+| --- | --- |
+| url | <p>The url</p> |
+| error | <p>The returned error</p> |
 
 <a name="module_http"></a>
 
@@ -101,22 +186,22 @@ See more here:
 
 
 * [http](#module_http)
-    * [~HttpImpl](#module_http..HttpImpl)
-        * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
-        * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+    * [~HttpAdapterAxios](#module_http..HttpAdapterAxios)
+        * [new HttpAdapterAxios(baseURL, options)](#new_module_http..HttpAdapterAxios_new)
+        * [.mountError(url, error)](#module_http..HttpAdapterAxios.mountError)
 
-<a name="module_http..HttpImpl"></a>
+<a name="module_http..HttpAdapterAxios"></a>
 
-### http~HttpImpl
+### http~HttpAdapterAxios
 **Kind**: inner class of [<code>http</code>](#module_http)  
 
-* [~HttpImpl](#module_http..HttpImpl)
-    * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
-    * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+* [~HttpAdapterAxios](#module_http..HttpAdapterAxios)
+    * [new HttpAdapterAxios(baseURL, options)](#new_module_http..HttpAdapterAxios_new)
+    * [.mountError(url, error)](#module_http..HttpAdapterAxios.mountError)
 
-<a name="new_module_http..HttpImpl_new"></a>
+<a name="new_module_http..HttpAdapterAxios_new"></a>
 
-#### new HttpImpl(baseURL, options)
+#### new HttpAdapterAxios(baseURL, options)
 <p>Creates your Http client</p>
 
 
@@ -125,97 +210,10 @@ See more here:
 | baseURL | <p>The baseUrl, i.e host url</p> |
 | options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
 
-<a name="module_http..HttpImpl.mountError"></a>
+<a name="module_http..HttpAdapterAxios.mountError"></a>
 
-#### HttpImpl.mountError(url, error)
-**Kind**: static method of [<code>HttpImpl</code>](#module_http..HttpImpl)  
-**Internal**:   
-
-| Param | Description |
-| --- | --- |
-| url | <p>The url</p> |
-| error | <p>The returned error</p> |
-
-<a name="module_http"></a>
-
-## http
-<p>Http Implementation of [[Http]] using https://github.com/axios/axios</p>
-<p>You can use [[HttpClient]] as alias</p>
-
-
-* [http](#module_http)
-    * [~HttpImpl](#module_http..HttpImpl)
-        * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
-        * [.mountError(url, error)](#module_http..HttpImpl.mountError)
-
-<a name="module_http..HttpImpl"></a>
-
-### http~HttpImpl
-**Kind**: inner class of [<code>http</code>](#module_http)  
-
-* [~HttpImpl](#module_http..HttpImpl)
-    * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
-    * [.mountError(url, error)](#module_http..HttpImpl.mountError)
-
-<a name="new_module_http..HttpImpl_new"></a>
-
-#### new HttpImpl(baseURL, options)
-<p>Creates your Http client</p>
-
-
-| Param | Description |
-| --- | --- |
-| baseURL | <p>The baseUrl, i.e host url</p> |
-| options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
-
-<a name="module_http..HttpImpl.mountError"></a>
-
-#### HttpImpl.mountError(url, error)
-**Kind**: static method of [<code>HttpImpl</code>](#module_http..HttpImpl)  
-**Internal**:   
-
-| Param | Description |
-| --- | --- |
-| url | <p>The url</p> |
-| error | <p>The returned error</p> |
-
-<a name="module_http"></a>
-
-## http
-**Internal**: Http Mocker for easy to http testing using Jest
-
-When using this mocking helper you need to call `Http.onGet()`
-before Http instance is created  
-
-* [http](#module_http)
-    * [~HttpImpl](#module_http..HttpImpl)
-        * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
-        * [.mountError(url, error)](#module_http..HttpImpl.mountError)
-
-<a name="module_http..HttpImpl"></a>
-
-### http~HttpImpl
-**Kind**: inner class of [<code>http</code>](#module_http)  
-
-* [~HttpImpl](#module_http..HttpImpl)
-    * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
-    * [.mountError(url, error)](#module_http..HttpImpl.mountError)
-
-<a name="new_module_http..HttpImpl_new"></a>
-
-#### new HttpImpl(baseURL, options)
-<p>Creates your Http client</p>
-
-
-| Param | Description |
-| --- | --- |
-| baseURL | <p>The baseUrl, i.e host url</p> |
-| options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
-
-<a name="module_http..HttpImpl.mountError"></a>
-
-#### HttpImpl.mountError(url, error)
-**Kind**: static method of [<code>HttpImpl</code>](#module_http..HttpImpl)  
+#### HttpAdapterAxios.mountError(url, error)
+**Kind**: static method of [<code>HttpAdapterAxios</code>](#module_http..HttpAdapterAxios)  
 **Internal**:   
 
 | Param | Description |
@@ -243,22 +241,22 @@ before Http instance is created
 
 
 * [http](#module_http)
-    * [~HttpImpl](#module_http..HttpImpl)
-        * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
-        * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+    * [~HttpAdapterAxios](#module_http..HttpAdapterAxios)
+        * [new HttpAdapterAxios(baseURL, options)](#new_module_http..HttpAdapterAxios_new)
+        * [.mountError(url, error)](#module_http..HttpAdapterAxios.mountError)
 
-<a name="module_http..HttpImpl"></a>
+<a name="module_http..HttpAdapterAxios"></a>
 
-### http~HttpImpl
+### http~HttpAdapterAxios
 **Kind**: inner class of [<code>http</code>](#module_http)  
 
-* [~HttpImpl](#module_http..HttpImpl)
-    * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
-    * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+* [~HttpAdapterAxios](#module_http..HttpAdapterAxios)
+    * [new HttpAdapterAxios(baseURL, options)](#new_module_http..HttpAdapterAxios_new)
+    * [.mountError(url, error)](#module_http..HttpAdapterAxios.mountError)
 
-<a name="new_module_http..HttpImpl_new"></a>
+<a name="new_module_http..HttpAdapterAxios_new"></a>
 
-#### new HttpImpl(baseURL, options)
+#### new HttpAdapterAxios(baseURL, options)
 <p>Creates your Http client</p>
 
 
@@ -267,10 +265,10 @@ before Http instance is created
 | baseURL | <p>The baseUrl, i.e host url</p> |
 | options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
 
-<a name="module_http..HttpImpl.mountError"></a>
+<a name="module_http..HttpAdapterAxios.mountError"></a>
 
-#### HttpImpl.mountError(url, error)
-**Kind**: static method of [<code>HttpImpl</code>](#module_http..HttpImpl)  
+#### HttpAdapterAxios.mountError(url, error)
+**Kind**: static method of [<code>HttpAdapterAxios</code>](#module_http..HttpAdapterAxios)  
 **Internal**:   
 
 | Param | Description |
@@ -286,22 +284,22 @@ before Http instance is created
 
 
 * [http](#module_http)
-    * [~HttpImpl](#module_http..HttpImpl)
-        * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
-        * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+    * [~HttpAdapterAxios](#module_http..HttpAdapterAxios)
+        * [new HttpAdapterAxios(baseURL, options)](#new_module_http..HttpAdapterAxios_new)
+        * [.mountError(url, error)](#module_http..HttpAdapterAxios.mountError)
 
-<a name="module_http..HttpImpl"></a>
+<a name="module_http..HttpAdapterAxios"></a>
 
-### http~HttpImpl
+### http~HttpAdapterAxios
 **Kind**: inner class of [<code>http</code>](#module_http)  
 
-* [~HttpImpl](#module_http..HttpImpl)
-    * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
-    * [.mountError(url, error)](#module_http..HttpImpl.mountError)
+* [~HttpAdapterAxios](#module_http..HttpAdapterAxios)
+    * [new HttpAdapterAxios(baseURL, options)](#new_module_http..HttpAdapterAxios_new)
+    * [.mountError(url, error)](#module_http..HttpAdapterAxios.mountError)
 
-<a name="new_module_http..HttpImpl_new"></a>
+<a name="new_module_http..HttpAdapterAxios_new"></a>
 
-#### new HttpImpl(baseURL, options)
+#### new HttpAdapterAxios(baseURL, options)
 <p>Creates your Http client</p>
 
 
@@ -310,52 +308,10 @@ before Http instance is created
 | baseURL | <p>The baseUrl, i.e host url</p> |
 | options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
 
-<a name="module_http..HttpImpl.mountError"></a>
+<a name="module_http..HttpAdapterAxios.mountError"></a>
 
-#### HttpImpl.mountError(url, error)
-**Kind**: static method of [<code>HttpImpl</code>](#module_http..HttpImpl)  
-**Internal**:   
-
-| Param | Description |
-| --- | --- |
-| url | <p>The url</p> |
-| error | <p>The returned error</p> |
-
-<a name="module_http"></a>
-
-## http
-<p>Alias for HttpImpl</p>
-
-
-* [http](#module_http)
-    * [~HttpImpl](#module_http..HttpImpl)
-        * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
-        * [.mountError(url, error)](#module_http..HttpImpl.mountError)
-
-<a name="module_http..HttpImpl"></a>
-
-### http~HttpImpl
-**Kind**: inner class of [<code>http</code>](#module_http)  
-
-* [~HttpImpl](#module_http..HttpImpl)
-    * [new HttpImpl(baseURL, options)](#new_module_http..HttpImpl_new)
-    * [.mountError(url, error)](#module_http..HttpImpl.mountError)
-
-<a name="new_module_http..HttpImpl_new"></a>
-
-#### new HttpImpl(baseURL, options)
-<p>Creates your Http client</p>
-
-
-| Param | Description |
-| --- | --- |
-| baseURL | <p>The baseUrl, i.e host url</p> |
-| options | <p>[optional] An options/configurations object applied to all requests The current implementation uses axios, so the options can be found here <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p> |
-
-<a name="module_http..HttpImpl.mountError"></a>
-
-#### HttpImpl.mountError(url, error)
-**Kind**: static method of [<code>HttpImpl</code>](#module_http..HttpImpl)  
+#### HttpAdapterAxios.mountError(url, error)
+**Kind**: static method of [<code>HttpAdapterAxios</code>](#module_http..HttpAdapterAxios)  
 **Internal**:   
 
 | Param | Description |

@@ -1,6 +1,6 @@
 # @signumjs/contracts
 
-Generic HTTP client that is used as a network provider for @burst/core.
+Utility functions to interact with smart contract of the Signum blockchain platform
 
 ## Installation
 
@@ -28,13 +28,13 @@ yarn add @signumjs/contracts
 
 ### Using in classic `<script>`
 
-Each package is available as bundled standalone library using IIFE.
-This way _burstJS_ can be used also within `<script>`-Tags.
+Each package is available as bundled standalone library using UMD.
+This way _signumJS_ can be used also within `<script>`-Tags.
 This might be useful for Wordpress and/or other PHP applications.
 
 Just import the package using the HTML `<script>` tag.
 
-`<script src='https://cdn.jsdelivr.net/npm/@signumjs/http/dist/burstjs.http.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/http/dist/signumjs.contracts.min.js'></script>`
 
 #### Example
 

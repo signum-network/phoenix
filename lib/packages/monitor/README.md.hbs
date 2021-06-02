@@ -1,6 +1,6 @@
 # @signumjs/monitor
 
-A monitor to watch for specific changes on the the Burst blockchain
+A monitor to watch for specific changes on the the Signum blockchain platform
 
 Due to average blocktime of 240 seconds, transactions stay pending for a certain time. It is a repeating pattern
 to watch for such changes and waiting for confirmation. This package simplifies this task.
@@ -34,9 +34,9 @@ import {composeApi} from "@signumjs/core";
 // A method that checks if an account exists
 // > IMPORTANT: Do not use closures, when you need to serialize the monitor
 async function tryFetchAccount() {
-    const BurstApi = composeApi({ nodeHost: 'https://testnet.burstcoin.network:6876/'})
+    const api = composeApi({ nodeHost: 'https://testnet.signum.network:6876/'})
     try{
-        const {account} = await BurstApi.account.getAccount('1234')
+        const {account} = await api.account.getAccount('1234')
         return account;
     }catch (e){
         // ignore error
@@ -75,18 +75,19 @@ monitor.onTimeout(() => {
 
 ### Using in classic `<script>`
 
-Each package is available as bundled standalone library using IIFE.
-This way _burstJS_ can be used also within `<script>`-Tags.
+Each package is available as bundled standalone library using UMD.
+This way _signumJS_ can be used also within `<script>`-Tags.
 This might be useful for Wordpress and/or other PHP applications.
 
 Just import the package using the HTML `<script>` tag.
 
-`<script src='https://cdn.jsdelivr.net/npm/@signumjs/monitor/dist/burstjs.monitor.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/monitor/dist/signumjs.monitor.min.js'></script>`
 
 #### Example
 
 ```js
-const monitor = new b$monitor.Monitor({
+const {Monitor} = sig$Monitor;
+const monitor = new Monitor({
     //...
 });
 monitor.start()

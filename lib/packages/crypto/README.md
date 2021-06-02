@@ -1,10 +1,10 @@
 # @signumjs/crypto
 
-Cryptographic functions for building Burstcoin apps.
+Cryptographic functions for building Signum apps.
 
 ## Installation
 
-burstJS can be used with NodeJS or Web. Two formats are available
+SignumJS can be used with NodeJS or Web. Two formats are available
 
 ### Using with NodeJS and/or modern web frameworks
 
@@ -34,13 +34,13 @@ console.log(decrypted)
 
 ### Using in classic `<script>`
 
-Each package is available as bundled standalone library using IIFE.
-This way _burstJS_ can be used also within `<script>`-Tags.
+Each package is available as bundled standalone library using UMD.
+This way _signumJS_ can be used also within `<script>`-Tags.
 This might be useful for Wordpress and/or other PHP applications.
 
 Just import the package using the HTML `<script>` tag.
 
-`<script src='https://cdn.jsdelivr.net/npm/@signumjs/crypto/dist/burstjs.crypto.min.js'></script>`
+`<script src='https://cdn.jsdelivr.net/npm/@signumjs/crypto/dist/signumjs.crypto.min.js'></script>`
 
 
 #### Example
@@ -130,7 +130,7 @@ Modified work Copyright (c) 2019 Burst Apps Team</p></dd>
 ## crypto ⇒
 <p>Decrypt an encrypted message</p>
 
-**Returns**: <p>The decrypted content</p>  
+**Returns**: <p>The decrypted content, or <code>undefined</code> if failed</p>  
 **See**: <p>[[encryptAES]]</p>  
 
 | Param | Description |
