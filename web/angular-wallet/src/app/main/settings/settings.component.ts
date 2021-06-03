@@ -7,7 +7,7 @@ import {environment} from '../../../environments/environment.hmr';
 import {I18nService} from '../../layout/components/i18n/i18n.service';
 import {StoreService} from '../../store/store.service';
 import {ActivatedRoute} from '@angular/router';
-import {ApiComposer, BurstService, getBlockchainStatus} from '@signumjs/core';
+import {ApiComposer, ChainService, getBlockchainStatus} from '@signumjs/core';
 import {NotifierService} from 'angular-notifier';
 import {debounceTime, takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
@@ -58,13 +58,8 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
 
   static async fetchNodeInformation(nodeHost: string): Promise<NodeInformation> {
     const networkApi = ApiComposer
-      .create(
-        new BurstService({
-          nodeHost
-        }))
-      .withNetworkApi({
-        getBlockchainStatus,
-      })
+      .create(new ChainService({nodeHost}))
+      .withNetworkApi({getBlockchainStatus})
       .compose();
     const {version} = await networkApi.network.getBlockchainStatus();
     return {
