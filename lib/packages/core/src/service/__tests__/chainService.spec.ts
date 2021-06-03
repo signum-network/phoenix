@@ -1,8 +1,8 @@
-import {ChainService} from '../service/chainService';
+import {ChainService} from '../chainService';
 import {HttpError, HttpMockBuilder, HttpResponse, Http} from '@signumjs/http';
-import {ChainServiceSettings} from '../service/chainServiceSettings';
-import {createBurstService} from './helpers/createBurstService';
-import {DefaultApiEndpoint} from '../constants';
+import {ChainServiceSettings} from '../chainServiceSettings';
+import {DefaultApiEndpoint} from '../../constants';
+import {createChainService} from '../../__tests__/helpers';
 
 class TestHttpClient implements Http {
     delete(url: string): Promise<HttpResponse> {
@@ -23,7 +23,7 @@ class TestHttpClient implements Http {
 
 }
 
-describe('BurstService', () => {
+describe('ChainService', () => {
     describe('constructor', () => {
         it('should create with least required parameters', () => {
             const {settings} = new ChainService({
@@ -111,8 +111,8 @@ describe('BurstService', () => {
             const httpMock = HttpMockBuilder.create().onPostReply(200, {
                 foo: 'someData'
             }).build();
-            const burstService = createBurstService(httpMock);
-            const result = await burstService.send('someMethod');
+            const service = createChainService(httpMock);
+            const result = await service.send('someMethod');
 
             expect(result).toEqual({foo: 'someData'});
 
@@ -126,8 +126,8 @@ describe('BurstService', () => {
             ).build();
 
             try {
-                const burstService = createBurstService(httpMock);
-                await burstService.send('someMethod');
+                const service = createChainService(httpMock);
+                await service.send('someMethod');
                 expect('Expected exception').toBeFalsy();
             } catch (e) {
                 const httpError = <HttpError>e;
@@ -145,8 +145,8 @@ describe('BurstService', () => {
             ).build();
 
             try {
-                const burstService = createBurstService(httpMock);
-                await burstService.send('someMethod');
+                const service = createChainService(httpMock);
+                await service.send('someMethod');
                 expect('Expected exception').toBeFalsy();
             } catch (e) {
                 const httpError = <HttpError>e;
@@ -163,8 +163,8 @@ describe('BurstService', () => {
             const httpMock = HttpMockBuilder.create().onGetReply(200, {
                 foo: 'someData'
             }).build();
-            const burstService = createBurstService(httpMock);
-            const result = await burstService.query('someMethod');
+            const service = createChainService(httpMock);
+            const result = await service.query('someMethod');
 
             expect(result).toEqual({foo: 'someData'});
 
@@ -174,8 +174,8 @@ describe('BurstService', () => {
             const httpMock = HttpMockBuilder.create().onGetReply(200, {
                 foo: 'someData'
             }).build();
-            const burstService = createBurstService(httpMock);
-            const result = await burstService.query('someMethod');
+            const service = createChainService(httpMock);
+            const result = await service.query('someMethod');
 
             expect(result).toEqual({foo: 'someData'});
 
@@ -189,8 +189,8 @@ describe('BurstService', () => {
             ).build();
 
             try {
-                const burstService = createBurstService(httpMock);
-                await burstService.query('someMethod');
+                const service = createChainService(httpMock);
+                await service.query('someMethod');
                 expect('Expected exception').toBeFalsy();
             } catch (e) {
                 const httpError = <HttpError>e;
@@ -208,8 +208,8 @@ describe('BurstService', () => {
             ).build();
 
             try {
-                const burstService = createBurstService(httpMock);
-                await burstService.query('someMethod');
+                const service = createChainService(httpMock);
+                await service.query('someMethod');
                 expect('Expected exception').toBeFalsy();
             } catch (e) {
                 const httpError = <HttpError>e;

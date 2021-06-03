@@ -1,2 +1,2 @@
-export {createBurstService} from './createBurstService';
+export {createChainService} from './createChainService';
 export {mockSignAndBroadcastTransaction} from './mockSignAndBroadcastTransaction'

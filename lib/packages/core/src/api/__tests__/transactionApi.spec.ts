@@ -1,6 +1,6 @@
 import {Http, HttpMockBuilder} from '@signumjs/http';
 import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@signumjs/crypto';
-import {createBurstService} from '../../__tests__/helpers/createBurstService';
+import {createChainService} from '../../__tests__/helpers/createChainService';
 import {
     Attachment,
     AttachmentEncryptedMessage,
@@ -38,7 +38,7 @@ describe('TransactionApi', () => {
                 fullHash: 'fullHash',
                 transaction: 'transaction'
             }).build();
-            const service = createBurstService(httpMock, 'relPath');
+            const service = createChainService(httpMock, 'relPath');
             const status = await broadcastTransaction(service)('some_data');
             expect(status.fullHash).toBe('fullHash');
             expect(status.transaction).toBe('transaction');
@@ -52,7 +52,7 @@ describe('TransactionApi', () => {
                 transaction: 'transactionId',
                 block: 'blockId'
             }).build();
-            const service = createBurstService(httpMock, 'relPath');
+            const service = createChainService(httpMock, 'relPath');
             const status = await getTransaction(service)('transactionId');
             expect(status.transaction).toBe('transactionId');
             expect(status.block).toBe('blockId');
@@ -105,7 +105,7 @@ describe('TransactionApi', () => {
 
             const recipients = ['recipient_1', 'recipient_2'];
 
-            service = createBurstService(httpMock, 'relPath');
+            service = createChainService(httpMock, 'relPath');
             const status = await sendSameAmountToMultipleRecipients(service)(
                 '2000',
                 '1000',
@@ -128,7 +128,7 @@ describe('TransactionApi', () => {
                 .build();
 
             const recipients = [];
-            service = createBurstService(httpMock, 'relPath');
+            service = createChainService(httpMock, 'relPath');
 
             try {
                 await sendSameAmountToMultipleRecipients(service)(
@@ -198,7 +198,7 @@ describe('TransactionApi', () => {
                 }
             ];
 
-            service = createBurstService(httpMock, 'relPath');
+            service = createChainService(httpMock, 'relPath');
             const status = await sendAmountToMultipleRecipients(service)(
                 recipients,
                 '1000',
@@ -219,7 +219,7 @@ describe('TransactionApi', () => {
                 .build();
 
             const recipients = [];
-            service = createBurstService(httpMock, 'relPath');
+            service = createChainService(httpMock, 'relPath');
 
             try {
                 await sendAmountToMultipleRecipients(service)(
@@ -272,7 +272,7 @@ describe('TransactionApi', () => {
                     'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
                 .build();
 
-            const service = createBurstService(httpMock, 'relPath');
+            const service = createChainService(httpMock, 'relPath');
 
             const status = await sendAmountToSingleRecipient(service)({
                 amountPlanck: '2000',
@@ -297,7 +297,7 @@ describe('TransactionApi', () => {
                     'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
                 .build();
 
-            const service = createBurstService(httpMock, 'relPath');
+            const service = createChainService(httpMock, 'relPath');
 
             const status = await sendAmountToSingleRecipient(service)({
                 amountPlanck: '2000',
@@ -324,7 +324,7 @@ describe('TransactionApi', () => {
                     'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
                 .build();
 
-            const service = createBurstService(httpMock, 'relPath');
+            const service = createChainService(httpMock, 'relPath');
 
             const encryptedMessage = new AttachmentEncryptedMessage();
             encryptedMessage.data = 'data';
@@ -357,7 +357,7 @@ describe('TransactionApi', () => {
                     'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
                 .build();
 
-            const service = createBurstService(httpMock, 'relPath');
+            const service = createChainService(httpMock, 'relPath');
 
             const message = new AttachmentMessage();
             message.message = 'message';
@@ -388,7 +388,7 @@ describe('TransactionApi', () => {
                     'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
                 .build();
 
-            const service = createBurstService(httpMock, 'relPath');
+            const service = createChainService(httpMock, 'relPath');
 
             const attachment = new Attachment('unknown');
 
@@ -452,7 +452,7 @@ describe('TransactionApi', () => {
                 };
 
                 httpMock = HttpMockBuilder.create().onGetReply(200, mockedSubscription).build();
-                const service = createBurstService(httpMock, 'relPath');
+                const service = createChainService(httpMock, 'relPath');
                 const subscription = await getSubscription(service)('subscriptionId');
                 expect(subscription).toEqual(mockedSubscription);
             });
@@ -468,7 +468,7 @@ describe('TransactionApi', () => {
                         'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
                     .build();
 
-                const service = createBurstService(httpMock, 'relPath');
+                const service = createChainService(httpMock, 'relPath');
 
                 const transactionId = await createSubscription(service)({
                     amountPlanck: '2000',
@@ -496,7 +496,7 @@ describe('TransactionApi', () => {
                         'relPath?requestType=broadcastTransaction&transactionBytes=signedTransactionBytes')
                     .build();
 
-                const service = createBurstService(httpMock, 'relPath');
+                const service = createChainService(httpMock, 'relPath');
 
                 const transactionId = await cancelSubscription(service)({
                     subscriptionId: 'subscriptionId',
@@ -518,7 +518,7 @@ describe('TransactionApi', () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, {
                 unconfirmedTransactions: []
             }).build();
-            const service = createBurstService(httpMock, 'relPath');
+            const service = createChainService(httpMock, 'relPath');
             const response = await getUnconfirmedTransactions(service)();
             expect(response.unconfirmedTransactions).toHaveLength(0);
         });
@@ -549,7 +549,7 @@ describe('TransactionApi', () => {
                 fullHash: 'fullHash',
                 transaction: 'transaction'
             }).build();
-            const service = createBurstService(httpMock, 'relPath');
+            const service = createChainService(httpMock, 'relPath');
             const transactionId = await signAndBroadcastTransaction(service)({
                 unsignedHexMessage: 'unsignedHexMessage',
                 senderPrivateKey: 'senderPrivateKey',
@@ -573,7 +573,7 @@ describe('TransactionApi', () => {
             // @ts-ignore
             verifySignature = jest.fn(() => false);
 
-            const service = createBurstService(httpMock, 'relPath');
+            const service = createChainService(httpMock, 'relPath');
             try {
 
                 await signAndBroadcastTransaction(service)({

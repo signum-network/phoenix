@@ -1,5 +1,5 @@
-import {createParametersFromAttachment} from '../internal';
-import {AttachmentEncryptedMessage, AttachmentMessage} from '../typings/attachment';
+import {createParametersFromAttachment} from '../';
+import {AttachmentEncryptedMessage, AttachmentMessage} from '../../typings/attachment';
 
 
 describe('createParametersFromAttachment', () => {

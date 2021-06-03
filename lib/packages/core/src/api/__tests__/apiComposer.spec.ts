@@ -8,7 +8,6 @@ import {getServerStatus} from '../factories/network/getServerStatus';
 import {getSuggestedFees} from '../factories/network/getSuggestedFees';
 import {broadcastTransaction} from '../factories/transaction/broadcastTransaction';
 import {getTransaction} from '../factories/transaction/getTransaction';
-import {sendTextMessage} from '../factories/message/sendTextMessage';
 import {
     generateSendTransactionQRCode,
     generateSendTransactionQRCodeAddress,
@@ -20,23 +19,22 @@ import {
     getAccountSubscriptions,
     getSubscriptionsToAccount,
 } from '../factories/account';
-import {createBurstService} from '../../__tests__/helpers/createBurstService';
+import {createChainService} from '../../__tests__/helpers/createChainService';
 import {getAllContractIds, getContract, getContractsByAccount} from '../factories/contract';
 import {
     cancelSubscription,
     createSubscription,
-    sendAmount,
     sendAmountToMultipleRecipients,
     sendAmountToSingleRecipient,
     sendSameAmountToMultipleRecipients
 } from '../factories/transaction';
-import {sendEncryptedTextMessage} from '../factories/message';
 import {getAsset} from '../factories/asset/getAsset';
 import {getAllAssets} from '../factories/asset';
+import {sendMessage} from '../factories';
 
 
 describe('ApiComposer', () => {
-    const burstService = createBurstService();
+    const burstService = createChainService();
     let apiComposer;
 
     beforeEach(() => {
@@ -117,7 +115,6 @@ describe('ApiComposer', () => {
             .withTransactionApi({
                 broadcastTransaction,
                 getTransaction,
-                sendAmount,
                 sendAmountToSingleRecipient,
                 sendAmountToMultipleRecipients,
                 sendSameAmountToMultipleRecipients,
@@ -130,7 +127,6 @@ describe('ApiComposer', () => {
         expect(api.transaction).toBeDefined();
         expect(api.transaction.broadcastTransaction).toBeDefined();
         expect(api.transaction.getTransaction).toBeDefined();
-        expect(api.transaction.sendAmount).toBeDefined();
         expect(api.transaction.sendAmountToSingleRecipient).toBeDefined();
         expect(api.transaction.sendAmountToMultipleRecipients).toBeDefined();
         expect(api.transaction.sendSameAmountToMultipleRecipients).toBeDefined();
@@ -142,14 +138,13 @@ describe('ApiComposer', () => {
 
         const api = apiComposer
             .withMessageApi({
-                sendTextMessage,
-                sendEncryptedTextMessage,
+                sendMessage,
             })
             .compose();
 
         expect(api).toBeDefined();
         expect(api.message).toBeDefined();
-        expect(api.message.sendTextMessage).toBeDefined();
+        expect(api.message.sendMessage).toBeDefined();
 
     });
 
@@ -216,7 +211,7 @@ describe('ApiComposer', () => {
 
         const api = apiComposer
             .withMessageApi({
-                sendTextMessage
+                sendMessage
             })
             .withAccountApi({
                 getAccountTransactions,
@@ -241,7 +236,7 @@ describe('ApiComposer', () => {
 
         expect(api).toBeDefined();
         expect(api.message).toBeDefined();
-        expect(api.message.sendTextMessage).toBeDefined();
+        expect(api.message.sendMessage).toBeDefined();
 
     });
 

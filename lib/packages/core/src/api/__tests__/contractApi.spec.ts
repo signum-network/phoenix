@@ -1,5 +1,5 @@
 import {Http, HttpMockBuilder} from '@signumjs/http';
-import {createBurstService} from '../../__tests__/helpers/createBurstService';
+import {createChainService} from '../../__tests__/helpers/createChainService';
 import {getContract, getContractsByAccount, publishContract} from '../factories/contract';
 import {signAndBroadcastTransaction} from '../factories/transaction';
 
@@ -41,7 +41,7 @@ describe('Contract Api', () => {
 
         it('should getContract', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, testContract).build();
-            const service = createBurstService(httpMock, 'relPath');
+            const service = createChainService(httpMock, 'relPath');
             const contract = await getContract(service)('1234');
             expect(contract.creator).toBe('creator');
             expect(contract.at).toBe('at');
@@ -58,7 +58,7 @@ describe('Contract Api', () => {
 
         it('should getContractsByAccount', async () => {
             httpMock = HttpMockBuilder.create().onGetReply(200, testContracts).build();
-            const service = createBurstService(httpMock, 'relPath');
+            const service = createChainService(httpMock, 'relPath');
             const contracts = await getContractsByAccount(service)('1234');
             expect(contracts.ats).toHaveLength(1);
             expect(contracts.ats[0]).toEqual(testContract);
@@ -85,7 +85,7 @@ describe('Contract Api', () => {
             httpMock = HttpMockBuilder.create()
                 .onPostReply(200, testResponse).build();
 
-            const service = createBurstService(httpMock, 'relPath');
+            const service = createChainService(httpMock, 'relPath');
             const {transaction} = await publishContract(service)({
                 activationAmountPlanck: '20000000',
                 codeHex: 'creationBytes',

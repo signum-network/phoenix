@@ -76,34 +76,6 @@ export interface TransactionApi {
 
 
     /**
-     * Sends burst to the blockchain
-     *
-     * The transaction will be broadcasted in two steps.
-     * 1. Send the sendMoney call with public key to the network
-     * 2. Take the returned unsigned message and sign it, i.e. the private key won't be transmitted.
-
-     * @param amountPlanck The amount to be sent as Planck value
-     * @param feePlanck The fee as Planck value
-     * @param recipientId The id of the recipient
-     * @param senderPublicKey The senders public key for sending an _unsigned_ message
-     * @param senderPrivateKey The senders private key to _sign_ the message
-     * @param attachment An optional attachment
-     * @deprecated
-     * <div class="deprecated">
-     *     Use [[sendAmount]], [[sendAmountToMultipleRecipients]] instead
-     * </div>
-     * @return The Transaction Id (as promise)
-     */
-    sendAmount: (
-        amountPlanck: string,
-        feePlanck: string,
-        recipientId: string,
-        senderPublicKey: string,
-        senderPrivateKey: string,
-        attachment?: Attachment,
-    ) => Promise<TransactionId>;
-
-    /**
      * Sends burst to another account/recipient
      *
      * @param args The argument object

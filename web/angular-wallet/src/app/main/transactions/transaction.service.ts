@@ -79,9 +79,9 @@ export class TransactionService {
   }
 
   private getSendersPrivateKey(pin: string, keys: Keys): string {
-    try{
+    try {
       return decryptAES(keys.signPrivateKey, hashSHA256(pin));
-    }catch(e){
+    } catch (e) {
       throw new KeyDecryptionException();
     }
   }
@@ -147,13 +147,6 @@ export class TransactionService {
       attachment
     });
 
-    // return this.transactionApi.sendAmount(
-    //   amount,
-    //   fee,
-    //   recipientId,
-    //   keys.publicKey,
-    //   this.getSendersPrivateKey(pin, keys),
-    //   attachment);
   }
 
 }
