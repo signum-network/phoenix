@@ -4,7 +4,7 @@
 
 import {generateSignature, generateSignedTransactionBytes, verifySignature} from '@signumjs/crypto';
 import {broadcastTransaction} from './broadcastTransaction';
-import {BurstService} from '../../../service';
+import {ChainService} from '../../../service';
 import {TransactionId} from '../../../typings/transactionId';
 import {UnsignedTransactionArgs} from '../../../typings/args/unsignedTransactionArgs';
 
@@ -15,7 +15,7 @@ import {UnsignedTransactionArgs} from '../../../typings/args/unsignedTransaction
  * See details at [[TransactionApi.signAndBroadcastTransaction]]
  * @module core.api.factories
  */
-export let signAndBroadcastTransaction = (burstService: BurstService):
+export let signAndBroadcastTransaction = (burstService: ChainService):
     (unsignedTransaction: UnsignedTransactionArgs) => Promise<TransactionId> =>
     async (unsignedTransaction): Promise<TransactionId> => {
 

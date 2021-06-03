@@ -1,5 +1,5 @@
 import {loadEnvironment} from './helpers/environment';
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {decryptMessage, generateMasterKeys, getAccountIdFromPublicKey} from '@signumjs/crypto';
 import {sendTextMessage} from '../../factories/message/sendTextMessage';
 import {sendEncryptedTextMessage} from '../../factories/message/sendEncryptedTextMessage';
@@ -19,7 +19,7 @@ describe('[E2E] Message Api', () => {
 
     beforeAll(() => {
         environment = loadEnvironment();
-        service = new BurstService({
+        service = new ChainService({
             nodeHost: environment.testNetHost,
             apiRootUrl: environment.testNetApiPath
         });

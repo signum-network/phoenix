@@ -1,6 +1,6 @@
 import {HttpMockBuilder, Http} from '@signumjs/http';
 
-import {BurstService} from '../../service/burstService';
+import {ChainService} from '../../service/chainService';
 import {getBlockByTimestamp} from '../factories/block/getBlockByTimestamp';
 import {getBlockByHeight} from '../factories/block/getBlockByHeight';
 import {getBlockById} from '../factories/block/getBlockById';

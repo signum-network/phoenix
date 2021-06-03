@@ -2,7 +2,7 @@
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {Transaction} from '../../../typings/transaction';
 
 /**
@@ -11,7 +11,7 @@ import {Transaction} from '../../../typings/transaction';
  * See details at [[TransactionApi.broadcastTransaction]]
  * @module core.api.factories
  */
-export const getTransaction = (service: BurstService):
+export const getTransaction = (service: ChainService):
     (transactionId: string) => Promise<Transaction> =>
     (transactionId: string): Promise<Transaction> =>
         service.query('getTransaction', {transaction: transactionId});

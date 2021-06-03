@@ -3,7 +3,7 @@
  */
 
 import {Api} from '../typings/api';
-import {BurstService} from '../service';
+import {ChainService} from '../service';
 import {
     AccountApi,
     AliasApi,
@@ -17,11 +17,11 @@ import {
 
 class ApiImpl implements Api {
 
-    constructor(service: BurstService) {
-        this.service = service
+    constructor(service: ChainService) {
+        this.service = service;
     }
 
-    service: BurstService;
+    service: ChainService;
     alias: AliasApi;
     account: AccountApi;
     asset: AssetApi;
@@ -43,12 +43,12 @@ class ApiImpl implements Api {
  * Usage:
  * ```typescript
  *
- * const burstService = new BurstService({
+ * const chainService = new ChainService({
  *     nodeHost: 'https://testnet.burst.fun',
  * })
  *
  * const api = apiComposer
- * .create(burstService)
+ * .create(chainService)
  * .withMessageApi({
  *                sendTextMessage
  *            })
@@ -68,16 +68,17 @@ class ApiImpl implements Api {
  * */
 export class ApiComposer {
     private readonly api: Api;
+
     /**
      * Creates the composer instance
      * @param service
      * @return the composer instance
      */
-    public static create(service: BurstService): ApiComposer {
+    public static create(service: ChainService): ApiComposer {
         return new ApiComposer(service);
     }
 
-    private constructor(private service: BurstService) {
+    private constructor(private service: ChainService) {
         this.api = new ApiImpl(service);
     }
 

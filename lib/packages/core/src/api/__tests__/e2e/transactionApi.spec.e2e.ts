@@ -1,5 +1,5 @@
 import {loadEnvironment} from './helpers/environment';
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {
     createSubscription,
     getTransaction,
@@ -17,7 +17,7 @@ jest.setTimeout(environment.timeout);
 
 describe('[E2E] Transaction Api', () => {
 
-    const service = new BurstService({
+    const service = new ChainService({
         nodeHost: environment.testNetHost,
         apiRootUrl: environment.testNetApiPath
     });

@@ -1,7 +1,7 @@
 /**
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service';
+import {ChainService} from '../../../service';
 import {AssetList} from '../../../typings/assetList';
 
 /**
@@ -10,7 +10,7 @@ import {AssetList} from '../../../typings/assetList';
  * See details at [[AssetApi.getAllAssets]]
  * @module core.api.factories
  */
-export const getAllAssets = (service: BurstService):
+export const getAllAssets = (service: ChainService):
     (firstIndex?: number, lastIndex?: number) => Promise<AssetList> =>
     (firstIndex?: number, lastIndex?: number): Promise<AssetList> =>
         service.query('getAllAssets', {firstIndex, lastIndex});

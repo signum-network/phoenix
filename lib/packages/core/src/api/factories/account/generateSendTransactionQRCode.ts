@@ -1,7 +1,7 @@
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[AccountApi]].
@@ -10,7 +10,7 @@ import {BurstService} from '../../../service/burstService';
  *
  * @module core.api.factories
  */
-export const generateSendTransactionQRCode = (service: BurstService):
+export const generateSendTransactionQRCode = (service: ChainService):
     (
         receiverId: string,
         amountNQT?: number,

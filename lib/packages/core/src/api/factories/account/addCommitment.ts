@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2021 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
@@ -14,7 +14,7 @@ import {CommitmentArgs} from '../../../typings/args/commitmentArgs';
  * See details at [[AccountApi.addCommitment]]
  * @module core.api.factories
  */
-export const addCommitment = (service: BurstService):
+export const addCommitment = (service: ChainService):
     (args: CommitmentArgs) => Promise<TransactionId> =>
     async (args: CommitmentArgs): Promise<TransactionId> => {
         const parameters = {

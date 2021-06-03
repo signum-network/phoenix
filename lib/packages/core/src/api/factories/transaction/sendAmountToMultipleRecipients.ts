@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {MultioutRecipientAmount} from '../../../typings/multioutRecipientAmount';
@@ -18,7 +18,7 @@ function mountRecipientsString(recipientAmounts: MultioutRecipientAmount[]): str
  * See details at [[TransactionApi.sendAmountToMultipleRecipients]]
  * @module core.api.factories
  */
-export const sendAmountToMultipleRecipients = (service: BurstService):
+export const sendAmountToMultipleRecipients = (service: ChainService):
     (
         recipientAmounts: MultioutRecipientAmount[],
         feePlanck: string,

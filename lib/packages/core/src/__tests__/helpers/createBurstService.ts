@@ -1,12 +1,12 @@
 import {Http} from '@signumjs/http';
-import {BurstService} from '../../service';
+import {ChainService} from '../../service';
 
 export const createBurstService = (
     httpClient: Http = undefined,
     apiRootUrl: string = '',
     nodeHost: string = 'localhost',
-): BurstService => {
-    return new BurstService({
+): ChainService => {
+    return new ChainService({
         nodeHost,
         apiRootUrl,
         httpClient,

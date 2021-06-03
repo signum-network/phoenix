@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {signAndBroadcastTransaction} from './signAndBroadcastTransaction';
@@ -14,7 +14,7 @@ import {DefaultDeadline} from '../../../constants';
  * See details at [[TransactionApi.sendSameAmountToMultipleRecipients]]
  * @module core.api.factories
  */
-export const sendSameAmountToMultipleRecipients = (service: BurstService):
+export const sendSameAmountToMultipleRecipients = (service: ChainService):
     (amountPlanck: string,
      feePlanck: string,
      recipientIds: string[],

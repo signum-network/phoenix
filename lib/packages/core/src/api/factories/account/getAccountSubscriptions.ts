@@ -1,7 +1,7 @@
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionList} from '../../../typings/transactionList';
 import {GetAccountTransactionsArgs} from '../../../typings/args';
 import {SubscriptionList} from '../../../typings/subscriptionList';
@@ -12,7 +12,7 @@ import {SubscriptionList} from '../../../typings/subscriptionList';
  * See details at [[AccountApi.getAccountSubscriptions]]
  * @module core.api.factories
  */
-export const getAccountSubscriptions = (service: BurstService):
+export const getAccountSubscriptions = (service: ChainService):
     (accountId: string) => Promise<SubscriptionList> =>
     (accountId: string): Promise<SubscriptionList> => {
 

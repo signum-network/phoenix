@@ -2,7 +2,7 @@
  * Original work Copyright (c) 2019 Burst Apps Team
  */
 
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {Balance} from '../../../typings/balance';
 
 /**
@@ -11,7 +11,7 @@ import {Balance} from '../../../typings/balance';
  * See details at [[AccountApi.getAccountBalance]]
  * @module core.api.factories
  */
-export const getAccountBalance = (service: BurstService):
+export const getAccountBalance = (service: ChainService):
     (accountId: string) => Promise<Balance> =>
     (accountId: string): Promise<Balance> => service.query('getBalance', {
         account: accountId,

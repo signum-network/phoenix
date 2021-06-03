@@ -1,5 +1,5 @@
 import {loadEnvironment} from './helpers/environment';
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {getBlockchainStatus, getServerStatus, getTime, suggestFee} from '../../factories/network';
 import {FeeQuantPlanck} from '@signumjs/util';
 
@@ -9,7 +9,7 @@ jest.setTimeout(environment.timeout);
 
 describe('[E2E] Network Api', () => {
 
-    const service = new BurstService({
+    const service = new ChainService({
         nodeHost: environment.testNetHost,
         apiRootUrl: environment.testNetApiPath
     });

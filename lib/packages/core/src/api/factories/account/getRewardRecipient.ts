@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2020 Burst Apps Team
  */
-import {BurstService} from '../../../service';
+import {ChainService} from '../../../service';
 import {RewardRecipient} from '../../..';
 
 /**
@@ -10,7 +10,7 @@ import {RewardRecipient} from '../../..';
  * See details at [[AccountApi.getRewardRecipient]]
  * @module core.api.factories
  */
-export const getRewardRecipient = (service: BurstService):
+export const getRewardRecipient = (service: ChainService):
     (accountId: string) => Promise<RewardRecipient> =>
     async (accountId: string): Promise<RewardRecipient> => {
         const parameters = {

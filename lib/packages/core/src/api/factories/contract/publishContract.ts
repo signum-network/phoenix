@@ -2,7 +2,7 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 import {calculateMinimumCreationFee} from '@signumjs/contracts';
-import {BurstService} from '../../../service';
+import {ChainService} from '../../../service';
 import {PublishContractArgs} from '../../../typings/args';
 import {signAndBroadcastTransaction} from '../transaction';
 import {TransactionId} from '../../../typings/transactionId';
@@ -16,7 +16,7 @@ import {DefaultDeadline} from '../../../constants';
  * See details at [[ContractApi.publishContract]]
  * @module core.api.factories
  */
-export const publishContract = (service: BurstService):
+export const publishContract = (service: ChainService):
     (args: PublishContractArgs) => Promise<TransactionId> =>
     async (args: PublishContractArgs): Promise<TransactionId> => {
 

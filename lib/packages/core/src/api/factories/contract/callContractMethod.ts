@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service';
+import {ChainService} from '../../../service';
 import {CallContractMethodArgs, SendAmountArgs} from '../../../typings/args';
 import {TransactionId} from '../../../typings/transactionId';
 import {AttachmentMessage} from '../../../typings/attachment';
@@ -15,7 +15,7 @@ import {generateMethodCall} from '@signumjs/contracts';
  * See details at [[ContractApi.callContractMethod]]
  * @module core.api.factories
  */
-export const callContractMethod = (service: BurstService):
+export const callContractMethod = (service: ChainService):
     (args: CallContractMethodArgs) => Promise<TransactionId> =>
     async (args: CallContractMethodArgs): Promise<TransactionId> => {
 

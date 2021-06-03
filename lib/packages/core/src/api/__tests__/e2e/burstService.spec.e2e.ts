@@ -1,5 +1,5 @@
 import {loadEnvironment} from './helpers/environment';
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 
 const environment = loadEnvironment();
 
@@ -8,7 +8,7 @@ jest.setTimeout(environment.timeout);
 describe('[E2E] Burst Service', () => {
 
     it('should selectBestNode and reconfigure accordingly', async () => {
-        const service = new BurstService({
+        const service = new ChainService({
             nodeHost: environment.testNetHost,
             reliableNodeHosts: [
                 'https://invalid.signum.network',
@@ -30,7 +30,7 @@ describe('[E2E] Burst Service', () => {
 
     it('should fail on entirely invalid hosts without reconfiguration', async () => {
         jest.setTimeout(15 * 1000);
-        const service = new BurstService({
+        const service = new ChainService({
             nodeHost: environment.testNetHost,
             reliableNodeHosts: [
                 'https://invalid.signum.network',

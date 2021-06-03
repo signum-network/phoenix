@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {SuggestedFees} from '../../../typings/suggestedFees';
 import {FeeQuantPlanck} from '@signumjs/util';
 
@@ -11,7 +11,7 @@ import {FeeQuantPlanck} from '@signumjs/util';
  * See details at [[NetworkApi.getSuggestedFees]]
  * @module core.api.factories
  */
-export const getSuggestedFees = (service: BurstService): () => Promise<SuggestedFees> => {
+export const getSuggestedFees = (service: ChainService): () => Promise<SuggestedFees> => {
     return async (): Promise<SuggestedFees> => {
         const suggestedFees: SuggestedFees = await service.query('suggestFee');
         return {

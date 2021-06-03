@@ -1,5 +1,5 @@
 import {loadEnvironment} from './helpers/environment';
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {cancelBidOrder, getAllAssets, getAsset, placeBidOrder} from '../../factories/asset';
 import {issueAsset} from '../../factories/asset/issueAsset';
 import {generateMasterKeys, getAccountIdFromPublicKey} from '@signumjs/crypto';
@@ -16,7 +16,7 @@ describe(`[E2E] Asset Api`, () => {
 
     beforeAll(() => {
         environment = loadEnvironment();
-        service = new BurstService({
+        service = new ChainService({
             nodeHost: environment.testNetHost,
             apiRootUrl: environment.testNetApiPath
         });

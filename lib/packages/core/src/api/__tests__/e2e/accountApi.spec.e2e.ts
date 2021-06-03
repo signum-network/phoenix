@@ -1,7 +1,7 @@
 import {convertNQTStringToNumber} from '@signumjs/util';
 import {loadEnvironment} from './helpers/environment';
 import {getAccountIdFromPassphrase} from './helpers/account';
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionType} from '../../../constants/transactionType';
 import {TransactionPaymentSubtype} from '../../../constants';
 import {
@@ -18,7 +18,7 @@ jest.setTimeout(environment.timeout);
 
 describe(`[E2E] Account Api`, () => {
 
-    const service = new BurstService({
+    const service = new ChainService({
         nodeHost: environment.testNetHost,
         apiRootUrl: environment.testNetApiPath
     });

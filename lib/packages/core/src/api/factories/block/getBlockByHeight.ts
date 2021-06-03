@@ -2,7 +2,7 @@
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {Block} from '../../../typings/block';
 
 /**
@@ -11,7 +11,7 @@ import {Block} from '../../../typings/block';
  * See details at [[BlockApi.getBlockByHeight]]
  * @module core.api.factories
  */
-export const getBlockByHeight = (service: BurstService):
+export const getBlockByHeight = (service: ChainService):
     (height: number, includeTransactions: boolean) => Promise<Block> =>
     (height: number, includeTransactions: boolean): Promise<Block> =>
         service.query('getBlock', {

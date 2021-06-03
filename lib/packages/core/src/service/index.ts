@@ -1,2 +1,2 @@
-export * from './burstService';
-export * from './burstServiceSettings';
+export * from './chainService';
+export * from './chainServiceSettings';

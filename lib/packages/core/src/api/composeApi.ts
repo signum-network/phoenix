@@ -1,8 +1,8 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../service';
-import {BurstServiceSettings} from '../service';
+import {ChainService} from '../service';
+import {ChainServiceSettings} from '../service';
 import {Api} from '../typings/api';
 import {ApiVersion} from '../constants/apiVersion';
 import {ApiComposer} from './apiComposer';
@@ -20,13 +20,10 @@ import {
     getServerStatus,
     getTime,
     getSuggestedFees,
-    suggestFee,
 } from './factories/network';
 import {
     sendEncryptedMessage,
-    sendEncryptedTextMessage,
     sendMessage,
-    sendTextMessage
 } from './factories/message';
 import {
     generateSendTransactionQRCode,
@@ -58,7 +55,6 @@ import {
     cancelSubscription,
     createSubscription,
     getTransaction,
-    sendAmount,
     sendAmountToMultipleRecipients,
     sendAmountToSingleRecipient,
     sendSameAmountToMultipleRecipients,
@@ -85,7 +81,7 @@ import {AxiosRequestConfig} from 'axios';
  * */
 export class ApiSettings {
     /**
-     * @param nodeHost {string} The url of the Burst peer
+     * @param nodeHost {string} The url of the peer/node
      * @param apiVersion {ApiVersion} For future usage.
      * @param reliableNodeHosts A list of node/peer hosts that can be chosen of, usually a list of reliable/trusted nodes. This is necessary for the automatic
      * node selection.
@@ -107,7 +103,7 @@ export class ApiSettings {
  * with its functions.
  *
  * ```ts
- * const api = composeApi(new ApiSettings('https://wallet1.burst-team.us:2083')), // one of the mainnet nodes
+ * const api = composeApi(new ApiSettings('https://europe.signum.network')), // one of the mainnet nodes
  * ```
  *
  * > Note, that this method mounts the __entire__ API, i.e. all available methods. One may also customize the API composition
@@ -120,8 +116,8 @@ export class ApiSettings {
  */
 export function composeApi(settings: ApiSettings): Api {
 
-    const serviceSettings: BurstServiceSettings = {...settings};
-    const service = new BurstService(serviceSettings);
+    const serviceSettings: ChainServiceSettings = {...settings};
+    const service = new ChainService(serviceSettings);
 
     return ApiComposer
         .create(service)
@@ -136,7 +132,6 @@ export function composeApi(settings: ApiSettings): Api {
             getBlockchainStatus,
             getServerStatus,
             getSuggestedFees,
-            suggestFee,
             getPeers,
             getPeer,
             getTime,
@@ -144,7 +139,6 @@ export function composeApi(settings: ApiSettings): Api {
         .withTransactionApi({
             broadcastTransaction,
             getTransaction,
-            sendAmount,
             sendAmountToSingleRecipient,
             sendAmountToMultipleRecipients,
             sendSameAmountToMultipleRecipients,
@@ -155,8 +149,6 @@ export function composeApi(settings: ApiSettings): Api {
             signAndBroadcastTransaction,
         })
         .withMessageApi({
-            sendTextMessage,
-            sendEncryptedTextMessage,
             sendMessage,
             sendEncryptedMessage,
         })

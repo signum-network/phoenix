@@ -2,7 +2,7 @@
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 
 /**
@@ -11,7 +11,7 @@ import {TransactionId} from '../../../typings/transactionId';
  * See details at [[TransactionApi.broadcastTransaction]]
  * @module core.api.factories
  */
-export const broadcastTransaction = (service: BurstService):
+export const broadcastTransaction = (service: ChainService):
     (signedTransactionPayload: string) => Promise<TransactionId> =>
     (signedTransactionPayload: string): Promise<TransactionId> =>
         service.send('broadcastTransaction', {transactionBytes: signedTransactionPayload});

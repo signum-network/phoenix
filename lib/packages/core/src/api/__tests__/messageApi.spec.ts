@@ -1,5 +1,5 @@
 import {HttpMockBuilder, Http} from '@signumjs/http';
-import {BurstService} from '../../service/burstService';
+import {ChainService} from '../../service/chainService';
 import {encryptMessage} from '@signumjs/crypto';
 import {constructAttachment} from '../../internal/constructAttachment';
 import {sendTextMessage} from '../factories/message/sendTextMessage';
@@ -19,7 +19,7 @@ describe('Message Api', () => {
         };
 
         let httpMock: Http;
-        let service: BurstService;
+        let service: ChainService;
 
         beforeEach(() => {
             jest.resetAllMocks();
@@ -109,7 +109,7 @@ describe('Message Api', () => {
 
     describe('sendEncryptedTextMessage', () => {
         let httpMock: Http;
-        let service: BurstService;
+        let service: ChainService;
 
         beforeEach(() => {
             jest.resetAllMocks();
@@ -207,7 +207,7 @@ describe('Message Api', () => {
     describe('sendMessage', () => {
 
         let httpMock: Http;
-        let service: BurstService;
+        let service: ChainService;
 
         beforeEach(() => {
             jest.resetAllMocks();

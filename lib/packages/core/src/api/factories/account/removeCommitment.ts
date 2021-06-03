@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2021 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
@@ -14,7 +14,7 @@ import {CommitmentArgs} from '../../../typings/args/commitmentArgs';
  * See details at [[AccountApi.removeCommitment]]
  * @module core.api.factories
  */
-export const removeCommitment = (service: BurstService):
+export const removeCommitment = (service: ChainService):
     (args: CommitmentArgs) => Promise<TransactionId> =>
     async (args: CommitmentArgs): Promise<TransactionId> => {
         const parameters = {

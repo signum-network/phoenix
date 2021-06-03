@@ -1,7 +1,7 @@
 /**
  * Original work Copyright (c) 2020 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {UnconfirmedTransactionList} from '../../../typings/unconfirmedTransactionList';
 
 /**
@@ -10,7 +10,7 @@ import {UnconfirmedTransactionList} from '../../../typings/unconfirmedTransactio
  * See details at [[AccountApi.getUnconfirmedAccountTransactions]]
  * @module core.api.factories
  */
-export const getUnconfirmedAccountTransactions = (service: BurstService):
+export const getUnconfirmedAccountTransactions = (service: ChainService):
     (
         accountId: string,
         includeIndirect?: boolean

@@ -2,7 +2,7 @@
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {BlockchainStatus} from '../../../typings/blockchainStatus';
 
 
@@ -12,5 +12,5 @@ import {BlockchainStatus} from '../../../typings/blockchainStatus';
  * See details at [[NetworkApi.getBlockchainStatus]]
  * @module core.api.factories
  */
-export const getBlockchainStatus = (service: BurstService): () => Promise<BlockchainStatus> =>
+export const getBlockchainStatus = (service: ChainService): () => Promise<BlockchainStatus> =>
     (): Promise<BlockchainStatus> => service.query('getBlockchainStatus');

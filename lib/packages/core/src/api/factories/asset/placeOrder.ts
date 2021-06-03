@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2020 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
@@ -19,7 +19,7 @@ interface GenericPlaceOrderArgs extends PlaceOrderArgs {
  * See details at [[AssetApi.placeAskOrder]] [[AssetApi.placeBidOrder]]
  * @module core.api.factories
  */
-export const placeOrder = (service: BurstService):
+export const placeOrder = (service: ChainService):
     (args: GenericPlaceOrderArgs) => Promise<TransactionId> =>
     async (args: GenericPlaceOrderArgs): Promise<TransactionId> => {
 

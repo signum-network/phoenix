@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
@@ -17,7 +17,7 @@ const MAX_MESSAGE_LENGTH = 1024;
  * See details at [[MessageApi.sendEncryptedMessage]]
  * @module core.api.factories
  */
-export const sendEncryptedMessage = (service: BurstService):
+export const sendEncryptedMessage = (service: ChainService):
     (args: SendEncryptedMessageArgs) => Promise<TransactionId> =>
     async (args: SendEncryptedMessageArgs): Promise<TransactionId> => {
 

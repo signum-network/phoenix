@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
@@ -14,7 +14,7 @@ import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransa
  * See details at [[MessageApi.sendMessage]]
  * @module core.api.factories
  */
-export const sendMessage = (service: BurstService):
+export const sendMessage = (service: ChainService):
     (args: SendMessageArgs) => Promise<TransactionId> =>
     async (args: SendMessageArgs): Promise<TransactionId> => {
 

@@ -2,7 +2,7 @@
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {Block} from '../../../typings/block';
 
 
@@ -12,7 +12,7 @@ import {Block} from '../../../typings/block';
  * See details at [[BlockApi.getBlockById]]
  * @module core.api.factories
  */
-export const getBlockById = (service: BurstService):
+export const getBlockById = (service: ChainService):
     (block: string, includeTransactions: boolean) => Promise<Block> =>
     (block: string, includeTransactions: boolean): Promise<Block> =>
         service.query('getBlock', {

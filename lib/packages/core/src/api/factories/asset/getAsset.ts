@@ -1,7 +1,7 @@
 /**
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {Asset} from '../../../typings/asset';
 
 /**
@@ -10,7 +10,7 @@ import {Asset} from '../../../typings/asset';
  * See details at [[AssetApi.getAsset]]
  * @module core.api.factories
  * */
-export const getAsset = (service: BurstService):
+export const getAsset = (service: ChainService):
     (assetId: string) => Promise<Asset> =>
     (assetId: string): Promise<Asset> =>
         service.query('getAsset', {asset: assetId});

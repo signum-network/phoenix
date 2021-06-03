@@ -1,7 +1,7 @@
 /**
  * Original work Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {Block} from '../../../typings/block';
 
 /**
@@ -10,7 +10,7 @@ import {Block} from '../../../typings/block';
  * See details at [[BlockApi.getBlockByTimestamp]]
  * @module core.api.factories
  */
-export const getBlockByTimestamp = (service: BurstService):
+export const getBlockByTimestamp = (service: ChainService):
     (timestamp: number, includeTransactions: boolean) => Promise<Block> =>
     (timestamp: number, includeTransactions: boolean): Promise<Block> =>
         service.query('getBlock', {

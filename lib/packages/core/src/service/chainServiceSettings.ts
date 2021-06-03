@@ -1,5 +1,6 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
+ * Modified (c) 2021 Signum Network
  */
 import {Http} from '@signumjs/http';
 import {AxiosRequestConfig} from 'axios';
@@ -8,9 +9,9 @@ import {AxiosRequestConfig} from 'axios';
  * The settings interface for the BurstService class
  * @module core
  */
-export interface BurstServiceSettings {
+export interface ChainServiceSettings {
     /**
-     * The node/peer host url with protocol and port, e.g. https://testnet.burst.fun:443
+     * The node/peer host url with protocol and port, e.g. https://testnet.signum.fun:443
      */
     readonly nodeHost: string;
 

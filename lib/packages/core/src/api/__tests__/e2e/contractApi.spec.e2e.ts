@@ -1,5 +1,5 @@
 import {loadEnvironment} from './helpers/environment';
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {getContractsByAccount} from '../../factories/contract/getContractsByAccount';
 import {getContract} from '../../factories/contract/getContract';
 import {getAllContractIds, publishContract} from '../../factories/contract';
@@ -12,7 +12,7 @@ jest.setTimeout(environment.timeout);
 
 describe('[E2E] Contract Api', () => {
 
-    const service = new BurstService({
+    const service = new ChainService({
         nodeHost: environment.testNetHost,
         apiRootUrl: environment.testNetApiPath
     });

@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import { BurstService } from '../../../service/burstService';
+import { ChainService } from '../../../service/chainService';
 import {Contract} from '../../../typings/contract';
 import {ContractIdList} from '../../../typings/contractIdList';
 
@@ -11,7 +11,7 @@ import {ContractIdList} from '../../../typings/contractIdList';
  * See details at [[ContractApi.getAllContractIds]]
  * @module core.api.factories
  */
-export const getAllContractIds = (service: BurstService):
+export const getAllContractIds = (service: ChainService):
     () => Promise<ContractIdList> =>
     (): Promise<ContractIdList> =>
         service.query('getATIds');

@@ -2,7 +2,7 @@
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {ServerStatus} from '../../../typings/serverStatus';
 
 /**
@@ -11,5 +11,5 @@ import {ServerStatus} from '../../../typings/serverStatus';
  * See details at [[NetworkApi.getServerStatus]]
  * @module core.api.factories
  */
-export const getServerStatus = (service: BurstService): () => Promise<ServerStatus> =>
+export const getServerStatus = (service: ChainService): () => Promise<ServerStatus> =>
     (): Promise<ServerStatus> => service.query('getState');

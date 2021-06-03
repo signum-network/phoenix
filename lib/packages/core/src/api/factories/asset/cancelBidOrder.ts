@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2020 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {CancelOrderArgs} from '../../../typings/args';
 import {cancelOrder} from './cancelOrder';
@@ -14,7 +14,7 @@ import {cancelOrder} from './cancelOrder';
  * @module core.api.factories
  *
  */
-export const cancelBidOrder = (service: BurstService):
+export const cancelBidOrder = (service: ChainService):
     (args: CancelOrderArgs) => Promise<TransactionId> =>
     async (args: CancelOrderArgs): Promise<TransactionId> => {
 

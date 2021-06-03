@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {BlockList} from '../../../typings/blockList';
 import {GetAccountBlocksArgs} from '../../../typings/args/getAccountBlocksArgs';
 
@@ -11,7 +11,7 @@ import {GetAccountBlocksArgs} from '../../../typings/args/getAccountBlocksArgs';
  * See details at [[AccountApi.getAccountBlocks]]
  * @module core.api.factories
  */
-export const getAccountBlocks = (service: BurstService):
+export const getAccountBlocks = (service: ChainService):
     (args: GetAccountBlocksArgs) => Promise<BlockList> =>
     (args): Promise<BlockList> => {
 

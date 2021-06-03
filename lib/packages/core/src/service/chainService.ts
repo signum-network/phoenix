@@ -1,22 +1,23 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
+ * Modified (c) 2021 Signum Network
  */
 
 import {Http, HttpError, HttpClientFactory, HttpResponse} from '@signumjs/http';
 import {asyncRetry} from '@signumjs/util';
-import {BurstServiceSettings} from './burstServiceSettings';
+import {ChainServiceSettings} from './chainServiceSettings';
 import {AxiosRequestConfig} from 'axios';
 import {DefaultApiEndpoint} from '../constants';
 
-// BRS is inconsistent in its error responses
+// Old API is inconsistent in its error responses
 interface ApiError {
     readonly errorCode?: number;
     readonly errorDescription?: string;
     readonly error?: string;
 }
 
-class SettingsImpl implements BurstServiceSettings {
-    constructor(settings: BurstServiceSettings) {
+class SettingsImpl implements ChainServiceSettings {
+    constructor(settings: ChainServiceSettings) {
         this.apiRootUrl = settings.apiRootUrl || DefaultApiEndpoint;
         this.nodeHost = settings.nodeHost;
         this.httpClient = settings.httpClient || HttpClientFactory.createHttpClient(settings.nodeHost, settings.httpClientOptions);
@@ -30,16 +31,21 @@ class SettingsImpl implements BurstServiceSettings {
 }
 
 /**
- * Generic BRS Web Service class.
+ * Generic Chain Service class.
+ *
+ * This class can be used to call the chain api directly, in case a function is
+ * not supported yet by SignumJS. Usually, you won't need to do it.
+ *
+ *
  *
  * @module core
  */
-export class BurstService {
+export class ChainService {
     /**
      * Creates Service instance
      * @param settings The settings for the service
      */
-    constructor(settings: BurstServiceSettings) {
+    constructor(settings: ChainServiceSettings) {
 
         this.settings = new SettingsImpl(settings);
         const {apiRootUrl} = this.settings;
@@ -48,7 +54,7 @@ export class BurstService {
         }
     }
 
-    public settings: BurstServiceSettings;
+    public settings: ChainServiceSettings;
     private readonly _relPath: string = DefaultApiEndpoint;
 
     private static throwAsHttpError(url: string, apiError: ApiError): void {
@@ -61,15 +67,15 @@ export class BurstService {
 
 
     /**
-     * Mounts a BRS conform API (V1) endpoint of format `<host>?requestType=getBlock&height=123`
+     * Mounts an API conformant endpoint of format `<host>?requestType=getBlock&height=123`
      *
-     * @see https://burstwiki.org/wiki/The_Burst_API
+     * @see https://www.burstcoin.community/burst-api/
      *
      * @param {string} method The method name for `requestType`
      * @param {any} data A JSON object which will be mapped to url params
      * @return {string} The mounted url (without host)
      */
-    public toBRSEndpoint(method: string, data: any = {}): string {
+    public toApiEndpoint(method: string, data: object = {}): string {
         const request = `${this._relPath}?requestType=${method}`;
         const params = Object.keys(data)
             .filter(k => data[k] !== undefined)
@@ -80,28 +86,28 @@ export class BurstService {
 
 
     /**
-     * Requests a query to BRS
-     * @param {string} method The BRS method according https://burstwiki.org/wiki/The_Burst_API
+     * Requests a query to the configured chain node
+     * @param {string} method The method according https://www.burstcoin.community/burst-api/
      * @param {any} args A JSON object which will be mapped to url params
      * @param {any | AxiosRequestConfig} options The optional request configuration for the passed Http client
      * @return {Promise<T>} The response data of success
      * @throws HttpError in case of failure
      */
     public async query<T>(method: string, args: any = {}, options?: any | AxiosRequestConfig): Promise<T> {
-        const brsUrl = this.toBRSEndpoint(method, args);
+        const endpoint = this.toApiEndpoint(method, args);
 
-        const {response} = await this.faultTolerantRequest(() => this.settings.httpClient.get(brsUrl, options));
+        const {response} = await this.faultTolerantRequest(() => this.settings.httpClient.get(endpoint, options));
 
         if (response.errorCode || response.error || response.errorDescription) {
-            BurstService.throwAsHttpError(brsUrl, response);
+            ChainService.throwAsHttpError(endpoint, response);
         }
         return response;
 
     }
 
     /**
-     * Send data to BRS
-     * @param {string} method The BRS method according https://burstwiki.org/wiki/The_Burst_API.
+     * Send data to chain node
+     * @param {string} method The method according https://www.burstcoin.community/burst-api/.
      *        Note that there are only a few POST methods
      * @param {any} args A JSON object which will be mapped to url params
      * @param {any} body An object with key value pairs to submit as post body
@@ -109,13 +115,13 @@ export class BurstService {
      * @return {Promise<T>} The response data of success
      * @throws HttpError in case of failure
      */
-    public async send<T>(method: string, args: any = {}, body: any = {}, options?: any | AxiosRequestConfig): Promise<T> {
-        const brsUrl = this.toBRSEndpoint(method, args);
+    public async send<T>(method: string, args: object = {}, body: object = {}, options?: any | AxiosRequestConfig): Promise<T> {
+        const endpoint = this.toApiEndpoint(method, args);
 
-        const {response} = await this.faultTolerantRequest(() => this.settings.httpClient.post(brsUrl, body, options));
+        const {response} = await this.faultTolerantRequest(() => this.settings.httpClient.post(endpoint, body, options));
 
         if (response.errorCode || response.error || response.errorDescription) {
-            BurstService.throwAsHttpError(brsUrl, response);
+            ChainService.throwAsHttpError(endpoint, response);
         }
         return response;
     }
@@ -146,7 +152,7 @@ export class BurstService {
         if (!this.settings.reliableNodeHosts.length) {
             throw new Error('No reliableNodeHosts configured');
         }
-        const checkEndpoint = this.toBRSEndpoint(checkMethod);
+        const checkEndpoint = this.toApiEndpoint(checkMethod);
         let timeout = null;
         const requests = this.settings.reliableNodeHosts.map(host => {
             const absoluteUrl = `${host}${checkEndpoint}`;

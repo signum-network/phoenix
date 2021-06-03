@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import { BurstService } from '../../../service/burstService';
+import { ChainService } from '../../../service/chainService';
 import { Peer } from '../../../typings/peer';
 
 /**
@@ -10,7 +10,7 @@ import { Peer } from '../../../typings/peer';
  * See details at [[NetworkApi.getPeer]]
  * @module core.api.factories
  */
-export const getPeer = (service: BurstService):
+export const getPeer = (service: ChainService):
     (peer: string) => Promise<Peer> =>
     (peer: string): Promise<Peer> =>
         service.query('getPeer', {

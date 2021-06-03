@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2020 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
@@ -19,7 +19,7 @@ interface GenericCancelOrderArgs extends CancelOrderArgs {
  * See details at [[AssetApi.cancelAskOrder]] [[AssetApi.cancelBidOrder]]
  * @module core.api.factories
  */
-export const cancelOrder = (service: BurstService):
+export const cancelOrder = (service: ChainService):
     (args: GenericCancelOrderArgs) => Promise<TransactionId> =>
     async (args: GenericCancelOrderArgs): Promise<TransactionId> => {
 

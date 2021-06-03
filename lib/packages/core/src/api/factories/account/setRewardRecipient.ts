@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2020 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {SetRewardRecipientArgs} from '../../../typings/args/setRewardRecipientArgs';
@@ -14,7 +14,7 @@ import {signAndBroadcastTransaction} from '../transaction';
  * See details at [[AccountApi.setRewardRecipient]]
  * @module core.api.factories
  */
-export const setRewardRecipient = (service: BurstService):
+export const setRewardRecipient = (service: ChainService):
     (args: SetRewardRecipientArgs) => Promise<TransactionId> =>
     async (args: SetRewardRecipientArgs): Promise<TransactionId> => {
         const parameters = {

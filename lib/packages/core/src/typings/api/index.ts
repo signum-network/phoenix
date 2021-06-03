@@ -6,7 +6,7 @@ import {AccountApi} from './accountApi';
 import {AliasApi} from './aliasApi';
 import {ContractApi} from './contractApi';
 import {AssetApi} from './assetApi';
-import {BurstService} from '../../service';
+import {ChainService} from '../../service';
 
 export {
     AccountApi,
@@ -28,12 +28,11 @@ export {
  *
  * ```ts
  * const api = composeApi({
- *   nodeHost: 'https://wallet1.burst-team.us:2083', // one of the mainnet nodes
- *   apiRootUrl: '/burst' // endpoint to the BURST API
+ *   nodeHost: 'https://europe.signum.network', // one of the mainnet nodes
  * })
  * ```
  *
- * While this is a straightforward way to have access to all BURST functionality, this methods
+ * While this is a straightforward way to have access to all API functionality, this methods
  * has the disadvantage of including all needed dependencies, thus leading to a bigger bundle, for those
  * who use bundlers like [webpack](https://webpack.js.org/). To reduce the bundle size, one may mount the API
  * conforming his needs using the [[ApiComposer]] class.
@@ -42,10 +41,10 @@ export {
  */
 export class Api {
     /**
-     * This leaks the underlying service instance to interact with the BRS API directly, e.g. to use an API method that
-     * is not supported by BurstJS yet.
+     * This leaks the underlying service instance to interact with the chain nodes API directly, e.g. to use an API method that
+     * is not supported by SignumJS yet.
      */
-    readonly service: BurstService;
+    readonly service: ChainService;
     readonly asset: AssetApi;
     readonly block: BlockApi;
     readonly network: NetworkApi;

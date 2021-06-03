@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2020 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
@@ -18,7 +18,7 @@ import {TransferAssetArgs} from '../../../typings/args/transferAssetArgs';
  * @module core.api.factories
  *
  */
-export const transferAsset = (service: BurstService):
+export const transferAsset = (service: ChainService):
     (args: TransferAssetArgs) => Promise<TransactionId> =>
     async (args: TransferAssetArgs): Promise<TransactionId> => {
 

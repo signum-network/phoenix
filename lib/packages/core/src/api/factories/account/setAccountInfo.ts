@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2021 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {signAndBroadcastTransaction} from '../transaction/signAndBroadcastTransaction';
@@ -14,7 +14,7 @@ import {SetAccountInfoArgs} from '../../../typings/args/setAccountInfoArgs';
  * See details at [[AccountApi.setAccountInfo]]
  * @module core.api.factories
  */
-export const setAccountInfo = (service: BurstService):
+export const setAccountInfo = (service: ChainService):
     (args: SetAccountInfoArgs) => Promise<TransactionId> =>
     async (args: SetAccountInfoArgs): Promise<TransactionId> => {
 

@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2020 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
@@ -15,7 +15,7 @@ import {CancelSubscriptionArgs} from '../../../typings/args/cancelSubscriptionAr
  * See details at [[TransactionApi.cancelSubscription]]
  * @module core.api.factories
  */
-export const cancelSubscription = (service: BurstService):
+export const cancelSubscription = (service: ChainService):
     (args: CancelSubscriptionArgs) => Promise<TransactionId> =>
     async (args: CancelSubscriptionArgs): Promise<TransactionId> => {
 

@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import { BurstService } from '../../../service/burstService';
+import { ChainService } from '../../../service/chainService';
 import { PeerAddressList } from '../../../typings/peerAddressList';
 
 /**
@@ -10,7 +10,7 @@ import { PeerAddressList } from '../../../typings/peerAddressList';
  * See details at [[NetworkApi.getPeers]]
  * @module core.api.factories
  */
-export const getPeers = (service: BurstService):
+export const getPeers = (service: ChainService):
     (active: boolean) => Promise<PeerAddressList> =>
     (active: boolean = true): Promise<PeerAddressList> =>
         service.query('getPeers', {

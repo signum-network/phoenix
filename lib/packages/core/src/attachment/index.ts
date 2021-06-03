@@ -1,9 +1,8 @@
-import {constructAttachment} from '../internal/constructAttachment';
 import {isAttachmentVersion} from './isAttachmentVersion';
 import {getAttachmentVersion} from './getAttachmentVersion';
 
+// TODO: create a value object for Attachment
 export {
-    constructAttachment,
     isAttachmentVersion,
     getAttachmentVersion,
 };

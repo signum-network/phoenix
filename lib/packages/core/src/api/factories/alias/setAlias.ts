@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {generateSignature} from '@signumjs/crypto';
@@ -16,7 +16,7 @@ import {broadcastTransaction} from '../transaction/broadcastTransaction';
  * See details at [[AliasApi.setAlias]]
  * @module core.api.factories
  */
-export const setAlias = (service: BurstService): (
+export const setAlias = (service: ChainService): (
     aliasName: string,
     aliasURI: string,
     feeNQT: string,

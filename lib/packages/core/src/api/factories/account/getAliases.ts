@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {AliasList} from '../../../typings/aliasList';
 
 /**
@@ -10,7 +10,7 @@ import {AliasList} from '../../../typings/aliasList';
  * See details at [[AccountApi.getAliases]]
  * @module core.api.factories
  */
-export const getAliases = (service: BurstService):
+export const getAliases = (service: ChainService):
     (accountId: string) => Promise<AliasList> =>
     (accountId: string): Promise<AliasList> => service.query('getAliases', {
         account: accountId,

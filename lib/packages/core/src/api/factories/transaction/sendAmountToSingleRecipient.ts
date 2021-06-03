@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019 Burst Apps Team
  */
-import {BurstService} from '../../../service/burstService';
+import {ChainService} from '../../../service/chainService';
 import {TransactionId} from '../../../typings/transactionId';
 import {TransactionResponse} from '../../../typings/transactionResponse';
 import {DefaultDeadline} from '../../../constants';
@@ -15,7 +15,7 @@ import {SendAmountArgs} from '../../../typings/args/sendAmountArgs';
  * See details at [[TransactionApi.sendAmountToSingleRecipient]]
  * @module core.api.factories
  */
-export const sendAmountToSingleRecipient = (service: BurstService):
+export const sendAmountToSingleRecipient = (service: ChainService):
     (args: SendAmountArgs) => Promise<TransactionId> =>
     async (args: SendAmountArgs): Promise<TransactionId> => {
 

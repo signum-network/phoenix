@@ -1,6 +1,6 @@
-import {BurstService} from '../service/burstService';
+import {ChainService} from '../service/chainService';
 import {HttpError, HttpMockBuilder, HttpResponse, Http} from '@signumjs/http';
-import {BurstServiceSettings} from '../service/burstServiceSettings';
+import {ChainServiceSettings} from '../service/chainServiceSettings';
 import {createBurstService} from './helpers/createBurstService';
 import {DefaultApiEndpoint} from '../constants';
 
@@ -26,7 +26,7 @@ class TestHttpClient implements Http {
 describe('BurstService', () => {
     describe('constructor', () => {
         it('should create with least required parameters', () => {
-            const {settings} = new BurstService({
+            const {settings} = new ChainService({
                 nodeHost: 'nodeHost',
             });
             expect(settings.nodeHost).toBe('nodeHost');
@@ -36,7 +36,7 @@ describe('BurstService', () => {
         });
 
         it('should create with other HttpClient', () => {
-            const {settings} = new BurstService({
+            const {settings} = new ChainService({
                 nodeHost: 'nodeHost',
                 apiRootUrl: 'apiRootUrl',
                 reliableNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
@@ -51,29 +51,29 @@ describe('BurstService', () => {
 
     describe('toBRSEndpoint() relative Path', () => {
 
-        const settings: BurstServiceSettings = {
+        const settings: ChainServiceSettings = {
             nodeHost: 'localhost',
         };
 
-        let service = new BurstService(settings);
+        let service = new ChainService(settings);
 
         it('should create BRS BURST url without any parameter', () => {
-            const url = service.toBRSEndpoint('getBlockByHeight');
+            const url = service.toApiEndpoint('getBlockByHeight');
             expect(url).toBe('/burst?requestType=getBlockByHeight');
         });
 
         it('should create BRS BURST url with one parameter', () => {
-            const url = service.toBRSEndpoint('getBlockByHeight', {id: 123});
+            const url = service.toApiEndpoint('getBlockByHeight', {id: 123});
             expect(url).toBe('/burst?requestType=getBlockByHeight&id=123');
         });
 
         it('should create BRS BURST url with many parameters', () => {
-            const url = service.toBRSEndpoint('getBlockByHeight', {id: 123, includeTransactions: true});
+            const url = service.toApiEndpoint('getBlockByHeight', {id: 123, includeTransactions: true});
             expect(url).toBe('/burst?requestType=getBlockByHeight&id=123&includeTransactions=true');
         });
 
         it('should create BRS BURST url with many parameters and encode correctly', () => {
-            const url = service.toBRSEndpoint('getBlockByHeight', {
+            const url = service.toApiEndpoint('getBlockByHeight', {
                 id: 123,
                 includeTransactions: true,
                 data: '{"foo":"some data#&$%-";\n\t"bar":"1234"}'
@@ -82,7 +82,7 @@ describe('BurstService', () => {
         });
 
         it('should create BRS BURST url with many parameters ignoring undefined', () => {
-            const url = service.toBRSEndpoint('getBlockByHeight',
+            const url = service.toApiEndpoint('getBlockByHeight',
                 {
                     id: 123,
                     includeTransactions: true,
@@ -93,12 +93,12 @@ describe('BurstService', () => {
         });
 
         it('should create BRS BURST url with many parameters and relative Url', () => {
-            service = new BurstService({
+            service = new ChainService({
                     nodeHost: 'localhost',
                     apiRootUrl: '/burst/' // chopps trailing slash
                 }
             );
-            const url = service.toBRSEndpoint('getBlockByHeight', {id: 123, includeTransactions: true});
+            const url = service.toApiEndpoint('getBlockByHeight', {id: 123, includeTransactions: true});
             expect(url).toBe('/burst?requestType=getBlockByHeight&id=123&includeTransactions=true');
         });
 
@@ -228,7 +228,7 @@ describe('BurstService', () => {
             const testClient = new TestHttpClient();
             testClient.get = jest.fn().mockResolvedValue('get');
 
-            const service = new BurstService({
+            const service = new ChainService({
                 nodeHost: 'nodeHost',
                 apiRootUrl: 'apiRootUrl',
                 reliableNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
@@ -246,7 +246,7 @@ describe('BurstService', () => {
             const testClient = new TestHttpClient();
             testClient.get = jest.fn().mockResolvedValue('get');
 
-            const service = new BurstService({
+            const service = new ChainService({
                 nodeHost: 'nodeHost',
                 apiRootUrl: 'apiRootUrl',
                 reliableNodeHosts: ['trustedHost1', 'trustedHost2', 'trustedHost3'],
@@ -260,7 +260,7 @@ describe('BurstService', () => {
         });
 
         it('should throw error if not enough trustedHosts are set', async () => {
-            const service = new BurstService({
+            const service = new ChainService({
                 nodeHost: 'nodeHost',
                 apiRootUrl: 'apiRootUrl',
                 httpClient: new TestHttpClient()
