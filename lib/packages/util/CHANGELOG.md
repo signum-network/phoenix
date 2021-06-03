@@ -1,6 +1,20 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.0.0 (TBR)
+
+- Rebranding
+
+### Breaking changes
+
+- Rebranding
+- Removed all deprecated functions
+- Several Renamed Functions and classes
+
+----------------------------------------------------
+> Before Rebranding
+
+ 
 ## 0.6.0
 - `BurstValue.clone()` added
 - `BurstValue.fromPlanck()` accepts number now

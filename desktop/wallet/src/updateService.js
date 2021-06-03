@@ -1,7 +1,7 @@
 const PropTypes = require('prop-types');
 const _ = require('lodash');
 const semver = require('semver');
-const {HttpImpl} = require('@signumjs/http');
+const {HttpClientFactory} = require('@signumjs/http');
 const getSSL = require('get-ssl-certificate');
 
 const PlatformFilePatterns = {
@@ -36,7 +36,7 @@ class UpdateService {
 
     this.config = config;
     this.logger = logger;
-    this.http = httpImpl ? httpImpl : new HttpImpl(config.repositoryRootUrl);
+    this.http = httpImpl ? httpImpl : HttpClientFactory.createHttpClient(config.repositoryRootUrl);
   }
 
   _getRepositoryDomain() {

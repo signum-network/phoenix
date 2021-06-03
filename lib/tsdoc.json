@@ -1,5 +1,5 @@
 {
-  "name": "burstjs - The Burstcoin Reference Library",
+  "name": "signumjs - The Signum Network Reference Library",
   "mode": "modules",
   "hideGenerator": true,
   "inputFiles": ["./packages/**/*.ts"],

@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.0.0 (TBR)
+
+- Rebranding
+- Patched AES.decrypt method to throw concise error
+
+----------------------------------------------------
+> Before Rebranding
+
+
 ## 0.4.1
 - Patched AES.decrypt method 
 
