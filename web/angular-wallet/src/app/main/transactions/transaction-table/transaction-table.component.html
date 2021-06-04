@@ -101,8 +101,8 @@
       "confirmations" | i18n
       }}</mat-header-cell>
     <mat-cell *matCellDef="let transaction">
-      <span *ngIf="transaction.confirmations">{{transaction.confirmations}}</span>
-      <span *ngIf="!transaction.confirmations">{{'pending' | i18n}}</span>
+      <span *ngIf="transaction.confirmations !== undefined">{{transaction.confirmations}}</span>
+      <span *ngIf="transaction.confirmations === undefined">{{'pending' | i18n}}</span>
     </mat-cell>
   </ng-container>
 
