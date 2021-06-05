@@ -22,13 +22,13 @@ export class NetworkService {
   private api: Api;
   private _isMainNet = true;
   public blocks: BehaviorSubject<any> = new BehaviorSubject([]);
-  public isMainNet:  BehaviorSubject<boolean> = new BehaviorSubject(true);
+  public isMainNet$:  BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor(apiService: ApiService, private storeService: StoreService) {
     this.storeService.settings.subscribe(async () => {
       this.api = apiService.api;
       const isMainNet = await this.fetchIsMainNet();
-      this.isMainNet.next(isMainNet);
+      this.isMainNet$.next(isMainNet);
       this._isMainNet = isMainNet;
     });
   }
@@ -74,7 +74,7 @@ export class NetworkService {
     }
   }
 
-  // public isMainNet(): boolean {
-  //   return this._isMainNet;
-  // }
+  public isMainNet(): boolean {
+    return this._isMainNet;
+  }
 }

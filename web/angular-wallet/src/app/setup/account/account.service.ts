@@ -386,7 +386,7 @@ export class AccountService {
         return;
       }
 
-      const isMainNet = await this.networkService.isMainNet();
+      const isMainNet = this.networkService.isMainNet();
       const activatorUrl = isMainNet
         ? environment.activatorServiceUrl.mainNet
         : environment.activatorServiceUrl.testNet;

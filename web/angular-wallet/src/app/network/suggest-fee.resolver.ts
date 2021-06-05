@@ -10,7 +10,7 @@ export class SuggestFeeResolver implements Resolve<Promise<SuggestedFees>> {
       this.networkService = networkService;
   }
 
-  resolve(route: ActivatedRouteSnapshot) {
+  async resolve(route: ActivatedRouteSnapshot): Promise<SuggestedFees> {
     return this.networkService.suggestFee();
   }
 }

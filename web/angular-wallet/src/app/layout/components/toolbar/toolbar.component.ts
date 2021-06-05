@@ -1,7 +1,5 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation, Input} from '@angular/core';
-import {Subject} from 'rxjs';
+import {Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {takeUntil} from 'rxjs/operators';
-import * as _ from 'lodash';
 
 import {FuseConfigService} from '@fuse/services/config.service';
 import {FuseSidebarService} from '@fuse/components/sidebar/sidebar.service';
@@ -14,6 +12,7 @@ import {AccountService} from 'app/setup/account/account.service';
 import {Account} from '@signumjs/core';
 import {Router} from '@angular/router';
 import {NetworkService} from '../../../network/network.service';
+import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 
 @Component({
   selector: 'toolbar',
@@ -22,7 +21,7 @@ import {NetworkService} from '../../../network/network.service';
   encapsulation: ViewEncapsulation.None
 })
 
-export class ToolbarComponent implements OnInit, OnDestroy {
+export class ToolbarComponent extends UnsubscribeOnDestroy implements OnInit, OnDestroy {
   horizontalNavbar: boolean;
   rightNavbar: boolean;
   hiddenNavbar: boolean;
@@ -35,8 +34,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   @Input('selectedAccount') selectedAccount: Account;
   @Input('accounts') accounts: Account[];
 
-  private _unsubscribeAll: Subject<any>;
-
   constructor(
     private _fuseConfigService: FuseConfigService,
     private _fuseSidebarService: FuseSidebarService,
@@ -46,46 +43,34 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     private storeService: StoreService,
     private router: Router
   ) {
-
+    super();
     this.languages = constants.languages;
     this.navigation = navigation;
-    this._unsubscribeAll = new Subject();
   }
 
 
   ngOnInit(): void {
     // Subscribe to the config changes
     this._fuseConfigService.config
-      .pipe(takeUntil(this._unsubscribeAll))
+      .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((settings) => {
         this.horizontalNavbar = settings.layout.navbar.position === 'top';
         this.rightNavbar = settings.layout.navbar.position === 'right';
         this.hiddenNavbar = settings.layout.navbar.hidden === true;
       });
 
-    this.networkService.isMainNet
-      .pipe(takeUntil(this._unsubscribeAll))
+    this.networkService.isMainNet$
+      .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((isMainNet => {
         this.isMainNet = isMainNet;
       }));
 
-    // this.storeService.settings
-    //   .pipe(takeUntil(this._unsubscribeAll))
-    //   .subscribe(async ({node}) => {
-    //     this.isMainNet = this.networkService.isMainNet();
-    //   });
-
     this.storeService.ready
-      .pipe(takeUntil(this._unsubscribeAll))
+      .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(() => {
         this.selectedLanguage = this.i18nService.currentLanguage;
 
       });
-  }
-
-  ngOnDestroy(): void {
-    this._unsubscribeAll.next();
-    this._unsubscribeAll.complete();
   }
 
   toggleSidebarOpen(key): void {
