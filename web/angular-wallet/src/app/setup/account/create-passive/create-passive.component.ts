@@ -30,7 +30,7 @@ export class CreatePassiveAccountComponent implements OnInit {
   }
 
   public submit(address: string): void {
-    this.createService.setAddress(address);
+    this.createService.setAddress(`${this.addressPrefix}-${address}`);
     this.createService.createPassiveAccount().then((success) => {
         this.notificationService.notify('success', `Account added: ${address}`);
         this.createService.reset();
