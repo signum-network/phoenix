@@ -63,11 +63,17 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         this.hiddenNavbar = settings.layout.navbar.hidden === true;
       });
 
-    this.storeService.settings
+    this.networkService.isMainNet
       .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe(async ({node}) => {
-        this.isMainNet = await this.networkService.isMainNet();
-      });
+      .subscribe((isMainNet => {
+        this.isMainNet = isMainNet;
+      }));
+
+    // this.storeService.settings
+    //   .pipe(takeUntil(this._unsubscribeAll))
+    //   .subscribe(async ({node}) => {
+    //     this.isMainNet = this.networkService.isMainNet();
+    //   });
 
     this.storeService.ready
       .pipe(takeUntil(this._unsubscribeAll))

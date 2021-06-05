@@ -20,13 +20,16 @@ import {constants} from '../constants';
 @Injectable()
 export class NetworkService {
   private api: Api;
-  private isMainnet = true;
+  private _isMainNet = true;
   public blocks: BehaviorSubject<any> = new BehaviorSubject([]);
+  public isMainNet:  BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor(apiService: ApiService, private storeService: StoreService) {
     this.storeService.settings.subscribe(async () => {
       this.api = apiService.api;
-      this.isMainnet = await this.fetchIsMainNet();
+      const isMainNet = await this.fetchIsMainNet();
+      this.isMainNet.next(isMainNet);
+      this._isMainNet = isMainNet;
     });
   }
 
@@ -71,7 +74,7 @@ export class NetworkService {
     }
   }
 
-  public isMainNet(): boolean {
-    return this.isMainnet;
-  }
+  // public isMainNet(): boolean {
+  //   return this._isMainNet;
+  // }
 }
