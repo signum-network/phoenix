@@ -8,6 +8,7 @@ import {StoreService} from 'app/store/store.service';
 
 import {
   Account,
+  Address,
   AliasList,
   Api,
   Asset,
@@ -19,8 +20,7 @@ import {
   TransactionList,
   TransactionMiningSubtype,
   TransactionType,
-  UnconfirmedTransactionList,
-  Address
+  UnconfirmedTransactionList
 } from '@signumjs/core';
 import {decryptAES, encryptAES, generateMasterKeys, hashSHA256, Keys} from '@signumjs/crypto';
 import {Amount} from '@signumjs/util';
@@ -29,6 +29,7 @@ import {ApiService} from '../../api.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {NetworkService} from '../../network/network.service';
 import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';
+import {AddressPrefix} from '@signumjs/core/src';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -72,6 +73,7 @@ export class AccountService {
   public currentAccount: BehaviorSubject<Account> = new BehaviorSubject(undefined);
   private api: Api;
   private transactionsSeenInNotifications: string[] = [];
+  private accountPrefix: AddressPrefix.MainNet | AddressPrefix.TestNet;
 
   constructor(private storeService: StoreService,
               private networkService: NetworkService,
@@ -79,6 +81,10 @@ export class AccountService {
               private i18nService: I18nService) {
     this.storeService.settings.subscribe(() => {
       this.api = this.apiService.api;
+    });
+
+    this.networkService.isMainNet$.subscribe(() => {
+      this.accountPrefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
     });
   }
 
@@ -255,7 +261,7 @@ export class AccountService {
       };
       account.pinHash = hashSHA256(pin + keys.publicKey);
 
-      const address = Address.fromPublicKey(keys.publicKey);
+      const address = Address.fromPublicKey(keys.publicKey, this.accountPrefix);
       account.account = address.getNumericId();
       account.accountRS = address.getReedSolomonAddress();
 
