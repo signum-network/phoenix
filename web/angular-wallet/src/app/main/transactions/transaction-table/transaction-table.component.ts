@@ -64,13 +64,13 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
     return this.utilService.translateTransactionSubtype(transaction, this.account);
   }
 
-  public isOwnAccount(address: string): boolean {
-    return address && address === this.account.accountRS;
+  public isOwnAccount(accountId: string): boolean {
+    return accountId && accountId === this.account.account;
   }
 
   public getAmount(transaction: Transaction): string {
 
-    if (this.isOwnAccount(transaction.senderRS)) {
+    if (this.isOwnAccount(transaction.sender)) {
       return Amount.fromPlanck(transaction.amountNQT).multiply(-1).getSigna();
     }
 
@@ -81,7 +81,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
   public isAmountNegative(transaction: Transaction): boolean {
     const isZero = parseFloat(transaction.amountNQT) === 0;
-    return !isZero && this.isOwnAccount(transaction.senderRS);
+    return !isZero && this.isOwnAccount(transaction.sender);
   }
 
   public isCommitment(transaction: Transaction): boolean {

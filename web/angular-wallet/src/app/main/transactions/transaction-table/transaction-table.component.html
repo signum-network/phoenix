@@ -71,7 +71,7 @@
       <mat-icon>account_box</mat-icon>&nbsp;{{ "account" | i18n }}
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
-      <ng-container *ngIf="isOwnAccount(transaction.senderRS)">
+      <ng-container *ngIf="isOwnAccount(transaction.sender)">
         <div *ngIf="!isMultiOutPayment(transaction) && !transaction.recipientRS"
              class="centered text-uppercase"
         >
@@ -88,7 +88,7 @@
           {{"multiple_recipients" | i18n}}
         </div>
       </ng-container>
-      <a *ngIf="!isOwnAccount(transaction.senderRS)"
+      <a *ngIf="!isOwnAccount(transaction.sender)"
          class="centered"
          [routerLink]="['/account', transaction.sender]"
       >{{transaction.senderRS}}</a>
