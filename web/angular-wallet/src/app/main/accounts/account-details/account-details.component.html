@@ -10,7 +10,7 @@
         <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
         <a [routerLink]="['/accounts']" class="secondary-text">{{ 'accounts' | i18n }}</a>
         <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-        <span class="secondary-text">{{ account.accountRS }}</span>
+        <span class="secondary-text">{{ account.accountRS }} </span>
       </div>
       <div class="h1 mt-16">
         <h2>{{ account.accountRS }}</h2>
@@ -28,7 +28,7 @@
       <div class="details">
         <h2>{{ account.name || account.accountRS }}</h2>
         <h3>{{ account.account }}</h3>
-        <h4>{{ account.balanceNQT | convertNQTString | burstAmount }}</h4>
+        <h4>{{ account.balanceNQT | burstAmount:'planck' }}</h4>
       </div>
     </div>
 

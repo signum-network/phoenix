@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AttachmentEncryptedMessage, AttachmentMessage, Account, Transaction } from '@signumjs/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
-import { AccountService } from 'app/setup/account/account.service';
-import { StoreService } from 'app/store/store.service';
+import {Component, OnInit} from '@angular/core';
+import {AttachmentEncryptedMessage, AttachmentMessage, Account, Transaction} from '@signumjs/core';
+import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
+import {MatTableDataSource} from '@angular/material/table';
+import {AccountService} from 'app/setup/account/account.service';
+import {StoreService} from 'app/store/store.service';
 
 type TransactionDetailsCellValue = string | AttachmentMessage | AttachmentEncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
@@ -23,9 +23,9 @@ export class AccountDetailsComponent implements OnInit {
   language: string;
 
   constructor(private route: ActivatedRoute,
-    private router: Router,
-    private accountService: AccountService,
-    private storeService: StoreService) {
+              private router: Router,
+              private accountService: AccountService,
+              private storeService: StoreService) {
     router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this.loadAccountAndSetData();
@@ -37,13 +37,13 @@ export class AccountDetailsComponent implements OnInit {
     return Array.from(this.detailsData.entries());
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadAccountAndSetData();
   }
 
-  loadAccountAndSetData() {
+  loadAccountAndSetData(): void {
     this.account = this.route.snapshot.data.account as Account;
-    const blockDetails = Object.keys(this.account).map((key:string): TransactionDetailsCellValueMap => [ key, this.account[key]]);
+    const blockDetails = Object.keys(this.account).map((key: string): TransactionDetailsCellValueMap => [key, this.account[key]]);
     this.detailsData = new Map(blockDetails);
     this.dataSource = new MatTableDataSource<Transaction>();
     this.dataSource.data = this.route.snapshot.data.transactions;
@@ -51,8 +51,8 @@ export class AccountDetailsComponent implements OnInit {
     this.language = this.storeService.settings.value.language;
   }
 
-  async getAccountQRCodeUrl() {
-    return await this.accountService.generateSendTransactionQRCodeAddress(this.account.account);
+  async getAccountQRCodeUrl(): Promise<string> {
+    return this.accountService.generateSendTransactionQRCodeAddress(this.account.account);
   }
 
 }

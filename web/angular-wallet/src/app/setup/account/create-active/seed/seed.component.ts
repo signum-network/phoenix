@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {CreateService, StepsEnum} from '../../create.service';
 import {generateMasterKeys, PassPhraseGenerator} from '@signumjs/crypto';
 import {Address} from '@signumjs/core/src';
-
+import {NetworkService} from '../../../../network/network.service';
+import {AddressPrefix} from '@signumjs/core';
 
 @Component({
   selector: 'app-account-create-seed',
@@ -17,7 +18,8 @@ export class AccountCreateSeedComponent {
   passphraseGenerator: PassPhraseGenerator;
 
   constructor(
-    private createService: CreateService
+    private createService: CreateService,
+    private networkService: NetworkService,
   ) {
     this.passphraseGenerator = new PassPhraseGenerator();
   }
@@ -40,9 +42,11 @@ export class AccountCreateSeedComponent {
   }
 
   public setPassphraseAndGenerateMasterKeys(phrase: string[]): void {
+
+    const prefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
     this.createService.setPassphrase(phrase);
     const keys = generateMasterKeys(this.createService.getCompletePassphrase());
-    const address = Address.fromPublicKey(keys.publicKey);
+    const address = Address.fromPublicKey(keys.publicKey, prefix);
     this.createService.setId(address.getNumericId());
     this.createService.setAddress(address.getReedSolomonAddress());
     this.seed = [];
