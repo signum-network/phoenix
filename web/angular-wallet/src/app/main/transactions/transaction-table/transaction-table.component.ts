@@ -102,7 +102,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
   getRowClass(row: Transaction): string {
 
-    const cx = className => !row.confirmations ? `${className} unconfirmed` : className;
+    const cx = className => row.confirmations === undefined ? `${className} unconfirmed` : className;
 
     if (
       (!row.recipient && (row.type !== TransactionType.Payment)) ||

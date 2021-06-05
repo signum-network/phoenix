@@ -278,7 +278,7 @@ export class AccountService {
       await this.selectAccount(account);
       return this.synchronizeAccount(account);
     } else {
-      throw new Error('Burstcoin address already imported!');
+      throw new Error('Address already imported!');
     }
   }
 
@@ -316,13 +316,14 @@ export class AccountService {
     const incoming = transaction.recipientRS === this.currentAccount.value.accountRS;
     const totalAmount = Amount.fromPlanck(transaction.amountNQT).add(Amount.fromPlanck(transaction.feeNQT));
 
+    const header = this.i18nService.getTranslation(incoming ? 'youve_got_burst' : 'you_sent_burst');
+    const body = `${incoming ? transaction.recipientRS : transaction.senderRS}: ${totalAmount.toString()}`;
+
     // @ts-ignore
     return window.Notification && new window.Notification(
-      incoming
-        ? this.i18nService.getTranslation('youve_got_burst')
-        : this.i18nService.getTranslation('you_sent_burst'),
+      header,
       {
-        body: totalAmount.toString(),
+        body,
         title: 'Phoenix'
       });
 

@@ -42,7 +42,6 @@ export class AccountCreateSeedComponent {
   }
 
   public setPassphraseAndGenerateMasterKeys(phrase: string[]): void {
-
     const prefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
     this.createService.setPassphrase(phrase);
     const keys = generateMasterKeys(this.createService.getCompletePassphrase());
