@@ -4,6 +4,7 @@
     "name": "Signum Network",
     "email": "development@signum.network"
   },
+  "homepage": "https://phoenix-wallet.rocks",
   "productName": "Phoenix Signum Wallet",
   "version": "1.2.0",
   "contributors": [
