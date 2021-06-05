@@ -169,6 +169,10 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         htmlUrl,
         certInfo
       );
+
+      // open the dialog directly
+      this.onClickedNewVersion();
+
     });
 
     this.appService.onIpcMessage('new-version-download-started', () => {

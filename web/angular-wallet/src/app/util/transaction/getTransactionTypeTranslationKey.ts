@@ -45,8 +45,8 @@ function getKeyForArbitrarySubtype(account: Account, transaction: Transaction): 
       }
 
       return (account
-        && (transaction.senderRS === account.accountRS)
-        && (transaction.recipientRS === account.accountRS)) ? 'alias_sale_cancellation' : 'alias_transfer';
+        && (transaction.sender === account.account)
+        && (transaction.recipient === account.account)) ? 'alias_sale_cancellation' : 'alias_transfer';
 
     case TransactionArbitrarySubtype.AliasBuy:
       return 'alias_buy';

@@ -120,4 +120,8 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
     return cx('outgoing');
   }
+
+  public chopPrefix(reedSolomonAddress: string): string {
+    return reedSolomonAddress.substr(reedSolomonAddress.indexOf('-') + 1);
+  }
 }

@@ -1,9 +1,11 @@
 :host {
 
+  .smaller {
+    font-size: 1.2rem;
+  }
 
   .mat-column-transaction_id {
     flex: 0 0 200px;
-    font-size: 1.2rem;
   }
 
   .mat-column-attachment {
@@ -20,7 +22,6 @@
 
   .mat-column-account {
     flex: 0 0 225px;
-    font-size: 1.2rem;
   }
 
   .mat-column-amount {

@@ -3,7 +3,7 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>{{
       "transaction_id" | i18n
       }}</mat-header-cell>
-    <mat-cell *matCellDef="let transaction">
+    <mat-cell class="smaller" *matCellDef="let transaction">
       <a
         [routerLink]="['/transactions/transaction', transaction.transaction]"
       >{{ transaction.transaction }}</a
@@ -26,17 +26,14 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       <mat-icon>schedule</mat-icon>&nbsp;{{"date" | i18n}}
     </mat-header-cell>
-    <mat-cell
-      class="font-size-8"
-      *matCellDef="let transaction"
-    >
+    <mat-cell class="smaller" *matCellDef="let transaction">
       {{ getDate(transaction)}}
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="type">
     <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-    <mat-cell *matCellDef="let transaction">
+    <mat-cell class="smaller"  *matCellDef="let transaction">
       {{ getTransactionNameFromType(transaction) | i18n }}
     </mat-cell>
   </ng-container>
@@ -61,7 +58,7 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       <mat-icon>compare_arrows</mat-icon>&nbsp;{{ "fee" | i18n }}
     </mat-header-cell>
-    <mat-cell *matCellDef="let transaction">
+    <mat-cell class="smaller"  *matCellDef="let transaction">
       {{transaction.feeNQT | burstAmount:'planck':true}}
     </mat-cell>
   </ng-container>
@@ -70,7 +67,7 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       <mat-icon>account_box</mat-icon>&nbsp;{{ "account" | i18n }}
     </mat-header-cell>
-    <mat-cell *matCellDef="let transaction">
+    <mat-cell class="smaller" *matCellDef="let transaction">
       <ng-container *ngIf="isOwnAccount(transaction.sender)">
         <div *ngIf="!isMultiOutPayment(transaction) && !transaction.recipientRS"
              class="centered text-uppercase"
@@ -80,7 +77,7 @@
         <a *ngIf="!isMultiOutPayment(transaction) && transaction.recipientRS"
            class="centered"
            [routerLink]="['/account', transaction.recipient]">{{
-          transaction.recipientRS
+          chopPrefix(transaction.recipientRS)
           }}</a>
         <div *ngIf="isMultiOutPayment(transaction)"
              class="centered text-uppercase"
@@ -91,7 +88,7 @@
       <a *ngIf="!isOwnAccount(transaction.sender)"
          class="centered"
          [routerLink]="['/account', transaction.sender]"
-      >{{transaction.senderRS}}</a>
+      >{{chopPrefix(transaction.senderRS)}}</a>
 
     </mat-cell>
   </ng-container>
@@ -100,7 +97,7 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>{{
       "confirmations" | i18n
       }}</mat-header-cell>
-    <mat-cell *matCellDef="let transaction">
+    <mat-cell class="smaller" *matCellDef="let transaction">
       <span *ngIf="transaction.confirmations !== undefined">{{transaction.confirmations}}</span>
       <span *ngIf="transaction.confirmations === undefined">{{'pending' | i18n}}</span>
     </mat-cell>

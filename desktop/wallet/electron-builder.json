@@ -1,6 +1,6 @@
 {
-  "productName": "Phoenix Burst Wallet",
-  "appId": "org.burstcoin.phoenix",
+  "productName": "Phoenix Signum Wallet",
+  "appId": "org.signum.phoenix",
   "directories": {
     "output": "release-builds",
     "buildResources": "dist"

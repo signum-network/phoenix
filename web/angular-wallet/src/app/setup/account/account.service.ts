@@ -319,11 +319,11 @@ export class AccountService {
 
   public sendNewTransactionNotification(transaction: Transaction): void {
     this.transactionsSeenInNotifications[transaction.transaction] = true;
-    const incoming = transaction.recipientRS === this.currentAccount.value.accountRS;
+    const incoming = transaction.recipient === this.currentAccount.value.account;
     const totalAmount = Amount.fromPlanck(transaction.amountNQT).add(Amount.fromPlanck(transaction.feeNQT));
 
     const header = this.i18nService.getTranslation(incoming ? 'youve_got_burst' : 'you_sent_burst');
-    const body = `${incoming ? transaction.recipientRS : transaction.senderRS}: ${totalAmount.toString()}`;
+    const body = `${incoming ? transaction.recipient : transaction.sender}: ${totalAmount.toString()}`;
 
     // @ts-ignore
     return window.Notification && new window.Notification(

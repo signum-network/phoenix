@@ -86,7 +86,7 @@ export class CreateService {
   }
 
   public createPassiveAccount(): Promise<Account> {
-    return this.accountService.createOfflineAccount(`BURST-${this.accountRS}`);
+    return this.accountService.createOfflineAccount(this.accountRS);
   }
 
   public reset(): void {
