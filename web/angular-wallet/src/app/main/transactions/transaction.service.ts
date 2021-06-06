@@ -79,11 +79,11 @@ export class TransactionService {
   }
 
   private getSendersPrivateKey(pin: string, keys: Keys): string {
-    try {
-      return decryptAES(keys.signPrivateKey, hashSHA256(pin));
-    } catch (e) {
+    const privateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+    if (!privateKey) {
       throw new KeyDecryptionException();
     }
+    return privateKey;
   }
 
   public async sendBurstToMultipleRecipients(request: SendBurstMultipleRequest): Promise<TransactionId> {
@@ -114,7 +114,7 @@ export class TransactionService {
     let attachment: Attachment;
     if (message && shouldEncryptMessage) {
       const recipient = await this.accountService.getAccount(recipientId);
-      const agreementPrivateKey = decryptAES(keys.agreementPrivateKey, hashSHA256(pin));
+      const agreementPrivateKey = this.getSendersPrivateKey(pin, keys);
       let encryptedMessage: EncryptedMessage | EncryptedData;
       if (messageIsText) {
         encryptedMessage = encryptMessage(

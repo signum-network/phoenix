@@ -1,5 +1,9 @@
 # The Phoenix Desktop Wallet
-# 1.0.4 (TBR)
+# 1.2.0 (TBR) 
+
+- Signum Branded
+
+# 1.0.4
 - releases are marked as pre-release now (formerly draft)
 
 # 1.0.1

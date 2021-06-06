@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0 (Signum Rebrand)
+
+- Overall Rebranding for Signum
+- Full support for new Address prefixes (S, TS)
+- More preset nodes
+
+### Bug Fixes
+- Absolute Time in transaction list #1459
+- Feedback when wrong pin entered
+- minor improvements
+
 ## 1.1.0 (In Beta)
 
 - PoC+ Mining Features
