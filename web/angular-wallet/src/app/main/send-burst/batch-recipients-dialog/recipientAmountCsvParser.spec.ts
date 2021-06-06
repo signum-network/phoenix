@@ -32,6 +32,20 @@ describe('RecipientAmountCsvParser', () => {
       expect(recipientAmounts[2]).toEqual({recipient: '3', amountNQT: '3000000000'});
     });
 
+
+    it('should parse correct csv data with mixed address format', () => {
+      const testData = '15346065480176948044,10\n' +
+        'TS-9K9L-4CB5-88Y5-F5G4Z,20\n' +
+        '3,30';
+
+      const parser = new RecipientAmountCsvParser(mockTranslationService);
+      const recipientAmounts = parser.parse(testData);
+      expect(recipientAmounts.length).toBe(3);
+      expect(recipientAmounts[0]).toEqual({recipient: '3', amountNQT: '3000000000'});
+      expect(recipientAmounts[1]).toEqual({recipient: '15346065480176948044', amountNQT: '1000000000'});
+      expect(recipientAmounts[2]).toEqual({recipient: '16107620026796983538', amountNQT: '2000000000'});
+    });
+
     it('should parse correct csv data with custom options', () => {
       const testData = '1-10;' +
         '2-20;' +
@@ -110,7 +124,7 @@ describe('RecipientAmountCsvParser', () => {
         parser.parse(testData);
         expect(true).toBe('Exception expected');
       }catch (e){
-        expect(e.message).toContain('csv_error_invalid_amount');
+        expect(e.message).toContain('csv_error_unreadable_format');
       }
     });
 

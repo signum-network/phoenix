@@ -5,6 +5,12 @@
   align-items: center;
   flex-flow: column;
 
+  .help {
+    display: flex;
+    align-items: baseline;
+    flex-direction: row;
+  }
+
   .right {
     align-content: center;
     justify-content: flex-end;

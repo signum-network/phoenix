@@ -1,7 +1,8 @@
 import {MultioutRecipientAmount} from '@signumjs/core';
 import {I18nService} from '../../../layout/components/i18n/i18n.service';
-import {convertNQTStringToNumber, convertNumberToNQTString} from '@signumjs/util';
 import {constants} from '../../../constants';
+import {Address} from '@signumjs/core';
+import {Amount} from '@signumjs/util';
 
 export interface RecipientAmountCsvParserOptions {
   delimiter: string;
@@ -21,9 +22,10 @@ export class RecipientAmountCsvParser {
 
   }
 
-  private assertNoDuplicate(parsedRecipientAmounts: any, currentRecipient: string): void {
-    if (parsedRecipientAmounts[currentRecipient]) {
-      const message = `${this.translationService.getTranslation('csv_error_duplicated_recipient')}: ${currentRecipient}`;
+  private assertNoDuplicate(parsedRecipientAmounts: any, currentAddress: Address): void {
+    const numericId = currentAddress.getNumericId();
+    if (parsedRecipientAmounts[numericId]) {
+      const message = `${this.translationService.getTranslation('csv_error_duplicated_recipient')}: ${numericId}`;
       throw new Error(message);
     }
   }
@@ -32,18 +34,17 @@ export class RecipientAmountCsvParser {
     const MaxSameAmountCount = constants.maxRecipientsSameMultiout;
     const MaxDiffAmountCount = constants.maxRecipientsMultiout;
     const recipientCount = Object.keys(parsedRecipientAmounts).length;
-    if (!isSameAmount && recipientCount > MaxDiffAmountCount){
+    if (!isSameAmount && recipientCount > MaxDiffAmountCount) {
       const message = `${this.translationService.getTranslation('csv_error_max_limit_multiout')} ${MaxDiffAmountCount}`;
       throw new Error(message);
-    }
-    else if (isSameAmount && recipientCount > MaxSameAmountCount){
+    } else if (isSameAmount && recipientCount > MaxSameAmountCount) {
       const message = `${this.translationService.getTranslation('csv_error_max_limit_same_multiout')} ${MaxSameAmountCount}`;
       throw new Error(message);
     }
   }
 
-  private assertValidAmount(amount: number): void {
-    if (Number.isNaN(amount) || amount <= 0){
+  private assertValidAmount(amount: Amount): void {
+    if (amount.lessOrEqual(Amount.Zero())) {
       const message = `${this.translationService.getTranslation('csv_error_invalid_amount')}`;
       throw new Error(message);
     }
@@ -53,21 +54,23 @@ export class RecipientAmountCsvParser {
 
     const recipientAmounts = data.trim().split(this.options.lineBreak);
     const parsedRecipientAmounts = {};
-    let previousAmountNQT = null;
+    let previousAmount: Amount = null;
     recipientAmounts
-      .forEach( (ra = '') => {
+      .forEach((ra = '') => {
         const [recipient, amount] = ra.trim().split(this.options.delimiter);
-        if (!(recipient && amount)) {
+        let recipientAddress, recipientAmount;
+        try {
+          recipientAddress = Address.create(recipient.trim());
+          recipientAmount = Amount.fromSigna(amount.trim());
+        } catch (e) {
           throw new Error(this.translationService.getTranslation('csv_error_unreadable_format'));
         }
-        const trimmedAmount = parseFloat(amount.trim());
-        this.assertValidAmount(trimmedAmount);
-        const trimmedAmountNQT = convertNumberToNQTString(trimmedAmount);
-        const trimmedRecipient = recipient.trim();
-        this.assertNoDuplicate(parsedRecipientAmounts, trimmedRecipient);
-        parsedRecipientAmounts[trimmedRecipient] = trimmedAmountNQT;
-        this.assertNoMaximumExceeded(parsedRecipientAmounts, trimmedAmountNQT === previousAmountNQT);
-        previousAmountNQT = trimmedAmountNQT;
+
+        this.assertValidAmount(recipientAmount);
+        this.assertNoDuplicate(parsedRecipientAmounts, recipientAddress);
+        parsedRecipientAmounts[recipientAddress.getNumericId()] = recipientAmount.getPlanck();
+        this.assertNoMaximumExceeded(parsedRecipientAmounts, previousAmount && recipientAmount.equals(previousAmount));
+        previousAmount = recipientAmount;
       });
     const result = Object.keys(parsedRecipientAmounts).map(recipient => ({
         recipient,
