@@ -416,5 +416,7 @@
   "commitment_zero_balance": "Nu ați adăugat încă niciun angajament",
   "multiple_recipients": "Destinatari multipli",
   "self": "de sine",
-  "select_message_contact": "Selectați un contact pentru a începe un mesaj"
+  "select_message_contact": "Selectați un contact pentru a începe un mesaj",
+  "youve_got_from": "Contul __a__ a primit __b__ de la __c__",
+  "you_sent_to": "Contul __a__ a trimis __b__ la __c__"
 }

@@ -416,5 +416,7 @@
   "commitment_zero_balance": "您还没有添加承诺",
   "multiple_recipients": "多个收件人",
   "self": "自己",
-  "select_message_contact": "选择联系人以开始消息"
+  "select_message_contact": "选择联系人以开始消息",
+  "youve_got_from": "帐户 __a__ 从 __c__ 获得了 __b__",
+  "you_sent_to": "帐户 __a__ 向 __c__ 发送了 __b__"
 }

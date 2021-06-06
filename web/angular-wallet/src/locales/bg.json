@@ -416,5 +416,7 @@
   "commitment_zero_balance": "Все още не сте добавили ангажимент",
   "multiple_recipients": "Няколко получатели",
   "self": "себе си",
-  "select_message_contact": "Изберете контакт, за да започнете съобщение"
+  "select_message_contact": "Изберете контакт, за да започнете съобщение",
+  "youve_got_from": "Сметка __a__ получи __b__ от __c__",
+  "you_sent_to": "Акаунт __a__ изпратен __b__ до __c__"
 }

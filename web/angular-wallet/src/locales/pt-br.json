@@ -416,5 +416,7 @@
   "commitment_zero_balance": "Você ainda não adicionou nenhum comprometimento",
   "multiple_recipients": "Vários Destinatários",
   "self": "auto",
-  "select_message_contact": "Selecione um contato para iniciar uma mensagem"
+  "select_message_contact": "Selecione um contato para iniciar uma mensagem",
+  "youve_got_from": "A conta __a__ recebeu __b__ de __c__",
+  "you_sent_to": "Conta __a__ enviada __b__ para __c__"
 }

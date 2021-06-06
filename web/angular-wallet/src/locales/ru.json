@@ -416,5 +416,7 @@
   "commitment_zero_balance": "У вас еще нет добавленных обязательств",
   "multiple_recipients": "Несколько получателей",
   "self": "себя",
-  "select_message_contact": "Выберите контакт, чтобы начать сообщение"
+  "select_message_contact": "Выберите контакт, чтобы начать сообщение",
+  "youve_got_from": "Счет __a__ получил __b__ от __c__",
+  "you_sent_to": "Счет __a__ отправил __b__ на __c__"
 }

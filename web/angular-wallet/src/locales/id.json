@@ -416,5 +416,7 @@
   "commitment_zero_balance": "Anda belum memiliki komitmen yang ditambahkan",
   "multiple_recipients": "Beberapa Penerima",
   "self": "diri",
-  "select_message_contact": "Pilih kontak untuk memulai pesan"
+  "select_message_contact": "Pilih kontak untuk memulai pesan",
+  "youve_got_from": "Akun __a__ mendapat __b__ dari __c__",
+  "you_sent_to": "Akun __a__ mengirim __b__ ke __c__"
 }

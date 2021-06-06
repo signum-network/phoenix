@@ -416,5 +416,7 @@
   "commitment_zero_balance": "Sinulle ei ole vielä lisätty sitoumusta",
   "multiple_recipients": "Useita vastaanottajia",
   "self": "itse",
-  "select_message_contact": "Aloita viesti valitsemalla yhteyshenkilö"
+  "select_message_contact": "Aloita viesti valitsemalla yhteyshenkilö",
+  "youve_got_from": "Tili __a__ sai __b__ käyttäjältä __c__",
+  "you_sent_to": "Tili __a__ lähetti __b__ vastaanottajalle __c__"
 }

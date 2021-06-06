@@ -322,8 +322,23 @@ export class AccountService {
     const incoming = transaction.recipient === this.currentAccount.value.account;
     const totalAmount = Amount.fromPlanck(transaction.amountNQT).add(Amount.fromPlanck(transaction.feeNQT));
 
-    const header = this.i18nService.getTranslation(incoming ? 'youve_got_burst' : 'you_sent_burst');
-    const body = `${incoming ? transaction.recipient : transaction.sender}: ${totalAmount.toString()}`;
+    let header = '';
+    let body = '';
+    if (incoming) {
+      // Account __a__ got __b__ from __c__
+      header = this.i18nService.getTranslation('youve_got_burst');
+      body = this.i18nService.getTranslation('youve_got_from')
+        .replace('__a__', transaction.recipientRS)
+        .replace('__b__', totalAmount.toString())
+        .replace('__c__', transaction.senderRS);
+    } else {
+      // Account __a__ sent __b__ to __c__
+      header = this.i18nService.getTranslation('you_sent_burst');
+      body = this.i18nService.getTranslation('you_sent_to')
+        .replace('__a__', transaction.senderRS)
+        .replace('__b__', totalAmount.toString())
+        .replace('__c__', transaction.recipientRS);
+    }
 
     // @ts-ignore
     return window.Notification && new window.Notification(

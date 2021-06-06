@@ -416,5 +416,7 @@
   "commitment_zero_balance": "まだコミットメントが追加されていません",
   "multiple_recipients": "複数の受信者",
   "self": "自己",
-  "select_message_contact": "連絡先を選択してメッセージを開始してください"
+  "select_message_contact": "連絡先を選択してメッセージを開始してください",
+  "youve_got_from": "アカウント __a__ は __c__ から __b__ を取得しました",
+  "you_sent_to": "アカウント __a__ が __b__ を __c__ に送信しました"
 }

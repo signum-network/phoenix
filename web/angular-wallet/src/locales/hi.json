@@ -416,5 +416,7 @@
   "commitment_zero_balance": "आपने अभी तक कोई प्रतिबद्धता नहीं जोड़ी है",
   "multiple_recipients": "एकाधिक प्राप्तकर्ता",
   "self": "स्वयं",
-  "select_message_contact": "संदेश शुरू करने के लिए किसी संपर्क का चयन करें"
+  "select_message_contact": "संदेश शुरू करने के लिए किसी संपर्क का चयन करें",
+  "youve_got_from": "खाता __a__ को __c__ से __b__ मिला",
+  "you_sent_to": "खाता __a__ ने __b__ को __c__ को भेजा"
 }

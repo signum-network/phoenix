@@ -416,5 +416,7 @@
   "commitment_zero_balance": "Dar neturite jokių įsipareigojimų",
   "multiple_recipients": "Keli gavėjai",
   "self": "savarankiškai",
-  "select_message_contact": "Pasirinkite kontaktą, kad pradėtumėte pranešimą"
+  "select_message_contact": "Pasirinkite kontaktą, kad pradėtumėte pranešimą",
+  "youve_got_from": "Sąskaita __a__ gavo __b__ iš __c__",
+  "you_sent_to": "Sąskaita __a__ išsiųsta __b__ į __c__"
 }

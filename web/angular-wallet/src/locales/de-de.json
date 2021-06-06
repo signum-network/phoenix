@@ -416,5 +416,7 @@
   "commitment_zero_balance": "Du hast noch kein Commitment hinzugefügt",
   "multiple_recipients": "Mehrere Empfänger",
   "self": "selbst",
-  "select_message_contact": "Wähle einen Kontakt aus, um eine Nachricht zu senden"
+  "select_message_contact": "Wähle einen Kontakt aus, um eine Nachricht zu senden",
+  "youve_got_from": "Konto __a__ hat __b__ von __c__ erhalten",
+  "you_sent_to": "Konto __a__ hat __b__ an __c__ gesendet"
 }

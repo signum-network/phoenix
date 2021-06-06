@@ -416,5 +416,7 @@
   "commitment_zero_balance": "Encara no teniu cap compromís afegit",
   "multiple_recipients": "Destinataris múltiples",
   "self": "jo mateix",
-  "select_message_contact": "Seleccioneu un contacte per iniciar un missatge"
+  "select_message_contact": "Seleccioneu un contacte per iniciar un missatge",
+  "youve_got_from": "El compte __a__ ha obtingut __b__ de __c__",
+  "you_sent_to": "El compte __a__ ha enviat __b__ a __c__"
 }

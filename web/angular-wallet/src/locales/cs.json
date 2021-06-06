@@ -416,5 +416,7 @@
   "commitment_zero_balance": "Zatím nemáte přidán žádný závazek",
   "multiple_recipients": "Více příjemců",
   "self": "já",
-  "select_message_contact": "Vyberte kontakt pro zahájení zprávy"
+  "select_message_contact": "Vyberte kontakt pro zahájení zprávy",
+  "youve_got_from": "Účet __a__ dostal __b__ od __c__",
+  "you_sent_to": "Účet __a__ odeslán __b__ do __c__"
 }
