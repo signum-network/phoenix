@@ -22,7 +22,6 @@
     "main.js"
   ],
   "mac": {
-    "icon": "../assets/images/mac/icon.icns",
     "artifactName": "${os}-phoenix-signum-wallet.${version}.${ext}",
     "publish": [
       {
@@ -33,7 +32,6 @@
     "category": "public.app-category.finance"
   },
   "linux": {
-    "icon": "../assets/images/png/512x512.png",
     "artifactName": "${os}-phoenix-signum-wallet.${version}.${ext}",
     "target": [
       "AppImage",
@@ -49,7 +47,6 @@
     "category": "Finance"
   },
   "win": {
-    "icon": "../assets/images/win/icon.ico",
     "artifactName": "${os}-phoenix-signum-wallet.${version}.${ext}",
     "target": [
       "nsis",
