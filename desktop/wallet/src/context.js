@@ -35,7 +35,7 @@ class Context {
     }
 
     isLoggingEnabled() {
-        return this._args.isLoggingEnabled
+        return this.isDevelopmentMode() || this._args.isLoggingEnabled
     }
 
     isDevToolsEnabled() {

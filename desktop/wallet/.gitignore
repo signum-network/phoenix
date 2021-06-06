@@ -8,3 +8,5 @@ dist/
 
 # System Files
 Thumbs.db
+*.log
+
