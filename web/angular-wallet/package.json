@@ -6,7 +6,7 @@
   },
   "productName": "Phoenix Signum Wallet",
   "description": "The Signum web wallet",
-  "version": "1.2.0",
+  "version": "1.2.0-rc.1",
   "license": "GPL-3.0",
   "contributors": [
     "ohager",
