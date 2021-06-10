@@ -11,11 +11,24 @@ async function buildAngularWallet(cwd){
     process.chdir(cwd);
 }
 
+async function cleanDistFiles(){
+    const dest = path.join(__dirname, '../../desktop/wallet/dist');
+    await fs.remove(dest);
+}
+
 async function copyDistFiles(cwd) {
     const src = path.join(__dirname, '../../web/angular-wallet/dist');
     const dest = path.join(__dirname, '../../desktop/wallet/dist');
-    await fs.remove(dest);
     log.info(`Copying dist files
+    from: ${chalk.gray(src)} 
+    to: ${chalk.gray(dest)}`);
+    await fs.copy(src, dest);
+}
+
+async function copyIconFiles(cwd) {
+    const src = path.join(__dirname, '../../desktop/wallet/assets/icons');
+    const dest = path.join(__dirname, '../../desktop/wallet/dist');
+    log.info(`Copying icon files
     from: ${chalk.gray(src)} 
     to: ${chalk.gray(dest)}`);
     await fs.copy(src, dest);
@@ -31,7 +44,9 @@ async function updateBaseHref(cwd) {
 
 async function build({cwd}) {
     await buildAngularWallet(cwd);
+    await cleanDistFiles(cwd);
     await copyDistFiles(cwd);
+    await copyIconFiles(cwd);
     await updateBaseHref(cwd);
 }
 

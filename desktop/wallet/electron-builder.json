@@ -9,7 +9,8 @@
     {
       "name": "Phoenix Signum Wallet",
       "schemes": [
-        "signum"
+        "signum",
+        "burst"
       ]
     }
   ],

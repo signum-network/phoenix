@@ -139,7 +139,7 @@ function createWindow() {
                 {
                     label: 'Burst Wiki',
                     click() {
-                        shell.openExternal('https://burstwiki.org/');
+                        shell.openExternal('https://signum.community/');
                     }
                 },
                 {
@@ -329,7 +329,7 @@ if (isMacOS()) {
     app.setAboutPanelOptions({
         applicationName: app.getName(),
         applicationVersion: app.getVersion(),
-        copyright: 'Burst Apps Team/Signum Network Association',
+        copyright: 'Burst Apps Team/Signum Network',
         credits: 'ohager, blankey1337',
         version: process.versions.electron
     });
