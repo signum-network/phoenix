@@ -418,5 +418,6 @@
   "self": "uno mismo",
   "select_message_contact": "Seleccione un contacto para iniciar un mensaje",
   "youve_got_from": "La cuenta __a__ obtuvo __b__ de __c__",
-  "you_sent_to": "Cuenta __a__ enviada __b__ a __c__"
+  "you_sent_to": "Cuenta __a__ enviada __b__ a __c__",
+  "show_testnet_nodes": "Mostrar nodos de Testnet"
 }

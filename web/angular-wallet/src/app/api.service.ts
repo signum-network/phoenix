@@ -28,7 +28,7 @@ export class ApiService {
     this.nodeUrl = settings.node;
     const reliablePeers = constants.nodes
       .filter(({reliable}) => reliable)
-      .map(({address, port}) => `${address}:${port}`);
+      .map(({address, port}) => `${address}:${port}`)
 
     const apiSettings = new ApiSettings(
       this.nodeUrl,

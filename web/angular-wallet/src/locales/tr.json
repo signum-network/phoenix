@@ -418,5 +418,6 @@
   "self": "öz",
   "select_message_contact": "Mesaj başlatmak için bir kişi seçin",
   "youve_got_from": "__a__ hesabı __c__'den __b__ aldı",
-  "you_sent_to": "__a__ hesabı __b__'yi __c__'ye gönderdi"
+  "you_sent_to": "__a__ hesabı __b__'yi __c__'ye gönderdi",
+  "show_testnet_nodes": "Testnet Düğümlerini Göster"
 }

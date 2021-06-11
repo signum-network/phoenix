@@ -39,17 +39,21 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   }
 
   public selectedNode = new FormControl();
+  public showTestnet = new FormControl();
   public settings: Settings;
 
-  public nodes = SettingsComponent.createNodeList();
+  public nodes = SettingsComponent.createNodeList(false);
   public isFetchingNodeInfo = false;
   public showAdvancedOptions = false;
   public showConnectionErrorIcon = false;
   public selectedNodeVersion: string;
   public isAutomatic = true;
 
-  private static createNodeList(): Array<any> {
-    const nodes = constants.nodes.map(({address, port}) => `${address}:${port}`);
+  private static createNodeList(showTestnet: boolean): Array<any> {
+    const nodes = constants.nodes
+      .filter(({testnet}) => showTestnet === testnet)
+      .map(({address, port}) => port !== 443 ? `${address}:${port}` : address)
+      .sort();
     if (!environment.production) {
       nodes.push(environment.defaultNode);
     }
@@ -71,6 +75,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   async ngOnInit(): Promise<void> {
     this.settings = this.route.snapshot.data.settings as Settings;
     this.selectedNode.setValue(this.settings.node);
+    this.showTestnet.setValue(false);
     this.isAutomatic = this.settings.nodeAutoSelectionEnabled;
 
     const waitASecond = debounceTime(1000);
@@ -82,6 +87,12 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
       takeUntil(this.unsubscribeAll),
       waitASecond
     ).subscribe(updateVersion);
+
+    this.showTestnet.valueChanges.pipe(
+      takeUntil(this.unsubscribeAll),
+    ).subscribe(() => {
+      this.nodes = SettingsComponent.createNodeList(this.showTestnet.value);
+    });
 
     updateVersion();
   }

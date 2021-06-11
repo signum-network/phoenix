@@ -1,5 +1,5 @@
-import { LokiLocalStorageAdapter } from "lokijs";
-import { constants } from "app/constants";
+import { LokiLocalStorageAdapter } from 'lokijs';
+import { constants } from 'app/constants';
 
 export class StoreConfig {
     public databaseName: string;

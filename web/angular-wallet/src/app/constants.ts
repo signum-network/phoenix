@@ -75,11 +75,12 @@ export const constants = {
   nodes: [
     {
       name: 'Burstcoin.ro',
-      region: 'Global',
+      region: 'Europe',
       location: 'Europe',
       address: 'https://wallet.burstcoin.ro',
       port: 443,
       reliable: true,
+      testnet: false
     },
     {
       name: 'Signum Node UK',
@@ -88,14 +89,25 @@ export const constants = {
       address: 'https://uk.signum.network',
       port: 8125,
       reliable: true,
+      testnet: false
     },
     {
       name: 'Signum Node Brazil',
-      region: 'Latin America',
+      region: 'South America',
       location: 'Brazil',
       address: 'https://brazil.signum.network',
       port: 443,
       reliable: true,
+      testnet: false
+    },
+    {
+      name: 'Signum Node Canada',
+      region: 'North America',
+      location: 'Toronto',
+      address: 'https://canada.signum.network',
+      port: 443,
+      reliable: true,
+      testnet: false
     },
     {
       name: 'Signum Node EU',
@@ -104,6 +116,16 @@ export const constants = {
       address: 'https://europe.signum.network',
       port: 443,
       reliable: true,
+      testnet: false
+    },
+    {
+      name: 'Signum Node EU #1',
+      region: 'Europe',
+      location: 'Frankfurt',
+      address: 'https://europe1.signum.network',
+      port: 443,
+      reliable: true,
+      testnet: false
     },
     {
       name: 'Signum Node EU #2',
@@ -112,6 +134,16 @@ export const constants = {
       address: 'https://europe2.signum.network',
       port: 443,
       reliable: true,
+      testnet: false
+    },
+    {
+      name: 'Signum Node EU #3',
+      region: 'Europe',
+      location: 'Frankfurt',
+      address: 'https://europe3.signum.network',
+      port: 443,
+      reliable: true,
+      testnet: false
     },
     {
       name: 'Signum Node AU',
@@ -120,6 +152,7 @@ export const constants = {
       address: 'https://australia.signum.network',
       port: 443,
       reliable: true,
+      testnet: false
     },
     {
       name: 'Testnet Burstcoin.ro',
@@ -128,6 +161,7 @@ export const constants = {
       address: 'https://testnetwallet.burstcoin.ro',
       port: 443,
       reliable: false,
+      testnet: true
     },
     {
       name: 'Testnet Zoh',
@@ -136,6 +170,7 @@ export const constants = {
       address: 'https://testnet.burstcoin.network',
       port: 6876,
       reliable: false,
+      testnet: true
     },
     {
       name: 'Local Peer',
@@ -144,6 +179,7 @@ export const constants = {
       address: 'http://localhost',
       port: 8125,
       reliable: true,
+      testnet: false
     }
   ],
   supportUrl: 'https://github.com/burst-apps-team/phoenix/issues',
