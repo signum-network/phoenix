@@ -82,7 +82,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
       {transactions},
       {numberOfBlocks}
     ] = await Promise.all([
-      this.accountService.getMintedBlocks(this.account),
+      this.accountService.getForgedBlocks(this.account),
       this.accountService.getAddedCommitments(this.account),
       this.networkService.getBlockchainStatus()
     ]);

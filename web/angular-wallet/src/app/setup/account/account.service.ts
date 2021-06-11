@@ -1,8 +1,5 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-// TODO: not sure why this was imported here
-// import 'rxjs/add/operator/toPromise';
-// import 'rxjs/add/operator/timeout';
 import {environment} from 'environments/environment';
 import {StoreService} from 'app/store/store.service';
 
@@ -30,6 +27,7 @@ import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {NetworkService} from '../../network/network.service';
 import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';
 import {AddressPrefix} from '@signumjs/core/src';
+import {adjustLegacyAddressPrefix} from '../../util/adjustLegacyAddressPrefix';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -189,10 +187,12 @@ export class AccountService {
   public async getAccount(accountId: string): Promise<Account> {
     const supportsPocPlus = await this.apiService.supportsPocPlus();
     const includeCommittedAmount = supportsPocPlus || undefined;
-    return this.api.account.getAccount({
+    const account = await this.api.account.getAccount({
       accountId,
       includeCommittedAmount,
     });
+
+    return adjustLegacyAddressPrefix(account);
   }
 
   public getCurrentAccount(): Promise<Account> {
@@ -318,6 +318,13 @@ export class AccountService {
   }
 
   public sendNewTransactionNotification(transaction: Transaction): void {
+
+
+    // TODO: create a notification factory according the type and show proper notifications
+    if (transaction.type !== TransactionType.Payment) {
+      return;
+    }
+
     this.transactionsSeenInNotifications[transaction.transaction] = true;
     const incoming = transaction.recipient === this.currentAccount.value.account;
     const totalAmount = Amount.fromPlanck(transaction.amountNQT).add(Amount.fromPlanck(transaction.feeNQT));
@@ -429,7 +436,7 @@ export class AccountService {
     }
   }
 
-  public async getMintedBlocks(account: Account): Promise<BlockList> {
+  public async getForgedBlocks(account: Account): Promise<BlockList> {
     return this.api.account.getAccountBlocks({accountId: account.account});
   }
 

@@ -251,7 +251,7 @@ function onReady() {
 
             // Deeplinks for initial startup
             process.argv.forEach((arg) => {
-                if (/^burst:\/\//.test(arg)) {
+                if (/^(burst|signum):\/\//.test(arg)) {
                     win.webContents.send('deep-link-clicked', arg);
                 }
             });
@@ -260,6 +260,7 @@ function onReady() {
     ipcMain.on('new-version-asset-selected', downloadUpdate);
 
     app.setAsDefaultProtocolClient('burst');
+    app.setAsDefaultProtocolClient('signum');
 }
 
 if (!gotTheLock) {

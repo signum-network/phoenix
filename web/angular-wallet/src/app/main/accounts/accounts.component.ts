@@ -8,7 +8,6 @@ import {DeleteAccountDialogComponent} from './delete-account-dialog/delete-accou
 import {StoreService} from 'app/store/store.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {Account} from '@signumjs/core';
-import {convertNQTStringToNumber} from '@signumjs/util/out';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {I18nService} from '../../layout/components/i18n/i18n.service';
@@ -101,7 +100,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
               if (!accounts || !accounts.length) {
                 this.router.navigate(['/']);
                 this.accountService.selectAccount(null);
-              } else if (accounts.map(({ account }) => account).indexOf(this.selectedAccount.account) < 0) {
+              } else if (accounts.map(({ account : a }) => a).indexOf(this.selectedAccount.account) < 0) {
                 this.accountService.selectAccount(accounts[0]);
               }
             });
@@ -121,10 +120,6 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
-  }
-
-  public convertNQTStringToNumber(balanceNQT): number {
-    return convertNQTStringToNumber(balanceNQT);
   }
 
   async activateAccount(account: Account): Promise<void> {

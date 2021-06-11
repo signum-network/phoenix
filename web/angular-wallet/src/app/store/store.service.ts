@@ -4,6 +4,7 @@ import * as Loki from 'lokijs';
 import {StoreConfig} from './store.config';
 import {Settings} from 'app/settings';
 import {Account} from '@signumjs/core';
+import {adjustLegacyAddressPrefix} from '../util/adjustLegacyAddressPrefix';
 
 const CollectionName = {
   Account: 'accounts',
@@ -18,7 +19,9 @@ export class StoreService {
   public ready: BehaviorSubject<any> = new BehaviorSubject(false);
   public settings: BehaviorSubject<any> = new BehaviorSubject(false);
 
-  constructor(private storeConfig: StoreConfig) {
+  constructor(
+    private storeConfig: StoreConfig,
+  ) {
     this.store = new Loki(storeConfig.databaseName, {
       autoload: true,
       autoloadCallback: this.init.bind(this),
@@ -60,6 +63,9 @@ export class StoreService {
   }
 
   public saveAccount(account: Account): Promise<Account> {
+
+    account = adjustLegacyAddressPrefix(account);
+
     return new Promise((resolve, reject) => {
       if (this.ready.value) {
         this.store.loadDatabase({}, () => {
@@ -109,16 +115,16 @@ export class StoreService {
           let rs = accounts.find({selected: true});
           if (rs.length > 0) {
             const account = new Account(rs[0]);
-            resolve(account);
+            resolve(adjustLegacyAddressPrefix(account));
           } else {
             rs = accounts.find();
             if (rs.length > 0) {
               accounts.chain().find({account: rs[0].account}).update(a => {
                 a.selected = true;
               });
-              const w = new Account(rs[0]);
+              const storedAccount = new Account(rs[0]);
               this.store.saveDatabase();
-              resolve(w);
+              resolve(adjustLegacyAddressPrefix(storedAccount));
             } else {
               reject(undefined);
             }
@@ -164,8 +170,9 @@ export class StoreService {
         const accounts = this.store.getCollection(CollectionName.Account);
         const rs = accounts.find();
         const ws = [];
-        rs.map(single => {
-          ws.push(new Account(single));
+        rs.map(storedAccount => {
+          const account = adjustLegacyAddressPrefix(new Account(storedAccount));
+          ws.push(account);
         });
         resolve(ws);
       } else {
@@ -177,13 +184,14 @@ export class StoreService {
   /*
   * Method reponsible for finding an account by its numeric id from the database.
   */
-  public findAccount(account: string): Promise<Account> {
+  public findAccount(accountId: string): Promise<Account> {
     return new Promise((resolve, reject) => {
       if (this.ready.value) {
         const accounts = this.store.getCollection(CollectionName.Account);
-        const rs = accounts.find({account: account});
-        if (account && rs.length > 0) {
-          resolve(new Account(rs[0]));
+        const rs = accounts.find({account: accountId});
+        if (accountId && rs.length > 0) {
+          const storedAccount = new Account(rs[0]);
+          resolve(adjustLegacyAddressPrefix(storedAccount));
         } else {
           resolve(undefined);
         }
