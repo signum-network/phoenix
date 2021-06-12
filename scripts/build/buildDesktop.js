@@ -27,7 +27,7 @@ async function copyDistFiles(cwd) {
 
 async function copyIconFiles(cwd) {
     const src = path.join(__dirname, '../../desktop/wallet/assets/icons');
-    const dest = path.join(__dirname, '../../desktop/wallet/dist');
+    const dest = path.join(__dirname, '../../desktop/wallet/dist/icons');
     log.info(`Copying icon files
     from: ${chalk.gray(src)} 
     to: ${chalk.gray(dest)}`);
