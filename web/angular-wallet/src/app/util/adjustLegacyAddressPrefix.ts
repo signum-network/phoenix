@@ -8,8 +8,8 @@ export function adjustLegacyAddressPrefix(account: Account, isMainNet = true): A
     account.accountRS = account.accountRS.replace(OldPrefix, NewPrefix);
   }
 
-  if (account.accountRSExtended.startsWith(OldPrefix)) {
-    account.accountRS = account.accountRSExtended.replace(OldPrefix, NewPrefix);
+  if (account.accountRSExtended && account.accountRSExtended.startsWith(OldPrefix)) {
+    account.accountRSExtended = account.accountRSExtended.replace(OldPrefix, NewPrefix);
   }
 
   return account;
