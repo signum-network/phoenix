@@ -27,11 +27,12 @@ async function copyDistFiles(cwd) {
 
 async function copyIconFiles(cwd) {
     const src = path.join(__dirname, '../../desktop/wallet/assets/icons');
-    const dest = path.join(__dirname, '../../desktop/wallet/dist/icons');
+    const dest = path.join(__dirname, '../../desktop/wallet/dist/');
     log.info(`Copying icon files
     from: ${chalk.gray(src)} 
     to: ${chalk.gray(dest)}`);
     await fs.copy(src, dest);
+    await fs.copy(src, path.join(dest, './icons'));
 }
 
 // electron requires the base href to be relative, whereas most webservers assume a static root
