@@ -170,7 +170,11 @@ export class AccountService {
 
   private getPrivateKey(keys, pin): string {
     try {
-      return decryptAES(keys.signPrivateKey, hashSHA256(pin));
+      const privateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
+      if (!privateKey) {
+        throw new Error('Key Decryption Exception');
+      }
+      return privateKey;
     } catch (e) {
       throw new KeyDecryptionException();
     }

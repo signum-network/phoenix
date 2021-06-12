@@ -12,13 +12,13 @@
           </mat-form-field>
 
           <mat-form-field>
+            <span class="mr-8" matPrefix>{{symbol}}</span>
             <input matInput [(ngModel)]="amountNQT" name="amountNQT" placeholder="{{ 'amount' | i18n }}">
-            <label matSuffix>BURST</label>
           </mat-form-field>
 
           <mat-form-field>
+            <span class="mr-8" matPrefix>{{symbol}}</span>
             <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
-            <label matSuffix>BURST</label>
           </mat-form-field>
 
           <burst-fee-selector [fees]="fees" [(fee)]="feeNQT"></burst-fee-selector>
@@ -26,15 +26,16 @@
           <mat-checkbox [(ngModel)]="immutable" name="immutable">{{ "immutable" | i18n }}</mat-checkbox>
 
         </form>
-        <strong>{{'total' | i18n}}:</strong> {{ getTotal() | burstAmount }}
-        <br/><br/>
-        <button type="submit"
-                class="mr-8"
-                mat-raised-button
-                mat-button color="primary"
-                (click)="onSubmit($event)"
-                disabled="{{getAmount()===0}}"
-        >{{ "generate_qr" | i18n }}</button>
+        <div class="submit-qr">
+          <span><strong>{{'total' | i18n}}:</strong> {{ getTotal() | burstAmount }}</span>
+          <button type="submit"
+                  class="mr-8"
+                  mat-raised-button
+                  mat-button color="primary"
+                  (click)="onSubmit($event)"
+                  disabled="{{getAmount()===0}}"
+          >{{ "generate_qr" | i18n }}</button>
+        </div>
       </div>
     </mat-step>
     <mat-step>

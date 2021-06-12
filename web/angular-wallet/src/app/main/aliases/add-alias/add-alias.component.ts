@@ -8,6 +8,10 @@ import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {burstAddressPattern} from 'app/util/burstAddressPattern';
 import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 import {NetworkService} from '../../../network/network.service';
+import {SignaSymbol} from '@signumjs/util';
+import {handleException} from '../../../util/exceptions/handleException';
+
+const isNotEmpty = (value: string) => value && value.length > 0;
 
 @Component({
   selector: 'app-add-alias',
@@ -28,11 +32,13 @@ export class AddAliasComponent implements OnInit {
   advanced = false;
   showMessage = false;
   burstAddressPatternRef = burstAddressPattern;
-  type = 'uri';
+  type = 'acct';
   account: Account;
   deadline = '24';
   fees: SuggestedFees;
   addressPrefix: AddressPrefix.MainNet | AddressPrefix.TestNet;
+  symbol = SignaSymbol;
+  isSending = false;
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
@@ -50,6 +56,7 @@ export class AddAliasComponent implements OnInit {
   }
 
   async onSubmit(event): Promise<void> {
+    this.isSending = true;
     event.stopImmediatePropagation();
     try {
       await this.accountService.setAlias({
@@ -63,11 +70,13 @@ export class AddAliasComponent implements OnInit {
       this.notifierService.notify('success', this.i18nService.getTranslation('success_alias_register'));
       this.setAliasForm.resetForm();
     } catch (e) {
-      if (isKeyDecryptionError(e)) {
-        this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
-      } else {
-        this.notifierService.notify('error', this.i18nService.getTranslation('error_unknown'));
-      }
+      handleException({
+        e,
+        i18nService: this.i18nService,
+        notifierService: this.notifierService
+      });
+    } finally {
+      this.isSending = false;
     }
   }
 
@@ -78,5 +87,21 @@ export class AddAliasComponent implements OnInit {
       default:
         return this.uri;
     }
+  }
+
+  canSubmit(): boolean {
+    let value = '';
+    switch (this.type) {
+      case 'acct':
+        value = this.accountAliasURI;
+        break;
+      case 'uri':
+        value = this.uri;
+        break;
+      case 'other':
+      default:
+        value = this.alias;
+    }
+    return isNotEmpty(this.pin) && isNotEmpty(this.alias) && isNotEmpty(value);
   }
 }

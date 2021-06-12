@@ -3,16 +3,21 @@
   [breadcrumbs]="[{label:'aliases' | i18n, path: '/aliases'}]"
   *ngIf="fees"
 >
+  <div class="account-info pl-20 pr-20 mb-8">
+    <div class="account-info__field">
+      <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>
+      <p class="pb-8">{{account.accountRS}}</p>
+    </div>
+  </div>
 
   <form (ngSubmit)="onSubmit($event);" #setAliasForm="ngForm">
 
-    <mat-form-field>
-      <mat-select required [(value)]="type">
-        <mat-option value="uri">URI</mat-option>
-        <mat-option value="acct">Account</mat-option>
-        <mat-option value="other">Other</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <mat-radio-group fxLayout.gt-sm="row" fxLayoutAlign.gt-xs="space-between center" fxLayout.xs="column"
+                     fxLayoutAlign.xs="start start" [(ngModel)]="type" name="type">
+      <mat-radio-button class="mb-12" value="acct" >{{'account' | i18n}}</mat-radio-button>
+      <mat-radio-button class="mb-12" value="uri" >URI</mat-radio-button>
+      <mat-radio-button class="mb-12" value="other" >{{'other' | i18n}}</mat-radio-button>
+    </mat-radio-group>
 
     <mat-form-field>
       <input matInput [(ngModel)]="alias" name="alias" placeholder="{{ 'alias' | i18n }}">
@@ -22,10 +27,10 @@
       <input matInput [(ngModel)]="uri" name="uri" placeholder="{{ 'uri' | i18n }}">
     </mat-form-field>
 
-    <mat-form-field *ngIf="type==='account'">
+    <mat-form-field *ngIf="type==='acct'">
       <input matInput prefix="{{addressPrefix}}" pasteableAddress [patterns]="burstAddressPatternRef"
-             mask="____-____-____-_____" [dropSpecialCharacters]="false" [showMaskTyped]="true"
-             [(ngModel)]="accountAliasURI" name="accountAliasURI" placeholder="{{ 'account_id' | i18n }}">
+             mask="-____-____-____-_____" [dropSpecialCharacters]="false" [showMaskTyped]="true"
+             [(ngModel)]="accountAliasURI" name="accountAliasURI" placeholder="{{ 'address' | i18n }}">
     </mat-form-field>
 
     <mat-form-field *ngIf="type==='other'">
@@ -33,45 +38,28 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
-      <label matSuffix>BURST</label>
+      <mat-label>{{ 'fee' | i18n }}</mat-label>
+      <span class="mr-8" matPrefix>{{symbol}}</span>
+      <input matInput [(ngModel)]="feeNQT" name="fee">
     </mat-form-field>
 
     <burst-fee-selector [fees]="fees" [(fee)]="feeNQT"></burst-fee-selector>
 
-    <!-- TODO: use consistent PIN field -->
-    <mat-form-field class="pin">
-      <input type="password" matInput [(ngModel)]="pin" name="pin" placeholder="Your PIN">
-    </mat-form-field>
-
-    <div *ngIf="advanced">
-      <mat-form-field>
-        <label>{{ 'deadline_hours' | i18n }}</label>
-        <input matInput [(ngModel)]="deadline" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}">
+    <div class="submit-transaction">
+      <mat-form-field class="message-text password-field" floatLabel="never" appearance="standard">
+        <input type="password" matInput required placeholder="{{'enter_pin' | i18n}}" [(ngModel)]="pin" name="pin">
       </mat-form-field>
 
-      <mat-form-field>
-        <input matInput [(ngModel)]="fullHash" name="fullHash"
-               placeholder="{{ 'referenced_transaction_full_hash' | i18n }}" disabled>
-      </mat-form-field>
-
-      <mat-checkbox [(ngModel)]="broadcast" name="broadcast" disabled>{{ "do_not_broadcast" | i18n }}</mat-checkbox>
-      <br/>
-
-      <mat-checkbox [(ngModel)]="note" name="note" disabled>{{ "add_note_to_self_q" | i18n }}</mat-checkbox>
-
-      <div *ngIf="note">
-        <mat-form-field>
-          <textarea matInput [(ngModel)]="note_text" name="note_text" placeholder="{{ 'note' | i18n }}"></textarea>
-        </mat-form-field>
-      </div>
-
+      <button class="send-button" mat-icon-button type="submit" aria-label="Send message"
+              [disabled]="!canSubmit()">
+        <ng-container *ngIf="!isSending">
+          <mat-icon [class.enabled]="canSubmit() || false">send</mat-icon>
+        </ng-container>
+        <ng-container *ngIf="isSending">
+          <mat-spinner diameter="20"></mat-spinner>
+        </ng-container>
+      </button>
     </div>
   </form>
 
-  <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
-  <br/><br/>
-
-  <button type="submit" class="mr-8" mat-raised-button mat-button color="primary"
-          (click)="onSubmit($event)">{{ "register" | i18n }}</button>
 </app-page>

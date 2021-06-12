@@ -36,6 +36,7 @@ import { SuggestFeeResolver } from 'app/network/suggest-fee.resolver';
 import { LayoutModule } from 'app/layout/layout.module';
 import {PageModule} from '../../components/page/page.module';
 import {AppSharedModule} from '../../shared/shared.module';
+import {MatProgressSpinnerModule, MatRadioModule} from '@angular/material';
 
 const routes = [
   {
@@ -91,6 +92,8 @@ const routes = [
     RouterModule.forChild(routes),
     PageModule,
     AppSharedModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
   ]
 })
 export class AliasesModule { }
