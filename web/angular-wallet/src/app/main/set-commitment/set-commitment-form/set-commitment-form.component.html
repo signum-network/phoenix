@@ -1,6 +1,6 @@
 <form (ngSubmit)="onSubmit();" #sendForm="ngForm">
-  <mat-radio-group fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center" fxLayout.sm="column"
-                   fxLayoutAlign.sm="start start" [(ngModel)]="mode" name="mode">
+  <mat-radio-group fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center" fxLayout.xs="column"
+                   fxLayoutAlign.xs="start start" [(ngModel)]="mode" name="mode">
     <mat-radio-button class="mb-12" value="add"
                       [checked]="mode === 'add'">{{'add_commitment' | i18n}}</mat-radio-button>
     <mat-radio-button class="mb-12" value="revoke">{{'revoke_commitment' | i18n}}</mat-radio-button>
