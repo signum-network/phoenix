@@ -103,7 +103,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   private initDeepLinkHandler(): void {
     this.appService.onIpcMessage('deep-link-clicked', async (url) => {
       const deeplinkUrl = new URL(url);
-      if (deeplinkUrl.pathname === '//v1') {
+      if (deeplinkUrl.pathname.startsWith('//v1')) {
         await this.routeCIP22Deeplink(url);
       } else {
         await this.routeLegacyDeeplink(url);
