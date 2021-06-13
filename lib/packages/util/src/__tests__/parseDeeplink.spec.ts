@@ -3,7 +3,7 @@ import {EncoderFormat} from '../typings';
 
 describe('parseDeeplink', () => {
     it('should parse a deeplink without action and payload', () => {
-        expect(parseDeeplink('burst.testdomain://v1')).toEqual({
+        expect(parseDeeplink('signum.testdomain://v1')).toEqual({
             domain: 'testdomain',
             version: 'v1',
             action: undefined,
@@ -12,7 +12,7 @@ describe('parseDeeplink', () => {
     });
 
     it('should parse a deeplink without domain', () => {
-        expect(parseDeeplink('burst://v1')).toEqual({
+        expect(parseDeeplink('signum://v1')).toEqual({
             domain: undefined,
             version: 'v1',
             action: undefined,
@@ -21,7 +21,7 @@ describe('parseDeeplink', () => {
     });
 
     it('should parse a deeplink with action but without payload', () => {
-        expect(parseDeeplink('burst.testdomain://v1?action=testAction')).toEqual({
+        expect(parseDeeplink('signum.testdomain://v1?action=testAction')).toEqual({
             domain: 'testdomain',
             version: 'v1',
             action: 'testAction',
@@ -30,7 +30,7 @@ describe('parseDeeplink', () => {
     });
 
     it('should parse a deeplink with action and payload - unencoded', () => {
-        expect(parseDeeplink('burst.testdomain://v1?action=testAction&payload=testPayload', EncoderFormat.Text)).toEqual({
+        expect(parseDeeplink('signum.testdomain://v1?action=testAction&payload=testPayload', EncoderFormat.Text)).toEqual({
             domain: 'testdomain',
             version: 'v1',
             action: 'testAction',
@@ -40,7 +40,7 @@ describe('parseDeeplink', () => {
     });
 
     it('should parse a deeplink with action and payload - hex Encoded', () => {
-        expect(parseDeeplink('burst.testdomain://v1?action=testAction&payload=7b22666f6f223a22626172f09f9880222c22626172223a5b312c322c335d7d', EncoderFormat.Hexadecimal)).toEqual({
+        expect(parseDeeplink('signum.testdomain://v1?action=testAction&payload=7b22666f6f223a22626172f09f9880222c22626172223a5b312c322c335d7d', EncoderFormat.Hexadecimal)).toEqual({
             domain: 'testdomain',
             version: 'v1',
             action: 'testAction',
@@ -53,7 +53,7 @@ describe('parseDeeplink', () => {
     });
 
     it('should parse a deeplink with action and payload - base64 Encoded', () => {
-        expect(parseDeeplink('burst.testdomain://v1?action=testAction&payload=eyJmb28iOiJiYXLwn5iAIiwiYmFyIjpbMSwyLDNdfQ')).toEqual({
+        expect(parseDeeplink('signum.testdomain://v1?action=testAction&payload=eyJmb28iOiJiYXLwn5iAIiwiYmFyIjpbMSwyLDNdfQ')).toEqual({
             domain: 'testdomain',
             version: 'v1',
             action: 'testAction',
@@ -77,7 +77,7 @@ describe('parseDeeplink', () => {
         });
         it('should throw exception if deeplink is not compatible #2', () => {
             try {
-                parseDeeplink('burst.testdomain://wrongformat');
+                parseDeeplink('signum.testdomain://wrongformat');
                 expect('Expect an exception').toBeFalsy();
             } catch (e) {
                 expect(e.message).toContain('Invalid deeplink');
@@ -85,7 +85,7 @@ describe('parseDeeplink', () => {
         });
         it('should throw exception if deeplink is not compatible #3', () => {
             try {
-                parseDeeplink('burst.testdomain://v1?unknown=123');
+                parseDeeplink('signum.testdomain://v1?unknown=123');
                 expect('Expect an exception').toBeFalsy();
             } catch (e) {
                 expect(e.message).toContain('Invalid deeplink');
