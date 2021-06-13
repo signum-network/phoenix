@@ -6,7 +6,7 @@ import {DeeplinkParts, EncoderFormat} from './typings';
 import {convertHexStringToString} from './convertHexStringToString';
 import {convertBase64StringToString} from './convertBase64StringToString';
 
-const MandatoryPattern = /^burst.?(.+)?:\/\/(v.+?)\??/i;
+const MandatoryPattern = /^signum.?(.+)?:\/\/(v.+?)\??/i;
 /**
  * Parses a deeplink according the [CIP22 spec](https://github.com/burst-apps-team/CIPs/blob/master/cip-0022.md)
  *
