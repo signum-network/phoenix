@@ -7,7 +7,7 @@ const log = require('../log');
 async function buildLib(cwd){
     const libPath = path.join(__dirname, '../../lib');
     process.chdir(libPath);
-    await exec(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['run', 'build']);
+    await exec(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['run', 'tsc']);
     process.chdir(cwd);
 }
 
