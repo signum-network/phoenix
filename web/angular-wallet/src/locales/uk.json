@@ -419,5 +419,6 @@
   "select_message_contact": "Виберіть контакт, щоб розпочати повідомлення",
   "youve_got_from": "Обліковий запис __a__ отримав __b__ від __c__",
   "you_sent_to": "Рахунок __a__ надісланий __b__ до __c__",
-  "show_testnet_nodes": "Показати вузли Testnet"
+  "show_testnet_nodes": "Показати вузли Testnet",
+  "message_too_long": "Повідомлення задовге"
 }

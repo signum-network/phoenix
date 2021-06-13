@@ -419,5 +419,6 @@
   "select_message_contact": "Seleziona un contatto per iniziare un messaggio",
   "youve_got_from": "Il conto __a__ ha ricevuto __b__ da __c__",
   "you_sent_to": "Conto __a__ inviato __b__ a __c__",
-  "show_testnet_nodes": "Mostra nodi Testnet"
+  "show_testnet_nodes": "Mostra nodi Testnet",
+  "message_too_long": "Il messaggio è troppo lungo"
 }

@@ -43,7 +43,12 @@ interface QRData {
 }
 
 const isNotEmpty = (value: string) => value && value.length > 0;
-const isTrue = (value: any): boolean => value === 'true' || value === true;
+const asBool = (value: any, defaultValue: boolean): boolean => {
+  if (value === undefined) {
+    return defaultValue;
+  }
+  return value === 'true' || value === true;
+};
 
 @Component({
   selector: 'app-send-burst-form',
@@ -65,7 +70,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   advanced = false;
   showMessage = false;
   deadline = '24';
-  immutable: string | boolean = false;
+  immutable = false;
 
   public recipient = new Recipient();
   public fee: string;
@@ -149,10 +154,12 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
     this.amount = amountPlanck ? Amount.fromPlanck(amountPlanck).getSigna() : this.amount;
     this.fee = feePlanck ? Amount.fromPlanck(feePlanck).getSigna() : this.fee;
     this.message = message;
-    this.messageIsText = isTrue(messageIsText) || this.messageIsText;
-    this.immutable = isTrue(immutable) || this.immutable;
-    this.encrypt = isTrue(encrypt) || this.encrypt;
+    this.messageIsText = asBool(messageIsText, this.messageIsText);
+    this.immutable = asBool(immutable, this.immutable);
+    this.encrypt = asBool(encrypt, this.encrypt);
     this.deadline = typeof deadline === 'number' && deadline > 0 ? '' + deadline : deadline as string;
+
+    this.showMessage = !!message;
   }
 
   private applyLegacyDeepLinkParams(queryParams: Params): void {
@@ -166,14 +173,9 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
       this.amount = Amount.fromPlanck(amountNQT).getSigna();
     }
     this.message = message;
-    this.encrypt = encrypt;
-    this.immutable = immutable || this.immutable;
-    if (this.immutable === 'false') {
-      this.immutable = false;
-    }
-    if (messageIsText === 'false') {
-      this.messageIsText = false;
-    }
+    this.encrypt = asBool(encrypt, this.encrypt);
+    this.immutable = asBool(immutable, this.immutable);
+    this.messageIsText = asBool(messageIsText, this.messageIsText);
     if (feeSuggestionType && this.fees[feeSuggestionType]) {
       this.fee = Amount.fromPlanck(this.fees[feeSuggestionType]).getSigna();
     }
@@ -251,10 +253,15 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
       .greaterOrEqual(Amount.Zero());
   }
 
+  isMessageTooLong(): boolean {
+    return this.message && this.message.length > 1000;
+  }
+
   canSubmit(): boolean {
     return isNotEmpty(this.recipient.addressRaw) &&
       isNotEmpty(this.amount) &&
       isNotEmpty(this.pin) &&
+      !this.isMessageTooLong() &&
       this.hasSufficientBalance();
   }
 

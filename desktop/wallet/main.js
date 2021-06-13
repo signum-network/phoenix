@@ -7,6 +7,7 @@ const {migrateFromBurst} = require("./src/migrateFromBurst");
 let win;
 let downloadHandle;
 
+const DeeplinkProtocolScheme = 'signum://'
 const isLinux = () => process.platform === 'linux';
 const isMacOS = () => process.platform === 'darwin';
 const isWindows = () => process.platform === 'win32';
@@ -20,6 +21,7 @@ migrateFromBurst(app.getPath('appData'))
 function handleLatestUpdate(newVersion) {
     win.webContents.send('new-version', newVersion);
 }
+
 
 function getBrowserWindowConfig() {
     const commonConfig = {
@@ -50,6 +52,10 @@ function createWindow() {
     win.loadURL(`file://${distPath}/index.html`);
     win.maximize();
     win.show();
+
+    if(context.isDevelopmentMode()){
+        win.webContents.openDevTools()
+    }
 
     win.on('closed', function () {
         win = null
@@ -240,7 +246,7 @@ function downloadUpdate($event, assetUrl) {
 
 function onReady() {
     createWindow();
-
+    app.setAsDefaultProtocolClient('signum');
     if (win && win.webContents) {
         win.webContents.on('did-finish-load', () => {
             updateService.start((newVersion) => {
@@ -251,7 +257,7 @@ function onReady() {
 
             // Deeplinks for initial startup
             process.argv.forEach((arg) => {
-                if (/^(burst|signum):\/\//.test(arg)) {
+                if (arg.startsWith(DeeplinkProtocolScheme)) {
                     win.webContents.send('deep-link-clicked', arg);
                 }
             });
@@ -259,8 +265,6 @@ function onReady() {
     }
     ipcMain.on('new-version-asset-selected', downloadUpdate);
 
-    app.setAsDefaultProtocolClient('burst');
-    app.setAsDefaultProtocolClient('signum');
 }
 
 if (!gotTheLock) {
@@ -273,10 +277,8 @@ if (!gotTheLock) {
 
             // Deeplinks for Windows
             argv.forEach((arg) => {
-                if (/^burst:\/\//.test(arg)) {
-                    if (win.webContents) {
-                        win.webContents.send('deep-link-clicked', arg);
-                    }
+                if (arg.startsWith(DeeplinkProtocolScheme) && win.webContents) {
+                    win.webContents.send('deep-link-clicked', arg);
                 }
             });
 

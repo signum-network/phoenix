@@ -419,5 +419,6 @@
   "select_message_contact": "Изберете контакт, за да започнете съобщение",
   "youve_got_from": "Сметка __a__ получи __b__ от __c__",
   "you_sent_to": "Акаунт __a__ изпратен __b__ до __c__",
-  "show_testnet_nodes": "Показване на Testnet възли"
+  "show_testnet_nodes": "Показване на Testnet възли",
+  "message_too_long": "Съобщението е твърде дълго"
 }

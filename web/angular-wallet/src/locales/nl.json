@@ -419,5 +419,6 @@
   "select_message_contact": "Selecteer een contact om een bericht te starten",
   "youve_got_from": "Account __a__ kreeg __b__ van __c__",
   "you_sent_to": "Account __a__ heeft __b__ naar __c__ gestuurd",
-  "show_testnet_nodes": "Testnet-knooppunten weergeven"
+  "show_testnet_nodes": "Testnet-knooppunten weergeven",
+  "message_too_long": "Bericht is te lang"
 }

@@ -19,6 +19,7 @@
     "start": "ng serve --open --proxy-config proxy.config.json",
     "start-hmr": "ng serve --configuration hmr --source-map=false --hmr-warning=false",
     "start-hmr-sourcemaps": "ng serve --configuration hmr --source-map=true --hmr-warning=false",
+    "prebuild": "",
     "build": "cross-env NODE_OPTIONS=--max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build",
     "build:ci": "npm run build -- --aot --source-map=false --stats-json",
     "build:stats": "npm run build -- --dev --stats-json",

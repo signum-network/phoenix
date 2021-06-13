@@ -419,5 +419,6 @@
   "select_message_contact": "Wähle einen Kontakt aus, um eine Nachricht zu senden",
   "youve_got_from": "Konto __a__ hat __b__ von __c__ erhalten",
   "you_sent_to": "Konto __a__ hat __b__ an __c__ gesendet",
-  "show_testnet_nodes": "Testnet-Knoten anzeigen"
+  "show_testnet_nodes": "Testnet-Knoten anzeigen",
+  "message_too_long": "Nachricht ist zu lang"
 }

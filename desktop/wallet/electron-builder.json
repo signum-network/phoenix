@@ -8,10 +8,7 @@
   "protocols": [
     {
       "name": "Phoenix Signum Wallet",
-      "schemes": [
-        "signum",
-        "burst"
-      ]
+      "schemes": ["signum"]
     }
   ],
   "files": [
@@ -35,9 +32,7 @@
   "linux": {
     "artifactName": "${os}-phoenix-signum-wallet.${version}.${ext}",
     "target": [
-      "AppImage",
-      "deb",
-      "tar.gz"
+      "deb"
     ],
     "publish": [
       {

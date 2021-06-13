@@ -38,11 +38,17 @@
   <div *ngIf="showMessage">
     <mat-form-field>
       <textarea matInput [disabled]="immutable" [(ngModel)]="message" name="message"
-                placeholder="{{ 'message' | i18n }}"></textarea>
+                placeholder="{{ 'message' | i18n }}"
+                cdkTextareaAutosize
+      ></textarea>
     </mat-form-field>
-    <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="encrypt"
+    <mat-checkbox class="font-size-14"
+                  labelPosition="before"
+                  [disabled]="immutable"
+                  [(ngModel)]="encrypt"
                   name="encrypt">{{ "encrypt_message" | i18n }}?
     </mat-checkbox>
+    <div *ngIf="isMessageTooLong()" class="error">{{ "message_too_long" | i18n }}</div>
   </div>
 
   <div *ngIf="advanced">
@@ -72,6 +78,6 @@
   </div>
 
   <strong>{{'total' | i18n}}:&nbsp;</strong>
-  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getSigna() | burstAmount }}</span> -
+  <span [class.error]="!hasSufficientBalance()">{{ getTotal().getSigna() | burstAmount }}</span> -
   <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
 </form>
