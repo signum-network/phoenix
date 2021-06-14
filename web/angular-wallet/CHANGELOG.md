@@ -3,13 +3,20 @@
 ## 1.2.0 (Signum Rebrand)
 
 - Overall Rebranding for Signum
-- Full support for new Address prefixes (S, TS)
-- More preset nodes
+- Full support for new Address prefixes (S)
+- More preset nodes, with separated test nodes
+- Layout overhaul for legacy components, especially Alias Form
+
 
 ### Bug Fixes
+- Application Icons should work on all platforms now #1478
+- CIP22 deeplink fixed #1478
+- CSV Import fixed #1477
+- Desktop Notifications with accounts now #1446
 - Absolute Time in transaction list #1459
 - Feedback when wrong pin entered
-- minor improvements
+- countless minor improvements
+- cleaned up translation 
 
 ## 1.1.0 (In Beta)
 
