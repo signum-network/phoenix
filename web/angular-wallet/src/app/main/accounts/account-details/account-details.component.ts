@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AttachmentEncryptedMessage, AttachmentMessage, Account, Transaction} from '@signumjs/core';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {AccountService} from 'app/setup/account/account.service';
 import {StoreService} from 'app/store/store.service';
+import hashicon from 'hashicon';
 
 type TransactionDetailsCellValue = string | AttachmentMessage | AttachmentEncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
@@ -14,6 +15,7 @@ type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
   styleUrls: ['./account-details.component.scss']
 })
 export class AccountDetailsComponent implements OnInit {
+  @ViewChild('avatar', {static: false}) avatar: ElementRef<HTMLCanvasElement>;
 
   detailsData: Map<string, TransactionDetailsCellValue>;
   account: Account;
@@ -39,6 +41,9 @@ export class AccountDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAccountAndSetData();
+    setTimeout(() => {
+      this.updateAvatar();
+    }, 250)
   }
 
   loadAccountAndSetData(): void {
@@ -54,5 +59,15 @@ export class AccountDetailsComponent implements OnInit {
   async getAccountQRCodeUrl(): Promise<string> {
     return this.accountService.generateSendTransactionQRCodeAddress(this.account.account);
   }
+
+  private updateAvatar(): void {
+    if (this.avatar) {
+      hashicon(this.account.account, {
+        size: 100,
+        createCanvas: () => this.avatar.nativeElement
+      });
+    }
+  }
+
 
 }

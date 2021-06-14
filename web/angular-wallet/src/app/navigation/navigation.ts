@@ -65,7 +65,7 @@ export const navigation: FuseNavigation[] = [
         url: '/aliases',
       },
       {
-        id: 'my_assets',
+        id: 'assets',
         title: 'Assets',
         type: 'item',
         icon: 'pie_chart',

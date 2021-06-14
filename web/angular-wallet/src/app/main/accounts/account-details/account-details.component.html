@@ -22,8 +22,8 @@
   <div class=" p-24">
 
     <div class="row account-details">
-      <div class="qr">
-        <img [src]="accountQRCodeURL | async | addNodeUrl" />
+      <div class="hashicon">
+        <canvas #avatar></canvas>
       </div>
       <div class="details">
         <h2>{{ account.name || account.accountRS }}</h2>

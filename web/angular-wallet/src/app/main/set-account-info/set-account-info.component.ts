@@ -23,6 +23,7 @@ export class SetAccountInfoComponent implements OnInit {
   advanced = false;
   showMessage = false;
   isSending = false;
+  immutable = false;
   burstAddressPatternRef = burstAddressPattern;
   deadline = '24';
   pin = '';
@@ -41,6 +42,7 @@ export class SetAccountInfoComponent implements OnInit {
   ngOnInit(): void {
     this.account = this.route.snapshot.data.account as Account;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
+    this.immutable = this.account.type === 'offline';
     setTimeout(() => {
       this.fee = Amount.fromPlanck(this.fees.standard + '').getSigna();
       this.name = this.account.name;
