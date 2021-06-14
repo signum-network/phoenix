@@ -11,6 +11,7 @@ export interface Block {
     readonly baseTarget: number;
     readonly block: string;
     readonly blockReward: string;
+    readonly blockRewardNQT: string;
     readonly blockSignature: string;
     readonly generator: string;
     readonly generatorRS: string;
