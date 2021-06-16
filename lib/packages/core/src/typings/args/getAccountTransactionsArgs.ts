@@ -2,6 +2,7 @@
  * The argument object for [[AccountApi.getAccountTransactions]]
  *
  * @param {string} accountId The numeric accountId
+ * @param {string?} timestamp The timestamp (block time) you are looking for
  * @param {number?} firstIndex The first index of the transaction list, beginning at 0
  * @param {number?} lastIndex The last index of the transaction list (BRS does not return more than 500)
  * @param {number?} numberOfConfirmations The minimum required number of confirmations per transaction
@@ -14,6 +15,7 @@
  */
 export interface GetAccountTransactionsArgs {
     accountId: string;
+    timestamp?: string;
     firstIndex?: number;
     includeIndirect?: boolean;
     lastIndex?: number;
