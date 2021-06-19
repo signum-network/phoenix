@@ -28,6 +28,5 @@ export const NoAccounts: React.FunctionComponent<Props> = ({ onPress }) => {
         {i18n.t(auth.accounts.noAccounts.hint)}
       </Text>
     </TouchableOpacity>
-
   );
 };
