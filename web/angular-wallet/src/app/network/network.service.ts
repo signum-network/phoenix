@@ -8,7 +8,8 @@ import {
   BlockchainStatus,
   SuggestedFees,
   Peer,
-  PeerAddressList
+  PeerAddressList,
+  BlockList
 } from '@signumjs/core';
 
 import {ApiService} from '../api.service';
@@ -49,7 +50,7 @@ export class NetworkService {
     return this.api.block.getBlockById(id, false);
   }
 
-  public getBlocks(firstIndex?: number, lastIndex?: number, includeTransactions?: boolean): Promise<Block[]> {
+  public getBlocks(firstIndex?: number, lastIndex?: number, includeTransactions?: boolean): Promise<BlockList> {
     return this.api.block.getBlocks(firstIndex, lastIndex, includeTransactions);
   }
 
