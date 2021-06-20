@@ -3,6 +3,7 @@
  */
 import {Block} from '../block';
 import {BlockId} from '../blockId';
+import {BlockList} from '../blockList';
 
 
 /**
@@ -48,5 +49,5 @@ export interface BlockApi {
      * @param includeTransactions _true_, if transactions shall be included
      * @return {Block[]} the array of blocks retrieved
      */
-    getBlocks: (firstIndex?: number, lastIndex?: number, includeTransactions?: boolean) => Promise<Block[]>;
+    getBlocks: (firstIndex?: number, lastIndex?: number, includeTransactions?: boolean) => Promise<BlockList>;
 }

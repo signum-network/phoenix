@@ -2,7 +2,7 @@
  * Copyright (c) 2019 Burst Apps Team
  */
 import {ChainService} from '../../../service/chainService';
-import {Block} from '../../../typings/block';
+import {BlockList} from '../../../typings/blockList';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[BlockApi]].
@@ -12,8 +12,8 @@ import {Block} from '../../../typings/block';
  * @module core.api.factories
  */
 export const getBlocks = (service: ChainService):
-    (firstIndex?: number, lastIndex?: number, includeTransactions?: boolean) => Promise<Block[]> =>
-    (firstIndex?: number, lastIndex?: number, includeTransactions?: boolean): Promise<Block[]> =>
+    (firstIndex?: number, lastIndex?: number, includeTransactions?: boolean) => Promise<BlockList> =>
+    (firstIndex?: number, lastIndex?: number, includeTransactions?: boolean): Promise<BlockList> =>
         service.query('getBlocks', {
             firstIndex,
             lastIndex,
