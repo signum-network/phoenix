@@ -3,7 +3,7 @@
  * Modified work Copyright (c) 2019 Burst Apps Team
  */
 import {ChainService} from '../../../service/chainService';
-import {BurstTime} from '../../../typings/burstTime';
+import {ChainTime} from '../../../typings/chainTime';
 
 /**
  * Use with [[ApiComposer]] and belongs to [[NetworkApi]].
@@ -11,6 +11,6 @@ import {BurstTime} from '../../../typings/burstTime';
  * See details at [[NetworkApi.getSuggestedFees]]
  * @module core.api.factories
  */
-export const getTime = (service: ChainService): () => Promise<BurstTime> =>
-    async (): Promise<BurstTime> => await service.query('getTime');
+export const getTime = (service: ChainService): () => Promise<ChainTime> =>
+    async (): Promise<ChainTime> => await service.query('getTime');
 

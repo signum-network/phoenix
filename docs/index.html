@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>burstjs - The Burstcoin Reference Library</title>
+	<title>signumjs - The Signum Network Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="index, follow">
@@ -74,7 +74,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1>burstjs - The Burstcoin Reference Library</h1>
+			<h1>signumjs - The Signum Network Reference Library</h1>
 		</div>
 	</div>
 </header>
@@ -86,60 +86,60 @@
 				<blockquote>
 					<p>The BurstCoin Type/Javascript Reference Library</p>
 				</blockquote>
-				<p><img src="https://img.shields.io/npm/v/@burstjs/core.svg?style=flat" alt="npm">
+				<p><img src="https://img.shields.io/npm/v/@signumjs/core.svg?style=flat" alt="npm">
 					<a href="https://lernajs.io/"><img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" alt="lerna"></a>
 					<a href="https://www.codacy.com/app/ohager/phoenix?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=burst-apps-team/phoenix&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/81a6119af03d4a7e8a55c65999884709" alt="Codacy Badge"></a>
 					<a href="https://travis-ci.org/burst-apps-team/phoenix"><img src="https://travis-ci.org/burst-apps-team/phoenix.svg?branch=develop" alt="Build Status"></a>
 					<a href="https://snyk.io/test/github/burst-apps-team/phoenix?targetFile=lib%2Fpackage.json"><img src="https://snyk.io/test/github/burst-apps-team/phoenix/badge.svg?targetFile=lib%2Fpackage.json" alt="Known Vulnerabilities"></a>
 					<a href="https://codecov.io/gh/burst-apps-team/phoenix"><img src="https://codecov.io/gh/burst-apps-team/phoenix/branch/develop/graph/badge.svg" alt="codecov"></a>
-				<a href="https://www.jsdelivr.com/package/npm/@burstjs/core"><img src="https://data.jsdelivr.com/v1/package/npm/@burstjs/core/badge" alt="jsDelivr"></a></p>
-				<p><code>@burstjs</code> is a modern library written in Typescript providing common functionalities for <em>browsers</em> and <em>nodejs</em> to interact with the <a href="https://burstcoin.community/">BurstCoin blockchain</a>,
-				an advanced community-driven blockchain technology.</p>
+				<a href="https://www.jsdelivr.com/package/npm/@signumjs/core"><img src="https://data.jsdelivr.com/v1/package/npm/@signumjs/core/badge" alt="jsDelivr"></a></p>
+				<p><code>@signumjs</code> is a modern library written in Typescript providing common functionalities for <em>browsers</em> and <em>nodejs</em> to interact with the <a href="https://signum.network/">Signum blockchain</a>,
+				a sustainable, community-driven blockchain platform.</p>
 				<a href="#packages" id="packages" style="color: inherit; text-decoration: none;">
 					<h2>Packages</h2>
 				</a>
 				<p>The library is separated in the following packages</p>
 				<ul>
-					<li><a href="./modules/core.html">@burstjs/core</a> The main package providing an extense API for blockchain interaction</li>
-					<li><a href="./modules/contracts.html">@burstjs/contracts</a> A package providing BURST relevant functions for <em>smart contracts</em></li>
-					<li><a href="./modules/crypto.html">@burstjs/crypto</a> A package providing BURST relevant crypto functions</li>
-					<li><a href="./modules/http.html">@burstjs/http</a> A package providing a <em>simplified</em> Http layer, with consistent response types, and exception handling</li>
-					<li><a href="./modules/monitor.html">@burstjs/monitor</a> A package providing a helper that executes functions periodically. Useful for monitoring pending transactions, or accounts </li>
-					<li><a href="./modules/util.html">@burstjs/util</a> A package providing useful functions, e.g. common conversion functions </li>
+					<li><a href="./modules/core.html">@signumjs/core</a> The main package providing an extense API for blockchain interaction</li>
+					<li><a href="./modules/contracts.html">@signumjs/contracts</a> A package providing functions for <em>smart contracts</em></li>
+					<li><a href="./modules/crypto.html">@signumjs/crypto</a> A package providing crypto functions</li>
+					<li><a href="./modules/http.html">@signumjs/http</a> A package providing a <em>simplified</em> Http layer, with consistent response types, and exception handling</li>
+					<li><a href="./modules/monitor.html">@signumjs/monitor</a> A package providing a helper that executes functions periodically. Useful for monitoring pending transactions, or accounts </li>
+					<li><a href="./modules/util.html">@signumjs/util</a> A package providing useful functions, e.g. common conversion functions </li>
 				</ul>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
-				<p><code>@burstjs</code> aims modern browsers and nodejs &gt; v10, but can also be used as bundled JavaScript using <code>&lt;script&gt;</code> </p>
+				<p><code>@signumjs</code> aims modern browsers and nodejs &gt; v10, but can also be used as bundled JavaScript using <code>&lt;script&gt;</code> </p>
 				<a href="#using-with-nodejs-andor-modern-web-frameworks" id="using-with-nodejs-andor-modern-web-frameworks" style="color: inherit; text-decoration: none;">
 					<h3>Using with NodeJS and/or modern web frameworks</h3>
 				</a>
 				<p>Install using <a href="https://www.npmjs.org/">npm</a>:</p>
-				<pre><code><span class="hljs-built_in">npm</span> install @burstjs/core
-<span class="hljs-built_in">npm</span> install @burstjs/contracts (optional)
-<span class="hljs-built_in">npm</span> install @burstjs/crypto (optional)
-<span class="hljs-built_in">npm</span> install @burstjs/util (optional)
-<span class="hljs-built_in">npm</span> install @burstjs/http (optional)</code></pre><p>or using <a href="https://yarnpkg.com/">yarn</a>:</p>
-				<pre><code class="language-yarn">yarn add @burstjs/core
-yarn add @burstjs/contracts (optional)
-yarn add @burstjs/crypto (optional)
-yarn add @burstjs/util (optional)
-yarn add @burstjs/http (optional)</code></pre>
+				<pre><code><span class="hljs-built_in">npm</span> install @signumjs/core
+<span class="hljs-built_in">npm</span> install @signumjs/contracts (optional)
+<span class="hljs-built_in">npm</span> install @signumjs/crypto (optional)
+<span class="hljs-built_in">npm</span> install @signumjs/util (optional)
+<span class="hljs-built_in">npm</span> install @signumjs/http (optional)</code></pre><p>or using <a href="https://yarnpkg.com/">yarn</a>:</p>
+				<pre><code class="language-yarn">yarn add @signumjs/core
+yarn add @signumjs/contracts (optional)
+yarn add @signumjs/crypto (optional)
+yarn add @signumjs/util (optional)
+yarn add @signumjs/http (optional)</code></pre>
 				<blockquote>
-					<p>Usually, you won&#39;t need to install other packages than <code>@burstjs/core</code>, which uses the other packages.</p>
+					<p>Usually, you won&#39;t need to install other packages than <code>@signumjs/core</code>, which uses the other packages.</p>
 				</blockquote>
 				<a href="#using-in-classic-ltscriptgt" id="using-in-classic-ltscriptgt" style="color: inherit; text-decoration: none;">
 					<h3>Using in classic <code>&lt;script&gt;</code></h3>
 				</a>
 				<p>Each package is available as bundled standalone library using IIFE.
-					This way <em>burstJS</em> can be used also within <code>&lt;script&gt;</code>-Tags.
+					This way <em>SignumJS</em> can be used also within <code>&lt;script&gt;</code>-Tags.
 				This might be useful for Wordpress and/or other PHP applications.</p>
 				<p>Just import one of the packages using the HTML <code>&lt;script&gt;</code> tag.</p>
-				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@burstjs/core/dist/burstjs.min.js&#39;&gt;&lt;/script&gt;</code></p>
-				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@burstjs/contracts/dist/burstjs.contracts.min.js&#39;&gt;&lt;/script&gt;</code></p>
-				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@burstjs/crypto/dist/burstjs.crypto.min.js&#39;&gt;&lt;/script&gt;</code></p>
-				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@burstjs/http/dist/burstjs.http.min.js&#39;&gt;&lt;/script&gt;</code></p>
-				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@burstjs/util/dist/burstjs.util.min.js&#39;&gt;&lt;/script&gt;</code></p>
+				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@signumjs/core/dist/signumjs.min.js&#39;&gt;&lt;/script&gt;</code></p>
+				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@signumjs/contracts/dist/signumjs.contracts.min.js&#39;&gt;&lt;/script&gt;</code></p>
+				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@signumjs/crypto/dist/signumjs.crypto.min.js&#39;&gt;&lt;/script&gt;</code></p>
+				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@signumjs/http/dist/signumjs.http.min.js&#39;&gt;&lt;/script&gt;</code></p>
+				<p><code>&lt;script src=&#39;https://cdn.jsdelivr.net/npm/@signumjs/util/dist/signumjs.util.min.js&#39;&gt;&lt;/script&gt;</code></p>
 				<p>Due to the way a package is imported following global variables are provided</p>
 				<table>
 					<thead>
@@ -171,21 +171,20 @@ yarn add @burstjs/http (optional)</code></pre>
 				</tbody></table>
 				<p>Examples:</p>
 				<pre><code class="language-js"><span class="hljs-comment">// using core</span>
-<span class="hljs-keyword">const</span> api = b$.composeApi({
-  <span class="hljs-attr">nodeHost</span>: <span class="hljs-string">"http://at-testnet.burst-alliance.org:6876"</span>,
-  <span class="hljs-attr">apiRootUrl</span>: <span class="hljs-string">"/burst"</span>
+<span class="hljs-keyword">const</span> api = sig$.composeApi({
+  <span class="hljs-attr">nodeHost</span>: <span class="hljs-string">"https://testnet.signum.network:6876"</span>,
 });
 
 api.network.getBlockchainStatus().then(<span class="hljs-built_in">console</span>.log);</code></pre>
 				<pre><code class="language-js"><span class="hljs-comment">// using contracts</span>
-<span class="hljs-keyword">const</span> dataView = <span class="hljs-keyword">new</span> b$contracts.ContractDataView(contract)
+<span class="hljs-keyword">const</span> dataView = <span class="hljs-keyword">new</span> sig$contracts.ContractDataView(contract)
 <span class="hljs-built_in">console</span>.log(dataView.getVariable(<span class="hljs-number">2</span>))</code></pre>
 				<pre><code class="language-js"><span class="hljs-comment">// using crypto</span>
-<span class="hljs-built_in">console</span>.log(b$crypto.hashSHA256(<span class="hljs-string">"test"</span>))</code></pre>
+<span class="hljs-built_in">console</span>.log(sig$crypto.hashSHA256(<span class="hljs-string">"test"</span>))</code></pre>
 				<pre><code class="language-js"><span class="hljs-comment">// using util</span>
-<span class="hljs-keyword">const</span> value = b$util.convertNumberToNQTString(<span class="hljs-number">1000</span>)</code></pre>
+<span class="hljs-keyword">const</span> amount = sig$util.Amount.fromSigna(<span class="hljs-number">1000</span>)</code></pre>
 				<pre><code class="language-js"><span class="hljs-comment">// using http</span>
-<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> b$http.HttpImpl(<span class="hljs-string">'https://jsonplaceholder.typicode.com/'</span>);
+<span class="hljs-keyword">const</span> client = sig$http.HttpClientFactory.createHttpClient(<span class="hljs-string">'https://jsonplaceholder.typicode.com/'</span>);
 client.get(<span class="hljs-string">'/todos/1'</span>).then(<span class="hljs-built_in">console</span>.log)</code></pre>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
@@ -195,10 +194,10 @@ client.get(<span class="hljs-string">'/todos/1'</span>).then(<span class="hljs-b
 					<h3>ES6/NodeJS style</h3>
 				</a>
 				<p>In a separate file, preferribly <code>index.js</code> or <code>main.js</code> write your entry point like this:</p>
-				<pre><code class="language-js"><span class="hljs-keyword">import</span> {composeApi, ApiSettings} <span class="hljs-keyword">from</span> <span class="hljs-string">'@burstjs/core'</span>
-<span class="hljs-keyword">import</span> {convertNQTStringToNumber} <span class="hljs-keyword">from</span> <span class="hljs-string">'@burstjs/util'</span>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> {composeApi, ApiSettings} <span class="hljs-keyword">from</span> <span class="hljs-string">'@signumjs/core'</span>
+<span class="hljs-keyword">import</span> {Amount} <span class="hljs-keyword">from</span> <span class="hljs-string">'@signumjs/util'</span>
 
-<span class="hljs-keyword">const</span> apiSettings = <span class="hljs-keyword">new</span> ApiSettings(<span class="hljs-string">'http://at-testnet.burst-alliance.org:6876'</span>, <span class="hljs-string">'burst'</span>);
+<span class="hljs-keyword">const</span> apiSettings = <span class="hljs-keyword">new</span> ApiSettings(<span class="hljs-string">'https://testnet.signum.network:6876'</span>);
 <span class="hljs-keyword">const</span> api = composeApi(apiSettings);
 
 <span class="hljs-comment">// this self-executing file makes turns this file into a starting point of your app</span>
@@ -206,9 +205,9 @@ client.get(<span class="hljs-string">'/todos/1'</span>).then(<span class="hljs-b
 <span class="hljs-function">(<span class="hljs-params"><span class="hljs-keyword">async</span> (</span>) =&gt;</span> {
   <span class="hljs-keyword">try</span>{
     <span class="hljs-keyword">const</span> {balanceNQT} = <span class="hljs-keyword">await</span> api.account.getAccountBalance(<span class="hljs-string">'13036514135565182944'</span>)
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Account Balance: <span class="hljs-subst">${convertNQTStringToNumber(balanceNQT)}</span> BURST`</span>)  
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Account Balance: <span class="hljs-subst">${Amount.fromPlanck(balanceNQT).toString()}</span>`</span>)  
   }
-  <span class="hljs-keyword">catch</span>(e){ <span class="hljs-comment">// e is of type HttpError (as part of @burstjs/http)</span>
+  <span class="hljs-keyword">catch</span>(e){ <span class="hljs-comment">// e is of type HttpError (as part of @signumjs/http)</span>
     <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`Whooops, something went wrong: <span class="hljs-subst">${e.message}</span>`</span>)      
   }
 })()
@@ -216,16 +215,16 @@ client.get(<span class="hljs-string">'/todos/1'</span>).then(<span class="hljs-b
 				<a href="#ltscriptgt-style" id="ltscriptgt-style" style="color: inherit; text-decoration: none;">
 					<h3><code>&lt;script&gt;</code> style</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> apiSettings = <span class="hljs-keyword">new</span> b$.ApiSettings(<span class="hljs-string">'http://at-testnet.burst-alliance.org:6876'</span>, <span class="hljs-string">'burst'</span>);
-<span class="hljs-keyword">const</span> api = b$.composeApi(apiSettings);
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> apiSettings = <span class="hljs-keyword">new</span> sig$.ApiSettings(<span class="hljs-string">'https://testnet.signum.network:6876'</span>);
+<span class="hljs-keyword">const</span> api = sig$.composeApi(apiSettings);
 
 
 api.account.getAccountBalance(<span class="hljs-string">'13036514135565182944'</span>)
     .then( <span class="hljs-function"><span class="hljs-params">balance</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Account Balance: <span class="hljs-subst">${b$util.convertNQTStringToNumber(balance.balanceNQT)}</span> BURST`</span>)  
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Account Balance: <span class="hljs-subst">${b$util.Amount.fromPlanck(balance.balanceNQT).toString()}</span>`</span>)  
 
     })
-    .catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> { <span class="hljs-comment">// e is of type HttpError (as part of @burstjs/http)</span>
+    .catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> { <span class="hljs-comment">// e is of type HttpError (as part of @signumjs/http)</span>
         <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`Whooops, something went wrong: <span class="hljs-subst">${e.message}</span>`</span>)      
     })
 </code></pre>

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>core.api.factories
-	| burstjs - The Burstcoin Reference Library</title>
+	| signumjs - The Signum Network Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="index, follow">
@@ -93,7 +93,7 @@
 						rather than using the Factory Methods itself</p>
 					</div>
 					<p>The factory methods are higher-order functions which
-						receives a <a href="../classes/core.burstservice.html">BurstService</a> instance in first order, and
+						receives a <a href="../classes/core.chainservice.html">ChainService</a> instance in first order, and
 					the payload in second order.</p>
 					<p><code>factoryMethod(burstServiceInstance)(methodArgs)</code></p>
 					<p>The factory methods are used <a href="../classes/core_api.apicomposer.html">ApiComposer</a> and <a href="core_api.html#composeapi">composeApi</a></p>
@@ -151,26 +151,17 @@
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#placebidorder" class="tsd-kind-icon">place<wbr>Bid<wbr>Order</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#publishcontract" class="tsd-kind-icon">publish<wbr>Contract</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#removecommitment" class="tsd-kind-icon">remove<wbr>Commitment</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#sendamount" class="tsd-kind-icon">send<wbr>Amount</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#sendamounttomultiplerecipients" class="tsd-kind-icon">send<wbr>Amount<wbr>ToMultiple<wbr>Recipients</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#sendamounttosinglerecipient" class="tsd-kind-icon">send<wbr>Amount<wbr>ToSingle<wbr>Recipient</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#sendencryptedmessage" class="tsd-kind-icon">send<wbr>Encrypted<wbr>Message</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#sendencryptedtextmessage" class="tsd-kind-icon">send<wbr>Encrypted<wbr>Text<wbr>Message</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#sendmessage" class="tsd-kind-icon">send<wbr>Message</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#sendsameamounttomultiplerecipients" class="tsd-kind-icon">send<wbr>Same<wbr>Amount<wbr>ToMultiple<wbr>Recipients</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#sendtextmessage" class="tsd-kind-icon">send<wbr>Text<wbr>Message</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#setaccountinfo" class="tsd-kind-icon">set<wbr>Account<wbr>Info</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#setalias" class="tsd-kind-icon">set<wbr>Alias</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#setalias-1" class="tsd-kind-icon">set<wbr>Alias</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#setrewardrecipient" class="tsd-kind-icon">set<wbr>Reward<wbr>Recipient</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#signandbroadcasttransaction" class="tsd-kind-icon">sign<wbr>And<wbr>Broadcast<wbr>Transaction</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="core_api_factories.html#transferasset" class="tsd-kind-icon">transfer<wbr>Asset</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Variables</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="core_api_factories.html#suggestfee" class="tsd-kind-icon">suggest<wbr>Fee</a></li>
 							</ul>
 						</section>
 					</div>
@@ -182,13 +173,13 @@
 					<a name="addcommitment" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> add<wbr>Commitment</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Commitment<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Commitment<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/addCommitment.ts#L17">core/src/api/factories/account/addCommitment.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/addCommitment.ts#L17">core/src/api/factories/account/addCommitment.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -200,7 +191,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -229,13 +220,13 @@
 					<a name="broadcasttransaction" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> broadcast<wbr>Transaction</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">broadcast<wbr>Transaction<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">broadcast<wbr>Transaction<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/transaction/broadcastTransaction.ts#L14">core/src/api/factories/transaction/broadcastTransaction.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/transaction/broadcastTransaction.ts#L14">core/src/api/factories/transaction/broadcastTransaction.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -247,7 +238,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -276,13 +267,13 @@
 					<a name="callcontractmethod" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> call<wbr>Contract<wbr>Method</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">call<wbr>Contract<wbr>Method<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">call<wbr>Contract<wbr>Method<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/contract/callContractMethod.ts#L18">core/src/api/factories/contract/callContractMethod.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/contract/callContractMethod.ts#L18">core/src/api/factories/contract/callContractMethod.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -294,7 +285,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -323,13 +314,13 @@
 					<a name="cancelaskorder" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> cancel<wbr>Ask<wbr>Order</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">cancel<wbr>Ask<wbr>Order<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">cancel<wbr>Ask<wbr>Order<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/asset/cancelAskOrder.ts#L17">core/src/api/factories/asset/cancelAskOrder.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/asset/cancelAskOrder.ts#L17">core/src/api/factories/asset/cancelAskOrder.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -341,7 +332,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -370,13 +361,13 @@
 					<a name="cancelbidorder" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> cancel<wbr>Bid<wbr>Order</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">cancel<wbr>Bid<wbr>Order<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">cancel<wbr>Bid<wbr>Order<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/asset/cancelBidOrder.ts#L17">core/src/api/factories/asset/cancelBidOrder.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/asset/cancelBidOrder.ts#L17">core/src/api/factories/asset/cancelBidOrder.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -388,7 +379,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -417,13 +408,13 @@
 					<a name="cancelsubscription" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> cancel<wbr>Subscription</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">cancel<wbr>Subscription<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">cancel<wbr>Subscription<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/transaction/cancelSubscription.ts#L18">core/src/api/factories/transaction/cancelSubscription.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/transaction/cancelSubscription.ts#L18">core/src/api/factories/transaction/cancelSubscription.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -435,7 +426,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -464,13 +455,13 @@
 					<a name="createsubscription" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> create<wbr>Subscription</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Subscription<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Subscription<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/transaction/createSubscription.ts#L18">core/src/api/factories/transaction/createSubscription.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/transaction/createSubscription.ts#L18">core/src/api/factories/transaction/createSubscription.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -482,7 +473,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -511,13 +502,13 @@
 					<a name="generatesendtransactionqrcode" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> generate<wbr>Send<wbr>TransactionQRCode</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">generate<wbr>Send<wbr>TransactionQRCode<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Send<wbr>TransactionQRCode<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/generateSendTransactionQRCode.ts#L13">core/src/api/factories/account/generateSendTransactionQRCode.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/generateSendTransactionQRCode.ts#L13">core/src/api/factories/account/generateSendTransactionQRCode.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -529,7 +520,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -570,13 +561,13 @@
 					<a name="generatesendtransactionqrcodeaddress" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> generate<wbr>Send<wbr>TransactionQRCode<wbr>Address</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">generate<wbr>Send<wbr>TransactionQRCode<wbr>Address<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Send<wbr>TransactionQRCode<wbr>Address<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/generateSendTransactionQRCodeAddress.ts#L13">core/src/api/factories/account/generateSendTransactionQRCodeAddress.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/generateSendTransactionQRCodeAddress.ts#L13">core/src/api/factories/account/generateSendTransactionQRCodeAddress.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -588,7 +579,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -629,13 +620,13 @@
 					<a name="getaccount" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Account</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/getAccount.ts#L15">core/src/api/factories/account/getAccount.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/getAccount.ts#L15">core/src/api/factories/account/getAccount.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -647,7 +638,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -676,13 +667,13 @@
 					<a name="getaccountbalance" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Account<wbr>Balance</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Balance<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Balance<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/getAccountBalance.ts#L14">core/src/api/factories/account/getAccountBalance.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/getAccountBalance.ts#L14">core/src/api/factories/account/getAccountBalance.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -694,7 +685,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -723,13 +714,13 @@
 					<a name="getaccountblockids" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Account<wbr>Block<wbr>Ids</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Block<wbr>Ids<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Block<wbr>Ids<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/getAccountBlockIds.ts#L14">core/src/api/factories/account/getAccountBlockIds.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/getAccountBlockIds.ts#L14">core/src/api/factories/account/getAccountBlockIds.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -741,7 +732,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -770,13 +761,13 @@
 					<a name="getaccountblocks" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Account<wbr>Blocks</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Blocks<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Blocks<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/getAccountBlocks.ts#L14">core/src/api/factories/account/getAccountBlocks.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/getAccountBlocks.ts#L14">core/src/api/factories/account/getAccountBlocks.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -788,7 +779,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -817,13 +808,13 @@
 					<a name="getaccountsubscriptions" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Account<wbr>Subscriptions</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Subscriptions<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Subscriptions<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/getAccountSubscriptions.ts#L15">core/src/api/factories/account/getAccountSubscriptions.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/getAccountSubscriptions.ts#L15">core/src/api/factories/account/getAccountSubscriptions.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -835,7 +826,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -864,13 +855,13 @@
 					<a name="getaccounttransactions" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Account<wbr>Transactions</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Transactions<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Transactions<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/getAccountTransactions.ts#L14">core/src/api/factories/account/getAccountTransactions.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/getAccountTransactions.ts#L14">core/src/api/factories/account/getAccountTransactions.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -882,7 +873,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -911,13 +902,13 @@
 					<a name="getaliasbyid" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Alias<wbr>ById</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Alias<wbr>ById<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Alias<wbr>ById<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/alias/getAliasById.ts#L13">core/src/api/factories/alias/getAliasById.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/alias/getAliasById.ts#L13">core/src/api/factories/alias/getAliasById.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -929,7 +920,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -958,13 +949,13 @@
 					<a name="getaliasbyname" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Alias<wbr>ByName</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Alias<wbr>ByName<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Alias<wbr>ByName<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/alias/getAliasByName.ts#L13">core/src/api/factories/alias/getAliasByName.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/alias/getAliasByName.ts#L13">core/src/api/factories/alias/getAliasByName.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -976,7 +967,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1005,13 +996,13 @@
 					<a name="getaliases" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Aliases</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Aliases<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Aliases<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/getAliases.ts#L13">core/src/api/factories/account/getAliases.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/getAliases.ts#L13">core/src/api/factories/account/getAliases.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1023,7 +1014,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1052,13 +1043,13 @@
 					<a name="getallassets" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>All<wbr>Assets</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Assets<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Assets<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/asset/getAllAssets.ts#L13">core/src/api/factories/asset/getAllAssets.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/asset/getAllAssets.ts#L13">core/src/api/factories/asset/getAllAssets.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1070,7 +1061,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1102,13 +1093,13 @@
 					<a name="getallcontractids" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>All<wbr>Contract<wbr>Ids</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Contract<wbr>Ids<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Contract<wbr>Ids<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/contract/getAllContractIds.ts#L14">core/src/api/factories/contract/getAllContractIds.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/contract/getAllContractIds.ts#L14">core/src/api/factories/contract/getAllContractIds.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1120,7 +1111,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1143,13 +1134,13 @@
 					<a name="getasset" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Asset</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Asset<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Asset<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/asset/getAsset.ts#L13">core/src/api/factories/asset/getAsset.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/asset/getAsset.ts#L13">core/src/api/factories/asset/getAsset.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1161,7 +1152,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1190,13 +1181,13 @@
 					<a name="getblockbyheight" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Block<wbr>ByHeight</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Block<wbr>ByHeight<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Block<wbr>ByHeight<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/block/getBlockByHeight.ts#L14">core/src/api/factories/block/getBlockByHeight.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/block/getBlockByHeight.ts#L14">core/src/api/factories/block/getBlockByHeight.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1208,7 +1199,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1240,13 +1231,13 @@
 					<a name="getblockbyid" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Block<wbr>ById</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Block<wbr>ById<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Block<wbr>ById<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/block/getBlockById.ts#L15">core/src/api/factories/block/getBlockById.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/block/getBlockById.ts#L15">core/src/api/factories/block/getBlockById.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1258,7 +1249,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1290,13 +1281,13 @@
 					<a name="getblockbytimestamp" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Block<wbr>ByTimestamp</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Block<wbr>ByTimestamp<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Block<wbr>ByTimestamp<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/block/getBlockByTimestamp.ts#L13">core/src/api/factories/block/getBlockByTimestamp.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/block/getBlockByTimestamp.ts#L13">core/src/api/factories/block/getBlockByTimestamp.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1308,7 +1299,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1340,13 +1331,13 @@
 					<a name="getblockid" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Block<wbr>Id</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Block<wbr>Id<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Block<wbr>Id<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/block/getBlockId.ts#L14">core/src/api/factories/block/getBlockId.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/block/getBlockId.ts#L14">core/src/api/factories/block/getBlockId.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1358,7 +1349,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1387,13 +1378,13 @@
 					<a name="getblockchainstatus" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Blockchain<wbr>Status</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Blockchain<wbr>Status<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Blockchain<wbr>Status<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/network/getBlockchainStatus.ts#L15">core/src/api/factories/network/getBlockchainStatus.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/network/getBlockchainStatus.ts#L15">core/src/api/factories/network/getBlockchainStatus.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1405,7 +1396,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1428,13 +1419,13 @@
 					<a name="getblocks" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Blocks</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Blocks<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Blocks<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/block/getBlocks.ts#L14">core/src/api/factories/block/getBlocks.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/block/getBlocks.ts#L14">core/src/api/factories/block/getBlocks.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1446,14 +1437,14 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>firstIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, lastIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, includeTransactions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.block.html" class="tsd-signature-type">Block</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>firstIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, lastIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, includeTransactions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.blocklist.html" class="tsd-signature-type">BlockList</a><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -1469,7 +1460,7 @@
 													<h5><span class="tsd-flag ts-flagOptional">Optional</span> includeTransactions: <span class="tsd-signature-type">boolean</span></h5>
 												</li>
 											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.block.html" class="tsd-signature-type">Block</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.blocklist.html" class="tsd-signature-type">BlockList</a><span class="tsd-signature-symbol">&gt;</span></h4>
 										</li>
 									</ul>
 								</li>
@@ -1481,13 +1472,13 @@
 					<a name="getcontract" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Contract</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Contract<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Contract<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/contract/getContract.ts#L13">core/src/api/factories/contract/getContract.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/contract/getContract.ts#L13">core/src/api/factories/contract/getContract.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1499,7 +1490,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1528,13 +1519,13 @@
 					<a name="getcontractsbyaccount" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Contracts<wbr>ByAccount</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Contracts<wbr>ByAccount<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Contracts<wbr>ByAccount<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/contract/getContractsByAccount.ts#L14">core/src/api/factories/contract/getContractsByAccount.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/contract/getContractsByAccount.ts#L14">core/src/api/factories/contract/getContractsByAccount.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1546,7 +1537,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1575,13 +1566,13 @@
 					<a name="getpeer" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Peer</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Peer<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Peer<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/network/getPeer.ts#L13">core/src/api/factories/network/getPeer.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/network/getPeer.ts#L13">core/src/api/factories/network/getPeer.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1593,7 +1584,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1622,13 +1613,13 @@
 					<a name="getpeers" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Peers</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Peers<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Peers<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/network/getPeers.ts#L13">core/src/api/factories/network/getPeers.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/network/getPeers.ts#L13">core/src/api/factories/network/getPeers.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1640,7 +1631,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1669,13 +1660,13 @@
 					<a name="getrewardrecipient" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Reward<wbr>Recipient</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Reward<wbr>Recipient<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Reward<wbr>Recipient<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/getRewardRecipient.ts#L13">core/src/api/factories/account/getRewardRecipient.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/getRewardRecipient.ts#L13">core/src/api/factories/account/getRewardRecipient.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1687,7 +1678,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1716,13 +1707,13 @@
 					<a name="getserverstatus" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Server<wbr>Status</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Server<wbr>Status<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Server<wbr>Status<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/network/getServerStatus.ts#L14">core/src/api/factories/network/getServerStatus.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/network/getServerStatus.ts#L14">core/src/api/factories/network/getServerStatus.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1734,7 +1725,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1757,13 +1748,13 @@
 					<a name="getsubscription" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Subscription</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Subscription<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Subscription<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/transaction/getSubscription.ts#L14">core/src/api/factories/transaction/getSubscription.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/transaction/getSubscription.ts#L14">core/src/api/factories/transaction/getSubscription.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1775,7 +1766,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1804,13 +1795,13 @@
 					<a name="getsubscriptionstoaccount" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Subscriptions<wbr>ToAccount</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Subscriptions<wbr>ToAccount<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Subscriptions<wbr>ToAccount<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/getSubscriptionsToAccount.ts#L15">core/src/api/factories/account/getSubscriptionsToAccount.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/getSubscriptionsToAccount.ts#L15">core/src/api/factories/account/getSubscriptionsToAccount.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1822,7 +1813,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1851,13 +1842,13 @@
 					<a name="getsuggestedfees" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Suggested<wbr>Fees</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Suggested<wbr>Fees<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Suggested<wbr>Fees<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/network/getSuggestedFees.ts#L14">core/src/api/factories/network/getSuggestedFees.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/network/getSuggestedFees.ts#L14">core/src/api/factories/network/getSuggestedFees.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1869,7 +1860,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1892,13 +1883,13 @@
 					<a name="gettime" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Time</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Time<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Time<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/network/getTime.ts#L14">core/src/api/factories/network/getTime.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/network/getTime.ts#L14">core/src/api/factories/network/getTime.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1910,7 +1901,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1933,13 +1924,13 @@
 					<a name="gettransaction" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Transaction</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Transaction<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Transaction<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/transaction/getTransaction.ts#L14">core/src/api/factories/transaction/getTransaction.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/transaction/getTransaction.ts#L14">core/src/api/factories/transaction/getTransaction.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1951,7 +1942,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -1980,13 +1971,13 @@
 					<a name="getunconfirmedaccounttransactions" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Unconfirmed<wbr>Account<wbr>Transactions</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Unconfirmed<wbr>Account<wbr>Transactions<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Unconfirmed<wbr>Account<wbr>Transactions<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/getUnconfirmedAccountTransactions.ts#L13">core/src/api/factories/account/getUnconfirmedAccountTransactions.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/getUnconfirmedAccountTransactions.ts#L13">core/src/api/factories/account/getUnconfirmedAccountTransactions.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1998,7 +1989,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2030,13 +2021,13 @@
 					<a name="getunconfirmedtransactions" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Unconfirmed<wbr>Transactions</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Unconfirmed<wbr>Transactions<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Unconfirmed<wbr>Transactions<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/transaction/getUnconfirmedTransactions.ts#L13">core/src/api/factories/transaction/getUnconfirmedTransactions.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/transaction/getUnconfirmedTransactions.ts#L13">core/src/api/factories/transaction/getUnconfirmedTransactions.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2048,7 +2039,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2071,13 +2062,13 @@
 					<a name="issueasset" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> issue<wbr>Asset</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">issue<wbr>Asset<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">issue<wbr>Asset<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/asset/issueAsset.ts#L20">core/src/api/factories/asset/issueAsset.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/asset/issueAsset.ts#L20">core/src/api/factories/asset/issueAsset.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2089,7 +2080,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2118,13 +2109,13 @@
 					<a name="placeaskorder" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> place<wbr>Ask<wbr>Order</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">place<wbr>Ask<wbr>Order<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">place<wbr>Ask<wbr>Order<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/asset/placeAskOrder.ts#L21">core/src/api/factories/asset/placeAskOrder.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/asset/placeAskOrder.ts#L21">core/src/api/factories/asset/placeAskOrder.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2136,7 +2127,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2165,13 +2156,13 @@
 					<a name="placebidorder" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> place<wbr>Bid<wbr>Order</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">place<wbr>Bid<wbr>Order<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">place<wbr>Bid<wbr>Order<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/asset/placeBidOrder.ts#L21">core/src/api/factories/asset/placeBidOrder.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/asset/placeBidOrder.ts#L21">core/src/api/factories/asset/placeBidOrder.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2183,7 +2174,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2212,13 +2203,13 @@
 					<a name="publishcontract" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> publish<wbr>Contract</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">publish<wbr>Contract<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">publish<wbr>Contract<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/contract/publishContract.ts#L19">core/src/api/factories/contract/publishContract.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/contract/publishContract.ts#L19">core/src/api/factories/contract/publishContract.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2230,7 +2221,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2259,13 +2250,13 @@
 					<a name="removecommitment" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> remove<wbr>Commitment</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">remove<wbr>Commitment<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Commitment<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/removeCommitment.ts#L17">core/src/api/factories/account/removeCommitment.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/removeCommitment.ts#L17">core/src/api/factories/account/removeCommitment.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2277,7 +2268,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2303,88 +2294,16 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="sendamount" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> send<wbr>Amount</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Amount<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/transaction/sendAmount.ts#L24">core/src/api/factories/transaction/sendAmount.ts:24</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core_api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core_api.transactionapi.html">TransactionApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core_api.transactionapi.html#sendamount">TransactionApi.sendAmount</a></p>
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
-									<dd><p>Use sendAmountToSingleRecipient</p>
-										<div class="deprecated">
-											Use <a href="../interfaces/core_api.transactionapi.html#sendamounttosinglerecipient">TransactionApi.sendAmountToSingleRecipient</a> instead
-									</div></dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>amountPlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, feePlanck<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, attachment<span class="tsd-signature-symbol">?: </span><a href="../classes/core.attachment.html" class="tsd-signature-type">Attachment</a>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>amountPlanck: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5>feePlanck: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5>recipientId: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5>senderPublicKey: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5>senderPrivateKey: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5><span class="tsd-flag ts-flagOptional">Optional</span> attachment: <a href="../classes/core.attachment.html" class="tsd-signature-type">Attachment</a></h5>
-												</li>
-												<li>
-													<h5><span class="tsd-flag ts-flagOptional">Optional</span> deadline: <span class="tsd-signature-type">number</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="sendamounttomultiplerecipients" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> send<wbr>Amount<wbr>ToMultiple<wbr>Recipients</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Amount<wbr>ToMultiple<wbr>Recipients<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Amount<wbr>ToMultiple<wbr>Recipients<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/transaction/sendAmountToMultipleRecipients.ts#L21">core/src/api/factories/transaction/sendAmountToMultipleRecipients.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/transaction/sendAmountToMultipleRecipients.ts#L21">core/src/api/factories/transaction/sendAmountToMultipleRecipients.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2396,7 +2315,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2437,13 +2356,13 @@
 					<a name="sendamounttosinglerecipient" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> send<wbr>Amount<wbr>ToSingle<wbr>Recipient</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Amount<wbr>ToSingle<wbr>Recipient<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Amount<wbr>ToSingle<wbr>Recipient<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/transaction/sendAmountToSingleRecipient.ts#L18">core/src/api/factories/transaction/sendAmountToSingleRecipient.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/transaction/sendAmountToSingleRecipient.ts#L18">core/src/api/factories/transaction/sendAmountToSingleRecipient.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2455,7 +2374,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2484,13 +2403,13 @@
 					<a name="sendencryptedmessage" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> send<wbr>Encrypted<wbr>Message</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Encrypted<wbr>Message<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Encrypted<wbr>Message<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/message/sendEncryptedMessage.ts#L20">core/src/api/factories/message/sendEncryptedMessage.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/message/sendEncryptedMessage.ts#L20">core/src/api/factories/message/sendEncryptedMessage.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2502,7 +2421,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2528,84 +2447,16 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="sendencryptedtextmessage" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> send<wbr>Encrypted<wbr>Text<wbr>Message</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Encrypted<wbr>Text<wbr>Message<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/message/sendEncryptedTextMessage.ts#L26">core/src/api/factories/message/sendEncryptedTextMessage.ts:26</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core_api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core_api.messageapi.html">MessageApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core_api.messageapi.html#sendencryptedtextmessage">MessageApi.sendEncryptedTextMessage</a></p>
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
-									<dd><div class="deprecated">
-											Use <a href="../interfaces/core_api.messageapi.html#sendencryptedmessage">MessageApi.sendEncryptedMessage</a> instead
-									</div></dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderKeys<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Keys</span>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, fee<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>message: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5>recipientId: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5>recipientPublicKey: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5>senderKeys: <span class="tsd-signature-type">Keys</span></h5>
-												</li>
-												<li>
-													<h5><span class="tsd-flag ts-flagOptional">Optional</span> deadline: <span class="tsd-signature-type">number</span></h5>
-												</li>
-												<li>
-													<h5><span class="tsd-flag ts-flagOptional">Optional</span> fee: <span class="tsd-signature-type">number</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="sendmessage" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> send<wbr>Message</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Message<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Message<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/message/sendMessage.ts#L17">core/src/api/factories/message/sendMessage.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/message/sendMessage.ts#L17">core/src/api/factories/message/sendMessage.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2617,7 +2468,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2646,13 +2497,13 @@
 					<a name="sendsameamounttomultiplerecipients" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> send<wbr>Same<wbr>Amount<wbr>ToMultiple<wbr>Recipients</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Same<wbr>Amount<wbr>ToMultiple<wbr>Recipients<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Same<wbr>Amount<wbr>ToMultiple<wbr>Recipients<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/transaction/sendSameAmountToMultipleRecipients.ts#L17">core/src/api/factories/transaction/sendSameAmountToMultipleRecipients.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/transaction/sendSameAmountToMultipleRecipients.ts#L17">core/src/api/factories/transaction/sendSameAmountToMultipleRecipients.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2664,7 +2515,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2705,84 +2556,16 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="sendtextmessage" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> send<wbr>Text<wbr>Message</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Text<wbr>Message<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/message/sendTextMessage.ts#L22">core/src/api/factories/message/sendTextMessage.ts:22</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use with <a href="../classes/core_api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core_api.messageapi.html">MessageApi</a>.</p>
-								</div>
-								<p>See details at <a href="../interfaces/core_api.messageapi.html#sendtextmessage">MessageApi.sendTextMessage</a></p>
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
-									<dd><div class="deprecated">
-											Use <a href="../interfaces/core_api.messageapi.html#sendmessage">MessageApi.sendMessage</a> instead
-									</div></dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPublicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senderPrivateKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deadline<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, fee<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>message: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5>recipientId: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5>senderPublicKey: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5>senderPrivateKey: <span class="tsd-signature-type">string</span></h5>
-												</li>
-												<li>
-													<h5><span class="tsd-flag ts-flagOptional">Optional</span> deadline: <span class="tsd-signature-type">number</span></h5>
-												</li>
-												<li>
-													<h5><span class="tsd-flag ts-flagOptional">Optional</span> fee: <span class="tsd-signature-type">number</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/core.transactionid.html" class="tsd-signature-type">TransactionId</a><span class="tsd-signature-symbol">&gt;</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="setaccountinfo" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> set<wbr>Account<wbr>Info</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Account<wbr>Info<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Account<wbr>Info<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/setAccountInfo.ts#L17">core/src/api/factories/account/setAccountInfo.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/setAccountInfo.ts#L17">core/src/api/factories/account/setAccountInfo.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2794,7 +2577,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2823,13 +2606,13 @@
 					<a name="setalias" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> set<wbr>Alias</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Alias<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Alias<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/setAlias.ts#L19">core/src/api/factories/account/setAlias.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/setAlias.ts#L19">core/src/api/factories/account/setAlias.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2841,7 +2624,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2885,13 +2668,13 @@
 					<a name="setalias-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> set<wbr>Alias</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Alias<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Alias<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/alias/setAlias.ts#L19">core/src/api/factories/alias/setAlias.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/alias/setAlias.ts#L19">core/src/api/factories/alias/setAlias.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2903,7 +2686,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2947,13 +2730,13 @@
 					<a name="setrewardrecipient" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> set<wbr>Reward<wbr>Recipient</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Reward<wbr>Recipient<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Reward<wbr>Recipient<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/account/setRewardRecipient.ts#L17">core/src/api/factories/account/setRewardRecipient.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/account/setRewardRecipient.ts#L17">core/src/api/factories/account/setRewardRecipient.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2965,7 +2748,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -2994,13 +2777,13 @@
 					<a name="signandbroadcasttransaction" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagLet">Let</span> sign<wbr>And<wbr>Broadcast<wbr>Transaction</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">sign<wbr>And<wbr>Broadcast<wbr>Transaction<span class="tsd-signature-symbol">(</span>burstService<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">sign<wbr>And<wbr>Broadcast<wbr>Transaction<span class="tsd-signature-symbol">(</span>burstService<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/transaction/signAndBroadcastTransaction.ts#L18">core/src/api/factories/transaction/signAndBroadcastTransaction.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/transaction/signAndBroadcastTransaction.ts#L18">core/src/api/factories/transaction/signAndBroadcastTransaction.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3012,7 +2795,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>burstService: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>burstService: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -3041,13 +2824,13 @@
 					<a name="transferasset" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> transfer<wbr>Asset</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">transfer<wbr>Asset<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">transfer<wbr>Asset<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/asset/transferAsset.ts#L21">core/src/api/factories/asset/transferAsset.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/api/factories/asset/transferAsset.ts#L21">core/src/api/factories/asset/transferAsset.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3059,7 +2842,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../classes/core.burstservice.html" class="tsd-signature-type">BurstService</a></h5>
+									<h5>service: <a href="../classes/core.chainservice.html" class="tsd-signature-type">ChainService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
@@ -3083,32 +2866,6 @@
 							</ul>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
-					<a name="suggestfee" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> suggest<wbr>Fee</h3>
-					<div class="tsd-signature tsd-kind-icon">suggest<wbr>Fee<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">getSuggestedFees</span><span class="tsd-signature-symbol"> = getSuggestedFees</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/api/factories/network/suggestFee.ts#L16">core/src/api/factories/network/suggestFee.ts:16</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Use with <a href="../classes/core_api.apicomposer.html">ApiComposer</a> and belongs to <a href="../interfaces/core_api.networkapi.html">NetworkApi</a>.</p>
-						</div>
-						<p>See details at <a href="../interfaces/core_api.networkapi.html#getsuggestedfees">NetworkApi.getSuggestedFees</a></p>
-						<dl class="tsd-comment-tags">
-							<dt>deprecated</dt>
-							<dd><p>Use getSuggestedFees</p>
-								<div class="deprecated">
-									Use <a href="../interfaces/core_api.networkapi.html#getsuggestedfees">NetworkApi.getSuggestedFees</a> instead
-							</div></dd>
-						</dl>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -3146,9 +2903,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-						<a href="core_api_factories.html#suggestfee" class="tsd-kind-icon">suggest<wbr>Fee</a>
-					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="core_api_factories.html#addcommitment" class="tsd-kind-icon">add<wbr>Commitment</a>
 					</li>
@@ -3285,9 +3039,6 @@
 						<a href="core_api_factories.html#removecommitment" class="tsd-kind-icon">remove<wbr>Commitment</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="core_api_factories.html#sendamount" class="tsd-kind-icon">send<wbr>Amount</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="core_api_factories.html#sendamounttomultiplerecipients" class="tsd-kind-icon">send<wbr>Amount<wbr>ToMultiple<wbr>Recipients</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
@@ -3297,16 +3048,10 @@
 						<a href="core_api_factories.html#sendencryptedmessage" class="tsd-kind-icon">send<wbr>Encrypted<wbr>Message</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="core_api_factories.html#sendencryptedtextmessage" class="tsd-kind-icon">send<wbr>Encrypted<wbr>Text<wbr>Message</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="core_api_factories.html#sendmessage" class="tsd-kind-icon">send<wbr>Message</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="core_api_factories.html#sendsameamounttomultiplerecipients" class="tsd-kind-icon">send<wbr>Same<wbr>Amount<wbr>ToMultiple<wbr>Recipients</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="core_api_factories.html#sendtextmessage" class="tsd-kind-icon">send<wbr>Text<wbr>Message</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="core_api_factories.html#setaccountinfo" class="tsd-kind-icon">set<wbr>Account<wbr>Info</a>

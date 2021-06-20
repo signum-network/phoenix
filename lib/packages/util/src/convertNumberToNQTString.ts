@@ -8,7 +8,7 @@
  * @return a NQT number string
  * @deprecated
  * <div class="deprecated">
- *     Use [[BurstValue]] instead
+ *     Use [[Amount]] instead
  * </div>
  * Helper method to Number to String(8 decimals) representation
  * @module util

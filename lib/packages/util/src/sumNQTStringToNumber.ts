@@ -11,7 +11,7 @@ import {convertNQTStringToNumber} from './convertNQTStringToNumber';
  * @return The sum of all amounts in BURST
  * @deprecated
  * <div class='deprecated'>
- *     Use [[BurstValue.add]] instead
+ *     Use [[Amount.add]] instead
  * </div>
  * @module util
  */

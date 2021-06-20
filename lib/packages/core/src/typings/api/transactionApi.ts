@@ -122,9 +122,9 @@ export interface TransactionApi {
      *
      * Usually, you don't need this, as all sending methods in BurstJS sign and broadcast.
      * As not all BRS API functions are implemented yet in BurstJS this method is handy for those,
-     * i.e. all direct calls to [[BurstService.send]]
+     * i.e. all direct calls to [[ChainService.send]]
      *
-     * @param unsignedTransaction The unsigned Transaction Object (returned by [[BurstService.send]])
+     * @param unsignedTransaction The unsigned Transaction Object (returned by [[ChainService.send]])
      * @return The TransactionId
      */
     signAndBroadcastTransaction: (unsignedTransaction: UnsignedTransactionArgs) => Promise<TransactionId>;

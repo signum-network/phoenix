@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BurstService
-	| burstjs - The Burstcoin Reference Library</title>
+	<title>ChainService
+	| signumjs - The Signum Network Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="index, follow">
@@ -78,10 +78,10 @@
 					<a href="../modules/core.html">core</a>
 				</li>
 				<li>
-					<a href="core.burstservice.html">BurstService</a>
+					<a href="core.chainservice.html">ChainService</a>
 				</li>
 			</ul>
-			<h1>Class BurstService</h1>
+			<h1>Class ChainService</h1>
 		</div>
 	</div>
 </header>
@@ -91,15 +91,17 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Generic BRS Web Service class.</p>
+						<p>Generic Chain Service class.</p>
 					</div>
+					<p>This class can be used to call the chain api directly, in case a function is
+					not supported yet by SignumJS. Usually, you won&#39;t need to do it.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">BurstService</span>
+						<span class="target">ChainService</span>
 					</li>
 				</ul>
 			</section>
@@ -110,22 +112,22 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="core.burstservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="core.chainservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.burstservice.html#settings" class="tsd-kind-icon">settings</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.chainservice.html#settings" class="tsd-kind-icon">settings</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="core.burstservice.html#query" class="tsd-kind-icon">query</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.burstservice.html#selectbesthost" class="tsd-kind-icon">select<wbr>Best<wbr>Host</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="core.burstservice.html#send" class="tsd-kind-icon">send</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.burstservice.html#tobrsendpoint" class="tsd-kind-icon">toBRSEndpoint</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="core.chainservice.html#query" class="tsd-kind-icon">query</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.chainservice.html#selectbesthost" class="tsd-kind-icon">select<wbr>Best<wbr>Host</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="core.chainservice.html#send" class="tsd-kind-icon">send</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.chainservice.html#toapiendpoint" class="tsd-kind-icon">to<wbr>Api<wbr>Endpoint</a></li>
 							</ul>
 						</section>
 					</div>
@@ -137,13 +139,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Burst<wbr>Service<span class="tsd-signature-symbol">(</span>settings<span class="tsd-signature-symbol">: </span><a href="../interfaces/core.burstservicesettings.html" class="tsd-signature-type">BurstServiceSettings</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.burstservice.html" class="tsd-signature-type">BurstService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Chain<wbr>Service<span class="tsd-signature-symbol">(</span>settings<span class="tsd-signature-symbol">: </span><a href="../interfaces/core.chainservicesettings.html" class="tsd-signature-type">ChainServiceSettings</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.chainservice.html" class="tsd-signature-type">ChainService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstService.ts#L37">core/src/service/burstService.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/service/chainService.ts#L43">core/src/service/chainService.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -154,7 +156,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>settings: <a href="../interfaces/core.burstservicesettings.html" class="tsd-signature-type">BurstServiceSettings</a></h5>
+									<h5>settings: <a href="../interfaces/core.chainservicesettings.html" class="tsd-signature-type">ChainServiceSettings</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>The settings for the service</p>
@@ -162,7 +164,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="core.burstservice.html" class="tsd-signature-type">BurstService</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="core.chainservice.html" class="tsd-signature-type">ChainService</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -172,10 +174,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="settings" class="tsd-anchor"></a>
 					<h3>settings</h3>
-					<div class="tsd-signature tsd-kind-icon">settings<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core.burstservicesettings.html" class="tsd-signature-type">BurstServiceSettings</a></div>
+					<div class="tsd-signature tsd-kind-icon">settings<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core.chainservicesettings.html" class="tsd-signature-type">ChainServiceSettings</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstService.ts#L51">core/src/service/burstService.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/service/chainService.ts#L57">core/src/service/chainService.ts:57</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -192,12 +194,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstService.ts#L90">core/src/service/burstService.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/service/chainService.ts#L96">core/src/service/chainService.ts:96</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Requests a query to BRS</p>
+									<p>Requests a query to the configured chain node</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>throws</dt>
@@ -216,7 +218,7 @@
 								<li>
 									<h5>method: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The BRS method according <a href="https://burstwiki.org/wiki/The_Burst_API">https://burstwiki.org/wiki/The_Burst_API</a></p>
+										<p>The method according <a href="https://www.burstcoin.community/burst-api/">https://www.burstcoin.community/burst-api/</a></p>
 									</div>
 								</li>
 								<li>
@@ -247,7 +249,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstService.ts#L145">core/src/service/burstService.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/service/chainService.ts#L151">core/src/service/chainService.ts:151</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -284,18 +286,18 @@
 					<a name="send" class="tsd-anchor"></a>
 					<h3>send</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">send&lt;T&gt;<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, args<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosRequestConfig</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">send&lt;T&gt;<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, args<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span>, body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosRequestConfig</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstService.ts#L112">core/src/service/burstService.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/service/chainService.ts#L118">core/src/service/chainService.ts:118</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Send data to BRS</p>
+									<p>Send data to chain node</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>throws</dt>
@@ -314,18 +316,18 @@
 								<li>
 									<h5>method: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The BRS method according <a href="https://burstwiki.org/wiki/The_Burst_API">https://burstwiki.org/wiki/The_Burst_API</a>.
+										<p>The method according <a href="https://www.burstcoin.community/burst-api/">https://www.burstcoin.community/burst-api/</a>.
 										Note that there are only a few POST methods</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> = {}</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> args: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> = {}</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A JSON object which will be mapped to url params</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> body: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> = {}</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> body: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> = {}</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>An object with key value pairs to submit as post body</p>
 									</div>
@@ -343,25 +345,25 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="tobrsendpoint" class="tsd-anchor"></a>
-					<h3>toBRSEndpoint</h3>
+					<a name="toapiendpoint" class="tsd-anchor"></a>
+					<h3>to<wbr>Api<wbr>Endpoint</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">toBRSEndpoint<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Api<wbr>Endpoint<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstService.ts#L72">core/src/service/burstService.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/1ed1c8ca/lib/packages/core/src/service/chainService.ts#L78">core/src/service/chainService.ts:78</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Mounts a BRS conform API (V1) endpoint of format <code>&lt;host&gt;?requestType=getBlock&amp;height=123</code></p>
+									<p>Mounts an API conformant endpoint of format <code>&lt;host&gt;?requestType=getBlock&amp;height=123</code></p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>see</dt>
-									<dd><p><a href="https://burstwiki.org/wiki/The_Burst_API">https://burstwiki.org/wiki/The_Burst_API</a></p>
+									<dd><p><a href="https://www.burstcoin.community/burst-api/">https://www.burstcoin.community/burst-api/</a></p>
 									</dd>
 								</dl>
 							</div>
@@ -374,7 +376,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> data: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> = {}</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> data: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> = {}</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A JSON object which will be mapped to url params</p>
 									</div>
@@ -424,25 +426,25 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="core.burstservice.html" class="tsd-kind-icon">Burst<wbr>Service</a>
+						<a href="core.chainservice.html" class="tsd-kind-icon">Chain<wbr>Service</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="core.burstservice.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="core.chainservice.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="core.burstservice.html#settings" class="tsd-kind-icon">settings</a>
+								<a href="core.chainservice.html#settings" class="tsd-kind-icon">settings</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-								<a href="core.burstservice.html#query" class="tsd-kind-icon">query</a>
+								<a href="core.chainservice.html#query" class="tsd-kind-icon">query</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.burstservice.html#selectbesthost" class="tsd-kind-icon">select<wbr>Best<wbr>Host</a>
+								<a href="core.chainservice.html#selectbesthost" class="tsd-kind-icon">select<wbr>Best<wbr>Host</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-								<a href="core.burstservice.html#send" class="tsd-kind-icon">send</a>
+								<a href="core.chainservice.html#send" class="tsd-kind-icon">send</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.burstservice.html#tobrsendpoint" class="tsd-kind-icon">toBRSEndpoint</a>
+								<a href="core.chainservice.html#toapiendpoint" class="tsd-kind-icon">to<wbr>Api<wbr>Endpoint</a>
 							</li>
 						</ul>
 					</li>

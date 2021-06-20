@@ -3,11 +3,11 @@
  */
 
 /**
- * BurstTime Interface
- * @see [[util.BurstTime]] to convert the Burst Timestamp to Date
+ * ChainTime Interface
+ * @see [[util.BlockTime]] to convert between chains timestamp and Date
  * @module core
  * */
-export interface BurstTime {
+export interface ChainTime {
     /**
      * The burst time (in seconds since the genesis block)
      */

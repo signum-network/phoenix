@@ -10,7 +10,7 @@
  * @throws exception if argument is invalid
  * @deprecated
  * <div class="deprecated">
- *     Use [[BurstValue]] instead
+ *     Use [[Amount]] instead
  * </div>
  * @module util
  */
