@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     color: Colors.BLUE
   },
   textHeader: {
-    color: Colors.BLUE,
+    color: Colors.BLUE_DARKER,
     fontFamily: fonts.signum,
     fontSize: FontSizes.LARGE,
     textAlign: TextAlign.CENTER
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     fontSize: FontSizes.SMALL
   },
   textDanger: {
-    color: Colors.PINK,
+    color: Colors.RED,
     fontSize: FontSizes.SMALL,
     textAlign: TextAlign.CENTER
   },

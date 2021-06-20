@@ -150,11 +150,11 @@ export default class App extends React.Component<{}, AppState> {
         i18n.locale = event.language;
         // we need to re-render whole tree
         this.forceUpdate();
-    };
+    }
 
     handleOpenURL = (event: any) => {
         this.navigate(event.url);
-    };
+    }
 
     navigate = (url: string) => {
         const route = url.replace(/.*?:\/\//g, '');

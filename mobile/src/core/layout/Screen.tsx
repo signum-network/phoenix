@@ -3,16 +3,15 @@ import {
   StatusBar,
   StatusBarStyle,
   StyleSheet,
-  Platform
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '../theme/colors';
 import { isIOS } from '../utils/platform';
 
 interface Props {
-  children: JSX.Element | JSX.Element[]
-  barStyle?: StatusBarStyle
-  style?: any
+  children: JSX.Element | JSX.Element[];
+  barStyle?: StatusBarStyle;
+  style?: any;
 }
 
 const area: any = {

@@ -19,7 +19,7 @@ import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
 
 interface IProps extends InjectedReduxProps {
-  auth: AuthReduxState,
+  auth: AuthReduxState
 }
 
 type Props = NavigationInjectedProps & IProps;

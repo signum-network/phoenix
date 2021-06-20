@@ -28,15 +28,15 @@ import { shouldEnterPIN } from '../store/utils';
 type HomeNavProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 interface IProps extends InjectedReduxProps {
-  app: AppReduxState,
-  auth: AuthReduxState,
-  priceApi: PriceInfoReduxState,
-  navigation: HomeNavProp
+  app: AppReduxState;
+  auth: AuthReduxState;
+  priceApi: PriceInfoReduxState;
+  navigation: HomeNavProp;
 }
 
 interface State {
-  isPINModalVisible: boolean,
-  isTermsScreenVisible: boolean,
+  isPINModalVisible: boolean;
+  isTermsScreenVisible: boolean;
   selectedCurrency: PriceTypeStrings;
 }
 

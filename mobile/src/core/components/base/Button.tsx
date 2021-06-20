@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadiusSizes.LARGE
   },
   buttonAccent: {
-    backgroundColor: Colors.BLUE_DARKER,
-    borderColor: Colors.BLUE_DARKER
+    backgroundColor: Colors.BLUE_LIGHT,
+    borderColor: Colors.BLUE_LIGHT
   },
   loader: {
     margin: Sizes.SMALL

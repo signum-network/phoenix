@@ -1,5 +1,5 @@
-import { Transaction } from "@burstjs/core/src/typings/transaction";
-import { ReceiveBurstPayload } from "../../transactions/store/actions";
+import { Transaction } from '@burstjs/core';
+import { ReceiveBurstPayload } from '../../transactions/store/actions';
 
 export type RootStackParamList = {
   Home: {};
@@ -25,4 +25,5 @@ export type RootStackParamList = {
   ViewQRCode: {
     form?: any;
   };
-}
+};
+

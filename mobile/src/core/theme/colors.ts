@@ -1,19 +1,22 @@
 export enum Colors {
   TRANSPARENT = 'transparent',
-  WHITE = '#FFFFFF',
+  WHITE = '#EAF0F6',
   BLACK = 'rgba(25, 25, 25, 1)',
   GREY_LIGHT = 'rgba(255, 255, 255, 0.7)',
   GREY = 'rgba(255, 255, 255, 0.5)',
   GREY_DARK = 'rgba(0, 0, 0, 0.87)',
   BLUE_LIGHT = '#0099ff',
   BLUE = '#0066ff',
-  BLUE_DARKER = '#00528b',
+  BLUE_DARKER = '#021851',
   BLUE_DARKEST = '#003680',
   PINK = '#D9534F',
   RED = '#FF4444',
   GREEN = '#00FF88',
   ORANGE = '#EAA924',
-  YELLOW = '#FFFE33'
+  YELLOW = '#FFFE33',
+  ACQUA = '#E8F3FF',
+  ACQUA_LIGHT = '#EAF0F6',
+
 }
 
 export const AccountColors = [

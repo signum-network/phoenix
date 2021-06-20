@@ -6,7 +6,7 @@ import { Account,
   generateSendTransactionQRCodeAddress,
   SuggestedFees,
   TransactionId} from '@burstjs/core';
-import { SendAmountArgs } from '@burstjs/core/out/typings/args/sendAmountArgs';
+import { SendAmountArgs } from '@burstjs/core';
 import { decryptAES, encryptData, EncryptedData, EncryptedMessage, encryptMessage, hashSHA256 } from '@burstjs/crypto';
 import {
   convertHexStringToByteArray,

@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     flex: 1,
     alignSelf: 'center',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    marginTop: Sizes.LARGE * 2
   },
   keyboard: {
     flex: 1.5,
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     resizeMode: 'contain',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   footer: {
     // marginBottom: 20
@@ -88,9 +89,6 @@ export class EnterPasscodeModalScreen extends React.PureComponent<Props, State> 
       if (newCode.length === PASSCODE_LENGTH) {
         if (newCode === passcode) {
           onSuccess();
-          this.setState({
-            code: ''
-          });
         } else {
           this.setState({
             code: '',

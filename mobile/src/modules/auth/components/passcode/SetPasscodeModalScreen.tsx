@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         flex: 1,
         alignSelf: 'center',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        marginTop: Sizes.LARGE * 2
     },
     keyboard: {
         flex: 1.5,
