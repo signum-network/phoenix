@@ -36,7 +36,7 @@ export class AccountTransactionsHeader extends React.PureComponent<Props> {
     return (
         <View style={styles.view}>
           <Text textAlign={TextAlign.CENTER} color={Colors.WHITE} size={FontSizes.LARGE} bold bebasFont>
-            {i18n.t(core.currency.BURST.value, { value: amountToString(totalBalance) })}
+            {i18n.t(core.currency.SIGNA.value, { value: amountToString(totalBalance) })}
           </Text>
           {priceInBTC ? (
               <Text textAlign={TextAlign.CENTER} color={Colors.WHITE} bebasFont>

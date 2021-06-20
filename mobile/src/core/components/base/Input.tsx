@@ -29,7 +29,7 @@ const color = Colors.BLUE;
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: fonts.noto,
+    fontFamily: fonts.roboto,
     fontSize: FontSizes.MEDIUM,
     color,
     borderBottomWidth: 1,

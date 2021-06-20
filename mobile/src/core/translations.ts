@@ -28,9 +28,9 @@ export const core: any = {
       name: 'core.currency.BTC.name',
       value: 'core.currency.BTC.value'
     },
-    BURST: {
-      name: 'core.currency.BURST.name',
-      value: 'core.currency.BURST.value'
+    SIGNA: {
+      name: 'core.currency.SIGNA.name',
+      value: 'core.currency.SIGNA.value'
     },
     USD: {
       name: 'core.currency.USD.name',

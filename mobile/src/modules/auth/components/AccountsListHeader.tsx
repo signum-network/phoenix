@@ -43,7 +43,7 @@ export class AccountsListHeader extends React.PureComponent<Props> {
     return hasAccounts ? (
       <View style={styles.view}>
         <Text color={Colors.WHITE} size={FontSizes.LARGE} bold bebasFont>
-          {i18n.t(core.currency.BURST.value, { value: amountToString(totalBalance) })}
+          {i18n.t(core.currency.SIGNA.value, { value: amountToString(totalBalance) })}
         </Text>
         {priceInBTC ? (
           <Text color={Colors.WHITE} bebasFont>

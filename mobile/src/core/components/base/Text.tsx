@@ -41,7 +41,7 @@ const defaultAlign = TextAlign.LEFT;
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: fonts.noto,
+    fontFamily: fonts.signum,
     fontSize: FontSizes.MEDIUM,
     fontWeight: 'normal',
     textAlign: defaultAlign,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   textHeader: {
     color: Colors.BLUE,
-    fontFamily: fonts.bebas,
+    fontFamily: fonts.signum,
     fontSize: FontSizes.LARGE,
     textAlign: TextAlign.CENTER
   },
@@ -91,7 +91,7 @@ export const Text: React.FunctionComponent<Props> = (props) => {
     theme === TextThemes.HINT && styles.textHint,
     textAlign && { textAlign },
     color && { color },
-    bebasFont && { fontFamily: bold && isIOS ? fonts.bebas : fonts.bebasBold },
+    bebasFont && { fontFamily: bold && fonts.roboto },
     size && { fontSize: size },
     disabled && styles.textDisabled,
     disabledColor && { color: disabledColor },

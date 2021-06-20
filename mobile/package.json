@@ -1,6 +1,14 @@
 {
   "name": "phoenix-mobile-wallet",
-  "version": "0.1.1",
+  "description": "The mobile wallet for Signum",
+  "version": "0.2.0",
+  "keywords": [
+    "cryptocoin",
+    "signum",
+    "blockchain",
+    "mobile",
+    "wallet"
+  ],
   "contributors": [
     "titanishu",
     "blankey1337",
@@ -25,7 +33,8 @@
     "start:metro" : "react-native start",
     "start:devtools" : "react-devtools",
     "start": "concurrently npm:start:*",
-    "postinstall": "react-native link",
+    "postinstall": "npm run link",
+    "link": "react-native link",
     "lint": "tslint --fix --project tsconfig.json 'src/**/*.{ts,tsx}'",
     "lint:staged": "tslint --fix --project tsconfig.json",
     "translations:sort": "node tasks/sortJsonDir.js src/translations && git add src/translations/*.json",

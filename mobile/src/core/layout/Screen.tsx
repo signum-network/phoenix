@@ -16,7 +16,7 @@ interface Props {
 }
 
 const area: any = {
-  backgroundColor: Colors.BLUE_DARKER
+  backgroundColor: Colors.BLUE
 };
 
 if (!isIOS) {

@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingVertical: Sizes.MEDIUM,
     paddingHorizontal: defaultSideOffset,
-    backgroundColor: Colors.BLUE_DARKER
+    backgroundColor: Colors.BLUE
   },
   withoutPaddings: {
     paddingVertical: 0,

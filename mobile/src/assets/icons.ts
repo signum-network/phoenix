@@ -26,5 +26,6 @@ export const transactionIcons = {
 };
 
 export const logos = {
-  white: require('./icons/logo_white.png')
+  white: require('./icons/logo_white.png'),
+  icon: require('./icons/logo_white.png')
 };

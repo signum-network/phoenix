@@ -85,10 +85,12 @@ class Settings extends React.PureComponent<Props> {
   render () {
     const nodes = [
       'https://wallet.burstcoin.ro',
-      'https://wallet2.burstcoin.ro',
-      'https://uk.signum.network',
+      'https://uk.signum.network:8125',
+      'https://canada.signum.network',
       'https://brazil.signum.network',
       'https://europe.signum.network',
+      'https://europe2.signum.network',
+      'https://europe3.signum.network',
       'https://australia.signum.network',
       'https://testnetwallet.burstcoin.ro',
       'https://testnet.burstcoin.network'
@@ -122,7 +124,7 @@ class Settings extends React.PureComponent<Props> {
 
             <View style={[styles.flexBottom, styles.bodyText]}>
               <Text color={Colors.WHITE} size={FontSizes.SMALL}>
-                Phoenix BURST Wallet {VersionNumber.appVersion} ({VersionNumber.buildVersion})
+                Phoenix Signum Wallet {VersionNumber.appVersion} ({VersionNumber.buildVersion})
                 </Text>
               <Text color={Colors.WHITE} size={FontSizes.SMALL}>
                 {i18n.t(settings.screens.settings.copyright)}

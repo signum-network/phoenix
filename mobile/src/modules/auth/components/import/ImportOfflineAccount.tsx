@@ -17,7 +17,7 @@ interface State {
 
 export class ImportOfflineAccount extends React.PureComponent<Props, State> {
   state: State = {
-    address: 'BURST-'
+    address: 'S-'
   };
 
   handleChangeAddress = (address: string) => {

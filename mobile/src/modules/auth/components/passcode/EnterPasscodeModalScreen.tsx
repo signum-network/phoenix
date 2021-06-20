@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   keyboard: {
-    flex: 2,
+    flex: 1.5,
     justifyContent: 'center'
   },
   hint: {
@@ -53,12 +53,12 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 200,
-    height: 53,
-    marginBottom: 50,
+    height: 200,
+    resizeMode: 'contain',
     alignSelf: 'center'
   },
   footer: {
-    marginBottom: 20
+    // marginBottom: 20
   }
 });
 
@@ -136,7 +136,7 @@ export class EnterPasscodeModalScreen extends React.PureComponent<Props, State> 
   render () {
     const { hasError, hasTouchID } = this.state;
     const { onReset } = this.props;
-    const code = this.state.code.replace(/./g, 'X ') + ' ';
+    const code = this.state.code.replace(/./g, '* ') + ' ';
 
     return (
       <Screen style={styles.view}>

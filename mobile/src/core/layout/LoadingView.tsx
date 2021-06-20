@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   },
   loaderText: {
     color: Colors.WHITE,
-    fontFamily: fonts.noto
+    fontFamily: fonts.signum
   }
 });
 

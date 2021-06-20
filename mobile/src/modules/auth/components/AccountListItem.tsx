@@ -78,13 +78,13 @@ export class AccountListItem extends React.PureComponent<Props> {
     const { priceApi, accountIndex } = this.props;
 
     const address = `...${last(accountRS.split('-'))}`;
-    const balanceBURST = convertNQTStringToNumber(balanceNQT);
+    const balance = convertNQTStringToNumber(balanceNQT);
 
     const balanceBTC = priceApi && priceApi.priceInfo
-        ? toNumber(priceApi.priceInfo.price_btc) * balanceBURST
+        ? toNumber(priceApi.priceInfo.price_btc) * balance
         : 0;
     const balanceUSD = priceApi && priceApi.priceInfo
-        ? toNumber(priceApi.priceInfo.price_usd) * balanceBURST
+        ? toNumber(priceApi.priceInfo.price_usd) * balance
         : 0;
 
     return (
@@ -121,7 +121,7 @@ export class AccountListItem extends React.PureComponent<Props> {
           <View style={styles.amountCol}>
             <View style={styles.row}>
               <Text bold bebasFont textAlign={TextAlign.RIGHT} color={Colors.WHITE}>
-                {i18n.t(core.currency.BURST.value, { value: balanceBURST })}
+                {i18n.t(core.currency.SIGNA.value, { value: balance })}
               </Text>
             </View>
             {priceApi && priceApi.priceInfo && (

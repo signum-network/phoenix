@@ -44,7 +44,7 @@ export class BInput extends React.PureComponent<Props> {
       elevation: 3
     },
     input: {
-      fontFamily: fonts.noto,
+      fontFamily: fonts.roboto,
       letterSpacing: -1,
       fontSize: FontSizes.MEDIUM,
       fontWeight: '500',

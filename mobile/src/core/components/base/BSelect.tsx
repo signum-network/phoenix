@@ -22,7 +22,7 @@ export interface SelectItem<T> extends Item {
 
 const defaultStyles: any = {
   fontSize: FontSizes.MEDIUM,
-  fontFamily: fonts.noto,
+  fontFamily: fonts.roboto,
   letterSpacing: -1,
   fontWeight: '500',
   color: Colors.WHITE,
