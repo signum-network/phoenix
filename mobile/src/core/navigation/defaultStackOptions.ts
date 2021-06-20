@@ -10,6 +10,6 @@ export const defaultStackOptions: NavigationScreenOptions = {
   headerTintColor: Colors.GREEN,
   headerTitleStyle: {
     fontWeight: 'bold',
-    fontFamily: fonts.bebas
+    fontFamily: fonts.signum
   }
 };

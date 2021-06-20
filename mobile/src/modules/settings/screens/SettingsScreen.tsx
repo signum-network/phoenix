@@ -93,7 +93,7 @@ class Settings extends React.PureComponent<Props> {
       'https://europe3.signum.network',
       'https://australia.signum.network',
       'https://testnetwallet.burstcoin.ro',
-      'https://testnet.burstcoin.network'
+      'https://testnet.burstcoin.network:6876'
     ];
 
     const { selectedNode } = this.state;

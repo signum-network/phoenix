@@ -22,7 +22,7 @@ import { RootStackParamList } from '../navigation/mainStack';
 import { Text } from '../../../core/components/base/Text';
 import { core } from '../../../core/translations';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { FontSizes } from '../../../core/theme/sizes';
+import {trimAddressPrefix} from '../../../core/utils/account';
 
 type AccountDetailsRouteProps = RouteProp<RootStackParamList, 'AccountDetails'>;
 type AccountDetailsNavProp = StackNavigationProp<RootStackParamList, 'AccountDetails'>;
@@ -50,8 +50,8 @@ class AccountDetails extends React.PureComponent<Props> {
   }
 
   getAccount = () => {
-    const accountRS = this.props.route.params.accountRS;
-    return this.props.accounts.find((acc) => acc.accountRS === accountRS);
+    const accountId = this.props.route.params.account;
+    return this.props.accounts.find((acc) => acc.account === accountId);
   }
 
   updateTransactions = () => {
@@ -96,7 +96,7 @@ class AccountDetails extends React.PureComponent<Props> {
             </TouchableOpacity>
             <View style={{ flex: 1, alignItems: 'center', margin: 10 }}>
               <HeaderTitle>
-                {route.params.accountRS || 'Account Details'}
+                {trimAddressPrefix(account.accountRS) || 'Account Details'}
               </HeaderTitle>
             </View>
             <View style={{ position: 'absolute',right: 10, top: 0 }}>

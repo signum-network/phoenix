@@ -20,7 +20,7 @@ export type RootStackParamList = {
     transaction: Transaction;
   };
   AccountDetails: {
-    accountRS?: string;
+    account?: string;
   };
   ViewQRCode: {
     form?: any;

@@ -65,18 +65,16 @@ export const createActiveAccount = createActionFn<string[], Account>(
     const accountRS = convertNumericIdToAddress(account);
     const pinHash = hashSHA256(pin + keys.publicKey);
 
-    // TODO: make fields optional in @burst package
     return new Account({
       account,
       accountRS,
-      type: 'active', // TODO: make type enum in @burst package
+      type: 'active',
       keys: encryptedKeys,
       pinHash
     });
   }
 );
 
-#####
 
 export const createOfflineAccount = createActionFn<string, Account>(
   (_dispatch, getState, accountRS): Account => {
@@ -90,9 +88,8 @@ export const createOfflineAccount = createActionFn<string, Account>(
       throw new Error(i18n.t(auth.errors.accountExist));
     }
 
-    // TODO: make fields optional in @burst package
     return new Account({
-      type: 'offline', // TODO: make type enum in @burst package
+      type: 'offline',
       account,
       accountRS
     });
@@ -102,17 +99,20 @@ export const createOfflineAccount = createActionFn<string, Account>(
 export const hydrateAccount = createActionFn<Account, Promise<Account>>(
   async (dispatch, getState, account) => {
     const state = getState();
-    const { nodeHost, apiRootUrl } = state.app.burstService.settings;
+    const { nodeHost } = state.app.burstService.settings;
     console.log(nodeHost);
 
     // TODO: unify network request actions, add proper error handling and so on
-    const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
+    const api = composeApi(new ApiSettings(nodeHost));
     try {
       const accountDetails = await api.account.getAccount(account.account);
+      console.log('Got account', accountDetails)
       dispatch(actions.updateAccount(accountDetails));
       dispatch(updateAccountTransactions(accountDetails));
     // tslint:disable-next-line: no-empty
-    } catch (e) {}
+    } catch (e) {
+        console.error('Something failed', e)
+    }
 
     await setAccounts(getState().auth.accounts);
     return account;

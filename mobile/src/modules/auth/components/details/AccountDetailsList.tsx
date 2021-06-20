@@ -43,7 +43,7 @@ export class AccountDetailsList extends React.PureComponent<Props> {
     const { onTransactionPress, account } = this.props;
 
     return (
-      <TransactionListItem accountRS={account.accountRS} onPress={onTransactionPress} transaction={item}/>
+      <TransactionListItem account={account.account} onPress={onTransactionPress} transaction={item}/>
     );
   }
 

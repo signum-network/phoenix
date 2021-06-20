@@ -104,6 +104,7 @@ class Home extends React.PureComponent<IProps, State> {
   }
 
   updateAllAccounts = () => {
+    console.log('Updating Accounts...')
     try {
       return Promise.all(this.props.auth.accounts.map((account) => {
         this.props.dispatch(hydrateAccount(account));
@@ -126,7 +127,7 @@ class Home extends React.PureComponent<IProps, State> {
 
   handleAccountPress = (account: Account) => {
     this.props.navigation.navigate(routes.accountDetails, {
-      accountRS: account.accountRS
+      account: account.account
     });
   }
 

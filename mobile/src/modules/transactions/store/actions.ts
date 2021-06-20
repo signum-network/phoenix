@@ -130,7 +130,7 @@ async function getEncryptedMessage (dispatch: any,
                               sender: Account,
                               messageIsText: boolean | undefined,
                               message: string,
-                              passcode: string) {
+                              passcode: string): Promise<EncryptedMessage | EncryptedData> {
   const recipient = await dispatch(getAccount(address));
   const agreementPrivateKey = decryptAES(sender.keys.agreementPrivateKey, hashSHA256(passcode));
   let encryptedMessage: EncryptedMessage | EncryptedData;
