@@ -13,8 +13,7 @@ const styles = StyleSheet.create({
   area: {
     flex: 1,
     backgroundColor: Colors.BLUE,
-    // paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-    paddingBottom: Platform.OS === 'android' ? 0 : 40,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   }
 });
 

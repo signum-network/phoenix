@@ -1,67 +1,68 @@
-import { Account } from '@burstjs/core';
-import { Transaction } from '@burstjs/core/src/typings/transaction';
-import { toString } from 'lodash';
+import {Account} from '@burstjs/core';
+import {Transaction} from '@burstjs/core/src/typings/transaction';
+import {toString} from 'lodash';
 import React from 'react';
-import { FlatList, ListRenderItemInfo } from 'react-native';
-import { ListSeparator } from '../../../../core/components/base/ListSeparator';
-import { PriceInfoReduxState } from '../../../price-api/store/reducer';
-import { AccountTransactionsHeader } from './AccountTransactionsHeader';
-import { NoTransactions } from './NoTransactions';
-import { TransactionListItem } from './TransactionListItem';
+import {FlatList, ListRenderItemInfo} from 'react-native';
+import {ListSeparator} from '../../../../core/components/base/ListSeparator';
+import {PriceInfoReduxState} from '../../../price-api/store/reducer';
+import {AccountTransactionsHeader} from './AccountTransactionsHeader';
+import {NoTransactions} from './NoTransactions';
+import {TransactionListItem} from './TransactionListItem';
+import {Screen} from '../../../../core/layout/Screen';
 
 interface Props {
-  account: Account;
-  onTransactionPress: (transaction: Transaction) => void;
-  priceApi?: PriceInfoReduxState;
+    account: Account;
+    onTransactionPress: (transaction: Transaction) => void;
+    priceApi?: PriceInfoReduxState;
 }
 
 const styles: any = {
-  flatList: {
-    height: '100%',
-    padding: 0,
-  }
+    flatList: {
+        height: '100%',
+        padding: 0,
+    }
 };
 
 export class AccountDetailsList extends React.PureComponent<Props> {
-  keyExtractor = (item: Transaction, index: number) => {
-    return toString(item.fullHash || index);
-  }
+    keyExtractor = (item: Transaction, index: number) => {
+        return toString(item.fullHash || index);
+    };
 
-  renderHeader = () => {
-    const { account, priceApi } = this.props;
-    return (
-        <AccountTransactionsHeader priceApi={priceApi} account={account}/>
-    );
-  }
+    renderHeader = () => {
+        const {account, priceApi} = this.props;
+        return (
+            <AccountTransactionsHeader priceApi={priceApi} account={account}/>
+        );
+    };
 
-  renderNoData = () => {
-    return (
-      <NoTransactions/>
-    );
-  }
+    renderNoData = () => {
+        return (
+            <NoTransactions/>
+        );
+    };
 
-  renderTransactionItem = ({ item }: ListRenderItemInfo<Transaction>) => {
-    const { onTransactionPress, account } = this.props;
+    renderTransactionItem = ({item}: ListRenderItemInfo<Transaction>) => {
+        const {onTransactionPress, account} = this.props;
 
-    return (
-      <TransactionListItem account={account.account} onPress={onTransactionPress} transaction={item}/>
-    );
-  }
+        return (
+            <TransactionListItem account={account.account} onPress={onTransactionPress} transaction={item}/>
+        );
+    };
 
-  render () {
-    const { account: { transactions = [] } } = this.props;
-    // const availableTransactions = transactions.filter((item) => item.type === 0);
+    render() {
+        const {account: {transactions = []}} = this.props;
+        // const availableTransactions = transactions.filter((item) => item.type === 0);
 
-    return (
-      <FlatList
-        style={styles.flatList}
-        ListHeaderComponent={this.renderHeader}
-        ListEmptyComponent={this.renderNoData}
-        data={transactions}
-        renderItem={this.renderTransactionItem}
-        keyExtractor={this.keyExtractor}
-        ItemSeparatorComponent={ListSeparator}
-      />
-    );
-  }
+        return (
+            <FlatList
+                style={styles.flatList}
+                ListHeaderComponent={this.renderHeader}
+                ListEmptyComponent={this.renderNoData}
+                data={transactions}
+                renderItem={this.renderTransactionItem}
+                keyExtractor={this.keyExtractor}
+                ItemSeparatorComponent={ListSeparator}
+            />
+        );
+    }
 }
