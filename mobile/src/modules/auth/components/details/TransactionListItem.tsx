@@ -17,10 +17,6 @@ interface Props {
 }
 
 const styles: any = {
-    bordered: {
-        borderWidth: 0.5,
-        borderColor: Colors.WHITE,
-    },
     view: {
         display: 'flex',
         flexDirection: 'row',
@@ -119,9 +115,7 @@ export class TransactionListItem extends React.PureComponent<Props> {
 
     getOpacity = () => {
         const {confirmations = 0} = this.props.transaction;
-
         const opacity = confirmations > 0 ? 1 : .75;
-
         return {
             opacity
         };
@@ -145,7 +139,7 @@ export class TransactionListItem extends React.PureComponent<Props> {
         const date = getShortDateFromTimestamp(timestamp);
 
         return (
-            <TouchableOpacity style={[styles.view, this.getOpacity(), styles.bordered]} onPress={this.handlePress}>
+            <TouchableOpacity style={[styles.view, this.getOpacity()]} onPress={this.handlePress}>
                 <View style={styles.iconView}>
                     {this.renderIcon()}
                 </View>
@@ -160,7 +154,7 @@ export class TransactionListItem extends React.PureComponent<Props> {
                     </View>
                     <View style={styles.dataView}>
                         <View style={styles.view}>
-                            <Text color={isNegative ? Colors.RED : Colors.GREEN} size={FontSizes.MEDIUM} bebasFont >{amount}</Text>
+                            <Text color={isNegative ? Colors.RED : Colors.GREEN} size={FontSizes.MEDIUM} bebasFont>{amount}</Text>
                         </View>
                         <View style={styles.account}>
                             <Text color={Colors.WHITE} bebasFont>{accountRS}</Text>

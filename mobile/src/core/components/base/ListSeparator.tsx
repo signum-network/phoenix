@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Sizes } from '../../theme/sizes';
+import {Colors} from '../../theme/colors';
 
 const styles = StyleSheet.create({
   view: {
-    height: Sizes.SMALL
+    borderBottomWidth: 0.5,
+    borderColor: Colors.GREY,
   }
 });
 

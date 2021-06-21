@@ -44,7 +44,7 @@ class ImportAccount extends React.PureComponent<Props, State> {
 
   handleAddActiveAccount = async (passphrase: string) => {
     try {
-      const account = await this.props.dispatch(createActiveAccount(passphrase.split(' ')));
+      const account = await this.props.dispatch(createActiveAccount(passphrase));
       this.props.dispatch(addAccount(account));
       this.props.dispatch(hydrateAccount(account));
       this.props.navigation.navigate(routes.home);

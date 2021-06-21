@@ -45,49 +45,52 @@ class AddAccount extends React.PureComponent<IProps> {
 
     handleCreateAccount = () => {
         this.props.navigation.navigate(routes.createAccount);
-    }
+    };
 
     handleImportAccount = () => {
         this.props.navigation.navigate(routes.importAccount);
-    }
+    };
 
     render() {
         return (
-            <FullHeightView withoutPaddings style={{backgroundColor: Colors.WHITE}}>
-                <View style={{backgroundColor: Colors.BLUE_DARKER, flexDirection: 'row'}}>
-                    <TouchableOpacity
-                        style={{flexDirection: 'row', position: 'absolute', zIndex: 1, left: 10, top: 10}}
-                        onPress={this.props.navigation.goBack}>
-                        <Image source={actionIcons.chevronLeft} style={{width: 30, height: 30}}/>
-                        <Text color={Colors.WHITE}>{i18n.t(core.actions.back)}</Text>
-                    </TouchableOpacity>
-                    <View style={{flex: 1, alignItems: 'center', margin: 10}}>
-                        <HeaderTitle>
-                            {i18n.t(auth.addAccount.title)}
-                        </HeaderTitle>
+            <Screen>
+                <FullHeightView withoutPaddings style={{backgroundColor: Colors.WHITE}}>
+                    <View style={{backgroundColor: Colors.BLUE_DARKER, flexDirection: 'row'}}>
+                        <TouchableOpacity
+                            style={{flexDirection: 'row', position: 'absolute', zIndex: 1, left: 10, top: 10}}
+                            onPress={this.props.navigation.goBack}>
+                            <Image source={actionIcons.chevronLeft} style={{width: 30, height: 30}}/>
+                            <Text color={Colors.WHITE}>{i18n.t(core.actions.back)}</Text>
+                        </TouchableOpacity>
+                        <View style={{flex: 1, alignItems: 'center', margin: 10}}>
+                            <HeaderTitle>
+                                {i18n.t(auth.addAccount.title)}
+                            </HeaderTitle>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.center}>
-                    <View style={styles.hintView}>
-                        <Text theme={TextThemes.HEADER}>
-                            {i18n.t(auth.addAccount.hint)}
-                        </Text>
+                    <View style={styles.center}>
+                        <View style={styles.hintView}>
+                            <Text theme={TextThemes.HEADER}>
+                                {i18n.t(auth.addAccount.hint)}
+                            </Text>
+                        </View>
+                        <View>
+                            <Button theme={ButtonThemes.ACCENT} onPress={this.handleCreateAccount}>
+                                {i18n.t(auth.addAccount.createAccount)}
+                            </Button>
+                            <Button theme={ButtonThemes.ACCENT} onPress={this.handleImportAccount}>
+                                {i18n.t(auth.addAccount.importAccount)}
+                            </Button>
+                        </View>
                     </View>
-                    <View>
-                        <Button theme={ButtonThemes.ACCENT} onPress={this.handleCreateAccount}>
-                            {i18n.t(auth.addAccount.createAccount)}
-                        </Button>
-                        <Button theme={ButtonThemes.ACCENT} onPress={this.handleImportAccount}>
-                            {i18n.t(auth.addAccount.importAccount)}
-                        </Button>
-                    </View>
-                </View>
-            </FullHeightView>
+                </FullHeightView>
+            </Screen>
         );
     }
 }
 
-function mapStateToProps(state: ApplicationState) {
+function mapStateToProps(state: ApplicationState)
+{
     return {
         auth: state.auth
     };

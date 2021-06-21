@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-  StatusBar,
-  StatusBarStyle,
-  StyleSheet,
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Colors } from '../theme/colors';
-import { isIOS } from '../utils/platform';
+import {Platform, StatusBar, StatusBarStyle, StyleSheet,} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {Colors} from '../theme/colors';
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -14,30 +9,25 @@ interface Props {
   style?: any;
 }
 
-const area: any = {
-  backgroundColor: Colors.BLUE
-};
-
-if (!isIOS) {
-  area.paddingBottom = 40;
-}
-
 const styles = StyleSheet.create({
-  area
+  area: {
+    flex: 1,
+    backgroundColor: Colors.BLUE,
+    // paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    paddingBottom: Platform.OS === 'android' ? 0 : 40,
+  }
 });
 
-export class Screen extends React.PureComponent<Props> {
+export const Screen = (props: Props) => {
+  const {barStyle = 'light-content', children, style} = props;
 
-  render () {
-    const { barStyle = 'light-content', children, style } = this.props;
-
-    return (
+  return (
       <React.Fragment>
-        <StatusBar barStyle={barStyle} />
+        <StatusBar barStyle={barStyle}/>
         <SafeAreaView style={[styles.area, style]}>
           {children}
         </SafeAreaView>
       </React.Fragment>
-    );
-  }
-}
+  );
+};
+

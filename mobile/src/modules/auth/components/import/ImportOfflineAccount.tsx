@@ -37,6 +37,7 @@ export class ImportOfflineAccount extends React.PureComponent<Props, State> {
           <Input
             hint={i18n.t(auth.models.account.address)}
             value={address}
+            autoCapitalize={'characters'}
             onChangeText={this.handleChangeAddress}
           />
           <AccountTypeHint>{i18n.t(auth.importAccount.passiveAccountHint)}</AccountTypeHint>
