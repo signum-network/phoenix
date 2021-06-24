@@ -12,6 +12,7 @@ import { defaultSideOffset, FontSizes, Sizes } from '../../../core/theme/sizes';
 import { core } from '../../../core/translations';
 import { amountToString } from '../../../core/utils/numbers';
 import { PriceInfoReduxState, PriceType } from '../../price-api/store/reducer';
+import {shortRSAddress} from '../../../core/utils/account';
 
 interface IProps {
   onPress: (account: Account) => void;
@@ -74,10 +75,10 @@ export class AccountListItem extends React.PureComponent<Props> {
 
   render () {
     // TODO: add name to account creating and so on
-    const { accountRS = '', balanceNQT = '', name = 'unnamed' } = this.props.account;
+    const { accountRS = '', balanceNQT = '', name = '<unnamed>' } = this.props.account;
     const { priceApi, accountIndex } = this.props;
 
-    const address = `...${last(accountRS.split('-'))}`;
+    const address = shortRSAddress(accountRS);
     const balance = convertNQTStringToNumber(balanceNQT);
 
     const balanceBTC = priceApi && priceApi.priceInfo

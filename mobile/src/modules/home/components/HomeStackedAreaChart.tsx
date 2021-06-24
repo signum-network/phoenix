@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
 
 const svgStyles: StyleMedia = {
   fontSize: 8,
-  stroke: 'black',
+  stroke: 'white',
   strokeWidth: 0.1,
   alignmentBaseline: 'baseline',
   baselineShift: '3',

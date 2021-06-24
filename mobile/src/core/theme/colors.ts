@@ -4,7 +4,7 @@ export enum Colors {
   BLACK = 'rgba(25, 25, 25, 1)',
   GREY_LIGHT = 'rgba(255, 255, 255, 0.7)',
   GREY = 'rgba(255, 255, 255, 0.5)',
-  GREY_DARK = 'rgba(0, 0, 0, 0.87)',
+  GREY_DARK = 'rgb(71,71,71)',
   BLUE_LIGHT = '#0099ff',
   BLUE = '#0066ff',
   BLUE_DARKER = '#021851',
@@ -12,7 +12,10 @@ export enum Colors {
   PINK = '#D9534F',
   RED = '#FF4444',
   GREEN = '#00FF88',
+  GREEN_DARKEST = '#004221',
+  GREEN_LIGHT = '#7efcbf',
   ORANGE = '#EAA924',
+  ORANGE_LIGHT = '#e8c773',
   YELLOW = '#FFFE33',
   ACQUA = '#E8F3FF',
   ACQUA_LIGHT = '#EAF0F6',
@@ -20,14 +23,12 @@ export enum Colors {
 }
 
 export const AccountColors = [
-  Colors.GREY_LIGHT,
-  Colors.GREY_DARK,
-  Colors.WHITE,
-  Colors.BLUE_LIGHT,
+  Colors.GREEN_LIGHT,
   Colors.BLUE_DARKEST,
-  Colors.BLACK,
-  Colors.BLUE,
-  Colors.BLUE_DARKER,
-  Colors.ORANGE,
-  Colors.YELLOW
+  Colors.ACQUA_LIGHT,
+  Colors.GREY_DARK,
+  Colors.BLUE_LIGHT,
+  Colors.GREEN_DARKEST,
+  Colors.ORANGE_LIGHT,
+  Colors.YELLOW,
 ];

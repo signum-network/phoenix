@@ -5,7 +5,6 @@ import {
   convertNumberToNQTString,
   convertNumericIdToAddress,
   isBurstAddress,
-  isValid,
   sumNQTStringToNumber
 } from '@burstjs/util';
 import { last } from 'lodash';
@@ -33,8 +32,10 @@ import { Recipient, RecipientType, RecipientValidationStatus } from '../../store
 import { transactions } from '../../translations';
 import { FeeSlider } from '../fee-slider/FeeSlider';
 import { AccountStatusPill } from './AccountStatusPill';
+import {Amount} from '@signumjs/util';
+import {shortRSAddress} from '../../../../core/utils/account';
 
-const burstPrefix = 'BURST-';
+const AddressPrefix = 'S-';
 
 interface Props {
   loading: boolean;
@@ -107,9 +108,9 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
   getAccounts = (): Array<SelectItem<string>> => {
     return this.props.accounts
       .filter(({ keys }) => keys && keys.publicKey)
-      .map((account) => ({
-        value: account.accountRS,
-        label: `...${last(account.accountRS.split('-'))}`
+      .map(({accountRS}) => ({
+        value: accountRS,
+        label: shortRSAddress(accountRS)
       }));
   }
 
@@ -130,8 +131,9 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
       messageIsText: props && typeof props.messageIsText !== 'undefined' ? props.messageIsText : true,
       encrypt: props && props.encrypt || false,
       immutable: props && props.immutable || false,
-      recipient: new Recipient(props && props.address || 'BURST-', props && props.address || ''),
-      showSubmitButton: true,
+      recipient: new Recipient(props && props.address || AddressPrefix, props && props.address || ''),
+      // showSubmitButton: true,
+      showSubmitButton: false,
       addMessage: props && !!props.message || false
     };
   }
@@ -148,7 +150,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
     if (r.length === 0) {
       type = RecipientType.UNKNOWN;
-    } else if (r.toUpperCase().startsWith(burstPrefix)) {
+    } else if (r.toUpperCase().startsWith(AddressPrefix)) {
       type = RecipientType.ADDRESS;
     } else if (r.toUpperCase().endsWith('.ZIL') || r.toUpperCase().endsWith('.CRYPTO')) {
       type = RecipientType.ZIL;
@@ -228,7 +230,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
       this.setState({
         recipient: {
           ...this.state.recipient,
-          addressRS: (isBurstAddress(recipient) || this.state.recipient.type === RecipientType.ZIL) ?
+          addressRS: (recipient.startsWith(AddressPrefix) || this.state.recipient.type === RecipientType.ZIL) ?
           recipient : convertNumericIdToAddress(recipient),
           status: RecipientValidationStatus.INVALID
         }
@@ -240,13 +242,14 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
     const { sender, recipient, amount, fee } = this.state;
     const { loading } = this.props;
 
-    return Boolean(
-      Number(amount) &&
-      Number(fee) &&
-      sender &&
-      isValid(recipient.addressRS) &&
-      !loading
-    );
+    return true;
+    // return Boolean(
+    //   Number(amount) &&
+    //   Number(fee) &&
+    //   sender &&
+    //   isValid(recipient.addressRS) &&
+    //   !loading
+    // );
   }
 
   handleChangeFromAccount = (sender: string) => {
@@ -339,7 +342,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
         {this.state.sender &&
           <View style={styles.balance}>
             <BText bebasFont color={Colors.GREY_LIGHT}>
-             Ƀ {convertNQTStringToNumber(this.state.sender.balanceNQT).toString()}
+              {Amount.fromPlanck(this.state.sender.balanceNQT).toString()}
             </BText>
           </View>}
         <Image source={actionIcons.chevronDown} style={styles.chevron} />
@@ -348,7 +351,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
     const RecipientRightIcons = (
       <View style={{ flexDirection: 'row' }}>
-        {recipient.addressRaw !== burstPrefix &&
+        {recipient.addressRaw !== AddressPrefix &&
           <AccountStatusPill address={recipient.addressRS} type={recipient.type} status={recipient.status} />}
         <TouchableOpacity onPress={this.props.onCameraIconPress}>
           <Image source={transactionIcons.camera} style={styles.inputIcon} />
@@ -382,7 +385,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             onEndEditing={this.handleAddressBlur}
             editable={!this.state.immutable}
             title={i18n.t(transactions.screens.send.to)}
-            placeholder='BURST-____-____-____-_____'
+            placeholder='S-____-____-____-_____'
             rightIcons={RecipientRightIcons}
           />
           <BInput
@@ -456,22 +459,22 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
            </View>
         </View>
         <View style={styles.swipeButtonContainer}>
-          {this.state.showSubmitButton ? <SwipeButton
-            disabledRailBackgroundColor={Colors.GREY}
-            disabledThumbIconBackgroundColor={Colors.GREY}
-            disabledThumbIconBorderColor={Colors.BLUE_DARKER}
-            thumbIconBackgroundColor={Colors.WHITE}
-            thumbIconImageSource={actionIcons.chevronRight}
-            onSwipeSuccess={this.handleSubmit}
-            shouldResetAfterSuccess={true}
-            title={i18n.t(transactions.screens.send.button)}
-            railBackgroundColor={Colors.BLACK}
-            railBorderColor={Colors.BLUE_DARKER}
-            railFillBackgroundColor={Colors.BLUE_DARKER}
-            railFillBorderColor={Colors.BLUE_DARKER}
-            titleColor={this.isSubmitEnabled() ? Colors.WHITE : Colors.BLACK}
-            disabled={!this.isSubmitEnabled()}
-          /> : null}
+          {/*{this.state.showSubmitButton ? <SwipeButton*/}
+          {/*  disabledRailBackgroundColor={Colors.GREY}*/}
+          {/*  disabledThumbIconBackgroundColor={Colors.GREY}*/}
+          {/*  disabledThumbIconBorderColor={Colors.BLUE_DARKER}*/}
+          {/*  thumbIconBackgroundColor={Colors.WHITE}*/}
+          {/*  thumbIconImageSource={actionIcons.chevronRight}*/}
+          {/*  onSwipeSuccess={this.handleSubmit}*/}
+          {/*  shouldResetAfterSuccess={true}*/}
+          {/*  title={i18n.t(transactions.screens.send.button)}*/}
+          {/*  railBackgroundColor={Colors.BLACK}*/}
+          {/*  railBorderColor={Colors.BLUE_DARKER}*/}
+          {/*  railFillBackgroundColor={Colors.BLUE_DARKER}*/}
+          {/*  railFillBorderColor={Colors.BLUE_DARKER}*/}
+          {/*  titleColor={this.isSubmitEnabled() ? Colors.WHITE : Colors.BLACK}*/}
+          {/*  disabled={!this.isSubmitEnabled()}*/}
+          {/*/> : null}*/}
         </View>
       </ScrollView>
     );

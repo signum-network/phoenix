@@ -1,6 +1,5 @@
 import {
   BottomTabNavigatorConfig,
-  createBottomTabNavigator,
   NavigationContainer
 } from 'react-navigation';
 

@@ -1,9 +1,9 @@
 import { Account } from '@burstjs/core';
-import { convertNQTStringToNumber, convertNumericIdToAddress, isBurstAddress, convertBurstTimeToEpochTime } from '@burstjs/util';
+import { convertNQTStringToNumber, convertNumericIdToAddress, isBurstAddress } from '@burstjs/util';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useState, useEffect } from 'react';
-import { Linking, View } from 'react-native';
+import React from 'react';
+import {  View } from 'react-native';
 import { connect } from 'react-redux';
 import { Text, TextThemes } from '../../../core/components/base/Text';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
@@ -72,9 +72,9 @@ class Send extends React.PureComponent<IProps, State> {
             fee: params.feeNQT ? this.getFee(params.feeNQT, params.feeSuggestionType) : undefined,
             amount: params.amountNQT ? convertNQTStringToNumber(params.amountNQT).toString() : undefined,
             message: params.message,
-            messageIsText: params.messageIsText === 'false' ? false : true,
-            encrypt: params.encrypt === 'true' ? true : false,
-            immutable: params.immutable === 'true' ? true : false
+            messageIsText: params.messageIsText !== 'false',
+            encrypt: params.encrypt === 'true',
+            immutable: params.immutable === 'true'
           }
         });
       }
