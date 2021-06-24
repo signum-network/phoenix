@@ -7,11 +7,11 @@ check () {
     fi
 }
 
-cd ./lib
+cd ../lib
 npm run tsc
 npm run test
 check
-cd ./web/angular-wallet
+cd ../web/angular-wallet
 #npm run test
 check
 npm run build:ci
