@@ -30,7 +30,7 @@ export class AddAliasComponent implements OnInit {
   public feeNQT: string;
   advanced = false;
   showMessage = false;
-  burstAddressPatternRef = burstAddressPattern;
+  addressPatternRef = burstAddressPattern;
   type = 'acct';
   account: Account;
   deadline = '24';
@@ -68,6 +68,9 @@ export class AddAliasComponent implements OnInit {
       });
       this.notifierService.notify('success', this.i18nService.getTranslation('success_alias_register'));
       this.setAliasForm.resetForm();
+      this.accountAliasURI = this.account.accountRS;
+      this.type = 'acct';
+
     } catch (e) {
       handleException({
         e,
