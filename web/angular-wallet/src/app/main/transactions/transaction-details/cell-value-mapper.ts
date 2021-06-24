@@ -6,7 +6,7 @@ import {
   getAttachmentVersion
 } from '@signumjs/core';
 import {UtilService} from '../../../util.service';
-import {Amount, BlockTime, convertHexStringToString} from '@signumjs/util';
+import {Amount, ChainTime, convertHexStringToString} from '@signumjs/util';
 
 
 export enum CellValueType {
@@ -116,7 +116,7 @@ export class CellValueMapper {
   }
 
   private getTime(blockTimestamp: number): CellValue {
-    const date = BlockTime.fromBlockTimestamp(blockTimestamp).getDate();
+    const date = ChainTime.fromChainTimestamp(blockTimestamp).getDate();
     return new CellValue(date, CellValueType.Date);
   }
 

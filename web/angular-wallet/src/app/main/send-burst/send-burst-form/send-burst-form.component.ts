@@ -18,7 +18,7 @@ import {ActivatedRoute, Router, NavigationEnd, Params} from '@angular/router';
 import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
 import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 import {Address} from '@signumjs/core';
-import {SignaSymbol} from '@signumjs/util';
+import {CurrencySymbol} from '@signumjs/util';
 
 interface CIP22Payload {
   amountPlanck: string | number;
@@ -78,7 +78,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   language: string;
 
   private balances: AccountBalances;
-  symbol = SignaSymbol;
+  symbol = CurrencySymbol;
 
   constructor(
     private warnDialog: MatDialog,

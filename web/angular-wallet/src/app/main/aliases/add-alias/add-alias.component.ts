@@ -6,9 +6,8 @@ import {AccountService} from 'app/setup/account/account.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {burstAddressPattern} from 'app/util/burstAddressPattern';
-import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 import {NetworkService} from '../../../network/network.service';
-import {SignaSymbol} from '@signumjs/util';
+import {CurrencySymbol} from '@signumjs/util';
 import {handleException} from '../../../util/exceptions/handleException';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
@@ -37,7 +36,7 @@ export class AddAliasComponent implements OnInit {
   deadline = '24';
   fees: SuggestedFees;
   addressPrefix: AddressPrefix.MainNet | AddressPrefix.TestNet;
-  symbol = SignaSymbol;
+  symbol = CurrencySymbol;
   isSending = false;
 
   constructor(private route: ActivatedRoute,

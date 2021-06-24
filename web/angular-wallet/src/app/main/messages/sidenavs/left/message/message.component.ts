@@ -7,7 +7,7 @@ import {fuseAnimations} from '@fuse/animations';
 import {FuseMatSidenavHelperService} from '@fuse/directives/fuse-mat-sidenav/fuse-mat-sidenav.service';
 
 import {MessagesService} from '../../../messages.service';
-import {BlockTime} from '@signumjs/util';
+import {ChainTime} from '@signumjs/util';
 
 @Component({
   selector: 'message-sidenav',
@@ -112,6 +112,6 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
   }
 
   convertTimestampToDate(timestamp): Date {
-    return BlockTime.fromBlockTimestamp(timestamp).getDate();
+    return ChainTime.fromChainTimestamp(timestamp).getDate();
   }
 }

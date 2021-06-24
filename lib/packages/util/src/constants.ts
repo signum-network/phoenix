@@ -1,14 +1,14 @@
 /**
- * Symbol/Character for SIGNA unit
+ * Symbol/Character for currency unit
  * @module util
  * */
-export const SignaSymbol = 'Ꞩ';
+export const CurrencySymbol = 'Ꞩ';
 
 /**
  * Symbol/Character for Planck (the smallest possible unit)
  * @module util
  * */
-export const SignaPlanckSymbol = 'ꞩ';
+export const CurrencyPlanckSymbol = 'ꞩ';
 
 /**
  * The smallest possible fee

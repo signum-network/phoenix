@@ -1,10 +1,10 @@
 /**
- * The utility package for BurstJS, with loads of convenience methods
+ * The utility package for SignumJS, with loads of convenience methods
  *
  * @moduledefinition util
  * */
 export * from './asyncRetry';
-export * from './blockTime';
+export * from './chainTime';
 export * from './amount';
 export * from './constants';
 export * from './convertBase36StringToHexString';

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.1 
+
+## Bug fix
+
+- Encryption of attachment works again (#1490)
+
+
 ## 1.2.0 (Signum Rebrand)
 
 - Overall Rebranding for Signum
