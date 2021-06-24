@@ -5,6 +5,8 @@
 ## Bug fix
 
 - Encryption of attachment works again (#1490)
+- Burst Currency Symbol in Commitment Page (#1489)
+- Alias Reset Form (#1484)
 
 
 ## 1.2.0 (Signum Rebrand)

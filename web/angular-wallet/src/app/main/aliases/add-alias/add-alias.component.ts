@@ -49,7 +49,6 @@ export class AddAliasComponent implements OnInit {
   ngOnInit(): void {
     this.account = this.route.snapshot.data.account as Account;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
-
     this.addressPrefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
     this.accountAliasURI = this.account.accountRS;
   }
