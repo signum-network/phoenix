@@ -207,7 +207,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
     try {
       this.isSending = true;
 
-      await this.transactionService.sendBurst({
+      await this.transactionService.sendAmount({
         amount: Amount.fromSigna(this.amount).getPlanck(),
         fee: Amount.fromSigna(this.fee).getPlanck(),
         recipientId: Address.fromReedSolomonAddress(addressRS).getNumericId(),
