@@ -1,6 +1,7 @@
 name: Build SignumJS
 
 on:
+  pull_request:
   push:
     branches:
       - "**"

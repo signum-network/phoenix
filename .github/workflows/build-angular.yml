@@ -1,6 +1,7 @@
 name: Test and Build Angular App
 
 on:
+  pull_request:
   push:
     branches:
       - "**"
