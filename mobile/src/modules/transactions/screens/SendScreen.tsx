@@ -1,5 +1,3 @@
-import { Account } from '@burstjs/core';
-import { convertNQTStringToNumber, convertNumericIdToAddress, isBurstAddress } from '@burstjs/util';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
@@ -27,6 +25,8 @@ import { TransactionsReduxState } from '../store/reducer';
 import { parseURLParams } from '../store/utils';
 import { transactions } from '../translations';
 import { withNavigation } from 'react-navigation';
+import {Amount} from '@signumjs/util';
+import {Address, Account} from '@signumjs/core';
 
 type SendNavProp = StackNavigationProp<RootStackParamList, 'send'>;
 type SendRouteProp = RouteProp<RootStackParamList, 'send'>;
@@ -68,9 +68,9 @@ class Send extends React.PureComponent<IProps, State> {
         this.setState({
           deepLinkProps: {
             sender: null,
-            address: isBurstAddress(params.receiver) ? params.receiver : convertNumericIdToAddress(params.receiver),
+            address: Address.create(params.receiver).getReedSolomonAddress(),
             fee: params.feeNQT ? this.getFee(params.feeNQT, params.feeSuggestionType) : undefined,
-            amount: params.amountNQT ? convertNQTStringToNumber(params.amountNQT).toString() : undefined,
+            amount: params.amountNQT ? Amount.fromPlanck(params.amountNQT).getSigna() : undefined,
             message: params.message,
             messageIsText: params.messageIsText !== 'false',
             encrypt: params.encrypt === 'true',
@@ -96,13 +96,13 @@ class Send extends React.PureComponent<IProps, State> {
     });
   }
 
-  getFee (feeNQT: string, feeSuggestionType: string) {
-    let fee = convertNQTStringToNumber(feeNQT);
+  getFee (feeNQT: string, feeSuggestionType: string): string {
+    let fee = Amount.fromPlanck(feeNQT);
     if (feeSuggestionType && feeSuggestionType !== 'undefined' && this.props.network.suggestedFees) {
       // @ts-ignore
-      fee = convertNQTStringToNumber(this.props.network.suggestedFees[feeSuggestionType]);
+      fee = Amount.fromPlanck(this.props.network.suggestedFees[feeSuggestionType]);
     }
-    return fee.toString();
+    return fee.getSigna();
   }
 
   handleSubmit = (form: SendMoneyPayload) => {

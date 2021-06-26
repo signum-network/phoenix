@@ -157,20 +157,24 @@
         "selectAccount": "Выберите аккаунт",
         "sent": "Отправлено!",
         "title": "Отправить",
-        "button": "Проведите, чтобы отправить",
+        "button": {
+          "enabled": "Проведите, чтобы отправить",
+          "disabled": "Заполните форму для отправки"
+        },
+
         "to": "Аккаунт получателя",
         "total": "Всего: Ƀ {{value}}",
         "noPublicKey": "Пожалуйста, подтвердите адрес перед отправкой.",
         "invalidAddress": "Этот адрес недействителен.",
         "zilOutage": "Невозможно получить из ZIL API.",
-        "success": "Успешно отправлено {{amount}} BURST на {{address}}.",
-        "failure": "Не удалось отправить BURST. Пожалуйста, проверьте ваши записи и попробуйте снова.",
-        "encrypt": "Encrypt Message?",
-        "addMessage": "Add a Message?",
-        "message": "Message"
+        "success": "Успешно отправлено {{amount}} SIGNA на {{address}}.",
+        "failure": "Не удалось отправить SIGNA. Пожалуйста, проверьте ваши записи и попробуйте снова.",
+        "encrypt": "Зашифровать сообщение?",
+        "addMessage": "Добавить сообщение?",
+        "message": "Сообщение"
       },
       "scan": {
-        "title": "Сканировать BURST QR-код"
+        "title": "Сканировать QR-код"
       }
     }
   },
@@ -182,8 +186,8 @@
         "confirmReset": "Вы уверены? Вы не можете отменить это действие.",
         "confirmErase": "Удалить и сбросить",
         "changeLanguage": "Выбрать язык",
-        "selectNode": "Select Node",
-        "copyright": "Copyright © Burst Apps Team"
+        "selectNode": "Выберите узел",
+        "copyright": "Copyright © Burst Apps Team / Signum Network"
       }
     }
   }

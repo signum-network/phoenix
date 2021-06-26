@@ -158,7 +158,10 @@
         "selectAccount": "Select an account",
         "sent": "Sent!",
         "title": "Send",
-        "button": "Swipe to Send",
+        "button": {
+          "enabled": "Swipe to Send",
+          "disabled": "Complete form to Send"
+        },
         "to": "To",
         "total": "Total: Ꞩ {{value}}",
         "noPublicKey": "Please confirm address before sending.",
