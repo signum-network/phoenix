@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, View, Image, TouchableOpacity} from 'react-native';
-import {NavigationInjectedProps, withNavigation} from 'react-navigation';
 import {connect} from 'react-redux';
 import {Button, ButtonThemes} from '../../../core/components/base/Button';
 import {Text, TextThemes} from '../../../core/components/base/Text';
@@ -19,6 +18,7 @@ import {actionIcons} from '../../../assets/icons';
 import {core} from '../../../core/translations';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../navigation/mainStack';
+import {HeaderWithBackButton} from '../../../core/layout/HeaderWithBackButton';
 
 type AddAccountNavProp = StackNavigationProp<RootStackParamList, 'AddAccount'>;
 
@@ -39,35 +39,19 @@ const styles = StyleSheet.create({
 });
 
 class AddAccount extends React.PureComponent<IProps> {
-    static navigationOptions = {
-        headerTitle: <HeaderTitle>{i18n.t(auth.addAccount.title)}</HeaderTitle>
-    };
-
     handleCreateAccount = () => {
         this.props.navigation.navigate(routes.createAccount);
-    };
+    }
 
     handleImportAccount = () => {
         this.props.navigation.navigate(routes.importAccount);
-    };
+    }
 
     render() {
         return (
             <Screen>
                 <FullHeightView withoutPaddings style={{backgroundColor: Colors.WHITE}}>
-                    <View style={{backgroundColor: Colors.BLUE_DARKER, flexDirection: 'row'}}>
-                        <TouchableOpacity
-                            style={{flexDirection: 'row', position: 'absolute', zIndex: 1, left: 10, top: 10}}
-                            onPress={this.props.navigation.goBack}>
-                            <Image source={actionIcons.chevronLeft} style={{width: 30, height: 30}}/>
-                            <Text color={Colors.WHITE}>{i18n.t(core.actions.back)}</Text>
-                        </TouchableOpacity>
-                        <View style={{flex: 1, alignItems: 'center', margin: 10}}>
-                            <HeaderTitle>
-                                {i18n.t(auth.addAccount.title)}
-                            </HeaderTitle>
-                        </View>
-                    </View>
+                    <HeaderWithBackButton title={i18n.t(auth.addAccount.title)} />
                     <View style={styles.center}>
                         <View style={styles.hintView}>
                             <Text theme={TextThemes.HEADER}>
@@ -89,8 +73,7 @@ class AddAccount extends React.PureComponent<IProps> {
     }
 }
 
-function mapStateToProps(state: ApplicationState)
-{
+function mapStateToProps(state: ApplicationState) {
     return {
         auth: state.auth
     };

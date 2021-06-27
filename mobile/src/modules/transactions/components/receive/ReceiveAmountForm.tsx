@@ -165,8 +165,6 @@ export class ReceiveAmountForm extends React.PureComponent<Props, State> {
               {i18n.t(transactions.screens.send.total, { value: amountToString(total) })}
             </BText>
           </View>
-        </View>
-        <View>
           <BButton disabled={!this.isSubmitEnabled()} onPress={this.handleSubmit}>
             {i18n.t(transactions.screens.receive.generate)}
           </BButton>

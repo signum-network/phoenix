@@ -26,6 +26,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>burst</string>
+				<string>signum</string>
 			</array>
 		</dict>
 	</array>

@@ -23,8 +23,8 @@
     },
     "screens": {
       "accounts": {
-        "addAccount": "Add account",
-        "createAccount": "Create account",
+        "addAccount": "Add Account",
+        "createAccount": "Create Account",
         "noAccounts": {
           "hint": "Please add an account to get started.",
           "title": "Welcome to Signum"
@@ -126,8 +126,8 @@
       "home": {
         "accountsList": "Accounts List",
         "recentTransactions": "Recent Transactions",
-        "title": "All Accounts",
-        "allAccounts": "All Accounts"
+        "title": "Your Accounts",
+        "allAccounts": "Your Accounts"
       },
       "loading": {
         "loadingText": "Loading..."

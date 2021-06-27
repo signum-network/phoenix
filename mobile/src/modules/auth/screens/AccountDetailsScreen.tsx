@@ -1,4 +1,4 @@
-import { Account, Transaction } from '@burstjs/core';
+import { Account, Transaction } from '@signumjs/core';
 import React from 'react';
 import { Alert, Clipboard, Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
@@ -22,7 +22,7 @@ import { RootStackParamList } from '../navigation/mainStack';
 import { Text } from '../../../core/components/base/Text';
 import { core } from '../../../core/translations';
 import { StackNavigationProp } from '@react-navigation/stack';
-import {shortenRSAddress, trimAddressPrefix} from '../../../core/utils/account';
+import { shortenRSAddress } from '../../../core/utils/account';
 
 type AccountDetailsRouteProps = RouteProp<RootStackParamList, 'AccountDetails'>;
 type AccountDetailsNavProp = StackNavigationProp<RootStackParamList, 'AccountDetails'>;
@@ -62,11 +62,8 @@ class AccountDetails extends React.PureComponent<Props> {
   }
 
   handleTransactionPress = (transaction: Transaction) => {
-    // TODO: do something?
     // tslint:disable-next-line
-    this.props.navigation.navigate(routes.transactionDetails, {
-      transaction
-    })
+    this.props.navigation.navigate(routes.transactionDetails, {transaction})
   }
 
   handleCopy = () => {
@@ -78,7 +75,7 @@ class AccountDetails extends React.PureComponent<Props> {
   }
 
   render () {
-    const { priceApi, route } = this.props;
+    const { priceApi } = this.props;
     const account = this.getAccount();
     if (!account) {
       return null;
@@ -91,7 +88,7 @@ class AccountDetails extends React.PureComponent<Props> {
             <TouchableOpacity
               style={{ flexDirection: 'row', position: 'absolute', zIndex: 3, left: 10, top: 10 }}
               onPress={this.props.navigation.goBack}>
-              <Image source={actionIcons.chevronLeft} style={{width:30, height:30}} />
+              <Image source={actionIcons.chevronLeft} style={{width: 30, height: 30}} />
               <Text color={Colors.WHITE}>{i18n.t(core.actions.back)}</Text>
             </TouchableOpacity>
             <View style={{ flex: 1, alignItems: 'center', margin: 10 }}>
@@ -99,7 +96,7 @@ class AccountDetails extends React.PureComponent<Props> {
                 {shortenRSAddress(account.accountRS) || 'Account Details'}
               </HeaderTitle>
             </View>
-            <View style={{ position: 'absolute',right: 10, top: 0 }}>
+            <View style={{ position: 'absolute', right: 10, top: 0 }}>
               {isIOS ?
                 (
                   <TouchableOpacity onPress={this.handleCopy}>
