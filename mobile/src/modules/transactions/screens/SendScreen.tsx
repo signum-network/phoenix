@@ -20,7 +20,7 @@ import { AuthReduxState } from '../../auth/store/reducer';
 import { shouldEnterPIN } from '../../auth/store/utils';
 import { NetworkReduxState } from '../../network/store/reducer';
 import { SendBurstForm, SendBurstFormState } from '../components/send/SendBurstForm';
-import { sendMoney, SendMoneyPayload } from '../store/actions';
+import { sendMoney, SendAmountPayload } from '../store/actions';
 import { TransactionsReduxState } from '../store/reducer';
 import { parseURLParams } from '../store/utils';
 import { transactions } from '../translations';
@@ -105,7 +105,7 @@ class Send extends React.PureComponent<IProps, State> {
     return fee.getSigna();
   }
 
-  handleSubmit = (form: SendMoneyPayload) => {
+  handleSubmit = (form: SendAmountPayload) => {
     const { passcodeEnteredTime } = this.props.auth;
     const { passcodeTime } = this.props.app.appSettings;
 

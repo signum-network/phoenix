@@ -58,11 +58,11 @@ const styles = StyleSheet.create({
   },
   textHint: {
     color: Colors.GREY_DARK,
-    fontSize: FontSizes.SMALL
+    fontSize: FontSizes.SMALLER
   },
   textDanger: {
     color: Colors.RED,
-    fontSize: FontSizes.SMALL,
+    fontSize: FontSizes.SMALLER,
     textAlign: TextAlign.CENTER
   },
   textDisabled: {

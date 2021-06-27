@@ -82,7 +82,7 @@ export class BInput extends React.PureComponent<Props> {
     return (
       <View>
         {title ? (
-          <BText color={Colors.WHITE} size={FontSizes.SMALL}>{title}</BText>
+          <BText color={Colors.WHITE} size={FontSizes.SMALLER}>{title}</BText>
         ) : null}
         <View style={this.styles.wrapper}>
           <TextInput

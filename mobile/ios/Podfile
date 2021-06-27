@@ -14,6 +14,8 @@ target 'Phoenix' do
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
 
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
   target 'PhoenixTests' do
     inherit! :complete
     # Pods for testing

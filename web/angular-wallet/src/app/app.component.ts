@@ -134,7 +134,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
 
   private async routeLegacyDeeplink(url: string): Promise<void> {
     const parsedUrl = this.urlSerializer.parse(url.replace('signum://', ''));
-    const g: UrlSegmentGroup = parsedUrl.root.children[PRIMARY_OUTLET];
+    const g: UrlSegmentGroup = parsedUrl.image.children[PRIMARY_OUTLET];
     const s: UrlSegment[] = g.segments;
     await this.router.navigate([s[0].path.replace('requestBurst', 'send')], {
       queryParams: parsedUrl.queryParams,

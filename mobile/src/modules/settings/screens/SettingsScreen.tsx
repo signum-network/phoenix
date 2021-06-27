@@ -66,7 +66,7 @@ class Settings extends React.PureComponent<Props> {
 
     state = {
         erasePromptVisible: false,
-        selectedNode: this.props.app.burstService.settings.nodeHost
+        selectedNode: this.props.app.chainService.settings.nodeHost
     };
 
     toggleConfirmDeletePrompt = () => {
@@ -136,10 +136,10 @@ class Settings extends React.PureComponent<Props> {
                         </Button>
 
                         <View style={[styles.flexBottom, styles.bodyText]}>
-                            <Text color={Colors.WHITE} size={FontSizes.SMALL}>
+                            <Text color={Colors.WHITE} size={FontSizes.SMALLER}>
                                 Phoenix Signum Wallet {VersionNumber.appVersion} ({VersionNumber.buildVersion})
                             </Text>
-                            <Text color={Colors.WHITE} size={FontSizes.SMALL}>
+                            <Text color={Colors.WHITE} size={FontSizes.SMALLER}>
                                 {i18n.t(settings.screens.settings.copyright)}
                             </Text>
                         </View>

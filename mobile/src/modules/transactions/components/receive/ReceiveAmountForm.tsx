@@ -1,6 +1,4 @@
-import { Account, SuggestedFees } from '@burstjs/core';
-import { convertNQTStringToNumber, convertNumberToNQTString } from '@burstjs/util';
-import { last } from 'lodash';
+import { Account, SuggestedFees } from '@signumjs/core';
 import React from 'react';
 import { View } from 'react-native';
 import { BInput, KeyboardTypes } from '../../../../core/components/base/BInput';
@@ -11,12 +9,14 @@ import { Text as BText } from '../../../../core/components/base/Text';
 import { i18n } from '../../../../core/i18n';
 import { Colors } from '../../../../core/theme/colors';
 import { amountToString } from '../../../../core/utils/numbers';
-import { ReceiveBurstPayload } from '../../store/actions';
+import { ReceiveAmountPayload } from '../../store/actions';
 import { transactions } from '../../translations';
 import { FeeSlider } from '../fee-slider/FeeSlider';
+import {Amount} from '@signumjs/util';
+import {trimAddressPrefix} from '../../../../core/utils/account';
 
 interface Props {
-  onSubmit: (form: ReceiveBurstPayload) => void;
+  onSubmit: (form: ReceiveAmountPayload) => void;
   accounts: Account[];
   suggestedFees: SuggestedFees | null;
 }
@@ -30,12 +30,11 @@ interface State {
 
 const styles: any = {
   wrapper: {
-    display: 'flex',
-    height: '100%'
+    height: '90%'
   },
   form: {
     display: 'flex',
-    flexGrow: 1
+    flex: 1
   },
   col: {
     flex: 1
@@ -58,12 +57,11 @@ const styles: any = {
   }
 };
 
-export class ReceiveBurstForm extends React.PureComponent<Props, State> {
+export class ReceiveAmountForm extends React.PureComponent<Props, State> {
   state = {
     recipient: null,
     amount: '',
-    fee: this.props.suggestedFees &&
-         convertNQTStringToNumber(this.props.suggestedFees.standard.toString()).toString() || '',
+    fee: this.props.suggestedFees && Amount.fromPlanck(this.props.suggestedFees.standard).getSigna() || '',
     immutable: false
   };
 
@@ -72,7 +70,7 @@ export class ReceiveBurstForm extends React.PureComponent<Props, State> {
       .filter(({ keys }) => keys && keys.publicKey)
       .map((account) => ({
         value: account.accountRS,
-        label: `...${last(account.accountRS.split('-'))}`
+        label: trimAddressPrefix(account.accountRS),
       }));
   }
 
@@ -109,8 +107,8 @@ export class ReceiveBurstForm extends React.PureComponent<Props, State> {
       this.props.onSubmit({
         // @ts-ignore - ts bug I think
         recipient,
-        amount: convertNumberToNQTString(Number(amount)),
-        fee: convertNumberToNQTString(Number(fee)),
+        amount,
+        fee,
         immutable
       });
     }

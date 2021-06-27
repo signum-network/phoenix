@@ -103,7 +103,7 @@ export const createOfflineAccount = createActionFn<string, Account>(
 export const hydrateAccount = createActionFn<Account, Promise<Account>>(
     async (dispatch, getState, account) => {
         const state = getState();
-        const {nodeHost} = state.app.burstService.settings;
+        const {nodeHost} = state.app.chainService.settings;
         console.log(nodeHost);
 
         // TODO: unify network request actions, add proper error handling and so on
@@ -127,7 +127,7 @@ export const getAccount = createActionFn<string, Promise<Account | undefined>>(
     async (_dispatch, getState, account) => {
 
         const state = getState();
-        const {nodeHost, apiRootUrl} = state.app.burstService.settings;
+        const {nodeHost, apiRootUrl} = state.app.chainService.settings;
         // TODO: unify network request actions, add proper error handling and so on
         const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
         try {
@@ -143,7 +143,7 @@ export const getAlias = createActionFn<string, Promise<Alias | undefined>>(
     async (_dispatch, getState, account) => {
 
         const state = getState();
-        const {nodeHost, apiRootUrl} = state.app.burstService.settings;
+        const {nodeHost, apiRootUrl} = state.app.chainService.settings;
         // TODO: unify network request actions, add proper error handling and so on
         const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
         try {
@@ -168,7 +168,7 @@ export const getZilAddress = createActionFn<string, Promise<string | null>>(
 export const updateAccountTransactions = createActionFn<Account, Promise<Account>>(
     async (dispatch, getState, account) => {
         const state = getState();
-        const {nodeHost, apiRootUrl} = state.app.burstService.settings;
+        const {nodeHost, apiRootUrl} = state.app.chainService.settings;
 
         const updatedAccount: Account = {
             ...account

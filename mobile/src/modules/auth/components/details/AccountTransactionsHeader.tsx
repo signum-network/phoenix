@@ -10,6 +10,9 @@ import { defaultSideOffset, FontSizes, Sizes } from '../../../../core/theme/size
 import { core } from '../../../../core/translations';
 import { amountToString } from '../../../../core/utils/numbers';
 import { PriceInfoReduxState } from '../../../price-api/store/reducer';
+import {HeaderTitle} from '../../../../core/components/header/HeaderTitle';
+import {trimAddressPrefix} from '../../../../core/utils/account';
+import {LogoWatermark} from '../../../../core/components/base/LogoWatermark';
 
 interface Props {
   account: Account;
@@ -19,7 +22,7 @@ interface Props {
 const styles: any = {
   view: {
     paddingHorizontal: defaultSideOffset,
-    marginBottom: Sizes.MEDIUM
+    marginBottom: Sizes.MEDIUM,
   }
 };
 

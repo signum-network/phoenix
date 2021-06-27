@@ -115,7 +115,7 @@ export class AccountListItem extends React.PureComponent<Props> {
             </View>
             {name && (
               <View style={styles.row}>
-                <Text color={Colors.WHITE} size={FontSizes.SMALL}>{name}</Text>
+                <Text color={Colors.WHITE} size={FontSizes.SMALLER}>{name}</Text>
               </View>
             )}
           </View>
@@ -127,7 +127,7 @@ export class AccountListItem extends React.PureComponent<Props> {
             </View>
             {priceApi && priceApi.priceInfo && (
               <View style={styles.row}>
-                <Text size={FontSizes.SMALL} textAlign={TextAlign.RIGHT} color={Colors.WHITE}>
+                <Text size={FontSizes.SMALLER} textAlign={TextAlign.RIGHT} color={Colors.WHITE}>
                   {priceApi.selectedCurrency === PriceType.USD ?
                     i18n.t(core.currency.USD.value, { value: balanceUSD.toFixed(2) }) :
                     i18n.t(core.currency.BTC.value, { value: amountToString(balanceBTC) })}

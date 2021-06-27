@@ -27,6 +27,21 @@ import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 
 type ScanNavProp = StackNavigationProp<RootStackParamList, 'Scan'>;
 
+const styles = StyleSheet.create({
+  topView: {
+    backgroundColor: Colors.BLUE_DARKER
+  },
+  centerText: {
+    flex: 1,
+    fontSize: 18,
+    padding: 32,
+    color: Colors.WHITE
+  },
+  buttonTouchable: {
+    padding: 16
+  }
+});
+
 interface Props extends InjectedReduxProps {
   navigation: ScanNavProp;
 }
@@ -79,21 +94,6 @@ class ScanQRCodeScreenComponent extends React.PureComponent<Props> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  topView: {
-    backgroundColor: Colors.BLUE_DARKER
-  },
-  centerText: {
-    flex: 1,
-    fontSize: 18,
-    padding: 32,
-    color: Colors.GREY_LIGHT
-  },
-  buttonTouchable: {
-    padding: 16
-  }
-});
 
 function mapStateToProps () {
   return {};

@@ -2,7 +2,7 @@ import {getRecipientsAmount, isMultiOutSameTransaction, isMultiOutTransaction, T
 import {convertNQTStringToNumber} from '@burstjs/util';
 import React from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
-import {actionIcons, transactionIcons} from '../../../../assets/icons';
+import {transactionIcons} from '../../../../assets/icons';
 import {Text, TextAlign} from '../../../../core/components/base/Text';
 import {Colors} from '../../../../core/theme/colors';
 import {defaultSideOffset, FontSizes, Sizes} from '../../../../core/theme/sizes';
@@ -146,10 +146,10 @@ export class TransactionListItem extends React.PureComponent<Props> {
                 <View style={styles.mainView}>
                     <View style={styles.hintView}>
                         <View>
-                            <Text color={Colors.WHITE} size={FontSizes.SMALL}>{transaction}</Text>
+                            <Text color={Colors.WHITE} size={FontSizes.SMALLER}>{transaction}</Text>
                         </View>
                         <View>
-                            <Text color={Colors.WHITE} size={FontSizes.SMALL} textAlign={TextAlign.RIGHT}>{date}</Text>
+                            <Text color={Colors.WHITE} size={FontSizes.SMALLER} textAlign={TextAlign.RIGHT}>{date}</Text>
                         </View>
                     </View>
                     <View style={styles.dataView}>
@@ -157,7 +157,7 @@ export class TransactionListItem extends React.PureComponent<Props> {
                             <Text color={isNegative ? Colors.RED : Colors.GREEN} size={FontSizes.MEDIUM} bebasFont>{amount}</Text>
                         </View>
                         <View style={styles.account}>
-                            <Text color={Colors.WHITE} bebasFont>{accountRS}</Text>
+                            <Text color={Colors.WHITE} bebasFont size={FontSizes.SMALL}>{accountRS}</Text>
                         </View>
                     </View>
                 </View>

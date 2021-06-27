@@ -113,7 +113,7 @@ export class AccountStatusPill extends React.PureComponent<Props, State> {
   render () {
     return (
       <TouchableOpacity onPress={this.handleTap} style={[styles.wrapper, this.getBackgroundColor()]}>
-          <Text size={FontSizes.SMALL} color={this.getTextColor()}>{this.getLabelText()}</Text>
+          <Text size={FontSizes.SMALLER} color={this.getTextColor()}>{this.getLabelText()}</Text>
       </TouchableOpacity>
     );
   }

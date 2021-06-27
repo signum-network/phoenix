@@ -1,30 +1,21 @@
-import { BurstService } from '@burstjs/core';
+import { ChainService } from '@signumjs/core';
 import { defaultSettings } from '../../environment';
-import { AppSettings, BurstSettings, Reducer } from '../../interfaces';
+import { AppSettings, Reducer } from '../../interfaces';
 import { createReducers } from '../../utils/store';
 import { actionTypes } from './actionTypes';
-1
+
 export interface AppReduxState {
   isAppLoaded: boolean;
   appSettings: AppSettings;
-  burstService: BurstService;
+  chainService: ChainService;
 }
 
 export function getDefaultAppSettings (): AppSettings {
   return {
     passcodeTime: defaultSettings.passcodeTime, // 10 min,
-    burstSettings: getDefaultBurstSettings(),
+    nodeSettings: defaultSettings,
     coinMarketCapURL: defaultSettings.coinMarketCapURL,
     burstAlertsURL: defaultSettings.burstAlertsURL
-  };
-}
-
-export function getDefaultBurstSettings (): BurstSettings {
-  const { nodeHost, apiRootUrl } = defaultSettings;
-
-  return {
-    nodeHost,
-    apiRootUrl
   };
 }
 
@@ -34,7 +25,7 @@ export const appState = (): AppReduxState => {
   return {
     isAppLoaded: false,
     appSettings,
-    burstService: new BurstService(appSettings.burstSettings)
+    chainService: new ChainService(appSettings.nodeSettings)
   };
 };
 
@@ -65,9 +56,8 @@ const setNode: Reducer<AppReduxState, string> = (state, action) => {
   console.log('setNode', action);
   return {
     ...state,
-    burstService: new BurstService({
+    chainService: new ChainService({
       nodeHost: action.payload,
-      apiRootUrl: state.burstService.settings.apiRootUrl
     })
   };
 };

@@ -79,7 +79,7 @@ class TransactionDetails extends React.PureComponent<Props> {
       });
 
     return (
-      <Screen style={{ backgroundColor: Colors.BLUE_DARKER }}>
+      <Screen style={{ backgroundColor: Colors.BLUE }}>
         <FullHeightView withoutPaddings>
           <View style={{ flexDirection: 'row' }}>
             <TouchableOpacity

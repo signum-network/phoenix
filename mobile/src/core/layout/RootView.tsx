@@ -13,10 +13,10 @@ function mapStateToProps (state: ApplicationState) {
 }
 
 interface InjectedProps extends InjectedReduxProps {
-  app: AppReduxState
+  app: AppReduxState;
 }
 interface Props {
-  children: JSX.Element
+  children: JSX.Element;
 }
 type TProps = InjectedProps & Props;
 

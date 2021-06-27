@@ -1,7 +1,6 @@
 import { Account } from '@burstjs/core';
 import React from 'react';
 import { View } from 'react-native';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { i18n } from '../../../core/i18n';
@@ -14,8 +13,8 @@ import { ApplicationState } from '../../../core/store/initialState';
 import { EnterPasscodeModal } from '../../auth/components/passcode/EnterPasscodeModal';
 import { AuthReduxState } from '../../auth/store/reducer';
 import { NetworkReduxState } from '../../network/store/reducer';
-import { ReceiveBurstForm } from '../components/receive/ReceiveBurstForm';
-import { generateQRAddress, ReceiveBurstPayload } from '../store/actions';
+import { ReceiveAmountForm } from '../components/receive/ReceiveAmountForm';
+import { ReceiveAmountPayload } from '../store/actions';
 import { transactions } from '../translations';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../auth/navigation/mainStack';
@@ -38,8 +37,7 @@ class Receive extends React.PureComponent<Props, State> {
     isPINModalVisible: false
   };
 
-  handleSubmit = (form: ReceiveBurstPayload) => {
-    this.props.dispatch(generateQRAddress(form));
+  handleSubmit = (form: ReceiveAmountPayload) => {
     this.props.navigation.navigate(routes.viewQRCode, { form });
   }
 
@@ -64,7 +62,7 @@ class Receive extends React.PureComponent<Props, State> {
         <FullHeightView>
           <HeaderTitle>{i18n.t(transactions.screens.receive.title)}</HeaderTitle>
           <View>
-            <ReceiveBurstForm
+            <ReceiveAmountForm
               accounts={accounts}
               onSubmit={this.handleSubmit}
               suggestedFees={suggestedFees}

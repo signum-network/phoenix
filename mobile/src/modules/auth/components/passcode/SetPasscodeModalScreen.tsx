@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignSelf: 'center',
         justifyContent: 'flex-end',
-        marginTop: Sizes.LARGE * 2
+        marginTop: Sizes.LARGER * 2
     },
     keyboard: {
         flex: 1.5,

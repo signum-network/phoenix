@@ -65,14 +65,13 @@ export interface Reducers<State> {
   [key: string]: (state: State, action: AnyAction<any>) => State;
 }
 
-export interface BurstSettings {
+export interface NodeSettings {
   nodeHost: string;
-  apiRootUrl: string;
 }
 
 export interface AppSettings {
   passcodeTime: number; // Time, after then we should ask passcode again, msec.
-  burstSettings: BurstSettings;
+  nodeSettings: NodeSettings;
   coinMarketCapURL: string;
   burstAlertsURL: string;
 }

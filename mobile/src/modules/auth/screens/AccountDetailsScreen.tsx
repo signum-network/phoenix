@@ -22,7 +22,7 @@ import { RootStackParamList } from '../navigation/mainStack';
 import { Text } from '../../../core/components/base/Text';
 import { core } from '../../../core/translations';
 import { StackNavigationProp } from '@react-navigation/stack';
-import {trimAddressPrefix} from '../../../core/utils/account';
+import {shortenRSAddress, trimAddressPrefix} from '../../../core/utils/account';
 
 type AccountDetailsRouteProps = RouteProp<RootStackParamList, 'AccountDetails'>;
 type AccountDetailsNavProp = StackNavigationProp<RootStackParamList, 'AccountDetails'>;
@@ -85,7 +85,7 @@ class AccountDetails extends React.PureComponent<Props> {
     }
 
     return (
-      <Screen style={{ backgroundColor: Colors.BLUE_DARKER }}>
+      <Screen>
         <FullHeightView withoutPaddings>
           <View style={{ flexDirection: 'row' }}>
             <TouchableOpacity
@@ -96,7 +96,7 @@ class AccountDetails extends React.PureComponent<Props> {
             </TouchableOpacity>
             <View style={{ flex: 1, alignItems: 'center', margin: 10 }}>
               <HeaderTitle>
-                {trimAddressPrefix(account.accountRS) || 'Account Details'}
+                {shortenRSAddress(account.accountRS) || 'Account Details'}
               </HeaderTitle>
             </View>
             <View style={{ position: 'absolute',right: 10, top: 0 }}>

@@ -30,7 +30,7 @@ interface State {
 
 const styles = StyleSheet.create({
   switchView: {
-    paddingBottom: Sizes.LARGE
+    paddingBottom: Sizes.LARGER
   }
 });
 

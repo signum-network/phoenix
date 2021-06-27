@@ -12,7 +12,7 @@ interface Props {
 const styles = StyleSheet.create({
   view: {
     marginBottom: Sizes.SMALL,
-    paddingLeft: Sizes.LARGE,
+    paddingLeft: Sizes.LARGER,
     paddingRight: Sizes.MEDIUM,
     paddingTop: isIOS ? 0 : Sizes.SMALL
   }

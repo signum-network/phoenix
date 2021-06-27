@@ -10,7 +10,7 @@ export const getSuggestedFees = createActionFn<void, Promise<SuggestedFees | und
   async (dispatch, getState) => {
 
     const state = getState();
-    const { nodeHost, apiRootUrl } = state.app.burstService.settings;
+    const { nodeHost, apiRootUrl } = state.app.chainService.settings;
     // TODO: unify network request actions, add proper error handling and so on
     const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
     try {

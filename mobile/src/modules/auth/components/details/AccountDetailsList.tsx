@@ -51,8 +51,6 @@ export class AccountDetailsList extends React.PureComponent<Props> {
 
     render() {
         const {account: {transactions = []}} = this.props;
-        // const availableTransactions = transactions.filter((item) => item.type === 0);
-
         return (
             <FlatList
                 style={styles.flatList}

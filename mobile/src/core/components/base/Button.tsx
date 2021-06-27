@@ -34,7 +34,7 @@ const childrenColors = {
 };
 const textSizes = {
   [ButtonSizes.DEFAULT]: FontSizes.MEDIUM,
-  [ButtonSizes.SMALL]: FontSizes.SMALL,
+  [ButtonSizes.SMALL]: FontSizes.SMALLER,
   [ButtonSizes.LARGE]: FontSizes.LARGE
 };
 
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     padding: Sizes.SMALL
   },
   wrapperLarge: {
-    padding: Sizes.LARGE
+    padding: Sizes.LARGER
   },
   button: {
     backgroundColor: Colors.WHITE,
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadiusSizes.SMALL
   },
   buttonLarge: {
-    padding: Sizes.LARGE,
+    padding: Sizes.LARGER,
     borderRadius: BorderRadiusSizes.LARGE
   },
   buttonAccent: {

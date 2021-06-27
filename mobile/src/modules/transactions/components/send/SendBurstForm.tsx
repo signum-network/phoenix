@@ -23,7 +23,7 @@ import {Text as BText} from '../../../../core/components/base/Text';
 import {i18n} from '../../../../core/i18n';
 import {Colors} from '../../../../core/theme/colors';
 import {amountToString} from '../../../../core/utils/numbers';
-import {SendMoneyPayload} from '../../store/actions';
+import {SendAmountPayload} from '../../store/actions';
 import {Recipient, RecipientType, RecipientValidationStatus} from '../../store/utils';
 import {transactions} from '../../translations';
 import {FeeSlider} from '../fee-slider/FeeSlider';
@@ -36,7 +36,7 @@ const AddressPrefix = 'S-';
 
 interface Props {
     loading: boolean;
-    onSubmit: (form: SendMoneyPayload) => void;
+    onSubmit: (form: SendAmountPayload) => void;
     onCameraIconPress: () => void;
     onGetAccount: (id: string) => Promise<Account>;
     onGetAlias: (id: string) => Promise<Account>;
@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
     wrapper: {
         display: 'flex',
         height: '62%',
-        // backgroundColor: Colors.ORANGE_LIGHT
     },
     form: {
         display: 'flex',
@@ -85,9 +84,6 @@ const styles = StyleSheet.create({
     },
     total: {
         marginTop: 10
-    },
-    swipeButtonContainer: {
-        // marginTop: 10
     },
     chevron: {
         width: 25,
@@ -452,7 +448,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
                         )}
                     </View>
                 </ScrollView>
-                    <View style={styles.swipeButtonContainer}>
+                    <View>
                         <View style={styles.total}>
                             <BText bebasFont color={Colors.WHITE}>
                                 {i18n.t(transactions.screens.send.total, {value: total.getSigna()})}

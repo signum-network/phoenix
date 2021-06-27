@@ -27,5 +27,7 @@ export const transactionIcons = {
 
 export const logos = {
   white: require('./icons/logo_white.png'),
-  icon: require('./icons/logomark_white.png')
+  icon: require('./icons/logomark_white.png'),
+  iconnode: require('./icons/signum-node.png')
 };
+

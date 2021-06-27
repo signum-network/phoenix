@@ -201,7 +201,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
           onPress={this.props.selectCurrency}
           style={styles.button as StyleMedia}
         >
-          <Text color={Colors.BLUE_LIGHT} size={FontSizes.SMALL}>
+          <Text color={Colors.BLUE_LIGHT} size={FontSizes.SMALLER}>
             {this.props.priceApi.selectedCurrency === 'BURST' ? 'SIGNA' : this.props.priceApi.selectedCurrency}
           </Text>
         </TouchableOpacity>
@@ -210,7 +210,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
           onPress={this.selectDateRange}
           style={[styles.button, styles.dateRange]}
         >
-          <Text color={Colors.BLUE_LIGHT} size={FontSizes.SMALL}>
+          <Text color={Colors.BLUE_LIGHT} size={FontSizes.SMALLER}>
             {this.state.selectedDateRange.toString()}d
           </Text>
         </TouchableOpacity>

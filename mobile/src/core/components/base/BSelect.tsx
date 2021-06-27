@@ -78,7 +78,7 @@ export class BSelect extends React.PureComponent<Props> {
     return (
       <View style={styles.wrapper}>
         {title ? (
-          <BText size={FontSizes.SMALL} color={Colors.WHITE}>{title}</BText>
+          <BText size={FontSizes.SMALLER} color={Colors.WHITE}>{title}</BText>
         ) : null}
         <RNPickerSelect
           onValueChange={this.props.onChange}

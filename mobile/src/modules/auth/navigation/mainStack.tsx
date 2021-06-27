@@ -1,5 +1,5 @@
 import { Transaction } from '@burstjs/core';
-import { ReceiveBurstPayload } from '../../transactions/store/actions';
+import { ReceiveAmountPayload } from '../../transactions/store/actions';
 
 export type RootStackParamList = {
   Home: {};
@@ -14,7 +14,7 @@ export type RootStackParamList = {
   CreateAccount: {};
   Settings: {};
   Scan: {
-    form: ReceiveBurstPayload
+    form: ReceiveAmountPayload
   };
   TransactionDetails: {
     transaction: Transaction;
