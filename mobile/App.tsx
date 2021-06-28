@@ -167,7 +167,7 @@ export default class App extends React.Component<{}, AppState> {
                 navigationRef.current?.setParams({url});
             }
         }, 500);
-    };
+    }
 
     getImageStyle = ({color}) => ({
         opacity: color === Colors.WHITE ? 1 : .5,

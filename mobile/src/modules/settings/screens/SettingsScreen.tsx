@@ -21,6 +21,7 @@ import {resetAuthState} from '../../auth/store/actions';
 import {AuthReduxState} from '../../auth/store/reducer';
 import {settings} from '../translations';
 import {saveNode} from '../../../core/store/app/actions';
+import {defaultSettings} from '../../../core/environment';
 
 interface IProps extends InjectedReduxProps {
     auth: AuthReduxState;
@@ -97,82 +98,64 @@ class Settings extends React.PureComponent<Props> {
     };
 
     render() {
-        const nodes = [
-            'https://wallet.burstcoin.ro',
-            'https://uk.signum.network:8125',
-            'https://canada.signum.network',
-            'https://brazil.signum.network',
-            'https://europe.signum.network',
-            'https://europe2.signum.network',
-            'https://europe3.signum.network',
-            'https://australia.signum.network',
-            'https://testnetwallet.burstcoin.ro',
-            'https://testnet.burstcoin.network:6876'
-        ];
+        const nodes = (defaultSettings.reliableNodeHosts as String[]).map(n => ({label: n, value: n}));
 
         const {selectedNode} = this.state;
 
-        return (
-            <Screen>
-                <FullHeightView>
-                    <HeaderTitle>{i18n.t(settings.screens.settings.title)}</HeaderTitle>
-                    <View style={styles.container}>
-                        <BSelect
-                            // @ts-ignore bad .d.ts
-                            value={selectedNode}
-                            items={nodes.map((node) => {
-                                return {
-                                    label: node,
-                                    value: node
-                                };
-                            })}
-                            onChange={this.handleNodeSelect}
-                            title={i18n.t(settings.screens.settings.selectNode)}
-                            placeholder={i18n.t(settings.screens.settings.selectNode)}
-                        />
+        return <Screen>
+            <FullHeightView>
+                <HeaderTitle>{i18n.t(settings.screens.settings.title)}</HeaderTitle>
+                <View style={styles.container}>
+                    <BSelect
+                        // @ts-ignore bad .d.ts
+                        value={selectedNode}
+                        items={nodes}
+                        onChange={this.handleNodeSelect}
+                        title={i18n.t(settings.screens.settings.selectNode)}
+                        placeholder={i18n.t(settings.screens.settings.selectNode)}
+                    />
 
-                        <Button onPress={this.toggleConfirmDeletePrompt}>
-                            {i18n.t(settings.screens.settings.erase)}
-                        </Button>
+                    <Button onPress={this.toggleConfirmDeletePrompt}>
+                        {i18n.t(settings.screens.settings.erase)}
+                    </Button>
 
-                        <View style={[styles.flexBottom, styles.bodyText]}>
-                            <Text color={Colors.WHITE} size={FontSizes.SMALLER}>
-                                Phoenix Signum Wallet {VersionNumber.appVersion} ({VersionNumber.buildVersion})
-                            </Text>
-                            <Text color={Colors.WHITE} size={FontSizes.SMALLER}>
-                                {i18n.t(settings.screens.settings.copyright)}
-                            </Text>
-                        </View>
-
-                        <Modal
-                            animationType="slide"
-                            transparent={false}
-                            visible={this.state.erasePromptVisible}
-                            // tslint:disable-next-line: jsx-no-lambda
-                            onRequestClose={() => {
-                                // Alert.alert('Modal has been closed.');
-                            }}
-                        >
-                            <SafeAreaView>
-                                <View style={modalStyles.container}>
-                                    <View style={modalStyles.body}>
-                                        <Text>{i18n.t(settings.screens.settings.confirmReset)}</Text>
-                                    </View>
-
-                                    <Button theme={ButtonThemes.ACCENT} onPress={this.toggleConfirmDeletePrompt}>
-                                        {i18n.t(settings.screens.settings.cancel)}
-                                    </Button>
-
-                                    <Button onPress={this.confirmErase}>
-                                        {i18n.t(settings.screens.settings.confirmErase)}
-                                    </Button>
-                                </View>
-                            </SafeAreaView>
-                        </Modal>
+                    <View style={[styles.flexBottom, styles.bodyText]}>
+                        <Text color={Colors.WHITE} size={FontSizes.SMALLER}>
+                            Phoenix Signum Wallet {VersionNumber.appVersion} ({VersionNumber.buildVersion})
+                        </Text>
+                        <Text color={Colors.WHITE} size={FontSizes.SMALLER}>
+                            {i18n.t(settings.screens.settings.copyright)}
+                        </Text>
                     </View>
-                </FullHeightView>
-            </Screen>
-        );
+
+                    <Modal
+                        animationType="slide"
+                        transparent={false}
+                        visible={this.state.erasePromptVisible}
+                        // tslint:disable-next-line: jsx-no-lambda
+                        onRequestClose={() => {
+                            // Alert.alert('Modal has been closed.');
+                        }}
+                    >
+                        <SafeAreaView>
+                            <View style={modalStyles.container}>
+                                <View style={modalStyles.body}>
+                                    <Text>{i18n.t(settings.screens.settings.confirmReset)}</Text>
+                                </View>
+
+                                <Button theme={ButtonThemes.ACCENT} onPress={this.toggleConfirmDeletePrompt}>
+                                    {i18n.t(settings.screens.settings.cancel)}
+                                </Button>
+
+                                <Button onPress={this.confirmErase}>
+                                    {i18n.t(settings.screens.settings.confirmErase)}
+                                </Button>
+                            </View>
+                        </SafeAreaView>
+                    </Modal>
+                </View>
+            </FullHeightView>
+        </Screen>;
     }
 }
 

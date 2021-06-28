@@ -17,6 +17,12 @@ export const actionIcons = {
   copy: require('./icons/content-copy.png')
 };
 
+export const accountIcons = {
+  active: require('./icons/check-circle.png'),
+};
+
+
+
 export const transactionIcons = {
   done: require('./icons/check-circle.png'),
   waiting: require('./icons/clock.png'),

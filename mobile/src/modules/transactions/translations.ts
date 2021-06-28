@@ -26,7 +26,7 @@ export const transactions = {
       title: 'transactions.screens.receive.title',
       recipient: 'transactions.screens.receive.recipient',
       generate: 'transactions.screens.receive.generate',
-      immutable: 'transactions.screens.receive.immutable'
+      immutable: 'transactions.screens.receive.immutable',
     },
     scan: {
       title: 'transactions.screens.scan.title'

@@ -5,11 +5,11 @@ import { TransactionsReduxState, transactionsState } from '../../modules/transac
 import { AppReduxState, appState } from './app/reducer';
 
 export interface ApplicationState {
-  app: AppReduxState
-  auth: AuthReduxState,
-  priceApi: PriceInfoReduxState,
-  transactions: TransactionsReduxState,
-  network: NetworkReduxState,
+  app: AppReduxState;
+  auth: AuthReduxState;
+  priceApi: PriceInfoReduxState;
+  transactions: TransactionsReduxState;
+  network: NetworkReduxState;
 }
 
 export const initialState: ApplicationState = {

@@ -13,7 +13,10 @@ export interface AppReduxState {
 export function getDefaultAppSettings (): AppSettings {
   return {
     passcodeTime: defaultSettings.passcodeTime, // 10 min,
-    nodeSettings: defaultSettings,
+    nodeSettings: {
+      nodeHost: defaultSettings.nodeHost,
+      reliableNodeHosts: defaultSettings.reliableNodeHosts
+    },
     coinMarketCapURL: defaultSettings.coinMarketCapURL,
     burstAlertsURL: defaultSettings.burstAlertsURL
   };
@@ -58,6 +61,7 @@ const setNode: Reducer<AppReduxState, string> = (state, action) => {
     ...state,
     chainService: new ChainService({
       nodeHost: action.payload,
+      reliableNodeHosts: defaultSettings.reliableNodeHosts
     })
   };
 };

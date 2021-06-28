@@ -1,4 +1,7 @@
 export const core: any = {
+  placeholders: {
+    message : 'core.placeholders.message',
+  },
   actions: {
     cancel: 'core.actions.cancel',
     ok: 'core.actions.ok',

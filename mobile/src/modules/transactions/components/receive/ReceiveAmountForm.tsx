@@ -1,175 +1,164 @@
-import { Account, SuggestedFees } from '@signumjs/core';
-import React from 'react';
-import { View } from 'react-native';
-import { BInput, KeyboardTypes } from '../../../../core/components/base/BInput';
-import { BSelect, SelectItem } from '../../../../core/components/base/BSelect';
-import { Button as BButton } from '../../../../core/components/base/Button';
-import { SwitchItem } from '../../../../core/components/base/SwitchItem';
-import { Text as BText } from '../../../../core/components/base/Text';
-import { i18n } from '../../../../core/i18n';
-import { Colors } from '../../../../core/theme/colors';
-import { amountToString } from '../../../../core/utils/numbers';
-import { ReceiveAmountPayload } from '../../store/actions';
-import { transactions } from '../../translations';
-import { FeeSlider } from '../fee-slider/FeeSlider';
-import {Amount} from '@signumjs/util';
+import {Account, SuggestedFees} from '@signumjs/core';
+import React, {useState, useEffect} from 'react';
+import {View} from 'react-native';
+import {BInput, KeyboardTypes} from '../../../../core/components/base/BInput';
+import {BSelect, SelectItem} from '../../../../core/components/base/BSelect';
+import {Button as BButton} from '../../../../core/components/base/Button';
+import {SwitchItem} from '../../../../core/components/base/SwitchItem';
+import {Text as BText} from '../../../../core/components/base/Text';
+import {i18n} from '../../../../core/i18n';
+import {Colors} from '../../../../core/theme/colors';
+import {amountToString} from '../../../../core/utils/numbers';
+import {ReceiveAmountPayload} from '../../store/actions';
+import {transactions} from '../../translations';
+import {FeeSlider} from '../fee-slider/FeeSlider';
 import {trimAddressPrefix} from '../../../../core/utils/account';
+import {Amount} from '@signumjs/util';
+import {core} from '../../../../core/translations';
 
 interface Props {
-  onSubmit: (form: ReceiveAmountPayload) => void;
-  accounts: Account[];
-  suggestedFees: SuggestedFees | null;
-}
-
-interface State {
-  recipient: Account | null;
-  amount: string;
-  fee: string;
-  immutable: boolean;
+    onSubmit: (form: ReceiveAmountPayload) => void;
+    accounts: Account[];
+    suggestedFees: SuggestedFees | null;
 }
 
 const styles: any = {
-  wrapper: {
-    height: '90%'
-  },
-  form: {
-    display: 'flex',
-    flex: 1
-  },
-  col: {
-    flex: 1
-  },
-  row: {
-    marginTop: 10,
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  label: {
-    flex: 3
-  },
-  slider: {
-    width: '100%',
-    height: 40
-  },
-  total: {
-    marginTop: 10
-  }
+    wrapper: {
+        height: '90%'
+    },
+    form: {
+        display: 'flex',
+        flex: 1
+    },
+    col: {
+        flex: 1
+    },
+    row: {
+        marginTop: 10,
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'row'
+    },
+    label: {
+        flex: 3
+    },
+    slider: {
+        width: '100%',
+        height: 40
+    },
+    total: {
+        marginTop: 10
+    }
 };
 
-export class ReceiveAmountForm extends React.PureComponent<Props, State> {
-  state = {
-    recipient: null,
-    amount: '',
-    fee: this.props.suggestedFees && Amount.fromPlanck(this.props.suggestedFees.standard).getSigna() || '',
-    immutable: false
-  };
+export const ReceiveAmountForm: React.FC<Props> = (props) => {
+    const [formData, setFormData] = useState<ReceiveAmountPayload>({
+        amount: '',
+        immutable: false,
+        fee: props.suggestedFees ? Amount.fromPlanck(props.suggestedFees.standard).getSigna() : '',
+        recipient: '',
+        message: '',
+    });
+    const [submitEnabled, setSubmitEnabled] = useState(false);
+    useEffect(() => {
+        const {amount, fee, recipient} = formData as ReceiveAmountPayload;
+        const isEnabled = Boolean(
+            Number(amount) &&
+            Number(fee) &&
+            recipient
+        );
+        setSubmitEnabled(isEnabled);
+    }, [formData]);
 
-  getAccounts = (): Array<SelectItem<string>> => {
-    return this.props.accounts
-      .filter(({ keys }) => keys && keys.publicKey)
-      .map((account) => ({
-        value: account.accountRS,
-        label: trimAddressPrefix(account.accountRS),
-      }));
-  }
+    const handleFormChange = (fieldName: string) => (data: any) => {
 
-  isSubmitEnabled = () => {
-    const { recipient, amount, fee } = this.state;
+        if (typeof data === 'string') {
+            data = data.trim();
+        }
 
-    return Boolean(
-      Number(amount) &&
-      Number(fee) &&
-      recipient
-    );
-  }
+        const updated = {
+            ...formData,
+            [fieldName]: data,
+        } as ReceiveAmountPayload;
 
-  handleChangeFromAccount = (recipient: null | Account) => {
-    this.setState({ recipient });
-  }
+        setFormData(updated);
+    };
 
-  handleAmountChange = (amount: string) => {
-    this.setState({ amount });
-  }
+    const getAccounts = (): Array<SelectItem<string>> => {
+        return props.accounts
+            .filter(({keys}) => keys && keys.publicKey)
+            .map((account) => ({
+                value: account.accountRS,
+                label: trimAddressPrefix(account.accountRS),
+            }));
+    };
 
-  handleFeeChange = (fee: string) => {
-    this.setState({ fee });
-  }
+    const handleSubmit = () => {
+        submitEnabled && props.onSubmit(formData);
+    };
 
-  handleImmutableChange = (immutable: boolean) => {
-    this.setState({ immutable });
-  }
+    const handleFeeChangeFromSlider = (fee: number) => {
+        handleFormChange('fee')(fee);
+    };
 
-  handleSubmit = () => {
-    const { recipient, amount, fee, immutable } = this.state;
-
-    if (this.isSubmitEnabled()) {
-      this.props.onSubmit({
-        // @ts-ignore - ts bug I think
-        recipient,
-        amount,
-        fee,
-        immutable
-      });
-    }
-  }
-
-  handleFeeChangeFromSlider = (fee: number) => {
-    this.setState({ fee: amountToString(fee) });
-  }
-
-  render () {
-    const { immutable, recipient, amount, fee } = this.state;
+    const {immutable, recipient, amount, fee, message = ''} = formData;
     const total = Number(amount) + Number(fee);
-    const { suggestedFees } = this.props;
+    const {suggestedFees} = props;
 
     return (
-      <View style={styles.wrapper}>
-        <View style={styles.form}>
-        <BSelect
-            value={recipient}
-            items={this.getAccounts()}
-            onChange={this.handleChangeFromAccount}
-            title={i18n.t(transactions.screens.receive.recipient)}
-            placeholder={i18n.t(transactions.screens.send.selectAccount)}
-          />
-          <BInput
-            value={amount}
-            onChange={this.handleAmountChange}
-            keyboard={KeyboardTypes.NUMERIC}
-            title={i18n.t(transactions.screens.send.amountNQT)}
-            placeholder={'0'}
-          />
-          <BInput
-            value={fee}
-            onChange={this.handleFeeChange}
-            keyboard={KeyboardTypes.NUMERIC}
-            title={i18n.t(transactions.screens.send.feeNQT)}
-            placeholder={'0'}
-          />
-          {suggestedFees &&
-           <FeeSlider
-            fee={parseFloat(fee) || 0}
-            onSlidingComplete={this.handleFeeChangeFromSlider}
-            suggestedFees={suggestedFees}
-           />}
-            <SwitchItem
-              text={(
-                <BText bebasFont color={Colors.WHITE}>{i18n.t(transactions.screens.receive.immutable)}</BText>
-              )}
-              value={immutable}
-              onChange={this.handleImmutableChange}
-            />
-          <View style={styles.total}>
-            <BText bebasFont color={Colors.WHITE}>
-              {i18n.t(transactions.screens.send.total, { value: amountToString(total) })}
-            </BText>
-          </View>
-          <BButton disabled={!this.isSubmitEnabled()} onPress={this.handleSubmit}>
-            {i18n.t(transactions.screens.receive.generate)}
-          </BButton>
+        <View style={styles.wrapper}>
+            <View style={styles.form}>
+                <BSelect
+                    value={recipient}
+                    items={getAccounts()}
+                    onChange={handleFormChange('recipient')}
+                    title={i18n.t(transactions.screens.receive.recipient)}
+                    placeholder={i18n.t(transactions.screens.send.selectAccount)}
+                />
+                <BInput
+                    value={amount}
+                    onChange={handleFormChange('amount')}
+                    keyboard={KeyboardTypes.NUMERIC}
+                    title={i18n.t(transactions.screens.send.amountNQT)}
+                    placeholder={'0'}
+                />
+                <BInput
+                    value={fee}
+                    onChange={handleFormChange('fee')}
+                    keyboard={KeyboardTypes.NUMERIC}
+                    title={i18n.t(transactions.screens.send.feeNQT)}
+                    placeholder={'0'}
+                />
+                <BInput
+                    value={message}
+                    onChange={handleFormChange('message')}
+                    title={i18n.t(transactions.screens.send.message)}
+                    placeholder={i18n.t(core.placeholders.message)}
+                />
+                {
+                    suggestedFees &&
+                    <FeeSlider
+                        fee={parseFloat(fee) || 0}
+                        onSlidingComplete={handleFeeChangeFromSlider}
+                        suggestedFees={suggestedFees}
+                    />
+                }
+                <SwitchItem
+                    text={(
+                        <BText bebasFont color={Colors.WHITE}>{i18n.t(transactions.screens.receive.immutable)}</BText>
+                    )}
+                    value={immutable}
+                    onChange={handleFormChange('immutable')}
+                />
+                <View style={styles.total}>
+                    <BText bebasFont color={Colors.WHITE}>
+                        {i18n.t(transactions.screens.send.total, {value: amountToString(total)})}
+                    </BText>
+                </View>
+                <BButton disabled={!submitEnabled} onPress={handleSubmit}>
+                    {i18n.t(transactions.screens.receive.generate)}
+                </BButton>
+            </View>
         </View>
-      </View>
     );
-  }
-}
+};

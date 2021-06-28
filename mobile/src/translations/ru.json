@@ -73,6 +73,9 @@
     }
   },
   "core": {
+    "placeholders" : {
+      "message": "Введите сообщение"
+    },
     "actions": {
       "add": "Добавить",
       "cancel": "Отмена",

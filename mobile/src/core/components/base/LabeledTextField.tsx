@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
         fontFamily: fonts.signum,
         fontSize: FontSizes.SMALLER,
         textAlign: 'left',
-        color: Colors.BLACK
+        color: Colors.BLACK,
+        top: 4,
     },
     text: {
         fontFamily: fonts.signum,

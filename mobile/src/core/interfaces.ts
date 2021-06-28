@@ -3,6 +3,7 @@ import { AnyAction as ReduxAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AsyncParticleStates, AuthStorageKeys, KeyChainKeys } from './enums';
 import { ApplicationState } from './store/initialState';
+import {ChainServiceSettings} from '../../../lib/packages/core/src';
 
 export interface InjectedReduxProps {
   dispatch: any // TODO: fix typings
@@ -65,13 +66,9 @@ export interface Reducers<State> {
   [key: string]: (state: State, action: AnyAction<any>) => State;
 }
 
-export interface NodeSettings {
-  nodeHost: string;
-}
-
 export interface AppSettings {
   passcodeTime: number; // Time, after then we should ask passcode again, msec.
-  nodeSettings: NodeSettings;
+  nodeSettings: ChainServiceSettings;
   coinMarketCapURL: string;
   burstAlertsURL: string;
 }

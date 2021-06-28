@@ -24,8 +24,6 @@ import {RootStackParamList} from '../navigation/mainStack';
 import {hydrateAccount, removeAccount, resetAuthState, setAgreeToTerms} from '../store/actions';
 import {AuthReduxState} from '../store/reducer';
 import {shouldEnterPIN} from '../store/utils';
-import {LogoWatermark, Positions} from '../../../core/components/base/LogoWatermark';
-import {Sizes} from '../../../core/theme/sizes';
 
 type HomeNavProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -73,22 +71,16 @@ class Home extends React.PureComponent<IProps, State> {
         selectedCurrency: priceTypes[0]
     };
 
-    constructor(props: IProps) {
-        super(props);
-        setTimeout(() => {
-            this.updateAllAccounts();
-        }, 500);
 
-        // this.props.navigation.setParams({
-        //   handleAddAccountPress: this.handleAddAccountPress
-        // });
+    componentDidMount(): void {
+        this.updateAllAccounts();
     }
 
     handleChangeAccount = () => {
         this.props.navigation.navigate(routes.accounts);
-    };
+    }
 
-    componentDidUpdate() {
+    componentDidUpdate(): void {
         if (this._checkPinExpiryInterval) {
             clearInterval(this._checkPinExpiryInterval);
         }
@@ -111,63 +103,62 @@ class Home extends React.PureComponent<IProps, State> {
             return Promise.all(this.props.auth.accounts.map((account) => {
                 this.props.dispatch(hydrateAccount(account));
             }));
-            // tslint:disable-next-line: no-empty
         } catch (e) {
         }
-    };
+    }
 
     setPINModalVisible = (isPINModalVisible: boolean) => {
         this.setState({isPINModalVisible});
-    };
+    }
 
     checkTermsScreen = () => {
         this.setTermsScreenVisible(!this.props.auth.agreeToTerms);
-    };
+    }
 
     setTermsScreenVisible = (isTermsScreenVisible: boolean) => {
         this.setState({isTermsScreenVisible});
-    };
+    }
 
     handleAccountPress = (account: Account) => {
         this.props.navigation.navigate(routes.accountDetails, {
             account: account.account
         });
-    };
+    }
 
     handleAddAccountPress = async () => {
         this.handleAddAccount();
-    };
+    }
 
     handlePINEntered = () => {
         this.setPINModalVisible(false);
-    };
+    }
 
     handleTermsAgreed = () => {
         this.props.dispatch(setAgreeToTerms(true));
         this.setTermsScreenVisible(false);
-    };
+    }
 
     handleAddAccount = () => {
         this.props.navigation.navigate(routes.addAccount);
-    };
+    }
 
     handlePINCancel = () => {
         this.setPINModalVisible(false);
-    };
+    }
 
     handleDelete = (account: Account) => {
         this.props.dispatch(removeAccount(account));
-    };
+    }
 
     handleReset = () => {
         this.props.dispatch(resetAuthState());
         this.props.navigation.navigate(routes.home);
-    };
+    }
 
     handleAccountsListRefresh = () => {
         this.props.dispatch(loadHistoricalPriceApiData());
         return this.updateAllAccounts();
-    };
+    }
 
     componentWillUnmount() {
         if (this._checkPinExpiryInterval) {

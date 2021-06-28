@@ -106,6 +106,7 @@ class ViewQRCode extends React.PureComponent<Props, State> {
     private amount: Amount;
     private recipient: Address;
     private immutable: boolean;
+    private message: string;
 
     state = {
         isPINModalVisible: false
@@ -117,6 +118,7 @@ class ViewQRCode extends React.PureComponent<Props, State> {
         this.amount = Amount.fromSigna(this.props.route.params.form.amount);
         this.recipient = Address.create(this.props.route.params.form.recipient);
         this.immutable = this.props.route.params.form.immutable;
+        this.message = this.props.route.params.form.message;
     }
 
     handlePINEntered = () => {

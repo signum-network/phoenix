@@ -20,7 +20,10 @@ const styles = StyleSheet.create({
     mainBlock: {
         flexGrow: 1
     },
-    padTop: {
+    passphraseSwitch: {
+        paddingTop: 10
+    },
+    button: {
         paddingTop: '10%'
     }
 });
@@ -57,7 +60,7 @@ export class ImportActiveAccount extends React.PureComponent<Props, State> {
                         onChangeText={this.handleChangePassphrase}
                     />
                     <AccountTypeHint>{i18n.t(auth.importAccount.activeAccountHint)}</AccountTypeHint>
-                    <View style={styles.padTop}>
+                    <View style={styles.passphraseSwitch}>
                         <SwitchItem
                             onChange={this.handleShowPassphrase}
                             text={i18n.t(auth.importAccount.showPassphrase)}
@@ -65,7 +68,7 @@ export class ImportActiveAccount extends React.PureComponent<Props, State> {
                         />
                     </View>
                 </View>
-                <View style={styles.padTop}>
+                <View style={styles.button}>
                     <Button
                         fullWidth={true}
                         onPress={this.handleFinish}>{i18n.t(auth.importAccount.import)}</Button>

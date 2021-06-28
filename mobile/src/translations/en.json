@@ -74,6 +74,9 @@
     }
   },
   "core": {
+    "placeholders": {
+      "message": "Enter Message"
+    },
     "actions": {
       "add": "Add",
       "cancel": "Cancel",
