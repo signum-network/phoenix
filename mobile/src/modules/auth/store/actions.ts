@@ -1,6 +1,5 @@
-import {Account, Alias, ApiSettings, composeApi} from '@burstjs/core';
-import {encryptAES, generateMasterKeys, getAccountIdFromPublicKey, hashSHA256} from '@burstjs/crypto';
-import {convertAddressToNumericId, convertNumericIdToAddress, isValid} from '@burstjs/util';
+import {Account, Alias, Address} from '@signumjs/core';
+import {encryptAES, generateMasterKeys, hashSHA256} from '@signumjs/crypto';
 import {some} from 'lodash';
 import {AsyncStorage} from 'react-native';
 import {AsyncStorageKeys} from '../../../core/enums';
@@ -8,19 +7,8 @@ import {i18n} from '../../../core/i18n';
 import {createAction, createActionFn} from '../../../core/utils/store';
 import {auth} from '../translations';
 import {actionTypes} from './actionTypes';
-import {
-    getAccounts,
-    getAgreeToTerms,
-    getPasscode,
-    getPasscodeEnteredTime,
-    resetKeychain,
-    savePasscode,
-    savePasscodeEnteredTime,
-    setAccounts
-} from './utils';
-import {AmountPrefix} from '../../../core/utils/numbers';
-import {trimAddressPrefix} from '../../../core/utils/account';
-import {Address} from '@signumjs/core';
+import {getAccounts, getAgreeToTerms, getPasscode, getPasscodeEnteredTime, resetKeychain, savePasscode, savePasscodeEnteredTime, setAccounts} from './utils';
+import {selectChainApi} from '../../../core/store/app/selectors';
 
 interface ZilResponse {
     addresses: {
@@ -103,13 +91,9 @@ export const createOfflineAccount = createActionFn<string, Account>(
 export const hydrateAccount = createActionFn<Account, Promise<Account>>(
     async (dispatch, getState, account) => {
         const state = getState();
-        const {nodeHost} = state.app.chainService.settings;
-        console.log(nodeHost);
-
-        // TODO: unify network request actions, add proper error handling and so on
-        const api = composeApi(new ApiSettings(nodeHost));
+        const api = selectChainApi(state);
         try {
-            const accountDetails = await api.account.getAccount(account.account);
+            const accountDetails = await api.account.getAccount({accountId: account.account});
             console.log('Got account', accountDetails);
             dispatch(actions.updateAccount(accountDetails));
             dispatch(updateAccountTransactions(accountDetails));
@@ -118,20 +102,18 @@ export const hydrateAccount = createActionFn<Account, Promise<Account>>(
             console.error('Something failed', e);
         }
 
-        await setAccounts(getState().auth.accounts);
+        // TODO: check why this is here?!
+        await setAccounts(state.auth.accounts);
         return account;
     }
 );
 
 export const getAccount = createActionFn<string, Promise<Account | undefined>>(
     async (_dispatch, getState, account) => {
-
         const state = getState();
-        const {nodeHost, apiRootUrl} = state.app.chainService.settings;
-        // TODO: unify network request actions, add proper error handling and so on
-        const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
+        const api = selectChainApi(state);
         try {
-            const accountDetails = await api.account.getAccount(account);
+            const accountDetails = await api.account.getAccount({accountId: account});
             return accountDetails;
             // tslint:disable-next-line: no-empty
         } catch (e) {
@@ -141,14 +123,10 @@ export const getAccount = createActionFn<string, Promise<Account | undefined>>(
 
 export const getAlias = createActionFn<string, Promise<Alias | undefined>>(
     async (_dispatch, getState, account) => {
-
         const state = getState();
-        const {nodeHost, apiRootUrl} = state.app.chainService.settings;
-        // TODO: unify network request actions, add proper error handling and so on
-        const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
+        const api = selectChainApi(state);
         try {
-            const alias = await api.alias.getAliasByName(account);
-            return alias;
+            return await api.alias.getAliasByName(account);
             // tslint:disable-next-line: no-empty
         } catch (e) {
         }
@@ -168,25 +146,17 @@ export const getZilAddress = createActionFn<string, Promise<string | null>>(
 export const updateAccountTransactions = createActionFn<Account, Promise<Account>>(
     async (dispatch, getState, account) => {
         const state = getState();
-        const {nodeHost, apiRootUrl} = state.app.chainService.settings;
-
+        const api = selectChainApi(state);
         const updatedAccount: Account = {
             ...account
         };
-        const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
         try {
-            const transactions = await api.account.getAccountTransactions(
-                account.account,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                true
-            );
+            const transactions = await api.account.getAccountTransactions({
+                accountId: account.account,
+                includeIndirect: true,
+            });
             updatedAccount.transactions = transactions.transactions;
             dispatch(actions.updateAccount(updatedAccount));
-            // tslint:disable-next-line: no-empty
         } catch (e) {
         }
 

@@ -1,4 +1,4 @@
-import { ChainService } from '@signumjs/core';
+import { Api, composeApi, ApiSettings } from '@signumjs/core';
 import { defaultSettings } from '../../environment';
 import { AppSettings, Reducer } from '../../interfaces';
 import { createReducers } from '../../utils/store';
@@ -7,28 +7,29 @@ import { actionTypes } from './actionTypes';
 export interface AppReduxState {
   isAppLoaded: boolean;
   appSettings: AppSettings;
-  chainService: ChainService;
+  chainApi: Api;
 }
 
 export function getDefaultAppSettings (): AppSettings {
   return {
     passcodeTime: defaultSettings.passcodeTime, // 10 min,
-    nodeSettings: {
+    apiSettings: {
       nodeHost: defaultSettings.nodeHost,
       reliableNodeHosts: defaultSettings.reliableNodeHosts
-    },
+    } as ApiSettings,
     coinMarketCapURL: defaultSettings.coinMarketCapURL,
-    burstAlertsURL: defaultSettings.burstAlertsURL
+    burstAlertsURL: defaultSettings.burstAlertsURL,
+    isAutomaticNodeSelection: true
   };
 }
 
 export const appState = (): AppReduxState => {
   const appSettings = getDefaultAppSettings();
-
+  const chainApi = composeApi(appSettings.apiSettings);
   return {
     isAppLoaded: false,
     appSettings,
-    chainService: new ChainService(appSettings.nodeSettings)
+    chainApi,
   };
 };
 
@@ -40,6 +41,14 @@ const appLoaded: Reducer<AppReduxState, undefined> = (state) => {
 };
 
 const appSettingsLoaded: Reducer<AppReduxState, AppSettings> = (state, action) => {
+
+  if(action.payload.apiSettings
+      && action.payload.apiSettings.nodeHost
+      && action.payload.apiSettings.nodeHost !== state.appSettings.apiSettings.nodeHost)
+  {
+    console.log('Reconstructin')
+  }
+
   return {
     ...state,
     appSettings: {
@@ -48,29 +57,43 @@ const appSettingsLoaded: Reducer<AppReduxState, AppSettings> = (state, action) =
   };
 };
 
-const setAppSettings: Reducer<AppReduxState, AppSettings> = (state, action) => {
-  return {
-    ...state,
-    appSettings: action.payload
-  };
-};
+// const setAppSettings: Reducer<AppReduxState, AppSettings> = (state, action) => {
+//
+//
+//   const chainApi = composeApi(state.appSettings.apiSettings);
+//   return {
+//     ...state,
+//     appSettings: action.payload,
+//     chainApi
+//   };
+// };
 
 const setNode: Reducer<AppReduxState, string> = (state, action) => {
   console.log('setNode', action);
+
+  state.appSettings.apiSettings.nodeHost = action.payload;
+  const chainApi = composeApi(state.appSettings.apiSettings);
+
   return {
     ...state,
-    chainService: new ChainService({
-      nodeHost: action.payload,
-      reliableNodeHosts: defaultSettings.reliableNodeHosts
-    })
+    chainApi
   };
 };
+
+const setAutomaticNodeSelection: Reducer<AppReduxState, boolean> = (state, action) => {
+  state.appSettings.isAutomaticNodeSelection = action.payload;
+  return {
+    ...state,
+  };
+};
+
 
 const reducers = {
   [actionTypes.appLoaded]: appLoaded,
   [actionTypes.appSettingsLoaded]: appSettingsLoaded,
-  [actionTypes.setAppSettings]: setAppSettings,
-  [actionTypes.setNode]: setNode
+  // [actionTypes.setAppSettings]: setAppSettings,
+  [actionTypes.setNode]: setNode,
+  [actionTypes.setAutomaticNodeSelection]: setAutomaticNodeSelection,
 };
 
 export const app = createReducers<AppReduxState>(appState(), reducers);

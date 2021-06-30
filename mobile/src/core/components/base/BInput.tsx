@@ -30,7 +30,7 @@ export class BInput extends React.PureComponent<Props> {
     wrapper: {
       borderColor: Colors.BLUE,
       borderWidth: 1,
-      borderRadius: 8,
+      borderRadius: 4,
       padding: Sizes.MEDIUM,
       backgroundColor: Colors.BLACK_T,
       marginBottom: Sizes.MEDIUM,

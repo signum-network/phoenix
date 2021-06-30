@@ -19,6 +19,7 @@ import {createAction, createActionFn} from '../../../core/utils/store';
 import {getAccount} from '../../auth/store/actions';
 import {transactions} from '../translations';
 import {actionTypes} from './actionTypes';
+import {selectChainApi} from '../../../core/store/app/selectors';
 
 const actions = {
     sendMoney: createAction<SendAmountPayload>(actionTypes.sendMoney),
@@ -52,9 +53,7 @@ export const sendMoney = createActionFn<SendAmountPayload, Promise<TransactionId
     async (dispatch, getState, payload): Promise<TransactionId> => {
         const state = getState();
         const {amount, address, fee, sender, message, encrypt, messageIsText} = payload;
-        const {nodeHost} = state.app.chainService.settings;
         const senderPublicKey = sender.keys.publicKey;
-
         const senderPrivateKey = decryptAES(sender.keys.signPrivateKey, hashSHA256(state.auth.passcode));
 
         const sendMoneyPayload: SendAmountArgs = {
@@ -75,10 +74,8 @@ export const sendMoney = createActionFn<SendAmountPayload, Promise<TransactionId
             sendMoneyPayload.attachment = new AttachmentMessage({message, messageIsText});
         }
 
-        // TODO: unify network request actions, add proper error handling and so on
-        const api = composeApi(new ApiSettings(nodeHost));
         try {
-
+            const api = selectChainApi(state);
             const result = await api.transaction.sendAmountToSingleRecipient(sendMoneyPayload);
 
             Alert.alert(i18n.t(transactions.screens.send.success, {

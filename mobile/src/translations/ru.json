@@ -190,6 +190,7 @@
         "confirmErase": "Удалить и сбросить",
         "changeLanguage": "Выбрать язык",
         "selectNode": "Выберите узел",
+        "autoNodeSelection": "Automatic Node Selection",
         "copyright": "Copyright © Burst Apps Team / Signum Network"
       }
     }

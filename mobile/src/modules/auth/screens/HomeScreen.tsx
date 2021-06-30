@@ -73,7 +73,7 @@ class Home extends React.PureComponent<IProps, State> {
 
 
     componentDidMount(): void {
-        this.updateAllAccounts();
+        setTimeout(() => this.updateAllAccounts(), 500);
     }
 
     handleChangeAccount = () => {

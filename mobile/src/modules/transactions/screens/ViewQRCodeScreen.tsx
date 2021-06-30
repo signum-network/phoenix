@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
     },
     details: {
         paddingHorizontal: defaultSideOffset,
-        paddingVertical: Sizes.MEDIUM,
         display: 'flex',
         flexDirection: 'column',
         height: '100%'
@@ -125,13 +124,13 @@ class ViewQRCode extends React.PureComponent<Props, State> {
         this.setState({
             isPINModalVisible: false
         });
-    };
+    }
 
     handlePINCancel = () => {
         this.setState({
             isPINModalVisible: false
         });
-    };
+    }
 
     handleShare = async () => {
         const deeplink = buildPhoenixDeepLinkURL(this.props.route.params.form);
@@ -154,11 +153,11 @@ Pay using the Phoenix Wallet from https://phoenix-wallet.rocks
         } catch (error) {
             console.log('Sharing error', error);
         }
-    };
+    }
 
     handleCopy = () => {
         Clipboard.setString(buildPhoenixDeepLinkURL(this.props.route.params.form));
-    };
+    }
 
     render() {
         return (

@@ -13,7 +13,8 @@ export enum KeyChainKeys {
 
 export enum AsyncStorageKeys {
   agreeToTerms = 'AGREE_TO_TERMS',
-  currentNode = 'CURRENT_NODE'
+  currentNode = 'CURRENT_NODE',
+  isAutomaticNodeSelection = 'IS_AUTOMATIC_NODE',
 }
 
 export enum AsyncParticleStates {

@@ -1,4 +1,4 @@
-import { Account } from '@burstjs/core';
+import { Account } from '@signumjs/core';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';

@@ -1,12 +1,11 @@
-import {getRecipientsAmount, isMultiOutSameTransaction, isMultiOutTransaction, Transaction} from '@burstjs/core';
-import {convertNQTStringToNumber} from '@burstjs/util';
+import {getRecipientsAmount, isMultiOutSameTransaction, isMultiOutTransaction, Transaction} from '@signumjs/core';
+import {Amount, BlockTime} from '@signumjs/util';
 import React from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
 import {transactionIcons} from '../../../../assets/icons';
 import {Text, TextAlign} from '../../../../core/components/base/Text';
 import {Colors} from '../../../../core/theme/colors';
 import {defaultSideOffset, FontSizes, Sizes} from '../../../../core/theme/sizes';
-import {getShortDateFromTimestamp} from '../../../../core/utils/date';
 import {trimAddressPrefix} from '../../../../core/utils/account';
 import {AmountPrefix} from '../../../../core/utils/numbers';
 
@@ -81,25 +80,24 @@ export class TransactionListItem extends React.PureComponent<Props> {
 
     getAmount = (transaction: Transaction): string => {
         let result: number;
-        if (this.isOwnAccount(transaction.sender)) {
-            result = -convertNQTStringToNumber(transaction.amountNQT || '0');
+        if (this.isAmountNegative(transaction)) {
+            result = -Amount.fromPlanck(transaction.amountNQT || '0').getSigna();
         } else {
-
             result = this.isMultiOutPayment(transaction)
                 ? getRecipientsAmount(this.props.account, transaction)
-                : convertNQTStringToNumber(transaction.amountNQT || '0');
+                : Amount.fromPlanck(transaction.amountNQT || '0').getSigna();
         }
         return `${AmountPrefix} ${result.toString(10)}`;
-    };
+    }
 
     isAmountNegative = (transaction: Transaction): boolean => {
         return this.isOwnAccount(transaction.sender);
-    };
+    }
 
     handlePress = () => {
         const {onPress, transaction} = this.props;
         onPress(transaction);
-    };
+    }
 
     renderIcon = () => {
         const {confirmations = 0} = this.props.transaction;
@@ -111,7 +109,7 @@ export class TransactionListItem extends React.PureComponent<Props> {
         return (
             <Image source={icon} style={styles.icon}/>
         );
-    };
+    }
 
     getOpacity = () => {
         const {confirmations = 0} = this.props.transaction;
@@ -119,7 +117,7 @@ export class TransactionListItem extends React.PureComponent<Props> {
         return {
             opacity
         };
-    };
+    }
 
     render() {
         const {
@@ -136,7 +134,7 @@ export class TransactionListItem extends React.PureComponent<Props> {
             accountRS = 'Multi-out Payment';
         }
 
-        const date = getShortDateFromTimestamp(timestamp);
+        const date =  BlockTime.fromBlockTimestamp(timestamp).getDate().toLocaleString();
 
         return (
             <TouchableOpacity style={[styles.view, this.getOpacity()]} onPress={this.handlePress}>

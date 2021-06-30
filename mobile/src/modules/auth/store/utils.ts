@@ -1,11 +1,11 @@
-import { Account } from '@burstjs/core';
+import { Account } from '@signumjs/core';
 import { isEmpty } from 'lodash';
 import { AsyncStorage } from 'react-native';
 import { AsyncStorageKeys, KeyChainKeys } from '../../../core/enums';
 import { KeychainCredentials } from '../../../core/interfaces';
 import { getCredentials, setCredentials } from '../../../core/utils/keychain';
 
-export function savePasscode (passcode: string): Promise<boolean> {
+export function savePasscode (passcode: string): Promise<any> {
   const data = JSON.stringify(passcode);
   return setCredentials({ username: KeyChainKeys.passcode, password: data }, KeyChainKeys.passcode);
 }

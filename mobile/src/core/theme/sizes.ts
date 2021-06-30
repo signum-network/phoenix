@@ -15,7 +15,8 @@ export enum FontSizes {
   SMALLER = 12,
   SMALL = 16,
   MEDIUM = 20,
-  LARGE = 32
+  LARGE = 32,
+  LARGER = 40
 }
 
 export const defaultSideOffset = Sizes.MEDIUM;

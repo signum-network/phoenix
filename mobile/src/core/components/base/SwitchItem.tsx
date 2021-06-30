@@ -15,6 +15,7 @@ interface IProps {
   value: boolean;
   onChange: (newValue: boolean) => void;
   disabled?: boolean;
+  labelColor?: any;
 }
 
 type Props = IProps;
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
 });
 
 export const SwitchItem: React.FunctionComponent<Props> = (props) => {
-  const { text, disabled, onChange, value } = props;
+  const { text, disabled, onChange, value, labelColor = Colors.BLACK } = props;
 
   const handleSwitchChange = () => {
     if (!disabled) {
@@ -45,8 +46,8 @@ export const SwitchItem: React.FunctionComponent<Props> = (props) => {
 
   return (
     <TouchableOpacity activeOpacity={1} onPress={handleSwitchChange} style={styles.mainView}>
-      <View style={styles.textView}>
-        {isString(text) ? <Text>{text}</Text> : text}
+      <View style={[styles.textView]}>
+        {isString(text) ? <Text color={labelColor}>{text}</Text> : text}
       </View>
       <View style={styles.switchView}>
         <Switch

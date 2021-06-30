@@ -190,6 +190,7 @@
         "confirmErase": "Confirm - Erase and Reset",
         "changeLanguage": "Select Language",
         "selectNode": "Select Node",
+        "autoNodeSelection": "Automatic Node Selection",
         "copyright": "Copyright © Burst Apps Team / Signum Network"
       }
     }

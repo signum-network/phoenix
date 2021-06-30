@@ -7,6 +7,7 @@ export const settings = {
       confirmReset: 'settings.screens.settings.confirmReset',
       confirmErase: 'settings.screens.settings.confirmErase',
       changeLanguage: 'settings.screens.settings.changeLanguage',
+      autoNodeSelection: 'settings.screens.settings.autoNodeSelection',
       selectNode: 'settings.screens.settings.selectNode',
       copyright: 'settings.screens.settings.copyright'
     }
