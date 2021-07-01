@@ -143,7 +143,7 @@ function createWindow() {
             role: 'help',
             submenu: [
                 {
-                    label: 'Burst Wiki',
+                    label: 'Signum Wiki',
                     click() {
                         shell.openExternal('https://signum.community/');
                     }
