@@ -1,5 +1,5 @@
 import { Account } from '@burstjs/core';
-import { convertBurstTimeToDate, convertNQTStringToNumber } from '@burstjs/util';
+import { convertBurstTimeToDate, convertNQTStringToNumber, BlockTime } from '@signumjs/util';
 import * as shape from 'd3-shape';
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
@@ -110,7 +110,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
         for (let t = transactions.length - 1; t >= 0; t--) {
           const transaction = transactions[t];
           // only match up to the most recent transaction, not beyond
-          if (convertBurstTimeToDate(transaction.timestamp) > d) {
+          if (BlockTime.fromBlockTimestamp(transaction.timestamp).getDate() > d) {
             continue;
           }
 
@@ -164,6 +164,8 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
   }
 
   render () {
+
+    console.log('Stacked Chart')
 
     const data = this.calculateChartData();
     const keys = Object.keys(data[0]).slice(1); // remove 'day' from the keys to get the account names

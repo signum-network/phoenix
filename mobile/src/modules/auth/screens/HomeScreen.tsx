@@ -1,4 +1,4 @@
-import {Account} from '@burstjs/core';
+import {Account} from '@signumjs/core';
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -21,11 +21,10 @@ import {AccountsListHeader} from '../components/AccountsListHeader';
 import {EnterPasscodeModal} from '../components/passcode/EnterPasscodeModal';
 import {TermsScreen} from '../components/terms/TermsScreen';
 import {RootStackParamList} from '../navigation/mainStack';
-import {hydrateAccount, removeAccount, resetAuthState, setAgreeToTerms} from '../store/actions';
+import {hydrateAccount, removeAccount, resetAuthState} from '../store/actions';
 import {AuthReduxState} from '../store/reducer';
 import {shouldEnterPIN} from '../store/utils';
 import {agreeToTerms, resetAppState} from '../../../core/store/app/actions';
-import {resetUserSettings} from '../../../core/utils/storage';
 
 type HomeNavProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -114,7 +113,6 @@ class Home extends React.PureComponent<IProps, State> {
     }
 
     checkTermsScreen = () => {
-        // console.log(this.props.app.userSettings);
         this.setTermsScreenVisible(!this.props.app.userSettings.agreedToTerms);
     }
 
@@ -183,6 +181,7 @@ class Home extends React.PureComponent<IProps, State> {
         const accounts: Account[] = this.props.auth.accounts || [];
         const priceApi = this.props.priceApi;
         const shouldShowChart = accounts.length && priceApi.priceInfo && priceApi.historicalPriceInfo;
+
         const {isTermsScreenVisible} = this.state;
         return (
             <Screen>
