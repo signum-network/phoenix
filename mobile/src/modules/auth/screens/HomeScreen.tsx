@@ -24,6 +24,8 @@ import {RootStackParamList} from '../navigation/mainStack';
 import {hydrateAccount, removeAccount, resetAuthState, setAgreeToTerms} from '../store/actions';
 import {AuthReduxState} from '../store/reducer';
 import {shouldEnterPIN} from '../store/utils';
+import {agreeToTerms, resetAppState} from '../../../core/store/app/actions';
+import {resetUserSettings} from '../../../core/utils/storage';
 
 type HomeNavProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -112,7 +114,8 @@ class Home extends React.PureComponent<IProps, State> {
     }
 
     checkTermsScreen = () => {
-        this.setTermsScreenVisible(!this.props.auth.agreeToTerms);
+        // console.log(this.props.app.userSettings);
+        this.setTermsScreenVisible(!this.props.app.userSettings.agreedToTerms);
     }
 
     setTermsScreenVisible = (isTermsScreenVisible: boolean) => {
@@ -134,7 +137,7 @@ class Home extends React.PureComponent<IProps, State> {
     }
 
     handleTermsAgreed = () => {
-        this.props.dispatch(setAgreeToTerms(true));
+        this.props.dispatch(agreeToTerms());
         this.setTermsScreenVisible(false);
     }
 
@@ -152,6 +155,7 @@ class Home extends React.PureComponent<IProps, State> {
 
     handleReset = () => {
         this.props.dispatch(resetAuthState());
+        this.props.dispatch(resetAppState());
         this.props.navigation.navigate(routes.home);
     }
 
@@ -160,13 +164,13 @@ class Home extends React.PureComponent<IProps, State> {
         return this.updateAllAccounts();
     }
 
-    componentWillUnmount() {
+    componentWillUnmount(): void {
         if (this._checkPinExpiryInterval) {
             clearInterval(this._checkPinExpiryInterval);
         }
     }
 
-    selectCurrency() {
+    selectCurrency(): void {
         this.props.dispatch(
             selectCurrency(priceTypes[priceTypes.findIndex(
                 (val) => val === this.props.priceApi.selectedCurrency
@@ -231,7 +235,7 @@ function mapStateToProps(state: ApplicationState) {
     return {
         app: state.app,
         auth: state.auth,
-        priceApi: state.priceApi
+        priceApi: state.priceApi,
     };
 }
 

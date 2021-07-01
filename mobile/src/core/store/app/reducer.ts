@@ -1,99 +1,81 @@
-import { Api, composeApi, ApiSettings } from '@signumjs/core';
-import { defaultSettings } from '../../environment';
-import { AppSettings, Reducer } from '../../interfaces';
-import { createReducers } from '../../utils/store';
-import { actionTypes } from './actionTypes';
+import {Api, composeApi, ApiSettings} from '@signumjs/core';
+import {defaultSettings} from '../../environment';
+import {AppSettings, Reducer, UserSettings} from '../../interfaces';
+import {createReducers} from '../../utils/store';
+import {actionTypes} from './actionTypes';
 
 export interface AppReduxState {
-  isAppLoaded: boolean;
-  appSettings: AppSettings;
-  chainApi: Api;
+    isAppLoaded: boolean;
+    appSettings: AppSettings;
+    userSettings: UserSettings;
+    chainApi: Api;
 }
 
-export function getDefaultAppSettings (): AppSettings {
-  return {
-    passcodeTime: defaultSettings.passcodeTime, // 10 min,
-    apiSettings: {
-      nodeHost: defaultSettings.nodeHost,
-      reliableNodeHosts: defaultSettings.reliableNodeHosts
-    } as ApiSettings,
-    coinMarketCapURL: defaultSettings.coinMarketCapURL,
-    burstAlertsURL: defaultSettings.burstAlertsURL,
-    isAutomaticNodeSelection: true
-  };
+// static app settings
+export function getDefaultAppSettings(): AppSettings {
+    return {
+        passcodeTime: defaultSettings.passcodeTime, // 10 min,
+        apiSettings: {
+            nodeHost: defaultSettings.nodeHost,
+            reliableNodeHosts: defaultSettings.reliableNodeHosts
+        } as ApiSettings,
+        coinMarketCapURL: defaultSettings.coinMarketCapURL,
+        burstAlertsURL: defaultSettings.burstAlertsURL,
+    };
 }
 
-export const appState = (): AppReduxState => {
-  const appSettings = getDefaultAppSettings();
-  const chainApi = composeApi(appSettings.apiSettings);
-  return {
-    isAppLoaded: false,
-    appSettings,
-    chainApi,
-  };
+export const getInitialAppState = (): AppReduxState => {
+    const appSettings = getDefaultAppSettings();
+    const chainApi = composeApi(appSettings.apiSettings);
+    return {
+        isAppLoaded: false,
+        appSettings,
+        chainApi,
+        userSettings: {
+            agreedToTerms: false,
+            currentNodeHost: defaultSettings.nodeHost,
+            isAutomaticNodeSelection: true,
+        }
+    };
 };
 
 const appLoaded: Reducer<AppReduxState, undefined> = (state) => {
-  return {
-    ...state,
-    isAppLoaded: true
-  };
+    return {
+        ...state,
+        isAppLoaded: true
+    };
 };
 
-const appSettingsLoaded: Reducer<AppReduxState, AppSettings> = (state, action) => {
+const setAppSettings: Reducer<AppReduxState, AppSettings> = (state, action) => {
+    return {
+        ...state,
+        appSettings: {
+            ...action.payload
+        }
+    };
+};
 
-  if(action.payload.apiSettings
-      && action.payload.apiSettings.nodeHost
-      && action.payload.apiSettings.nodeHost !== state.appSettings.apiSettings.nodeHost)
-  {
-    console.log('Reconstructin')
-  }
+const setUserSettings: Reducer<AppReduxState, UserSettings> = (state, action) => {
 
-  return {
-    ...state,
-    appSettings: {
-      ...action.payload
+    const newState: AppReduxState = {
+        ...state,
+        userSettings: {
+            ...state.userSettings,
+            ...action.payload
+        }
+    };
+
+    if (action.payload.currentNodeHost && action.payload.currentNodeHost !== state.userSettings.currentNodeHost) {
+        newState.chainApi = composeApi(state.appSettings.apiSettings);
     }
-  };
-};
-
-// const setAppSettings: Reducer<AppReduxState, AppSettings> = (state, action) => {
-//
-//
-//   const chainApi = composeApi(state.appSettings.apiSettings);
-//   return {
-//     ...state,
-//     appSettings: action.payload,
-//     chainApi
-//   };
-// };
-
-const setNode: Reducer<AppReduxState, string> = (state, action) => {
-  console.log('setNode', action);
-
-  state.appSettings.apiSettings.nodeHost = action.payload;
-  const chainApi = composeApi(state.appSettings.apiSettings);
-
-  return {
-    ...state,
-    chainApi
-  };
-};
-
-const setAutomaticNodeSelection: Reducer<AppReduxState, boolean> = (state, action) => {
-  state.appSettings.isAutomaticNodeSelection = action.payload;
-  return {
-    ...state,
-  };
+    return newState;
 };
 
 
 const reducers = {
-  [actionTypes.appLoaded]: appLoaded,
-  [actionTypes.appSettingsLoaded]: appSettingsLoaded,
-  // [actionTypes.setAppSettings]: setAppSettings,
-  [actionTypes.setNode]: setNode,
-  [actionTypes.setAutomaticNodeSelection]: setAutomaticNodeSelection,
+    [actionTypes.appLoaded]: appLoaded,
+    [actionTypes.setAppSettings]: setAppSettings,
+    [actionTypes.setUserSettings]: setUserSettings,
 };
 
-export const app = createReducers<AppReduxState>(appState(), reducers);
+export const app = createReducers<AppReduxState>(getInitialAppState(), reducers);

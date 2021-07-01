@@ -2,7 +2,7 @@ import { AuthReduxState, authState } from '../../modules/auth/store/reducer';
 import { NetworkReduxState, networkState } from '../../modules/network/store/reducer';
 import { priceApiState, PriceInfoReduxState } from '../../modules/price-api/store/reducer';
 import { TransactionsReduxState, transactionsState } from '../../modules/transactions/store/reducer';
-import { AppReduxState, appState } from './app/reducer';
+import { AppReduxState, getInitialAppState } from './app/reducer';
 
 export interface ApplicationState {
   app: AppReduxState;
@@ -13,7 +13,7 @@ export interface ApplicationState {
 }
 
 export const initialState: ApplicationState = {
-  app: appState(),
+  app: getInitialAppState(),
   auth: authState(),
   priceApi: priceApiState(),
   transactions: transactionsState(),

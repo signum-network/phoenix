@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, ViewProps} from 'react-native';
-import { Colors } from '../theme/colors';
-import { defaultSideOffset, Sizes } from '../theme/sizes';
+import {Colors} from '../theme/colors';
+import {defaultSideOffset, Sizes} from '../theme/sizes';
 import {LogoWatermark} from '../components/base/LogoWatermark';
 
 interface Props extends ViewProps {
@@ -23,16 +23,14 @@ const styles = StyleSheet.create({
   }
 });
 
-export class FullHeightView extends React.PureComponent<Props> {
-  render () {
-    const { style, withoutPaddings, children, ...rest } = this.props;
+export const FullHeightView: React.FC<Props> = (props: Props) => {
+  const {style, withoutPaddings, children, ...rest} = props;
 
-    return (
+  return (
       <View style={[styles.view, withoutPaddings && styles.withoutPaddings, style]} {...rest}>
-        <LogoWatermark />
+        <LogoWatermark/>
 
         {children}
       </View>
-    );
-  }
+  );
 }

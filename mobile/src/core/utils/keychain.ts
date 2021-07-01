@@ -49,7 +49,7 @@ export function isTouchIDSupported(): Promise<boolean> {
 //     });
 // }
 
-export async function getAppSettings(): Promise<AppSettings> {
+export async function fetchAppSettings(): Promise<AppSettings> {
     const credentials: KeychainCredentials = await getCredentials(KeyChainKeys.accounts) as KeychainCredentials;
     if (credentials && credentials.password) {
         return {

@@ -2,6 +2,11 @@ export const transactions = {
   screens: {
     send: {
       title: 'transactions.screens.send.title',
+      noActiveAccount: {
+        hint: 'transactions.screens.send.noActiveAccount.hint',
+        title: 'transactions.screens.send.noActiveAccount.title',
+        button: 'transactions.screens.send.noActiveAccount.button',
+      },
       amountNQT: 'transactions.screens.send.amountNQT',
       feeNQT: 'transactions.screens.send.feeNQT',
       selectAccount: 'transactions.screens.send.selectAccount',

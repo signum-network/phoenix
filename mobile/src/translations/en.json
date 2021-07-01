@@ -155,6 +155,11 @@
         "immutable": "Immutable"
       },
       "send": {
+        "noActiveAccount": {
+          "hint": "You need to create/import an active account to send",
+          "title": "No Active Account",
+          "button": "Add Account"
+        },
         "amountNQT": "Amount",
         "feeNQT": "Fee",
         "from": "From",

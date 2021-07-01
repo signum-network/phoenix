@@ -154,6 +154,11 @@
         "immutable": "Неизменный"
       },
       "send": {
+        "noActiveAccount": {
+          "hint": "You need to create/import an active account to send",
+          "title": "No Active Account",
+          "button": "Add Account"
+        },
         "amountNQT": "Количество",
         "feeNQT": "Комиссия",
         "from": "Аккаунт отправителя",

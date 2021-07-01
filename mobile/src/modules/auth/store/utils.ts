@@ -19,19 +19,6 @@ export async function getPasscode (): Promise<string> {
   }
 }
 
-export async function getAgreeToTerms (): Promise<boolean> {
-  let agree = false;
-  try {
-    const value = await AsyncStorage.getItem(AsyncStorageKeys.agreeToTerms);
-    if (value !== null) {
-      agree = JSON.parse(value);
-    }
-  } catch (error) {
-    // Error retrieving data
-  }
-  return agree;
-}
-
 export function setAccounts (accounts: Account[]): Promise<boolean> {
   const accountsWithoutTransactions = accounts.map((account) => {
     return {

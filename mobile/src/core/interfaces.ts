@@ -71,7 +71,12 @@ export interface AppSettings {
   apiSettings: ApiSettings;
   coinMarketCapURL: string;
   burstAlertsURL: string;
-  isAutomaticNodeSelection: boolean;
+}
+
+export interface UserSettings {
+  isAutomaticNodeSelection?: boolean;
+  currentNodeHost?: string;
+  agreedToTerms?:boolean;
 }
 
 export type StorageKey = AuthStorageKeys;

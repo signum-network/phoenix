@@ -34,6 +34,8 @@ import {ScanQRCodeScreen} from './src/modules/transactions/screens/ScanQRCodeScr
 import {SendScreen} from './src/modules/transactions/screens/SendScreen';
 import {ViewQRCodeScreen} from './src/modules/transactions/screens/ViewQRCodeScreen';
 import {transactions} from './src/modules/transactions/translations';
+import {LoadingView} from './src/core/layout/LoadingView';
+import {Text} from './src/core/components/base/Text';
 
 const store: Store = getStore();
 
@@ -150,11 +152,11 @@ export default class App extends React.Component<{}, AppState> {
         i18n.locale = event.language;
         // we need to re-render whole tree
         this.forceUpdate();
-    }
+    };
 
     handleOpenURL = (event: any) => {
         this.navigate(event.url);
-    }
+    };
 
     navigate = (url: string) => {
         const route = url.replace(/.*?:\/\//g, '');
@@ -167,13 +169,13 @@ export default class App extends React.Component<{}, AppState> {
                 navigationRef.current?.setParams({url});
             }
         }, 500);
-    }
+    };
 
     getImageStyle = ({color}) => ({
         opacity: color === Colors.WHITE ? 1 : .5,
         width: 25,
         height: 25
-    })
+    });
 
     render() {
         const RootTabStack = createBottomTabNavigator();
@@ -182,55 +184,54 @@ export default class App extends React.Component<{}, AppState> {
                 <SafeAreaProvider>
                     <NavigationContainer ref={navigationRef}>
                         <RootView>
-                            <View/>
+                            <RootTabStack.Navigator
+                                tabBarOptions={rootTabStackConfig.tabBarOptions}
+                                initialRouteName={rootTabStackConfig.initialRouteName}>
+                                <RootTabStack.Screen
+                                    options={{
+                                        tabBarLabel: i18n.t(core?.screens?.home?.title) || '',
+                                        tabBarIcon: ({color}) => (
+                                            <Image
+                                                source={tabbarIcons.home}
+                                                style={this.getImageStyle({color})}
+                                            />
+                                        )
+                                    }}
+                                    name={routes.home}
+                                    component={MainStack}
+                                />
+                                <RootTabStack.Screen
+                                    options={{
+                                        tabBarLabel: i18n.t(transactions.screens.send.title),
+                                        tabBarIcon: ({color}) => (
+                                            <Image
+                                                source={tabbarIcons.send}
+                                                style={this.getImageStyle({color})}
+                                            />
+                                        )
+                                    }} name={routes.send} component={SendStack}/>
+                                <RootTabStack.Screen
+                                    options={{
+                                        tabBarLabel: i18n.t(transactions.screens.receive.title),
+                                        tabBarIcon: ({color}) => (
+                                            <Image
+                                                source={tabbarIcons.receive}
+                                                style={this.getImageStyle({color})}
+                                            />
+                                        )
+                                    }} name={routes.receive} component={ReceiveStack}/>
+                                <RootTabStack.Screen
+                                    options={{
+                                        tabBarLabel: i18n.t(settings.screens.settings.title),
+                                        tabBarIcon: ({color}) => (
+                                            <Image
+                                                source={tabbarIcons.settings}
+                                                style={this.getImageStyle({color})}
+                                            />
+                                        )
+                                    }} name={routes.settings} component={SettingsScreen}/>
+                            </RootTabStack.Navigator>
                         </RootView>
-                        <RootTabStack.Navigator
-                            tabBarOptions={rootTabStackConfig.tabBarOptions}
-                            initialRouteName={rootTabStackConfig.initialRouteName}>
-                            <RootTabStack.Screen
-                                options={{
-                                    tabBarLabel: i18n.t(core?.screens?.home?.title) || '',
-                                    tabBarIcon: ({color}) => (
-                                        <Image
-                                            source={tabbarIcons.home}
-                                            style={this.getImageStyle({color})}
-                                        />
-                                    )
-                                }}
-                                name={routes.home}
-                                component={MainStack}
-                            />
-                            <RootTabStack.Screen
-                                options={{
-                                    tabBarLabel: i18n.t(transactions.screens.send.title),
-                                    tabBarIcon: ({color}) => (
-                                        <Image
-                                            source={tabbarIcons.send}
-                                            style={this.getImageStyle({color})}
-                                        />
-                                    )
-                                }} name={routes.send} component={SendStack}/>
-                            <RootTabStack.Screen
-                                options={{
-                                    tabBarLabel: i18n.t(transactions.screens.receive.title),
-                                    tabBarIcon: ({color}) => (
-                                        <Image
-                                            source={tabbarIcons.receive}
-                                            style={this.getImageStyle({color})}
-                                        />
-                                    )
-                                }} name={routes.receive} component={ReceiveStack}/>
-                            <RootTabStack.Screen
-                                options={{
-                                    tabBarLabel: i18n.t(settings.screens.settings.title),
-                                    tabBarIcon: ({color}) => (
-                                        <Image
-                                            source={tabbarIcons.settings}
-                                            style={this.getImageStyle({color})}
-                                        />
-                                    )
-                                }} name={routes.settings} component={SettingsScreen}/>
-                        </RootTabStack.Navigator>
                     </NavigationContainer>
                 </SafeAreaProvider>
             </Provider>

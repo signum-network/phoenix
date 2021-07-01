@@ -86,7 +86,6 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
 
     const getAccounts = (): Array<SelectItem<string>> => {
         return props.accounts
-            .filter(({keys}) => keys && keys.publicKey)
             .map((account) => ({
                 value: account.accountRS,
                 label: trimAddressPrefix(account.accountRS),

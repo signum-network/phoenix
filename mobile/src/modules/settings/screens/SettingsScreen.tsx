@@ -19,7 +19,7 @@ import {FontSizes, Sizes} from '../../../core/theme/sizes';
 import {resetAuthState} from '../../auth/store/actions';
 import {AuthReduxState} from '../../auth/store/reducer';
 import {settings} from '../translations';
-import {autoSelectNode, saveNode} from '../../../core/store/app/actions';
+import {autoSelectNode, setNode} from '../../../core/store/app/actions';
 import {defaultSettings} from '../../../core/environment';
 import {useNavigation} from '@react-navigation/native';
 import {selectCurrentNode, selectIsAutomaticNodeSelection} from '../../../core/store/app/selectors';
@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     signumjs: {
-        height: 32,
-        width: 32,
+        height: 40,
+        width: 40,
         marginRight: 8,
     }
 });
@@ -107,7 +107,6 @@ export const SettingsScreen: React.FC<Props> = () => {
     const [erasePromptVisible, setErasePromptVisible] = useState(false);
     const currentNode = useSelector(selectCurrentNode);
     const isAutomatic = useSelector(selectIsAutomaticNodeSelection);
-    const [selectedNode, setSelectedNode] = useState(currentNode);
 
     const toggleConfirmDeletePrompt = () => {
         setErasePromptVisible(!erasePromptVisible);
@@ -129,9 +128,9 @@ export const SettingsScreen: React.FC<Props> = () => {
     };
 
     const handleNodeSelect = (node: string) => {
-        setSelectedNode(node);
+        // setSelectedNode(node);
         if (node !== currentNode) {
-            dispatch(saveNode(node));
+            dispatch(setNode(node));
         }
     };
 
@@ -149,7 +148,7 @@ export const SettingsScreen: React.FC<Props> = () => {
                 <View style={styles.container}>
                     <View style={styles.settingsZone}>
                         <BSelect
-                            value={selectedNode}
+                            value={currentNode}
                             items={getNodeList()}
                             onChange={handleNodeSelect}
                             title={i18n.t(settings.screens.settings.selectNode)}

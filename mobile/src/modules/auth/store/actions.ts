@@ -7,7 +7,7 @@ import {i18n} from '../../../core/i18n';
 import {createAction, createActionFn} from '../../../core/utils/store';
 import {auth} from '../translations';
 import {actionTypes} from './actionTypes';
-import {getAccounts, getAgreeToTerms, getPasscode, getPasscodeEnteredTime, resetKeychain, savePasscode, savePasscodeEnteredTime, setAccounts} from './utils';
+import {getAccounts, fetchAgreeToTerms, getPasscode, getPasscodeEnteredTime, resetKeychain, savePasscode, savePasscodeEnteredTime, setAccounts} from './utils';
 import {selectChainApi} from '../../../core/store/app/selectors';
 
 interface ZilResponse {
@@ -221,27 +221,9 @@ export const setPasscode = createActionFn<string, Promise<void>>(
     }
 );
 
-export const setAgreeToTerms = createActionFn<boolean, Promise<void>>(
-    async (dispatch, _getState, agree) => {
-        try {
-            await AsyncStorage.setItem(AsyncStorageKeys.agreeToTerms, JSON.stringify(agree));
-        } catch (error) {
-            // Error saving data
-        }
-        dispatch(actions.setAgreeToTerms(agree));
-    }
-);
-
 export const loadPasscode = createActionFn<void, Promise<void>>(
     async (dispatch, _getState) => {
         const passcode = await getPasscode();
         dispatch(actions.loadPasscode(passcode));
-    }
-);
-
-export const loadAgreeToTerms = createActionFn<void, Promise<void>>(
-    async (dispatch, _getState) => {
-        const agree = await getAgreeToTerms();
-        dispatch(actions.setAgreeToTerms(agree));
     }
 );

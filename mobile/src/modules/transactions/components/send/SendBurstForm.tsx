@@ -106,17 +106,17 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
     getAccounts = (): Array<SelectItem<string>> => {
         return this.props.accounts
-            .filter(({keys}) => keys && keys.publicKey)
+            .filter(({type}) => type !== 'offline')
             .map(({accountRS}) => ({
                 value: accountRS,
                 label: shortenRSAddress(accountRS)
             }));
-    }
+    };
 
     getAccount = (address: string): Account | null => {
         return this.props.accounts
             .find(({accountRS}) => accountRS === address) || null;
-    }
+    };
 
     setupState = (props?: SendBurstFormState) => {
         const accounts = this.getAccounts();
@@ -134,11 +134,11 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             showSubmitButton: true,
             addMessage: props && !!props.message || false
         };
-    }
+    };
 
     UNSAFE_componentWillReceiveProps = ({deepLinkProps}: Props) => {
         this.setState(this.setupState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
-    }
+    };
 
     applyRecipientType(recipient: string): void {
         const r = recipient.trim();
@@ -247,11 +247,11 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             isValidReedSolomonAddress(recipient.addressRS) &&
             !loading
         );
-    }
+    };
 
     handleChangeFromAccount = (sender: string) => {
         this.setState({sender: this.getAccount(sender)});
-    }
+    };
 
     handleChangeAddress = (address: string) => {
         this.setState({
@@ -260,23 +260,23 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
                 addressRaw: address
             }
         });
-    }
+    };
 
     handleAddressBlur = (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
         this.applyRecipientType(e.nativeEvent.text);
-    }
+    };
 
     handleAmountChange = (amount: string) => {
         this.setState({amount: amount.replace(',', '.')});
-    }
+    };
 
     handleFeeChange = (fee: string) => {
         this.setState({fee: fee.replace(',', '.')});
-    }
+    };
 
     handleMessageChange = (message: string) => {
         this.setState({message});
-    }
+    };
 
     setEncryptMessage(encrypt: boolean): void {
         this.setState({
@@ -297,7 +297,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
     handleFeeChangeFromSlider = (fee: number) => {
         this.setState({fee: amountToString(fee)});
-    }
+    };
 
     onSpendAll = () => {
         if (!this.state.sender) {
@@ -308,11 +308,13 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             .add(Amount.fromSigna(this.state.fee || 0));
 
         this.handleAmountChange(maxAmount.greater(Amount.Zero()) ? maxAmount.getSigna() : '0');
-    }
+    };
 
     handleSubmit = () => {
 
-        if (!this.isSubmitEnabled()) { return; }
+        if (!this.isSubmitEnabled()) {
+            return;
+        }
 
         const {recipient, amount, fee, sender, message, messageIsText, encrypt, immutable} = this.state;
         const address = recipient.addressRS;
@@ -330,7 +332,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             });
         }
         this.setState({showSubmitButton: false});
-    }
+    };
 
     render() {
         const {sender, recipient, amount, fee, encrypt, addMessage, message} = this.state;
@@ -385,7 +387,6 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
                         placeholder={i18n.t(transactions.screens.send.selectAccount)}
                         rightElement={SenderRightIcons}
                     />
-
                 </View>
                 <ScrollView style={styles.wrapper} ref={this.scrollViewRef}>
 
@@ -448,29 +449,29 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
                         )}
                     </View>
                 </ScrollView>
-                    <View>
-                        <View style={styles.total}>
-                            <BText bebasFont color={Colors.WHITE}>
-                                {i18n.t(transactions.screens.send.total, {value: total.getSigna()})}
-                            </BText>
-                        </View>
-                        {this.state.showSubmitButton && <SwipeButton
-                            disabledRailBackgroundColor={Colors.PINK}
-                            disabledThumbIconBackgroundColor={Colors.GREY}
-                            disabledThumbIconBorderColor={Colors.BLUE_DARKER}
-                            thumbIconBackgroundColor={Colors.WHITE}
-                            thumbIconImageSource={actionIcons.chevronRight}
-                            onSwipeSuccess={this.handleSubmit}
-                            shouldResetAfterSuccess={true}
-                            title={swipeButtonTitle}
-                            railBackgroundColor={Colors.GREEN_LIGHT}
-                            railBorderColor={Colors.BLUE_DARKER}
-                            railFillBackgroundColor={Colors.BLUE_DARKER}
-                            railFillBorderColor={Colors.BLUE_DARKER}
-                            titleColor={Colors.BLACK}
-                            disabled={!isSubmitEnabled}
-                        />}
+                <View>
+                    <View style={styles.total}>
+                        <BText bebasFont color={Colors.WHITE}>
+                            {i18n.t(transactions.screens.send.total, {value: total.getSigna()})}
+                        </BText>
                     </View>
+                    {this.state.showSubmitButton && <SwipeButton
+                        disabledRailBackgroundColor={Colors.PINK}
+                        disabledThumbIconBackgroundColor={Colors.GREY}
+                        disabledThumbIconBorderColor={Colors.BLUE_DARKER}
+                        thumbIconBackgroundColor={Colors.WHITE}
+                        thumbIconImageSource={actionIcons.chevronRight}
+                        onSwipeSuccess={this.handleSubmit}
+                        shouldResetAfterSuccess={true}
+                        title={swipeButtonTitle}
+                        railBackgroundColor={Colors.GREEN_LIGHT}
+                        railBorderColor={Colors.BLUE_DARKER}
+                        railFillBackgroundColor={Colors.BLUE_DARKER}
+                        railFillBorderColor={Colors.BLUE_DARKER}
+                        titleColor={Colors.BLACK}
+                        disabled={!isSubmitEnabled}
+                    />}
+                </View>
             </SafeAreaView>
         );
     }
