@@ -29,7 +29,7 @@ export class MarketService {
       .pipe(
         startWith(0),
         flatMap(_ => this.httpClient.get(tickerUrl)),
-        pluck('RAW', 'BURST'),
+        pluck('RAW', 'SIGNA'),
       );
   }
 }

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.2
+
+- fixed wrong logo name
+- removed _temporarily_ fcas stats
+- fixed market info
+  - although API does not return Market Cap yet.
+
 ## 1.2.1 
 
 ## Bug fix

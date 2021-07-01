@@ -1,5 +1,10 @@
 # The Phoenix Desktop Wallet
-# 1.2.0 (TBR) 
+# 1.2.2
+
+- reverted update url
+- fixed minor typo (#1497)
+
+# 1.2.0 
 
 - Signum Branded
 
