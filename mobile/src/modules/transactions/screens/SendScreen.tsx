@@ -22,10 +22,9 @@ import {NetworkReduxState} from '../../network/store/reducer';
 import {SendBurstForm, SendBurstFormState} from '../components/send/SendBurstForm';
 import {sendMoney, SendAmountPayload} from '../store/actions';
 import {TransactionsReduxState} from '../store/reducer';
-import {parseURLParams} from '../store/utils';
 import {transactions} from '../translations';
 import {withNavigation} from 'react-navigation';
-import {Amount} from '@signumjs/util';
+import {Amount, DeeplinkParts} from '@signumjs/util';
 import {Address, Account} from '@signumjs/core';
 import {NoActiveAccount} from '../components/send/NoActiveAccount';
 
@@ -61,11 +60,13 @@ class Send extends React.PureComponent<IProps, State> {
 
     willFocus = () => {
         setTimeout(() => {
-            const deepLink = this.props.route.params?.url;
+            const deepLinkParts = this.props.route.params?.payload as DeeplinkParts
+            console.log('Got send link', deepLinkParts);
+            if (deepLinkParts) {
 
-            console.log(deepLink);
-            if (deepLink) {
-                const params = parseURLParams(deepLink);
+                // ##### check this!!
+
+                const params = deepLinkParts.decodedPayload;
                 this.setState({
                     deepLinkProps: {
                         sender: null,
@@ -80,9 +81,9 @@ class Send extends React.PureComponent<IProps, State> {
                 });
             }
         }, 500);
-    };
+    }
 
-    componentDidMount() {
+    componentDidMount(): void {
         this.forceUpdate();
     }
 
@@ -95,7 +96,7 @@ class Send extends React.PureComponent<IProps, State> {
         this.setState({
             deepLinkProps: undefined
         });
-    };
+    }
 
     getFee(feeNQT: string, feeSuggestionType: string): string {
         let fee = Amount.fromPlanck(feeNQT);
@@ -118,35 +119,35 @@ class Send extends React.PureComponent<IProps, State> {
             this.props.dispatch(sendMoney(form));
             this.props.navigation.navigate(routes.home);
         }
-    };
+    }
 
     handlePINEntered = () => {
         this.setState({
             isPINModalVisible: false
         });
-    };
+    }
 
     handlePINCancel = () => {
         this.setState({
             isPINModalVisible: false
         });
-    };
+    }
 
     handleGetAccount = (id: string) => {
         return this.props.dispatch(getAccount(id));
-    };
+    }
 
     handleGetZilAddress = (id: string) => {
         return this.props.dispatch(getZilAddress(id));
-    };
+    }
 
     handleGetAlias = (id: string) => {
         return this.props.dispatch(getAlias(id));
-    };
+    }
 
     handleCameraIconPress = () => {
         this.props.navigation.navigate(routes.scan);
-    };
+    }
 
     componentWillUnmount() {
         this.props.navigation.removeListener('focus', this.willFocus);

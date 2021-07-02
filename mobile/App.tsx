@@ -34,8 +34,8 @@ import {ScanQRCodeScreen} from './src/modules/transactions/screens/ScanQRCodeScr
 import {SendScreen} from './src/modules/transactions/screens/SendScreen';
 import {ViewQRCodeScreen} from './src/modules/transactions/screens/ViewQRCodeScreen';
 import {transactions} from './src/modules/transactions/translations';
-import {LoadingView} from './src/core/layout/LoadingView';
-import {Text} from './src/core/components/base/Text';
+import {parseDeeplink} from '@signumjs/util';
+import {getDeeplinkInfo} from './src/core/utils/deeplink';
 
 const store: Store = getStore();
 
@@ -152,30 +152,30 @@ export default class App extends React.Component<{}, AppState> {
         i18n.locale = event.language;
         // we need to re-render whole tree
         this.forceUpdate();
-    };
+    }
 
     handleOpenURL = (event: any) => {
         this.navigate(event.url);
-    };
+    }
 
     navigate = (url: string) => {
-        const route = url.replace(/.*?:\/\//g, '');
-        const routeName = route.split('/')[0];
+        console.log('incoming deep link', url);
+        const deeplinkInfo = getDeeplinkInfo(url);
+        const isSendAction = deeplinkInfo.action === 'send-amount' || deeplinkInfo.action === 'pay';
 
-        // user clicked on a deep link to pay someone else burst
         setTimeout(() => {
-            if (navigationRef && routeName.indexOf('requestBurst') > -1) {
-                navigationRef.current?.navigate(routes.send, {url});
-                navigationRef.current?.setParams({url});
+            if (navigationRef.current && isSendAction) {
+                navigationRef.current.navigate(routes.send, {payload: deeplinkInfo.decodedPayload});
+                navigationRef.current.setParams({payload: deeplinkInfo});
             }
         }, 500);
-    };
+    }
 
     getImageStyle = ({color}) => ({
         opacity: color === Colors.WHITE ? 1 : .5,
         width: 25,
         height: 25
-    });
+    })
 
     render() {
         const RootTabStack = createBottomTabNavigator();

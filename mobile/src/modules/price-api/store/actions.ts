@@ -26,6 +26,9 @@ export const loadHistoricalPriceApiData = createActionFn<void, Promise<void>>(
       ]);
 
       const updatedPriceInfo = await Promise.all([response[0].json(), response[1].json()]);
+
+      console.log('updatePriceInfo', updatedPriceInfo)
+
       if (updatedPriceInfo[0].Data && updatedPriceInfo[0].Data.length &&
           updatedPriceInfo[1].Data && updatedPriceInfo[1].Data.length) {
 
