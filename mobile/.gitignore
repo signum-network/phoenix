@@ -56,3 +56,4 @@ buck-out/
 *.jsbundle
 
 mobile/android/gradle.properties
+.jest
