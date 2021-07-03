@@ -1,9 +1,5 @@
-import {Account, SuggestedFees} from '@burstjs/core';
-import {
-    convertAddressToNumericId,
-    convertNQTStringToNumber,
-    convertNumericIdToAddress,
-} from '@burstjs/util';
+import {Address, Account, SuggestedFees} from '@signumjs/core';
+import {Amount} from '@signumjs/util';
 import React, {createRef} from 'react';
 import {
     Image,
@@ -28,7 +24,6 @@ import {Recipient, RecipientType, RecipientValidationStatus} from '../../store/u
 import {transactions} from '../../translations';
 import {FeeSlider} from '../fee-slider/FeeSlider';
 import {AccountStatusPill} from './AccountStatusPill';
-import {Amount} from '@signumjs/util';
 import {isValidReedSolomonAddress, shortenRSAddress} from '../../../../core/utils/account';
 import {BCheckbox} from '../../../../core/components/base/BCheckbox';
 
@@ -111,28 +106,29 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
                 value: accountRS,
                 label: shortenRSAddress(accountRS)
             }));
-    };
+    }
 
     getAccount = (address: string): Account | null => {
         return this.props.accounts
             .find(({accountRS}) => accountRS === address) || null;
-    };
+    }
 
-    setupState = (props?: SendBurstFormState) => {
+    setupState = (deeplinkProps?: SendBurstFormState) => {
         const accounts = this.getAccounts();
+
         return {
             sender: accounts.length === 1 ? this.getAccount(accounts[0].value) : null,
-            amount: props && props.amount || '',
-            fee: props && props.fee ||
+            amount: deeplinkProps && deeplinkProps.amount || '',
+            fee: deeplinkProps && deeplinkProps.fee ||
                 this.props.suggestedFees &&
-                convertNQTStringToNumber(this.props.suggestedFees.standard.toString()).toString() || '',
-            message: props && props.message || undefined,
-            messageIsText: props && typeof props.messageIsText !== 'undefined' ? props.messageIsText : true,
-            encrypt: props && props.encrypt || false,
-            immutable: props && props.immutable || false,
-            recipient: new Recipient(props && props.address || AddressPrefix, props && props.address || ''),
+                Amount.fromPlanck(this.props.suggestedFees.standard).getSigna() || '',
+            message: deeplinkProps && deeplinkProps.message || undefined,
+            messageIsText: deeplinkProps && typeof deeplinkProps.messageIsText !== 'undefined' ? deeplinkProps.messageIsText : true,
+            encrypt: deeplinkProps && deeplinkProps.encrypt || false,
+            immutable: deeplinkProps && deeplinkProps.immutable || false,
+            recipient: new Recipient(deeplinkProps && deeplinkProps.address || AddressPrefix, deeplinkProps && deeplinkProps.address || ''),
             showSubmitButton: true,
-            addMessage: props && !!props.message || false
+            addMessage: deeplinkProps && !!deeplinkProps.message || false
         };
     };
 
@@ -178,7 +174,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
                 accountFetchFn = this.props.onGetAlias;
                 break;
             case RecipientType.ADDRESS:
-                formattedAddress = convertAddressToNumericId(recipient);
+                formattedAddress = Address.fromReedSolomonAddress(recipient).getNumericId();
                 accountFetchFn = this.props.onGetAccount;
                 break;
             case RecipientType.ZIL:
@@ -215,6 +211,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
         }
 
         try {
+            console.log('Trying address', formattedAddress);
             const {accountRS} = await accountFetchFn(formattedAddress);
             this.setState({
                 recipient: {
@@ -223,12 +220,17 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
                     status: RecipientValidationStatus.VALID
                 }
             });
+            console.log('Valid', accountRS)
         } catch (e) {
+
+            console.log('Invalid', recipient)
+
             this.setState({
                 recipient: {
                     ...this.state.recipient,
-                    addressRS: (recipient.startsWith(AddressPrefix) || this.state.recipient.type === RecipientType.ZIL) ?
-                        recipient : convertNumericIdToAddress(recipient),
+                    addressRS: (recipient.startsWith(AddressPrefix) || this.state.recipient?.type === RecipientType.ZIL)
+                        ? recipient
+                        : Address.fromNumericId(recipient).getReedSolomonAddress(),
                     status: RecipientValidationStatus.INVALID
                 }
             });

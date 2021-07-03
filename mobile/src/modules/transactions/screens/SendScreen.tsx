@@ -27,6 +27,7 @@ import {withNavigation} from 'react-navigation';
 import {Amount, DeeplinkParts} from '@signumjs/util';
 import {Address, Account} from '@signumjs/core';
 import {NoActiveAccount} from '../components/send/NoActiveAccount';
+import {DeeplinkPayPayload} from '../../../core/utils/deeplink';
 
 type SendNavProp = StackNavigationProp<RootStackParamList, 'send'>;
 type SendRouteProp = RouteProp<RootStackParamList, 'send'>;
@@ -60,23 +61,19 @@ class Send extends React.PureComponent<IProps, State> {
 
     willFocus = () => {
         setTimeout(() => {
-            const deepLinkParts = this.props.route.params?.payload as DeeplinkParts
-            console.log('Got send link', deepLinkParts);
-            if (deepLinkParts) {
-
-                // ##### check this!!
-
-                const params = deepLinkParts.decodedPayload;
+            const payload = this.props.route.params?.payload as DeeplinkPayPayload
+            console.log('Got send link', payload);
+            if (payload) {
                 this.setState({
                     deepLinkProps: {
                         sender: null,
-                        address: Address.create(params.receiver).getReedSolomonAddress(),
-                        fee: params.feeNQT ? this.getFee(params.feeNQT, params.feeSuggestionType) : undefined,
-                        amount: params.amountNQT ? Amount.fromPlanck(params.amountNQT).getSigna() : undefined,
-                        message: params.message,
-                        messageIsText: params.messageIsText !== 'false',
-                        encrypt: params.encrypt === 'true',
-                        immutable: params.immutable === 'true'
+                        address: payload.recipient || undefined,
+                        fee: payload.feePlanck ? Amount.fromPlanck(payload.feePlanck).getSigna() : undefined,
+                        amount: payload.amountPlanck ? Amount.fromPlanck(payload.amountPlanck).getSigna() : undefined,
+                        message: payload.message,
+                        messageIsText: payload.messageIsText === true,
+                        encrypt: payload.encrypt === true,
+                        immutable: payload.immutable === true
                     }
                 });
             }
@@ -88,24 +85,16 @@ class Send extends React.PureComponent<IProps, State> {
     }
 
     willBlur = () => {
-        const deepLink = this.props.navigation.dangerouslyGetParent();
-        if (deepLink) {
-            deepLink.setParams({url: undefined});
-        }
-        this.props.navigation.setParams({url: undefined});
-        this.setState({
-            deepLinkProps: undefined
-        });
+        // const deepLink = this.props.navigation.dangerouslyGetParent();
+        // if (deepLink) {
+        //     deepLink.setParams({payload: undefined});
+        // }
+        // this.props.navigation.setParams({payload: undefined});
+        // this.setState({
+        //     deepLinkProps: undefined
+        // });
     }
 
-    getFee(feeNQT: string, feeSuggestionType: string): string {
-        let fee = Amount.fromPlanck(feeNQT);
-        if (feeSuggestionType && feeSuggestionType !== 'undefined' && this.props.network.suggestedFees) {
-            // @ts-ignore
-            fee = Amount.fromPlanck(this.props.network.suggestedFees[feeSuggestionType]);
-        }
-        return fee.getSigna();
-    }
 
     handleSubmit = (form: SendAmountPayload) => {
         const {passcodeEnteredTime} = this.props.auth;
@@ -149,14 +138,14 @@ class Send extends React.PureComponent<IProps, State> {
         this.props.navigation.navigate(routes.scan);
     }
 
-    componentWillUnmount() {
+    componentWillUnmount(): void {
         this.props.navigation.removeListener('focus', this.willFocus);
         this.props.navigation.removeListener('blur', this.willBlur);
     }
 
     render() {
         const accounts: Account[] = this.props.auth.accounts || [];
-        const {data, error} = this.props.transactions.sendMoney;
+        const {error} = this.props.transactions.sendMoney;
         const isLoading = isAsyncLoading(this.props.transactions.sendMoney);
 
         const hasActiveAccounts = accounts.some(({type}) => type !== 'offline');

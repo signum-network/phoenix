@@ -19,12 +19,10 @@ const deeplink = createDeeplink({
     payload
 })
 
- Example:
-
 'signum://v1?action=pay&payload=eyJyZWNpcGllbnQiOiJCVVJTVC05SzlMLTRDQjUtODhZNS1GNUc0WiIsImFtb3VudFBsYW5jayI6MTAwMDAwMDAsImZlZVBsYW5jayI6NzM1MDAwLCJtZXNzYWdlIjoiSGksIGZyb20gYSBkZWVwIGxpbmsiLCJtZXNzYWdlSXNUZXh0Ijp0cnVlLCJpbW11dGFibGUiOnRydWUsImRlYWRsaW5lIjoyNCwiZW5jcnlwdCI6ZmFsc2V9'
 */
 
-export interface SendPayload {
+export interface DeeplinkPayPayload {
     recipient?: string;
     feePlanck?: string;
     amountPlanck?: string;
@@ -73,7 +71,7 @@ this.setState({
 const parseLegacyDeeplink = (url: string): DeeplinkParts => {
     const params = parseURLParams(url);
 
-    const sendPayload: SendPayload = {
+    const sendPayload: DeeplinkPayPayload = {
         recipient: params.receiver || '',
         feePlanck: params.feeNQT || '',
         amountPlanck: params.amountNQT || '',
@@ -94,7 +92,7 @@ const parseLegacyDeeplink = (url: string): DeeplinkParts => {
 const parseCIP22Deeplink = (url: string): DeeplinkParts => {
     const parsed = parseDeeplink(url);
 
-    const decoded = parsed.decodedPayload as SendPayload;
+    const decoded = parsed.decodedPayload as DeeplinkPayPayload;
 
     // direct 1:1 explicit mapping to avoid injections
     parsed.decodedPayload = {

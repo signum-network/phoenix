@@ -1,12 +1,13 @@
-import {getDeeplinkInfo, SendPayload} from '../deeplink';
+import {getDeeplinkInfo, DeeplinkPayPayload} from '../deeplink';
 import {createDeeplink, Amount} from '@signumjs/util';
 
 describe('deeplink', () => {
     describe('legacy', () => {
         it('it should create expected payload', () => {
-            const legacyLink = 'signum://requestBurst?receiver=S-LJRV-9LE8-VJ5B-57W4C&amountNQT=20000000000&feeNQT=2205000&immutable=false&message=4c956fdb7701&messageIsText=false'
+            // tslint:disable-next-line:max-line-length
+            const legacyLink = 'signum://requestBurst?receiver=S-LJRV-9LE8-VJ5B-57W4C&amountNQT=20000000000&feeNQT=2205000&immutable=false&message=4c956fdb7701&messageIsText=false';
             const info = getDeeplinkInfo(legacyLink);
-            const data = info.decodedPayload as SendPayload;
+            const data = info.decodedPayload as DeeplinkPayPayload;
 
             expect(info.action).toBe('pay');
             expect(data).toEqual({
@@ -17,13 +18,13 @@ describe('deeplink', () => {
                 messageIsText: false,
                 encrypt: false,
                 immutable: false,
-            } as SendPayload);
+            } as DeeplinkPayPayload);
         });
 
         it('it should create expected payload - default params', () => {
             const legacyLink = 'signum://requestBurst?';
             const info = getDeeplinkInfo(legacyLink);
-            const data = info.decodedPayload as SendPayload;
+            const data = info.decodedPayload as DeeplinkPayPayload;
 
             expect(info.action).toBe('pay');
             expect(data).toEqual({
@@ -34,13 +35,13 @@ describe('deeplink', () => {
                 messageIsText: true,
                 encrypt: false,
                 immutable: false,
-            } as SendPayload);
+            } as DeeplinkPayPayload);
         });
 
         it('it should create expected payload - ignore unknown props', () => {
-            const legacyLink = 'signum://requestBurst?receiver=S-LJRV-9LE8-VJ5B-57W4C&amountNQT=20000000000&feeNQT=2205000&immutable=false&message=4c956fdb7701&messageIsText=false&inject=malicious'
+            const legacyLink = 'signum://requestBurst?receiver=S-LJRV-9LE8-VJ5B-57W4C&amountNQT=20000000000&feeNQT=2205000&immutable=false&message=4c956fdb7701&messageIsText=false&inject=malicious';
             const info = getDeeplinkInfo(legacyLink);
-            const data = info.decodedPayload as SendPayload;
+            const data = info.decodedPayload as DeeplinkPayPayload;
 
             expect(info.action).toBe('pay');
             expect(data).toEqual({
@@ -51,7 +52,7 @@ describe('deeplink', () => {
                 messageIsText: false,
                 encrypt: false,
                 immutable: false,
-            } as SendPayload);
+            } as DeeplinkPayPayload);
         });
 
         it('it should throw exception on false link', () => {
@@ -63,7 +64,7 @@ describe('deeplink', () => {
     });
     describe('cip22', () => {
         it('it should create expected payload - all params', () => {
-            const payload: SendPayload = {
+            const payload: DeeplinkPayPayload = {
                 recipient: 'recipientsAddress',
                 amountPlanck: Amount.fromSigna(100).getPlanck(),
                 feePlanck: Amount.fromSigna(0.00735).getPlanck(),
@@ -79,14 +80,14 @@ describe('deeplink', () => {
             });
 
             const info = getDeeplinkInfo(cip22Link);
-            const data = info.decodedPayload as SendPayload;
+            const data = info.decodedPayload as DeeplinkPayPayload;
 
             expect(info.action).toBe('pay');
             expect(data).toEqual(payload);
         });
 
         it('it should create expected payload - only default params', () => {
-            const payload: SendPayload = {};
+            const payload: DeeplinkPayPayload = {};
 
             const cip22Link = createDeeplink({
                 action: 'pay',
@@ -94,7 +95,7 @@ describe('deeplink', () => {
             });
 
             const info = getDeeplinkInfo(cip22Link);
-            const data = info.decodedPayload as SendPayload;
+            const data = info.decodedPayload as DeeplinkPayPayload;
 
             expect(info.action).toBe('pay');
             expect(data).toEqual({
@@ -105,11 +106,11 @@ describe('deeplink', () => {
                 messageIsText: false,
                 encrypt: false,
                 immutable: false
-            } as SendPayload);
+            } as DeeplinkPayPayload);
         });
         it('it should create expected payload - ignore unknown props', () => {
 
-            const payload: SendPayload = {
+            const payload: DeeplinkPayPayload = {
                 recipient: 'recipientsAddress',
                 amountPlanck: Amount.fromSigna(100).getPlanck(),
                 feePlanck: Amount.fromSigna(0.00735).getPlanck(),
@@ -127,7 +128,7 @@ describe('deeplink', () => {
             });
 
             const info = getDeeplinkInfo(cip22Link);
-            const data = info.decodedPayload as SendPayload;
+            const data = info.decodedPayload as DeeplinkPayPayload;
 
             expect(info.action).toBe('pay');
             expect(data).toEqual({
@@ -138,7 +139,7 @@ describe('deeplink', () => {
                 messageIsText: true,
                 encrypt: true,
                 immutable: true
-            } as SendPayload);
+            } as DeeplinkPayPayload);
         });
 
         it('it should throw exception on invalid link', () => {

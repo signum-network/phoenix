@@ -166,7 +166,7 @@ export default class App extends React.Component<{}, AppState> {
         setTimeout(() => {
             if (navigationRef.current && isSendAction) {
                 navigationRef.current.navigate(routes.send, {payload: deeplinkInfo.decodedPayload});
-                navigationRef.current.setParams({payload: deeplinkInfo});
+                navigationRef.current.setParams({payload: deeplinkInfo.decodedPayload});
             }
         }, 500);
     }
