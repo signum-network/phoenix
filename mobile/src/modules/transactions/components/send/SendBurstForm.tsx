@@ -130,11 +130,11 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             showSubmitButton: true,
             addMessage: deeplinkProps && !!deeplinkProps.message || false
         };
-    };
+    }
 
     UNSAFE_componentWillReceiveProps = ({deepLinkProps}: Props) => {
         this.setState(this.setupState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
-    };
+    }
 
     applyRecipientType(recipient: string): void {
         const r = recipient.trim();
@@ -211,7 +211,6 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
         }
 
         try {
-            console.log('Trying address', formattedAddress);
             const {accountRS} = await accountFetchFn(formattedAddress);
             this.setState({
                 recipient: {
@@ -220,11 +219,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
                     status: RecipientValidationStatus.VALID
                 }
             });
-            console.log('Valid', accountRS)
         } catch (e) {
-
-            console.log('Invalid', recipient)
-
             this.setState({
                 recipient: {
                     ...this.state.recipient,
@@ -246,14 +241,14 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             Number(amount) &&
             Number(fee) &&
             sender &&
-            isValidReedSolomonAddress(recipient.addressRS) &&
+            isValidReedSolomonAddress(recipient?.addressRS) &&
             !loading
         );
-    };
+    }
 
     handleChangeFromAccount = (sender: string) => {
         this.setState({sender: this.getAccount(sender)});
-    };
+    }
 
     handleChangeAddress = (address: string) => {
         this.setState({
@@ -262,23 +257,23 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
                 addressRaw: address
             }
         });
-    };
+    }
 
     handleAddressBlur = (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
         this.applyRecipientType(e.nativeEvent.text);
-    };
+    }
 
     handleAmountChange = (amount: string) => {
         this.setState({amount: amount.replace(',', '.')});
-    };
+    }
 
     handleFeeChange = (fee: string) => {
         this.setState({fee: fee.replace(',', '.')});
-    };
+    }
 
     handleMessageChange = (message: string) => {
         this.setState({message});
-    };
+    }
 
     setEncryptMessage(encrypt: boolean): void {
         this.setState({
@@ -299,7 +294,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
     handleFeeChangeFromSlider = (fee: number) => {
         this.setState({fee: amountToString(fee)});
-    };
+    }
 
     onSpendAll = () => {
         if (!this.state.sender) {
@@ -310,7 +305,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             .add(Amount.fromSigna(this.state.fee || 0));
 
         this.handleAmountChange(maxAmount.greater(Amount.Zero()) ? maxAmount.getSigna() : '0');
-    };
+    }
 
     handleSubmit = () => {
 
@@ -334,7 +329,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             });
         }
         this.setState({showSubmitButton: false});
-    };
+    }
 
     render() {
         const {sender, recipient, amount, fee, encrypt, addMessage, message} = this.state;

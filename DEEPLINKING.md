@@ -77,7 +77,6 @@ The link is used to fill out the "Send Amount" form for a single recipient.
 
 __Action(s)__:
 
-- `send-amount`
 - `pay`
 
 __Payload__

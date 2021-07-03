@@ -19,7 +19,6 @@ export function getDefaultAppSettings(): AppSettings {
             nodeHost: defaultSettings.nodeHost,
             reliableNodeHosts: defaultSettings.reliableNodeHosts
         } as ApiSettings,
-        coinMarketCapURL: defaultSettings.coinMarketCapURL,
         burstAlertsURL: defaultSettings.burstAlertsURL,
     };
 }

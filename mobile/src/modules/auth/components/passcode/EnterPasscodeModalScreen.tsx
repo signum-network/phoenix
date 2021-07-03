@@ -73,7 +73,7 @@ export class EnterPasscodeModalScreen extends React.PureComponent<Props, State> 
     erasePromptVisible: false
   };
 
-  async componentDidMount () {
+  async componentDidMount (): Promise<void> {
     this.handleTouchID();
     const hasTouchID = await isTouchIDSupported();
     this.setState({ hasTouchID });

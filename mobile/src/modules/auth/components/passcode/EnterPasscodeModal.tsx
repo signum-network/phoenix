@@ -10,6 +10,9 @@ import { isPasscodeSet } from '../../store/utils';
 import { EnterPasscodeModalScreen } from './EnterPasscodeModalScreen';
 import { SetPasscodeModalScreen } from './SetPasscodeModalScreen';
 
+// TODO: this is only for debugging purposes
+let times = 0
+
 interface OwnProps {
   visible: boolean;
   onSuccess: () => void;
@@ -52,6 +55,10 @@ class EnterPasscode extends React.PureComponent<Props> {
   render () {
     const { visible, auth } = this.props;
     const isCodeSet = isPasscodeSet(auth.passcode);
+
+    if(visible){
+      console.log('EnterPasscodeModal', times++)
+    }
 
     return (
       <Modal

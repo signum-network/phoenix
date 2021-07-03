@@ -47,6 +47,8 @@ interface Props extends InjectedReduxProps {
 }
 
 class ScanQRCodeScreenComponent extends React.PureComponent<Props> {
+
+  // TODO:
   onSuccess = (e: Event) => {
     if (e.data.indexOf('requestBurst') === -1 && !isBurstAddress(e.data)) {
       return Alert.alert('Error scanning QR code');

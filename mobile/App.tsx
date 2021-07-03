@@ -161,7 +161,7 @@ export default class App extends React.Component<{}, AppState> {
     navigate = (url: string) => {
         console.log('incoming deep link', url);
         const deeplinkInfo = getDeeplinkInfo(url);
-        const isSendAction = deeplinkInfo.action === 'send-amount' || deeplinkInfo.action === 'pay';
+        const isSendAction = deeplinkInfo.action === 'pay';
 
         setTimeout(() => {
             if (navigationRef.current && isSendAction) {

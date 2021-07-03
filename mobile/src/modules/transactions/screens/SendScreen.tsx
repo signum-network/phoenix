@@ -3,6 +3,8 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 import {View} from 'react-native';
 import {connect} from 'react-redux';
+import {Amount} from '@signumjs/util';
+import {Account} from '@signumjs/core';
 import {Text, TextThemes} from '../../../core/components/base/Text';
 import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
 import {i18n} from '../../../core/i18n';
@@ -24,8 +26,6 @@ import {sendMoney, SendAmountPayload} from '../store/actions';
 import {TransactionsReduxState} from '../store/reducer';
 import {transactions} from '../translations';
 import {withNavigation} from 'react-navigation';
-import {Amount, DeeplinkParts} from '@signumjs/util';
-import {Address, Account} from '@signumjs/core';
 import {NoActiveAccount} from '../components/send/NoActiveAccount';
 import {DeeplinkPayPayload} from '../../../core/utils/deeplink';
 
@@ -85,14 +85,14 @@ class Send extends React.PureComponent<IProps, State> {
     }
 
     willBlur = () => {
-        // const deepLink = this.props.navigation.dangerouslyGetParent();
-        // if (deepLink) {
-        //     deepLink.setParams({payload: undefined});
-        // }
-        // this.props.navigation.setParams({payload: undefined});
-        // this.setState({
-        //     deepLinkProps: undefined
-        // });
+        const deepLink = this.props.navigation.dangerouslyGetParent();
+        if (deepLink) {
+            deepLink.setParams({payload: undefined});
+        }
+        this.props.navigation.setParams({payload: undefined});
+        this.setState({
+            deepLinkProps: undefined
+        });
     }
 
 
