@@ -12,5 +12,6 @@ export const actionTypes = {
   loadPasscode: `${PATH}_LOAD_PASSCODE`,
   resetAuthState: `${PATH}_STATE_RESET`,
   setAgreeToTerms: `${PATH}_SET_AGREE_TO_TERMS`,
-  loadAgreeToTerms: `${PATH}_LOAD_AGREE_TO_TERMS`
+  loadAgreeToTerms: `${PATH}_LOAD_AGREE_TO_TERMS`,
+  setPasscodeModalVisible: `${PATH}_SET_PASSCODE_MODAL_VISIBLE`,
 };

@@ -23,16 +23,17 @@ interface ZilResponse {
 const actions = {
     addAccount: createAction<Account>(actionTypes.addAccount),
     getAccount: createAction<string>(actionTypes.getAccount),
-    updateAccount: createAction<Account>(actionTypes.updateAccount),
-    removeAccount: createAction<Account>(actionTypes.removeAccount),
     loadAccounts: createAction<Account[]>(actionTypes.loadAccounts),
-    loadPasscodeEnteredTime: createAction<number>(actionTypes.loadPasscodeEnteredTime),
-    setPasscodeEnteredTime: createAction<number>(actionTypes.setPasscodeEnteredTime),
-    setPasscode: createAction<string>(actionTypes.setPasscode),
-    setAgreeToTerms: createAction<boolean>(actionTypes.setAgreeToTerms),
-    loadPasscode: createAction<string>(actionTypes.loadPasscode),
     loadAgreeToTerms: createAction<boolean>(actionTypes.loadAgreeToTerms),
-    resetAuthState: createAction<void>(actionTypes.resetAuthState)
+    loadPasscode: createAction<string>(actionTypes.loadPasscode),
+    loadPasscodeEnteredTime: createAction<number>(actionTypes.loadPasscodeEnteredTime),
+    removeAccount: createAction<Account>(actionTypes.removeAccount),
+    resetAuthState: createAction<void>(actionTypes.resetAuthState),
+    setAgreeToTerms: createAction<boolean>(actionTypes.setAgreeToTerms),
+    setPasscode: createAction<string>(actionTypes.setPasscode),
+    setPasscodeEnteredTime: createAction<number>(actionTypes.setPasscodeEnteredTime),
+    setPasscodeModalVisible: createAction<boolean>(actionTypes.setPasscodeModalVisible),
+    updateAccount: createAction<Account>(actionTypes.updateAccount),
 };
 
 export const createActiveAccount = createActionFn<string, Account>(
@@ -227,3 +228,5 @@ export const loadPasscode = createActionFn<void, Promise<void>>(
         dispatch(actions.loadPasscode(passcode));
     }
 );
+
+export const setPasscodeModalVisible = actions.setPasscodeModalVisible;

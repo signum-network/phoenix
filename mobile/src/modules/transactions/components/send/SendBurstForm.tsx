@@ -374,7 +374,6 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
         return (
             <SafeAreaView>
-
                 <View>
                     <BSelect
                         value={senderRS}

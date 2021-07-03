@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { connect, useSelector, useDispatch } from 'react-redux';
-import { InjectedReduxProps } from '../interfaces';
+import { useSelector, useDispatch } from 'react-redux';
 import { loadApp } from '../store/app/actions';
-import { AppReduxState } from '../store/app/reducer';
 import { ApplicationState } from '../store/initialState';
 import { LoadingView } from './LoadingView';
+import {selectIsPasscodeModalVisible} from '../../modules/auth/store/selectors';
+import {setPasscodeModalVisible} from '../../modules/auth/store/actions';
+import {Text} from '../components/base/Text';
 //
 // function mapStateToProps (state: ApplicationState) {
 //   return {
@@ -38,10 +39,28 @@ import { LoadingView } from './LoadingView';
 export const RootView: React.FC = ({children}) => {
     const dispatch = useDispatch();
     const isAppLoaded = useSelector<ApplicationState>(state => state.app.isAppLoaded);
+    const isPasscodeModalVisible = useSelector<ApplicationState>(selectIsPasscodeModalVisible);
 
     useEffect(() => {
         dispatch(loadApp());
     }, []);
 
-    return isAppLoaded ? children : <LoadingView/>;
+    useEffect(() => {
+        if (isAppLoaded && !isPasscodeModalVisible){
+            setTimeout( () => {
+                dispatch(setPasscodeModalVisible(true));
+                console.log('should show passcode modal now!');
+            }, 5 * 1000);
+        }
+
+    }, [isAppLoaded, isPasscodeModalVisible]);
+
+    if (!isAppLoaded){
+        return <LoadingView/>;
+    }
+
+    return isPasscodeModalVisible
+                ? <Text>Passcode Modal</Text>
+                : children;
+
 };
