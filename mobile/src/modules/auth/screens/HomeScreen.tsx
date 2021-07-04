@@ -18,13 +18,11 @@ import {loadHistoricalPriceApiData, selectCurrency} from '../../price-api/store/
 import {PriceInfoReduxState, PriceType, PriceTypeStrings} from '../../price-api/store/reducer';
 import {AccountsList} from '../components/AccountsList';
 import {AccountsListHeader} from '../components/AccountsListHeader';
-import {EnterPasscodeModal} from '../components/passcode/EnterPasscodeModal';
 import {TermsScreen} from '../components/terms/TermsScreen';
 import {RootStackParamList} from '../navigation/mainStack';
-import {hydrateAccount, removeAccount, resetAuthState} from '../store/actions';
+import {hydrateAccount, removeAccount} from '../store/actions';
 import {AuthReduxState} from '../store/reducer';
-import {shouldEnterPIN} from '../store/utils';
-import {agreeToTerms, resetAppState} from '../../../core/store/app/actions';
+import {agreeToTerms} from '../../../core/store/app/actions';
 
 type HomeNavProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -64,14 +62,10 @@ const priceTypes = [PriceType.BURST, PriceType.BTC, PriceType.USD];
 
 class Home extends React.PureComponent<IProps, State> {
 
-    _checkPinExpiryInterval?: any;
-
     state = {
-        isPINModalVisible: false,
         isTermsScreenVisible: false,
         selectedCurrency: priceTypes[0]
     };
-
 
     componentDidMount(): void {
         setTimeout(() => this.updateAllAccounts(), 500);
@@ -81,22 +75,22 @@ class Home extends React.PureComponent<IProps, State> {
         this.props.navigation.navigate(routes.accounts);
     }
 
-    componentDidUpdate(): void {
-        if (this._checkPinExpiryInterval) {
-            clearInterval(this._checkPinExpiryInterval);
-        }
-        const checkSessionExpiry = () => {
-            const {passcodeTime} = this.props.app.appSettings;
-            const {passcodeEnteredTime} = this.props.auth;
-            if (shouldEnterPIN(passcodeTime, passcodeEnteredTime)) {
-                this.setPINModalVisible(true);
-            }
-            this.checkTermsScreen();
-        };
-        checkSessionExpiry();
-        this._checkPinExpiryInterval = setInterval(checkSessionExpiry, 1000);
-
-    }
+    // componentDidUpdate(): void {
+    //     if (this._checkPinExpiryInterval) {
+    //         clearInterval(this._checkPinExpiryInterval);
+    //     }
+    //     const checkSessionExpiry = () => {
+    //         const {passcodeTime} = this.props.app.appSettings;
+    //         const {passcodeEnteredTime} = this.props.auth;
+    //         if (shouldEnterPIN(passcodeTime, passcodeEnteredTime)) {
+    //             this.setPINModalVisible(true);
+    //         }
+    //         this.checkTermsScreen();
+    //     };
+    //     checkSessionExpiry();
+    //     this._checkPinExpiryInterval = setInterval(checkSessionExpiry, 1000);
+    //
+    // }
 
     updateAllAccounts = () => {
         console.log('Updating Accounts...');
@@ -130,10 +124,6 @@ class Home extends React.PureComponent<IProps, State> {
         this.handleAddAccount();
     }
 
-    handlePINEntered = () => {
-        this.setPINModalVisible(false);
-    }
-
     handleTermsAgreed = () => {
         this.props.dispatch(agreeToTerms());
         this.setTermsScreenVisible(false);
@@ -143,29 +133,13 @@ class Home extends React.PureComponent<IProps, State> {
         this.props.navigation.navigate(routes.addAccount);
     }
 
-    handlePINCancel = () => {
-        this.setPINModalVisible(false);
-    }
-
     handleDelete = (account: Account) => {
         this.props.dispatch(removeAccount(account));
-    }
-
-    handleReset = () => {
-        this.props.dispatch(resetAuthState());
-        this.props.dispatch(resetAppState());
-        this.props.navigation.navigate(routes.home);
     }
 
     handleAccountsListRefresh = () => {
         this.props.dispatch(loadHistoricalPriceApiData());
         return this.updateAllAccounts();
-    }
-
-    componentWillUnmount(): void {
-        if (this._checkPinExpiryInterval) {
-            clearInterval(this._checkPinExpiryInterval);
-        }
     }
 
     selectCurrency(): void {
@@ -213,13 +187,7 @@ class Home extends React.PureComponent<IProps, State> {
                             priceApi={this.props.priceApi}
                             onRefresh={this.handleAccountsListRefresh}
                         />
-                        <EnterPasscodeModal
-                            visible={this.state.isPINModalVisible}
-                            onSuccess={this.handlePINEntered}
-                            onCancel={this.handlePINCancel}
-                            onReset={this.handleReset}
-                        />
-                        {isTermsScreenVisible && !this.state.isPINModalVisible && <TermsScreen
+                        {isTermsScreenVisible && <TermsScreen
                             visible={isTermsScreenVisible}
                             onAgree={this.handleTermsAgreed}
                         />}

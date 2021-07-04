@@ -24,7 +24,6 @@ interface InjectedProps extends InjectedReduxProps {
 
 interface OwnProps {
     onSuccess: () => void;
-    onCancel: () => void;
 }
 
 type Props = OwnProps & InjectedProps;

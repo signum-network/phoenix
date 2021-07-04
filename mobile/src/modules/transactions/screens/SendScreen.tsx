@@ -15,11 +15,9 @@ import {routes} from '../../../core/navigation/routes';
 import {AppReduxState} from '../../../core/store/app/reducer';
 import {ApplicationState} from '../../../core/store/initialState';
 import {isAsyncLoading} from '../../../core/utils/async';
-import {EnterPasscodeModal} from '../../auth/components/passcode/EnterPasscodeModal';
 import {RootStackParamList} from '../../auth/navigation/mainStack';
 import {getAccount, getAlias, getZilAddress} from '../../auth/store/actions';
 import {AuthReduxState} from '../../auth/store/reducer';
-import {shouldEnterPIN} from '../../auth/store/utils';
 import {NetworkReduxState} from '../../network/store/reducer';
 import {SendBurstForm, SendBurstFormState} from '../components/send/SendBurstForm';
 import {sendMoney, SendAmountPayload} from '../store/actions';
@@ -42,14 +40,12 @@ interface IProps extends InjectedReduxProps {
 }
 
 interface State {
-    isPINModalVisible: boolean;
     deepLinkProps?: SendBurstFormState;
 }
 
 class Send extends React.PureComponent<IProps, State> {
 
     state = {
-        isPINModalVisible: false,
         deepLinkProps: undefined
     };
 
@@ -95,31 +91,9 @@ class Send extends React.PureComponent<IProps, State> {
         });
     }
 
-
     handleSubmit = (form: SendAmountPayload) => {
-        const {passcodeEnteredTime} = this.props.auth;
-        const {passcodeTime} = this.props.app.appSettings;
-
-        if (shouldEnterPIN(passcodeTime, passcodeEnteredTime)) {
-            this.setState({
-                isPINModalVisible: true
-            });
-        } else {
-            this.props.dispatch(sendMoney(form));
-            this.props.navigation.navigate(routes.home);
-        }
-    }
-
-    handlePINEntered = () => {
-        this.setState({
-            isPINModalVisible: false
-        });
-    }
-
-    handlePINCancel = () => {
-        this.setState({
-            isPINModalVisible: false
-        });
+        this.props.dispatch(sendMoney(form));
+        this.props.navigation.navigate(routes.home);
     }
 
     handleGetAccount = (id: string) => {
@@ -147,7 +121,6 @@ class Send extends React.PureComponent<IProps, State> {
         const accounts: Account[] = this.props.auth.accounts || [];
         const {error} = this.props.transactions.sendMoney;
         const isLoading = isAsyncLoading(this.props.transactions.sendMoney);
-
         const hasActiveAccounts = accounts.some(({type}) => type !== 'offline');
 
         return (
@@ -171,11 +144,6 @@ class Send extends React.PureComponent<IProps, State> {
                         }
                         {error && <Text theme={TextThemes.DANGER}>{error.message}</Text>}
                     </View>
-                    <EnterPasscodeModal
-                        visible={this.state.isPINModalVisible}
-                        onSuccess={this.handlePINEntered}
-                        onCancel={this.handlePINCancel}
-                    />
                 </FullHeightView>
             </Screen>
         );

@@ -1,13 +1,11 @@
 import {Account, Alias, Address} from '@signumjs/core';
 import {encryptAES, generateMasterKeys, hashSHA256} from '@signumjs/crypto';
 import {some} from 'lodash';
-import {AsyncStorage} from 'react-native';
-import {AsyncStorageKeys} from '../../../core/enums';
 import {i18n} from '../../../core/i18n';
 import {createAction, createActionFn} from '../../../core/utils/store';
 import {auth} from '../translations';
 import {actionTypes} from './actionTypes';
-import {getAccounts, fetchAgreeToTerms, getPasscode, getPasscodeEnteredTime, resetKeychain, savePasscode, savePasscodeEnteredTime, setAccounts} from './utils';
+import {getAccounts, getPasscode, getPasscodeEnteredTime, resetKeychain, savePasscode, savePasscodeEnteredTime, setAccounts} from './utils';
 import {selectChainApi} from '../../../core/store/app/selectors';
 
 interface ZilResponse {

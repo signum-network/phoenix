@@ -1,9 +1,7 @@
 import React from 'react';
-import {ImageBackground, Platform, StatusBar, StatusBarStyle, StyleSheet} from 'react-native';
+import {StatusBar, StatusBarStyle, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Colors} from '../theme/colors';
-import {logos} from '../../assets/icons';
-import {LogoWatermark} from '../components/base/LogoWatermark';
 
 interface Props {
     children: JSX.Element | JSX.Element[];

@@ -56,6 +56,7 @@ export function resetKeychain (): Promise<boolean[]> {
   ]);
 }
 
+// TODO: seems that this is not necessary at all
 export async function getPasscodeEnteredTime (): Promise<number> {
   const credentials: KeychainCredentials =
     await getCredentials(KeyChainKeys.passcodeEnteredTime) as KeychainCredentials;
@@ -64,12 +65,4 @@ export async function getPasscodeEnteredTime (): Promise<number> {
   } else {
     return 0;
   }
-}
-
-export function shouldEnterPIN (passcodeTime: number, lastTimeEntered: number): boolean {
-  return lastTimeEntered + passcodeTime <= Date.now();
-}
-
-export function isPasscodeSet (passcode: string): boolean {
-  return !isEmpty(passcode);
 }

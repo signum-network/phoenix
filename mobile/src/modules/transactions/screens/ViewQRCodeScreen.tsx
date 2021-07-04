@@ -11,8 +11,7 @@ import {Screen} from '../../../core/layout/Screen';
 import {AppReduxState} from '../../../core/store/app/reducer';
 import {ApplicationState} from '../../../core/store/initialState';
 import {Colors} from '../../../core/theme/colors';
-import {defaultSideOffset, Sizes} from '../../../core/theme/sizes';
-import {EnterPasscodeModal} from '../../auth/components/passcode/EnterPasscodeModal';
+import {defaultSideOffset} from '../../../core/theme/sizes';
 import {AuthReduxState} from '../../auth/store/reducer';
 import {ReceiveAmountPayload} from '../store/actions';
 import {TransactionsReduxState} from '../store/reducer';
@@ -95,21 +94,13 @@ function buildPhoenixDeepLinkURL(requestPayload: ReceiveAmountPayload): string {
 }
 
 
-interface State {
-    isPINModalVisible: boolean;
-}
-
-class ViewQRCode extends React.PureComponent<Props, State> {
+class ViewQRCode extends React.PureComponent<Props> {
 
     private fee: Amount;
     private amount: Amount;
     private recipient: Address;
     private immutable: boolean;
     private message: string;
-
-    state = {
-        isPINModalVisible: false
-    };
 
     constructor(props) {
         super(props);
@@ -118,18 +109,6 @@ class ViewQRCode extends React.PureComponent<Props, State> {
         this.recipient = Address.create(this.props.route.params.form.recipient);
         this.immutable = this.props.route.params.form.immutable;
         this.message = this.props.route.params.form.message;
-    }
-
-    handlePINEntered = () => {
-        this.setState({
-            isPINModalVisible: false
-        });
-    }
-
-    handlePINCancel = () => {
-        this.setState({
-            isPINModalVisible: false
-        });
     }
 
     handleShare = async () => {
@@ -218,11 +197,6 @@ Pay using the Phoenix Wallet from https://phoenix-wallet.rocks
                         </View>
 
                     </View>
-                    <EnterPasscodeModal
-                        visible={this.state.isPINModalVisible}
-                        onSuccess={this.handlePINEntered}
-                        onCancel={this.handlePINCancel}
-                    />
                 </FullHeightView>
             </Screen>
         );

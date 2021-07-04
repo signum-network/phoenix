@@ -183,7 +183,7 @@ export default class App extends React.Component<{}, AppState> {
             <Provider store={store}>
                 <SafeAreaProvider>
                     <NavigationContainer ref={navigationRef}>
-                        <RootView>
+                        <RootView navigatorRef={navigationRef}>
                             <RootTabStack.Navigator
                                 tabBarOptions={rootTabStackConfig.tabBarOptions}
                                 initialRouteName={rootTabStackConfig.initialRouteName}>

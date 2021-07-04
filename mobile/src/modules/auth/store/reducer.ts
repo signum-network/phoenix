@@ -1,4 +1,4 @@
-import { Account } from '@burstjs/core';
+import { Account } from '@signumjs/core';
 import { Reducer } from '../../../core/interfaces';
 import { createReducers } from '../../../core/utils/store';
 import { actionTypes } from './actionTypes';
@@ -17,7 +17,7 @@ export const authState = (): AuthReduxState => {
     passcodeEnteredTime: 0,
     passcode: '',
     agreeToTerms: false,
-    passcodeModalVisible: false,
+    passcodeModalVisible: true,
   };
 };
 

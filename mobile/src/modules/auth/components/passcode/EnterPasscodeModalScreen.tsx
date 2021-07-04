@@ -17,7 +17,6 @@ import { auth } from '../../translations';
 interface Props {
   passcode: string;
   onSuccess: () => void;
-  onCancel: () => void;
   onReset?: () => void;
 }
 

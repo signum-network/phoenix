@@ -1,91 +1,86 @@
-import { Account } from '@burstjs/core';
+import {Account} from '@burstjs/core';
 import React from 'react';
-import { View } from 'react-native';
-import { connect } from 'react-redux';
-import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
-import { i18n } from '../../../core/i18n';
-import { InjectedReduxProps } from '../../../core/interfaces';
-import { FullHeightView } from '../../../core/layout/FullHeightView';
-import { Screen } from '../../../core/layout/Screen';
-import { routes } from '../../../core/navigation/routes';
-import { AppReduxState } from '../../../core/store/app/reducer';
-import { ApplicationState } from '../../../core/store/initialState';
-import { EnterPasscodeModal } from '../../auth/components/passcode/EnterPasscodeModal';
-import { AuthReduxState } from '../../auth/store/reducer';
-import { NetworkReduxState } from '../../network/store/reducer';
-import { ReceiveAmountForm } from '../components/receive/ReceiveAmountForm';
-import { ReceiveAmountPayload } from '../store/actions';
-import { transactions } from '../translations';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../../auth/navigation/mainStack';
+import {View} from 'react-native';
+import {connect, useSelector} from 'react-redux';
+import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
+import {i18n} from '../../../core/i18n';
+import {InjectedReduxProps} from '../../../core/interfaces';
+import {FullHeightView} from '../../../core/layout/FullHeightView';
+import {Screen} from '../../../core/layout/Screen';
+import {routes} from '../../../core/navigation/routes';
+import {AppReduxState} from '../../../core/store/app/reducer';
+import {ApplicationState} from '../../../core/store/initialState';
+import {AuthReduxState} from '../../auth/store/reducer';
+import {NetworkReduxState} from '../../network/store/reducer';
+import {ReceiveAmountForm} from '../components/receive/ReceiveAmountForm';
+import {ReceiveAmountPayload} from '../store/actions';
+import {transactions} from '../translations';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '../../auth/navigation/mainStack';
+import {useNavigation} from '@react-navigation/native';
+import {selectAccounts} from '../../auth/store/selectors';
+import {selectSuggestedFees} from '../../network/store/selectors';
 
-type ReceiveNavProps = StackNavigationProp<RootStackParamList, 'Receive'>;
+export const ReceiveScreen: React.FC = () => {
+    const navigation = useNavigation();
+    const accounts = useSelector(selectAccounts);
+    const suggestedFees = useSelector(selectSuggestedFees);
 
-interface Props extends InjectedReduxProps {
-  app: AppReduxState;
-  auth: AuthReduxState;
-  network: NetworkReduxState;
-  navigation: ReceiveNavProps;
-}
-
-interface State {
-  isPINModalVisible: boolean;
-}
-
-class Receive extends React.PureComponent<Props, State> {
-  state = {
-    isPINModalVisible: false
-  };
-
-  handleSubmit = (form: ReceiveAmountPayload) => {
-    this.props.navigation.navigate(routes.viewQRCode, { form });
-  }
-
-  handlePINEntered = () => {
-    this.setState({
-      isPINModalVisible: false
-    });
-  }
-
-  handlePINCancel = () => {
-    this.setState({
-      isPINModalVisible: false
-    });
-  }
-
-  render () {
-    const accounts: Account[] = this.props.auth.accounts || [];
-    const { suggestedFees } = this.props.network;
+    const handleSubmit = (form: ReceiveAmountPayload) => {
+        // @ts-ignore
+        navigation.navigate(routes.viewQRCode, {form});
+    };
 
     return (
-      <Screen>
-        <FullHeightView>
-          <HeaderTitle>{i18n.t(transactions.screens.receive.title)}</HeaderTitle>
-          <View>
-            <ReceiveAmountForm
-              accounts={accounts}
-              onSubmit={this.handleSubmit}
-              suggestedFees={suggestedFees}
-            />
-          </View>
-          <EnterPasscodeModal
-            visible={this.state.isPINModalVisible}
-            onSuccess={this.handlePINEntered}
-            onCancel={this.handlePINCancel}
-          />
-        </FullHeightView>
-      </Screen>
+        <Screen>
+            <FullHeightView>
+                <HeaderTitle>{i18n.t(transactions.screens.receive.title)}</HeaderTitle>
+                <View>
+                    <ReceiveAmountForm
+                        accounts={accounts}
+                        onSubmit={handleSubmit}
+                        suggestedFees={suggestedFees}
+                    />
+                </View>
+            </FullHeightView>
+        </Screen>
     );
-  }
-}
+};
 
-function mapStateToProps (state: ApplicationState) {
-  return {
-    app: state.app,
-    auth: state.auth,
-    transactions: state.transactions,
-    network: state.network
-  };
-}
 
-export const ReceiveScreen = connect(mapStateToProps)(Receive);
+// class Receive extends React.PureComponent<Props, State> {
+//   handleSubmit = (form: ReceiveAmountPayload) => {
+//     this.props.navigation.navigate(routes.viewQRCode, { form });
+//   }
+//
+//   render () {
+//     const accounts: Account[] = this.props.auth.accounts || [];
+//     const { suggestedFees } = this.props.network;
+//
+//     return (
+//       <Screen>
+//         <FullHeightView>
+//           <HeaderTitle>{i18n.t(transactions.screens.receive.title)}</HeaderTitle>
+//           <View>
+//             <ReceiveAmountForm
+//               accounts={accounts}
+//               onSubmit={this.handleSubmit}
+//               suggestedFees={suggestedFees}
+//             />
+//           </View>
+//         </FullHeightView>
+//       </Screen>
+//     );
+//   }
+// }
+// //
+// function mapStateToProps (state: ApplicationState) {
+//   return {
+//     app: state.app,
+//     auth: state.auth,
+//     transactions: state.transactions,
+//     network: state.network
+//   };
+// }
+//
+// export const ReceiveScreen = connect(mapStateToProps)(Receive);
