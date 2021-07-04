@@ -1,4 +1,4 @@
-import {convertNQTStringToNumber} from '@burstjs/util';
+import {convertNQTStringToNumber} from '@signumjs/util';
 
 export const AmountPrefix = 'Ꞩ';
 

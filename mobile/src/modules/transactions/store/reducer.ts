@@ -1,4 +1,4 @@
-import { TransactionId } from '@burstjs/core';
+import { TransactionId } from '@signumjs/core';
 import { AsyncParticle, Reducer } from '../../../core/interfaces';
 import { initAsyncParticle } from '../../../core/utils/async';
 import { createAsyncParticleReducers, createReducers } from '../../../core/utils/store';

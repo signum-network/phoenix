@@ -1,6 +1,6 @@
 // @ts-ignore
 import React from 'react';
-import {Image, Linking, View} from 'react-native';
+import {Image, Linking} from 'react-native';
 import 'react-native-gesture-handler';
 import {addEventListener, removeEventListener} from 'react-native-localize';
 

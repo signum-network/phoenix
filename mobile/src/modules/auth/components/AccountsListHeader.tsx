@@ -1,5 +1,5 @@
-import { Account } from '@burstjs/core';
-import { convertNQTStringToNumber } from '@burstjs/util';
+import { Account } from '@signumjs/core';
+import { convertNQTStringToNumber } from '@signumjs/util';
 import { isEmpty, toNumber } from 'lodash';
 import React from 'react';
 import { View } from 'react-native';

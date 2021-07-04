@@ -1,4 +1,4 @@
-import { ApiSettings, composeApi, SuggestedFees } from '@burstjs/core';
+import { SuggestedFees } from '@signumjs/core';
 import { createAction, createActionFn } from '../../../core/utils/store';
 import { actionTypes } from './actionTypes';
 import {selectChainApi} from '../../../core/store/app/selectors';

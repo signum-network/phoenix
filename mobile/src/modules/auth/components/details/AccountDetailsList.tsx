@@ -1,5 +1,4 @@
-import {Account} from '@burstjs/core';
-import {Transaction} from '@burstjs/core/src/typings/transaction';
+import {Account, Transaction} from '@signumjs/core';
 import {toString} from 'lodash';
 import React from 'react';
 import {FlatList, ListRenderItemInfo} from 'react-native';
@@ -8,7 +7,6 @@ import {PriceInfoReduxState} from '../../../price-api/store/reducer';
 import {AccountTransactionsHeader} from './AccountTransactionsHeader';
 import {NoTransactions} from './NoTransactions';
 import {TransactionListItem} from './TransactionListItem';
-import {Screen} from '../../../../core/layout/Screen';
 
 interface Props {
     account: Account;

@@ -1,5 +1,5 @@
-import { Account } from '@burstjs/core';
-import { convertBurstTimeToDate, convertNQTStringToNumber, BlockTime } from '@signumjs/util';
+import { Account } from '@signumjs/core';
+import { convertNQTStringToNumber, BlockTime } from '@signumjs/util';
 import * as shape from 'd3-shape';
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';

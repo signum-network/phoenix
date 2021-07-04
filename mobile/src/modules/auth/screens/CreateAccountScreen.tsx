@@ -1,5 +1,5 @@
-import { Account } from '@burstjs/core';
-import { PassPhraseGenerator } from '@burstjs/crypto';
+import { Account } from '@signumjs/core';
+import { PassPhraseGenerator } from '@signumjs/crypto';
 import React from 'react';
 import { Alert, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';

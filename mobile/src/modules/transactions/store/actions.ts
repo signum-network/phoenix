@@ -1,9 +1,7 @@
 import {
     Account,
-    ApiSettings,
     AttachmentEncryptedMessage,
     AttachmentMessage,
-    composeApi,
     TransactionId,
     SendAmountArgs
 } from '@signumjs/core';

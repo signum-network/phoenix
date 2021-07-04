@@ -1,4 +1,4 @@
-import { Account } from '@burstjs/core';
+import { Account } from '@signumjs/core';
 import { toString } from 'lodash';
 import React from 'react';
 import { FlatList, ListRenderItemInfo, RefreshControl, StyleSheet } from 'react-native';
