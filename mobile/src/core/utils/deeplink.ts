@@ -32,11 +32,16 @@ export interface DeeplinkPayPayload {
     immutable?: boolean;
 }
 
+export const SupportedDeeplinkActions = {
+    Pay: 'pay'
+};
+
 enum DeeplinkType {
     UNKNOWN = -1,
     LEGACY,
     CIP22
 }
+
 
 function parseURLParams(queryString: string): any {
     const query = {};
@@ -50,23 +55,6 @@ function parseURLParams(queryString: string): any {
     }
     return query;
 }
-
-
-/*
-const params = parseURLParams(deepLinkParts);
-this.setState({
-    deepLinkProps: {
-        sender: null,
-        address: Address.create(params.receiver).getReedSolomonAddress(),
-        fee: params.feeNQT ? this.getFee(params.feeNQT, params.feeSuggestionType) : undefined,
-        amount: params.amountNQT ? Amount.fromPlanck(params.amountNQT).getSigna() : undefined,
-        message: params.message,
-        messageIsText: params.messageIsText !== 'false',
-        encrypt: params.encrypt === 'true',
-        immutable: params.immutable === 'true'
-    }
-});
- */
 
 const parseLegacyDeeplink = (url: string): DeeplinkParts => {
     const params = parseURLParams(url);
@@ -83,7 +71,7 @@ const parseLegacyDeeplink = (url: string): DeeplinkParts => {
 
     return {
         version: 'legacy',
-        action: 'pay',
+        action: SupportedDeeplinkActions.Pay,
         decodedPayload: sendPayload,
         payload: params,
     };

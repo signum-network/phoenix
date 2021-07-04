@@ -10,10 +10,17 @@ if (!DEFAULT_NODE_HOST || !DEFAULT_PASSCODE_TIME || !CRYPTOCOMPARE_HOST_URL || !
   throw new Error('Incorrect .env config!');
 }
 
-export const defaultSettings = {
+const defaultSettings = {
   nodeHost: toString(DEFAULT_NODE_HOST),
   reliableNodeHosts: toString(RELIABLE_NODE_HOSTS).split(';').map(node => node.trim()),
   passcodeTime: toNumber(DEFAULT_PASSCODE_TIME),
   cryptoCompareURL: toString(CRYPTOCOMPARE_HOST_URL),
   burstAlertsURL: toString(BURSTALERTS_HOST_URL)
+};
+
+
+console.log('Environment Settings:', defaultSettings)
+
+export {
+  defaultSettings
 };

@@ -34,8 +34,7 @@ import {ScanQRCodeScreen} from './src/modules/transactions/screens/ScanQRCodeScr
 import {SendScreen} from './src/modules/transactions/screens/SendScreen';
 import {ViewQRCodeScreen} from './src/modules/transactions/screens/ViewQRCodeScreen';
 import {transactions} from './src/modules/transactions/translations';
-import {parseDeeplink} from '@signumjs/util';
-import {getDeeplinkInfo} from './src/core/utils/deeplink';
+import {getDeeplinkInfo, SupportedDeeplinkActions} from './src/core/utils/deeplink';
 
 const store: Store = getStore();
 
@@ -161,7 +160,7 @@ export default class App extends React.Component<{}, AppState> {
     navigate = (url: string) => {
         console.log('incoming deep link', url);
         const deeplinkInfo = getDeeplinkInfo(url);
-        const isSendAction = deeplinkInfo.action === 'pay';
+        const isSendAction = deeplinkInfo.action === SupportedDeeplinkActions.Pay;
 
         setTimeout(() => {
             if (navigationRef.current && isSendAction) {
