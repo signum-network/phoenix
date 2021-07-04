@@ -4,7 +4,7 @@ import {toNumber} from 'lodash';
 import React from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
 import Swipeout from 'react-native-swipeout';
-import {accountIcons, actionIcons, logos} from '../../../assets/icons';
+import {accountIcons, actionIcons} from '../../../assets/icons';
 import {Text, TextAlign} from '../../../core/components/base/Text';
 import {i18n} from '../../../core/i18n';
 import {AccountColors, Colors} from '../../../core/theme/colors';
@@ -80,7 +80,7 @@ export class AccountListItem extends React.PureComponent<Props> {
 
     render() {
         // TODO: add name to account creating and so on
-        const {type, accountRS = '', balanceNQT = '', name = '<unnamed>',} = this.props.account;
+        const {type, accountRS = '', balanceNQT = '', name = '<unnamed>', } = this.props.account;
         const {priceApi, accountIndex} = this.props;
 
         const address = shortenRSAddress(accountRS);
