@@ -212,8 +212,8 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
         try {
             const {accountRS} = await accountFetchFn(formattedAddress);
-            console.log('Valid address', accountRS);
             this.setState({
+                confirmedRisk: true,
                 recipient: {
                     ...this.state.recipient,
                     addressRS: accountRS,
@@ -224,8 +224,8 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             const addressRS = (isBurstAddress(recipient) || this.state.recipient.type === RecipientType.ZIL)
                 ? recipient
                 : convertNumericIdToAddress(recipient);
-            console.log('Valid address', addressRS);
             this.setState({
+                confirmedRisk: false,
                 recipient: {
                     ...this.state.recipient,
                     addressRS,
