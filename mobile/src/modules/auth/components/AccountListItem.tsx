@@ -13,6 +13,7 @@ import {core} from '../../../core/translations';
 import {amountToString} from '../../../core/utils/numbers';
 import {PriceInfoReduxState, PriceType} from '../../price-api/store/reducer';
 import {shortenRSAddress} from '../../../core/utils/account';
+import {AmountText} from '../../../core/components/base/Amount';
 
 interface IProps {
     onPress: (account: Account) => void;
@@ -39,11 +40,17 @@ const styles: any = {
     },
     amountCol: {
         display: 'flex',
-        flex: 1
+        flex: 1,
+        backgroundColor: 'red'
+    },
+    alignRight: {
+        display: 'flex',
+        alignItems: 'flex-end',
+        width: '100%'
     },
     row: {
         display: 'flex',
-        width: '100%'
+        width: '100%',
     },
     del: {
         alignSelf: 'center',
@@ -61,12 +68,12 @@ export class AccountListItem extends React.PureComponent<Props> {
     handlePress = () => {
         const {onPress, account} = this.props;
         onPress(account);
-    }
+    };
 
     handleDelete = () => {
         const {onDelete, account} = this.props;
         onDelete(account);
-    }
+    };
 
     getSwipeButtons = () => [
         {
@@ -76,15 +83,16 @@ export class AccountListItem extends React.PureComponent<Props> {
             style: styles.buttonStyles,
             onPress: this.handleDelete
         }
-    ]
+    ];
 
     render() {
         // TODO: add name to account creating and so on
-        const {type, accountRS = '', balanceNQT = '', name = '<unnamed>', } = this.props.account;
+        const {type, accountRS = '', balanceNQT = '', name = '<unnamed>',} = this.props.account;
         const {priceApi, accountIndex} = this.props;
 
         const address = shortenRSAddress(accountRS);
-        const balance = toNumber(Amount.fromPlanck(balanceNQT).getSigna());
+        const balanceAmount = Amount.fromPlanck(balanceNQT);
+        const balance = toNumber(balanceAmount.getSigna());
 
         const balanceBTC = priceApi && priceApi.priceInfo
             ? toNumber(priceApi.priceInfo.price_btc) * balance
@@ -97,7 +105,7 @@ export class AccountListItem extends React.PureComponent<Props> {
             <Swipeout
                 right={this.getSwipeButtons()}
                 autoClose={true}
-                backgroundColor='transparent'
+                backgroundColor="transparent"
             >
                 <TouchableOpacity style={styles.view} onPress={this.handlePress}>
                     <View
@@ -123,11 +131,13 @@ export class AccountListItem extends React.PureComponent<Props> {
                             {name && <Text color={Colors.WHITE} size={FontSizes.SMALLER}>{name}</Text>}
                         </View>
                     </View>
-                    <View style={styles.amountCol}>
-                        <View style={styles.row}>
-                            <Text size={FontSizes.SMALL} bold bebasFont textAlign={TextAlign.RIGHT} color={Colors.WHITE}>
-                                {i18n.t(core.currency.SIGNA.value, {value: balance})}
-                            </Text>
+                    <View style={[styles.amountCol, styles.alignRight]}>
+                        <View style={[styles.row]}>
+                            <AmountText
+                                amount={balanceAmount}
+                                color={Colors.WHITE}
+                                size={FontSizes.SMALL}
+                            />
                         </View>
                         {priceApi && priceApi.priceInfo && (
                             <View style={styles.row}>

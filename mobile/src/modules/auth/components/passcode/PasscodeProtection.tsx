@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 import {Modal, View, StyleSheet} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {resetAuthState, setPasscodeEnteredTime, setPasscodeModalVisible} from '../../store/actions';
+import {resetAuthState, setPasscodeModalVisible} from '../../store/actions';
 import {EnterPasscodeModalScreen} from './EnterPasscodeModalScreen';
 import {SetPasscodeModalScreen} from './SetPasscodeModalScreen';
 import {selectIsPasscodeModalVisible, selectPasscode} from '../../store/selectors';
@@ -37,11 +37,12 @@ export const PasscodeProtection: React.FC = ({children}) => {
     };
 
     const restartPasscodeTimer = () => {
-        stopPasscodeTimer();
-        timeoutHandle.current = setTimeout(() => {
-            console.log('Protection active...');
-            dispatch(setPasscodeModalVisible(true));
-        }, defaultSettings.passcodeTime); // TODO: put the correct timer
+
+        // stopPasscodeTimer();
+        // timeoutHandle.current = setTimeout(() => {
+        //     console.log('Protection active...');
+        //     dispatch(setPasscodeModalVisible(true));
+        // }, defaultSettings.passcodeTime);
     };
 
     const handleSuccess = () => {
