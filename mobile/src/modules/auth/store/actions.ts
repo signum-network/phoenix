@@ -1,23 +1,14 @@
-import { Account, Alias, ApiSettings, composeApi } from '@burstjs/core';
-import { encryptAES, generateMasterKeys, getAccountIdFromPublicKey, hashSHA256 } from '@burstjs/crypto';
-import { convertAddressToNumericId, convertNumericIdToAddress, isValid } from '@burstjs/util';
-import { some } from 'lodash';
-import { AsyncStorage } from 'react-native';
-import { AsyncStorageKeys } from '../../../core/enums';
-import { i18n } from '../../../core/i18n';
-import { createAction, createActionFn } from '../../../core/utils/store';
-import { auth } from '../translations';
-import { actionTypes } from './actionTypes';
-import {
-  getAccounts,
-  getAgreeToTerms,
-  getPasscode,
-  getPasscodeEnteredTime,
-  resetKeychain,
-  savePasscode,
-  savePasscodeEnteredTime,
-  setAccounts
-} from './utils';
+import {Account, Alias, ApiSettings, composeApi} from '@burstjs/core';
+import {encryptAES, generateMasterKeys, getAccountIdFromPublicKey, hashSHA256} from '@burstjs/crypto';
+import {convertAddressToNumericId, convertNumericIdToAddress, isValid} from '@burstjs/util';
+import {some} from 'lodash';
+import {AsyncStorage} from 'react-native';
+import {AsyncStorageKeys} from '../../../core/enums';
+import {i18n} from '../../../core/i18n';
+import {createAction, createActionFn} from '../../../core/utils/store';
+import {auth} from '../translations';
+import {actionTypes} from './actionTypes';
+import {getAccounts, getAgreeToTerms, getPasscode, getPasscodeEnteredTime, resetKeychain, savePasscode, savePasscodeEnteredTime, setAccounts} from './utils';
 
 interface ZilResponse {
   addresses: {
@@ -139,11 +130,7 @@ export const getAlias = createActionFn<string, Promise<Alias | undefined>>(
     const { nodeHost, apiRootUrl } = state.app.burstService.settings;
     // TODO: unify network request actions, add proper error handling and so on
     const api = composeApi(new ApiSettings(nodeHost, apiRootUrl));
-    try {
-      const alias = await api.alias.getAliasByName(account);
-      return alias;
-    // tslint:disable-next-line: no-empty
-    } catch (e) {}
+    return await api.alias.getAliasByName(account);
   }
 );
 
