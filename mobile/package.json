@@ -41,10 +41,6 @@
     "tsc": "tsc --init --pretty --jsx react"
   },
   "dependencies": {
-    "@burstjs/core": "^0.4.1",
-    "@burstjs/crypto": "^0.4.1",
-    "@burstjs/http": "^0.4.1",
-    "@burstjs/util": "^0.4.1",
     "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/checkbox": "^0.5.7",
     "@react-native-community/masked-view": "^0.1.10",

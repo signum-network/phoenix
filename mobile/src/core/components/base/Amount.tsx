@@ -1,10 +1,13 @@
 import {Amount, SignaSymbol} from '@signumjs/util';
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import {Text} from './Text';
+import {View, StyleSheet} from 'react-native';
+import {Text, TextAlign} from './Text';
+import {FontSizes} from '../../theme/sizes';
+import {Colors} from '../../theme/colors';
 
 const styles = StyleSheet.create({
     root: {
+        position: 'relative',
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'flex-end',
@@ -14,19 +17,24 @@ const styles = StyleSheet.create({
 });
 
 interface Props {
-    amount: Amount;
-    size: number;
-    color: string;
-    style?: any;
+    amount?: Amount;
+    size?: number;
+    color?: string;
 }
 
-export const AmountText: React.FC<Props> = ({amount = Amount.Zero(), size, color, style = {}}) => {
+export const AmountText: React.FC<Props> = ({
+                                                amount = Amount.Zero(),
+                                                size = FontSizes.MEDIUM,
+                                                color = Colors.WHITE
+                                            }) => {
 
     const [integer = '0', fraction = '0'] = amount.getSigna().split('.');
 
     return (
-        <View style={[styles.root, style]}>
-            <Text color={color} size={size}>{`${SignaSymbol} ${integer}.`}</Text>
+        <View style={[styles.root]}>
+            <View>
+                <Text textAlign={TextAlign.RIGHT} color={color} size={size}>{`${SignaSymbol} ${integer}.`}</Text>
+            </View>
             <View style={{bottom: 4 * 0.6}}>
                 <Text color={color} size={size * 0.6}>{fraction}</Text>
             </View>

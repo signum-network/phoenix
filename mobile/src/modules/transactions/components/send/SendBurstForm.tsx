@@ -15,7 +15,7 @@ import SwipeButton from 'rn-swipe-button';
 import {actionIcons, transactionIcons} from '../../../../assets/icons';
 import {BInput, KeyboardTypes} from '../../../../core/components/base/BInput';
 import {BSelect, SelectItem} from '../../../../core/components/base/BSelect';
-import {Text as BText} from '../../../../core/components/base/Text';
+import {Text as BText, TextAlign} from '../../../../core/components/base/Text';
 import {i18n} from '../../../../core/i18n';
 import {Colors} from '../../../../core/theme/colors';
 import {amountToString} from '../../../../core/utils/numbers';
@@ -26,6 +26,9 @@ import {FeeSlider} from '../fee-slider/FeeSlider';
 import {AccountStatusPill} from './AccountStatusPill';
 import {isValidReedSolomonAddress, shortenRSAddress} from '../../../../core/utils/account';
 import {BCheckbox} from '../../../../core/components/base/BCheckbox';
+import {FontSizes, Sizes} from '../../../../core/theme/sizes';
+import {AmountText} from '../../../../core/components/base/Amount';
+import {DangerBox} from './DangerBox';
 
 const AddressPrefix = 'S-';
 
@@ -37,8 +40,8 @@ interface Props {
     onGetAlias: (id: string) => Promise<Account>;
     onGetZilAddress: (id: string) => Promise<string | null>;
     accounts: Account[];
-    deepLinkProps?: SendBurstFormState;
     suggestedFees: SuggestedFees | null;
+    deepLinkProps?: SendBurstFormState;
 }
 
 export interface SendBurstFormState {
@@ -54,6 +57,7 @@ export interface SendBurstFormState {
     recipientType?: string;
     showSubmitButton?: boolean;
     addMessage?: boolean;
+    confirmedRisk?: boolean;
 }
 
 const styles = StyleSheet.create({
@@ -78,6 +82,8 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.TRANSPARENT
     },
     total: {
+        display: 'flex',
+        flexDirection: 'row',
         marginTop: 10
     },
     chevron: {
@@ -88,7 +94,7 @@ const styles = StyleSheet.create({
     balance: {
         marginTop: 3,
         marginRight: 5
-    }
+    },
 });
 
 export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
@@ -128,7 +134,8 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             immutable: deeplinkProps && deeplinkProps.immutable || false,
             recipient: new Recipient(deeplinkProps && deeplinkProps.address || AddressPrefix, deeplinkProps && deeplinkProps.address || ''),
             showSubmitButton: true,
-            addMessage: deeplinkProps && !!deeplinkProps.message || false
+            addMessage: deeplinkProps && !!deeplinkProps.message || false,
+            confirmedRisk: false,
         };
     }
 
@@ -213,6 +220,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
         try {
             const {accountRS} = await accountFetchFn(formattedAddress);
             this.setState({
+                confirmedRisk: true,
                 recipient: {
                     ...this.state.recipient,
                     addressRS: accountRS,
@@ -220,12 +228,20 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
                 }
             });
         } catch (e) {
+            let addressRS = '<Invalid Address>';
+            try{
+                addressRS = this.state.recipient.type === RecipientType.ZIL
+                    ? recipient : Address.create(recipient).getReedSolomonAddress();
+            }catch(e){
+                // no op
+            }
+            console.log('Invalid/Unknown Address', recipient);
+
             this.setState({
+                confirmedRisk: false,
                 recipient: {
                     ...this.state.recipient,
-                    addressRS: (recipient.startsWith(AddressPrefix) || this.state.recipient?.type === RecipientType.ZIL)
-                        ? recipient
-                        : Address.fromNumericId(recipient).getReedSolomonAddress(),
+                    addressRS,
                     status: RecipientValidationStatus.INVALID
                 }
             });
@@ -234,7 +250,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
 
     isSubmitEnabled = () => {
-        const {sender, recipient, amount, fee} = this.state;
+        const {sender, recipient, amount, fee, confirmedRisk} = this.state;
         const {loading} = this.props;
 
         return Boolean(
@@ -242,7 +258,8 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             Number(fee) &&
             sender &&
             isValidReedSolomonAddress(recipient?.addressRS) &&
-            !loading
+            !loading &&
+            confirmedRisk
         );
     }
 
@@ -279,6 +296,11 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
         this.setState({
             encrypt
         });
+    }
+
+    setConfirmedRisk = (confirmedRisk: boolean) => {
+        console.log('setConfirmedRisk', confirmedRisk)
+        this.setState({confirmedRisk});
     }
 
     setAddMessage(addMessage: boolean): void {
@@ -331,8 +353,22 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
         this.setState({showSubmitButton: false});
     }
 
+    shouldShowAliasWarning = (): boolean => {
+        const {type, status} = this.state.recipient;
+        return type === RecipientType.ALIAS && status === RecipientValidationStatus.INVALID;
+
+    }
+
+    shouldConfirmRisk = (): boolean => {
+        const {recipient, confirmedRisk} = this.state;
+        return !confirmedRisk
+            && recipient.type !== RecipientType.UNKNOWN
+            && recipient.type !== RecipientType.ALIAS
+            && recipient.status === RecipientValidationStatus.INVALID;
+    }
+
     render() {
-        const {sender, recipient, amount, fee, encrypt, addMessage, message} = this.state;
+        const {sender, recipient, amount, fee, encrypt, addMessage, message, confirmedRisk, showSubmitButton} = this.state;
         const {suggestedFees} = this.props;
         const total = Amount.fromSigna(amount || '0').add(Amount.fromSigna(fee || '0'));
         const senderRS = sender && sender.accountRS || null;
@@ -346,9 +382,10 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             <View style={{flexDirection: 'row'}}>
                 {this.state.sender &&
                 <View style={styles.balance}>
-                    <BText bebasFont color={Colors.GREY_LIGHT}>
-                        {Amount.fromPlanck(this.state.sender.balanceNQT).toString()}
-                    </BText>
+                    <AmountText
+                        amount={Amount.fromPlanck(this.state.sender.balanceNQT)}
+                        color={Colors.GREY_LIGHT}
+                    />
                 </View>}
                 <Image source={actionIcons.chevronDown} style={styles.chevron}/>
             </View>
@@ -371,6 +408,8 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
                 </TouchableOpacity>
             </View>
         );
+
+        const isSubmitSwipeVisible =  !this.shouldShowAliasWarning() && !this.shouldConfirmRisk() && showSubmitButton ;
 
         return (
             <SafeAreaView>
@@ -448,10 +487,33 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
                 <View>
                     <View style={styles.total}>
                         <BText bebasFont color={Colors.WHITE}>
-                            {i18n.t(transactions.screens.send.total, {value: total.getSigna()})}
+                            {i18n.t(transactions.screens.send.total)}
                         </BText>
+                        <AmountText amount={total}/>
                     </View>
-                    {this.state.showSubmitButton && <SwipeButton
+                    {this.shouldShowAliasWarning() && (
+                        <DangerBox>
+                            <BText bebasFont color={Colors.WHITE} textAlign={TextAlign.CENTER}>
+                                {i18n.t(transactions.screens.send.invalidAlias)}
+                            </BText>
+                        </DangerBox>
+                        )
+                    }
+
+                    { this.shouldConfirmRisk() && (
+                        <DangerBox>
+                            <BCheckbox
+                                label={i18n.t(transactions.screens.send.confirmRisk, {address:recipient?.addressRS})}
+                                labelFontSize={FontSizes.SMALL}
+                                value={confirmedRisk || false}
+                                onCheck={this.setConfirmedRisk}
+                            />
+                        </DangerBox>
+                        )
+                    }
+
+                    {isSubmitSwipeVisible &&
+                    <SwipeButton
                         disabledRailBackgroundColor={Colors.PINK}
                         disabledThumbIconBackgroundColor={Colors.GREY}
                         disabledThumbIconBorderColor={Colors.BLUE_DARKER}

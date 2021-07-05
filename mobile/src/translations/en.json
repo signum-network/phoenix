@@ -171,15 +171,17 @@
           "disabled": "Complete form to Send"
         },
         "to": "To",
-        "total": "Total: Ꞩ {{value}}",
+        "total": "Total: ",
         "noPublicKey": "Please confirm address before sending.",
+        "invalidAlias": "Alias does not exist! Send not allowed.",
         "invalidAddress": "This address is not valid.",
         "zilOutage": "Unable to fetch from the ZIL API.",
         "success": "Successfully sent {{amount}} SIGNA to {{address}}.",
         "failure": "Failed to send Signa. Please check your entries and try again.",
         "encrypt": "Encrypt Message?",
         "addMessage": "Add a Message?",
-        "message": "Message"
+        "message": "Message",
+        "confirmRisk": "Address '{{address}}' is unknown! Sending to this address may cause irreversible loss! - Do you assume the risk?"
       },
       "scan": {
         "title": "Scan QR Code"

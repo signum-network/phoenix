@@ -41,7 +41,6 @@ const styles: any = {
     amountCol: {
         display: 'flex',
         flex: 1,
-        backgroundColor: 'red'
     },
     alignRight: {
         display: 'flex',
@@ -133,11 +132,13 @@ export class AccountListItem extends React.PureComponent<Props> {
                     </View>
                     <View style={[styles.amountCol, styles.alignRight]}>
                         <View style={[styles.row]}>
-                            <AmountText
-                                amount={balanceAmount}
-                                color={Colors.WHITE}
-                                size={FontSizes.SMALL}
-                            />
+                            <View style={{position: 'absolute', right:0}}>
+                                <AmountText
+                                    amount={balanceAmount}
+                                    color={Colors.WHITE}
+                                    size={FontSizes.SMALL}
+                                />
+                            </View>
                         </View>
                         {priceApi && priceApi.priceInfo && (
                             <View style={styles.row}>

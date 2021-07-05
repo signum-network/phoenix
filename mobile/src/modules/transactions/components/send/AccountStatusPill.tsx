@@ -1,120 +1,106 @@
-import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Text } from '../../../../core/components/base/Text';
-import { i18n } from '../../../../core/i18n';
-import { Colors } from '../../../../core/theme/colors';
-import { FontSizes } from '../../../../core/theme/sizes';
-import { RecipientType, RecipientValidationStatus } from '../../store/utils';
-import { transactions } from '../../translations';
+import React, {useState, useRef, useEffect} from 'react';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import {Text} from '../../../../core/components/base/Text';
+import {i18n} from '../../../../core/i18n';
+import {Colors} from '../../../../core/theme/colors';
+import {FontSizes} from '../../../../core/theme/sizes';
+import {RecipientType, RecipientValidationStatus} from '../../store/utils';
+import {transactions} from '../../translations';
 
 interface Props {
-  status: RecipientValidationStatus;
-  type: RecipientType;
-  address: string;
+    status: RecipientValidationStatus;
+    type: RecipientType;
+    address: string;
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    borderRadius: 15,
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 10,
-    paddingRight: 10,
-    marginRight: 5,
-    marginLeft: 5
-  },
-  unknown: {
-    backgroundColor: Colors.GREY
-  },
-  invalid: {
-    backgroundColor: Colors.ORANGE
-  },
-  valid: {
-    backgroundColor: Colors.GREEN
-  },
-  outage: {
-    backgroundColor: Colors.RED
-  }
+    wrapper: {
+        borderRadius: 15,
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        marginRight: 5,
+        marginLeft: 5
+    },
+    unknown: {
+        backgroundColor: Colors.GREY
+    },
+    invalid: {
+        backgroundColor: Colors.ORANGE
+    },
+    valid: {
+        backgroundColor: Colors.GREEN
+    },
+    outage: {
+        backgroundColor: Colors.RED
+    }
 });
 
-interface State {
-  expanded: boolean;
-}
+export const AccountStatusPill: React.FC<Props> = ({status, type, address}) => {
 
-export class AccountStatusPill extends React.PureComponent<Props, State> {
+    const timeoutRef = useRef<number>();
+    const [expanded, setExpanded] = useState(false);
 
-  state = {
-    expanded: false
-  };
+    useEffect(() => {
+        setExpanded(false);
+        timeoutRef.current = setTimeout(() => {
+            setExpanded(status === RecipientValidationStatus.VALID && true);
+        }, 1000);
 
-  getLabelText (): string {
-    return this.state.expanded ? this.getExpandedText() : this.getShortText();
-  }
+        return () => {
+            clearTimeout(timeoutRef.current || 0);
+        };
+    }, [status]);
 
-  getExpandedText (): string {
-    switch (this.props.status) {
-      case RecipientValidationStatus.UNKNOWN:
-        return i18n.t(transactions.screens.send.invalidAddress);
-      case RecipientValidationStatus.VALID:
-        return this.props.address;
-      case RecipientValidationStatus.INVALID:
-        return i18n.t(transactions.screens.send.noPublicKey);
-      case RecipientValidationStatus.ZIL_OUTAGE:
-        return i18n.t(transactions.screens.send.zilOutage);
-      default:
-        return '';
-    }
-  }
+    const getLabelText = (): string => expanded ? getExpandedText() : getShortText();
 
-  getShortText = (): string => RecipientType[this.props.type];
+    const getExpandedText = (): string => {
+        switch (status) {
+            case RecipientValidationStatus.UNKNOWN:
+                return i18n.t(transactions.screens.send.invalidAddress);
+            case RecipientValidationStatus.VALID:
+                return address;
+            case RecipientValidationStatus.INVALID:
+                return i18n.t(transactions.screens.send.noPublicKey);
+            case RecipientValidationStatus.ZIL_OUTAGE:
+                return i18n.t(transactions.screens.send.zilOutage);
+            default:
+                return '';
+        }
+    };
 
-  getValidationIcon (): string {
-    switch (this.props.status) {
-      case RecipientValidationStatus.UNKNOWN:
-        return 'help_outline';
-      case RecipientValidationStatus.VALID:
-        return 'check_circle';
-      case RecipientValidationStatus.INVALID:
-      case RecipientValidationStatus.ZIL_OUTAGE:
-        return 'error_outline';
-      default:
-        return '';
-    }
-  }
+    const getShortText = (): string => RecipientType[type];
 
-  getBackgroundColor = () => {
-    switch (this.props.status) {
-      case RecipientValidationStatus.UNKNOWN:
-        return styles.unknown;
-      case RecipientValidationStatus.VALID:
-        return styles.valid;
-      case RecipientValidationStatus.INVALID:
-        return styles.invalid;
-      case RecipientValidationStatus.ZIL_OUTAGE:
-        return styles.outage;
-    }
-  }
+    const getBackgroundColor = () => {
+        switch (status) {
+            case RecipientValidationStatus.UNKNOWN:
+                return styles.unknown;
+            case RecipientValidationStatus.VALID:
+                return styles.valid;
+            case RecipientValidationStatus.INVALID:
+                return styles.invalid;
+            case RecipientValidationStatus.ZIL_OUTAGE:
+                return styles.outage;
+        }
+    };
 
-  getTextColor = () => {
-    switch (this.props.status) {
-      case RecipientValidationStatus.ZIL_OUTAGE:
-        return Colors.WHITE;
-      default:
-        return Colors.BLACK;
-    }
-  }
+    const getTextColor = () => {
+        switch (status) {
+            case RecipientValidationStatus.ZIL_OUTAGE:
+                return Colors.WHITE;
+            default:
+                return Colors.BLACK;
+        }
+    };
 
-  handleTap = () => {
-    this.setState({
-      expanded: !this.state.expanded
-    });
-  }
+    const handleTap = () => {
+        setExpanded(!expanded);
+    };
 
-  render () {
     return (
-      <TouchableOpacity onPress={this.handleTap} style={[styles.wrapper, this.getBackgroundColor()]}>
-          <Text size={FontSizes.SMALLER} color={this.getTextColor()}>{this.getLabelText()}</Text>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={handleTap} style={[styles.wrapper, getBackgroundColor()]}>
+            <Text size={FontSizes.SMALLER} color={getTextColor()}>{getLabelText()}</Text>
+        </TouchableOpacity>
     );
-  }
-}
+};

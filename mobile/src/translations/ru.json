@@ -171,15 +171,17 @@
         },
 
         "to": "Аккаунт получателя",
-        "total": "Всего: Ƀ {{value}}",
+        "total": "Всего: ",
         "noPublicKey": "Пожалуйста, подтвердите адрес перед отправкой.",
+        "invalidAlias": "Alias does not exist! Send not allowed.",
         "invalidAddress": "Этот адрес недействителен.",
         "zilOutage": "Невозможно получить из ZIL API.",
         "success": "Успешно отправлено {{amount}} SIGNA на {{address}}.",
         "failure": "Не удалось отправить SIGNA. Пожалуйста, проверьте ваши записи и попробуйте снова.",
         "encrypt": "Зашифровать сообщение?",
         "addMessage": "Добавить сообщение?",
-        "message": "Сообщение"
+        "message": "Сообщение",
+        "confirmRisk": "Address '{{address}}' is unknown! Sending to this address may cause irreversible loss! - Do you assume the risk?"
       },
       "scan": {
         "title": "Сканировать QR-код"

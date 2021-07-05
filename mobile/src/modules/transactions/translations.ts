@@ -19,13 +19,16 @@ export const transactions = {
         disabled: 'transactions.screens.send.button.disabled'
       },
       noPublicKey: 'transactions.screens.send.noPublicKey',
+      invalidAlias: 'transactions.screens.send.invalidAlias',
       invalidAddress: 'transactions.screens.send.invalidAddress',
       zilOutage: 'transactions.screens.send.zilOutage',
       success: 'transactions.screens.send.success',
       failure: 'transactions.screens.send.failure',
       encrypt: 'transactions.screens.send.encrypt',
       addMessage: 'transactions.screens.send.addMessage',
-      message: 'transactions.screens.send.message'
+      message: 'transactions.screens.send.message',
+      confirmRisk: 'transactions.screens.send.confirmRisk',
+
     },
     receive: {
       title: 'transactions.screens.receive.title',

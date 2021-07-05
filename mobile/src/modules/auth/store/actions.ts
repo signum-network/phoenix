@@ -124,11 +124,7 @@ export const getAlias = createActionFn<string, Promise<Alias | undefined>>(
     async (_dispatch, getState, account) => {
         const state = getState();
         const api = selectChainApi(state);
-        try {
-            return await api.alias.getAliasByName(account);
-            // tslint:disable-next-line: no-empty
-        } catch (e) {
-        }
+        return await api.alias.getAliasByName(account);
     }
 );
 
