@@ -7,7 +7,7 @@ import {Text, TextAlign} from '../../../../core/components/base/Text';
 import {Colors} from '../../../../core/theme/colors';
 import {defaultSideOffset, FontSizes, Sizes} from '../../../../core/theme/sizes';
 import {trimAddressPrefix} from '../../../../core/utils/account';
-import {AmountPrefix} from '../../../../core/utils/numbers';
+import {AmountText} from '../../../../core/components/base/Amount';
 
 interface Props {
     transaction: Transaction;
@@ -78,16 +78,18 @@ export class TransactionListItem extends React.PureComponent<Props> {
         return !!(accountId && accountId === this.props.account);
     }
 
-    getAmount = (transaction: Transaction): string => {
-        let result: number;
+    getAmount = (transaction: Transaction): Amount => {
+        let result: Amount;
         if (this.isAmountNegative(transaction)) {
-            result = -Amount.fromPlanck(transaction.amountNQT || '0').getSigna();
+            result = Amount.fromPlanck(transaction.amountNQT || '0').multiply(-1);
         } else {
             result = this.isMultiOutPayment(transaction)
-                ? getRecipientsAmount(this.props.account, transaction)
-                : Amount.fromPlanck(transaction.amountNQT || '0').getSigna();
+                // here is an inconsistency in the signumjs lib
+                ? Amount.fromSigna(getRecipientsAmount(this.props.account, transaction))
+                : Amount.fromPlanck(transaction.amountNQT || '0');
         }
-        return `${AmountPrefix} ${result.toString(10)}`;
+        return result;
+        // return `${AmountPrefix} ${result.toString(10)}`;
     }
 
     isAmountNegative = (transaction: Transaction): boolean => {
@@ -152,7 +154,7 @@ export class TransactionListItem extends React.PureComponent<Props> {
                     </View>
                     <View style={styles.dataView}>
                         <View style={styles.view}>
-                            <Text color={isNegative ? Colors.RED : Colors.GREEN} size={FontSizes.MEDIUM} bebasFont>{amount}</Text>
+                            <AmountText color={isNegative ? Colors.RED : Colors.GREEN} size={FontSizes.MEDIUM} amount={amount} />
                         </View>
                         <View style={styles.account}>
                             <Text color={Colors.WHITE} bebasFont size={FontSizes.SMALL}>{accountRS}</Text>

@@ -20,20 +20,22 @@ interface Props {
     amount?: Amount;
     size?: number;
     color?: string;
+    style?: any;
 }
 
 export const AmountText: React.FC<Props> = ({
                                                 amount = Amount.Zero(),
                                                 size = FontSizes.MEDIUM,
-                                                color = Colors.WHITE
+                                                color = Colors.WHITE,
+                                                style = {}
                                             }) => {
 
     const [integer = '0', fraction = '0'] = amount.getSigna().split('.');
 
     return (
-        <View style={[styles.root]}>
+        <View style={[styles.root, style]}>
             <View>
-                <Text textAlign={TextAlign.RIGHT} color={color} size={size}>{`${SignaSymbol} ${integer}.`}</Text>
+                <Text color={color} size={size}>{`${SignaSymbol} ${integer}.`}</Text>
             </View>
             <View style={{bottom: 4 * 0.6}}>
                 <Text color={color} size={size * 0.6}>{fraction}</Text>

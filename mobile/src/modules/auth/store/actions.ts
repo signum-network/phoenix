@@ -1,4 +1,4 @@
-import {Account, Alias, Address} from '@signumjs/core';
+import {Account, Address, Alias} from '@signumjs/core';
 import {encryptAES, generateMasterKeys, hashSHA256} from '@signumjs/crypto';
 import {some} from 'lodash';
 import {i18n} from '../../../core/i18n';
@@ -92,7 +92,7 @@ export const hydrateAccount = createActionFn<Account, Promise<Account>>(
         const state = getState();
         const api = selectChainApi(state);
         try {
-            const accountDetails = await api.account.getAccount({accountId: account.account});
+            const accountDetails = await api.account.getAccount({accountId: account.account, includeCommittedAmount: true});
             console.log('Got account', accountDetails);
             dispatch(actions.updateAccount(accountDetails));
             dispatch(updateAccountTransactions(accountDetails));
@@ -112,8 +112,7 @@ export const getAccount = createActionFn<string, Promise<Account | undefined>>(
         const state = getState();
         const api = selectChainApi(state);
         try {
-            const accountDetails = await api.account.getAccount({accountId: account});
-            return accountDetails;
+            return await api.account.getAccount({accountId: account, includeCommittedAmount: true});
             // tslint:disable-next-line: no-empty
         } catch (e) {
         }

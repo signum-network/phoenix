@@ -1,4 +1,5 @@
 import {Account, SuggestedFees} from '@signumjs/core';
+import {Amount} from '@signumjs/util';
 import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import {BInput, KeyboardTypes} from '../../../../core/components/base/BInput';
@@ -8,13 +9,12 @@ import {SwitchItem} from '../../../../core/components/base/SwitchItem';
 import {Text as BText} from '../../../../core/components/base/Text';
 import {i18n} from '../../../../core/i18n';
 import {Colors} from '../../../../core/theme/colors';
-import {amountToString} from '../../../../core/utils/numbers';
 import {ReceiveAmountPayload} from '../../store/actions';
 import {transactions} from '../../translations';
 import {FeeSlider} from '../fee-slider/FeeSlider';
 import {trimAddressPrefix} from '../../../../core/utils/account';
-import {Amount} from '@signumjs/util';
 import {core} from '../../../../core/translations';
+import {AmountText} from '../../../../core/components/base/Amount';
 
 interface Props {
     onSubmit: (form: ReceiveAmountPayload) => void;
@@ -47,7 +47,9 @@ const styles: any = {
         height: 40
     },
     total: {
-        marginTop: 10
+        marginTop: 10,
+        display: 'flex',
+        flexDirection: 'row',
     }
 };
 
@@ -101,7 +103,7 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
     };
 
     const {immutable, recipient, amount, fee, message = ''} = formData;
-    const total = Number(amount) + Number(fee);
+    const total = Amount.fromSigna(amount || 0).add(Amount.fromSigna(fee || 0));
     const {suggestedFees} = props;
 
     return (
@@ -151,8 +153,9 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
                 />
                 <View style={styles.total}>
                     <BText bebasFont color={Colors.WHITE}>
-                        {i18n.t(transactions.screens.send.total, {value: amountToString(total)})}
+                        {i18n.t(transactions.screens.send.total)}
                     </BText>
+                    <AmountText amount={total || Amount.Zero()} />
                 </View>
                 <BButton disabled={!submitEnabled} onPress={handleSubmit}>
                     {i18n.t(transactions.screens.receive.generate)}

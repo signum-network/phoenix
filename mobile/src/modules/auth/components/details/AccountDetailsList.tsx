@@ -21,44 +21,24 @@ const styles: any = {
     }
 };
 
-export class AccountDetailsList extends React.PureComponent<Props> {
-    keyExtractor = (item: Transaction, index: number) => {
-        return toString(item.fullHash || index);
-    };
+export const AccountDetailsList: React.FC<Props> = (props) => {
 
-    renderHeader = () => {
-        const {account, priceApi} = this.props;
-        return (
-            <AccountTransactionsHeader priceApi={priceApi} account={account}/>
-        );
-    };
+    const {account, priceApi, onTransactionPress} = props;
+    const keyExtractor = (item: Transaction, index: number) => toString(item.fullHash || index);
+    const renderHeader = () => <AccountTransactionsHeader priceApi={priceApi} account={account}/>;
+    const renderNoData = () => <NoTransactions/>;
+    const renderTransactionItem = ({item}: ListRenderItemInfo<Transaction>) =>
+        <TransactionListItem account={account.account} onPress={onTransactionPress} transaction={item}/>;
 
-    renderNoData = () => {
-        return (
-            <NoTransactions/>
-        );
-    };
-
-    renderTransactionItem = ({item}: ListRenderItemInfo<Transaction>) => {
-        const {onTransactionPress, account} = this.props;
-
-        return (
-            <TransactionListItem account={account.account} onPress={onTransactionPress} transaction={item}/>
-        );
-    };
-
-    render() {
-        const {account: {transactions = []}} = this.props;
-        return (
-            <FlatList
-                style={styles.flatList}
-                ListHeaderComponent={this.renderHeader}
-                ListEmptyComponent={this.renderNoData}
-                data={transactions}
-                renderItem={this.renderTransactionItem}
-                keyExtractor={this.keyExtractor}
-                ItemSeparatorComponent={ListSeparator}
-            />
-        );
-    }
-}
+    return (
+        <FlatList
+            style={styles.flatList}
+            ListHeaderComponent={renderHeader}
+            ListEmptyComponent={renderNoData}
+            data={account.transactions}
+            renderItem={renderTransactionItem}
+            keyExtractor={keyExtractor}
+            ItemSeparatorComponent={ListSeparator}
+        />
+    );
+};
