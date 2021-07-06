@@ -23,15 +23,14 @@ const styles: any = {
   }
 };
 
-export class AccountTransactionsHeader extends React.PureComponent<Props> {
-  render () {
-    const { account, priceApi } = this.props;
+export const AccountTransactionsHeader: React.FC<Props> = (props) => {
+    const { account, priceApi } = props;
     const priceInBTC = priceApi && priceApi.priceInfo && priceApi.priceInfo.price_btc;
 
     const totalBalance = convertNQTStringToNumber(account.balanceNQT);
     const totalBalanceBTC = priceApi && priceApi.priceInfo
-          ? toNumber(priceInBTC) * totalBalance
-          : 0;
+        ? toNumber(priceInBTC) * totalBalance
+        : 0;
 
     return (
         <View style={styles.view}>
@@ -45,5 +44,4 @@ export class AccountTransactionsHeader extends React.PureComponent<Props> {
           ) : null}
         </View>
     );
-  }
-}
+  };
