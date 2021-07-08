@@ -69,28 +69,12 @@ class Home extends React.PureComponent<IProps, State> {
 
     componentDidMount(): void {
         setTimeout(() => this.updateAllAccounts(), 500);
+        this.checkTermsScreen();
     }
 
     handleChangeAccount = () => {
         this.props.navigation.navigate(routes.accounts);
     }
-
-    // componentDidUpdate(): void {
-    //     if (this._checkPinExpiryInterval) {
-    //         clearInterval(this._checkPinExpiryInterval);
-    //     }
-    //     const checkSessionExpiry = () => {
-    //         const {passcodeTime} = this.props.app.appSettings;
-    //         const {passcodeEnteredTime} = this.props.auth;
-    //         if (shouldEnterPIN(passcodeTime, passcodeEnteredTime)) {
-    //             this.setPINModalVisible(true);
-    //         }
-    //         this.checkTermsScreen();
-    //     };
-    //     checkSessionExpiry();
-    //     this._checkPinExpiryInterval = setInterval(checkSessionExpiry, 1000);
-    //
-    // }
 
     updateAllAccounts = () => {
         console.log('Updating Accounts...');

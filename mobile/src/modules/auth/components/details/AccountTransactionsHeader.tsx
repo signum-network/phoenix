@@ -34,7 +34,7 @@ const subBalanceStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
     },
-    row: {
+    content: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',

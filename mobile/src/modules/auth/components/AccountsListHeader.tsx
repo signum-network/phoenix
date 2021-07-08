@@ -1,5 +1,5 @@
 import {Account} from '@signumjs/core';
-import {convertNQTStringToNumber, Amount} from '@signumjs/util';
+import {Amount} from '@signumjs/util';
 import {isEmpty, toNumber} from 'lodash';
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
@@ -11,7 +11,7 @@ import {core} from '../../../core/translations';
 import {amountToString} from '../../../core/utils/numbers';
 import {PriceInfoReduxState, PriceType} from '../../price-api/store/reducer';
 import {AmountText} from '../../../core/components/base/Amount';
-import {AccountBalances, getBalancesFromAccount, ZeroAcountBalances} from '../../../core/utils/balance/getBalancesFromAccount';
+import {AccountBalances, getBalancesFromAccount} from '../../../core/utils/balance/getBalancesFromAccount';
 
 interface Props {
     accounts: Account[];
@@ -22,6 +22,11 @@ const styles = StyleSheet.create({
     view: {
         paddingHorizontal: defaultSideOffset,
         marginBottom: Sizes.MEDIUM,
+    },
+    centered: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
     }
 });
 
@@ -29,13 +34,13 @@ const subBalanceStyles = StyleSheet.create({
     root: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
     },
     content: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'flex-start',
-        width: '100%',
+        justifyContent: 'space-between',
+        width: '50%',
     }
 });
 
@@ -80,12 +85,20 @@ export const AccountsListHeader: React.FC<Props> = (props) => {
 
     return (hasAccounts &&
             <View style={styles.view}>
-                <AmountText amount={totalBalances.totalBalance} size={FontSizes.LARGE} color={Colors.WHITE} />
-                <Text color={Colors.WHITE} bebasFont>
-                    {priceApi && priceApi.selectedCurrency === PriceType.USD ?
-                        i18n.t(core.currency.USD.value, {value: totalBalanceUSD.toFixed(2)}) :
-                        i18n.t(core.currency.BTC.value, {value: amountToString(totalBalanceBTC)})}
-                </Text>
+                <View style={styles.centered}>
+                    <AmountText
+                        amount={totalBalances.totalBalance}
+                        size={FontSizes.LARGE}
+                        color={Colors.WHITE}
+                    />
+                </View>
+                <View style={styles.centered}>
+                    <Text color={Colors.WHITE} bebasFont>
+                        {priceApi && priceApi.selectedCurrency === PriceType.USD ?
+                            i18n.t(core.currency.USD.value, {value: totalBalanceUSD.toFixed(2)}) :
+                            i18n.t(core.currency.BTC.value, {value: amountToString(totalBalanceBTC)})}
+                    </Text>
+                </View>
                 <View>
                     <SubBalance text='Available' amount={totalBalances.availableBalance}/>
                     <SubBalance text='Locked' amount={totalBalances.lockedBalance}/>
