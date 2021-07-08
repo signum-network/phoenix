@@ -11,7 +11,7 @@ import {core} from '../../../../core/translations';
 import {amountToString} from '../../../../core/utils/numbers';
 import {PriceInfoReduxState} from '../../../price-api/store/reducer';
 import {AmountText} from '../../../../core/components/base/Amount';
-import {getBalancesFromAccount} from '../../../../core/utils/getBalancesFromAccount';
+import {getBalancesFromAccount} from '../../../../core/utils/balance/getBalancesFromAccount';
 
 interface Props {
     account: Account;
@@ -34,7 +34,7 @@ const subBalanceStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
     },
-    content: {
+    row: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -51,7 +51,6 @@ const SubBalance: React.FC<{ amount: Amount, text: string }> = ({amount, text}) 
     </View>
 );
 
-
 export const AccountTransactionsHeader: React.FC<Props> = (props) => {
     const {account, priceApi} = props;
     const priceInBTC = priceApi && priceApi.priceInfo && priceApi.priceInfo.price_btc;
@@ -66,7 +65,7 @@ export const AccountTransactionsHeader: React.FC<Props> = (props) => {
     return (
         <View style={styles.view}>
             <AmountText amount={balances.totalBalance} size={FontSizes.LARGE} style={styles.centered}/>
-            <View style={styles.balances}>
+            <View>
                 <SubBalance text='Available' amount={balances.availableBalance}/>
                 <SubBalance text='Locked' amount={balances.lockedBalance}/>
                 <SubBalance text='Committed' amount={balances.committedBalance}/>

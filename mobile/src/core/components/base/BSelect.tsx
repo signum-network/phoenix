@@ -22,7 +22,7 @@ export interface SelectItem<T> extends Item {
 }
 
 const defaultStyles: any = {
-    fontSize: FontSizes.LARGE,
+    fontSize: FontSizes.LARGER,
     fontFamily: fonts.roboto,
     letterSpacing: -1,
     fontWeight: '500',
@@ -43,7 +43,7 @@ const defaultStyles: any = {
 
 const styles: any = {
     wrapper: {
-        marginBottom: Sizes.MEDIUM,
+        marginBottom: Sizes.SMALL,
     },
     inputIOS: {
         ...defaultStyles
@@ -66,7 +66,7 @@ const styles: any = {
         height: 25,
         marginTop: 3
     },
-    disabled : {
+    disabled: {
         opacity: 0.5
     }
 };
@@ -77,12 +77,10 @@ export const BSelect: React.FC<Props> = (props) => {
         value: null,
         label: placeholder
     };
-    
+
     return (
         <View style={[styles.wrapper, disabled && styles.disabled]}>
-            {title ? (
-                <BText size={FontSizes.SMALLER} color={Colors.WHITE}>{title}</BText>
-            ) : null}
+            {title && <BText size={FontSizes.SMALLER} color={Colors.WHITE}>{title}</BText>}
             <RNPickerSelect
                 onValueChange={props.onChange}
                 items={items}

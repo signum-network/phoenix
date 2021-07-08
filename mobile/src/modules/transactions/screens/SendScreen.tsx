@@ -19,7 +19,7 @@ import {RootStackParamList} from '../../auth/navigation/mainStack';
 import {getAccount, getAlias, getZilAddress} from '../../auth/store/actions';
 import {AuthReduxState} from '../../auth/store/reducer';
 import {NetworkReduxState} from '../../network/store/reducer';
-import {SendBurstForm, SendBurstFormState} from '../components/send/SendBurstForm';
+import {SendForm, SendFormState} from '../components/send/SendForm';
 import {sendMoney, SendAmountPayload} from '../store/actions';
 import {TransactionsReduxState} from '../store/reducer';
 import {transactions} from '../translations';
@@ -40,7 +40,7 @@ interface IProps extends InjectedReduxProps {
 }
 
 interface State {
-    deepLinkProps?: SendBurstFormState;
+    deepLinkProps?: SendFormState;
 }
 
 class Send extends React.PureComponent<IProps, State> {
@@ -129,7 +129,7 @@ class Send extends React.PureComponent<IProps, State> {
                     <View>
                         <HeaderTitle>{i18n.t(transactions.screens.send.title)}</HeaderTitle>
                         {hasActiveAccounts
-                            ? <SendBurstForm
+                            ? <SendForm
                                 accounts={accounts}
                                 loading={isLoading}
                                 onSubmit={this.handleSubmit}

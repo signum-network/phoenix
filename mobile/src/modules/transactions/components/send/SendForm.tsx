@@ -1,21 +1,12 @@
-import {Address, Account, SuggestedFees} from '@signumjs/core';
+import {Account, Address, SuggestedFees} from '@signumjs/core';
 import {Amount} from '@signumjs/util';
 import React, {createRef} from 'react';
-import {
-    Image,
-    NativeSyntheticEvent,
-    ScrollView,
-    StyleSheet,
-    TextInputEndEditingEventData,
-    TouchableOpacity,
-    View,
-    SafeAreaView
-} from 'react-native';
+import {Image, NativeSyntheticEvent, SafeAreaView, ScrollView, StyleSheet, TextInputEndEditingEventData, TouchableOpacity, View} from 'react-native';
 import SwipeButton from 'rn-swipe-button';
 import {actionIcons, transactionIcons} from '../../../../assets/icons';
 import {BInput, KeyboardTypes} from '../../../../core/components/base/BInput';
 import {BSelect, SelectItem} from '../../../../core/components/base/BSelect';
-import {Text as BText, TextAlign} from '../../../../core/components/base/Text';
+import {Text, Text as BText, TextAlign} from '../../../../core/components/base/Text';
 import {i18n} from '../../../../core/i18n';
 import {Colors} from '../../../../core/theme/colors';
 import {amountToString} from '../../../../core/utils/numbers';
@@ -29,6 +20,7 @@ import {BCheckbox} from '../../../../core/components/base/BCheckbox';
 import {FontSizes, Sizes} from '../../../../core/theme/sizes';
 import {AmountText} from '../../../../core/components/base/Amount';
 import {DangerBox} from './DangerBox';
+import {AccountBalances, getBalancesFromAccount} from '../../../../core/utils/balance/getBalancesFromAccount';
 
 const AddressPrefix = 'S-';
 
@@ -41,10 +33,10 @@ interface Props {
     onGetZilAddress: (id: string) => Promise<string | null>;
     accounts: Account[];
     suggestedFees: SuggestedFees | null;
-    deepLinkProps?: SendBurstFormState;
+    deepLinkProps?: SendFormState;
 }
 
-export interface SendBurstFormState {
+export interface SendFormState {
     sender: null | Account;
     amount?: string;
     address?: string;
@@ -58,16 +50,17 @@ export interface SendBurstFormState {
     showSubmitButton?: boolean;
     addMessage?: boolean;
     confirmedRisk?: boolean;
+    balances?: AccountBalances;
 }
 
 const styles = StyleSheet.create({
     wrapper: {
         display: 'flex',
-        height: '62%',
+        height: '58%',
     },
     form: {
         display: 'flex',
-        flexGrow: 1,
+        // flexGrow: 1,
     },
     scan: {
         marginTop: 10,
@@ -97,7 +90,26 @@ const styles = StyleSheet.create({
     },
 });
 
-export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
+const subBalanceStyles = StyleSheet.create({
+    root: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: Sizes.MEDIUM,
+    },
+});
+
+const Balances: React.FC<{ balances?: AccountBalances}> = ({balances = ZeroAcountBalances}) => (
+    <View style={subBalanceStyles.root}>
+        <Text color={Colors.GREY} size={FontSizes.SMALL}>Available:</Text>
+        <AmountText color={Colors.GREY} size={FontSizes.SMALL} amount={balances.availableBalance}/>
+        <Text color={Colors.GREY} size={FontSizes.SMALL}>Locked:</Text>
+        <AmountText color={Colors.GREY} size={FontSizes.SMALL} amount={balances.lockedBalance}/>
+    </View>
+);
+
+
+export class SendForm extends React.Component<Props, SendFormState> {
     private scrollViewRef = createRef<ScrollView>();
 
     constructor(props) {
@@ -119,15 +131,16 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             .find(({accountRS}) => accountRS === address) || null;
     }
 
-    setupState = (deeplinkProps?: SendBurstFormState) => {
+    setupState = (deeplinkProps?: SendFormState) => {
         const accounts = this.getAccounts();
-
+        const sender = accounts.length === 1 ? this.getAccount(accounts[0].value) : null;
+        const balances = getBalancesFromAccount(sender);
         return {
-            sender: accounts.length === 1 ? this.getAccount(accounts[0].value) : null,
-            amount: deeplinkProps && deeplinkProps.amount || '',
+            sender,
+            amount: deeplinkProps && deeplinkProps.amount || '0',
             fee: deeplinkProps && deeplinkProps.fee ||
                 this.props.suggestedFees &&
-                Amount.fromPlanck(this.props.suggestedFees.standard).getSigna() || '',
+                Amount.fromPlanck(this.props.suggestedFees.standard).getSigna() || '0',
             message: deeplinkProps && deeplinkProps.message || undefined,
             messageIsText: deeplinkProps && typeof deeplinkProps.messageIsText !== 'undefined' ? deeplinkProps.messageIsText : true,
             encrypt: deeplinkProps && deeplinkProps.encrypt || false,
@@ -136,10 +149,12 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             showSubmitButton: true,
             addMessage: deeplinkProps && !!deeplinkProps.message || false,
             confirmedRisk: false,
+            balances,
         };
     }
 
     UNSAFE_componentWillReceiveProps = ({deepLinkProps}: Props) => {
+        if (!deepLinkProps) return;
         this.setState(this.setupState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
     }
 
@@ -248,6 +263,10 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
         }
     }
 
+    hasSufficientBalance = (): boolean => {
+        const {amount, balances} = this.state;
+        return balances.availableBalance.greaterOrEqual(Amount.fromSigna(amount || 0));
+    }
 
     isSubmitEnabled = () => {
         const {sender, recipient, amount, fee, confirmedRisk} = this.state;
@@ -259,12 +278,16 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             sender &&
             isValidReedSolomonAddress(recipient?.addressRS) &&
             !loading &&
-            confirmedRisk
+            confirmedRisk &&
+            this.hasSufficientBalance()
         );
     }
 
     handleChangeFromAccount = (sender: string) => {
-        this.setState({sender: this.getAccount(sender)});
+        const account = this.getAccount(sender);
+        const balances = getBalancesFromAccount(account);
+
+        this.setState({sender: account, balances });
     }
 
     handleChangeAddress = (address: string) => {
@@ -319,14 +342,14 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
     }
 
     onSpendAll = () => {
-        if (!this.state.sender) {
+        const  {sender, fee} = this.state;
+        if (!sender) {
             return;
         }
 
-        const maxAmount = Amount.fromPlanck(this.state.sender.balanceNQT)
-            .add(Amount.fromSigna(this.state.fee || 0));
-
-        this.handleAmountChange(maxAmount.greater(Amount.Zero()) ? maxAmount.getSigna() : '0');
+        const balancesFromAccount = getBalancesFromAccount(sender);
+        const maxAmount = balancesFromAccount.availableBalance.subtract(Amount.fromSigna(fee || 0));
+        this.handleAmountChange(maxAmount.less(Amount.Zero()) ? '0' : maxAmount.getSigna());
     }
 
     handleSubmit = () => {
@@ -337,19 +360,17 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
 
         const {recipient, amount, fee, sender, message, messageIsText, encrypt, immutable} = this.state;
         const address = recipient.addressRS;
-        if (this.isSubmitEnabled()) {
-            this.props.onSubmit({
-                address,
-                amount,
-                fee,
-                // @ts-ignore
-                sender,
-                message,
-                messageIsText,
-                immutable,
-                encrypt
-            });
-        }
+        this.props.onSubmit({
+            address,
+            amount,
+            fee,
+            // @ts-ignore
+            sender,
+            message,
+            messageIsText,
+            immutable,
+            encrypt
+        });
         this.setState({showSubmitButton: false});
     }
 
@@ -367,8 +388,21 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             && recipient.status === RecipientValidationStatus.INVALID;
     }
 
+
+
     render() {
-        const {sender, recipient, amount, fee, encrypt, addMessage, message, confirmedRisk, showSubmitButton} = this.state;
+        const {
+            addMessage,
+            amount,
+            balances,
+            confirmedRisk,
+            encrypt,
+            fee,
+            message,
+            recipient,
+            sender,
+            showSubmitButton,
+        } = this.state;
         const {suggestedFees} = this.props;
         const total = Amount.fromSigna(amount || '0').add(Amount.fromSigna(fee || '0'));
         const senderRS = sender && sender.accountRS || null;
@@ -376,7 +410,6 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
         const swipeButtonTitle = isSubmitEnabled
             ? i18n.t(transactions.screens.send.button.enabled)
             : i18n.t(transactions.screens.send.button.disabled);
-
 
         const SenderRightIcons = (
             <View style={{flexDirection: 'row'}}>
@@ -409,7 +442,10 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
             </View>
         );
 
-        const isSubmitSwipeVisible =  !this.shouldShowAliasWarning() && !this.shouldConfirmRisk() && showSubmitButton ;
+        const isSubmitSwipeVisible =  !this.shouldShowAliasWarning() &&
+            !this.shouldConfirmRisk() &&
+            this.hasSufficientBalance()
+            && showSubmitButton ;
 
         return (
             <SafeAreaView>
@@ -422,6 +458,7 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
                         placeholder={i18n.t(transactions.screens.send.selectAccount)}
                         rightElement={SenderRightIcons}
                     />
+                    <Balances balances={balances}/>
                 </View>
                 <ScrollView style={styles.wrapper} ref={this.scrollViewRef}>
 
@@ -491,6 +528,15 @@ export class SendBurstForm extends React.Component<Props, SendBurstFormState> {
                         </BText>
                         <AmountText amount={total}/>
                     </View>
+                    {!this.hasSufficientBalance() && (
+                        <DangerBox>
+                            <BText bebasFont color={Colors.WHITE} textAlign={TextAlign.CENTER}>
+                                {i18n.t(transactions.screens.send.insufficientFunds)}
+                            </BText>
+                        </DangerBox>
+                        )
+                    }
+
                     {this.shouldShowAliasWarning() && (
                         <DangerBox>
                             <BText bebasFont color={Colors.WHITE} textAlign={TextAlign.CENTER}>

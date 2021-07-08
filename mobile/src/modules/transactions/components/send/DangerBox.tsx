@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderWidth: 1,
     },
-    content: {
+    row: {
         width: '90%',
     }
 });

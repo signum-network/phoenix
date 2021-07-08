@@ -175,6 +175,7 @@
         "noPublicKey": "Пожалуйста, подтвердите адрес перед отправкой.",
         "invalidAlias": "Alias does not exist! Send not allowed.",
         "invalidAddress": "Этот адрес недействителен.",
+        "insufficientFunds": "Not sufficient funds.",
         "zilOutage": "Невозможно получить из ZIL API.",
         "success": "Успешно отправлено {{amount}} SIGNA на {{address}}.",
         "failure": "Не удалось отправить SIGNA. Пожалуйста, проверьте ваши записи и попробуйте снова.",
