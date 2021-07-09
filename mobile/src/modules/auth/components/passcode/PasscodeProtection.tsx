@@ -38,10 +38,11 @@ export const PasscodeProtection: React.FC = ({children}) => {
 
     const restartPasscodeTimer = () => {
         stopPasscodeTimer();
-        timeoutHandle.current = setTimeout(() => {
-            console.log('Protection active...');
-            dispatch(setPasscodeModalVisible(true));
-        }, defaultSettings.passcodeTime);
+        // FIXME: dont let me commmented out
+        // timeoutHandle.current = setTimeout(() => {
+        //     console.log('Protection active...');
+        //     dispatch(setPasscodeModalVisible(true));
+        // }, defaultSettings.passcodeTime);
     };
 
     const handleSuccess = () => {
