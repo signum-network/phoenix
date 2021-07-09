@@ -22,7 +22,6 @@ export const HeaderWithBackButton: React.FC<Props> = ({title}) => {
                 style={{flexDirection: 'row', position: 'absolute', zIndex: 1, left: 10, top: 10}}
                 onPress={() => navigation.goBack()}>
                 <Image source={actionIcons.chevronLeft} style={{width: 30, height: 30}}/>
-                <Text color={Colors.WHITE}>{i18n.t(core.actions.back)}</Text>
             </TouchableOpacity>
             <View style={{flex: 1, alignItems: 'center', margin: 10}}>
                 <HeaderTitle>

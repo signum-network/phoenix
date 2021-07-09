@@ -2,8 +2,7 @@ import {Account} from '@signumjs/core';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
-import {Alert, Clipboard, FlatList, Image, StyleSheet, TouchableOpacity, View} from 'react-native';
-import {connect} from 'react-redux';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {actionIcons} from '../../../assets/icons';
 import {Text} from '../../../core/components/base/Text';
 import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
@@ -11,13 +10,12 @@ import {i18n} from '../../../core/i18n';
 import {InjectedReduxProps} from '../../../core/interfaces';
 import {FullHeightView} from '../../../core/layout/FullHeightView';
 import {Screen} from '../../../core/layout/Screen';
-import {ApplicationState} from '../../../core/store/initialState';
 import {Colors} from '../../../core/theme/colors';
 import {core} from '../../../core/translations';
 import {PriceInfoReduxState} from '../../price-api/store/reducer';
 import {RootStackParamList} from '../navigation/mainStack';
 import {auth} from '../translations';
-import {TransactionDetails} from '../components/details/TransactionDetails';
+import {TransactionDetails} from '../components/details/transactions/TransactionDetails';
 
 type TransactionDetailsRouteProps = RouteProp<RootStackParamList, 'TransactionDetails'>;
 type TransactionDetailsNavProp = StackNavigationProp<RootStackParamList, 'TransactionDetails'>;
@@ -64,7 +62,6 @@ export const TransactionDetailsScreen: React.FC<Props> = () => {
                         style={{flexDirection: 'row', position: 'absolute', zIndex: 1, left: 10, top: 10}}
                         onPress={goBack}>
                         <Image source={actionIcons.chevronLeft} style={{width: 30, height: 30}}/>
-                        <Text color={Colors.WHITE}>{i18n.t(core.actions.back)}</Text>
                     </TouchableOpacity>
                     <View style={{flex: 1, alignItems: 'center', margin: 10}}>
                         <HeaderTitle>
@@ -72,7 +69,7 @@ export const TransactionDetailsScreen: React.FC<Props> = () => {
                         </HeaderTitle>
                     </View>
                 </View>
-                <View style={{padding: 10}}>
+                <View>
                     <TransactionDetails transaction={route.params.transaction}/>
                 </View>
             </FullHeightView>

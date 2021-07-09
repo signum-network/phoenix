@@ -1,7 +1,7 @@
 import {Account, Address, SuggestedFees} from '@signumjs/core';
 import {Amount} from '@signumjs/util';
 import React, {createRef} from 'react';
-import {Image, NativeSyntheticEvent, SafeAreaView, ScrollView, StyleSheet, TextInputEndEditingEventData, TouchableOpacity, View} from 'react-native';
+import {Image, NativeSyntheticEvent, ScrollView, StyleSheet, TextInputEndEditingEventData, TouchableOpacity, View} from 'react-native';
 import SwipeButton from 'rn-swipe-button';
 import {actionIcons, transactionIcons} from '../../../../assets/icons';
 import {BInput, KeyboardTypes} from '../../../../core/components/base/BInput';
@@ -20,7 +20,7 @@ import {BCheckbox} from '../../../../core/components/base/BCheckbox';
 import {FontSizes, Sizes} from '../../../../core/theme/sizes';
 import {AmountText} from '../../../../core/components/base/Amount';
 import {DangerBox} from './DangerBox';
-import {AccountBalances, getBalancesFromAccount} from '../../../../core/utils/balance/getBalancesFromAccount';
+import {AccountBalances, getBalancesFromAccount, ZeroAcountBalances} from '../../../../core/utils/balance/getBalancesFromAccount';
 
 const AddressPrefix = 'S-';
 
@@ -82,12 +82,19 @@ const styles = StyleSheet.create({
     chevron: {
         width: 25,
         height: 25,
-        marginTop: 3
+        marginTop: 3,
+        transform: [{rotate: '-90deg' }],
     },
     balance: {
         marginTop: 3,
         marginRight: 5
     },
+    sendIcon: {
+        fontSize: FontSizes.SMALL,
+        width: 8,
+        height: 8,
+        color: Colors.RED
+    }
 });
 
 const subBalanceStyles = StyleSheet.create({
@@ -411,7 +418,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
             ? i18n.t(transactions.screens.send.button.enabled)
             : i18n.t(transactions.screens.send.button.disabled);
 
-        const SenderRightIcons = (
+        const SenderRightElement = (
             <View style={{flexDirection: 'row'}}>
                 {this.state.sender &&
                 <View style={styles.balance}>
@@ -420,7 +427,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
                         color={Colors.GREY_LIGHT}
                     />
                 </View>}
-                <Image source={actionIcons.chevronDown} style={styles.chevron}/>
+                <Image source={actionIcons.chevron} style={styles.chevron}/>
             </View>
         );
 
@@ -448,7 +455,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
             && showSubmitButton ;
 
         return (
-            <SafeAreaView>
+            <View>
                 <View>
                     <BSelect
                         value={senderRS}
@@ -456,7 +463,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
                         onChange={this.handleChangeFromAccount}
                         title={i18n.t(transactions.screens.send.from)}
                         placeholder={i18n.t(transactions.screens.send.selectAccount)}
-                        rightElement={SenderRightIcons}
+                        rightElement={SenderRightElement}
                     />
                     <Balances balances={balances}/>
                 </View>
@@ -493,7 +500,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
                         {suggestedFees &&
                         <FeeSlider
                             disabled={this.state.immutable}
-                            fee={parseFloat(fee) || 0}
+                            fee={parseFloat(fee || '0')}
                             onSlidingComplete={this.handleFeeChangeFromSlider}
                             suggestedFees={suggestedFees}
                         />}
@@ -563,8 +570,9 @@ export class SendForm extends React.Component<Props, SendFormState> {
                         disabledRailBackgroundColor={Colors.PINK}
                         disabledThumbIconBackgroundColor={Colors.GREY}
                         disabledThumbIconBorderColor={Colors.BLUE_DARKER}
+                        disabledThumb={Colors.BLUE_DARKER}
                         thumbIconBackgroundColor={Colors.WHITE}
-                        thumbIconImageSource={actionIcons.chevronRight}
+                        thumbIconImageSource={actionIcons.send}
                         onSwipeSuccess={this.handleSubmit}
                         shouldResetAfterSuccess={true}
                         title={swipeButtonTitle}
@@ -576,7 +584,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
                         disabled={!isSubmitEnabled}
                     />}
                 </View>
-            </SafeAreaView>
+            </View>
         );
     }
 }

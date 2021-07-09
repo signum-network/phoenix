@@ -85,11 +85,10 @@ export const AccountDetailsScreen: React.FC<Props> = (props) => {
                         style={{flexDirection: 'row', position: 'absolute', zIndex: 3, left: 10, top: 10}}
                         onPress={navigation.goBack}>
                         <Image source={actionIcons.chevronLeft} style={{width: 30, height: 30}}/>
-                        <Text color={Colors.WHITE}>{i18n.t(core.actions.back)}</Text>
                     </TouchableOpacity>
                     <View style={{flex: 1, alignItems: 'center', margin: 10}}>
                         <HeaderTitle>
-                            {shortenRSAddress(account.accountRS) || 'Account Details'}
+                            {account.accountRS || 'Account Details'}
                         </HeaderTitle>
                     </View>
                     <TouchableOpacity onPress={handleCopy}>

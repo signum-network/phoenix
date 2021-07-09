@@ -49,7 +49,8 @@ const styles: any = {
         ...defaultStyles
     },
     inputAndroid: {
-        ...defaultStyles
+        ...defaultStyles,
+        borderWidth: 1,
     },
     iconContainer: {
         top: 0,
@@ -64,7 +65,8 @@ const styles: any = {
     chevron: {
         width: 25,
         height: 25,
-        marginTop: 3
+        marginTop: 3,
+        transform: [{rotate: '-90deg' }]
     },
     disabled: {
         opacity: 0.5
@@ -82,15 +84,17 @@ export const BSelect: React.FC<Props> = (props) => {
         <View style={[styles.wrapper, disabled && styles.disabled]}>
             {title && <BText size={FontSizes.SMALLER} color={Colors.WHITE}>{title}</BText>}
             <RNPickerSelect
+                useNativeAndroidPickerStyle={true}
                 onValueChange={props.onChange}
                 items={items}
                 value={value}
                 style={styles}
                 placeholder={placeholderObject}
                 disabled={disabled}
-                Icon={rightElement ? () => rightElement : () => {
-                    return <Image source={actionIcons.chevronDown} style={styles.chevron}/>;
-                }}
+                Icon={rightElement
+                    ? () => rightElement
+                    : () => <Image source={actionIcons.chevron} style={styles.chevron}/>
+                }
             />
         </View>
     );

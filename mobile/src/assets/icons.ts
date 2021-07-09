@@ -11,9 +11,9 @@ export const tabbarIcons = {
 
 export const actionIcons = {
   del: require('./icons/delete.png'),
-  chevronDown: require('./icons/chevron-down.png'),
-  chevronRight: require('./icons/chevron-right.png'),
   chevronLeft: require('./icons/chevron-left.png'),
+  chevron: require('./icons/chevron-left.png'),
+  send: require('./icons/chevron-right.png'),
   copy: require('./icons/content-copy.png')
 };
 

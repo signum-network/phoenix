@@ -15,14 +15,15 @@ const styles = StyleSheet.create({
         fontFamily: fonts.signum,
         fontSize: FontSizes.SMALLER,
         textAlign: 'left',
-        color: Colors.BLACK,
+        color: Colors.WHITE,
         top: 4,
+        opacity: 0.7
     },
     text: {
         fontFamily: fonts.signum,
         fontSize: FontSizes.MEDIUM,
-        textAlign: 'left',
-        color: Colors.BLACK
+        textAlign: 'justify',
+        color: Colors.WHITE
     },
 });
 

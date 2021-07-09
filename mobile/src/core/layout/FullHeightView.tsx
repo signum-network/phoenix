@@ -29,7 +29,6 @@ export const FullHeightView: React.FC<Props> = (props: Props) => {
   return (
       <View style={[styles.view, withoutPaddings && styles.withoutPaddings, style]} {...rest}>
         <LogoWatermark/>
-
         {children}
       </View>
   );

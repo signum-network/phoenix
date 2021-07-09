@@ -1,5 +1,5 @@
 import React from 'react';
-import {StatusBar, StatusBarStyle, StyleSheet} from 'react-native';
+import {StatusBar, StatusBarStyle, StyleSheet, Platform} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Colors} from '../theme/colors';
 
