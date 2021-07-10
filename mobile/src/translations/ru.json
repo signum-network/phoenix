@@ -151,13 +151,14 @@
         "title": "Получить",
         "recipient": "Получатель",
         "generate": "Создать QR-код",
-        "immutable": "Неизменный"
+        "immutable": "Неизменный",
+        "message": "Сообщение"
       },
       "send": {
         "noActiveAccount": {
-          "hint": "You need to create/import an active account to send",
-          "title": "No Active Account",
-          "button": "Add Account"
+          "hint": "Для отправки необходимо создать/импортировать активный счет",
+          "title": "Нет активного аккаунта",
+          "button": "Добавить аккаунт"
         },
         "amountNQT": "Количество",
         "feeNQT": "Комиссия",

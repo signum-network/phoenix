@@ -62,6 +62,7 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
         message: '',
     });
     const [submitEnabled, setSubmitEnabled] = useState(false);
+
     useEffect(() => {
         const {amount, fee, recipient} = formData as ReceiveAmountPayload;
         const isEnabled = Boolean(

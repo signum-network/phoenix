@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: fonts.signum,
-        fontSize: FontSizes.MEDIUM,
+        fontSize: FontSizes.SMALL,
         textAlign: 'justify',
         color: Colors.WHITE
     },

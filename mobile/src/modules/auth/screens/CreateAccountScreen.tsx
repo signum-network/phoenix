@@ -18,11 +18,8 @@ import { StepCounter } from '../components/create/StepCounter';
 import { addAccount, createActiveAccount, hydrateAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
-import { actionIcons } from '../../../assets/icons';
-import { Text } from '../../../core/components/base/Text';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation/mainStack';
-import { core } from '../../../core/translations';
 import {HeaderWithBackButton} from '../../../core/layout/HeaderWithBackButton';
 
 type CreateAccountNavProp = StackNavigationProp<RootStackParamList, 'CreateAccount'>;

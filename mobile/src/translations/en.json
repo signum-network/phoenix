@@ -152,7 +152,8 @@
         "title": "Receive",
         "recipient": "Recipient",
         "generate": "Generate QR Code",
-        "immutable": "Immutable"
+        "immutable": "Immutable",
+        "message": "Message"
       },
       "send": {
         "noActiveAccount": {
