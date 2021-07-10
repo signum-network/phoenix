@@ -17,7 +17,6 @@ const actions = {
     appLoaded: createAction<void>(actionTypes.appLoaded),
     setAppSettings: createAction<AppSettings>(actionTypes.setAppSettings),
     setUserSettings: createAction<UserSettings>(actionTypes.setUserSettings),
-    // setAppSettings: createAction<AppSettings>(actionTypes.setAppSettings),
 };
 
 export const loadApp = createActionFn<void, Promise<void>>(
@@ -50,6 +49,9 @@ export const loadUserSettings = createActionFn<void, Promise<void>>(
             const settings = await fetchUserSettings();
             console.log('Loaded user Settings', settings);
             dispatch(actions.setUserSettings(settings));
+            if (settings.isAutomaticNodeSelection) {
+                dispatch(autoSelectNode(true));
+            }
         })
 );
 

@@ -89,7 +89,6 @@ export class TransactionListItem extends React.PureComponent<Props> {
                 : Amount.fromPlanck(transaction.amountNQT || '0');
         }
         return result;
-        // return `${AmountPrefix} ${result.toString(10)}`;
     }
 
     isAmountNegative = (transaction: Transaction): boolean => {
@@ -100,6 +99,7 @@ export class TransactionListItem extends React.PureComponent<Props> {
         const {onPress, transaction} = this.props;
         onPress(transaction);
     }
+
 
     renderIcon = () => {
         const {confirmations = 0} = this.props.transaction;
@@ -113,21 +113,15 @@ export class TransactionListItem extends React.PureComponent<Props> {
         );
     }
 
-    getOpacity = () => {
-        const {confirmations = 0} = this.props.transaction;
-        const opacity = confirmations > 0 ? 1 : .75;
-        return {
-            opacity
-        };
-    }
-
     render() {
         const {
             transaction = '',
             timestamp = 0,
             recipientRS = '',
-            senderRS = ''
+            senderRS = '',
+            confirmations
         } = this.props.transaction;
+        const isPending = confirmations === undefined;
         const isNegative = this.isAmountNegative(this.props.transaction);
         const amount = this.getAmount(this.props.transaction);
         let accountRS = trimAddressPrefix(isNegative ? recipientRS : senderRS);
@@ -137,11 +131,12 @@ export class TransactionListItem extends React.PureComponent<Props> {
         }
 
         const date =  BlockTime.fromBlockTimestamp(timestamp).getDate().toLocaleString();
-
         return (
-            <TouchableOpacity style={[styles.view, this.getOpacity()]} onPress={this.handlePress}>
+            <TouchableOpacity style={[styles.view, {opacity: isPending ? 0.75 : 1}]}
+                              onPress={this.handlePress}
+            >
                 <View style={styles.iconView}>
-                    {this.renderIcon()}
+                    <Image source={isPending ? transactionIcons.waiting : transactionIcons.done} style={styles.icon}/>
                 </View>
                 <View style={styles.mainView}>
                     <View style={styles.hintView}>

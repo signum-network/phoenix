@@ -1,7 +1,5 @@
 import { Account } from '@signumjs/core';
-import { isEmpty } from 'lodash';
-import { AsyncStorage } from 'react-native';
-import { AsyncStorageKeys, KeyChainKeys } from '../../../core/enums';
+import { KeyChainKeys } from '../../../core/enums';
 import { KeychainCredentials } from '../../../core/interfaces';
 import { getCredentials, setCredentials } from '../../../core/utils/keychain';
 
