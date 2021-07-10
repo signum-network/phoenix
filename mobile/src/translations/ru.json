@@ -152,7 +152,8 @@
         "recipient": "Получатель",
         "generate": "Создать QR-код",
         "immutable": "Неизменный",
-        "message": "Сообщение"
+        "message": "Сообщение",
+        "reset": "Сброс"
       },
       "send": {
         "noActiveAccount": {

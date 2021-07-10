@@ -35,6 +35,7 @@ export const transactions = {
       title: 'transactions.screens.receive.title',
       recipient: 'transactions.screens.receive.recipient',
       generate: 'transactions.screens.receive.generate',
+      reset: 'transactions.screens.receive.reset',
       immutable: 'transactions.screens.receive.immutable',
       message: 'transactions.screens.receive.message',
     },

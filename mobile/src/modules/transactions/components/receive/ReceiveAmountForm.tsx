@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import {BInput, KeyboardTypes} from '../../../../core/components/base/BInput';
 import {BSelect, SelectItem} from '../../../../core/components/base/BSelect';
-import {Button as BButton} from '../../../../core/components/base/Button';
+import {Button as BButton, ButtonThemes} from '../../../../core/components/base/Button';
 import {SwitchItem} from '../../../../core/components/base/SwitchItem';
 import {Text as BText} from '../../../../core/components/base/Text';
 import {i18n} from '../../../../core/i18n';
@@ -53,15 +53,21 @@ const styles: any = {
     }
 };
 
+
 export const ReceiveAmountForm: React.FC<Props> = (props) => {
-    const [formData, setFormData] = useState<ReceiveAmountPayload>({
-        amount: '',
-        immutable: false,
-        fee: props.suggestedFees ? Amount.fromPlanck(props.suggestedFees.standard).getSigna() : '',
-        recipient: '',
-        message: '',
-    });
+    const getInitialFormData = (): ReceiveAmountPayload => (
+        {
+            amount: '',
+            immutable: false,
+            fee: props.suggestedFees ? Amount.fromPlanck(props.suggestedFees.standard).getSigna() : '',
+            recipient: props.accounts.length > 0 ? props.accounts[0].accountRS : '',
+            message: '',
+        }
+    );
+
+    const [formData, setFormData] = useState<ReceiveAmountPayload>(getInitialFormData());
     const [submitEnabled, setSubmitEnabled] = useState(false);
+    const [formChanged, setFormChanged] = useState(false);
 
     useEffect(() => {
         const {amount, fee, recipient} = formData as ReceiveAmountPayload;
@@ -72,6 +78,7 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
         );
         setSubmitEnabled(isEnabled);
     }, [formData]);
+
 
     const handleFormChange = (fieldName: string) => (data: any) => {
 
@@ -85,6 +92,7 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
         } as ReceiveAmountPayload;
 
         setFormData(updated);
+        setFormChanged(true);
     };
 
     const getAccounts = (): Array<SelectItem<string>> => {
@@ -99,8 +107,15 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
         submitEnabled && props.onSubmit(formData);
     };
 
+    const handleReset = () => {
+        setFormData({
+            ...getInitialFormData()
+        });
+        setFormChanged(false);
+    };
+
     const handleFeeChangeFromSlider = (fee: number) => {
-        handleFormChange('fee')(fee);
+        handleFormChange('fee')(fee.toString(10));
     };
 
     const {immutable, recipient, amount, fee, message = ''} = formData;
@@ -131,12 +146,6 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
                     title={i18n.t(transactions.screens.send.feeNQT)}
                     placeholder={'0'}
                 />
-                <BInput
-                    value={message}
-                    onChange={handleFormChange('message')}
-                    title={i18n.t(transactions.screens.send.message)}
-                    placeholder={i18n.t(core.placeholders.message)}
-                />
                 {
                     suggestedFees &&
                     <FeeSlider
@@ -145,6 +154,12 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
                         suggestedFees={suggestedFees}
                     />
                 }
+                <BInput
+                    value={message}
+                    onChange={handleFormChange('message')}
+                    title={i18n.t(transactions.screens.send.message)}
+                    placeholder={i18n.t(core.placeholders.message)}
+                />
                 <SwitchItem
                     text={(
                         <BText bebasFont color={Colors.WHITE}>{i18n.t(transactions.screens.receive.immutable)}</BText>
@@ -160,6 +175,9 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
                 </View>
                 <BButton disabled={!submitEnabled} onPress={handleSubmit}>
                     {i18n.t(transactions.screens.receive.generate)}
+                </BButton>
+                <BButton theme={ButtonThemes.ACCENT} disabled={!formChanged} onPress={handleReset}>
+                    {i18n.t(transactions.screens.receive.reset)}
                 </BButton>
             </View>
         </View>

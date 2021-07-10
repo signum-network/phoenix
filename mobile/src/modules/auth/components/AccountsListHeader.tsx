@@ -92,13 +92,13 @@ export const AccountsListHeader: React.FC<Props> = (props) => {
                         color={Colors.WHITE}
                     />
                 </View>
-                <View style={styles.centered}>
-                    <Text color={Colors.WHITE} bebasFont>
-                        {priceApi && priceApi.selectedCurrency === PriceType.USD ?
-                            i18n.t(core.currency.USD.value, {value: totalBalanceUSD.toFixed(2)}) :
-                            i18n.t(core.currency.BTC.value, {value: amountToString(totalBalanceBTC)})}
-                    </Text>
-                </View>
+                {/*<View style={styles.centered}>*/}
+                {/*    <Text color={Colors.WHITE} bebasFont>*/}
+                {/*        {priceApi && priceApi.selectedCurrency === PriceType.USD ?*/}
+                {/*            i18n.t(core.currency.USD.value, {value: totalBalanceUSD.toFixed(2)}) :*/}
+                {/*            i18n.t(core.currency.BTC.value, {value: amountToString(totalBalanceBTC)})}*/}
+                {/*    </Text>*/}
+                {/*</View>*/}
                 <View>
                     <SubBalance text='Available' amount={totalBalances.availableBalance}/>
                     <SubBalance text='Locked' amount={totalBalances.lockedBalance}/>
