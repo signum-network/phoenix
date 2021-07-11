@@ -99,7 +99,7 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
         return props.accounts
             .map((account) => ({
                 value: account.accountRS,
-                label: trimAddressPrefix(account.accountRS),
+                label: account.name || account.accountRS,
             }));
     };
 

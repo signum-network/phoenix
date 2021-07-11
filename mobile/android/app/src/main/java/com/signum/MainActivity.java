@@ -1,4 +1,4 @@
-package com.burstcoin.phoenix;
+package com.signum.phoenix;
 
 import com.facebook.react.ReactActivity;
 

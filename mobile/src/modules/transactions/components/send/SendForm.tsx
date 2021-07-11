@@ -127,9 +127,9 @@ export class SendForm extends React.Component<Props, SendFormState> {
     getAccounts = (): Array<SelectItem<string>> => {
         return this.props.accounts
             .filter(({type}) => type !== 'offline')
-            .map(({accountRS}) => ({
+            .map(({accountRS, name}) => ({
                 value: accountRS,
-                label: shortenRSAddress(accountRS)
+                label: name || accountRS
             }));
     }
 

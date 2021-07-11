@@ -9,7 +9,8 @@ export const settings = {
       changeLanguage: 'settings.screens.settings.changeLanguage',
       autoNodeSelection: 'settings.screens.settings.autoNodeSelection',
       selectNode: 'settings.screens.settings.selectNode',
-      copyright: 'settings.screens.settings.copyright'
+      copyright: 'settings.screens.settings.copyright',
+      credits: 'settings.screens.settings.credits'
     }
   }
 };

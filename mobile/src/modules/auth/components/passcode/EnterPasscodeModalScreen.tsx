@@ -126,7 +126,7 @@ export class EnterPasscodeModalScreen extends React.PureComponent<Props, State> 
     render() {
         const {hasError, hasTouchID} = this.state;
         const {onReset} = this.props;
-        const code = this.state.code.replace(/./g, '* ') + ' ';
+        const code = this.state.code.replace(/./g, '* ');
 
         return (
             <Screen style={styles.view}>

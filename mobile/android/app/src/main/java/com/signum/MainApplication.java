@@ -1,4 +1,4 @@
-package com.burstcoin.phoenix;
+package com.signum.phoenix;
 
 import android.app.Application;
 

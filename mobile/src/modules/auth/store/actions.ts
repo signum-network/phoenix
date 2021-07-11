@@ -94,9 +94,8 @@ export const hydrateAccount = createActionFn<Account, Promise<Account>>(
         try {
             const accountDetails = await api.account.getAccount({accountId: account.account, includeCommittedAmount: true});
             console.log('Got account', accountDetails);
-            dispatch(actions.updateAccount(accountDetails));
+            // dispatch(actions.updateAccount(accountDetails));
             dispatch(updateAccountTransactions(accountDetails));
-            // tslint:disable-next-line: no-empty
         } catch (e) {
             console.error('Something failed', e);
         }
@@ -145,11 +144,13 @@ export const updateAccountTransactions = createActionFn<Account, Promise<Account
             ...account
         };
         try {
-            const transactions = await api.account.getAccountTransactions({
+            console.log('updating transactions...');
+            const {transactions} = await api.account.getAccountTransactions({
                 accountId: account.account,
                 includeIndirect: true,
             });
-            updatedAccount.transactions = transactions.transactions;
+            const {unconfirmedTransactions} = await api.account.getUnconfirmedAccountTransactions(account.account, true)
+            updatedAccount.transactions = unconfirmedTransactions.concat(transactions);
             dispatch(actions.updateAccount(updatedAccount));
         } catch (e) {
         }

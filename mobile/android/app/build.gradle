@@ -108,11 +108,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.burstcoin.phoenix"
+        applicationId "com.signum.phoenix"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 28
-        versionName "1.5.1"
+        versionCode 1
+        versionName "1.0.0"
         missingDimensionStrategy 'react-native-camera', 'general'
         ndk.abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'
     }

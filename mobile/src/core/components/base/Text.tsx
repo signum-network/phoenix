@@ -41,7 +41,7 @@ const defaultAlign = TextAlign.LEFT;
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: fonts.signum,
+    fontFamily: fonts.roboto,
     fontSize: FontSizes.MEDIUM,
     fontWeight: 'normal',
     textAlign: defaultAlign,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   textHeader: {
     color: Colors.BLUE_DARKER,
-    fontFamily: fonts.signum,
+    fontFamily: fonts.roboto,
     fontSize: FontSizes.LARGE,
     textAlign: TextAlign.CENTER
   },

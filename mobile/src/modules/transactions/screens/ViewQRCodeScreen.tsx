@@ -176,7 +176,7 @@ Pay using the Phoenix Wallet from https://phoenix-wallet.rocks
                             />
                         </View>
 
-                        {data.message &&
+                        {data.message.length>0 &&
                             <LabeledTextField
                                 label={i18n.t(transactions.screens.receive.message)}
                                 text={data.message}

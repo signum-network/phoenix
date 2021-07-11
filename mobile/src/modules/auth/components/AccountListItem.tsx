@@ -85,8 +85,7 @@ export class AccountListItem extends React.PureComponent<Props> {
     ];
 
     render() {
-        // TODO: add name to account creating and so on
-        const {type, accountRS = '', balanceNQT = '', name = '<unnamed>',} = this.props.account;
+        const {type, accountRS = '', balanceNQT = '', name = ''} = this.props.account;
         const {priceApi, accountIndex} = this.props;
 
         const address = shortenRSAddress(accountRS);
@@ -127,7 +126,7 @@ export class AccountListItem extends React.PureComponent<Props> {
                         </View>
                         <View style={[styles.row, {flexDirection: 'row', alignItems: 'center'}]}>
                             {type !== 'offline' && <Image source={accountIcons.active} style={styles.accountIcon}/>}
-                            {name && <Text color={Colors.WHITE} size={FontSizes.SMALLER}>{name}</Text>}
+                            {<Text color={Colors.WHITE} size={FontSizes.SMALLER}>{name || ' '}</Text>}
                         </View>
                     </View>
                     <View style={[styles.amountCol, styles.alignRight]}>

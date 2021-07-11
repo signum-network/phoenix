@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     settingsZone: {
-        flex: 2,
+        flex: 4,
     },
     hintView: {
         paddingTop: Sizes.SMALL,
@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 2,
     },
     flexBottom: {
-        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
@@ -164,6 +163,9 @@ export const SettingsScreen: React.FC<Props> = () => {
                             </Text>
                             <Text color={Colors.WHITE} size={FontSizes.SMALLER}>
                                 {i18n.t(settings.screens.settings.copyright)}
+                            </Text>
+                            <Text color={Colors.WHITE} size={FontSizes.SMALLER}>
+                                {i18n.t(settings.screens.settings.credits)}
                             </Text>
                         </View>
                     </View>

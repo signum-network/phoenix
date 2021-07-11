@@ -1,7 +1,7 @@
 {
   "name": "phoenix-mobile-wallet",
   "description": "The mobile wallet for Signum",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "keywords": [
     "cryptocoin",
     "signum",
@@ -22,7 +22,7 @@
     "node": ">=10"
   },
   "license": "GPL-3.0",
-  "private": false,
+  "private": true,
   "scripts": {
     "check": "npm run check:lint && npm run check:tsc",
     "check:lint": "tslint --project tsconfig.json 'src/**/*.{ts,tsx}'",
@@ -31,7 +31,7 @@
     "dev:ios": "react-native run-ios --simulator=\"iPhone SE\"",
     "start:android": "react-native run-android",
     "start:metro": "react-native start",
-    "start": "concurrently npm:start:*",
+    "start": "IS_RELEASE=false && concurrently npm:start:*",
     "postinstall": "npm run link",
     "link": "react-native link",
     "lint": "tslint --fix --project tsconfig.json 'src/**/*.{ts,tsx}'",

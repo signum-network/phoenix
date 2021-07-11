@@ -201,7 +201,8 @@
         "changeLanguage": "Select Language",
         "selectNode": "Select Node",
         "autoNodeSelection": "Automatic Node Selection",
-        "copyright": "Copyright © Burst Apps Team / Signum Network"
+        "copyright": "Copyright © Signum Network",
+        "credits": "Credits to blankey1337 and titanishu"
       }
     }
   }
