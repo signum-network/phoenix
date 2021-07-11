@@ -1,0 +1,208 @@
+{
+  "auth": {
+    "errors": {
+      "accountExist": "Аккаунт уже импортирован",
+      "incorrectAddress": "Некорректный BURST-адрес",
+      "incorrectPasscode": "Неверный код",
+      "incorrectPassphrase": "Некорректная кодовая фраза",
+      "insecurePin": "Небезопасный ПИН, рекомендуется не менее {{chars}} символов"
+    },
+    "modals": {
+      "enterPasscode": {
+        "passcodeHint": "Введите код",
+        "forgotPin": "Забыли ПИН?",
+        "confirmReset": "Удалить все учетные записи и сбросить ПИН?"
+      },
+      "setPasscode": {
+        "enterAgain": "Введите код еще раз",
+        "passcodeHint": "Сначала необходимо установить код для защиты устройства"
+      }
+    },
+    "passcode": {
+      "passcode": "Код"
+    },
+    "screens": {
+      "accounts": {
+        "addAccount": "Добавить аккаунт",
+        "createAccount": "Создать аккаунт",
+        "noAccounts": {
+          "hint": "Нажмите, чтобы добавить аккаунт",
+          "title": "Нет аккаунтов"
+        },
+        "title": "Аккаунты"
+      },
+      "accountDetails": {
+        "noTransactions": {
+          "title": "Нет транзакций"
+        },
+        "copiedSuccessfully": "Address copied successfully.",
+        "copy": "Copy"
+      },
+      "transactionDetails": {
+        "copiedSuccessfully": "Address copied successfully.",
+        "headerTitle": "Transaction Details",
+        "copy": "Copy"
+      },
+      "addAccount": {
+        "addAccount": "Добавить аккаунт",
+        "createAccount": "Создать аккаунт",
+        "hint": "Уже есть аккаунт?",
+        "title": "Добавить аккаунт"
+      },
+      "createAccount": {
+        "createAccount": "Создать аккаунт",
+        "enterPin": "Введите ПИН-код",
+        "enterPinHint": "Введите ПИН-код для защиты этого аккаунта. ПИН используется для подтверждения действий с аккаунтом.",
+        "generateSeed": "Сгенерируйте ключ",
+        "generatedPercent": "Сгенерировано: {{percent}}%",
+        "howToGenerate": "Двигайте пальцем в выделенной области чтобы сгенерировать случайный ключ.",
+        "notePassphrase": "Запишите кодовую фразу",
+        "notePassphraseHint": "Запишите кодовую фразу. Кодовая фраза это главный ключ к аккаунту. Всегда держите кодовую фразу в безопасности!",
+        "notePassphraseHint2": "Мы не храним кодовую фразу даже на телефоне, поэтому не можем восстановить доступ к аккаунту. Запишите ее!",
+        "step": "Шаг {{step}}/4",
+        "title": "Создать аккаунт"
+      },
+      "importAccount": {
+        "activeAccount": "Активный аккаунт",
+        "activeAccountHint": "Активные аккаунты используются для совершения BURST транзакций. Необходимо сгенерировать или ввести кодовую фразу. Пользователь должен создать PIN-код для транзакций. Кодовая фраза используется только для шифрования приватного ключа и нигде не сохраняется.",
+        "import": "Добавить",
+        "passiveAccountHint": "Пассивные аккаунты используются если известен BURST-адрес, но нет необходимости совершать транзакции. Это безопаснее. Пассивный аккаунт всегда можно преобразовать в активный.",
+        "title": "Добавить аккаунт",
+        "showPassphrase": "Показать фразу"
+      }
+    }
+  },
+  "core": {
+    "placeholders" : {
+      "message": "Введите сообщение"
+    },
+    "actions": {
+      "add": "Добавить",
+      "cancel": "Отмена",
+      "create": "Создать",
+      "next": "Далее",
+      "ok": "ОК",
+      "save": "Сохранить",
+      "submit": "Отправить",
+      "back": "Back"
+    },
+    "currency": {
+      "BTC": {
+        "name": "BTC",
+        "value": "₿ {{value}}"
+      },
+      "BURST": {
+        "name": "BURST",
+        "value": "Ƀ {{value}}"
+      },
+      "USD": {
+        "name": "USD",
+        "value": "${{value}}"
+      }
+    },
+    "dates": {
+      "months": {
+        "short": {
+          "JAN": "Янв",
+          "FEB": "Фев",
+          "MAR": "Мар",
+          "APR": "Апр",
+          "MAY": "Мая",
+          "JUN": "Июн",
+          "JUL": "Июл",
+          "AUG": "Авг",
+          "SEP": "Сен",
+          "OCT": "Окт",
+          "NOV": "Ноя",
+          "DEC": "Дек"
+        }
+      }
+    },
+    "layout": {
+      "preventBackButton": {
+        "alertMessage": "Информация будет утеряна",
+        "alertTitle": "Вы уверены?"
+      }
+    },
+    "screens": {
+      "home": {
+        "accountsList": "Список аккаунтов",
+        "recentTransactions": "Последние транзакции",
+        "title": "Все аккаунты",
+        "allAccounts": "Все аккаунты"
+      },
+      "loading": {
+        "loadingText": "Загрузка..."
+      }
+    }
+  },
+  "models": {
+    "account": {
+      "address": "Адрес",
+      "id": "ID",
+      "passphrase": "Кодовая фраза",
+      "pin": "ПИН",
+      "title": "Учетная запись"
+    }
+  },
+  "transactions": {
+    "screens": {
+      "receive": {
+        "title": "Получить",
+        "recipient": "Получатель",
+        "generate": "Создать QR-код",
+        "immutable": "Неизменный",
+        "message": "Сообщение",
+        "reset": "Сброс"
+      },
+      "send": {
+        "noActiveAccount": {
+          "hint": "Для отправки необходимо создать/импортировать активный счет",
+          "title": "Нет активного аккаунта",
+          "button": "Добавить аккаунт"
+        },
+        "amountNQT": "Количество",
+        "feeNQT": "Комиссия",
+        "from": "Аккаунт отправителя",
+        "selectAccount": "Выберите аккаунт",
+        "sent": "Отправлено!",
+        "title": "Отправить",
+        "button": {
+          "enabled": "Проведите, чтобы отправить",
+          "disabled": "Заполните форму для отправки"
+        },
+
+        "to": "Аккаунт получателя",
+        "total": "Всего: ",
+        "noPublicKey": "Пожалуйста, подтвердите адрес перед отправкой.",
+        "invalidAlias": "Alias does not exist! Send not allowed.",
+        "invalidAddress": "Этот адрес недействителен.",
+        "insufficientFunds": "Not sufficient funds.",
+        "zilOutage": "Невозможно получить из ZIL API.",
+        "success": "Успешно отправлено {{amount}} SIGNA на {{address}}.",
+        "failure": "Не удалось отправить SIGNA. Пожалуйста, проверьте ваши записи и попробуйте снова.",
+        "encrypt": "Зашифровать сообщение?",
+        "addMessage": "Добавить сообщение?",
+        "message": "Сообщение",
+        "confirmRisk": "Address '{{address}}' is unknown! Sending to this address may cause irreversible loss! - Do you assume the risk?"
+      },
+      "scan": {
+        "title": "Сканировать QR-код"
+      }
+    }
+  },
+  "settings": {
+    "screens": {
+      "settings": {
+        "title": "Настройки",
+        "erase": "Удалить все аккаунты и сбросить PIN",
+        "confirmReset": "Вы уверены? Вы не можете отменить это действие.",
+        "confirmErase": "Удалить и сбросить",
+        "changeLanguage": "Выбрать язык",
+        "selectNode": "Выберите узел",
+        "autoNodeSelection": "Automatic Node Selection",
+        "copyright": "Copyright © Burst Apps Team / Signum Network"
+      }
+    }
+  }
+}

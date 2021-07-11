@@ -25,6 +25,7 @@ import {useNavigation} from '@react-navigation/native';
 import {selectCurrentNode, selectIsAutomaticNodeSelection} from '../../../core/store/app/selectors';
 import {SwitchItem} from '../../../core/components/base/SwitchItem';
 import {logos} from '../../../assets/icons';
+import {ResetModal} from '../../../core/components/modals/ResetModal';
 
 interface IProps extends InjectedReduxProps {
     auth: AuthReduxState;
@@ -78,28 +79,6 @@ const styles = StyleSheet.create({
     }
 });
 
-const modalStyles = StyleSheet.create({
-    container: {
-        height: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        padding: Sizes.LARGER
-    },
-    title: {
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        paddingVertical: '10%',
-        fontSize: FontSizes.LARGER,
-    },
-    body: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: FontSizes.MEDIUM,
-    }
-
-});
 
 export const SettingsScreen: React.FC<Props> = () => {
     const dispatch = useDispatch();
@@ -188,28 +167,11 @@ export const SettingsScreen: React.FC<Props> = () => {
                             </Text>
                         </View>
                     </View>
-
-                    <Modal
-                        animationType="slide"
+                    <ResetModal
                         visible={erasePromptVisible}
-                    >
-                        <SafeAreaView>
-                            <View style={modalStyles.container}>
-                                <View style={modalStyles.title}>
-                                    <Text size={FontSizes.LARGE}>RESET ALL</Text>
-                                </View>
-                                <View style={modalStyles.body}>
-                                    <Text size={FontSizes.MEDIUM}>{i18n.t(settings.screens.settings.confirmReset)}</Text>
-                                </View>
-                                <Button theme={ButtonThemes.ACCENT} onPress={toggleConfirmDeletePrompt}>
-                                    {i18n.t(settings.screens.settings.cancel)}
-                                </Button>
-                                <Button theme={ButtonThemes.DANGER} onPress={confirmErase}>
-                                    {i18n.t(settings.screens.settings.confirmErase)}
-                                </Button>
-                            </View>
-                        </SafeAreaView>
-                    </Modal>
+                        onConfirm={confirmErase}
+                        onCancel={toggleConfirmDeletePrompt}
+                    />
                 </View>
             </FullHeightView>
         </Screen>

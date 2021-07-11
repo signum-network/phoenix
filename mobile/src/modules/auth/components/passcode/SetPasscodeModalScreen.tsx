@@ -127,7 +127,7 @@ class SetPasscodeModal extends React.PureComponent<Props, State> {
                     <View style={styles.header}>
                         <Image source={logos.white} style={styles.logo}/>
                         <View style={styles.hint}>
-                            <Text theme={TextThemes.HINT} textAlign={TextAlign.CENTER} color={Colors.WHITE}>
+                            <Text theme={TextThemes.ACCENT} textAlign={TextAlign.CENTER} color={Colors.WHITE}>
                                 {hint}
                             </Text>
                             {hasError && (
