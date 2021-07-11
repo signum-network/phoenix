@@ -74,16 +74,18 @@ class SetPasscodeModal extends React.PureComponent<Props, State> {
         const {code, savedCode} = this.state;
         const newCode = code + value;
 
-        this.setState({hasError: false}, async () => {
+        if (newCode.length > PASSCODE_LENGTH) {
+            return;
+        }
+
+        this.setState({hasError: false, code: newCode}, () => {
             if (newCode.length === PASSCODE_LENGTH) {
                 if (savedCode) {
                     if (newCode === savedCode) {
-                        await this.props.dispatch(setPasscode(savedCode));
-                        this.setState({
-                            code: '',
-                            savedCode: ''
-                        });
-                        this.props.onSuccess();
+                        setTimeout(async () => {
+                            await this.props.dispatch(setPasscode(savedCode));
+                            this.props.onSuccess();
+                        }, 250);
                     } else {
                         this.setState({
                             code: '',
@@ -91,18 +93,13 @@ class SetPasscodeModal extends React.PureComponent<Props, State> {
                         });
                     }
                 } else {
-                    this.setState({
-                        code: '',
-                        savedCode: newCode
-                    });
+                    setTimeout(() => {
+                        this.setState({code: '', savedCode: newCode});
+                    }, 500);
                 }
-            } else {
-                this.setState({
-                    code: newCode
-                });
             }
         });
-    }
+    };
 
     handleDelPress = () => {
         const {code} = this.state;
@@ -112,7 +109,7 @@ class SetPasscodeModal extends React.PureComponent<Props, State> {
                 code: code.substr(0, code.length - 1)
             });
         }
-    }
+    };
 
     render() {
         const {hasError, savedCode} = this.state;

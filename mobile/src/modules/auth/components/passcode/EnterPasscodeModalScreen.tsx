@@ -1,16 +1,14 @@
-import React, {useState} from 'react';
-import {Image, Modal, SafeAreaView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {Image, SafeAreaView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {logos} from '../../../../assets/icons';
-import {Button, ButtonThemes} from '../../../../core/components/base/Button';
 import {Text, TextAlign, TextThemes} from '../../../../core/components/base/Text';
 import {NumericKeyboard} from '../../../../core/components/keyboards/numeric/NumericKeyboard';
 import {i18n} from '../../../../core/i18n';
 import {FullHeightView} from '../../../../core/layout/FullHeightView';
 import {Screen} from '../../../../core/layout/Screen';
 import {Colors} from '../../../../core/theme/colors';
-import {FontSizes, Sizes} from '../../../../core/theme/sizes';
+import {Sizes} from '../../../../core/theme/sizes';
 import {authWithTouchId, isTouchIDSupported} from '../../../../core/utils/keychain';
-import {settings} from '../../../settings/translations';
 import {PASSCODE_LENGTH} from '../../consts';
 import {auth} from '../../translations';
 import {ResetModal} from '../../../../core/components/modals/ResetModal';
@@ -81,24 +79,18 @@ export class EnterPasscodeModalScreen extends React.PureComponent<Props, State> 
 
     handleNumberPress = (value: string) => {
         const {code} = this.state;
-        const {passcode, onSuccess} = this.props;
-
         const newCode = code + value;
-
-        this.setState({hasError: false}, async () => {
+        if (newCode.length > PASSCODE_LENGTH) {
+            return;
+        }
+        this.setState({hasError: false, code: newCode}, async () => {
             if (newCode.length === PASSCODE_LENGTH) {
+                const {passcode, onSuccess} = this.props;
                 if (newCode === passcode) {
-                    onSuccess();
+                    setTimeout(onSuccess, 250);
                 } else {
-                    this.setState({
-                        code: '',
-                        hasError: true
-                    });
+                    setTimeout(() => this.setState({code: '', hasError: true}), 250);
                 }
-            } else {
-                this.setState({
-                    code: newCode
-                });
             }
         });
     }
