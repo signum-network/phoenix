@@ -35,13 +35,13 @@
         "noTransactions": {
           "title": "Нет транзакций"
         },
-        "copiedSuccessfully": "Address copied successfully.",
-        "copy": "Copy"
+        "copiedSuccessfully": "Адрес успешно скопирован.",
+        "copy": "Копировать"
       },
       "transactionDetails": {
-        "copiedSuccessfully": "Address copied successfully.",
-        "headerTitle": "Transaction Details",
-        "copy": "Copy"
+        "copiedSuccessfully": "Адрес успешно скопирован.",
+        "headerTitle": "Детали сделки",
+        "copy": "Копировать"
       },
       "addAccount": {
         "addAccount": "Добавить аккаунт",
@@ -175,16 +175,17 @@
         "to": "Аккаунт получателя",
         "total": "Всего: ",
         "noPublicKey": "Пожалуйста, подтвердите адрес перед отправкой.",
-        "invalidAlias": "Alias does not exist! Send not allowed.",
+        "invalidAlias": "Псевдоним не существует! Отправка не разрешена.",
         "invalidAddress": "Этот адрес недействителен.",
-        "insufficientFunds": "Not sufficient funds.",
+        "insufficientFunds": "Недостаточно средств.",
         "zilOutage": "Невозможно получить из ZIL API.",
         "success": "Успешно отправлено {{amount}} SIGNA на {{address}}.",
         "failure": "Не удалось отправить SIGNA. Пожалуйста, проверьте ваши записи и попробуйте снова.",
         "encrypt": "Зашифровать сообщение?",
         "addMessage": "Добавить сообщение?",
         "message": "Сообщение",
-        "confirmRisk": "Address '{{address}}' is unknown! Sending to this address may cause irreversible loss! - Do you assume the risk?"
+        "confirmRisk": "Адрес '{{address}}' неизвестен! Отправка на этот адрес может привести к необратимым потерям! - Берете ли вы на себя риск?",
+        "reset": "Сброс"
       },
       "scan": {
         "title": "Сканировать QR-код"
@@ -200,7 +201,7 @@
         "confirmErase": "Удалить и сбросить",
         "changeLanguage": "Выбрать язык",
         "selectNode": "Выберите узел",
-        "autoNodeSelection": "Automatic Node Selection",
+        "autoNodeSelection": "Автоматический выбор узла",
         "copyright": "Copyright © Signum Network",
         "credits": "Credits to blankey1337 and titanishu"
       }

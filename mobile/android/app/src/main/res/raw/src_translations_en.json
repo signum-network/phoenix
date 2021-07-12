@@ -184,7 +184,8 @@
         "encrypt": "Encrypt Message?",
         "addMessage": "Add a Message?",
         "message": "Message",
-        "confirmRisk": "Address '{{address}}' is unknown! Sending to this address may cause irreversible loss! - Do you assume the risk?"
+        "confirmRisk": "Address '{{address}}' is unknown! Sending to this address may cause irreversible loss! - Do you assume the risk?",
+        "reset": "Reset Form"
       },
       "scan": {
         "title": "Scan QR Code"
