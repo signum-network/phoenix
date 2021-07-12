@@ -15,12 +15,14 @@ import {Recipient, RecipientType, RecipientValidationStatus} from '../../store/u
 import {transactions} from '../../translations';
 import {FeeSlider} from '../fee-slider/FeeSlider';
 import {AccountStatusPill} from './AccountStatusPill';
-import {isValidReedSolomonAddress, shortenRSAddress} from '../../../../core/utils/account';
+import {isValidReedSolomonAddress} from '../../../../core/utils/account';
 import {BCheckbox} from '../../../../core/components/base/BCheckbox';
 import {FontSizes, Sizes} from '../../../../core/theme/sizes';
 import {AmountText} from '../../../../core/components/base/Amount';
 import {DangerBox} from './DangerBox';
 import {AccountBalances, getBalancesFromAccount, ZeroAcountBalances} from '../../../../core/utils/balance/getBalancesFromAccount';
+import {Button, ButtonThemes} from '../../../../core/components/base/Button';
+import isEmpty from 'lodash/isEmpty';
 
 const AddressPrefix = 'S-';
 
@@ -51,16 +53,24 @@ export interface SendFormState {
     addMessage?: boolean;
     confirmedRisk?: boolean;
     balances?: AccountBalances;
+    dirty?: boolean;
 }
 
 const styles = StyleSheet.create({
-    wrapper: {
+    root: {
         display: 'flex',
-        height: '58%',
+        flexDirection: 'column',
+        height: '95%'
+    },
+    headerSection: {
+    },
+    formSection: {
+        minHeight: '50%'
+    },
+    bottomSection: {
     },
     form: {
         display: 'flex',
-        // flexGrow: 1,
     },
     scan: {
         marginTop: 10,
@@ -121,7 +131,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
 
     constructor(props) {
         super(props);
-        this.state = this.setupState(props.deepLinkProps);
+        this.state = this.getInitialState(props.deepLinkProps);
     }
 
     getAccounts = (): Array<SelectItem<string>> => {
@@ -138,7 +148,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
             .find(({accountRS}) => accountRS === address) || null;
     }
 
-    setupState = (deeplinkProps?: SendFormState) => {
+    getInitialState = (deeplinkProps?: SendFormState) => {
         const accounts = this.getAccounts();
         const sender = accounts.length === 1 ? this.getAccount(accounts[0].value) : null;
         const balances = getBalancesFromAccount(sender);
@@ -153,16 +163,16 @@ export class SendForm extends React.Component<Props, SendFormState> {
             encrypt: deeplinkProps && deeplinkProps.encrypt || false,
             immutable: deeplinkProps && deeplinkProps.immutable || false,
             recipient: new Recipient(deeplinkProps && deeplinkProps.address || AddressPrefix, deeplinkProps && deeplinkProps.address || ''),
-            showSubmitButton: true,
             addMessage: deeplinkProps && !!deeplinkProps.message || false,
             confirmedRisk: false,
+            dirty: !!deeplinkProps,
             balances,
         };
     }
 
     UNSAFE_componentWillReceiveProps = ({deepLinkProps}: Props) => {
         if (!deepLinkProps) return;
-        this.setState(this.setupState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
+        this.setState(this.getInitialState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
     }
 
     applyRecipientType(recipient: string): void {
@@ -203,8 +213,12 @@ export class SendForm extends React.Component<Props, SendFormState> {
                 accountFetchFn = this.props.onGetAlias;
                 break;
             case RecipientType.ADDRESS:
-                formattedAddress = Address.fromReedSolomonAddress(recipient).getNumericId();
                 accountFetchFn = this.props.onGetAccount;
+                try{
+                    formattedAddress = Address.fromReedSolomonAddress(recipient).getNumericId();
+                }catch(e){
+                    formattedAddress = recipient;
+                }
                 break;
             case RecipientType.ZIL:
                 try {
@@ -250,14 +264,13 @@ export class SendForm extends React.Component<Props, SendFormState> {
                 }
             });
         } catch (e) {
-            let addressRS = '<Invalid Address>';
+            let addressRS = recipient;
             try{
                 addressRS = this.state.recipient.type === RecipientType.ZIL
                     ? recipient : Address.create(recipient).getReedSolomonAddress();
             }catch(e){
                 // no op
             }
-            console.log('Invalid/Unknown Address', recipient);
 
             this.setState({
                 confirmedRisk: false,
@@ -290,10 +303,13 @@ export class SendForm extends React.Component<Props, SendFormState> {
         );
     }
 
+    markAsDirty = (): void => {
+        this.setState({dirty: true});
+    }
+
     handleChangeFromAccount = (sender: string) => {
         const account = this.getAccount(sender);
         const balances = getBalancesFromAccount(account);
-
         this.setState({sender: account, balances });
     }
 
@@ -304,48 +320,54 @@ export class SendForm extends React.Component<Props, SendFormState> {
                 addressRaw: address
             }
         });
+        this.markAsDirty();
     }
 
     handleAddressBlur = (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
         this.applyRecipientType(e.nativeEvent.text);
     }
 
+
     handleAmountChange = (amount: string) => {
         this.setState({amount: amount.replace(',', '.')});
+        this.markAsDirty();
     }
 
     handleFeeChange = (fee: string) => {
         this.setState({fee: fee.replace(',', '.')});
+        this.markAsDirty();
     }
 
     handleMessageChange = (message: string) => {
         this.setState({message});
+        this.markAsDirty();
     }
 
     setEncryptMessage(encrypt: boolean): void {
-        this.setState({
-            encrypt
-        });
+        this.setState({encrypt});
+        this.markAsDirty();
     }
 
-    setConfirmedRisk = (confirmedRisk: boolean) => {
-        console.log('setConfirmedRisk', confirmedRisk)
-        this.setState({confirmedRisk});
-    }
 
     setAddMessage(addMessage: boolean): void {
-        this.setState({
-            addMessage
-        }, () => {
+        this.setState({addMessage}, () => {
             setTimeout(() => {
                 // @ts-ignore
                 this.scrollViewRef.current.scrollToEnd();
             }, 100);
         });
+        this.markAsDirty();
     }
+
 
     handleFeeChangeFromSlider = (fee: number) => {
         this.setState({fee: amountToString(fee)});
+        this.markAsDirty();
+    }
+
+    setConfirmedRisk = (confirmedRisk: boolean) => {
+        console.log('setConfirmedRisk', confirmedRisk)
+        this.setState({confirmedRisk});
     }
 
     onSpendAll = () => {
@@ -378,7 +400,10 @@ export class SendForm extends React.Component<Props, SendFormState> {
             immutable,
             encrypt
         });
-        this.setState({showSubmitButton: false});
+    }
+
+    handleReset = () => {
+        this.setState(this.getInitialState());
     }
 
     shouldShowAliasWarning = (): boolean => {
@@ -395,7 +420,9 @@ export class SendForm extends React.Component<Props, SendFormState> {
             && recipient.status === RecipientValidationStatus.INVALID;
     }
 
-
+    isResetEnabled = (): boolean => {
+        return !this.props.loading && !!this.state.dirty;
+    }
 
     render() {
         const {
@@ -408,11 +435,11 @@ export class SendForm extends React.Component<Props, SendFormState> {
             message,
             recipient,
             sender,
-            showSubmitButton,
         } = this.state;
         const {suggestedFees} = this.props;
         const total = Amount.fromSigna(amount || '0').add(Amount.fromSigna(fee || '0'));
         const senderRS = sender && sender.accountRS || null;
+        const isResetEnabled = this.isResetEnabled();
         const isSubmitEnabled = this.isSubmitEnabled();
         const swipeButtonTitle = isSubmitEnabled
             ? i18n.t(transactions.screens.send.button.enabled)
@@ -452,11 +479,10 @@ export class SendForm extends React.Component<Props, SendFormState> {
         const isSubmitSwipeVisible =  !this.shouldShowAliasWarning() &&
             !this.shouldConfirmRisk() &&
             this.hasSufficientBalance()
-            && showSubmitButton ;
 
         return (
-            <View>
-                <View>
+            <View style={styles.root}>
+                <View style={styles.headerSection}>
                     <BSelect
                         value={senderRS}
                         items={this.getAccounts()}
@@ -467,8 +493,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
                     />
                     <Balances balances={balances}/>
                 </View>
-                <ScrollView style={styles.wrapper} ref={this.scrollViewRef}>
-
+                <ScrollView style={styles.formSection} ref={this.scrollViewRef}>
                     <View style={styles.form}>
                         <BInput
                             // autoCapitalize='characters'
@@ -528,7 +553,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
                         )}
                     </View>
                 </ScrollView>
-                <View>
+                <View style={styles.bottomSection}>
                     <View style={styles.total}>
                         <BText bebasFont color={Colors.WHITE}>
                             {i18n.t(transactions.screens.send.total)}
@@ -555,34 +580,44 @@ export class SendForm extends React.Component<Props, SendFormState> {
 
                     { this.shouldConfirmRisk() && (
                         <DangerBox>
+                            <View style={{width: '90%'}}>
                             <BCheckbox
                                 label={i18n.t(transactions.screens.send.confirmRisk, {address:recipient?.addressRS})}
                                 labelFontSize={FontSizes.SMALL}
                                 value={confirmedRisk || false}
                                 onCheck={this.setConfirmedRisk}
                             />
+                            </View>
                         </DangerBox>
                         )
                     }
 
-                    {isSubmitSwipeVisible &&
-                    <SwipeButton
-                        disabledRailBackgroundColor={Colors.PINK}
-                        disabledThumbIconBackgroundColor={Colors.GREY}
-                        disabledThumbIconBorderColor={Colors.BLUE_DARKER}
-                        disabledThumb={Colors.BLUE_DARKER}
-                        thumbIconBackgroundColor={Colors.WHITE}
-                        thumbIconImageSource={actionIcons.send}
-                        onSwipeSuccess={this.handleSubmit}
-                        shouldResetAfterSuccess={true}
-                        title={swipeButtonTitle}
-                        railBackgroundColor={Colors.GREEN_LIGHT}
-                        railBorderColor={Colors.BLUE_DARKER}
-                        railFillBackgroundColor={Colors.BLUE_DARKER}
-                        railFillBorderColor={Colors.BLUE_DARKER}
-                        titleColor={Colors.BLACK}
-                        disabled={!isSubmitEnabled}
-                    />}
+                    {isSubmitSwipeVisible && (
+                        <>
+                            <SwipeButton
+                                disabledRailBackgroundColor={Colors.PINK}
+                                disabledThumbIconBackgroundColor={Colors.GREY}
+                                disabledThumbIconBorderColor={Colors.BLUE_DARKER}
+                                disabledThumb={Colors.BLUE_DARKER}
+                                thumbIconBackgroundColor={Colors.WHITE}
+                                thumbIconImageSource={actionIcons.send}
+                                onSwipeSuccess={this.handleSubmit}
+                                shouldResetAfterSuccess={true}
+                                title={swipeButtonTitle}
+                                railBackgroundColor={Colors.GREEN_LIGHT}
+                                railBorderColor={Colors.BLUE_DARKER}
+                                railFillBackgroundColor={Colors.BLUE_DARKER}
+                                railFillBorderColor={Colors.BLUE_DARKER}
+                                titleColor={Colors.BLACK}
+                                disabled={!isSubmitEnabled}
+                            />
+                            <Button
+                                theme={ButtonThemes.ACCENT}
+                                disabled={!isResetEnabled}
+                                onPress={this.handleReset}
+                            >{i18n.t(transactions.screens.send.reset)}</Button>
+                        </>)
+                    }
                 </View>
             </View>
         );

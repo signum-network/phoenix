@@ -29,7 +29,7 @@ export const transactions = {
       addMessage: 'transactions.screens.send.addMessage',
       message: 'transactions.screens.send.message',
       confirmRisk: 'transactions.screens.send.confirmRisk',
-
+      reset: 'transactions.screens.send.reset',
     },
     receive: {
       title: 'transactions.screens.receive.title',

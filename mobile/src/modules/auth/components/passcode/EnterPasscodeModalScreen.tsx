@@ -93,7 +93,7 @@ export class EnterPasscodeModalScreen extends React.PureComponent<Props, State> 
                 }
             }
         });
-    }
+    };
 
     handleDelPress = () => {
         const {code} = this.state;
@@ -103,25 +103,28 @@ export class EnterPasscodeModalScreen extends React.PureComponent<Props, State> 
                 code: code.substr(0, code.length - 1)
             });
         }
-    }
+    };
 
     handleTouchID = () => {
-        authWithTouchId(touchIDReason).then((value) => {
-            if (value === true) {
-                this.props.onSuccess();
-            }
+        authWithTouchId(touchIDReason)
+            .then((value) => {
+                if (value === true) {
+                    this.props.onSuccess();
+                }
+            }).catch(() => {
+            // no op
         });
-    }
+    };
 
     confirmErase = () => {
         const {onReset} = this.props;
         onReset && onReset();
         this.toggleConfirmDeletePrompt();
-    }
+    };
 
     toggleConfirmDeletePrompt = () => {
         this.setState({erasePromptVisible: !this.state.erasePromptVisible});
-    }
+    };
 
     render() {
         const {hasError, hasTouchID} = this.state;

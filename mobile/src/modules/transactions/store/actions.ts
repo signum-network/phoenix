@@ -8,8 +8,7 @@ import {
 import {decryptAES, encryptData, EncryptedData, EncryptedMessage, encryptMessage, hashSHA256} from '@signumjs/crypto';
 import {
     convertHexStringToByteArray,
-    convertNQTStringToNumber,
-    convertNumberToNQTString
+    Amount
 } from '@signumjs/util';
 import {Alert} from 'react-native';
 import {i18n} from '../../../core/i18n';
@@ -55,8 +54,8 @@ export const sendMoney = createActionFn<SendAmountPayload, Promise<TransactionId
         const senderPrivateKey = decryptAES(sender.keys.signPrivateKey, hashSHA256(state.auth.passcode));
 
         const sendMoneyPayload: SendAmountArgs = {
-            amountPlanck: convertNumberToNQTString(parseFloat(amount)),
-            feePlanck: convertNumberToNQTString(parseFloat(fee)),
+            amountPlanck: Amount.fromSigna(amount).getPlanck(),
+            feePlanck: Amount.fromSigna(fee).getPlanck(),
             recipientId: address,
             senderPublicKey,
             senderPrivateKey,
@@ -75,21 +74,15 @@ export const sendMoney = createActionFn<SendAmountPayload, Promise<TransactionId
         try {
             const api = selectChainApi(state);
             const result = await api.transaction.sendAmountToSingleRecipient(sendMoneyPayload);
-
             Alert.alert(i18n.t(transactions.screens.send.success, {
-                amount: convertNQTStringToNumber(sendMoneyPayload.amountPlanck),
+                amount: Amount.fromPlanck(sendMoneyPayload.amountPlanck).getSigna(),
                 address: sendMoneyPayload.recipientId
             }));
-
             dispatch(actions.sendMoneySuccess(result));
-
             return result;
         } catch (e) {
-
             Alert.alert(i18n.t(transactions.screens.send.failure));
-
             dispatch(actions.sendMoneyFailed(e));
-
             throw e;
         }
     }

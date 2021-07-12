@@ -31,9 +31,7 @@ export const PasscodeProtection: React.FC = ({children}) => {
     }, [isPasscodeModalVisible]);
 
     const stopPasscodeTimer = () => {
-        if (timeoutHandle.current) {
-            clearTimeout(timeoutHandle.current);
-        }
+        clearTimeout(timeoutHandle.current || 0);
     };
 
     const restartPasscodeTimer = () => {

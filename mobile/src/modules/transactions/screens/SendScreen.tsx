@@ -93,7 +93,6 @@ class Send extends React.PureComponent<IProps, State> {
 
     handleSubmit = (form: SendAmountPayload) => {
         this.props.dispatch(sendMoney(form));
-        this.props.navigation.navigate(routes.home);
     }
 
     handleGetAccount = (id: string) => {
