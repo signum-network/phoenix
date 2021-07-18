@@ -57,18 +57,20 @@ export const AccountTransactionsHeader: React.FC<Props> = (props) => {
 
     const balances = getBalancesFromAccount(account);
 
-    // const totalBalance = Amount.fromPlanck(account.balanceNQT);
     const totalBalanceBTC = priceApi && priceApi.priceInfo
         ? toNumber(priceInBTC) * toNumber(balances.totalBalance.getSigna())
         : 0;
+
+    const hasLockedAmount = balances.lockedBalance.greater(Amount.Zero());
+    const hasCommittedAmount = balances.committedBalance.greater(Amount.Zero());
 
     return (
         <View style={styles.view}>
             <AmountText amount={balances.totalBalance} size={FontSizes.LARGE} style={styles.centered}/>
             <View>
-                <SubBalance text='Available' amount={balances.availableBalance}/>
-                <SubBalance text='Locked' amount={balances.lockedBalance}/>
-                <SubBalance text='Committed' amount={balances.committedBalance}/>
+                {(hasLockedAmount || hasCommittedAmount) && <SubBalance text='Available' amount={balances.availableBalance}/> }
+                {hasLockedAmount && <SubBalance text='Locked' amount={balances.lockedBalance}/>}
+                {hasCommittedAmount && <SubBalance text='Committed' amount={balances.committedBalance}/>}
             </View>
             {priceInBTC ? (
                 <Text textAlign={TextAlign.CENTER} color={Colors.WHITE} bebasFont>

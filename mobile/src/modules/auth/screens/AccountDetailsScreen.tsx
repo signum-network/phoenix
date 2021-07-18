@@ -15,7 +15,7 @@ import {routes} from '../../../core/navigation/routes';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import {RootStackParamList} from '../navigation/mainStack';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {selectAccount, selectAccounts} from '../store/selectors';
+import {selectAccount} from '../store/selectors';
 
 type AccountDetailsRouteProps = RouteProp<RootStackParamList, 'AccountDetails'>;
 type AccountDetailsNavProp = StackNavigationProp<RootStackParamList, 'AccountDetails'>;

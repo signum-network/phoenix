@@ -12,9 +12,9 @@ import {Colors} from '../../../../core/theme/colors';
 import {ReceiveAmountPayload} from '../../store/actions';
 import {transactions} from '../../translations';
 import {FeeSlider} from '../fee-slider/FeeSlider';
-import {trimAddressPrefix} from '../../../../core/utils/account';
 import {core} from '../../../../core/translations';
 import {AmountText} from '../../../../core/components/base/Amount';
+import {stableAmountFormat, stableParseSignaAmount} from '../../../../core/utils/amount';
 
 interface Props {
     onSubmit: (form: ReceiveAmountPayload) => void;
@@ -82,8 +82,12 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
 
     const handleFormChange = (fieldName: string) => (data: any) => {
 
-        if (typeof data === 'string') {
-            data = data.trim();
+        switch (fieldName) {
+            case 'recipient' :
+                data = data.trim();
+                break;
+            case 'amount':
+                data = stableAmountFormat(data);
         }
 
         const updated = {
@@ -119,7 +123,7 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
     };
 
     const {immutable, recipient, amount, fee, message = ''} = formData;
-    const total = Amount.fromSigna(amount || 0).add(Amount.fromSigna(fee || 0));
+    const total = stableParseSignaAmount(amount ).add(stableParseSignaAmount(fee));
     const {suggestedFees} = props;
 
     return (
@@ -171,7 +175,7 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
                     <BText bebasFont color={Colors.WHITE}>
                         {i18n.t(transactions.screens.send.total)}
                     </BText>
-                    <AmountText amount={total || Amount.Zero()} />
+                    <AmountText amount={total || Amount.Zero()}/>
                 </View>
                 <BButton disabled={!submitEnabled} onPress={handleSubmit}>
                     {i18n.t(transactions.screens.receive.generate)}

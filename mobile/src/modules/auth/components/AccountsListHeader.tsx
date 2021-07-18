@@ -75,13 +75,16 @@ export const AccountsListHeader: React.FC<Props> = (props) => {
         return totals;
     }, initialBalances);
 
-    const totalSigna = toNumber(totalBalances.totalBalance.getSigna());
-    const totalBalanceBTC = priceInBTC
-        ? toNumber(priceInBTC) * totalSigna
-        : 0;
-    const totalBalanceUSD = priceInBTC
-        ? toNumber(priceInUSD) * totalSigna
-        : 0;
+    // const totalSigna = toNumber(totalBalances.totalBalance.getSigna());
+    // const totalBalanceBTC = priceInBTC
+    //     ? toNumber(priceInBTC) * totalSigna
+    //     : 0;
+    // const totalBalanceUSD = priceInBTC
+    //     ? toNumber(priceInUSD) * totalSigna
+    //     : 0;
+
+    const hasLockedAmount = totalBalances.lockedBalance.greater(Amount.Zero());
+    const hasCommittedAmount = totalBalances.committedBalance.greater(Amount.Zero());
 
     return (hasAccounts &&
             <View style={styles.view}>
@@ -92,17 +95,10 @@ export const AccountsListHeader: React.FC<Props> = (props) => {
                         color={Colors.WHITE}
                     />
                 </View>
-                {/*<View style={styles.centered}>*/}
-                {/*    <Text color={Colors.WHITE} bebasFont>*/}
-                {/*        {priceApi && priceApi.selectedCurrency === PriceType.USD ?*/}
-                {/*            i18n.t(core.currency.USD.value, {value: totalBalanceUSD.toFixed(2)}) :*/}
-                {/*            i18n.t(core.currency.BTC.value, {value: amountToString(totalBalanceBTC)})}*/}
-                {/*    </Text>*/}
-                {/*</View>*/}
                 <View>
-                    <SubBalance text='Available' amount={totalBalances.availableBalance}/>
-                    <SubBalance text='Locked' amount={totalBalances.lockedBalance}/>
-                    <SubBalance text='Committed' amount={totalBalances.committedBalance}/>
+                    {(hasLockedAmount || hasCommittedAmount) && <SubBalance text='Available' amount={totalBalances.availableBalance}/>}
+                    {hasLockedAmount && <SubBalance text='Locked' amount={totalBalances.lockedBalance}/> }
+                    {hasCommittedAmount &&  <SubBalance text='Committed' amount={totalBalances.committedBalance}/>}
                 </View>
             </View>
     );

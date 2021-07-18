@@ -23,8 +23,9 @@ export function getBalancesFromAccount(account?: Account|null): AccountBalances 
 
     const totalBalance = Amount.fromPlanck(account.balanceNQT || '0');
     const availableBalance = Amount.fromPlanck(account.unconfirmedBalanceNQT || '0');
-    const lockedBalance = totalBalance.clone().subtract(availableBalance);
     const committedBalance = Amount.fromPlanck(account.committedBalanceNQT || '0');
+    // other locked balances
+    const lockedBalance = totalBalance.clone().subtract(availableBalance).subtract(committedBalance);
     return {
         availableBalance,
         committedBalance,

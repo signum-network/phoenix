@@ -9,13 +9,13 @@ import {BSelect, SelectItem} from '../../../../core/components/base/BSelect';
 import {Text, Text as BText, TextAlign} from '../../../../core/components/base/Text';
 import {i18n} from '../../../../core/i18n';
 import {Colors} from '../../../../core/theme/colors';
-import {amountToString} from '../../../../core/utils/numbers';
+import {amountToString, stableAmountFormat} from '../../../../core/utils/numbers';
 import {SendAmountPayload} from '../../store/actions';
 import {Recipient, RecipientType, RecipientValidationStatus} from '../../store/utils';
 import {transactions} from '../../translations';
 import {FeeSlider} from '../fee-slider/FeeSlider';
 import {AccountStatusPill} from './AccountStatusPill';
-import {isValidReedSolomonAddress} from '../../../../core/utils/account';
+import {isValidReedSolomonAddress, shortenRSAddress} from '../../../../core/utils/account';
 import {BCheckbox} from '../../../../core/components/base/BCheckbox';
 import {FontSizes, Sizes} from '../../../../core/theme/sizes';
 import {AmountText} from '../../../../core/components/base/Amount';
@@ -23,6 +23,8 @@ import {DangerBox} from './DangerBox';
 import {AccountBalances, getBalancesFromAccount, ZeroAcountBalances} from '../../../../core/utils/balance/getBalancesFromAccount';
 import {Button, ButtonThemes} from '../../../../core/components/base/Button';
 import isEmpty from 'lodash/isEmpty';
+import { toNumber } from 'lodash';
+import {stableParseSignaAmount} from '../../../../core/utils/amount';
 
 const AddressPrefix = 'S-';
 
@@ -62,13 +64,11 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         height: '95%'
     },
-    headerSection: {
-    },
+    headerSection: {},
     formSection: {
         minHeight: '50%'
     },
-    bottomSection: {
-    },
+    bottomSection: {},
     form: {
         display: 'flex',
     },
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         width: 25,
         height: 25,
         marginTop: 3,
-        transform: [{rotate: '-90deg' }],
+        transform: [{rotate: '-90deg'}],
     },
     balance: {
         marginTop: 3,
@@ -116,15 +116,26 @@ const subBalanceStyles = StyleSheet.create({
     },
 });
 
-const Balances: React.FC<{ balances?: AccountBalances}> = ({balances = ZeroAcountBalances}) => (
+const Balances: React.FC<{ balances?: AccountBalances }> = ({balances = ZeroAcountBalances}) => (
     <View style={subBalanceStyles.root}>
-        <Text color={Colors.GREY} size={FontSizes.SMALL}>Available:</Text>
-        <AmountText color={Colors.GREY} size={FontSizes.SMALL} amount={balances.availableBalance}/>
-        <Text color={Colors.GREY} size={FontSizes.SMALL}>Locked:</Text>
-        <AmountText color={Colors.GREY} size={FontSizes.SMALL} amount={balances.lockedBalance}/>
+        <Text color={Colors.GREY} size={FontSizes.SMALLER}>Available:</Text>
+        <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.availableBalance}/>
+        {balances.lockedBalance.greater(Amount.Zero()) && (
+                <>
+                    <Text color={Colors.GREY} size={FontSizes.SMALLER}>Locked:</Text>
+                    <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.lockedBalance}/>
+                </>
+            )
+        }
+        {balances.committedBalance.greater(Amount.Zero()) && (
+                <>
+                    <Text color={Colors.GREY} size={FontSizes.SMALLER}>Committed:</Text>
+                    <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.committedBalance}/>
+                </>
+            )
+        }
     </View>
 );
-
 
 export class SendForm extends React.Component<Props, SendFormState> {
     private scrollViewRef = createRef<ScrollView>();
@@ -139,14 +150,14 @@ export class SendForm extends React.Component<Props, SendFormState> {
             .filter(({type}) => type !== 'offline')
             .map(({accountRS, name}) => ({
                 value: accountRS,
-                label: name || accountRS
+                label: name || shortenRSAddress(accountRS)
             }));
-    }
+    };
 
     getAccount = (address: string): Account | null => {
         return this.props.accounts
             .find(({accountRS}) => accountRS === address) || null;
-    }
+    };
 
     getInitialState = (deeplinkProps?: SendFormState) => {
         const accounts = this.getAccounts();
@@ -168,12 +179,14 @@ export class SendForm extends React.Component<Props, SendFormState> {
             dirty: !!deeplinkProps,
             balances,
         };
-    }
+    };
 
     UNSAFE_componentWillReceiveProps = ({deepLinkProps}: Props) => {
-        if (!deepLinkProps) return;
+        if (!deepLinkProps) {
+            return;
+        }
         this.setState(this.getInitialState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
-    }
+    };
 
     applyRecipientType(recipient: string): void {
         const r = recipient.trim();
@@ -214,9 +227,9 @@ export class SendForm extends React.Component<Props, SendFormState> {
                 break;
             case RecipientType.ADDRESS:
                 accountFetchFn = this.props.onGetAccount;
-                try{
+                try {
                     formattedAddress = Address.fromReedSolomonAddress(recipient).getNumericId();
-                }catch(e){
+                } catch (e) {
                     formattedAddress = recipient;
                 }
                 break;
@@ -265,10 +278,10 @@ export class SendForm extends React.Component<Props, SendFormState> {
             });
         } catch (e) {
             let addressRS = recipient;
-            try{
+            try {
                 addressRS = this.state.recipient.type === RecipientType.ZIL
                     ? recipient : Address.create(recipient).getReedSolomonAddress();
-            }catch(e){
+            } catch (e) {
                 // no op
             }
 
@@ -283,10 +296,12 @@ export class SendForm extends React.Component<Props, SendFormState> {
         }
     }
 
+
     hasSufficientBalance = (): boolean => {
         const {amount, balances} = this.state;
-        return balances.availableBalance.greaterOrEqual(Amount.fromSigna(amount || 0));
-    }
+        const parsedAmount = stableParseSignaAmount(amount)
+        return balances.availableBalance.greaterOrEqual(parsedAmount);
+    };
 
     isSubmitEnabled = () => {
         const {sender, recipient, amount, fee, confirmedRisk} = this.state;
@@ -301,17 +316,17 @@ export class SendForm extends React.Component<Props, SendFormState> {
             confirmedRisk &&
             this.hasSufficientBalance()
         );
-    }
+    };
 
     markAsDirty = (): void => {
         this.setState({dirty: true});
-    }
+    };
 
     handleChangeFromAccount = (sender: string) => {
         const account = this.getAccount(sender);
         const balances = getBalancesFromAccount(account);
-        this.setState({sender: account, balances });
-    }
+        this.setState({sender: account, balances});
+    };
 
     handleChangeAddress = (address: string) => {
         this.setState({
@@ -321,27 +336,26 @@ export class SendForm extends React.Component<Props, SendFormState> {
             }
         });
         this.markAsDirty();
-    }
+    };
 
     handleAddressBlur = (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
         this.applyRecipientType(e.nativeEvent.text);
-    }
-
+    };
 
     handleAmountChange = (amount: string) => {
-        this.setState({amount: amount.replace(',', '.')});
+        this.setState({amount: stableAmountFormat(amount)});
         this.markAsDirty();
-    }
+    };
 
     handleFeeChange = (fee: string) => {
         this.setState({fee: fee.replace(',', '.')});
         this.markAsDirty();
-    }
+    };
 
     handleMessageChange = (message: string) => {
         this.setState({message});
         this.markAsDirty();
-    }
+    };
 
     setEncryptMessage(encrypt: boolean): void {
         this.setState({encrypt});
@@ -363,15 +377,14 @@ export class SendForm extends React.Component<Props, SendFormState> {
     handleFeeChangeFromSlider = (fee: number) => {
         this.setState({fee: amountToString(fee)});
         this.markAsDirty();
-    }
+    };
 
     setConfirmedRisk = (confirmedRisk: boolean) => {
-        console.log('setConfirmedRisk', confirmedRisk)
         this.setState({confirmedRisk});
-    }
+    };
 
     onSpendAll = () => {
-        const  {sender, fee} = this.state;
+        const {sender, fee} = this.state;
         if (!sender) {
             return;
         }
@@ -379,7 +392,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
         const balancesFromAccount = getBalancesFromAccount(sender);
         const maxAmount = balancesFromAccount.availableBalance.subtract(Amount.fromSigna(fee || 0));
         this.handleAmountChange(maxAmount.less(Amount.Zero()) ? '0' : maxAmount.getSigna());
-    }
+    };
 
     handleSubmit = () => {
 
@@ -400,17 +413,17 @@ export class SendForm extends React.Component<Props, SendFormState> {
             immutable,
             encrypt
         });
-    }
+    };
 
     handleReset = () => {
         this.setState(this.getInitialState());
-    }
+    };
 
     shouldShowAliasWarning = (): boolean => {
         const {type, status} = this.state.recipient;
         return type === RecipientType.ALIAS && status === RecipientValidationStatus.INVALID;
 
-    }
+    };
 
     shouldConfirmRisk = (): boolean => {
         const {recipient, confirmedRisk} = this.state;
@@ -418,10 +431,15 @@ export class SendForm extends React.Component<Props, SendFormState> {
             && recipient.type !== RecipientType.UNKNOWN
             && recipient.type !== RecipientType.ALIAS
             && recipient.status === RecipientValidationStatus.INVALID;
-    }
+    };
 
     isResetEnabled = (): boolean => {
         return !this.props.loading && !!this.state.dirty;
+    };
+
+    getTotal = () : Amount => {
+        const {amount, fee} = this.state;
+        return stableParseSignaAmount(amount).add(stableParseSignaAmount(fee));
     }
 
     render() {
@@ -437,7 +455,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
             sender,
         } = this.state;
         const {suggestedFees} = this.props;
-        const total = Amount.fromSigna(amount || '0').add(Amount.fromSigna(fee || '0'));
+        const total = this.getTotal();
         const senderRS = sender && sender.accountRS || null;
         const isResetEnabled = this.isResetEnabled();
         const isSubmitEnabled = this.isSubmitEnabled();
@@ -476,9 +494,9 @@ export class SendForm extends React.Component<Props, SendFormState> {
             </View>
         );
 
-        const isSubmitSwipeVisible =  !this.shouldShowAliasWarning() &&
+        const isSubmitSwipeVisible = !this.shouldShowAliasWarning() &&
             !this.shouldConfirmRisk() &&
-            this.hasSufficientBalance()
+            this.hasSufficientBalance();
 
         return (
             <View style={styles.root}>
@@ -566,7 +584,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
                                 {i18n.t(transactions.screens.send.insufficientFunds)}
                             </BText>
                         </DangerBox>
-                        )
+                    )
                     }
 
                     {this.shouldShowAliasWarning() && (
@@ -575,21 +593,21 @@ export class SendForm extends React.Component<Props, SendFormState> {
                                 {i18n.t(transactions.screens.send.invalidAlias)}
                             </BText>
                         </DangerBox>
-                        )
+                    )
                     }
 
-                    { this.shouldConfirmRisk() && (
+                    {this.shouldConfirmRisk() && (
                         <DangerBox>
                             <View style={{width: '90%'}}>
-                            <BCheckbox
-                                label={i18n.t(transactions.screens.send.confirmRisk, {address:recipient?.addressRS})}
-                                labelFontSize={FontSizes.SMALL}
-                                value={confirmedRisk || false}
-                                onCheck={this.setConfirmedRisk}
-                            />
+                                <BCheckbox
+                                    label={i18n.t(transactions.screens.send.confirmRisk, {address: recipient?.addressRS})}
+                                    labelFontSize={FontSizes.SMALL}
+                                    value={confirmedRisk || false}
+                                    onCheck={this.setConfirmedRisk}
+                                />
                             </View>
                         </DangerBox>
-                        )
+                    )
                     }
 
                     {isSubmitSwipeVisible && (
