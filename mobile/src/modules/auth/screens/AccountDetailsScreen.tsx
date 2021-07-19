@@ -72,8 +72,9 @@ export const AccountDetailsScreen: React.FC<Props> = (props) => {
         }
 
         const address = Address.fromNumericId(route.params.account);
-        Clipboard.setString(address.getReedSolomonAddress());
-        Alert.alert(i18n.t(auth.accountDetails.copiedSuccessfully));
+        const value = address.getReedSolomonAddress()
+        Clipboard.setString(value);
+        Alert.alert(i18n.t(auth.accountDetails.copiedSuccessfully, {value}));
     };
 
     if (!account) {
