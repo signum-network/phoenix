@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Address
-	| burstjs - The Burstcoin Reference Library</title>
+	| signumjs - The Signum Network Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="index, follow">
@@ -111,12 +111,14 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.address.html#equals" class="tsd-kind-icon">equals</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.address.html#getaccountid" class="tsd-kind-icon">get<wbr>Account<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.address.html#getnumericid" class="tsd-kind-icon">get<wbr>Numeric<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.address.html#getpublickey" class="tsd-kind-icon">get<wbr>Public<wbr>Key</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.address.html#getreedsolomonaddress" class="tsd-kind-icon">get<wbr>Reed<wbr>Solomon<wbr>Address</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.address.html#getreedsolomonaddressextended" class="tsd-kind-icon">get<wbr>Reed<wbr>Solomon<wbr>Address<wbr>Extended</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="core.address.html#fromextendedrsaddress" class="tsd-kind-icon">from<wbr>ExtendedRSAddress</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="core.address.html#create" class="tsd-kind-icon">create</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="core.address.html#fromnumericid" class="tsd-kind-icon">from<wbr>Numeric<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="core.address.html#frompublickey" class="tsd-kind-icon">from<wbr>Public<wbr>Key</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="core.address.html#fromreedsolomonaddress" class="tsd-kind-icon">from<wbr>Reed<wbr>Solomon<wbr>Address</a></li>
 							</ul>
 						</section>
 					</div>
@@ -134,7 +136,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/address/address.ts#L105">core/src/address/address.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/address/address.ts#L147">core/src/address/address.ts:147</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -157,16 +159,16 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getaccountid" class="tsd-anchor"></a>
-					<h3>get<wbr>Account<wbr>Id</h3>
+					<a name="getnumericid" class="tsd-anchor"></a>
+					<h3>get<wbr>Numeric<wbr>Id</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Account<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Numeric<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/address/address.ts#L77">core/src/address/address.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/address/address.ts#L111">core/src/address/address.ts:111</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -186,10 +188,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/address/address.ts#L70">core/src/address/address.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/address/address.ts#L104">core/src/address/address.ts:104</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>Gets public key</p>
 						</li>
 					</ul>
 				</section>
@@ -197,13 +202,13 @@
 					<a name="getreedsolomonaddress" class="tsd-anchor"></a>
 					<h3>get<wbr>Reed<wbr>Solomon<wbr>Address</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Reed<wbr>Solomon<wbr>Address<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Reed<wbr>Solomon<wbr>Address<span class="tsd-signature-symbol">(</span>withPrefix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/address/address.ts#L86">core/src/address/address.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/address/address.ts#L121">core/src/address/address.ts:121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -216,6 +221,15 @@
 									</dd>
 								</dl>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> withPrefix: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If false, the address without prefix will be returned. Default: true</p>
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 							<p>Reed Solomon Address Format</p>
 						</li>
@@ -225,60 +239,106 @@
 					<a name="getreedsolomonaddressextended" class="tsd-anchor"></a>
 					<h3>get<wbr>Reed<wbr>Solomon<wbr>Address<wbr>Extended</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Reed<wbr>Solomon<wbr>Address<wbr>Extended<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Reed<wbr>Solomon<wbr>Address<wbr>Extended<span class="tsd-signature-symbol">(</span>withPrefix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/address/address.ts#L95">core/src/address/address.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/address/address.ts#L135">core/src/address/address.ts:135</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Gets as extended Reed Solomon representation carrying the public key as suffix in base36 encoding</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>see</dt>
-									<dd><p><a href="core.address.html#getreedsolomonaddress">Address.getReedSolomonAddress</a></p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							<p>Extended Reed Solomon Address Format</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="fromextendedrsaddress" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> from<wbr>ExtendedRSAddress</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">from<wbr>ExtendedRSAddress<span class="tsd-signature-symbol">(</span>extendedRSAddress<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.address.html" class="tsd-signature-type">Address</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/address/address.ts#L48">core/src/address/address.ts:48</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Creates a Burst Address object from public key</p>
-								</div>
+								<p>This method requires that the address was created from a public key or extended address.</p>
 								<dl class="tsd-comment-tags">
 									<dt>throws</dt>
-									<dd><p>Error if the passed address is invalid, i.e. not extended format , or extension aka base36 encoded public key does not match address</p>
+									<dd><p>if no public key is available</p>
+									</dd>
+									<dt>see</dt>
+									<dd><p><a href="core.address.html#getreedsolomonaddress">Address.getReedSolomonAddress</a></p>
 									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>extendedRSAddress: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> withPrefix: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The Reed-Solomon address in extended format (with base36 suffix)</p>
+										<p>If false, the address without prefix will be returned. Default: true</p>
 									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>Extended Reed Solomon Address Format</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="create" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> create</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">create<span class="tsd-signature-symbol">(</span>anyValidAddress<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, prefix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.address.html" class="tsd-signature-type">Address</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/address/address.ts#L50">core/src/address/address.ts:50</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tries to create the address from whatever input is given</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>when no valid format</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>anyValidAddress: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Any valid address, may it be Reed Solomon address, numeric ID, or public key</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> prefix: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = AddressPrefix.MainNet</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An optional prefix, which can be used to substitute the default <a href="../enums/core.addressprefix.html#mainnet">AddressPrefix.MainNet</a></p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="core.address.html" class="tsd-signature-type">Address</a></h4>
+							<p>The new address, if the input was valid</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="fromnumericid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> from<wbr>Numeric<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">from<wbr>Numeric<wbr>Id<span class="tsd-signature-symbol">(</span>numericId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, prefix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.address.html" class="tsd-signature-type">Address</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/address/address.ts#L64">core/src/address/address.ts:64</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>numericId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> prefix: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = AddressPrefix.MainNet</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="core.address.html" class="tsd-signature-type">Address</a></h4>
@@ -289,18 +349,18 @@
 					<a name="frompublickey" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> from<wbr>Public<wbr>Key</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">from<wbr>Public<wbr>Key<span class="tsd-signature-symbol">(</span>publicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.address.html" class="tsd-signature-type">Address</a></li>
+						<li class="tsd-signature tsd-kind-icon">from<wbr>Public<wbr>Key<span class="tsd-signature-symbol">(</span>publicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, prefix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.address.html" class="tsd-signature-type">Address</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/address/address.ts#L39">core/src/address/address.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/address/address.ts#L74">core/src/address/address.ts:74</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a Burst Address object from public key</p>
+									<p>Creates an Account Address object from public key</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -309,6 +369,48 @@
 									<h5>publicKey: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The public key of that address (in hex format)</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> prefix: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = AddressPrefix.MainNet</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Reed-Solomon Address prefix</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="core.address.html" class="tsd-signature-type">Address</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="fromreedsolomonaddress" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> from<wbr>Reed<wbr>Solomon<wbr>Address</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">from<wbr>Reed<wbr>Solomon<wbr>Address<span class="tsd-signature-symbol">(</span>address<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.address.html" class="tsd-signature-type">Address</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/address/address.ts#L83">core/src/address/address.ts:83</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an Account Address object from extended Reed-Solomon address</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>Error if the passed address is invalid</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>address: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Reed-Solomon address in simple or extended format (with base36 suffix)</p>
 									</div>
 								</li>
 							</ul>
@@ -361,7 +463,7 @@
 								<a href="core.address.html#equals" class="tsd-kind-icon">equals</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.address.html#getaccountid" class="tsd-kind-icon">get<wbr>Account<wbr>Id</a>
+								<a href="core.address.html#getnumericid" class="tsd-kind-icon">get<wbr>Numeric<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="core.address.html#getpublickey" class="tsd-kind-icon">get<wbr>Public<wbr>Key</a>
@@ -373,10 +475,16 @@
 								<a href="core.address.html#getreedsolomonaddressextended" class="tsd-kind-icon">get<wbr>Reed<wbr>Solomon<wbr>Address<wbr>Extended</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="core.address.html#fromextendedrsaddress" class="tsd-kind-icon">from<wbr>ExtendedRSAddress</a>
+								<a href="core.address.html#create" class="tsd-kind-icon">create</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="core.address.html#fromnumericid" class="tsd-kind-icon">from<wbr>Numeric<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="core.address.html#frompublickey" class="tsd-kind-icon">from<wbr>Public<wbr>Key</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="core.address.html#fromreedsolomonaddress" class="tsd-kind-icon">from<wbr>Reed<wbr>Solomon<wbr>Address</a>
 							</li>
 						</ul>
 					</li>

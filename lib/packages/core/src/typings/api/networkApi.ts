@@ -3,7 +3,7 @@ import {ServerStatus} from '../serverStatus';
 import {SuggestedFees} from '../suggestedFees';
 import {Peer} from '../peer';
 import {PeerAddressList} from '../peerAddressList';
-import {BurstTime} from '../burstTime';
+import {ChainTimestamp} from '../chainTimestamp';
 import {TransactionList} from '../transactionList';
 
 /**
@@ -48,9 +48,9 @@ export interface NetworkApi {
     getPeers: (active?: boolean) => Promise<PeerAddressList>;
 
     /**
-     * Get the current blockchain/Burst timestamp in seconds since Genesis Block
+     * Get the current blockchain timestamp in seconds since Genesis Block
      * @return timestamp in seconds since Genesis Block
      */
-    getTime: () => Promise<BurstTime>;
+    getTime: () => Promise<ChainTimestamp>;
 
 }

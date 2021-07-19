@@ -7,7 +7,7 @@ check () {
     fi
 }
 
-cd ../../lib
+cd ../lib
 npm run tsc
 npm run test
 check

@@ -3,7 +3,7 @@ import {NgForm} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {Account, Address, AddressPrefix} from '@signumjs/core';
-import {BlockTime} from '@signumjs/util';
+import {ChainTime} from '@signumjs/util';
 import {decryptAES, decryptMessage, hashSHA256} from '@signumjs/crypto';
 import {Router} from '@angular/router';
 import {FusePerfectScrollbarDirective} from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
@@ -160,7 +160,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     const message = {
       contactId: this.selectedUser.account,
       message: this.replyForm.form.value.message,
-      timestamp: BlockTime.fromDate(new Date()).getBlockTimestamp()
+      timestamp: ChainTime.fromDate(new Date()).getChainTimestamp()
     };
 
     try {
@@ -204,7 +204,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   convertTimestampToDate(timestamp): Date {
-    return BlockTime.fromBlockTimestamp(timestamp).getDate();
+    return ChainTime.fromChainTimestamp(timestamp).getDate();
   }
 
   canSubmitReply(): boolean {

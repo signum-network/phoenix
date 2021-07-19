@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Account, Block } from '@signumjs/core';
 import { FormControl } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
-import { Amount, BlockTime } from '@signumjs/util';
+import { Amount, ChainTime } from '@signumjs/util';
 import { NetworkService } from 'app/network/network.service';
 import { ActivatedRoute } from '@angular/router';
 import { StoreService } from 'app/store/store.service';
@@ -169,7 +169,7 @@ export class BlocksComponent implements OnInit {
   }
 
   public convertTimestamp(timestamp: number): Date {
-    return BlockTime.fromBlockTimestamp(timestamp).getDate();
+    return ChainTime.fromChainTimestamp(timestamp).getDate();
   }
 
   getAmountFromPlanck(totalFeeNQT: any): string {

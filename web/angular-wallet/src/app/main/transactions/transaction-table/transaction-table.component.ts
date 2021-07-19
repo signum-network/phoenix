@@ -15,7 +15,7 @@ import {
   TransactionMiningSubtype,
   TransactionType
 } from '@signumjs/core';
-import {Amount, BlockTime} from '@signumjs/util';
+import {Amount, ChainTime} from '@signumjs/util';
 import {UtilService} from 'app/util.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
@@ -57,7 +57,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   }
 
   public convertTimestamp(timestamp: number): Date {
-    return BlockTime.fromBlockTimestamp(timestamp).getDate();
+    return ChainTime.fromChainTimestamp(timestamp).getDate();
   }
 
   public getTransactionNameFromType(transaction: Transaction): string {
@@ -96,7 +96,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   }
 
   getDate(tx: Transaction): string {
-    const time = BlockTime.fromBlockTimestamp(tx.timestamp);
+    const time = ChainTime.fromChainTimestamp(tx.timestamp);
     return formatDate(time.getDate(), 'short', this.locale);
   }
 

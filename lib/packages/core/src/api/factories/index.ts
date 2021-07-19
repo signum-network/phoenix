@@ -4,7 +4,7 @@
  * rather than using the Factory Methods itself
  *
  * The factory methods are higher-order functions which
- * receives a [[BurstService]] instance in first order, and
+ * receives a [[ChainService]] instance in first order, and
  * the payload in second order.
  *
  * `factoryMethod(burstServiceInstance)(methodArgs)`

@@ -14,7 +14,7 @@ import {Attachment} from '../attachment';
 export interface DefaultSendArgs {
     /**
      * The fee expressed in Planck
-     * @note It's recommended to use [[util.BurstValue]]
+     * @note It's recommended to use [[util.Amount]]
      */
     feePlanck: string;
     /**

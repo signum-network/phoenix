@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.2.2
+
+- fixed wrong logo name
+- removed _temporarily_ fcas stats
+- fixed market info
+  - although API does not return Market Cap yet.
+
+## 1.2.1 
+
+## Bug fix
+
+- Encryption of attachment works again (#1490)
+- Burst Currency Symbol in Commitment Page (#1489)
+- Alias Reset Form (#1484)
+- Disclaimer with Signum Logo (#1483)
+
+
 ## 1.2.0 (Signum Rebrand)
 
 - Overall Rebranding for Signum

@@ -28,13 +28,13 @@
     </mat-form-field>
 
     <mat-form-field *ngIf="type==='acct'">
-      <input matInput prefix="{{addressPrefix}}" pasteableAddress [patterns]="burstAddressPatternRef"
+      <input matInput prefix="{{addressPrefix}}" pasteableAddress [patterns]="addressPatternRef"
              mask="-____-____-____-_____" [dropSpecialCharacters]="false" [showMaskTyped]="true"
              [(ngModel)]="accountAliasURI" name="accountAliasURI" placeholder="{{ 'address' | i18n }}">
     </mat-form-field>
 
     <mat-form-field *ngIf="type==='other'">
-      <textarea matInput [(ngModel)]="data" name="data" placeholder="{{ 'data' | i18n }}"></textarea>
+      <textarea matInput [(ngModel)]="uri" name="uri" placeholder="{{ 'data' | i18n }}"></textarea>
     </mat-form-field>
 
     <mat-form-field>

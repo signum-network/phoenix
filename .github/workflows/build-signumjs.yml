@@ -1,6 +1,7 @@
 name: Build SignumJS
 
 on:
+  pull_request:
   push:
     branches:
       - "**"
@@ -26,7 +27,7 @@ jobs:
         with:
           node-version: 12
 
-      - name: Run BurstJS Tests
+      - name: Run SignumJS Tests
         run: |
           npm ci
           npm t

@@ -6,7 +6,7 @@ export const environment = {
   version,
   defaultNode: '',
   market: {
-    tickerUrl: 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BURST&tsyms=BTC,USD,EUR',
+    tickerUrl: 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=SIGNA&tsyms=BTC,USD,EUR',
     tickerInterval: 60 * 1000
   },
   performance: {

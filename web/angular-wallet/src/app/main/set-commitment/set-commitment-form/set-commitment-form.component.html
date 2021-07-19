@@ -19,7 +19,7 @@
     <div class="amount-wrapper">
       <mat-form-field>
         <mat-label>{{ 'amount' | i18n }}</mat-label>
-        <span matPrefix>Ƀ &nbsp;</span>
+        <span matPrefix>{{symbol}}&nbsp;</span>
         <input matInput [(ngModel)]="amount" name="amount">
         <mat-icon
           class="all-icon"
@@ -33,7 +33,7 @@
 
       <mat-form-field>
         <mat-label>{{ 'fee' | i18n }}</mat-label>
-        <span matPrefix>Ƀ &nbsp;</span>
+        <span matPrefix>{{symbol}}&nbsp;</span>
         <input matInput [(ngModel)]="fee" name="fee">
       </mat-form-field>
     </div>

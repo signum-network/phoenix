@@ -1,6 +1,6 @@
 <div id="dashboard" class="page-layout blank">
 
-  <app-balance-chart 
+  <app-balance-chart
                      [account]="account"
                      [priceBtc]="priceBtc"
                      [priceUsd]="priceUsd"
@@ -39,12 +39,12 @@
              [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</a>
         </div>
       </mat-grid-tile>
-      <mat-grid-tile [colspan]="gridAttributes.columnSpans.performance" [rowspan]="gridAttributes.rowSpans.performance">
-        <div class="fuse-card ml-8">
-          <div class="h3 secondary-text mb-8">{{ 'coin_performance' | i18n }}</div>
-          <app-performance></app-performance>
-        </div>
-      </mat-grid-tile>
+<!--      <mat-grid-tile [colspan]="gridAttributes.columnSpans.performance" [rowspan]="gridAttributes.rowSpans.performance">-->
+<!--        <div class="fuse-card ml-8">-->
+<!--          <div class="h3 secondary-text mb-8">{{ 'coin_performance' | i18n }}</div>-->
+<!--          <app-performance></app-performance>-->
+<!--        </div>-->
+<!--      </mat-grid-tile>-->
       <mat-grid-tile [colspan]="gridAttributes.columnSpans.market" [rowspan]="gridAttributes.rowSpans.market">
         <div class="fuse-card ml-8">
           <div class="h3 secondary-text ">{{ 'market_info' | i18n }}</div>

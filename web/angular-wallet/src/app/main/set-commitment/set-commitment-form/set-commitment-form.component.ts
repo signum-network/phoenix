@@ -12,7 +12,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
 import {AccountService} from '../../../setup/account/account.service';
 import {NetworkService} from '../../../network/network.service';
-import {KeyDecryptionException} from '../../../util/exceptions/KeyDecryptionException';
 import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
@@ -35,6 +34,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
   @Input() account: Account;
   @Input() fees: SuggestedFees;
 
+  symbol = Amount.CurrencySymbol();
   fee: string;
   isSending = false;
   blocksMissingUntilRevoke = 0;

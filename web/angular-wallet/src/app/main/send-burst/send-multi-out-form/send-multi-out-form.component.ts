@@ -104,7 +104,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       pin: this.pin,
       keys: this.account.keys,
     };
-    await this.transactionService.sendSameBurstToMultipleRecipients(request);
+    await this.transactionService.sendSameAmountToMultipleRecipients(request);
   }
 
   private async sendBurstArbitraryAmount(): Promise<void> {
@@ -120,7 +120,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       pin: this.pin,
       keys: this.account.keys,
     };
-    await this.transactionService.sendBurstToMultipleRecipients(request);
+    await this.transactionService.sendAmountToMultipleRecipients(request);
   }
 
 

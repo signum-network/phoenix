@@ -1,5 +1,5 @@
 import {Block} from '@signumjs/core';
-import {BlockTime} from '@signumjs/util';
+import {ChainTime} from '@signumjs/util';
 import {CellValue, CellValueType} from '../../transactions/transaction-details/cell-value-mapper';
 import {formatAmount} from '../../../util/formatAmount';
 import {Amount} from '@signumjs/util';
@@ -52,7 +52,7 @@ export class BlockCellValueMapper {
   }
 
   private getTime(blockTimestamp: number): CellValue {
-    const date = BlockTime.fromBlockTimestamp(blockTimestamp).getDate();
+    const date = ChainTime.fromChainTimestamp(blockTimestamp).getDate();
     return new CellValue(date, CellValueType.Date);
   }
 

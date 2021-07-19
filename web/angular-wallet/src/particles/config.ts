@@ -21,7 +21,7 @@ export default  {
         'nb_sides': 5
       },
       'image': {
-        'src': 'assets/images/logos/logo_blue.png',
+        'src': 'assets/images/logos/logo_white.svg',
         'width': 100,
         'height': 100
       }

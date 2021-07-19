@@ -78,7 +78,7 @@ export class TransactionService {
     return this.transactionApi.getTransaction(id);
   }
 
-  private getSendersPrivateKey(pin: string, keys: Keys): string {
+  private getSendersSignPrivateKey(pin: string, keys: Keys): string {
     const privateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
     if (!privateKey) {
       throw new KeyDecryptionException();
@@ -86,35 +86,43 @@ export class TransactionService {
     return privateKey;
   }
 
-  public async sendBurstToMultipleRecipients(request: SendBurstMultipleRequest): Promise<TransactionId> {
+  private getSendersEncryptionPrivateKey(pin: string, keys: Keys): string {
+    const privateKey = decryptAES(keys.agreementPrivateKey, hashSHA256(pin));
+    if (!privateKey) {
+      throw new KeyDecryptionException();
+    }
+    return privateKey;
+  }
+
+  public async sendAmountToMultipleRecipients(request: SendBurstMultipleRequest): Promise<TransactionId> {
     const {fee, keys, pin, recipientAmounts} = request;
     return this.transactionApi.sendAmountToMultipleRecipients(
       recipientAmounts,
       fee,
       keys.publicKey,
-      this.getSendersPrivateKey(pin, keys)
+      this.getSendersSignPrivateKey(pin, keys)
     );
   }
 
-  public async sendSameBurstToMultipleRecipients(request: SendBurstMultipleSameRequest): Promise<TransactionId> {
+  public async sendSameAmountToMultipleRecipients(request: SendBurstMultipleSameRequest): Promise<TransactionId> {
     const {amountNQT, fee, keys, pin, recipientIds} = request;
     return this.transactionApi.sendSameAmountToMultipleRecipients(
       amountNQT,
       fee,
       recipientIds,
       keys.publicKey,
-      this.getSendersPrivateKey(pin, keys)
+      this.getSendersSignPrivateKey(pin, keys)
     );
   }
 
-  public async sendBurst(request: SendBurstRequest): Promise<TransactionId> {
+  public async sendAmount(request: SendBurstRequest): Promise<TransactionId> {
 
     const {pin, amount, fee, recipientId, message, messageIsText, shouldEncryptMessage, keys, recipientPublicKey} = request;
 
     let attachment: Attachment;
     if (message && shouldEncryptMessage) {
       const recipient = await this.accountService.getAccount(recipientId);
-      const agreementPrivateKey = this.getSendersPrivateKey(pin, keys);
+      const agreementPrivateKey = this.getSendersEncryptionPrivateKey(pin, keys);
       let encryptedMessage: EncryptedMessage | EncryptedData;
       if (messageIsText) {
         encryptedMessage = encryptMessage(
@@ -142,7 +150,7 @@ export class TransactionService {
       feePlanck: fee,
       recipientId,
       recipientPublicKey,
-      senderPrivateKey: this.getSendersPrivateKey(pin, keys),
+      senderPrivateKey: this.getSendersSignPrivateKey(pin, keys),
       senderPublicKey: keys.publicKey,
       attachment
     });

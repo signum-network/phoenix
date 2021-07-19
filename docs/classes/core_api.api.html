@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Api
-	| burstjs - The Burstcoin Reference Library</title>
+	| signumjs - The Signum Network Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="index, follow">
@@ -97,10 +97,9 @@
 						For sake of simplicity the <a href="../modules/core_api.html#composeapi">composeApi</a> method mounts the <strong>entire</strong> API, i.e.
 					all available methods are mounted using this class</p>
 					<pre><code class="language-ts"><span class="hljs-keyword">const</span> api = composeApi({
-  nodeHost: <span class="hljs-string">'https://wallet1.burst-team.us:2083'</span>, <span class="hljs-comment">// one of the mainnet nodes</span>
-  apiRootUrl: <span class="hljs-string">'/burst'</span> <span class="hljs-comment">// endpoint to the BURST API</span>
+  nodeHost: <span class="hljs-string">'https://europe.signum.network'</span>, <span class="hljs-comment">// one of the mainnet nodes</span>
 })</code></pre>
-					<p>While this is a straightforward way to have access to all BURST functionality, this methods
+					<p>While this is a straightforward way to have access to all API functionality, this methods
 						has the disadvantage of including all needed dependencies, thus leading to a bigger bundle, for those
 						who use bundlers like <a href="https://webpack.js.org/">webpack</a>. To reduce the bundle size, one may mount the API
 					conforming his needs using the <a href="core_api.apicomposer.html">ApiComposer</a> class.</p>
@@ -143,7 +142,7 @@
 					<div class="tsd-signature tsd-kind-icon">account<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core_api.accountapi.html" class="tsd-signature-type">AccountApi</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/api/index.ts#L55">core/src/typings/api/index.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/typings/api/index.ts#L53">core/src/typings/api/index.ts:53</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -153,7 +152,7 @@
 					<div class="tsd-signature tsd-kind-icon">alias<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core_api.aliasapi.html" class="tsd-signature-type">AliasApi</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/api/index.ts#L56">core/src/typings/api/index.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/typings/api/index.ts#L54">core/src/typings/api/index.ts:54</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -163,7 +162,7 @@
 					<div class="tsd-signature tsd-kind-icon">asset<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core_api.assetapi.html" class="tsd-signature-type">AssetApi</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/api/index.ts#L50">core/src/typings/api/index.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/typings/api/index.ts#L48">core/src/typings/api/index.ts:48</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -173,7 +172,7 @@
 					<div class="tsd-signature tsd-kind-icon">block<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core_api.blockapi.html" class="tsd-signature-type">BlockApi</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/api/index.ts#L51">core/src/typings/api/index.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/typings/api/index.ts#L49">core/src/typings/api/index.ts:49</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -183,7 +182,7 @@
 					<div class="tsd-signature tsd-kind-icon">contract<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core_api.contractapi.html" class="tsd-signature-type">ContractApi</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/api/index.ts#L57">core/src/typings/api/index.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/typings/api/index.ts#L55">core/src/typings/api/index.ts:55</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -193,7 +192,7 @@
 					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core_api.messageapi.html" class="tsd-signature-type">MessageApi</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/api/index.ts#L54">core/src/typings/api/index.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/typings/api/index.ts#L52">core/src/typings/api/index.ts:52</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -203,23 +202,23 @@
 					<div class="tsd-signature tsd-kind-icon">network<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core_api.networkapi.html" class="tsd-signature-type">NetworkApi</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/api/index.ts#L52">core/src/typings/api/index.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/typings/api/index.ts#L50">core/src/typings/api/index.ts:50</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="service" class="tsd-anchor"></a>
 					<h3>service</h3>
-					<div class="tsd-signature tsd-kind-icon">service<span class="tsd-signature-symbol">:</span> <a href="core.burstservice.html" class="tsd-signature-type">BurstService</a></div>
+					<div class="tsd-signature tsd-kind-icon">service<span class="tsd-signature-symbol">:</span> <a href="core.chainservice.html" class="tsd-signature-type">ChainService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/api/index.ts#L49">core/src/typings/api/index.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/typings/api/index.ts#L47">core/src/typings/api/index.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>This leaks the underlying service instance to interact with the BRS API directly, e.g. to use an API method that
-							is not supported by BurstJS yet.</p>
+							<p>This leaks the underlying service instance to interact with the chain nodes API directly, e.g. to use an API method that
+							is not supported by SignumJS yet.</p>
 						</div>
 					</div>
 				</section>
@@ -229,7 +228,7 @@
 					<div class="tsd-signature tsd-kind-icon">transaction<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core_api.transactionapi.html" class="tsd-signature-type">TransactionApi</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/typings/api/index.ts#L53">core/src/typings/api/index.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/core/src/typings/api/index.ts#L51">core/src/typings/api/index.ts:51</a></li>
 						</ul>
 					</aside>
 				</section>

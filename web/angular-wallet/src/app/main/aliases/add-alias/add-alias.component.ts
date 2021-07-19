@@ -6,9 +6,8 @@ import {AccountService} from 'app/setup/account/account.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {burstAddressPattern} from 'app/util/burstAddressPattern';
-import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 import {NetworkService} from '../../../network/network.service';
-import {SignaSymbol} from '@signumjs/util';
+import {CurrencySymbol} from '@signumjs/util';
 import {handleException} from '../../../util/exceptions/handleException';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
@@ -31,13 +30,13 @@ export class AddAliasComponent implements OnInit {
   public feeNQT: string;
   advanced = false;
   showMessage = false;
-  burstAddressPatternRef = burstAddressPattern;
+  addressPatternRef = burstAddressPattern;
   type = 'acct';
   account: Account;
   deadline = '24';
   fees: SuggestedFees;
   addressPrefix: AddressPrefix.MainNet | AddressPrefix.TestNet;
-  symbol = SignaSymbol;
+  symbol = CurrencySymbol;
   isSending = false;
 
   constructor(private route: ActivatedRoute,
@@ -50,7 +49,6 @@ export class AddAliasComponent implements OnInit {
   ngOnInit(): void {
     this.account = this.route.snapshot.data.account as Account;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
-
     this.addressPrefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
     this.accountAliasURI = this.account.accountRS;
   }
@@ -69,6 +67,9 @@ export class AddAliasComponent implements OnInit {
       });
       this.notifierService.notify('success', this.i18nService.getTranslation('success_alias_register'));
       this.setAliasForm.resetForm();
+      this.accountAliasURI = this.account.accountRS;
+      this.type = 'acct';
+
     } catch (e) {
       handleException({
         e,

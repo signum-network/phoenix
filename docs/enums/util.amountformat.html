@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BurstServiceSettings
-	| burstjs - The Burstcoin Reference Library</title>
+	<title>AmountFormat
+	| signumjs - The Signum Network Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="index, follow">
@@ -75,13 +75,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/core.html">core</a>
+					<a href="../modules/util.html">util</a>
 				</li>
 				<li>
-					<a href="core.burstservicesettings.html">BurstServiceSettings</a>
+					<a href="util.amountformat.html">AmountFormat</a>
 				</li>
 			</ul>
-			<h1>Interface BurstServiceSettings</h1>
+			<h1>Enumeration AmountFormat</h1>
 		</div>
 	</div>
 </header>
@@ -91,116 +91,45 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The settings interface for the BurstService class</p>
+						<p>Enum to determine the representation format of [BurstValue] string</p>
 					</div>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">BurstServiceSettings</span>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.burstservicesettings.html#apirooturl" class="tsd-kind-icon">api<wbr>Root<wbr>Url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.burstservicesettings.html#httpclient" class="tsd-kind-icon">http<wbr>Client</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.burstservicesettings.html#httpclientoptions" class="tsd-kind-icon">http<wbr>Client<wbr>Options</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.burstservicesettings.html#nodehost" class="tsd-kind-icon">node<wbr>Host</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core.burstservicesettings.html#reliablenodehosts" class="tsd-kind-icon">reliable<wbr>Node<wbr>Hosts</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="util.amountformat.html#planck" class="tsd-kind-icon">PLANCK</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="util.amountformat.html#signa" class="tsd-kind-icon">SIGNA</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="apirooturl" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> api<wbr>Root<wbr>Url</h3>
-					<div class="tsd-signature tsd-kind-icon">api<wbr>Root<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="planck" class="tsd-anchor"></a>
+					<h3>PLANCK</h3>
+					<div class="tsd-signature tsd-kind-icon">PLANCK<span class="tsd-signature-symbol">:</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstServiceSettings.ts#L27">core/src/service/burstServiceSettings.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/util/src/amount.ts#L16">util/src/amount.ts:16</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The relative path the Burst API endpoint, default is &#39;/burst&#39; - must begin with slash.
-							Usually, you don&#39;t use this.</p>
-						</div>
-					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="httpclient" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> http<wbr>Client</h3>
-					<div class="tsd-signature tsd-kind-icon">http<wbr>Client<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Http</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="signa" class="tsd-anchor"></a>
+					<h3>SIGNA</h3>
+					<div class="tsd-signature tsd-kind-icon">SIGNA<span class="tsd-signature-symbol">:</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstServiceSettings.ts#L40">core/src/service/burstServiceSettings.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/util/src/amount.ts#L17">util/src/amount.ts:17</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>If passed an client instance, it will be used instead of default HttpImpl.
-							Good for testing, but usually you won&#39;t need this</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="httpclientoptions" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> http<wbr>Client<wbr>Options</h3>
-					<div class="tsd-signature tsd-kind-icon">http<wbr>Client<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AxiosRequestConfig</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstServiceSettings.ts#L34">core/src/service/burstServiceSettings.ts:34</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The options passed to httpClient
-								The default implementation uses axios. In case of a custom client pass your own options.
-							see <a href="https://github.com/axios/axios#request-config">Axios Configuration</a></p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="nodehost" class="tsd-anchor"></a>
-					<h3>node<wbr>Host</h3>
-					<div class="tsd-signature tsd-kind-icon">node<wbr>Host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstServiceSettings.ts#L15">core/src/service/burstServiceSettings.ts:15</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The node/peer host url with protocol and port, e.g. <a href="https://testnet.burst.fun:443">https://testnet.burst.fun:443</a></p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="reliablenodehosts" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> reliable<wbr>Node<wbr>Hosts</h3>
-					<div class="tsd-signature tsd-kind-icon">reliable<wbr>Node<wbr>Hosts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/core/src/service/burstServiceSettings.ts#L21">core/src/service/burstServiceSettings.ts:21</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>A list of node/peer hosts that can be chosen of, usually a list of reliable nodes. This is necessary for the automatic
-							node selection.</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -213,7 +142,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/contracts.html">contracts</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -231,7 +160,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/monitor.html">monitor</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/util.html">util</a>
 					</li>
 				</ul>
@@ -240,28 +169,106 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="core.burstservicesettings.html" class="tsd-kind-icon">Burst<wbr>Service<wbr>Settings</a>
+					<li class="current tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="util.amountformat.html" class="tsd-kind-icon">Amount<wbr>Format</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.burstservicesettings.html#apirooturl" class="tsd-kind-icon">api<wbr>Root<wbr>Url</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="util.amountformat.html#planck" class="tsd-kind-icon">PLANCK</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.burstservicesettings.html#httpclient" class="tsd-kind-icon">http<wbr>Client</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.burstservicesettings.html#httpclientoptions" class="tsd-kind-icon">http<wbr>Client<wbr>Options</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.burstservicesettings.html#nodehost" class="tsd-kind-icon">node<wbr>Host</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="core.burstservicesettings.html#reliablenodehosts" class="tsd-kind-icon">reliable<wbr>Node<wbr>Hosts</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="util.amountformat.html#signa" class="tsd-kind-icon">SIGNA</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="util.encoderformat.html" class="tsd-kind-icon">Encoder<wbr>Format</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/util.amount.html" class="tsd-kind-icon">Amount</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/util.chaintime.html" class="tsd-kind-icon">Chain<wbr>Time</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="../interfaces/util.asyncretryargs.html" class="tsd-kind-icon">Async<wbr>Retry<wbr>Args</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/util.createdeeplinkargs.html" class="tsd-kind-icon">Create<wbr>Deeplink<wbr>Args</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/util.deeplinkparts.html" class="tsd-kind-icon">Deeplink<wbr>Parts</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+						<a href="../modules/util.html#currencyplancksymbol" class="tsd-kind-icon">Currency<wbr>Planck<wbr>Symbol</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+						<a href="../modules/util.html#currencysymbol" class="tsd-kind-icon">Currency<wbr>Symbol</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+						<a href="../modules/util.html#feequantplanck" class="tsd-kind-icon">Fee<wbr>Quant<wbr>Planck</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+						<a href="../modules/util.html#onesignaplanck" class="tsd-kind-icon">One<wbr>Signa<wbr>Planck</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="../modules/util.html#asyncretry" class="tsd-kind-icon">async<wbr>Retry</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertbase36stringtohexstring" class="tsd-kind-icon">convert<wbr>Base36<wbr>String<wbr>ToHex<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertbase64stringtostring" class="tsd-kind-icon">convert<wbr>Base64<wbr>String<wbr>ToString</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertbytearraytohexstring" class="tsd-kind-icon">convert<wbr>Byte<wbr>Array<wbr>ToHex<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertbytearraytostring" class="tsd-kind-icon">convert<wbr>Byte<wbr>Array<wbr>ToString</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertdecstringtohexstring" class="tsd-kind-icon">convert<wbr>Dec<wbr>String<wbr>ToHex<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#converthexendianess" class="tsd-kind-icon">convert<wbr>Hex<wbr>Endianess</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#converthexstringtobase36string" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToBase36<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#converthexstringtobytearray" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToByte<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#converthexstringtodecstring" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToDec<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#converthexstringtostring" class="tsd-kind-icon">convert<wbr>Hex<wbr>String<wbr>ToString</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertnqtstringtonumber" class="tsd-kind-icon">convertNQTString<wbr>ToNumber</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertnumbertonqtstring" class="tsd-kind-icon">convert<wbr>Number<wbr>ToNQTString</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertstringtobase64string" class="tsd-kind-icon">convert<wbr>String<wbr>ToBase64<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertstringtobytearray" class="tsd-kind-icon">convert<wbr>String<wbr>ToByte<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#convertstringtohexstring" class="tsd-kind-icon">convert<wbr>String<wbr>ToHex<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#createdeeplink" class="tsd-kind-icon">create<wbr>Deeplink</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#parsedeeplink" class="tsd-kind-icon">parse<wbr>Deeplink</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/util.html#sumnqtstringtonumber" class="tsd-kind-icon">sumNQTString<wbr>ToNumber</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

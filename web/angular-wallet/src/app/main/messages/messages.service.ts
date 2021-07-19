@@ -16,7 +16,7 @@ import {
 import {AccountService} from 'app/setup/account/account.service';
 import {decryptAES, hashSHA256} from '@signumjs/crypto';
 import {NetworkService} from 'app/network/network.service';
-import {Amount, BlockTime} from '@signumjs/util';
+import {Amount, ChainTime} from '@signumjs/util';
 import {ApiService} from '../../api.service';
 
 export interface ChatMessage {
@@ -204,7 +204,7 @@ export class MessagesService implements Resolve<any> {
       contactId: recipient ? Address.fromReedSolomonAddress(recipient).getNumericId() : 'new',
       dialog: [],
       senderRS: recipient,
-      timestamp: BlockTime.fromDate(new Date()).getBlockTimestamp()
+      timestamp: ChainTime.fromDate(new Date()).getChainTimestamp()
     };
     if (recipient) {
       this.messages.push(message);

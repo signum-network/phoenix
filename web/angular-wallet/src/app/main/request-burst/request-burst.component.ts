@@ -9,7 +9,7 @@ import {MatStepper} from '@angular/material/stepper';
 import {environment} from 'environments/environment';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
-import {SignaSymbol} from '@signumjs/util/src';
+import {CurrencySymbol} from '@signumjs/util/src';
 
 @Component({
     selector: 'app-request-burst',
@@ -31,7 +31,7 @@ export class RequestBurstComponent extends UnsubscribeOnDestroy implements OnIni
     imgSrc: string;
     senderRS: string;
     poller;
-    symbol = SignaSymbol;
+    symbol = CurrencySymbol;
 
     constructor(private route: ActivatedRoute,
                 private accountService: AccountService,

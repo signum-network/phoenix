@@ -1,7 +1,7 @@
 import {Keys} from '@signumjs/crypto';
 
 /**
- * The argument object for [[MessageApi.sendTextMessage]]
+ * The argument object for [[MessageApi.sendEncryptedMessage]]
  *
  * @param message The message as text that will be encrypted
  * @param feePlanck The fee as Planck value

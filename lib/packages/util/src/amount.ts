@@ -2,7 +2,7 @@
  * Original work Copyright (c) 2020 Burst Apps Team
  */
 import BigNumber from 'bignumber.js';
-import {SignaPlanckSymbol, SignaSymbol} from './constants';
+import {CurrencyPlanckSymbol, CurrencySymbol} from './constants';
 
 BigNumber.config({
     EXPONENTIAL_AT: [-9, 20]
@@ -40,6 +40,10 @@ export class Amount {
             assureValidValue(planck);
         }
         this._planck = new BigNumber(planck);
+    }
+
+    public static CurrencySymbol(): string {
+        return CurrencySymbol;
     }
 
     public static Zero(): Amount {
@@ -199,7 +203,7 @@ export class Amount {
      * @return The converted string accordingly the param in SIGNA or Planck
      */
     public toString(format: AmountFormat = AmountFormat.SIGNA): string {
-        return format === AmountFormat.SIGNA ? `${SignaSymbol} ${this.getSigna()}` : `${SignaPlanckSymbol} ${this._planck}`;
+        return format === AmountFormat.SIGNA ? `${CurrencySymbol} ${this.getSigna()}` : `${CurrencyPlanckSymbol} ${this._planck}`;
     }
 
     /**

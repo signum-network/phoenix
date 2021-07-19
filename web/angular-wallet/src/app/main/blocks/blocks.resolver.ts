@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { Block } from '@signumjs/core';
-import { NetworkService } from 'app/network/network.service';
+import {Resolve, ActivatedRouteSnapshot} from '@angular/router';
+import {NetworkService} from 'app/network/network.service';
+import {BlockList} from '@signumjs/core';
 
 @Injectable()
-export class BlocksResolver implements Resolve<Promise<Block[]>> {
+export class BlocksResolver implements Resolve<Promise<BlockList>> {
   constructor(private networkService: NetworkService) {
   }
 
-  resolve(route: ActivatedRouteSnapshot) {
+  resolve(route: ActivatedRouteSnapshot): Promise<BlockList> {
     return this.networkService.getBlocks();
   }
 }

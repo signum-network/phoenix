@@ -1,7 +1,7 @@
 import {Router} from '@angular/router';
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Account} from '@signumjs/core';
-import {Amount, BlockTime} from '@signumjs/util';
+import {Amount, ChainTime} from '@signumjs/util';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {I18nService} from '../../../layout/components/i18n/i18n.service';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
@@ -76,7 +76,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
     const min = Math.min(...chartData);
     this.firstDate = this.balanceHistory.length &&
       this.balanceHistory[0].timestamp &&
-      this.toDateString(BlockTime.fromBlockTimestamp(this.balanceHistory[0].timestamp).getDate()) ||
+      this.toDateString(ChainTime.fromChainTimestamp(this.balanceHistory[0].timestamp).getDate()) ||
       this.toDateString(new Date());
 
     this.chart = {
@@ -87,7 +87,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
           fill: 'start'
         }
       ],
-      labels: this.balanceHistory.map(({timestamp}) => timestamp && this.toDateString(BlockTime.fromBlockTimestamp(timestamp).getDate()) ||
+      labels: this.balanceHistory.map(({timestamp}) => timestamp && this.toDateString(ChainTime.fromChainTimestamp(timestamp).getDate()) ||
         this.toDateString(new Date())),
       colors: [
         {

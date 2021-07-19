@@ -52,7 +52,7 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
   public getPriceUsd = (): string => `${this.asCurrency(this.tickerData.USD.PRICE, '$', '1.0-6')}`;
   public getPriceEur = (): string => `${this.asCurrency(this.tickerData.EUR.PRICE, '€', '1.0-6')}`;
 
-  public get24hVolumeBtc = (): string => `฿${formatMetricNumber(formatNumber(this.tickerData.BTC.VOLUME24HOURTO, this.locale, '1.2-4'))}`;
+  public get24hVolumeBtc = (): string => `฿${formatMetricNumber(this.tickerData.BTC.VOLUME24HOURTO)}`;
   public get24hVolumeUsd = (): string => `$${formatMetricNumber(this.tickerData.USD.VOLUME24HOURTO)}`;
   public get24hVolumeEur = (): string => `€${formatMetricNumber(this.tickerData.EUR.VOLUME24HOURTO)}`;
 

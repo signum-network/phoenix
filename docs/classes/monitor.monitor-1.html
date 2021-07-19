@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Monitor
-	| burstjs - The Burstcoin Reference Library</title>
+	| signumjs - The Signum Network Reference Library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="index, follow">
@@ -99,9 +99,9 @@
 					<pre><code class="language-ts"><span class="hljs-comment">// A method that checks if an account exists</span>
 <span class="hljs-comment">// &gt; IMPORTANT: Do not use closures, when you need to serialize the monitor</span>
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tryFetchAccount</span>(<span class="hljs-params"></span>) </span>{
-   <span class="hljs-keyword">const</span> BurstApi = composeApi({ nodeHost: <span class="hljs-string">'https://testnet.burstcoin.network:6876/'</span>})
+   <span class="hljs-keyword">const</span> Api = composeApi({ nodeHost: <span class="hljs-string">'https://testnet.signum.network:6876/'</span>})
    <span class="hljs-keyword">try</span>{
-       <span class="hljs-keyword">const</span> {account} = <span class="hljs-keyword">await</span> BurstApi.account.getAccount(<span class="hljs-string">'1234'</span>)
+       <span class="hljs-keyword">const</span> {account} = <span class="hljs-keyword">await</span> Api.account.getAccount(<span class="hljs-string">'1234'</span>)
        <span class="hljs-keyword">return</span> account;
    }<span class="hljs-keyword">catch</span> (e){
        <span class="hljs-comment">// ignore error</span>
@@ -199,7 +199,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L87">monitor/src/monitor.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L87">monitor/src/monitor.ts:87</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -235,7 +235,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L125">monitor/src/monitor.ts:125</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L125">monitor/src/monitor.ts:125</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -257,7 +257,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L132">monitor/src/monitor.ts:132</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L132">monitor/src/monitor.ts:132</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -279,7 +279,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L118">monitor/src/monitor.ts:118</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L118">monitor/src/monitor.ts:118</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -301,7 +301,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L139">monitor/src/monitor.ts:139</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L139">monitor/src/monitor.ts:139</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -326,7 +326,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L190">monitor/src/monitor.ts:190</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L190">monitor/src/monitor.ts:190</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -349,7 +349,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L194">monitor/src/monitor.ts:194</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L194">monitor/src/monitor.ts:194</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -366,7 +366,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L201">monitor/src/monitor.ts:201</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L201">monitor/src/monitor.ts:201</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -386,7 +386,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L208">monitor/src/monitor.ts:208</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L208">monitor/src/monitor.ts:208</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -406,7 +406,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L282">monitor/src/monitor.ts:282</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L282">monitor/src/monitor.ts:282</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -437,7 +437,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L273">monitor/src/monitor.ts:273</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L273">monitor/src/monitor.ts:273</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -468,7 +468,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L179">monitor/src/monitor.ts:179</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L179">monitor/src/monitor.ts:179</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -493,7 +493,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L217">monitor/src/monitor.ts:217</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L217">monitor/src/monitor.ts:217</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -515,7 +515,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L263">monitor/src/monitor.ts:263</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L263">monitor/src/monitor.ts:263</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -537,7 +537,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/12000943/lib/packages/monitor/src/monitor.ts#L150">monitor/src/monitor.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/burst-apps-team/phoenix/blob/a34af255/lib/packages/monitor/src/monitor.ts#L150">monitor/src/monitor.ts:150</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
