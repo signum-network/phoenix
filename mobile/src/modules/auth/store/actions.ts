@@ -147,6 +147,8 @@ export const updateAccountTransactions = createActionFn<Account, Promise<Account
             console.log('updating transactions...');
             const {transactions} = await api.account.getAccountTransactions({
                 accountId: account.account,
+                firstIndex: 0,
+                lastIndex: 200,
                 includeIndirect: true,
             });
             const {unconfirmedTransactions} = await api.account.getUnconfirmedAccountTransactions(account.account, true)

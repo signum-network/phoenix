@@ -35,13 +35,14 @@ export const TransactionDetails: React.FC<Props> = ({transaction}) => {
         setData(txData);
     }, [transaction]);
 
-    const touchedItem = (value: string = '') => {
-        if (!value.trim()) {
+    const touchedItem = (v: string = '') => {
+        const value = v.trim();
+        if (!value) {
             return;
         }
 
-        Clipboard.setString(value.trim());
-        Alert.alert(i18n.t(auth.transactionDetails.copiedSuccessfully));
+        Clipboard.setString(value);
+        Alert.alert(i18n.t(auth.transactionDetails.copiedSuccessfully, {value}));
     };
 
     const TouchableLineItem: ListRenderItem<TxKeyValue> = ({item}) => (

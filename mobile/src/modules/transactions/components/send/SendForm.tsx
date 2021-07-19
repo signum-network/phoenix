@@ -9,7 +9,7 @@ import {BSelect, SelectItem} from '../../../../core/components/base/BSelect';
 import {Text, Text as BText, TextAlign} from '../../../../core/components/base/Text';
 import {i18n} from '../../../../core/i18n';
 import {Colors} from '../../../../core/theme/colors';
-import {amountToString, stableAmountFormat} from '../../../../core/utils/numbers';
+import {amountToString} from '../../../../core/utils/numbers';
 import {SendAmountPayload} from '../../store/actions';
 import {Recipient, RecipientType, RecipientValidationStatus} from '../../store/utils';
 import {transactions} from '../../translations';
@@ -22,9 +22,7 @@ import {AmountText} from '../../../../core/components/base/Amount';
 import {DangerBox} from './DangerBox';
 import {AccountBalances, getBalancesFromAccount, ZeroAcountBalances} from '../../../../core/utils/balance/getBalancesFromAccount';
 import {Button, ButtonThemes} from '../../../../core/components/base/Button';
-import isEmpty from 'lodash/isEmpty';
-import { toNumber } from 'lodash';
-import {stableParseSignaAmount} from '../../../../core/utils/amount';
+import {stableAmountFormat, stableParseSignaAmount} from '../../../../core/utils/amount';
 
 const AddressPrefix = 'S-';
 
@@ -299,7 +297,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
 
     hasSufficientBalance = (): boolean => {
         const {amount, balances} = this.state;
-        const parsedAmount = stableParseSignaAmount(amount)
+        const parsedAmount = stableParseSignaAmount(amount);
         return balances.availableBalance.greaterOrEqual(parsedAmount);
     };
 
