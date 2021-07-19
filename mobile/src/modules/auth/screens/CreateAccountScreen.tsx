@@ -1,5 +1,5 @@
-import { Account } from '@burstjs/core';
-import { PassPhraseGenerator } from '@burstjs/crypto';
+import { Account } from '@signumjs/core';
+import { PassPhraseGenerator } from '@signumjs/crypto';
 import React from 'react';
 import { Alert, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
@@ -18,11 +18,9 @@ import { StepCounter } from '../components/create/StepCounter';
 import { addAccount, createActiveAccount, hydrateAccount } from '../store/actions';
 import { AuthReduxState } from '../store/reducer';
 import { auth } from '../translations';
-import { actionIcons } from '../../../assets/icons';
-import { Text } from '../../../core/components/base/Text';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation/mainStack';
-import { core } from '../../../core/translations';
+import {HeaderWithBackButton} from '../../../core/layout/HeaderWithBackButton';
 
 type CreateAccountNavProp = StackNavigationProp<RootStackParamList, 'CreateAccount'>;
 
@@ -117,19 +115,7 @@ class CreateAccount extends React.PureComponent<IProps, State> {
     return (
       <Screen>
         <FullHeightView style={{ backgroundColor: Colors.WHITE }} withoutPaddings>
-          <View style={{ backgroundColor: Colors.BLUE_DARKER, flexDirection: 'row' }}>
-            <TouchableOpacity
-              style={{ flexDirection: 'row', position: 'absolute', zIndex: 1, left: 10, top: 10 }}
-              onPress={this.props.navigation.goBack}>
-              <Image source={actionIcons.chevronLeft} style={{ width: 30, height: 30 }} />
-              <Text color={Colors.WHITE}>{i18n.t(core.actions.back)}</Text>
-            </TouchableOpacity>
-            <View style={{ flex: 1, alignItems: 'center', margin: 10 }}>
-              <HeaderTitle>
-                {i18n.t(auth.createAccount.title)}
-              </HeaderTitle>
-            </View>
-          </View>
+          <HeaderWithBackButton title={i18n.t(auth.createAccount.title)} />
           <View style={styles.center}>
             <StepCounter stage={this.state.stage}/>
             {this.renderStage()}

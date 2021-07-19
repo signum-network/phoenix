@@ -142,7 +142,6 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     });
   }
 
-
   private initRouteToHandler(): void {
     this.appService.onIpcMessage('route-to', (url) => {
       this.router.navigate([url]);

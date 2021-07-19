@@ -41,7 +41,7 @@ const defaultAlign = TextAlign.LEFT;
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: fonts.noto,
+    fontFamily: fonts.roboto,
     fontSize: FontSizes.MEDIUM,
     fontWeight: 'normal',
     textAlign: defaultAlign,
@@ -51,18 +51,18 @@ const styles = StyleSheet.create({
     color: Colors.BLUE
   },
   textHeader: {
-    color: Colors.BLUE,
-    fontFamily: fonts.bebas,
+    color: Colors.BLUE_DARKER,
+    fontFamily: fonts.roboto,
     fontSize: FontSizes.LARGE,
     textAlign: TextAlign.CENTER
   },
   textHint: {
     color: Colors.GREY_DARK,
-    fontSize: FontSizes.SMALL
+    fontSize: FontSizes.SMALLER
   },
   textDanger: {
-    color: Colors.PINK,
-    fontSize: FontSizes.SMALL,
+    color: Colors.RED,
+    fontSize: FontSizes.SMALLER,
     textAlign: TextAlign.CENTER
   },
   textDisabled: {
@@ -91,7 +91,7 @@ export const Text: React.FunctionComponent<Props> = (props) => {
     theme === TextThemes.HINT && styles.textHint,
     textAlign && { textAlign },
     color && { color },
-    bebasFont && { fontFamily: bold && isIOS ? fonts.bebas : fonts.bebasBold },
+    bebasFont && { fontFamily: bold && fonts.roboto },
     size && { fontSize: size },
     disabled && styles.textDisabled,
     disabledColor && { color: disabledColor },

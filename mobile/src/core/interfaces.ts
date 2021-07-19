@@ -3,6 +3,7 @@ import { AnyAction as ReduxAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AsyncParticleStates, AuthStorageKeys, KeyChainKeys } from './enums';
 import { ApplicationState } from './store/initialState';
+import { ApiSettings } from '@signumjs/core';
 
 export interface InjectedReduxProps {
   dispatch: any // TODO: fix typings
@@ -65,16 +66,16 @@ export interface Reducers<State> {
   [key: string]: (state: State, action: AnyAction<any>) => State;
 }
 
-export interface BurstSettings {
-  nodeHost: string;
-  apiRootUrl: string;
-}
-
 export interface AppSettings {
   passcodeTime: number; // Time, after then we should ask passcode again, msec.
-  burstSettings: BurstSettings;
-  coinMarketCapURL: string;
+  apiSettings: ApiSettings;
   burstAlertsURL: string;
+}
+
+export interface UserSettings {
+  isAutomaticNodeSelection?: boolean;
+  currentNodeHost?: string;
+  agreedToTerms?:boolean;
 }
 
 export type StorageKey = AuthStorageKeys;

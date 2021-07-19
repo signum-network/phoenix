@@ -3,8 +3,8 @@ import {
   Transaction,
   TransactionType,
   TransactionAssetSubtype
-} from '@burstjs/core';
-import { convertNQTStringToNumber } from '@burstjs/util';
+} from '@signumjs/core';
+import { convertNQTStringToNumber } from '@signumjs/util';
 import { BalanceHistoryItem } from './typings';
 
 const isOwnTransaction = (accountId: string, transaction: Transaction): boolean => transaction.sender === accountId;

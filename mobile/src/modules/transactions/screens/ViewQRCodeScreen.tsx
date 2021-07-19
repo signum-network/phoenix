@@ -1,251 +1,197 @@
-import { convertNQTStringToNumber } from '@burstjs/util';
-import React from 'react';
-import { Clipboard, Image, Share, StyleSheet, View } from 'react-native';
-import { withNavigation } from 'react-navigation';
-import { connect } from 'react-redux';
-import { Button } from '../../../core/components/base/Button';
-import { Text, TextAlign } from '../../../core/components/base/Text';
-import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
-import { i18n } from '../../../core/i18n';
-import { InjectedReduxProps } from '../../../core/interfaces';
-import { FullHeightView } from '../../../core/layout/FullHeightView';
-import { Screen } from '../../../core/layout/Screen';
-import { AppReduxState } from '../../../core/store/app/reducer';
-import { ApplicationState } from '../../../core/store/initialState';
-import { Colors } from '../../../core/theme/colors';
-import { defaultSideOffset, FontSizes, Sizes } from '../../../core/theme/sizes';
-import { EnterPasscodeModal } from '../../auth/components/passcode/EnterPasscodeModal';
-import { AuthReduxState } from '../../auth/store/reducer';
-import { ReceiveBurstPayload } from '../store/actions';
-import { TransactionsReduxState } from '../store/reducer';
-import { transactions } from '../translations';
-import { RouteProp } from '@react-navigation/native';
-import { RootStackParamList } from '../../auth/navigation/mainStack';
+import React, {useMemo} from 'react';
+import {Clipboard, Share, StyleSheet, View} from 'react-native';
+import {withNavigation} from 'react-navigation';
+import {connect} from 'react-redux';
+import {Button} from '../../../core/components/base/Button';
+import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
+import {i18n} from '../../../core/i18n';
+import {InjectedReduxProps} from '../../../core/interfaces';
+import {FullHeightView} from '../../../core/layout/FullHeightView';
+import {Screen} from '../../../core/layout/Screen';
+import {AppReduxState} from '../../../core/store/app/reducer';
+import {ApplicationState} from '../../../core/store/initialState';
+import {Colors} from '../../../core/theme/colors';
+import {defaultSideOffset, Sizes} from '../../../core/theme/sizes';
+import {AuthReduxState} from '../../auth/store/reducer';
+import {ReceiveAmountPayload} from '../store/actions';
+import {TransactionsReduxState} from '../store/reducer';
+import {transactions} from '../translations';
+import {RouteProp, useRoute, useNavigation} from '@react-navigation/native';
+import {RootStackParamList} from '../../auth/navigation/mainStack';
+import {Amount, createDeeplink, EncoderFormat} from '@signumjs/util';
+import {AddressPrefix, Address} from '@signumjs/core';
+import QRCode from 'react-native-qrcode-svg';
+import {LabeledTextField} from '../../../core/components/base/LabeledTextField';
+import {isIOS} from '../../../core/utils/platform';
+import { HeaderWithBackButton } from '../../../core/layout/HeaderWithBackButton';
 
 type ScanRouteProps = RouteProp<RootStackParamList, 'Scan'>;
 
-interface IProps extends InjectedReduxProps {
-  app: AppReduxState;
-  auth: AuthReduxState;
-  transactions: TransactionsReduxState;
-  route: ScanRouteProps;
-}
-
-type Props = ReceiveBurstPayload & IProps;
-
 const styles = StyleSheet.create({
-  col: {
-    flex: 1
-  },
-  row: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  details: {
-    paddingHorizontal: defaultSideOffset,
-    paddingVertical: Sizes.MEDIUM,
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%'
-  },
-  imageWrapper: {
-    flex: 5
-  },
-  qrImage: {
-    width: 200,
-    height: 200,
-    alignSelf: 'center'
-  },
-  valueCol: {
-    flex: 3
-  },
-  buttonRow: {
-    flex: 2,
-    marginTop: 30
-  },
-  alignCenter: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignContent: 'center'
-  }
+    col: {
+        flex: 1
+    },
+    row: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    details: {
+        paddingHorizontal: defaultSideOffset,
+        display: 'flex',
+        flexDirection: 'column',
+        height: '95%'
+    },
+    imageWrapper: {
+        flex: 3
+    },
+    buttonRow: {
+        flex: 1
+    },
+    payload: {
+        flex: 2,
+    },
+    alignCenter: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignContent: 'center'
+    }
 });
 
-interface State {
-  isPINModalVisible: boolean;
+function buildPhoenixDeepLinkURL(requestPayload: ReceiveAmountPayload): string {
+
+    const {amount, fee, recipient, immutable, message = ''} = requestPayload;
+
+    let payload = {
+        amountPlanck: Amount.fromSigna(amount).getPlanck(),
+        feePlanck: Amount.fromSigna(fee).getPlanck(),
+        recipient: recipient.replace(/^BURST-/, `${AddressPrefix.MainNet}-`),
+        immutable
+    };
+
+    if (message) {
+        // @ts-ignore
+        payload = {...payload, message, messageIsText: true};
+    }
+
+    const deeplink = createDeeplink({
+        encoderFormat: EncoderFormat.Base64,
+        action: 'pay',
+        payload
+    });
+
+    console.log('Created deeplink:', deeplink);
+    return deeplink;
 }
 
-class ViewQRCode extends React.PureComponent<Props, State> {
 
-  state = {
-    isPINModalVisible: false
-  };
+export const ViewQRCodeScreen: React.FC = () => {
+    const route = useRoute<ScanRouteProps>();
+    const navigation = useNavigation();
 
-  handlePINEntered = () => {
-    this.setState({
-      isPINModalVisible: false
-    });
-  }
+    const data = useMemo(() => ({
+        fee: Amount.fromSigna(route.params.form.fee),
+        amount: Amount.fromSigna(route.params.form.amount),
+        recipient: Address.create(route.params.form.recipient),
+        immutable: route.params.form.immutable,
+        message: route.params.form.message,
+    }), [route]);
 
-  handlePINCancel = () => {
-    this.setState({
-      isPINModalVisible: false
-    });
-  }
+    const deeplinkUrl = useMemo(() => buildPhoenixDeepLinkURL(route.params.form), [route]);
 
-  handleShare = async () => {
-    const { amount, fee, recipient } = this.props.route.params.form;
-    try {
-      await Share.share({
-        message: `BURST Payment Requested from ` +
-           `${recipient} for ` +
-           `${convertNQTStringToNumber(amount)} (+${convertNQTStringToNumber(fee)}).
+    const handleShare = async () => {
+        const androidLink = isIOS ? '' : `Your Link: ${deeplinkUrl}`;
+        try {
+            await Share.share({
+                message: `
+Signa Payment Requested from ${data.recipient.getReedSolomonAddress()} for ${data.amount} (+${data.fee})
 
-           Pay using the Phoenix Wallet from burstwallet.io`,
-        title: `BURST Request for ${amount}`,
-        url: this.buildPhoenixDeepLinkURL()
-      });
-    // tslint:disable-next-line: no-empty
-    } catch (error) {}
-  }
+${androidLink}
 
-  handleCopy = () => {
-    Clipboard.setString(this.buildPhoenixDeepLinkURL());
-  }
+Pay using the Phoenix Wallet from https://phoenix-wallet.rocks
+`,
+                title: `Signum Payment Request`,
+                url: deeplinkUrl
+            }, {
+                dialogTitle: `Signum Payment Request`,
+                subject: `Signum Payment Request from ${data.recipient.getReedSolomonAddress()}`
+            });
+        } catch (error) {
+            console.log('Sharing error', error);
+        }
+    };
 
-  private buildQRCodeImageURL () {
-    return `${this.props.app.appSettings.burstSettings.nodeHost}${this.props.transactions.imageUrl}`;
-  }
-
-  private buildPhoenixDeepLinkURL () {
-    const { amount, fee, recipient, immutable, feeSuggestionType } = this.props.route.params.form;
-
-    return `burst://requestBurst?receiver=${recipient}` +
-           `&amountNQT=${amount}` +
-           `&feeNQT=${fee}` +
-           `&feeSuggestionType=${feeSuggestionType}` +
-           `&immutable=${immutable.toString()}`;
-  }
-
-  render () {
-
-    const { amount, fee, recipient, immutable } = this.props.route.params.form;
-
-    const imageUrl = this.props.transactions.imageUrl ?
-      this.buildQRCodeImageURL() : false;
+    const handleCopy = () => {
+        Clipboard.setString(deeplinkUrl);
+    };
 
     return (
-      <Screen>
-        <FullHeightView>
-          <HeaderTitle>{i18n.t(transactions.screens.receive.title)}</HeaderTitle>
-          <View style={styles.details}>
-            {imageUrl &&
-              <View style={[styles.row, styles.qrImage, styles.imageWrapper]}>
-                <View style={[styles.col, styles.alignCenter]}>
-                  <Image source={{ uri: imageUrl }} style={styles.qrImage} />
+        <Screen>
+            <FullHeightView>
+                <HeaderWithBackButton
+                    title={i18n.t(transactions.screens.receive.title)}
+                    backgroundColor={Colors.TRANSPARENT}
+                    noMargin
+                />
+                <View style={styles.details}>
+                    <View style={[styles.row, styles.imageWrapper]}>
+                        <View style={[styles.col, styles.alignCenter]}>
+                            <QRCode
+                                size={200}
+                                value={deeplinkUrl}
+                                backgroundColor={Colors.WHITE}
+                                color={Colors.BLUE_DARKER}
+                                quietZone={8}
+                            />
+                        </View>
+                    </View>
+                    <View style={[styles.row, styles.buttonRow]}>
+                        <View style={styles.col}>
+                            <Button onPress={handleShare}>
+                                Share
+                            </Button>
+                        </View>
+                        <View style={styles.col}>
+                            <Button onPress={handleCopy}>
+                                Copy
+                            </Button>
+                        </View>
+                    </View>
+                    <View style={[styles.payload]}>
+                        <LabeledTextField
+                            label={i18n.t(transactions.screens.receive.recipient)}
+                            text={data.recipient.getReedSolomonAddress()}
+                            color={Colors.WHITE}
+                        />
+                        <View style={styles.row}>
+                            <LabeledTextField
+                                label={i18n.t(transactions.screens.send.amountNQT)}
+                                text={data.amount.toString()}
+                                color={Colors.WHITE}
+                            />
+                            <LabeledTextField
+                                label={i18n.t(transactions.screens.send.feeNQT)}
+                                text={data.fee.toString()}
+                                color={Colors.WHITE}
+                            />
+                        </View>
+
+                        {data.message.length>0 &&
+                            <LabeledTextField
+                                label={i18n.t(transactions.screens.receive.message)}
+                                text={data.message}
+                                color={Colors.WHITE}
+                            />
+                        }
+                        <LabeledTextField
+                            label={i18n.t(transactions.screens.receive.immutable)}
+                            text={data.immutable ? 'Yes' : 'No'}
+                            color={Colors.WHITE}
+                        />
+                    </View>
+
                 </View>
-              </View>
-            }
-            <View style={[styles.row, styles.buttonRow]}>
-              <View style={styles.col}>
-                <Button onPress={this.handleShare}>
-                  Share
-                </Button>
-              </View>
-              <View style={styles.col}>
-                <Button onPress={this.handleCopy}>
-                  Copy
-                </Button>
-              </View>
-            </View>
-            <View style={styles.row}>
-              <View style={styles.col}>
-                <Text bold bebasFont color={Colors.WHITE}>
-                  {i18n.t(transactions.screens.receive.recipient)}
-                </Text>
-              </View>
-              <View style={[styles.col, styles.valueCol]}>
-                <Text
-                  bebasFont
-                  textAlign={TextAlign.RIGHT}
-                  color={Colors.WHITE}
-                  size={FontSizes.MEDIUM}
-                  numberOfLines={1}
-                >
-                  {recipient}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.row}>
-              <View style={styles.col}>
-                <Text bold bebasFont color={Colors.WHITE}>
-                  {i18n.t(transactions.screens.send.amountNQT)}
-                </Text>
-              </View>
-              <View style={[styles.col, styles.valueCol]}>
-                <Text
-                  bebasFont
-                  textAlign={TextAlign.RIGHT}
-                  color={Colors.WHITE}
-                  size={FontSizes.MEDIUM}
-                >
-                  {convertNQTStringToNumber(amount).toString()}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.row}>
-              <View style={styles.col}>
-                <Text bold bebasFont color={Colors.WHITE}>
-                  {i18n.t(transactions.screens.send.feeNQT)}
-                </Text>
-              </View>
-              <View style={[styles.col, styles.valueCol]}>
-                <Text
-                  bebasFont
-                  textAlign={TextAlign.RIGHT}
-                  color={Colors.WHITE}
-                  size={FontSizes.MEDIUM}
-                >
-                  {convertNQTStringToNumber(fee).toString()}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.row}>
-              <View style={styles.col}>
-                <Text bold bebasFont color={Colors.WHITE}>
-                  {i18n.t(transactions.screens.receive.immutable)}
-                </Text>
-              </View>
-              <View style={[styles.col, styles.valueCol]}>
-                <Text
-                  bebasFont
-                  textAlign={TextAlign.RIGHT}
-                  color={Colors.WHITE}
-                  size={FontSizes.MEDIUM}
-                >
-                  {immutable ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-
-          </View>
-          <EnterPasscodeModal
-            visible={this.state.isPINModalVisible}
-            onSuccess={this.handlePINEntered}
-            onCancel={this.handlePINCancel}
-          />
-        </FullHeightView>
-      </Screen>
+            </FullHeightView>
+        </Screen>
     );
-  }
-}
-
-function mapStateToProps (state: ApplicationState) {
-  return {
-    app: state.app,
-    auth: state.auth,
-    transactions: state.transactions
-  };
-}
-
-export const ViewQRCodeScreen = connect(mapStateToProps)(withNavigation(ViewQRCode));
+};

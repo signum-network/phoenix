@@ -1,9 +1,18 @@
 {
-  "name": "phoenix-burst-mobile-wallet",
-  "version": "0.1.1",
+  "name": "phoenix-mobile-wallet",
+  "description": "The mobile wallet for Signum",
+  "version": "1.0.0",
+  "keywords": [
+    "cryptocoin",
+    "signum",
+    "blockchain",
+    "mobile",
+    "wallet"
+  ],
   "contributors": [
     "titanishu",
-    "blankey1337"
+    "blankey1337",
+    "ohager"
   ],
   "repository": {
     "type": "git",
@@ -13,15 +22,17 @@
     "node": ">=10"
   },
   "license": "GPL-3.0",
-  "private": false,
+  "private": true,
   "scripts": {
     "check": "npm run check:lint && npm run check:tsc",
     "check:lint": "tslint --project tsconfig.json 'src/**/*.{ts,tsx}'",
     "check:tsc": "tsc --noEmit",
     "dev": "npm run dev:ios",
     "dev:ios": "react-native run-ios --simulator=\"iPhone SE\"",
-    "dev:android": "react-native run-android",
-    "init": "npm install && npm run link",
+    "start:android": "react-native run-android",
+    "start:metro": "react-native start",
+    "start": "IS_RELEASE=false && concurrently npm:start:*",
+    "postinstall": "npm run link",
     "link": "react-native link",
     "lint": "tslint --fix --project tsconfig.json 'src/**/*.{ts,tsx}'",
     "lint:staged": "tslint --fix --project tsconfig.json",
@@ -30,10 +41,6 @@
     "tsc": "tsc --init --pretty --jsx react"
   },
   "dependencies": {
-    "@burstjs/core": "^0.4.1",
-    "@burstjs/crypto": "^0.4.1",
-    "@burstjs/http": "^0.4.1",
-    "@burstjs/util": "^0.4.1",
     "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/checkbox": "^0.5.7",
     "@react-native-community/masked-view": "^0.1.10",
@@ -42,13 +49,16 @@
     "@react-navigation/bottom-tabs": "^5.7.3",
     "@react-navigation/native": "^5.7.2",
     "@react-navigation/stack": "^5.8.0",
-    "@types/d3-shape": "^1.3.1",
-    "@types/react-native-svg-charts": "^5.0.2",
+    "@signumjs/core": "^1.0.0-rc.3",
+    "@signumjs/crypto": "^1.0.0-rc.3",
+    "@signumjs/http": "^1.0.0-rc.3",
+    "@signumjs/util": "^1.0.0-rc.3",
+    "css-tree": "1.0.0-alpha.39",
     "d3-shape": "^1.3.5",
     "i18n-js": "^3.2.2",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "react": "16.13.1",
-    "react-native": "0.63.2",
+    "react-native": "0.63.4",
     "react-native-camera": "^3.35.0",
     "react-native-gesture-handler": "^1.7.0",
     "react-native-keychain": "^6.1.1",
@@ -58,19 +68,20 @@
     "react-native-picker-select": "^7.0.0",
     "react-native-push-notification": "^4.0.0",
     "react-native-qrcode-scanner": "^1.4.1",
+    "react-native-qrcode-svg": "^6.1.1",
     "react-native-reanimated": "^1.10.1",
     "react-native-safe-area-context": "^3.1.1",
     "react-native-screens": "^2.9.0",
-    "react-native-svg": "^12.1.0",
+    "react-native-svg": "^12.1.1",
     "react-native-svg-charts": "^5.4.0",
     "react-native-swipeout": "^2.3.6",
     "react-native-touch-id": "^4.4.1",
     "react-native-version-number": "^0.3.6",
     "react-navigation": "^4.4.0",
-    "react-redux": "^7.0.3",
-    "redux": "^4.0.1",
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
-    "rn-swipe-button": "^1.2.8"
+    "rn-swipe-button": "^1.2.9"
   },
   "rnpm": {
     "assets": [
@@ -80,28 +91,34 @@
   "devDependencies": {
     "@babel/core": "^7.11.0",
     "@babel/runtime": "^7.11.0",
+    "@types/d3-shape": "^1.3.1",
     "@types/i18n-js": "^3.0.1",
     "@types/jest": "^24.0.13",
     "@types/lodash": "^4.14.129",
     "@types/react": "^16.8.17",
     "@types/react-native": "^0.57.57",
     "@types/react-native-dotenv": "^0.2.0",
+    "@types/react-native-svg-charts": "^5.0.2",
     "@types/react-native-touch-id": "^4.0.1",
     "@types/react-native-vector-icons": "^6.4.1",
     "@types/react-navigation": "^3.0.7",
-    "@types/react-redux": "^7.0.9",
+    "@types/react-redux": "^7.1.16",
     "@types/react-test-renderer": "^16.8.1",
-    "babel-jest": "24.8.0",
-    "jest": "24.8.0",
+    "babel-jest": "^27.0.6",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "concurrently": "^6.2.0",
+    "jest": "^27.0.6",
     "metro-react-native-babel-preset": "0.54.1",
+    "react-devtools": "^4.10.4",
+    "react-native-cli": "^2.0.1",
     "react-native-dotenv": "^0.2.0",
     "react-test-renderer": "16.8.3",
     "sort-json": "^2.0.0",
-    "ts-jest": "^24.0.2",
+    "ts-jest": "^27.0.3",
     "tslint": "^5.16.0",
     "tslint-config-standard": "^8.0.1",
     "tslint-react": "^4.0.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.9.10"
   },
   "gitHooks": {
     "pre-commit": "lint-staged && npm run translations:sort && npm run check"
@@ -111,23 +128,5 @@
       "npm run lint:staged",
       "git add"
     ]
-  },
-  "jest": {
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "transform": {
-      "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
-      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "testPathIgnorePatterns": [
-      "\\.snap$",
-      "<rootDir>/node_modules/"
-    ],
-    "cacheDirectory": ".jest/cache"
   }
 }

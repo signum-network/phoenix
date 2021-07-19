@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.burstcoin.phoenix">
+  package="com.signum.phoenix">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
@@ -19,6 +19,7 @@
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
         android:windowSoftInputMode="adjustResize"
+        android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -29,36 +30,11 @@
             <category android:name="android.intent.category.DEFAULT" />
             <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="burst" android:host="requestBurst" />
+            <data android:scheme="signum" android:host="requestBurst" />
+            <data android:scheme="signum" android:host="v1" />
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-
-      <!-- <meta-data  android:name="com.dieam.reactnativepushnotification.notification_channel_name"
-              android:value="phoenix"/>
-      <meta-data  android:name="com.dieam.reactnativepushnotification.notification_channel_description"
-                  android:value="Transaction notifications"/> -->
-      <!-- Change the resource name to your App's accent color - or any other color you want -->
-      <!-- <meta-data  android:name="com.dieam.reactnativepushnotification.notification_color"
-                  android:resource="@android:color/white"/>
-
-      <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationPublisher" />
-      <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationBootEventReceiver">
-          <intent-filter>
-              <action android:name="android.intent.action.BOOT_COMPLETED" />
-          </intent-filter>
-      </receiver>
-      <service android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationRegistrationService"/>
-
-
-     Else 
-      <service
-          android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService"
-          android:exported="false" >
-          <intent-filter>
-              <action android:name="com.google.firebase.MESSAGING_EVENT" />
-          </intent-filter>
-      </service>
-      </Else> -->
     </application>
 
 </manifest>

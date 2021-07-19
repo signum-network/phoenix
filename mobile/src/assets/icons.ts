@@ -11,11 +11,17 @@ export const tabbarIcons = {
 
 export const actionIcons = {
   del: require('./icons/delete.png'),
-  chevronDown: require('./icons/chevron-down.png'),
-  chevronRight: require('./icons/chevron-right.png'),
   chevronLeft: require('./icons/chevron-left.png'),
+  chevron: require('./icons/chevron-left.png'),
+  send: require('./icons/chevron-right.png'),
   copy: require('./icons/content-copy.png')
 };
+
+export const accountIcons = {
+  active: require('./icons/check-circle.png'),
+};
+
+
 
 export const transactionIcons = {
   done: require('./icons/check-circle.png'),
@@ -26,5 +32,9 @@ export const transactionIcons = {
 };
 
 export const logos = {
-  white: require('./icons/logo_white.png')
+  white: require('./icons/logo_white.png'),
+  icon: require('./icons/logomark_white.png'),
+  iconnode: require('./icons/signum-node.png'),
+  signumjs: require('./icons/signumjs-badge.png')
 };
+

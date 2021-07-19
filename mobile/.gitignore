@@ -40,6 +40,7 @@ yarn-error.log
 buck-out/
 \.buckd/
 *.keystore
+*.jks
 
 # fastlane
 #
@@ -56,3 +57,4 @@ buck-out/
 *.jsbundle
 
 mobile/android/gradle.properties
+.jest

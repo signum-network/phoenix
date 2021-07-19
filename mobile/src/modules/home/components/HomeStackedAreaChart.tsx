@@ -1,5 +1,5 @@
-import { Account } from '@burstjs/core';
-import { convertBurstTimeToDate, convertNQTStringToNumber } from '@burstjs/util';
+import { Account } from '@signumjs/core';
+import { convertNQTStringToNumber, BlockTime } from '@signumjs/util';
 import * as shape from 'd3-shape';
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
 
 const svgStyles: StyleMedia = {
   fontSize: 8,
-  stroke: 'black',
+  stroke: 'white',
   strokeWidth: 0.1,
   alignmentBaseline: 'baseline',
   baselineShift: '3',
@@ -110,7 +110,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
         for (let t = transactions.length - 1; t >= 0; t--) {
           const transaction = transactions[t];
           // only match up to the most recent transaction, not beyond
-          if (convertBurstTimeToDate(transaction.timestamp) > d) {
+          if (BlockTime.fromBlockTimestamp(transaction.timestamp).getDate() > d) {
             continue;
           }
 
@@ -165,6 +165,8 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
 
   render () {
 
+    console.log('Stacked Chart')
+
     const data = this.calculateChartData();
     const keys = Object.keys(data[0]).slice(1); // remove 'day' from the keys to get the account names
 
@@ -201,8 +203,8 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
           onPress={this.props.selectCurrency}
           style={styles.button as StyleMedia}
         >
-          <Text color={Colors.BLUE_LIGHT} size={FontSizes.SMALL}>
-            {this.props.priceApi.selectedCurrency}
+          <Text color={Colors.BLUE_LIGHT} size={FontSizes.SMALLER}>
+            {this.props.priceApi.selectedCurrency === 'BURST' ? 'SIGNA' : this.props.priceApi.selectedCurrency}
           </Text>
         </TouchableOpacity>
 
@@ -210,7 +212,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
           onPress={this.selectDateRange}
           style={[styles.button, styles.dateRange]}
         >
-          <Text color={Colors.BLUE_LIGHT} size={FontSizes.SMALL}>
+          <Text color={Colors.BLUE_LIGHT} size={FontSizes.SMALLER}>
             {this.state.selectedDateRange.toString()}d
           </Text>
         </TouchableOpacity>

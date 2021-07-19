@@ -14,7 +14,7 @@ interface Props {
 
 const styles = StyleSheet.create({
   view: {
-    backgroundColor: Colors.BLUE_DARKER,
+    backgroundColor: Colors.BLUE,
     position: 'absolute',
     top: 0,
     left: 0,

@@ -1,173 +1,181 @@
-import { translations } from 'i18n-js';
-import React from 'react';
-import { Modal, SafeAreaView, StyleSheet, View } from 'react-native';
+import {translations} from 'i18n-js';
+import React, {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Modal, SafeAreaView, StyleSheet, View, Image} from 'react-native';
 import VersionNumber from 'react-native-version-number';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
-import { connect } from 'react-redux';
-import { BSelect } from '../../../core/components/base/BSelect';
-import { Button, ButtonThemes } from '../../../core/components/base/Button';
-import { Text } from '../../../core/components/base/Text';
-import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
-import { i18n } from '../../../core/i18n';
-import { InjectedReduxProps } from '../../../core/interfaces';
-import { FullHeightView } from '../../../core/layout/FullHeightView';
-import { Screen } from '../../../core/layout/Screen';
-import { routes } from '../../../core/navigation/routes';
-import { AppReduxState } from '../../../core/store/app/reducer';
-import { ApplicationState } from '../../../core/store/initialState';
-import { Colors } from '../../../core/theme/colors';
-import { FontSizes, Sizes } from '../../../core/theme/sizes';
-import { resetAuthState } from '../../auth/store/actions';
-import { AuthReduxState } from '../../auth/store/reducer';
-import { settings } from '../translations';
-import { saveNode } from '../../../core/store/app/actions';
+import {NavigationInjectedProps} from 'react-navigation';
+import {BSelect} from '../../../core/components/base/BSelect';
+import {Button, ButtonThemes} from '../../../core/components/base/Button';
+import {Text} from '../../../core/components/base/Text';
+import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
+import {i18n} from '../../../core/i18n';
+import {InjectedReduxProps} from '../../../core/interfaces';
+import {FullHeightView} from '../../../core/layout/FullHeightView';
+import {Screen} from '../../../core/layout/Screen';
+import {routes} from '../../../core/navigation/routes';
+import {AppReduxState} from '../../../core/store/app/reducer';
+import {Colors} from '../../../core/theme/colors';
+import {FontSizes, Sizes} from '../../../core/theme/sizes';
+import {resetAuthState} from '../../auth/store/actions';
+import {AuthReduxState} from '../../auth/store/reducer';
+import {settings} from '../translations';
+import {autoSelectNode, setNode} from '../../../core/store/app/actions';
+import {defaultSettings} from '../../../core/environment';
+import {useNavigation} from '@react-navigation/native';
+import {selectCurrentNode, selectIsAutomaticNodeSelection} from '../../../core/store/app/selectors';
+import {SwitchItem} from '../../../core/components/base/SwitchItem';
+import {logos} from '../../../assets/icons';
+import {ResetModal} from '../../../core/components/modals/ResetModal';
 
 interface IProps extends InjectedReduxProps {
-  auth: AuthReduxState,
-  app: AppReduxState;
+    auth: AuthReduxState;
+    app: AppReduxState;
 }
+
 type Props = IProps & NavigationInjectedProps;
 
 const styles = StyleSheet.create({
-  container: {
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'center'
-  },
-  hintView: {
-    paddingTop: Sizes.SMALL,
-    flexGrow: 1
-  },
-  bodyText: {
-    padding: 10
-  },
-  flexBottom: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-end'
-  }
+    container: {
+        height: '90%',
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    settingsZone: {
+        flex: 4,
+    },
+    hintView: {
+        paddingTop: Sizes.SMALL,
+        flexGrow: 1
+    },
+    bodyText: {
+        padding: 10
+    },
+    dangerZone: {
+        position: 'relative',
+        flex: 1,
+        padding: Sizes.MEDIUM,
+        borderRadius: 4,
+        borderColor: Colors.WHITE,
+        borderStyle: 'solid',
+        borderWidth: 1,
+    },
+    dangerZoneLabel: {
+        position: 'absolute',
+        backgroundColor: Colors.BLUE,
+        top: -10,
+        left: 8,
+        paddingHorizontal: 2,
+    },
+    flexBottom: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    signumjs: {
+        height: 40,
+        width: 40,
+        marginRight: 8,
+    }
 });
 
-class Settings extends React.PureComponent<Props> {
 
-  state = {
-    erasePromptVisible: false,
-    selectedNode: this.props.app.burstService.settings.nodeHost
-  };
+export const SettingsScreen: React.FC<Props> = () => {
+    const dispatch = useDispatch();
+    const navigation = useNavigation();
+    const [erasePromptVisible, setErasePromptVisible] = useState(false);
+    const currentNode = useSelector(selectCurrentNode);
+    const isAutomatic = useSelector(selectIsAutomaticNodeSelection);
 
-  toggleConfirmDeletePrompt = () => {
-    this.setState({ erasePromptVisible: !this.state.erasePromptVisible });
-  }
+    const toggleConfirmDeletePrompt = () => {
+        setErasePromptVisible(!erasePromptVisible);
+    };
 
-  confirmErase = () => {
-    this.props.dispatch(resetAuthState());
-    this.props.navigation.navigate(routes.home);
-    this.toggleConfirmDeletePrompt();
-  }
+    const confirmErase = () => {
+        dispatch(resetAuthState());
+        navigation.navigate(routes.home);
+        toggleConfirmDeletePrompt();
+    };
 
-  getLocales = () => {
-    return Object.keys(translations).map((locale) => {
-      return {
-        value: locale,
-        label: locale
-      };
-    });
-  }
+    const getLocales = () => {
+        return Object.keys(translations).map((locale) => {
+            return {
+                value: locale,
+                label: locale
+            };
+        });
+    };
 
-  handleNodeSelect = (selectedNode: string) => {
-    this.setState({
-      selectedNode
-    });
-    this.props.dispatch(saveNode(selectedNode));
-    this.forceUpdate();
-  }
+    const handleNodeSelect = (node: string) => {
+        // setSelectedNode(node);
+        if (node !== currentNode) {
+            dispatch(setNode(node));
+        }
+    };
 
-  render () {
-    const nodes = [
-      'https://wallet.burstcoin.ro',
-      'https://wallet2.burstcoin.ro',
-      'https://uk.signum.network',
-      'https://brazil.signum.network',
-      'https://europe.signum.network',
-      'https://australia.signum.network',
-      'https://testnetwallet.burstcoin.ro',
-      'https://testnet.burstcoin.network'
-    ];
+    const setNodeAutoSelection = (automatic: boolean) => {
+        dispatch(autoSelectNode(automatic));
+    };
 
-    const { selectedNode } = this.state;
+    const getNodeList = () => (defaultSettings.reliableNodeHosts as String[]).map(n => ({label: n, value: n}));
+
 
     return (
-      <Screen>
-        <FullHeightView>
+        <Screen>
+            <FullHeightView>
+                <HeaderTitle>{i18n.t(settings.screens.settings.title)}</HeaderTitle>
+                <View style={styles.container}>
+                    <View style={styles.settingsZone}>
+                        <BSelect
+                            value={currentNode}
+                            items={getNodeList()}
+                            onChange={handleNodeSelect}
+                            title={i18n.t(settings.screens.settings.selectNode)}
+                            placeholder={i18n.t(settings.screens.settings.selectNode)}
+                            disabled={isAutomatic}
+                        />
 
-          <HeaderTitle>{i18n.t(settings.screens.settings.title)}</HeaderTitle>
-          <View style={styles.container}>
-            <BSelect
-                  // @ts-ignore bad .d.ts
-                  value={selectedNode}
-                  items={nodes.map((node) => {
-                    return {
-                      label: node,
-                      value: node
-                    };
-                  })}
-                  onChange={this.handleNodeSelect}
-                  title={i18n.t(settings.screens.settings.selectNode)}
-                  placeholder={i18n.t(settings.screens.settings.selectNode)}
-            />
+                        <View>
+                            <SwitchItem
+                                onChange={setNodeAutoSelection}
+                                text={i18n.t(settings.screens.settings.autoNodeSelection)}
+                                labelColor={Colors.WHITE}
+                                value={isAutomatic}
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.dangerZone}>
 
-            <Button onPress={this.toggleConfirmDeletePrompt}>
-              {i18n.t(settings.screens.settings.erase)}
-            </Button>
+                        <View style={styles.dangerZoneLabel}>
+                            <Text color={Colors.WHITE} size={FontSizes.SMALLER}>Danger Zone</Text>
+                        </View>
+                        <Button theme={ButtonThemes.DANGER} onPress={toggleConfirmDeletePrompt}>
+                            {i18n.t(settings.screens.settings.erase)}
+                        </Button>
+                    </View>
 
-            <View style={[styles.flexBottom, styles.bodyText]}>
-              <Text color={Colors.WHITE} size={FontSizes.SMALL}>
-                Phoenix BURST Wallet {VersionNumber.appVersion} ({VersionNumber.buildVersion})
-                </Text>
-              <Text color={Colors.WHITE} size={FontSizes.SMALL}>
-                {i18n.t(settings.screens.settings.copyright)}
-              </Text>
-            </View>
-
-            <Modal
-              animationType='slide'
-              transparent={false}
-              visible={this.state.erasePromptVisible}
-              // tslint:disable-next-line: jsx-no-lambda
-              onRequestClose={() => {
-                // Alert.alert('Modal has been closed.');
-              }}
-            >
-              <SafeAreaView>
-
-                <View>
-                  <View style={styles.bodyText}>
-                    <Text>{i18n.t(settings.screens.settings.confirmReset)}</Text>
-
-                    <Button theme={ButtonThemes.ACCENT} onPress={this.toggleConfirmDeletePrompt}>
-                      {i18n.t(settings.screens.settings.cancel)}
-                    </Button>
-
-                    <Button onPress={this.confirmErase}>
-                      {i18n.t(settings.screens.settings.confirmErase)}
-                    </Button>
-                  </View>
+                    <View style={[styles.flexBottom, styles.bodyText]}>
+                        <View>
+                            <Image source={logos.signumjs} style={styles.signumjs}/>
+                        </View>
+                        <View>
+                            <Text color={Colors.WHITE} size={FontSizes.SMALLER}>
+                                Phoenix Signum Wallet {VersionNumber.appVersion} ({VersionNumber.buildVersion})
+                            </Text>
+                            <Text color={Colors.WHITE} size={FontSizes.SMALLER}>
+                                {i18n.t(settings.screens.settings.copyright)}
+                            </Text>
+                            <Text color={Colors.WHITE} size={FontSizes.SMALLER}>
+                                {i18n.t(settings.screens.settings.credits)}
+                            </Text>
+                        </View>
+                    </View>
+                    <ResetModal
+                        visible={erasePromptVisible}
+                        onConfirm={confirmErase}
+                        onCancel={toggleConfirmDeletePrompt}
+                    />
                 </View>
-              </SafeAreaView>
-
-            </Modal>
-          </View>
-        </FullHeightView>
-      </Screen>
+            </FullHeightView>
+        </Screen>
     );
-  }
-}
-
-function mapStateToProps (state: ApplicationState) {
-  return {
-    auth: state.auth,
-    app: state.app
-  };
-}
-
-export const SettingsScreen = connect(mapStateToProps)(withNavigation(Settings));
+};

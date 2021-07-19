@@ -1,5 +1,5 @@
-import { TransactionPaymentSubtype, TransactionType } from '@burstjs/core';
-import { convertNumberToNQTString } from '@burstjs/util';
+import { TransactionPaymentSubtype, TransactionType } from '@signumjs/core';
+import { convertNumberToNQTString } from '@signumjs/util';
 import { getBalanceHistoryFromTransactions } from './getBalanceHistoryFromTransactions';
 
 const nqt = convertNumberToNQTString;

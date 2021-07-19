@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: Sizes.MEDIUM
+    paddingTop: 0
   },
   disabled: {
     opacity: 0

@@ -1,123 +1,57 @@
 # Phoenix Mobile Wallet
 
-The BURST mobile wallet is a React Native application.
-
-## The Community
-
-Share your ideas, discuss Burst and help each other.
-
-[Click here](http://reddit.com/r/burstcoin) to see our Community page.
+The Signum Mobile wallet is a React Native application.
 
 ## Development
 
-### MacOS
+The setup for mobile development requires a lot of steps. Currently, we have tested support for 
+[Linux](./SETUP_LINUX.md) and [MacOS]((./SETUP_MACOS.md))
 
-#### for iOS
+> Windows development setup documentation is welcome 
 
-Install `XCode` 9.4+ from AppStore.
-Next you need `Command Line Tools`, install them from `XCode => Preferences => Locations`
+### Deeplink Testing (Android)
 
-#### for Android
+The mobile wallet supports same [deeplinking capabilities](../DEEPLINKING.md) like the desktop wallet
 
-Install `Oracle JDK 8`
-Install `Android Studio`, choose `Custom setup` and check next boxes:
-* Android SDK
-* Android SDK Platform
-* Performance (Intel HAXM)
-* Android Virtual Device
+To test deeplinks you can go into the [tasks folder](./tasks) and calling:
 
-Next, you need to install `Android SDK` 8.1 and select `Android SDK Platform 27` and `Google APIs Intel x86 Atom System Image`
+- [createCIP22DeeplinkExamples.js](./tasks/createCIP22DeeplinkExamples.js)
+-[createLegacyDeeplinkExamples.js](./tasks/createLegacyDeeplinkExamples.js)
 
-Then you need to configure your ANDROID_HOME environment.
+Example:
 
-For standard macOS terminal you can make ~/.bash_profile and put next lines:
-```
-export ANDROID_HOME=~/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-``` 
-
-### General
-
-Install `Homebrew` and `NodeJS` 10+, then run following commands
-```
-brew install watchman
-npm install -g react-native-cli
-npm run init
+```bash
+node createCIP22DeeplinkExamples.js
 ```
 
-### Windows (untested)
+gives you:
 
-#### for iOS
-
-No, you can't.
-
-#### for Android
-
-First, install `Chocolatey`, a windows package manager.
-Then install `NodeJS`, `python 2` and `JDK 8`:
 ```
-choco install -y nodejs.install python2 jdk8
-```
+Example A
+=========
+signum://v1?action=pay&payload=eyJyZWNpcGllbnQiOiJTLTlLOUwtNENCNS04OFk1LUY1RzRaIiwiYW1vdW50UGxhbmNrIjoxMDAwMDAwMCwiZmVlUGxhbmNrIjo3MzUwMDAsIm1lc3NhZ2UiOiJIaSwgZnJvbSBhIGRlZXAgbGluayIsIm1lc3NhZ2VJc1RleHQiOnRydWUsImltbXV0YWJsZSI6ZmFsc2UsImRlYWRsaW5lIjoyNCwiZW5jcnlwdCI6ZmFsc2V9
 
-Install `Android Studio`, choose `Custom setup` and check next boxes:
-* Android SDK
-* Android SDK Platform
-* Performance (Intel HAXM)
-* Android Virtual Device
+Bash Escaped
+signum://v1?action=pay\&payload=eyJyZWNpcGllbnQiOiJTLTlLOUwtNENCNS04OFk1LUY1RzRaIiwiYW1vdW50UGxhbmNrIjoxMDAwMDAwMCwiZmVlUGxhbmNrIjo3MzUwMDAsIm1lc3NhZ2UiOiJIaSwgZnJvbSBhIGRlZXAgbGluayIsIm1lc3NhZ2VJc1RleHQiOnRydWUsImltbXV0YWJsZSI6ZmFsc2UsImRlYWRsaW5lIjoyNCwiZW5jcnlwdCI6ZmFsc2V9
+--------------------
+Example B
+=========
+signum://v1?action=pay&payload=eyJyZWNpcGllbnQiOiJTLTlLOUwtNENCNS04OFk1LUY1RzRaIiwiaW1tdXRhYmxlIjpmYWxzZSwiZGVhZGxpbmUiOjI0LCJlbmNyeXB0Ijp0cnVlfQ
 
-Next, you need to install `Android SDK` 8.1 and select `Android SDK Platform 27` and `Google APIs Intel x86 Atom System Image`
+Bash Escaped
+signum://v1?action=pay\&payload=eyJyZWNpcGllbnQiOiJTLTlLOUwtNENCNS04OFk1LUY1RzRaIiwiaW1tdXRhYmxlIjpmYWxzZSwiZGVhZGxpbmUiOjI0LCJlbmNyeXB0Ijp0cnVlfQ
 
-Then you need to configure your ANDROID_HOME environment.
-
-Open `System and Security` -> `Change Settings` -> `Advanced` -> `Environment variables` -> `New`, where `name` is `ANDROID_HOME` and value is `path\to\your\android\sdk`
-By default it's `c:\Users\YOUR_USERNAME\AppData\Local\Android\Sdk`
-
-#### General
-
-Run the following commands:
-```
-npm install -g react-native-cli
-npm run init
 ```
 
-### *nix systems (untested)
+To generate different deeplinks for testing.
 
-#### for iOS
+Use [testDeeplink.sh](./tasks/testDeeplink.sh) to call a deep link for the emulator
 
-No, you can't
+> Note: Make sure that `adb` is correctly installed on your system
 
-#### for Android
-
-Install `NodeJS` 10+, `Oracle JDK 8`, `Android Studio` with checkboxes:
-* Android SDK
-* Android SDK Platform
-* Android Virtual Device
-
-Next, you need to install `Android SDK` 8.1 and select `Android SDK Platform 27` and `Google APIs Intel x86 Atom System Image`
-
-Then you need to configure your `ANDROID_HOME` environment.
-Add the following lines to your `~/.bash_profile` config file:
-```
-export ANDROID_HOME=~/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+```bash
+./testDeeplink.sh 'signum://v1?action=pay\&payload=eyJyZWNpcGllbnQiOiJTLTlLOUwtNENCNS04OFk1LUY1RzRaIiwiaW1tdXRhY
+mxlIjpmYWxzZSwiZGVhZGxpbmUiOjI0LCJlbmNyeXB0Ijp0cnVlfQ'
 ```
 
-Then compile and install `Watchman` with [guide](https://facebook.github.io/watchman/docs/install.html#installing-from-source).
-
-#### General
-
-Run the following commands:
-```
-npm install -g react-native-cli
-npm run init
-``` 
-
-## Development server
-
-Run `npm run dev` for a iOS dev server and `npm run dev:android` for Android. The simulator will start automatically.
+> Note: that you need the "bash escaped" url for the script (at least on Linux)

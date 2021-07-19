@@ -1,4 +1,4 @@
-import { SuggestedFees } from '@burstjs/core';
+import { SuggestedFees } from '@signumjs/core';
 import { Reducer } from '../../../core/interfaces';
 import { createReducers } from '../../../core/utils/store';
 import { actionTypes } from './actionTypes';

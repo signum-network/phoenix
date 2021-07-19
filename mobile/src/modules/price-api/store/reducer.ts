@@ -21,8 +21,8 @@ export interface PairedHistoricalPriceInfo {
 export type HistoricalPriceTypeStrings = keyof PairedHistoricalPriceInfo;
 
 export interface HistoricalPriceInfoUpdate {
-  historicalPriceInfo: HistoricalPriceInfo,
-  type: PriceType
+  historicalPriceInfo: HistoricalPriceInfo;
+  type: PriceType;
 }
 
 export interface Metric {

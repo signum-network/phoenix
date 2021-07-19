@@ -1,20 +1,24 @@
 # Privacy Policy
 
-This Privacy Policy ("Policy") describes our policies regarding the collection, usage, protection and processing of personally identifiable information received from Users ("User", "You") of the Phoenix Burst Wallet Application and its related applications and services ("Wallet", "We", "Our" or "Us").
+This Privacy Policy ("Policy") describes our policies regarding the collection, usage, protection and processing of personally identifiable information received from Users ("User", "You") of the Phoenix Signum Wallet Application and its related applications and services ("Wallet", "We", "Our" or "Us").
 
 We encourage you to read our Privacy Policy carefully before using our Wallet. We do not collect any information that may identify You without your permission. However by using the Wallet, you give us a consent and permission to collect, store and use the information about you, including your personal information, as prescribed by this Policy. You acknowledge and agree that such personal information may be transferred to and stored on the servers of the Wallet and the servers of authorized third parties.
 
-1. We may collect the information provided or generated whenever the User takes any action in our Wallet or omits to do it or otherwise uses Our services, such as without limitation:
+1. We do not collect any personal information that identifies You as individual, this includes in special
+   
+  a) personal secrets, like passwords, passphrases, or PIN
 
-  a) Information about yourself, which You may provide to Us, including, but not limited to the name, email address, mailing address, phone number, alias and password used by you as an identifier of your account, that allow us to designate the specific wallet to you and provide you with the exclusive access to your funds.;
+  b) email address, phone numbers, or any other identification schemes, e.g. SSN, ID Card, passport etc. 
 
-  b) IP address;
+1. We _may_ collect the information provided or generated whenever the User takes any action in our Wallet or omits to do it or otherwise uses Our services, such as:
+
+  a) IP address;
 
   c) The type (including identifiers) of the device of the mobile devices You use with the Wallet, platform type, geolocation information, internet service, operating system, etc. to provide the best service and identify possible issues with particular type of device or operating system or language;
 
   d) In - Wallet behavioral information such as without limitation Your visits of the Wallet, clicks on ads or other similar information including additional related data(or metadata), such as the time, date, and location related to such behavior. That information allow us to analyse the usage of our wallet and may help us to design the better UI in the wallet;
 
-2. We share some personal information with certain providers that perform services on our behalf. We only share the personal information which is necessary for them to perform those services. We require any provider with which we may share personal information to protect that data in a manner consistent with this policy and to limit the use of such personal information to the performance of services for Phoenix. Please note that those providers have their own privacy policies which will govern the shared information and which are available at the links below. In particular, we may share some information with:
+2. We _may_ share some personal information with certain providers that perform services on our behalf. We only share the personal information which is necessary for them to perform those services. We require any provider with which we may share personal information to protect that data in a manner consistent with this policy and to limit the use of such personal information to the performance of services for Phoenix. Please note that those providers have their own privacy policies which will govern the shared information and which are available at the links below. In particular, we may share some information with:
 
 | Who                 | Shared Information | Purpose                                                             | Privacy Policy                                |
 |---------------------|--------------------|---------------------------------------------------------------------|-----------------------------------------------|
@@ -42,8 +46,8 @@ We encourage you to read our Privacy Policy carefully before using our Wallet. W
 
 9. We may, at Our sole discretion, include or offer third-party products or services in the Wallet. These third-party providers have separate and independent privacy policies. We, therefore, have no responsibility or liability for the content and activities of these linked services.
 
-10. In case You are EU citizen and want to exercise rights enshrined in art. 15 of GDPR, please write Us at info@burst-coin.org e-mail.
+10. In case You are EU citizen and want to exercise rights enshrined in art. 15 of GDPR, please write Us at development@signum.network e-mail.
 
 11. The wallet may update this Policy at any time. We will notify you on any changes prior to the date when they become effective by email (sent to the e-mail address specified in your account) or in the announcement in the wallet or on the website.
 
-12. If there are any questions regarding this Policy or feedback related thereto You may contact Us using the info@burst-coin.org e-mail.
+12. If there are any questions regarding this Policy or feedback related thereto You may contact Us using the development@signum.network e-mail.

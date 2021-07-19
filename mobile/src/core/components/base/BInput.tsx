@@ -30,21 +30,14 @@ export class BInput extends React.PureComponent<Props> {
     wrapper: {
       borderColor: Colors.BLUE,
       borderWidth: 1,
+      borderRadius: 4,
       padding: Sizes.MEDIUM,
-      backgroundColor: Colors.BLACK,
+      backgroundColor: Colors.BLACK_T,
       marginBottom: Sizes.MEDIUM,
       flexDirection: 'row',
-      shadowColor: Colors.BLACK,
-      shadowOffset: {
-        width: 0,
-        height: 1
-      },
-      shadowOpacity: 0.22,
-      shadowRadius: 2.22,
-      elevation: 3
     },
     input: {
-      fontFamily: fonts.noto,
+      fontFamily: fonts.roboto,
       letterSpacing: -1,
       fontSize: FontSizes.MEDIUM,
       fontWeight: '500',
@@ -82,7 +75,7 @@ export class BInput extends React.PureComponent<Props> {
     return (
       <View>
         {title ? (
-          <BText color={Colors.WHITE} size={FontSizes.SMALL}>{title}</BText>
+          <BText color={Colors.WHITE} size={FontSizes.SMALLER}>{title}</BText>
         ) : null}
         <View style={this.styles.wrapper}>
           <TextInput
@@ -96,7 +89,7 @@ export class BInput extends React.PureComponent<Props> {
             keyboardType={keyboard}
             returnKeyType={'done'}
             placeholder={placeholder}
-            placeholderTextColor={Colors.GREY_LIGHT}
+            placeholderTextColor={Colors.GREY_TT}
           />
           <View style={this.styles.end}>
             {rightIcons}

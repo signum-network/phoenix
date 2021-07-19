@@ -1,35 +1,25 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { InjectedReduxProps } from '../interfaces';
-import { loadApp } from '../store/app/actions';
-import { AppReduxState } from '../store/app/reducer';
-import { ApplicationState } from '../store/initialState';
-import { LoadingView } from './LoadingView';
+import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {loadApp} from '../store/app/actions';
+import {ApplicationState} from '../store/initialState';
+import {LoadingView} from './LoadingView';
+import {PasscodeProtection} from '../../modules/auth/components/passcode/PasscodeProtection';
 
-function mapStateToProps (state: ApplicationState) {
-  return {
-    app: state.app
-  };
-}
+export const RootView: React.FC = ({children}) => {
 
-interface InjectedProps extends InjectedReduxProps {
-  app: AppReduxState
-}
-interface Props {
-  children: JSX.Element
-}
-type TProps = InjectedProps & Props;
+    const dispatch = useDispatch();
+    const isAppLoaded = useSelector<ApplicationState>(state => state.app.isAppLoaded);
 
-class Root extends React.PureComponent<TProps> {
-  componentDidMount () {
-    if (!this.props.app.isAppLoaded) {
-      this.props.dispatch(loadApp());
+    useEffect(() => {
+        dispatch(loadApp());
+    }, []);
+
+    if (!isAppLoaded) {
+        return <LoadingView/>;
     }
-  }
 
-  render () {
-    return this.props.app.isAppLoaded ? this.props.children : <LoadingView />;
-  }
-}
+    return <PasscodeProtection>
+        {children}
+    </PasscodeProtection>;
 
-export const RootView = connect(mapStateToProps)(Root);
+};

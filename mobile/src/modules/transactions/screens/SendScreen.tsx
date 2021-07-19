@@ -1,198 +1,161 @@
-import { Account } from '@burstjs/core';
-import { convertNQTStringToNumber, convertNumericIdToAddress, isBurstAddress, convertBurstTimeToEpochTime } from '@burstjs/util';
-import { RouteProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useState, useEffect } from 'react';
-import { Linking, View } from 'react-native';
-import { connect } from 'react-redux';
-import { Text, TextThemes } from '../../../core/components/base/Text';
-import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
-import { i18n } from '../../../core/i18n';
-import { InjectedReduxProps } from '../../../core/interfaces';
-import { FullHeightView } from '../../../core/layout/FullHeightView';
-import { Screen } from '../../../core/layout/Screen';
-import { routes } from '../../../core/navigation/routes';
-import { AppReduxState } from '../../../core/store/app/reducer';
-import { ApplicationState } from '../../../core/store/initialState';
-import { isAsyncLoading } from '../../../core/utils/async';
-import { EnterPasscodeModal } from '../../auth/components/passcode/EnterPasscodeModal';
-import { RootStackParamList } from '../../auth/navigation/mainStack';
-import { getAccount, getAlias, getZilAddress } from '../../auth/store/actions';
-import { AuthReduxState } from '../../auth/store/reducer';
-import { shouldEnterPIN } from '../../auth/store/utils';
-import { NetworkReduxState } from '../../network/store/reducer';
-import { SendBurstForm, SendBurstFormState } from '../components/send/SendBurstForm';
-import { sendMoney, SendMoneyPayload } from '../store/actions';
-import { TransactionsReduxState } from '../store/reducer';
-import { parseURLParams } from '../store/utils';
-import { transactions } from '../translations';
-import { withNavigation } from 'react-navigation';
+import {RouteProp} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import React from 'react';
+import {View} from 'react-native';
+import {connect} from 'react-redux';
+import {Amount} from '@signumjs/util';
+import {Account} from '@signumjs/core';
+import {Text, TextThemes} from '../../../core/components/base/Text';
+import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
+import {i18n} from '../../../core/i18n';
+import {InjectedReduxProps} from '../../../core/interfaces';
+import {FullHeightView} from '../../../core/layout/FullHeightView';
+import {Screen} from '../../../core/layout/Screen';
+import {routes} from '../../../core/navigation/routes';
+import {AppReduxState} from '../../../core/store/app/reducer';
+import {ApplicationState} from '../../../core/store/initialState';
+import {isAsyncLoading} from '../../../core/utils/async';
+import {RootStackParamList} from '../../auth/navigation/mainStack';
+import {getAccount, getAlias, getZilAddress} from '../../auth/store/actions';
+import {AuthReduxState} from '../../auth/store/reducer';
+import {NetworkReduxState} from '../../network/store/reducer';
+import {SendForm, SendFormState} from '../components/send/SendForm';
+import {sendMoney, SendAmountPayload} from '../store/actions';
+import {TransactionsReduxState} from '../store/reducer';
+import {transactions} from '../translations';
+import {withNavigation} from 'react-navigation';
+import {NoActiveAccount} from '../components/send/NoActiveAccount';
+import {DeeplinkPayPayload} from '../../../core/utils/deeplink';
 
 type SendNavProp = StackNavigationProp<RootStackParamList, 'send'>;
 type SendRouteProp = RouteProp<RootStackParamList, 'send'>;
 
 interface IProps extends InjectedReduxProps {
-  app: AppReduxState;
-  auth: AuthReduxState;
-  transactions: TransactionsReduxState;
-  network: NetworkReduxState;
-  navigation: SendNavProp;
-  route: SendRouteProp;
+    app: AppReduxState;
+    auth: AuthReduxState;
+    transactions: TransactionsReduxState;
+    network: NetworkReduxState;
+    navigation: SendNavProp;
+    route: SendRouteProp;
 }
 
 interface State {
-  isPINModalVisible: boolean;
-  deepLinkProps?: SendBurstFormState;
+    deepLinkProps?: SendFormState;
 }
 
 class Send extends React.PureComponent<IProps, State> {
 
-  state = {
-    isPINModalVisible: false,
-    deepLinkProps: undefined
-  };
+    state = {
+        deepLinkProps: undefined
+    };
 
-  constructor (props) {
-    super(props);
-    this.props.navigation.addListener('focus', this.willFocus);
-    this.props.navigation.addListener('blur', this.willBlur);
-  }
+    constructor(props) {
+        super(props);
+        this.props.navigation.addListener('focus', this.willFocus);
+        this.props.navigation.addListener('blur', this.willBlur);
+    }
 
-  willFocus = () => {
-    setTimeout(() => {
-      const deepLink = this.props.route.params?.url;
+    willFocus = () => {
+        setTimeout(() => {
+            const payload = this.props.route.params?.payload as DeeplinkPayPayload
+            console.log('Got send link', payload);
+            if (payload) {
+                this.setState({
+                    deepLinkProps: {
+                        sender: null,
+                        address: payload.recipient || undefined,
+                        fee: payload.feePlanck ? Amount.fromPlanck(payload.feePlanck).getSigna() : undefined,
+                        amount: payload.amountPlanck ? Amount.fromPlanck(payload.amountPlanck).getSigna() : undefined,
+                        message: payload.message,
+                        messageIsText: payload.messageIsText === true,
+                        encrypt: payload.encrypt === true,
+                        immutable: payload.immutable === true
+                    }
+                });
+            }
+        }, 500);
+    }
 
-      console.log(deepLink);
-      if (deepLink) {
-        const params = parseURLParams(deepLink);
+    componentDidMount(): void {
+        this.forceUpdate();
+    }
+
+    willBlur = () => {
+        const deepLink = this.props.navigation.dangerouslyGetParent();
+        if (deepLink) {
+            deepLink.setParams({payload: undefined});
+        }
+        this.props.navigation.setParams({payload: undefined});
         this.setState({
-          deepLinkProps: {
-            sender: null,
-            address: isBurstAddress(params.receiver) ? params.receiver : convertNumericIdToAddress(params.receiver),
-            fee: params.feeNQT ? this.getFee(params.feeNQT, params.feeSuggestionType) : undefined,
-            amount: params.amountNQT ? convertNQTStringToNumber(params.amountNQT).toString() : undefined,
-            message: params.message,
-            messageIsText: params.messageIsText === 'false' ? false : true,
-            encrypt: params.encrypt === 'true' ? true : false,
-            immutable: params.immutable === 'true' ? true : false
-          }
+            deepLinkProps: undefined
         });
-      }
-    }, 500);
-  }
-
-  componentDidMount() {
-    this.forceUpdate();
-  }
-
-  willBlur = () => {
-    const deepLink = this.props.navigation.dangerouslyGetParent();
-    if (deepLink) {
-      deepLink.setParams({ url: undefined });
     }
-    this.props.navigation.setParams({ url: undefined });
-    this.setState({
-      deepLinkProps: undefined
-    });
-  }
 
-  getFee (feeNQT: string, feeSuggestionType: string) {
-    let fee = convertNQTStringToNumber(feeNQT);
-    if (feeSuggestionType && feeSuggestionType !== 'undefined' && this.props.network.suggestedFees) {
-      // @ts-ignore
-      fee = convertNQTStringToNumber(this.props.network.suggestedFees[feeSuggestionType]);
+    handleSubmit = (form: SendAmountPayload) => {
+        this.props.dispatch(sendMoney(form));
     }
-    return fee.toString();
-  }
 
-  handleSubmit = (form: SendMoneyPayload) => {
-    const { passcodeEnteredTime } = this.props.auth;
-    const { passcodeTime } = this.props.app.appSettings;
-
-    if (shouldEnterPIN(passcodeTime, passcodeEnteredTime)) {
-      this.setState({
-        isPINModalVisible: true
-      });
-    } else {
-      this.props.dispatch(sendMoney(form));
-      this.props.navigation.navigate(routes.home);
+    handleGetAccount = (id: string) => {
+        return this.props.dispatch(getAccount(id));
     }
-  }
 
-  handlePINEntered = () => {
-    this.setState({
-      isPINModalVisible: false
-    });
-  }
+    handleGetZilAddress = (id: string) => {
+        return this.props.dispatch(getZilAddress(id));
+    }
 
-  handlePINCancel = () => {
-    this.setState({
-      isPINModalVisible: false
-    });
-  }
+    handleGetAlias = (id: string) => {
+        return this.props.dispatch(getAlias(id));
+    }
 
-  handleGetAccount = (id: string) => {
-    return this.props.dispatch(getAccount(id));
-  }
+    handleCameraIconPress = () => {
+        this.props.navigation.navigate(routes.scan);
+    }
 
-  handleGetZilAddress = (id: string) => {
-    return this.props.dispatch(getZilAddress(id));
-  }
+    componentWillUnmount(): void {
+        this.props.navigation.removeListener('focus', this.willFocus);
+        this.props.navigation.removeListener('blur', this.willBlur);
+    }
 
-  handleGetAlias = (id: string) => {
-    return this.props.dispatch(getAlias(id));
-  }
+    render() {
+        const accounts: Account[] = this.props.auth.accounts || [];
+        const {error} = this.props.transactions.sendMoney;
+        const isLoading = isAsyncLoading(this.props.transactions.sendMoney);
+        const hasActiveAccounts = accounts.some(({type}) => type !== 'offline');
 
-  handleCameraIconPress = () => {
-    this.props.navigation.navigate(routes.scan);
-  }
-
-  componentWillUnmount () {
-    this.props.navigation.removeListener('focus', this.willFocus);
-    this.props.navigation.removeListener('blur', this.willBlur);
-  }
-
-  render () {
-    const accounts: Account[] = this.props.auth.accounts || [];
-    const { data, error } = this.props.transactions.sendMoney;
-    const isLoading = isAsyncLoading(this.props.transactions.sendMoney);
-
-    return (
-      <Screen>
-        <FullHeightView>
-          <View>
-            <HeaderTitle>{i18n.t(transactions.screens.send.title)}</HeaderTitle>
-            <SendBurstForm
-              accounts={accounts}
-              loading={isLoading}
-              onSubmit={this.handleSubmit}
-              onGetAccount={this.handleGetAccount}
-              onGetAlias={this.handleGetAlias}
-              onGetZilAddress={this.handleGetZilAddress}
-              onCameraIconPress={this.handleCameraIconPress}
-              deepLinkProps={this.state.deepLinkProps}
-              suggestedFees={this.props.network.suggestedFees}
-            />
-            {error && <Text theme={TextThemes.DANGER}>{error.message}</Text>}
-          </View>
-          <EnterPasscodeModal
-            visible={this.state.isPINModalVisible}
-            onSuccess={this.handlePINEntered}
-            onCancel={this.handlePINCancel}
-          />
-        </FullHeightView>
-      </Screen>
-    );
-  }
+        return (
+            <Screen>
+                <FullHeightView>
+                    <View>
+                        <HeaderTitle>{i18n.t(transactions.screens.send.title)}</HeaderTitle>
+                        {hasActiveAccounts
+                            ? <SendForm
+                                accounts={accounts}
+                                loading={isLoading}
+                                onSubmit={this.handleSubmit}
+                                onGetAccount={this.handleGetAccount}
+                                onGetAlias={this.handleGetAlias}
+                                onGetZilAddress={this.handleGetZilAddress}
+                                onCameraIconPress={this.handleCameraIconPress}
+                                deepLinkProps={this.state.deepLinkProps}
+                                suggestedFees={this.props.network.suggestedFees}
+                            />
+                            : <NoActiveAccount/>
+                        }
+                        {error && <Text theme={TextThemes.DANGER}>{error.message}</Text>}
+                    </View>
+                </FullHeightView>
+            </Screen>
+        );
+    }
 }
 
-function mapStateToProps (state: ApplicationState) {
-  return {
-    app: state.app,
-    auth: state.auth,
-    transactions: state.transactions,
-    network: state.network
-  };
+function mapStateToProps(state: ApplicationState) {
+    return {
+        app: state.app,
+        auth: state.auth,
+        transactions: state.transactions,
+        network: state.network
+    };
 }
 
 export const SendScreen = connect(mapStateToProps)(withNavigation(Send));

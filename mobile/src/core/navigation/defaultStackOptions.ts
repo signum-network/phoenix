@@ -4,12 +4,12 @@ import { fonts } from '../theme/fonts';
 
 export const defaultStackOptions: NavigationScreenOptions = {
   headerStyle: {
-    backgroundColor: Colors.BLUE_DARKER,
+    backgroundColor: Colors.BLUE,
     borderBottomWidth: 0
   },
-  headerTintColor: Colors.WHITE,
+  headerTintColor: Colors.GREEN,
   headerTitleStyle: {
     fontWeight: 'bold',
-    fontFamily: fonts.bebas
+    fontFamily: fonts.signum
   }
 };

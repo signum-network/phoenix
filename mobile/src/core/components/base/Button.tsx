@@ -6,7 +6,8 @@ import { Text, TextAlign } from './Text';
 
 export enum ButtonThemes {
   DEFAULT = 'DEFAULT',
-  ACCENT = 'ACCENT'
+  ACCENT = 'ACCENT',
+  DANGER = 'DANGER'
 }
 
 export enum ButtonSizes {
@@ -30,23 +31,25 @@ const defaultSize = ButtonSizes.DEFAULT;
 
 const childrenColors = {
   [ButtonThemes.DEFAULT]: Colors.BLUE,
-  [ButtonThemes.ACCENT]: Colors.WHITE
+  [ButtonThemes.ACCENT]: Colors.WHITE,
+  [ButtonThemes.DANGER]: Colors.WHITE,
 };
+
 const textSizes = {
   [ButtonSizes.DEFAULT]: FontSizes.MEDIUM,
-  [ButtonSizes.SMALL]: FontSizes.SMALL,
+  [ButtonSizes.SMALL]: FontSizes.SMALLER,
   [ButtonSizes.LARGE]: FontSizes.LARGE
 };
 
 const styles = StyleSheet.create({
   wrapper: {
-    padding: Sizes.MEDIUM
+    paddingVertical: Sizes.MEDIUM
   },
   wrapperSmall: {
     padding: Sizes.SMALL
   },
   wrapperLarge: {
-    padding: Sizes.LARGE
+    padding: Sizes.LARGER
   },
   button: {
     backgroundColor: Colors.WHITE,
@@ -60,12 +63,8 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadiusSizes.SMALL
   },
   buttonLarge: {
-    padding: Sizes.LARGE,
+    padding: Sizes.LARGER,
     borderRadius: BorderRadiusSizes.LARGE
-  },
-  buttonAccent: {
-    backgroundColor: Colors.BLUE_DARKER,
-    borderColor: Colors.BLUE_DARKER
   },
   loader: {
     margin: Sizes.SMALL
@@ -73,6 +72,18 @@ const styles = StyleSheet.create({
   buttonDisabled: {
     opacity: 0.5
   }
+});
+
+const themeStyles = StyleSheet.create({
+  [ButtonThemes.ACCENT]: {
+    backgroundColor: Colors.BLUE_LIGHT,
+    borderColor: Colors.BLUE_LIGHT
+  },
+  [ButtonThemes.DANGER]: {
+    backgroundColor: Colors.RED,
+    borderColor: Colors.RED
+  },
+  [ButtonThemes.DEFAULT]: {},
 });
 
 export const Button: React.FunctionComponent<Props> = (props) => {
@@ -89,10 +100,10 @@ export const Button: React.FunctionComponent<Props> = (props) => {
   ];
   const buttonStyles = [
     styles.button,
-    theme === ButtonThemes.ACCENT && styles.buttonAccent,
+    themeStyles[theme],
     size === ButtonSizes.SMALL && styles.buttonSmall,
     size === ButtonSizes.LARGE && styles.buttonLarge,
-    disabled && styles.buttonDisabled
+    disabled && styles.buttonDisabled,
   ];
 
   const handlePress = () => {
