@@ -178,13 +178,14 @@ export class MessagesService implements Resolve<any> {
     const maxNumberMessages = 100;
     const accountId = this.accountService.currentAccount.getValue().account;
 
-    const getConfirmedMessages = this.accountService.getAccountTransactions(
+    const getConfirmedMessages = this.accountService.getAccountTransactions({
       accountId,
-      0, maxNumberMessages,
-      0,
-      TransactionType.Arbitrary,
-      TransactionArbitrarySubtype.Message);
-
+      firstIndex: 0,
+      lastIndex: maxNumberMessages,
+      type: TransactionType.Arbitrary,
+      subtype: TransactionArbitrarySubtype.Message,
+      includeIndirect: false,
+    });
     const getUnconfirmedMessages = this.accountService.getUnconfirmedTransactions(accountId);
 
     const messages = await Promise.all([getConfirmedMessages, getUnconfirmedMessages]);
