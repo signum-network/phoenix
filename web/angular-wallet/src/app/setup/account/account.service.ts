@@ -26,8 +26,9 @@ import {ApiService} from '../../api.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {NetworkService} from '../../network/network.service';
 import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';
-import {AddressPrefix} from '@signumjs/core/src';
+import {AddressPrefix, GetAccountTransactionsArgs} from '@signumjs/core/src';
 import {adjustLegacyAddressPrefix} from '../../util/adjustLegacyAddressPrefix';
+import {uniqBy} from 'lodash';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -99,28 +100,11 @@ export class AccountService {
     });
   }
 
-  public async getAccountTransactions(
-    accountId: string,
-    firstIndex?: number,
-    lastIndex?: number,
-    numberOfConfirmations?: number,
-    type?: number,
-    subtype?: number
+  public async getAccountTransactions(args: GetAccountTransactionsArgs
   ): Promise<TransactionList> {
-
-    const args = {
-      accountId,
-      firstIndex,
-      lastIndex,
-      numberOfConfirmations,
-      type,
-      subtype,
-    };
+    args.includeIndirect = true;
     try {
-      const transactions = await this.api.account.getAccountTransactions({
-        ...args,
-        includeIndirect: true
-      });
+      const transactions = await this.api.account.getAccountTransactions(args);
       return Promise.resolve(transactions);
     } catch (e) {
       const EC_INVALID_ARG = 4;
@@ -331,7 +315,8 @@ export class AccountService {
 
     this.transactionsSeenInNotifications[transaction.transaction] = true;
     const incoming = transaction.recipient === this.currentAccount.value.account;
-    const totalAmount = Amount.fromPlanck(transaction.amountNQT).add(Amount.fromPlanck(transaction.feeNQT));
+    const amount = Amount.fromPlanck(transaction.amountNQT);
+    const totalAmount = amount.clone().add(Amount.fromPlanck(transaction.feeNQT));
 
     let header = '';
     let body = '';
@@ -361,12 +346,10 @@ export class AccountService {
 
   }
 
-  private async syncAccountUnconfirmedTransactions(account: Account): Promise<void> {
+  public async syncAccountUnconfirmedTransactions(account: Account): Promise<void> {
     try {
       const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account);
-      account.transactions = unconfirmedTransactionsResponse.unconfirmedTransactions
-        .sort((a, b) => a.timestamp > b.timestamp ? -1 : 1)
-        .concat(account.transactions);
+      account.transactions = uniqBy(unconfirmedTransactionsResponse.unconfirmedTransactions.concat(account.transactions), 'transaction');
 
       // @ts-ignore - Send notifications for new transactions
       if (window.Notification) {
@@ -380,10 +363,21 @@ export class AccountService {
     }
   }
 
-  private async syncAccountTransactions(account: Account): Promise<void> {
+  public async syncAccountTransactions(account: Account): Promise<void> {
     try {
-      const transactionList = await this.getAccountTransactions(account.account, 0, 500);
-      account.transactions = transactionList.transactions;
+      const {account: accountId, transactions} = account;
+      let transactionList = transactions.slice(0, 500); // max supported tx
+      if (transactions.length > 0) {
+        const timestamp = transactions[0].timestamp.toString(10);
+        const {transactions: recentTransactions} = await this.getAccountTransactions({
+          accountId,
+          timestamp
+        });
+        transactionList = recentTransactions.concat(transactions);
+      } else {
+        transactionList = (await this.getAccountTransactions({accountId})).transactions;
+      }
+      account.transactions = uniqBy(transactionList, 'transaction');
     } catch (e) {
       account.transactions = [];
     }
