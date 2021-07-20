@@ -58,7 +58,7 @@
     "i18n-js": "^3.2.2",
     "lodash": "^4.17.21",
     "react": "16.13.1",
-    "react-native": "0.63.4",
+    "react-native": "0.64.1",
     "react-native-camera": "^3.35.0",
     "react-native-gesture-handler": "^1.7.0",
     "react-native-keychain": "^6.1.1",
