@@ -84,7 +84,7 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
 
         switch (fieldName) {
             case 'recipient' :
-                data = data.trim();
+                data = data && data.trim();
                 break;
             case 'amount':
             case 'fee':
