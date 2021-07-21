@@ -35,11 +35,11 @@
         "noTransactions": {
           "title": "No transactions"
         },
-        "copiedSuccessfully": "Address copied successfully.",
+        "copiedSuccessfully": "Address copied successfully: {{value}}",
         "copy": "Copy"
       },
       "transactionDetails": {
-        "copiedSuccessfully": "Value copied successfully.",
+        "copiedSuccessfully": "Value copied successfully: {{value}}",
         "headerTitle": "Transaction Details",
         "copy": "Copy"
       },
