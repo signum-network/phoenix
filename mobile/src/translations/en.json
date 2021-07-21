@@ -77,6 +77,11 @@
     "placeholders": {
       "message": "Enter Message"
     },
+    "balances": {
+      "available": "Available",
+      "locked": "Locked",
+      "committed": "Committed"
+    },
     "actions": {
       "add": "Add",
       "cancel": "Cancel",
@@ -149,6 +154,11 @@
   "transactions": {
     "screens": {
       "receive": {
+        "noAccount": {
+          "hint": "You need at least one account as receiver",
+          "title": "No Account",
+          "button": "Add Account"
+        },
         "title": "Receive",
         "recipient": "Recipient",
         "generate": "Generate QR Code",

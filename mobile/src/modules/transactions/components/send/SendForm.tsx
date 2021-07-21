@@ -23,6 +23,7 @@ import {DangerBox} from './DangerBox';
 import {AccountBalances, getBalancesFromAccount, ZeroAcountBalances} from '../../../../core/utils/balance/getBalancesFromAccount';
 import {Button, ButtonThemes} from '../../../../core/components/base/Button';
 import {stableAmountFormat, stableParseSignaAmount} from '../../../../core/utils/amount';
+import {core} from '../../../../core/translations';
 
 const AddressPrefix = 'S-';
 
@@ -116,11 +117,11 @@ const subBalanceStyles = StyleSheet.create({
 
 const Balances: React.FC<{ balances?: AccountBalances }> = ({balances = ZeroAcountBalances}) => (
     <View style={subBalanceStyles.root}>
-        <Text color={Colors.GREY} size={FontSizes.SMALLER}>Available:</Text>
+        <Text color={Colors.GREY} size={FontSizes.SMALLER}>{i18n.t(core.balances.available)}</Text>
         <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.availableBalance}/>
         {balances.lockedBalance.greater(Amount.Zero()) && (
                 <>
-                    <Text color={Colors.GREY} size={FontSizes.SMALLER}>Locked:</Text>
+                    <Text color={Colors.GREY} size={FontSizes.SMALLER}>{i18n.t(core.balances.locked)}</Text>
                     <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.lockedBalance}/>
                 </>
             )

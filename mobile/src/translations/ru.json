@@ -76,6 +76,11 @@
     "placeholders" : {
       "message": "Введите сообщение"
     },
+    "balances": {
+      "available": "Доступно",
+      "locked": "Заблокировано",
+      "committed": "Обязательства"
+    },
     "actions": {
       "add": "Добавить",
       "cancel": "Отмена",
@@ -148,6 +153,11 @@
   "transactions": {
     "screens": {
       "receive": {
+        "noAccount": {
+          "hint": "Вам необходим как минимум один счет в качестве получателя",
+          "title": "Нет аккаунта",
+          "button": "Добавить аккаунт"
+        },
         "title": "Получить",
         "recipient": "Получатель",
         "generate": "Создать QR-код",

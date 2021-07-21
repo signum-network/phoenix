@@ -32,6 +32,11 @@ export const transactions = {
       reset: 'transactions.screens.send.reset',
     },
     receive: {
+      noAccount: {
+        hint: 'transactions.screens.send.noAccount.hint',
+        title: 'transactions.screens.send.noAccount.title',
+        button: 'transactions.screens.send.noAccount.button',
+      },
       title: 'transactions.screens.receive.title',
       recipient: 'transactions.screens.receive.recipient',
       generate: 'transactions.screens.receive.generate',
