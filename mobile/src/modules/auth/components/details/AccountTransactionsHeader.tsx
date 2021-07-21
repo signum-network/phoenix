@@ -68,9 +68,9 @@ export const AccountTransactionsHeader: React.FC<Props> = (props) => {
         <View style={styles.view}>
             <AmountText amount={balances.totalBalance} size={FontSizes.LARGE} style={styles.centered}/>
             <View>
-                {(hasLockedAmount || hasCommittedAmount) && <SubBalance text='Available' amount={balances.availableBalance}/> }
-                {hasLockedAmount && <SubBalance text='Locked' amount={balances.lockedBalance}/>}
-                {hasCommittedAmount && <SubBalance text='Committed' amount={balances.committedBalance}/>}
+                {(hasLockedAmount || hasCommittedAmount) && <SubBalance text={i18n.t(core.balances.available)} amount={balances.availableBalance}/> }
+                {hasLockedAmount && <SubBalance text={i18n.t(core.balances.locked)} amount={balances.lockedBalance}/>}
+                {hasCommittedAmount && <SubBalance text={i18n.t(core.balances.committed)} amount={balances.committedBalance}/>}
             </View>
             {priceInBTC ? (
                 <Text textAlign={TextAlign.CENTER} color={Colors.WHITE} bebasFont>

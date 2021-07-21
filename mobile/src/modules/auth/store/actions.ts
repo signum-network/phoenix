@@ -40,6 +40,7 @@ export const createActiveAccount = createActionFn<string, Account>(
 
         const pin = getState().auth.passcode;
         const keys = generateMasterKeys(phrase);
+
         const encryptedKeys = {
             publicKey: keys.publicKey,
             agreementPrivateKey: encryptAES(keys.agreementPrivateKey, hashSHA256(pin)),

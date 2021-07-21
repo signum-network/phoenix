@@ -12,6 +12,7 @@ import {transactions} from '../translations';
 import {useNavigation} from '@react-navigation/native';
 import {selectAccounts} from '../../auth/store/selectors';
 import {selectSuggestedFees} from '../../network/store/selectors';
+import {NoAccount} from '../components/receive/NoAccount';
 
 export const ReceiveScreen: React.FC = () => {
     const navigation = useNavigation();
@@ -28,11 +29,14 @@ export const ReceiveScreen: React.FC = () => {
             <FullHeightView>
                 <HeaderTitle>{i18n.t(transactions.screens.receive.title)}</HeaderTitle>
                 <View>
-                    <ReceiveAmountForm
-                        accounts={accounts}
-                        onSubmit={handleSubmit}
-                        suggestedFees={suggestedFees}
-                    />
+                    {accounts.length > 0 ?
+                        <ReceiveAmountForm
+                            accounts={accounts}
+                            onSubmit={handleSubmit}
+                            suggestedFees={suggestedFees}
+                        /> :
+                        <NoAccount/>
+                    }
                 </View>
             </FullHeightView>
         </Screen>

@@ -54,6 +54,7 @@ const SubBalance: React.FC<{ amount: Amount, text: string }> = ({amount, text}) 
 );
 
 export const AccountsListHeader: React.FC<Props> = (props) => {
+
     const {accounts, priceApi} = props;
     const hasAccounts = !isEmpty(accounts);
     const priceInBTC = priceApi && priceApi.priceInfo && priceApi.priceInfo.price_btc;
@@ -96,9 +97,9 @@ export const AccountsListHeader: React.FC<Props> = (props) => {
                     />
                 </View>
                 <View>
-                    {(hasLockedAmount || hasCommittedAmount) && <SubBalance text='Available' amount={totalBalances.availableBalance}/>}
-                    {hasLockedAmount && <SubBalance text='Locked' amount={totalBalances.lockedBalance}/> }
-                    {hasCommittedAmount &&  <SubBalance text='Committed' amount={totalBalances.committedBalance}/>}
+                    {(hasLockedAmount || hasCommittedAmount) && <SubBalance text={i18n.t(core.balances.available)} amount={totalBalances.availableBalance}/>}
+                    {hasLockedAmount && <SubBalance text={i18n.t(core.balances.locked)} amount={totalBalances.lockedBalance}/> }
+                    {hasCommittedAmount &&  <SubBalance text={i18n.t(core.balances.committed)} amount={totalBalances.committedBalance}/>}
                 </View>
             </View>
     );

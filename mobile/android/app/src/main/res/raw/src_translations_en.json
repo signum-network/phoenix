@@ -35,11 +35,11 @@
         "noTransactions": {
           "title": "No transactions"
         },
-        "copiedSuccessfully": "Address copied successfully.",
+        "copiedSuccessfully": "Address copied successfully: {{value}}",
         "copy": "Copy"
       },
       "transactionDetails": {
-        "copiedSuccessfully": "Value copied successfully.",
+        "copiedSuccessfully": "Value copied successfully: {{value}}",
         "headerTitle": "Transaction Details",
         "copy": "Copy"
       },
@@ -76,6 +76,11 @@
   "core": {
     "placeholders": {
       "message": "Enter Message"
+    },
+    "balances": {
+      "available": "Available",
+      "locked": "Locked",
+      "committed": "Committed"
     },
     "actions": {
       "add": "Add",
@@ -149,6 +154,11 @@
   "transactions": {
     "screens": {
       "receive": {
+        "noAccount": {
+          "hint": "You need at least one account as receiver",
+          "title": "No Account",
+          "button": "Add Account"
+        },
         "title": "Receive",
         "recipient": "Recipient",
         "generate": "Generate QR Code",
