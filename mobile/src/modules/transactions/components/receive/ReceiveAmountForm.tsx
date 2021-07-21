@@ -87,6 +87,7 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
                 data = data.trim();
                 break;
             case 'amount':
+            case 'fee':
                 data = stableAmountFormat(data);
         }
 

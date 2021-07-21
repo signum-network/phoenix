@@ -346,7 +346,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
     };
 
     handleFeeChange = (fee: string) => {
-        this.setState({fee: fee.replace(',', '.')});
+        this.setState({fee: stableAmountFormat(fee)});
         this.markAsDirty();
     };
 

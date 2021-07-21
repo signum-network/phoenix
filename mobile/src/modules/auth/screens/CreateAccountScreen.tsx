@@ -70,7 +70,8 @@ class CreateAccount extends React.PureComponent<IProps, State> {
     const { phrase } = this.state;
 
     try {
-      const account = await this.props.dispatch(createActiveAccount(phrase));
+      const joinedPhrase = phrase.join(' ');
+      const account = await this.props.dispatch(createActiveAccount(joinedPhrase));
       // @ts-ignore because we have account here 100%
       await this.props.dispatch(addAccount(account));
       await this.props.dispatch(hydrateAccount(account as Account));
