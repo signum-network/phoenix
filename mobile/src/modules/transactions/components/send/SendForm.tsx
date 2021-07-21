@@ -24,6 +24,7 @@ import {AccountBalances, getBalancesFromAccount, ZeroAcountBalances} from '../..
 import {Button, ButtonThemes} from '../../../../core/components/base/Button';
 import {stableAmountFormat, stableParseSignaAmount} from '../../../../core/utils/amount';
 import {core} from '../../../../core/translations';
+import {FeeQuantPlanck} from '../../../../../../lib/packages/util/src';
 
 const AddressPrefix = 'S-';
 
@@ -347,7 +348,8 @@ export class SendForm extends React.Component<Props, SendFormState> {
     };
 
     handleFeeChange = (fee: string) => {
-        this.setState({fee: stableAmountFormat(fee)});
+        const feeAmount = stableAmountFormat(fee);
+        this.setState({fee: Math.max(parseFloat(feeAmount), 0.00735).toString(10) });
         this.markAsDirty();
     };
 
@@ -361,7 +363,6 @@ export class SendForm extends React.Component<Props, SendFormState> {
         this.markAsDirty();
     }
 
-
     setAddMessage(addMessage: boolean): void {
         this.setState({addMessage}, () => {
             setTimeout(() => {
@@ -371,7 +372,6 @@ export class SendForm extends React.Component<Props, SendFormState> {
         });
         this.markAsDirty();
     }
-
 
     handleFeeChangeFromSlider = (fee: number) => {
         this.setState({fee: amountToString(fee)});

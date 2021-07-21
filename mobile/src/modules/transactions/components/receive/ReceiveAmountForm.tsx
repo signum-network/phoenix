@@ -87,8 +87,12 @@ export const ReceiveAmountForm: React.FC<Props> = (props) => {
                 data = data && data.trim();
                 break;
             case 'amount':
-            case 'fee':
                 data = stableAmountFormat(data);
+                break;
+            case 'fee':
+                const feeAmount = stableAmountFormat(data);
+                data = Math.max(parseFloat(feeAmount), 0.00735).toString(10);
+                break;
         }
 
         const updated = {

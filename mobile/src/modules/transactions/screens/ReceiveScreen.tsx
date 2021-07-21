@@ -12,7 +12,7 @@ import {transactions} from '../translations';
 import {useNavigation} from '@react-navigation/native';
 import {selectAccounts} from '../../auth/store/selectors';
 import {selectSuggestedFees} from '../../network/store/selectors';
-import {NoAccounts} from '../../auth/components/NoAccounts';
+import {NoAccount} from '../components/receive/NoAccount';
 
 export const ReceiveScreen: React.FC = () => {
     const navigation = useNavigation();
@@ -35,7 +35,7 @@ export const ReceiveScreen: React.FC = () => {
                             onSubmit={handleSubmit}
                             suggestedFees={suggestedFees}
                         /> :
-                        <NoAccounts/>
+                        <NoAccount/>
                     }
                 </View>
             </FullHeightView>
