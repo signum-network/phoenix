@@ -1,4 +1,4 @@
-app/src/main/res/
-app/src/main/assets/
+app/src/main/res
+app/src/main/assets
 *.jks
 createApk.sh
