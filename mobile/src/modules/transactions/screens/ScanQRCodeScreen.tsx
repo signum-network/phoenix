@@ -65,7 +65,6 @@ export const ScanQRCodeScreen: React.FC = () => {
                             style={{flexDirection: 'row', position: 'absolute', zIndex: 1, left: 10, top: 10}}
                             onPress={() => navigation.goBack()}>
                             <Image source={actionIcons.chevronLeft} style={{width: 30, height: 30}}/>
-                            <Text color={Colors.WHITE}>{i18n.t(core.actions.back)}</Text>
                         </TouchableOpacity>
                         <View style={{flex: 1, alignItems: 'center', margin: 10}}>
                             <HeaderTitle>
@@ -77,11 +76,7 @@ export const ScanQRCodeScreen: React.FC = () => {
                         topViewStyle={styles.topView}
                         bottomViewStyle={styles.topView}
                         onRead={onSuccess}
-                        topContent={
-                            <Text style={styles.centerText}>
-                                {i18n.t(transactions.screens.scan.title)}
-                            </Text>
-                        }
+                        showMarker
                     />
                 </View>
             </FullHeightView>
