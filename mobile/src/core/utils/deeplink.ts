@@ -1,9 +1,10 @@
 import {DeeplinkParts, parseDeeplink} from '@signumjs/util';
+import {stableAmountFormat} from './amount';
 
 /**
-import {createDeeplink} from './createDeeplink';
+ import {createDeeplink} from './createDeeplink';
 
-const payload = {
+ const payload = {
     "recipient": "S-9K9L-4CB5-88Y5-F5G4Z",
     "amountPlanck": 10000000,
     "feePlanck": 735000,
@@ -14,13 +15,13 @@ const payload = {
     "encrypt": false
 }
 
-const deeplink = createDeeplink({
+ const deeplink = createDeeplink({
     action: 'pay',
     payload
 })
 
-'signum://v1?action=pay&payload=eyJyZWNpcGllbnQiOiJCVVJTVC05SzlMLTRDQjUtODhZNS1GNUc0WiIsImFtb3VudFBsYW5jayI6MTAwMDAwMDAsImZlZVBsYW5jayI6NzM1MDAwLCJtZXNzYWdlIjoiSGksIGZyb20gYSBkZWVwIGxpbmsiLCJtZXNzYWdlSXNUZXh0Ijp0cnVlLCJpbW11dGFibGUiOnRydWUsImRlYWRsaW5lIjoyNCwiZW5jcnlwdCI6ZmFsc2V9'
-*/
+ 'signum://v1?action=pay&payload=eyJyZWNpcGllbnQiOiJCVVJTVC05SzlMLTRDQjUtODhZNS1GNUc0WiIsImFtb3VudFBsYW5jayI6MTAwMDAwMDAsImZlZVBsYW5jayI6NzM1MDAwLCJtZXNzYWdlIjoiSGksIGZyb20gYSBkZWVwIGxpbmsiLCJtZXNzYWdlSXNUZXh0Ijp0cnVlLCJpbW11dGFibGUiOnRydWUsImRlYWRsaW5lIjoyNCwiZW5jcnlwdCI6ZmFsc2V9'
+ */
 
 export interface DeeplinkPayPayload {
     recipient?: string;
@@ -125,14 +126,19 @@ const getDeeplinkType = (url: string): DeeplinkType => {
 };
 
 export const getDeeplinkInfo = (url: string): DeeplinkParts => {
-    const type = getDeeplinkType(url);
-    switch (type) {
-        case DeeplinkType.CIP22:
-            return parseCIP22Deeplink(url);
-        case DeeplinkType.LEGACY:
-            return parseLegacyDeeplink(url);
-        case DeeplinkType.UNKNOWN:
-        default:
-            throw new Error('Unsupported link');
+    try {
+        const type = getDeeplinkType(url);
+        switch (type) {
+            case DeeplinkType.CIP22:
+                return parseCIP22Deeplink(url);
+            case DeeplinkType.LEGACY:
+                return parseLegacyDeeplink(url);
+            case DeeplinkType.UNKNOWN:
+                throw new Error('Unsupported link');
+        }
+        // @ts-ignore
+        return null;
+    } catch (e) {
+        throw new Error('Invalid Deeplink received');
     }
 };

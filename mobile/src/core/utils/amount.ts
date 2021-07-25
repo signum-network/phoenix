@@ -29,3 +29,16 @@ export const stableParseSignaAmount = (amountSigna: string = '0'): Amount => {
         return Amount.Zero();
     }
 };
+
+/**
+ * Tries to parse a string into Amount, without throwing exception
+ * @param amountPlanck string representing Planck amount
+ * @return Amount object, or Amount.Zero() in case of failure
+ */
+export const stableParsePlanckAmount = (amountPlanck: string = '0'): Amount => {
+    try {
+        return Amount.fromPlanck(amountPlanck);
+    } catch (e) {
+        return Amount.Zero();
+    }
+};

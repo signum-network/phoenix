@@ -1,7 +1,7 @@
 import { Account } from '@signumjs/core';
 import { PassPhraseGenerator } from '@signumjs/crypto';
 import React from 'react';
-import { Alert, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Alert, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { HeaderTitle } from '../../../core/components/header/HeaderTitle';
 import { i18n } from '../../../core/i18n';

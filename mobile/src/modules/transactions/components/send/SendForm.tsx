@@ -412,6 +412,8 @@ export class SendForm extends React.Component<Props, SendFormState> {
             immutable,
             encrypt
         });
+
+        this.handleReset();
     };
 
     handleReset = () => {

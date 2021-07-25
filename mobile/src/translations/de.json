@@ -57,15 +57,15 @@
         "generatedPercent": "Generiert: {{percent}}%",
         "howToGenerate": "Bewege Deinen Finger über den Bereich, um einen zufälligen Seed zu erzeugen",
         "notePassphrase": "Passphrase aufschreiben",
-        "notePassphraseHint": "Schreibe Deine Passphrase auf. Die Passphrase ist der Hauptschlüssel zu Deinem Konto. Bewahre ihn daher Passphrase immer sicher auf und vergiss ihn nie!",
-        "notePassphraseHint2": "Die Passphrase wird nicht auf dem Gerät gespeichert, daher kann, im Falle des Verlustes, der Zugang zum Konto nicht wieder hergestellt werden. Schreib die Passphrase auf!",
+        "notePassphraseHint": "Schreibe Deine Passphrase auf. Die Passphrase ist der Hauptschlüssel zu Deinem Konto. Bewahre die Passphrase immer sicher auf und vergiss sie nie!",
+        "notePassphraseHint2": "Die Passphrase wird nicht auf dem Gerät gespeichert, daher kann - im Falle eines Verlustes - der Zugang zum Konto nicht wieder hergestellt werden. Schreib die Passphrase auf!",
         "pinPlaceholder": "PIN",
         "step": "Schritt {{step}}/4",
         "title": "Konto erstellen"
       },
       "importAccount": {
         "activeAccount": "Aktives Konto",
-        "activeAccountHint": "Aktive Konten werden für die Durchführung von Transaktionen verwendet. Dies erfordert, dass der Benutzer eine Passphrase generiert oder bereitstellt und es is notwendig, dass der Benutzer eine PIN für Transaktionen erstellt. Die Passphrase wird nur einmal lokal verwendet, um Deine kryptografischen Schlüssel zu erstellen; sie wird nirgendwo gespeichert.",
+        "activeAccountHint": "Aktive Konten werden für die Durchführung von Transaktionen verwendet. Dies erfordert, dass der Benutzer eine Passphrase generiert oder bereitstellt und es ist notwendig, dass der Benutzer eine PIN für Transaktionen erstellt. Die Passphrase wird nur einmal lokal verwendet, um Deine kryptografischen Schlüssel zu erstellen; sie wird nirgendwo gespeichert.",
         "import": "Importieren",
         "passiveAccountHint": "Passive Konten sind nützlich, wenn Du eine Adresse kennst, aber nicht vorhast, irgendwelche Transaktionen durchzuführen. Dies bietet erhöhte Sicherheit. Mit der Passphrase kannst Du es in aktives Konto umwandeln.",
         "title": "Konto importieren",
@@ -120,7 +120,7 @@
           "SEP": "Sep",
           "OCT": "Okt",
           "NOV": "Nov",
-          "DEC": "Dey"
+          "DEC": "Dez"
         }
       }
     },
@@ -175,7 +175,7 @@
         "amountNQT": "Betrag",
         "feeNQT": "Fee",
         "from": "Von",
-        "selectAccount": "Konto asuwählen",
+        "selectAccount": "Konto auswählen",
         "sent": "Gesendet!",
         "title": "Senden",
         "button": {
@@ -189,13 +189,13 @@
         "invalidAddress": "Diese Adresse ist nicht gültig.",
         "insufficientFunds": "Nicht genügend Signa.",
         "zilOutage": "ZIL API ist nicht erreichbar.",
-        "success": "Erfolgereich {{amount}} SIGNA an {{address}} gesendet.",
+        "success": "Erfolgreich {{amount}} SIGNA an {{address}} gesendet.",
         "failure": "Fehler beim Senden. Überprüfe nochmal die Daten.",
         "encrypt": "Nachricht verschlüsseln?",
         "addMessage": "Textnachricht hinzufügen?",
         "message": "Textnachricht",
         "confirmRisk": "Die Adresse '{{address}}' ist unbekannt! Das Senden an diese Adresse kann zu einem unwiderruflichen Verlust führen! - Übernimmst Du das Risiko?",
-        "reset": "Formular Zurücksetzen",
+        "reset": "Formular Zurücksetzen"
       },
       "scan": {
         "title": "QR Code Scannen"

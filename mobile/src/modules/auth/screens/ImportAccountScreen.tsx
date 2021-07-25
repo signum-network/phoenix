@@ -47,9 +47,14 @@ class ImportAccount extends React.PureComponent<Props, State> {
         isActive: false
     };
 
-    handleAddActiveAccount = async (passphrase: string) => {
+    addAccount = async (passphraseOrAddress: string, type: 'active' | 'offline') => {
         try {
-            const account = await this.props.dispatch(createActiveAccount(passphrase));
+            let account;
+            if (type === 'active') {
+                account = await this.props.dispatch(createActiveAccount(passphraseOrAddress));
+            } else if (type === 'offline') {
+                account = await this.props.dispatch(createOfflineAccount(passphraseOrAddress));
+            }
             this.props.dispatch(addAccount(account));
             this.props.dispatch(hydrateAccount(account));
             this.props.navigation.navigate(routes.home);
@@ -58,16 +63,8 @@ class ImportAccount extends React.PureComponent<Props, State> {
         }
     };
 
-    handleAddOfflineAccount = async (address: string) => {
-        try {
-            const account = await this.props.dispatch(createOfflineAccount(address));
-            this.props.dispatch(addAccount(account));
-            this.props.dispatch(hydrateAccount(account));
-            this.props.navigation.navigate(routes.home);
-        } catch (error) {
-            Alert.alert(error.message);
-        }
-    };
+    handleAddActiveAccount = async (passphrase: string) => this.addAccount(passphrase, 'active')
+    handleAddOfflineAccount = async (address: string) => this.addAccount(address, 'offline')
 
     handleChangeAccountType = (isActive: boolean) => {
         this.setState({isActive});
