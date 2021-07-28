@@ -26,6 +26,7 @@ import {transactions} from '../translations';
 import {withNavigation} from 'react-navigation';
 import {NoActiveAccount} from '../components/send/NoActiveAccount';
 import {DeeplinkPayPayload} from '../../../core/utils/deeplink';
+import {stableAmountFormat, stableParsePlanckAmount, stableParseSignaAmount} from '../../../core/utils/amount';
 
 type SendNavProp = StackNavigationProp<RootStackParamList, 'send'>;
 type SendRouteProp = RouteProp<RootStackParamList, 'send'>;
@@ -64,8 +65,8 @@ class Send extends React.PureComponent<IProps, State> {
                     deepLinkProps: {
                         sender: null,
                         address: payload.recipient || undefined,
-                        fee: payload.feePlanck ? Amount.fromPlanck(payload.feePlanck).getSigna() : undefined,
-                        amount: payload.amountPlanck ? Amount.fromPlanck(payload.amountPlanck).getSigna() : undefined,
+                        fee: payload.feePlanck ? stableParsePlanckAmount(payload.feePlanck).getSigna() : undefined,
+                        amount: payload.amountPlanck ? stableParsePlanckAmount(payload.amountPlanck).getSigna() : undefined,
                         message: payload.message,
                         messageIsText: payload.messageIsText === true,
                         encrypt: payload.encrypt === true,

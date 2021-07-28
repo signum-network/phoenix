@@ -2,16 +2,16 @@
   "auth": {
     "errors": {
       "accountExist": "Аккаунт уже импортирован",
-      "incorrectAddress": "Некорректный BURST-адрес",
-      "incorrectPasscode": "Неверный код",
-      "incorrectPassphrase": "Некорректная кодовая фраза",
-      "insecurePin": "Небезопасный ПИН, рекомендуется не менее {{chars}} символов"
+      "incorrectAddress": "Неправильный адрес",
+      "incorrectPasscode": "Неверный код доступа",
+      "incorrectPassphrase": "Неправильная кодовая фраза",
+      "insecurePin": "Небезопасный PIN-код, рекомендуется не менее {{length}} символов"
     },
     "modals": {
       "enterPasscode": {
         "passcodeHint": "Введите код",
-        "forgotPin": "Забыли ПИН?",
-        "confirmReset": "Удалить все учетные записи и сбросить ПИН?"
+        "forgotPin": "Забыли PIN-код?",
+        "confirmReset": "Удалить все учетные записи и сбросить PIN-код?"
       },
       "setPasscode": {
         "enterAgain": "Введите код еще раз",
@@ -44,10 +44,10 @@
         "copy": "Копировать"
       },
       "addAccount": {
-        "addAccount": "Добавить аккаунт",
         "createAccount": "Создать аккаунт",
         "hint": "Уже есть аккаунт?",
-        "title": "Добавить аккаунт"
+        "title": "Добавить аккаунт",
+        "importAccount": "Импортировать аккаунт"
       },
       "createAccount": {
         "createAccount": "Создать аккаунт",
@@ -60,7 +60,8 @@
         "notePassphraseHint": "Запишите кодовую фразу. Кодовая фраза это главный ключ к аккаунту. Всегда держите кодовую фразу в безопасности!",
         "notePassphraseHint2": "Мы не храним кодовую фразу даже на телефоне, поэтому не можем восстановить доступ к аккаунту. Запишите ее!",
         "step": "Шаг {{step}}/4",
-        "title": "Создать аккаунт"
+        "title": "Создать аккаунт",
+        "pinPlaceholder": "ПИН"
       },
       "importAccount": {
         "activeAccount": "Активный аккаунт",
@@ -73,7 +74,7 @@
     }
   },
   "core": {
-    "placeholders" : {
+    "placeholders": {
       "message": "Введите сообщение"
     },
     "balances": {
@@ -96,13 +97,13 @@
         "name": "BTC",
         "value": "₿ {{value}}"
       },
-      "BURST": {
-        "name": "BURST",
-        "value": "Ƀ {{value}}"
-      },
       "USD": {
         "name": "USD",
         "value": "${{value}}"
+      },
+      "SIGNA": {
+        "name": "SIGNA",
+        "value": "Ꞩ {{value}}"
       }
     },
     "dates": {
@@ -181,7 +182,6 @@
           "enabled": "Проведите, чтобы отправить",
           "disabled": "Заполните форму для отправки"
         },
-
         "to": "Аккаунт получателя",
         "total": "Всего: ",
         "noPublicKey": "Пожалуйста, подтвердите адрес перед отправкой.",

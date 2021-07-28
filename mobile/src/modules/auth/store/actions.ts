@@ -5,7 +5,7 @@ import {i18n} from '../../../core/i18n';
 import {createAction, createActionFn} from '../../../core/utils/store';
 import {auth} from '../translations';
 import {actionTypes} from './actionTypes';
-import {getAccounts, getPasscode, getPasscodeEnteredTime, resetKeychain, savePasscode, savePasscodeEnteredTime, setAccounts} from './utils';
+import {getAccounts, getPasscode, getPasscodeEnteredTime, isBlacklistedAccount, resetKeychain, savePasscode, savePasscodeEnteredTime, setAccounts} from './utils';
 import {selectChainApi} from '../../../core/store/app/selectors';
 
 interface ZilResponse {
@@ -53,15 +53,19 @@ export const createActiveAccount = createActionFn<string, Account>(
         if (hasAccount) {
             throw new Error(i18n.t(auth.errors.accountExist));
         }
-        const pinHash = hashSHA256(pin + keys.publicKey);
 
-        return new Account({
+        const pinHash = hashSHA256(pin + keys.publicKey);
+        const account =  new Account({
             type: 'active',
             account: address.getNumericId(),
             accountRS: address.getReedSolomonAddress(),
             keys: encryptedKeys,
             pinHash
         });
+        if (isBlacklistedAccount(account)) {
+            throw new Error('This is a blacklisted account. Creation aborted');
+        }
+        return account;
     }
 );
 
@@ -80,11 +84,15 @@ export const createOfflineAccount = createActionFn<string, Account>(
         if (hasAccount) {
             throw new Error(i18n.t(auth.errors.accountExist));
         }
-        return new Account({
+        const account = new Account({
             type: 'offline',
             account: address.getNumericId(),
             accountRS: address.getReedSolomonAddress(),
         });
+        if (isBlacklistedAccount(account)) {
+            throw new Error('This is a blacklisted account. Creation aborted');
+        }
+        return account;
     }
 );
 
@@ -145,14 +153,14 @@ export const updateAccountTransactions = createActionFn<Account, Promise<Account
             ...account
         };
         try {
-            console.log('updating transactions...');
+            console.log('updating transactions...', account.accountRS);
             const {transactions} = await api.account.getAccountTransactions({
                 accountId: account.account,
                 firstIndex: 0,
                 lastIndex: 200,
                 includeIndirect: true,
             });
-            const {unconfirmedTransactions} = await api.account.getUnconfirmedAccountTransactions(account.account, true)
+            const {unconfirmedTransactions} = await api.account.getUnconfirmedAccountTransactions(account.account, true);
             updatedAccount.transactions = unconfirmedTransactions.concat(transactions);
             dispatch(actions.updateAccount(updatedAccount));
         } catch (e) {
@@ -182,8 +190,16 @@ export const removeAccount = createActionFn<Account, Promise<void>>(
 
 export const loadAccounts = createActionFn<void, Promise<void>>(
     async (dispatch, _getState) => {
-        const accounts: Account[] = await getAccounts();
-        accounts.map((account) => hydrateAccount(account));
+        let accounts: Account[] = await getAccounts();
+        accounts = accounts.filter((account) => {
+            const isBlacklisted = isBlacklistedAccount(account);
+            if (isBlacklisted) {
+                // tslint:disable-next-line:no-console
+                console.info('Found black listed account - Ignoring: ', account.accountRS, account.account);
+            }
+            return !isBlacklisted;
+        });
+        accounts.forEach((account) => hydrateAccount(account));
         dispatch(actions.loadAccounts(accounts));
     }
 );

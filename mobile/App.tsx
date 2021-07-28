@@ -1,6 +1,6 @@
 // @ts-ignore
 import React from 'react';
-import {Image, Linking} from 'react-native';
+import {Image, Linking, Alert} from 'react-native';
 import 'react-native-gesture-handler';
 import {addEventListener, removeEventListener} from 'react-native-localize';
 
@@ -86,30 +86,34 @@ export default class App extends React.Component<{}, AppState> {
         i18n.locale = event.language;
         // we need to re-render whole tree
         this.forceUpdate();
-    }
+    };
 
     handleOpenURL = (event: any) => {
         this.navigate(event.url);
-    }
+    };
 
     navigate = (url: string) => {
-        console.log('incoming deep link', url);
-        const deeplinkInfo = getDeeplinkInfo(url);
-        const isSendAction = deeplinkInfo.action === SupportedDeeplinkActions.Pay;
+        try {
+            console.log('incoming deep link', url);
+            const deeplinkInfo = getDeeplinkInfo(url);
+            const isSendAction = deeplinkInfo.action === SupportedDeeplinkActions.Pay;
 
-        setTimeout(() => {
-            if (navigationRef.current && isSendAction) {
-                navigationRef.current.navigate(routes.send, {payload: deeplinkInfo.decodedPayload});
-                navigationRef.current.setParams({payload: deeplinkInfo.decodedPayload});
-            }
-        }, 500);
-    }
+            setTimeout(() => {
+                if (navigationRef.current && isSendAction) {
+                    navigationRef.current.navigate(routes.send, {payload: deeplinkInfo.decodedPayload});
+                    navigationRef.current.setParams({payload: deeplinkInfo.decodedPayload});
+                }
+            }, 500);
+        } catch (e) {
+            Alert.alert(e.message);
+        }
+    };
 
     getImageStyle = ({color}) => ({
         opacity: color === Colors.WHITE ? 1 : .5,
         width: 25,
         height: 25
-    })
+    });
 
     render() {
         const RootTabStack = createBottomTabNavigator();
