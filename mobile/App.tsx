@@ -1,5 +1,5 @@
 // @ts-ignore
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, Linking, Alert} from 'react-native';
 import 'react-native-gesture-handler';
 import {addEventListener, removeEventListener} from 'react-native-localize';
@@ -36,10 +36,6 @@ import {getDeeplinkInfo, SupportedDeeplinkActions} from './src/core/utils/deepli
 
 const store: Store = getStore();
 
-interface AppState {
-    deviceId?: string;
-}
-
 const rootTabStackConfig = {
     initialRouteName: routes.home,
     tabBarOptions: {
@@ -55,127 +51,137 @@ const rootTabStackConfig = {
     }
 };
 
-export const navigationRef: React.RefObject<NavigationContainerRef> = React.createRef();
+// export const navigationRef: React.RefObject<NavigationContainerRef> = React.createRef();
 
-export default class App extends React.Component<{}, AppState> {
+export const App: React.FC = () => {
+    const navigationRef: React.RefObject<NavigationContainerRef> = React.createRef();
+    const [isAppLoaded, setIsAppLoaded] = useState(false);
+    const [navigatorReady, setNavigatorReady] = useState(false);
+    const [linkUrl, setLinkUrl] = useState<string | null>(null);
 
-    state: AppState = {};
+    useEffect(() => {
 
-    navigator = navigationRef;
+        const handleLanguagesChange = (event: ChangeLanguageEvent) => {
+            i18n.locale = event.language;
+            // TODO: check the way to force a rerender
+            // we need to re-render whole tree
+            // forceUpdate();
+        };
 
-    constructor(props) {
-        super(props);
+        const handleOpenURL = (event: any) => {
+            console.log('initial Url - event');
+            setLinkUrl(event.url);
+        };
 
-        addEventListener('change', this.handleLanguagesChange);
-
+        addEventListener('change', handleLanguagesChange);
+        Linking.addEventListener('url', handleOpenURL);
         Linking.getInitialURL().then((url) => {
-            console.log('deep link clicked!', url);
-            if (url) {
-                this.navigate(url);
-            }
+            console.log('initial Url', url);
+            setLinkUrl(url);
         });
-        Linking.addEventListener('url', this.handleOpenURL);
-    }
+        return () => {
+            removeEventListener('change', handleLanguagesChange);
+            Linking.removeEventListener('url', handleOpenURL);
+        };
+    }, []);
 
-    componentWillUnmount(): void {
-        removeEventListener('change', this.handleLanguagesChange);
-        Linking.removeEventListener('url', this.handleOpenURL);
-    }
+    useEffect(() => {
+        console.log('App Loaded', isAppLoaded);
+        console.log('Initial link', linkUrl);
+        console.log('Navigator Ready', navigatorReady);
 
-    handleLanguagesChange = (event: ChangeLanguageEvent) => {
-        i18n.locale = event.language;
-        // we need to re-render whole tree
-        this.forceUpdate();
-    };
+        if (!(isAppLoaded && linkUrl && navigatorReady)) {
+            return;
+        }
 
-    handleOpenURL = (event: any) => {
-        this.navigate(event.url);
-    };
-
-    navigate = (url: string) => {
         try {
-            console.log('incoming deep link', url);
-            const deeplinkInfo = getDeeplinkInfo(url);
+            console.log('incoming deep link', linkUrl);
+            const deeplinkInfo = getDeeplinkInfo(linkUrl);
             const isSendAction = deeplinkInfo.action === SupportedDeeplinkActions.Pay;
 
-            setTimeout(() => {
-                if (navigationRef.current && isSendAction) {
-                    navigationRef.current.navigate(routes.send, {payload: deeplinkInfo.decodedPayload});
-                    navigationRef.current.setParams({payload: deeplinkInfo.decodedPayload});
-                }
-            }, 500);
+            if (navigationRef.current && isSendAction) {
+                console.log('Navigate to Send Action', deeplinkInfo);
+                navigationRef.current.navigate(routes.send, {
+                        screen: routes.send,
+                        params: {payload: deeplinkInfo.decodedPayload}
+                    }
+                );
+            }
         } catch (e) {
             Alert.alert(e.message);
         }
-    };
+    }, [isAppLoaded, linkUrl, navigatorReady]);
 
-    getImageStyle = ({color}) => ({
+    const getImageStyle = ({color}: { color: string }) => ({
         opacity: color === Colors.WHITE ? 1 : .5,
         width: 25,
         height: 25
     });
 
-    render() {
-        const RootTabStack = createBottomTabNavigator();
-        return (
-            <Provider store={store}>
-                <SafeAreaProvider>
-                    <NavigationContainer ref={navigationRef}>
-                        <RootView navigatorRef={navigationRef}>
-                            <RootTabStack.Navigator
-                                tabBarOptions={rootTabStackConfig.tabBarOptions}
-                                initialRouteName={rootTabStackConfig.initialRouteName}>
-                                <RootTabStack.Screen
-                                    options={{
-                                        tabBarLabel: i18n.t(core?.screens?.home?.title) || '',
-                                        tabBarIcon: ({color}) => (
-                                            <Image
-                                                source={tabbarIcons.home}
-                                                style={this.getImageStyle({color})}
-                                            />
-                                        )
-                                    }}
-                                    name={routes.home}
-                                    component={MainStack}
-                                />
-                                <RootTabStack.Screen
-                                    options={{
-                                        tabBarLabel: i18n.t(transactions.screens.send.title),
-                                        tabBarIcon: ({color}) => (
-                                            <Image
-                                                source={tabbarIcons.send}
-                                                style={this.getImageStyle({color})}
-                                            />
-                                        )
-                                    }} name={routes.send} component={SendStack}/>
-                                <RootTabStack.Screen
-                                    options={{
-                                        tabBarLabel: i18n.t(transactions.screens.receive.title),
-                                        tabBarIcon: ({color}) => (
-                                            <Image
-                                                source={tabbarIcons.receive}
-                                                style={this.getImageStyle({color})}
-                                            />
-                                        )
-                                    }} name={routes.receive} component={ReceiveStack}/>
-                                <RootTabStack.Screen
-                                    options={{
-                                        tabBarLabel: i18n.t(settings.screens.settings.title),
-                                        tabBarIcon: ({color}) => (
-                                            <Image
-                                                source={tabbarIcons.settings}
-                                                style={this.getImageStyle({color})}
-                                            />
-                                        )
-                                    }} name={routes.settings} component={SettingsScreen}/>
-                            </RootTabStack.Navigator>
-                        </RootView>
-                    </NavigationContainer>
-                </SafeAreaProvider>
-            </Provider>
-        );
-    }
-}
+    const RootTabStack = createBottomTabNavigator();
+
+    return (
+        <Provider store={store}>
+            <SafeAreaProvider>
+                <NavigationContainer ref={navigationRef} onReady={() => {
+                    setNavigatorReady(true);
+                }}>
+                    <RootView onReady={() => {
+                        setIsAppLoaded(true);
+                    }}>
+                        <RootTabStack.Navigator
+                            tabBarOptions={rootTabStackConfig.tabBarOptions}
+                            initialRouteName={rootTabStackConfig.initialRouteName}>
+                            <RootTabStack.Screen
+                                options={{
+                                    tabBarLabel: i18n.t(core.screens.home.title) || '',
+                                    tabBarIcon: ({color}) => (
+                                        <Image
+                                            source={tabbarIcons.home}
+                                            style={getImageStyle({color})}
+                                        />
+                                    )
+                                }}
+                                name={routes.home}
+                                component={MainStack}
+                            />
+                            <RootTabStack.Screen
+                                options={{
+                                    tabBarLabel: i18n.t(transactions.screens.send.title),
+                                    tabBarIcon: ({color}) => (
+                                        <Image
+                                            source={tabbarIcons.send}
+                                            style={getImageStyle({color})}
+                                        />
+                                    )
+                                }} name={routes.send} component={SendStack}/>
+                            <RootTabStack.Screen
+                                options={{
+                                    tabBarLabel: i18n.t(transactions.screens.receive.title),
+                                    tabBarIcon: ({color}) => (
+                                        <Image
+                                            source={tabbarIcons.receive}
+                                            style={getImageStyle({color})}
+                                        />
+                                    )
+                                }} name={routes.receive} component={ReceiveStack}/>
+                            <RootTabStack.Screen
+                                options={{
+                                    tabBarLabel: i18n.t(settings.screens.settings.title),
+                                    tabBarIcon: ({color}) => (
+                                        <Image
+                                            source={tabbarIcons.settings}
+                                            style={getImageStyle({color})}
+                                        />
+                                    )
+                                }} name={routes.settings} component={SettingsScreen}/>
+                        </RootTabStack.Navigator>
+                    </RootView>
+                </NavigationContainer>
+            </SafeAreaProvider>
+        </Provider>
+    );
+};
 
 const Stack = createStackNavigator();
 

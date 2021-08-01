@@ -24,7 +24,6 @@ import {AccountBalances, getBalancesFromAccount, ZeroAcountBalances} from '../..
 import {Button, ButtonThemes} from '../../../../core/components/base/Button';
 import {stableAmountFormat, stableParseSignaAmount} from '../../../../core/utils/amount';
 import {core} from '../../../../core/translations';
-import {FeeQuantPlanck} from '../../../../../../lib/packages/util/src';
 
 const AddressPrefix = 'S-';
 
@@ -550,6 +549,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
                         />}
 
                         <BCheckbox
+                            disabled={this.state.immutable}
                             label={i18n.t(transactions.screens.send.addMessage)}
                             value={addMessage || false}
                             onCheck={(checked) => this.setAddMessage(checked)}
@@ -558,12 +558,14 @@ export class SendForm extends React.Component<Props, SendFormState> {
                         {addMessage && (
                             <>
                                 <BInput
+                                    editable={!this.state.immutable}
                                     value={message || ''}
                                     onChange={this.handleMessageChange}
                                     title={i18n.t(transactions.screens.send.message)}
                                 />
 
                                 <BCheckbox
+                                    disabled={this.state.immutable}
                                     label={i18n.t(transactions.screens.send.encrypt)}
                                     value={encrypt || false}
                                     onCheck={(checked) => this.setEncryptMessage(checked)}

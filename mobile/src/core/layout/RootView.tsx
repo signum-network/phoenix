@@ -5,7 +5,11 @@ import {ApplicationState} from '../store/initialState';
 import {LoadingView} from './LoadingView';
 import {PasscodeProtection} from '../../modules/auth/components/passcode/PasscodeProtection';
 
-export const RootView: React.FC = ({children}) => {
+interface Props {
+    onReady: () => void;
+}
+
+export const RootView: React.FC<Props> = ({children, onReady}) => {
 
     const dispatch = useDispatch();
     const isAppLoaded = useSelector<ApplicationState>(state => state.app.isAppLoaded);
@@ -13,6 +17,10 @@ export const RootView: React.FC = ({children}) => {
     useEffect(() => {
         dispatch(loadApp());
     }, []);
+
+    useEffect(() => {
+        isAppLoaded && onReady();
+    }, [isAppLoaded]);
 
     if (!isAppLoaded) {
         return <LoadingView/>;
