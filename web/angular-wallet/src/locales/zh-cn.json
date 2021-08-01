@@ -420,5 +420,6 @@
   "youve_got_from": "帐户 __a__ 从 __c__ 获得了 __b__",
   "you_sent_to": "帐户 __a__ 向 __c__ 发送了 __b__",
   "show_testnet_nodes": "显示测试网节点",
-  "message_too_long": "消息过长"
+  "message_too_long": "消息过长",
+  "show_whitespaces": "显示空白字符"
 }

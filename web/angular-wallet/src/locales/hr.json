@@ -420,5 +420,6 @@
   "youve_got_from": "Račun __a__ dobio je __b__ od __c__",
   "you_sent_to": "Račun __a__ poslan je __b__ na __c__",
   "show_testnet_nodes": "Prikaži čvorove Testnet",
-  "message_too_long": "Poruka je predugačka"
+  "message_too_long": "Poruka je predugačka",
+  "show_whitespaces": "Prikaži razmake"
 }

@@ -420,5 +420,6 @@
   "youve_got_from": "Account __a__ got __b__ from __c__",
   "you_sent_to": "Account __a__ sent __b__ to __c__",
   "show_testnet_nodes": "Show Testnet Nodes",
-  "message_too_long": "Message is too long"
+  "message_too_long": "Message is too long",
+  "show_whitespaces": "Show Whitespace Characters"
 }

@@ -420,5 +420,6 @@
   "youve_got_from": "Akun __a__ mendapat __b__ dari __c__",
   "you_sent_to": "Akun __a__ mengirim __b__ ke __c__",
   "show_testnet_nodes": "Tampilkan Node Testnet",
-  "message_too_long": "Pesan terlalu panjang"
+  "message_too_long": "Pesan terlalu panjang",
+  "show_whitespaces": "Tampilkan Karakter Spasi"
 }

@@ -420,5 +420,6 @@
   "youve_got_from": "Účet __a__ získal __b__ od __c__",
   "you_sent_to": "Účet __a__ bol odoslaný __b__ na adresu __c__",
   "show_testnet_nodes": "Zobraziť uzly Testnet",
-  "message_too_long": "Správa je príliš dlhá"
+  "message_too_long": "Správa je príliš dlhá",
+  "show_whitespaces": "Zobraziť medzery"
 }

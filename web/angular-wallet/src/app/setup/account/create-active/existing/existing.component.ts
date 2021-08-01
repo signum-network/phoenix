@@ -7,6 +7,7 @@ import {
 } from '@signumjs/crypto';
 import {NetworkService} from '../../../../network/network.service';
 
+const WhiteSpaceIndicator = '⦾';
 
 @Component({
   selector: 'app-account-create-existing',
@@ -15,9 +16,11 @@ import {NetworkService} from '../../../../network/network.service';
 })
 export class AccountCreateExistingComponent {
 
-  @Input('passphrase') passphrase: string;
+  @Input() passphrase = '';
+  @Input() showWhitespaces = true;
 
   passphraseGenerator: PassPhraseGenerator;
+
 
   constructor(
     public createService: CreateService,
@@ -39,6 +42,18 @@ export class AccountCreateExistingComponent {
   }
 
   public setManualPassphrase(phrase: string): void {
-    this.setPassphraseAndGenerateMasterKeys(phrase.split(' '));
+    const splitChar = this.showWhitespaces ? WhiteSpaceIndicator : ' ';
+    this.setPassphraseAndGenerateMasterKeys(phrase.split(splitChar));
+  }
+
+  onChange(phrase: string): void {
+    this.passphrase = this.showWhitespaces
+      ? phrase.replace(/ /ig, WhiteSpaceIndicator)
+      : phrase.replace(new RegExp(WhiteSpaceIndicator, 'gi'), ' ');
+  }
+
+  onCheckboxChange(checked: boolean): void {
+    this.showWhitespaces = checked;
+    this.onChange(this.passphrase);
   }
 }

@@ -1,9 +1,10 @@
 <h2>{{ 'your_passphrase' | i18n }}</h2>
 <div class="passphrase-container">
   <mat-form-field class="input">
-     <input matInput type="text" placeholder="Passphrase" required [(ngModel)]="passphrase">
+     <input matInput type="text" placeholder="Passphrase" required [ngModel]="passphrase" (ngModelChange)="onChange($event)">
      <mat-hint>{{ 'error_passphrase_required' | i18n }}</mat-hint>
   </mat-form-field>
+  <mat-checkbox [ngModel]="showWhitespaces" (ngModelChange)="onCheckboxChange($event)">{{ "show_whitespaces" | i18n }}</mat-checkbox>
 </div>
 <div class="text-center navigation">
   <button class="btn-success" mat-raised-button (click)="setManualPassphrase(this.passphrase)">Next</button>
