@@ -400,6 +400,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
 
         const {recipient, amount, fee, sender, message, messageIsText, encrypt, immutable} = this.state;
         const address = recipient.addressRS;
+        this.handleReset();
         this.props.onSubmit({
             address,
             amount,
@@ -411,8 +412,6 @@ export class SendForm extends React.Component<Props, SendFormState> {
             immutable,
             encrypt
         });
-
-        this.handleReset();
     };
 
     handleReset = () => {

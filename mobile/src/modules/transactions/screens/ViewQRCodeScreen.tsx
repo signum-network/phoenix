@@ -1,22 +1,14 @@
 import React, {useMemo} from 'react';
-import {Clipboard, Share, StyleSheet, View} from 'react-native';
-import {withNavigation} from 'react-navigation';
-import {connect} from 'react-redux';
+import {Clipboard, Share, StyleSheet, View, Alert} from 'react-native';
 import {Button} from '../../../core/components/base/Button';
-import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
 import {i18n} from '../../../core/i18n';
-import {InjectedReduxProps} from '../../../core/interfaces';
 import {FullHeightView} from '../../../core/layout/FullHeightView';
 import {Screen} from '../../../core/layout/Screen';
-import {AppReduxState} from '../../../core/store/app/reducer';
-import {ApplicationState} from '../../../core/store/initialState';
 import {Colors} from '../../../core/theme/colors';
-import {defaultSideOffset, Sizes} from '../../../core/theme/sizes';
-import {AuthReduxState} from '../../auth/store/reducer';
+import {defaultSideOffset} from '../../../core/theme/sizes';
 import {ReceiveAmountPayload} from '../store/actions';
-import {TransactionsReduxState} from '../store/reducer';
 import {transactions} from '../translations';
-import {RouteProp, useRoute, useNavigation} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import {RootStackParamList} from '../../auth/navigation/mainStack';
 import {Amount, createDeeplink, EncoderFormat} from '@signumjs/util';
 import {AddressPrefix, Address} from '@signumjs/core';
@@ -24,6 +16,7 @@ import QRCode from 'react-native-qrcode-svg';
 import {LabeledTextField} from '../../../core/components/base/LabeledTextField';
 import {isIOS} from '../../../core/utils/platform';
 import { HeaderWithBackButton } from '../../../core/layout/HeaderWithBackButton';
+import {auth} from '../../auth/translations';
 
 type ScanRouteProps = RouteProp<RootStackParamList, 'Scan'>;
 
@@ -87,7 +80,6 @@ function buildPhoenixDeepLinkURL(requestPayload: ReceiveAmountPayload): string {
 
 export const ViewQRCodeScreen: React.FC = () => {
     const route = useRoute<ScanRouteProps>();
-    const navigation = useNavigation();
 
     const data = useMemo(() => ({
         fee: Amount.fromSigna(route.params.form.fee),
@@ -123,6 +115,7 @@ Pay using the Phoenix Wallet from https://phoenix-wallet.rocks
 
     const handleCopy = () => {
         Clipboard.setString(deeplinkUrl);
+        Alert.alert(i18n.t(auth.transactionDetails.copiedSuccessfully, {value: 'Link'}));
     };
 
     return (

@@ -62,6 +62,7 @@ export const SendScreen: React.FC = () => {
 
     const handleSubmit = (form: SendAmountPayload) => {
         dispatch(sendMoneyAction(form));
+        navigation.navigate(routes.home)
     };
 
     const handleGetAccount = (id: string) => {
