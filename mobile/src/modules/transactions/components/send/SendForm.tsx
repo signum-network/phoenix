@@ -120,18 +120,18 @@ const Balances: React.FC<{ balances?: AccountBalances }> = ({balances = ZeroAcou
         <Text color={Colors.GREY} size={FontSizes.SMALLER}>{i18n.t(core.balances.total)}</Text>
         <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.totalBalance}/>
         {balances.lockedBalance.greater(Amount.Zero()) && (
-                <>
-                    <Text color={Colors.GREY} size={FontSizes.SMALLER}>{i18n.t(core.balances.locked)}</Text>
-                    <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.lockedBalance}/>
-                </>
-            )
+            <>
+                <Text color={Colors.GREY} size={FontSizes.SMALLER}>{i18n.t(core.balances.locked)}</Text>
+                <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.lockedBalance}/>
+            </>
+        )
         }
         {balances.committedBalance.greater(Amount.Zero()) && (
-                <>
-                    <Text color={Colors.GREY} size={FontSizes.SMALLER}>Committed:</Text>
-                    <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.committedBalance}/>
-                </>
-            )
+            <>
+                <Text color={Colors.GREY} size={FontSizes.SMALLER}>Committed:</Text>
+                <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.committedBalance}/>
+            </>
+        )
         }
     </View>
 );
@@ -181,10 +181,11 @@ export class SendForm extends React.Component<Props, SendFormState> {
     };
 
     UNSAFE_componentWillReceiveProps = ({deepLinkProps}: Props) => {
-        if (!deepLinkProps) {
-            return;
+        if (deepLinkProps) {
+            this.setState(this.getInitialState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
+        }else{
+            this.setState(this.getInitialState());
         }
-        this.setState(this.getInitialState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
     };
 
     applyRecipientType(recipient: string): void {
@@ -348,7 +349,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
 
     handleFeeChange = (fee: string) => {
         const feeAmount = stableAmountFormat(fee);
-        this.setState({fee: Math.max(parseFloat(feeAmount), 0.00735).toString(10) });
+        this.setState({fee: Math.max(parseFloat(feeAmount), 0.00735).toString(10)});
         this.markAsDirty();
     };
 
@@ -435,10 +436,10 @@ export class SendForm extends React.Component<Props, SendFormState> {
         return !this.props.loading && !!this.state.dirty;
     };
 
-    getTotal = () : Amount => {
+    getTotal = (): Amount => {
         const {amount, fee} = this.state;
         return stableParseSignaAmount(amount).add(stableParseSignaAmount(fee));
-    }
+    };
 
     render() {
         const {

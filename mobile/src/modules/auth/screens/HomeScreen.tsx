@@ -1,5 +1,5 @@
 import {Account} from '@signumjs/core';
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
@@ -45,7 +45,7 @@ const priceTypes = [PriceType.BURST, PriceType.BTC, PriceType.USD];
 
 
 export const HomeScreen: React.FC = () => {
-
+    const timeoutHandle  = useRef<number>();
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const [isTermsScreenVisible, setIsTermsScreenVisible] = useState(false);
@@ -55,21 +55,22 @@ export const HomeScreen: React.FC = () => {
     // TODO: this should go into Context
     const priceApi = useSelector<ApplicationState, PriceInfoReduxState>(s => s.priceApi);
 
-    useEffect(() => {
-        setIsTermsScreenVisible(!agreedToTerms);
-    }, []);
-
     useFocusEffect(() => {
-            setShouldUpdateAccounts(true);
-            return () => {
+        setIsTermsScreenVisible(!agreedToTerms);
+        setShouldUpdateAccounts(true);
+        timeoutHandle.current = setInterval(updateAllAccounts, 30 * 1000);
+        return () => {
                 setShouldUpdateAccounts(false);
+                if (timeoutHandle.current){
+                    clearInterval(timeoutHandle.current);
+                }
             };
         }
     );
 
     useEffect(() => {
         if (shouldUpdateAccounts) {
-            setTimeout(() => updateAllAccounts(), 500);
+            updateAllAccounts();
         }
     }, [shouldUpdateAccounts]);
 
@@ -77,7 +78,7 @@ export const HomeScreen: React.FC = () => {
         try {
             console.log('Updating Accounts...');
             await Promise.all(accounts.map((account) => {
-                dispatch(hydrateAccount(account));
+                dispatch(hydrateAccount({account, withTransactions: false}));
             }));
         } catch (e) {
             // ignored failures and not crashing the app

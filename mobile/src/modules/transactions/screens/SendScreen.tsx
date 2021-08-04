@@ -1,4 +1,4 @@
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute, useFocusEffect} from '@react-navigation/native';
 import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -12,7 +12,7 @@ import {Screen} from '../../../core/layout/Screen';
 import {routes} from '../../../core/navigation/routes';
 import {ApplicationState} from '../../../core/store/initialState';
 import {isAsyncLoading} from '../../../core/utils/async';
-import {getAccount, getAlias, getZilAddress} from '../../auth/store/actions';
+import {getAccount, getAlias, getZilAddress, hydrateAccount} from '../../auth/store/actions';
 import {SendForm, SendFormState} from '../components/send/SendForm';
 import {sendMoney as sendMoneyAction, SendAmountPayload} from '../store/actions';
 import {transactions} from '../translations';
@@ -34,11 +34,14 @@ export const SendScreen: React.FC = () => {
     const route = useRoute();
     const navigation = useNavigation();
     const dispatch = useDispatch();
-    const [deeplinkData, setDeeplinkData] = useState<undefined | SendFormState>();
+    const [deeplinkData, setDeeplinkData] = useState<SendFormState>();
     const accounts = useSelector<ApplicationState, Account[]>(state => state.auth.accounts || []);
+    const [shouldUpdateAccounts, setShouldUpdate] = useState(true);
+
     // TODO: refactoring is king here! - this is pretty uncommon pattern!
     const sendMoneyFn = useSelector<ApplicationState, AsyncParticle<TransactionId>>(state => state.transactions.sendMoney);
     const suggestedFees = useSelector<ApplicationState, SuggestedFees | null>(state => state.network.suggestedFees);
+
 
     useEffect(() => {
         if (!route.params) {
@@ -48,6 +51,7 @@ export const SendScreen: React.FC = () => {
         console.log('SendScreen - Got Deeplink Params', route.params);
         // @ts-ignore
         const payload = route.params.payload as SendDeeplinkParameters;
+        // @ts-ignore
         setDeeplinkData({
             sender: null,
             address: payload.recipient || undefined,
@@ -60,9 +64,19 @@ export const SendScreen: React.FC = () => {
         });
     }, [route]);
 
+
+    useFocusEffect(() => {
+            // force update on enter :rolleyes
+            setShouldUpdate(true);
+            return () => {
+                setShouldUpdate(false);
+            };
+        }
+    );
+
     const handleSubmit = (form: SendAmountPayload) => {
         dispatch(sendMoneyAction(form));
-        navigation.navigate(routes.home)
+        navigation.navigate(routes.home);
     };
 
     const handleGetAccount = (id: string) => {

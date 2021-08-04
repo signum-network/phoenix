@@ -96,20 +96,22 @@ export const createOfflineAccount = createActionFn<string, Account>(
     }
 );
 
-export const hydrateAccount = createActionFn<Account, Promise<Account>>(
-    async (dispatch, getState, account) => {
+export const hydrateAccount = createActionFn<{account: Account, withTransactions?: boolean}, Promise<Account>>(
+    async (dispatch, getState, payload) => {
+        const {account, withTransactions = true} = payload;
         const state = getState();
         const api = selectChainApi(state);
         try {
             const accountDetails = await api.account.getAccount({accountId: account.account, includeCommittedAmount: true});
             console.log('Got account', accountDetails);
             dispatch(actions.updateAccount(accountDetails));
-            dispatch(updateAccountTransactions(accountDetails));
+            if(withTransactions){
+                dispatch(updateAccountTransactions(accountDetails));
+            }
         } catch (e) {
             console.error('Something failed', e);
         }
 
-        // TODO: check why this is here?!
         await storeAccounts(state.auth.accounts);
         return account;
     }
@@ -199,7 +201,7 @@ export const loadAccounts = createActionFn<void, Promise<void>>(
             }
             return !isBlacklisted;
         });
-        accounts.forEach((account) => hydrateAccount(account));
+        accounts.forEach((account) => hydrateAccount({account}));
         dispatch(actions.loadAccounts(accounts));
     }
 );
