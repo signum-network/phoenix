@@ -1,43 +1,26 @@
 import {Account} from '@signumjs/core';
-import {StackNavigationProp} from '@react-navigation/stack';
-import React from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
 import {PlusHeaderButton} from '../../../core/components/header/PlusHeaderButton';
 import {i18n} from '../../../core/i18n';
-import {InjectedReduxProps} from '../../../core/interfaces';
 import {FullHeightView} from '../../../core/layout/FullHeightView';
 import {Screen} from '../../../core/layout/Screen';
 import {routes} from '../../../core/navigation/routes';
-import {AppReduxState} from '../../../core/store/app/reducer';
 import {ApplicationState} from '../../../core/store/initialState';
 import {core} from '../../../core/translations';
 import {HomeStackedAreaChart} from '../../home/components/HomeStackedAreaChart';
 import {loadHistoricalPriceApiData, selectCurrency} from '../../price-api/store/actions';
-import {PriceInfoReduxState, PriceType, PriceTypeStrings} from '../../price-api/store/reducer';
+import {PriceInfoReduxState, PriceType} from '../../price-api/store/reducer';
 import {AccountsList} from '../components/AccountsList';
 import {AccountsListHeader} from '../components/AccountsListHeader';
 import {TermsScreen} from '../components/terms/TermsScreen';
-import {RootStackParamList} from '../navigation/mainStack';
 import {hydrateAccount, removeAccount} from '../store/actions';
-import {AuthReduxState} from '../store/reducer';
 import {agreeToTerms} from '../../../core/store/app/actions';
-
-type HomeNavProp = StackNavigationProp<RootStackParamList, 'Home'>;
-
-interface IProps extends InjectedReduxProps {
-    app: AppReduxState;
-    auth: AuthReduxState;
-    priceApi: PriceInfoReduxState;
-    navigation: HomeNavProp;
-}
-
-interface State {
-    isPINModalVisible: boolean;
-    isTermsScreenVisible: boolean;
-    selectedCurrency: PriceTypeStrings;
-}
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import {selectAccounts} from '../store/selectors';
+import {selectAgreedToTerms} from '../../../core/store/app/selectors';
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -60,134 +43,255 @@ const styles = StyleSheet.create({
 
 const priceTypes = [PriceType.BURST, PriceType.BTC, PriceType.USD];
 
-class Home extends React.PureComponent<IProps, State> {
 
-    state = {
-        isTermsScreenVisible: false,
-        selectedCurrency: priceTypes[0]
-    };
+export const HomeScreen: React.FC = () => {
 
-    componentDidMount(): void {
-        setTimeout(() => this.updateAllAccounts(), 500);
-        this.checkTermsScreen();
-    }
+    const dispatch = useDispatch();
+    const navigation = useNavigation();
+    const [isTermsScreenVisible, setIsTermsScreenVisible] = useState(false);
+    const [shouldUpdateAccounts, setShouldUpdateAccounts] = useState(true);
+    const accounts = useSelector(selectAccounts);
+    const agreedToTerms = useSelector(selectAgreedToTerms);
+    // TODO: this should go into Context
+    const priceApi = useSelector<ApplicationState, PriceInfoReduxState>(s => s.priceApi);
 
-    handleChangeAccount = () => {
-        this.props.navigation.navigate(routes.accounts);
-    }
+    useEffect(() => {
+        setIsTermsScreenVisible(!agreedToTerms);
+    }, []);
 
-    updateAllAccounts = () => {
-        console.log('Updating Accounts...');
+    useFocusEffect(() => {
+            setShouldUpdateAccounts(true);
+            return () => {
+                setShouldUpdateAccounts(false);
+            };
+        }
+    );
+
+    useEffect(() => {
+        if (shouldUpdateAccounts) {
+            setTimeout(() => updateAllAccounts(), 500);
+        }
+    }, [shouldUpdateAccounts]);
+
+    const updateAllAccounts = async () => {
         try {
-            return Promise.all(this.props.auth.accounts.map((account) => {
-                this.props.dispatch(hydrateAccount(account));
+            console.log('Updating Accounts...');
+            await Promise.all(accounts.map((account) => {
+                dispatch(hydrateAccount(account));
             }));
         } catch (e) {
+            // ignored failures and not crashing the app
         }
-    }
+    };
 
-    setPINModalVisible = (isPINModalVisible: boolean) => {
-        this.setState({isPINModalVisible});
-    }
-
-    checkTermsScreen = () => {
-        this.setTermsScreenVisible(!this.props.app.userSettings.agreedToTerms);
-    }
-
-    setTermsScreenVisible = (isTermsScreenVisible: boolean) => {
-        this.setState({isTermsScreenVisible});
-    }
-
-    handleAccountPress = (account: Account) => {
-        this.props.navigation.navigate(routes.accountDetails, {
+    const handleAccountPress = (account: Account) => {
+        navigation.navigate(routes.accountDetails, {
             account: account.account
         });
-    }
+    };
 
-    handleAddAccountPress = async () => {
-        this.handleAddAccount();
-    }
+    const handleAddAccountPress = async () => {
+        handleAddAccount();
+    };
 
-    handleTermsAgreed = () => {
-        this.props.dispatch(agreeToTerms());
-        this.setTermsScreenVisible(false);
-    }
+    const handleTermsAgreed = () => {
+        dispatch(agreeToTerms());
+        setIsTermsScreenVisible(false);
+    };
 
-    handleAddAccount = () => {
-        this.props.navigation.navigate(routes.addAccount);
-    }
+    const handleAddAccount = () => {
+        navigation.navigate(routes.addAccount);
+    };
 
-    handleDelete = (account: Account) => {
-        this.props.dispatch(removeAccount(account));
-    }
+    const handleDelete = (account: Account) => {
+        dispatch(removeAccount(account));
+    };
 
-    handleAccountsListRefresh = () => {
-        this.props.dispatch(loadHistoricalPriceApiData());
-        return this.updateAllAccounts();
-    }
+    const handleAccountsListRefresh = () => {
+        dispatch(loadHistoricalPriceApiData());
+        return updateAllAccounts();
+    };
 
-    selectCurrency(): void {
-        this.props.dispatch(
+    const handleSelectCurrency = () => {
+        dispatch(
             selectCurrency(priceTypes[priceTypes.findIndex(
-                (val) => val === this.props.priceApi.selectedCurrency
+                (val) => val === priceApi.selectedCurrency
             ) + 1] || priceTypes[0]
             )
         );
-    }
-
-    render() {
-        const accounts: Account[] = this.props.auth.accounts || [];
-        const priceApi = this.props.priceApi;
-        const shouldShowChart = accounts.length && priceApi.priceInfo && priceApi.historicalPriceInfo;
-
-        const {isTermsScreenVisible} = this.state;
-        return (
-            <Screen>
-                <FullHeightView withoutPaddings>
-                    <View style={{flexDirection: 'row'}}>
-                        <View style={{flex: 1, alignItems: 'center', margin: 10}}>
-                            <HeaderTitle>
-                                {i18n.t(core.screens.home.title)}
-                            </HeaderTitle>
-                        </View>
-                        <View style={{position: 'absolute', right: 10, top: 0}}>
-                            <PlusHeaderButton onPress={this.handleAddAccountPress}/>
-                        </View>
-                    </View>
-                    <AccountsListHeader priceApi={priceApi} accounts={accounts}/>
-                    <View style={styles.wrapper}>
-                        {shouldShowChart && <HomeStackedAreaChart
-                            priceApi={priceApi}
-                            accounts={accounts}
-                            priceTypes={priceTypes}
-                            selectCurrency={this.selectCurrency.bind(this)}
-                        /> || null}
-
-                        <AccountsList
-                            accounts={accounts}
-                            onAccountPress={this.handleAccountPress}
-                            onAddAccountPress={this.handleAddAccountPress}
-                            onDelete={this.handleDelete}
-                            priceApi={this.props.priceApi}
-                            onRefresh={this.handleAccountsListRefresh}
-                        />
-                        {isTermsScreenVisible && <TermsScreen
-                            visible={isTermsScreenVisible}
-                            onAgree={this.handleTermsAgreed}
-                        />}
-                    </View>
-                </FullHeightView>
-            </Screen>
-        );
-    }
-}
-
-function mapStateToProps(state: ApplicationState) {
-    return {
-        app: state.app,
-        auth: state.auth,
-        priceApi: state.priceApi,
     };
-}
 
-export const HomeScreen = connect(mapStateToProps)(Home);
+    const shouldShowChart = accounts.length && priceApi.priceInfo && priceApi.historicalPriceInfo;
+
+    return (
+        <Screen>
+            <FullHeightView withoutPaddings>
+                <View style={{flexDirection: 'row'}}>
+                    <View style={{flex: 1, alignItems: 'center', margin: 10}}>
+                        <HeaderTitle>
+                            {i18n.t(core.screens.home.title)}
+                        </HeaderTitle>
+                    </View>
+                    <View style={{position: 'absolute', right: 10, top: 0}}>
+                        <PlusHeaderButton onPress={handleAddAccountPress}/>
+                    </View>
+                </View>
+                <AccountsListHeader priceApi={priceApi} accounts={accounts}/>
+                <View style={styles.wrapper}>
+                    {shouldShowChart && <HomeStackedAreaChart
+                        priceApi={priceApi}
+                        accounts={accounts}
+                        priceTypes={priceTypes}
+                        selectCurrency={handleSelectCurrency}
+                    /> || null}
+
+                    <AccountsList
+                        accounts={accounts}
+                        onAccountPress={handleAccountPress}
+                        onAddAccountPress={handleAddAccountPress}
+                        onDelete={handleDelete}
+                        priceApi={priceApi}
+                        onRefresh={handleAccountsListRefresh}
+                    />
+                    {isTermsScreenVisible && <TermsScreen
+                        visible={isTermsScreenVisible}
+                        onAgree={handleTermsAgreed}
+                    />}
+                </View>
+            </FullHeightView>
+        </Screen>
+    );
+};
+
+// class Home extends React.PureComponent<IProps, State> {
+//
+//     state = {
+//         isTermsScreenVisible: false,
+//         selectedCurrency: priceTypes[0]
+//     };
+//
+//     componentDidMount(): void {
+//         console.log('Home mounted');
+//         setTimeout(() => this.updateAllAccounts(), 500);
+//         this.checkTermsScreen();
+//     }
+//
+//     handleChangeAccount = () => {
+//         this.props.navigation.navigate(routes.accounts);
+//     }
+//
+//     updateAllAccounts = () => {
+//         console.log('Updating Accounts...');
+//         try {
+//             return Promise.all(this.props.auth.accounts.map((account) => {
+//                 this.props.dispatch(hydrateAccount(account));
+//             }));
+//         } catch (e) {
+//         }
+//     }
+//
+//     setPINModalVisible = (isPINModalVisible: boolean) => {
+//         this.setState({isPINModalVisible});
+//     }
+//
+//     checkTermsScreen = () => {
+//         this.setTermsScreenVisible(!this.props.app.userSettings.agreedToTerms);
+//     }
+//
+//     setTermsScreenVisible = (isTermsScreenVisible: boolean) => {
+//         this.setState({isTermsScreenVisible});
+//     }
+//
+//     handleAccountPress = (account: Account) => {
+//         this.props.navigation.navigate(routes.accountDetails, {
+//             account: account.account
+//         });
+//     }
+//
+//     handleAddAccountPress = async () => {
+//         this.handleAddAccount();
+//     }
+//
+//     handleTermsAgreed = () => {
+//         this.props.dispatch(agreeToTerms());
+//         this.setTermsScreenVisible(false);
+//     }
+//
+//     handleAddAccount = () => {
+//         this.props.navigation.navigate(routes.addAccount);
+//     }
+//
+//     handleDelete = (account: Account) => {
+//         this.props.dispatch(removeAccount(account));
+//     }
+//
+//     handleAccountsListRefresh = () => {
+//         this.props.dispatch(loadHistoricalPriceApiData());
+//         return this.updateAllAccounts();
+//     }
+//
+//     selectCurrency(): void {
+//         this.props.dispatch(
+//             selectCurrency(priceTypes[priceTypes.findIndex(
+//                 (val) => val === this.props.priceApi.selectedCurrency
+//             ) + 1] || priceTypes[0]
+//             )
+//         );
+//     }
+//
+//     render() {
+//         const accounts: Account[] = this.props.auth.accounts || [];
+//         const priceApi = this.props.priceApi;
+//         const shouldShowChart = accounts.length && priceApi.priceInfo && priceApi.historicalPriceInfo;
+//
+//         const {isTermsScreenVisible} = this.state;
+//         return (
+//             <Screen>
+//                 <FullHeightView withoutPaddings>
+//                     <View style={{flexDirection: 'row'}}>
+//                         <View style={{flex: 1, alignItems: 'center', margin: 10}}>
+//                             <HeaderTitle>
+//                                 {i18n.t(core.screens.home.title)}
+//                             </HeaderTitle>
+//                         </View>
+//                         <View style={{position: 'absolute', right: 10, top: 0}}>
+//                             <PlusHeaderButton onPress={this.handleAddAccountPress}/>
+//                         </View>
+//                     </View>
+//                     <AccountsListHeader priceApi={priceApi} accounts={accounts}/>
+//                     <View style={styles.wrapper}>
+//                         {shouldShowChart && <HomeStackedAreaChart
+//                             priceApi={priceApi}
+//                             accounts={accounts}
+//                             priceTypes={priceTypes}
+//                             selectCurrency={this.selectCurrency.bind(this)}
+//                         /> || null}
+//
+//                         <AccountsList
+//                             accounts={accounts}
+//                             onAccountPress={this.handleAccountPress}
+//                             onAddAccountPress={this.handleAddAccountPress}
+//                             onDelete={this.handleDelete}
+//                             priceApi={this.props.priceApi}
+//                             onRefresh={this.handleAccountsListRefresh}
+//                         />
+//                         {isTermsScreenVisible && <TermsScreen
+//                             visible={isTermsScreenVisible}
+//                             onAgree={this.handleTermsAgreed}
+//                         />}
+//                     </View>
+//                 </FullHeightView>
+//             </Screen>
+//         );
+//     }
+// }
+//
+// function mapStateToProps(state: ApplicationState) {
+//     return {
+//         app: state.app,
+//         auth: state.auth,
+//         priceApi: state.priceApi,
+//     };
+// }
+//
+// export const HomeScreen = connect(mapStateToProps)(Home);

@@ -14,7 +14,7 @@ interface Props {
     onAddAccountPress: () => void;
     onDelete: (account: Account) => void;
     priceApi?: PriceInfoReduxState;
-    onRefresh: () => Promise<void[]> | undefined;
+    onRefresh: () => Promise<void> | undefined;
 }
 
 const styles = StyleSheet.create({

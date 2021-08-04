@@ -103,7 +103,7 @@ export const hydrateAccount = createActionFn<Account, Promise<Account>>(
         try {
             const accountDetails = await api.account.getAccount({accountId: account.account, includeCommittedAmount: true});
             console.log('Got account', accountDetails);
-            // dispatch(actions.updateAccount(accountDetails));
+            dispatch(actions.updateAccount(accountDetails));
             dispatch(updateAccountTransactions(accountDetails));
         } catch (e) {
             console.error('Something failed', e);
