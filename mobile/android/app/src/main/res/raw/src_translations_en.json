@@ -78,6 +78,7 @@
       "message": "Enter Message"
     },
     "balances": {
+      "total": "Total",
       "available": "Available",
       "locked": "Locked",
       "committed": "Committed"

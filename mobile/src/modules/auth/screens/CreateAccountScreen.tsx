@@ -74,7 +74,7 @@ class CreateAccount extends React.PureComponent<IProps, State> {
       const account = await this.props.dispatch(createActiveAccount(joinedPhrase));
       // @ts-ignore because we have account here 100%
       await this.props.dispatch(addAccount(account));
-      await this.props.dispatch(hydrateAccount(account as Account));
+      await this.props.dispatch(hydrateAccount({account}));
     } catch (error) {
       // This error shouldn't be possible, but still
       this.setState(getDefaultState());

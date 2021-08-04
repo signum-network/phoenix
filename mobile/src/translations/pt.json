@@ -78,6 +78,7 @@
       "message": "Digite a mensagem"
     },
     "balances": {
+      "total": "Total",
       "available": "Disponível",
       "locked": "Reservado",
       "committed": "Comitado"
@@ -174,7 +175,7 @@
         },
         "amountNQT": "Quantia",
         "feeNQT": "Taxa",
-        "from": "A partir de",
+        "from": "De",
         "selectAccount": "Selecione uma conta",
         "sent": "Enviado!",
         "title": "Mandar",

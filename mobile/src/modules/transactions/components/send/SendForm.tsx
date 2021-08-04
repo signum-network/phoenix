@@ -24,7 +24,6 @@ import {AccountBalances, getBalancesFromAccount, ZeroAcountBalances} from '../..
 import {Button, ButtonThemes} from '../../../../core/components/base/Button';
 import {stableAmountFormat, stableParseSignaAmount} from '../../../../core/utils/amount';
 import {core} from '../../../../core/translations';
-import {FeeQuantPlanck} from '../../../../../../lib/packages/util/src';
 
 const AddressPrefix = 'S-';
 
@@ -54,7 +53,7 @@ export interface SendFormState {
     showSubmitButton?: boolean;
     addMessage?: boolean;
     confirmedRisk?: boolean;
-    balances?: AccountBalances;
+    balances: AccountBalances;
     dirty?: boolean;
 }
 
@@ -118,21 +117,21 @@ const subBalanceStyles = StyleSheet.create({
 
 const Balances: React.FC<{ balances?: AccountBalances }> = ({balances = ZeroAcountBalances}) => (
     <View style={subBalanceStyles.root}>
-        <Text color={Colors.GREY} size={FontSizes.SMALLER}>{i18n.t(core.balances.available)}</Text>
-        <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.availableBalance}/>
+        <Text color={Colors.GREY} size={FontSizes.SMALLER}>{i18n.t(core.balances.total)}</Text>
+        <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.totalBalance}/>
         {balances.lockedBalance.greater(Amount.Zero()) && (
-                <>
-                    <Text color={Colors.GREY} size={FontSizes.SMALLER}>{i18n.t(core.balances.locked)}</Text>
-                    <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.lockedBalance}/>
-                </>
-            )
+            <>
+                <Text color={Colors.GREY} size={FontSizes.SMALLER}>{i18n.t(core.balances.locked)}</Text>
+                <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.lockedBalance}/>
+            </>
+        )
         }
         {balances.committedBalance.greater(Amount.Zero()) && (
-                <>
-                    <Text color={Colors.GREY} size={FontSizes.SMALLER}>Committed:</Text>
-                    <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.committedBalance}/>
-                </>
-            )
+            <>
+                <Text color={Colors.GREY} size={FontSizes.SMALLER}>Committed:</Text>
+                <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.committedBalance}/>
+            </>
+        )
         }
     </View>
 );
@@ -182,10 +181,11 @@ export class SendForm extends React.Component<Props, SendFormState> {
     };
 
     UNSAFE_componentWillReceiveProps = ({deepLinkProps}: Props) => {
-        if (!deepLinkProps) {
-            return;
+        if (deepLinkProps) {
+            this.setState(this.getInitialState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
+        }else{
+            this.setState(this.getInitialState());
         }
-        this.setState(this.getInitialState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
     };
 
     applyRecipientType(recipient: string): void {
@@ -349,7 +349,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
 
     handleFeeChange = (fee: string) => {
         const feeAmount = stableAmountFormat(fee);
-        this.setState({fee: Math.max(parseFloat(feeAmount), 0.00735).toString(10) });
+        this.setState({fee: Math.max(parseFloat(feeAmount), 0.00735).toString(10)});
         this.markAsDirty();
     };
 
@@ -383,13 +383,12 @@ export class SendForm extends React.Component<Props, SendFormState> {
     };
 
     onSpendAll = () => {
-        const {sender, fee} = this.state;
+        const {sender, fee, balances} = this.state;
         if (!sender) {
             return;
         }
 
-        const balancesFromAccount = getBalancesFromAccount(sender);
-        const maxAmount = balancesFromAccount.availableBalance.subtract(Amount.fromSigna(fee || 0));
+        const maxAmount = balances.availableBalance.subtract(Amount.fromSigna(fee || 0));
         this.handleAmountChange(maxAmount.less(Amount.Zero()) ? '0' : maxAmount.getSigna());
     };
 
@@ -401,6 +400,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
 
         const {recipient, amount, fee, sender, message, messageIsText, encrypt, immutable} = this.state;
         const address = recipient.addressRS;
+        this.handleReset();
         this.props.onSubmit({
             address,
             amount,
@@ -412,8 +412,6 @@ export class SendForm extends React.Component<Props, SendFormState> {
             immutable,
             encrypt
         });
-
-        this.handleReset();
     };
 
     handleReset = () => {
@@ -438,10 +436,10 @@ export class SendForm extends React.Component<Props, SendFormState> {
         return !this.props.loading && !!this.state.dirty;
     };
 
-    getTotal = () : Amount => {
+    getTotal = (): Amount => {
         const {amount, fee} = this.state;
         return stableParseSignaAmount(amount).add(stableParseSignaAmount(fee));
-    }
+    };
 
     render() {
         const {
@@ -469,7 +467,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
                 {this.state.sender &&
                 <View style={styles.balance}>
                     <AmountText
-                        amount={Amount.fromPlanck(this.state.sender.balanceNQT)}
+                        amount={this.state.balances.availableBalance}
                         color={Colors.GREY_LIGHT}
                     />
                 </View>}
@@ -550,6 +548,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
                         />}
 
                         <BCheckbox
+                            disabled={this.state.immutable}
                             label={i18n.t(transactions.screens.send.addMessage)}
                             value={addMessage || false}
                             onCheck={(checked) => this.setAddMessage(checked)}
@@ -558,12 +557,14 @@ export class SendForm extends React.Component<Props, SendFormState> {
                         {addMessage && (
                             <>
                                 <BInput
+                                    editable={!this.state.immutable}
                                     value={message || ''}
                                     onChange={this.handleMessageChange}
                                     title={i18n.t(transactions.screens.send.message)}
                                 />
 
                                 <BCheckbox
+                                    disabled={this.state.immutable}
                                     label={i18n.t(transactions.screens.send.encrypt)}
                                     value={encrypt || false}
                                     onCheck={(checked) => this.setEncryptMessage(checked)}

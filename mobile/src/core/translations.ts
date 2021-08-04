@@ -3,6 +3,7 @@ export const core: any = {
         message: 'core.placeholders.message',
     },
     balances: {
+        total: 'core.balances.total',
         available: 'core.balances.available',
         locked: 'core.balances.locked',
         committed: 'core.balances.committed'

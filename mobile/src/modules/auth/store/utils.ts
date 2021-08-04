@@ -18,7 +18,7 @@ export async function getPasscode(): Promise<string> {
     }
 }
 
-export function setAccounts(accounts: Account[]): Promise<boolean> {
+export function storeAccounts(accounts: Account[]): Promise<boolean> {
     const accountsWithoutTransactions = accounts.map((account) => {
         return {
             ...account,
@@ -29,21 +29,13 @@ export function setAccounts(accounts: Account[]): Promise<boolean> {
     return setCredentials({username: KeyChainKeys.accounts, password: data}, KeyChainKeys.accounts);
 }
 
-export async function getAccounts(): Promise<Account[]> {
+export async function restoreAccounts(): Promise<Account[]> {
     const credentials: KeychainCredentials = await getCredentials(KeyChainKeys.accounts) as KeychainCredentials;
     if (credentials && credentials.password) {
         return JSON.parse(credentials.password);
     } else {
         return [];
     }
-}
-
-export function savePasscodeEnteredTime(time: number): Promise<boolean> {
-    const data = JSON.stringify(time);
-    return setCredentials(
-        {username: KeyChainKeys.passcodeEnteredTime, password: data},
-        KeyChainKeys.passcodeEnteredTime
-    );
 }
 
 export function resetKeychain(): Promise<boolean[]> {
@@ -53,17 +45,6 @@ export function resetKeychain(): Promise<boolean[]> {
         setCredentials({username: KeyChainKeys.accounts, password: JSON.stringify([])},
             KeyChainKeys.accounts)
     ]);
-}
-
-// TODO: seems that this is not necessary at all
-export async function getPasscodeEnteredTime(): Promise<number> {
-    const credentials: KeychainCredentials =
-        await getCredentials(KeyChainKeys.passcodeEnteredTime) as KeychainCredentials;
-    if (credentials && credentials.password) {
-        return JSON.parse(credentials.password);
-    } else {
-        return 0;
-    }
 }
 
 export function isBlacklistedAccount(account: Account): boolean {
