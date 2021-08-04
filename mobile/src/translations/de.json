@@ -78,6 +78,7 @@
       "message": "Textnachricht eingeben"
     },
     "balances": {
+      "total": "Gesamt",
       "available": "Verfügbar",
       "locked": "Reserviert",
       "committed": "Committed"

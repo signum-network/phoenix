@@ -1,7 +1,6 @@
 import {
     loadAccounts,
     loadPasscode,
-    loadPasscodeEnteredTime,
 } from '../../../modules/auth/store/actions';
 import {getSuggestedFees} from '../../../modules/network/store/actions';
 import {loadHistoricalPriceApiData} from '../../../modules/price-api/store/actions';
@@ -24,11 +23,10 @@ export const loadApp = createActionFn<void, Promise<void>>(
         await Promise.all([
             dispatch(loadAccounts()),
             dispatch(loadPasscode()),
-            dispatch(loadPasscodeEnteredTime()),
             dispatch(loadAppSettings()),
             dispatch(loadUserSettings())
         ]);
-        dispatch(loadHistoricalPriceApiData());
+        // dispatch(loadHistoricalPriceApiData());
         dispatch(getSuggestedFees());
         dispatch(actions.appLoaded());
     }

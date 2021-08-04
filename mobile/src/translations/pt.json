@@ -78,6 +78,7 @@
       "message": "Digite a mensagem"
     },
     "balances": {
+      "total": "Total",
       "available": "Disponível",
       "locked": "Reservado",
       "committed": "Comitado"

@@ -5,7 +5,7 @@ import {i18n} from '../../../core/i18n';
 import {createAction, createActionFn} from '../../../core/utils/store';
 import {auth} from '../translations';
 import {actionTypes} from './actionTypes';
-import {getAccounts, getPasscode, getPasscodeEnteredTime, isBlacklistedAccount, resetKeychain, savePasscode, savePasscodeEnteredTime, setAccounts} from './utils';
+import {restoreAccounts, getPasscode, getPasscodeEnteredTime, isBlacklistedAccount, resetKeychain, savePasscode, savePasscodeEnteredTime, storeAccounts} from './utils';
 import {selectChainApi} from '../../../core/store/app/selectors';
 
 interface ZilResponse {
@@ -110,7 +110,7 @@ export const hydrateAccount = createActionFn<Account, Promise<Account>>(
         }
 
         // TODO: check why this is here?!
-        await setAccounts(state.auth.accounts);
+        await storeAccounts(state.auth.accounts);
         return account;
     }
 );
@@ -173,7 +173,7 @@ export const updateAccountTransactions = createActionFn<Account, Promise<Account
 export const addAccount = createActionFn<Account, Promise<Account>>(
     async (dispatch, getState, account) => {
         dispatch(actions.addAccount(account));
-        await setAccounts(getState().auth.accounts);
+        await storeAccounts(getState().auth.accounts);
         return account;
     }
 );
@@ -183,14 +183,14 @@ export const removeAccount = createActionFn<Account, Promise<void>>(
         // tslint:disable-next-line: max-line-length
         // fetch(`https://burstalerts.com/api/v1/unsubscribe/${removeAccountPayload.deviceId}/${removeAccountPayload.account.accountRS}`);
         dispatch(actions.removeAccount(account));
-        await setAccounts(getState().auth.accounts);
+        await storeAccounts(getState().auth.accounts);
         return;
     }
 );
 
 export const loadAccounts = createActionFn<void, Promise<void>>(
     async (dispatch, _getState) => {
-        let accounts: Account[] = await getAccounts();
+        let accounts: Account[] = await restoreAccounts();
         accounts = accounts.filter((account) => {
             const isBlacklisted = isBlacklistedAccount(account);
             if (isBlacklisted) {
@@ -211,19 +211,19 @@ export const resetAuthState = createActionFn<void, Promise<void>>(
     }
 );
 
-export const loadPasscodeEnteredTime = createActionFn<void, Promise<void>>(
-    async (dispatch, _getState) => {
-        const time = await getPasscodeEnteredTime();
-        dispatch(actions.loadPasscodeEnteredTime(time));
-    }
-);
+// export const loadPasscodeEnteredTime = createActionFn<void, Promise<void>>(
+//     async (dispatch, _getState) => {
+//         const time = await getPasscodeEnteredTime();
+//         dispatch(actions.loadPasscodeEnteredTime(time));
+//     }
+// );
 
-export const setPasscodeEnteredTime = createActionFn<number, Promise<void>>(
-    async (dispatch, _getState, time) => {
-        dispatch(actions.setPasscodeEnteredTime(time));
-        await savePasscodeEnteredTime(time);
-    }
-);
+// export const setPasscodeEnteredTime = createActionFn<number, Promise<void>>(
+//     async (dispatch, _getState, time) => {
+//         dispatch(actions.setPasscodeEnteredTime(time));
+//         await savePasscodeEnteredTime(time);
+//     }
+// );
 
 export const setPasscode = createActionFn<string, Promise<void>>(
     async (dispatch, _getState, passcode) => {

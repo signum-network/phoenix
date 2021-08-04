@@ -53,7 +53,7 @@ export interface SendFormState {
     showSubmitButton?: boolean;
     addMessage?: boolean;
     confirmedRisk?: boolean;
-    balances?: AccountBalances;
+    balances: AccountBalances;
     dirty?: boolean;
 }
 
@@ -117,8 +117,8 @@ const subBalanceStyles = StyleSheet.create({
 
 const Balances: React.FC<{ balances?: AccountBalances }> = ({balances = ZeroAcountBalances}) => (
     <View style={subBalanceStyles.root}>
-        <Text color={Colors.GREY} size={FontSizes.SMALLER}>{i18n.t(core.balances.available)}</Text>
-        <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.availableBalance}/>
+        <Text color={Colors.GREY} size={FontSizes.SMALLER}>{i18n.t(core.balances.total)}</Text>
+        <AmountText color={Colors.GREY} size={FontSizes.SMALLER} amount={balances.totalBalance}/>
         {balances.lockedBalance.greater(Amount.Zero()) && (
                 <>
                     <Text color={Colors.GREY} size={FontSizes.SMALLER}>{i18n.t(core.balances.locked)}</Text>
@@ -382,13 +382,12 @@ export class SendForm extends React.Component<Props, SendFormState> {
     };
 
     onSpendAll = () => {
-        const {sender, fee} = this.state;
+        const {sender, fee, balances} = this.state;
         if (!sender) {
             return;
         }
 
-        const balancesFromAccount = getBalancesFromAccount(sender);
-        const maxAmount = balancesFromAccount.availableBalance.subtract(Amount.fromSigna(fee || 0));
+        const maxAmount = balances.availableBalance.subtract(Amount.fromSigna(fee || 0));
         this.handleAmountChange(maxAmount.less(Amount.Zero()) ? '0' : maxAmount.getSigna());
     };
 
@@ -467,7 +466,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
                 {this.state.sender &&
                 <View style={styles.balance}>
                     <AmountText
-                        amount={Amount.fromPlanck(this.state.sender.balanceNQT)}
+                        amount={this.state.balances.availableBalance}
                         color={Colors.GREY_LIGHT}
                     />
                 </View>}
