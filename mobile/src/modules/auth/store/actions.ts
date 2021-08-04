@@ -5,7 +5,7 @@ import {i18n} from '../../../core/i18n';
 import {createAction, createActionFn} from '../../../core/utils/store';
 import {auth} from '../translations';
 import {actionTypes} from './actionTypes';
-import {restoreAccounts, getPasscode, getPasscodeEnteredTime, isBlacklistedAccount, resetKeychain, savePasscode, savePasscodeEnteredTime, storeAccounts} from './utils';
+import {restoreAccounts, getPasscode,  isBlacklistedAccount, resetKeychain, savePasscode, storeAccounts} from './utils';
 import {selectChainApi} from '../../../core/store/app/selectors';
 
 interface ZilResponse {
@@ -212,20 +212,6 @@ export const resetAuthState = createActionFn<void, Promise<void>>(
         dispatch(actions.resetAuthState());
     }
 );
-
-// export const loadPasscodeEnteredTime = createActionFn<void, Promise<void>>(
-//     async (dispatch, _getState) => {
-//         const time = await getPasscodeEnteredTime();
-//         dispatch(actions.loadPasscodeEnteredTime(time));
-//     }
-// );
-
-// export const setPasscodeEnteredTime = createActionFn<number, Promise<void>>(
-//     async (dispatch, _getState, time) => {
-//         dispatch(actions.setPasscodeEnteredTime(time));
-//         await savePasscodeEnteredTime(time);
-//     }
-// );
 
 export const setPasscode = createActionFn<string, Promise<void>>(
     async (dispatch, _getState, passcode) => {

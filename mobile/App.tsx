@@ -51,8 +51,6 @@ const rootTabStackConfig = {
     }
 };
 
-// export const navigationRef: React.RefObject<NavigationContainerRef> = React.createRef();
-
 export const App: React.FC = () => {
     const navigationRef: React.RefObject<NavigationContainerRef> = React.createRef();
     const [isAppLoaded, setIsAppLoaded] = useState(false);
@@ -63,20 +61,15 @@ export const App: React.FC = () => {
 
         const handleLanguagesChange = (event: ChangeLanguageEvent) => {
             i18n.locale = event.language;
-            // TODO: check the way to force a rerender
-            // we need to re-render whole tree
-            // forceUpdate();
         };
 
         const handleOpenURL = (event: any) => {
-            console.log('initial Url - event');
             setLinkUrl(event.url);
         };
 
         addEventListener('change', handleLanguagesChange);
         Linking.addEventListener('url', handleOpenURL);
         Linking.getInitialURL().then((url) => {
-            console.log('initial Url', url);
             setLinkUrl(url);
         });
         return () => {
