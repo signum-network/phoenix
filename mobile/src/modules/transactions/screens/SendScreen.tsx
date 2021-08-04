@@ -36,7 +36,7 @@ export const SendScreen: React.FC = () => {
     const dispatch = useDispatch();
     const [deeplinkData, setDeeplinkData] = useState<SendFormState>();
     const accounts = useSelector<ApplicationState, Account[]>(state => state.auth.accounts || []);
-    const [shouldUpdateAccounts, setShouldUpdate] = useState(true);
+    const [, setShouldUpdate] = useState(true);
 
     // TODO: refactoring is king here! - this is pretty uncommon pattern!
     const sendMoneyFn = useSelector<ApplicationState, AsyncParticle<TransactionId>>(state => state.transactions.sendMoney);
