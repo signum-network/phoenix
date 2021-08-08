@@ -4,13 +4,6 @@ const fs = require('fs-extra');
 const exec = require('../execAsync');
 const log = require('../log');
 
-async function buildLib(cwd){
-    const libPath = path.join(__dirname, '../../lib');
-    process.chdir(libPath);
-    await exec(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['run', 'tsc']);
-    process.chdir(cwd);
-}
-
 async function buildAngularWallet(cwd){
     const angularWalletPath = path.join(__dirname, '../../web/angular-wallet');
     process.chdir(angularWalletPath);
@@ -51,7 +44,6 @@ async function updateBaseHref(cwd) {
 }
 
 async function build({cwd}) {
-    await buildLib(cwd);
     await buildAngularWallet(cwd);
     await cleanDistFiles(cwd);
     await copyDistFiles(cwd);

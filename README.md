@@ -2,9 +2,9 @@
 
 ## About
 
-Phoenix is an open source, cross-platform wallet for the Signum (former Burstcoin) blockchain. It's actually two applications: a mobile app, and a desktop/web app. Oh, and [BurstJS](/lib/README.md) is in here too.
+Phoenix is an open source, cross-platform wallet for the Signum (former Burstcoin) blockchain. It's actually two applications: a mobile app, and a desktop/web app.
 
-![image](assets/beta.14/phoenix_1_beta.14.png)
+![image](assets/wallet/collage.jpg)
 
 ### Key features:
 - Improved security - Private keys are encrypted with a hashed PIN, securing them in the event of data breach. That PIN is then used for locally signing transactions and decrypting messages. Passphrases are not stored locally, and never sent to the server. 
@@ -29,37 +29,15 @@ Phoenix is an open source, cross-platform wallet for the Signum (former Burstcoi
 
 *Some features not available on mobile.*
 
-## Screenshots
-![image](assets/beta.14/phoenix_2_beta.14.png)
-
-![image](assets/beta.14/phoenix_3_beta.14.png)
-
-![image](assets/beta.14/phoenix_4_beta.14.png)
-
-![image](assets/beta.14/phoenix_5_beta.14.png)
-
-![image](assets/beta.14/phoenix_6_beta.14.png)
-
-![image](assets/beta.14/phoenix_7_beta.14.png)
-
-![image](assets/beta.14/phoenix_8_beta.14.png)
-
-
-
 ## Application Architecture
 
-Phoenix is comprised of two main applications: a desktop application and a mobile application, each of which share a common library called BurstJS. 
+Phoenix is comprised of two main applications: a desktop application and a mobile application 
 
 ![Application Architecture Diagram](assets/architecture.png "Application Architecture Diagram")
-
 
 ## Installation and Build
 
 The project is structured per platform, and further build/installation instruction can be obtained from the `README.md` in their respective folders.
-
-### Archlinux
-
-A package is available in [AUR](https://aur.archlinux.org/packages/phoenix/).
 
 ### Pick A Platform
 - [Web Wallet](/web/angular-wallet/README.md)
@@ -67,6 +45,5 @@ A package is available in [AUR](https://aur.archlinux.org/packages/phoenix/).
 - [Mobile Wallet](/mobile/README.md)
 
 ### See Also
-- [SignumJS Library](/lib/README.md)
 - [Development Scripts](/scripts/README.md)
 

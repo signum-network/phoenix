@@ -57,7 +57,7 @@
     "tagPrefix": "desktop-"
   },
   "dependencies": {
-    "@signumjs/http": "^1.0.0-rc.0",
+    "@signumjs/http": "^1.0.0-rc.4",
     "electron-dl": "^3.0.0",
     "fs-extra": "^10.0.0",
     "get-ssl-certificate": "^2.3.3",
