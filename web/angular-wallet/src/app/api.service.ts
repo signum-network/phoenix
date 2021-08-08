@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Api, ApiSettings, composeApi} from '@signumjs/core';
+import {Api, composeApi} from '@signumjs/core';
 import {environment} from '../environments/environment';
 import {Settings} from './settings';
 import {StoreService} from './store/store.service';
 import semver from 'semver';
 import {constants} from './constants';
-import {ApiVersion} from '@signumjs/core/src/constants/apiVersion';
 
 
 @Injectable({
@@ -28,14 +27,13 @@ export class ApiService {
     this.nodeUrl = settings.node;
     const reliablePeers = constants.nodes
       .filter(({reliable}) => reliable)
-      .map(({address, port}) => `${address}:${port}`)
+      .map(({address, port}) => `${address}:${port}`);
 
-    const apiSettings = new ApiSettings(
-      this.nodeUrl,
-      ApiVersion.V1,
-      reliablePeers,
-    );
-    this.api = composeApi(apiSettings);
+    this.api = composeApi({
+      reliableNodeHosts: reliablePeers,
+      nodeHost: this.nodeUrl,
+      apiVersion: 0
+    });
     this.brsVersion = undefined;
 
     if (settings.nodeAutoSelectionEnabled) {

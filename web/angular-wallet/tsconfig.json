@@ -12,7 +12,6 @@
     "skipLibCheck": true,
     "paths": {
       "@fuse": ["@fuse/"],
-      "@signumjs/*": ["../../../lib/packages/*"]
     },
     "target": "es5",
     "typeRoots": [

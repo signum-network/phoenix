@@ -25,12 +25,7 @@ jobs:
         with:
           node-version: 12
 
-      - name: Run SignumJS Tests
-        run: |
-          cd ./lib
-          npm ci
-
-      - name: Build Angular Web App
+      - name: Build App
         run: |
           cd ./web/angular-wallet
           npm ci

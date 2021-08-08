@@ -17,7 +17,9 @@ import {
   TransactionList,
   TransactionMiningSubtype,
   TransactionType,
-  UnconfirmedTransactionList
+  UnconfirmedTransactionList,
+  AddressPrefix,
+  GetAccountTransactionsArgs
 } from '@signumjs/core';
 import {decryptAES, encryptAES, generateMasterKeys, hashSHA256, Keys} from '@signumjs/crypto';
 import {Amount} from '@signumjs/util';
@@ -26,7 +28,6 @@ import {ApiService} from '../../api.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {NetworkService} from '../../network/network.service';
 import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';
-import {AddressPrefix, GetAccountTransactionsArgs} from '@signumjs/core/src';
 import {adjustLegacyAddressPrefix} from '../../util/adjustLegacyAddressPrefix';
 import {uniqBy} from 'lodash';
 

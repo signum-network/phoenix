@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
-import {CreateService, StepsEnum} from '../../create.service';
+import {Address, AddressPrefix} from '@signumjs/core';
 import {generateMasterKeys, PassPhraseGenerator} from '@signumjs/crypto';
-import {Address} from '@signumjs/core/src';
+import {CreateService, StepsEnum} from '../../create.service';
 import {NetworkService} from '../../../../network/network.service';
-import {AddressPrefix} from '@signumjs/core';
 
 @Component({
   selector: 'app-account-create-seed',

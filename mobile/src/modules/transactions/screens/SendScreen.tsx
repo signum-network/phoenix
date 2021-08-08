@@ -2,7 +2,7 @@ import {useNavigation, useRoute, useFocusEffect} from '@react-navigation/native'
 import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {Account} from '@signumjs/core';
+import {Account, SuggestedFees, TransactionId} from '@signumjs/core';
 import {Text, TextThemes} from '../../../core/components/base/Text';
 import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
 import {i18n} from '../../../core/i18n';
@@ -12,12 +12,11 @@ import {Screen} from '../../../core/layout/Screen';
 import {routes} from '../../../core/navigation/routes';
 import {ApplicationState} from '../../../core/store/initialState';
 import {isAsyncLoading} from '../../../core/utils/async';
-import {getAccount, getAlias, getZilAddress, hydrateAccount} from '../../auth/store/actions';
+import {getAccount, getAlias, getZilAddress} from '../../auth/store/actions';
 import {SendForm, SendFormState} from '../components/send/SendForm';
 import {sendMoney as sendMoneyAction, SendAmountPayload} from '../store/actions';
 import {transactions} from '../translations';
 import {NoActiveAccount} from '../components/send/NoActiveAccount';
-import {SuggestedFees, TransactionId} from '../../../../../lib/packages/core/src';
 import {stableParsePlanckAmount} from '../../../core/utils/amount';
 
 interface SendDeeplinkParameters {

@@ -1,7 +1,6 @@
-import {getRecipientsAmount, Transaction} from '@signumjs/core';
+import {getRecipientsAmount, Transaction, TransactionType} from '@signumjs/core';
 import {Amount} from '@signumjs/util';
 import {BalanceHistoryItem} from './typings';
-import {TransactionType} from '@signumjs/core/src';
 import {flow, map, filter} from 'lodash/fp';
 
 const isOwnTransaction = (accountId: string, transaction: Transaction): boolean => transaction.sender === accountId;

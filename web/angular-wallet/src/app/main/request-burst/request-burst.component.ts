@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Account, SuggestedFees} from '@signumjs/core';
 import {NgForm} from '@angular/forms';
-import {convertNumberToNQTString} from '@signumjs/util';
+import {convertNumberToNQTString, CurrencySymbol} from '@signumjs/util';
 import {ActivatedRoute} from '@angular/router';
 import {AccountService} from 'app/setup/account/account.service';
 import {StoreService} from 'app/store/store.service';
@@ -9,7 +9,6 @@ import {MatStepper} from '@angular/material/stepper';
 import {environment} from 'environments/environment';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
-import {CurrencySymbol} from '@signumjs/util/src';
 
 @Component({
     selector: 'app-request-burst',
