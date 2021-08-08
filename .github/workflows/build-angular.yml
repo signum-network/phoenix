@@ -1,4 +1,4 @@
-name: Test and Build Angular App
+name: Build Angular App
 
 on:
   pull_request:

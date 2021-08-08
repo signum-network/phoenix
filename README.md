@@ -1,5 +1,7 @@
 # <img src="./assets/phoenix.png" width="64" /> Phoenix Signum Wallet
 
+[![Test and Build Angular App](https://github.com/signum-network/phoenix/actions/workflows/build-angular.yml/badge.svg)](https://github.com/signum-network/phoenix/actions/workflows/build-angular.yml)
+
 Phoenix is an open source, cross-platform wallet for the Signum (former Burstcoin) blockchain. It's actually two applications: a mobile app, and a desktop/web app.
 
 ![image](assets/wallet/collage.jpg)
