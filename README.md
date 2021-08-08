@@ -10,7 +10,7 @@ Phoenix is an open source, cross-platform wallet for the Signum (former Burstcoi
 - Offline account support - Watch an account without using the passphrase for maximum security.
 - Cross-platform - Runs on all popular platforms without any additional software requirements.
 - Dashboard - with Market Information and Interactive Balance History Diagram.
-- Powered by <a href="https://signum-network.github.io/signumjs"><img src="./assets/signumjs.png" width="80" /></a>
+- Powered by <a href="https://signum-network.github.io/signumjs"><img src="./assets/signumjs.png" height=32" /></a>
 
 ## Additional features:
 - Multi-out support - Send and view Multi-out & Multi-out-same Payments
@@ -32,10 +32,10 @@ Phoenix is an open source, cross-platform wallet for the Signum (former Burstcoi
 
 Phoenix is comprised of two main applications: a desktop application and a mobile application 
 
-<img src="./assets/architecture.png" width="800" alt="Phoenix Architecture Diagram"/>
+<img src="./assets/architecture.png" height="640" alt="Phoenix Architecture Diagram"/>
 
 The web application is built on Angular 8 and embedded into electron to be executable as desktop application.
-The mobile application uses React Native to be available for Android and iOS. All these apps uses the [SignumJS SDK](https://github.com/signum-network/signumjs) 
+The mobile application uses React Native to be available for Android and iOS. All these apps use the [SignumJS SDK](https://github.com/signum-network/signumjs) 
 to interact with the [Signum nodes](https://github.com/signum-network/signum-node).
 
 ## Installation and Build
