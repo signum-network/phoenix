@@ -5,7 +5,7 @@ import {
   Recipient,
   RecipientType,
   RecipientValidationStatus
-} from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
+} from '../../../layout/components/recipient-input/recipient-input.component';
 
 
 @Component({

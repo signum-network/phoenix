@@ -27,7 +27,7 @@
 
   <div class="pl-20 pr-20">
     <form (ngSubmit)="onSubmit($event);" #setRewardRecipientForm="ngForm">
-      <burst-recipient-input (recipientChange)="onRecipientChange($event)"></burst-recipient-input>
+      <recipient-input (recipientChange)="onRecipientChange($event)"></recipient-input>
 
       <burst-fee-selector [fees]="fees" [(fee)]="fee"></burst-fee-selector>
 
