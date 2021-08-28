@@ -186,7 +186,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public async submitPinPrompt(event): Promise<void> {
     event.stopImmediatePropagation();
-    const account = await this.accountService.currentAccount.getValue();
+    const account = await this.accountService.currentAccount$.getValue();
     const sender = await this.accountService.getAccount(this.message.contactId);
     const privateKey = decryptAES(account.keys.agreementPrivateKey, hashSHA256(this.pin));
     this.message.dialog = this.message.dialog.map((message) => {

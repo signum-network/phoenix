@@ -58,7 +58,7 @@ export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit, 
         this.settings = settings;
       });
 
-    this.accountService.currentAccount
+    this.accountService.currentAccount$
       .pipe(this.unsubscriber)
       .subscribe(this.setTransactions);
 

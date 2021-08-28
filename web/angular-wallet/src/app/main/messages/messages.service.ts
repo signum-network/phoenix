@@ -85,7 +85,7 @@ export class MessagesService implements Resolve<any> {
   public populateMessages(): any {
     return new Promise(async (resolve, reject) => {
       try {
-        this.user = await this.accountService.currentAccount.getValue();
+        this.user = await this.accountService.currentAccount$.getValue();
         const messages = await this.getMessages();
         this.messages = messages.reduce((acc, val) => {
           const isSentMessage = this.user.account === val.sender;
@@ -176,7 +176,7 @@ export class MessagesService implements Resolve<any> {
 
     // TODO: in the future we should allow scrolling to older messages (if > maxNumberMessages)
     const maxNumberMessages = 100;
-    const accountId = this.accountService.currentAccount.getValue().account;
+    const accountId = this.accountService.currentAccount$.getValue().account;
 
     const getConfirmedMessages = this.accountService.getAccountTransactions({
       accountId,

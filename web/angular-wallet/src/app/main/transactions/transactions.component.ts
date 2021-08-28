@@ -11,6 +11,7 @@ import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {UtilService} from '../../util.service';
 import {StoreService} from '../../store/store.service';
+import {AccountService} from '../../setup/account/account.service';
 
 
 const ColumnsQuery = {
@@ -53,7 +54,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
   unsubscriber = takeUntil(this.unsubscribeAll);
 
   constructor(
-    private route: ActivatedRoute,
+    private accountService: AccountService,
     private storeService: StoreService,
     private utilService: UtilService,
     private observableMedia: MediaObserver
@@ -63,21 +64,26 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
 
   public ngOnInit(): void {
     this.dataSource = new MatTableDataSource<Transaction>();
-    this.dataSource.data = this.route.snapshot.data.transactions;
-    this.account = this.route.snapshot.data.account;
     this.storeService.settings
       .pipe(this.unsubscriber)
-      .subscribe(async ({language}) => {
+      .subscribe(({language}) => {
           this.language = language;
           this.initTypes();
         }
       );
+
+    this.accountService.currentAccount$
+      .pipe(this.unsubscriber)
+      .subscribe((acc: Account) => {
+        this.account = acc;
+        this.dataSource.data = acc.transactions;
+      });
   }
 
   private initTypes(): void {
     this.dataSource.data.forEach(t => {
       const type = this.utilService.translateTransactionSubtype(t, this.account);
-      this.typeMap[type] = { t: t.type, s: t.subtype };
+      this.typeMap[type] = {t: t.type, s: t.subtype};
     });
 
     this.typeOptions = Object.keys(this.typeMap);
@@ -98,8 +104,8 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
     this.dataSource.sort = this.sort;
     this.dataSource.filterPredicate = (transaction, filterValue: string) =>
       this.isInDateRange(transaction)
-        && this.isOfType(transaction)
-        && defaultFilterPredicate(transaction, filterValue);
+      && this.isOfType(transaction)
+      && defaultFilterPredicate(transaction, filterValue);
   }
 
   private isOfType(transaction: Transaction): boolean {
@@ -107,13 +113,13 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
     return type ? type.t === transaction.type && type.s === transaction.subtype : true;
   }
 
-  private isInDateRange(transaction: Transaction) : boolean {
+  private isInDateRange(transaction: Transaction): boolean {
     const date = this.convertTimestamp(transaction.timestamp);
     if (this.pickerFromField.value && this.pickerToField.value) {
       return date > this.pickerFromField.value && date < this.pickerToField.value;
     }
     if (this.pickerFromField.value) {
-     return date > this.pickerFromField.value;
+      return date > this.pickerFromField.value;
     }
     if (this.pickerToField.value) {
       return date < this.pickerToField.value;

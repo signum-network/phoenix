@@ -43,7 +43,7 @@ export class SendBurstComponent extends UnsubscribeOnDestroy implements OnInit {
         if (!ready) {
           return;
         }
-        this.accountService.currentAccount
+        this.accountService.currentAccount$
           .pipe(takeUntil(this.unsubscribeAll))
           .subscribe((account) => {
             this.account = account;

@@ -132,7 +132,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
         await this.updateAvatar();
       });
 
-    this._accountService.currentAccount
+    this._accountService.currentAccount$
       .pipe(
         delay(1),
         takeUntil(this._unsubscribeAll)

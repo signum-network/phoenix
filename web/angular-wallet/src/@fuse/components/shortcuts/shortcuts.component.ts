@@ -57,7 +57,7 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy {
     if (this._cookieService.check('FUSE2.shortcuts')) {
       this.shortcutItems = JSON.parse(this._cookieService.get('FUSE2.shortcuts'));
     } else {
-      this.accountService.currentAccount.subscribe(this.setAccount());
+      this.accountService.currentAccount$.subscribe(this.setAccount());
     }
 
     this.i18nService.state.subscribe(() => {

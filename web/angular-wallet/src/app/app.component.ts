@@ -78,7 +78,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
           setTimeout(checkBlockchainStatus, 1000);
           this.blockchainStatusInterval = setInterval(checkBlockchainStatus, this.BLOCKCHAIN_STATUS_INTERVAL);
         }
-        this.accountService.currentAccount
+        this.accountService.currentAccount$
           .pipe(
             takeUntil(this.unsubscribeAll)
           )
@@ -212,7 +212,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       } else if (this.selectedAccount) {
         await this.accountService.synchronizeAccount(this.selectedAccount).catch(() => {
         });
-        this.accountService.setCurrentAccount(this.selectedAccount);
+        this.accountService.updateCurrentAccount(this.selectedAccount);
         // hit this call again every 1 sec if the blockchain is being downloaded
       } else if (this.downloadingBlockchain) {
         setTimeout(this.checkBlockchainStatus.bind(this), 1000);

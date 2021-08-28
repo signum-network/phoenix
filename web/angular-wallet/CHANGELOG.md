@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3
+- New Transaction Table
+- Incremental Transaction Loading
+  - Reduces fetched payloads drastically
+
+### Bug Fixes
+- Several Tx Table fixes (#414, #1500, #1536)
+
 ## 1.2.2
 
 - fixed wrong logo name

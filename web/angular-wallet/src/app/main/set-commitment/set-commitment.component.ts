@@ -48,7 +48,7 @@ export class SetCommitmentComponent extends UnsubscribeOnDestroy implements OnIn
         if (!ready) {
           return;
         }
-        this.accountService.currentAccount
+        this.accountService.currentAccount$
           .pipe(unsubscribeAll)
           .subscribe((account: Account) => {
             this.account = account;
