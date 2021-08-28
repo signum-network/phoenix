@@ -6,7 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 import {AccountService} from 'app/setup/account/account.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {Recipient} from 'app/layout/components/burst-recipient-input/burst-recipient-input.component';
+import {Recipient} from 'app/layout/components/recipient-input/recipient-input.component';
 import {isKeyDecryptionError} from '../../util/exceptions/isKeyDecryptionError';
 
 @Component({

@@ -10,7 +10,7 @@ import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.comp
 import {
   Recipient,
   RecipientValidationStatus
-} from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
+} from '../../../layout/components/recipient-input/recipient-input.component';
 import {StoreService} from '../../../store/store.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';

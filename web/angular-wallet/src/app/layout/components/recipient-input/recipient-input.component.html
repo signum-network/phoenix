@@ -7,7 +7,7 @@
            placeholder="{{ 'recipient' | i18n }}"
            [disabled]="disabled">
 
-    <div *ngIf="recipient.type !== 1 && recipient.status !== 'zil-outage'"
+    <div *ngIf="recipient.type !== 1 && recipient.status !== 'unstoppable-outage'"
          class="recipient-address"
          title="{{ recipient.addressRS }}">
         {{ recipient.addressRS }}
