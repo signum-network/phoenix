@@ -420,5 +420,6 @@
   "youve_got_from": "__a__ hesabı __c__'den __b__ aldı",
   "you_sent_to": "__a__ hesabı __b__'yi __c__'ye gönderdi",
   "show_testnet_nodes": "Testnet Düğümlerini Göster",
-  "message_too_long": "Mesaj çok uzun"
+  "message_too_long": "Mesaj çok uzun",
+  "reset": "Sıfırla"
 }

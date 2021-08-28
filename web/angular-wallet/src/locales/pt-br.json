@@ -420,5 +420,6 @@
   "youve_got_from": "A conta __a__ recebeu __b__ de __c__",
   "you_sent_to": "Conta __a__ enviada __b__ para __c__",
   "show_testnet_nodes": "Mostrar nós Testnet",
-  "message_too_long": "A mensagem é muito longa"
+  "message_too_long": "A mensagem é muito longa",
+  "reset": "Redefinir"
 }

@@ -420,5 +420,6 @@
   "youve_got_from": "खाता __a__ को __c__ से __b__ मिला",
   "you_sent_to": "खाता __a__ ने __b__ को __c__ को भेजा",
   "show_testnet_nodes": "टेस्टनेट नोड्स दिखाएं",
-  "message_too_long": "संदेश बहुत लंबा है"
+  "message_too_long": "संदेश बहुत लंबा है",
+  "reset": "रीसेट"
 }

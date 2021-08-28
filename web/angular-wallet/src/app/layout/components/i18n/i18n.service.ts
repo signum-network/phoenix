@@ -21,7 +21,6 @@ export class I18nService {
     code: 'en'
   };
 
-
   constructor(
     private http: HttpClient,
     private ref: ApplicationRef,

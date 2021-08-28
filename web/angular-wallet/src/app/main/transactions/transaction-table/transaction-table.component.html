@@ -1,6 +1,6 @@
 <mat-table #table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="transaction_id">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
+    <mat-header-cell *matHeaderCellDef >
       {{"transaction_id" | i18n}}
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
@@ -16,7 +16,7 @@
   </ng-container>
 
   <ng-container matColumnDef="timestamp">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
+    <mat-header-cell *matHeaderCellDef >
       {{"date" | i18n}}
     </mat-header-cell>
     <mat-cell class="smaller" *matCellDef="let transaction">
@@ -32,7 +32,7 @@
   </ng-container>
 
   <ng-container matColumnDef="type">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
+    <mat-header-cell *matHeaderCellDef >
       {{"type" | i18n}}
     </mat-header-cell>
     <mat-cell class="smaller" *matCellDef="let transaction">
@@ -43,7 +43,7 @@
   </ng-container>
 
   <ng-container matColumnDef="amount">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
+    <mat-header-cell *matHeaderCellDef >
       {{"amount"|i18n}}
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
@@ -64,7 +64,7 @@
   </ng-container>
 
   <ng-container matColumnDef="account">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
+    <mat-header-cell *matHeaderCellDef >
       {{ "account" | i18n }}
     </mat-header-cell>
     <mat-cell class="smaller" *matCellDef="let transaction">
@@ -92,7 +92,7 @@
   </ng-container>
 
   <ng-container matColumnDef="confirmations">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>{{
+    <mat-header-cell *matHeaderCellDef >{{
       "confirmations" | i18n
       }}</mat-header-cell>
     <mat-cell class="smaller" *matCellDef="let transaction">

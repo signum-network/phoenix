@@ -1,9 +1,12 @@
 :host {
+  mat-header-cell {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
 
   .mat-column-transaction_id {
-    display: flex;
-    //flex: 0 0 180px;
-
+    flex: 0 1 220px;
     .transaction-content {
       display: flex;
       flex-direction: row;
@@ -15,20 +18,11 @@
         transform: rotate(10deg) scale(0.8);
       }
     }
-
-    //flex: 1 0 200px;
-  }
-
-  .mat-column-attachment {
-    //flex: 0 0 30px;
-
   }
 
   .mat-column-type {
-    //flex: 0 0 160px;
-    font-size: 12px;
-
     .type-content {
+      font-size: 12px;
       color: rgb(0, 35, 65);
       padding: 0.25rem 1rem;
       border-radius: 10px;
@@ -37,9 +31,9 @@
   }
 
   .mat-column-timestamp {
-    flex: 0 0 80px;
+    flex: 0 0 60px;
     align-items: center;
-
+    margin-left: 0.5rem;
     .timestamp-content {
       .time {
         font-size: 80%;
@@ -49,11 +43,10 @@
   }
 
   .mat-column-account {
-    //flex: 0 0 225px;
   }
 
   .mat-column-amount {
-    //flex: 0 0 200px;
+
     .amount-content {
       color: rgb(0, 35, 65);
 
@@ -79,6 +72,10 @@
         color: #D30000;
       }
     }
+  }
+
+  .mat-column-confirmations {
+    flex: 0 0 140px
   }
 
   .mat-cell {
