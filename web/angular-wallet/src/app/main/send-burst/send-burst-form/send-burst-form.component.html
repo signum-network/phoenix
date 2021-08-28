@@ -1,11 +1,11 @@
 <form (ngSubmit)="onSubmit($event);" #sendBurstForm="ngForm">
 
-  <burst-recipient-input [recipientValue]="recipient.addressRaw"
+  <recipient-input [recipientValue]="recipient.addressRaw"
                          (recipientChange)="onRecipientChange($event)"
                          (qrCodeUpload)="onQRUpload($event)"
                          [disabled]="immutable">
 
-  </burst-recipient-input>
+  </recipient-input>
 
   <div class="amount-wrapper">
     <mat-form-field>

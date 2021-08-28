@@ -7,7 +7,7 @@ import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
-import {Recipient} from '../../../layout/components/burst-recipient-input/burst-recipient-input.component';
+import {Recipient} from '../../../layout/components/recipient-input/recipient-input.component';
 import {filter, takeUntil} from 'rxjs/operators';
 import {StoreService} from '../../../store/store.service';
 import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';

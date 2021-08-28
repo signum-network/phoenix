@@ -15,14 +15,14 @@ export enum RecipientType {
   ADDRESS = 1,
   ID,
   ALIAS,
-  ZIL,
+  UNSTOPPABLE,
 }
 
 export enum RecipientValidationStatus {
   UNKNOWN = 'unknown',
   INVALID = 'invalid',
   VALID = 'valid',
-  ZIL_OUTAGE = 'zil-outage'
+  UNSTOPPABLE_OUTAGE = 'unstoppable-outage'
 }
 
 export class Recipient {
@@ -40,11 +40,11 @@ export class Recipient {
 }
 
 @Component({
-  selector: 'burst-recipient-input',
-  templateUrl: './burst-recipient-input.component.html',
-  styleUrls: ['./burst-recipient-input.component.scss']
+  selector: 'recipient-input',
+  templateUrl: './recipient-input.component.html',
+  styleUrls: ['./recipient-input.component.scss']
 })
-export class BurstRecipientInputComponent implements OnChanges {
+export class RecipientInputComponent implements OnChanges {
 
   loading = false;
   fileId = `file-${nextId++}`;
@@ -111,24 +111,27 @@ export class BurstRecipientInputComponent implements OnChanges {
     }
   }
 
+  private isAlias(address: string): boolean {
+    return /^[a-zA-Z0-9-_]{4,128}$/.test(address);
+  }
+
   applyRecipientType(recipient: string): void {
     const r = recipient.trim();
     this.recipient.addressRaw = r;
     this.recipient.addressRS = '';
     this.recipient.status = RecipientValidationStatus.UNKNOWN;
-    if (r.length === 0) {
-      this.recipient.type = RecipientType.UNKNOWN;
-    } else if (this.isReedSolomonAddress(r)) {
+    if (this.isReedSolomonAddress(r)) {
       this.recipient.type = RecipientType.ADDRESS;
-    } else if (r.toUpperCase().endsWith('.ZIL') || r.toUpperCase().endsWith('.CRYPTO')) {
-      this.recipient.type = RecipientType.ZIL;
+    } else if (this.domainService.isUnstoppableDomain(r)) {
+      this.recipient.type = RecipientType.UNSTOPPABLE;
     } else if (/^\d+$/.test(r)) {
       this.recipient.type = RecipientType.ID;
-    } else {
+    } else if (this.isAlias(r)) {
       this.recipient.type = RecipientType.ALIAS;
+    } else {
+      this.recipient.type = RecipientType.UNKNOWN;
     }
   }
-
 
   async validateRecipient(recipient: string): Promise<void> {
     let accountFetchFn;
@@ -145,16 +148,15 @@ export class BurstRecipientInputComponent implements OnChanges {
         id = address.getNumericId();
         accountFetchFn = this.accountService.getAccount;
         break;
-      case RecipientType.ZIL:
+      case RecipientType.UNSTOPPABLE:
         try {
-          id = await this.domainService.getZilAddress(id);
+          id = await this.domainService.getUnstoppableAddress(id);
           accountFetchFn = this.accountService.getAccount;
-
-          if (id === null) {
+          if (!id) {
             this.recipient.status = RecipientValidationStatus.INVALID;
           }
         } catch (e) {
-          this.recipient.status = RecipientValidationStatus.ZIL_OUTAGE;
+          this.recipient.status = RecipientValidationStatus.UNSTOPPABLE_OUTAGE;
         }
         break;
       // tslint:disable-next-line:no-switch-case-fall-through
@@ -177,7 +179,7 @@ export class BurstRecipientInputComponent implements OnChanges {
     }).catch(() => {
       if (this.isReedSolomonAddress(this.recipient.addressRaw)) {
         this.recipient.addressRS = this.recipient.addressRaw;
-      } else if (this.recipient.type === RecipientType.ZIL) {
+      } else if (this.recipient.type === RecipientType.UNSTOPPABLE) {
         this.recipient.addressRS = id;
       } else {
         const prefix = this.isTestNet ? AddressPrefix.TestNet : AddressPrefix.MainNet;
@@ -202,8 +204,8 @@ export class BurstRecipientInputComponent implements OnChanges {
         return 'Address was successfully verified.';
       case RecipientValidationStatus.INVALID:
         return 'Please verify address before sending.';
-      case RecipientValidationStatus.ZIL_OUTAGE:
-        return 'Unable to fetch from the ZIL API. Please try again later.';
+      case RecipientValidationStatus.UNSTOPPABLE_OUTAGE:
+        return 'Unable to fetch from the Unstoppable Domains API. Please try again later.';
     }
   }
 
@@ -214,7 +216,7 @@ export class BurstRecipientInputComponent implements OnChanges {
       case RecipientValidationStatus.VALID:
         return 'check_circle';
       case RecipientValidationStatus.INVALID:
-      case RecipientValidationStatus.ZIL_OUTAGE:
+      case RecipientValidationStatus.UNSTOPPABLE_OUTAGE:
         return 'error_outline';
     }
   }

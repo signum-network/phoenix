@@ -27,9 +27,9 @@
     <div class="recipients-list">
       <ng-container *ngFor="let recipient of recipients; let i = index; trackBy: trackByIndex;" [attr.data-index]="i">
         <div class="recipients-item">
-          <burst-recipient-input [recipientValue]="recipient.addressRaw"
+          <recipient-input [recipientValue]="recipient.addressRaw"
                                  (recipientChange)="onRecipientChange($event, i)"
-                                 [withQrCode]="false"></burst-recipient-input>
+                                 [withQrCode]="false"></recipient-input>
           <mat-form-field [class.last]="isLastRecipientItem(i) && i !== 0" *ngIf="!sameAmount">
             <input matInput [(ngModel)]="recipient.amount"
                    name="amount{{i}}"
