@@ -68,14 +68,14 @@
           <mat-icon>local_atm</mat-icon>&nbsp;{{ 'amount' | i18n }}
         </mat-header-cell>
         <mat-cell *matCellDef="let block">
-          {{ block.totalAmountNQT | burstAmount:'planck' }}</mat-cell>
+          {{ block.totalAmountNQT | amount:'planck' }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="totalFeeNQT">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           <mat-icon>compare_arrows</mat-icon>&nbsp;{{ 'fee' | i18n }}
         </mat-header-cell>
-        <mat-cell *matCellDef="let block"> {{ block.totalFeeNQT | burstAmount:'planck'}}
+        <mat-cell *matCellDef="let block"> {{ block.totalFeeNQT | amount:'planck'}}
         </mat-cell>
       </ng-container>
 

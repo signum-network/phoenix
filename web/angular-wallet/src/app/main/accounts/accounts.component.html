@@ -96,7 +96,7 @@
           {{'balance' | i18n }}
         </mat-header-cell>
         <mat-cell
-          *matCellDef="let account">{{account.balanceNQT | burstAmount: 'planck':true }}</mat-cell>
+          *matCellDef="let account">{{account.balanceNQT | amount: 'planck':true }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="description">

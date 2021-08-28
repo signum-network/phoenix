@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
 import {AppSharedModule} from '../../../shared/shared.module';
 import {MatSortModule} from '@angular/material';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MatSortModule} from '@angular/material';
         MatPaginatorModule,
         RouterModule,
         AppSharedModule,
-        MatSortModule
+        MatSortModule,
+        MatTooltipModule
     ]
 })
 export class TransactionTableModule { }

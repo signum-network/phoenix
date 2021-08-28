@@ -43,7 +43,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   }
 
   @Input() dataSource: MatTableDataSource<Transaction>;
-  @Input() public displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'fee', 'account', 'confirmations'];
+  @Input() public displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
   @Input() account: Account;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
@@ -97,7 +97,12 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
   getDate(tx: Transaction): string {
     const time = ChainTime.fromChainTimestamp(tx.timestamp);
-    return formatDate(time.getDate(), 'short', this.locale);
+    return formatDate(time.getDate(), 'shortDate', this.locale);
+  }
+
+  getTime(tx: Transaction): string {
+    const time = ChainTime.fromChainTimestamp(tx.timestamp);
+    return formatDate(time.getDate(), 'shortTime', this.locale);
   }
 
   getRowClass(row: Transaction): string {

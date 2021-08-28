@@ -6,11 +6,11 @@
     </div>
     <div *ngIf="isSupported" class="account-info__field">
       <small class="secondary-text text-uppercase">{{'applied_commitment'| i18n}}</small>
-      <p class="pb-8 "><strong>{{account.committedBalanceNQT | burstAmount:'planck':true}}</strong></p>
+      <p class="pb-8 "><strong>{{account.committedBalanceNQT | amount:'planck':true}}</strong></p>
     </div>
     <div class="account-info__field">
       <small class="secondary-text text-uppercase">{{'balance_available'| i18n}}</small>
-      <p>{{getBalance() | burstAmount }}</p>
+      <p>{{getBalance() | amount }}</p>
     </div>
   </div>
   <div class="pl-20 pr-20">

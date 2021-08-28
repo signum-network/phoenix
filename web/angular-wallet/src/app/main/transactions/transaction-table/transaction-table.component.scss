@@ -1,32 +1,84 @@
 :host {
 
-  .smaller {
-    font-size: 1.2rem;
-  }
-
   .mat-column-transaction_id {
-    flex: 0 0 200px;
+    display: flex;
+    //flex: 0 0 180px;
+
+    .transaction-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      .attachment {
+        color: #999999;
+        transform: rotate(10deg) scale(0.8);
+      }
+    }
+
+    //flex: 1 0 200px;
   }
 
   .mat-column-attachment {
-    flex: 0 0 50px;
+    //flex: 0 0 30px;
+
   }
 
   .mat-column-type {
-    flex: 0 0 150px;
+    //flex: 0 0 160px;
+    font-size: 12px;
+
+    .type-content {
+      color: rgb(0, 35, 65);
+      padding: 0.25rem 1rem;
+      border-radius: 10px;
+      background: #E6E6F2;
+    }
   }
 
   .mat-column-timestamp {
-    flex: 0 0 150px;
+    flex: 0 0 80px;
+    align-items: center;
+
+    .timestamp-content {
+      .time {
+        font-size: 80%;
+      }
+    }
+
   }
 
   .mat-column-account {
-    flex: 0 0 225px;
+    //flex: 0 0 225px;
   }
 
   .mat-column-amount {
-    flex: 0 1 200px;
-    margin-left: 1rem;
+    //flex: 0 0 200px;
+    .amount-content {
+      color: rgb(0, 35, 65);
+
+      .amount {
+        padding: 0.25rem 1rem;
+        border-radius: 10px;
+        background: #E6E6F2;
+        width: fit-content;
+      }
+
+      .fee {
+        font-size: 80%;
+        color: #333333;
+      }
+
+      .incoming {
+        background: #CDFFCD;
+        color: #007F00;
+      }
+
+      .outgoing {
+        background: #FFE0E0;
+        color: #D30000;
+      }
+    }
   }
 
   .mat-cell {
@@ -36,15 +88,12 @@
   }
 
   .self {
-    background-color: #f5f5f5 !important;
   }
 
   .incoming {
-    background-color: #f5fff5 !important;
   }
 
   .outgoing {
-    background-color: #fff5f5 !important;
   }
 
   .unconfirmed {
@@ -56,12 +105,13 @@
     margin: 0 auto;
   }
 
-  .fg_green {
-    color: green !important;
+  .smaller {
+    //font-size: 12px;
   }
 
-  .fg_red {
-    color: red !important;
+  .stacked {
+    display: flex;
+    flex-direction: column;
   }
 
   @keyframes pulse {

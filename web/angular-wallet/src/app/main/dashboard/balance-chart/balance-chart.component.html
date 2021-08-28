@@ -3,7 +3,7 @@
     <div class="h-256 pb-16 blue-600">
       <div class="pl-16 balance-info">
         <div class="inline responsive">
-          <h1 class="pr-8 mb-0">{{accountBalances.totalBalance.getSigna() | burstAmount}}</h1>
+          <h1 class="pr-8 mb-0">{{accountBalances.totalBalance.getSigna() | amount}}</h1>
           <div class="inline">
             <small class="font-size-14 pr-8">{{calculateValue(priceBtc) | currency:'฿'}}</small>
             <small class="font-size-14 pr-8">{{calculateValue(priceUsd) | currency:'USD'}}</small>
@@ -12,9 +12,9 @@
         </div>
         <div class="inline responsive">
           <small class="font-size-14 pr-8">{{"balance_available"| i18n}}
-            : {{accountBalances.availableBalance.getSigna() | burstAmount}}</small>
+            : {{accountBalances.availableBalance.getSigna() | amount}}</small>
           <small class="font-size-14">{{"balance_locked"| i18n}}
-            : {{accountBalances.lockedBalance.getSigna() | burstAmount}}</small>
+            : {{accountBalances.lockedBalance.getSigna() | amount}}</small>
         </div>
       </div>
       <div *ngIf="account.transactions.length">

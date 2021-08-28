@@ -5,10 +5,10 @@ import {Amount} from '@signumjs/util';
 
 // FIXME: rename to signa
 @Pipe({
-  name: 'burstAmount',
+  name: 'amount',
   pure: false
 })
-export class BurstAmountPipe implements PipeTransform {
+export class AmountPipe implements PipeTransform {
 
   private cachedLanguageCode: string;
 
@@ -20,7 +20,7 @@ export class BurstAmountPipe implements PipeTransform {
   }
 
   transform(value: string | number,
-            inputType: 'planck' | 'burst' = 'burst',
+            inputType: 'planck' | 'signa' = 'signa',
             isShortForm: boolean = false,
             noUnit: boolean = false
   ): string {
