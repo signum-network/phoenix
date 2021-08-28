@@ -9,7 +9,7 @@ const containsUrlThatEndsWith = urls => suffix => urls.filter(url => url.endsWit
 
 const config = {
   currentVersion: '1.0.0-beta.5',
-  repositoryRootUrl: 'https://api.github.com/repos/burst-apps-team/phoenix',
+  repositoryRootUrl: 'https://api.github.com/repos/signum-network/phoenix',
   checkIntervalMins: 1,
   tagPrefix: 'desktop-',
   certFingerprint: 'fingerprint'
@@ -79,7 +79,7 @@ describe('Update Service', () => {
 
       const _config = {
         currentVersion: "1.0.0-beta.6",
-        repositoryRootUrl: "https://api.github.com/repos/burst-apps-team/phoenix",
+        repositoryRootUrl: "https://api.github.com/repos/signum-network/phoenix",
         checkIntervalMins: 1,
         tagPrefix: "unknown-prefix-"
       };
@@ -142,11 +142,11 @@ describe('Update Service', () => {
         expect(newVersion).toEqual({
           platform: process.platform,
           assets:
-            ['https://github.com/burst-apps-team/phoenix/releases/download/v1.0.0-beta.6/phoenix-1.0.0-beta.6.tar.gz',
-              'https://github.com/burst-apps-team/phoenix/releases/download/v1.0.0-beta.6/phoenix_1.0.0-beta.6_amd64.deb',
-              'https://github.com/burst-apps-team/phoenix/releases/download/v1.0.0-beta.6/phoenix-1.0.0-beta.6.x86_64.rpm',
-              'https://github.com/burst-apps-team/phoenix/releases/download/v1.0.0-beta.6/phoenix-1.0.0-beta.6-x86_64.AppImage'],
-          htmlUrl: 'https://github.com/burst-apps-team/phoenix/releases/tag/v1.0.0-beta.6',
+            ['https://github.com/signum-network/phoenix/releases/download/v1.0.0-beta.6/phoenix-1.0.0-beta.6.tar.gz',
+              'https://github.com/signum-network/phoenix/releases/download/v1.0.0-beta.6/phoenix_1.0.0-beta.6_amd64.deb',
+              'https://github.com/signum-network/phoenix/releases/download/v1.0.0-beta.6/phoenix-1.0.0-beta.6.x86_64.rpm',
+              'https://github.com/signum-network/phoenix/releases/download/v1.0.0-beta.6/phoenix-1.0.0-beta.6-x86_64.AppImage'],
+          htmlUrl: 'https://github.com/signum-network/phoenix/releases/tag/v1.0.0-beta.6',
           releaseVersion: '1.0.0-beta.6',
           publishedAt: '2019-05-09T14:23:17Z',
           validCert:
@@ -165,7 +165,7 @@ describe('Update Service', () => {
       const httpMock = HttpMockBuilder.create().onGetReply(200, releasesMock).build();
       const _config = {
         currentVersion: '1.0.0-beta.6', // <<< already on newest version
-        repositoryRootUrl: 'https://api.github.com/repos/burst-apps-team/phoenix',
+        repositoryRootUrl: 'https://api.github.com/repos/signum-network/phoenix',
         checkIntervalMins: 1,
         tagPrefix: 'desktop-'
       };

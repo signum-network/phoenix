@@ -182,7 +182,7 @@ export const constants = {
       testnet: false
     }
   ],
-  supportUrl: 'https://github.com/burst-apps-team/phoenix/issues',
+  supportUrl: 'https://github.com/signum-network/phoenix/issues',
   transactionCount: '100',
   multiOutMinVersion: '2.3.1',
   pocPlusVersion: '3.0.0',

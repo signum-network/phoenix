@@ -10,7 +10,7 @@ Windows, MacOS and Linux.
 
 > Note that deep linking does not work with standalone executables like AppImage, or not installable .exe, as only with the installation process the custom protocol gets registered.
 
-In the [CIP22 spec](https://github.com/burst-apps-team/CIPs/blob/master/cip-0022.md) it is generally defined how deep
+In the [CIP22 spec](https://github.com/signum-network/CIPs/blob/master/cip-0022.md) it is generally defined how deep
 links _should_ be formatted inside the ecosystem. The Phoenix wallet follows this spec and though allows you to open
 specific pages for different tasks. In this document the format and parameters for the supported tasks are described
 

@@ -51,7 +51,7 @@ Running a full node strengthens the network and adds security. Running a full no
 
 2. Install Phoenix from source. 
 
-    `git clone git@github.com:burst-apps-team/phoenix.git`
+    `git clone git@github.com:signum-network/phoenix.git`
 
 3. Build Phoenix Desktop with the `web` target.
 
