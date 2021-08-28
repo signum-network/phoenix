@@ -43,7 +43,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   }
 
   @Input() dataSource: MatTableDataSource<Transaction>;
-  @Input() public displayedColumns = ['transaction_id', 'attachment', 'timestamp', 'type', 'amount', 'account', 'confirmations'];
+  @Input() public displayedColumns = ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
   @Input() account: Account;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;

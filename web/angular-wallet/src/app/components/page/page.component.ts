@@ -32,6 +32,9 @@ export class PageComponent implements OnInit{
   wide: boolean;
 
   @Input()
+  full: boolean;
+
+  @Input()
   subtitle: string;
 
   bgImgSrc: string;

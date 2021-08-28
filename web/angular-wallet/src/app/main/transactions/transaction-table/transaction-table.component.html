@@ -15,17 +15,6 @@
     </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="attachment">
-    <mat-header-cell *matHeaderCellDef>
-      <mat-icon>attach_file</mat-icon>
-    </mat-header-cell>
-    <mat-cell *matCellDef="let transaction">
-      <span *ngIf="transaction.attachment">
-        <mat-icon>done</mat-icon>
-      </span>
-    </mat-cell>
-  </ng-container>
-
   <ng-container matColumnDef="timestamp">
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       {{"date" | i18n}}
