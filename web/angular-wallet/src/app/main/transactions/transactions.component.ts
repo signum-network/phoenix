@@ -9,9 +9,6 @@ import {ChainTime} from '@signumjs/util';
 import {MediaChange, MediaObserver} from '@angular/flex-layout';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
-import {MatDatepickerInputEvent} from '@angular/material/datepicker';
-import {getTransactionSubtypeTranslationKey} from '../../util/transaction/getTransactionTypeTranslationKey';
-import {I18nService} from '../../layout/components/i18n/i18n.service';
 import {UtilService} from '../../util.service';
 import {StoreService} from '../../store/store.service';
 
@@ -125,7 +122,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
   }
 
   // '1' is always part of the serialized data string
-  private applyFilter(filterValue: string = '1'): void {
+  public applyFilter(filterValue: string = '1'): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
@@ -133,11 +130,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
     return ChainTime.fromChainTimestamp(timestamp).getDate();
   }
 
-  private resetFilter(): void {
-    // this.query.reset();
-    // this.typesField.setValue('');
-    // this.pickerToField.setValue('');
-    // this.pickerToField.setValue('');
+  public resetFilter(): void {
     this.typesField.reset();
     this.pickerToField.reset();
     this.pickerFromField.reset();
