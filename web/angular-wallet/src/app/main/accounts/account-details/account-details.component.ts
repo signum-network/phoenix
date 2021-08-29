@@ -30,6 +30,11 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
               private router: Router,
               private accountService: AccountService,
               private storeService: StoreService) {
+    router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        this.initialize();
+      }
+    });
   }
 
   public getDetailsData(): TransactionDetailsCellValueMap[] {
