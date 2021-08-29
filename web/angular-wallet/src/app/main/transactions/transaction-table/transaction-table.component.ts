@@ -110,6 +110,8 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
     const cx = className => row.confirmations === undefined ? `${className} unconfirmed` : className;
 
+    const isNegative = this.isAmountNegative(row);
+
     if (
       (!row.recipient && (row.type !== TransactionType.Payment)) ||
       (row.recipient === this.account.account && row.sender === this.account.account)
@@ -119,7 +121,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
     if (
       (row.recipient === this.account.account && row.sender !== this.account.account) ||
-      (!row.recipient && (row.type === TransactionType.Payment)) //
+      (!row.recipient && (row.type === TransactionType.Payment) && !isNegative) // multiout
     ) {
       return cx('incoming');
     }
