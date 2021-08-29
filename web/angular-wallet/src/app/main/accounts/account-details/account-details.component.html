@@ -34,7 +34,11 @@
 
     <mat-tab-group>
       <mat-tab label="{{ 'transactions' | i18n }}">
-        <app-transaction-table [dataSource]="dataSource" [account]="account"></app-transaction-table>
+        <app-transaction-table
+          [dataSource]="dataSource"
+          [displayedColumns]="columns"
+          [account]="account">
+        </app-transaction-table>
       </mat-tab>
       <mat-tab label="{{ 'assets' | i18n }}">
         <table>

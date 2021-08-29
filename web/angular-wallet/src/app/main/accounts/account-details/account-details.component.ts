@@ -6,16 +6,27 @@ import {AccountService} from 'app/setup/account/account.service';
 import {StoreService} from 'app/store/store.service';
 import hashicon from 'hashicon';
 import {uniqBy} from 'lodash';
+import {MediaChange, MediaObserver} from '@angular/flex-layout';
+import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
+import {takeUntil} from 'rxjs/operators';
 
 type TransactionDetailsCellValue = string | AttachmentMessage | AttachmentEncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
+
+const ColumnsQuery = {
+  xl: ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'],
+  lg: ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'],
+  md: ['transaction_id', 'timestamp', 'type', 'amount', 'account'],
+  sm: ['transaction_id', 'timestamp', 'amount', 'account'],
+  xs: ['transaction_id', 'timestamp', 'amount'],
+};
 
 @Component({
   selector: 'app-account-details',
   templateUrl: './account-details.component.html',
   styleUrls: ['./account-details.component.scss']
 })
-export class AccountDetailsComponent implements OnInit, OnDestroy {
+export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnInit {
   @ViewChild('avatar', {static: false}) avatar: ElementRef<HTMLCanvasElement>;
 
   detailsData: Map<string, TransactionDetailsCellValue>;
@@ -25,16 +36,21 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
   accountQRCodeURL: Promise<string>;
   language: string;
   intervalHandle: any;
+  columns: string[] = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private accountService: AccountService,
+              private observableMedia: MediaObserver,
               private storeService: StoreService) {
-    router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd) {
-        this.initialize();
-      }
-    });
+    super();
+    router.events
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe((val) => {
+        if (val instanceof NavigationEnd) {
+          this.initialize();
+        }
+      });
   }
 
   public getDetailsData(): TransactionDetailsCellValueMap[] {
@@ -49,6 +65,15 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
 
     this.intervalHandle = setInterval(() => this.updateTransactions(), 30 * 1000);
   }
+
+  public ngAfterContentInit(): void {
+    this.observableMedia.asObservable()
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe((change: MediaChange[]) => {
+        this.columns = ColumnsQuery[change[0].mqAlias];
+      });
+  }
+
 
   initialize(): void {
     this.account = this.route.snapshot.data.account as Account;
@@ -66,7 +91,7 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
     if (this.transactions.length > 0) {
       const timestamp = this.transactions[0].timestamp.toString(10);
       transactionList = await this.accountService.getAccountTransactions({accountId, timestamp});
-    } else{
+    } else {
       transactionList = await this.accountService.getAccountTransactions({accountId});
     }
 
