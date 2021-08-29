@@ -1,10 +1,11 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import {AttachmentEncryptedMessage, AttachmentMessage, Account, Transaction} from '@signumjs/core';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {AccountService} from 'app/setup/account/account.service';
 import {StoreService} from 'app/store/store.service';
 import hashicon from 'hashicon';
+import {uniqBy} from 'lodash';
 
 type TransactionDetailsCellValue = string | AttachmentMessage | AttachmentEncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
@@ -14,15 +15,16 @@ type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
   templateUrl: './account-details.component.html',
   styleUrls: ['./account-details.component.scss']
 })
-export class AccountDetailsComponent implements OnInit {
+export class AccountDetailsComponent implements OnInit, OnDestroy {
   @ViewChild('avatar', {static: false}) avatar: ElementRef<HTMLCanvasElement>;
 
   detailsData: Map<string, TransactionDetailsCellValue>;
   account: Account;
-  transactions: Transaction[];
+  transactions: Transaction[] = [];
   dataSource: MatTableDataSource<Transaction>;
   accountQRCodeURL: Promise<string>;
   language: string;
+  intervalHandle: any;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -30,7 +32,7 @@ export class AccountDetailsComponent implements OnInit {
               private storeService: StoreService) {
     router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
-        this.loadAccountAndSetData();
+        this.initialize();
       }
     });
   }
@@ -40,24 +42,37 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadAccountAndSetData();
+    this.initialize();
     setTimeout(() => {
       this.updateAvatar();
-    }, 250)
+    }, 100);
+
+    this.intervalHandle = setInterval(() => this.updateTransactions(), 30 * 1000);
   }
 
-  loadAccountAndSetData(): void {
+  initialize(): void {
     this.account = this.route.snapshot.data.account as Account;
+    this.transactions = this.route.snapshot.data.transactions as Transaction[];
     const blockDetails = Object.keys(this.account).map((key: string): TransactionDetailsCellValueMap => [key, this.account[key]]);
     this.detailsData = new Map(blockDetails);
     this.dataSource = new MatTableDataSource<Transaction>();
-    this.dataSource.data = this.route.snapshot.data.transactions;
-    this.accountQRCodeURL = this.getAccountQRCodeUrl();
+    this.dataSource.data = this.transactions;
     this.language = this.storeService.settings.value.language;
   }
 
-  async getAccountQRCodeUrl(): Promise<string> {
-    return this.accountService.generateSendTransactionQRCodeAddress(this.account.account);
+  async updateTransactions(): Promise<void> {
+    const accountId = this.account.account;
+    let transactionList;
+    if (this.transactions.length > 0) {
+      const timestamp = this.transactions[0].timestamp.toString(10);
+      transactionList = await this.accountService.getAccountTransactions({accountId, timestamp});
+    } else{
+      transactionList = await this.accountService.getAccountTransactions({accountId});
+    }
+
+    const {unconfirmedTransactions} = await this.accountService.getUnconfirmedTransactions(accountId);
+    this.transactions = uniqBy(unconfirmedTransactions.concat(transactionList.transactions).concat(this.transactions), 'transaction');
+    this.dataSource.data = this.transactions;
   }
 
   private updateAvatar(): void {
@@ -67,6 +82,10 @@ export class AccountDetailsComponent implements OnInit {
         createCanvas: () => this.avatar.nativeElement
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalHandle);
   }
 
 

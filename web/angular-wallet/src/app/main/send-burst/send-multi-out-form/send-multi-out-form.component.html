@@ -78,7 +78,7 @@
   </div>
 
   <strong>{{'total' | i18n}}:&nbsp;</strong>
-  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getSigna() | burstAmount }}</span> -
+  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getSigna() | amount }}</span> -
   <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
   <br/><br/>
 

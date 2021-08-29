@@ -45,5 +45,11 @@
     .wide {
       max-width: 800px;
     }
+
+    .full {
+      max-width: unset !important;
+      width: 100%;
+      margin: 16px;
+    }
   }
 }

@@ -73,7 +73,7 @@
     <div class="chip-list">
       <span *ngFor="let payment of value.data.recipients" class="chip">
         <a [routerLink]="['/account', payment[0]]">{{getReedSolomonAddress(payment[0])}}
-          ({{payment[1] | burstAmount:'planck':true}})</a>
+          ({{payment[1] | amount:'planck':true}})</a>
       </span>
     </div>
   </div>
@@ -81,14 +81,14 @@
   <div *ngSwitchCase="'CommitmentAdd'">
     <div>
       <label class="mr-8">{{'amount' | i18n}}:</label>
-      <span>{{value.data.amountNQT | burstAmount:'planck':true}}</span>
+      <span>{{value.data.amountNQT | amount:'planck':true}}</span>
     </div>
   </div>
 
   <div *ngSwitchCase="'CommitmentRemove'">
     <div>
       <label class="mr-8">{{'amount' | i18n}}:</label>
-      <span>{{value.data.amountNQT | burstAmount:'planck':true}}</span>
+      <span>{{value.data.amountNQT | amount:'planck':true}}</span>
     </div>
   </div>
 

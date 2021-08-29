@@ -2,34 +2,6 @@
     padding-top: 5px;
 }
 
-.mat-column-amount {
-  flex: 0 0 100px;
-}
-
-.mat-column-timestamp {
-  flex: 0 0 100px;
-}
-
-.mat-column-transaction_id {
-  flex: 0 0 240px;
-}
-
-.mat-column-fee {
-  flex: 0 0 100px;
-}
-
-.mat-column-attachment {
-  flex: 0 0 50px;
-}
-
-.mat-column-type {
-  flex: 0 0 150px;
-}
-
-.mat-column-account {
-  flex: 0 1 300px;
-}
-
 .mat-table {
   overflow: auto;
   max-height: calc(100vh - 280px);

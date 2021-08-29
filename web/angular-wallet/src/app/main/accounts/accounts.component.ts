@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {Router} from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import {MatDialog} from '@angular/material/dialog';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 import {NotifierService} from 'angular-notifier';
 import {DeleteAccountDialogComponent} from './delete-account-dialog/delete-account-dialog.component';
 import {StoreService} from 'app/store/store.service';
@@ -25,7 +25,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   public selectedAccounts: object;
   public locale: string;
 
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(
     private storeService: StoreService,
@@ -49,12 +49,13 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
         takeUntil(this.unsubscribeAll)
       )
       .subscribe((ready) => {
+        if (!ready) return;
         this.storeService.getAllAccounts().then((accounts) => {
           this.accounts = accounts;
           this.dataSource.data = this.accounts;
         });
 
-        this.selectedAccount = this.accountService.currentAccount.value;
+        this.selectedAccount = this.accountService.currentAccount$.value;
       });
 
     this.storeService.settings
@@ -85,28 +86,28 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
         takeUntil(this.unsubscribeAll)
       )
       .subscribe(confirm => {
-      if (!confirm) {
-        return;
-      }
-      selectedAccounts.forEach((account) => {
-        this.accountService
-          .removeAccount(account)
-          .then(() => {
-            this.notificationService.notify('success', `Account(s) Deleted`);
-            this.storeService.getAllAccounts().then((accounts) => {
-              this.accounts = accounts;
-              this.dataSource.data = this.accounts;
+        if (!confirm) {
+          return;
+        }
+        selectedAccounts.forEach((account) => {
+          this.accountService
+            .removeAccount(account)
+            .then(() => {
+              this.notificationService.notify('success', `Account(s) Deleted`);
+              this.storeService.getAllAccounts().then((accounts) => {
+                this.accounts = accounts;
+                this.dataSource.data = this.accounts;
 
-              if (!accounts || !accounts.length) {
-                this.router.navigate(['/']);
-                this.accountService.selectAccount(null);
-              } else if (accounts.map(({ account : a }) => a).indexOf(this.selectedAccount.account) < 0) {
-                this.accountService.selectAccount(accounts[0]);
-              }
+                if (!accounts || !accounts.length) {
+                  this.router.navigate(['/']);
+                  this.accountService.selectAccount(null);
+                } else if (accounts.map(({account: a}) => a).indexOf(this.selectedAccount.account) < 0) {
+                  this.accountService.selectAccount(accounts[0]);
+                }
+              });
             });
-          });
+        });
       });
-    });
   }
 
   openDialog(): void {
@@ -123,10 +124,10 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   }
 
   async activateAccount(account: Account): Promise<void> {
-    try{
+    try {
       await this.accountService.activateAccount(account);
       this.notificationService.notify('success', this.i18nService.getTranslation('activation_success'));
-    } catch (e){
+    } catch (e) {
       const activationFailed = this.i18nService.getTranslation('activation_failed');
       this.notificationService.notify('error', `${activationFailed} ${e.message}`);
     }

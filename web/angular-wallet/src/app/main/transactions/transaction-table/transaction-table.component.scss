@@ -1,32 +1,81 @@
 :host {
-
-  .smaller {
-    font-size: 1.2rem;
+  mat-header-cell {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
   }
 
   .mat-column-transaction_id {
-    flex: 0 0 200px;
-  }
+    flex: 0 1 220px;
+    .transaction-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
 
-  .mat-column-attachment {
-    flex: 0 0 50px;
+      .attachment {
+        color: #999999;
+        transform: rotate(10deg) scale(0.8);
+      }
+    }
   }
 
   .mat-column-type {
-    flex: 0 0 150px;
+    .type-content {
+      font-size: 12px;
+      color: rgb(0, 35, 65);
+      padding: 0.25rem 1rem;
+      border-radius: 10px;
+      background: #E6E6F2;
+    }
   }
 
   .mat-column-timestamp {
-    flex: 0 0 150px;
+    flex: 0 0 60px;
+    align-items: center;
+    margin-left: 0.5rem;
+    .timestamp-content {
+      .time {
+        font-size: 80%;
+      }
+    }
+
   }
 
   .mat-column-account {
-    flex: 0 0 225px;
   }
 
   .mat-column-amount {
-    flex: 0 1 200px;
-    margin-left: 1rem;
+
+    .amount-content {
+      color: rgb(0, 35, 65);
+
+      .amount {
+        padding: 0.25rem 1rem;
+        border-radius: 10px;
+        background: #E6E6F2;
+        width: fit-content;
+      }
+
+      .fee {
+        font-size: 80%;
+        color: #333333;
+      }
+
+      .incoming {
+        background: #CDFFCD;
+        color: #007F00;
+      }
+
+      .outgoing {
+        background: #FFE0E0;
+        color: #D30000;
+      }
+    }
+  }
+
+  .mat-column-confirmations {
+    flex: 0 0 140px
   }
 
   .mat-cell {
@@ -36,15 +85,12 @@
   }
 
   .self {
-    background-color: #f5f5f5 !important;
   }
 
   .incoming {
-    background-color: #f5fff5 !important;
   }
 
   .outgoing {
-    background-color: #fff5f5 !important;
   }
 
   .unconfirmed {
@@ -56,23 +102,21 @@
     margin: 0 auto;
   }
 
-  .fg_green {
-    color: green !important;
-  }
 
-  .fg_red {
-    color: red !important;
+  .stacked {
+    display: flex;
+    flex-direction: column;
   }
 
   @keyframes pulse {
     0% {
-      opacity: 0.5;
+      opacity: 0.75;
     }
     50% {
-      opacity: 0.1;
+      opacity: 0.25;
     }
     100% {
-      opacity: 0.5;
+      opacity: 0.75;
     }
   }
 

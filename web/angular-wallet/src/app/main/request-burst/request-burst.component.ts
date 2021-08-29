@@ -47,7 +47,7 @@ export class RequestBurstComponent extends UnsubscribeOnDestroy implements OnIni
             .pipe(takeUntil(this.unsubscribeAll))
             .subscribe((ready) => {
                 if (ready) {
-                    this.accountService.currentAccount
+                    this.accountService.currentAccount$
                         .pipe(takeUntil(this.unsubscribeAll))
                         .subscribe((account) => {
                             this.account = account;

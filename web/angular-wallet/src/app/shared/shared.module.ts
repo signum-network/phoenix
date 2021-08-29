@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BurstAmountPipe} from './pipes/burst-amount.pipe';
+import {AmountPipe} from './pipes/amount.pipe';
 import {AssetAmountPipe} from './pipes/asset-amount.pipe';
 import {PasteableAddressDirective} from './directives/pasteable-address.directive';
 
@@ -8,12 +8,12 @@ import {PasteableAddressDirective} from './directives/pasteable-address.directiv
 @NgModule({
   imports: [],
   exports: [
-    BurstAmountPipe,
+    AmountPipe,
     AssetAmountPipe,
     PasteableAddressDirective,
   ],
   declarations: [
-    BurstAmountPipe,
+    AmountPipe,
     AssetAmountPipe,
     PasteableAddressDirective,
   ]

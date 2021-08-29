@@ -70,7 +70,7 @@ interface SetCommitmentRequest {
   providedIn: 'root'
 })
 export class AccountService {
-  public currentAccount: BehaviorSubject<Account> = new BehaviorSubject(undefined);
+  public currentAccount$: BehaviorSubject<Account> = new BehaviorSubject(undefined);
   private api: Api;
   private transactionsSeenInNotifications: string[] = [];
   private accountPrefix: AddressPrefix.MainNet | AddressPrefix.TestNet;
@@ -88,8 +88,8 @@ export class AccountService {
     });
   }
 
-  public setCurrentAccount(account: Account): void {
-    this.currentAccount.next(account);
+  public updateCurrentAccount(account: Account): void {
+    this.currentAccount$.next(account);
   }
 
   public async getAddedCommitments(account: Account): Promise<TransactionList> {
@@ -185,10 +185,17 @@ export class AccountService {
   }
 
   public getCurrentAccount(): Promise<Account> {
-    return Promise.resolve(this.currentAccount.getValue());
+    return Promise.resolve(this.currentAccount$.getValue());
   }
 
-  public setAccountInfo({name, description, feePlanck, deadline, pin, keys}: SetAccountInfoRequest): Promise<TransactionId> {
+  public setAccountInfo({
+                          name,
+                          description,
+                          feePlanck,
+                          deadline,
+                          pin,
+                          keys
+                        }: SetAccountInfoRequest): Promise<TransactionId> {
     const senderPrivateKey = this.getPrivateKey(keys, pin);
     return this.api.account.setAccountInfo({
       name,
@@ -200,7 +207,13 @@ export class AccountService {
     });
   }
 
-  public setRewardRecipient({recipientId, feePlanck, deadline, pin, keys}: SetRewardRecipientRequest): Promise<TransactionId> {
+  public setRewardRecipient({
+                              recipientId,
+                              feePlanck,
+                              deadline,
+                              pin,
+                              keys
+                            }: SetRewardRecipientRequest): Promise<TransactionId> {
     const senderPrivateKey = this.getPrivateKey(keys, pin);
     return this.api.account.setRewardRecipient({
       recipientId,
@@ -287,7 +300,7 @@ export class AccountService {
         .then(acc => {
           this.synchronizeAccount(acc);
         });
-      this.setCurrentAccount(account);
+      this.updateCurrentAccount(account);
       resolve(account);
     });
   }
@@ -297,6 +310,9 @@ export class AccountService {
       await this.syncAccountDetails(account);
       await this.syncAccountTransactions(account);
       await this.syncAccountUnconfirmedTransactions(account);
+      if (account.account === this.currentAccount$.getValue().account) {
+        this.updateCurrentAccount(account); // emits update event
+      }
       this.storeService.saveAccount(account).catch(reject);
       resolve(account);
     });
@@ -315,7 +331,7 @@ export class AccountService {
     }
 
     this.transactionsSeenInNotifications[transaction.transaction] = true;
-    const incoming = transaction.recipient === this.currentAccount.value.account;
+    const incoming = transaction.recipient === this.currentAccount$.value.account;
     const amount = Amount.fromPlanck(transaction.amountNQT);
     const totalAmount = amount.clone().add(Amount.fromPlanck(transaction.feeNQT));
 
@@ -326,7 +342,7 @@ export class AccountService {
       header = this.i18nService.getTranslation('youve_got_burst');
       body = this.i18nService.getTranslation('youve_got_from')
         .replace('__a__', transaction.recipientRS)
-        .replace('__b__', totalAmount.toString())
+        .replace('__b__', amount.toString())
         .replace('__c__', transaction.senderRS);
     } else {
       // Account __a__ sent __b__ to __c__

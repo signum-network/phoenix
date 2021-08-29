@@ -46,7 +46,7 @@
     </app-submit-transaction>
 
     <strong>{{'total' | i18n}}:&nbsp;</strong>
-    <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getSigna() | burstAmount }}</span>
+    <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getSigna() | amount }}</span>
   </ng-container>
 
 </form>

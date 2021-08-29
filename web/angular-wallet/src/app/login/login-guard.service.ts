@@ -35,7 +35,7 @@ export class LoginGuard implements CanActivate {
           await this.router.navigate(['/disclaimer']);
           return false;
         } else if (selectedAccount) {
-          this.accountService.setCurrentAccount(selectedAccount);
+          this.accountService.updateCurrentAccount(selectedAccount);
           return true;
         } else if (allAccounts && allAccounts.length) {
           await this.router.navigate(['/dashboard']);

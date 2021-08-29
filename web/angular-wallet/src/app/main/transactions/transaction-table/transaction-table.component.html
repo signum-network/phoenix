@@ -1,92 +1,90 @@
 <mat-table #table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="transaction_id">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>{{
-      "transaction_id" | i18n
-      }}</mat-header-cell>
-    <mat-cell class="smaller" *matCellDef="let transaction">
-      <a
-        [routerLink]="['/transactions/transaction', transaction.transaction]"
-      >{{ transaction.transaction }}</a
-      >
-    </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="attachment">
-    <mat-header-cell *matHeaderCellDef>
-      <mat-icon>attach_file</mat-icon>
+    <mat-header-cell *matHeaderCellDef >
+      {{"transaction_id" | i18n}}
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
-      <span *ngIf="transaction.attachment">
-        <mat-icon>done</mat-icon>
-      </span>
+      <div class="transaction-content">
+        <a [routerLink]="['/transactions/transaction', transaction.transaction]">
+          {{ transaction.transaction }}
+        </a>
+        <span *ngIf="transaction.attachment" class="attachment">
+          <mat-icon matTooltip="{{'attachment' | i18n }}">attach_file</mat-icon>
+        </span>
+      </div>
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="timestamp">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      <mat-icon>schedule</mat-icon>&nbsp;{{"date" | i18n}}
+    <mat-header-cell *matHeaderCellDef >
+      {{"date" | i18n}}
     </mat-header-cell>
-    <mat-cell class="smaller" *matCellDef="let transaction">
-      {{ getDate(transaction)}}
+    <mat-cell *matCellDef="let transaction">
+      <div class="timestamp-content stacked">
+        <div>
+          {{ getDate(transaction)}}
+        </div>
+        <div class="time">
+          {{ getTime(transaction)}}
+        </div>
+      </div>
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="type">
-    <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-    <mat-cell class="smaller"  *matCellDef="let transaction">
-      {{ getTransactionNameFromType(transaction) | i18n }}
+    <mat-header-cell *matHeaderCellDef >
+      {{"type" | i18n}}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let transaction">
+      <div class="type-content">
+        {{ getTransactionNameFromType(transaction) | i18n }}
+      </div>
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="amount">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      <mat-icon>local_atm</mat-icon>
+    <mat-header-cell *matHeaderCellDef >
+      {{"amount"|i18n}}
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
-      <div *ngIf="!isCommitment(transaction)"
-           [ngClass]="{fg_green: !isAmountNegative(transaction), fg_red: isAmountNegative(transaction)}">
-        {{getAmount(transaction) | burstAmount:'burst':true}}
+      <div class="amount-content stacked">
+        <div *ngIf="!isCommitment(transaction)"
+             class="amount {{getRowClass(transaction)}}">
+          {{getAmount(transaction) | amount:'signa':true}}
+        </div>
+        <div *ngIf="isCommitment(transaction)"
+             class="amount incoming">
+          {{getCommitmentAmount(transaction) | amount:'signa':true}}
+        </div>
+        <div class="fee">
+          {{'fee' | i18n}}: {{transaction.feeNQT | amount:'planck':true}}
+        </div>
       </div>
-      <div *ngIf="isCommitment(transaction)" class="fg_green">
-        {{getCommitmentAmount(transaction) | burstAmount:'burst':true}}
-      </div>
-    </mat-cell>
-  </ng-container>
-
-
-  <ng-container matColumnDef="fee">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      <mat-icon>compare_arrows</mat-icon>&nbsp;{{ "fee" | i18n }}
-    </mat-header-cell>
-    <mat-cell class="smaller"  *matCellDef="let transaction">
-      {{transaction.feeNQT | burstAmount:'planck':true}}
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="account">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      <mat-icon>account_box</mat-icon>&nbsp;{{ "account" | i18n }}
+    <mat-header-cell *matHeaderCellDef >
+      {{ "account" | i18n }}
     </mat-header-cell>
-    <mat-cell class="smaller" *matCellDef="let transaction">
+    <mat-cell *matCellDef="let transaction">
       <ng-container *ngIf="isOwnAccount(transaction.sender)">
         <div *ngIf="!isMultiOutPayment(transaction) && !transaction.recipientRS"
-             class="centered text-uppercase"
+             class="text-uppercase"
         >
           {{"self" | i18n}}
         </div>
         <a *ngIf="!isMultiOutPayment(transaction) && transaction.recipientRS"
-           class="centered"
            [routerLink]="['/account', transaction.recipient]">{{
           chopPrefix(transaction.recipientRS)
           }}</a>
         <div *ngIf="isMultiOutPayment(transaction)"
-             class="centered text-uppercase"
+             class="text-uppercase"
         >
           {{"multiple_recipients" | i18n}}
         </div>
       </ng-container>
       <a *ngIf="!isOwnAccount(transaction.sender)"
-         class="centered"
          [routerLink]="['/account', transaction.sender]"
       >{{chopPrefix(transaction.senderRS)}}</a>
 
@@ -94,10 +92,10 @@
   </ng-container>
 
   <ng-container matColumnDef="confirmations">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>{{
+    <mat-header-cell *matHeaderCellDef >{{
       "confirmations" | i18n
       }}</mat-header-cell>
-    <mat-cell class="smaller" *matCellDef="let transaction">
+    <mat-cell *matCellDef="let transaction">
       <span *ngIf="transaction.confirmations !== undefined">{{transaction.confirmations}}</span>
       <span *ngIf="transaction.confirmations === undefined">{{'pending' | i18n}}</span>
     </mat-cell>

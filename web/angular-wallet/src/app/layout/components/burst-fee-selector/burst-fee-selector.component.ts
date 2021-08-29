@@ -3,7 +3,7 @@ import {convertNQTStringToNumber} from '@signumjs/util';
 import {SuggestedFees} from '@signumjs/core';
 import {EventEmitter} from '@angular/core';
 import {LabelType, Options} from 'ng5-slider';
-import {BurstAmountPipe} from '../../../shared/pipes/burst-amount.pipe';
+import {AmountPipe} from '../../../shared/pipes/amount.pipe';
 import {formatAmount} from '../../../util/formatAmount';
 import {I18nService} from '../i18n/i18n.service';
 import Color from 'color';
@@ -20,7 +20,7 @@ export class BurstFeeSelectorComponent implements OnInit {
   @Input() fees: SuggestedFees;
 
   feeValue = 0;
-  burstAmountPipe: BurstAmountPipe;
+  burstAmountPipe: AmountPipe;
   options: Options;
 
   @Input()

@@ -10,7 +10,7 @@ export class TransactionResolver implements Resolve<Promise<Transaction>> {
       this.transactionService = transactionService;
   }
 
-  resolve(route: ActivatedRouteSnapshot) {
+  resolve(route: ActivatedRouteSnapshot): Promise<Transaction> {
     return this.transactionService.getTransaction(route.paramMap.get('id'));
   }
 }

@@ -1,39 +1,37 @@
-<div class="page-layout blank simple" fusePerfectScrollbar>
+<app-page title="{{ 'transactions' | i18n }}" [full]="true">
+  <div class="p-16">
 
-  <!-- HEADER -->
-  <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-       fxLayoutAlign.gt-xs="space-between center">
-
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <a [routerLink]="['/dashboard']">
-          <mat-icon class="secondary-text s-18">home</mat-icon>
-        </a>
-        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-        <span class="secondary-text">{{ 'transactions' | i18n }}</span>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+      <div>
+        <mat-form-field class="search-form">
+          <input matInput
+                 autocomplete="off"
+                 (keyup)="applyFilter($event.target.value)"
+                 [formControl]="searchField"
+                 placeholder="{{ 'search' | i18n }}"
+                 #query
+          >
+        </mat-form-field>
       </div>
-      <div class="h1 mt-16">{{ 'transactions' | i18n }}</div>
-    </div>
-  </div>
-  <!-- / HEADER -->
-
-  <div class="p-24 content">
-
-    <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="20px">
-      <div fxFlex="50">
-        <div class="transaction-filter">
-          <mat-form-field class="search-form">
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="{{ 'search' | i18n }}" #query>
-          </mat-form-field>
-        </div>
+      <div>
+        <mat-form-field class="search-form">
+          <mat-select [formControl]="typesField"
+                      placeholder="{{'type' | i18n}}"
+                      (selectionChange)="applyFilter()"
+          >
+            <mat-option *ngFor="let type of typeOptions" value="{{type}}">{{type}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div>
         <mat-form-field>
           <input matInput
                  placeholder="{{ 'from' | i18n }}"
+                 autocomplete="off"
+                 [max]="pickerToField.value"
                  [matDatepicker]="pickerFrom"
                  [formControl]="pickerFromField"
-                 (dateChange)="applyFilter(this.query.value)">
+                 (dateChange)="applyFilter()">
           <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
           <mat-datepicker #pickerFrom></mat-datepicker>
         </mat-form-field>
@@ -42,18 +40,28 @@
         <mat-form-field>
           <input matInput
                  placeholder="{{ 'to' | i18n }}"
+                 autocomplete="off"
+                 [min]="pickerFromField.value"
+                 [max]="today"
                  [matDatepicker]="pickerTo"
                  [formControl]="pickerToField"
-                 (dateChange)="applyFilter(this.query.value)">
+                 (dateChange)="applyFilter()">
           <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
           <mat-datepicker #pickerTo></mat-datepicker>
         </mat-form-field>
       </div>
+      <button
+        mat-button
+        (click)="resetFilter()"
+      >{{'reset' | i18n }}</button>
     </div>
 
     <div class="transactions-table">
       <app-transaction-table [dataSource]="dataSource"
-                             [account]="account"></app-transaction-table>
+                             [account]="account"
+                             [displayedColumns]="columns"
+      >
+      </app-transaction-table>
     </div>
   </div>
-</div>
+</app-page>

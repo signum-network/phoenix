@@ -420,5 +420,6 @@
   "youve_got_from": "Sąskaita __a__ gavo __b__ iš __c__",
   "you_sent_to": "Sąskaita __a__ išsiųsta __b__ į __c__",
   "show_testnet_nodes": "Rodyti „Testnet“ mazgus",
-  "message_too_long": "Pranešimas per ilgas"
+  "message_too_long": "Pranešimas per ilgas",
+  "reset": "Iš naujo nustatyti"
 }
