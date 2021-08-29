@@ -46,8 +46,8 @@ const mainRoutes: Routes = [
     loadChildren: () => import('./aliases/aliases.module').then(a => a.AliasesModule)
   },
   {
-    path: 'assets',
-    loadChildren: () => import('./assets/assets.module').then(a => a.AssetsModule)
+    path: 'tokens',
+    loadChildren: () => import('./tokens/tokens.module').then(a => a.TokensModule)
   },
   {
     path: 'transactions',

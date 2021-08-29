@@ -1,0 +1,36 @@
+<mat-table [dataSource]="dataSource" matSort>
+
+  <ng-container matColumnDef="token">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'asset' | i18n }}</mat-header-cell>
+    <mat-cell *matCellDef="let token">
+      <mat-icon class="icon" matTooltip="{{ token.description }}">info</mat-icon>
+      <div class="stacked ml-8">
+        <div>{{ token.name }}</div>
+        <div class="smaller">{{ token.id }}</div>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="balance">
+    <mat-header-cell *matHeaderCellDef>{{ 'balance' | i18n }}</mat-header-cell>
+    <mat-cell *matCellDef="let token">
+      <div class="stacked">
+        <div>{{ token.balance | number }}</div>
+        <div class="smaller">{{ token.total | amount : 'signa' : true}}</div>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="lastPrice">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'last_price' | i18n }}</mat-header-cell>
+    <mat-cell *matCellDef="let token">
+      <span class="price {{getTrend(token.priceInfo.change)}}">
+        {{ token.priceInfo.amount | amount }}
+        <span class="ml-8 smaller">{{token.priceInfo.change | percent}}</span>
+      </span>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

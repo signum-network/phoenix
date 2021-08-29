@@ -140,9 +140,6 @@ export class AccountService {
     return this.api.account.getAliases(id);
   }
 
-  public getAsset(id: string): Promise<Asset> {
-    return this.api.asset.getAsset(id);
-  }
 
   public getAssets(id: number): Promise<AssetList> {
     return this.api.asset.getAllAssets(id);

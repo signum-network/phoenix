@@ -65,11 +65,11 @@ export const navigation: FuseNavigation[] = [
         url: '/aliases',
       },
       {
-        id: 'assets',
-        title: 'Assets',
+        id: 'assets', // this is used for i18n - keep it
+        title: 'Tokens',
         type: 'item',
         icon: 'pie_chart',
-        url: '/assets'
+        url: '/tokens'
       },
     ]
 
