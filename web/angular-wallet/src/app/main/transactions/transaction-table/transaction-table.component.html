@@ -19,7 +19,7 @@
     <mat-header-cell *matHeaderCellDef >
       {{"date" | i18n}}
     </mat-header-cell>
-    <mat-cell class="smaller" *matCellDef="let transaction">
+    <mat-cell *matCellDef="let transaction">
       <div class="timestamp-content stacked">
         <div>
           {{ getDate(transaction)}}
@@ -35,7 +35,7 @@
     <mat-header-cell *matHeaderCellDef >
       {{"type" | i18n}}
     </mat-header-cell>
-    <mat-cell class="smaller" *matCellDef="let transaction">
+    <mat-cell *matCellDef="let transaction">
       <div class="type-content">
         {{ getTransactionNameFromType(transaction) | i18n }}
       </div>
@@ -67,7 +67,7 @@
     <mat-header-cell *matHeaderCellDef >
       {{ "account" | i18n }}
     </mat-header-cell>
-    <mat-cell class="smaller" *matCellDef="let transaction">
+    <mat-cell *matCellDef="let transaction">
       <ng-container *ngIf="isOwnAccount(transaction.sender)">
         <div *ngIf="!isMultiOutPayment(transaction) && !transaction.recipientRS"
              class="text-uppercase"
@@ -95,7 +95,7 @@
     <mat-header-cell *matHeaderCellDef >{{
       "confirmations" | i18n
       }}</mat-header-cell>
-    <mat-cell class="smaller" *matCellDef="let transaction">
+    <mat-cell *matCellDef="let transaction">
       <span *ngIf="transaction.confirmations !== undefined">{{transaction.confirmations}}</span>
       <span *ngIf="transaction.confirmations === undefined">{{'pending' | i18n}}</span>
     </mat-cell>

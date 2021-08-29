@@ -42,7 +42,6 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
       this.updateAvatar();
     }, 100);
 
-    // this.updateTransactions();
     this.intervalHandle = setInterval(() => this.updateTransactions(), 30 * 1000);
   }
 

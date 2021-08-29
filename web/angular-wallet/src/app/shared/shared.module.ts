@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {AmountPipe} from './pipes/burst-amount.pipe';
+import {AmountPipe} from './pipes/amount.pipe';
 import {AssetAmountPipe} from './pipes/asset-amount.pipe';
 import {PasteableAddressDirective} from './directives/pasteable-address.directive';
 

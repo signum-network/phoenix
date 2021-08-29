@@ -3,7 +3,6 @@ import {I18nService} from '../../layout/components/i18n/i18n.service';
 import {formatAmount} from '../../util/formatAmount';
 import {Amount} from '@signumjs/util';
 
-// FIXME: rename to signa
 @Pipe({
   name: 'amount',
   pure: false
