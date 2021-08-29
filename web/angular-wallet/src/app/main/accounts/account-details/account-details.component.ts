@@ -9,6 +9,7 @@ import {uniqBy} from 'lodash';
 import {MediaChange, MediaObserver} from '@angular/flex-layout';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
+import {TokenData, TokenService} from '../../tokens/token.service';
 
 type TransactionDetailsCellValue = string | AttachmentMessage | AttachmentEncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
@@ -37,10 +38,12 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
   language: string;
   intervalHandle: any;
   columns: string[] = [];
+  tokens: TokenData[] = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private accountService: AccountService,
+              private tokenService: TokenService,
               private observableMedia: MediaObserver,
               private storeService: StoreService) {
     super();
@@ -59,6 +62,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
 
   ngOnInit(): void {
     this.initialize();
+    this.updateTokens();
     setTimeout(() => {
       this.updateAvatar();
     }, 100);
@@ -113,5 +117,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
     clearInterval(this.intervalHandle);
   }
 
-
+  private async updateTokens(): Promise<void> {
+    this.tokens = await this.tokenService.fetchAccountTokens(this.account);
+  }
 }

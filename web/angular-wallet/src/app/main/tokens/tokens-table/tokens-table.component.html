@@ -1,7 +1,7 @@
 <mat-table [dataSource]="dataSource" matSort>
 
   <ng-container matColumnDef="token">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'asset' | i18n }}</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>{{ 'asset' | i18n }}</mat-header-cell>
     <mat-cell *matCellDef="let token">
       <mat-icon class="icon" matTooltip="{{ token.description }}">info</mat-icon>
       <div class="stacked ml-8">
@@ -22,10 +22,10 @@
   </ng-container>
 
   <ng-container matColumnDef="lastPrice">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'last_price' | i18n }}</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>{{ 'last_price' | i18n }}</mat-header-cell>
     <mat-cell *matCellDef="let token">
       <span class="price {{getTrend(token.priceInfo.change)}}">
-        {{ token.priceInfo.amount | amount }}
+        {{ token.priceInfo.amount | amount : 'signa' : true}}
         <span class="ml-8 smaller">{{token.priceInfo.change | percent}}</span>
       </span>
     </mat-cell>

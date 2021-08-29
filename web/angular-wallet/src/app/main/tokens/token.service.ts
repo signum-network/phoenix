@@ -84,7 +84,7 @@ export class TokenService {
 
     const decimalFactor = Math.pow(10, token.decimals);
     const supply = parseInt(token.quantityQNT, 10) / decimalFactor;
-    const balance =  parseInt(balanceQNT, 10) / decimalFactor;
+    const balance = parseInt(balanceQNT, 10) / decimalFactor;
     const total = balance * parseFloat(priceInfo.amount);
 
     return {
@@ -104,7 +104,13 @@ export class TokenService {
       const {asset, balanceQNT} = balance;
       return this.gatherTokenData(asset, balanceQNT);
     });
-    return await Promise.all(promises);
+    const tokens = await Promise.all(promises);
+    tokens.sort((a, b) => {
+      if (a.name > b.name) { return 1; }
+      if (a.name < b.name) { return -1; }
+      return 0;
+    });
+    return tokens;
   }
 
   async transferToken(transferRequest: TransferTokenRequest): Promise<void> {

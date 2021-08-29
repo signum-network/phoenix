@@ -41,16 +41,12 @@
         </app-transaction-table>
       </mat-tab>
       <mat-tab label="{{ 'assets' | i18n }}">
-        <table>
-          <tr>
-            <th>{{ 'asset_name' | i18n }}</th>
-            <th>{{ 'quantity' | i18n }} (NQT)</th>
-          </tr>
-          <tr *ngFor="let row of account['assetBalances']">
-            <td>{{row.asset}}</td>
-            <td>{{row.balanceQNT || row.unconfirmedBalanceQNT}}</td>
-          </tr>
-        </table>
+
+        <app-tokens-table
+          [tokens]="tokens"
+          >
+
+        </app-tokens-table>
       </mat-tab>
     </mat-tab-group>
   </div>
