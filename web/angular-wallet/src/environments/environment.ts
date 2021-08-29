@@ -17,8 +17,8 @@ export const environment = {
     fcasInterval: 60 * 5 * 1000
   },
   activatorServiceUrl: {
-    mainNet: 'https://burst-account-activator.vercel.app',
-    testNet: 'https://burst-account-activator-testnet.vercel.app'
+    mainNet: 'https://signum-account-activator.vercel.app',
+    testNet: 'https://signum-account-activator-ohager.vercel.app'
   },
 };
 
