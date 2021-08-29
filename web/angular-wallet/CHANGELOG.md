@@ -6,7 +6,7 @@
   - Reduces fetched payloads drastically
 
 ### Bug Fixes
-- Several Tx Table fixes (#414, #1500, #1536)
+- Several Tx Table fixes (#414, #1500, #1525, #1536)
 
 ## 1.2.2
 
