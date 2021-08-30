@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Testnet Düğümlerini Göster",
   "message_too_long": "Mesaj çok uzun",
   "reset": "Sıfırla",
-  "last_price": "Son fiyat"
+  "last_price": "Son fiyat",
+  "supply": "Toplam Arz"
 }

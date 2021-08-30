@@ -29,7 +29,7 @@
     border-bottom-color: transparent;
   }
 
-  .price {
+  .price-change {
     padding: 0.25rem 1rem;
     border-radius: 8px;
   }
@@ -56,5 +56,9 @@
   .stacked {
     display: flex;
     flex-direction: column;
+  }
+
+  .mat-column-actions {
+    flex: 0 1 32px;
   }
 }

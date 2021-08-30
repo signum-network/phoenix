@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Prikaži čvorove Testnet",
   "message_too_long": "Poruka je predugačka",
   "reset": "Poništi",
-  "last_price": "Posljednja cijena"
+  "last_price": "Posljednja cijena",
+  "supply": "Ukupna ponuda"
 }

@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Zobrazit uzly Testnet",
   "message_too_long": "Zpráva je příliš dlouhá",
   "reset": "Resetovat",
-  "last_price": "Poslední cena"
+  "last_price": "Poslední cena",
+  "supply": "Celková nabídka"
 }

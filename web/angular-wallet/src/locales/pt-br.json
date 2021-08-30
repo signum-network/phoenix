@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Mostrar nós Testnet",
   "message_too_long": "A mensagem é muito longa",
   "reset": "Redefinir",
-  "last_price": "Último preço"
+  "last_price": "Último preço",
+  "supply": "Abastecimento Total"
 }

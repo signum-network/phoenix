@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Näytä Testnet-solmut",
   "message_too_long": "Viesti on liian pitkä",
   "reset": "Nollaa",
-  "last_price": "Viimeinen hinta"
+  "last_price": "Viimeinen hinta",
+  "supply": "Kokonaistarjonta"
 }

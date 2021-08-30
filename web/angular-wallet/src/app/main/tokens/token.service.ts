@@ -38,13 +38,21 @@ interface TransferTokenRequest {
 })
 export class TokenService {
 
-
   constructor(private apiService: ApiService) {
 
   }
 
-  public async getToken(id: string): Promise<Asset> {
+  private async getToken(id: string): Promise<Asset> {
     return this.apiService.api.asset.getAsset(id);
+  }
+
+  public async fetchTokenData(tokenId: string, account: Account): Promise<TokenData> {
+    const assetBalance = account.assetBalances.find(({asset}) => asset === tokenId)
+    if (!assetBalance) {
+      // tslint:disable-next-line:quotemark
+      throw new Error("Account doesn't own that token");
+    }
+    return this.gatherTokenData(tokenId, assetBalance.balanceQNT);
   }
 
   public async getPriceInfo(id: string): Promise<PriceInfo> {
@@ -106,8 +114,12 @@ export class TokenService {
     });
     const tokens = await Promise.all(promises);
     tokens.sort((a, b) => {
-      if (a.name > b.name) { return 1; }
-      if (a.name < b.name) { return -1; }
+      if (a.name > b.name) {
+        return 1;
+      }
+      if (a.name < b.name) {
+        return -1;
+      }
       return 0;
     });
     return tokens;

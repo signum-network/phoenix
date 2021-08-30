@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Показати вузли Testnet",
   "message_too_long": "Повідомлення задовге",
   "reset": "Скинути",
-  "last_price": "Остання ціна"
+  "last_price": "Остання ціна",
+  "supply": "Загальна пропозиція"
 }

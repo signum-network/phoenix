@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Mostra els nodes de Testnet",
   "message_too_long": "El missatge és massa llarg",
   "reset": "Restableix",
-  "last_price": "Darrer preu"
+  "last_price": "Darrer preu",
+  "supply": "Subministrament total"
 }

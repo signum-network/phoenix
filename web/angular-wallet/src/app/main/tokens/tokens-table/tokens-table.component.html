@@ -24,10 +24,31 @@
   <ng-container matColumnDef="lastPrice">
     <mat-header-cell *matHeaderCellDef>{{ 'last_price' | i18n }}</mat-header-cell>
     <mat-cell *matCellDef="let token">
-      <span class="price {{getTrend(token.priceInfo.change)}}">
-        {{ token.priceInfo.amount | amount : 'signa' : true}}
-        <span class="ml-8 smaller">{{token.priceInfo.change | percent}}</span>
-      </span>
+      <div class="stacked">
+        <div>{{ token.priceInfo.amount | amount : 'signa' : true}}</div>
+        <div class="smaller price-change {{getTrend(token.priceInfo.change)}}">
+          {{token.priceInfo.change | percent : '1.2-4': locale}}
+        </div>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="supply">
+    <mat-header-cell *matHeaderCellDef>{{ 'supply' | i18n }}</mat-header-cell>
+    <mat-cell *matCellDef="let token">
+      <div class="stacked">
+        <div>{{ token.supply | number : '': locale }}</div>
+        <div class="smaller">{{ getShare(token) | percent : '1.2-4': locale }}</div>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let token">
+      <a [routerLink]="['/tokens/transfer', token.id]">
+        <mat-icon class="actions-icon" matTooltip="{{'asset_transfer' | i18n}}">vertical_align_top</mat-icon>
+      </a>
     </mat-cell>
   </ng-container>
 

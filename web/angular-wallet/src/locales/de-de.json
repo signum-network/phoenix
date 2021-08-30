@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Testnet-Knoten anzeigen",
   "message_too_long": "Nachricht ist zu lang",
   "reset": "Zurücksetzen",
-  "last_price": "Letzter Preis"
+  "last_price": "Letzter Preis",
+  "supply": "Gesamtangebot"
 }

@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Testnet-knooppunten weergeven",
   "message_too_long": "Bericht is te lang",
   "reset": "Resetten",
-  "last_price": "Laatste prijs"
+  "last_price": "Laatste prijs",
+  "supply": "Totaal aanbod"
 }

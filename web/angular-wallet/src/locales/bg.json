@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Показване на Testnet възли",
   "message_too_long": "Съобщението е твърде дълго",
   "reset": "Нулиране",
-  "last_price": "Последна цена"
+  "last_price": "Последна цена",
+  "supply": "Общо предлагане"
 }

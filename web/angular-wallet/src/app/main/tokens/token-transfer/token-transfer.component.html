@@ -1,0 +1,33 @@
+<app-page [wide]="true"
+          title="{{ 'asset_transfer' | i18n }}"
+          [breadcrumbs]="[{label:'assets' | i18n, path: '/tokens'}]"
+>
+  <div class="info pl-20 pr-20 mb-8">
+    <div class="info__field">
+      <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>
+      <p class="pb-8">{{account.accountRS}}</p>
+    </div>
+    <div class="info__field">
+      <small class="secondary-text text-uppercase">{{'balance_available'| i18n}}</small>
+      <p class="pb-8">{{getBalance() | amount}}</p>
+    </div>
+  </div>
+  <div class="info pl-20 pr-20 mb-8">
+    <div class="info__field">
+      <small class="secondary-text text-uppercase">{{'asset'| i18n}}</small>
+      <p class="pb-8">{{token.name}}</p>
+    </div>
+    <div class="info__field">
+      <small class="secondary-text text-uppercase">{{'amount'| i18n}}</small>
+      <p>{{token.balance | number: '1.0-6': locale }}</p>
+    </div>
+    <div class="info__field">
+      <small class="secondary-text text-uppercase">{{'lastPrice'| i18n}}</small>
+      <p class="pb-8">{{token.priceInfo.amount | amount}}</p>
+    </div>
+  </div>
+  <hr/>
+  <div class="transfer-form">
+    <app-token-transfer-form></app-token-transfer-form>
+  </div>
+</app-page>

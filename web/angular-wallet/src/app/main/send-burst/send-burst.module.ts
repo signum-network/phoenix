@@ -44,7 +44,7 @@ const routes = [
     }
   },
   {
-    path: 'requestBurst',
+    path: 'requestBurst', // from deeplink
     redirectTo: 'send',
     pathMatch: 'full'
   }

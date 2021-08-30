@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Rodyti „Testnet“ mazgus",
   "message_too_long": "Pranešimas per ilgas",
   "reset": "Iš naujo nustatyti",
-  "last_price": "Paskutinė kaina"
+  "last_price": "Paskutinė kaina",
+  "supply": "Bendra pasiūla"
 }

@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Εμφάνιση κόμβων Testnet",
   "message_too_long": "Το μήνυμα είναι πολύ μεγάλο",
   "reset": "Επαναφορά",
-  "last_price": "Τελική τιμή"
+  "last_price": "Τελική τιμή",
+  "supply": "Συνολική Προμήθεια"
 }

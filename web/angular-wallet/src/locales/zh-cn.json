@@ -422,5 +422,6 @@
   "show_testnet_nodes": "显示测试网节点",
   "message_too_long": "消息过长",
   "reset": "重启",
-  "last_price": "最后价格"
+  "last_price": "最后价格",
+  "supply": "总供应量"
 }

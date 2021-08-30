@@ -1,6 +1,6 @@
 {
   "/burst": {
-    "target": "https://testnetwallet.burstcoin.ro",
+    "target": "https://brazil.signum.network",
     "changeOrigin": true,
     "secure": false,
     "logLevel": "info"

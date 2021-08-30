@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Testnetノードを表示する",
   "message_too_long": "メッセージが長すぎます",
   "reset": "リセット",
-  "last_price": "最終価格"
+  "last_price": "最終価格",
+  "supply": "総供給"
 }

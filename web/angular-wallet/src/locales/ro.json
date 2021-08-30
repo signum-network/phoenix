@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Afișați nodurile Testnet",
   "message_too_long": "Mesajul este prea lung",
   "reset": "Resetați",
-  "last_price": "Ultimul pret"
+  "last_price": "Ultimul pret",
+  "supply": "Aprovizionare totală"
 }

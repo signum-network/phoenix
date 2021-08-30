@@ -1,6 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
-import {MatSort} from '@angular/material/sort';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {StoreService} from 'app/store/store.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {Account} from '@signumjs/core';
@@ -12,18 +11,18 @@ import {FuseProgressBarService} from '../../../@fuse/components/progress-bar/pro
   styleUrls: ['./tokens.component.scss'],
   templateUrl: './tokens.component.html'
 })
-export class TokensComponent implements OnInit {
+export class TokensComponent implements OnInit, OnDestroy {
   public selectedAccount: Account;
   public tokens: TokenData[] = [];
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  intervalHandle = null;
 
   constructor(
+    private route: ActivatedRoute,
     private storeService: StoreService,
     private accountService: AccountService,
     private progressService: FuseProgressBarService,
     private tokenService: TokenService,
-    public router: Router
   ) {
   }
 
@@ -32,12 +31,24 @@ export class TokensComponent implements OnInit {
       if (!ready) {
         return;
       }
-      this.selectedAccount = await this.storeService.getSelectedAccount();
+      this.selectedAccount = this.route.snapshot.data.account as Account;
       if (this.selectedAccount) {
         this.progressService.show();
-        this.tokens = await this.tokenService.fetchAccountTokens(this.selectedAccount);
+        await this.fetchTokens();
         this.progressService.hide();
       }
+      this.intervalHandle = setInterval(() => {
+        this.fetchTokens();
+      }, 60 * 1000);
     });
   }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalHandle);
+  }
+
+  async fetchTokens(): Promise<void> {
+    this.tokens = await this.tokenService.fetchAccountTokens(this.selectedAccount);
+  }
+
 }

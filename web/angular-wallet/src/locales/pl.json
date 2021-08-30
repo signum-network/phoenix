@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Pokaż węzły sieci testowej",
   "message_too_long": "Wiadomość jest za długa",
   "reset": "Resetowanie",
-  "last_price": "Ostatnia cena"
+  "last_price": "Ostatnia cena",
+  "supply": "Całkowita podaż"
 }

@@ -422,5 +422,6 @@
   "show_testnet_nodes": "Afficher les nœuds Testnet",
   "message_too_long": "Le message est trop long",
   "reset": "Réinitialiser",
-  "last_price": "Dernier prix"
+  "last_price": "Dernier prix",
+  "supply": "Offre totale"
 }
