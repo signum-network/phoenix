@@ -1,11 +1,11 @@
 import {Component, ElementRef, EventEmitter, Input, OnChanges, Output, ViewChild} from '@angular/core';
-import {AccountService} from '../../../setup/account/account.service';
 import jsQR from 'jsqr';
 import {NotifierService} from 'angular-notifier';
 import {DomainService} from 'app/main/send-burst/domain/domain.service';
 import {Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {Address, AddressPrefix} from '@signumjs/core';
+import {AccountService} from '../../setup/account/account.service';
 
 // generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
 let nextId = 0;

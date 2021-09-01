@@ -21,6 +21,7 @@ import {LayoutModule} from 'app/layout/layout.module';
 import {RequestBurstQrComponent} from './request-burst-qr/request-burst-qr.component';
 import {PageModule} from '../../components/page/page.module';
 import {AppSharedModule} from '../../shared/shared.module';
+import {FeeSelectorModule} from '../../components/fee-selector/fee-selector.module';
 
 const routes = [
   {
@@ -55,7 +56,8 @@ const routes = [
         MatStepperModule,
         RouterModule.forChild(routes),
         PageModule,
-        AppSharedModule
+        AppSharedModule,
+        FeeSelectorModule
     ],
   exports: []
 })

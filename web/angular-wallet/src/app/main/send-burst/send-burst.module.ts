@@ -32,6 +32,8 @@ import {BatchRecipientsDialogComponent} from './batch-recipients-dialog/batch-re
 import {MatSelectModule} from '@angular/material/select';
 import {DomainService} from './domain/domain.service';
 import {AppSharedModule} from '../../shared/shared.module';
+import {RecipientInputModule} from '../../components/recipient-input/recipient-input.module';
+import {FeeSelectorModule} from '../../components/fee-selector/fee-selector.module';
 
 const routes = [
   {
@@ -86,6 +88,8 @@ const routes = [
     PageModule,
     MatSelectModule,
     AppSharedModule,
+    RecipientInputModule,
+    FeeSelectorModule,
   ],
   entryComponents: [
     WarnSendDialogComponent,

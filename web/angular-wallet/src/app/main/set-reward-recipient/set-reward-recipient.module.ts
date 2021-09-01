@@ -23,6 +23,8 @@ import { LoginGuard } from 'app/login/login-guard.service';
 import {PageModule} from '../../components/page/page.module';
 import {SubmitTransactionModule} from '../../components/submit-transaction/submit-transaction.module';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
+import {RecipientInputModule} from '../../components/recipient-input/recipient-input.module';
+import {FeeSelectorModule} from '../../components/fee-selector/fee-selector.module';
 
 const routes = [
   {
@@ -60,7 +62,9 @@ const routes = [
     RouterModule.forChild(routes),
     PageModule,
     SubmitTransactionModule,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+    RecipientInputModule,
+    FeeSelectorModule
   ]
 })
 export class SetRewardRecipientModule { }

@@ -21,7 +21,7 @@
             <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
           </mat-form-field>
 
-          <burst-fee-selector [fees]="fees" [(fee)]="feeNQT"></burst-fee-selector>
+          <app-fee-selector [fees]="fees" [(fee)]="feeNQT"></app-fee-selector>
 
           <mat-checkbox [(ngModel)]="immutable" name="immutable">{{ "immutable" | i18n }}</mat-checkbox>
 

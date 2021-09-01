@@ -7,10 +7,6 @@ import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
-import {
-  Recipient,
-  RecipientValidationStatus
-} from '../../../layout/components/recipient-input/recipient-input.component';
 import {StoreService} from '../../../store/store.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
@@ -19,6 +15,7 @@ import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
 import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 import {Address} from '@signumjs/core';
 import {CurrencySymbol} from '@signumjs/util';
+import {Recipient, RecipientValidationStatus} from '../../../components/recipient-input/recipient-input.component';
 
 interface CIP22Payload {
   amountPlanck: string | number;

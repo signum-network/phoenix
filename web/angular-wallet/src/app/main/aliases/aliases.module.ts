@@ -37,6 +37,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import {PageModule} from '../../components/page/page.module';
 import {AppSharedModule} from '../../shared/shared.module';
 import {MatProgressSpinnerModule, MatRadioModule} from '@angular/material';
+import {FeeSelectorModule} from '../../components/fee-selector/fee-selector.module';
 
 const routes = [
   {
@@ -60,40 +61,41 @@ const routes = [
 
 @NgModule({
   declarations: [AliasesComponent, AddAliasComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    SetupModule,
-    NgxMaskModule,
-    NetworkModule,
-    LayoutModule,
-    MatAutocompleteModule,
-    FuseSharedModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatSelectModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatTableModule,
-    MatButtonModule,
-    MatTooltipModule,
-    ReactiveFormsModule,
-    I18nModule,
-    MatDialogModule,
-    RouterModule.forChild(routes),
-    PageModule,
-    AppSharedModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        SetupModule,
+        NgxMaskModule,
+        NetworkModule,
+        LayoutModule,
+        MatAutocompleteModule,
+        FuseSharedModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatDividerModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatGridListModule,
+        MatIconModule,
+        MatInputModule,
+        MatNativeDateModule,
+        MatPaginatorModule,
+        MatSelectModule,
+        MatSortModule,
+        MatTableModule,
+        MatTabsModule,
+        MatTableModule,
+        MatButtonModule,
+        MatTooltipModule,
+        ReactiveFormsModule,
+        I18nModule,
+        MatDialogModule,
+        RouterModule.forChild(routes),
+        PageModule,
+        AppSharedModule,
+        MatProgressSpinnerModule,
+        MatRadioModule,
+        FeeSelectorModule,
+    ]
 })
 export class AliasesModule { }

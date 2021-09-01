@@ -33,6 +33,7 @@ import {SuggestFeeResolver} from 'app/network/suggest-fee.resolver';
 import {NotifierModule} from 'angular-notifier';
 import {FormsModule} from '@angular/forms';
 import {AppSharedModule} from '../../shared/shared.module';
+import {FeeSelectorModule} from '../../components/fee-selector/fee-selector.module';
 
 
 const routes: Routes = [
@@ -82,7 +83,8 @@ const routes: Routes = [
         MatProgressSpinnerModule,
         FormsModule,
         MatTooltipModule,
-        AppSharedModule
+        AppSharedModule,
+        FeeSelectorModule
     ],
   providers: [
     MessagesService

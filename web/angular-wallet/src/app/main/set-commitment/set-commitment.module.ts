@@ -25,6 +25,7 @@ import {PageModule} from '../../components/page/page.module';
 import {MatProgressSpinnerModule, MatRadioModule, MatSlideToggleModule, MatTabsModule, MatTooltipModule} from '@angular/material';
 import {SetCommitmentFormComponent} from './set-commitment-form/set-commitment-form.component';
 import {SubmitTransactionModule} from '../../components/submit-transaction/submit-transaction.module';
+import {FeeSelectorModule} from '../../components/fee-selector/fee-selector.module';
 
 const routes = [
   {
@@ -43,34 +44,35 @@ const routes = [
     SetCommitmentComponent,
     SetCommitmentFormComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    FuseSharedModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    SetupModule,
-    NotifierModule,
-    NgxMaskModule,
-    I18nModule,
-    MatButtonModule,
-    MatInputModule,
-    MatIconModule,
-    MatGridListModule,
-    MatCheckboxModule,
-    NetworkModule,
-    LayoutModule,
-    RouterModule.forChild(routes),
-    AppSharedModule,
-    PageModule,
-    MatTabsModule,
-    MatTooltipModule,
-    MatProgressSpinnerModule,
-    MatSlideToggleModule,
-    SubmitTransactionModule,
-    SubmitTransactionModule,
-    MatRadioModule,
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        FuseSharedModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        SetupModule,
+        NotifierModule,
+        NgxMaskModule,
+        I18nModule,
+        MatButtonModule,
+        MatInputModule,
+        MatIconModule,
+        MatGridListModule,
+        MatCheckboxModule,
+        NetworkModule,
+        LayoutModule,
+        RouterModule.forChild(routes),
+        AppSharedModule,
+        PageModule,
+        MatTabsModule,
+        MatTooltipModule,
+        MatProgressSpinnerModule,
+        MatSlideToggleModule,
+        SubmitTransactionModule,
+        SubmitTransactionModule,
+        MatRadioModule,
+        FeeSelectorModule,
+    ]
 })
 export class SetCommitmentModule {
 }
