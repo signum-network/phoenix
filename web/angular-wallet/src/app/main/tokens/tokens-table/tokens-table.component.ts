@@ -12,6 +12,7 @@ import {takeUntil} from 'rxjs/operators';
 })
 export class TokensTableComponent extends UnsubscribeOnDestroy implements OnInit, OnChanges {
   @Input() public tokens: TokenData[] = [];
+  @Input() public showActions = true;
   @Input() public displayedColumns = ['token', 'balance', 'lastPrice', 'supply', 'actions'];
 
   public dataSource = new MatTableDataSource<TokenData>();
@@ -28,6 +29,10 @@ export class TokensTableComponent extends UnsubscribeOnDestroy implements OnInit
       this.locale = language;
     });
     this.dataSource.data = this.tokens;
+
+    if(!this.showActions){
+      this.displayedColumns = this.displayedColumns.filter( c => c !== 'actions')
+    }
   }
 
   ngOnChanges(): void {

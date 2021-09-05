@@ -18,8 +18,7 @@ import {
   hashSHA256,
   Keys
 } from '@signumjs/crypto';
-import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';
-import {Amount, convertHexStringToByteArray} from '@signumjs/util';
+import {Amount} from '@signumjs/util';
 import {AccountService} from '../../setup/account/account.service';
 import {getPrivateSigningKey} from '../../util/security/getPrivateSigningKey';
 import {getPrivateEncryptionKey} from '../../util/security/getPrivateEncryptionKey';
@@ -63,7 +62,7 @@ export class TokenService {
   constructor(
     private apiService: ApiService,
     private accountService: AccountService,
-              ) {
+  ) {
 
   }
 

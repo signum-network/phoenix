@@ -70,7 +70,6 @@ export const navigation: FuseNavigation[] = [
         type: 'item',
         icon: 'pie_chart',
         url: '/tokens',
-        fullAccountOnly: true,
       },
     ]
 

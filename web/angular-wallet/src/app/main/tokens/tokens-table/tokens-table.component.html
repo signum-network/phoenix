@@ -15,7 +15,7 @@
     <mat-header-cell *matHeaderCellDef>{{ 'balance' | i18n }}</mat-header-cell>
     <mat-cell *matCellDef="let token">
       <div class="stacked">
-        <div>{{ token.balance | number }}</div>
+        <div>{{ token.balance | number:'1.0-6': locale }}</div>
         <div class="smaller">{{ token.total | amount : 'signa' : true}}</div>
       </div>
     </mat-cell>
