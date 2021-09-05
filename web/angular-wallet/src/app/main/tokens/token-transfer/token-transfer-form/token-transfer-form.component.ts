@@ -7,7 +7,8 @@ import {NgForm} from '@angular/forms';
 import {Amount} from '@signumjs/util';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {WarnSendDialogComponent} from '../../../../components/warn-send-dialog/warn-send-dialog.component';
-import {isNotEmpty} from '../../../../util/forms';
+import {asNumber, isNotEmpty} from '../../../../util/forms';
+import {I18nService} from '../../../../layout/components/i18n/i18n.service';
 
 @Component({
   selector: 'app-token-transfer-form',
@@ -26,12 +27,17 @@ export class TokenTransferFormComponent implements OnInit {
   public isSubmitting = false;
   public fee: number;
   public immutable = false;
+  public messageIsText = true;
+  public encrypt = false;
+  public showMessage = false;
+  public message = '';
 
   private balances: AccountBalances;
 
   constructor(
     private warnDialog: MatDialog,
     private tokenService: TokenService,
+    private i18nService: I18nService,
   ) {
   }
 
@@ -52,10 +58,13 @@ export class TokenTransferFormComponent implements OnInit {
       await this.tokenService.transferToken({
         keys: this.account.keys,
         pin: this.pin,
-        tokenId: this.token.id,
-        quantity: this.quantity,
+        token: this.token,
+        quantity: asNumber(this.quantity, 0),
         recipient: this.recipient,
-        fee: Amount.fromSigna(this.fee)
+        fee: Amount.fromSigna(this.fee),
+        isText: this.messageIsText,
+        isEncrypted: this.encrypt,
+        message: this.message
       });
     } catch (e) {
 
@@ -70,13 +79,11 @@ export class TokenTransferFormComponent implements OnInit {
       const dialogRef = this.openWarningDialog([this.recipient]);
       dialogRef.afterClosed().subscribe(async ok => {
         if (ok) {
-          console.log('sending.', this.quantity);
           await this.transferToken();
         }
         this.transferForm.reset();
       });
     } else {
-      console.log('sending...', this.quantity);
       await this.transferToken();
       this.transferForm.reset();
     }
@@ -100,15 +107,48 @@ export class TokenTransferFormComponent implements OnInit {
     return this.balances.availableBalance.greaterOrEqual(feeAmount);
   }
 
+  getQuantity(): number {
+    return  asNumber(this.quantity, 0);
+  }
+
   canSubmit(): boolean {
-    return isNotEmpty(this.quantity)
+    return !Number.isNaN(this.getQuantity())
+      && isNotEmpty(this.pin)
       && isNotEmpty(this.fee.toString(10))
       && isNotEmpty(this.recipient.addressRaw)
       && this.hasSufficientQuantity()
-      && this.hasSufficientBalance();
+      && this.hasSufficientBalance()
+      && !this.isMessageTooLong()
+      && this.recipient.status !== RecipientValidationStatus.INVALID;
   }
 
   setPin(pin: string): void {
     this.pin = pin;
+  }
+
+  isMessageTooLong(): boolean {
+    return this.message && this.message.length > 1000;
+  }
+
+  getErrorHint(): string {
+    if (!this.hasSufficientBalance()) {
+      return this.i18nService.getTranslation('error_not_enough_funds');
+    }
+    if (!this.hasSufficientQuantity()) {
+      return this.i18nService.getTranslation('error_not_enough_assets');
+    }
+    if (this.isMessageTooLong()) {
+      return this.i18nService.getTranslation('message_too_long');
+    }
+    if (this.recipient.status === RecipientValidationStatus.INVALID) {
+      return this.i18nService.getTranslation('invalid_address');
+    }
+    if (this.recipient.status === RecipientValidationStatus.UNKNOWN) {
+      return this.i18nService.getTranslation('unknown_address');
+    }
+    if (Number.isNaN(this.getQuantity())) {
+      return this.i18nService.getTranslation('csv_error_invalid_amount');
+    }
+    return '';
   }
 }

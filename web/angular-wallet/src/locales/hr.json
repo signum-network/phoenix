@@ -423,5 +423,7 @@
   "message_too_long": "Poruka je predugačka",
   "reset": "Poništi",
   "last_price": "Posljednja cijena",
-  "supply": "Ukupna ponuda"
+  "supply": "Ukupna ponuda",
+  "invalid_address": "Neispravna adresa",
+  "unknown_address": "Nepoznata adresa"
 }

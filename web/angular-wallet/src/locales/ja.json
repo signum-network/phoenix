@@ -423,5 +423,7 @@
   "message_too_long": "メッセージが長すぎます",
   "reset": "リセット",
   "last_price": "最終価格",
-  "supply": "総供給"
+  "supply": "総供給",
+  "invalid_address": "無効なアドレス",
+  "unknown_address": "不明な住所"
 }

@@ -423,5 +423,7 @@
   "message_too_long": "El missatge és massa llarg",
   "reset": "Restableix",
   "last_price": "Darrer preu",
-  "supply": "Subministrament total"
+  "supply": "Subministrament total",
+  "invalid_address": "Adreça no vàlida",
+  "unknown_address": "Adreça desconeguda"
 }

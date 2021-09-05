@@ -423,5 +423,7 @@
   "message_too_long": "A mensaxe é demasiado longa",
   "reset": "Restablecer",
   "last_price": "Último prezo",
-  "supply": "Subministración total"
+  "supply": "Subministración total",
+  "invalid_address": "Enderezo non válido",
+  "unknown_address": "Enderezo descoñecido"
 }

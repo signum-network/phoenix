@@ -423,5 +423,7 @@
   "message_too_long": "Pranešimas per ilgas",
   "reset": "Iš naujo nustatyti",
   "last_price": "Paskutinė kaina",
-  "supply": "Bendra pasiūla"
+  "supply": "Bendra pasiūla",
+  "invalid_address": "Neteisingas adresas",
+  "unknown_address": "Nežinomas adresas"
 }

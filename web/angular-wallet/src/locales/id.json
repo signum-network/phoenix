@@ -423,5 +423,7 @@
   "message_too_long": "Pesan terlalu panjang",
   "reset": "Mengatur ulang",
   "last_price": "Harga terakhir",
-  "supply": "Jumlah Pasokan"
+  "supply": "Jumlah Pasokan",
+  "invalid_address": "Alamat tidak valid",
+  "unknown_address": "Alamat Tidak Diketahui"
 }

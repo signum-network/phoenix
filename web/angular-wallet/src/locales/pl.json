@@ -423,5 +423,7 @@
   "message_too_long": "Wiadomość jest za długa",
   "reset": "Resetowanie",
   "last_price": "Ostatnia cena",
-  "supply": "Całkowita podaż"
+  "supply": "Całkowita podaż",
+  "invalid_address": "Błędny adres",
+  "unknown_address": "Nieznany adres"
 }

@@ -423,5 +423,7 @@
   "message_too_long": "Viesti on liian pitkä",
   "reset": "Nollaa",
   "last_price": "Viimeinen hinta",
-  "supply": "Kokonaistarjonta"
+  "supply": "Kokonaistarjonta",
+  "invalid_address": "Väärä osoite",
+  "unknown_address": "Tuntematon osoite"
 }

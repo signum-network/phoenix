@@ -423,5 +423,7 @@
   "message_too_long": "Mesajul este prea lung",
   "reset": "Resetați",
   "last_price": "Ultimul pret",
-  "supply": "Aprovizionare totală"
+  "supply": "Aprovizionare totală",
+  "invalid_address": "Adresă invalidă",
+  "unknown_address": "Adresă necunoscută"
 }

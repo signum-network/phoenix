@@ -423,5 +423,7 @@
   "message_too_long": "Mesaj çok uzun",
   "reset": "Sıfırla",
   "last_price": "Son fiyat",
-  "supply": "Toplam Arz"
+  "supply": "Toplam Arz",
+  "invalid_address": "Geçersiz adres",
+  "unknown_address": "Bilinmeyen Adres"
 }

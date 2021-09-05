@@ -423,5 +423,7 @@
   "message_too_long": "संदेश बहुत लंबा है",
   "reset": "रीसेट",
   "last_price": "अंतिम मूल्य",
-  "supply": "कुल आपूर्ति"
+  "supply": "कुल आपूर्ति",
+  "invalid_address": "अमान्य पता",
+  "unknown_address": "अज्ञात पता"
 }

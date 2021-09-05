@@ -423,5 +423,7 @@
   "message_too_long": "Správa je príliš dlhá",
   "reset": "Resetovať",
   "last_price": "Posledná cena",
-  "supply": "Celková ponuka"
+  "supply": "Celková ponuka",
+  "invalid_address": "Neplatná adresa",
+  "unknown_address": "Neznáma adresa"
 }

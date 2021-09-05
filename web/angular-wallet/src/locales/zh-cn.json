@@ -423,5 +423,7 @@
   "message_too_long": "消息过长",
   "reset": "重启",
   "last_price": "最后价格",
-  "supply": "总供应量"
+  "supply": "总供应量",
+  "invalid_address": "无效地址",
+  "unknown_address": "未知地址"
 }

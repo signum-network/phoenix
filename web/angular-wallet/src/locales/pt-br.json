@@ -423,5 +423,7 @@
   "message_too_long": "A mensagem é muito longa",
   "reset": "Redefinir",
   "last_price": "Último preço",
-  "supply": "Abastecimento Total"
+  "supply": "Abastecimento Total",
+  "invalid_address": "Endereço inválido",
+  "unknown_address": "Endereço Desconhecido"
 }

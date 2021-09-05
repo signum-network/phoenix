@@ -43,12 +43,12 @@ export interface PriceInfo {
 }
 
 interface TransferTokenRequest {
-  tokenId: string;
+  token: TokenData;
   deadline?: number;
   fee: Amount;
   keys: Keys;
   pin: string;
-  quantity: string;
+  quantity: number;
   recipient: Recipient;
   message?: string;
   isEncrypted?: boolean;
@@ -149,7 +149,7 @@ export class TokenService {
       quantity,
       recipient,
       keys,
-      tokenId,
+      token,
       message,
       isEncrypted,
       isText
@@ -163,13 +163,16 @@ export class TokenService {
       message
     }) : undefined;
 
+    const decimalFactor = Math.pow(10, token.decimals);
+    const realQuantity = quantity * decimalFactor;
+
     return this.apiService.api.asset.transferAsset({
-      asset: tokenId,
+      asset: token.id,
       attachment,
       feePlanck: fee.getPlanck(),
       recipientId: Address.create(recipient.addressRS).getNumericId(),
       recipientPublicKey: recipient.publicKey,
-      quantity,
+      quantity: realQuantity,
       senderPrivateKey: getPrivateSigningKey(pin, keys),
       senderPublicKey: keys.publicKey,
     });

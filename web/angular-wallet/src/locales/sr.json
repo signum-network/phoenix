@@ -423,5 +423,7 @@
   "message_too_long": "Порука је предугачка",
   "reset": "Ресетовање",
   "last_price": "Последња цена",
-  "supply": "Тотал Суппли"
+  "supply": "Тотал Суппли",
+  "invalid_address": "Погрешна адреса",
+  "unknown_address": "Непозната адреса"
 }

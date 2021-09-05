@@ -25,7 +25,6 @@ import {NetworkModule} from 'app/network/network.module';
 import {LayoutModule} from 'app/layout/layout.module';
 import {SendBurstFormComponent} from './send-burst-form/send-burst-form.component';
 import {SendMultiOutFormComponent} from './send-multi-out-form/send-multi-out-form.component';
-import {WarnSendDialogComponent} from './warn-send-dialog/warn-send-dialog.component';
 import {LoginGuard} from 'app/login/login-guard.service';
 import {BatchRecipientsDialogComponent} from './batch-recipients-dialog/batch-recipients-dialog.component';
 import {MatSelectModule} from '@angular/material/select';
@@ -58,7 +57,6 @@ const routes = [
     SendBurstComponent,
     SendBurstFormComponent,
     SendMultiOutFormComponent,
-    WarnSendDialogComponent,
     BatchRecipientsDialogComponent,
   ],
   imports: [
@@ -88,7 +86,6 @@ const routes = [
     SetupModule,
   ],
   entryComponents: [
-    WarnSendDialogComponent,
     BatchRecipientsDialogComponent
   ],
   exports: []

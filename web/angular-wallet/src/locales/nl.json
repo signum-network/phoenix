@@ -423,5 +423,7 @@
   "message_too_long": "Bericht is te lang",
   "reset": "Resetten",
   "last_price": "Laatste prijs",
-  "supply": "Totaal aanbod"
+  "supply": "Totaal aanbod",
+  "invalid_address": "Ongeldig adres",
+  "unknown_address": "Onbekend adres"
 }

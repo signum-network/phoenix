@@ -16,6 +16,7 @@ import {AppSharedModule} from '../shared/shared.module';
 import {FeeSelectorComponent} from './fee-selector/fee-selector.component';
 import {PageComponent} from './page/page.component';
 import {WarnSendDialogComponent} from './warn-send-dialog/warn-send-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,10 @@ import {WarnSendDialogComponent} from './warn-send-dialog/warn-send-dialog.compo
     MatTooltipModule,
     Ng5SliderModule,
     RouterModule,
+    MatDialogModule,
+  ],
+  entryComponents: [
+    WarnSendDialogComponent
   ]
 })
 export class ComponentsModule {
