@@ -1,1 +1,20 @@
-<p>token-transfer-form works!</p>
+<form (ngSubmit)="onSubmit();" #transferForm="ngForm">
+  <recipient-input [recipientValue]="recipient.addressRaw"
+                   (recipientChange)="onRecipientChange($event)"
+                   (qrCodeUpload)="onQRUpload($event)"
+                   [disabled]="immutable">
+  </recipient-input>
+  <app-amount-input #amountValue [maxAmount]="token.balance" [symbol]="token.name" [(amount)]="quantity"
+                    [disabled]="immutable"></app-amount-input>
+  <app-fee-selector #feeValue [fees]="fees" [(fee)]="fee"></app-fee-selector>
+  <app-submit-transaction [disabled]="!(hasSufficientBalance() && hasSufficientQuantity())"
+                          [isSubmitting]="isSubmitting"
+                          (pinChange)="setPin($event)"
+  >
+  </app-submit-transaction>
+  <div class="total">
+    <strong>{{'total' | i18n}}:&nbsp;</strong>
+    <span [class.error-text]="!hasSufficientQuantity()">{{this.token.name}} {{ this.quantity || '0'}} </span>
+    <small [class.error-text]="!hasSufficientBalance()">{{ this.fee | amount:'signa'}}</small>
+  </div>
+</form>

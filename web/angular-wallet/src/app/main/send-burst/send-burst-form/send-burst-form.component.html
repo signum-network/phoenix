@@ -78,6 +78,6 @@
   </div>
 
   <strong>{{'total' | i18n}}:&nbsp;</strong>
-  <span [class.error]="!hasSufficientBalance()">{{ getTotal().getSigna() | amount }}</span> -
+  <span [class.error-text]="!hasSufficientBalance()">{{ getTotal().getSigna() | amount }}</span> -
   <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
 </form>

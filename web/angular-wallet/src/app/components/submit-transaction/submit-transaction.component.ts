@@ -7,8 +7,8 @@ import {Component, EventEmitter, Input, OnInit, OnDestroy, Output} from '@angula
 })
 export class SubmitTransactionComponent implements OnInit {
 
-  @Input('isSubmitting') isSubmitting = false;
-  @Input('disabled') disabled = false;
+  @Input() isSubmitting = false;
+  @Input() disabled = false;
 
   @Output() pinChange = new EventEmitter<string>();
 
@@ -35,9 +35,5 @@ export class SubmitTransactionComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.pinChange.unsubscribe();
-  }
-
-  canSubmit(): boolean {
-      return false;
   }
 }

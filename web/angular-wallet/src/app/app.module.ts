@@ -33,6 +33,8 @@ import {registerLocales} from './layout/components/i18n/locales';
 import {NgxElectronModule} from 'ngx-electron';
 import {NewVersionDialogComponent} from './components/new-version-dialog/new-version-dialog.component';
 import {MatProgressBarModule, MatProgressSpinnerModule} from '@angular/material';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
 
 registerLocales();
 
@@ -57,7 +59,7 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes, {useHash: true}),
+    RouterModule.forRoot(appRoutes, {useHash: true, enableTracing: true}),
 
     TranslateModule.forRoot(),
 
@@ -78,7 +80,9 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatSelectModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [
     StoreService,

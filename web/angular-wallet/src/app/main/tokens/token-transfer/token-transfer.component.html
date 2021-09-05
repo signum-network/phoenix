@@ -1,5 +1,4 @@
-<app-page [wide]="true"
-          title="{{ 'asset_transfer' | i18n }}"
+<app-page title="{{ 'asset_transfer' | i18n }}"
           [breadcrumbs]="[{label:'assets' | i18n, path: '/tokens'}]"
 >
   <div class="info pl-20 pr-20 mb-8">
@@ -28,6 +27,10 @@
   </div>
   <hr/>
   <div class="transfer-form">
-    <app-token-transfer-form></app-token-transfer-form>
+    <app-token-transfer-form
+      [fees]="fees"
+      [account]="account"
+      [token]="token"
+    ></app-token-transfer-form>
   </div>
 </app-page>

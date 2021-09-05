@@ -69,7 +69,8 @@ export const navigation: FuseNavigation[] = [
         title: 'Tokens',
         type: 'item',
         icon: 'pie_chart',
-        url: '/tokens'
+        url: '/tokens',
+        fullAccountOnly: true,
       },
     ]
 

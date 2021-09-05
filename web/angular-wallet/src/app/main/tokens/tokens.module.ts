@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {TokensComponent} from './tokens.component';
-import {AccountsResolver} from '../accounts/accounts.resolver';
 import {RouterModule} from '@angular/router';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatButtonModule} from '@angular/material/button';
@@ -29,7 +28,6 @@ import {NgxMaskModule} from 'ngx-mask';
 import {NetworkModule} from 'app/network/network.module';
 import {LoginGuard} from 'app/login/login-guard.service';
 import {LayoutModule} from 'app/layout/layout.module';
-import {PageModule} from '../../components/page/page.module';
 import {AppSharedModule} from 'app/shared/shared.module';
 import {TokensTableComponent} from './tokens-table/tokens-table.component';
 import {TokenTransferComponent} from './token-transfer/token-transfer.component';
@@ -37,10 +35,11 @@ import {SuggestFeeResolver} from '../../network/suggest-fee.resolver';
 import {TokenTransferFormComponent} from './token-transfer/token-transfer-form/token-transfer-form.component';
 import {CurrentAccountResolver} from '../../shared/resolvers/current-account.resolver';
 import {TokenDataResolver} from './token-data-resolver.service';
+import {ComponentsModule} from '../../components/components.module';
 
 const routes = [
   {
-    path: '',
+    path: 'tokens',
     component: TokensComponent,
     canActivate: [LoginGuard],
     resolve: {
@@ -69,6 +68,7 @@ const routes = [
   ],
   imports: [
     CommonModule,
+    ComponentsModule,
     FormsModule,
     SetupModule,
     NgxMaskModule,
@@ -97,8 +97,7 @@ const routes = [
     I18nModule,
     MatDialogModule,
     RouterModule.forChild(routes),
-    PageModule,
-    AppSharedModule
+    AppSharedModule,
   ]
 })
 export class TokensModule {

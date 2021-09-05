@@ -6,7 +6,6 @@ import {TransactionService} from 'app/main/transactions/transaction.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
 import {StoreService} from '../../../store/store.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
@@ -15,7 +14,13 @@ import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
 import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 import {Address} from '@signumjs/core';
 import {CurrencySymbol} from '@signumjs/util';
-import {Recipient, RecipientValidationStatus} from '../../../components/recipient-input/recipient-input.component';
+import {
+  QRData,
+  Recipient,
+  RecipientValidationStatus
+} from 'app/components/recipient-input/recipient-input.component';
+import {WarnSendDialogComponent} from 'app/components/warn-send-dialog/warn-send-dialog.component';
+import {asBool, isNotEmpty} from 'app/util/forms';
 
 interface CIP22Payload {
   amountPlanck: string | number;
@@ -28,24 +33,6 @@ interface CIP22Payload {
   recipient: string;
 }
 
-interface QRData {
-  recipient: Recipient;
-  amountNQT: string;
-  feeNQT: string;
-  immutable: boolean;
-  feeSuggestionType: string;
-  encrypt: boolean;
-  messageIsText: boolean;
-  message?: string;
-}
-
-const isNotEmpty = (value: string) => value && value.length > 0;
-const asBool = (value: any, defaultValue: boolean): boolean => {
-  if (value === undefined) {
-    return defaultValue;
-  }
-  return value === 'true' || value === true;
-};
 
 @Component({
   selector: 'app-send-burst-form',

@@ -1,9 +1,30 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from '../../api.service';
-import {Account, Asset} from '@signumjs/core';
-import {decryptAES, hashSHA256, Keys} from '@signumjs/crypto';
+import {
+  Account,
+  Address,
+  Asset,
+  Attachment,
+  AttachmentEncryptedMessage,
+  AttachmentMessage,
+  TransactionId
+} from '@signumjs/core';
+import {
+  decryptAES,
+  encryptData,
+  EncryptedData,
+  EncryptedMessage,
+  encryptMessage,
+  hashSHA256,
+  Keys
+} from '@signumjs/crypto';
 import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';
-import {Amount} from '@signumjs/util';
+import {Amount, convertHexStringToByteArray} from '@signumjs/util';
+import {AccountService} from '../../setup/account/account.service';
+import {getPrivateSigningKey} from '../../util/security/getPrivateSigningKey';
+import {getPrivateEncryptionKey} from '../../util/security/getPrivateEncryptionKey';
+import {createMessageAttachment} from '../../util/transaction/createMessageAttachment';
+import {Recipient} from '../../components/recipient-input/recipient-input.component';
 
 export interface TokenData {
   id: string;
@@ -22,15 +43,16 @@ export interface PriceInfo {
 }
 
 interface TransferTokenRequest {
+  tokenId: string;
   deadline?: number;
-  fee: string;
+  fee: Amount;
   keys: Keys;
-  messageIsText: boolean;
   pin: string;
   quantity: string;
-  recipientId: string;
-  recipientPublicKey: string;
-  shouldEncryptMessage?: boolean;
+  recipient: Recipient;
+  message?: string;
+  isEncrypted?: boolean;
+  isText?: boolean;
 }
 
 @Injectable({
@@ -38,7 +60,10 @@ interface TransferTokenRequest {
 })
 export class TokenService {
 
-  constructor(private apiService: ApiService) {
+  constructor(
+    private apiService: ApiService,
+    private accountService: AccountService,
+              ) {
 
   }
 
@@ -47,10 +72,9 @@ export class TokenService {
   }
 
   public async fetchTokenData(tokenId: string, account: Account): Promise<TokenData> {
-    const assetBalance = account.assetBalances.find(({asset}) => asset === tokenId)
+    const assetBalance = account.assetBalances.find(({asset}) => asset === tokenId);
     if (!assetBalance) {
-      // tslint:disable-next-line:quotemark
-      throw new Error("Account doesn't own that token");
+      throw new Error('Account doesn\'t own that token');
     }
     return this.gatherTokenData(tokenId, assetBalance.balanceQNT);
   }
@@ -79,13 +103,6 @@ export class TokenService {
     };
   }
 
-  private getSendersSignPrivateKey(pin: string, keys: Keys): string {
-    const privateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
-    if (!privateKey) {
-      throw new KeyDecryptionException();
-    }
-    return privateKey;
-  }
 
   async gatherTokenData(tokenId: string, balanceQNT: string): Promise<TokenData> {
     const [token, priceInfo] = await Promise.all([this.getToken(tokenId), this.getPriceInfo(tokenId)]);
@@ -125,7 +142,36 @@ export class TokenService {
     return tokens;
   }
 
-  async transferToken(transferRequest: TransferTokenRequest): Promise<void> {
+  async transferToken(request: TransferTokenRequest): Promise<TransactionId> {
+    const {
+      pin,
+      fee,
+      quantity,
+      recipient,
+      keys,
+      tokenId,
+      message,
+      isEncrypted,
+      isText
+    } = request;
 
+    const attachment = message ? createMessageAttachment({
+      isEncrypted,
+      isText,
+      encryptionKey: getPrivateEncryptionKey(pin, keys),
+      recipientPublicKey: recipient.publicKey,
+      message
+    }) : undefined;
+
+    return this.apiService.api.asset.transferAsset({
+      asset: tokenId,
+      attachment,
+      feePlanck: fee.getPlanck(),
+      recipientId: Address.create(recipient.addressRS).getNumericId(),
+      recipientPublicKey: recipient.publicKey,
+      quantity,
+      senderPrivateKey: getPrivateSigningKey(pin, keys),
+      senderPublicKey: keys.publicKey,
+    });
   }
 }

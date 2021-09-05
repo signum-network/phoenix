@@ -19,9 +19,8 @@ import {SuggestFeeResolver} from '../../network/suggest-fee.resolver';
 import {NetworkModule} from 'app/network/network.module';
 import {LayoutModule} from 'app/layout/layout.module';
 import {RequestBurstQrComponent} from './request-burst-qr/request-burst-qr.component';
-import {PageModule} from '../../components/page/page.module';
 import {AppSharedModule} from '../../shared/shared.module';
-import {FeeSelectorModule} from '../../components/fee-selector/fee-selector.module';
+import {ComponentsModule} from '../../components/components.module';
 
 const routes = [
   {
@@ -39,25 +38,24 @@ const routes = [
     RequestBurstComponent, RequestBurstQrComponent,
   ],
     imports: [
-        CommonModule,
-        FormsModule,
-        FuseSharedModule,
-        SetupModule,
-        NotifierModule,
-        NgxMaskModule,
-        I18nModule,
-        MatButtonModule,
-        MatInputModule,
-        MatIconModule,
-        MatGridListModule,
-        MatCheckboxModule,
-        NetworkModule,
-        LayoutModule,
-        MatStepperModule,
-        RouterModule.forChild(routes),
-        PageModule,
-        AppSharedModule,
-        FeeSelectorModule
+      AppSharedModule,
+      CommonModule,
+      FormsModule,
+      FuseSharedModule,
+      I18nModule,
+      LayoutModule,
+      MatButtonModule,
+      MatCheckboxModule,
+      MatGridListModule,
+      MatIconModule,
+      MatInputModule,
+      MatStepperModule,
+      NetworkModule,
+      NgxMaskModule,
+      NotifierModule,
+      RouterModule.forChild(routes),
+      SetupModule,
+      ComponentsModule,
     ],
   exports: []
 })

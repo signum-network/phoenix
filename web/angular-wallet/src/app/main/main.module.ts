@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 import {TranslateModule} from '@ngx-translate/core';
 import 'hammerjs';
 
@@ -60,7 +60,7 @@ const mainRoutes: Routes = [
   {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then(s => s.SettingsModule)
-  }
+  },
 ];
 
 @NgModule({
@@ -68,34 +68,24 @@ const mainRoutes: Routes = [
     MainComponent,
   ],
   imports: [
-    HttpClientModule,
-    RouterModule.forChild(mainRoutes),
-
-    TranslateModule.forRoot(),
-
-    // Material moment date module
-    MatMomentDateModule,
-
-    // Material
-    MatButtonModule,
-    MatIconModule,
-
-    // Fuse modules
+    AccountsModule,
+    DashboardModule,
     FuseModule.forRoot(fuseConfig),
     FuseProgressBarModule,
     FuseSharedModule,
-
     FuseSidebarModule,
     FuseThemeOptionsModule,
-
-    // App modules
+    HttpClientModule,
     LayoutModule,
-    DashboardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMomentDateModule,
+    RouterModule.forChild(mainRoutes),
     SendBurstModule,
-    AccountsModule,
     SetAccountInfoModule,
+    SetCommitmentModule,
     SetRewardRecipientModule,
-    SetCommitmentModule
+    TranslateModule.forRoot(),
   ],
   exports: [
     MainComponent

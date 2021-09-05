@@ -1,0 +1,21 @@
+<mat-form-field class="w-100-p">
+  <mat-label>{{ 'amount' | i18n }}</mat-label>
+  <span class="mr-8" matPrefix>{{symbol}}</span>
+  <input matInput
+         type="text"
+         autocomplete="off"
+         [(ngModel)]="amount"
+         (ngModelChange)="onChange(amount)"
+         name="amount"
+         [disabled]="disabled"
+  >
+  <mat-icon
+    class="all-icon"
+    *ngIf="!disabled"
+    matSuffix
+    matTooltip="{{'spend_all' | i18n}}"
+    (click)="onSpendAll()"
+  >
+    all_inclusive
+  </mat-icon>
+</mat-form-field>

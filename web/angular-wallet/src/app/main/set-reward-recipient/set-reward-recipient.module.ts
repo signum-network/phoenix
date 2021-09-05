@@ -20,11 +20,8 @@ import { SuggestFeeResolver } from '../../network/suggest-fee.resolver';
 import { NetworkModule } from 'app/network/network.module';
 import { LayoutModule } from 'app/layout/layout.module';
 import { LoginGuard } from 'app/login/login-guard.service';
-import {PageModule} from '../../components/page/page.module';
-import {SubmitTransactionModule} from '../../components/submit-transaction/submit-transaction.module';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
-import {RecipientInputModule} from '../../components/recipient-input/recipient-input.module';
-import {FeeSelectorModule} from '../../components/fee-selector/fee-selector.module';
+import {ComponentsModule} from '../../components/components.module';
 
 const routes = [
   {
@@ -43,28 +40,25 @@ const routes = [
     SetRewardRecipientComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
+    BrowserModule,
     CommonModule,
+    ComponentsModule,
     FormsModule,
     FuseSharedModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    SetupModule,
-    NotifierModule,
-    NgxMaskModule,
     I18nModule,
-    MatButtonModule,
-    MatInputModule,
-    MatIconModule,
-    MatGridListModule,
-    MatCheckboxModule,
-    NetworkModule,
     LayoutModule,
-    RouterModule.forChild(routes),
-    PageModule,
-    SubmitTransactionModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    NetworkModule,
+    NgxMaskModule,
     NgxSkeletonLoaderModule,
-    RecipientInputModule,
-    FeeSelectorModule
+    NotifierModule,
+    RouterModule.forChild(routes),
+    SetupModule,
   ]
 })
 export class SetRewardRecipientModule { }

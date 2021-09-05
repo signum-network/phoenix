@@ -1,19 +1,19 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {FuseSharedModule} from '@fuse/shared.module';
 import {MessagesService} from './messages.service';
 import {MessagesComponent} from './messages.component';
@@ -33,7 +33,7 @@ import {SuggestFeeResolver} from 'app/network/suggest-fee.resolver';
 import {NotifierModule} from 'angular-notifier';
 import {FormsModule} from '@angular/forms';
 import {AppSharedModule} from '../../shared/shared.module';
-import {FeeSelectorModule} from '../../components/fee-selector/fee-selector.module';
+import {ComponentsModule} from '../../components/components.module';
 
 
 const routes: Routes = [
@@ -60,32 +60,32 @@ const routes: Routes = [
     MessageRightSidenavComponent,
     MessageOptionsSidenavComponent,
   ],
-    imports: [
-        RouterModule.forChild(routes),
-        MatButtonModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatListModule,
-        MatMenuModule,
-        MatCheckboxModule,
-        MatRadioModule,
-        MatSidenavModule,
-        MatToolbarModule,
-        MatSliderModule,
-        NotifierModule,
-        SendBurstModule,
-        LayoutModule,
-        FuseSharedModule,
-        I18nModule,
-        NgxMaskModule,
-        MatProgressSpinnerModule,
-        FormsModule,
-        MatTooltipModule,
-        AppSharedModule,
-        FeeSelectorModule
-    ],
+  imports: [
+    AppSharedModule,
+    ComponentsModule,
+    FormsModule,
+    FuseSharedModule,
+    I18nModule,
+    LayoutModule,
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    NgxMaskModule,
+    NotifierModule,
+    RouterModule.forChild(routes),
+    SendBurstModule,
+  ],
   providers: [
     MessagesService
   ]

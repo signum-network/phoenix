@@ -26,14 +26,12 @@ import {LayoutModule} from 'app/layout/layout.module';
 import {SendBurstFormComponent} from './send-burst-form/send-burst-form.component';
 import {SendMultiOutFormComponent} from './send-multi-out-form/send-multi-out-form.component';
 import {WarnSendDialogComponent} from './warn-send-dialog/warn-send-dialog.component';
-import {PageModule} from '../../components/page/page.module';
 import {LoginGuard} from 'app/login/login-guard.service';
 import {BatchRecipientsDialogComponent} from './batch-recipients-dialog/batch-recipients-dialog.component';
 import {MatSelectModule} from '@angular/material/select';
 import {DomainService} from './domain/domain.service';
 import {AppSharedModule} from '../../shared/shared.module';
-import {RecipientInputModule} from '../../components/recipient-input/recipient-input.module';
-import {FeeSelectorModule} from '../../components/fee-selector/fee-selector.module';
+import {ComponentsModule} from '../../components/components.module';
 
 const routes = [
   {
@@ -64,32 +62,30 @@ const routes = [
     BatchRecipientsDialogComponent,
   ],
   imports: [
+    AppSharedModule,
     CommonModule,
+    ComponentsModule,
     FormsModule,
     FuseSharedModule,
-    SetupModule,
-    NotifierModule,
     I18nModule,
-    MatProgressSpinnerModule,
-    MatButtonModule,
-    MatInputModule,
-    MatIconModule,
-    MatTabsModule,
-    MatGridListModule,
-    MatCheckboxModule,
-    NetworkModule,
     LayoutModule,
     MatAutocompleteModule,
-    RouterModule.forChild(routes),
-    MatChipsModule,
     MatBadgeModule,
-    MatTooltipModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatChipsModule,
     MatDialogModule,
-    PageModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
     MatSelectModule,
-    AppSharedModule,
-    RecipientInputModule,
-    FeeSelectorModule,
+    MatTabsModule,
+    MatTooltipModule,
+    NetworkModule,
+    NotifierModule,
+    RouterModule.forChild(routes),
+    SetupModule,
   ],
   entryComponents: [
     WarnSendDialogComponent,

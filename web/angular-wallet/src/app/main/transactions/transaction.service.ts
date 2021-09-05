@@ -14,7 +14,8 @@ import {AccountService} from 'app/setup/account/account.service';
 import {convertHexStringToByteArray} from '@signumjs/util';
 import {StoreService} from 'app/store/store.service';
 import {Settings} from 'app/settings';
-import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';
+import {getPrivateSigningKey} from '../../util/security/getPrivateSigningKey';
+import {getPrivateEncryptionKey} from '../../util/security/getPrivateEncryptionKey';
 
 interface SendMoneyMultiOutRequest {
   transaction: {
@@ -78,29 +79,13 @@ export class TransactionService {
     return this.transactionApi.getTransaction(id);
   }
 
-  private getSendersSignPrivateKey(pin: string, keys: Keys): string {
-    const privateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
-    if (!privateKey) {
-      throw new KeyDecryptionException();
-    }
-    return privateKey;
-  }
-
-  private getSendersEncryptionPrivateKey(pin: string, keys: Keys): string {
-    const privateKey = decryptAES(keys.agreementPrivateKey, hashSHA256(pin));
-    if (!privateKey) {
-      throw new KeyDecryptionException();
-    }
-    return privateKey;
-  }
-
   public async sendAmountToMultipleRecipients(request: SendBurstMultipleRequest): Promise<TransactionId> {
     const {fee, keys, pin, recipientAmounts} = request;
     return this.transactionApi.sendAmountToMultipleRecipients(
       recipientAmounts,
       fee,
       keys.publicKey,
-      this.getSendersSignPrivateKey(pin, keys)
+      getPrivateSigningKey(pin, keys)
     );
   }
 
@@ -111,7 +96,7 @@ export class TransactionService {
       fee,
       recipientIds,
       keys.publicKey,
-      this.getSendersSignPrivateKey(pin, keys)
+      getPrivateSigningKey(pin, keys)
     );
   }
 
@@ -122,7 +107,7 @@ export class TransactionService {
     let attachment: Attachment;
     if (message && shouldEncryptMessage) {
       const recipient = await this.accountService.getAccount(recipientId);
-      const agreementPrivateKey = this.getSendersEncryptionPrivateKey(pin, keys);
+      const agreementPrivateKey = getPrivateEncryptionKey(pin, keys);
       let encryptedMessage: EncryptedMessage | EncryptedData;
       if (messageIsText) {
         encryptedMessage = encryptMessage(
@@ -150,7 +135,7 @@ export class TransactionService {
       feePlanck: fee,
       recipientId,
       recipientPublicKey,
-      senderPrivateKey: this.getSendersSignPrivateKey(pin, keys),
+      senderPrivateKey: getPrivateSigningKey(pin, keys),
       senderPublicKey: keys.publicKey,
       attachment
     });
