@@ -425,5 +425,6 @@
   "last_price": "Τελική τιμή",
   "supply": "Συνολική Προμήθεια",
   "invalid_address": "Μη έγκυρη διεύθυνση",
-  "unknown_address": "Άγνωστη διεύθυνση"
+  "unknown_address": "Άγνωστη διεύθυνση",
+  "success_transaction_executed": "Η συναλλαγή εκτελέστηκε με επιτυχία"
 }

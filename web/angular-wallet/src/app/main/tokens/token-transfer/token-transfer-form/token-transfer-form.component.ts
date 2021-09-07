@@ -9,6 +9,9 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {WarnSendDialogComponent} from '../../../../components/warn-send-dialog/warn-send-dialog.component';
 import {asNumber, isNotEmpty} from '../../../../util/forms';
 import {I18nService} from '../../../../layout/components/i18n/i18n.service';
+import {NotifierService} from 'angular-notifier';
+import {handleException} from '../../../../util/exceptions/handleException';
+import {ExceptionHandlerService} from '../../../../shared/services/exceptionhandler.service';
 
 @Component({
   selector: 'app-token-transfer-form',
@@ -38,6 +41,8 @@ export class TokenTransferFormComponent implements OnInit {
     private warnDialog: MatDialog,
     private tokenService: TokenService,
     private i18nService: I18nService,
+    private notifierService: NotifierService,
+    private exceptionService: ExceptionHandlerService
   ) {
   }
 
@@ -66,8 +71,12 @@ export class TokenTransferFormComponent implements OnInit {
         isEncrypted: this.encrypt,
         message: this.message
       });
-    } catch (e) {
 
+      this.notifierService.notify('success',
+        this.i18nService.getTranslation('success_transaction_executed')
+      );
+    } catch (e) {
+      this.exceptionService.handle(e);
     }
   }
 
@@ -81,11 +90,11 @@ export class TokenTransferFormComponent implements OnInit {
         if (ok) {
           await this.transferToken();
         }
-        this.transferForm.reset();
+        this.reset();
       });
     } else {
       await this.transferToken();
-      this.transferForm.reset();
+      this.reset();
     }
   }
 
@@ -108,7 +117,8 @@ export class TokenTransferFormComponent implements OnInit {
   }
 
   getQuantity(): number {
-    return  asNumber(this.quantity, 0);
+    const n = asNumber(this.quantity, 0);
+    return Number.isNaN(n) ? 0 : n;
   }
 
   canSubmit(): boolean {
@@ -150,5 +160,18 @@ export class TokenTransferFormComponent implements OnInit {
       return this.i18nService.getTranslation('csv_error_invalid_amount');
     }
     return '';
+  }
+
+  private reset(): void {
+    this.recipient = new Recipient();
+    this.pin = '';
+    this.quantity = '';
+    this.isSubmitting = false;
+    this.fee = this.fees.standard;
+    this.immutable = false;
+    this.messageIsText = true;
+    this.encrypt = false;
+    this.showMessage = false;
+    this.message = '';
   }
 }

@@ -425,5 +425,6 @@
   "last_price": "Последна цена",
   "supply": "Общо предлагане",
   "invalid_address": "Невалиден адрес",
-  "unknown_address": "Неизвестен адрес"
+  "unknown_address": "Неизвестен адрес",
+  "success_transaction_executed": "Транзакцията е успешно изпълнена"
 }

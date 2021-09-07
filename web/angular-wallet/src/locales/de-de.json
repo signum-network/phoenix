@@ -425,5 +425,6 @@
   "last_price": "Letzter Preis",
   "supply": "Gesamtangebot",
   "invalid_address": "Ungültige Adresse",
-  "unknown_address": "Unbekannte Adresse"
+  "unknown_address": "Unbekannte Adresse",
+  "success_transaction_executed": "Transaktion erfolgreich ausgeführt"
 }

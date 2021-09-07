@@ -425,5 +425,6 @@
   "last_price": "Son fiyat",
   "supply": "Toplam Arz",
   "invalid_address": "Geçersiz adres",
-  "unknown_address": "Bilinmeyen Adres"
+  "unknown_address": "Bilinmeyen Adres",
+  "success_transaction_executed": "İşlem başarıyla gerçekleştirildi"
 }

@@ -425,5 +425,6 @@
   "last_price": "Viimeinen hinta",
   "supply": "Kokonaistarjonta",
   "invalid_address": "Väärä osoite",
-  "unknown_address": "Tuntematon osoite"
+  "unknown_address": "Tuntematon osoite",
+  "success_transaction_executed": "Tapahtuma onnistui"
 }

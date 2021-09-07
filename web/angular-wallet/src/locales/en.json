@@ -425,5 +425,6 @@
   "last_price": "Last Price",
   "supply": "Total Supply",
   "invalid_address": "Invalid Address",
-  "unknown_address": "Unknown Address"
+  "unknown_address": "Unknown Address",
+  "success_transaction_executed": "Transaction successfully executed"
 }

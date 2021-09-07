@@ -425,5 +425,6 @@
   "last_price": "Laatste prijs",
   "supply": "Totaal aanbod",
   "invalid_address": "Ongeldig adres",
-  "unknown_address": "Onbekend adres"
+  "unknown_address": "Onbekend adres",
+  "success_transaction_executed": "Transactie succesvol uitgevoerd"
 }

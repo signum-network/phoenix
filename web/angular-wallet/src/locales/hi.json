@@ -425,5 +425,6 @@
   "last_price": "अंतिम मूल्य",
   "supply": "कुल आपूर्ति",
   "invalid_address": "अमान्य पता",
-  "unknown_address": "अज्ञात पता"
+  "unknown_address": "अज्ञात पता",
+  "success_transaction_executed": "लेन-देन सफलतापूर्वक निष्पादित"
 }

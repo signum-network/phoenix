@@ -425,5 +425,6 @@
   "last_price": "最終価格",
   "supply": "総供給",
   "invalid_address": "無効なアドレス",
-  "unknown_address": "不明な住所"
+  "unknown_address": "不明な住所",
+  "success_transaction_executed": "トランザクションが正常に実行されました"
 }

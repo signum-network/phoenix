@@ -425,5 +425,6 @@
   "last_price": "Harga terakhir",
   "supply": "Jumlah Pasokan",
   "invalid_address": "Alamat tidak valid",
-  "unknown_address": "Alamat Tidak Diketahui"
+  "unknown_address": "Alamat Tidak Diketahui",
+  "success_transaction_executed": "Transaksi berhasil dijalankan"
 }

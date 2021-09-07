@@ -425,5 +425,6 @@
   "last_price": "Darrer preu",
   "supply": "Subministrament total",
   "invalid_address": "Adreça no vàlida",
-  "unknown_address": "Adreça desconeguda"
+  "unknown_address": "Adreça desconeguda",
+  "success_transaction_executed": "La transacció s'ha executat correctament"
 }

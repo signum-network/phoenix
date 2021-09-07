@@ -425,5 +425,6 @@
   "last_price": "Остання ціна",
   "supply": "Загальна пропозиція",
   "invalid_address": "Недійсна адреса",
-  "unknown_address": "Невідома адреса"
+  "unknown_address": "Невідома адреса",
+  "success_transaction_executed": "Транзакцію успішно виконано"
 }

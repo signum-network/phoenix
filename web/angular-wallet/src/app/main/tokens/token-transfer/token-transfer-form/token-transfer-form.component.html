@@ -1,16 +1,26 @@
-<form (ngSubmit)="onSubmit($event);" #transferForm="ngForm">
+<form (ngSubmit)="onSubmit($event)">
   <recipient-input [recipientValue]="recipient.addressRaw"
                    (recipientChange)="onRecipientChange($event)"
                    (qrCodeUpload)="onQRUpload($event)"
                    [disabled]="immutable">
   </recipient-input>
-  <app-amount-input #amountValue [maxAmount]="token.balance" [symbol]="token.name" [(amount)]="quantity"
-                    [disabled]="immutable"></app-amount-input>
-  <app-fee-selector #feeValue [fees]="fees" [(fee)]="fee"></app-fee-selector>
+  <app-amount-input [maxAmount]="token.balance"
+                    [symbol]="token.name"
+                    [(amount)]="quantity"
+                    [disabled]="immutable">
+
+  </app-amount-input>
+
+  <app-fee-selector [fees]="fees" [(fee)]="fee">
+  </app-fee-selector>
 
 
-  <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="showMessage"
-                name="showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>
+  <mat-checkbox labelPosition="before"
+                [disabled]="immutable"
+                [(ngModel)]="showMessage"
+                name="showMessage">
+    {{ "add_message_q" | i18n }}
+  </mat-checkbox>
 
   <div *ngIf="showMessage">
     <div class="inlined mt-4">
@@ -19,19 +29,22 @@
         labelPosition="before"
         [disabled]="immutable"
         [(ngModel)]="encrypt"
-        name="encrypt">{{ "encrypt_message" | i18n }}?
+        name="encrypt">
+        {{ "encrypt_message" | i18n }}?
       </mat-checkbox>
       <mat-checkbox
         class="font-size-12"
         labelPosition="before" [disabled]="immutable" [(ngModel)]="messageIsText"
-        name="messageIsText">{{ "message_is_text" | i18n }}</mat-checkbox>
+        name="messageIsText">
+        {{ "message_is_text" | i18n }}
+      </mat-checkbox>
     </div>
     <mat-form-field>
-      <textarea #messageValue
-                name="message"
-                matInput [disabled]="immutable" [(ngModel)]="message"
-                placeholder="{{ 'message' | i18n }}"
-                cdkTextareaAutosize
+      <textarea
+        name="message"
+        matInput [disabled]="immutable" [(ngModel)]="message"
+        placeholder="{{ 'message' | i18n }}"
+        cdkTextareaAutosize
       ></textarea>
     </mat-form-field>
   </div>

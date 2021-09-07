@@ -425,5 +425,6 @@
   "last_price": "Ultimul pret",
   "supply": "Aprovizionare totală",
   "invalid_address": "Adresă invalidă",
-  "unknown_address": "Adresă necunoscută"
+  "unknown_address": "Adresă necunoscută",
+  "success_transaction_executed": "Tranzacția a fost executată cu succes"
 }

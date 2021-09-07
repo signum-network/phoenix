@@ -425,5 +425,6 @@
   "last_price": "Последняя цена",
   "supply": "Общее предложение",
   "invalid_address": "Неверный адрес",
-  "unknown_address": "Неизвестный адрес"
+  "unknown_address": "Неизвестный адрес",
+  "success_transaction_executed": "Транзакция успешно выполнена"
 }

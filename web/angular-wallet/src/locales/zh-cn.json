@@ -425,5 +425,6 @@
   "last_price": "最后价格",
   "supply": "总供应量",
   "invalid_address": "无效地址",
-  "unknown_address": "未知地址"
+  "unknown_address": "未知地址",
+  "success_transaction_executed": "交易成功执行"
 }

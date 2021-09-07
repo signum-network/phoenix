@@ -425,5 +425,6 @@
   "last_price": "Последња цена",
   "supply": "Тотал Суппли",
   "invalid_address": "Погрешна адреса",
-  "unknown_address": "Непозната адреса"
+  "unknown_address": "Непозната адреса",
+  "success_transaction_executed": "Трансакција је успешно извршена"
 }

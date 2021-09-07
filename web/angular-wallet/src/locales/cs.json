@@ -425,5 +425,6 @@
   "last_price": "Poslední cena",
   "supply": "Celková nabídka",
   "invalid_address": "Neplatná adresa",
-  "unknown_address": "Neznámá adresa"
+  "unknown_address": "Neznámá adresa",
+  "success_transaction_executed": "Transakce byla úspěšně provedena"
 }

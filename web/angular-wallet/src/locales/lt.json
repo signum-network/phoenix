@@ -425,5 +425,6 @@
   "last_price": "Paskutinė kaina",
   "supply": "Bendra pasiūla",
   "invalid_address": "Neteisingas adresas",
-  "unknown_address": "Nežinomas adresas"
+  "unknown_address": "Nežinomas adresas",
+  "success_transaction_executed": "Sandoris sėkmingai įvykdytas"
 }
