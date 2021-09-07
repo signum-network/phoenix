@@ -426,5 +426,7 @@
   "supply": "Kokonaistarjonta",
   "invalid_address": "Väärä osoite",
   "unknown_address": "Tuntematon osoite",
-  "success_transaction_executed": "Tapahtuma onnistui"
+  "success_transaction_executed": "Tapahtuma onnistui",
+  "no_tokens_available": "Merkkejä ei ole saatavilla",
+  "trade_tokens_with": "Vaihda tunnuksia"
 }

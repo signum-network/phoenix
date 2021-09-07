@@ -426,5 +426,7 @@
   "supply": "Subministrament total",
   "invalid_address": "Adreça no vàlida",
   "unknown_address": "Adreça desconeguda",
-  "success_transaction_executed": "La transacció s'ha executat correctament"
+  "success_transaction_executed": "La transacció s'ha executat correctament",
+  "no_tokens_available": "No hi ha fitxes disponibles",
+  "trade_tokens_with": "Comerç de fitxes amb"
 }

@@ -426,5 +426,7 @@
   "supply": "Bendra pasiūla",
   "invalid_address": "Neteisingas adresas",
   "unknown_address": "Nežinomas adresas",
-  "success_transaction_executed": "Sandoris sėkmingai įvykdytas"
+  "success_transaction_executed": "Sandoris sėkmingai įvykdytas",
+  "no_tokens_available": "Žetonų nėra",
+  "trade_tokens_with": "Prekyba žetonais su"
 }

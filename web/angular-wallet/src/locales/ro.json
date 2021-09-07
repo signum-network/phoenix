@@ -426,5 +426,7 @@
   "supply": "Aprovizionare totală",
   "invalid_address": "Adresă invalidă",
   "unknown_address": "Adresă necunoscută",
-  "success_transaction_executed": "Tranzacția a fost executată cu succes"
+  "success_transaction_executed": "Tranzacția a fost executată cu succes",
+  "no_tokens_available": "Nu există jetoane disponibile",
+  "trade_tokens_with": "Tranzacționează jetoane cu"
 }

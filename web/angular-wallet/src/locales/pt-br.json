@@ -426,5 +426,7 @@
   "supply": "Abastecimento Total",
   "invalid_address": "Endereço inválido",
   "unknown_address": "Endereço Desconhecido",
-  "success_transaction_executed": "Transação executada com sucesso"
+  "success_transaction_executed": "Transação executada com sucesso",
+  "no_tokens_available": "Nenhum tokens disponível",
+  "trade_tokens_with": "Negocie tokens com"
 }

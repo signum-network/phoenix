@@ -10,7 +10,6 @@ import {WarnSendDialogComponent} from '../../../../components/warn-send-dialog/w
 import {asNumber, isNotEmpty} from '../../../../util/forms';
 import {I18nService} from '../../../../layout/components/i18n/i18n.service';
 import {NotifierService} from 'angular-notifier';
-import {handleException} from '../../../../util/exceptions/handleException';
 import {ExceptionHandlerService} from '../../../../shared/services/exceptionhandler.service';
 import {Router} from '@angular/router';
 

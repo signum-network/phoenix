@@ -426,5 +426,7 @@
   "supply": "Συνολική Προμήθεια",
   "invalid_address": "Μη έγκυρη διεύθυνση",
   "unknown_address": "Άγνωστη διεύθυνση",
-  "success_transaction_executed": "Η συναλλαγή εκτελέστηκε με επιτυχία"
+  "success_transaction_executed": "Η συναλλαγή εκτελέστηκε με επιτυχία",
+  "no_tokens_available": "Δεν υπάρχουν διαθέσιμα διακριτικά",
+  "trade_tokens_with": "Συναλλαγές μάρκες με"
 }

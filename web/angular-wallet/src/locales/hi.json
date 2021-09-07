@@ -426,5 +426,7 @@
   "supply": "कुल आपूर्ति",
   "invalid_address": "अमान्य पता",
   "unknown_address": "अज्ञात पता",
-  "success_transaction_executed": "लेन-देन सफलतापूर्वक निष्पादित"
+  "success_transaction_executed": "लेन-देन सफलतापूर्वक निष्पादित",
+  "no_tokens_available": "कोई टोकन उपलब्ध नहीं है",
+  "trade_tokens_with": "के साथ व्यापार टोकन"
 }

@@ -426,5 +426,7 @@
   "supply": "Загальна пропозиція",
   "invalid_address": "Недійсна адреса",
   "unknown_address": "Невідома адреса",
-  "success_transaction_executed": "Транзакцію успішно виконано"
+  "success_transaction_executed": "Транзакцію успішно виконано",
+  "no_tokens_available": "Жодних токенів немає",
+  "trade_tokens_with": "Торгуйте токенами за допомогою"
 }

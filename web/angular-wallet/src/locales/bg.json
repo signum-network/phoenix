@@ -426,5 +426,7 @@
   "supply": "Общо предлагане",
   "invalid_address": "Невалиден адрес",
   "unknown_address": "Неизвестен адрес",
-  "success_transaction_executed": "Транзакцията е успешно изпълнена"
+  "success_transaction_executed": "Транзакцията е успешно изпълнена",
+  "no_tokens_available": "Няма налични жетони",
+  "trade_tokens_with": "Търгувайте жетони с"
 }

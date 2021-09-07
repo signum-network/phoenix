@@ -426,5 +426,7 @@
   "supply": "Toplam Arz",
   "invalid_address": "Geçersiz adres",
   "unknown_address": "Bilinmeyen Adres",
-  "success_transaction_executed": "İşlem başarıyla gerçekleştirildi"
+  "success_transaction_executed": "İşlem başarıyla gerçekleştirildi",
+  "no_tokens_available": "Kullanılabilir jeton yok",
+  "trade_tokens_with": "Token ile ticaret yap"
 }

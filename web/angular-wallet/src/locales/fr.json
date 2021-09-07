@@ -426,5 +426,7 @@
   "supply": "Offre totale",
   "invalid_address": "Adresse invalide",
   "unknown_address": "Adresse inconnue",
-  "success_transaction_executed": "Transaction exécutée avec succès"
+  "success_transaction_executed": "Transaction exécutée avec succès",
+  "no_tokens_available": "Aucun jeton disponible",
+  "trade_tokens_with": "Échangez des jetons avec"
 }

@@ -426,5 +426,7 @@
   "supply": "総供給",
   "invalid_address": "無効なアドレス",
   "unknown_address": "不明な住所",
-  "success_transaction_executed": "トランザクションが正常に実行されました"
+  "success_transaction_executed": "トランザクションが正常に実行されました",
+  "no_tokens_available": "利用可能なトークンはありません",
+  "trade_tokens_with": "トークンを"
 }

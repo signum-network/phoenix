@@ -426,5 +426,7 @@
   "supply": "Subministración total",
   "invalid_address": "Enderezo non válido",
   "unknown_address": "Enderezo descoñecido",
-  "success_transaction_executed": "Transacción executada con éxito"
+  "success_transaction_executed": "Transacción executada con éxito",
+  "no_tokens_available": "Non hai fichas dispoñibles",
+  "trade_tokens_with": "Cambia fichas con"
 }

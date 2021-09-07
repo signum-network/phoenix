@@ -71,7 +71,7 @@ export class TokenService {
   }
 
   public async fetchTokenData(tokenId: string, account: Account): Promise<TokenData> {
-    const assetBalance = account.assetBalances.find(({asset}) => asset === tokenId);
+    const assetBalance = account.assetBalances && account.assetBalances.find(({asset}) => asset === tokenId);
     if (!assetBalance) {
       throw new Error('Account doesn\'t own that token');
     }
@@ -124,6 +124,10 @@ export class TokenService {
   }
 
   async fetchAccountTokens(account: Account): Promise<TokenData[]> {
+    if (!account.assetBalances) {
+      return Promise.resolve([]);
+    }
+
     const promises = account.assetBalances.map((balance) => {
       const {asset, balanceQNT} = balance;
       return this.gatherTokenData(asset, balanceQNT);

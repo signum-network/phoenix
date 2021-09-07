@@ -426,5 +426,7 @@
   "supply": "Całkowita podaż",
   "invalid_address": "Błędny adres",
   "unknown_address": "Nieznany adres",
-  "success_transaction_executed": "Transakcja zrealizowana pomyślnie"
+  "success_transaction_executed": "Transakcja zrealizowana pomyślnie",
+  "no_tokens_available": "Brak dostępnych tokenów",
+  "trade_tokens_with": "Handluj tokenami z"
 }

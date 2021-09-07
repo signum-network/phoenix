@@ -426,5 +426,7 @@
   "supply": "Totaal aanbod",
   "invalid_address": "Ongeldig adres",
   "unknown_address": "Onbekend adres",
-  "success_transaction_executed": "Transactie succesvol uitgevoerd"
+  "success_transaction_executed": "Transactie succesvol uitgevoerd",
+  "no_tokens_available": "Geen tokens beschikbaar",
+  "trade_tokens_with": "Wissel tokens met"
 }

@@ -426,5 +426,7 @@
   "supply": "Jumlah Pasokan",
   "invalid_address": "Alamat tidak valid",
   "unknown_address": "Alamat Tidak Diketahui",
-  "success_transaction_executed": "Transaksi berhasil dijalankan"
+  "success_transaction_executed": "Transaksi berhasil dijalankan",
+  "no_tokens_available": "Tidak ada token yang tersedia",
+  "trade_tokens_with": "Perdagangkan token dengan"
 }

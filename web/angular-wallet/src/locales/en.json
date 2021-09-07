@@ -426,5 +426,7 @@
   "supply": "Total Supply",
   "invalid_address": "Invalid Address",
   "unknown_address": "Unknown Address",
-  "success_transaction_executed": "Transaction successfully executed"
+  "success_transaction_executed": "Transaction successfully executed",
+  "no_tokens_available": "No tokens available",
+  "trade_tokens_with": "Trade tokens with"
 }

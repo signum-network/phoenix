@@ -426,5 +426,7 @@
   "supply": "Celková ponuka",
   "invalid_address": "Neplatná adresa",
   "unknown_address": "Neznáma adresa",
-  "success_transaction_executed": "Transakcia bola úspešne vykonaná"
+  "success_transaction_executed": "Transakcia bola úspešne vykonaná",
+  "no_tokens_available": "Nie sú k dispozícii žiadne tokeny",
+  "trade_tokens_with": "Obchodujte s tokenmi s"
 }

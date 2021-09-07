@@ -426,5 +426,7 @@
   "supply": "Ukupna ponuda",
   "invalid_address": "Neispravna adresa",
   "unknown_address": "Nepoznata adresa",
-  "success_transaction_executed": "Transakcija je uspješno izvršena"
+  "success_transaction_executed": "Transakcija je uspješno izvršena",
+  "no_tokens_available": "Nema dostupnih žetona",
+  "trade_tokens_with": "Trgujte tokenima s"
 }

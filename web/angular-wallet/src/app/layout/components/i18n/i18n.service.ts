@@ -36,7 +36,6 @@ export class I18nService {
       }
       const {language} = await this.storeService.getSettings();
       this.initLanguage(language);
-      // this.fetch(this.currentLanguage.code);
     });
   }
 
@@ -45,9 +44,6 @@ export class I18nService {
       .subscribe((data: any) => {
         this.data = data;
         this.state.next(data);
-        // setTimeout(() => {
-        //   this.ref.tick();
-        // }, 1000);
       });
   }
 
