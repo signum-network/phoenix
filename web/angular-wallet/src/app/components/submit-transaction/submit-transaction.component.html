@@ -1,6 +1,12 @@
 <div class="submit-transaction">
   <mat-form-field class="message-text password-field" floatLabel="never" appearance="standard">
-    <input type="password" matInput required placeholder="{{'enter_pin' | i18n}}" [(ngModel)]="pin" name="pin">
+    <input type="password"
+           matInput
+           required
+           placeholder="{{'enter_pin' | i18n}}"
+           [(ngModel)]="pin"
+           (ngModelChange)="onChange($event)"
+           name="pin">
   </mat-form-field>
   <button class="send-button"
           mat-icon-button type="submit"

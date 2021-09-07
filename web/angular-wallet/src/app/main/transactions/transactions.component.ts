@@ -77,6 +77,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
       .subscribe((acc: Account) => {
         this.account = acc;
         this.dataSource.data = acc.transactions;
+        this.initTypes();
       });
   }
 

@@ -51,7 +51,7 @@
 
   <app-submit-transaction [disabled]="!canSubmit()"
                           [isSubmitting]="isSubmitting"
-                          (pinChange)="setPin($event)"
+                          [(pin)] = "pin"
   >
   </app-submit-transaction>
   <div class="inlined">

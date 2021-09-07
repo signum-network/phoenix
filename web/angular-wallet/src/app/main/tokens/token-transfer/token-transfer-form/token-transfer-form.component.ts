@@ -12,6 +12,7 @@ import {I18nService} from '../../../../layout/components/i18n/i18n.service';
 import {NotifierService} from 'angular-notifier';
 import {handleException} from '../../../../util/exceptions/handleException';
 import {ExceptionHandlerService} from '../../../../shared/services/exceptionhandler.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-token-transfer-form',
@@ -42,7 +43,8 @@ export class TokenTransferFormComponent implements OnInit {
     private tokenService: TokenService,
     private i18nService: I18nService,
     private notifierService: NotifierService,
-    private exceptionService: ExceptionHandlerService
+    private exceptionService: ExceptionHandlerService,
+    private router: Router
   ) {
   }
 
@@ -75,6 +77,8 @@ export class TokenTransferFormComponent implements OnInit {
       this.notifierService.notify('success',
         this.i18nService.getTranslation('success_transaction_executed')
       );
+      this.reset();
+      await this.router.navigate(['/']);
     } catch (e) {
       this.exceptionService.handle(e);
     }
@@ -90,11 +94,9 @@ export class TokenTransferFormComponent implements OnInit {
         if (ok) {
           await this.transferToken();
         }
-        this.reset();
       });
     } else {
       await this.transferToken();
-      this.reset();
     }
   }
 
