@@ -12,10 +12,17 @@ export class AccountResolver implements Resolve<Promise<Account>> {
 
   }
 
-  resolve(route: ActivatedRouteSnapshot): Promise<Account> {
-    return route.params.id ?
+  async resolve(route: ActivatedRouteSnapshot): Promise<Account> {
+    const account = await (route.params.id ?
       this.accountService.getAccount(route.params.id) :
-      this.accountService.getCurrentAccount();
+      this.accountService.getCurrentAccount());
+
+    const storedAccounts = await this.storeService.getAllAccounts();
+    const storedAccount = storedAccounts.filter(a => a.account === account.account)
+    if (storedAccount.length) {
+      account.type = storedAccount[0].type;
+    }
+    return account;
   }
 }
 

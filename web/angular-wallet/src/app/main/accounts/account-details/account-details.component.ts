@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild, OnDestroy} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AttachmentEncryptedMessage, AttachmentMessage, Account, Transaction} from '@signumjs/core';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
@@ -10,6 +10,7 @@ import {MediaChange, MediaObserver} from '@angular/flex-layout';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {TokenData, TokenService} from '../../tokens/token.service';
+import {FuseProgressBarService} from '../../../../@fuse/components/progress-bar/progress-bar.service';
 
 type TransactionDetailsCellValue = string | AttachmentMessage | AttachmentEncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
@@ -45,7 +46,9 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
               private accountService: AccountService,
               private tokenService: TokenService,
               private observableMedia: MediaObserver,
-              private storeService: StoreService) {
+              private storeService: StoreService,
+              private progressService: FuseProgressBarService,
+  ) {
     super();
     router.events
       .pipe(takeUntil(this.unsubscribeAll))
@@ -62,12 +65,10 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
 
   ngOnInit(): void {
     this.initialize();
-    this.updateTokens();
-    setTimeout(() => {
-      this.updateAvatar();
-    }, 100);
-
-    this.intervalHandle = setInterval(() => this.updateTransactions(), 30 * 1000);
+    this.intervalHandle = setInterval(() => {
+      this.updateTransactions();
+      this.updateTokens();
+    }, 30 * 1000);
   }
 
   public ngAfterContentInit(): void {
@@ -78,8 +79,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
       });
   }
 
-
-  initialize(): void {
+  async initialize(): Promise<void> {
     this.account = this.route.snapshot.data.account as Account;
     this.transactions = this.route.snapshot.data.transactions as Transaction[];
     const blockDetails = Object.keys(this.account).map((key: string): TransactionDetailsCellValueMap => [key, this.account[key]]);
@@ -87,6 +87,11 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
     this.dataSource = new MatTableDataSource<Transaction>();
     this.dataSource.data = this.transactions;
     this.language = this.storeService.settings.value.language;
+
+    setTimeout(() => {
+      this.updateAvatar();
+    }, 100);
+    this.updateTokens();
   }
 
   async updateTransactions(): Promise<void> {
@@ -118,6 +123,8 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
   }
 
   private async updateTokens(): Promise<void> {
-    this.tokens = await this.tokenService.fetchAccountTokens(this.account);
+      this.progressService.show();
+      this.tokens = await this.tokenService.fetchAccountTokens(this.account);
+      this.progressService.hide();
   }
 }

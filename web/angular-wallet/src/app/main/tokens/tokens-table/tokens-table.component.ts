@@ -28,15 +28,18 @@ export class TokensTableComponent extends UnsubscribeOnDestroy implements OnInit
       .subscribe( ({language}) => {
       this.locale = language;
     });
-    this.dataSource.data = this.tokens;
 
-    if(!this.showActions){
-      this.displayedColumns = this.displayedColumns.filter( c => c !== 'actions')
-    }
+    this.update()
   }
 
-  ngOnChanges(): void {
+  private update(): void {
     this.dataSource.data = this.tokens;
+    if(!this.showActions){
+      this.displayedColumns = this.displayedColumns.filter( c => c !== 'actions');
+    }
+  }
+  ngOnChanges(): void {
+    this.update()
   }
 
   getTrend(change: number): string {

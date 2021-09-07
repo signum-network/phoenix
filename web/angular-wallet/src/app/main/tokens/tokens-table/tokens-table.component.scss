@@ -61,9 +61,16 @@
   .mat-column-actions {
     flex: 0 1 32px;
   }
+
+  .wrapper {
+    background-color: white;
+    padding: 0.5rem;
+  }
+
   .btdex-hint {
     display: flex;
     justify-content:flex-end;
     align-items: center;
+    margin-bottom: 0.25rem;
   }
 }
