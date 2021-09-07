@@ -6,8 +6,6 @@ import {SuggestedFees, Account, MultioutRecipientAmount, Address, AddressPrefix}
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {TransactionService} from 'app/main/transactions/transaction.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {WarnSendDialogComponent} from '../warn-send-dialog/warn-send-dialog.component';
-import {Recipient} from '../../../layout/components/recipient-input/recipient-input.component';
 import {filter, takeUntil} from 'rxjs/operators';
 import {StoreService} from '../../../store/store.service';
 import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
@@ -18,6 +16,8 @@ import {Router} from '@angular/router';
 import {AccountBalances, getBalancesFromAccount} from '../../../util/balance';
 import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 import {NetworkService} from '../../../network/network.service';
+import {Recipient} from '../../../components/recipient-input/recipient-input.component';
+import {WarnSendDialogComponent} from '../../../components/warn-send-dialog/warn-send-dialog.component';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -38,8 +38,8 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   @ViewChild('recipients', {static: true}) public recipients: Array<Recipient> = [];
 
-  @Input('account') account: Account;
-  @Input('fees') fees: SuggestedFees;
+  @Input() account: Account;
+  @Input() fees: SuggestedFees;
 
   fee: string;
   sameAmount = false;

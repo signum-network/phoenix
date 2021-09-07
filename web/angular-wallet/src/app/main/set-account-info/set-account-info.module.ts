@@ -20,8 +20,7 @@ import { SuggestFeeResolver } from '../../network/suggest-fee.resolver';
 import { NetworkModule } from 'app/network/network.module';
 import { LayoutModule } from 'app/layout/layout.module';
 import { LoginGuard } from 'app/login/login-guard.service';
-import {PageModule} from '../../components/page/page.module';
-import {SubmitTransactionModule} from '../../components/submit-transaction/submit-transaction.module';
+import {ComponentsModule} from '../../components/components.module';
 
 const routes = [
   {
@@ -39,26 +38,25 @@ const routes = [
   declarations: [
     SetAccountInfoComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    FuseSharedModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    SetupModule,
-    NotifierModule,
-    NgxMaskModule,
-    I18nModule,
-    MatButtonModule,
-    MatInputModule,
-    MatIconModule,
-    MatGridListModule,
-    MatCheckboxModule,
-    NetworkModule,
-    LayoutModule,
-    RouterModule.forChild(routes),
-    PageModule,
-    SubmitTransactionModule
-  ]
+    imports: [
+        BrowserAnimationsModule,
+        BrowserModule,
+        CommonModule,
+        ComponentsModule,
+        FormsModule,
+        FuseSharedModule,
+        I18nModule,
+        LayoutModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatGridListModule,
+        MatIconModule,
+        MatInputModule,
+        NetworkModule,
+        NgxMaskModule,
+        NotifierModule,
+        RouterModule.forChild(routes),
+        SetupModule,
+    ]
 })
 export class SetAccountInfoModule { }

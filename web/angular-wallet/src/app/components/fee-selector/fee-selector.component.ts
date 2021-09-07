@@ -3,20 +3,20 @@ import {convertNQTStringToNumber} from '@signumjs/util';
 import {SuggestedFees} from '@signumjs/core';
 import {EventEmitter} from '@angular/core';
 import {LabelType, Options} from 'ng5-slider';
-import {AmountPipe} from '../../../shared/pipes/amount.pipe';
-import {formatAmount} from '../../../util/formatAmount';
-import {I18nService} from '../i18n/i18n.service';
+import {AmountPipe} from '../../shared/pipes/amount.pipe';
+import {formatAmount} from '../../util/formatAmount';
+import {I18nService} from '../../layout/components/i18n/i18n.service';
 import Color from 'color';
 
 // @ts-ignore
 const SliderAxisBaseColor = Color('#039be5');
 
 @Component({
-  selector: 'burst-fee-selector',
-  templateUrl: './burst-fee-selector.component.html',
-  styleUrls: ['./burst-fee-selector.component.scss']
+  selector: 'app-fee-selector',
+  templateUrl: './fee-selector.component.html',
+  styleUrls: ['./fee-selector.component.scss']
 })
-export class BurstFeeSelectorComponent implements OnInit {
+export class FeeSelectorComponent implements OnInit {
   @Input() fees: SuggestedFees;
 
   feeValue = 0;

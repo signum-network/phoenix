@@ -29,6 +29,11 @@ import {formatDate} from '@angular/common';
   templateUrl: './transaction-table.component.html',
 })
 export class TransactionTableComponent extends UnsubscribeOnDestroy implements AfterViewInit {
+  @Input() dataSource: MatTableDataSource<Transaction>;
+  @Input() displayedColumns = ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'];
+  @Input() paginationEnabled = true;
+  @Input() account: Account;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   public locale: string;
 
   constructor(private utilService: UtilService,
@@ -42,12 +47,6 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
         this.locale = language;
       });
   }
-
-  @Input() dataSource: MatTableDataSource<Transaction>;
-  @Input() public displayedColumns = ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'];
-  @Input() paginationEnabled = true;
-  @Input() account: Account;
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   public isMultiOutPayment(transaction: Transaction): boolean {
     return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction);

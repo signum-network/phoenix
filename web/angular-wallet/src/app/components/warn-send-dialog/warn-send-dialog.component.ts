@@ -5,7 +5,7 @@ import {
   Recipient,
   RecipientType,
   RecipientValidationStatus
-} from '../../../layout/components/recipient-input/recipient-input.component';
+} from 'app/components/recipient-input/recipient-input.component';
 
 
 @Component({

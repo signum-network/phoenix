@@ -29,9 +29,9 @@ import {TransactionDetailsComponent} from './transaction-details';
 import {TransactionResolver} from './transaction.resolver';
 import {LoginGuard} from 'app/login/login-guard.service';
 import {TransactionTableModule} from './transaction-table/transaction.module';
-import {PageModule} from '../../components/page/page.module';
 import {TransactionRowValueCellComponent} from './transaction-details/transaction-row-value-cell/transaction-row-value-cell.component';
 import {AppSharedModule} from '../../shared/shared.module';
+import {ComponentsModule} from '../../components/components.module';
 
 const routes = [
   {
@@ -51,16 +51,22 @@ const routes = [
 
 @NgModule({
   imports: [
+    AppSharedModule,
     CommonModule,
+    ComponentsModule,
     FormsModule,
     FuseSharedModule,
+    I18nModule,
+    MatButtonModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
     MatDatepickerModule,
+    MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
+    MatFormFieldModule,
     MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
@@ -70,17 +76,11 @@ const routes = [
     MatSelectModule,
     MatSortModule,
     MatTableModule,
-    MatTabsModule,
     MatTableModule,
-    MatFormFieldModule,
-    MatButtonModule,
+    MatTabsModule,
     ReactiveFormsModule,
-    I18nModule,
-    MatDialogModule,
-    TransactionTableModule,
     RouterModule.forChild(routes),
-    PageModule,
-    AppSharedModule
+    TransactionTableModule,
   ],
   declarations: [
     TransactionsComponent,

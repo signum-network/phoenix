@@ -29,14 +29,14 @@
     <form (ngSubmit)="onSubmit($event);" #setRewardRecipientForm="ngForm">
       <recipient-input (recipientChange)="onRecipientChange($event)"></recipient-input>
 
-      <burst-fee-selector [fees]="fees" [(fee)]="fee"></burst-fee-selector>
+      <app-fee-selector [fees]="fees" [(fee)]="fee"></app-fee-selector>
 
       <div *ngIf="advanced">
         <mat-form-field>
           <label>{{ 'deadline_hours' | i18n }}</label>
           <input matInput [(ngModel)]="deadline" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}">
         </mat-form-field>
-        <mat-checkbox [(ngModel)]="broadcast" name="broadcast" disabled>{{ "do_not_broadcast" | i18n }}</mat-checkbox>
+<!--        <mat-checkbox [(ngModel)]="broadcast" name="broadcast" disabled>{{ "do_not_broadcast" | i18n }}</mat-checkbox>-->
       </div>
 
       <app-submit-transaction [disabled]="canSubmit()"

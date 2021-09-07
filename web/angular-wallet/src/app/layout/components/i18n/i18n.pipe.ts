@@ -3,11 +3,11 @@ import {I18nService} from './i18n.service';
 
 @Pipe({
   name: 'i18n',
-  pure: false
+  pure: false,
 })
 export class I18nPipe implements PipeTransform {
 
-  constructor(public i18nService: I18nService) {
+  constructor(private i18nService: I18nService) {
   }
 
   transform(phrase: any, args?: any): any {

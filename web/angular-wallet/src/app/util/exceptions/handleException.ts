@@ -8,7 +8,7 @@ interface HandleExceptionArgs {
   e: Error;
 }
 
-// TODO: use throughout the app - use as class injecting deps.
+// FIXME: remove and use ExceptionHandlerService instead
 export function handleException(args: HandleExceptionArgs): void {
   const {i18nService, notifierService, e} = args;
   if (isKeyDecryptionError(e)) {

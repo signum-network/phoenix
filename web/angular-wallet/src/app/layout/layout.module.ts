@@ -13,8 +13,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {I18nModule} from './components/i18n/i18n.module';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
-import {RecipientInputComponent} from './components/recipient-input/recipient-input.component';
-import {BurstFeeSelectorComponent} from './components/burst-fee-selector/burst-fee-selector.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatProgressBarModule} from '@angular/material';
 import {AppSharedModule} from '../shared/shared.module';
@@ -43,12 +41,8 @@ import {AppSharedModule} from '../shared/shared.module';
     VerticalLayout2Module,
     VerticalLayout3Module,
     HorizontalLayout1Module,
-    BurstFeeSelectorComponent,
-    RecipientInputComponent,
   ],
   declarations: [
-    BurstFeeSelectorComponent,
-    RecipientInputComponent,
   ]
 })
 export class LayoutModule {

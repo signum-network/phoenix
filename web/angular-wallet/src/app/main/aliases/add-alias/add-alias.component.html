@@ -43,7 +43,7 @@
       <input matInput [(ngModel)]="feeNQT" name="fee">
     </mat-form-field>
 
-    <burst-fee-selector [fees]="fees" [(fee)]="feeNQT"></burst-fee-selector>
+    <app-fee-selector [fees]="fees" [(fee)]="feeNQT"></app-fee-selector>
 
     <div class="submit-transaction">
       <mat-form-field class="message-text password-field" floatLabel="never" appearance="standard">

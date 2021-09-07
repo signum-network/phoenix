@@ -38,7 +38,7 @@
       </mat-form-field>
     </div>
 
-    <burst-fee-selector [fees]="fees" [(fee)]="fee"></burst-fee-selector>
+    <app-fee-selector [fees]="fees" [(fee)]="fee"></app-fee-selector>
 
     <app-submit-transaction [disabled]="!canSubmit()"
                             [isSubmitting]="isSending"

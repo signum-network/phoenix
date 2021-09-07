@@ -1,0 +1,76 @@
+:host {
+
+  mat-header-cell,
+  mat-header-cell > button
+  {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase !important;
+  }
+
+  .mat-table {
+    overflow: auto;
+    max-height: 600px;
+  }
+
+  .element-row {
+    position: relative;
+  }
+
+  .element-row:not(.expanded) {
+    cursor: pointer;
+  }
+
+  .element-row:not(.expanded):hover {
+    background: #f5f5f5;
+  }
+
+  .element-row.expanded {
+    border-bottom-color: transparent;
+  }
+
+  .price-change {
+    padding: 0.25rem 1rem;
+    border-radius: 8px;
+  }
+
+  .trend-up {
+    background: #CDFFCD;
+    color: #007F00;
+  }
+
+  .trend-down {
+    background: #FFE0E0;
+    color: #D30000;
+  }
+
+  .trend-flat {
+    background: #E0E0E0;
+    color: grey;
+  }
+
+  .smaller {
+    font-size: 80%;
+  }
+
+  .stacked {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mat-column-actions {
+    flex: 0 1 32px;
+  }
+
+  .wrapper {
+    background-color: white;
+    padding: 0.5rem;
+  }
+
+  .btdex-hint {
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    margin-bottom: 0.25rem;
+  }
+}

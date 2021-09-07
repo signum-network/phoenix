@@ -21,10 +21,9 @@ import {NetworkModule} from 'app/network/network.module';
 import {LayoutModule} from 'app/layout/layout.module';
 import {LoginGuard} from 'app/login/login-guard.service';
 import {AppSharedModule} from '../../shared/shared.module';
-import {PageModule} from '../../components/page/page.module';
 import {MatProgressSpinnerModule, MatRadioModule, MatSlideToggleModule, MatTabsModule, MatTooltipModule} from '@angular/material';
 import {SetCommitmentFormComponent} from './set-commitment-form/set-commitment-form.component';
-import {SubmitTransactionModule} from '../../components/submit-transaction/submit-transaction.module';
+import {ComponentsModule} from '../../components/components.module';
 
 const routes = [
   {
@@ -43,34 +42,32 @@ const routes = [
     SetCommitmentComponent,
     SetCommitmentFormComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    FuseSharedModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    SetupModule,
-    NotifierModule,
-    NgxMaskModule,
-    I18nModule,
-    MatButtonModule,
-    MatInputModule,
-    MatIconModule,
-    MatGridListModule,
-    MatCheckboxModule,
-    NetworkModule,
-    LayoutModule,
-    RouterModule.forChild(routes),
-    AppSharedModule,
-    PageModule,
-    MatTabsModule,
-    MatTooltipModule,
-    MatProgressSpinnerModule,
-    MatSlideToggleModule,
-    SubmitTransactionModule,
-    SubmitTransactionModule,
-    MatRadioModule,
-  ]
+    imports: [
+        AppSharedModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        CommonModule,
+        ComponentsModule,
+        FormsModule,
+        FuseSharedModule,
+        I18nModule,
+        LayoutModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatGridListModule,
+        MatIconModule,
+        MatInputModule,
+        MatProgressSpinnerModule,
+        MatRadioModule,
+        MatSlideToggleModule,
+        MatTabsModule,
+        MatTooltipModule,
+        NetworkModule,
+        NgxMaskModule,
+        NotifierModule,
+        RouterModule.forChild(routes),
+        SetupModule,
+    ]
 })
 export class SetCommitmentModule {
 }

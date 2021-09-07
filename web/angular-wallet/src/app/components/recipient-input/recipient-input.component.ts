@@ -1,11 +1,11 @@
 import {Component, ElementRef, EventEmitter, Input, OnChanges, Output, ViewChild} from '@angular/core';
-import {AccountService} from '../../../setup/account/account.service';
 import jsQR from 'jsqr';
 import {NotifierService} from 'angular-notifier';
 import {DomainService} from 'app/main/send-burst/domain/domain.service';
 import {Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {Address, AddressPrefix} from '@signumjs/core';
+import {AccountService} from '../../setup/account/account.service';
 
 // generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
 let nextId = 0;
@@ -39,6 +39,17 @@ export class Recipient {
   }
 }
 
+export interface QRData {
+  recipient: Recipient;
+  amountNQT: string;
+  feeNQT: string;
+  immutable: boolean;
+  feeSuggestionType: string;
+  encrypt: boolean;
+  messageIsText: boolean;
+  message?: string;
+}
+
 @Component({
   selector: 'recipient-input',
   templateUrl: './recipient-input.component.html',
@@ -63,7 +74,7 @@ export class RecipientInputComponent implements OnChanges {
   @Output()
   recipientChange = new EventEmitter();
   @Output()
-  qrCodeUpload = new EventEmitter();
+  qrCodeUpload = new EventEmitter<QRData>();
 
 
   @Input()
@@ -233,13 +244,13 @@ export class RecipientInputComponent implements OnChanges {
 
     const img = new Image();
     img.src = window.URL.createObjectURL(file);
-    img.onload = () => {
+    img.onload = async () => {
       // reduce the image by 1/4 to make it more reliable
       const width = Math.round(img.naturalWidth / 4),
         height = Math.round(img.naturalHeight / 4);
 
       const reader = new FileReader();
-      reader.onload = (e: ProgressEvent): void => {
+      reader.onload = async (e: ProgressEvent): Promise<void> => {
         const canvas = document.createElement('canvas');
         canvas.width = width;
         canvas.height = height;
@@ -251,14 +262,15 @@ export class RecipientInputComponent implements OnChanges {
           const url = new URLSearchParams(qr.data);
           const recipient = url.get('receiver').trim();
           this.applyRecipientType(recipient);
-          this.validateRecipient(recipient);
+          await this.validateRecipient(recipient);
           this.qrCodeUpload.emit({
             recipient: this.recipient,
             amountNQT: url.get('amountNQT'),
             feeNQT: url.get('feeNQT'),
             immutable: url.get('immutable') === 'true',
             feeSuggestionType: url.get('feeSuggestionType'),
-            messageIsText: url.get('messageIsText') !== 'false'
+            messageIsText: url.get('messageIsText') !== 'false',
+            encrypt: false
           });
           this.notifierService.notify('success', 'QR parsed successfully');
         } else {

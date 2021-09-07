@@ -140,9 +140,6 @@ export class AccountService {
     return this.api.account.getAliases(id);
   }
 
-  public getAsset(id: string): Promise<Asset> {
-    return this.api.asset.getAsset(id);
-  }
 
   public getAssets(id: number): Promise<AssetList> {
     return this.api.asset.getAllAssets(id);
@@ -365,13 +362,14 @@ export class AccountService {
 
   public async syncAccountUnconfirmedTransactions(account: Account): Promise<void> {
     try {
+      const orderByTimestamp = (a, b) => a.timestamp > b.timestamp ? -1 : 1;
       const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account);
-      account.transactions = uniqBy(unconfirmedTransactionsResponse.unconfirmedTransactions.concat(account.transactions), 'transaction');
+      const unconfirmed = unconfirmedTransactionsResponse.unconfirmedTransactions.sort(orderByTimestamp);
+      account.transactions = uniqBy(unconfirmed.concat(account.transactions), 'transaction');
 
       // @ts-ignore - Send notifications for new transactions
       if (window.Notification) {
-        unconfirmedTransactionsResponse.unconfirmedTransactions
-          .sort((a, b) => a.timestamp > b.timestamp ? -1 : 1)
+        unconfirmed
           .filter(({transaction}) => this.isNewTransaction(transaction))
           .map((transaction) => this.sendNewTransactionNotification(transaction));
       }

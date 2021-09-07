@@ -53,7 +53,7 @@
     <input matInput [(ngModel)]="fee" name="fee" placeholder="{{ 'fee' | i18n }}">
   </mat-form-field>
 
-  <burst-fee-selector [fees]="fees" [(fee)]="fee"></burst-fee-selector>
+  <app-fee-selector [fees]="fees" [(fee)]="fee"></app-fee-selector>
 
   <div *ngIf="advanced">
     <mat-form-field>
