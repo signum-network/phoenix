@@ -31,10 +31,9 @@
       </button>
 
       <mat-menu #profileMenu="matMenu" [overlapTrigger]="false">
-        <button *ngFor="let profile of profiles" mat-menu-item (click)="setProfile(profile.name)">
+        <button *ngFor="let profile of profiles" mat-menu-item (click)="setProfile(profile.name)" matTooltip="{{profile.description | i18n}}">
                   <span class="profile mr-12">
-                    <mat-icon class="profile-type-icon"
-                              matTooltip="{{profile.description | i18n}}">{{profile.icon}}</mat-icon>
+                    <mat-icon class="profile-type-icon">{{profile.icon}}</mat-icon>
                     {{profile.name | i18n}}
                   </span>
         </button>
