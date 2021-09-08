@@ -40,6 +40,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
   intervalHandle: any;
   columns: string[] = [];
   tokens: TokenData[] = [];
+  isLoadingTokens = true;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -124,7 +125,9 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
 
   private async updateTokens(): Promise<void> {
       this.progressService.show();
+      this.isLoadingTokens = true;
       this.tokens = await this.tokenService.fetchAccountTokens(this.account);
+      this.isLoadingTokens = false;
       this.progressService.hide();
   }
 }

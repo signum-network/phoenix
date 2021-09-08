@@ -16,6 +16,7 @@ export class TokensComponent implements OnInit, OnDestroy {
   public tokens: TokenData[] = [];
 
   intervalHandle = null;
+  isLoading = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,7 +35,9 @@ export class TokensComponent implements OnInit, OnDestroy {
       this.selectedAccount = this.route.snapshot.data.account as Account;
       if (this.selectedAccount) {
         this.progressService.show();
+        this.isLoading = true;
         await this.fetchTokens();
+        this.isLoading = false;
         this.progressService.hide();
       }
       this.intervalHandle = setInterval(() => {

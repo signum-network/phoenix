@@ -1,6 +1,7 @@
 <app-page [full]="true" title="{{ 'assets' | i18n }}">
   <app-tokens-table
     [tokens]="tokens"
+    [isLoading]="isLoading"
     [showActions]="selectedAccount.type !== 'offline'">
   </app-tokens-table>
 </app-page>
