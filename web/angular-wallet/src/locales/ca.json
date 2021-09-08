@@ -428,5 +428,13 @@
   "unknown_address": "Adreça desconeguda",
   "success_transaction_executed": "La transacció s'ha executat correctament",
   "no_tokens_available": "No hi ha fitxes disponibles",
-  "trade_tokens_with": "Comerç de fitxes amb"
+  "trade_tokens_with": "Comerç de fitxes amb",
+  "simple": "Senzill",
+  "trader": "Comerciant",
+  "miner": "Miner",
+  "power": "Usuari avançat",
+  "user_profile_desc_simple": "Tauler de control simplificat. El millor per als usuaris de nivell inicial.",
+  "user_profile_desc_power": "Tauler avançat amb molta informació addicional.",
+  "user_profile_desc_miner": "Tauler de control amb informació addicional per als miners.",
+  "user_profile_desc_trader": "Tauler amb molta informació comercial i gràfics addicionals."
 }

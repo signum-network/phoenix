@@ -428,5 +428,13 @@
   "unknown_address": "अज्ञात पता",
   "success_transaction_executed": "लेन-देन सफलतापूर्वक निष्पादित",
   "no_tokens_available": "कोई टोकन उपलब्ध नहीं है",
-  "trade_tokens_with": "के साथ व्यापार टोकन"
+  "trade_tokens_with": "के साथ व्यापार टोकन",
+  "simple": "सरल",
+  "trader": "व्यापारी",
+  "miner": "खान में काम करनेवाला",
+  "power": "पॉवर उपयोगकर्ता",
+  "user_profile_desc_simple": "सरलीकृत डैशबोर्ड। प्रवेश स्तर के उपयोगकर्ताओं के लिए सर्वश्रेष्ठ।",
+  "user_profile_desc_power": "अतिरिक्त जानकारी के साथ उन्नत डैशबोर्ड।",
+  "user_profile_desc_miner": "खनिकों के लिए अतिरिक्त जानकारी वाला डैशबोर्ड।",
+  "user_profile_desc_trader": "बहुत सारी ट्रेडिंग जानकारी और अतिरिक्त चार्ट वाला डैशबोर्ड।"
 }

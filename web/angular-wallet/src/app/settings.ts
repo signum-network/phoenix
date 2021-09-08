@@ -23,6 +23,7 @@ export class Settings {
     public theme: string;
     public version: string;
     public marketUrl: string;
+    public userProfile: string;
 
     // user agreed to disclaimer
     public agree = false;
@@ -46,5 +47,6 @@ export class Settings {
         this.version = data.version || version;
         this.agree = data.agree || this.agree;
         this.welcomeMessageHiddenFrom = data.welcomeMessageHiddenFrom || [];
+        this.userProfile = data.userProfile || constants.defaultUserProfile;
     }
 }

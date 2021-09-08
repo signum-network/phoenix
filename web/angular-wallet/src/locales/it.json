@@ -428,5 +428,13 @@
   "unknown_address": "Indirizzo sconosciuto",
   "success_transaction_executed": "Transazione eseguita con successo",
   "no_tokens_available": "Nessun token disponibile",
-  "trade_tokens_with": "Scambia i token con"
+  "trade_tokens_with": "Scambia i token con",
+  "simple": "Semplice",
+  "trader": "Commerciante",
+  "miner": "Minatore",
+  "power": "Power user",
+  "user_profile_desc_simple": "Cruscotto semplificato. Ideale per utenti di livello base.",
+  "user_profile_desc_power": "Dashboard avanzato con molte informazioni aggiuntive.",
+  "user_profile_desc_miner": "Dashboard con informazioni aggiuntive per i minatori.",
+  "user_profile_desc_trader": "Dashboard con molte informazioni di trading e grafici aggiuntivi."
 }

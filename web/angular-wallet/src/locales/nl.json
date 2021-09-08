@@ -428,5 +428,13 @@
   "unknown_address": "Onbekend adres",
   "success_transaction_executed": "Transactie succesvol uitgevoerd",
   "no_tokens_available": "Geen tokens beschikbaar",
-  "trade_tokens_with": "Wissel tokens met"
+  "trade_tokens_with": "Wissel tokens met",
+  "simple": "Eenvoudig",
+  "trader": "Handelaar",
+  "miner": "Mijnwerker",
+  "power": "Hoofdgebruiker",
+  "user_profile_desc_simple": "Vereenvoudigd dashboard. Het beste voor gebruikers op instapniveau.",
+  "user_profile_desc_power": "Geavanceerd dashboard met veel extra informatie.",
+  "user_profile_desc_miner": "Dashboard met aanvullende informatie voor miners.",
+  "user_profile_desc_trader": "Dashboard met veel handelsinformatie en extra grafieken."
 }

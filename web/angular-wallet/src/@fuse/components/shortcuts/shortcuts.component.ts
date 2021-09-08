@@ -84,35 +84,35 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy {
     this.shortcutItems = [];
     const isOfflineAccount = this.currentAccount && this.currentAccount.type === 'offline';
 
-    this.shortcutItems.push({
-      title: this.i18nService.getTranslation('dashboard'),
-      type: 'item',
-      icon: 'dashboard',
-      url: '/dashboard'
-    });
-    if (!isOfflineAccount) {
-      this.shortcutItems.push({
-        title: this.i18nService.getTranslation('send_burst'),
-        type: 'item',
-        icon: 'vertical_align_top',
-        url: '/send'
-      });
-    }
-    this.shortcutItems.push({
-      title: this.i18nService.getTranslation('request_burst'),
-      type: 'item',
-      icon: 'vertical_align_bottom',
-      url: '/request'
-    });
-    if (!isOfflineAccount) {
-      this.shortcutItems.push(
-        {
-          title: this.i18nService.getTranslation('messages'),
-          type: 'item',
-          icon: 'message',
-          url: '/messages'
-        });
-    }
+    // this.shortcutItems.push({
+    //   title: this.i18nService.getTranslation('dashboard'),
+    //   type: 'item',
+    //   icon: 'dashboard',
+    //   url: '/dashboard'
+    // });
+    // if (!isOfflineAccount) {
+    //   this.shortcutItems.push({
+    //     title: this.i18nService.getTranslation('send_burst'),
+    //     type: 'item',
+    //     icon: 'vertical_align_top',
+    //     url: '/send'
+    //   });
+    // }
+    // this.shortcutItems.push({
+    //   title: this.i18nService.getTranslation('request_burst'),
+    //   type: 'item',
+    //   icon: 'vertical_align_bottom',
+    //   url: '/request'
+    // });
+    // if (!isOfflineAccount) {
+    //   this.shortcutItems.push(
+    //     {
+    //       title: this.i18nService.getTranslation('messages'),
+    //       type: 'item',
+    //       icon: 'message',
+    //       url: '/messages'
+    //     });
+    // }
     this.shortcutItems.push({
       title: this.i18nService.getTranslation('settings'),
       type: 'item',

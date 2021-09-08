@@ -428,5 +428,13 @@
   "unknown_address": "Adresse inconnue",
   "success_transaction_executed": "Transaction exécutée avec succès",
   "no_tokens_available": "Aucun jeton disponible",
-  "trade_tokens_with": "Échangez des jetons avec"
+  "trade_tokens_with": "Échangez des jetons avec",
+  "simple": "Simple",
+  "trader": "Commerçant",
+  "miner": "Mineur",
+  "power": "Utilisateur avec pouvoir",
+  "user_profile_desc_simple": "Tableau de bord simplifié. Idéal pour les utilisateurs d'entrée de gamme.",
+  "user_profile_desc_power": "Tableau de bord avancé avec de nombreuses informations supplémentaires.",
+  "user_profile_desc_miner": "Tableau de bord avec des informations supplémentaires pour les mineurs.",
+  "user_profile_desc_trader": "Tableau de bord avec de nombreuses informations sur le trading et des graphiques supplémentaires."
 }

@@ -428,5 +428,13 @@
   "unknown_address": "Nepoznata adresa",
   "success_transaction_executed": "Transakcija je uspješno izvršena",
   "no_tokens_available": "Nema dostupnih žetona",
-  "trade_tokens_with": "Trgujte tokenima s"
+  "trade_tokens_with": "Trgujte tokenima s",
+  "simple": "Jednostavan",
+  "trader": "Trgovac",
+  "miner": "Rudar",
+  "power": "Snažni korisnik",
+  "user_profile_desc_simple": "Pojednostavljena nadzorna ploča. Najbolje za korisnike početne razine.",
+  "user_profile_desc_power": "Napredna nadzorna ploča s puno dodatnih informacija.",
+  "user_profile_desc_miner": "Nadzorna ploča s dodatnim podacima za rudare.",
+  "user_profile_desc_trader": "Nadzorna ploča s puno informacija o trgovanju i dodatnim grafikonima."
 }

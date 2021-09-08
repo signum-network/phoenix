@@ -428,5 +428,13 @@
   "unknown_address": "Nieznany adres",
   "success_transaction_executed": "Transakcja zrealizowana pomyślnie",
   "no_tokens_available": "Brak dostępnych tokenów",
-  "trade_tokens_with": "Handluj tokenami z"
+  "trade_tokens_with": "Handluj tokenami z",
+  "simple": "Prosty",
+  "trader": "Handlowiec",
+  "miner": "Górnik",
+  "power": "Użytkownik energii",
+  "user_profile_desc_simple": "Uproszczony pulpit nawigacyjny. Najlepsze dla użytkowników na poziomie podstawowym.",
+  "user_profile_desc_power": "Zaawansowany pulpit nawigacyjny z dużą ilością dodatkowych informacji.",
+  "user_profile_desc_miner": "Pulpit z dodatkowymi informacjami dla górników.",
+  "user_profile_desc_trader": "Pulpit nawigacyjny z dużą ilością informacji handlowych i dodatkowymi wykresami."
 }

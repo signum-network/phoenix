@@ -428,5 +428,13 @@
   "unknown_address": "Enderezo descoñecido",
   "success_transaction_executed": "Transacción executada con éxito",
   "no_tokens_available": "Non hai fichas dispoñibles",
-  "trade_tokens_with": "Cambia fichas con"
+  "trade_tokens_with": "Cambia fichas con",
+  "simple": "Sinxelo",
+  "trader": "Comerciante",
+  "miner": "Mineiro",
+  "power": "Usuario avanzado",
+  "user_profile_desc_simple": "Panel simplificado. Mellor para usuarios de nivel inicial.",
+  "user_profile_desc_power": "Panel avanzado con moita información adicional.",
+  "user_profile_desc_miner": "Panel de control con información adicional para os mineiros.",
+  "user_profile_desc_trader": "Panel de control con moita información comercial e gráficos adicionais."
 }

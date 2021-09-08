@@ -428,5 +428,13 @@
   "unknown_address": "Neznámá adresa",
   "success_transaction_executed": "Transakce byla úspěšně provedena",
   "no_tokens_available": "Nejsou k dispozici žádné tokeny",
-  "trade_tokens_with": "Obchodujte s tokeny"
+  "trade_tokens_with": "Obchodujte s tokeny",
+  "simple": "Jednoduchý",
+  "trader": "Obchodník",
+  "miner": "Horník",
+  "power": "Pokročilý uživatel",
+  "user_profile_desc_simple": "Zjednodušený hlavní panel. Nejlepší pro uživatele vstupní úrovně.",
+  "user_profile_desc_power": "Pokročilý řídicí panel se spoustou dalších informací.",
+  "user_profile_desc_miner": "Hlavní panel s dalšími informacemi pro těžaře.",
+  "user_profile_desc_trader": "Řídicí panel se spoustou obchodních informací a dalšími grafy."
 }

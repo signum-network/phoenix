@@ -428,5 +428,13 @@
   "unknown_address": "Unknown Address",
   "success_transaction_executed": "Transaction successfully executed",
   "no_tokens_available": "No tokens available",
-  "trade_tokens_with": "Trade tokens with"
+  "trade_tokens_with": "Trade tokens with",
+  "simple": "Simple",
+  "trader": "Trader",
+  "miner": "Miner",
+  "power": "Power User",
+  "user_profile_desc_simple": "Simplified Dashboard. Best for entry level users.",
+  "user_profile_desc_power": "Advanced Dashboard with lots of additional information.",
+  "user_profile_desc_miner": "Dashboard with additional information for miners.",
+  "user_profile_desc_trader": "Dashboard with lots of trading information and additional charts."
 }

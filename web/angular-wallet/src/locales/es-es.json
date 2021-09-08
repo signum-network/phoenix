@@ -428,5 +428,13 @@
   "unknown_address": "Dirección desconocida",
   "success_transaction_executed": "Transacción ejecutada con éxito",
   "no_tokens_available": "No hay tokens disponibles",
-  "trade_tokens_with": "Intercambia tokens con"
+  "trade_tokens_with": "Intercambia tokens con",
+  "simple": "Sencillo",
+  "trader": "Comerciante",
+  "miner": "Minero",
+  "power": "Usuario de poder",
+  "user_profile_desc_simple": "Panel de control simplificado. Lo mejor para usuarios de nivel de entrada.",
+  "user_profile_desc_power": "Panel avanzado con mucha información adicional.",
+  "user_profile_desc_miner": "Tablero con información adicional para mineros.",
+  "user_profile_desc_trader": "Panel de control con mucha información comercial y gráficos adicionales."
 }

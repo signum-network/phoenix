@@ -2,34 +2,50 @@
 
   <div *ngIf="!isMainNet" class="testnet-stamp">TestNet</div>
 
-    <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
+  <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
 
-        <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+    <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
 
-            <button mat-icon-button class="navbar-toggle-button"
-                    *ngIf="!hiddenNavbar && !rightNavbar" (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
-                <mat-icon class="secondary-text">menu</mat-icon>
-            </button>
+      <button mat-icon-button class="action-button"
+              *ngIf="!hiddenNavbar && !rightNavbar" (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
+        <mat-icon class="secondary-text">menu</mat-icon>
+      </button>
 
-            <div class="toolbar-separator" *ngIf="!hiddenNavbar && !rightNavbar" fxHide.gt-md></div>
+      <div class="toolbar-separator" *ngIf="!hiddenNavbar && !rightNavbar" fxHide.gt-md></div>
 
-            <div fxLayout="row" fxLayoutAlign="start center" *ngIf="horizontalNavbar">
-                <div class="logo ml-16">
-                    <img class="logo-icon" src="assets/images/logos/icon_white.svg">
-                </div>
-            </div>
-
-            <div class="px-8 px-md-16">
-                <fuse-shortcuts [navigation]="navigation"></fuse-shortcuts>
-            </div>
-
+      <div fxLayout="row" fxLayoutAlign="start center" *ngIf="horizontalNavbar">
+        <div class="logo ml-16">
+          <img class="logo-icon" src="assets/images/logos/icon_white.svg">
         </div>
+      </div>
 
-        <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+      <div class="px-8 px-md-16">
+        <fuse-shortcuts [navigation]="navigation"></fuse-shortcuts>
+      </div>
 
-            <button mat-button [matMenuTriggerFor]="userMenu"
-                    class="user-button">
-                <div fxLayout="row" fxLayoutAlign="center center">
+      <button mat-button [matMenuTriggerFor]="profileMenu" class="action-button">
+        <span fxLayout="row" fxLayoutAlign="center center"  matTooltip="{{selectedProfile.description | i18n}}">
+          <mat-icon class="secondary-text">{{selectedProfile.icon}}</mat-icon>
+          <mat-icon class="s-16">keyboard_arrow_down</mat-icon>
+        </span>
+      </button>
+
+      <mat-menu #profileMenu="matMenu" [overlapTrigger]="false">
+        <button *ngFor="let profile of profiles" mat-menu-item (click)="setProfile(profile.name)">
+                  <span class="profile mr-12">
+                    <mat-icon class="profile-type-icon"
+                              matTooltip="{{profile.description | i18n}}">{{profile.icon}}</mat-icon>
+                    {{profile.name | i18n}}
+                  </span>
+        </button>
+      </mat-menu>
+    </div>
+
+    <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+
+      <button mat-button [matMenuTriggerFor]="userMenu"
+              class="action-button">
+        <div fxLayout="row" fxLayoutAlign="center center">
                     <span class="username mr-12" fxHide fxShow.gt-sm>
                         <ng-container *ngIf="selectedAccount.type === 'offline'">
                             <mat-icon class="account-type-icon" matTooltip="{{'hint_offline_account' | i18n}}">remove_red_eye</mat-icon>
@@ -38,17 +54,18 @@
                             <mat-icon class="account-type-icon" matTooltip="{{'hint_online_account' | i18n}}">verified_user</mat-icon>
                         </ng-container>
                         <ng-container *ngIf="selectedAccount.type !== 'offline' && !selectedAccount.confirmed">
-                            <mat-icon class="account-type-icon" matTooltip="{{'error_no_public_key' | i18n}}">lock_open</mat-icon>
+                            <mat-icon class="account-type-icon"
+                                      matTooltip="{{'error_no_public_key' | i18n}}">lock_open</mat-icon>
                         </ng-container>
-                        {{selectedAccount.name || selectedAccount.accountRS}}
+                      {{selectedAccount.name || selectedAccount.accountRS}}
                     </span>
-                    <mat-icon class="s-16">keyboard_arrow_down</mat-icon>
-                </div>
-            </button>
+          <mat-icon class="s-16">keyboard_arrow_down</mat-icon>
+        </div>
+      </button>
 
-            <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+      <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
 
-                <button *ngFor="let account of accounts" mat-menu-item class="" (click)="setAccount(account)">
+        <button *ngFor="let account of accounts" mat-menu-item class="" (click)="setAccount(account)">
                     <span *ngIf="account" class="username mr-12">
                         <ng-container *ngIf="account.type === 'offline'">
                             <mat-icon class="account-type-icon" matTooltip="{{'hint_offline_account' | i18n}}">remove_red_eye</mat-icon>
@@ -57,49 +74,50 @@
                             <mat-icon class="account-type-icon" matTooltip="{{'hint_online_account' | i18n}}">verified_user</mat-icon>
                         </ng-container>
                         <ng-container *ngIf="account.type !== 'offline' && !account.confirmed">
-                            <mat-icon class="account-type-icon" matTooltip="{{'error_no_public_key' | i18n}}">lock_open</mat-icon>
+                            <mat-icon class="account-type-icon"
+                                      matTooltip="{{'error_no_public_key' | i18n}}">lock_open</mat-icon>
                         </ng-container>
-                        {{account.name || account.accountRS}}
+                      {{account.name || account.accountRS}}
                     </span>
-                </button>
-                <mat-divider></mat-divider>
-                <button mat-menu-item class="manage-accounts" routerLink="/accounts">
-                    <mat-icon>people</mat-icon>
-                    <span>Manage Accounts</span>
-                </button>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item class="manage-accounts" routerLink="/accounts">
+          <mat-icon>people</mat-icon>
+          <span>Manage Accounts</span>
+        </button>
 
-            </mat-menu>
+      </mat-menu>
 
-            <div class="toolbar-separator"></div>
+      <div class="toolbar-separator"></div>
 
-            <button *ngIf="selectedLanguage" mat-button
-                    class="language-button"
-                    [matMenuTriggerFor]="languageMenu">
-                <div fxLayout="row" fxLayoutAlign="center center">
-                    <span class="iso text-uppercase" fxHide fxShow.gt-xs>{{selectedLanguage.name}}</span>
-                    <span class="iso text-uppercase" fxHide.gt-xs>
+      <button *ngIf="selectedLanguage" mat-button
+              class="action-button"
+              [matMenuTriggerFor]="languageMenu">
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <span class="iso text-uppercase" fxHide fxShow.gt-xs>{{selectedLanguage.name}}</span>
+          <span class="iso text-uppercase" fxHide.gt-xs>
                       <mat-icon class="secondary-text">language</mat-icon>
                     </span>
-                </div>
-            </button>
+        </div>
+      </button>
 
-            <mat-menu #languageMenu="matMenu" [overlapTrigger]="false">
-                <button mat-menu-item *ngFor="let lang of languages" (click)="setLanguage(lang)">
+      <mat-menu #languageMenu="matMenu" [overlapTrigger]="false">
+        <button mat-menu-item *ngFor="let lang of languages" (click)="setLanguage(lang)">
                     <span fxLayout="row" fxLayoutAlign="start center">
                         <span class="iso">{{lang.name}}</span>
                     </span>
-                </button>
-            </mat-menu>
+        </button>
+      </mat-menu>
 
-            <div class="toolbar-separator" *ngIf="!hiddenNavbar && rightNavbar" fxHide fxShow.gt-xs></div>
+      <div class="toolbar-separator" *ngIf="!hiddenNavbar && rightNavbar" fxHide fxShow.gt-xs></div>
 
-            <button mat-icon-button class="navbar-toggle-button"
-                    *ngIf="!hiddenNavbar && rightNavbar" (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
-                <mat-icon class="secondary-text">menu</mat-icon>
-            </button>
-
-        </div>
+      <button mat-icon-button class="action-button"
+              *ngIf="!hiddenNavbar && rightNavbar" (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
+        <mat-icon class="secondary-text">menu</mat-icon>
+      </button>
 
     </div>
+
+  </div>
 
 </mat-toolbar>

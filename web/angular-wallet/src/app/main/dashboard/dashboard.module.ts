@@ -36,7 +36,6 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [LoginGuard],
     resolve: {
-      data: DashboardService,
       account: AccountResolver
     },
   }
@@ -74,9 +73,6 @@ const routes: Routes = [
     MatTooltipModule,
     MatChipsModule
   ],
-  providers: [
-    DashboardService,
-  ]
 })
 export class DashboardModule {
 }

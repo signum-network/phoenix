@@ -428,5 +428,13 @@
   "unknown_address": "Nežinomas adresas",
   "success_transaction_executed": "Sandoris sėkmingai įvykdytas",
   "no_tokens_available": "Žetonų nėra",
-  "trade_tokens_with": "Prekyba žetonais su"
+  "trade_tokens_with": "Prekyba žetonais su",
+  "simple": "Paprasta",
+  "trader": "Prekiautojas",
+  "miner": "Miner",
+  "power": "Galingas vartotojas",
+  "user_profile_desc_simple": "Supaprastintas prietaisų skydelis. Geriausiai tinka pradinio lygio vartotojams.",
+  "user_profile_desc_power": "Išplėstinis prietaisų skydelis su daugybe papildomos informacijos.",
+  "user_profile_desc_miner": "Prietaisų skydelis su papildoma informacija kalnakasiams.",
+  "user_profile_desc_trader": "Prietaisų skydelis su daugybe prekybos informacijos ir papildomų diagramų."
 }

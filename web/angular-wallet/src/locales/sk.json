@@ -428,5 +428,13 @@
   "unknown_address": "Neznáma adresa",
   "success_transaction_executed": "Transakcia bola úspešne vykonaná",
   "no_tokens_available": "Nie sú k dispozícii žiadne tokeny",
-  "trade_tokens_with": "Obchodujte s tokenmi s"
+  "trade_tokens_with": "Obchodujte s tokenmi s",
+  "simple": "Jednoduché",
+  "trader": "Obchodník",
+  "miner": "Baník",
+  "power": "Výkonný používateľ",
+  "user_profile_desc_simple": "Zjednodušený informačný panel. Najlepšie pre používateľov základnej úrovne.",
+  "user_profile_desc_power": "Rozšírený informačný panel s množstvom ďalších informácií.",
+  "user_profile_desc_miner": "Hlavný panel s ďalšími informáciami pre baníkov.",
+  "user_profile_desc_trader": "Hlavný panel s množstvom obchodných informácií a ďalšími grafmi."
 }

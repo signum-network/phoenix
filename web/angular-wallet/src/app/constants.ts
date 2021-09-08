@@ -171,5 +171,6 @@ export const constants = {
   mainnetIndicator: {
     block: 23,
     previousHash: '520d5647e77106c98eeab9d1cc5753daab2a3b3e1ba0b2da388be305dd97e5f7'
-  }
+  },
+  defaultUserProfile: 'simple'
 };
