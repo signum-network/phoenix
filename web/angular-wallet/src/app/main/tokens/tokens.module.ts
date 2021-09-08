@@ -36,6 +36,7 @@ import {TokenTransferFormComponent} from './token-transfer/token-transfer-form/t
 import {CurrentAccountResolver} from '../../shared/resolvers/current-account.resolver';
 import {TokenDataResolver} from './token-data-resolver.service';
 import {ComponentsModule} from '../../components/components.module';
+import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 
 const routes = [
   {
@@ -66,39 +67,40 @@ const routes = [
   exports: [
     TokensTableComponent
   ],
-  imports: [
-    CommonModule,
-    ComponentsModule,
-    FormsModule,
-    SetupModule,
-    NgxMaskModule,
-    NetworkModule,
-    LayoutModule,
-    MatAutocompleteModule,
-    FuseSharedModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatSelectModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatTableModule,
-    MatButtonModule,
-    MatTooltipModule,
-    ReactiveFormsModule,
-    I18nModule,
-    MatDialogModule,
-    RouterModule.forChild(routes),
-    AppSharedModule,
-  ]
+    imports: [
+        CommonModule,
+        ComponentsModule,
+        FormsModule,
+        SetupModule,
+        NgxMaskModule,
+        NetworkModule,
+        LayoutModule,
+        MatAutocompleteModule,
+        FuseSharedModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatDividerModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatGridListModule,
+        MatIconModule,
+        MatInputModule,
+        MatNativeDateModule,
+        MatPaginatorModule,
+        MatSelectModule,
+        MatSortModule,
+        MatTableModule,
+        MatTabsModule,
+        MatTableModule,
+        MatButtonModule,
+        MatTooltipModule,
+        ReactiveFormsModule,
+        I18nModule,
+        MatDialogModule,
+        RouterModule.forChild(routes),
+        AppSharedModule,
+        NgxSkeletonLoaderModule,
+    ]
 })
 export class TokensModule {
 }

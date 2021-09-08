@@ -41,7 +41,11 @@
         </app-transaction-table>
       </mat-tab>
       <mat-tab label="{{ 'assets' | i18n }}">
-        <app-tokens-table [tokens]="tokens" [showActions]="account.type === 'active'"></app-tokens-table>
+        <app-tokens-table
+          [tokens]="tokens"
+          [isLoading]="isLoadingTokens"
+          [showActions]="account.type === 'active'"
+        ></app-tokens-table>
       </mat-tab>
     </mat-tab-group>
   </div>

@@ -10,52 +10,86 @@
     <ng-container matColumnDef="token">
       <mat-header-cell *matHeaderCellDef>{{ 'asset' | i18n }}</mat-header-cell>
       <mat-cell *matCellDef="let token">
-        <mat-icon class="icon" matTooltip="{{ token.description }}">info</mat-icon>
-        <div class="stacked ml-8">
-          <div>{{ token.name }}</div>
-          <div class="smaller">{{ token.id }}</div>
-        </div>
+        <ng-container *ngIf="!isLoading">
+          <mat-icon class="icon" matTooltip="{{ token.description }}">info</mat-icon>
+          <div class="stacked ml-8">
+            <div>{{ token.name }}</div>
+            <div class="smaller">{{ token.id }}</div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="isLoading">
+          <div class="skeleton">
+            <ngx-skeleton-loader count="1" [theme]="{height: '16px', margin: '0'}"></ngx-skeleton-loader>
+            <ngx-skeleton-loader count="1" [theme]="{height: '10px', margin: '0'}"></ngx-skeleton-loader>
+          </div>
+        </ng-container>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="balance">
       <mat-header-cell *matHeaderCellDef>{{ 'balance' | i18n }}</mat-header-cell>
       <mat-cell *matCellDef="let token">
-        <div class="stacked">
-          <div>{{ token.balance | number:'1.0-6': locale }}</div>
-          <div class="smaller">{{ token.total | amount : 'signa' : true}}</div>
-        </div>
+        <ng-container *ngIf="!isLoading">
+          <div class="stacked">
+            <div>{{ token.balance | number:'1.0-6': locale }}</div>
+            <div class="smaller">{{ token.total | amount : 'signa' : true}}</div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="isLoading">
+          <div class="skeleton">
+            <ngx-skeleton-loader count="1" [theme]="{height: '16px', margin: '0'}"></ngx-skeleton-loader>
+            <ngx-skeleton-loader count="1" [theme]="{height: '10px', margin: '0'}"></ngx-skeleton-loader>
+          </div>
+        </ng-container>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="lastPrice">
       <mat-header-cell *matHeaderCellDef>{{ 'last_price' | i18n }}</mat-header-cell>
       <mat-cell *matCellDef="let token">
-        <div class="stacked">
-          <div>{{ token.priceInfo.amount | amount : 'signa' : true}}</div>
-          <div class="smaller price-change {{getTrend(token.priceInfo.change)}}">
-            {{token.priceInfo.change | percent : '1.2-4': locale}}
+        <ng-container *ngIf="!isLoading">
+          <div class="stacked">
+            <div>{{ token.priceInfo.amount | amount : 'signa' : true}}</div>
+            <div class="smaller price-change {{getTrend(token.priceInfo.change)}}">
+              {{token.priceInfo.change | percent : '1.2-4': locale}}
+            </div>
           </div>
-        </div>
+        </ng-container>
+        <ng-container *ngIf="isLoading">
+          <div class="skeleton">
+            <ngx-skeleton-loader count="1" [theme]="{height: '16px', margin: '0'}"></ngx-skeleton-loader>
+            <ngx-skeleton-loader count="1" [theme]="{height: '10px', margin: '0'}"></ngx-skeleton-loader>
+          </div>
+        </ng-container>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="supply">
       <mat-header-cell *matHeaderCellDef>{{ 'supply' | i18n }}</mat-header-cell>
       <mat-cell *matCellDef="let token">
-        <div class="stacked">
-          <div>{{ token.supply | number : '': locale }}</div>
-          <div class="smaller">{{ getShare(token) | percent : '1.2-4': locale }}</div>
-        </div>
+        <ng-container *ngIf="!isLoading">
+          <div class="stacked">
+            <div>{{ token.supply | number : '': locale }}</div>
+            <div class="smaller">{{ getShare(token) | percent : '1.2-4': locale }}</div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="isLoading">
+          <div class="skeleton">
+            <ngx-skeleton-loader count="1" [theme]="{height: '16px', margin: '0'}"></ngx-skeleton-loader>
+            <ngx-skeleton-loader count="1" [theme]="{height: '10px', margin: '0'}"></ngx-skeleton-loader>
+          </div>
+        </ng-container>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let token">
-        <a [routerLink]="['/tokens/transfer', token.id]">
-          <mat-icon class="actions-icon" matTooltip="{{'asset_transfer' | i18n}}">vertical_align_top</mat-icon>
-        </a>
+        <ng-container *ngIf="!isLoading">
+          <a [routerLink]="['/tokens/transfer', token.id]">
+            <mat-icon class="actions-icon" matTooltip="{{'asset_transfer' | i18n}}">vertical_align_top</mat-icon>
+          </a>
+        </ng-container>
       </mat-cell>
     </ng-container>
 
