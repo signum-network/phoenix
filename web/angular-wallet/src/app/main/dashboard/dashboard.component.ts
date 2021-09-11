@@ -1,12 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {DashboardGridSettings} from './DashboardGridSettings';
 import {UserProfileType} from '../../shared/types';
 import {StoreService} from '../../store/store.service';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {Settings} from '../../settings';
-
-const GridSettings = new DashboardGridSettings();
 
 @Component({
   selector: 'dashboard-dashboard',

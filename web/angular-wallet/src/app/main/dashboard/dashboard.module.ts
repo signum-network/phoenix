@@ -18,12 +18,9 @@ import {AccountResolver} from 'app/setup/account/account.resolver';
 import {TransactionTableModule} from '../transactions/transaction-table/transaction.module';
 
 import {DashboardComponent} from './dashboard.component';
-import {BalanceChartComponent} from './balance-chart/balance-chart.component';
 import {MatCheckboxModule} from '@angular/material';
 import {AppSharedModule} from '../../shared/shared.module';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
-import {MarketOverviewComponent} from './market/market-overview.component';
-import {PerformanceComponent} from './performance/performance.component';
 import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -32,6 +29,11 @@ import {SimpleDashboardComponent} from './simple-dashboard/simple-dashboard.comp
 import {MinerDashboardComponent} from './miner-dashboard/miner-dashboard.component';
 import {TraderDashboardComponent} from './trader-dashboard/trader-dashboard.component';
 import {PowerDashboardComponent} from './power-dashboard/power-dashboard.component';
+import {BalanceChartComponent} from './widgets/balance-chart/balance-chart.component';
+import {MarketOverviewComponent} from './widgets/market/market-overview.component';
+import {PerformanceComponent} from './widgets/performance/performance.component';
+import {MatCardModule} from '@angular/material/card';
+import { BalanceComponent } from './widgets/balance/balance.component';
 
 const routes: Routes = [
   {
@@ -54,6 +56,7 @@ const routes: Routes = [
     MinerDashboardComponent,
     TraderDashboardComponent,
     PowerDashboardComponent,
+    BalanceComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -78,7 +81,8 @@ const routes: Routes = [
     NgxSkeletonLoaderModule,
     MatGridListModule,
     MatTooltipModule,
-    MatChipsModule
+    MatChipsModule,
+    MatCardModule
   ],
 })
 export class DashboardModule {

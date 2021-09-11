@@ -1,27 +1,29 @@
-import {AfterContentInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatGridList} from '@angular/material/grid-list';
 import {Account, Transaction} from '@signumjs/core';
 import {Settings} from '../../../settings';
 import {MatTableDataSource} from '@angular/material/table';
-import {DashboardGridAttributes, DashboardGridSettings} from '../DashboardGridSettings';
 import {takeUntil} from 'rxjs/operators';
-import {Router} from '@angular/router';
 import {StoreService} from '../../../store/store.service';
 import {AccountService} from '../../../setup/account/account.service';
 import {NotifierService} from 'angular-notifier';
-import {MarketService} from '../market/market.service';
-import {MediaChange, MediaObserver} from '@angular/flex-layout';
-import {MarketInfoCryptoCompare} from '../market/types';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
+import {DashboardLayoutService} from '../dashboard.layout.service';
+import {
+  SimpleDashboardLayoutParameters,
+  SimpleDashboardLayoutConfiguration
+} from './SimpleDashboardLayoutConfiguration';
+import {MarketService} from '../widgets/market/market.service';
+import {MarketInfoCryptoCompare} from '../widgets/market/types';
 
-const GridSettings = new DashboardGridSettings();
+const LayoutConfiguration = new SimpleDashboardLayoutConfiguration();
 
 @Component({
   selector: 'app-simple-dashboard',
   templateUrl: './simple-dashboard.component.html',
   styleUrls: ['./simple-dashboard.component.scss']
 })
-export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements OnInit, AfterContentInit {
+export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements OnInit {
 
   @ViewChild('gridList', {static: true}) gridList: MatGridList;
   widgets: any;
@@ -35,17 +37,18 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
   public isActivating = false;
 
   columnCount: number;
-  gridAttributes: DashboardGridAttributes = GridSettings.xl;
+  layoutParameters = LayoutConfiguration.xl;
   unsubscriber = takeUntil(this.unsubscribeAll);
 
-  constructor(private router: Router,
+  constructor(
               private storeService: StoreService,
               private accountService: AccountService,
               private notificationService: NotifierService,
               private marketService: MarketService,
-              private observableMedia: MediaObserver
+              private layoutService: DashboardLayoutService,
   ) {
     super();
+    this.layoutService.setLayoutConfiguration(LayoutConfiguration);
   }
 
   ngOnInit(): void {
@@ -68,14 +71,12 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
         this.priceEur = data.EUR.PRICE;
       });
 
-  }
-
-  ngAfterContentInit(): void {
-    this.observableMedia.asObservable()
+    this.layoutService.layout$
       .pipe(this.unsubscriber)
-      .subscribe((change: MediaChange[]) => {
-        this.gridAttributes = GridSettings[change[0].mqAlias];
+      .subscribe( (layoutAttributes: SimpleDashboardLayoutParameters) => {
+        this.layoutParameters = layoutAttributes;
       });
+
   }
 
   setTransactions = account => {

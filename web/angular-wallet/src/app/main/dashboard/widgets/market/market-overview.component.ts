@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {formatCurrency, formatNumber} from '@angular/common';
+import {formatCurrency} from '@angular/common';
 import {MarketService} from './market.service';
 import {takeUntil} from 'rxjs/operators';
 import {MarketInfoCryptoCompare} from './types';
-import {StoreService} from '../../../store/store.service';
-import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
-import {formatMetricNumber} from '../../../util/formatMetricNumber';
+import {StoreService} from 'app/store/store.service';
+import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
+import {formatMetricNumber} from 'app/util/formatMetricNumber';
 
 @Component({
   selector: 'app-market-overview',

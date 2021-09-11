@@ -1,0 +1,12 @@
+<mat-card>
+    <div>
+      <h2>Gauge Chart</h2>
+    </div>
+    <div fxFlex fxLayout="column">
+      <div>
+        <span>{{'balance_available' | i18n}}{{balance.availableBalance}}</span>
+        <hr/>
+        <span>{{'balance_locked' | i18n}}{{balance.lockedBalance.clone().add(balance.committedBalance)}}</span>
+      </div>
+    </div>
+</mat-card>

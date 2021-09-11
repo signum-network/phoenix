@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {PerformanceService} from './performance.service';
 import {takeUntil} from 'rxjs/operators';
 import {FcasRating} from './types';
-import {StoreService} from '../../../store/store.service';
-import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
-import {AppService} from '../../../app.service';
+import {StoreService} from 'app/store/store.service';
+import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
+import {AppService} from 'app/app.service';
 
 const FCASColors = {
   s: '#00df8f',

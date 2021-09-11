@@ -48,6 +48,14 @@ app-market-overview {
   animation: pulse 2s infinite;
 }
 
+.fullwidth {
+  width: 100% !important;
+}
+
+.fullheight {
+  height: 100% !important;
+}
+
 @keyframes pulse {
   0% {
     opacity: 1;

@@ -3,8 +3,6 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {Account} from '@signumjs/core';
 import {Amount, ChainTime} from '@signumjs/util';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {I18nService} from '../../../layout/components/i18n/i18n.service';
-import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {formatDate} from '@angular/common';
 import {
@@ -12,7 +10,9 @@ import {
   BalanceHistoryItem,
   getBalanceHistoryFromTransactions,
   getBalancesFromAccount
-} from '../../../util/balance';
+} from 'app/util/balance';
+import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
+import {I18nService} from 'app/layout/components/i18n/i18n.service';
 
 @Component({
   selector: 'app-balance-chart',
