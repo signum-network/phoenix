@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "Zjednodušený informačný panel. Najlepšie pre používateľov základnej úrovne.",
   "user_profile_desc_power": "Rozšírený informačný panel s množstvom ďalších informácií.",
   "user_profile_desc_miner": "Hlavný panel s ďalšími informáciami pre baníkov.",
-  "user_profile_desc_trader": "Hlavný panel s množstvom obchodných informácií a ďalšími grafmi."
+  "user_profile_desc_trader": "Hlavný panel s množstvom obchodných informácií a ďalšími grafmi.",
+  "select_profile": "Vyberte profil používateľa pre rôzne informačné panely"
 }

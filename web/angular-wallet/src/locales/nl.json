@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "Vereenvoudigd dashboard. Het beste voor gebruikers op instapniveau.",
   "user_profile_desc_power": "Geavanceerd dashboard met veel extra informatie.",
   "user_profile_desc_miner": "Dashboard met aanvullende informatie voor miners.",
-  "user_profile_desc_trader": "Dashboard met veel handelsinformatie en extra grafieken."
+  "user_profile_desc_trader": "Dashboard met veel handelsinformatie en extra grafieken.",
+  "select_profile": "Selecteer een gebruikersprofiel voor verschillende dashboards"
 }

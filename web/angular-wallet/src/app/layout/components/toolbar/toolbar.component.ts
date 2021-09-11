@@ -13,9 +13,10 @@ import {Account} from '@signumjs/core';
 import {Router} from '@angular/router';
 import {NetworkService} from '../../../network/network.service';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
+import {UserProfileType} from '../../../shared/types';
 
 interface UserProfile {
-  name: 'miner' | 'trader' | 'simple' | 'power';
+  name: UserProfileType;
   description: string; // i18n key
   icon: string;
 }

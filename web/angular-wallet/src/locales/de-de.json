@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "Vereinfachtes Dashboard. Am besten für Einsteiger.",
   "user_profile_desc_power": "Erweitertes Dashboard mit vielen zusätzlichen Informationen.",
   "user_profile_desc_miner": "Dashboard mit zusätzlichen Informationen für Miner.",
-  "user_profile_desc_trader": "Dashboard mit vielen Handelsinformationen und zusätzlichen Charts."
+  "user_profile_desc_trader": "Dashboard mit vielen Handelsinformationen und zusätzlichen Charts.",
+  "select_profile": "Wähle ein Benutzerprofil für verschiedene Dashboards"
 }

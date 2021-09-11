@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "Supaprastintas prietaisų skydelis. Geriausiai tinka pradinio lygio vartotojams.",
   "user_profile_desc_power": "Išplėstinis prietaisų skydelis su daugybe papildomos informacijos.",
   "user_profile_desc_miner": "Prietaisų skydelis su papildoma informacija kalnakasiams.",
-  "user_profile_desc_trader": "Prietaisų skydelis su daugybe prekybos informacijos ir papildomų diagramų."
+  "user_profile_desc_trader": "Prietaisų skydelis su daugybe prekybos informacijos ir papildomų diagramų.",
+  "select_profile": "Skirtingose informacijos suvestinėse pasirinkite vartotojo profilį"
 }

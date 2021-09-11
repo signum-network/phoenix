@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "简化的仪表板。最适合入门级用户。",
   "user_profile_desc_power": "包含大量附加信息的高级仪表板。",
   "user_profile_desc_miner": "为矿工提供额外信息的仪表板。",
-  "user_profile_desc_trader": "包含大量交易信息和附加图表的仪表板。"
+  "user_profile_desc_trader": "包含大量交易信息和附加图表的仪表板。",
+  "select_profile": "为不同的仪表板选择用户配置文件"
 }

@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "Tablou de bord simplificat. Cel mai bun pentru utilizatorii entry level.",
   "user_profile_desc_power": "Tablou de bord avansat cu o mulțime de informații suplimentare.",
   "user_profile_desc_miner": "Tablou de bord cu informații suplimentare pentru mineri.",
-  "user_profile_desc_trader": "Tablou de bord cu o mulțime de informații de tranzacționare și diagrame suplimentare."
+  "user_profile_desc_trader": "Tablou de bord cu o mulțime de informații de tranzacționare și diagrame suplimentare.",
+  "select_profile": "Selectați un profil de utilizator pentru diferite tablouri de bord"
 }

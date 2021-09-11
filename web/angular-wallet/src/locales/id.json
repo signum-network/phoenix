@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "Dasbor Sederhana. Terbaik untuk pengguna tingkat pemula.",
   "user_profile_desc_power": "Dasbor Lanjutan dengan banyak informasi tambahan.",
   "user_profile_desc_miner": "Dasbor dengan informasi tambahan untuk penambang.",
-  "user_profile_desc_trader": "Dasbor dengan banyak informasi perdagangan dan grafik tambahan."
+  "user_profile_desc_trader": "Dasbor dengan banyak informasi perdagangan dan grafik tambahan.",
+  "select_profile": "Pilih Profil Pengguna untuk dasbor yang berbeda"
 }

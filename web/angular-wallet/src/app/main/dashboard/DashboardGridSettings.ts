@@ -15,6 +15,7 @@ export interface DashboardGridAttributes {
   tableColumns: string[];
 }
 
+// TODO: this is deprecated in favor of the new LayoutConfiguration
 export class DashboardGridSettings {
   public readonly xl: DashboardGridAttributes;
   public readonly lg: DashboardGridAttributes;

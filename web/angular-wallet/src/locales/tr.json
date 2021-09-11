@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "Basitleştirilmiş Gösterge Tablosu. Giriş seviyesi kullanıcılar için en iyisi.",
   "user_profile_desc_power": "Birçok ek bilgi içeren Gelişmiş Gösterge Tablosu.",
   "user_profile_desc_miner": "Madenciler için ek bilgiler içeren pano.",
-  "user_profile_desc_trader": "Çok sayıda ticaret bilgisi ve ek çizelgeler içeren gösterge tablosu."
+  "user_profile_desc_trader": "Çok sayıda ticaret bilgisi ve ek çizelgeler içeren gösterge tablosu.",
+  "select_profile": "Farklı panolar için bir Kullanıcı Profili seçin"
 }

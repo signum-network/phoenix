@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "Yksinkertaistettu kojelauta. Paras lähtötason käyttäjille.",
   "user_profile_desc_power": "Kehittynyt kojelauta, jossa on paljon lisätietoa.",
   "user_profile_desc_miner": "Kojelauta, jossa on lisätietoja kaivostyöläisille.",
-  "user_profile_desc_trader": "Kojelauta, jossa on paljon kaupankäyntitietoja ja muita kaavioita."
+  "user_profile_desc_trader": "Kojelauta, jossa on paljon kaupankäyntitietoja ja muita kaavioita.",
+  "select_profile": "Valitse käyttäjäprofiili eri hallintapaneeleille"
 }

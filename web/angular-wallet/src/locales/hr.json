@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "Pojednostavljena nadzorna ploča. Najbolje za korisnike početne razine.",
   "user_profile_desc_power": "Napredna nadzorna ploča s puno dodatnih informacija.",
   "user_profile_desc_miner": "Nadzorna ploča s dodatnim podacima za rudare.",
-  "user_profile_desc_trader": "Nadzorna ploča s puno informacija o trgovanju i dodatnim grafikonima."
+  "user_profile_desc_trader": "Nadzorna ploča s puno informacija o trgovanju i dodatnim grafikonima.",
+  "select_profile": "Odaberite korisnički profil za različite nadzorne ploče"
 }

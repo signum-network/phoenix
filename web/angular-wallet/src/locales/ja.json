@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "簡略化されたダッシュボード。エントリーレベルのユーザーに最適です。",
   "user_profile_desc_power": "多くの追加情報を含む高度なダッシュボード。",
   "user_profile_desc_miner": "鉱夫のための追加情報を含むダッシュボード。",
-  "user_profile_desc_trader": "たくさんの取引情報と追加のチャートを備えたダッシュボード。"
+  "user_profile_desc_trader": "たくさんの取引情報と追加のチャートを備えたダッシュボード。",
+  "select_profile": "さまざまなダッシュボードのユーザープロファイルを選択します"
 }

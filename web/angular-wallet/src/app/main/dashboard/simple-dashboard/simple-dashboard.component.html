@@ -1,0 +1,57 @@
+<div id="dashboard" class="page-layout blank">
+
+  <app-balance-chart
+    [account]="account"
+    [priceBtc]="priceBtc"
+    [priceUsd]="priceUsd"
+    [priceEur]="priceEur"
+  ></app-balance-chart>
+
+  <div class="body">
+    <mat-grid-list [cols]="gridAttributes.columnCount" rowHeight="32px">
+      <mat-grid-tile
+        *ngIf="!account.confirmed && account.balanceNQT"
+        [colspan]="gridAttributes.columnCount"
+        [rowspan]="gridAttributes.rowSpans.warning">
+        <div class="activation-message">
+          <mat-icon>warning</mat-icon>
+          <span>{{ 'no_public_key_warning' | i18n }}</span>
+          <button class="activate" mat-raised-button (click)="activateAccount()"
+                  disabled="{{isActivating}}">{{'activate' | i18n}}</button>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="gridAttributes.columnSpans.table" [rowspan]="gridAttributes.rowSpans.table">
+        <div class="fuse-card mr-8 scroll-y">
+          <div class="h3 secondary-text mb-8">{{ 'recent_transactions' | i18n }}</div>
+          <app-transaction-table *ngIf="dataSource && dataSource.data.length"
+                                 [dataSource]="dataSource"
+                                 [account]="account"
+                                 [paginationEnabled]="false"
+                                 [displayedColumns]="gridAttributes.tableColumns"
+          ></app-transaction-table>
+          <div *ngIf="!dataSource || !account.transactions.length">
+            <div>
+              {{ 'no_transactions_yet' | i18n }}
+            </div>
+          </div>
+          <a *ngIf="dataSource && dataSource.data.length"
+             class="p-16" fxLayoutAlign="end"
+             [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</a>
+        </div>
+      </mat-grid-tile>
+      <!--      <mat-grid-tile [colspan]="gridAttributes.columnSpans.performance" [rowspan]="gridAttributes.rowSpans.performance">-->
+      <!--        <div class="fuse-card ml-8">-->
+      <!--          <div class="h3 secondary-text mb-8">{{ 'coin_performance' | i18n }}</div>-->
+      <!--          <app-performance></app-performance>-->
+      <!--        </div>-->
+      <!--      </mat-grid-tile>-->
+      <mat-grid-tile [colspan]="gridAttributes.columnSpans.market" [rowspan]="gridAttributes.rowSpans.market">
+        <div class="fuse-card ml-8">
+          <div class="h3 secondary-text ">{{ 'market_info' | i18n }}</div>
+          <app-market-overview></app-market-overview>
+          <small class="font-size-10 secondary-text text-right">Information by {{marketServiceName()}}</small>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

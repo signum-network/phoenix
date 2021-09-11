@@ -7,6 +7,7 @@
 import { constants } from './constants';
 import { environment } from '../environments/environment';
 import { version } from '../../package.json';
+import {UserProfileType} from './shared/types';
 
 /*
 * Settings class
@@ -23,7 +24,7 @@ export class Settings {
     public theme: string;
     public version: string;
     public marketUrl: string;
-    public userProfile: string;
+    public userProfile: UserProfileType;
 
     // user agreed to disclaimer
     public agree = false;

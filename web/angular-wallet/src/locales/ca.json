@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "Tauler de control simplificat. El millor per als usuaris de nivell inicial.",
   "user_profile_desc_power": "Tauler avançat amb molta informació addicional.",
   "user_profile_desc_miner": "Tauler de control amb informació addicional per als miners.",
-  "user_profile_desc_trader": "Tauler amb molta informació comercial i gràfics addicionals."
+  "user_profile_desc_trader": "Tauler amb molta informació comercial i gràfics addicionals.",
+  "select_profile": "Seleccioneu un perfil d'usuari per a diferents taulers"
 }

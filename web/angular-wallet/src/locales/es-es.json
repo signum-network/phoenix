@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "Panel de control simplificado. Lo mejor para usuarios de nivel de entrada.",
   "user_profile_desc_power": "Panel avanzado con mucha información adicional.",
   "user_profile_desc_miner": "Tablero con información adicional para mineros.",
-  "user_profile_desc_trader": "Panel de control con mucha información comercial y gráficos adicionales."
+  "user_profile_desc_trader": "Panel de control con mucha información comercial y gráficos adicionales.",
+  "select_profile": "Seleccione un perfil de usuario para diferentes paneles"
 }

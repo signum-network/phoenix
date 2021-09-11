@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "Zjednodušený hlavní panel. Nejlepší pro uživatele vstupní úrovně.",
   "user_profile_desc_power": "Pokročilý řídicí panel se spoustou dalších informací.",
   "user_profile_desc_miner": "Hlavní panel s dalšími informacemi pro těžaře.",
-  "user_profile_desc_trader": "Řídicí panel se spoustou obchodních informací a dalšími grafy."
+  "user_profile_desc_trader": "Řídicí panel se spoustou obchodních informací a dalšími grafy.",
+  "select_profile": "Vyberte profil uživatele pro různé panely"
 }

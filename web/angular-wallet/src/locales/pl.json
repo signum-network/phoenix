@@ -436,5 +436,6 @@
   "user_profile_desc_simple": "Uproszczony pulpit nawigacyjny. Najlepsze dla użytkowników na poziomie podstawowym.",
   "user_profile_desc_power": "Zaawansowany pulpit nawigacyjny z dużą ilością dodatkowych informacji.",
   "user_profile_desc_miner": "Pulpit z dodatkowymi informacjami dla górników.",
-  "user_profile_desc_trader": "Pulpit nawigacyjny z dużą ilością informacji handlowych i dodatkowymi wykresami."
+  "user_profile_desc_trader": "Pulpit nawigacyjny z dużą ilością informacji handlowych i dodatkowymi wykresami.",
+  "select_profile": "Wybierz profil użytkownika dla różnych pulpitów nawigacyjnych"
 }

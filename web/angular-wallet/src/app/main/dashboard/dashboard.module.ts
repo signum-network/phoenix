@@ -17,7 +17,6 @@ import {AccountResolver} from 'app/setup/account/account.resolver';
 
 import {TransactionTableModule} from '../transactions/transaction-table/transaction.module';
 
-import {DashboardService} from './dashboard.service';
 import {DashboardComponent} from './dashboard.component';
 import {BalanceChartComponent} from './balance-chart/balance-chart.component';
 import {MatCheckboxModule} from '@angular/material';
@@ -29,6 +28,10 @@ import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatChipsModule} from '@angular/material/chips';
+import {SimpleDashboardComponent} from './simple-dashboard/simple-dashboard.component';
+import {MinerDashboardComponent} from './miner-dashboard/miner-dashboard.component';
+import {TraderDashboardComponent} from './trader-dashboard/trader-dashboard.component';
+import {PowerDashboardComponent} from './power-dashboard/power-dashboard.component';
 
 const routes: Routes = [
   {
@@ -47,6 +50,10 @@ const routes: Routes = [
     BalanceChartComponent,
     MarketOverviewComponent,
     PerformanceComponent,
+    SimpleDashboardComponent,
+    MinerDashboardComponent,
+    TraderDashboardComponent,
+    PowerDashboardComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
