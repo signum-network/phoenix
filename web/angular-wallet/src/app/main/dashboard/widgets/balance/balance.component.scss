@@ -1,0 +1,26 @@
+:host {
+  .balance {
+    display: flex;
+    flex-direction: row;
+    justify-content: center !important;
+    align-items: center;
+  }
+  .chart {
+    height: 100px;
+    width: 100px;
+  }
+
+  .dot {
+      border-radius: 2px;
+      padding-left: 12px;
+      margin-right: 2px;
+  }
+
+  .available {
+    background-color: #00FF88;
+  }
+
+  .locked {
+    background-color: #0099ff;
+  }
+}

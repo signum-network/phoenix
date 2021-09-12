@@ -2,25 +2,26 @@
   <mat-grid-list [cols]="layoutParameters.columnCount"
                  rowHeight="32px"
                  gutterSize="16px"
-                 >
+  >
     <mat-grid-tile
       [colspan]="layoutParameters.columnSpans.chart"
       [rowspan]="layoutParameters.rowSpans.chart">
-      <mat-card>
-        <app-balance-chart
-          [account]="account"
-          [priceBtc]="priceBtc"
-          [priceUsd]="priceUsd"
-          [priceEur]="priceEur"
-        ></app-balance-chart>
-      </mat-card>
+      <app-balance-chart
+        class="widget"
+        [account]="account"
+        [priceBtc]="priceBtc"
+        [priceUsd]="priceUsd"
+        [priceEur]="priceEur"
+      >
+      </app-balance-chart>
     </mat-grid-tile>
     <mat-grid-tile
       [colspan]="layoutParameters.columnSpans.balance"
-      [rowspan]="layoutParameters.rowSpans.balance">
-      <mat-card>
-        <app-balance [account]="account"></app-balance>
-      </mat-card>
+      [rowspan]="layoutParameters.rowSpans.balance"
+    >
+      <app-balance class="widget"
+                   [account]="account">
+      </app-balance>
     </mat-grid-tile>
   </mat-grid-list>
 </div>

@@ -51,51 +51,54 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NewVersionDialogComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    RouterModule.forRoot(appRoutes, {useHash: true, enableTracing: true}),
+    declarations: [
+        AppComponent,
+        NewVersionDialogComponent,
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        RouterModule.forRoot(appRoutes, {useHash: true, enableTracing: true}),
 
-    TranslateModule.forRoot(),
+        TranslateModule.forRoot(),
 
-    MatMomentDateModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDialogModule,
-    LoginModule,
-    MainModule,
-    SetupModule,
-    NetworkModule,
-    NotifierModule,
-    I18nModule,
-    DisclaimerModule,
-    NgxElectronModule,
-    MatCardModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatInputModule,
-    FormsModule
-  ],
-  providers: [
-    StoreService,
-    {provide: StoreConfig, useFactory: appConfigFactory},
-    UtilService,
-    SettingsResolver
-  ],
-  entryComponents: [
-    NewVersionDialogComponent
-  ],
-  bootstrap: [
-    AppComponent
-  ]
+        MatMomentDateModule,
+        MatButtonModule,
+        MatIconModule,
+        MatDialogModule,
+        LoginModule,
+        MainModule,
+        SetupModule,
+        NetworkModule,
+        NotifierModule,
+        I18nModule,
+        DisclaimerModule,
+        NgxElectronModule,
+        MatCardModule,
+        MatTooltipModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule,
+        MatInputModule,
+        FormsModule
+    ],
+    providers: [
+        StoreService,
+        {provide: StoreConfig, useFactory: appConfigFactory},
+        UtilService,
+        SettingsResolver
+    ],
+    entryComponents: [
+        NewVersionDialogComponent
+    ],
+    exports: [
+        AppComponent
+    ],
+    bootstrap: [
+        AppComponent
+    ]
 })
 export class AppModule {
 }

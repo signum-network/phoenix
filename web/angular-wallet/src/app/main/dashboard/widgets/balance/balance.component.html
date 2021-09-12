@@ -1,12 +1,19 @@
-<mat-card>
-    <div>
-      <h2>Gauge Chart</h2>
-    </div>
-    <div fxFlex fxLayout="column">
-      <div>
-        <span>{{'balance_available' | i18n}}{{balance.availableBalance}}</span>
-        <hr/>
-        <span>{{'balance_locked' | i18n}}{{balance.lockedBalance.clone().add(balance.committedBalance)}}</span>
-      </div>
-    </div>
-</mat-card>
+<div class="balance fullwidth grey-700-fg">
+  <div class="pr-8 chart">
+    <canvas baseChart
+            height="100"
+            width="100"
+            [datasets]="datasets"
+            [options]="options"
+            [labels]="labels"
+            chartType="doughnut"
+    >
+    </canvas>
+  </div>
+  <div fxFlex fxLayout="column">
+    <small><span class="dot available"></span>{{'balance_available' | i18n}}</small>
+    <span class="pb-4 font-weight-600">{{balance.availableBalance}}</span>
+    <small><span class="dot locked"></span> {{'balance_locked' | i18n}}</small>
+    <span class="font-weight-600">{{balance.lockedBalance}}</span>
+  </div>
+</div>

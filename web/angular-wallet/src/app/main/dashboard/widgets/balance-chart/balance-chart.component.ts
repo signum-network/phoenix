@@ -91,12 +91,12 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
         this.toDateString(new Date())),
       colors: [
         {
-          borderColor: '#42a5f5',
-          backgroundColor: '#42a5f5',
-          pointBackgroundColor: '#1e88e5',
-          pointHoverBackgroundColor: '#1e88e5',
-          pointBorderColor: '#eeeeee',
-          pointHoverBorderColor: '#ffffff'
+          borderColor: '#0099ff',
+          backgroundColor: 'rgba(0,153,255,0.5)',
+          pointBackgroundColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointBorderColor: '#0099ff',
+          pointHoverBorderColor: '#0099ff'
         }
       ],
       options: {
@@ -121,26 +121,11 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
           xAxes: [
             {
               display: false,
-              gridLines: {
-                display: false,
-                drawBorder: false,
-                tickMarkLength: 18
-              },
-              ticks: {
-                fontColor: '#ffffff'
-              }
             }
           ],
           yAxes: [
             {
-              display: !this.isMobile,
-              position: 'right',
-              ticks: {
-                min,
-                max,
-                stepSize: (max - min) / 2,
-                fontColor: '#ffffff'
-              }
+              display: false,
             }
           ]
         },

@@ -1,31 +1,28 @@
 @import "src/@fuse/scss/fuse";
 
-#balance-diagram-charts-wrapper {
-  .balance-info{
+:host {
+
+  .since-text {
+    position: absolute;
+    right: 38px;
+  }
+
+  .balance-info {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    .inline {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: baseline;
-      &.responsive {
-        @include media-breakpoint('xs') {
-          flex-direction: column;
-        }
-      }
-    }
+    justify-content: center;
+    align-items: center;
   }
-}
 
-.no-transactions {
-  text-align:center;
-  display: flex;
-  height: 59%;
-}
+  .no-transactions {
+    text-align: center;
+    display: flex;
+    height: 59%;
+  }
 
-.align-center {
-  align-self: center;
-  flex: 1;
+  .align-center {
+    align-self: center;
+    flex: 1;
+  }
+
 }
