@@ -428,5 +428,9 @@
   "unknown_address": "Alamat Tidak Diketahui",
   "success_transaction_executed": "Transaksi berhasil dijalankan",
   "no_tokens_available": "Tidak ada token yang tersedia",
-  "trade_tokens_with": "Perdagangkan token dengan"
+  "trade_tokens_with": "Perdagangkan token dengan",
+  "define_your_salt": "Tentukan Garam pribadi Anda",
+  "enter_salt": "Masukkan teks alfanumerik arbitrer",
+  "salt_hint": "Untuk meningkatkan keamanan frasa sandi Anda, elemen teks individual Anda (garam) ditambahkan ke daftar kata yang dibuat secara acak. Ini harus berupa ekspresi alfanumerik pendek sederhana, misalnya sesuatu yang bersifat pribadi atau dibuat secara acak.",
+  "salt": "Tambahkan garam"
 }

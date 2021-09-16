@@ -428,5 +428,9 @@
   "unknown_address": "Unknown Address",
   "success_transaction_executed": "Transaction successfully executed",
   "no_tokens_available": "No tokens available",
-  "trade_tokens_with": "Trade tokens with"
+  "trade_tokens_with": "Trade tokens with",
+  "define_your_salt": "Define your individual Salt",
+  "enter_salt": "Enter an arbitrary alphanumeric text",
+  "salt_hint": "In order to increase the security of your passphrase, your own individual text element (salt) is added to the randomly generated word list. This should be a simple short alphanumeric expression, e.g. something personal or randomly generated.",
+  "salt": "Add Salt"
 }

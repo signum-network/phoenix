@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-import {Address, AddressPrefix} from '@signumjs/core';
-import {generateMasterKeys, PassPhraseGenerator} from '@signumjs/crypto';
 import {CreateService, StepsEnum} from '../../create.service';
 import {NetworkService} from '../../../../network/network.service';
 
@@ -14,13 +12,10 @@ export class AccountCreateSeedComponent {
   private seed: any[] = [];
   private update = false;
   public progress = 0;
-  passphraseGenerator: PassPhraseGenerator;
 
   constructor(
     private createService: CreateService,
-    private networkService: NetworkService,
   ) {
-    this.passphraseGenerator = new PassPhraseGenerator();
   }
 
   public movement(e): void {
@@ -33,23 +28,10 @@ export class AccountCreateSeedComponent {
       }, 100);
     }
     if (this.seed.length >= this.seedLimit) {
-      this.passphraseGenerator.generatePassPhrase(this.seed)
-        .then(phrase => {
-          this.setPassphraseAndGenerateMasterKeys(phrase);
-        });
+      this.createService.setSeed(this.seed);
+      setTimeout(x => {
+        this.createService.setStep(StepsEnum.Salt);
+      }, 0);
     }
-  }
-
-  public setPassphraseAndGenerateMasterKeys(phrase: string[]): void {
-    const prefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
-    this.createService.setPassphrase(phrase);
-    const keys = generateMasterKeys(this.createService.getCompletePassphrase());
-    const address = Address.fromPublicKey(keys.publicKey, prefix);
-    this.createService.setId(address.getNumericId());
-    this.createService.setAddress(address.getReedSolomonAddress());
-    this.seed = [];
-    setTimeout(x => {
-      this.createService.setStep(StepsEnum.Record);
-    }, 0);
   }
 }

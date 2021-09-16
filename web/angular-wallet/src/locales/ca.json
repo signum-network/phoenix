@@ -428,5 +428,9 @@
   "unknown_address": "Adreça desconeguda",
   "success_transaction_executed": "La transacció s'ha executat correctament",
   "no_tokens_available": "No hi ha fitxes disponibles",
-  "trade_tokens_with": "Comerç de fitxes amb"
+  "trade_tokens_with": "Comerç de fitxes amb",
+  "define_your_salt": "Definiu la sal individual",
+  "enter_salt": "Introduïu un text alfanumèric arbitrari",
+  "salt_hint": "Per tal d’augmentar la seguretat de la vostra contrasenya, s’afegeix el vostre propi element de text individual (sal) a la llista de paraules generada aleatòriament. Aquesta hauria de ser una simple expressió alfanumèrica breu, per exemple, quelcom personal o generat aleatòriament.",
+  "salt": "Afegiu sal"
 }

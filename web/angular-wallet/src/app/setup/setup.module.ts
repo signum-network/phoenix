@@ -37,6 +37,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {AccountActivateComponent} from './account/create-active/activate/activate.component';
 import {AppSharedModule} from '../shared/shared.module';
 import {ComponentsModule} from '../components/components.module';
+import { CustomSaltComponent } from './account/create-active/custom-salt/custom-salt.component';
 
 @NgModule({
   imports: [
@@ -76,6 +77,7 @@ import {ComponentsModule} from '../components/components.module';
     AccountCreateSeedComponent,
     AccountNewComponent,
     AccountActivateComponent,
+    CustomSaltComponent,
   ],
   providers: [
     CreateService,

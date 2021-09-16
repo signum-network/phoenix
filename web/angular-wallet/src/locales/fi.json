@@ -428,5 +428,9 @@
   "unknown_address": "Tuntematon osoite",
   "success_transaction_executed": "Tapahtuma onnistui",
   "no_tokens_available": "Merkkejä ei ole saatavilla",
-  "trade_tokens_with": "Vaihda tunnuksia"
+  "trade_tokens_with": "Vaihda tunnuksia",
+  "define_your_salt": "Määritä oma suola",
+  "enter_salt": "Kirjoita mielivaltainen aakkosnumeerinen teksti",
+  "salt_hint": "Salasanasi turvallisuuden lisäämiseksi oma yksittäinen tekstielementtisi (suola) lisätään satunnaisesti luotuun sanalistaan. Tämän pitäisi olla yksinkertainen lyhyt aakkosnumeerinen lauseke, esim. Jotain henkilökohtaista tai satunnaisesti luotua.",
+  "salt": "Lisää suolaa"
 }

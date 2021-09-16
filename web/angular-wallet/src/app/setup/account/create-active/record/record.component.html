@@ -20,7 +20,8 @@
       ID:
     </td>
     <td class="table__text">
-      {{ this.createService.getId() }}
+      {{addressId}}
+<!--      {{ this.createService.getId() }}-->
     </td>
   </tr>
   <tr>
@@ -28,7 +29,8 @@
       {{ 'address' | i18n }}:
     </td>
     <td class="table__text">
-      {{ this.createService.getAddress() }}
+      {{address}}
+<!--      {{ this.createService.getAddress() }}-->
     </td>
   </tr>
   <tr>
@@ -36,7 +38,7 @@
       {{ 'passphrase' | i18n }}:
     </td>
     <td class="table__text unselectable">
-      {{ this.createService.getCompletePassphrase() }}
+<!--      {{ this.createService.getCompletePassphrase() }}-->
     </td>
     <td>
       <button class="copy-button" matTooltip="{{'click_to_copy_passphrase' | i18n}}" mat-raised-button (click)="copy()">

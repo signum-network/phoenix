@@ -26,19 +26,21 @@ export class AccountCreateExistingComponent {
     this.passphraseGenerator = new PassPhraseGenerator();
   }
 
-  public setPassphraseAndGenerateMasterKeys(phrase: string[]): void {
-    const prefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
-    this.createService.setPassphrase(phrase);
-    const keys = generateMasterKeys(this.createService.getCompletePassphrase());
-    const address = Address.fromPublicKey(keys.publicKey, prefix);
-    this.createService.setId(address.getNumericId());
-    this.createService.setAddress(address.getReedSolomonAddress());
-    setTimeout(x => {
-      this.createService.setStep(1);
-    }, 0);
-  }
+  // public setPassphraseAndGenerateMasterKeys(phrase: string[]): void {
+  //   const prefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
+  //   this.createService.setWords(phrase);
+  //   const keys = generateMasterKeys(this.createService.getCompletePassphrase());
+  //   const address = Address.fromPublicKey(keys.publicKey, prefix);
+  //   this.createService.setId(address.getNumericId());
+  //   this.createService.setAddress(address.getReedSolomonAddress());
+  //   setTimeout(x => {
+  //     this.createService.setStep(1);
+  //   }, 0);
+  // }
 
   public setManualPassphrase(phrase: string): void {
-    this.setPassphraseAndGenerateMasterKeys(phrase.split(' '));
+    // this.createService.generation
+    // this.setPassphraseAndGenerateMasterKeys(phrase.split(' '));
+    // FIXME: do it
   }
 }

@@ -6,8 +6,8 @@
                           [selectedIndex]="this.createService.getStep()"
                           labelPosition="bottom"
   >
-    <mat-step [completed]="this.createService.isPassphraseGenerated()"
-              [editable]="!this.createService.isPassphraseGenerated()">
+    <mat-step [completed]="this.createService.getSeed() !== undefined"
+              [editable]="!this.createService.isAccountGenerated()">
       <ng-template matStepLabel>{{ 'generate' | i18n }}</ng-template>
       <div class="step-container">
         <ng-container *ngIf="newUser">
@@ -18,8 +18,13 @@
         </ng-container>
       </div>
     </mat-step>
-    <mat-step
-      [completed]="this.createService.getAddress() !== undefined && this.createService.getId() !== undefined">
+    <mat-step [completed]="this.createService.getSalt() !== undefined">
+      <ng-template matStepLabel>{{ 'salt' | i18n }}</ng-template>
+      <div class="step-container">
+          <app-custom-salt></app-custom-salt>
+      </div>
+    </mat-step>
+    <mat-step [completed]="this.createService.getAccount() !== undefined">
       <ng-template matStepLabel>{{ 'record' | i18n }}</ng-template>
       <div class="step-container">
         <app-account-create-record></app-account-create-record>

@@ -428,5 +428,9 @@
   "unknown_address": "Indirizzo sconosciuto",
   "success_transaction_executed": "Transazione eseguita con successo",
   "no_tokens_available": "Nessun token disponibile",
-  "trade_tokens_with": "Scambia i token con"
+  "trade_tokens_with": "Scambia i token con",
+  "define_your_salt": "Definisci il tuo sale individuale",
+  "enter_salt": "Inserisci un testo alfanumerico arbitrario",
+  "salt_hint": "Per aumentare la sicurezza della tua passphrase, il tuo elemento di testo individuale (sale) viene aggiunto all'elenco di parole generato casualmente. Questa dovrebbe essere una semplice breve espressione alfanumerica, ad esempio qualcosa di personale o generato casualmente.",
+  "salt": "Aggiungi sale"
 }

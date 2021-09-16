@@ -7,6 +7,8 @@ import {CreateService, StepsEnum} from '../../create.service';
     templateUrl: './record.component.html'
 })
 export class AccountCreateRecordComponent {
+    addressId = '';
+    address = '';
 
     constructor(
         public createService: CreateService,
@@ -34,5 +36,7 @@ export class AccountCreateRecordComponent {
         document.execCommand('copy');
         document.body.removeChild(selBox);
     }
+
+
 
 }

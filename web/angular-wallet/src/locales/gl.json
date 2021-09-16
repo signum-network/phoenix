@@ -428,5 +428,9 @@
   "unknown_address": "Enderezo descoñecido",
   "success_transaction_executed": "Transacción executada con éxito",
   "no_tokens_available": "Non hai fichas dispoñibles",
-  "trade_tokens_with": "Cambia fichas con"
+  "trade_tokens_with": "Cambia fichas con",
+  "define_your_salt": "Defina o sal individual",
+  "enter_salt": "Insira un texto alfanumérico arbitrario",
+  "salt_hint": "Para aumentar a seguridade da súa frase de acceso, engádese o seu propio elemento de texto individual (sal) á lista de palabras xerada aleatoriamente. Esta debería ser unha simple expresión alfanumérica curta, por exemplo, algo persoal ou xerado aleatoriamente.",
+  "salt": "Engade sal"
 }

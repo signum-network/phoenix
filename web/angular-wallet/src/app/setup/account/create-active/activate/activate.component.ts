@@ -57,7 +57,7 @@ export class AccountActivateComponent {
   }
 
   private randomizePassphraseTokens(): void {
-    const tokens = this.createService.getPassphrase();
+    const tokens = this.createService.getWords();
     if (tokens && tokens.length) {
       this.randomizedTokens = sampleSize(tokens, tokens.length).map(t => ({
         text: t,
@@ -73,10 +73,8 @@ export class AccountActivateComponent {
     return this.createService.getCompletePassphrase() === this.passphrase;
   }
 
-  async activateAccount(): Promise<void> {
-    const newAccount = new Account();
-    newAccount.keys = generateMasterKeys(this.createService.getCompletePassphrase());
-    newAccount.account = this.createService.getId();
+  private async activateAccount(): Promise<void> {
+    const newAccount = this.createService.getAccount();
     await this.accountService.activateAccount(newAccount);
     this.notificationService.notify('success', this.i18nService.getTranslation('activate_request_successful'));
   }
@@ -100,7 +98,7 @@ export class AccountActivateComponent {
   }
 
   private isPassphraseFine(): boolean {
-    return this.createService.getPassphrase().join(' ').startsWith(this.passphrase);
+    return this.createService.getWords().join(' ').startsWith(this.passphrase);
   }
 
   public confirm($event: MouseEvent): void {

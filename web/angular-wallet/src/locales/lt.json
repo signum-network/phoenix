@@ -428,5 +428,9 @@
   "unknown_address": "Nežinomas adresas",
   "success_transaction_executed": "Sandoris sėkmingai įvykdytas",
   "no_tokens_available": "Žetonų nėra",
-  "trade_tokens_with": "Prekyba žetonais su"
+  "trade_tokens_with": "Prekyba žetonais su",
+  "define_your_salt": "Apibrėžkite savo individualią druską",
+  "enter_salt": "Įveskite bet kokį raidinį ir skaitmeninį tekstą",
+  "salt_hint": "Siekiant padidinti slaptafrazės saugumą, jūsų atskiras teksto elementas (druska) įtraukiamas į atsitiktinai sugeneruotą žodžių sąrašą. Tai turėtų būti paprasta trumpa raidinė ir skaitinė išraiška, pvz., Kažkas asmeniško ar atsitiktinai sugeneruoto.",
+  "salt": "Įpilkite druskos"
 }

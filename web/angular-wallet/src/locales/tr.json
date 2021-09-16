@@ -428,5 +428,9 @@
   "unknown_address": "Bilinmeyen Adres",
   "success_transaction_executed": "İşlem başarıyla gerçekleştirildi",
   "no_tokens_available": "Kullanılabilir jeton yok",
-  "trade_tokens_with": "Token ile ticaret yap"
+  "trade_tokens_with": "Token ile ticaret yap",
+  "define_your_salt": "Kişisel Tuzunuzu tanımlayın",
+  "enter_salt": "İsteğe bağlı bir alfasayısal metin girin",
+  "salt_hint": "Parolanızın güvenliğini artırmak için, rastgele oluşturulan kelime listesine kendi bireysel metin öğeniz (tuz) eklenir. Bu basit bir kısa alfasayısal ifade olmalıdır, örneğin kişisel veya rastgele oluşturulmuş bir şey.",
+  "salt": "Tuz ekle"
 }

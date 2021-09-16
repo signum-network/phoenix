@@ -428,5 +428,9 @@
   "unknown_address": "未知地址",
   "success_transaction_executed": "交易成功执行",
   "no_tokens_available": "没有可用的令牌",
-  "trade_tokens_with": "交易代币"
+  "trade_tokens_with": "交易代币",
+  "define_your_salt": "定义您的个人盐",
+  "enter_salt": "输入任意字母数字文本",
+  "salt_hint": "为了提高密码的安全性，您自己的个人文本元素（盐）被添加到随机生成的单词列表中。这应该是一个简单的短字母数字表达式，例如个人或随机生成的东西。",
+  "salt": "加盐"
 }

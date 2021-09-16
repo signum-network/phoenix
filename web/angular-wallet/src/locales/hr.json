@@ -428,5 +428,9 @@
   "unknown_address": "Nepoznata adresa",
   "success_transaction_executed": "Transakcija je uspješno izvršena",
   "no_tokens_available": "Nema dostupnih žetona",
-  "trade_tokens_with": "Trgujte tokenima s"
+  "trade_tokens_with": "Trgujte tokenima s",
+  "define_your_salt": "Definirajte svoju individualnu sol",
+  "enter_salt": "Unesite proizvoljan alfanumerički tekst",
+  "salt_hint": "Kako biste povećali sigurnost svoje zaporke, vaš vlastiti pojedinačni tekstualni element (sol) dodaje se nasumično generiranom popisu riječi. Ovo bi trebao biti jednostavan kratki alfanumerički izraz, npr. Nešto osobno ili nasumično generirano.",
+  "salt": "Dodajte sol"
 }

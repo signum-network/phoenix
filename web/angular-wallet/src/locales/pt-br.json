@@ -428,5 +428,9 @@
   "unknown_address": "Endereço Desconhecido",
   "success_transaction_executed": "Transação executada com sucesso",
   "no_tokens_available": "Nenhum tokens disponível",
-  "trade_tokens_with": "Negocie tokens com"
+  "trade_tokens_with": "Negocie tokens com",
+  "define_your_salt": "Defina o seu Sal individual",
+  "enter_salt": "Insira um texto alfanumérico arbitrário",
+  "salt_hint": "Para aumentar a segurança de sua frase-senha, seu próprio elemento de texto individual (salt) é adicionado à lista de palavras gerada aleatoriamente. Deve ser uma expressão alfanumérica curta simples, por exemplo, algo pessoal ou gerado aleatoriamente.",
+  "salt": "Adicione sal"
 }

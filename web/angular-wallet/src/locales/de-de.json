@@ -428,5 +428,9 @@
   "unknown_address": "Unbekannte Adresse",
   "success_transaction_executed": "Transaktion erfolgreich ausgeführt",
   "no_tokens_available": "Keine Token verfügbar",
-  "trade_tokens_with": "Handel Token mit"
+  "trade_tokens_with": "Handel Token mit",
+  "define_your_salt": "Definiere dein individuelles Salz",
+  "enter_salt": "Geben Sie einen beliebigen alphanumerischen Text ein",
+  "salt_hint": "Um die Sicherheit deiner Passphrase zu erhöhen wird der zufällig generierten Wortliste Dein eigenes individuelles Textelement (Salz) hinzugefügt. Dies sollte ein einfacher kurzer alphanumerischer Ausdruck, z.B. etwas persönliches oder auch zufällig erzeugtes, sein.",
+  "salt": "Salz hinzufügen"
 }
