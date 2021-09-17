@@ -6,9 +6,7 @@
                           [selectedIndex]="this.createService.getStep()"
                           labelPosition="bottom"
   >
-    <mat-step>
-<!--      [completed]="true"-->
-<!--      [editable]="false"-->
+    <mat-step [completed]="true" [editable]="false">
       <ng-template matStepLabel>{{ 'generate' | i18n }}</ng-template>
       <div class="step-container">
         <ng-container *ngIf="newUser">
