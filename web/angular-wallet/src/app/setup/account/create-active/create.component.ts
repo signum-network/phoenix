@@ -12,10 +12,10 @@ import {Router} from '@angular/router';
 })
 export class CreateActiveAccountComponent extends UnsubscribeOnDestroy implements OnInit {
   @ViewChild(MatStepper, {static: true}) stepper: MatStepper;
-  @Input('newUser') newUser: boolean;
+  @Input() newUser: boolean;
 
   constructor(
-    private createService: CreateService,
+    public createService: CreateService,
     private router: Router,
   ) {
     super();
