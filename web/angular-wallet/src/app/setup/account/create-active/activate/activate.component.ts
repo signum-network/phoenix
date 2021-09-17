@@ -1,11 +1,9 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {CreateService, StepsEnum} from '../../create.service';
+import {CreateService} from '../../create.service';
 import {NotifierService} from 'angular-notifier';
 import {sampleSize} from 'lodash';
 import {AccountService} from '../../account.service';
-import {Account} from '@signumjs/core';
-import {generateMasterKeys} from '@signumjs/crypto';
 import {I18nService} from '../../../../layout/components/i18n/i18n.service';
 
 interface Token {
@@ -34,7 +32,7 @@ export class AccountActivateComponent {
   }
 
   isStepActive(): boolean {
-    return this.createService.getStep() === StepsEnum.ActivateAccount;
+    return this.createService.getStep() === 4;
   }
 
   ngDoCheck(): void {
@@ -57,7 +55,7 @@ export class AccountActivateComponent {
   }
 
   private randomizePassphraseTokens(): void {
-    const tokens = this.createService.getWords();
+    const tokens = this.createService.getPhrase().split(' ');
     if (tokens && tokens.length) {
       this.randomizedTokens = sampleSize(tokens, tokens.length).map(t => ({
         text: t,
@@ -70,7 +68,7 @@ export class AccountActivateComponent {
     if (!this.isStepActive()) {
       return false;
     }
-    return this.createService.getCompletePassphrase() === this.passphrase;
+    return this.createService.getPhrase() === this.passphrase;
   }
 
   private async activateAccount(): Promise<void> {
@@ -98,7 +96,7 @@ export class AccountActivateComponent {
   }
 
   private isPassphraseFine(): boolean {
-    return this.createService.getWords().join(' ').startsWith(this.passphrase);
+    return this.createService.getPhrase().startsWith(this.passphrase);
   }
 
   public confirm($event: MouseEvent): void {

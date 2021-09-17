@@ -432,5 +432,7 @@
   "define_your_salt": "Definiu la sal individual",
   "enter_salt": "Introduïu un text alfanumèric arbitrari",
   "salt_hint": "Per tal d’augmentar la seguretat de la vostra contrasenya, s’afegeix el vostre propi element de text individual (sal) a la llista de paraules generada aleatòriament. Aquesta hauria de ser una simple expressió alfanumèrica breu, per exemple, quelcom personal o generat aleatòriament.",
-  "salt": "Afegiu sal"
+  "salt": "Afegiu sal",
+  "your_new_account": "El vostre compte Signum",
+  "click_to_print": "Feu clic per imprimir"
 }

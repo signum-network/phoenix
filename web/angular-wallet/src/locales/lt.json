@@ -432,5 +432,7 @@
   "define_your_salt": "Apibrėžkite savo individualią druską",
   "enter_salt": "Įveskite bet kokį raidinį ir skaitmeninį tekstą",
   "salt_hint": "Siekiant padidinti slaptafrazės saugumą, jūsų atskiras teksto elementas (druska) įtraukiamas į atsitiktinai sugeneruotą žodžių sąrašą. Tai turėtų būti paprasta trumpa raidinė ir skaitinė išraiška, pvz., Kažkas asmeniško ar atsitiktinai sugeneruoto.",
-  "salt": "Įpilkite druskos"
+  "salt": "Įpilkite druskos",
+  "your_new_account": "Jūsų „Signum“ paskyra",
+  "click_to_print": "Spustelėkite, jei norite spausdinti"
 }

@@ -1,42 +1,29 @@
 import {Injectable} from '@angular/core';
 import {AccountService} from './account.service';
 import {Account, Address, AddressPrefix} from '@signumjs/core';
-import {generateMasterKeys, Keys, PassPhraseGenerator} from '@signumjs/crypto';
+import {generateMasterKeys, PassPhraseGenerator} from '@signumjs/crypto';
 import {NetworkService} from '../../network/network.service';
-
-export enum StepsEnum {
-  Start,
-  Salt,
-  Record,
-  DefinePin,
-  ActivateAccount,
-}
 
 
 @Injectable()
 export class CreateService {
-  private words: string[] = [];
+  private phrase: string;
   private salt: string;
   private seed: any[];
   private account: Account;
   private pin: string;
-  private step: number;
+  private step = 0;
 
   constructor(
     private accountService: AccountService,
     private networkService: NetworkService,
   ) {
-    this.step = StepsEnum.Start;
-    this.reset();
   }
 
   public getAccount(): Account {
     return this.account;
   }
 
-  public getWords(): string[] {
-    return this.words;
-  }
 
   public setPin(pin: string): void {
     this.pin = pin;
@@ -62,39 +49,24 @@ export class CreateService {
     return this.salt;
   }
 
-  public getWordsPart(index: number): string {
-    return this.words[index];
+  public getPhrase(): string {
+    return this.phrase;
   }
-
-  public getCompletePassphrase(): string {
-    return this.words.concat(this.salt).join(' ');
-  }
-
-  // public setId(account: string): void {
-  //   this.account = account;
-  // }
-  //
-  // public getId(): string {
-  //   return this.account;
-  // }
-
-  // public setAddress(address: string): void {
-  //   this.accountRS = address;
-  // }
-  //
-  // public getAddress(): string {
-  //   return this.accountRS;
-  // }
 
   public previousStep(): void {
     this.step = Math.max(0, this.step - 1);
   }
 
-  public setStep(step: StepsEnum): void {
+  public nextStep(): void {
+    // max steps is not really known...
+    this.step += 1;
+  }
+
+  public setStep(step: number): void {
     this.step = step;
   }
 
-  public getStep(): StepsEnum {
+  public getStep(): number {
     return this.step;
   }
 
@@ -104,36 +76,37 @@ export class CreateService {
 
   public isAccountGenerated(): boolean {
     return this.account !== undefined;
-    // return this.words.length > 0 &&
-    //   this.accountRS !== undefined &&
-    //   this.account !== undefined;
   }
 
   public createActiveAccount(): Promise<Account> {
-    return this.accountService.createActiveAccount({passphrase: this.getCompletePassphrase(), pin: this.pin});
+    return this.accountService.createActiveAccount({passphrase: this.getPhrase(), pin: this.pin});
   }
 
-  public createPassiveAccount(): Promise<Account> {
-    return this.accountService.createOfflineAccount(this.account.accountRS);
+  public createPassiveAccount(address: string): Promise<Account> {
+    return this.accountService.createOfflineAccount(address);
   }
 
   public reset(): void {
-    this.words = [];
+    this.phrase = '';
     this.seed = undefined;
     this.salt = undefined;
-    // this.account = undefined;
-    // this.accountRS = undefined;
     this.account = undefined;
     setTimeout(x => {
-      this.step = StepsEnum.Start;
+      this.step = 0;
     }, 0);
   }
 
-  async generateAccount(): Promise<Account> {
-    const passphraseGenerator = new PassPhraseGenerator();
-    this.words = await passphraseGenerator.generatePassPhrase(this.seed);
-    const completePhrase = this.getCompletePassphrase();
-    const keys = generateMasterKeys(completePhrase);
+  async generateAccount(passphrase?: string): Promise<Account> {
+    this.phrase = passphrase;
+    if (!passphrase) {
+      const passphraseGenerator = new PassPhraseGenerator();
+      const wordlist = await passphraseGenerator.generatePassPhrase(this.seed);
+      this.phrase = wordlist.join(' ').concat(this.salt);
+    }
+    else{
+      this.phrase = passphrase;
+    }
+    const keys = generateMasterKeys(this.phrase);
     const address = Address.fromPublicKey(keys.publicKey, this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet);
     this.account = new Account();
     this.account.keys = keys;
@@ -141,4 +114,5 @@ export class CreateService {
     this.account.account = address.getNumericId();
     return this.account;
   }
+
 }

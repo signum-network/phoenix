@@ -5,7 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {AccountService} from 'app/setup/account/account.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {burstAddressPattern} from 'app/util/burstAddressPattern';
+import {AddressPattern} from 'app/util/addressPattern';
 import {NetworkService} from '../../../network/network.service';
 import {CurrencySymbol} from '@signumjs/util';
 import {handleException} from '../../../util/exceptions/handleException';
@@ -30,7 +30,7 @@ export class AddAliasComponent implements OnInit {
   public feeNQT: string;
   advanced = false;
   showMessage = false;
-  addressPatternRef = burstAddressPattern;
+  addressPatternRef = AddressPattern;
   type = 'acct';
   account: Account;
   deadline = '24';

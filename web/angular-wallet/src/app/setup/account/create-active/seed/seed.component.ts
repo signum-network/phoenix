@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import {CreateService, StepsEnum} from '../../create.service';
-import {NetworkService} from '../../../../network/network.service';
+import {CreateService} from '../../create.service';
 
 @Component({
   selector: 'app-account-create-seed',
@@ -30,7 +29,7 @@ export class AccountCreateSeedComponent {
     if (this.seed.length >= this.seedLimit) {
       this.createService.setSeed(this.seed);
       setTimeout(x => {
-        this.createService.setStep(StepsEnum.Salt);
+        this.createService.setStep(1);
       }, 0);
     }
   }

@@ -7,7 +7,7 @@ import {AccountService} from 'app/setup/account/account.service';
 import {StoreService} from 'app/store/store.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {burstAddressPattern} from 'app/util/burstAddressPattern';
+import {AddressPattern} from 'app/util/addressPattern';
 import {isKeyDecryptionError} from '../../util/exceptions/isKeyDecryptionError';
 
 @Component({
@@ -24,7 +24,7 @@ export class SetAccountInfoComponent implements OnInit {
   showMessage = false;
   isSending = false;
   immutable = false;
-  burstAddressPatternRef = burstAddressPattern;
+  burstAddressPatternRef = AddressPattern;
   deadline = '24';
   pin = '';
   fee: string;

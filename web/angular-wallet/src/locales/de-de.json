@@ -432,5 +432,7 @@
   "define_your_salt": "Definiere dein individuelles Salz",
   "enter_salt": "Geben Sie einen beliebigen alphanumerischen Text ein",
   "salt_hint": "Um die Sicherheit deiner Passphrase zu erhöhen wird der zufällig generierten Wortliste Dein eigenes individuelles Textelement (Salz) hinzugefügt. Dies sollte ein einfacher kurzer alphanumerischer Ausdruck, z.B. etwas persönliches oder auch zufällig erzeugtes, sein.",
-  "salt": "Salz hinzufügen"
+  "salt": "Salz hinzufügen",
+  "your_new_account": "Dein Signum-Konto",
+  "click_to_print": "Zum Drucken klicken"
 }

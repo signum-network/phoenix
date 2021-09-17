@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CreateService, StepsEnum} from '../../create.service';
-import seedrandom from 'seedrandom';
+import {CreateService} from '../../create.service';
+import * as seedrandom from 'seedrandom';
 
 @Component({
   selector: 'app-custom-salt',
@@ -14,6 +14,7 @@ export class CustomSaltComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('ngOnInit');
   }
 
 
@@ -23,21 +24,27 @@ export class CustomSaltComponent implements OnInit {
 
   public next(): void {
     this.createService.setSalt(this.salt);
-    this.createService.generateAccount().then(() =>
-      this.createService.setStep(StepsEnum.Record)
-    );
+    setTimeout(() => {
+      this.createService.generateAccount().then(() =>
+        this.createService.nextStep()
+      );
+    }, 0);
+  }
+
+  private createRandomString(length: number): string {
+    const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjklmnpqrstuvxyz123456789';
+    const seed = this.createService.getSeed();
+    const rng = seed.map(s => seedrandom(s, {entropy: true}))[0];
+
+    let randomString = '';
+    for (let i = 0; i < length; ++i) {
+      const index = Math.ceil(rng() * alphabet.length) - 1;
+      randomString += alphabet[index];
+    }
+    return randomString;
   }
 
   public generate(): void {
-    const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjklmnpqrstuvxyz123456789';
-    const seed = this.createService.getSeed();
-    const rng = seedrandom(seed, {entropy: true});
-    let rnd = '';
-    for (let i = 0; i < 16; ++i) {
-      const index = Math.ceil(rng() * alphabet.length) - 1;
-      rnd += alphabet[index];
-    }
-
-    this.salt = rnd;
+    this.salt = this.createRandomString(16);
   }
 }

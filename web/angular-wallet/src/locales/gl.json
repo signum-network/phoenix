@@ -432,5 +432,7 @@
   "define_your_salt": "Defina o sal individual",
   "enter_salt": "Insira un texto alfanumérico arbitrario",
   "salt_hint": "Para aumentar a seguridade da súa frase de acceso, engádese o seu propio elemento de texto individual (sal) á lista de palabras xerada aleatoriamente. Esta debería ser unha simple expresión alfanumérica curta, por exemplo, algo persoal ou xerado aleatoriamente.",
-  "salt": "Engade sal"
+  "salt": "Engade sal",
+  "your_new_account": "A túa conta Signum",
+  "click_to_print": "Fai clic para imprimir"
 }

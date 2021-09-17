@@ -2,7 +2,10 @@
 <div class="login-active__container">
     <div class="signup">
       <div class="signup__container">
-        <h1 *ngIf="newUser | async; else updateTitle" class="signup__title">{{ 'account_create_new' | i18n }}</h1>
+        <h1 *ngIf="newUser | async; else updateTitle"
+            class="signup__title print-hide">{{ 'account_create_new' | i18n }}
+
+        </h1>
         <app-account-create [newUser]="newUser | async"></app-account-create>
       </div>
     </div>

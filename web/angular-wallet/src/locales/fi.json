@@ -432,5 +432,7 @@
   "define_your_salt": "Määritä oma suola",
   "enter_salt": "Kirjoita mielivaltainen aakkosnumeerinen teksti",
   "salt_hint": "Salasanasi turvallisuuden lisäämiseksi oma yksittäinen tekstielementtisi (suola) lisätään satunnaisesti luotuun sanalistaan. Tämän pitäisi olla yksinkertainen lyhyt aakkosnumeerinen lauseke, esim. Jotain henkilökohtaista tai satunnaisesti luotua.",
-  "salt": "Lisää suolaa"
+  "salt": "Lisää suolaa",
+  "your_new_account": "Signum -tilisi",
+  "click_to_print": "Tulosta napsauttamalla"
 }

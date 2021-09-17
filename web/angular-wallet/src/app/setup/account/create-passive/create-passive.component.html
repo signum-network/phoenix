@@ -1,7 +1,7 @@
 <div class="address-container">
   <mat-form-field appearance="outline">
 
-    <input matInput prefix="{{addressPrefix}}-" pasteableAddress [patterns]="burstAddressPattern" mask="____-____-____-_____"
+    <input matInput prefix="{{addressPrefix}}-" pasteableAddress [patterns]="signumAddressPattern" mask="____-____-____-_____"
            [dropSpecialCharacters]="false" [showMaskTyped]="true" [(ngModel)]="address" name="address"
            placeholder="{{ 'address' | i18n }}">
   </mat-form-field>

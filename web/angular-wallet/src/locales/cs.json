@@ -432,5 +432,7 @@
   "define_your_salt": "Definujte svou individuální sůl",
   "enter_salt": "Zadejte libovolný alfanumerický text",
   "salt_hint": "Aby se zvýšila bezpečnost vaší přístupové fráze, bude do seznamu náhodně generovaných slov přidán váš vlastní textový prvek (sůl). Měl by to být jednoduchý krátký alfanumerický výraz, například něco osobního nebo náhodně generovaného.",
-  "salt": "Přidat sůl"
+  "salt": "Přidat sůl",
+  "your_new_account": "Váš účet Signum",
+  "click_to_print": "Klepnutím vytisknete"
 }
