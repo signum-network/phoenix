@@ -27,7 +27,7 @@ export class CreateActiveAccountComponent extends UnsubscribeOnDestroy implement
         takeUntil(this.unsubscribeAll),
       ).subscribe(() => {
       this.createService.reset();
-    })
+    });
   }
 
 }

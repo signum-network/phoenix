@@ -101,7 +101,7 @@ export class CreateService {
     if (!passphrase) {
       const passphraseGenerator = new PassPhraseGenerator();
       const wordlist = await passphraseGenerator.generatePassPhrase(this.seed);
-      this.phrase = wordlist.join(' ').concat(this.salt);
+      this.phrase = wordlist.concat(this.salt).join(' ');
     }
     else{
       this.phrase = passphrase;

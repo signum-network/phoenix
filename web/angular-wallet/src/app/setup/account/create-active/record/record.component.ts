@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 import {CreateService} from '../../create.service';
+import {NotifierService} from 'angular-notifier';
+import {I18nService} from '../../../../layout/components/i18n/i18n.service';
+import {ExceptionHandlerService} from '../../../../shared/services/exceptionhandler.service';
 
 @Component({
   selector: 'app-account-create-record',
@@ -10,6 +13,9 @@ export class AccountCreateRecordComponent {
 
   constructor(
     public createService: CreateService,
+    private notifierService: NotifierService,
+    private i18nService: I18nService,
+    private exceptionHandlerService: ExceptionHandlerService
   ) {
   }
 
@@ -21,18 +27,14 @@ export class AccountCreateRecordComponent {
     this.createService.nextStep();
   }
 
-  public copy(): void {
-    const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = this.createService.getPhrase();
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
+  public async copy(): Promise<void> {
+    try {
+      await navigator.clipboard.writeText(this.createService.getPhrase());
+      const msg = this.i18nService.getTranslation('success_clipboard_copy');
+      this.notifierService.notify('success', msg);
+    } catch (e) {
+      this.exceptionHandlerService.handle(e);
+    }
   }
 
   print(): void {
