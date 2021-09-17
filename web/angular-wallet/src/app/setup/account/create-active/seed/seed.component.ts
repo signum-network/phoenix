@@ -19,17 +19,19 @@ export class AccountCreateSeedComponent {
 
   public movement(e): void {
     this.seed.push([e.clientX, e.clientY, +new Date()]);
-    if (!this.update) {
-      this.update = true;
-      setTimeout(() => {
-        this.progress = this.seed.length / this.seedLimit * 100;
-        if (this.progress >= 100) {
-          this.createService.setSeed(this.seed);
-          this.createService.setStep(1);
-        } else {
-          this.update = false;
-        }
-      }, 100);
+    if (this.update) {
+      return;
     }
+
+    this.update = true;
+    setTimeout(() => {
+      this.progress = this.seed.length / this.seedLimit * 100;
+      if (this.progress >= 100) {
+        this.createService.setSeed(this.seed);
+        this.createService.setStep(1);
+      } else {
+        this.update = false;
+      }
+    }, 100);
   }
 }
