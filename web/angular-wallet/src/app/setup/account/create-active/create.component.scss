@@ -4,18 +4,26 @@
   @media print {
     visibility: hidden;
   }
+
+  .mat-step-header .mat-step-icon-state-number.mat-step-icon-selected,
+  .mat-step-header .mat-step-icon-state-done,
+  .mat-step-header .mat-step-icon-state-edit {
+    background-color: #00579d;
+  }
+
+  mat-horizontal-stepper {
+    border-radius: 4px;
+  }
+
+  .create-account-container {
+    @include mat-elevation(16);
+  }
+
+  .mat-horizontal-stepper-header.cdk-focused {
+    background: none;
+    border-radius: 4px;
+  }
 }
 
-:host .mat-step-header .mat-step-icon-state-number.mat-step-icon-selected,
-:host .mat-step-header .mat-step-icon-state-done,
-:host .mat-step-header .mat-step-icon-state-edit {
-  background-color: #00579d;
-}
 
-:host .mat-horizontal-stepper-header.cdk-focused {
-  background: none;
-}
 
-:host .create-account-container {
-  @include mat-elevation(16);
-}

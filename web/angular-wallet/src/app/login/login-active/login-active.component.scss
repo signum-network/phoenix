@@ -12,11 +12,7 @@ $media-query-screen: 1200px;
   width: 100vw;
   align-items: center;
   overflow: hidden;
-
-  background: linear-gradient(60deg, #003D6E, #00579D);
-  -webkit-animation: bg 30s ease infinite;
-  -moz-animation: bg 30s ease infinite;
-  animation: bg 30s ease infinite;
+  background: #003D6E;
 
   .login-active__container {
     position: absolute;

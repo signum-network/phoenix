@@ -294,7 +294,7 @@
   "recipient_id": "ID příjemce",
   "recipient_no_public_key": "Účet příjemce nemá veřejný klíč, což znamená, že nikdy neměl odchozí transakci. Účet má zůstatek __burst__ Signa. Před odesláním prosím zkontrolujte svoji adresu příjemce.",
   "recipients": "Příjemci",
-  "record": "Záznam",
+  "record": "Údaje o účtu",
   "referenced_transaction_full_hash": "Plná hash pro odkazovanou transakci",
   "refund": "Vrácení peněz",
   "refunded": "Vráceno",

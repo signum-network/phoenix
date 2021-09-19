@@ -294,7 +294,7 @@
   "recipient_id": "Ontvanger-ID",
   "recipient_no_public_key": "De rekening van de ontvanger heeft geen openbare sleutel, wat betekent dat er nooit een uitgaande transactie is geweest. Het account heeft een saldo van __burst__ Signa. Controleer het adres van uw ontvanger voordat u deze verzendt.",
   "recipients": "Ontvangers",
-  "record": "Vermelding",
+  "record": "Accountgegevens",
   "referenced_transaction_full_hash": "Transactie waarnaar verwezen wordt Volledige hash",
   "refund": "Terugbetaling",
   "refunded": "Terugbetaald",

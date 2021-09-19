@@ -294,7 +294,7 @@
   "recipient_id": "Identifiant du destinataire",
   "recipient_no_public_key": "Le compte destinataire n'a pas de clé publique, ce qui signifie qu'il n'a jamais eu de transaction sortante. Le compte a un solde de __burst__ Signa. Veuillez vérifier votre adresse de destinataire avant de soumettre.",
   "recipients": "Destinataires",
-  "record": "Enregistrer",
+  "record": "Données de compte",
   "referenced_transaction_full_hash": "Hash complet de la transaction référencée",
   "refund": "Remboursement",
   "refunded": "Remboursé",

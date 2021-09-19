@@ -294,7 +294,7 @@
   "recipient_id": "Gavėjo ID",
   "recipient_no_public_key": "Gavėjo sąskaita neturi viešojo rakto, tai reiškia, kad ji niekada neturėjo išeinančių operacijų. Sąskaitos likutis __burst__ Signa. Prieš pateikdami, dar kartą patikrinkite savo gavėjo adresą.",
   "recipients": "Gavėjai",
-  "record": "Įrašyti",
+  "record": "Paskyros duomenys",
   "referenced_transaction_full_hash": "Nurodytas visas sandoris",
   "refund": "Grąžinti pinigus",
   "refunded": "Grąžinta",

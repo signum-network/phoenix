@@ -1,8 +1,9 @@
-<section class="login" id="login-particles" [fusePerfectScrollbar]="false" [fusePerfectScrollbarOptions]="{suppressScrollY:true}">
-<div class="login__panel">
+<section class="login" [fusePerfectScrollbar]="false" [fusePerfectScrollbarOptions]="{suppressScrollY:true}">
+  <app-watermark></app-watermark>
+  <div class="login__panel">
     <div class="login__header">
       <a [routerLink]="[ '' ]">
-        <img alt="Burst logo" class="login__logo" src="assets/images/logos/logo_black.svg"/>
+        <img alt="Signum logo" class="login__logo" src="assets/images/logos/logo_black.svg"/>
       </a>
       <small class="login__version">Phoenix Wallet Version {{version}}</small>
     </div>
@@ -10,10 +11,11 @@
       <h1 class="login__title">{{ 'get_burst_account' | i18n }}</h1>
       <p class="login__info">{{ 'new_user_text' | i18n }}</p>
       <div class="login__actions">
-        <a class="login__link--yes" [routerLink]="[ '/login/active' ]" [queryParams]="{ newUser: true }">{{ 'account_create_new' | i18n }}</a>
-          <a class="login__link--no" [routerLink]="[ '/login/active' ]" >{{ 'account_import' | i18n }}</a>
+        <a class="login__link--new" [routerLink]="[ '/login/active' ]"
+           [queryParams]="{ newUser: true }">{{ 'account_create_new' | i18n }}</a>
         <p class="login__divider">{{ 'or' | i18n }}</p>
-        <a class="login__link--default" [routerLink]="[ '/login/passive' ]" >{{ 'account_watch' | i18n }}</a>
+        <a class="login__link--existing" [routerLink]="[ '/login/active' ]">{{ 'account_import_short' | i18n }}</a>
+        <a class="login__link--existing" [routerLink]="[ '/login/passive' ]">{{ 'account_watch_short' | i18n }}</a>
       </div>
     </div>
   </div>

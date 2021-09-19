@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 import {SetupRouting} from './setup.routing';
-import {AccountNewComponent} from './account/account.component';
 import {CreatePassiveAccountComponent} from './account/create-passive/create-passive.component';
 import {CreateActiveAccountComponent} from './account/create-active/create.component';
 import {AccountCreatePinComponent} from './account/create-active/pin/pin.component';
@@ -75,7 +74,6 @@ import { CustomSaltComponent } from './account/create-active/custom-salt/custom-
     AccountCreateRecordComponent,
     AccountCreateExistingComponent,
     AccountCreateSeedComponent,
-    AccountNewComponent,
     AccountActivateComponent,
     CustomSaltComponent,
   ],
@@ -84,7 +82,6 @@ import { CustomSaltComponent } from './account/create-active/custom-salt/custom-
     AccountResolver
   ],
   exports: [
-    AccountNewComponent,
     CreateActiveAccountComponent,
     CreatePassiveAccountComponent
   ]

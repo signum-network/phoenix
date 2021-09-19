@@ -294,7 +294,7 @@
   "recipient_id": "收件人编号",
   "recipient_no_public_key": "收件人帐户没有公钥，这意味着它从未有过传出交易。该帐户的余额为 __burst__ Signa。请在提交前仔细检查您的收件人地址。",
   "recipients": "收件人",
-  "record": "记录",
+  "record": "账户资料",
   "referenced_transaction_full_hash": "引用交易全哈希",
   "refund": "退款",
   "refunded": "已退款",

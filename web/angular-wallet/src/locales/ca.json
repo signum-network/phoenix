@@ -294,7 +294,7 @@
   "recipient_id": "Identificador del destinatari",
   "recipient_no_public_key": "El compte destinatari no té una clau pública, és a dir, que mai no ha realitzat cap transacció de sortida. El compte té un saldo de __burst__ Signa. Comproveu la vostra adreça de destinatari abans d’enviar-la.",
   "recipients": "Destinataris",
-  "record": "Registre",
+  "record": "Dades del compte",
   "referenced_transaction_full_hash": "Hash complet de la transacció referenciat",
   "refund": "Reembossament",
   "refunded": "Reembossat",

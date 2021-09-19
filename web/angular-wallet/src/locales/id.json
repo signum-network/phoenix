@@ -294,7 +294,7 @@
   "recipient_id": "ID penerima",
   "recipient_no_public_key": "Akun penerima tidak memiliki kunci publik, artinya tidak pernah melakukan transaksi keluar. Akun memiliki saldo __burst__ Signa. Harap periksa kembali alamat penerima Anda sebelum mengirimkan.",
   "recipients": "Penerima",
-  "record": "Merekam",
+  "record": "Data Akun",
   "referenced_transaction_full_hash": "Transaksi yang Direferensikan Hash Penuh",
   "refund": "Pengembalian dana",
   "refunded": "Dikembalikan",

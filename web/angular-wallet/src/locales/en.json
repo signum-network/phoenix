@@ -294,7 +294,7 @@
   "recipient_id": "Recipient ID",
   "recipient_no_public_key": "The recipient account does not have a public key, meaning it has never had an outgoing transaction. The account has a balance of __burst__ Signa. Please double check your recipient address before submitting.",
   "recipients": "Recipients",
-  "record": "Record",
+  "record": "Account Data",
   "referenced_transaction_full_hash": "Referenced Transaction Full Hash",
   "refund": "Refund",
   "refunded": "Refunded",

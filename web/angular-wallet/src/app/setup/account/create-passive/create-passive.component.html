@@ -6,5 +6,5 @@
            placeholder="{{ 'address' | i18n }}">
   </mat-form-field>
   <button class="btn-error" mat-raised-button routerLink="/login">{{ 'cancel' | i18n }}</button>
-  <button class="btn-success" mat-raised-button (click)="submit(this.address)">{{ 'submit' | i18n }}</button>
+  <button class="btn-success" mat-raised-button (click)="submit()" [disabled]="address.length < 17">{{ 'submit' | i18n }}</button>
 </div>

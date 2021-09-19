@@ -294,7 +294,7 @@
   "recipient_id": "alıcı kimliği",
   "recipient_no_public_key": "Alıcı hesabının ortak anahtarı yoktur, yani hiçbir zaman giden bir işlemi olmamıştır. Hesapta __burst__ Signa bakiyesi var. Lütfen göndermeden önce alıcı adresinizi iki kez kontrol edin.",
   "recipients": "alıcılar",
-  "record": "Kayıt",
+  "record": "Hesap verisi",
   "referenced_transaction_full_hash": "Başvurulan İşlem Tam Hash",
   "refund": "Geri ödeme",
   "refunded": "geri ödendi",

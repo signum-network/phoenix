@@ -18,6 +18,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { LoginPassiveComponent } from './login-passive/login-passive.component';
 import { LoginActiveComponent } from './login-active/login-active.component';
 import {FuseSharedModule} from '../../@fuse/shared.module';
+import {ComponentsModule} from '../components/components.module';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import {FuseSharedModule} from '../../@fuse/shared.module';
 
     SetupModule,
     FuseSharedModule,
+    ComponentsModule,
 
   ],
   declarations: [

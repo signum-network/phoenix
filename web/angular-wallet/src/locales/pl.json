@@ -294,7 +294,7 @@
   "recipient_id": "Identyfikator odbiorcy",
   "recipient_no_public_key": "Konto odbiorcy nie ma klucza publicznego, co oznacza, że nigdy nie miało transakcji wychodzącej. Saldo konta wynosi __burst__ Signa. Proszę dokładnie sprawdzić adres odbiorcy przed przesłaniem.",
   "recipients": "Odbiorcy",
-  "record": "Rekord",
+  "record": "Dane konta",
   "referenced_transaction_full_hash": "Odwołana transakcja Pełny skrót",
   "refund": "Zwrot",
   "refunded": "Zwrócone",

@@ -294,7 +294,7 @@
   "recipient_id": "Vastaanottajan tunnus",
   "recipient_no_public_key": "Vastaanottajan tilillä ei ole julkista avainta, joten sillä ei ole koskaan ollut lähtevää tapahtumaa. Tilillä on __burst__ Signa -saldo. Tarkista vastaanottajan osoite ennen lähettämistä.",
   "recipients": "Vastaanottajat",
-  "record": "Ennätys",
+  "record": "Tilitiedot",
   "referenced_transaction_full_hash": "Viitattu tapahtuman täysi hajautus",
   "refund": "Maksun palautus",
   "refunded": "Palautettu",

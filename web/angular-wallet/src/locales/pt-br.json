@@ -294,7 +294,7 @@
   "recipient_id": "ID do Destinatário",
   "recipient_no_public_key": "A conta do destinatário não tem uma chave pública, o que significa que nunca teve uma transação de saída. A conta tem um saldo de __burst__ Signa. Verifique novamente o endereço do destinatário antes de enviar.",
   "recipients": "Destinatários",
-  "record": "Registro",
+  "record": "Dados da conta",
   "referenced_transaction_full_hash": "Hash completo da transação referenciada",
   "refund": "Reembolso",
   "refunded": "Devolveu",

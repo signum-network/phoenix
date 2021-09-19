@@ -294,7 +294,7 @@
   "recipient_id": "ID primatelja",
   "recipient_no_public_key": "Račun primatelja nema javni ključ, što znači da nikada nije imao odlaznu transakciju. Stanje na računu je __ prasak__ Signa. Molimo provjerite adresu primatelja prije slanja.",
   "recipients": "Primatelji",
-  "record": "Snimiti",
+  "record": "Podaci računa",
   "referenced_transaction_full_hash": "Referentna transakcija Full Hash",
   "refund": "Povrat novca",
   "refunded": "Povrat novca",

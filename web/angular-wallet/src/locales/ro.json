@@ -294,7 +294,7 @@
   "recipient_id": "ID-ul destinatarului",
   "recipient_no_public_key": "Contul destinatar nu are o cheie publică, ceea ce înseamnă că nu a avut niciodată o tranzacție de ieșire. Contul are un sold de __burst__ Signa. Vă rugăm să verificați din nou adresa destinatarului înainte de a trimite.",
   "recipients": "Destinatari",
-  "record": "Record",
+  "record": "Date despre cont",
   "referenced_transaction_full_hash": "Tranzacție completă la care se face referire",
   "refund": "Restituire",
   "refunded": "Rambursat",

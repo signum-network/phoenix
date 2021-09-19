@@ -9,7 +9,7 @@ import {CreateService} from '../../create.service';
 })
 export class AccountCreateExistingComponent {
 
-  @Input() passphrase: string;
+  passphrase = '';
 
 
   constructor(

@@ -294,7 +294,7 @@
   "recipient_id": "受信者ID",
   "recipient_no_public_key": "受信者のアカウントには公開鍵がありません。つまり、発信トランザクションは一度もありません。アカウントの残高は __burst__ Signa です。送信する前に、受信者のアドレスをもう一度確認してください。",
   "recipients": "受信者",
-  "record": "記録",
+  "record": "アカウントデータ",
   "referenced_transaction_full_hash": "参照されるトランザクションのフルハッシュ",
   "refund": "返金",
   "refunded": "返金された",
