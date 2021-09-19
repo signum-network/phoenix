@@ -1,16 +1,15 @@
 <div class="fullwidth">
-  <div class="h3 secondary-text mb-8">{{ 'recent_transactions' | i18n }}</div>
-  <app-transaction-table *ngIf="transactionsDataSource && transactionsDataSource.data.length"
-                         [dataSource]="transactionsDataSource"
-                         [account]="account"
-                         [paginationEnabled]="false"
-  ></app-transaction-table>
-  <div *ngIf="!transactionsDataSource || !account.transactions.length">
+  <ng-container *ngIf="transactionsDataSource && transactionsDataSource.data.length">
+    <app-transaction-table
+      [dataSource]="transactionsDataSource"
+      [account]="account"
+      [paginationEnabled]="false"
+    ></app-transaction-table>
+    <a class="p-16" fxLayoutAlign="end" [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</a>
+  </ng-container>
+  <ng-container *ngIf="!transactionsDataSource || !account.transactions.length">
     <div>
       {{ 'no_transactions_yet' | i18n }}
     </div>
-  </div>
-  <a *ngIf="transactionsDataSource && transactionsDataSource.data.length"
-     class="p-16" fxLayoutAlign="end"
-     [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</a>
+  </ng-container>
 </div>
