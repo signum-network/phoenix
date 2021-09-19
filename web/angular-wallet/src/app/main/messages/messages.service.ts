@@ -82,39 +82,36 @@ export class MessagesService implements Resolve<any> {
     return this.populateMessages();
   }
 
-  public populateMessages(): any {
-    return new Promise(async (resolve, reject) => {
-      try {
-        this.user = await this.accountService.currentAccount$.getValue();
-        const messages = await this.getMessages();
-        this.messages = messages.reduce((acc, val) => {
-          const isSentMessage = this.user.account === val.sender;
-          val.attachment.timestamp = val.timestamp;
-          val.attachment.contactId = val.sender;
-          const existingMessage = acc.find((item) => {
-            return isSentMessage ? item.contactId === val.recipient :
-              item.contactId === val.sender;
-          });
-          if (existingMessage) {
-            existingMessage.dialog.unshift(val.attachment);
-            return acc;
-          }
-          return acc.concat({
-            contactId: isSentMessage ? val.recipient : val.sender,
-            dialog: [val.attachment],
-            senderRS: isSentMessage ? val.recipientRS : val.senderRS,
-            timestamp: val.timestamp // relies on default order being reverse chrono
-          });
-        }, []);
-      } catch (e) {
-        console.warn(e);
-        this.messages = [];
-        this.contacts = [];
-      }
+  public async populateMessages(): Promise<void> {
+    try {
+      this.user = await this.accountService.currentAccount$.getValue();
+      const messages = await this.getMessages();
+      this.messages = messages.reduce((acc, val) => {
+        const isSentMessage = this.user.account === val.sender;
+        val.attachment.timestamp = val.timestamp;
+        val.attachment.contactId = val.sender;
+        const existingMessage = acc.find((item) => {
+          return isSentMessage ? item.contactId === val.recipient :
+            item.contactId === val.sender;
+        });
+        if (existingMessage) {
+          existingMessage.dialog.unshift(val.attachment);
+          return acc;
+        }
+        return acc.concat({
+          contactId: isSentMessage ? val.recipient : val.sender,
+          dialog: [val.attachment],
+          senderRS: isSentMessage ? val.recipientRS : val.senderRS,
+          timestamp: val.timestamp // relies on default order being reverse chrono
+        });
+      }, []);
+    } catch (e) {
+      console.warn(e);
+      this.messages = [];
+      this.contacts = [];
+    }
 
-      this.onMessagesUpdated.next(this.messages);
-      resolve();
-    });
+    this.onMessagesUpdated.next(this.messages);
   }
 
   getMessage(message, isNewMessage?: boolean): void {

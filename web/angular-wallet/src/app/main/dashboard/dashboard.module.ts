@@ -34,6 +34,8 @@ import {MarketOverviewComponent} from './widgets/market/market-overview.componen
 import {PerformanceComponent} from './widgets/performance/performance.component';
 import {MatCardModule} from '@angular/material/card';
 import { BalanceComponent } from './widgets/balance/balance.component';
+import {ComponentsModule} from '../../components/components.module';
+import { TransactionsTableComponent } from './widgets/transactions-table/transactions-table.component';
 
 const routes: Routes = [
   {
@@ -57,33 +59,35 @@ const routes: Routes = [
     TraderDashboardComponent,
     PowerDashboardComponent,
     BalanceComponent,
+    TransactionsTableComponent,
   ],
-  imports: [
-    RouterModule.forChild(routes),
+    imports: [
+        RouterModule.forChild(routes),
 
-    MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatMenuModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatListModule,
-    MatToolbarModule,
-    ChartsModule,
-    NgxChartsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatMenuModule,
+        MatSelectModule,
+        MatTabsModule,
+        MatListModule,
+        MatToolbarModule,
+        ChartsModule,
+        NgxChartsModule,
 
-    FuseSharedModule,
-    FuseWidgetModule,
-    I18nModule,
-    TransactionTableModule,
-    MatCheckboxModule,
-    AppSharedModule,
-    NgxSkeletonLoaderModule,
-    MatGridListModule,
-    MatTooltipModule,
-    MatChipsModule,
-    MatCardModule
-  ],
+        FuseSharedModule,
+        FuseWidgetModule,
+        I18nModule,
+        TransactionTableModule,
+        MatCheckboxModule,
+        AppSharedModule,
+        NgxSkeletonLoaderModule,
+        MatGridListModule,
+        MatTooltipModule,
+        MatChipsModule,
+        MatCardModule,
+        ComponentsModule
+    ],
 })
 export class DashboardModule {
 }

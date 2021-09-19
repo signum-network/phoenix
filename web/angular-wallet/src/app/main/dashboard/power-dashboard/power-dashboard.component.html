@@ -23,5 +23,20 @@
                    [account]="account">
       </app-balance>
     </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.market"
+      [rowspan]="layoutParameters.rowSpans.market"
+    >
+      <!-- #FIXME: market widget -->
+      <app-balance class="widget"
+                   [account]="account">
+      </app-balance>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.table"
+      [rowspan]="layoutParameters.rowSpans.table"
+    >
+      <app-transactions-table-widget class="widget"></app-transactions-table-widget>
+    </mat-grid-tile>
   </mat-grid-list>
 </div>

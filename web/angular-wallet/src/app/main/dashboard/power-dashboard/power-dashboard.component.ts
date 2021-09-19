@@ -3,12 +3,13 @@ import {DashboardLayoutService} from '../dashboard.layout.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
 import {PowerDashboardLayoutParameters, PowerDashboardLayoutConfiguration} from './PowerDashboardLayoutConfiguration';
-import {Account} from '@signumjs/core';
+import {Account, Transaction} from '@signumjs/core';
 import {MarketInfoCryptoCompare} from '../widgets/market/types';
 import {StoreService} from '../../../store/store.service';
 import {AccountService} from '../../../setup/account/account.service';
 import {NotifierService} from 'angular-notifier';
 import {MarketService} from '../widgets/market/market.service';
+import {MatTableDataSource} from '@angular/material/table';
 
 const LayoutConfiguration = new PowerDashboardLayoutConfiguration();
 
@@ -44,7 +45,8 @@ export class PowerDashboardComponent extends UnsubscribeOnDestroy implements OnI
       .pipe(this.unsubscribe)
       .subscribe((account: Account) => {
         this.account = account;
-      });
+        }
+      );
 
     this.marketService.ticker$
       .pipe(this.unsubscribe)

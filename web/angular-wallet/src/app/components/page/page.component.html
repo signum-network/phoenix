@@ -21,7 +21,8 @@
   </div>
 
   <!-- CENTER -->
-  <div class="content-container" [style.background-image]="bgImgSrc">
+  <app-watermark></app-watermark>
+  <div class="content-container" >
     <div [ngClass]="{content: true, wide:wide===true, full:full===true}">
       <ng-content></ng-content>
     </div>
