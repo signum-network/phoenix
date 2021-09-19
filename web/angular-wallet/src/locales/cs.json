@@ -294,7 +294,7 @@
   "recipient_id": "ID příjemce",
   "recipient_no_public_key": "Účet příjemce nemá veřejný klíč, což znamená, že nikdy neměl odchozí transakci. Účet má zůstatek __burst__ Signa. Před odesláním prosím zkontrolujte svoji adresu příjemce.",
   "recipients": "Příjemci",
-  "record": "Záznam",
+  "record": "Údaje o účtu",
   "referenced_transaction_full_hash": "Plná hash pro odkazovanou transakci",
   "refund": "Vrácení peněz",
   "refunded": "Vráceno",
@@ -437,5 +437,12 @@
   "user_profile_desc_power": "Pokročilý řídicí panel se spoustou dalších informací.",
   "user_profile_desc_miner": "Hlavní panel s dalšími informacemi pro těžaře.",
   "user_profile_desc_trader": "Řídicí panel se spoustou obchodních informací a dalšími grafy.",
-  "select_profile": "Vyberte profil uživatele pro různé panely"
+  "select_profile": "Vyberte profil uživatele pro různé panely",
+  "define_your_salt": "Definujte svou individuální sůl",
+  "enter_salt": "Zadejte libovolný alfanumerický text",
+  "salt_hint": "Aby se zvýšila bezpečnost vaší přístupové fráze, bude do seznamu náhodně generovaných slov přidán váš vlastní textový prvek (sůl). Měl by to být jednoduchý krátký alfanumerický výraz, například něco osobního nebo náhodně generovaného.",
+  "salt": "Přidat sůl",
+  "your_new_account": "Váš účet Signum",
+  "click_to_print": "Klepnutím vytisknete",
+  "show_whitespaces": "Zobrazit mezery"
 }

@@ -17,6 +17,7 @@ import {FeeSelectorComponent} from './fee-selector/fee-selector.component';
 import {PageComponent} from './page/page.component';
 import {WarnSendDialogComponent} from './warn-send-dialog/warn-send-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { WatermarkComponent } from './watermark/watermark.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     FeeSelectorComponent,
     PageComponent,
     WarnSendDialogComponent,
+    WatermarkComponent,
   ],
   exports: [
     SubmitTransactionComponent,
@@ -34,6 +36,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     FeeSelectorComponent,
     PageComponent,
     WarnSendDialogComponent,
+    WatermarkComponent,
   ],
   imports: [
     AppSharedModule,

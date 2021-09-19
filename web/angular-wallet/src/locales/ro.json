@@ -294,7 +294,7 @@
   "recipient_id": "ID-ul destinatarului",
   "recipient_no_public_key": "Contul destinatar nu are o cheie publică, ceea ce înseamnă că nu a avut niciodată o tranzacție de ieșire. Contul are un sold de __burst__ Signa. Vă rugăm să verificați din nou adresa destinatarului înainte de a trimite.",
   "recipients": "Destinatari",
-  "record": "Record",
+  "record": "Date despre cont",
   "referenced_transaction_full_hash": "Tranzacție completă la care se face referire",
   "refund": "Restituire",
   "refunded": "Rambursat",
@@ -437,5 +437,12 @@
   "user_profile_desc_power": "Tablou de bord avansat cu o mulțime de informații suplimentare.",
   "user_profile_desc_miner": "Tablou de bord cu informații suplimentare pentru mineri.",
   "user_profile_desc_trader": "Tablou de bord cu o mulțime de informații de tranzacționare și diagrame suplimentare.",
-  "select_profile": "Selectați un profil de utilizator pentru diferite tablouri de bord"
+  "select_profile": "Selectați un profil de utilizator pentru diferite tablouri de bord",
+  "define_your_salt": "Definiți-vă sarea individuală",
+  "enter_salt": "Introduceți un text alfanumeric arbitrar",
+  "salt_hint": "Pentru a crește securitatea expresiei dvs. de acces, propriul dvs. element de text (sare) este adăugat la lista de cuvinte generate aleatoriu. Aceasta ar trebui să fie o simplă expresie alfanumerică scurtă, de exemplu ceva personal sau generat aleatoriu.",
+  "salt": "Adauga sare",
+  "your_new_account": "Contul dvs. Signum",
+  "click_to_print": "Faceți clic pentru a imprima",
+  "show_whitespaces": "Afișați spațiile albe"
 }

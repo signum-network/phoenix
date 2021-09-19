@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {destroy, initialize} from '../../../particles';
-import particleConf from '../../../particles/config';
+// import {destroy, initialize} from '../../../particles';
+// import particleConf from '../../../particles/config';
 
 @Component({
   selector: 'app-login-passive',
@@ -13,10 +13,10 @@ export class LoginPassiveComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    initialize('login-particles', particleConf);
+    // initialize('login-particles', particleConf);
   }
 
   ngOnDestroy(): void {
-    destroy();
+    // destroy();
   }
 }

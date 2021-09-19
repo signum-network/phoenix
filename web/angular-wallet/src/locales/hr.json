@@ -294,7 +294,7 @@
   "recipient_id": "ID primatelja",
   "recipient_no_public_key": "Račun primatelja nema javni ključ, što znači da nikada nije imao odlaznu transakciju. Stanje na računu je __ prasak__ Signa. Molimo provjerite adresu primatelja prije slanja.",
   "recipients": "Primatelji",
-  "record": "Snimiti",
+  "record": "Podaci računa",
   "referenced_transaction_full_hash": "Referentna transakcija Full Hash",
   "refund": "Povrat novca",
   "refunded": "Povrat novca",
@@ -437,5 +437,12 @@
   "user_profile_desc_power": "Napredna nadzorna ploča s puno dodatnih informacija.",
   "user_profile_desc_miner": "Nadzorna ploča s dodatnim podacima za rudare.",
   "user_profile_desc_trader": "Nadzorna ploča s puno informacija o trgovanju i dodatnim grafikonima.",
-  "select_profile": "Odaberite korisnički profil za različite nadzorne ploče"
+  "select_profile": "Odaberite korisnički profil za različite nadzorne ploče",
+  "define_your_salt": "Definirajte svoju individualnu sol",
+  "enter_salt": "Unesite proizvoljan alfanumerički tekst",
+  "salt_hint": "Kako biste povećali sigurnost svoje zaporke, vaš vlastiti pojedinačni tekstualni element (sol) dodaje se nasumično generiranom popisu riječi. Ovo bi trebao biti jednostavan kratki alfanumerički izraz, npr. Nešto osobno ili nasumično generirano.",
+  "salt": "Dodajte sol",
+  "your_new_account": "Vaš prijavljeni račun",
+  "click_to_print": "Kliknite za ispis",
+  "show_whitespaces": "Prikaži bijele prostore"
 }

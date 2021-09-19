@@ -294,7 +294,7 @@
   "recipient_id": "Recipient ID",
   "recipient_no_public_key": "The recipient account does not have a public key, meaning it has never had an outgoing transaction. The account has a balance of __burst__ Signa. Please double check your recipient address before submitting.",
   "recipients": "Recipients",
-  "record": "Record",
+  "record": "Account Data",
   "referenced_transaction_full_hash": "Referenced Transaction Full Hash",
   "refund": "Refund",
   "refunded": "Refunded",
@@ -437,5 +437,12 @@
   "user_profile_desc_power": "Advanced Dashboard with lots of additional information.",
   "user_profile_desc_miner": "Dashboard with additional information for miners.",
   "user_profile_desc_trader": "Dashboard with lots of trading information and additional charts.",
-  "select_profile": "Select a User Profile for different dashboards"
+  "select_profile": "Select a User Profile for different dashboards",
+  "define_your_salt": "Define your individual Salt",
+  "enter_salt": "Enter an arbitrary alphanumeric text",
+  "salt_hint": "In order to increase the security of your passphrase, your own individual text element (salt) is added to the randomly generated word list. This should be a simple short alphanumeric expression, e.g. something personal or randomly generated.",
+  "salt": "Add Salt",
+  "your_new_account": "Your Signum Account",
+  "click_to_print": "Click to print",
+  "show_whitespaces": "Show Whitespaces"
 }

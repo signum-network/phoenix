@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 import {SetupRouting} from './setup.routing';
-import {AccountNewComponent} from './account/account.component';
 import {CreatePassiveAccountComponent} from './account/create-passive/create-passive.component';
 import {CreateActiveAccountComponent} from './account/create-active/create.component';
 import {AccountCreatePinComponent} from './account/create-active/pin/pin.component';
@@ -37,6 +36,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {AccountActivateComponent} from './account/create-active/activate/activate.component';
 import {AppSharedModule} from '../shared/shared.module';
 import {ComponentsModule} from '../components/components.module';
+import { CustomSaltComponent } from './account/create-active/custom-salt/custom-salt.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   imports: [
@@ -66,6 +67,7 @@ import {ComponentsModule} from '../components/components.module';
     NgxMaskModule.forRoot(),
     MatTooltipModule,
     AppSharedModule,
+    MatCheckboxModule,
   ],
   declarations: [
     CreateActiveAccountComponent,
@@ -74,15 +76,14 @@ import {ComponentsModule} from '../components/components.module';
     AccountCreateRecordComponent,
     AccountCreateExistingComponent,
     AccountCreateSeedComponent,
-    AccountNewComponent,
     AccountActivateComponent,
+    CustomSaltComponent,
   ],
   providers: [
     CreateService,
     AccountResolver
   ],
   exports: [
-    AccountNewComponent,
     CreateActiveAccountComponent,
     CreatePassiveAccountComponent
   ]

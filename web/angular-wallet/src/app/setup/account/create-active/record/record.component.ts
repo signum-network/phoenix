@@ -1,38 +1,43 @@
 import {Component} from '@angular/core';
-import {CreateService, StepsEnum} from '../../create.service';
+import {CreateService} from '../../create.service';
+import {NotifierService} from 'angular-notifier';
+import {I18nService} from '../../../../layout/components/i18n/i18n.service';
+import {ExceptionHandlerService} from '../../../../shared/services/exceptionhandler.service';
 
 @Component({
-    selector: 'app-account-create-record',
-    styleUrls: ['./record.component.scss'],
-    templateUrl: './record.component.html'
+  selector: 'app-account-create-record',
+  styleUrls: ['./record.component.scss'],
+  templateUrl: './record.component.html'
 })
 export class AccountCreateRecordComponent {
 
-    constructor(
-        public createService: CreateService,
-    ) { }
+  constructor(
+    public createService: CreateService,
+    private notifierService: NotifierService,
+    private i18nService: I18nService,
+    private exceptionHandlerService: ExceptionHandlerService
+  ) {
+  }
 
+  public back(): void {
+    this.createService.previousStep();
+  }
 
-    public reset(): void {
-        this.createService.reset();
+  public next(): void {
+    this.createService.nextStep();
+  }
+
+  public async copy(): Promise<void> {
+    try {
+      await navigator.clipboard.writeText(this.createService.getPhrase());
+      const msg = this.i18nService.getTranslation('success_clipboard_copy');
+      this.notifierService.notify('success', msg);
+    } catch (e) {
+      this.exceptionHandlerService.handle(e);
     }
+  }
 
-    public next(): void {
-        this.createService.setStep(StepsEnum.DefinePin);
-    }
-
-    public copy(): void {
-        const selBox = document.createElement('textarea');
-        selBox.style.position = 'fixed';
-        selBox.style.left = '0';
-        selBox.style.top = '0';
-        selBox.style.opacity = '0';
-        selBox.value = this.createService.getCompletePassphrase();
-        document.body.appendChild(selBox);
-        selBox.focus();
-        selBox.select();
-        document.execCommand('copy');
-        document.body.removeChild(selBox);
-    }
-
+  print(): void {
+    window.print();
+  }
 }

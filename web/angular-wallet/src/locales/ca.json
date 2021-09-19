@@ -294,7 +294,7 @@
   "recipient_id": "Identificador del destinatari",
   "recipient_no_public_key": "El compte destinatari no té una clau pública, és a dir, que mai no ha realitzat cap transacció de sortida. El compte té un saldo de __burst__ Signa. Comproveu la vostra adreça de destinatari abans d’enviar-la.",
   "recipients": "Destinataris",
-  "record": "Registre",
+  "record": "Dades del compte",
   "referenced_transaction_full_hash": "Hash complet de la transacció referenciat",
   "refund": "Reembossament",
   "refunded": "Reembossat",
@@ -437,5 +437,12 @@
   "user_profile_desc_power": "Tauler avançat amb molta informació addicional.",
   "user_profile_desc_miner": "Tauler de control amb informació addicional per als miners.",
   "user_profile_desc_trader": "Tauler amb molta informació comercial i gràfics addicionals.",
-  "select_profile": "Seleccioneu un perfil d'usuari per a diferents taulers"
+  "select_profile": "Seleccioneu un perfil d'usuari per a diferents taulers",
+  "define_your_salt": "Definiu la sal individual",
+  "enter_salt": "Introduïu un text alfanumèric arbitrari",
+  "salt_hint": "Per tal d’augmentar la seguretat de la vostra contrasenya, s’afegeix el vostre propi element de text individual (sal) a la llista de paraules generada aleatòriament. Aquesta hauria de ser una simple expressió alfanumèrica breu, per exemple, quelcom personal o generat aleatòriament.",
+  "salt": "Afegiu sal",
+  "your_new_account": "El vostre compte Signum",
+  "click_to_print": "Feu clic per imprimir",
+  "show_whitespaces": "Mostra espais en blanc"
 }

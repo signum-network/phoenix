@@ -294,7 +294,7 @@
   "recipient_id": "ID do destinatario",
   "recipient_no_public_key": "A conta do destinatario non ten unha clave pública, o que significa que nunca tivo unha transacción de saída. A conta ten un saldo de __burst__ Signa. Comprobe o seu enderezo de destinatario antes de enviar.",
   "recipients": "Destinatarios",
-  "record": "Rexistro",
+  "record": "Datos da conta",
   "referenced_transaction_full_hash": "Transacción referenciada Full Hash",
   "refund": "Reembolso",
   "refunded": "Reembolsado",
@@ -437,5 +437,12 @@
   "user_profile_desc_power": "Panel avanzado con moita información adicional.",
   "user_profile_desc_miner": "Panel de control con información adicional para os mineiros.",
   "user_profile_desc_trader": "Panel de control con moita información comercial e gráficos adicionais.",
-  "select_profile": "Selecciona un perfil de usuario para distintos paneis"
+  "select_profile": "Selecciona un perfil de usuario para distintos paneis",
+  "define_your_salt": "Defina o sal individual",
+  "enter_salt": "Insira un texto alfanumérico arbitrario",
+  "salt_hint": "Para aumentar a seguridade da súa frase de acceso, engádese o seu propio elemento de texto individual (sal) á lista de palabras xerada aleatoriamente. Esta debería ser unha simple expresión alfanumérica curta, por exemplo, algo persoal ou xerado aleatoriamente.",
+  "salt": "Engade sal",
+  "your_new_account": "A túa conta Signum",
+  "click_to_print": "Fai clic para imprimir",
+  "show_whitespaces": "Mostrar espazos en branco"
 }

@@ -1,0 +1,13 @@
+:host {
+
+  --logo-size: 1024px;
+
+  #watermark {
+    position: fixed;
+    width: var(--logo-size);
+    height: var(--logo-size);
+    right: calc(var(--logo-size) / -2);
+    bottom: calc(var(--logo-size) / -2);
+    opacity: 0.05;
+  }
+}

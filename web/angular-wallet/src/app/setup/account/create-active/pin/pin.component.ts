@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Router} from '@angular/router';
-import {CreateService, StepsEnum} from '../../create.service';
+import {CreateService} from '../../create.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from '../../../../layout/components/i18n/i18n.service';
 
@@ -33,7 +33,7 @@ export class AccountCreatePinComponent {
 
     this.createService.setPin(this.pin);
     setTimeout(() => {
-      this.createService.setStep(StepsEnum.ActivateAccount);
+      this.createService.nextStep();
     }, 0);
   }
 

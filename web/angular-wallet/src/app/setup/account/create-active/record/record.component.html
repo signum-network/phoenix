@@ -1,6 +1,11 @@
-<h2 class="title">
-  {{"account_created" |i18n }}
+<h2 class="title print-hide">
+  {{"your_new_account" |i18n }}
 </h2>
+
+<div class="centered">
+  <img src="assets/images/logos/logo_black.svg" class="print-only" alt="Signum Logo" width="256">
+</div>
+
 <div class="passphrase-hint amber-600-bg">
   <div class="hint" fxHide fxShow.gt-sm>
     <mat-icon>notification_important</mat-icon>
@@ -20,7 +25,7 @@
       ID:
     </td>
     <td class="table__text">
-      {{ this.createService.getId() }}
+      <pre>{{this.createService.getAccount()?.account}}</pre>
     </td>
   </tr>
   <tr>
@@ -28,24 +33,33 @@
       {{ 'address' | i18n }}:
     </td>
     <td class="table__text">
-      {{ this.createService.getAddress() }}
+      <pre>{{this.createService.getAccount()?.accountRS}}</pre>
     </td>
   </tr>
   <tr>
     <td class="table__label">
       {{ 'passphrase' | i18n }}:
     </td>
-    <td class="table__text unselectable">
-      {{ this.createService.getCompletePassphrase() }}
+    <td class="table__text">
+      <pre class="bordered">{{ this.createService.getPhrase() }}</pre>
     </td>
-    <td>
-      <button class="copy-button" matTooltip="{{'click_to_copy_passphrase' | i18n}}" mat-raised-button (click)="copy()">
+    <td class="print-hide">
+      <button class="icon-button" matTooltip="{{'click_to_copy_passphrase' | i18n}}"
+              color="primary"
+              mat-raised-button
+              (click)="copy()">
         <mat-icon>file_copy</mat-icon>
+      </button>
+      <button class="icon-button" matTooltip="{{'click_to_print' | i18n}}"
+              color="primary"
+              mat-raised-button
+              (click)="print()">
+        <mat-icon>print</mat-icon>
       </button>
     </td>
   </tr>
 </table>
 <div class="text-center navigation">
-  <button class="btn-danger" mat-raised-button (click)="reset()">{{"back" | i18n}}</button>
-  <button class="btn-success" mat-raised-button (click)="next()">{{"next" | i18n}}</button>
+  <button class="print-hide" mat-raised-button (click)="back()">{{"back" | i18n}}</button>
+  <button class="print-hide" mat-raised-button (click)="next()">{{"next" | i18n}}</button>
 </div>

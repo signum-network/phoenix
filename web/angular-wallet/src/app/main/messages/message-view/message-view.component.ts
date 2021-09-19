@@ -12,7 +12,7 @@ import {AccountService} from 'app/setup/account/account.service';
 import {NotifierService} from 'angular-notifier';
 import {UtilService} from 'app/util.service';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {burstAddressPattern} from 'app/util/burstAddressPattern';
+import {AddressPattern} from 'app/util/addressPattern';
 import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 import {NetworkService} from '../../../network/network.service';
 
@@ -41,7 +41,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   pinInput: any;
   selectedUser: Account;
   isNewMessage = false;
-  burstAddressPatternRef = burstAddressPattern;
+  burstAddressPatternRef = AddressPattern;
   isSending = false;
   showPin = [];
 

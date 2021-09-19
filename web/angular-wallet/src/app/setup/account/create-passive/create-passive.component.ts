@@ -2,7 +2,7 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import {CreateService} from '../create.service';
 import {NotifierService} from 'angular-notifier';
 import {Router} from '@angular/router';
-import {burstAddressPattern} from 'app/util/burstAddressPattern';
+import {AddressPattern} from 'app/util/addressPattern';
 import {NetworkService} from '../../../network/network.service';
 import {AddressPrefix} from '@signumjs/core';
 
@@ -16,7 +16,7 @@ export class CreatePassiveAccountComponent implements OnInit {
 
   address = '';
 
-  burstAddressPattern = burstAddressPattern;
+  signumAddressPattern = AddressPattern;
   addressPrefix: AddressPrefix.TestNet | AddressPrefix.MainNet;
 
   constructor(private createService: CreateService,
@@ -29,10 +29,9 @@ export class CreatePassiveAccountComponent implements OnInit {
     this.addressPrefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
   }
 
-  public submit(address: string): void {
-    this.createService.setAddress(`${this.addressPrefix}-${address}`);
-    this.createService.createPassiveAccount().then((success) => {
-        this.notificationService.notify('success', `Account added: ${address}`);
+  public submit(): void {
+    this.createService.createPassiveAccount(`${this.addressPrefix}-${this.address}`).then((success) => {
+        this.notificationService.notify('success', `Account added: ${this.address}`);
         this.createService.reset();
         this.router.navigate(['/']);
       },

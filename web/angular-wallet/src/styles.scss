@@ -53,6 +53,7 @@ app-market-overview {
   animation: pulse 2s infinite;
 }
 
+<<<<<<< HEAD
 .widget {
   display: flex;
   justify-content: center;
@@ -72,6 +73,19 @@ app-market-overview {
 
 .fullheight {
   height: 100% !important;
+=======
+.print-hide{
+  @media print {
+    display: none !important;
+  }
+}
+
+.print-only {
+  display: none;
+  @media print {
+    display: inherit !important;
+  }
+>>>>>>> main
 }
 
 @keyframes pulse {

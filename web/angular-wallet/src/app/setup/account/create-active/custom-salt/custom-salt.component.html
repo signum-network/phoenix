@@ -1,0 +1,24 @@
+<h2>
+  {{"define_your_salt" | i18n}}
+</h2>
+<div class="pin-container">
+  <mat-form-field class="w-50-p">
+    <input matInput
+           type="text"
+           autocomplete="off"
+           minlength="8"
+           maxlength="32"
+           placeholder="{{'enter_salt' | i18n}}"
+           [(ngModel)]="salt"
+    >
+  </mat-form-field>
+  <button mat-icon-button color="primary" (click)="generate()" matTooltip="{{'generate' | i18n}}">
+    <mat-icon>shuffle</mat-icon>
+  </button>
+</div>
+<small>
+  {{"salt_hint" | i18n }}
+</small>
+<div class="text-center navigation">
+  <button mat-raised-button (click)="next()" [disabled]="salt.length < 8">{{"next" | i18n}}</button>
+</div>

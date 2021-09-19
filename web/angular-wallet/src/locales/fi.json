@@ -294,7 +294,7 @@
   "recipient_id": "Vastaanottajan tunnus",
   "recipient_no_public_key": "Vastaanottajan tilillä ei ole julkista avainta, joten sillä ei ole koskaan ollut lähtevää tapahtumaa. Tilillä on __burst__ Signa -saldo. Tarkista vastaanottajan osoite ennen lähettämistä.",
   "recipients": "Vastaanottajat",
-  "record": "Ennätys",
+  "record": "Tilitiedot",
   "referenced_transaction_full_hash": "Viitattu tapahtuman täysi hajautus",
   "refund": "Maksun palautus",
   "refunded": "Palautettu",
@@ -437,5 +437,12 @@
   "user_profile_desc_power": "Kehittynyt kojelauta, jossa on paljon lisätietoa.",
   "user_profile_desc_miner": "Kojelauta, jossa on lisätietoja kaivostyöläisille.",
   "user_profile_desc_trader": "Kojelauta, jossa on paljon kaupankäyntitietoja ja muita kaavioita.",
-  "select_profile": "Valitse käyttäjäprofiili eri hallintapaneeleille"
+  "select_profile": "Valitse käyttäjäprofiili eri hallintapaneeleille",
+  "define_your_salt": "Määritä oma suola",
+  "enter_salt": "Kirjoita mielivaltainen aakkosnumeerinen teksti",
+  "salt_hint": "Salasanasi turvallisuuden lisäämiseksi oma yksittäinen tekstielementtisi (suola) lisätään satunnaisesti luotuun sanalistaan. Tämän pitäisi olla yksinkertainen lyhyt aakkosnumeerinen lauseke, esim. Jotain henkilökohtaista tai satunnaisesti luotua.",
+  "salt": "Lisää suolaa",
+  "your_new_account": "Signum -tilisi",
+  "click_to_print": "Tulosta napsauttamalla",
+  "show_whitespaces": "Näytä välilyönnit"
 }

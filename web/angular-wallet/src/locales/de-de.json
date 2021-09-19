@@ -241,7 +241,7 @@
   "new_message": "Neue Nachricht",
   "new_user_text": "Bist Du ein neuer Benutzer? Erstellen Dein neues Konto und werde Teil des Signum-Netzwerks.",
   "new_version": "Neue Version",
-  "next": "Nächster",
+  "next": "Weiter",
   "next_block": "Nächster Block",
   "no": "Nein",
   "no_messages_available": "Keine Nachrichten verfügbar.",
@@ -294,7 +294,7 @@
   "recipient_id": "Empfänger-ID",
   "recipient_no_public_key": "Das Empfängerkonto hat keinen öffentlichen Schlüssel, d.h. es hat noch nie eine ausgehende Transaktion stattgefunden. Das Konto hat einen Saldo von __burst__ Signa. Bitte überprüfe die Empfängeradresse vor dem Absenden.",
   "recipients": "Empfänger",
-  "record": "Aufzeichnung",
+  "record": "Kontodaten",
   "referenced_transaction_full_hash": "Referenzierter Hash",
   "refund": "Rückerstattung",
   "refunded": "Zurückerstattet",
@@ -437,5 +437,12 @@
   "user_profile_desc_power": "Erweitertes Dashboard mit vielen zusätzlichen Informationen.",
   "user_profile_desc_miner": "Dashboard mit zusätzlichen Informationen für Miner.",
   "user_profile_desc_trader": "Dashboard mit vielen Handelsinformationen und zusätzlichen Charts.",
-  "select_profile": "Wähle ein Benutzerprofil für verschiedene Dashboards"
+  "select_profile": "Wähle ein Benutzerprofil für verschiedene Dashboards",
+  "define_your_salt": "Definiere dein individuelles Salz",
+  "enter_salt": "Gib einen beliebigen alphanumerischen Text ein",
+  "salt_hint": "Um die Sicherheit deiner Passphrase zu erhöhen wird der zufällig generierten Wortliste Dein eigenes individuelles Textelement (Salz) hinzugefügt. Dies sollte ein einfacher kurzer alphanumerischer Ausdruck, z.B. etwas persönliches oder auch zufällig erzeugtes, sein.",
+  "salt": "Salz hinzufügen",
+  "your_new_account": "Dein Signum-Konto",
+  "click_to_print": "Zum Drucken klicken",
+  "show_whitespaces": "Leerzeichen anzeigen"
 }

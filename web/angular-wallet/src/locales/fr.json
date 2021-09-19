@@ -294,7 +294,7 @@
   "recipient_id": "Identifiant du destinataire",
   "recipient_no_public_key": "Le compte destinataire n'a pas de clé publique, ce qui signifie qu'il n'a jamais eu de transaction sortante. Le compte a un solde de __burst__ Signa. Veuillez vérifier votre adresse de destinataire avant de soumettre.",
   "recipients": "Destinataires",
-  "record": "Enregistrer",
+  "record": "Données de compte",
   "referenced_transaction_full_hash": "Hash complet de la transaction référencée",
   "refund": "Remboursement",
   "refunded": "Remboursé",
@@ -437,5 +437,12 @@
   "user_profile_desc_power": "Tableau de bord avancé avec de nombreuses informations supplémentaires.",
   "user_profile_desc_miner": "Tableau de bord avec des informations supplémentaires pour les mineurs.",
   "user_profile_desc_trader": "Tableau de bord avec de nombreuses informations sur le trading et des graphiques supplémentaires.",
-  "select_profile": "Sélectionnez un profil utilisateur pour différents tableaux de bord"
+  "select_profile": "Sélectionnez un profil utilisateur pour différents tableaux de bord",
+  "define_your_salt": "Définissez votre sel individuel",
+  "enter_salt": "Saisissez un texte alphanumérique arbitraire",
+  "salt_hint": "Afin d'augmenter la sécurité de votre phrase secrète, votre propre élément de texte individuel (sel) est ajouté à la liste de mots générée aléatoirement. Il doit s'agir d'une simple expression alphanumérique courte, par exemple quelque chose de personnel ou généré de manière aléatoire.",
+  "salt": "Ajoutez du sel",
+  "your_new_account": "Votre compte Signum",
+  "click_to_print": "Cliquez pour imprimer",
+  "show_whitespaces": "Afficher les espaces"
 }

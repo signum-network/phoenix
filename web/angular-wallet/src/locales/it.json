@@ -294,7 +294,7 @@
   "recipient_id": "ID destinatario",
   "recipient_no_public_key": "L'account del destinatario non ha una chiave pubblica, il che significa che non ha mai avuto una transazione in uscita. Il conto ha un saldo di __burst__ Signa. Si prega di ricontrollare l'indirizzo del destinatario prima di inviare.",
   "recipients": "Destinatari",
-  "record": "Disco",
+  "record": "Dati dell'account",
   "referenced_transaction_full_hash": "Hash completo transazione referenziata",
   "refund": "Rimborso",
   "refunded": "Rimborsato",
@@ -437,5 +437,12 @@
   "user_profile_desc_power": "Dashboard avanzato con molte informazioni aggiuntive.",
   "user_profile_desc_miner": "Dashboard con informazioni aggiuntive per i minatori.",
   "user_profile_desc_trader": "Dashboard con molte informazioni di trading e grafici aggiuntivi.",
-  "select_profile": "Seleziona un profilo utente per diverse dashboard"
+  "select_profile": "Seleziona un profilo utente per diverse dashboard",
+  "define_your_salt": "Definisci il tuo sale individuale",
+  "enter_salt": "Inserisci un testo alfanumerico arbitrario",
+  "salt_hint": "Per aumentare la sicurezza della tua passphrase, il tuo elemento di testo individuale (sale) viene aggiunto all'elenco di parole generato casualmente. Questa dovrebbe essere una semplice breve espressione alfanumerica, ad esempio qualcosa di personale o generato casualmente.",
+  "salt": "Aggiungi sale",
+  "your_new_account": "Il tuo account Signum",
+  "click_to_print": "Clicca per stampare",
+  "show_whitespaces": "Mostra spazi bianchi"
 }

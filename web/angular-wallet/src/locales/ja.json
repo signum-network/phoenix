@@ -294,7 +294,7 @@
   "recipient_id": "受信者ID",
   "recipient_no_public_key": "受信者のアカウントには公開鍵がありません。つまり、発信トランザクションは一度もありません。アカウントの残高は __burst__ Signa です。送信する前に、受信者のアドレスをもう一度確認してください。",
   "recipients": "受信者",
-  "record": "記録",
+  "record": "アカウントデータ",
   "referenced_transaction_full_hash": "参照されるトランザクションのフルハッシュ",
   "refund": "返金",
   "refunded": "返金された",
@@ -437,5 +437,12 @@
   "user_profile_desc_power": "多くの追加情報を含む高度なダッシュボード。",
   "user_profile_desc_miner": "鉱夫のための追加情報を含むダッシュボード。",
   "user_profile_desc_trader": "たくさんの取引情報と追加のチャートを備えたダッシュボード。",
-  "select_profile": "さまざまなダッシュボードのユーザープロファイルを選択します"
+  "select_profile": "さまざまなダッシュボードのユーザープロファイルを選択します",
+  "define_your_salt": "個々のソルトを定義する",
+  "enter_salt": "任意の英数字テキストを入力してください",
+  "salt_hint": "パスフレーズのセキュリティを強化するために、ランダムに生成された単語リストに独自のテキスト要素（ソルト）が追加されます。これは、単純な短い英数字の表現である必要があります。たとえば、個人的なものやランダムに生成されたものなどです。",
+  "salt": "塩を加える",
+  "your_new_account": "あなたのSignumアカウント",
+  "click_to_print": "クリックして印刷",
+  "show_whitespaces": "空白を表示する"
 }
