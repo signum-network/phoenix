@@ -48,6 +48,19 @@ app-market-overview {
   animation: pulse 2s infinite;
 }
 
+.print-hide{
+  @media print {
+    display: none !important;
+  }
+}
+
+.print-only {
+  display: none;
+  @media print {
+    display: inherit !important;
+  }
+}
+
 @keyframes pulse {
   0% {
     opacity: 1;

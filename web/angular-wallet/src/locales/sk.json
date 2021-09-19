@@ -294,7 +294,7 @@
   "recipient_id": "ID príjemcu",
   "recipient_no_public_key": "Účet príjemcu nemá verejný kľúč, čo znamená, že nikdy nemal odchádzajúcu transakciu. Zostatok na účte je __burst__ Signa. Pred odoslaním prosím dvakrát skontrolujte svoju adresu príjemcu.",
   "recipients": "Príjemcovia",
-  "record": "Záznam",
+  "record": "Údaje o účte",
   "referenced_transaction_full_hash": "Plná hodnota hash za odkazovanú transakciu",
   "refund": "Vrátenie peňazí",
   "refunded": "Vrátené",
@@ -428,5 +428,12 @@
   "unknown_address": "Neznáma adresa",
   "success_transaction_executed": "Transakcia bola úspešne vykonaná",
   "no_tokens_available": "Nie sú k dispozícii žiadne tokeny",
-  "trade_tokens_with": "Obchodujte s tokenmi s"
+  "trade_tokens_with": "Obchodujte s tokenmi s",
+  "define_your_salt": "Definujte svoju individuálnu soľ",
+  "enter_salt": "Zadajte ľubovoľný alfanumerický text",
+  "salt_hint": "Aby sa zvýšila bezpečnosť vašej prístupovej frázy, do zoznamu náhodne generovaných slov sa pridá váš vlastný individuálny textový prvok (soľ). Toto by mal byť jednoduchý krátky alfanumerický výraz, napríklad niečo osobné alebo náhodne vygenerované.",
+  "salt": "Pridajte soľ",
+  "your_new_account": "Váš účet Signum",
+  "click_to_print": "Kliknutím vytlačíte",
+  "show_whitespaces": "Zobraziť medzery"
 }

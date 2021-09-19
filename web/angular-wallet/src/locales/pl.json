@@ -294,7 +294,7 @@
   "recipient_id": "Identyfikator odbiorcy",
   "recipient_no_public_key": "Konto odbiorcy nie ma klucza publicznego, co oznacza, że nigdy nie miało transakcji wychodzącej. Saldo konta wynosi __burst__ Signa. Proszę dokładnie sprawdzić adres odbiorcy przed przesłaniem.",
   "recipients": "Odbiorcy",
-  "record": "Rekord",
+  "record": "Dane konta",
   "referenced_transaction_full_hash": "Odwołana transakcja Pełny skrót",
   "refund": "Zwrot",
   "refunded": "Zwrócone",
@@ -428,5 +428,12 @@
   "unknown_address": "Nieznany adres",
   "success_transaction_executed": "Transakcja zrealizowana pomyślnie",
   "no_tokens_available": "Brak dostępnych tokenów",
-  "trade_tokens_with": "Handluj tokenami z"
+  "trade_tokens_with": "Handluj tokenami z",
+  "define_your_salt": "Określ swoją indywidualną sól",
+  "enter_salt": "Wpisz dowolny tekst alfanumeryczny",
+  "salt_hint": "Aby zwiększyć bezpieczeństwo Twojego hasła, Twój indywidualny element tekstowy (sól) jest dodawany do losowo generowanej listy słów. Powinno to być proste krótkie wyrażenie alfanumeryczne, np. coś osobistego lub wygenerowanego losowo.",
+  "salt": "Dodać sól",
+  "your_new_account": "Twoje konto Signum",
+  "click_to_print": "Kliknij, aby wydrukować",
+  "show_whitespaces": "Pokaż białe znaki"
 }

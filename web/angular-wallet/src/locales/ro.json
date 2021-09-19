@@ -294,7 +294,7 @@
   "recipient_id": "ID-ul destinatarului",
   "recipient_no_public_key": "Contul destinatar nu are o cheie publică, ceea ce înseamnă că nu a avut niciodată o tranzacție de ieșire. Contul are un sold de __burst__ Signa. Vă rugăm să verificați din nou adresa destinatarului înainte de a trimite.",
   "recipients": "Destinatari",
-  "record": "Record",
+  "record": "Date despre cont",
   "referenced_transaction_full_hash": "Tranzacție completă la care se face referire",
   "refund": "Restituire",
   "refunded": "Rambursat",
@@ -428,5 +428,12 @@
   "unknown_address": "Adresă necunoscută",
   "success_transaction_executed": "Tranzacția a fost executată cu succes",
   "no_tokens_available": "Nu există jetoane disponibile",
-  "trade_tokens_with": "Tranzacționează jetoane cu"
+  "trade_tokens_with": "Tranzacționează jetoane cu",
+  "define_your_salt": "Definiți-vă sarea individuală",
+  "enter_salt": "Introduceți un text alfanumeric arbitrar",
+  "salt_hint": "Pentru a crește securitatea expresiei dvs. de acces, propriul dvs. element de text (sare) este adăugat la lista de cuvinte generate aleatoriu. Aceasta ar trebui să fie o simplă expresie alfanumerică scurtă, de exemplu ceva personal sau generat aleatoriu.",
+  "salt": "Adauga sare",
+  "your_new_account": "Contul dvs. Signum",
+  "click_to_print": "Faceți clic pentru a imprima",
+  "show_whitespaces": "Afișați spațiile albe"
 }

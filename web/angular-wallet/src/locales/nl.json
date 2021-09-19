@@ -294,7 +294,7 @@
   "recipient_id": "Ontvanger-ID",
   "recipient_no_public_key": "De rekening van de ontvanger heeft geen openbare sleutel, wat betekent dat er nooit een uitgaande transactie is geweest. Het account heeft een saldo van __burst__ Signa. Controleer het adres van uw ontvanger voordat u deze verzendt.",
   "recipients": "Ontvangers",
-  "record": "Vermelding",
+  "record": "Accountgegevens",
   "referenced_transaction_full_hash": "Transactie waarnaar verwezen wordt Volledige hash",
   "refund": "Terugbetaling",
   "refunded": "Terugbetaald",
@@ -428,5 +428,12 @@
   "unknown_address": "Onbekend adres",
   "success_transaction_executed": "Transactie succesvol uitgevoerd",
   "no_tokens_available": "Geen tokens beschikbaar",
-  "trade_tokens_with": "Wissel tokens met"
+  "trade_tokens_with": "Wissel tokens met",
+  "define_your_salt": "Definieer uw individuele Salt",
+  "enter_salt": "Voer een willekeurige alfanumerieke tekst in",
+  "salt_hint": "Om de veiligheid van uw wachtwoordzin te vergroten, wordt uw eigen individuele tekstelement (salt) toegevoegd aan de willekeurig gegenereerde woordenlijst. Dit moet een eenvoudige korte alfanumerieke uitdrukking zijn, bijvoorbeeld iets persoonlijks of willekeurig gegenereerd.",
+  "salt": "Voeg zout toe",
+  "your_new_account": "Uw Signum-account",
+  "click_to_print": "Klik om af te drukken",
+  "show_whitespaces": "Witruimte tonen"
 }

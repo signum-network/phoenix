@@ -294,7 +294,7 @@
   "recipient_id": "alıcı kimliği",
   "recipient_no_public_key": "Alıcı hesabının ortak anahtarı yoktur, yani hiçbir zaman giden bir işlemi olmamıştır. Hesapta __burst__ Signa bakiyesi var. Lütfen göndermeden önce alıcı adresinizi iki kez kontrol edin.",
   "recipients": "alıcılar",
-  "record": "Kayıt",
+  "record": "Hesap verisi",
   "referenced_transaction_full_hash": "Başvurulan İşlem Tam Hash",
   "refund": "Geri ödeme",
   "refunded": "geri ödendi",
@@ -428,5 +428,12 @@
   "unknown_address": "Bilinmeyen Adres",
   "success_transaction_executed": "İşlem başarıyla gerçekleştirildi",
   "no_tokens_available": "Kullanılabilir jeton yok",
-  "trade_tokens_with": "Token ile ticaret yap"
+  "trade_tokens_with": "Token ile ticaret yap",
+  "define_your_salt": "Kişisel Tuzunuzu tanımlayın",
+  "enter_salt": "İsteğe bağlı bir alfasayısal metin girin",
+  "salt_hint": "Parolanızın güvenliğini artırmak için, rastgele oluşturulan kelime listesine kendi bireysel metin öğeniz (tuz) eklenir. Bu basit bir kısa alfasayısal ifade olmalıdır, örneğin kişisel veya rastgele oluşturulmuş bir şey.",
+  "salt": "Tuz ekle",
+  "your_new_account": "Signum Hesabınız",
+  "click_to_print": "Yazdırmak için tıklayın",
+  "show_whitespaces": "Boşlukları Göster"
 }

@@ -294,7 +294,7 @@
   "recipient_id": "Recipient ID",
   "recipient_no_public_key": "The recipient account does not have a public key, meaning it has never had an outgoing transaction. The account has a balance of __burst__ Signa. Please double check your recipient address before submitting.",
   "recipients": "Recipients",
-  "record": "Record",
+  "record": "Account Data",
   "referenced_transaction_full_hash": "Referenced Transaction Full Hash",
   "refund": "Refund",
   "refunded": "Refunded",
@@ -428,5 +428,12 @@
   "unknown_address": "Unknown Address",
   "success_transaction_executed": "Transaction successfully executed",
   "no_tokens_available": "No tokens available",
-  "trade_tokens_with": "Trade tokens with"
+  "trade_tokens_with": "Trade tokens with",
+  "define_your_salt": "Define your individual Salt",
+  "enter_salt": "Enter an arbitrary alphanumeric text",
+  "salt_hint": "In order to increase the security of your passphrase, your own individual text element (salt) is added to the randomly generated word list. This should be a simple short alphanumeric expression, e.g. something personal or randomly generated.",
+  "salt": "Add Salt",
+  "your_new_account": "Your Signum Account",
+  "click_to_print": "Click to print",
+  "show_whitespaces": "Show Whitespaces"
 }

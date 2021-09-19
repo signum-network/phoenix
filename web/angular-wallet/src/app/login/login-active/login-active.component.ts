@@ -3,9 +3,6 @@ import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
-import {destroy, initialize} from '../../../particles';
-import particleConf from '../../../particles/config';
-
 @Component({
   selector: 'app-login-active',
   templateUrl: './login-active.component.html',
@@ -18,12 +15,10 @@ export class LoginActiveComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    initialize('login-particles', particleConf);
     this.newUser = this.route.queryParamMap
       .pipe(map(params => params.get('newUser') || false));
   }
 
   ngOnDestroy(): void {
-    destroy();
   }
 }

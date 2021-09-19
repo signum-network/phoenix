@@ -3,33 +3,39 @@
 $media-query-mobile: 0;
 $media-query-tablet: 768px;
 
-.accountRS-container mat-form-field {
-  @media screen and (min-width: $media-query-mobile) {
-    margin-left: 3rem;
-    width: 80%;
+:host {
+
+
+  .accountRS-container mat-form-field {
+    @media screen and (min-width: $media-query-mobile) {
+      margin-left: 3rem;
+      width: 80%;
+    }
+    @media screen and (min-width: $media-query-tablet) {
+      margin-left: 0;
+      width: 100%;
+    }
   }
-  @media screen and (min-width: $media-query-tablet) {
-    margin-left: 0;
+
+  .fa-arrow-right {
+    color: #fff;
+    top: -4px;
+    left: 10px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .address-container {
+    @include mat-elevation(16);
+    text-align: center;
+    background: white;
+    padding: 24px;
+    border-radius: 4px;
+  }
+
+  mat-form-field {
     width: 100%;
+    display: block;
   }
-}
 
-.fa-arrow-right {
-  color: #fff;
-  top: -4px;
-  left: 10px;
-  position: relative;
-  cursor: pointer;
-}
-
-.address-container {
-  @include mat-elevation(16);
-  text-align: center;
-  background: white;
-  padding: 24px;
-}
-
-mat-form-field {
-  width: 100%;
-  display: block;
 }

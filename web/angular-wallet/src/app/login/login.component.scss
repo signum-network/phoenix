@@ -5,31 +5,30 @@ $media-query-tablet: 768px;
 $media-query-desktop: 992px;
 $media-query-screen: 1200px;
 
-$no-color: #002341;
-$yes-color: #00579D;
+$existing-color: #b3b3b3;
+$new-color: #1e88e5;
 $text-color: #333333;
-$text-alt-color: #b3b3b3;
+$text-alt-color: #003D6E;
 
 .login {
   display: flex;
   height: calc(100vh - 64px);
   width: 100vw;
   align-items: center;
+  //background: #003D6E;
 
-  background: linear-gradient(60deg, #003D6E, #00579D);
-  -webkit-animation: bg 30s ease infinite;
-  -moz-animation: bg 30s ease infinite;
-  animation: bg 30s ease infinite;
+  background: #003D6E;
 
   &__panel {
     @include mat-elevation(16);
-    background: #ffffff;
+    background: #fff;
     padding: 3rem 2rem;
     justify-self: center;
     position: absolute;
     top: 10%;
     left: 0;
     width: auto;
+    border-radius: 4px;
     @media screen and (min-width: $media-query-tablet) {
       left: 25%;
       width: 50%;
@@ -49,7 +48,6 @@ $text-alt-color: #b3b3b3;
     display: block;
     text-align: center;
     margin-top: 1rem;
-    //padding-left: 45px;
   }
 
   &__body {
@@ -111,23 +109,24 @@ $text-alt-color: #b3b3b3;
       margin-bottom: 0;
     }
 
-    &--yes {
+    &--new {
       @extend .login__link;
-      background: $yes-color;
+      background: $new-color;
       color: #fdfdfd;
 
       &:hover {
-        background: darken($yes-color, 5%);
+        background: darken($new-color, 5%);
       }
     }
 
-    &--no {
+    &--existing {
       @extend .login__link;
-      background: $no-color;
-      color: #fdfdfd;
+      background: $existing-color;
+      color: $text-color;
+      font-size: 1.75rem;
 
       &:hover {
-        background: darken($no-color, 5%);
+        background: darken($existing-color, 5%);
       }
     }
 
