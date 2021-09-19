@@ -40,8 +40,8 @@
     <td class="table__label">
       {{ 'passphrase' | i18n }}:
     </td>
-    <td class="table__text unselectable">
-      <pre>{{ this.createService.getPhrase() }}</pre>
+    <td class="table__text">
+      <pre class="bordered">{{ this.createService.getPhrase() }}</pre>
     </td>
     <td class="print-hide">
       <button class="icon-button" matTooltip="{{'click_to_copy_passphrase' | i18n}}"
