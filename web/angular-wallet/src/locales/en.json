@@ -434,5 +434,6 @@
   "salt_hint": "In order to increase the security of your passphrase, your own individual text element (salt) is added to the randomly generated word list. This should be a simple short alphanumeric expression, e.g. something personal or randomly generated.",
   "salt": "Add Salt",
   "your_new_account": "Your Signum Account",
-  "click_to_print": "Click to print"
+  "click_to_print": "Click to print",
+  "show_whitespaces": "Show Whitespaces"
 }

@@ -434,5 +434,6 @@
   "salt_hint": "Per aumentare la sicurezza della tua passphrase, il tuo elemento di testo individuale (sale) viene aggiunto all'elenco di parole generato casualmente. Questa dovrebbe essere una semplice breve espressione alfanumerica, ad esempio qualcosa di personale o generato casualmente.",
   "salt": "Aggiungi sale",
   "your_new_account": "Il tuo account Signum",
-  "click_to_print": "Clicca per stampare"
+  "click_to_print": "Clicca per stampare",
+  "show_whitespaces": "Mostra spazi bianchi"
 }

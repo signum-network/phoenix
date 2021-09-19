@@ -434,5 +434,6 @@
   "salt_hint": "Kako biste povećali sigurnost svoje zaporke, vaš vlastiti pojedinačni tekstualni element (sol) dodaje se nasumično generiranom popisu riječi. Ovo bi trebao biti jednostavan kratki alfanumerički izraz, npr. Nešto osobno ili nasumično generirano.",
   "salt": "Dodajte sol",
   "your_new_account": "Vaš prijavljeni račun",
-  "click_to_print": "Kliknite za ispis"
+  "click_to_print": "Kliknite za ispis",
+  "show_whitespaces": "Prikaži bijele prostore"
 }

@@ -434,5 +434,6 @@
   "salt_hint": "Pentru a crește securitatea expresiei dvs. de acces, propriul dvs. element de text (sare) este adăugat la lista de cuvinte generate aleatoriu. Aceasta ar trebui să fie o simplă expresie alfanumerică scurtă, de exemplu ceva personal sau generat aleatoriu.",
   "salt": "Adauga sare",
   "your_new_account": "Contul dvs. Signum",
-  "click_to_print": "Faceți clic pentru a imprima"
+  "click_to_print": "Faceți clic pentru a imprima",
+  "show_whitespaces": "Afișați spațiile albe"
 }

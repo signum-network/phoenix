@@ -17,26 +17,19 @@
         </ng-container>
       </div>
     </mat-step>
-    <mat-step
-      *ngIf="newUser"
-      [completed]="this.createService.getSalt() !== undefined"
-      [editable]="this.createService.getPin() === undefined"
-    >
+    <mat-step *ngIf="newUser">
       <ng-template matStepLabel>{{ 'salt' | i18n }}</ng-template>
       <div class="step-container">
-          <app-custom-salt></app-custom-salt>
+        <app-custom-salt></app-custom-salt>
       </div>
     </mat-step>
-    <mat-step
-      [completed]="this.createService.getAccount() !== undefined"
-      [editable]="this.createService.getPin() === undefined"
-    >
+    <mat-step>
       <ng-template matStepLabel>{{ 'record' | i18n }}</ng-template>
       <div class="step-container">
         <app-account-create-record></app-account-create-record>
       </div>
     </mat-step>
-    <mat-step [completed]="this.createService.getPin() !== undefined">
+    <mat-step>
       <ng-template matStepLabel>{{ 'secure' | i18n }}</ng-template>
       <div class="step-container">
         <app-account-create-pin [lastStep]="!newUser"></app-account-create-pin>

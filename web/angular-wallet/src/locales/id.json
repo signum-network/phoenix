@@ -434,5 +434,6 @@
   "salt_hint": "Untuk meningkatkan keamanan frasa sandi Anda, elemen teks individual Anda (garam) ditambahkan ke daftar kata yang dibuat secara acak. Ini harus berupa ekspresi alfanumerik pendek sederhana, misalnya sesuatu yang bersifat pribadi atau dibuat secara acak.",
   "salt": "Tambahkan garam",
   "your_new_account": "Akun Signum Anda",
-  "click_to_print": "Klik untuk mencetak"
+  "click_to_print": "Klik untuk mencetak",
+  "show_whitespaces": "Tampilkan Spasi Putih"
 }

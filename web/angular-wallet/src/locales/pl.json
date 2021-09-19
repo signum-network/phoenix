@@ -434,5 +434,6 @@
   "salt_hint": "Aby zwiększyć bezpieczeństwo Twojego hasła, Twój indywidualny element tekstowy (sól) jest dodawany do losowo generowanej listy słów. Powinno to być proste krótkie wyrażenie alfanumeryczne, np. coś osobistego lub wygenerowanego losowo.",
   "salt": "Dodać sól",
   "your_new_account": "Twoje konto Signum",
-  "click_to_print": "Kliknij, aby wydrukować"
+  "click_to_print": "Kliknij, aby wydrukować",
+  "show_whitespaces": "Pokaż białe znaki"
 }

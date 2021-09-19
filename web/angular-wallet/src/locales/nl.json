@@ -434,5 +434,6 @@
   "salt_hint": "Om de veiligheid van uw wachtwoordzin te vergroten, wordt uw eigen individuele tekstelement (salt) toegevoegd aan de willekeurig gegenereerde woordenlijst. Dit moet een eenvoudige korte alfanumerieke uitdrukking zijn, bijvoorbeeld iets persoonlijks of willekeurig gegenereerd.",
   "salt": "Voeg zout toe",
   "your_new_account": "Uw Signum-account",
-  "click_to_print": "Klik om af te drukken"
+  "click_to_print": "Klik om af te drukken",
+  "show_whitespaces": "Witruimte tonen"
 }

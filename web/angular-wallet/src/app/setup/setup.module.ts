@@ -37,6 +37,7 @@ import {AccountActivateComponent} from './account/create-active/activate/activat
 import {AppSharedModule} from '../shared/shared.module';
 import {ComponentsModule} from '../components/components.module';
 import { CustomSaltComponent } from './account/create-active/custom-salt/custom-salt.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   imports: [
@@ -66,6 +67,7 @@ import { CustomSaltComponent } from './account/create-active/custom-salt/custom-
     NgxMaskModule.forRoot(),
     MatTooltipModule,
     AppSharedModule,
+    MatCheckboxModule,
   ],
   declarations: [
     CreateActiveAccountComponent,

@@ -434,5 +434,6 @@
   "salt_hint": "Parolanızın güvenliğini artırmak için, rastgele oluşturulan kelime listesine kendi bireysel metin öğeniz (tuz) eklenir. Bu basit bir kısa alfasayısal ifade olmalıdır, örneğin kişisel veya rastgele oluşturulmuş bir şey.",
   "salt": "Tuz ekle",
   "your_new_account": "Signum Hesabınız",
-  "click_to_print": "Yazdırmak için tıklayın"
+  "click_to_print": "Yazdırmak için tıklayın",
+  "show_whitespaces": "Boşlukları Göster"
 }

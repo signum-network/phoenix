@@ -434,5 +434,6 @@
   "salt_hint": "Afin d'augmenter la sécurité de votre phrase secrète, votre propre élément de texte individuel (sel) est ajouté à la liste de mots générée aléatoirement. Il doit s'agir d'une simple expression alphanumérique courte, par exemple quelque chose de personnel ou généré de manière aléatoire.",
   "salt": "Ajoutez du sel",
   "your_new_account": "Votre compte Signum",
-  "click_to_print": "Cliquez pour imprimer"
+  "click_to_print": "Cliquez pour imprimer",
+  "show_whitespaces": "Afficher les espaces"
 }

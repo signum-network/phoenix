@@ -434,5 +434,6 @@
   "salt_hint": "Aby sa zvýšila bezpečnosť vašej prístupovej frázy, do zoznamu náhodne generovaných slov sa pridá váš vlastný individuálny textový prvok (soľ). Toto by mal byť jednoduchý krátky alfanumerický výraz, napríklad niečo osobné alebo náhodne vygenerované.",
   "salt": "Pridajte soľ",
   "your_new_account": "Váš účet Signum",
-  "click_to_print": "Kliknutím vytlačíte"
+  "click_to_print": "Kliknutím vytlačíte",
+  "show_whitespaces": "Zobraziť medzery"
 }

@@ -434,5 +434,6 @@
   "salt_hint": "Para aumentar a segurança de sua frase-senha, seu próprio elemento de texto individual (salt) é adicionado à lista de palavras gerada aleatoriamente. Deve ser uma expressão alfanumérica curta simples, por exemplo, algo pessoal ou gerado aleatoriamente.",
   "salt": "Adicione sal",
   "your_new_account": "Sua conta Signum",
-  "click_to_print": "Clique para imprimir"
+  "click_to_print": "Clique para imprimir",
+  "show_whitespaces": "Mostrar espaços em branco"
 }
