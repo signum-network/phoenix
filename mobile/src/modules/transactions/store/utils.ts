@@ -3,14 +3,14 @@ export enum RecipientType {
   ADDRESS = 1,
   ID,
   ALIAS,
-  ZIL
+  UNSTOPPABLE
 }
 
 export enum RecipientValidationStatus {
   UNKNOWN = 'unknown',
   INVALID = 'invalid',
   VALID = 'valid',
-  ZIL_OUTAGE = 'zil_outage'
+  UNSTOPPABLE_OUTAGE = 'unstoppable_outage'
 }
 
 export class Recipient {

@@ -12,7 +12,7 @@ import {Screen} from '../../../core/layout/Screen';
 import {routes} from '../../../core/navigation/routes';
 import {ApplicationState} from '../../../core/store/initialState';
 import {isAsyncLoading} from '../../../core/utils/async';
-import {getAccount, getAlias, getZilAddress} from '../../auth/store/actions';
+import {getAccount, getAlias, getUnstoppableAddress} from '../../auth/store/actions';
 import {SendForm, SendFormState} from '../components/send/SendForm';
 import {sendMoney as sendMoneyAction, SendAmountPayload} from '../store/actions';
 import {transactions} from '../translations';
@@ -82,8 +82,8 @@ export const SendScreen: React.FC = () => {
         return dispatch(getAccount(id));
     };
 
-    const handleGetZilAddress = (id: string) => {
-        return dispatch(getZilAddress(id));
+    const handleGetUnstoppableAddress = (id: string) => {
+        return dispatch(getUnstoppableAddress(id));
     };
 
     const handleGetAlias = (id: string) => {
@@ -110,7 +110,7 @@ export const SendScreen: React.FC = () => {
                             onSubmit={handleSubmit}
                             onGetAccount={handleGetAccount}
                             onGetAlias={handleGetAlias}
-                            onGetZilAddress={handleGetZilAddress}
+                            onGetUnstoppableAddress={handleGetUnstoppableAddress}
                             onCameraIconPress={handleCameraIconPress}
                             deepLinkProps={deeplinkData}
                             suggestedFees={suggestedFees}

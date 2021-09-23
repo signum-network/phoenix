@@ -1,7 +1,15 @@
-import {Account, Address, SuggestedFees} from '@signumjs/core';
+import {Account, Address, Alias, SuggestedFees} from '@signumjs/core';
 import {Amount} from '@signumjs/util';
 import React, {createRef} from 'react';
-import {Image, NativeSyntheticEvent, ScrollView, StyleSheet, TextInputEndEditingEventData, TouchableOpacity, View} from 'react-native';
+import {
+    Image,
+    NativeSyntheticEvent,
+    ScrollView,
+    StyleSheet,
+    TextInputEndEditingEventData,
+    TouchableOpacity,
+    View
+} from 'react-native';
 import SwipeButton from 'rn-swipe-button';
 import {actionIcons, transactionIcons} from '../../../../assets/icons';
 import {BInput, KeyboardTypes} from '../../../../core/components/base/BInput';
@@ -20,7 +28,11 @@ import {BCheckbox} from '../../../../core/components/base/BCheckbox';
 import {FontSizes, Sizes} from '../../../../core/theme/sizes';
 import {AmountText} from '../../../../core/components/base/Amount';
 import {DangerBox} from './DangerBox';
-import {AccountBalances, getBalancesFromAccount, ZeroAcountBalances} from '../../../../core/utils/balance/getBalancesFromAccount';
+import {
+    AccountBalances,
+    getBalancesFromAccount,
+    ZeroAcountBalances
+} from '../../../../core/utils/balance/getBalancesFromAccount';
 import {Button, ButtonThemes} from '../../../../core/components/base/Button';
 import {stableAmountFormat, stableParseSignaAmount} from '../../../../core/utils/amount';
 import {core} from '../../../../core/translations';
@@ -32,8 +44,8 @@ interface Props {
     onSubmit: (form: SendAmountPayload) => void;
     onCameraIconPress: () => void;
     onGetAccount: (id: string) => Promise<Account>;
-    onGetAlias: (id: string) => Promise<Account>;
-    onGetZilAddress: (id: string) => Promise<string | null>;
+    onGetAlias: (id: string) => Promise<Alias>;
+    onGetUnstoppableAddress: (id: string) => Promise<string | null>;
     accounts: Account[];
     suggestedFees: SuggestedFees | null;
     deepLinkProps?: SendFormState;
@@ -136,6 +148,10 @@ const Balances: React.FC<{ balances?: AccountBalances }> = ({balances = ZeroAcou
     </View>
 );
 
+function isUnstoppableDomain(recipient: string): boolean {
+    return /.+\.(zil|crypto|888|x|coin|wallet|bitcoin|nft|dao|blockchain)$/.test(recipient.toLowerCase());
+}
+
 export class SendForm extends React.Component<Props, SendFormState> {
     private scrollViewRef = createRef<ScrollView>();
 
@@ -180,11 +196,19 @@ export class SendForm extends React.Component<Props, SendFormState> {
         };
     };
 
+    private async fetchAccountIdFromAlias(alias: string): Promise<string | null> {
+        const {aliasURI} = await this.props.onGetAlias(alias);
+        const matches = /^acct:(burst|s|ts)?-(.+)@(burst|signum)$/i.exec(aliasURI);
+        if (!matches || matches.length < 2) {
+            return null;
+        }
+        const unwrappedAddress = `${AddressPrefix}${matches[2]}`.toUpperCase();
+        return Address.fromReedSolomonAddress(unwrappedAddress).getNumericId();
+    }
+
     UNSAFE_componentWillReceiveProps = ({deepLinkProps}: Props) => {
         if (deepLinkProps) {
             this.setState(this.getInitialState(deepLinkProps), () => this.applyRecipientType(this.state.recipient.addressRaw));
-        }else{
-            this.setState(this.getInitialState());
         }
     };
 
@@ -196,8 +220,8 @@ export class SendForm extends React.Component<Props, SendFormState> {
             type = RecipientType.UNKNOWN;
         } else if (r.toUpperCase().startsWith(AddressPrefix)) {
             type = RecipientType.ADDRESS;
-        } else if (r.toUpperCase().endsWith('.ZIL') || r.toUpperCase().endsWith('.CRYPTO')) {
-            type = RecipientType.ZIL;
+        } else if (isUnstoppableDomain(r)) {
+            type = RecipientType.UNSTOPPABLE;
         } else if (/^\d+$/.test(r)) {
             type = RecipientType.ID;
         } else {
@@ -218,26 +242,31 @@ export class SendForm extends React.Component<Props, SendFormState> {
     }
 
     async validateRecipient(recipient: string, type: RecipientType): Promise<void> {
-        let accountFetchFn;
         let formattedAddress: string | null = recipient;
 
         switch (type) {
             case RecipientType.ALIAS:
-                accountFetchFn = this.props.onGetAlias;
+                try{
+                    formattedAddress = await this.fetchAccountIdFromAlias(formattedAddress);
+                }catch(e) {
+                    this.setState({
+                        recipient: {
+                            ...this.state.recipient,
+                            status: RecipientValidationStatus.INVALID
+                        }
+                    });
+                }
                 break;
             case RecipientType.ADDRESS:
-                accountFetchFn = this.props.onGetAccount;
                 try {
                     formattedAddress = Address.fromReedSolomonAddress(recipient).getNumericId();
                 } catch (e) {
                     formattedAddress = recipient;
                 }
                 break;
-            case RecipientType.ZIL:
+            case RecipientType.UNSTOPPABLE:
                 try {
-                    formattedAddress = await this.props.onGetZilAddress(recipient);
-                    accountFetchFn = this.props.onGetAccount;
-
+                    formattedAddress = await this.props.onGetUnstoppableAddress(recipient);
                     if (formattedAddress === null) {
                         this.setState({
                             recipient: {
@@ -250,24 +279,23 @@ export class SendForm extends React.Component<Props, SendFormState> {
                     this.setState({
                         recipient: {
                             ...this.state.recipient,
-                            status: RecipientValidationStatus.ZIL_OUTAGE
+                            status: RecipientValidationStatus.UNSTOPPABLE_OUTAGE
                         }
                     });
                 }
                 break;
             case RecipientType.ID:
-                accountFetchFn = this.props.onGetAccount;
                 break;
             default:
-            // no op
+                formattedAddress = null;
         }
 
-        if (!accountFetchFn || !formattedAddress) {
+        if (!formattedAddress) {
             return;
         }
 
         try {
-            const {accountRS} = await accountFetchFn(formattedAddress);
+            const {accountRS} = await this.props.onGetAccount(formattedAddress || '');
             this.setState({
                 confirmedRisk: true,
                 recipient: {
@@ -279,7 +307,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
         } catch (e) {
             let addressRS = recipient;
             try {
-                addressRS = this.state.recipient.type === RecipientType.ZIL
+                addressRS = this.state.recipient.type === RecipientType.UNSTOPPABLE
                     ? recipient : Address.create(recipient).getReedSolomonAddress();
             } catch (e) {
                 // no op
@@ -466,10 +494,10 @@ export class SendForm extends React.Component<Props, SendFormState> {
             <View style={{flexDirection: 'row'}}>
                 {this.state.sender &&
                 <View style={styles.balance}>
-                    <AmountText
-                        amount={this.state.balances.availableBalance}
-                        color={Colors.GREY_LIGHT}
-                    />
+                  <AmountText
+                    amount={this.state.balances.availableBalance}
+                    color={Colors.GREY_LIGHT}
+                  />
                 </View>}
                 <Image source={actionIcons.chevron} style={styles.chevron}/>
             </View>
@@ -541,10 +569,10 @@ export class SendForm extends React.Component<Props, SendFormState> {
                         />
                         {suggestedFees &&
                         <FeeSlider
-                            disabled={this.state.immutable}
-                            fee={parseFloat(fee || '0')}
-                            onSlidingComplete={this.handleFeeChangeFromSlider}
-                            suggestedFees={suggestedFees}
+                          disabled={this.state.immutable}
+                          fee={parseFloat(fee || '0')}
+                          onSlidingComplete={this.handleFeeChangeFromSlider}
+                          suggestedFees={suggestedFees}
                         />}
 
                         <BCheckbox
