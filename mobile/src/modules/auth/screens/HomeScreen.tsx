@@ -58,7 +58,7 @@ export const HomeScreen: React.FC = () => {
     useFocusEffect(() => {
         setIsTermsScreenVisible(!agreedToTerms);
         setShouldUpdateAccounts(true);
-        timeoutHandle.current = setInterval(updateAllAccounts, 10 * 1000);
+        timeoutHandle.current = setInterval(updateAllAccounts, 30 * 1000);
         return () => {
                 setShouldUpdateAccounts(false);
                 if (timeoutHandle.current){
