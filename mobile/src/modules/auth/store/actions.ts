@@ -5,10 +5,10 @@ import {i18n} from '../../../core/i18n';
 import {createAction, createActionFn} from '../../../core/utils/store';
 import {auth} from '../translations';
 import {actionTypes} from './actionTypes';
-import {restoreAccounts, getPasscode,  isBlacklistedAccount, resetKeychain, savePasscode, storeAccounts} from './utils';
+import {restoreAccounts, getPasscode, isBlacklistedAccount, resetKeychain, savePasscode, storeAccounts} from './utils';
 import {selectChainApi} from '../../../core/store/app/selectors';
 
-interface ZilResponse {
+interface UnstoppableDomainResponse {
     addresses: {
         BURST: string
     };
@@ -133,15 +133,15 @@ export const getAlias = createActionFn<string, Promise<Alias | undefined>>(
     async (_dispatch, getState, account) => {
         const state = getState();
         const api = selectChainApi(state);
-        return await api.alias.getAliasByName(account);
+        return api.alias.getAliasByName(account);
     }
 );
 
-export const getZilAddress = createActionFn<string, Promise<string | null>>(
+export const getUnstoppableAddress = createActionFn<string, Promise<string | null>>(
     async (_dispatch, _getState, address) => {
         return fetch(`https://unstoppabledomains.com/api/v1/${address.toLowerCase()}`)
             .then((response) => response.json())
-            .then((response: ZilResponse) => {
+            .then((response: UnstoppableDomainResponse) => {
                 return response.addresses.BURST;
             });
     }

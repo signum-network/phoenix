@@ -23,7 +23,7 @@ export class DomainService {
   }
 
   public async getUnstoppableAddress(domain: string): Promise<string> {
-    const response = await this.httpClient.get<UnstoppableResponse>(`https://unstoppabledomains.com/api/v1/${domain.toLowerCase()}`).toPromise()
+    const response = await this.httpClient.get<UnstoppableResponse>(`https://unstoppabledomains.com/api/v1/${domain.toLowerCase()}`).toPromise();
     const address = response.addresses.BURST || response.addresses.SIGNA;
     return address ? address.replace(/^BURST/, AddressPrefix.MainNet) : null;
   }
