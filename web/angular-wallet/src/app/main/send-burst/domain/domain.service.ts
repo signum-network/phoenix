@@ -19,7 +19,7 @@ export class DomainService {
   }
 
   public isUnstoppableDomain(address: string): boolean {
-    return /.+\.zil|crypto|888|x|coin|wallet|bitcoin|nft|dao|blockchain$/.test(address.toLowerCase());
+    return /.+\.(zil|crypto|888|x|coin|wallet|bitcoin|nft|dao|blockchain)$/.test(address.toLowerCase());
   }
 
   public async getUnstoppableAddress(domain: string): Promise<string> {
