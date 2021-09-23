@@ -126,6 +126,17 @@ export class RecipientInputComponent implements OnChanges {
     return /^[a-zA-Z0-9-_]{4,128}$/.test(address);
   }
 
+  private async fetchAccountIdFromAlias(alias: string): Promise<string> {
+    const {aliasURI} = await this.accountService.getAlias(alias);
+    const matches = /^acct:(burst|s|ts)?-(.+)@(burst|signum)$/i.exec(aliasURI);
+    if (matches.length < 2) {
+      throw new Error(`Unknown alias URI format: ${alias}`);
+    }
+
+    const unwrappedAddress = `${this.isTestNet ? AddressPrefix.TestNet : AddressPrefix.MainNet}-${matches[2]}`.toUpperCase();
+    return Address.fromReedSolomonAddress(unwrappedAddress).getNumericId();
+  }
+
   applyRecipientType(recipient: string): void {
     const r = recipient.trim();
     this.recipient.addressRaw = r;
@@ -145,24 +156,21 @@ export class RecipientInputComponent implements OnChanges {
   }
 
   async validateRecipient(recipient: string): Promise<void> {
-    let accountFetchFn;
     this.recipient.addressRaw = recipient.trim();
     let id = this.recipient.addressRaw;
     switch (this.recipient.type) {
       case RecipientType.ALIAS:
-        accountFetchFn = this.accountService.getAlias;
+        id = await this.fetchAccountIdFromAlias(id);
         break;
       case RecipientType.ADDRESS:
         const address = Address.fromReedSolomonAddress(id);
         this.recipient.addressRaw = address.getReedSolomonAddress();
         this.recipient.publicKey = address.getPublicKey();
         id = address.getNumericId();
-        accountFetchFn = this.accountService.getAccount;
         break;
       case RecipientType.UNSTOPPABLE:
         try {
           id = await this.domainService.getUnstoppableAddress(id);
-          accountFetchFn = this.accountService.getAccount;
           if (!id) {
             this.recipient.status = RecipientValidationStatus.INVALID;
           }
@@ -172,19 +180,17 @@ export class RecipientInputComponent implements OnChanges {
         break;
       // tslint:disable-next-line:no-switch-case-fall-through
       case RecipientType.ID:
-        accountFetchFn = this.accountService.getAccount;
         break;
       default:
-      // no op
+        id = null;
     }
 
-    if (!accountFetchFn || !id) {
+    if (!id) {
       return;
     }
 
     this.loading = true;
-
-    accountFetchFn.call(this.accountService, id).then(({accountRS}) => {
+    this.accountService.getAccount(id).then(({accountRS}) => {
       this.recipient.addressRS = accountRS;
       this.recipient.status = RecipientValidationStatus.VALID;
     }).catch(() => {
