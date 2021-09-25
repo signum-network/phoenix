@@ -34,12 +34,11 @@
     "start": "IS_RELEASE=false && concurrently npm:start:*",
     "postinstall": "npm run link",
     "link": "react-native link",
-    "lint": "tslint --fix --project tsconfig.json 'src/**/*.{ts,tsx}'",
-    "lint:staged": "tslint --fix --project tsconfig.json",
     "translations:sort": "node tasks/sortJsonDir.js src/translations && git add src/translations/*.json",
     "test": "jest",
     "tsc": "tsc --init --pretty --jsx react",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "lint-staged"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.11.0",
@@ -108,7 +107,9 @@
     "babel-jest": "^27.0.6",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "concurrently": "^6.2.0",
+    "husky": "^7.0.2",
     "jest": "^27.0.6",
+    "lint-staged": "^11.1.2",
     "metro-react-native-babel-preset": "0.54.1",
     "prettier": "2.4.1",
     "react-devtools": "^4.10.4",
@@ -117,8 +118,7 @@
     "react-test-renderer": "16.8.3",
     "sort-json": "^2.0.0",
     "ts-jest": "^27.0.3",
-    "typescript": "^3.9.10",
-    "husky": "^7.0.0"
+    "typescript": "^3.9.10"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
