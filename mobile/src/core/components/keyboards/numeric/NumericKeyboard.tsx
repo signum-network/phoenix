@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { RoundButton } from './RoundButton';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { RoundButton } from "./RoundButton";
 
 interface Props {
   onPress: (key: string) => void;
@@ -11,13 +11,13 @@ interface Props {
 
 const styles = StyleSheet.create({
   keyboard: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignContent: 'center'
-  }
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    alignContent: "center",
+  },
 });
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -25,23 +25,23 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 export class NumericKeyboard extends React.PureComponent<Props> {
   handleButtonPress = (value: number) => {
     this.props.onPress(value.toString());
-  }
+  };
 
   handleDelPress = () => {
     this.props.onDelPress();
-  }
+  };
 
   handleTouchIDPress = () => {
     this.useTouchID();
-  }
+  };
 
   useTouchID = () => {
     const { onTouchID } = this.props;
 
     onTouchID && onTouchID();
-  }
+  };
 
-  render () {
+  render() {
     const { onTouchID, touchIDReason } = this.props;
     const withTouchID = !!(onTouchID && touchIDReason);
 
@@ -58,9 +58,13 @@ export class NumericKeyboard extends React.PureComponent<Props> {
     return (
       <View style={styles.keyboard}>
         {baseNumbers}
-        <RoundButton onPress={this.handleDelPress}>{'<'}</RoundButton>
-        <RoundButton value={0} onPress={this.handleButtonPress}>{'0'}</RoundButton>
-        <RoundButton disabled={!withTouchID} onPress={this.handleTouchIDPress}>{'ID'}</RoundButton>
+        <RoundButton onPress={this.handleDelPress}>{"<"}</RoundButton>
+        <RoundButton value={0} onPress={this.handleButtonPress}>
+          {"0"}
+        </RoundButton>
+        <RoundButton disabled={!withTouchID} onPress={this.handleTouchIDPress}>
+          {"ID"}
+        </RoundButton>
       </View>
     );
   }

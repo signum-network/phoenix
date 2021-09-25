@@ -1,4 +1,4 @@
-export const PATH = 'AUTH_';
+export const PATH = "AUTH_";
 
 export const actionTypes = {
   addAccount: `${PATH}_ADD_ACCOUNT`,

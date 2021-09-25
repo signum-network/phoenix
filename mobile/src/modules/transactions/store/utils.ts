@@ -3,24 +3,21 @@ export enum RecipientType {
   ADDRESS = 1,
   ID,
   ALIAS,
-  UNSTOPPABLE
+  UNSTOPPABLE,
 }
 
 export enum RecipientValidationStatus {
-  UNKNOWN = 'unknown',
-  INVALID = 'invalid',
-  VALID = 'valid',
-  UNSTOPPABLE_OUTAGE = 'unstoppable_outage'
+  UNKNOWN = "unknown",
+  INVALID = "invalid",
+  VALID = "valid",
+  UNSTOPPABLE_OUTAGE = "unstoppable_outage",
 }
 
 export class Recipient {
-
-  constructor (
-    public addressRaw = '',
-    public addressRS = '',
+  constructor(
+    public addressRaw = "",
+    public addressRS = "",
     public status = RecipientValidationStatus.UNKNOWN,
     public type = RecipientType.UNKNOWN
-  ) {
-
-  }
+  ) {}
 }
