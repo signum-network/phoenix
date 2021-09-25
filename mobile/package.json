@@ -38,7 +38,8 @@
     "lint:staged": "tslint --fix --project tsconfig.json",
     "translations:sort": "node tasks/sortJsonDir.js src/translations && git add src/translations/*.json",
     "test": "jest",
-    "tsc": "tsc --init --pretty --jsx react"
+    "tsc": "tsc --init --pretty --jsx react",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.11.0",
@@ -116,18 +117,10 @@
     "react-test-renderer": "16.8.3",
     "sort-json": "^2.0.0",
     "ts-jest": "^27.0.3",
-    "tslint": "^5.16.0",
-    "tslint-config-standard": "^8.0.1",
-    "tslint-react": "^4.0.0",
-    "typescript": "^3.9.10"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged && npm run translations:sort && npm run check"
+    "typescript": "^3.9.10",
+    "husky": "^7.0.0"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "npm run lint:staged",
-      "git add"
-    ]
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
