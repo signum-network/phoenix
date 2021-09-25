@@ -2,13 +2,13 @@ export enum Sizes {
   SMALL = 4,
   MEDIUM = 8,
   LARGE = 12,
-  LARGER = 16
+  LARGER = 16,
 }
 
 export enum BorderRadiusSizes {
   SMALL = Sizes.SMALL / 2,
   MEDIUM = Sizes.MEDIUM / 2,
-  LARGE = Sizes.LARGER / 2
+  LARGE = Sizes.LARGER / 2,
 }
 
 export enum FontSizes {
@@ -16,7 +16,7 @@ export enum FontSizes {
   SMALL = 16,
   MEDIUM = 20,
   LARGE = 32,
-  LARGER = 40
+  LARGER = 40,
 }
 
 export const defaultSideOffset = Sizes.MEDIUM;

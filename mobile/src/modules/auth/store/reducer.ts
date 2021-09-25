@@ -1,7 +1,7 @@
-import { Account } from '@signumjs/core';
-import { Reducer } from '../../../core/interfaces';
-import { createReducers } from '../../../core/utils/store';
-import { actionTypes } from './actionTypes';
+import { Account } from "@signumjs/core";
+import { Reducer } from "../../../core/interfaces";
+import { createReducers } from "../../../core/utils/store";
+import { actionTypes } from "./actionTypes";
 
 export interface AuthReduxState {
   accounts: Account[];
@@ -15,36 +15,40 @@ export const authState = (): AuthReduxState => {
   return {
     accounts: [],
     passcodeEnteredTime: 0,
-    passcode: '',
+    passcode: "",
     agreeToTerms: false,
     passcodeModalVisible: true,
   };
 };
 
 const addAccount: Reducer<AuthReduxState, Account> = (state, action) => {
-  const accounts = [ ...state.accounts, action.payload ];
+  const accounts = [...state.accounts, action.payload];
   return {
     ...state,
-    accounts
+    accounts,
   };
 };
 
 const updateAccount: Reducer<AuthReduxState, Account> = (state, action) => {
   const account = action.payload;
   const accounts = state.accounts.map((existingAccount) =>
-    existingAccount.account === account.account ?
-    { ...existingAccount, ...account } : existingAccount);
+    existingAccount.account === account.account
+      ? { ...existingAccount, ...account }
+      : existingAccount
+  );
   return {
     ...state,
-    accounts
+    accounts,
   };
 };
 
 const removeAccount: Reducer<AuthReduxState, Account> = (state, action) => {
-  const accounts = state.accounts.filter((item: Account) => item.account !== action.payload.account);
+  const accounts = state.accounts.filter(
+    (item: Account) => item.account !== action.payload.account
+  );
   return {
     ...state,
-    accounts
+    accounts,
   };
 };
 
@@ -56,32 +60,38 @@ const loadAccounts: Reducer<AuthReduxState, Account[]> = (state, action) => {
   const accounts = action.payload;
   return {
     ...state,
-    accounts
+    accounts,
   };
 };
 
-const loadPasscodeEnteredTime: Reducer<AuthReduxState, number> = (state, action) => {
+const loadPasscodeEnteredTime: Reducer<AuthReduxState, number> = (
+  state,
+  action
+) => {
   const time = action.payload;
   return {
     ...state,
-    passcodeEnteredTime: time
+    passcodeEnteredTime: time,
   };
 };
 
-const setPasscodeEnteredTime: Reducer<AuthReduxState, number> = (state, action) => {
+const setPasscodeEnteredTime: Reducer<AuthReduxState, number> = (
+  state,
+  action
+) => {
   const time = action.payload;
   return {
     ...state,
-    passcodeEnteredTime: time
+    passcodeEnteredTime: time,
   };
 };
 
 const setAgreeToTerms: Reducer<AuthReduxState, boolean> = (state, action) => {
   const agree = action.payload;
-  console.log('agreeing to terms', agree);
+  console.log("agreeing to terms", agree);
   return {
     ...state,
-    agreeToTerms: agree
+    agreeToTerms: agree,
   };
 };
 
@@ -89,18 +99,20 @@ const loadPasscode: Reducer<AuthReduxState, string> = (state, action) => {
   const passcode = action.payload;
   return {
     ...state,
-    passcode
+    passcode,
   };
 };
 
-const setPasscodeModalVisible: Reducer<AuthReduxState, boolean> = (state, action) => {
+const setPasscodeModalVisible: Reducer<AuthReduxState, boolean> = (
+  state,
+  action
+) => {
   const passcodeModalVisible = action.payload;
   return {
     ...state,
     passcodeModalVisible,
   };
 };
-
 
 const reducers = {
   [actionTypes.addAccount]: addAccount,
@@ -112,7 +124,7 @@ const reducers = {
   [actionTypes.loadPasscode]: loadPasscode,
   [actionTypes.resetAuthState]: resetAuthState,
   [actionTypes.setAgreeToTerms]: setAgreeToTerms,
-  [actionTypes.setPasscodeModalVisible]: setPasscodeModalVisible
+  [actionTypes.setPasscodeModalVisible]: setPasscodeModalVisible,
 };
 
 export const auth = createReducers(authState(), reducers);

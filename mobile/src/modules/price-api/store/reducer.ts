@@ -1,6 +1,6 @@
-import { Reducer } from '../../../core/interfaces';
-import { createReducers } from '../../../core/utils/store';
-import { actionTypes } from './actionTypes';
+import { Reducer } from "../../../core/interfaces";
+import { createReducers } from "../../../core/utils/store";
+import { actionTypes } from "./actionTypes";
 
 export interface PriceInfo {
   price_usd: string;
@@ -53,54 +53,65 @@ export interface HistoricalPriceInfo {
 }
 
 export enum PriceType {
-  BURST = 'BURST',
-  BTC = 'BTC',
-  USD = 'USD'
+  BURST = "BURST",
+  BTC = "BTC",
+  USD = "USD",
 }
 
 export type PriceTypeStrings = keyof typeof PriceType;
 
 export const priceApiState = (): PriceInfoReduxState => {
   return {
-    selectedCurrency: PriceType.BURST
+    selectedCurrency: PriceType.BURST,
   };
 };
 
-const updatePriceInfo: Reducer<PriceInfoReduxState, PriceInfo> = (state, action) => {
+const updatePriceInfo: Reducer<PriceInfoReduxState, PriceInfo> = (
+  state,
+  action
+) => {
   const priceInfo = action.payload;
   return {
     ...state,
-    priceInfo
+    priceInfo,
   };
 };
 
 const failedToUpdatePriceInfo: Reducer<PriceInfoReduxState, void> = (state) => {
   return {
     ...state,
-    priceInfo: undefined
+    priceInfo: undefined,
   };
 };
 
-const selectCurrency: Reducer<PriceInfoReduxState, PriceTypeStrings> = (state, action) => {
+const selectCurrency: Reducer<PriceInfoReduxState, PriceTypeStrings> = (
+  state,
+  action
+) => {
   const selectedCurrency = action.payload;
   return {
     ...state,
-    selectedCurrency
+    selectedCurrency,
   };
 };
 
-const updateHistoricalPriceInfo: Reducer<PriceInfoReduxState, PairedHistoricalPriceInfo> = (state, action) => {
+const updateHistoricalPriceInfo: Reducer<
+  PriceInfoReduxState,
+  PairedHistoricalPriceInfo
+> = (state, action) => {
   const historicalPriceInfo = action.payload;
   return {
     ...state,
-    historicalPriceInfo
+    historicalPriceInfo,
   };
 };
 
-const failedToUpdateHistoricalPriceInfo: Reducer<PriceInfoReduxState, void> = (state) => {
+const failedToUpdateHistoricalPriceInfo: Reducer<PriceInfoReduxState, void> = (
+  state
+) => {
   return {
     ...state,
-    historicalPriceInfo: undefined
+    historicalPriceInfo: undefined,
   };
 };
 
@@ -109,7 +120,8 @@ const reducers = {
   [actionTypes.failedToUpdatePriceInfo]: failedToUpdatePriceInfo,
   [actionTypes.selectCurrency]: selectCurrency,
   [actionTypes.updateHistoricalPriceInfo]: updateHistoricalPriceInfo,
-  [actionTypes.failedToUpdateHistoricalPriceInfo]: failedToUpdateHistoricalPriceInfo
+  [actionTypes.failedToUpdateHistoricalPriceInfo]:
+    failedToUpdateHistoricalPriceInfo,
 };
 
 export const priceApi = createReducers(priceApiState(), reducers);

@@ -1,19 +1,24 @@
-import React from 'react';
-import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Colors } from '../../theme/colors';
-import { BorderRadiusSizes, FontSizes, Sizes } from '../../theme/sizes';
-import { Text, TextAlign } from './Text';
+import React from "react";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { Colors } from "../../theme/colors";
+import { BorderRadiusSizes, FontSizes, Sizes } from "../../theme/sizes";
+import { Text, TextAlign } from "./Text";
 
 export enum ButtonThemes {
-  DEFAULT = 'DEFAULT',
-  ACCENT = 'ACCENT',
-  DANGER = 'DANGER'
+  DEFAULT = "DEFAULT",
+  ACCENT = "ACCENT",
+  DANGER = "DANGER",
 }
 
 export enum ButtonSizes {
-  DEFAULT = 'DEFAULT',
-  SMALL = 'SMALL',
-  LARGE = 'LARGE'
+  DEFAULT = "DEFAULT",
+  SMALL = "SMALL",
+  LARGE = "LARGE",
 }
 
 interface Props {
@@ -38,50 +43,50 @@ const childrenColors = {
 const textSizes = {
   [ButtonSizes.DEFAULT]: FontSizes.MEDIUM,
   [ButtonSizes.SMALL]: FontSizes.SMALLER,
-  [ButtonSizes.LARGE]: FontSizes.LARGE
+  [ButtonSizes.LARGE]: FontSizes.LARGE,
 };
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingVertical: Sizes.MEDIUM
+    paddingVertical: Sizes.MEDIUM,
   },
   wrapperSmall: {
-    padding: Sizes.SMALL
+    padding: Sizes.SMALL,
   },
   wrapperLarge: {
-    padding: Sizes.LARGER
+    padding: Sizes.LARGER,
   },
   button: {
     backgroundColor: Colors.WHITE,
     borderWidth: 1,
     borderRadius: BorderRadiusSizes.MEDIUM,
     borderColor: Colors.BLUE,
-    padding: Sizes.MEDIUM
+    padding: Sizes.MEDIUM,
   },
   buttonSmall: {
     padding: Sizes.SMALL,
-    borderRadius: BorderRadiusSizes.SMALL
+    borderRadius: BorderRadiusSizes.SMALL,
   },
   buttonLarge: {
     padding: Sizes.LARGER,
-    borderRadius: BorderRadiusSizes.LARGE
+    borderRadius: BorderRadiusSizes.LARGE,
   },
   loader: {
-    margin: Sizes.SMALL
+    margin: Sizes.SMALL,
   },
   buttonDisabled: {
-    opacity: 0.5
-  }
+    opacity: 0.5,
+  },
 });
 
 const themeStyles = StyleSheet.create({
   [ButtonThemes.ACCENT]: {
     backgroundColor: Colors.BLUE_LIGHT,
-    borderColor: Colors.BLUE_LIGHT
+    borderColor: Colors.BLUE_LIGHT,
   },
   [ButtonThemes.DANGER]: {
     backgroundColor: Colors.RED,
-    borderColor: Colors.RED
+    borderColor: Colors.RED,
   },
   [ButtonThemes.DEFAULT]: {},
 });
@@ -90,13 +95,11 @@ export const Button: React.FunctionComponent<Props> = (props) => {
   const { size = defaultSize, theme = defaultTheme, disabled } = props;
 
   const textSize = textSizes[size];
-  const childrenColor = (disabled)
-    ? Colors.BLACK
-    : childrenColors[theme];
+  const childrenColor = disabled ? Colors.BLACK : childrenColors[theme];
   const wrapperStyles = [
     styles.wrapper,
     size === ButtonSizes.SMALL && styles.wrapperSmall,
-    size === ButtonSizes.LARGE && styles.wrapperLarge
+    size === ButtonSizes.LARGE && styles.wrapperLarge,
   ];
   const buttonStyles = [
     styles.button,
@@ -114,13 +117,17 @@ export const Button: React.FunctionComponent<Props> = (props) => {
 
   const renderLoader = () => {
     return (
-      <ActivityIndicator style={styles.loader} animating={true} color={childrenColor} />
+      <ActivityIndicator
+        style={styles.loader}
+        animating={true}
+        color={childrenColor}
+      />
     );
   };
 
   const renderChildren = () => {
     const { children } = props;
-    if (typeof children === 'string') {
+    if (typeof children === "string") {
       return (
         <Text
           color={childrenColor}

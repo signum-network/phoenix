@@ -1,7 +1,7 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Button } from '../../../../core/components/base/Button';
-import { Text, TextThemes } from '../../../../core/components/base/Text';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { Button } from "../../../../core/components/base/Button";
+import { Text, TextThemes } from "../../../../core/components/base/Text";
 
 const WORDS_PER_TRY = 3;
 
@@ -16,8 +16,8 @@ interface State {
 
 const styles = StyleSheet.create({
   hintView: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 });
 
 const getRandomIndex = (length: number): number => {
@@ -25,10 +25,9 @@ const getRandomIndex = (length: number): number => {
 };
 
 export class EnterPassphraseStage extends React.PureComponent<Props, State> {
-
   isDone = false; // hax: bypass state to avoid double accounts being added
   state: State = {
-    offset: 0
+    offset: 0,
   };
 
   handleWordPress = (word: string) => () => {
@@ -39,14 +38,14 @@ export class EnterPassphraseStage extends React.PureComponent<Props, State> {
     if (currentWord === word) {
       if (offset < phrase.length - 1) {
         this.setState({
-          offset: offset + 1
+          offset: offset + 1,
         });
       } else if (!this.isDone) {
         this.isDone = true;
         this.props.onFinish();
       }
     }
-  }
+  };
 
   getWords = (): string[] => {
     const { offset } = this.state;
@@ -64,11 +63,11 @@ export class EnterPassphraseStage extends React.PureComponent<Props, State> {
 
     // Sort words to prevent current word being always at first place
     return words.sort();
-  }
+  };
 
-  render () {
+  render() {
     const words = this.getWords();
-    const passphrase = this.props.phrase.slice(0, this.state.offset).join(' ');
+    const passphrase = this.props.phrase.slice(0, this.state.offset).join(" ");
 
     return (
       <React.Fragment>
@@ -79,7 +78,12 @@ export class EnterPassphraseStage extends React.PureComponent<Props, State> {
         <View>
           {words.map((word, idx) => {
             return (
-              <Button key={`${idx}_${word}`} onPress={this.handleWordPress(word)}>{word}</Button>
+              <Button
+                key={`${idx}_${word}`}
+                onPress={this.handleWordPress(word)}
+              >
+                {word}
+              </Button>
             );
           })}
         </View>

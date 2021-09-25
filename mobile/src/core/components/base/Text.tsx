@@ -1,24 +1,24 @@
-import React from 'react';
-import { StyleSheet, Text as RNText } from 'react-native';
-import { Colors } from '../../theme/colors';
-import { fonts } from '../../theme/fonts';
-import { FontSizes } from '../../theme/sizes';
-import { isIOS } from '../../utils/platform';
+import React from "react";
+import { StyleSheet, Text as RNText } from "react-native";
+import { Colors } from "../../theme/colors";
+import { fonts } from "../../theme/fonts";
+import { FontSizes } from "../../theme/sizes";
+import { isIOS } from "../../utils/platform";
 
 export enum TextThemes {
-  DEFAULT = 'DEFAULT',
-  ACCENT = 'ACCENT',
-  HEADER = 'HEADER',
-  HINT = 'HINT',
-  DANGER = 'DANGER'
+  DEFAULT = "DEFAULT",
+  ACCENT = "ACCENT",
+  HEADER = "HEADER",
+  HINT = "HINT",
+  DANGER = "DANGER",
 }
 
 export enum TextAlign {
-  AUTO = 'auto',
-  LEFT = 'left',
-  RIGHT = 'right',
-  CENTER = 'center',
-  JUSTIFY = 'justify'
+  AUTO = "auto",
+  LEFT = "left",
+  RIGHT = "right",
+  CENTER = "center",
+  JUSTIFY = "justify",
 }
 
 interface Props {
@@ -43,36 +43,37 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: fonts.roboto,
     fontSize: FontSizes.MEDIUM,
-    fontWeight: 'normal',
+    fontWeight: "normal",
     textAlign: defaultAlign,
-    color: Colors.BLACK
+    color: Colors.BLACK,
   },
   textAccent: {
-    color: Colors.BLUE
+    color: Colors.BLUE,
   },
   textHeader: {
     color: Colors.BLUE_DARKER,
     fontFamily: fonts.roboto,
     fontSize: FontSizes.LARGE,
-    textAlign: TextAlign.CENTER
+    textAlign: TextAlign.CENTER,
   },
   textHint: {
     color: Colors.GREY_DARK,
-    fontSize: FontSizes.SMALLER
+    fontSize: FontSizes.SMALLER,
   },
   textDanger: {
     color: Colors.RED,
     fontSize: FontSizes.SMALLER,
-    textAlign: TextAlign.CENTER
+    textAlign: TextAlign.CENTER,
   },
   textDisabled: {
-    color: Colors.GREY_DARK
-  }
+    color: Colors.GREY_DARK,
+  },
 });
 
 // TODO: Create new universal text component according to mockups
 export const Text: React.FunctionComponent<Props> = (props) => {
-  const { theme = defaultTheme,
+  const {
+    theme = defaultTheme,
     textAlign,
     color,
     bebasFont,
@@ -81,7 +82,7 @@ export const Text: React.FunctionComponent<Props> = (props) => {
     disabledColor,
     bold,
     thin,
-    numberOfLines
+    numberOfLines,
   } = props;
   const style: any = [
     styles.text,
@@ -95,12 +96,16 @@ export const Text: React.FunctionComponent<Props> = (props) => {
     size && { fontSize: size },
     disabled && styles.textDisabled,
     disabledColor && { color: disabledColor },
-    bold && { fontWeight: isIOS ? '500' : '400' },
-    thin && { fontWeight: '400' }
+    bold && { fontWeight: isIOS ? "500" : "400" },
+    thin && { fontWeight: "400" },
   ];
 
   return (
-    <RNText style={style} selectable={props.selectable} numberOfLines={numberOfLines}>
+    <RNText
+      style={style}
+      selectable={props.selectable}
+      numberOfLines={numberOfLines}
+    >
       {props.children}
     </RNText>
   );
