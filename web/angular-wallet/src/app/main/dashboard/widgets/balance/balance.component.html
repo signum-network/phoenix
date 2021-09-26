@@ -1,4 +1,4 @@
-<div class="balance grey-700-fg">
+<div class="balance grey-700-fg fullwidth">
   <div class="pr-8 chart">
     <canvas baseChart
             height="100"
@@ -10,9 +10,10 @@
     >
     </canvas>
   </div>
-  <div fxFlex fxLayout="column">
+  <div fxFlex fxLayout="column" >
     <small><span class="dot available"></span>{{'balance_available' | i18n}}</small>
-    <span class="pb-4 font-weight-600">{{balance.availableBalance}}</span>
+    <span class="font-weight-600">{{balance.availableBalance}}</span>
+    <hr class="line"/>
     <small><span class="dot locked"></span> {{'balance_locked' | i18n}}</small>
     <span class="font-weight-600">{{balance.lockedBalance}}</span>
   </div>

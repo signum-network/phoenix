@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {Account, Transaction} from '@signumjs/core';
 import {takeUntil} from 'rxjs/operators';
@@ -11,6 +11,8 @@ import {AccountService} from '../../../../setup/account/account.service';
   styleUrls: ['./transactions-table.component.scss']
 })
 export class TransactionsTableComponent extends UnsubscribeOnDestroy implements OnInit {
+
+  @Input() displayedColumns: string[] = undefined;
 
   transactionsDataSource = new MatTableDataSource<Transaction>();
   account: Account;

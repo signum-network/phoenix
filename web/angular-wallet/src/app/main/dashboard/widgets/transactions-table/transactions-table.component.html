@@ -4,6 +4,7 @@
       [dataSource]="transactionsDataSource"
       [account]="account"
       [paginationEnabled]="false"
+      [displayedColumns]="displayedColumns"
     ></app-transaction-table>
     <a class="p-16" fxLayoutAlign="end" [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</a>
   </ng-container>

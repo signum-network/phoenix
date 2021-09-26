@@ -3,13 +3,13 @@ import {HttpClient} from '@angular/common/http';
 import {interval, Observable} from 'rxjs';
 import {flatMap, pluck, startWith} from 'rxjs/operators';
 import {environment} from 'environments/environment';
-import {MarketInfoCryptoCompare} from './types';
+import { MarketInfoCoingecko } from './types';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MarketService {
-  private readonly _ticker$: Observable<MarketInfoCryptoCompare>;
+export class MarketServiceCoinGecko {
+  private readonly _ticker$: Observable<MarketInfoCoingecko>;
 
   constructor(private httpClient: HttpClient) {
     this._ticker$ = this.createTicker();
@@ -19,17 +19,17 @@ export class MarketService {
     return new URL(environment.market.tickerUrl).hostname;
   }
 
-  get ticker$(): Observable<MarketInfoCryptoCompare> {
+  get ticker$(): Observable<MarketInfoCoingecko> {
     return this._ticker$;
   }
 
-  createTicker(): Observable<MarketInfoCryptoCompare> {
+  createTicker(): Observable<MarketInfoCoingecko> {
     const {tickerInterval, tickerUrl} = environment.market;
     return interval(tickerInterval)
       .pipe(
         startWith(0),
         flatMap(_ => this.httpClient.get(tickerUrl)),
-        pluck('RAW', 'SIGNA'),
+        pluck('market_data')
       );
   }
 }

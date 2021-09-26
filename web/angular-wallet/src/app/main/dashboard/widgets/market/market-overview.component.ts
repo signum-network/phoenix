@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {formatCurrency} from '@angular/common';
-import {MarketService} from './market.service';
+import {MarketServiceCoinGecko} from './services/coingecko/coingecko.market.service';
 import {takeUntil} from 'rxjs/operators';
-import {MarketInfoCryptoCompare} from './types';
+import {MarketInfoCoingecko} from './services/coingecko/types';
 import {StoreService} from 'app/store/store.service';
 import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
 import {formatMetricNumber} from 'app/util/formatMetricNumber';
@@ -15,10 +15,10 @@ import {formatMetricNumber} from 'app/util/formatMetricNumber';
 
 export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnInit {
   public isLoading = true;
-  private tickerData: MarketInfoCryptoCompare;
+  private tickerData: MarketInfoCoingecko;
   private locale: any;
 
-  constructor(private marketService: MarketService, private storeService: StoreService) {
+  constructor(private marketService: MarketServiceCoinGecko, private storeService: StoreService) {
     super();
     this.storeService.settings
       .pipe(
@@ -41,26 +41,31 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
       });
   }
 
+  private asPercentage(value: number): string {
+    return `${value < 0 ? '-' : '+'}${formatCurrency(value, this.locale, '', '', '1.2-2')} %`;
+  }
+
   private asCurrency(value: number, currency: string, digitsInfo: string = '1.2-2'): string {
     return `${formatCurrency(value, this.locale, currency, '', digitsInfo)}`;
   }
 
   public getPriceSats = (): string => {
-    const sats = this.tickerData.BTC.PRICE * 10e7;
+    // const sats = this.tickerData.BTC.PRICE * 10e7;
+    const sats = this.tickerData.current_price.sats;
     return `${this.asCurrency(sats, '', '1.0-0')}`;
   }
-  public getPriceUsd = (): string => `${this.asCurrency(this.tickerData.USD.PRICE, '$', '1.0-6')}`;
-  public getPriceEur = (): string => `${this.asCurrency(this.tickerData.EUR.PRICE, '€', '1.0-6')}`;
+  public getPriceUsd = (): string => `${this.asCurrency(this.tickerData.current_price.usd, '$', '1.0-6')}`;
+  public getPriceEur = (): string => `${this.asCurrency(this.tickerData.current_price.eur, '€', '1.0-6')}`;
 
-  public get24hVolumeBtc = (): string => `฿${formatMetricNumber(this.tickerData.BTC.VOLUME24HOURTO)}`;
-  public get24hVolumeUsd = (): string => `$${formatMetricNumber(this.tickerData.USD.VOLUME24HOURTO)}`;
-  public get24hVolumeEur = (): string => `€${formatMetricNumber(this.tickerData.EUR.VOLUME24HOURTO)}`;
+  public get24hVolumeBtc = (): string => `฿${formatMetricNumber(this.tickerData.total_volume.btc)}`;
+  public get24hVolumeUsd = (): string => `$${formatMetricNumber(this.tickerData.total_volume.usd)}`;
+  public get24hVolumeEur = (): string => `€${formatMetricNumber(this.tickerData.total_volume.eur)}`;
 
-  public getMarketCapBtc = (): string => `฿${formatMetricNumber(this.tickerData.BTC.MKTCAP)}`;
-  public getMarketCapUsd = (): string => `$${formatMetricNumber(this.tickerData.USD.MKTCAP)}`;
-  public getMarketCapEur = (): string => `€${formatMetricNumber(this.tickerData.EUR.MKTCAP)}`;
+  public getMarketCapBtc = (): string => `฿${formatMetricNumber(this.tickerData.market_cap.btc)}`;
+  public getMarketCapUsd = (): string => `$${formatMetricNumber(this.tickerData.market_cap.usd)}`;
+  public getMarketCapEur = (): string => `€${formatMetricNumber(this.tickerData.market_cap.eur)}`;
 
-  public getYesterDaysChange = (): string => `${this.asCurrency(this.tickerData.USD.CHANGEPCT24HOUR, '')} %`;
-  public isChangeNegative = (): boolean => this.tickerData.USD.CHANGEPCT24HOUR < 0;
+  public get24hChange = (): string => this.asPercentage(this.tickerData.price_change_percentage_24h);
+  public isChangeNegative = (): boolean => this.tickerData.price_change_percentage_24h < 0;
 
 }

@@ -1,18 +1,36 @@
-@import "src/@fuse/scss/fuse";
+//@import "src/@fuse/scss/fuse";
 :host {
-    .fg_green { 
-        color : green !important;
-    }
-    .fg_red { 
-        color : red !important;
-    }
-    h3 {
-        margin:0;
-    }
+  .price-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    border-radius: 8px;
+    padding: 2rem 0;
+    margin-right: 1.5rem;
+    font-weight: bold;
+  }
 
-    @include media-breakpoint('lt-md') {
-        .mat-list-item{
-            margin:20px 0;
-        }
-    }
+  .bg_green {
+    background: #CDFFCD;
+    color: #007F00;
+  }
+
+  .bg_red {
+    background: #FFE0E0;
+    color: #D30000;
+  }
+
+  .line {
+    border-top: 1px solid #E0E0E0;
+    width: 100%;
+  }
+
+  .info-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
 }
+

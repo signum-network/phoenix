@@ -22,14 +22,14 @@ export class PowerDashboardLayoutConfiguration extends LayoutConfiguration<Power
 
     this.xl = {
       columnCount: 12,
-      columnSpans: cs(12, 6, 6, 12),
+      columnSpans: cs(12, 4, 4, 12),
       rowSpans: cs(6, 3, 3, 14),
       tableColumns: ['transaction_id', 'timestamp', 'type', 'amount', 'account'],
     };
 
     this.lg = {
       columnCount: 12,
-      columnSpans: cs(12, 6, 6, 12),
+      columnSpans: cs(12, 4, 4, 12),
       rowSpans: cs(6, 3, 3, 14),
       tableColumns: ['transaction_id', 'timestamp', 'type', 'amount', 'account'],
     };
@@ -37,23 +37,23 @@ export class PowerDashboardLayoutConfiguration extends LayoutConfiguration<Power
     // #FIXME: accept this accordingly
     this.md = {
       columnCount: 12,
-      columnSpans: cs(12, 6, 6, 12),
+      columnSpans: cs(12, 6,6, 12),
       rowSpans: cs(6, 3, 3, 14),
       tableColumns: ['timestamp', 'type', 'amount', 'account'],
     };
 
     this.sm = {
       columnCount: 12,
-      columnSpans: cs(12, 6, 6, 12),
+      columnSpans: cs(12, 6,6, 12),
       rowSpans: cs(6, 3, 3, 14),
       tableColumns: ['timestamp', 'type', 'amount', 'account'],
     };
 
     this.xs = {
       columnCount: 12,
-      columnSpans: cs(12, 6, 6, 12),
+      columnSpans: cs(12, 12,12, 12),
       rowSpans: cs(6, 3, 3, 14),
-      tableColumns: ['timestamp', 'amount', 'account'],
+      tableColumns: ['timestamp', 'amount'],
     };
 
   }

@@ -5,72 +5,27 @@
 </ng-container>
 
 <ng-container *ngIf="!isLoading">
-  <mat-list>
-    <mat-list-item class="mb-10 mt-12">
-      <div matLine fxLayout="column" fxLayoutAlign="space-between left">
-        <small class="mb-2 secondary-text font-size-12">
-          {{"price" | i18n}}
-        </small>
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100-p">
-          <div class="font-weight-800 font-size-18">
-            <small class="font-size-14">SATS&nbsp;</small>{{getPriceSats()}}
-          </div>
-          <div>
-            {{getPriceUsd()}}
-          </div>
-          <div>
-            {{getPriceEur()}}
-          </div>
-        </div>
-        <small class="secondary-text font-size-10"
-               fxLayout="row"
-               fxLayoutAlign="flex-end center"
-        >
-          <span class="mr-4">{{ 'yesterdays_change' | i18n}}</span>
-          <span [ngClass]="{fg_green: !isChangeNegative(), fg_red: isChangeNegative()}">
-            {{getYesterDaysChange()}}
-          </span>
-          <mat-icon *ngIf="!isChangeNegative()" class="fg_green">arrow_drop_up</mat-icon>
-          <mat-icon *ngIf="isChangeNegative()" class="fg_red">arrow_drop_down</mat-icon>
-        </small>
+  <div fxFlex fxLayout="row" fxFlexAlign="center" class="grey-700-fg fullwidth">
+    <div class="pr-8 price-indicator" [ngClass]="{bg_green: !isChangeNegative(), bg_red: isChangeNegative()}">
+      <div>{{get24hChange()}}</div>
+    </div>
+    <div fxFlex fxLayout="column">
+      <small>{{'price' | i18n}}</small>
+      <div class="info-row">
+        <div class="font-weight-600">{{getPriceSats()}} SATS</div>
+        <div>{{getPriceUsd()}}</div>
+        <div>{{getPriceEur()}}</div>
       </div>
-    </mat-list-item>
-    <mat-list-item class="mb-16">
-      <div matLine fxLayout="column" fxLayoutAlign="space-between left">
-        <small class="mb-2 secondary-text font-size-12">
-          {{"volume_24h" | i18n}}
-        </small>
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100-p">
-          <div>
-            {{get24hVolumeBtc()}}
-          </div>
-          <div>
-            {{get24hVolumeUsd()}}
-          </div>
-          <div>
-            {{get24hVolumeEur()}}
-          </div>
-        </div>
+
+      <hr class="line"/>
+
+      <small>{{'volume_24h' | i18n}}</small>
+      <div class="info-row">
+        <div>{{get24hVolumeBtc()}}</div>
+        <div>{{get24hVolumeUsd()}}</div>
+        <div>{{get24hVolumeEur()}}</div>
       </div>
-    </mat-list-item>
-    <mat-list-item class="mb-16">
-      <div matLine fxLayout="column" fxLayoutAlign="space-between left">
-        <small class="mb-2 secondary-text font-size-12">
-          {{"market_capitalization" | i18n}}
-        </small>
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100-p">
-          <div>
-            {{getMarketCapBtc()}}
-          </div>
-          <div>
-            {{getMarketCapUsd()}}
-          </div>
-          <div>
-            {{getMarketCapEur()}}
-          </div>
-        </div>
-      </div>
-    </mat-list-item>
-  </mat-list>
+    </div>
+  </div>
 
 </ng-container>
