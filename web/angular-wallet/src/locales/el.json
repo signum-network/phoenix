@@ -384,7 +384,6 @@
   "watch_burst_account": "Παρατηρήστε λογαριασμό",
   "wrong_pin": "Λάθος PIN",
   "yes": "Ναί",
-  "yesterdays_change": "Αλλαγή της τελευταίας 24 ώρας",
   "you": "Εσείς",
   "you_sent_burst": "Στείλατε τη Signa",
   "your_address": "Η διεύθυνση σου",
@@ -444,5 +443,6 @@
   "salt": "Βάλε αλάτι",
   "your_new_account": "Ο λογαριασμός εγγραφής σας",
   "click_to_print": "Κάντε κλικ για εκτύπωση",
-  "show_whitespaces": "Εμφάνιση κενών χώρων"
+  "show_whitespaces": "Εμφάνιση κενών χώρων",
+  "price_change": "Αλλαγή Τιμής"
 }

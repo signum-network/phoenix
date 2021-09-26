@@ -15,6 +15,7 @@ import {formatMetricNumber} from 'app/util/formatMetricNumber';
 
 export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnInit {
   public isLoading = true;
+  public priceChangePeriod = '24h';
   private tickerData: MarketInfoCoingecko;
   private locale: any;
 
@@ -42,7 +43,7 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
   }
 
   private asPercentage(value: number): string {
-    return `${value < 0 ? '-' : '+'}${formatCurrency(value, this.locale, '', '', '1.2-2')} %`;
+    return `${value < 0 ? '' : '+'}${formatCurrency(value, this.locale, '', '', '1.2-2')} %`;
   }
 
   private asCurrency(value: number, currency: string, digitsInfo: string = '1.2-2'): string {
@@ -50,7 +51,6 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
   }
 
   public getPriceSats = (): string => {
-    // const sats = this.tickerData.BTC.PRICE * 10e7;
     const sats = this.tickerData.current_price.sats;
     return `${this.asCurrency(sats, '', '1.0-0')}`;
   }
@@ -65,7 +65,10 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
   public getMarketCapUsd = (): string => `$${formatMetricNumber(this.tickerData.market_cap.usd)}`;
   public getMarketCapEur = (): string => `€${formatMetricNumber(this.tickerData.market_cap.eur)}`;
 
-  public get24hChange = (): string => this.asPercentage(this.tickerData.price_change_percentage_24h);
-  public isChangeNegative = (): boolean => this.tickerData.price_change_percentage_24h < 0;
+  public getPriceChange = (): string => this.asPercentage(this.tickerData[`price_change_percentage_${this.priceChangePeriod}`]);
+  public isChangeNegative = (): boolean => this.tickerData[`price_change_percentage_${this.priceChangePeriod}`] < 0;
 
+  selectChangePeriod(period: string): void {
+    this.priceChangePeriod = period;
+  }
 }

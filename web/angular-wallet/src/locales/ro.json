@@ -384,7 +384,6 @@
   "watch_burst_account": "Respectați contul",
   "wrong_pin": "Cod PIN greșit",
   "yes": "da",
-  "yesterdays_change": "Schimbarea ultimelor 24 de ore",
   "you": "Tu",
   "you_sent_burst": "Ai trimis-o pe Signa",
   "your_address": "Adresa ta",
@@ -444,5 +443,6 @@
   "salt": "Adauga sare",
   "your_new_account": "Contul dvs. Signum",
   "click_to_print": "Faceți clic pentru a imprima",
-  "show_whitespaces": "Afișați spațiile albe"
+  "show_whitespaces": "Afișați spațiile albe",
+  "price_change": "Schimbare de preț"
 }

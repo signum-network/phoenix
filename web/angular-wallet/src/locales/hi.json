@@ -384,7 +384,6 @@
   "watch_burst_account": "खाते का निरीक्षण करें",
   "wrong_pin": "गलत पिन",
   "yes": "हाँ",
-  "yesterdays_change": "पिछले 24 घंटे का परिवर्तन",
   "you": "आप",
   "you_sent_burst": "आपने सिग्ना भेजा",
   "your_address": "तुम्हारा पता",
@@ -444,5 +443,6 @@
   "salt": "नमक डालें",
   "your_new_account": "आपका साइनम खाता",
   "click_to_print": "प्रिंट करने के लिए क्लिक करें",
-  "show_whitespaces": "व्हॉट्सएप दिखाएं"
+  "show_whitespaces": "व्हॉट्सएप दिखाएं",
+  "price_change": "मूल्य परिवर्तन"
 }

@@ -384,7 +384,6 @@
   "watch_burst_account": "Bekijk account",
   "wrong_pin": "Verkeerde pincode",
   "yes": "Ja",
-  "yesterdays_change": "Verandering van afgelopen 24 uur",
   "you": "U",
   "you_sent_burst": "Je stuurde Signa",
   "your_address": "Jouw adres",
@@ -444,5 +443,6 @@
   "salt": "Voeg zout toe",
   "your_new_account": "Uw Signum-account",
   "click_to_print": "Klik om af te drukken",
-  "show_whitespaces": "Witruimte tonen"
+  "show_whitespaces": "Witruimte tonen",
+  "price_change": "Prijs verandering"
 }

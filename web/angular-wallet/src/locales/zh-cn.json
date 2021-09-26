@@ -384,7 +384,6 @@
   "watch_burst_account": "观察帐户",
   "wrong_pin": "密码错误",
   "yes": "是的",
-  "yesterdays_change": "过去 24 小时的变化",
   "you": "你",
   "you_sent_burst": "你发送了Signa",
   "your_address": "你的地址",
@@ -444,5 +443,6 @@
   "salt": "加盐",
   "your_new_account": "您的登录帐户",
   "click_to_print": "点击打印",
-  "show_whitespaces": "显示空格"
+  "show_whitespaces": "显示空格",
+  "price_change": "价格变化"
 }

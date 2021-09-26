@@ -384,7 +384,6 @@
   "watch_burst_account": "Konto beobachten",
   "wrong_pin": "Falsche Pin",
   "yes": "Ja",
-  "yesterdays_change": "Änderung der letzten 24 Stunden",
   "you": "Du",
   "you_sent_burst": "Du hast Signa geschickt!",
   "your_address": "Deine Adresse",
@@ -444,5 +443,6 @@
   "salt": "Salz hinzufügen",
   "your_new_account": "Dein Signum-Konto",
   "click_to_print": "Zum Drucken klicken",
-  "show_whitespaces": "Leerzeichen anzeigen"
+  "show_whitespaces": "Leerzeichen anzeigen",
+  "price_change": "Preisveränderung"
 }

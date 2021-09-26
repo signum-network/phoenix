@@ -384,7 +384,6 @@
   "watch_burst_account": "Observeu el compte",
   "wrong_pin": "PIN incorrecte",
   "yes": "Sí",
-  "yesterdays_change": "Canvi de les darreres 24 hores",
   "you": "Vostè",
   "you_sent_burst": "Has enviat Signa",
   "your_address": "La teva direcció",
@@ -444,5 +443,6 @@
   "salt": "Afegiu sal",
   "your_new_account": "El vostre compte Signum",
   "click_to_print": "Feu clic per imprimir",
-  "show_whitespaces": "Mostra espais en blanc"
+  "show_whitespaces": "Mostra espais en blanc",
+  "price_change": "Canvi de preu"
 }

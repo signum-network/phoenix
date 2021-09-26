@@ -384,7 +384,6 @@
   "watch_burst_account": "Tarkkaile tiliä",
   "wrong_pin": "Väärä PIN-koodi",
   "yes": "Joo",
-  "yesterdays_change": "Viimeisen 24 tunnin muutos",
   "you": "Sinä",
   "you_sent_burst": "Lähetit Signan",
   "your_address": "Osoitteesi",
@@ -444,5 +443,6 @@
   "salt": "Lisää suolaa",
   "your_new_account": "Signum -tilisi",
   "click_to_print": "Tulosta napsauttamalla",
-  "show_whitespaces": "Näytä välilyönnit"
+  "show_whitespaces": "Näytä välilyönnit",
+  "price_change": "Hinta Muutos"
 }

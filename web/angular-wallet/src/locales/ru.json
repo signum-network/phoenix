@@ -384,7 +384,6 @@
   "watch_burst_account": "Добавить учетную запись в наблюдение",
   "wrong_pin": "Неверный PIN-код",
   "yes": "да",
-  "yesterdays_change": "Изменение за последние 24 часа",
   "you": "Вы",
   "you_sent_burst": "Вы отправили Signa",
   "your_address": "Ваш номер кошелька",
@@ -444,5 +443,6 @@
   "salt": "Добавить соль",
   "your_new_account": "Ваша учетная запись Signum",
   "click_to_print": "Нажмите, чтобы распечатать",
-  "show_whitespaces": "Показать пробелы"
+  "show_whitespaces": "Показать пробелы",
+  "price_change": "Изменение цены"
 }

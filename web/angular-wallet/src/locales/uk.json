@@ -384,7 +384,6 @@
   "watch_burst_account": "Спостерігайте за рахунком",
   "wrong_pin": "Неправильний PIN-код",
   "yes": "Так",
-  "yesterdays_change": "Зміна останніх 24 годин",
   "you": "ти",
   "you_sent_burst": "Ви надіслали Signa",
   "your_address": "Вашу адресу",
@@ -444,5 +443,6 @@
   "salt": "Додати сіль",
   "your_new_account": "Ваш обліковий запис для реєстрації",
   "click_to_print": "Натисніть, щоб надрукувати",
-  "show_whitespaces": "Показати пробіли"
+  "show_whitespaces": "Показати пробіли",
+  "price_change": "Зміна ціни"
 }

@@ -384,7 +384,6 @@
   "watch_burst_account": "Наблюдавайте акаунта",
   "wrong_pin": "Грешен ПИН",
   "yes": "Да",
-  "yesterdays_change": "Промяна в последния 24 час",
   "you": "Вие",
   "you_sent_burst": "Изпратихте Signa",
   "your_address": "Вашият адрес",
@@ -444,5 +443,6 @@
   "salt": "Добавете сол",
   "your_new_account": "Вашата регистрирана сметка",
   "click_to_print": "Щракнете, за да отпечатате",
-  "show_whitespaces": "Показване на празни пространства"
+  "show_whitespaces": "Показване на празни пространства",
+  "price_change": "Промяна на цената"
 }

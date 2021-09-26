@@ -384,7 +384,6 @@
   "watch_burst_account": "Sledujte účet",
   "wrong_pin": "Chybný PIN",
   "yes": "Áno",
-  "yesterdays_change": "Zmena za posledných 24 hodín",
   "you": "Vy",
   "you_sent_burst": "Poslali ste Signu",
   "your_address": "Vaša adresa",
@@ -444,5 +443,6 @@
   "salt": "Pridajte soľ",
   "your_new_account": "Váš účet Signum",
   "click_to_print": "Kliknutím vytlačíte",
-  "show_whitespaces": "Zobraziť medzery"
+  "show_whitespaces": "Zobraziť medzery",
+  "price_change": "Zmena ceny"
 }

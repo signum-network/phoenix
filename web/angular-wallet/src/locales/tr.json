@@ -384,7 +384,6 @@
   "watch_burst_account": "Hesabı Gözlemle",
   "wrong_pin": "Yanlış PIN",
   "yes": "Evet",
-  "yesterdays_change": "Son 24 Saatlik Değişiklik",
   "you": "Sen",
   "you_sent_burst": "Signa'yı gönderdin",
   "your_address": "Senin adresin",
@@ -444,5 +443,6 @@
   "salt": "Tuz ekle",
   "your_new_account": "Signum Hesabınız",
   "click_to_print": "Yazdırmak için tıklayın",
-  "show_whitespaces": "Boşlukları Göster"
+  "show_whitespaces": "Boşlukları Göster",
+  "price_change": "Fiyat Değişikliği"
 }

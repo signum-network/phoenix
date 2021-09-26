@@ -384,7 +384,6 @@
   "watch_burst_account": "Obserwuj konto",
   "wrong_pin": "Błędny kod PIN",
   "yes": "tak",
-  "yesterdays_change": "Zmiana z ostatnich 24 godzin Hour",
   "you": "ty",
   "you_sent_burst": "Wysłałeś Signa",
   "your_address": "Twój adres",
@@ -444,5 +443,6 @@
   "salt": "Dodać sól",
   "your_new_account": "Twoje konto Signum",
   "click_to_print": "Kliknij, aby wydrukować",
-  "show_whitespaces": "Pokaż białe znaki"
+  "show_whitespaces": "Pokaż białe znaki",
+  "price_change": "Zmiana ceny"
 }

@@ -384,7 +384,6 @@
   "watch_burst_account": "アカウントを監視",
   "wrong_pin": "間違った PIN",
   "yes": "はい",
-  "yesterdays_change": "過去 24 時間の変化",
   "you": "君は",
   "you_sent_burst": "シグナを送った",
   "your_address": "あなたの住所",
@@ -444,5 +443,6 @@
   "salt": "塩を加える",
   "your_new_account": "あなたのSignumアカウント",
   "click_to_print": "クリックして印刷",
-  "show_whitespaces": "空白を表示する"
+  "show_whitespaces": "空白を表示する",
+  "price_change": "価格変更"
 }

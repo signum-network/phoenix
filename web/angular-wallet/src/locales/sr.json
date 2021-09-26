@@ -384,7 +384,6 @@
   "watch_burst_account": "Посматрајте рачун",
   "wrong_pin": "Погрешан ПИН",
   "yes": "да",
-  "yesterdays_change": "Промена у последња 24 сата",
   "you": "ти",
   "you_sent_burst": "Послали сте Сигну",
   "your_address": "Ваша адреса",
@@ -444,5 +443,6 @@
   "salt": "Додајте со",
   "your_new_account": "Ваш пријављени налог",
   "click_to_print": "Кликните да бисте одштампали",
-  "show_whitespaces": "Прикажи размаке"
+  "show_whitespaces": "Прикажи размаке",
+  "price_change": "Промена цене"
 }

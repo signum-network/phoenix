@@ -384,7 +384,6 @@
   "watch_burst_account": "Stebėti sąskaitą",
   "wrong_pin": "Neteisingas PIN kodas",
   "yes": "Taip",
-  "yesterdays_change": "Paskutinės 24 valandų permainos",
   "you": "Tu",
   "you_sent_burst": "Jūs išsiuntėte Signą",
   "your_address": "Jūsų adresas",
@@ -444,5 +443,6 @@
   "salt": "Įpilkite druskos",
   "your_new_account": "Jūsų „Signum“ paskyra",
   "click_to_print": "Spustelėkite, jei norite spausdinti",
-  "show_whitespaces": "Rodyti baltas erdves"
+  "show_whitespaces": "Rodyti baltas erdves",
+  "price_change": "Kainos keitimas"
 }
