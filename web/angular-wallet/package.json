@@ -29,7 +29,7 @@
     "bundle-report": "webpack-bundle-analyzer dist/stats.json",
     "test:watch": "jest --watch",
     "release": "node ../../scripts/publish.js --desktop",
-    "prepare": "husky install"
+    "prepare": "is-ci || husky install"
   },
   "private": true,
   "dependencies": {
@@ -112,6 +112,7 @@
     "cross-env": "^5.2.1",
     "electron": "^12.0.2",
     "husky": "^7.0.2",
+    "is-ci": "^3.0.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "jest": "24.9.0",
