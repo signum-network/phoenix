@@ -6,6 +6,7 @@ import { MarketInfoCoingecko } from "./services/coingecko/types";
 import { StoreService } from "app/store/store.service";
 import { UnsubscribeOnDestroy } from "app/util/UnsubscribeOnDestroy";
 import { formatMetricNumber } from "app/util/formatMetricNumber";
+import { normalizeValue } from "../../../../util/normalizeValue";
 
 @Component({
   selector: "app-market-overview",
@@ -76,4 +77,11 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
     return this.marketService.serviceName;
   }
 
+  public getTrendStyle(): object {
+    const p = this.tickerData[`price_change_percentage_${this.priceChangePeriod}`] || 0;
+    const deg = -Math.min(90, Math.max(-90, p * 5));
+    return {
+      'transform': `rotate(${deg}deg)`
+    };
+  }
 }

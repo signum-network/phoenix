@@ -1,20 +1,24 @@
 <div class="balance grey-700-fg fullwidth">
   <div class="pr-8 chart">
     <canvas baseChart
-            height="100"
-            width="100"
+            height="108"
+            width="108"
             [datasets]="datasets"
             [options]="options"
             [labels]="labels"
             chartType="doughnut"
     >
     </canvas>
+    <div class="total">{{getTotal()}}</div>
   </div>
   <div fxFlex fxLayout="column" >
     <small><span class="dot available"></span>{{'balance_available' | i18n}}</small>
     <span class="font-weight-600">{{balance.availableBalance}}</span>
     <hr class="line"/>
-    <small><span class="dot locked"></span> {{'balance_locked' | i18n}}</small>
-    <span class="font-weight-600">{{balance.lockedBalance}}</span>
+    <small><span class="dot committed"></span> {{'commitment' | i18n}}</small>
+    <span class="font-weight-600">{{balance.committedBalance}}</span>
+    <hr class="line"/>
+    <small><span class="dot reserved"></span> {{'balance_reserved' | i18n}}</small>
+    <span class="font-weight-600">{{balance.reservedBalance}}</span>
   </div>
 </div>

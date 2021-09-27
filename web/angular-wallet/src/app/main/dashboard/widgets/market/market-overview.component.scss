@@ -10,12 +10,33 @@
     margin-right: 1.5rem;
 
     .price {
-      border-radius: 8px;
-      padding: 2rem 0;
+      border-radius: 50%;
+      padding-top: 40px;
       margin: 0.25rem 0;
       font-weight: bold;
-      width: 100%;
+      width: 100px;
       text-align: center;
+      height: 100px;
+      font-size: 16px;
+      position: relative;
+    }
+
+    .trend {
+      position: absolute;
+      user-select: none;
+      opacity: 0.5;
+      top: 4px;
+      left: 4px;
+      transform-origin: center;
+      transition: transform 0.5s ease-in-out;
+
+      mat-icon {
+        font-size: 90px;
+        font-weight: bolder;
+        color: white;
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .selected {
@@ -45,17 +66,20 @@
   .bg_green {
     background: #CDFFCD;
     color: #007F00;
+    border: 2px solid #007F00;
   }
 
   .bg_red {
     background: #FFE0E0;
     color: #D30000;
+    border: 2px solid #D30000;
   }
 
   .line {
     border-top: 1px solid #E0E0E0;
     width: 100%;
   }
+
 
   .info-row {
     display: flex;

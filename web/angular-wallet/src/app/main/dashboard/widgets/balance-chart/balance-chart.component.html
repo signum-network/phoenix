@@ -9,12 +9,6 @@
           <small class="font-size-12 pr-8">{{calculateValue(priceUsd) | currency:'USD'}}</small>
           <small class="font-size-12">{{calculateValue(priceEur) | currency:'EUR'}}</small>
         </div>
-        <!--        <div class="inline responsive">-->
-        <!--          <small class="font-size-14 pr-8">{{"balance_available"| i18n}}-->
-        <!--            : {{accountBalances.availableBalance.getSigna() | amount}}</small>-->
-        <!--          <small class="font-size-14">{{"balance_locked"| i18n}}-->
-        <!--            : {{accountBalances.lockedBalance.getSigna() | amount}}</small>-->
-        <!--        </div>-->
       </div>
       <div *ngIf="account.transactions.length">
         <div class="position-relative">

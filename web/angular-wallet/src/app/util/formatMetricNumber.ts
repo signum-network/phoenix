@@ -26,7 +26,7 @@ export function formatMetricNumber(n: number|string, digits = 2): string {
       break;
     }
   }
-  const value = digits >  0 ? abs.toFixed(2) : abs;
+  const value = abs.toFixed(Math.max(0, digits));
   return (isNegative ? '-' : '') + value + key;
 }
 

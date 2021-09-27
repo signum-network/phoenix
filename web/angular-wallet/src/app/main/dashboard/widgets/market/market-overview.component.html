@@ -14,7 +14,10 @@
       <div class="price"
            [ngClass]="{bg_green: !isChangeNegative(), bg_red: isChangeNegative()}"
       >
-        {{getPriceChange()}}
+        <div class="trend" [ngStyle]="getTrendStyle()">
+          <mat-icon>arrow_forward</mat-icon>
+        </div>
+        <div>{{getPriceChange()}}</div>
       </div>
       <div class="selector">
         <small (click)="selectChangePeriod('24h')">24h</small>
@@ -38,6 +41,15 @@
         <div>{{get24hVolumeBtc()}}</div>
         <div>{{get24hVolumeUsd()}}</div>
         <div>{{get24hVolumeEur()}}</div>
+      </div>
+
+      <hr class="line" />
+
+      <small>{{'market_capitalization' | i18n}}</small>
+      <div class="info-row">
+        <div>{{getMarketCapBtc()}}</div>
+        <div>{{getMarketCapUsd()}}</div>
+        <div>{{getMarketCapEur()}}</div>
       </div>
     </div>
   </div>

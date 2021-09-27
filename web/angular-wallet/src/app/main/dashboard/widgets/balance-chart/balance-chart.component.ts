@@ -92,7 +92,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
       colors: [
         {
           borderColor: '#0099ff',
-          backgroundColor: 'rgba(0,153,255,0.5)',
+          backgroundColor: '#80CAFF',
           pointBackgroundColor: '#fff',
           pointHoverBackgroundColor: '#fff',
           pointBorderColor: '#0099ff',

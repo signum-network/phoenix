@@ -444,5 +444,6 @@
   "your_new_account": "あなたのSignumアカウント",
   "click_to_print": "クリックして印刷",
   "show_whitespaces": "空白を表示する",
-  "price_change": "価格変更"
+  "price_change": "価格変更",
+  "balance_reserved": "予約残高"
 }
