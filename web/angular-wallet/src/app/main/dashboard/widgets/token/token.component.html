@@ -32,7 +32,9 @@
           <div>{{getTotalEstimate('rub')}}</div>
         </div>
       </div>
-      <a class="token-link" [routerLink]="'/tokens'">{{ 'my_assets' | i18n }}</a>
+      <div class="button-link-container">
+        <app-link-button [routerLink]="'/tokens'">{{'my_assets' | i18n}}</app-link-button>
+      </div>
     </div>
   </ng-container>
 </div>

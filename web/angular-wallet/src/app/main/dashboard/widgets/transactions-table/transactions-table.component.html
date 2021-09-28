@@ -1,4 +1,4 @@
-<div class="fullwidth">
+<div class="fullwidth position-relative">
   <ng-container *ngIf="transactionsDataSource && transactionsDataSource.data.length">
     <app-transaction-table
       [dataSource]="transactionsDataSource"
@@ -6,7 +6,9 @@
       [paginationEnabled]="false"
       [displayedColumns]="displayedColumns"
     ></app-transaction-table>
-    <a class="p-16" fxLayoutAlign="end" [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</a>
+    <div class="button-link-container">
+      <app-link-button [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</app-link-button>
+    </div>
   </ng-container>
   <ng-container *ngIf="!transactionsDataSource || !account.transactions.length">
     <div>
