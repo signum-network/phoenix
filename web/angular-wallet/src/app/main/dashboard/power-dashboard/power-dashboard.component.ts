@@ -1,21 +1,21 @@
-import { Component, OnInit } from "@angular/core";
-import { DashboardLayoutService } from "../dashboard.layout.service";
-import { takeUntil } from "rxjs/operators";
-import { UnsubscribeOnDestroy } from "app/util/UnsubscribeOnDestroy";
-import { PowerDashboardLayoutParameters, PowerDashboardLayoutConfiguration } from "./PowerDashboardLayoutConfiguration";
-import { Account } from "@signumjs/core";
-import { StoreService } from "../../../store/store.service";
-import { AccountService } from "../../../setup/account/account.service";
-import { NotifierService } from "angular-notifier";
-import { MarketServiceCoinGecko } from "../widgets/market/services/coingecko/coingecko.market.service";
-import { MarketInfoCoingecko } from "../widgets/market/services/coingecko/types";
+import { Component, OnInit } from '@angular/core';
+import { DashboardLayoutService } from '../dashboard.layout.service';
+import { takeUntil } from 'rxjs/operators';
+import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
+import { PowerDashboardLayoutParameters, PowerDashboardLayoutConfiguration } from './PowerDashboardLayoutConfiguration';
+import { Account } from '@signumjs/core';
+import { StoreService } from '../../../store/store.service';
+import { AccountService } from '../../../setup/account/account.service';
+import { NotifierService } from 'angular-notifier';
+import { MarketServiceCoinGecko } from '../widgets/market/services/coingecko/coingecko.market.service';
+import { MarketInfoCoingecko } from '../widgets/market/services/coingecko/types';
 
 const LayoutConfiguration = new PowerDashboardLayoutConfiguration();
 
 @Component({
-  selector: "app-power-dashboard",
-  templateUrl: "./power-dashboard.component.html",
-  styleUrls: ["./power-dashboard.component.scss"]
+  selector: 'app-power-dashboard',
+  templateUrl: './power-dashboard.component.html',
+  styleUrls: ['./power-dashboard.component.scss']
 })
 export class PowerDashboardComponent extends UnsubscribeOnDestroy implements OnInit {
 

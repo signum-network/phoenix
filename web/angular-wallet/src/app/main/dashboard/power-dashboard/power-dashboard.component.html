@@ -27,9 +27,16 @@
       [colspan]="layoutParameters.columnSpans.market"
       [rowspan]="layoutParameters.rowSpans.market"
     >
-      <!-- #FIXME: market widget -->
       <app-market-overview class="widget">
       </app-market-overview>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.market"
+      [rowspan]="layoutParameters.rowSpans.market"
+    >
+      <app-token-overview class="widget">
+      </app-token-overview>
     </mat-grid-tile>
     <mat-grid-tile
       [colspan]="layoutParameters.columnSpans.table"

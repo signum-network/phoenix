@@ -36,6 +36,7 @@ import {MatCardModule} from '@angular/material/card';
 import { BalanceComponent } from './widgets/balance/balance.component';
 import {ComponentsModule} from '../../components/components.module';
 import { TransactionsTableComponent } from './widgets/transactions-table/transactions-table.component';
+import { TokenComponent } from './widgets/token/token.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,7 @@ const routes: Routes = [
     PowerDashboardComponent,
     BalanceComponent,
     TransactionsTableComponent,
+    TokenComponent,
   ],
     imports: [
         RouterModule.forChild(routes),

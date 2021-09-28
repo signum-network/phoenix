@@ -1,17 +1,17 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {Account, SuggestedFees} from '@signumjs/core';
-import {QRData, Recipient, RecipientValidationStatus} from 'app/components/recipient-input/recipient-input.component';
-import {AccountBalances, getBalancesFromAccount} from 'app/util/balance';
-import {TokenData, TokenService} from '../../token.service';
-import {NgForm} from '@angular/forms';
-import {Amount} from '@signumjs/util';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {WarnSendDialogComponent} from '../../../../components/warn-send-dialog/warn-send-dialog.component';
-import {asNumber, isNotEmpty} from '../../../../util/forms';
-import {I18nService} from '../../../../layout/components/i18n/i18n.service';
-import {NotifierService} from 'angular-notifier';
-import {ExceptionHandlerService} from '../../../../shared/services/exceptionhandler.service';
-import {Router} from '@angular/router';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Account, SuggestedFees } from '@signumjs/core';
+import { QRData, Recipient, RecipientValidationStatus } from 'app/components/recipient-input/recipient-input.component';
+import { AccountBalances, getBalancesFromAccount } from 'app/util/balance';
+import { NgForm } from '@angular/forms';
+import { Amount } from '@signumjs/util';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { WarnSendDialogComponent } from '../../../../components/warn-send-dialog/warn-send-dialog.component';
+import { asNumber, isNotEmpty } from '../../../../util/forms';
+import { I18nService } from '../../../../layout/components/i18n/i18n.service';
+import { NotifierService } from 'angular-notifier';
+import { ExceptionHandlerService } from '../../../../shared/services/exceptionhandler.service';
+import { Router } from '@angular/router';
+import { TokenData, TokenService } from '../../../../shared/services/token.service';
 
 @Component({
   selector: 'app-token-transfer-form',
@@ -19,7 +19,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./token-transfer-form.component.scss']
 })
 export class TokenTransferFormComponent implements OnInit {
-  @ViewChild('transferForm', {static: true}) public transferForm: NgForm;
+  @ViewChild('transferForm', { static: true }) public transferForm: NgForm;
   @Input() account: Account;
   @Input() fees: SuggestedFees;
   @Input() token: TokenData;

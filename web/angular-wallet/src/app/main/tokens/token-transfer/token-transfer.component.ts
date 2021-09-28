@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {Account, SuggestedFees} from '@signumjs/core';
-import {ActivatedRoute} from '@angular/router';
-import {TokenData} from '../token.service';
-import {StoreService} from '../../../store/store.service';
-import {takeUntil} from 'rxjs/operators';
-import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
-import {getBalancesFromAccount} from '../../../util/balance';
+import { Component, OnInit } from '@angular/core';
+import { Account, SuggestedFees } from '@signumjs/core';
+import { ActivatedRoute } from '@angular/router';
+import { StoreService } from '../../../store/store.service';
+import { takeUntil } from 'rxjs/operators';
+import { UnsubscribeOnDestroy } from '../../../util/UnsubscribeOnDestroy';
+import { getBalancesFromAccount } from '../../../util/balance';
+import { TokenData } from '../../../shared/services/token.service';
 
 @Component({
   selector: 'app-token-transfer',
@@ -21,7 +21,7 @@ export class TokenTransferComponent extends UnsubscribeOnDestroy implements OnIn
 
   constructor(
     private route: ActivatedRoute,
-    private storeService: StoreService,
+    private storeService: StoreService
   ) {
     super();
   }
@@ -33,7 +33,7 @@ export class TokenTransferComponent extends UnsubscribeOnDestroy implements OnIn
 
     this.storeService.settings
       .pipe(takeUntil(this.unsubscribeAll))
-      .subscribe(({language}) => {
+      .subscribe(({ language }) => {
         this.locale = language;
       });
   }

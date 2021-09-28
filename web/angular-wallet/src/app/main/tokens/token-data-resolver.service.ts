@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import {TokenData, TokenService} from './token.service';
 import {StoreService} from '../../store/store.service';
+import { TokenData, TokenService } from '../../shared/services/token.service';
 
 @Injectable()
 export class TokenDataResolver implements Resolve<Promise<TokenData>> {
