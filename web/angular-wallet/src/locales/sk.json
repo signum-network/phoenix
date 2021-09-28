@@ -445,5 +445,6 @@
   "click_to_print": "Kliknutím vytlačíte",
   "show_whitespaces": "Zobraziť medzery",
   "price_change": "Zmena ceny",
-  "balance_reserved": "Vyhradený zostatok"
+  "balance_reserved": "Vyhradený zostatok",
+  "tokens_total_balance": "Odhadovaný celkový zostatok tokenov"
 }

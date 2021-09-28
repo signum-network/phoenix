@@ -445,5 +445,6 @@
   "click_to_print": "Clique para imprimir",
   "show_whitespaces": "Mostrar espaços em branco",
   "price_change": "Mudança de preço",
-  "balance_reserved": "Saldo Reservado"
+  "balance_reserved": "Saldo Reservado",
+  "tokens_total_balance": "Balanço total estimado de tokens"
 }

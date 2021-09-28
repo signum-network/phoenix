@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Account } from '@signumjs/core';
 import { AccountBalances, getBalancesFromAccount } from 'app/util/balance';
-import { formatMetricNumber } from "../../../../util/formatMetricNumber";
+import { formatMetricNumber } from '../../../../util/formatMetricNumber';
 
 @Component({
   selector: 'app-balance',
@@ -16,6 +16,9 @@ export class BalanceComponent implements OnInit, OnChanges {
   datasets = [];
   labels = [];
   options: any = {
+    legend: {
+      display: false,
+    },
     animation: false,
     tooltips: {
       enabled: false
@@ -39,11 +42,7 @@ export class BalanceComponent implements OnInit, OnChanges {
     this.datasets = [
       {
         label: 'set1',
-        borderColor: [
-          "#0099ff",
-          "#0099ff",
-          "#0099ff",
-        ],
+        borderColor: '#0099ff',
         backgroundColor: [
           '#00FF88',
           '#80CAFF',

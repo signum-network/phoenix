@@ -445,5 +445,6 @@
   "click_to_print": "Faceți clic pentru a imprima",
   "show_whitespaces": "Afișați spațiile albe",
   "price_change": "Schimbare de preț",
-  "balance_reserved": "Sold rezervat"
+  "balance_reserved": "Sold rezervat",
+  "tokens_total_balance": "Soldul total estimat de jetoane"
 }

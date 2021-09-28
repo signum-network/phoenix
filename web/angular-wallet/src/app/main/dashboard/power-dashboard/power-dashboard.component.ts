@@ -23,6 +23,7 @@ export class PowerDashboardComponent extends UnsubscribeOnDestroy implements OnI
   priceBtc: number;
   priceUsd: number;
   priceEur: number;
+  priceRub: number;
   layoutParameters: PowerDashboardLayoutParameters = LayoutConfiguration.xl;
 
   private unsubscribe = takeUntil(this.unsubscribeAll);
@@ -53,6 +54,7 @@ export class PowerDashboardComponent extends UnsubscribeOnDestroy implements OnI
         this.priceBtc = data.current_price.btc;
         this.priceUsd = data.current_price.usd;
         this.priceEur = data.current_price.eur;
+        this.priceRub = data.current_price.rub;
       });
 
     this.layoutService.layout$

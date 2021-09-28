@@ -445,5 +445,6 @@
   "click_to_print": "Κάντε κλικ για εκτύπωση",
   "show_whitespaces": "Εμφάνιση κενών χώρων",
   "price_change": "Αλλαγή Τιμής",
-  "balance_reserved": "Κρατημένο υπόλοιπο"
+  "balance_reserved": "Κρατημένο υπόλοιπο",
+  "tokens_total_balance": "Εκτιμώμενο συνολικό υπόλοιπο διακριτικών"
 }

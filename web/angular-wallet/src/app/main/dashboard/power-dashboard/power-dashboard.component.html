@@ -12,6 +12,7 @@
         [priceBtc]="priceBtc"
         [priceUsd]="priceUsd"
         [priceEur]="priceEur"
+        [priceRub]="priceRub"
       >
       </app-balance-chart>
     </mat-grid-tile>
@@ -35,7 +36,7 @@
       [colspan]="layoutParameters.columnSpans.market"
       [rowspan]="layoutParameters.rowSpans.market"
     >
-      <app-token-overview class="widget">
+      <app-token-overview [account]="account" class="widget">
       </app-token-overview>
     </mat-grid-tile>
     <mat-grid-tile

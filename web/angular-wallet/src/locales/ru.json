@@ -445,5 +445,6 @@
   "click_to_print": "Нажмите, чтобы распечатать",
   "show_whitespaces": "Показать пробелы",
   "price_change": "Изменение цены",
-  "balance_reserved": "Зарезервированный баланс"
+  "balance_reserved": "Зарезервированный баланс",
+  "tokens_total_balance": "Предполагаемый общий баланс токенов"
 }

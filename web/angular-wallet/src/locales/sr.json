@@ -445,5 +445,6 @@
   "click_to_print": "Кликните да бисте одштампали",
   "show_whitespaces": "Прикажи размаке",
   "price_change": "Промена цене",
-  "balance_reserved": "Резервисано стање"
+  "balance_reserved": "Резервисано стање",
+  "tokens_total_balance": "Процењено укупно стање жетона"
 }

@@ -445,5 +445,6 @@
   "click_to_print": "Feu clic per imprimir",
   "show_whitespaces": "Mostra espais en blanc",
   "price_change": "Canvi de preu",
-  "balance_reserved": "Saldo reservat"
+  "balance_reserved": "Saldo reservat",
+  "tokens_total_balance": "Saldo total estimat de fitxes"
 }

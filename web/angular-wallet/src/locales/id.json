@@ -445,5 +445,6 @@
   "click_to_print": "Klik untuk mencetak",
   "show_whitespaces": "Tampilkan Spasi Putih",
   "price_change": "Perubahan harga",
-  "balance_reserved": "Saldo Cadangan"
+  "balance_reserved": "Saldo Cadangan",
+  "tokens_total_balance": "Perkiraan Total Saldo Token"
 }

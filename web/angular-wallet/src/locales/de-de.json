@@ -445,5 +445,6 @@
   "click_to_print": "Zum Drucken klicken",
   "show_whitespaces": "Leerzeichen anzeigen",
   "price_change": "Preisveränderung",
-  "balance_reserved": "Reserviertes Guthaben"
+  "balance_reserved": "Reserviertes Guthaben",
+  "tokens_total_balance": "Geschätzter Gesamtsaldo der Token"
 }

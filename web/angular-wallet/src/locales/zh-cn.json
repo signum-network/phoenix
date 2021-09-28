@@ -445,5 +445,6 @@
   "click_to_print": "点击打印",
   "show_whitespaces": "显示空格",
   "price_change": "价格变化",
-  "balance_reserved": "预留余额"
+  "balance_reserved": "预留余额",
+  "tokens_total_balance": "预计代币总余额"
 }

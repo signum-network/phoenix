@@ -445,5 +445,6 @@
   "click_to_print": "Щракнете, за да отпечатате",
   "show_whitespaces": "Показване на празни пространства",
   "price_change": "Промяна на цената",
-  "balance_reserved": "Запазен баланс"
+  "balance_reserved": "Запазен баланс",
+  "tokens_total_balance": "Приблизителен общ баланс на жетони"
 }

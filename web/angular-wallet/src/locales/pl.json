@@ -445,5 +445,6 @@
   "click_to_print": "Kliknij, aby wydrukować",
   "show_whitespaces": "Pokaż białe znaki",
   "price_change": "Zmiana ceny",
-  "balance_reserved": "Zarezerwowane saldo"
+  "balance_reserved": "Zarezerwowane saldo",
+  "tokens_total_balance": "Szacowane całkowite saldo tokenów"
 }

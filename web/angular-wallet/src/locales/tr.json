@@ -445,5 +445,6 @@
   "click_to_print": "Yazdırmak için tıklayın",
   "show_whitespaces": "Boşlukları Göster",
   "price_change": "Fiyat Değişikliği",
-  "balance_reserved": "Ayrılmış Bakiye"
+  "balance_reserved": "Ayrılmış Bakiye",
+  "tokens_total_balance": "Tahmini Toplam Jeton Bakiyesi"
 }

@@ -445,5 +445,6 @@
   "click_to_print": "Tulosta napsauttamalla",
   "show_whitespaces": "Näytä välilyönnit",
   "price_change": "Hinta Muutos",
-  "balance_reserved": "Varattu saldo"
+  "balance_reserved": "Varattu saldo",
+  "tokens_total_balance": "Arvioitu kuponkien kokonaissaldo"
 }

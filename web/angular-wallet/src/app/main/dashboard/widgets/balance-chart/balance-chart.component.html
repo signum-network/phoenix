@@ -7,7 +7,8 @@
         <div class="inline">
           <small class="font-size-12 pr-8">{{calculateValue(priceBtc) | currency:'฿'}}</small>
           <small class="font-size-12 pr-8">{{calculateValue(priceUsd) | currency:'USD'}}</small>
-          <small class="font-size-12">{{calculateValue(priceEur) | currency:'EUR'}}</small>
+          <small class="font-size-12 pr-8">{{calculateValue(priceEur) | currency:'EUR'}}</small>
+          <small class="font-size-12">{{calculateValue(priceRub) | currency:'₽'}}</small>
         </div>
       </div>
       <div *ngIf="account.transactions.length">

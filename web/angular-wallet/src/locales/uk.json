@@ -445,5 +445,6 @@
   "click_to_print": "Натисніть, щоб надрукувати",
   "show_whitespaces": "Показати пробіли",
   "price_change": "Зміна ціни",
-  "balance_reserved": "Зарезервований баланс"
+  "balance_reserved": "Зарезервований баланс",
+  "tokens_total_balance": "Орієнтовний загальний залишок жетонів"
 }

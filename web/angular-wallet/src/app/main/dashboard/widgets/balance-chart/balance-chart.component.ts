@@ -25,6 +25,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
   @Input() public priceBtc: number;
   @Input() public priceUsd: number;
   @Input() public priceEur: number;
+  @Input() public priceRub: number;
 
   chart: any;
   firstDate = '';

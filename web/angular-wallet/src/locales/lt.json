@@ -445,5 +445,6 @@
   "click_to_print": "Spustelėkite, jei norite spausdinti",
   "show_whitespaces": "Rodyti baltas erdves",
   "price_change": "Kainos keitimas",
-  "balance_reserved": "Rezervuotas balansas"
+  "balance_reserved": "Rezervuotas balansas",
+  "tokens_total_balance": "Apskaičiuotas bendras žetonų balansas"
 }

@@ -445,5 +445,6 @@
   "click_to_print": "Klik om af te drukken",
   "show_whitespaces": "Witruimte tonen",
   "price_change": "Prijs verandering",
-  "balance_reserved": "Gereserveerd saldo"
+  "balance_reserved": "Gereserveerd saldo",
+  "tokens_total_balance": "Geschat totaal saldo van tokens"
 }

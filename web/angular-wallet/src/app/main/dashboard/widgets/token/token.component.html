@@ -1,1 +1,38 @@
-<p>token works!</p>
+<div class="container grey-700-fg fullwidth">
+  <ng-container *ngIf="isLoading">
+    <h1>Loading</h1>
+  </ng-container>
+  <ng-container *ngIf="!isLoading">
+    <div class="pr-8 chart">
+      <canvas baseChart
+              height="108"
+              width="108"
+              [datasets]="datasets"
+              [options]="options"
+              [labels]="labels"
+              chartType="doughnut"
+      >
+      </canvas>
+      <div class="tokenCount">{{tokenCount}}</div>
+    </div>
+    <div class="token-balance">
+      <small>{{'tokens_total_balance' | i18n}}</small>
+      <span class="font-size-20 font-weight-600">{{totalEstimateAmount.getSigna() | amount : 'signa':true}}</span>
+      <div fxFlex fxLayout="row">
+        <div class="mr-8">
+          <div>{{getTotalEstimate('btc')}}</div>
+        </div>
+        <div class="mr-8">
+          <div>{{getTotalEstimate('usd')}}</div>
+        </div>
+        <div class="mr-8">
+          <div>{{getTotalEstimate('eur')}}</div>
+        </div>
+        <div>
+          <div>{{getTotalEstimate('rub')}}</div>
+        </div>
+      </div>
+      <a class="token-link" [routerLink]="'/tokens'">{{ 'my_assets' | i18n }}</a>
+    </div>
+  </ng-container>
+</div>

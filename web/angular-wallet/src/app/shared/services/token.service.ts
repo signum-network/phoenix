@@ -4,22 +4,12 @@ import {
   Account,
   Address,
   Asset,
-  Attachment,
-  AttachmentEncryptedMessage,
-  AttachmentMessage,
   TransactionId
 } from '@signumjs/core';
 import {
-  decryptAES,
-  encryptData,
-  EncryptedData,
-  EncryptedMessage,
-  encryptMessage,
-  hashSHA256,
   Keys
 } from '@signumjs/crypto';
 import {Amount} from '@signumjs/util';
-import {AccountService} from '../../setup/account/account.service';
 import {getPrivateSigningKey} from '../../util/security/getPrivateSigningKey';
 import {getPrivateEncryptionKey} from '../../util/security/getPrivateEncryptionKey';
 import {createMessageAttachment} from '../../util/transaction/createMessageAttachment';
@@ -61,7 +51,6 @@ export class TokenService {
 
   constructor(
     private apiService: ApiService,
-    private accountService: AccountService,
   ) {
 
   }

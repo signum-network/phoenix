@@ -445,5 +445,6 @@
   "click_to_print": "Click to print",
   "show_whitespaces": "Show Whitespaces",
   "price_change": "Price Change",
-  "balance_reserved": "Reserved Balance"
+  "balance_reserved": "Reserved Balance",
+  "tokens_total_balance": "Estimated Total Balance of Tokens"
 }
