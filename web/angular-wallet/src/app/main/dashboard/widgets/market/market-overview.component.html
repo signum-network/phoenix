@@ -6,8 +6,7 @@
 
 <ng-container *ngIf="!isLoading">
   <div fxFlex fxLayout="row" fxFlexAlign="center" class="grey-700-fg fullwidth">
-    <div class="pr-8 price-indicator"
-    >
+    <div class="pr-8 price-indicator">
       <div class="selected">
         {{'price_change' | i18n}}: {{this.priceChangePeriod}}
       </div>
@@ -17,7 +16,7 @@
         <div class="trend" [ngStyle]="getTrendStyle()">
           <mat-icon>arrow_forward</mat-icon>
         </div>
-        <div>{{getPriceChange()}}</div>
+        <div class="text">{{getPriceChange()}}</div>
       </div>
       <div class="selector">
         <small (click)="selectChangePeriod('24h')">24h</small>

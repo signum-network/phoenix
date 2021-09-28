@@ -21,6 +21,12 @@
       position: relative;
     }
 
+    .text {
+      position: absolute;
+      left: 0;
+      right: 0;
+    }
+
     .trend {
       position: absolute;
       user-select: none;
