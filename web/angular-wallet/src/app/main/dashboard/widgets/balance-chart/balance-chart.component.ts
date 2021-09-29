@@ -106,6 +106,11 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
         legend: {
           display: false
         },
+        layout: {
+          padding: {
+            top: 8,
+          }
+        },
         maintainAspectRatio: false,
         elements: {
           point: {radius: 0},

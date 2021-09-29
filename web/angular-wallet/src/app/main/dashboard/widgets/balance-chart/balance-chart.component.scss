@@ -2,6 +2,15 @@
 
 :host {
 
+  position: relative;
+
+  .chart-container {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 0;
+  }
+
   .since-text {
     position: absolute;
     right: 16px;
@@ -11,14 +20,14 @@
   .balance-info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
   }
 
   .no-transactions {
     text-align: center;
     display: flex;
-    height: 59%;
+    margin-top: 4rem;
   }
 
   .align-center {

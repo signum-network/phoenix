@@ -96,7 +96,7 @@
   "csv_error_unreadable_format": "不可读的格式",
   "current_version": "当前版本",
   "dashboard": "仪表盘",
-  "dashboard_welcome_title": "欢迎来到凤凰！您最近的帐户余额将显示在此处。",
+  "dashboard_welcome_title": "欢迎来到Signum！一旦这个账户有交易，它的余额历史就会出现在这里。",
   "data": "数据",
   "date": "日期",
   "deadline": "最后期限",

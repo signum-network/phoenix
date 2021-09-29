@@ -1,7 +1,7 @@
-<div class="fullwidth" (mouseenter)="showPoints()" (mouseleave)="hidePoints()">
+<div class="fullwidth fullheight" (mouseenter)="showPoints()" (mouseleave)="hidePoints()">
   <div class="main-widget" *ngIf="chart">
     <div class="fuse-navy-500-fg">
-      <small class="grey-500-fg font-size-10 since-text">{{"recent_transactions_since" | i18n}}&nbsp;{{firstDate}}</small>
+      <small *ngIf="account.transactions.length" class="grey-500-fg font-size-10 since-text">{{"recent_transactions_since" | i18n}}&nbsp;{{firstDate}}</small>
       <div class="balance-info">
         <h1 class="pr-8 mb-0">{{accountBalances.totalBalance.getSigna() | amount}}</h1>
         <div class="inline">
@@ -12,9 +12,10 @@
         </div>
       </div>
       <div *ngIf="account.transactions.length">
-        <div class="position-relative">
+        <div class="chart-container">
           <canvas baseChart
                   chartType="line"
+                  class="border-radius-8"
                   [datasets]="chart.datasets"
                   [labels]="chart.labels"
                   [colors]="chart.colors"
@@ -24,7 +25,7 @@
         </div>
       </div>
       <div class="no-transactions" *ngIf="!account.transactions.length">
-        <h1 class="align-center">{{"dashboard_welcome_title" | i18n}}</h1>
+        <h2 class="align-center">{{"dashboard_welcome_title" | i18n}}</h2>
       </div>
     </div>
   </div>
