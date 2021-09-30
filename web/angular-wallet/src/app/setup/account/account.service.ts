@@ -19,7 +19,7 @@ import {
   TransactionType,
   UnconfirmedTransactionList,
   AddressPrefix,
-  GetAccountTransactionsArgs
+  GetAccountTransactionsArgs, Alias
 } from '@signumjs/core';
 import {decryptAES, encryptAES, generateMasterKeys, hashSHA256, Keys} from '@signumjs/crypto';
 import {Amount} from '@signumjs/util';
@@ -132,7 +132,7 @@ export class AccountService {
     );
   }
 
-  public getAlias(name: string): Promise<any> {
+  public getAlias(name: string): Promise<Alias> {
     return this.api.alias.getAliasByName(name);
   }
 

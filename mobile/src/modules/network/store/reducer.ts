@@ -1,7 +1,7 @@
-import { SuggestedFees } from '@signumjs/core';
-import { Reducer } from '../../../core/interfaces';
-import { createReducers } from '../../../core/utils/store';
-import { actionTypes } from './actionTypes';
+import { SuggestedFees } from "@signumjs/core";
+import { Reducer } from "../../../core/interfaces";
+import { createReducers } from "../../../core/utils/store";
+import { actionTypes } from "./actionTypes";
 
 export interface NetworkReduxState {
   suggestedFees: SuggestedFees | null;
@@ -9,21 +9,24 @@ export interface NetworkReduxState {
 
 export const networkState = (): NetworkReduxState => {
   return {
-    suggestedFees: null
+    suggestedFees: null,
   };
 };
 
-const getSuggestedFees: Reducer<NetworkReduxState, SuggestedFees> = (state, action) => {
+const getSuggestedFees: Reducer<NetworkReduxState, SuggestedFees> = (
+  state,
+  action
+) => {
   const suggestedFees = action.payload;
 
   return {
     ...state,
-    suggestedFees
+    suggestedFees,
   };
 };
 
 const reducers = {
-  [actionTypes.getSuggestedFees]: getSuggestedFees
+  [actionTypes.getSuggestedFees]: getSuggestedFees,
 };
 
 export const network = createReducers(networkState(), reducers);

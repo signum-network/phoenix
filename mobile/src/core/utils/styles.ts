@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export const flexGrowStyle = StyleSheet.flatten({
-  flexGrow: 1
+  flexGrow: 1,
 });

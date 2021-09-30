@@ -1,8 +1,8 @@
-import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Colors } from '../../../theme/colors';
-import { Sizes } from '../../../theme/sizes';
-import { Text, TextThemes } from '../../base/Text';
+import React from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Colors } from "../../../theme/colors";
+import { Sizes } from "../../../theme/sizes";
+import { Text, TextThemes } from "../../base/Text";
 
 interface Props {
   value?: number;
@@ -15,11 +15,11 @@ const BUTTON_SIZE = 64;
 
 const styles = StyleSheet.create({
   touchable: {
-    width: '30%',
+    width: "30%",
     paddingVertical: Sizes.MEDIUM,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   view: {
     width: BUTTON_SIZE,
@@ -27,13 +27,13 @@ const styles = StyleSheet.create({
     borderRadius: BUTTON_SIZE / 2,
     borderColor: Colors.WHITE,
     borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 0
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: 0,
   },
   disabled: {
-    opacity: 0
-  }
+    opacity: 0,
+  },
 });
 
 export class RoundButton extends React.PureComponent<Props> {
@@ -42,13 +42,17 @@ export class RoundButton extends React.PureComponent<Props> {
     if (!disabled) {
       onPress(value);
     }
-  }
+  };
 
-  render () {
+  render() {
     const { children, disabled } = this.props;
 
     return (
-      <TouchableOpacity disabled={disabled} style={styles.touchable} onPress={this.handlePress}>
+      <TouchableOpacity
+        disabled={disabled}
+        style={styles.touchable}
+        onPress={this.handlePress}
+      >
         <View style={[styles.view, disabled && styles.disabled]}>
           <Text color={Colors.WHITE} theme={TextThemes.HEADER}>
             {children}

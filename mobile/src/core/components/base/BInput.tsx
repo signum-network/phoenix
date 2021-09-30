@@ -1,31 +1,37 @@
-import * as React from 'react';
-import { NativeSyntheticEvent, TextInput, TextInputEndEditingEventData, View } from 'react-native';
-import { Colors } from '../../theme/colors';
-import { fonts } from '../../theme/fonts';
-import { FontSizes, Sizes } from '../../theme/sizes';
-import { Text as BText } from './Text';
+import * as React from "react";
+import {
+  NativeSyntheticEvent,
+  TextInput,
+  TextInputEndEditingEventData,
+  View,
+} from "react-native";
+import { Colors } from "../../theme/colors";
+import { fonts } from "../../theme/fonts";
+import { FontSizes, Sizes } from "../../theme/sizes";
+import { Text as BText } from "./Text";
 
 interface Props {
   value: string;
   onChange: (value: string) => void;
-  onEndEditing?: (value: NativeSyntheticEvent<TextInputEndEditingEventData>) => void;
+  onEndEditing?: (
+    value: NativeSyntheticEvent<TextInputEndEditingEventData>
+  ) => void;
   keyboard?: KeyboardTypes;
   title?: string;
   placeholder?: string;
   rightIcons?: React.ReactElement;
   editable?: boolean;
-  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters' | undefined;
+  autoCapitalize?: "none" | "sentences" | "words" | "characters" | undefined;
 }
 
 export enum KeyboardTypes {
-  DEFAULT = 'default',
-  EMAIL = 'email-address',
-  NUMERIC = 'numeric',
-  PHONE = 'phone-pad'
+  DEFAULT = "default",
+  EMAIL = "email-address",
+  NUMERIC = "numeric",
+  PHONE = "phone-pad",
 }
 
 export class BInput extends React.PureComponent<Props> {
-
   styles: any = {
     wrapper: {
       borderColor: Colors.BLUE,
@@ -34,32 +40,35 @@ export class BInput extends React.PureComponent<Props> {
       padding: Sizes.MEDIUM,
       backgroundColor: Colors.BLACK_T,
       marginBottom: Sizes.MEDIUM,
-      flexDirection: 'row',
+      flexDirection: "row",
     },
     input: {
       fontFamily: fonts.roboto,
       letterSpacing: -1,
       fontSize: FontSizes.MEDIUM,
-      fontWeight: '500',
+      fontWeight: "500",
       backgroundColor: Colors.TRANSPARENT,
       height: 25,
       padding: 0,
-      width: '100%',
-      flex: 1
+      width: "100%",
+      flex: 1,
     },
     end: {
-      marginLeft: 'auto'
-    }
+      marginLeft: "auto",
+    },
   };
 
   getInputStyle = () => {
     return {
       ...this.styles.input,
-      color: this.props.editable || this.props.editable === undefined ? Colors.WHITE : Colors.GREY
+      color:
+        this.props.editable || this.props.editable === undefined
+          ? Colors.WHITE
+          : Colors.GREY,
     };
-  }
+  };
 
-  render () {
+  render() {
     const {
       editable,
       title,
@@ -69,13 +78,15 @@ export class BInput extends React.PureComponent<Props> {
       keyboard,
       onEndEditing,
       rightIcons,
-      autoCapitalize
+      autoCapitalize,
     } = this.props;
 
     return (
       <View>
         {title ? (
-          <BText color={Colors.WHITE} size={FontSizes.SMALLER}>{title}</BText>
+          <BText color={Colors.WHITE} size={FontSizes.SMALLER}>
+            {title}
+          </BText>
         ) : null}
         <View style={this.styles.wrapper}>
           <TextInput
@@ -84,16 +95,14 @@ export class BInput extends React.PureComponent<Props> {
             value={value}
             onChangeText={onChange}
             style={this.getInputStyle()}
-            autoCapitalize={autoCapitalize || 'none'}
+            autoCapitalize={autoCapitalize || "none"}
             autoCorrect={false}
             keyboardType={keyboard}
-            returnKeyType={'done'}
+            returnKeyType={"done"}
             placeholder={placeholder}
             placeholderTextColor={Colors.GREY_TT}
           />
-          <View style={this.styles.end}>
-            {rightIcons}
-          </View>
+          <View style={this.styles.end}>{rightIcons}</View>
         </View>
       </View>
     );

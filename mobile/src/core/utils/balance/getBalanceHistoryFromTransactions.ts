@@ -2,23 +2,34 @@ import {
   getRecipientsAmount,
   Transaction,
   TransactionType,
-  TransactionAssetSubtype
-} from '@signumjs/core';
-import { convertNQTStringToNumber } from '@signumjs/util';
-import { BalanceHistoryItem } from './typings';
+  TransactionAssetSubtype,
+} from "@signumjs/core";
+import { convertNQTStringToNumber } from "@signumjs/util";
+import { BalanceHistoryItem } from "./typings";
 
-const isOwnTransaction = (accountId: string, transaction: Transaction): boolean => transaction.sender === accountId;
+const isOwnTransaction = (
+  accountId: string,
+  transaction: Transaction
+): boolean => transaction.sender === accountId;
 
-function getRelativeTransactionAmount (accountId: string, transaction: Transaction): number {
-
+function getRelativeTransactionAmount(
+  accountId: string,
+  transaction: Transaction
+): number {
   if (isOwnTransaction(accountId, transaction)) {
     // type 2, subtype 3 = BidOrderPlacement
     // Todo: support Ask Order Placement?
     // This logic is flawed/imperfect, but seems to work well enough
-    const amountBurst = transaction.type === TransactionType.Asset &&
-      transaction.subtype === TransactionAssetSubtype.BidOrderPlacement ?
-      convertNQTStringToNumber((transaction.attachment.quantityQNT * transaction.attachment.priceNQT).toString()) :
-      convertNQTStringToNumber(transaction.amountNQT);
+    const amountBurst =
+      transaction.type === TransactionType.Asset &&
+      transaction.subtype === TransactionAssetSubtype.BidOrderPlacement
+        ? convertNQTStringToNumber(
+            (
+              transaction.attachment.quantityQNT *
+              transaction.attachment.priceNQT
+            ).toString()
+          )
+        : convertNQTStringToNumber(transaction.amountNQT);
     const feeBurst = convertNQTStringToNumber(transaction.feeNQT);
     return -(amountBurst + feeBurst);
   }
@@ -33,11 +44,11 @@ function getRelativeTransactionAmount (accountId: string, transaction: Transacti
  * @param transactions The transaction array (assuming most recent transaction on head of list)
  * @return A list with balances per transaction
  */
-export function getBalanceHistoryFromTransactions (
+export function getBalanceHistoryFromTransactions(
   accountId: string,
   currentBalance: number,
-  transactions: Transaction[]): BalanceHistoryItem[] {
-
+  transactions: Transaction[]
+): BalanceHistoryItem[] {
   let balance = currentBalance;
 
   return transactions.map((t: Transaction) => {
@@ -46,7 +57,7 @@ export function getBalanceHistoryFromTransactions (
       timestamp: t.blockTimestamp,
       transactionId: t.transaction,
       balance,
-      transaction: t
+      transaction: t,
     };
     balance = balance - relativeAmount;
     return deducedBalances;

@@ -4,10 +4,10 @@ The Signum Mobile wallet is a React Native application.
 
 ## Development
 
-The setup for mobile development requires a lot of steps. Currently, we have tested support for 
-[Linux](./SETUP_LINUX.md) and [MacOS]((./SETUP_MACOS.md))
+The setup for mobile development requires a lot of steps. Currently, we have tested support for
+[Linux](./SETUP_LINUX.md) and [MacOS](<(./SETUP_MACOS.md)>)
 
-> Windows development setup documentation is welcome 
+> Windows development setup documentation is welcome
 
 ### Deeplink Testing (Android)
 
@@ -15,8 +15,7 @@ The mobile wallet supports same [deeplinking capabilities](../DEEPLINKING.md) li
 
 To test deeplinks you can go into the [tasks folder](./tasks) and calling:
 
-- [createCIP22DeeplinkExamples.js](./tasks/createCIP22DeeplinkExamples.js)
--[createLegacyDeeplinkExamples.js](./tasks/createLegacyDeeplinkExamples.js)
+- [createCIP22DeeplinkExamples.js](./tasks/createCIP22DeeplinkExamples.js) -[createLegacyDeeplinkExamples.js](./tasks/createLegacyDeeplinkExamples.js)
 
 Example:
 

@@ -19,11 +19,11 @@ export class DomainService {
   }
 
   public isUnstoppableDomain(address: string): boolean {
-    return /.+\.zil|crypto|888|x|coin|wallet|bitcoin|nft|dao|blockchain$/.test(address.toLowerCase());
+    return /.+\.(zil|crypto|888|x|coin|wallet|bitcoin|nft|dao|blockchain)$/.test(address.toLowerCase());
   }
 
   public async getUnstoppableAddress(domain: string): Promise<string> {
-    const response = await this.httpClient.get<UnstoppableResponse>(`https://unstoppabledomains.com/api/v1/${domain.toLowerCase()}`).toPromise()
+    const response = await this.httpClient.get<UnstoppableResponse>(`https://unstoppabledomains.com/api/v1/${domain.toLowerCase()}`).toPromise();
     const address = response.addresses.BURST || response.addresses.SIGNA;
     return address ? address.replace(/^BURST/, AddressPrefix.MainNet) : null;
   }

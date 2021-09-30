@@ -1,22 +1,22 @@
 import {
   BottomTabNavigatorConfig,
-  NavigationContainer
-} from 'react-navigation';
+  NavigationContainer,
+} from "react-navigation";
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { mainStack } from '../../modules/auth/navigation/mainStack';
-import { settingsStack } from '../../modules/settings/navigation/settingsStack';
-import { receiveStack } from '../../modules/transactions/navigation/receiveStack';
-import { sendStack } from '../../modules/transactions/navigation/sendStack';
-import { Colors } from '../theme/colors';
-import { fonts } from '../theme/fonts';
-import { routes, RoutesMap } from './routes';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { mainStack } from "../../modules/auth/navigation/mainStack";
+import { settingsStack } from "../../modules/settings/navigation/settingsStack";
+import { receiveStack } from "../../modules/transactions/navigation/receiveStack";
+import { sendStack } from "../../modules/transactions/navigation/sendStack";
+import { Colors } from "../theme/colors";
+import { fonts } from "../theme/fonts";
+import { routes, RoutesMap } from "./routes";
 
 const routesMap: RoutesMap = {
   [routes.home]: mainStack,
   [routes.send]: sendStack,
   [routes.receive]: receiveStack,
-  [routes.settings]: settingsStack
+  [routes.settings]: settingsStack,
 };
 
 const rootTabStackConfig: BottomTabNavigatorConfig = {
@@ -28,18 +28,17 @@ const rootTabStackConfig: BottomTabNavigatorConfig = {
     inactiveBackgroundColor: Colors.BLUE_DARKER,
     showIcon: true,
     labelStyle: {
-      textTransform: 'uppercase',
-      fontFamily: fonts.bebas
+      textTransform: "uppercase",
+      fontFamily: fonts.bebas,
     },
     style: {
       backgroundColor: Colors.BLUE_DARKER,
-      borderTopWidth: 0
-    }
-  }
+      borderTopWidth: 0,
+    },
+  },
 };
 
 export const rootTabStack: NavigationContainer = createBottomTabNavigator(
   routesMap,
   rootTabStackConfig
 );
-

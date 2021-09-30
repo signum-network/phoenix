@@ -1,11 +1,8 @@
-import React from 'react';
-import { Alert, AlertButton } from 'react-native';
-import {
-  HeaderBackButton,
-  HeaderBackButtonProps
-} from 'react-navigation';
-import { i18n } from '../i18n';
-import { core } from '../translations';
+import React from "react";
+import { Alert, AlertButton } from "react-native";
+import { HeaderBackButton, HeaderBackButtonProps } from "react-navigation";
+import { i18n } from "../i18n";
+import { core } from "../translations";
 
 type Props = HeaderBackButtonProps;
 
@@ -21,23 +18,21 @@ export const getAlertButtons = (onPress?: () => void): AlertButton[] => {
   return [
     {
       text: i18n.t(core.actions.ok),
-      onPress
+      onPress,
     },
     {
       text: i18n.t(core.actions.cancel),
-      onPress: () => null
-    }
+      onPress: () => null,
+    },
   ];
 };
 
 export class PreventBackButton extends React.PureComponent<Props> {
   handlePress = () => {
     preventBackAction(this.props.onPress);
-  }
+  };
 
-  render () {
-    return (
-      <HeaderBackButton {...this.props} onPress={this.handlePress} />
-    );
+  render() {
+    return <HeaderBackButton {...this.props} onPress={this.handlePress} />;
   }
 }

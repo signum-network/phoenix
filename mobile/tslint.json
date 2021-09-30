@@ -1,10 +1,6 @@
 {
   "defaultSeverity": "error",
-  "extends": [
-    "tslint:recommended",
-    "tslint-config-standard",
-    "tslint-react"
-  ],
+  "extends": ["tslint:recommended", "tslint-config-standard", "tslint-react"],
   "jsRules": {},
   "rules": {
     "interface-name": false,
@@ -22,9 +18,6 @@
   },
   "rulesDirectory": [],
   "linterOptions": {
-    "exclude": [
-      "*.json",
-      "**/*.json"
-    ]
+    "exclude": ["*.json", "**/*.json"]
   }
 }
