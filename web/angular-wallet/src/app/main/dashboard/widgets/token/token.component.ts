@@ -1,20 +1,20 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Account } from '@signumjs/core';
-import { TokenService } from '../../../../shared/services/token.service';
-import { getBalancesFromAccount } from '../../../../util/balance';
-import { MarketInfoCoingecko } from '../market/services/coingecko/types';
-import { MarketServiceCoinGecko } from '../market/services/coingecko/coingecko.market.service';
-import { UnsubscribeOnDestroy } from '../../../../util/UnsubscribeOnDestroy';
-import { takeUntil } from 'rxjs/operators';
-import { Amount } from '@signumjs/util';
-import { formatAmount } from '../../../../util/formatAmount';
-import { formatCurrency } from '@angular/common';
-import { StoreService } from '../../../../store/store.service';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from "@angular/core";
+import { Account } from "@signumjs/core";
+import { TokenService } from "../../../../shared/services/token.service";
+import { getBalancesFromAccount } from "../../../../util/balance";
+import { MarketInfoCoingecko } from "../market/services/coingecko/types";
+import { MarketServiceCoinGecko } from "../market/services/coingecko/coingecko.market.service";
+import { UnsubscribeOnDestroy } from "../../../../util/UnsubscribeOnDestroy";
+import { takeUntil } from "rxjs/operators";
+import { Amount } from "@signumjs/util";
+import { formatAmount } from "../../../../util/formatAmount";
+import { formatCurrency } from "@angular/common";
+import { StoreService } from "../../../../store/store.service";
 
 @Component({
-  selector: 'app-token-overview',
-  templateUrl: './token.component.html',
-  styleUrls: ['./token.component.scss']
+  selector: "app-token-overview",
+  templateUrl: "./token.component.html",
+  styleUrls: ["./token.component.scss"]
 })
 export class TokenComponent extends UnsubscribeOnDestroy implements OnInit, OnChanges {
 
@@ -27,7 +27,7 @@ export class TokenComponent extends UnsubscribeOnDestroy implements OnInit, OnCh
   options: any = {
     animation: false,
     legend: {
-      display: false,
+      display: false
     },
     tooltips: {
       enabled: true
@@ -37,11 +37,12 @@ export class TokenComponent extends UnsubscribeOnDestroy implements OnInit, OnCh
   tokenCount: number;
   totalEstimateAmount: Amount;
   private currentPrice: any = {};
-  private locale = 'en';
+  private locale = "en";
+
   constructor(
     private tokenService: TokenService,
     private marketService: MarketServiceCoinGecko,
-    private storeService: StoreService,
+    private storeService: StoreService
   ) {
     super();
   }
@@ -78,7 +79,7 @@ export class TokenComponent extends UnsubscribeOnDestroy implements OnInit, OnCh
     const balances = [];
     const labels = [];
     const totalEstimate = Amount.Zero();
-    tokens.forEach( ({ balance, name , priceInfo}) =>  {
+    tokens.forEach(({ balance, name, priceInfo }) => {
       balances.push(balance);
       labels.push(name);
       totalEstimate.add(Amount.fromSigna(priceInfo.amount));
@@ -88,28 +89,39 @@ export class TokenComponent extends UnsubscribeOnDestroy implements OnInit, OnCh
     this.tokenCount = tokens.length;
     this.labels = labels;
     this.datasets = [{
-      label: 'tokens',
-      borderColor: '#0099ff',
-      data : balances
+      label: "tokens",
+      borderColor: "#0099ff",
+      data: balances
     }];
 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.account.currentValue.account !== changes.account.previousValue.account) {
+    if (!changes.account) {
+      return;
+    }
+
+    const { currentValue, previousValue } = changes.account;
+
+    if (!previousValue) {
+      this.updateChart();
+      return;
+    }
+
+    if (currentValue.account !== previousValue.account) {
       this.updateChart();
     }
   }
 
-  getTotalEstimate(type: 'btc' | 'usd' | 'eur' | 'rub'): string {
+  getTotalEstimate(type: "btc" | "usd" | "eur" | "rub"): string {
     // TODO: centralize
     const currency = {
-      btc: '฿',
-      usd: '$',
-      eur: '€',
-      rub: '₽'
+      btc: "฿",
+      usd: "$",
+      eur: "€",
+      rub: "₽"
     };
     const value = parseFloat(this.totalEstimateAmount.getSigna()) * this.currentPrice[type];
-    return formatCurrency(value, this.locale, currency[type], '', '1.2-2');
+    return formatCurrency(value, this.locale, currency[type], "", "1.2-2");
   }
 }

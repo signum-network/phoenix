@@ -18,7 +18,7 @@ export class DashboardLayoutService {
   constructor(
     private observableMedia: MediaObserver,
   ) {
-    this.init()
+    this.init();
   }
 
   public setLayoutConfiguration(configuration: LayoutConfiguration): void {

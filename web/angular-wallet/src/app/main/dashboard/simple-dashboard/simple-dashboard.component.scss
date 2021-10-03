@@ -1,6 +1,14 @@
 @import "src/@fuse/scss/fuse";
+:host {
+  .custom-widget {
+    padding: 0 !important;
+  }
+}
 
 #dashboard {
+
+
+
   .fuse-card {
     max-width: none !important;
     min-width: 0 !important;

@@ -1,4 +1,4 @@
-<div *ngIf="layoutParameters" class="p-16">
+<div *ngIf="layoutParameters && account" class="p-16">
   <mat-grid-list [cols]="layoutParameters.columnCount"
                  rowHeight="32px"
                  gutterSize="16px"

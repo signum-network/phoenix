@@ -13,6 +13,10 @@ import {
   SimpleDashboardLayoutParameters,
   SimpleDashboardLayoutConfiguration
 } from './SimpleDashboardLayoutConfiguration';
+import { MarketInfoCoingecko } from "../widgets/market/services/coingecko/types";
+import { PowerDashboardLayoutParameters } from "../power-dashboard/PowerDashboardLayoutConfiguration";
+import { MarketServiceCoinGecko } from "../widgets/market/services/coingecko/coingecko.market.service";
+import { LayoutParameters } from "../LayoutConfiguration";
 // import {MarketService} from '../widgets/market/market.service';
 // import {MarketInfoCryptoCompare} from '../widgets/market/types';
 
@@ -31,20 +35,20 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
   priceBtc: number;
   priceUsd: number;
   priceEur: number;
+  priceRub: number;
   settings: Settings;
+  layoutParameters = LayoutConfiguration.xl;
 
   public dataSource: MatTableDataSource<Transaction>;
   public isActivating = false;
 
-  columnCount: number;
-  layoutParameters = LayoutConfiguration.xl;
-  unsubscriber = takeUntil(this.unsubscribeAll);
+  private unsubscribe = takeUntil(this.unsubscribeAll);
 
   constructor(
               private storeService: StoreService,
               private accountService: AccountService,
               private notificationService: NotifierService,
-              // private marketService: MarketService,
+              private marketService: MarketServiceCoinGecko,
               private layoutService: DashboardLayoutService,
   ) {
     super();
@@ -53,28 +57,32 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
 
   ngOnInit(): void {
 
-    this.storeService.settings
-      .pipe(this.unsubscriber)
-      .subscribe((settings: Settings) => {
-        this.settings = settings;
+    this.accountService.currentAccount$
+      .pipe(this.unsubscribe)
+      .subscribe((account: Account) => {
+          this.account = account;
+        }
+      );
+
+    this.marketService.ticker$
+      .pipe(this.unsubscribe)
+      .subscribe((data: MarketInfoCoingecko) => {
+        this.priceBtc = data.current_price.btc;
+        this.priceUsd = data.current_price.usd;
+        this.priceEur = data.current_price.eur;
+        this.priceRub = data.current_price.rub;
       });
 
-    this.accountService.currentAccount$
-      .pipe(this.unsubscriber)
-      .subscribe(this.setTransactions);
-
-    // this.marketService.ticker$
-    //   .pipe(this.unsubscriber)
-    //   .subscribe((data: MarketInfoCryptoCompare) => {
-    //     this.priceBtc = data.BTC.PRICE;
-    //     this.priceUsd = data.USD.PRICE;
-    //     this.priceEur = data.EUR.PRICE;
-    //   });
-
     this.layoutService.layout$
-      .pipe(this.unsubscriber)
-      .subscribe( (layoutAttributes: SimpleDashboardLayoutParameters) => {
-        this.layoutParameters = layoutAttributes;
+      .pipe(this.unsubscribe)
+      .subscribe((layoutParams: SimpleDashboardLayoutParameters) => {
+        this.layoutParameters = layoutParams;
+      });
+
+    this.storeService.settings
+      .pipe(this.unsubscribe)
+      .subscribe((settings: Settings) => {
+        this.settings = settings;
       });
 
   }
