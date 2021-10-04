@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Utils/RNSVGVectorEffect.h
+../../../../../node_modules/react-native-svg/apple/Utils/RNSVGVectorEffect.h

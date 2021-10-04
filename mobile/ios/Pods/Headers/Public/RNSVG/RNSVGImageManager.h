@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/ViewManagers/RNSVGImageManager.h
+../../../../../node_modules/react-native-svg/apple/ViewManagers/RNSVGImageManager.h

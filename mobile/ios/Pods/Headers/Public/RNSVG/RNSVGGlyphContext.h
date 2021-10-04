@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Text/RNSVGGlyphContext.h
+../../../../../node_modules/react-native-svg/apple/Text/RNSVGGlyphContext.h

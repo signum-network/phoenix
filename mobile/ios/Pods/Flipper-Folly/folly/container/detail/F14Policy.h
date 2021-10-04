@@ -67,12 +67,8 @@ struct ObjectHolder {
   template <typename... Args>
   ObjectHolder(Args&&... args) : value_{std::forward<Args>(args)...} {}
 
-  T& operator*() {
-    return value_;
-  }
-  T const& operator*() const {
-    return value_;
-  }
+  T& operator*() { return value_; }
+  T const& operator*() const { return value_; }
 };
 
 template <char Tag, typename T>
@@ -80,12 +76,8 @@ struct ObjectHolder<Tag, T, true> : T {
   template <typename... Args>
   ObjectHolder(Args&&... args) : T{std::forward<Args>(args)...} {}
 
-  T& operator*() {
-    return *this;
-  }
-  T const& operator*() const {
-    return *this;
-  }
+  T& operator*() { return *this; }
+  T const& operator*() const { return *this; }
 };
 
 // Policy provides the functionality of hasher, key_equal, and
@@ -271,24 +263,16 @@ struct BasePolicy
         typename AllocTraits::propagate_on_container_swap{}, rhs.alloc());
   }
 
-  Hasher& hasher() {
-    return *static_cast<HasherHolder&>(*this);
-  }
+  Hasher& hasher() { return *static_cast<HasherHolder&>(*this); }
   Hasher const& hasher() const {
     return *static_cast<HasherHolder const&>(*this);
   }
-  KeyEqual& keyEqual() {
-    return *static_cast<KeyEqualHolder&>(*this);
-  }
+  KeyEqual& keyEqual() { return *static_cast<KeyEqualHolder&>(*this); }
   KeyEqual const& keyEqual() const {
     return *static_cast<KeyEqualHolder const&>(*this);
   }
-  Alloc& alloc() {
-    return *static_cast<AllocHolder&>(*this);
-  }
-  Alloc const& alloc() const {
-    return *static_cast<AllocHolder const&>(*this);
-  }
+  Alloc& alloc() { return *static_cast<AllocHolder&>(*this); }
+  Alloc const& alloc() const { return *static_cast<AllocHolder const&>(*this); }
 
   template <typename K>
   std::size_t computeKeyHash(K const& key) const {
@@ -301,9 +285,7 @@ struct BasePolicy
     return hasher()(key);
   }
 
-  Key const& keyForValue(Key const& v) const {
-    return v;
-  }
+  Key const& keyForValue(Key const& v) const { return v; }
   Key const& keyForValue(std::pair<Key const, MappedOrBool> const& p) const {
     return p.first;
   }
@@ -331,8 +313,8 @@ struct BasePolicy
   }
 
   template <typename P>
-  bool
-  beforeBuild(std::size_t /*size*/, std::size_t /*capacity*/, P&& /*rhs*/) {
+  bool beforeBuild(
+      std::size_t /*size*/, std::size_t /*capacity*/, P&& /*rhs*/) {
     return false;
   }
 
@@ -412,13 +394,17 @@ struct BasePolicy
 
 // BaseIter is a convenience for concrete set and map implementations
 template <typename ValuePtr, typename Item>
-class BaseIter : public std::iterator<
-                     std::forward_iterator_tag,
-                     std::remove_const_t<
-                         typename std::pointer_traits<ValuePtr>::element_type>,
-                     std::ptrdiff_t,
-                     ValuePtr,
-                     decltype(*std::declval<ValuePtr>())> {
+class BaseIter {
+ private:
+  using pointee = typename std::pointer_traits<ValuePtr>::element_type;
+
+ public:
+  using iterator_category = std::forward_iterator_tag;
+  using value_type = std::remove_const_t<pointee>;
+  using difference_type = std::ptrdiff_t;
+  using pointer = ValuePtr;
+  using reference = pointee&;
+
  protected:
   using Chunk = F14Chunk<Item>;
   using ChunkPtr =
@@ -466,9 +452,7 @@ class ValueContainerIterator : public ValueContainerIteratorBase<ValuePtr> {
     return ValueContainerIterator<ValueConstPtr>{underlying_};
   }
 
-  reference operator*() const {
-    return underlying_.item();
-  }
+  reference operator*() const { return underlying_.item(); }
 
   pointer operator->() const {
     return std::pointer_traits<pointer>::pointer_to(**this);
@@ -485,11 +469,13 @@ class ValueContainerIterator : public ValueContainerIteratorBase<ValuePtr> {
     return cur;
   }
 
-  bool operator==(ValueContainerIterator<ValueConstPtr> const& rhs) const {
-    return underlying_ == rhs.underlying_;
+  friend bool operator==(
+      ValueContainerIterator const& lhs, ValueContainerIterator const& rhs) {
+    return lhs.underlying_ == rhs.underlying_;
   }
-  bool operator!=(ValueContainerIterator<ValueConstPtr> const& rhs) const {
-    return !(*this == rhs);
+  friend bool operator!=(
+      ValueContainerIterator const& lhs, ValueContainerIterator const& rhs) {
+    return !(lhs == rhs);
   }
 
  private:
@@ -546,17 +532,11 @@ class ValueContainerPolicy : public BasePolicy<
 
   //////// F14Table policy
 
-  static constexpr bool prefetchBeforeRehash() {
-    return false;
-  }
+  static constexpr bool prefetchBeforeRehash() { return false; }
 
-  static constexpr bool prefetchBeforeCopy() {
-    return false;
-  }
+  static constexpr bool prefetchBeforeCopy() { return false; }
 
-  static constexpr bool prefetchBeforeDestroy() {
-    return false;
-  }
+  static constexpr bool prefetchBeforeDestroy() { return false; }
 
   static constexpr bool destroyItemOnClear() {
     return !std::is_trivially_destructible<Item>::value ||
@@ -566,9 +546,7 @@ class ValueContainerPolicy : public BasePolicy<
   // inherit constructors
   using Super::Super;
 
-  void swapPolicy(ValueContainerPolicy& rhs) {
-    this->swapBasePolicy(rhs);
-  }
+  void swapPolicy(ValueContainerPolicy& rhs) { this->swapBasePolicy(rhs); }
 
   using Super::keyForValue;
   static_assert(
@@ -584,22 +562,16 @@ class ValueContainerPolicy : public BasePolicy<
     return this->keyEqual()(key, keyForValue(item));
   }
 
-  Value const& buildArgForItem(Item const& item) const& {
-    return item;
-  }
+  Value const& buildArgForItem(Item const& item) const& { return item; }
 
   // buildArgForItem(Item&)&& is used when moving between unequal allocators
   decltype(auto) buildArgForItem(Item& item) && {
     return Super::moveValue(item);
   }
 
-  Value const& valueAtItem(Item const& item) const {
-    return item;
-  }
+  Value const& valueAtItem(Item const& item) const { return item; }
 
-  Value&& valueAtItemForExtract(Item& item) {
-    return std::move(item);
-  }
+  Value&& valueAtItemForExtract(Item& item) { return std::move(item); }
 
   template <typename Table, typename... Args>
   void constructValueAtItem(Table&&, Item* itemAddr, Args&&... args) {
@@ -711,9 +683,7 @@ class NodeContainerIterator : public BaseIter<ValuePtr, NonConstPtr<ValuePtr>> {
     return NodeContainerIterator<ValueConstPtr>{underlying_};
   }
 
-  reference operator*() const {
-    return *underlying_.item();
-  }
+  reference operator*() const { return *underlying_.item(); }
 
   pointer operator->() const {
     return std::pointer_traits<pointer>::pointer_to(**this);
@@ -730,11 +700,13 @@ class NodeContainerIterator : public BaseIter<ValuePtr, NonConstPtr<ValuePtr>> {
     return cur;
   }
 
-  bool operator==(NodeContainerIterator<ValueConstPtr> const& rhs) const {
-    return underlying_ == rhs.underlying_;
+  friend bool operator==(
+      NodeContainerIterator const& lhs, NodeContainerIterator const& rhs) {
+    return lhs.underlying_ == rhs.underlying_;
   }
-  bool operator!=(NodeContainerIterator<ValueConstPtr> const& rhs) const {
-    return !(*this == rhs);
+  friend bool operator!=(
+      NodeContainerIterator const& lhs, NodeContainerIterator const& rhs) {
+    return !(lhs == rhs);
   }
 
  private:
@@ -802,28 +774,20 @@ class NodeContainerPolicy
 
   //////// F14Table policy
 
-  static constexpr bool prefetchBeforeRehash() {
-    return true;
-  }
+  static constexpr bool prefetchBeforeRehash() { return true; }
 
-  static constexpr bool prefetchBeforeCopy() {
-    return true;
-  }
+  static constexpr bool prefetchBeforeCopy() { return true; }
 
   static constexpr bool prefetchBeforeDestroy() {
     return !std::is_trivially_destructible<Value>::value;
   }
 
-  static constexpr bool destroyItemOnClear() {
-    return true;
-  }
+  static constexpr bool destroyItemOnClear() { return true; }
 
   // inherit constructors
   using Super::Super;
 
-  void swapPolicy(NodeContainerPolicy& rhs) {
-    this->swapBasePolicy(rhs);
-  }
+  void swapPolicy(NodeContainerPolicy& rhs) { this->swapBasePolicy(rhs); }
 
   using Super::keyForValue;
 
@@ -836,22 +800,16 @@ class NodeContainerPolicy
     return this->keyEqual()(key, keyForValue(*item));
   }
 
-  Value const& buildArgForItem(Item const& item) const& {
-    return *item;
-  }
+  Value const& buildArgForItem(Item const& item) const& { return *item; }
 
   // buildArgForItem(Item&)&& is used when moving between unequal allocators
   decltype(auto) buildArgForItem(Item& item) && {
     return Super::moveValue(*item);
   }
 
-  Value const& valueAtItem(Item const& item) const {
-    return *item;
-  }
+  Value const& valueAtItem(Item const& item) const { return *item; }
 
-  Value&& valueAtItemForExtract(Item& item) {
-    return std::move(*item);
-  }
+  Value&& valueAtItemForExtract(Item& item) { return std::move(*item); }
 
   template <typename Table, typename... Args>
   void constructValueAtItem(Table&&, Item* itemAddr, Args&&... args) {
@@ -963,13 +921,9 @@ class VectorContainerIterator : public BaseIter<ValuePtr, uint32_t> {
     return VectorContainerIterator<ValueConstPtr>{current_, lowest_};
   }
 
-  reference operator*() const {
-    return *current_;
-  }
+  reference operator*() const { return *current_; }
 
-  pointer operator->() const {
-    return current_;
-  }
+  pointer operator->() const { return current_; }
 
   VectorContainerIterator& operator++() {
     if (UNLIKELY(current_ == lowest_)) {
@@ -986,11 +940,13 @@ class VectorContainerIterator : public BaseIter<ValuePtr, uint32_t> {
     return cur;
   }
 
-  bool operator==(VectorContainerIterator<ValueConstPtr> const& rhs) const {
-    return current_ == rhs.current_;
+  friend bool operator==(
+      VectorContainerIterator const& lhs, VectorContainerIterator const& rhs) {
+    return lhs.current_ == rhs.current_;
   }
-  bool operator!=(VectorContainerIterator<ValueConstPtr> const& rhs) const {
-    return !(*this == rhs);
+  friend bool operator!=(
+      VectorContainerIterator const& lhs, VectorContainerIterator const& rhs) {
+    return !(lhs == rhs);
   }
 
  private:
@@ -1000,9 +956,7 @@ class VectorContainerIterator : public BaseIter<ValuePtr, uint32_t> {
   explicit VectorContainerIterator(ValuePtr current, ValuePtr lowest)
       : current_(current), lowest_(lowest) {}
 
-  std::size_t index() const {
-    return current_ - lowest_;
-  }
+  std::size_t index() const { return current_ - lowest_; }
 
   template <
       typename K,
@@ -1080,21 +1034,13 @@ class VectorContainerPolicy : public BasePolicy<
 
   //////// F14Table policy
 
-  static constexpr bool prefetchBeforeRehash() {
-    return true;
-  }
+  static constexpr bool prefetchBeforeRehash() { return true; }
 
-  static constexpr bool prefetchBeforeCopy() {
-    return false;
-  }
+  static constexpr bool prefetchBeforeCopy() { return false; }
 
-  static constexpr bool prefetchBeforeDestroy() {
-    return false;
-  }
+  static constexpr bool prefetchBeforeDestroy() { return false; }
 
-  static constexpr bool destroyItemOnClear() {
-    return false;
-  }
+  static constexpr bool destroyItemOnClear() { return false; }
 
  private:
   static constexpr bool valueIsTriviallyCopyable() {
@@ -1105,9 +1051,7 @@ class VectorContainerPolicy : public BasePolicy<
 
  public:
   VectorContainerPolicy(
-      Hasher const& hasher,
-      KeyEqual const& keyEqual,
-      Alloc const& alloc)
+      Hasher const& hasher, KeyEqual const& keyEqual, Alloc const& alloc)
       : Super{hasher, keyEqual, alloc} {}
 
   VectorContainerPolicy(VectorContainerPolicy const& rhs) : Super{rhs} {
@@ -1125,8 +1069,7 @@ class VectorContainerPolicy : public BasePolicy<
   }
 
   VectorContainerPolicy(
-      VectorContainerPolicy&& rhs,
-      Alloc const& alloc) noexcept
+      VectorContainerPolicy&& rhs, Alloc const& alloc) noexcept
       : Super{std::move(rhs), alloc} {
     if (kAllocIsAlwaysEqual || this->alloc() == rhs.alloc()) {
       // common case
@@ -1185,8 +1128,8 @@ class VectorContainerPolicy : public BasePolicy<
     return this->computeKeyHash(keyForValue(values_[item]));
   }
 
-  bool keyMatchesItem(VectorContainerIndexSearch const& key, Item const& item)
-      const {
+  bool keyMatchesItem(
+      VectorContainerIndexSearch const& key, Item const& item) const {
     return key.index_ == item;
   }
 
@@ -1203,19 +1146,13 @@ class VectorContainerPolicy : public BasePolicy<
     return {item};
   }
 
-  Value const& valueAtItem(Item const& item) const {
-    return values_[item];
-  }
+  Value const& valueAtItem(Item const& item) const { return values_[item]; }
 
-  Value&& valueAtItemForExtract(Item& item) {
-    return std::move(values_[item]);
-  }
+  Value&& valueAtItemForExtract(Item& item) { return std::move(values_[item]); }
 
   template <typename Table>
   void constructValueAtItem(
-      Table&&,
-      Item* itemAddr,
-      VectorContainerIndexSearch arg) {
+      Table&&, Item* itemAddr, VectorContainerIndexSearch arg) {
     *itemAddr = arg.index_;
   }
 
@@ -1260,9 +1197,7 @@ class VectorContainerPolicy : public BasePolicy<
     }
   }
 
-  void moveItemDuringRehash(Item* itemAddr, Item& src) {
-    *itemAddr = src;
-  }
+  void moveItemDuringRehash(Item* itemAddr, Item& src) { *itemAddr = src; }
 
   void prefetchValue(Item const& item) const {
     prefetchAddr(std::addressof(values_[item]));
@@ -1345,9 +1280,7 @@ class VectorContainerPolicy : public BasePolicy<
   }
 
   bool beforeBuild(
-      std::size_t size,
-      std::size_t /*capacity*/,
-      VectorContainerPolicy&& rhs) {
+      std::size_t size, std::size_t /*capacity*/, VectorContainerPolicy&& rhs) {
     return beforeBuildImpl(
         size, rhs, [](Value& v) { return Super::moveValue(v); });
   }
@@ -1381,8 +1314,7 @@ class VectorContainerPolicy : public BasePolicy<
   // Returns the total number of bytes that should be allocated to store
   // prefixBytes of Chunks and valueCapacity values.
   static std::size_t allocSize(
-      std::size_t prefixBytes,
-      std::size_t valueCapacity) {
+      std::size_t prefixBytes, std::size_t valueCapacity) {
     return valuesOffset(prefixBytes) + sizeof(Value) * valueCapacity;
   }
 
@@ -1496,9 +1428,7 @@ class VectorContainerPolicy : public BasePolicy<
     return Iter{(size > 0 ? values_ + size - 1 : nullptr), values_};
   }
 
-  Iter linearEnd() const {
-    return Iter{nullptr, nullptr};
-  }
+  Iter linearEnd() const { return Iter{nullptr, nullptr}; }
 
   //////// F14BasicMap/Set policy
 
@@ -1522,25 +1452,15 @@ class VectorContainerPolicy : public BasePolicy<
     return static_cast<Item>(n);
   }
 
-  Iter indexToIter(Item index) const {
-    return Iter{values_ + index, values_};
-  }
+  Iter indexToIter(Item index) const { return Iter{values_ + index, values_}; }
 
-  Iter iter(ReverseIter it) {
-    return Iter{it, values_};
-  }
+  Iter iter(ReverseIter it) { return Iter{it, values_}; }
 
-  ConstIter iter(ConstReverseIter it) const {
-    return ConstIter{it, values_};
-  }
+  ConstIter iter(ConstReverseIter it) const { return ConstIter{it, values_}; }
 
-  ReverseIter riter(Iter it) {
-    return it.current_;
-  }
+  ReverseIter riter(Iter it) { return it.current_; }
 
-  ConstReverseIter riter(ConstIter it) const {
-    return it.current_;
-  }
+  ConstReverseIter riter(ConstIter it) const { return it.current_; }
 
   ValuePtr values_{nullptr};
 };

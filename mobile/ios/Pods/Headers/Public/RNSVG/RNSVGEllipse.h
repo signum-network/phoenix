@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Shapes/RNSVGEllipse.h
+../../../../../node_modules/react-native-svg/apple/Shapes/RNSVGEllipse.h

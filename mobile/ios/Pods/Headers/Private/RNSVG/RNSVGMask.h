@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Elements/RNSVGMask.h
+../../../../../node_modules/react-native-svg/apple/Elements/RNSVGMask.h

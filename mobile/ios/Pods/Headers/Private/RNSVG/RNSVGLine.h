@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Shapes/RNSVGLine.h
+../../../../../node_modules/react-native-svg/apple/Shapes/RNSVGLine.h

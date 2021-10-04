@@ -41,8 +41,8 @@
 namespace folly {
 
 struct AtomicHashArrayLinearProbeFcn {
-  inline size_t operator()(size_t idx, size_t /* numProbes */, size_t capacity)
-      const {
+  inline size_t operator()(
+      size_t idx, size_t /* numProbes */, size_t capacity) const {
     idx += 1; // linear probing
 
     // Avoid modulus because it's slow
@@ -51,8 +51,8 @@ struct AtomicHashArrayLinearProbeFcn {
 };
 
 struct AtomicHashArrayQuadraticProbeFcn {
-  inline size_t operator()(size_t idx, size_t numProbes, size_t capacity)
-      const {
+  inline size_t operator()(
+      size_t idx, size_t numProbes, size_t capacity) const {
     idx += numProbes; // quadratic probing
 
     // Avoid modulus because it's slow
@@ -71,10 +71,7 @@ inline void checkLegalKeyIfKeyTImpl(
 
 template <typename KeyT>
 inline void checkLegalKeyIfKeyTImpl(
-    KeyT key_in,
-    KeyT emptyKey,
-    KeyT lockedKey,
-    KeyT erasedKey) {
+    KeyT key_in, KeyT emptyKey, KeyT lockedKey, KeyT erasedKey) {
   DCHECK_NE(key_in, emptyKey);
   DCHECK_NE(key_in, lockedKey);
   DCHECK_NE(key_in, erasedKey);
@@ -144,9 +141,7 @@ class AtomicHashArray {
   const size_t kAnchorMask_;
 
   struct Deleter {
-    void operator()(AtomicHashArray* ptr) {
-      AtomicHashArray::destroy(ptr);
-    }
+    void operator()(AtomicHashArray* ptr) { AtomicHashArray::destroy(ptr); }
   };
 
  public:
@@ -286,9 +281,7 @@ class AtomicHashArray {
     return numEntries_.readFull() - numErases_.load(std::memory_order_relaxed);
   }
 
-  bool empty() const {
-    return size() == 0;
-  }
+  bool empty() const { return size() == 0; }
 
   iterator begin() {
     iterator it(this, 0);
@@ -301,12 +294,8 @@ class AtomicHashArray {
     return it;
   }
 
-  iterator end() {
-    return iterator(this, capacity_);
-  }
-  const_iterator end() const {
-    return const_iterator(this, capacity_);
-  }
+  iterator end() { return iterator(this, capacity_); }
+  const_iterator end() const { return const_iterator(this, capacity_); }
 
   // See AtomicHashMap::findAt - access elements directly
   // WARNING: The following 2 functions will fail silently for hashtable
@@ -319,17 +308,13 @@ class AtomicHashArray {
     return const_cast<AtomicHashArray*>(this)->findAt(idx);
   }
 
-  iterator makeIter(size_t idx) {
-    return iterator(this, idx);
-  }
+  iterator makeIter(size_t idx) { return iterator(this, idx); }
   const_iterator makeIter(size_t idx) const {
     return const_iterator(this, idx);
   }
 
   // The max load factor allowed for this map
-  double maxLoadFactor() const {
-    return ((double)maxEntries_) / capacity_;
-  }
+  double maxLoadFactor() const { return ((double)maxEntries_) / capacity_; }
 
   void setEntryCountThreadCacheSize(uint32_t newSize) {
     numEntries_.setCacheSize(newSize);

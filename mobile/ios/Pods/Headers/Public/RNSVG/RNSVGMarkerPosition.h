@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Utils/RNSVGMarkerPosition.h
+../../../../../node_modules/react-native-svg/apple/Utils/RNSVGMarkerPosition.h

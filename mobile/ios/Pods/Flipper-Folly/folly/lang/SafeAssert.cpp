@@ -17,9 +17,26 @@
 #include <folly/lang/SafeAssert.h>
 
 #include <algorithm>
+#include <cerrno>
+#include <cstdarg>
 
-#include <folly/Conv.h>
-#include <folly/FileUtil.h>
+#include <folly/detail/FileUtilDetail.h>
+#include <folly/lang/ToAscii.h>
+#include <folly/portability/SysTypes.h>
+#include <folly/portability/Windows.h>
+
+#if defined(_WIN32)
+
+#include <fileapi.h> // @manual
+
+#else
+
+// @lint-ignore CLANGTIDY
+#include <unistd.h>
+
+#endif
+
+//  This header takes care to have minimal dependencies.
 
 namespace folly {
 namespace detail {
@@ -441,41 +458,101 @@ constexpr std::pair<int, const char*> errors[] = {
 };
 #undef FOLLY_DETAIL_ERROR
 
+#if defined(_WIN32)
+
+constexpr int stderr_fileno = 2;
+
+ssize_t write(int fh, void const* buf, size_t count) {
+  auto r = _write(fh, buf, static_cast<unsigned int>(count));
+  if ((r > 0 && size_t(r) != count) || (r == -1 && errno == ENOSPC)) {
+    // Writing to a pipe with a full buffer doesn't generate
+    // any error type, unless it caused us to write exactly 0
+    // bytes, so we have to see if we have a pipe first. We
+    // don't touch the errno for anything else.
+    HANDLE h = (HANDLE)_get_osfhandle(fh);
+    if (GetFileType(h) == FILE_TYPE_PIPE) {
+      DWORD state = 0;
+      if (GetNamedPipeHandleState(
+              h, &state, nullptr, nullptr, nullptr, nullptr, 0)) {
+        if ((state & PIPE_NOWAIT) == PIPE_NOWAIT) {
+          errno = EAGAIN;
+          return -1;
+        }
+      }
+    }
+  }
+  return r;
+}
+
+int fsync(int fh) {
+  HANDLE h = (HANDLE)_get_osfhandle(fh);
+  if (!FlushFileBuffers(h)) {
+    return -1;
+  }
+  return 0;
+}
+
+#else
+
+constexpr int stderr_fileno = STDERR_FILENO;
+
+#endif
+
+#if !defined(_WIN32) && !defined(_POSIX_FSYNC)
+
+int fsync(int fh) {
+  return 0;
+}
+
+#endif
+
 void writeStderr(const char* s, size_t len) {
-  writeFull(STDERR_FILENO, s, len);
+  fileutil_detail::wrapFull(write, stderr_fileno, const_cast<char*>(s), len);
 }
 void writeStderr(const char* s) {
   writeStderr(s, strlen(s));
 }
+void flushStderr() {
+  fileutil_detail::wrapNoInt(fsync, stderr_fileno);
+}
 
-} // namespace
+[[noreturn]] FOLLY_COLD void safe_assert_terminate_v(
+    safe_assert_arg const* arg_, int const error, va_list msg) noexcept {
+  auto const& arg = *arg_;
+  char buf[to_ascii_size_max_decimal<uint64_t>];
 
-void assertionFailure(
-    const char* expr,
-    const char* msg,
-    const char* file,
-    unsigned int line,
-    const char* function,
-    int error) {
   writeStderr("\n\nAssertion failure: ");
-  writeStderr(expr + 1, strlen(expr) - 2);
-  writeStderr("\nMessage: ");
-  writeStderr(msg);
+  writeStderr(arg.expr + 1, strlen(arg.expr) - 2);
+  if (*arg.msg_types != safe_assert_msg_type::term) {
+    writeStderr("\nMessage: ");
+    auto msg_types = arg.msg_types;
+    bool stop = false;
+    while (!stop) {
+      switch (*msg_types++) {
+        case safe_assert_msg_type::term:
+          stop = true;
+          break;
+        case safe_assert_msg_type::cstr:
+          writeStderr(va_arg(msg, char const*));
+          break;
+        case safe_assert_msg_type::ui64:
+          writeStderr(buf, to_ascii_decimal(buf, va_arg(msg, uint64_t)));
+          break;
+      }
+    }
+  }
   writeStderr("\nFile: ");
-  writeStderr(file);
+  writeStderr(arg.file);
   writeStderr("\nLine: ");
-  char buf[20];
-  uint32_t n = uint64ToBufferUnsafe(line, buf);
-  writeFull(STDERR_FILENO, buf, n);
+  writeStderr(buf, to_ascii_decimal(buf, arg.line));
   writeStderr("\nFunction: ");
-  writeStderr(function);
+  writeStderr(arg.function);
   if (error) {
     // if errno is set, print the number and the symbolic constant
     // the symbolic constant is necessary since actual numbers may vary
     // for simplicity, do not attempt to mimic strerror printing descriptions
     writeStderr("\nError: ");
-    n = uint64ToBufferUnsafe(error, buf);
-    writeFull(STDERR_FILENO, buf, n);
+    writeStderr(buf, to_ascii_decimal(buf, error));
     writeStderr(" (");
     // the list is not required to be sorted; but the program is about to die
     auto const pred = [=](auto const e) { return e.first == error; };
@@ -484,8 +561,26 @@ void assertionFailure(
     writeStderr(")");
   }
   writeStderr("\n");
-  fsyncNoInt(STDERR_FILENO);
+  flushStderr();
   abort();
+}
+
+} // namespace
+
+template <>
+void safe_assert_terminate<0>(safe_assert_arg const* arg, ...) noexcept {
+  va_list msg;
+  va_start(msg, arg);
+  safe_assert_terminate_v(arg, 0, msg);
+  va_end(msg);
+}
+
+template <>
+void safe_assert_terminate<1>(safe_assert_arg const* arg, ...) noexcept {
+  va_list msg;
+  va_start(msg, arg);
+  safe_assert_terminate_v(arg, errno, msg);
+  va_end(msg);
 }
 
 } // namespace detail

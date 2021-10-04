@@ -219,8 +219,10 @@ struct PolyExtends : virtual I... {
  *     struct IAddable {
  *       template <class Base>
  *       struct Interface : Base {
- *         friend PolySelf<Base, Decay>
- *         operator+(PolySelf<Base> const& a, PolySelf<Base> const& b) {
+ *         friend folly::PolySelf<Base, folly::PolyDecay>
+ *         operator+(
+ *             folly::PolySelf<Base> const& a,
+ *             folly::PolySelf<Base> const& b) {
  *           return folly::poly_call<0, IAddable>(a, b);
  *         }
  *       };
@@ -237,8 +239,7 @@ struct PolyExtends : virtual I... {
 template <std::size_t N, typename This, typename... As>
 auto poly_call(This&& _this, As&&... as)
     -> decltype(detail::PolyAccess::call<N>(
-        static_cast<This&&>(_this),
-        static_cast<As&&>(as)...)) {
+        static_cast<This&&>(_this), static_cast<As&&>(as)...)) {
   return detail::PolyAccess::call<N>(
       static_cast<This&&>(_this), static_cast<As&&>(as)...);
 }
@@ -275,8 +276,7 @@ template <
     typename... As,
     std::enable_if_t<detail::IsPoly<Poly>::value, int> = 0>
 auto poly_call(Poly&& _this, As&&... as) -> decltype(poly_call<N, I>(
-    static_cast<Poly&&>(_this).get(),
-    static_cast<As&&>(as)...)) {
+    static_cast<Poly&&>(_this).get(), static_cast<As&&>(as)...)) {
   return poly_call<N, I>(
       static_cast<Poly&&>(_this).get(), static_cast<As&&>(as)...);
 }
@@ -473,19 +473,11 @@ struct PolyVal : PolyImpl<I> {
 
   using PolyRoot<I>::vptr_;
 
-  PolyRoot<I>& _polyRoot_() noexcept {
-    return *this;
-  }
-  PolyRoot<I> const& _polyRoot_() const noexcept {
-    return *this;
-  }
+  PolyRoot<I>& _polyRoot_() noexcept { return *this; }
+  PolyRoot<I> const& _polyRoot_() const noexcept { return *this; }
 
-  Data* _data_() noexcept {
-    return PolyAccess::data(*this);
-  }
-  Data const* _data_() const noexcept {
-    return PolyAccess::data(*this);
-  }
+  Data* _data_() noexcept { return PolyAccess::data(*this); }
+  Data const* _data_() const noexcept { return PolyAccess::data(*this); }
 
  public:
   /**
@@ -562,12 +554,8 @@ struct PolyRef : private PolyImpl<I> {
 
   AddCvrefOf<PolyRoot<I>, I>& _polyRoot_() const noexcept;
 
-  Data* _data_() noexcept {
-    return PolyAccess::data(*this);
-  }
-  Data const* _data_() const noexcept {
-    return PolyAccess::data(*this);
-  }
+  Data* _data_() noexcept { return PolyAccess::data(*this); }
+  Data const* _data_() const noexcept { return PolyAccess::data(*this); }
 
   static constexpr RefType refType() noexcept;
 
@@ -664,16 +652,12 @@ struct PolyRef : private PolyImpl<I> {
   /**
    * Get a reference to the interface, with correct `const`-ness applied.
    */
-  AddCvrefOf<PolyImpl<I>, I>& operator*() const noexcept {
-    return get();
-  }
+  AddCvrefOf<PolyImpl<I>, I>& operator*() const noexcept { return get(); }
 
   /**
    * Get a pointer to the interface, with correct `const`-ness applied.
    */
-  auto operator-> () const noexcept {
-    return &get();
-  }
+  auto operator->() const noexcept { return &get(); }
 };
 
 template <class I>
@@ -1071,7 +1055,7 @@ using PolyValOrRef = If<std::is_reference<I>::value, PolyRef<I>, PolyVal<I>>;
  * added? Adding requires _two_ objects, both of which are type-erased. This
  * interface requires dispatching on both objects, doing the addition only
  * if the types are the same. For this we make use of the `PolySelf` template
- * alias to define an interface that takes more than one object of the the
+ * alias to define an interface that takes more than one object of the
  * erased type.
  *
  *     struct IAddable {

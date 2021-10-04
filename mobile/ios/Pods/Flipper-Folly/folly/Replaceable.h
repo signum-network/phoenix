@@ -388,8 +388,7 @@ constexpr Replaceable<T> make_replaceable(Args&&... args) {
 
 template <class T, class U, class... Args>
 constexpr Replaceable<T> make_replaceable(
-    std::initializer_list<U> il,
-    Args&&... args) {
+    std::initializer_list<U> il, Args&&... args) {
   return Replaceable<T>(in_place, il, std::forward<Args>(args)...);
 }
 
@@ -449,9 +448,7 @@ class alignas(T) Replaceable
           std::is_constructible<T, std::initializer_list<U>, Args&&...>::value,
           int> = 0>
   constexpr explicit Replaceable(
-      in_place_t,
-      std::initializer_list<U> il,
-      Args&&... args)
+      in_place_t, std::initializer_list<U> il, Args&&... args)
       // clang-format off
       noexcept(std::is_nothrow_constructible<
           T,
@@ -603,9 +600,7 @@ class alignas(T) Replaceable
     return launder(reinterpret_cast<T const*>(storage_));
   }
 
-  constexpr T* operator->() {
-    return launder(reinterpret_cast<T*>(storage_));
-  }
+  constexpr T* operator->() { return launder(reinterpret_cast<T*>(storage_)); }
 
   constexpr const T& operator*() const& {
     return *launder(reinterpret_cast<T const*>(storage_));
@@ -634,6 +629,6 @@ class alignas(T) Replaceable
 
 #if __cpp_deduction_guides >= 201703
 template <class T>
-Replaceable(T)->Replaceable<T>;
+Replaceable(T) -> Replaceable<T>;
 #endif
 } // namespace folly

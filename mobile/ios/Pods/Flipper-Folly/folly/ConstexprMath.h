@@ -47,8 +47,8 @@ constexpr T constexpr_min(T a, T b, Ts... ts) {
 }
 
 template <typename T, typename Less>
-constexpr T const&
-constexpr_clamp(T const& v, T const& lo, T const& hi, Less less) {
+constexpr T const& constexpr_clamp(
+    T const& v, T const& lo, T const& hi, Less less) {
   return less(v, lo) ? lo : less(hi, v) ? hi : v;
 }
 template <typename T>
@@ -65,9 +65,7 @@ template <typename T>
 struct constexpr_abs_helper<
     T,
     typename std::enable_if<std::is_floating_point<T>::value>::type> {
-  static constexpr T go(T t) {
-    return t < static_cast<T>(0) ? -t : t;
-  }
+  static constexpr T go(T t) { return t < static_cast<T>(0) ? -t : t; }
 };
 
 template <typename T>
@@ -76,9 +74,7 @@ struct constexpr_abs_helper<
     typename std::enable_if<
         std::is_integral<T>::value && !std::is_same<T, bool>::value &&
         std::is_unsigned<T>::value>::type> {
-  static constexpr T go(T t) {
-    return t;
-  }
+  static constexpr T go(T t) { return t; }
 };
 
 template <typename T>
@@ -135,11 +131,10 @@ constexpr T constexpr_ceil(T t, T round) {
 
 template <typename T>
 constexpr T constexpr_pow(T base, std::size_t exp) {
-  return exp == 0
-      ? T(1)
-      : exp == 1 ? base
-                 : detail::constexpr_square_(constexpr_pow(base, exp / 2)) *
-              (exp % 2 ? base : T(1));
+  return exp == 0 ? T(1)
+      : exp == 1  ? base
+                  : detail::constexpr_square_(constexpr_pow(base, exp / 2)) *
+          (exp % 2 ? base : T(1));
 }
 
 /// constexpr_find_last_set
@@ -154,8 +149,8 @@ constexpr std::size_t constexpr_find_last_set(T const t) {
 
 namespace detail {
 template <typename U>
-constexpr std::size_t
-constexpr_find_first_set_(std::size_t s, std::size_t a, U const u) {
+constexpr std::size_t constexpr_find_first_set_(
+    std::size_t s, std::size_t a, U const u) {
   return s == 0 ? a
                 : constexpr_find_first_set_(
                       s / 2, a + s * bool((u >> a) % (U(1) << s) == U(0)), u);
@@ -188,7 +183,10 @@ constexpr T constexpr_add_overflow_clamped(T a, T b) {
     !std::is_integral<T>::value ? a + b :
     // for narrow integral types, just convert to intmax_t.
     sizeof(T) < sizeof(M)
-      ? T(constexpr_clamp(M(a) + M(b), M(L::min()), M(L::max()))) :
+      ? T(constexpr_clamp(
+          static_cast<M>(a) + static_cast<M>(b),
+          static_cast<M>(L::min()),
+          static_cast<M>(L::max()))) :
     // when a >= 0, cannot add more than `MAX - a` onto a.
     !(a < 0) ? a + constexpr_min(b, T(L::max() - a)) :
     // a < 0 && b >= 0, `a + b` will always be in valid range of type T.
@@ -213,7 +211,10 @@ constexpr T constexpr_sub_overflow_clamped(T a, T b) {
     std::is_unsigned<T>::value ? (a < b ? 0 : a - b) :
     // for narrow signed integral types, just convert to intmax_t.
     sizeof(T) < sizeof(M)
-      ? T(constexpr_clamp(M(a) - M(b), M(L::min()), M(L::max()))) :
+      ? T(constexpr_clamp(
+          static_cast<M>(a) - static_cast<M>(b),
+          static_cast<M>(L::min()),
+          static_cast<M>(L::max()))) :
     // (a >= 0 && b >= 0) || (a < 0 && b < 0), `a - b` will always be valid.
     (a < 0) == (b < 0) ? a - b :
     // MIN < b, so `-b` should be in valid range (-MAX <= -b <= MAX),

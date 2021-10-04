@@ -1,11 +1,11 @@
 {
   "name": "RNLocalize",
   "dependencies": {
-    "React": [
+    "React-Core": [
 
     ]
   },
-  "version": "1.4.1",
+  "version": "1.4.3",
   "license": "MIT",
   "summary": "A toolbox for your React Native app localization.",
   "authors": {
@@ -20,7 +20,7 @@
   "requires_arc": true,
   "source": {
     "git": "git+https://github.com/react-native-community/react-native-localize.git",
-    "tag": "1.4.1"
+    "tag": "1.4.3"
   },
   "source_files": "ios/*.{h,m}"
 }

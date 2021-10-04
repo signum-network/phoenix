@@ -79,8 +79,8 @@ class ConcurrentBitSet {
   /**
    * Read bit idx.
    */
-  bool test(size_t idx, std::memory_order order = std::memory_order_seq_cst)
-      const;
+  bool test(
+      size_t idx, std::memory_order order = std::memory_order_seq_cst) const;
 
   /**
    * Same as test() with the default memory order.
@@ -90,9 +90,7 @@ class ConcurrentBitSet {
   /**
    * Return the size of the bitset.
    */
-  constexpr size_t size() const {
-    return N;
-  }
+  constexpr size_t size() const { return N; }
 
  private:
   // Pick the largest lock-free type available
@@ -109,13 +107,9 @@ class ConcurrentBitSet {
   static constexpr size_t kBitsPerBlock =
       std::numeric_limits<BlockType>::digits;
 
-  static constexpr size_t blockIndex(size_t bit) {
-    return bit / kBitsPerBlock;
-  }
+  static constexpr size_t blockIndex(size_t bit) { return bit / kBitsPerBlock; }
 
-  static constexpr size_t bitOffset(size_t bit) {
-    return bit % kBitsPerBlock;
-  }
+  static constexpr size_t bitOffset(size_t bit) { return bit % kBitsPerBlock; }
 
   // avoid casts
   static constexpr BlockType kOne = 1;
@@ -142,14 +136,14 @@ inline bool ConcurrentBitSet<N>::reset(size_t idx, std::memory_order order) {
 }
 
 template <size_t N>
-inline bool
-ConcurrentBitSet<N>::set(size_t idx, bool value, std::memory_order order) {
+inline bool ConcurrentBitSet<N>::set(
+    size_t idx, bool value, std::memory_order order) {
   return value ? set(idx, order) : reset(idx, order);
 }
 
 template <size_t N>
-inline bool ConcurrentBitSet<N>::test(size_t idx, std::memory_order order)
-    const {
+inline bool ConcurrentBitSet<N>::test(
+    size_t idx, std::memory_order order) const {
   assert(idx < N);
   BlockType mask = kOne << bitOffset(idx);
   return data_[blockIndex(idx)].load(order) & mask;

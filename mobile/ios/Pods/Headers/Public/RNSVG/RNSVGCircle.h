@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Shapes/RNSVGCircle.h
+../../../../../node_modules/react-native-svg/apple/Shapes/RNSVGCircle.h
