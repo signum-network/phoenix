@@ -1,12 +1,60 @@
-<div class="balance grey-700-fg fullwidth">
-  <div fxFlex fxLayout="column" >
-    <small><span class="dot available"></span>{{'balance_available' | i18n}}</small>
-    <span class="font-weight-600">{{balance.availableBalance}}</span>
-    <hr class="line"/>
-    <small><span class="dot committed"></span> {{'commitment' | i18n}}</small>
-    <span class="font-weight-600">{{balance.committedBalance}}</span>
-    <hr class="line"/>
-    <small><span class="dot reserved"></span> {{'balance_reserved' | i18n}}</small>
-    <span class="font-weight-600">{{balance.reservedBalance}}</span>
+<ng-container *ngIf="isLoading">
+  <div class="skeleton-loader">
+    <ngx-skeleton-loader count="3" [theme]="{height: '32px', 'margin-top':'1rem'}"></ngx-skeleton-loader>
   </div>
-</div>
+</ng-container>
+
+<ng-container *ngIf="!isLoading">
+  <div fxFlex fxLayout="row" fxFlexAlign="center" class="grey-700-fg fullwidth">
+    <div class="pr-8 price-indicator">
+      <div class="selected">
+        {{'price_change' | i18n}}: {{this.priceChangePeriod}}
+      </div>
+      <div class="price"
+           [ngClass]="{bg_green: !isChangeNegative(), bg_red: isChangeNegative()}"
+      >
+        <div class="trend" [ngStyle]="getTrendStyle()">
+          <mat-icon>arrow_forward</mat-icon>
+        </div>
+        <div class="text">{{getPriceChange()}}</div>
+      </div>
+      <div class="selector">
+        <small (click)="selectChangePeriod('24h')">24h</small>
+        <small (click)="selectChangePeriod('7d')">7d</small>
+        <small (click)="selectChangePeriod('30d')">30d</small>
+        <small (click)="selectChangePeriod('1y')">1y</small>
+      </div>
+    </div>
+    <div fxFlex fxLayout="column">
+      <small>{{'price' | i18n}}</small>
+      <div class="info-row">
+        <div class="font-weight-600">{{getPriceSats()}} SATS</div>
+        <div>{{getPriceUsd()}}</div>
+        <div>{{getPriceEur()}}</div>
+        <div>{{getPriceRub()}}</div>
+      </div>
+
+      <hr class="line" />
+
+      <small>{{'volume_24h' | i18n}}</small>
+      <div class="info-row">
+        <div>{{get24hVolumeBtc()}}</div>
+        <div>{{get24hVolumeUsd()}}</div>
+        <div>{{get24hVolumeEur()}}</div>
+        <div>{{get24hVolumeRub()}}</div>
+      </div>
+
+      <hr class="line" />
+
+      <small>{{'market_capitalization' | i18n}}</small>
+      <div class="info-row">
+        <div>{{getMarketCapBtc()}}</div>
+        <div>{{getMarketCapUsd()}}</div>
+        <div>{{getMarketCapEur()}}</div>
+        <div>{{getMarketCapRub()}}</div>
+      </div>
+    </div>
+  </div>
+
+  <small class="market-url">{{getMarketUrl()}}</small>
+</ng-container>

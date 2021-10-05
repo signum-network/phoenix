@@ -1,10 +1,9 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {interval, Observable} from 'rxjs';
-import {flatMap, pluck, startWith} from 'rxjs/operators';
-import {environment} from 'environments/environment';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { interval, Observable } from 'rxjs';
+import { flatMap, pluck, startWith } from 'rxjs/operators';
+import { environment } from 'environments/environment';
 import { MarketInfoCoingecko } from './types';
-import { constants } from "../../../../../../constants";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,7 @@ export class MarketServiceCoinGecko {
 
   constructor(private httpClient: HttpClient) {
     this._ticker$ = this.createTicker();
-    this._ticker$.subscribe( t => this.currentTicker = t);
+    this._ticker$.subscribe(t => this.currentTicker = t);
   }
 
   get serviceName(): string {
@@ -28,13 +27,12 @@ export class MarketServiceCoinGecko {
   }
 
   createTicker(): Observable<MarketInfoCoingecko> {
-    const {tickerInterval, tickerUrl} = environment.market;
+    const { tickerInterval, tickerUrl } = environment.market;
     return interval(tickerInterval)
       .pipe(
         startWith(0),
         flatMap(_ => this.httpClient.get(tickerUrl)),
         pluck('market_data')
-
       );
   }
 

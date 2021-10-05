@@ -20,25 +20,36 @@
       [colspan]="layoutParameters.columnSpans.balance"
       [rowspan]="layoutParameters.rowSpans.balance"
     >
-      <app-balance class="widget"
-                   [account]="account">
-      </app-balance>
+      <app-balance class="widget" [account]="account"></app-balance>
     </mat-grid-tile>
     <mat-grid-tile
-      [colspan]="layoutParameters.columnSpans.market"
-      [rowspan]="layoutParameters.rowSpans.market"
+      [colspan]="layoutParameters.columnSpans.info"
+      [rowspan]="layoutParameters.rowSpans.info"
     >
-      <app-market-overview class="widget">
-      </app-market-overview>
+      <app-minerinfo class="widget"></app-minerinfo>
     </mat-grid-tile>
 
     <mat-grid-tile
-      [colspan]="layoutParameters.columnSpans.market"
-      [rowspan]="layoutParameters.rowSpans.market"
+      [colspan]="layoutParameters.columnSpans.blockHeight"
+      [rowspan]="layoutParameters.rowSpans.blockHeight"
     >
-      <app-token-overview [account]="account" class="widget">
-      </app-token-overview>
+      <app-blockheight class="widget"></app-blockheight>
     </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.forgedBlocks"
+      [rowspan]="layoutParameters.rowSpans.forgedBlocks"
+    >
+      <app-blockforged class="widget"></app-blockforged>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.minedIncome"
+      [rowspan]="layoutParameters.rowSpans.minedIncome"
+    >
+      <app-minedincome class="widget"></app-minedincome>
+    </mat-grid-tile>
+
     <mat-grid-tile
       [colspan]="layoutParameters.columnSpans.table"
       [rowspan]="layoutParameters.rowSpans.table"

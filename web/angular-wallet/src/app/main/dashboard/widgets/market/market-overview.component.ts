@@ -21,7 +21,6 @@ export class MarketOverviewComponent extends UnsubscribeOnDestroy implements OnI
 
   constructor(private marketService: MarketServiceCoinGecko, private storeService: StoreService) {
     super();
-
   }
 
   public ngOnInit(): void {
