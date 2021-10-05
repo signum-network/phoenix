@@ -19,7 +19,7 @@
     "url": "https://github.com/signum-network/phoenix"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "license": "GPL-3.0",
   "private": true,
