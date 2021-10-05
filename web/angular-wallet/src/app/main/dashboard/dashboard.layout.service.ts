@@ -23,6 +23,7 @@ export class DashboardLayoutService {
 
   public setLayoutConfiguration(configuration: LayoutConfiguration): void {
     this.layoutConfiguration = configuration;
+    this.setLayout(this.layoutConfiguration.xl);
   }
 
   private init(): void {

@@ -13,14 +13,10 @@ import {
   SimpleDashboardLayoutParameters,
   SimpleDashboardLayoutConfiguration
 } from './SimpleDashboardLayoutConfiguration';
-import { MarketInfoCoingecko } from "../widgets/market/services/coingecko/types";
-import { PowerDashboardLayoutParameters } from "../power-dashboard/PowerDashboardLayoutConfiguration";
-import { MarketServiceCoinGecko } from "../widgets/market/services/coingecko/coingecko.market.service";
-import { LayoutParameters } from "../LayoutConfiguration";
-// import {MarketService} from '../widgets/market/market.service';
-// import {MarketInfoCryptoCompare} from '../widgets/market/types';
+import { MarketInfoCoingecko } from '../widgets/market/services/coingecko/types';
+import { MarketServiceCoinGecko } from '../widgets/market/services/coingecko/coingecko.market.service';
 
-const LayoutConfiguration = new SimpleDashboardLayoutConfiguration();
+// const LayoutConfiguration = new SimpleDashboardLayoutConfiguration();
 
 @Component({
   selector: 'app-simple-dashboard',
@@ -37,7 +33,7 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
   priceEur: number;
   priceRub: number;
   settings: Settings;
-  layoutParameters = LayoutConfiguration.xl;
+  layoutParameters: SimpleDashboardLayoutConfiguration;
 
   public dataSource: MatTableDataSource<Transaction>;
   public isActivating = false;
@@ -52,7 +48,7 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
               private layoutService: DashboardLayoutService,
   ) {
     super();
-    this.layoutService.setLayoutConfiguration(LayoutConfiguration);
+    this.layoutService.setLayoutConfiguration( new SimpleDashboardLayoutConfiguration());
   }
 
   ngOnInit(): void {
@@ -111,6 +107,6 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
   }
 
   marketServiceName(): string {
-    return 'foo' ;//this.marketService.serviceName;
+    return 'foo' ; // this.marketService.serviceName;
   }
 }

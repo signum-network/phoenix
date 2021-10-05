@@ -10,8 +10,6 @@ import { NotifierService } from 'angular-notifier';
 import { MarketServiceCoinGecko } from '../widgets/market/services/coingecko/coingecko.market.service';
 import { MarketInfoCoingecko } from '../widgets/market/services/coingecko/types';
 
-const LayoutConfiguration = new PowerDashboardLayoutConfiguration();
-
 @Component({
   selector: 'app-power-dashboard',
   templateUrl: './power-dashboard.component.html',
@@ -24,7 +22,7 @@ export class PowerDashboardComponent extends UnsubscribeOnDestroy implements OnI
   priceUsd: number;
   priceEur: number;
   priceRub: number;
-  layoutParameters: PowerDashboardLayoutParameters = LayoutConfiguration.xl;
+  layoutParameters: PowerDashboardLayoutParameters;
 
   private unsubscribe = takeUntil(this.unsubscribeAll);
 
@@ -36,7 +34,7 @@ export class PowerDashboardComponent extends UnsubscribeOnDestroy implements OnI
     private layoutService: DashboardLayoutService
   ) {
     super();
-    this.layoutService.setLayoutConfiguration(LayoutConfiguration);
+    this.layoutService.setLayoutConfiguration(new PowerDashboardLayoutConfiguration());
   }
 
   ngOnInit(): void {
@@ -60,7 +58,7 @@ export class PowerDashboardComponent extends UnsubscribeOnDestroy implements OnI
     this.layoutService.layout$
       .pipe(this.unsubscribe)
       .subscribe((layoutParams: PowerDashboardLayoutParameters) => {
-        this.layoutParameters = layoutParams;
+          this.layoutParameters = layoutParams;
       });
   }
 
