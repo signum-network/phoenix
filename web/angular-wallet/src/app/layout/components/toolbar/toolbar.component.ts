@@ -71,11 +71,11 @@ export class ToolbarComponent extends UnsubscribeOnDestroy implements OnInit, On
         description: 'user_profile_desc_miner',
         icon: 'storage',
       },
-      {
-        name: 'trader',
-        description: 'user_profile_desc_trader',
-        icon: 'timeline',
-      },
+      // {
+      //   name: 'trader',
+      //   description: 'user_profile_desc_trader',
+      //   icon: 'timeline',
+      // },
     ];
   }
 

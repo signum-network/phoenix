@@ -16,7 +16,7 @@ import {
 import { MarketInfoCoingecko } from '../widgets/market/services/coingecko/types';
 import { MarketServiceCoinGecko } from '../widgets/market/services/coingecko/coingecko.market.service';
 
-// const LayoutConfiguration = new SimpleDashboardLayoutConfiguration();
+const LayoutConfiguration = new SimpleDashboardLayoutConfiguration();
 
 @Component({
   selector: 'app-simple-dashboard',
@@ -33,7 +33,7 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
   priceEur: number;
   priceRub: number;
   settings: Settings;
-  layoutParameters: SimpleDashboardLayoutConfiguration;
+  layoutParameters = LayoutConfiguration.xl;
 
   public dataSource: MatTableDataSource<Transaction>;
   public isActivating = false;
@@ -48,7 +48,7 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
               private layoutService: DashboardLayoutService,
   ) {
     super();
-    this.layoutService.setLayoutConfiguration( new SimpleDashboardLayoutConfiguration());
+    this.layoutService.setLayoutConfiguration(LayoutConfiguration);
   }
 
   ngOnInit(): void {

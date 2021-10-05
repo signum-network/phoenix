@@ -1,1 +1,51 @@
-<p>miner-dashboard works!</p>
+<div *ngIf="layoutParameters && account" class="p-16">
+  <mat-grid-list [cols]="layoutParameters.columnCount"
+                 rowHeight="32px"
+                 gutterSize="16px"
+  >
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.chart"
+      [rowspan]="layoutParameters.rowSpans.chart">
+      <app-balance-chart
+        class="widget custom-widget"
+        [account]="account"
+        [priceBtc]="priceBtc"
+        [priceUsd]="priceUsd"
+        [priceEur]="priceEur"
+        [priceRub]="priceRub"
+      >
+      </app-balance-chart>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.balance"
+      [rowspan]="layoutParameters.rowSpans.balance"
+    >
+      <app-balance class="widget"
+                   [account]="account">
+      </app-balance>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.market"
+      [rowspan]="layoutParameters.rowSpans.market"
+    >
+      <app-market-overview class="widget">
+      </app-market-overview>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.market"
+      [rowspan]="layoutParameters.rowSpans.market"
+    >
+      <app-token-overview [account]="account" class="widget">
+      </app-token-overview>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.table"
+      [rowspan]="layoutParameters.rowSpans.table"
+    >
+      <app-transactions-table-widget class="widget"
+                                     [displayedColumns]="layoutParameters.tableColumns"
+      ></app-transactions-table-widget>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
