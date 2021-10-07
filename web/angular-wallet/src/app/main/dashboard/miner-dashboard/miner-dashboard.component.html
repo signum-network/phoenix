@@ -26,14 +26,15 @@
       [colspan]="layoutParameters.columnSpans.info"
       [rowspan]="layoutParameters.rowSpans.info"
     >
-      <app-minerinfo class="widget"></app-minerinfo>
+      <app-market-overview class="widget">
+      </app-market-overview>
     </mat-grid-tile>
 
     <mat-grid-tile
-      [colspan]="layoutParameters.columnSpans.blockHeight"
-      [rowspan]="layoutParameters.rowSpans.blockHeight"
+      [colspan]="layoutParameters.columnSpans.blockInfo"
+      [rowspan]="layoutParameters.rowSpans.blockInfo"
     >
-      <app-blockheight class="widget"></app-blockheight>
+      <app-blockinfo class="widget"></app-blockinfo>
     </mat-grid-tile>
 
     <mat-grid-tile

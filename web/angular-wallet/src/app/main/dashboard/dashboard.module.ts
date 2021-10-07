@@ -37,11 +37,10 @@ import { BalanceComponent } from './widgets/balance/balance.component';
 import { ComponentsModule } from '../../components/components.module';
 import { TransactionsTableComponent } from './widgets/transactions-table/transactions-table.component';
 import { TokenComponent } from './widgets/token/token.component';
-import { BlockheightComponent } from './widgets/blockheight/blockheight.component';
 import { BlockrewardComponent } from './widgets/blockreward/blockreward.component';
 import { BlockforgedComponent } from './widgets/blockforged/blockforged.component';
 import { MinedincomeComponent } from './widgets/minedincome/minedincome.component';
-import { MinerinfoComponent } from './widgets/minerinfo/minerinfo.component';
+import { BlockinfoComponent } from './widgets/blockinfo/blockinfo.component';
 
 const routes: Routes = [
   {
@@ -67,11 +66,10 @@ const routes: Routes = [
     BalanceComponent,
     TransactionsTableComponent,
     TokenComponent,
-    BlockheightComponent,
+    BlockinfoComponent,
     BlockrewardComponent,
     BlockforgedComponent,
     MinedincomeComponent,
-    MinerinfoComponent
   ],
   imports: [
     RouterModule.forChild(routes),
