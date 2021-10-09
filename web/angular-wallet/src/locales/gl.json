@@ -450,5 +450,6 @@
   "forged_blocks": "Bloques forxados",
   "reward_income": "Ingresos de recompensa",
   "last_forged_block": "Último bloque forxado",
-  "reward_income_info": "Esta é a suma das recompensas por bloque que obtivo con esta conta coma se fose un mineiro en solitario e non reflicte necesariamente os seus ingresos mineros efectivos."
+  "reward_income_info": "Esta é a suma das recompensas por bloque que obtivo con esta conta coma se fose un mineiro en solitario e non reflicte necesariamente os seus ingresos mineros efectivos.",
+  "no_block_forged": "Aínda non se forxou ningún bloque"
 }

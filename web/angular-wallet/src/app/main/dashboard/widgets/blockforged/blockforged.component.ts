@@ -1,12 +1,12 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Account, Block } from '@signumjs/core';
 import { AccountService } from '../../../../setup/account/account.service';
 import { ChainTime } from '@signumjs/util';
-import { formatCurrency } from "@angular/common";
-import { Settings } from "../../../../settings";
-import { UnsubscribeOnDestroy } from "../../../../util/UnsubscribeOnDestroy";
-import { StoreService } from "../../../../store/store.service";
-import { takeUntil } from "rxjs/operators";
+import { formatCurrency } from '@angular/common';
+import { Settings } from '../../../../settings';
+import { UnsubscribeOnDestroy } from '../../../../util/UnsubscribeOnDestroy';
+import { StoreService } from '../../../../store/store.service';
+import { takeUntil } from 'rxjs/operators';
 
 interface ForgedBlockInfo {
   count: number;
@@ -19,7 +19,7 @@ interface ForgedBlockInfo {
   templateUrl: './blockforged.component.html',
   styleUrls: ['./blockforged.component.scss', '../widget.shared.scss']
 })
-export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit {
+export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit, OnChanges {
   @Input() public account: Account;
   @Input() public priceBtc: number;
   @Input() public priceUsd: number;
@@ -59,9 +59,14 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
       });
   }
 
+  ngOnChanges(): void {
+    this.updateForgedBlocks();
+  }
+
   ngOnDestroy(): void {
     clearInterval(this.interval);
   }
+
 
   private async updateForgedBlocks(): Promise<void> {
     const { blocks } = await this.accountService.getForgedBlocks(this.account);

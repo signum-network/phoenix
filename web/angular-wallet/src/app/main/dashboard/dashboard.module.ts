@@ -39,8 +39,8 @@ import { TransactionsTableComponent } from './widgets/transactions-table/transac
 import { TokenComponent } from './widgets/token/token.component';
 import { BlockrewardComponent } from './widgets/blockreward/blockreward.component';
 import { BlockforgedComponent } from './widgets/blockforged/blockforged.component';
-import { MinedincomeComponent } from './widgets/minedincome/minedincome.component';
 import { BlockinfoComponent } from './widgets/blockinfo/blockinfo.component';
+import { MiningpoolComponent } from './widgets/miningpool/miningpool.component';
 
 const routes: Routes = [
   {
@@ -69,7 +69,7 @@ const routes: Routes = [
     BlockinfoComponent,
     BlockrewardComponent,
     BlockforgedComponent,
-    MinedincomeComponent,
+    MiningpoolComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

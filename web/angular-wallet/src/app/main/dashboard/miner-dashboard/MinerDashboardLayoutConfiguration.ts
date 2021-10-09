@@ -6,7 +6,7 @@ const cs = (
   info: number,
   blockInfo: number,
   forgedBlocks: number,
-  minedIncome: number,
+  pool: number,
   table: number
 ) => ({
   chart,
@@ -14,7 +14,7 @@ const cs = (
   info,
   blockInfo,
   forgedBlocks,
-  minedIncome,
+  pool,
   table
 });
 

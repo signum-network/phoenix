@@ -450,5 +450,6 @@
   "forged_blocks": "Kaltiniai blokai",
   "reward_income": "Atlyginimo pajamos",
   "last_forged_block": "Paskutinis suklastotas blokas",
-  "reward_income_info": "Tai blokinių atlygių, kuriuos sukūrėte naudodami šią sąskaitą, suma, tarsi būtumėte vienas kalnakasis, ir nebūtinai atspindi jūsų faktines kasybos pajamas."
+  "reward_income_info": "Tai blokinių atlygių, kuriuos sukūrėte naudodami šią sąskaitą, suma, tarsi būtumėte vienas kalnakasis, ir nebūtinai atspindi jūsų faktines kasybos pajamas.",
+  "no_block_forged": "Dar nėra suklastotas blokas"
 }

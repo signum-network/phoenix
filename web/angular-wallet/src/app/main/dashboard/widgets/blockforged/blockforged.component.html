@@ -1,18 +1,22 @@
 <div class="grey-700-fg fullwidth">
-  <div fxFlex fxLayout="row">
+  <div *ngIf="blockInfo.count === 0" fxFlex fxLayoutAlign="center center" class="font-size-20 font-weight-600">
+    {{'no_block_forged' | i18n}}
+  </div>
+  <div *ngIf="blockInfo.count > 0" fxFlex fxLayout="row">
     <div fxFlex="30"
          fxLayout="column"
          fxLayoutAlign="center center"
     >
-      <div class="font-size-32 text-center font-weight-600">{{blockInfo.count}}</div>
+      <div *ngIf="!isLoading" class="font-size-32 text-center font-weight-600">{{blockInfo.count}}</div>
+      <ngx-skeleton-loader *ngIf="isLoading" count="1" [theme]="{height: '32px', width: '48px', marginTop:'1rem'}"></ngx-skeleton-loader>
       <small class="font-size-10 text-center">{{'forged_blocks' | i18n}}</small>
     </div>
     <div fxFlex="70" fxLayout="column" fxFlexAlign="center">
       <span>
         <small>{{'reward_income' | i18n}}</small>
-        <mat-icon class="font-size-12 grey-500-fg ml-4" matTooltip="{{ 'reward_income_info' | i18n }}">info</mat-icon>
+        <mat-icon class="font-size-12 grey-500-fg ml-2" matTooltip="{{ 'reward_income_info' | i18n }}">info</mat-icon>
       </span>
-      <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" class="font-size-12">
+      <div *ngIf="!isLoading" fxFlex fxLayout="row" fxLayoutAlign="space-between center" class="font-size-12">
         <div class="font-size-14 font-weight-600">
           {{blockInfo.minedIncomeSigna | amount:'signa':true}}
         </div>
@@ -29,12 +33,14 @@
           {{getPriceRub()}}
         </div>
       </div>
+      <ngx-skeleton-loader *ngIf="isLoading" count="1" [theme]="{height: '16px', width: '100%', margin:'0'}"></ngx-skeleton-loader>
       <hr class="widget-hline" />
       <small>{{'last_forged_block' | i18n}}</small>
-      <div class="font-size-14">
+      <div *ngIf="!isLoading" class="font-size-14">
         <a [routerLink]="['/blocks/block', blockInfo.lastBlock.block]" >{{blockInfo.lastBlock.height}}</a>
         &nbsp;{{getLastBlockDate() | date: 'MMM d, y, h:mm:ss':null:locale}}
       </div>
+      <ngx-skeleton-loader *ngIf="isLoading" count="1" [theme]="{height: '14px', width: '100%', marginTop:'0'}"></ngx-skeleton-loader>
     </div>
   </div>
 </div>

@@ -450,5 +450,6 @@
   "forged_blocks": "Kované bloky",
   "reward_income": "Odměna z příjmu",
   "last_forged_block": "Poslední kovaný blok",
-  "reward_income_info": "Toto je součet odměn z bloků, které jste zfalšovali s tímto účtem, jako byste byli sólo miner, a nemusí nutně odrážet váš efektivní příjem z těžby."
+  "reward_income_info": "Toto je součet odměn z bloků, které jste zfalšovali s tímto účtem, jako byste byli sólo miner, a nemusí nutně odrážet váš efektivní příjem z těžby.",
+  "no_block_forged": "Žádný blok zatím nebyl vykován"
 }

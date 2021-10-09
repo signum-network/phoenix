@@ -450,5 +450,6 @@
   "forged_blocks": "Geschmiedete Blöcke",
   "reward_income": "Belohnungseinkommen",
   "last_forged_block": "Letzter geschmiedeter Block",
-  "reward_income_info": "Dies ist die Summe der Blockbelohnungen, die Du mit diesem Konto geschmiedet hast, als ob Du ein Solo-Miner wärst, und spiegelt nicht unbedingt Dein effektives Mining-Einkommen wider."
+  "reward_income_info": "Dies ist die Summe der Blockbelohnungen, die Du mit diesem Konto geschmiedet hast, als ob Du ein Solo-Miner wärst, und spiegelt nicht unbedingt Dein effektives Mining-Einkommen wider.",
+  "no_block_forged": "Noch kein Block geschmiedet"
 }

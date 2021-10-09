@@ -450,5 +450,6 @@
   "forged_blocks": "Gesmede blokken",
   "reward_income": "Beloning inkomen",
   "last_forged_block": "Laatst gesmeed blok",
-  "reward_income_info": "Dit is de som van de blokbeloningen die je met dit account hebt gesmeed alsof je een solo-mijnwerker bent en weerspiegelt niet noodzakelijkerwijs je effectieve mijninkomen."
+  "reward_income_info": "Dit is de som van de blokbeloningen die je met dit account hebt gesmeed alsof je een solo-mijnwerker bent en weerspiegelt niet noodzakelijkerwijs je effectieve mijninkomen.",
+  "no_block_forged": "Nog geen blok gesmeed"
 }
