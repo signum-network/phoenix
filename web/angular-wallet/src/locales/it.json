@@ -446,5 +446,9 @@
   "show_whitespaces": "Mostra spazi bianchi",
   "price_change": "Cambio di prezzo",
   "balance_reserved": "Saldo riservato",
-  "tokens_total_balance": "Saldo totale stimato dei token"
+  "tokens_total_balance": "Saldo totale stimato dei token",
+  "forged_blocks": "Blocchi forgiati",
+  "reward_income": "Guadagno premio",
+  "last_forged_block": "Ultimo blocco forgiato",
+  "reward_income_info": "Questa è la somma dei premi di blocco che hai forgiato con questo account come se fossi un minatore solista e non riflette necessariamente il tuo reddito di mining effettivo."
 }

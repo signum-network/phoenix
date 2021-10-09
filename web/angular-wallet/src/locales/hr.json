@@ -446,5 +446,9 @@
   "show_whitespaces": "Prikaži bijele prostore",
   "price_change": "Promjena cijene",
   "balance_reserved": "Rezervirano stanje",
-  "tokens_total_balance": "Procijenjeni ukupni saldo žetona"
+  "tokens_total_balance": "Procijenjeni ukupni saldo žetona",
+  "forged_blocks": "Kovani blokovi",
+  "reward_income": "Nagradni prihod",
+  "last_forged_block": "Zadnji krivotvoreni blok",
+  "reward_income_info": "Ovo je zbroj blok nagrada koje ste krivotvorili s ovim računom kao da ste samostalni rudar i ne odražava nužno vaš efektivni prihod od rudarstva."
 }

@@ -446,5 +446,9 @@
   "show_whitespaces": "Näytä välilyönnit",
   "price_change": "Hinta Muutos",
   "balance_reserved": "Varattu saldo",
-  "tokens_total_balance": "Arvioitu kuponkien kokonaissaldo"
+  "tokens_total_balance": "Arvioitu kuponkien kokonaissaldo",
+  "forged_blocks": "Taotut lohkot",
+  "reward_income": "Palkintotulot",
+  "last_forged_block": "Viimeinen taottu lohko",
+  "reward_income_info": "Tämä on tällä tilillä väärennettyjen lohkopalkkioiden summa ikään kuin olisit yksin kaivosmies, eikä se välttämättä heijasta todellisia kaivosalan tulojasi."
 }

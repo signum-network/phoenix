@@ -446,5 +446,9 @@
   "show_whitespaces": "Boşlukları Göster",
   "price_change": "Fiyat Değişikliği",
   "balance_reserved": "Ayrılmış Bakiye",
-  "tokens_total_balance": "Tahmini Toplam Jeton Bakiyesi"
+  "tokens_total_balance": "Tahmini Toplam Jeton Bakiyesi",
+  "forged_blocks": "Dövme Bloklar",
+  "reward_income": "Ödül Geliri",
+  "last_forged_block": "Son Sahte Blok",
+  "reward_income_info": "Bu, sanki tek başına bir madenciymişsiniz gibi bu hesapla oluşturduğunuz blok ödüllerinin toplamıdır ve etkin madencilik gelirinizi mutlaka yansıtmaz."
 }

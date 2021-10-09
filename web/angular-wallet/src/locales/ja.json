@@ -446,5 +446,9 @@
   "show_whitespaces": "空白を表示する",
   "price_change": "価格変更",
   "balance_reserved": "予約残高",
-  "tokens_total_balance": "トークンの推定合計残高"
+  "tokens_total_balance": "トークンの推定合計残高",
+  "forged_blocks": "鍛造ブロック",
+  "reward_income": "報酬収入",
+  "last_forged_block": "最後に鍛造されたブロック",
+  "reward_income_info": "これは、あなたがソロマイナーであるかのようにこのアカウントで偽造したブロック報酬の合計であり、必ずしもあなたの有効なマイニング収入を反映しているわけではありません。"
 }

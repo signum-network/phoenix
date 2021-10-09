@@ -446,5 +446,9 @@
   "show_whitespaces": "Pokaż białe znaki",
   "price_change": "Zmiana ceny",
   "balance_reserved": "Zarezerwowane saldo",
-  "tokens_total_balance": "Szacowane całkowite saldo tokenów"
+  "tokens_total_balance": "Szacowane całkowite saldo tokenów",
+  "forged_blocks": "Kute bloki",
+  "reward_income": "Dochód z nagrody",
+  "last_forged_block": "Ostatni kuty blok",
+  "reward_income_info": "Jest to suma nagród za blok, które wykułeś za pomocą tego konta, tak jakbyś był samotnym górnikiem i niekoniecznie odzwierciedla Twój efektywny dochód z wydobycia."
 }

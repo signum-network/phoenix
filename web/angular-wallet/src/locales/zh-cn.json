@@ -446,5 +446,9 @@
   "show_whitespaces": "显示空格",
   "price_change": "价格变化",
   "balance_reserved": "预留余额",
-  "tokens_total_balance": "预计代币总余额"
+  "tokens_total_balance": "预计代币总余额",
+  "forged_blocks": "锻造块",
+  "reward_income": "奖励收入",
+  "last_forged_block": "最后锻造的块",
+  "reward_income_info": "这是您使用该账户伪造的区块奖励总和，就好像您是一个单独的矿工一样，并不一定反映您的有效挖矿收入。"
 }

@@ -446,5 +446,9 @@
   "show_whitespaces": "Show Whitespaces",
   "price_change": "Price Change",
   "balance_reserved": "Reserved Balance",
-  "tokens_total_balance": "Estimated Total Balance of Tokens"
+  "tokens_total_balance": "Estimated Total Balance of Tokens",
+  "forged_blocks": "Forged Blocks",
+  "reward_income": "Reward Income",
+  "last_forged_block": "Last Forged Block",
+  "reward_income_info": "This is the sum of the block rewards you forged with this account as if you were a solo miner and does not necessarily reflects your effective mining income. "
 }

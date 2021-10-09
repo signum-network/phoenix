@@ -446,5 +446,9 @@
   "show_whitespaces": "Mostrar espazos en branco",
   "price_change": "Cambio de prezo",
   "balance_reserved": "Saldo reservado",
-  "tokens_total_balance": "Saldo total estimado de fichas"
+  "tokens_total_balance": "Saldo total estimado de fichas",
+  "forged_blocks": "Bloques forxados",
+  "reward_income": "Ingresos de recompensa",
+  "last_forged_block": "Último bloque forxado",
+  "reward_income_info": "Esta é a suma das recompensas por bloque que obtivo con esta conta coma se fose un mineiro en solitario e non reflicte necesariamente os seus ingresos mineros efectivos."
 }

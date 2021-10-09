@@ -41,12 +41,18 @@
       [colspan]="layoutParameters.columnSpans.forgedBlocks"
       [rowspan]="layoutParameters.rowSpans.forgedBlocks"
     >
-      <app-blockforged class="widget"></app-blockforged>
+      <app-blockforged class="widget"
+           [account]="account"
+           [priceBtc]="priceBtc"
+           [priceUsd]="priceUsd"
+           [priceEur]="priceEur"
+           [priceRub]="priceRub"
+      ></app-blockforged>
     </mat-grid-tile>
 
     <mat-grid-tile
-      [colspan]="layoutParameters.columnSpans.minedIncome"
-      [rowspan]="layoutParameters.rowSpans.minedIncome"
+      [colspan]="layoutParameters.columnSpans.minedIncomePlanck"
+      [rowspan]="layoutParameters.rowSpans.minedIncomePlanck"
     >
       <app-minedincome class="widget"></app-minedincome>
     </mat-grid-tile>

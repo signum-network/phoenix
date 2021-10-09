@@ -446,5 +446,9 @@
   "show_whitespaces": "Zobrazit mezery",
   "price_change": "Změna ceny",
   "balance_reserved": "Rezervovaný zůstatek",
-  "tokens_total_balance": "Odhadovaný celkový zůstatek tokenů"
+  "tokens_total_balance": "Odhadovaný celkový zůstatek tokenů",
+  "forged_blocks": "Kované bloky",
+  "reward_income": "Odměna z příjmu",
+  "last_forged_block": "Poslední kovaný blok",
+  "reward_income_info": "Toto je součet odměn z bloků, které jste zfalšovali s tímto účtem, jako byste byli sólo miner, a nemusí nutně odrážet váš efektivní příjem z těžby."
 }

@@ -446,5 +446,9 @@
   "show_whitespaces": "Afficher les espaces",
   "price_change": "Changement de prix",
   "balance_reserved": "Solde réservé",
-  "tokens_total_balance": "Solde total estimé des jetons"
+  "tokens_total_balance": "Solde total estimé des jetons",
+  "forged_blocks": "Blocs forgés",
+  "reward_income": "Revenu de récompense",
+  "last_forged_block": "Dernier bloc forgé",
+  "reward_income_info": "Il s'agit de la somme des récompenses de bloc que vous avez forgées avec ce compte comme si vous étiez un mineur en solo et ne reflète pas nécessairement vos revenus miniers effectifs."
 }
