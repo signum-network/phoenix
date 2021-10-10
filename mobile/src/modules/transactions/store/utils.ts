@@ -1,6 +1,7 @@
 export enum RecipientType {
   UNKNOWN = 0,
-  ADDRESS = 1,
+  ADDRESS ,
+  CONTRACT,
   ID,
   ALIAS,
   UNSTOPPABLE,

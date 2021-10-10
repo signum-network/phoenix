@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-watermark',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WatermarkComponent implements OnInit {
 
+  @Input() invert = false;
+
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

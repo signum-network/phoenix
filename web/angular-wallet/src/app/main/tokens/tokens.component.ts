@@ -3,8 +3,8 @@ import {ActivatedRoute} from '@angular/router';
 import {StoreService} from 'app/store/store.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {Account} from '@signumjs/core';
-import {TokenService, TokenData} from './token.service';
 import {FuseProgressBarService} from '../../../@fuse/components/progress-bar/progress-bar.service';
+import { TokenData, TokenService } from '../../shared/services/token.service';
 
 @Component({
   selector: 'app-tokens',

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 
@@ -12,10 +12,19 @@ import {
   BlockList
 } from '@signumjs/core';
 
-import {ApiService} from '../api.service';
-import {StoreService} from 'app/store/store.service';
-import {BehaviorSubject} from 'rxjs';
-import {constants} from '../constants';
+import { ApiService } from '../api.service';
+import { StoreService } from 'app/store/store.service';
+import { BehaviorSubject } from 'rxjs';
+import { constants } from '../constants';
+
+export interface MiningInfo {
+  height: string;
+  generationSignature: string;
+  baseTarget: string;
+  averageCommitmentNQT: string;
+  lastBlockReward: string;
+  timestamp: string;
+}
 
 
 @Injectable()
@@ -54,6 +63,10 @@ export class NetworkService {
     return this.api.block.getBlocks(firstIndex, lastIndex, includeTransactions);
   }
 
+  public getMiningInfo(): Promise<MiningInfo> {
+    return this.api.service.query('getMiningInfo');
+  }
+
   public getPeer(address: string): Promise<Peer> {
     return this.api.network.getPeer(address);
   }
@@ -72,7 +85,7 @@ export class NetworkService {
 
   private async fetchIsMainNet(): Promise<boolean> {
     try {
-      const {previousBlockHash} = await this.api.block.getBlockByHeight(constants.mainnetIndicator.block, false);
+      const { previousBlockHash } = await this.api.block.getBlockByHeight(constants.mainnetIndicator.block, false);
       return previousBlockHash === constants.mainnetIndicator.previousHash;
     } catch (e) {
       return false;

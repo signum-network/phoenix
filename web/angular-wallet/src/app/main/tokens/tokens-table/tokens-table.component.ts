@@ -1,9 +1,9 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-import {TokenData} from '../token.service';
 import {StoreService} from '../../../store/store.service';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
+import { TokenData } from '../../../shared/services/token.service';
 
 const DummyTokenData: TokenData = {
   id: '',

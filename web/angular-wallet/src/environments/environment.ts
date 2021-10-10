@@ -9,7 +9,7 @@ export const environment = {
   version,
   defaultNode: 'http://localhost:4200',
   market: {
-    tickerUrl: 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=SIGNA&tsyms=BTC,USD,EUR',
+    tickerUrl: 'https://api.coingecko.com/api/v3/coins/signum?tickers=false&community_data=false&developer_data=false&market_data=true',
     tickerInterval: 60 * 1000
   },
   performance: {

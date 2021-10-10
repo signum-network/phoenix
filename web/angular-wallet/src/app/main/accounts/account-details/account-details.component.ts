@@ -9,8 +9,8 @@ import {uniqBy} from 'lodash';
 import {MediaChange, MediaObserver} from '@angular/flex-layout';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
-import {TokenData, TokenService} from '../../tokens/token.service';
 import {FuseProgressBarService} from '../../../../@fuse/components/progress-bar/progress-bar.service';
+import { TokenData, TokenService } from "../../../shared/services/token.service";
 
 type TransactionDetailsCellValue = string | AttachmentMessage | AttachmentEncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];

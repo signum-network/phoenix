@@ -1,0 +1,42 @@
+<div class="grey-700-fg fullwidth fullheight position-relative">
+  <ng-container *ngIf="!isLoading && !poolAccount">
+    <div fxFlex
+         fxLayout="column"
+         fxLayoutAlign="center center"
+    >
+      <div class="font-size-20 font-weight-600 text-center">{{'no_reward_recipient' | i18n}}</div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!isLoading && poolAccount">
+    <div fxFlex
+         fxLayout="column"
+         fxLayoutAlign="center center"
+    >
+      <small class="font-size-10">{{'reward_recipient' | i18n}}</small>
+      <div class="font-size-16 font-weight-600">{{poolAccount.accountRS}}</div>
+      <div *ngIf="this.poolName.startsWith('http')" class="font-size-12">
+        <a [href]="this.poolName" rel="noreferrer noopener" target="_blank">{{poolName}}</a>
+      </div>
+      <div *ngIf="!this.poolName.startsWith('http')" class="font-size-12">{{this.poolName}}</div>
+      <span>
+        <small>{{'set_reward_recipient_on' | i18n }}&nbsp;</small>
+        <small>{{lastPoolAssignment | date : 'MMM d,y, h:mm:ss':null:locale}}</small>
+      </span>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="isLoading">
+    <div fxFlex
+         fxLayout="column"
+         fxLayoutAlign="center center"
+    >
+      <small class="font-size-10">{{'reward_recipient' | i18n}}</small>
+      <ngx-skeleton-loader count="1" [theme]="{height: '20px', width:'160px', marginBottom:'4px'}"></ngx-skeleton-loader>
+      <ngx-skeleton-loader count="1" [theme]="{height: '12px', width:'260px', marginBottom:'4px'}"></ngx-skeleton-loader>
+      <ngx-skeleton-loader count="1" [theme]="{height: '12px', width:'260px', marginBottom:'4px'}"></ngx-skeleton-loader>
+    </div>
+  </ng-container>
+  <div class="button-link-container">
+    <app-link-button [routerLink]="'/set-reward-recipient'">{{ 'set_reward_recipient' | i18n }}</app-link-button>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="grey-700-fg fullwidth fullheight position-relative">
+  <div fxFlex fxLayout="column" fxFlexAlign="center center">
+    <ngx-skeleton-loader *ngIf="isLoading" count="1" [theme]="{height: '16px', margin: '0'}"></ngx-skeleton-loader>
+    <small>{{'network' | i18n}}</small>
+    <div
+      *ngIf="!isLoading"
+      class="font-size-16 font-weight-600">
+      {{getNetworkCapacity() | number}} PiB + {{miningInfo.averageCommitmentNQT | amount:'planck': true }} per TiB
+      <hr class="line" />
+    </div>
+    <small>{{'block_height' | i18n}}</small>
+    <ngx-skeleton-loader
+      *ngIf="isLoading"
+      count="1" [theme]="{height: '16px', margin: '0'}"></ngx-skeleton-loader>
+    <div
+      *ngIf="!isLoading"
+      class="font-size-16 font-weight-600">{{miningInfo.height}}
+    </div>
+  </div>
+  <div class="button-link-container">
+    <app-link-button [routerLink]="'/commitment'">{{ 'add_commitment' | i18n }}</app-link-button>
+  </div>
+</div>

@@ -5,6 +5,7 @@ toolbar {
   display: flex;
   flex: 0 0 auto;
   z-index: 4;
+  background-color: white;
 
   &.below {
     z-index: 2;
@@ -45,10 +46,8 @@ toolbar {
 }
 
 fuse-search-bar,
-.user-button,
-.language-button,
-.chat-panel-toggle-button,
-.quick-panel-toggle-button {
+.action-button,
+{
   min-width: 64px;
   height: 64px;
 

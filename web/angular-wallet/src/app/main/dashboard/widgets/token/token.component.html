@@ -1,0 +1,57 @@
+<div class="container grey-700-fg fullwidth fullheight">
+  <ng-container *ngIf="isLoading">
+    <div class="pr-8 chart">
+      <ngx-skeleton-loader count="1"
+                           appearance="circle"
+                           [theme]="{width:'108px', height:'108px'}">
+      </ngx-skeleton-loader>
+    </div>
+    <div class="token-balance">
+      <small>{{'tokens_total_balance' | i18n}}</small>
+      <ngx-skeleton-loader count="1"
+                           [theme]="{width:'280px', height:'14px', margin: '4px 0'}">
+      </ngx-skeleton-loader>
+      <ngx-skeleton-loader count="1"
+                           [theme]="{width:'180px', height:'24px', marginBottom: '4px'}">
+      </ngx-skeleton-loader>
+      <ngx-skeleton-loader count="1"
+                           [theme]="{width:'280px', height:'12px', marginBottom: '4px'}">
+      </ngx-skeleton-loader>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!isLoading">
+    <div class="pr-8 chart">
+      <canvas baseChart
+              height="108"
+              width="108"
+              [datasets]="datasets"
+              [options]="options"
+              [labels]="labels"
+              chartType="doughnut"
+      >
+      </canvas>
+      <div class="tokenCount">{{tokenCount}}</div>
+    </div>
+    <div class="token-balance">
+      <small>{{'tokens_total_balance' | i18n}}</small>
+      <span class="font-size-20 font-weight-600">{{totalEstimateAmount.getSigna() | amount : 'signa':true}}</span>
+      <div fxFlex fxLayout="row">
+        <div class="mr-8">
+          <div>{{getTotalEstimate('btc')}}</div>
+        </div>
+        <div class="mr-8">
+          <div>{{getTotalEstimate('usd')}}</div>
+        </div>
+        <div class="mr-8">
+          <div>{{getTotalEstimate('eur')}}</div>
+        </div>
+        <div>
+          <div>{{getTotalEstimate('rub')}}</div>
+        </div>
+      </div>
+      <div class="button-link-container">
+        <app-link-button [routerLink]="'/tokens'">{{'my_assets' | i18n}}</app-link-button>
+      </div>
+    </div>
+  </ng-container>
+</div>

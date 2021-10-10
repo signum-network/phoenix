@@ -1,0 +1,79 @@
+@import "src/@fuse/scss/fuse";
+:host {
+  .custom-widget {
+    padding: 0 !important;
+  }
+}
+
+#dashboard {
+
+
+
+  .fuse-card {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: 100%;
+    margin: 8px;
+    padding: 16px;
+
+    @include media-breakpoint('xs') {
+      margin: 0 !important;
+      border-radius: 0 !important;
+    }
+
+  }
+
+  .scroll-y {
+    overflow-y: scroll;
+  }
+
+  .body {
+    width: 100%;
+    height: 100%;
+
+    .mat-figure {
+      align-items: normal;
+    }
+
+    mat-grid-list {
+      height: 100%;
+      margin: 8px;
+      @include media-breakpoint('xs') {
+        margin: 0;
+      }
+    }
+  }
+
+  .activation-message {
+    align-items: center;
+    background: #F0AD4E;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    color: #FFF;
+    cursor: default;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    justify-content: space-between;
+    margin: 0;
+    padding: 8px 16px;
+    white-space: normal;
+    width: 100%;
+
+    button.activate {
+      min-width: fit-content;
+      margin: 4px;
+    }
+  }
+
+  mat-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mat-grid-tile .mat-figure {
+    padding: 4px !important;
+  }
+}

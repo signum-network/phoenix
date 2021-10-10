@@ -1,0 +1,49 @@
+@import "src/@fuse/scss/fuse";
+
+:host {
+  .balance {
+    display: flex;
+    flex-direction: row;
+    justify-content: center !important;
+    align-items: center;
+  }
+  .chart {
+    position: relative;
+    height: 120px;
+    width: 120px;
+  }
+
+  .total {
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+    color: #0d47a1;
+    top: 48px;
+    left: -4px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .dot {
+      border-radius: 2px;
+      padding-left: 12px;
+      margin-right: 2px;
+  }
+
+  .available {
+    background-color: #00FF88;
+  }
+
+  .committed {
+    background-color: #0099ff;
+  }
+
+  .reserved {
+    background-color: #9E9E9E;
+  }
+
+  .line {
+    border-top: 1px solid #E0E0E0;
+    width: 100%;
+  }
+}

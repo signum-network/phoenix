@@ -13,6 +13,13 @@ import {Account} from '@signumjs/core';
 import {Router} from '@angular/router';
 import {NetworkService} from '../../../network/network.service';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
+import {UserProfileType} from '../../../shared/types';
+
+interface UserProfile {
+  name: UserProfileType;
+  description: string; // i18n key
+  icon: string;
+}
 
 @Component({
   selector: 'toolbar',
@@ -22,6 +29,9 @@ import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 })
 
 export class ToolbarComponent extends UnsubscribeOnDestroy implements OnInit, OnDestroy {
+  @Input('selectedAccount') selectedAccount: Account;
+  @Input('accounts') accounts: Account[];
+
   horizontalNavbar: boolean;
   rightNavbar: boolean;
   hiddenNavbar: boolean;
@@ -30,9 +40,8 @@ export class ToolbarComponent extends UnsubscribeOnDestroy implements OnInit, On
   selectedLanguage: any;
   userStatusOptions: any[];
   isMainNet = false;
-
-  @Input('selectedAccount') selectedAccount: Account;
-  @Input('accounts') accounts: Account[];
+  profiles: UserProfile[];
+  selectedProfile: UserProfile;
 
   constructor(
     private _fuseConfigService: FuseConfigService,
@@ -46,8 +55,29 @@ export class ToolbarComponent extends UnsubscribeOnDestroy implements OnInit, On
     super();
     this.languages = constants.languages;
     this.navigation = navigation;
+    this.profiles = [
+      {
+        name: 'simple',
+        description: 'user_profile_desc_simple',
+        icon: 'sentiment_very_satisfied',
+      },
+      {
+        name: 'power',
+        description: 'user_profile_desc_power',
+        icon: 'battery_charging_full',
+      },
+      {
+        name: 'miner',
+        description: 'user_profile_desc_miner',
+        icon: 'storage',
+      },
+      // {
+      //   name: 'trader',
+      //   description: 'user_profile_desc_trader',
+      //   icon: 'timeline',
+      // },
+    ];
   }
-
 
   ngOnInit(): void {
     // Subscribe to the config changes
@@ -65,11 +95,11 @@ export class ToolbarComponent extends UnsubscribeOnDestroy implements OnInit, On
         this.isMainNet = isMainNet;
       }));
 
-    this.storeService.ready
+    this.storeService.settings
       .pipe(takeUntil(this.unsubscribeAll))
-      .subscribe(() => {
+      .subscribe((settings) => {
         this.selectedLanguage = this.i18nService.currentLanguage;
-
+        this.selectedProfile = this.getProfileByName(settings.userProfile || 'simple');
       });
   }
 
@@ -80,12 +110,25 @@ export class ToolbarComponent extends UnsubscribeOnDestroy implements OnInit, On
   setLanguage(lang): void {
     this.selectedLanguage = lang;
     this.i18nService.setLanguage(lang);
+  }
 
+  setProfile(profile): void {
+    this.selectedProfile = this.getProfileByName(profile);
+    this.storeService.getSettings().then(s => {
+        s.userProfile = this.selectedProfile.name;
+        this.storeService.saveSettings(s);
+      }
+    );
   }
 
   setAccount(account): void {
     this.selectedAccount = account;
     this.accountService.selectAccount(account);
     this.router.navigate(['/']);
+  }
+
+  private getProfileByName(profileName: string): UserProfile {
+    const found = this.profiles.find(p => p.name === profileName);
+    return found;
   }
 }

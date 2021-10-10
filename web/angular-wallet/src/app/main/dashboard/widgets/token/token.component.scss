@@ -1,0 +1,42 @@
+:host {
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center !important;
+    align-items: center;
+    position: relative;
+  }
+
+  .chart {
+    position: relative;
+    height: 120px;
+    width: 120px;
+  }
+
+  .tokenCount {
+    position: absolute;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0d47a1;
+    top: 44px;
+    left: -4px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .button-link-container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  .token-balance {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+}

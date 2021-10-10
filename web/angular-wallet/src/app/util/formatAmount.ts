@@ -14,10 +14,9 @@ const DefaultFormattingOptions: AmountFormattingOptions = {
 };
 
 export function formatAmount(value: string | number, formattingOptions: AmountFormattingOptions = DefaultFormattingOptions): string {
-
   const v = typeof value === 'string' ? parseFloat(value) : value;
   const {isShortForm, noUnit, locale} = formattingOptions;
-  const digitsInfo = isShortForm ? '1.0-6' : '1.0-8';
+  const digitsInfo = isShortForm ? '1.0-4' : '1.0-8';
   const unit = noUnit ? '' : CurrencySymbol + ' ';
   return `${unit}${formatNumber(v, locale, digitsInfo)}`;
 }

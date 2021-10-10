@@ -11,6 +11,7 @@ export interface BalanceHistoryItem {
 export interface AccountBalances {
   readonly availableBalance: Amount;
   readonly lockedBalance: Amount;
+  readonly reservedBalance: Amount;
   readonly committedBalance: Amount;
   readonly totalBalance: Amount;
 }

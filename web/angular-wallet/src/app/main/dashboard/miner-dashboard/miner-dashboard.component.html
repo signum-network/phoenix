@@ -1,0 +1,72 @@
+<div *ngIf="layoutParameters && account"
+     ngClass.gt-sm="p-16"
+     [ngStyle.xs]="{'padding':'0 !important'}"
+>
+  <mat-grid-list [cols]="layoutParameters.columnCount"
+                 rowHeight="32px"
+                 gutterSize="16px"
+  >
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.chart"
+      [rowspan]="layoutParameters.rowSpans.chart">
+      <app-balance-chart
+        class="widget custom-widget"
+        [account]="account"
+        [priceBtc]="priceBtc"
+        [priceUsd]="priceUsd"
+        [priceEur]="priceEur"
+        [priceRub]="priceRub"
+      >
+      </app-balance-chart>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.balance"
+      [rowspan]="layoutParameters.rowSpans.balance"
+    >
+      <app-balance class="widget" [account]="account"></app-balance>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.info"
+      [rowspan]="layoutParameters.rowSpans.info"
+    >
+      <app-market-overview class="widget">
+      </app-market-overview>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.blockInfo"
+      [rowspan]="layoutParameters.rowSpans.blockInfo"
+    >
+      <app-blockinfo class="widget"></app-blockinfo>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.forgedBlocks"
+      [rowspan]="layoutParameters.rowSpans.forgedBlocks"
+    >
+      <app-blockforged class="widget"
+           [account]="account"
+           [priceBtc]="priceBtc"
+           [priceUsd]="priceUsd"
+           [priceEur]="priceEur"
+           [priceRub]="priceRub"
+      ></app-blockforged>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.pool"
+      [rowspan]="layoutParameters.rowSpans.pool"
+    >
+      <app-miningpool class="widget" [account]="account" ></app-miningpool>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.table"
+      [rowspan]="layoutParameters.rowSpans.table"
+    >
+      <app-transactions-table-widget class="widget"
+                                     [displayedColumns]="layoutParameters.tableColumns"
+      ></app-transactions-table-widget>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

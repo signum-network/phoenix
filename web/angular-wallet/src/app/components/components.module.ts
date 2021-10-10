@@ -18,6 +18,7 @@ import {PageComponent} from './page/page.component';
 import {WarnSendDialogComponent} from './warn-send-dialog/warn-send-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { WatermarkComponent } from './watermark/watermark.component';
+import { LinkButtonComponent } from './link-button/link-button.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { WatermarkComponent } from './watermark/watermark.component';
     PageComponent,
     WarnSendDialogComponent,
     WatermarkComponent,
+    LinkButtonComponent,
   ],
   exports: [
     SubmitTransactionComponent,
@@ -37,6 +39,7 @@ import { WatermarkComponent } from './watermark/watermark.component';
     PageComponent,
     WarnSendDialogComponent,
     WatermarkComponent,
+    LinkButtonComponent
   ],
   imports: [
     AppSharedModule,

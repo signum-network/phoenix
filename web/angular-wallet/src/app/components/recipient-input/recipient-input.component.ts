@@ -13,6 +13,7 @@ let nextId = 0;
 export enum RecipientType {
   UNKNOWN = 0,
   ADDRESS = 1,
+  CONTRACT,
   ID,
   ALIAS,
   UNSTOPPABLE,
@@ -190,9 +191,14 @@ export class RecipientInputComponent implements OnChanges {
     }
 
     this.loading = true;
-    this.accountService.getAccount(id).then(({accountRS}) => {
+    // @ts-ignore
+    this.accountService.getAccount(id).then(({accountRS, publicKey}) => {
       this.recipient.addressRS = accountRS;
       this.recipient.status = RecipientValidationStatus.VALID;
+      this.recipient.publicKey = publicKey;
+      if (this.recipient.publicKey.startsWith('0000000000000')){
+        this.recipient.type = RecipientType.CONTRACT;
+      }
     }).catch(() => {
       if (this.isReedSolomonAddress(this.recipient.addressRaw)) {
         this.recipient.addressRS = this.recipient.addressRaw;

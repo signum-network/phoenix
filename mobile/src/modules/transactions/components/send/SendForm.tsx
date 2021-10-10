@@ -351,13 +351,20 @@ export class SendForm extends React.Component<Props, SendFormState> {
     }
 
     try {
-      const { accountRS } = await this.props.onGetAccount(
+      const { accountRS, publicKey } = await this.props.onGetAccount(
         formattedAddress || ""
       );
+
+      let type = this.state.recipient.type;
+      if (publicKey.startsWith('0000000000000')){
+        type = RecipientType.CONTRACT;
+      }
+
       this.setState({
         confirmedRisk: true,
         recipient: {
           ...this.state.recipient,
+          type,
           addressRS: accountRS,
           status: RecipientValidationStatus.VALID,
         },

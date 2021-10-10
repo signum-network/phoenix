@@ -6,7 +6,7 @@
   },
   "productName": "Phoenix Signum Wallet",
   "description": "The Signum web wallet",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "license": "GPL-3.0",
   "contributors": [
     "ohager",
@@ -26,11 +26,10 @@
     "build:web": "npm run build -- --configuration=web",
     "build:prod-stats": "npm run build -- --prod --stats-json",
     "test": "jest",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
     "bundle-report": "webpack-bundle-analyzer dist/stats.json",
     "test:watch": "jest --watch",
-    "release": "node ../../scripts/publish.js --desktop"
+    "release": "node ../../scripts/publish.js --desktop",
+    "prepare": "is-ci || husky install"
   },
   "private": true,
   "dependencies": {
@@ -54,14 +53,14 @@
     "@ngrx/store": "7.0.0",
     "@ngrx/store-devtools": "7.0.0",
     "@ngx-translate/core": "11.0.1",
+    "@signumjs/core": "^1.0.0-rc.4",
+    "@signumjs/crypto": "^1.0.0-rc.4",
+    "@signumjs/http": "^1.0.0-rc.4",
+    "@signumjs/util": "^1.0.0-rc.4",
     "@swimlane/dragula": "3.8.0",
     "@swimlane/ngx-charts": "12.0.1",
     "@swimlane/ngx-datatable": "15.0.2",
     "@swimlane/ngx-dnd": "8.0.0",
-    "@signumjs/core": "^1.0.0-rc.4",
-    "@signumjs/crypto": "^1.0.0-rc.4",
-    "@signumjs/util": "^1.0.0-rc.4",
-    "@signumjs/http": "^1.0.0-rc.4",
     "angular-calendar": "0.28.2",
     "angular-in-memory-web-api": "0.9.0",
     "angular-notifier": "^6.0.1",
@@ -112,19 +111,20 @@
     "codelyzer": "^5.1.2",
     "cross-env": "^5.2.1",
     "electron": "^12.0.2",
-    "husky": "^3.1.0",
+    "husky": "^7.0.2",
+    "is-ci": "^3.0.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "jest": "24.9.0",
     "jest-preset-angular": "6.0.2",
+    "lint-staged": "^11.1.2",
+    "prettier": "2.4.1",
     "protractor": "~5.4.0",
     "ts-node": "~8.5.4",
     "tslint": "^5.20.1",
     "typescript": "3.4.5"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "../../pre-push.sh"
-    }
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
