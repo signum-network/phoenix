@@ -1,6 +1,7 @@
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
+ * Modified work Copyright (c) 2021 Signum Network
  */
 
 export const constants = {
@@ -75,11 +76,11 @@ export const constants = {
   ],
   nodes: [
     {
-      name: 'Burstcoin.ro',
-      region: 'Europe',
-      location: 'Europe',
-      address: 'https://wallet.burstcoin.ro',
-      port: 443,
+      name: 'Local Peer',
+      region: 'Local',
+      location: 'Local',
+      address: 'http://localhost',
+      port: 8125,
       reliable: true,
       testnet: false
     },
@@ -138,16 +139,16 @@ export const constants = {
       testnet: false
     },
     {
-      name: 'Testnet Burstcoin.ro',
+      name: 'Signumcoin.ro',
       region: 'Europe',
       location: 'Europe',
-      address: 'https://testnetwallet.burstcoin.ro',
+      address: 'https://wallet.signumcoin.ro',
       port: 443,
-      reliable: false,
-      testnet: true
+      reliable: true,
+      testnet: false
     },
     {
-      name: 'Testnet Zoh',
+      name: 'Testnet Node Zoh',
       region: 'Europe',
       location: 'Denmark',
       address: 'https://testnet.burstcoin.network',
@@ -156,14 +157,14 @@ export const constants = {
       testnet: true
     },
     {
-      name: 'Local Peer',
-      region: 'Local',
-      location: 'Local',
-      address: 'http://localhost',
-      port: 8125,
-      reliable: true,
-      testnet: false
-    }
+      name: 'Testnet Node Nivok',
+      region: 'Europe',
+      location: 'UK',
+      address: 'http://nivbox.co.uk',
+      port: 6876,
+      reliable: false,
+      testnet: true
+    },
   ],
   supportUrl: 'https://github.com/signum-network/phoenix/issues',
   transactionCount: '100',

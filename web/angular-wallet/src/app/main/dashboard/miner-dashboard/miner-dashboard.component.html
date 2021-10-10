@@ -41,6 +41,13 @@
     </mat-grid-tile>
 
     <mat-grid-tile
+      [colspan]="layoutParameters.columnSpans.pool"
+      [rowspan]="layoutParameters.rowSpans.pool"
+    >
+      <app-miningpool class="widget" [account]="account" ></app-miningpool>
+    </mat-grid-tile>
+
+    <mat-grid-tile
       [colspan]="layoutParameters.columnSpans.forgedBlocks"
       [rowspan]="layoutParameters.rowSpans.forgedBlocks"
     >
@@ -51,13 +58,6 @@
            [priceEur]="priceEur"
            [priceRub]="priceRub"
       ></app-blockforged>
-    </mat-grid-tile>
-
-    <mat-grid-tile
-      [colspan]="layoutParameters.columnSpans.pool"
-      [rowspan]="layoutParameters.rowSpans.pool"
-    >
-      <app-miningpool class="widget" [account]="account" ></app-miningpool>
     </mat-grid-tile>
 
     <mat-grid-tile

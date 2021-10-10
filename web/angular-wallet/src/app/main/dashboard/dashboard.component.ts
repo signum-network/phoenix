@@ -15,15 +15,13 @@ export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit {
 
   constructor(private storeService: StoreService) {
     super();
-
   }
 
   ngOnInit(): void {
-
     this.storeService.settings
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((settings: Settings) => {
-        this.userProfile = settings.userProfile;
+        this.userProfile = settings.userProfile || 'simple';
       });
   }
 
