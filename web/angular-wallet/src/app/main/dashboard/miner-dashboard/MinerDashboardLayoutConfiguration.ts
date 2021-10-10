@@ -42,14 +42,14 @@ export class MinerDashboardLayoutConfiguration extends LayoutConfiguration<Miner
 
     this.md = {
       columnCount: 8,
-      columnSpans: cs(8, 4, 4, 2, 2, 2, 8),
+      columnSpans: cs(8, 4, 4, 4, 4, 4, 8),
       rowSpans: cs(6, 4, 4, 3, 3, 3, 14),
       tableColumns: ['timestamp', 'type', 'amount', 'account']
     };
 
     this.sm = {
       columnCount: 4,
-      columnSpans: cs(4, 4, 4, 2, 2, 2, 4),
+      columnSpans: cs(4, 4, 4, 2,  2, 2, 4),
       rowSpans: cs(6, 4, 4, 3, 3, 3, 14),
       tableColumns: ['timestamp', 'type', 'amount', 'account']
     };

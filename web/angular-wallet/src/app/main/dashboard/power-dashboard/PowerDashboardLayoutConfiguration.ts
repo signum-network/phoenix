@@ -37,22 +37,22 @@ export class PowerDashboardLayoutConfiguration extends LayoutConfiguration<Power
     };
 
     this.md = {
-      columnCount: 12,
-      columnSpans: cs(12, 6, 6, 6, 12),
+      columnCount: 8,
+      columnSpans: cs(8, 4, 4, 4, 8),
       rowSpans: cs(6, 4, 4, 4, 14),
       tableColumns: ['timestamp', 'type', 'amount', 'account']
     };
 
     this.sm = {
-      columnCount: 12,
-      columnSpans: cs(12, 6, 6, 6, 12),
+      columnCount: 4,
+      columnSpans: cs(4, 2, 2, 2, 4),
       rowSpans: cs(6, 4, 4, 4, 14),
       tableColumns: ['timestamp', 'amount', 'account']
     };
 
     this.xs = {
-      columnCount: 12,
-      columnSpans: cs(12, 12, 12, 12, 12),
+      columnCount: 1,
+      columnSpans: cs(1, 1, 1, 1, 1),
       rowSpans: cs(6, 4, 4, 4, 14),
       tableColumns: ['timestamp', 'amount']
     };

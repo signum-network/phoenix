@@ -11,6 +11,7 @@
   <ng-container *ngIf="!isLoading && poolAccount">
     <div fxFlex
          fxLayout="column"
+         fxLayoutAlign="center center"
     >
       <small class="font-size-10">{{'reward_recipient' | i18n}}</small>
       <div class="font-size-16 font-weight-600">{{poolAccount.accountRS}}</div>
@@ -19,7 +20,7 @@
       </div>
       <div *ngIf="!this.poolName.startsWith('http')" class="font-size-12">{{this.poolName}}</div>
       <span>
-        <small>{{'set_reward_recipient_on' | i18n }}</small>&nbsp;
+        <small>{{'set_reward_recipient_on' | i18n }}&nbsp;</small>
         <small>{{lastPoolAssignment | date : 'MMM d,y, h:mm:ss':null:locale}}</small>
       </span>
     </div>
@@ -27,11 +28,12 @@
   <ng-container *ngIf="isLoading">
     <div fxFlex
          fxLayout="column"
+         fxLayoutAlign="center center"
     >
       <small class="font-size-10">{{'reward_recipient' | i18n}}</small>
-      <ngx-skeleton-loader count="1" [theme]="{fontSize: '16px', width:'50%'}"></ngx-skeleton-loader>
-      <ngx-skeleton-loader count="1" [theme]="{fontSize: '12px', width:'100%'}"></ngx-skeleton-loader>
-      <ngx-skeleton-loader count="1" [theme]="{fontSize: '10px', width:'100%'}"></ngx-skeleton-loader>
+      <ngx-skeleton-loader count="1" [theme]="{height: '20px', width:'160px', marginBottom:'4px'}"></ngx-skeleton-loader>
+      <ngx-skeleton-loader count="1" [theme]="{height: '12px', width:'260px', marginBottom:'4px'}"></ngx-skeleton-loader>
+      <ngx-skeleton-loader count="1" [theme]="{height: '12px', width:'260px', marginBottom:'4px'}"></ngx-skeleton-loader>
     </div>
   </ng-container>
   <div class="button-link-container">

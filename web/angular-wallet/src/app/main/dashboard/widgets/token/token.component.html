@@ -1,6 +1,23 @@
-<div class="container grey-700-fg fullwidth">
+<div class="container grey-700-fg fullwidth fullheight">
   <ng-container *ngIf="isLoading">
-    <h1>Loading</h1>
+    <div class="pr-8 chart">
+      <ngx-skeleton-loader count="1"
+                           appearance="circle"
+                           [theme]="{width:'108px', height:'108px'}">
+      </ngx-skeleton-loader>
+    </div>
+    <div class="token-balance">
+      <small>{{'tokens_total_balance' | i18n}}</small>
+      <ngx-skeleton-loader count="1"
+                           [theme]="{width:'280px', height:'14px', margin: '4px 0'}">
+      </ngx-skeleton-loader>
+      <ngx-skeleton-loader count="1"
+                           [theme]="{width:'180px', height:'24px', marginBottom: '4px'}">
+      </ngx-skeleton-loader>
+      <ngx-skeleton-loader count="1"
+                           [theme]="{width:'280px', height:'12px', marginBottom: '4px'}">
+      </ngx-skeleton-loader>
+    </div>
   </ng-container>
   <ng-container *ngIf="!isLoading">
     <div class="pr-8 chart">
