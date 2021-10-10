@@ -1,12 +1,22 @@
 # Changelog
 
 ## 1.3
-- New Transaction Table
+- Multiple Dashboards for newcomers, pro-users, or miners
+- Improved Token Support
+- New Transaction Table 
 - Incremental Transaction Loading
   - Reduces fetched payloads drastically
+- Support for new [Unstoppable Domains](https://unstoppabledomains.com/blog/100-million-airdrop-and-the-launch-of-8-new-domain-registries)
+- Enhanced more secure Account Creation/Import
+  - Added individual salt 
+  - Added Whitespace indicator on import
 
 ### Bug Fixes
-- Several Tx Table fixes (#414, #1500, #1525, #1536)
+- Several Tx Table fixes (#414, #1500, #1525, #1536, #1538)
+- Token fixes (#1522)
+- Fixed Alias issue on Send Form for multiple aliases per account (#1562)
+- Changed to coingecko API (#1496)
+- Further Bugfixes (#1533, #1552)
 
 ## 1.2.2
 
