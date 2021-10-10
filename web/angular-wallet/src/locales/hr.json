@@ -451,5 +451,6 @@
   "reward_income": "Nagradni prihod",
   "last_forged_block": "Zadnji krivotvoreni blok",
   "reward_income_info": "Ovo je zbroj blok nagrada koje ste krivotvorili s ovim računom kao da ste samostalni rudar i ne odražava nužno vaš efektivni prihod od rudarstva.",
-  "no_block_forged": "Nijedan blok još nije krivotvoren"
+  "no_block_forged": "Nijedan blok još nije krivotvoren",
+  "set_reward_recipient_on": "Pridružio se rudarskom bazenu uključeno"
 }

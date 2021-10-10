@@ -451,5 +451,6 @@
   "reward_income": "Revenu de récompense",
   "last_forged_block": "Dernier bloc forgé",
   "reward_income_info": "Il s'agit de la somme des récompenses de bloc que vous avez forgées avec ce compte comme si vous étiez un mineur en solo et ne reflète pas nécessairement vos revenus miniers effectifs.",
-  "no_block_forged": "Pas encore de bloc forgé"
+  "no_block_forged": "Pas encore de bloc forgé",
+  "set_reward_recipient_on": "A rejoint le pool minier le"
 }

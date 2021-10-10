@@ -451,5 +451,6 @@
   "reward_income": "Palkintotulot",
   "last_forged_block": "Viimeinen taottu lohko",
   "reward_income_info": "Tämä on tällä tilillä väärennettyjen lohkopalkkioiden summa ikään kuin olisit yksin kaivosmies, eikä se välttämättä heijasta todellisia kaivosalan tulojasi.",
-  "no_block_forged": "Lohkoa ei ole vielä väärennetty"
+  "no_block_forged": "Lohkoa ei ole vielä väärennetty",
+  "set_reward_recipient_on": "Liittyi kaivosaltaaseen"
 }

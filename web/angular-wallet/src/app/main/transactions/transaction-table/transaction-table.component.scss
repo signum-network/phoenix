@@ -39,6 +39,9 @@
         font-size: 80%;
       }
     }
+    @media screen and (max-width: 480px) {
+      flex: 1 0 60px;
+    }
 
   }
 

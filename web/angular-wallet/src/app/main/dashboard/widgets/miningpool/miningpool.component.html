@@ -1,20 +1,39 @@
-<div class="grey-700-fg fullwidth position-relative">
-  <div fxFlex fxLayout="row">
-    <div fxFlex="30"
+<div class="grey-700-fg fullwidth fullheight position-relative">
+  <ng-container *ngIf="!isLoading && !poolAccount">
+    <div fxFlex
          fxLayout="column"
          fxLayoutAlign="center center"
     >
-      <small class="font-size-10 text-center">{{'forged_blocks' | i18n}}</small>
+      <div class="font-size-20 font-weight-600 text-center">{{'no_reward_recipient' | i18n}}</div>
     </div>
-    <div fxFlex="70" fxLayout="column" fxFlexAlign="center">
+  </ng-container>
+
+  <ng-container *ngIf="!isLoading && poolAccount">
+    <div fxFlex
+         fxLayout="column"
+    >
+      <small class="font-size-10">{{'reward_recipient' | i18n}}</small>
+      <div class="font-size-16 font-weight-600">{{poolAccount.accountRS}}</div>
+      <div *ngIf="this.poolName.startsWith('http')" class="font-size-12">
+        <a [href]="this.poolName" rel="noreferrer noopener" target="_blank">{{poolName}}</a>
+      </div>
+      <div *ngIf="!this.poolName.startsWith('http')" class="font-size-12">{{this.poolName}}</div>
       <span>
-        <small>{{'reward_income' | i18n}}</small>
-        <mat-icon class="font-size-12 grey-500-fg ml-2" matTooltip="{{ 'reward_income_info' | i18n }}">info</mat-icon>
+        <small>{{'set_reward_recipient_on' | i18n }}</small>&nbsp;
+        <small>{{lastPoolAssignment | date : 'MMM d,y, h:mm:ss':null:locale}}</small>
       </span>
     </div>
-    <hr class="widget-hline" />
-    <small>{{'last_forged_block' | i18n}}</small>
-  </div>
+  </ng-container>
+  <ng-container *ngIf="isLoading">
+    <div fxFlex
+         fxLayout="column"
+    >
+      <small class="font-size-10">{{'reward_recipient' | i18n}}</small>
+      <ngx-skeleton-loader count="1" [theme]="{fontSize: '16px', width:'50%'}"></ngx-skeleton-loader>
+      <ngx-skeleton-loader count="1" [theme]="{fontSize: '12px', width:'100%'}"></ngx-skeleton-loader>
+      <ngx-skeleton-loader count="1" [theme]="{fontSize: '10px', width:'100%'}"></ngx-skeleton-loader>
+    </div>
+  </ng-container>
   <div class="button-link-container">
     <app-link-button [routerLink]="'/set-reward-recipient'">{{ 'set_reward_recipient' | i18n }}</app-link-button>
   </div>

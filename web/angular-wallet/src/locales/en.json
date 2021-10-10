@@ -451,5 +451,6 @@
   "reward_income": "Reward Income",
   "last_forged_block": "Last Forged Block",
   "reward_income_info": "This is the sum of the block rewards you forged with this account as if you were a solo miner and does not necessarily reflects your effective mining income. ",
-  "no_block_forged": "No block forged yet"
+  "no_block_forged": "No block forged yet",
+  "set_reward_recipient_on": "Joined Mining Pool on"
 }

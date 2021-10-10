@@ -47,7 +47,7 @@ export class PowerDashboardLayoutConfiguration extends LayoutConfiguration<Power
       columnCount: 12,
       columnSpans: cs(12, 6, 6, 6, 12),
       rowSpans: cs(6, 4, 4, 4, 14),
-      tableColumns: ['timestamp', 'type', 'amount', 'account']
+      tableColumns: ['timestamp', 'amount', 'account']
     };
 
     this.xs = {

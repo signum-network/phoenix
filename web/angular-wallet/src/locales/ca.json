@@ -451,5 +451,6 @@
   "reward_income": "Ingressos de recompensa",
   "last_forged_block": "Darrer bloc forjat",
   "reward_income_info": "Aquesta és la suma de les recompenses que heu obtingut amb aquest compte com si fos un miner en solitari i no reflecteix necessàriament els vostres ingressos efectius de mineria.",
-  "no_block_forged": "Encara no s'ha forjat cap bloc"
+  "no_block_forged": "Encara no s'ha forjat cap bloc",
+  "set_reward_recipient_on": "Es va unir a Mining Pool el dia"
 }

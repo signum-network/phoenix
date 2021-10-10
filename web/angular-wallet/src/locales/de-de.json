@@ -402,7 +402,7 @@
   "success_set_commitment": "Mining-Commitment wurde erfolgreich aktualisiert",
   "error_set_commitment": "Fehler beim Aktualisieren des Mining-Commitment. Beachte, dass Du ggf. 1440 Blöcke warten musst, bevor Du Dein Commitment widerrufen kannst.",
   "commitment_blocks_enabled": "Blöcke fehlen bis das Commitment widerrufen werden kann",
-  "no_reward_recipient": "Du bist noch keinem Pool beigetreten",
+  "no_reward_recipient": "Noch keinem Pool beigetreten",
   "commitment_unsupported": "Der aktuell ausgewählte Peer unterstützt kein Mining Commitment. Bitte wähle einen Peer mit mindestens Version 3+ aus.",
   "copy_account_address_extended": "Erweiterte Adresse kopieren",
   "copy_account_publickey": "Öffentlichen Schlüssel kopieren",
@@ -451,5 +451,6 @@
   "reward_income": "Belohnungseinkommen",
   "last_forged_block": "Letzter geschmiedeter Block",
   "reward_income_info": "Dies ist die Summe der Blockbelohnungen, die Du mit diesem Konto geschmiedet hast, als ob Du ein Solo-Miner wärst, und spiegelt nicht unbedingt Dein effektives Mining-Einkommen wider.",
-  "no_block_forged": "Noch kein Block geschmiedet"
+  "no_block_forged": "Noch kein Block geschmiedet",
+  "set_reward_recipient_on": "Dem Mining Pool beigetreten am"
 }

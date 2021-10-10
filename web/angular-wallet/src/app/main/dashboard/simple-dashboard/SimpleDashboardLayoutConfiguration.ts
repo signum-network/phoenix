@@ -35,21 +35,21 @@ export class SimpleDashboardLayoutConfiguration extends LayoutConfiguration<Simp
       columnCount: 8,
       columnSpans: spans(8, 8, 8),
       rowSpans: spans(5, 14, 2),
-      tableColumns: ['transaction_id', 'timestamp', 'amount', 'account']
+      tableColumns: ['timestamp', 'type', 'amount', 'account']
     };
 
     this.sm = {
       columnCount: 4,
       columnSpans: spans(4, 4, 4),
       rowSpans: spans(5, 14, 2),
-      tableColumns: ['transaction_id', 'timestamp', 'type', 'amount', 'account']
+      tableColumns: ['timestamp', 'amount', 'account']
     };
 
     this.xs = {
       columnCount: 1,
       columnSpans: spans(1, 1, 1),
       rowSpans: spans(5, 14, 8),
-      tableColumns: ['transaction_id', 'amount']
+      tableColumns: ['timestamp', 'amount']
     };
 
   }

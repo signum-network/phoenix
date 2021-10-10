@@ -451,5 +451,6 @@
   "reward_income": "Príjem z odmeny",
   "last_forged_block": "Posledný kovaný blok",
   "reward_income_info": "Toto je súčet blokových odmien, ktoré ste sfalšovali na tomto účte, ako keby ste boli sólo baník, a nemusí nevyhnutne odrážať váš skutočný príjem z ťažby.",
-  "no_block_forged": "Zatiaľ nie je kovaný žiadny blok"
+  "no_block_forged": "Zatiaľ nie je kovaný žiadny blok",
+  "set_reward_recipient_on": "Pripojený k banskému fondu dňa"
 }

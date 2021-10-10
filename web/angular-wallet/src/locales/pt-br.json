@@ -402,7 +402,7 @@
   "success_set_commitment": "Atualizou com sucesso seu comprometimento de mineração",
   "error_set_commitment": "Erro ao atualizar o comprometimento de mineração. Lembre-se de que você precisa esperar 1440 blocos antes de cancelar seu comprometimento.",
   "commitment_blocks_enabled": "blocos ausentes até que o comprometimento possa ser revogado",
-  "no_reward_recipient": "Você ainda não se juntou ao nenhum Pool",
+  "no_reward_recipient": "Você ainda não se juntou ao nenhum polo",
   "commitment_unsupported": "O Nó selecionado atualmente não suporta o comprometimento de mineração. Selecione um nó com pelo menos a versão 3+.",
   "copy_account_address_extended": "Copiar endereço estendido",
   "copy_account_publickey": "Copiar chave pública",
@@ -451,5 +451,6 @@
   "reward_income": "Renda de recompensa",
   "last_forged_block": "Último Bloco Forjado",
   "reward_income_info": "Esta é a soma das recompensas em bloco que você forjou com esta conta como se fosse um mineiro solo e não reflete necessariamente sua receita efetiva de mineração.",
-  "no_block_forged": "Nenhum bloco forjado ainda"
+  "no_block_forged": "Nenhum bloco forjado ainda",
+  "set_reward_recipient_on": "Ingressou polo de mineração em"
 }
