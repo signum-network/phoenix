@@ -38,7 +38,7 @@ async function getNewVersion() {
         throw Error(`Version ${newVersion} is not a valid semantic version`)
     }
 
-    if (semver.lte(newVersion, version)) {
+    if (semver.lt(newVersion, version)) {
         throw Error(`Version ${newVersion} is not greater than previous version: ${version}`)
     }
 
