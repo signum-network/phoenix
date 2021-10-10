@@ -3,7 +3,9 @@
 ## 1.3
 - Multiple Dashboards for newcomers, pro-users, or miners
 - Improved Token Support
-- New Transaction Table 
+- New Transaction Table
+  - fresh responsive layout 
+  - improved search
 - Incremental Transaction Loading
   - Reduces fetched payloads drastically
 - Support for new [Unstoppable Domains](https://unstoppabledomains.com/blog/100-million-airdrop-and-the-launch-of-8-new-domain-registries)
