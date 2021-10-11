@@ -452,5 +452,5 @@
   "last_forged_block": "Último bloque forjado",
   "reward_income_info": "Esta es la suma de las recompensas en bloque que forjó con esta cuenta como si fuera un minero en solitario y no refleja necesariamente sus ingresos mineros efectivos.",
   "no_block_forged": "Aún no se ha forjado ningún bloque",
-  "set_reward_recipient_on": "Se unió al grupo de minería en"
+  "set_reward_recipient_on": "Se unió el"
 }

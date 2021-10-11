@@ -452,5 +452,5 @@
   "last_forged_block": "Son Sahte Blok",
   "reward_income_info": "Bu, sanki tek başına bir madenciymişsiniz gibi bu hesapla oluşturduğunuz blok ödüllerinin toplamıdır ve etkin madencilik gelirinizi mutlaka yansıtmaz.",
   "no_block_forged": "Henüz sahte blok yok",
-  "set_reward_recipient_on": "Madencilik Havuzuna katıldı"
+  "set_reward_recipient_on": "katıldı"
 }

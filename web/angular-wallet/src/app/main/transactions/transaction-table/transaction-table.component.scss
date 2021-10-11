@@ -31,7 +31,6 @@
   }
 
   .mat-column-timestamp {
-    flex: 0 0 60px;
     align-items: center;
     margin-left: 0.5rem;
     .timestamp-content {
@@ -39,10 +38,6 @@
         font-size: 80%;
       }
     }
-    @media screen and (max-width: 480px) {
-      flex: 1 0 60px;
-    }
-
   }
 
   .mat-column-account {

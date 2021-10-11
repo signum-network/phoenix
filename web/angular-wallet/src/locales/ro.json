@@ -452,5 +452,5 @@
   "last_forged_block": "Ultimul bloc falsificat",
   "reward_income_info": "Aceasta este suma recompenselor blocate pe care le-ați forțat cu acest cont ca și cum ați fi un miner solo și nu reflectă neapărat veniturile dvs. miniere efective.",
   "no_block_forged": "Niciun bloc falsificat încă",
-  "set_reward_recipient_on": "S-a înscris la Mining Pool pe"
+  "set_reward_recipient_on": "Alăturat pe"
 }
