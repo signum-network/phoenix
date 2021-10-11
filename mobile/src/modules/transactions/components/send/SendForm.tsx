@@ -55,6 +55,7 @@ const AddressPrefix = "S-";
 
 interface Props {
   loading: boolean;
+  onReset: () => void;
   onSubmit: (form: SendAmountPayload) => void;
   onCameraIconPress: () => void;
   onGetAccount: (id: string) => Promise<Account>;
@@ -523,6 +524,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
 
   handleReset = () => {
     this.setState(this.getInitialState());
+    this.props.onReset()
   };
 
   shouldShowAliasWarning = (): boolean => {

@@ -22,14 +22,11 @@ const { createDeeplink } = require("@signumjs/util");
 */
 
 const PayExampleA = {
-  recipient: "S-9K9L-4CB5-88Y5-F5G4Z",
-  amountPlanck: "10000000AB",
+  recipient: "S-BNUE-9X8X-ATP8-FF3YB",
+  amountPlanck: "10000000",
   feePlanck: 735000,
   message: "Hi, from a deep link",
-  messageIsText: true,
   immutable: false,
-  deadline: 24,
-  encrypt: false,
 };
 
 const PayExampleB = {

@@ -78,7 +78,7 @@ export const SendScreen: React.FC = () => {
         ? stableParsePlanckAmount(payload.amountPlanck).getSigna()
         : undefined,
       message: payload.message,
-      messageIsText: payload.messageIsText === true,
+      messageIsText: payload.messageIsText == null ? true : payload.messageIsText,
       encrypt: payload.encrypt === true,
       immutable: payload.immutable === true,
     });
@@ -94,8 +94,13 @@ export const SendScreen: React.FC = () => {
 
   const handleSubmit = (form: SendAmountPayload) => {
     dispatch(sendMoneyAction(form));
+    setDeeplinkData(undefined)
     navigation.navigate(routes.home);
   };
+
+  const handleReset = () => {
+    setDeeplinkData(undefined)
+  }
 
   const handleGetAccount = (id: string) => {
     return dispatch(getAccount(id));
@@ -126,6 +131,7 @@ export const SendScreen: React.FC = () => {
             <SendForm
               accounts={accounts}
               loading={isLoading}
+              onReset={handleReset}
               onSubmit={handleSubmit}
               onGetAccount={handleGetAccount}
               onGetAlias={handleGetAlias}

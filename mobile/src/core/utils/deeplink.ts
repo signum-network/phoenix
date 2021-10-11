@@ -90,7 +90,7 @@ const parseCIP22Deeplink = (url: string): DeeplinkParts => {
     feePlanck: decoded.feePlanck || "",
     amountPlanck: decoded.amountPlanck || "",
     message: decoded.message || "",
-    messageIsText: decoded.messageIsText || false,
+    messageIsText: decoded.messageIsText == null ? true : decoded.messageIsText,
     encrypt: decoded.encrypt || false,
     immutable: decoded.immutable || false,
   };
