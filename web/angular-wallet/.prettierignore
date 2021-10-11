@@ -2,3 +2,5 @@
 build
 coverage
 dist
+src/@fuse
+src/locales

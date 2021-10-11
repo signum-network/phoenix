@@ -29,7 +29,8 @@
     "bundle-report": "webpack-bundle-analyzer dist/stats.json",
     "test:watch": "jest --watch",
     "release": "node ../../scripts/publish.js --desktop",
-    "prepare": "is-ci || husky install"
+    "prepare": "is-ci || husky install",
+    "format": "prettier --write ."
   },
   "private": true,
   "dependencies": {

@@ -49,7 +49,7 @@ export class MinerDashboardLayoutConfiguration extends LayoutConfiguration<Miner
 
     this.sm = {
       columnCount: 4,
-      columnSpans: cs(4, 4, 4, 2,  2, 2, 4),
+      columnSpans: cs(4, 4, 4, 2,  4, 2, 4),
       rowSpans: cs(6, 4, 4, 3, 3, 3, 14),
       tableColumns: ['timestamp', 'type', 'amount', 'account']
     };
