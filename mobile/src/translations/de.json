@@ -214,7 +214,8 @@
         "selectNode": "Peer auswählen",
         "autoNodeSelection": "Automatische Peerauswahl",
         "copyright": "Copyright © Signum Network",
-        "credits": "Danke an blankey1337 und titanishu"
+        "credits": "Danke an blankey1337 und titanishu",
+        "showTestnetNodes": "Testnet-Knoten anzeigen"
       }
     }
   }
