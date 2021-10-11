@@ -214,7 +214,8 @@
         "selectNode": "Выберите узел",
         "autoNodeSelection": "Автоматический выбор узла",
         "copyright": "Copyright © Signum Network",
-        "credits": "Credits to blankey1337 and titanishu"
+        "credits": "Credits to blankey1337 and titanishu",
+        "showTestnetNodes": "Показать узлы тестовой сети"
       }
     }
   }

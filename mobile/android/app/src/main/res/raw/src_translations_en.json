@@ -214,7 +214,8 @@
         "selectNode": "Select Node",
         "autoNodeSelection": "Automatic Node Selection",
         "copyright": "Copyright © Signum Network",
-        "credits": "Credits to blankey1337 and titanishu"
+        "credits": "Credits to blankey1337 and titanishu",
+        "showTestnetNodes": "Show Testnet Nodes"
       }
     }
   }
