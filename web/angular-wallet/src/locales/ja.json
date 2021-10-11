@@ -452,5 +452,5 @@
   "last_forged_block": "最後に鍛造されたブロック",
   "reward_income_info": "これは、あなたがソロマイナーであるかのようにこのアカウントで偽造したブロック報酬の合計であり、必ずしもあなたの有効なマイニング収入を反映しているわけではありません。",
   "no_block_forged": "まだ鍛造されたブロックはありません",
-  "set_reward_recipient_on": "マイニングプールに参加"
+  "set_reward_recipient_on": "参加しました"
 }

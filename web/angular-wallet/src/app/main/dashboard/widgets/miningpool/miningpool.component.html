@@ -21,7 +21,7 @@
       <div *ngIf="!this.poolName.startsWith('http')" class="font-size-12">{{this.poolName}}</div>
       <span>
         <small>{{'set_reward_recipient_on' | i18n }}&nbsp;</small>
-        <small>{{lastPoolAssignment | date : 'MMM d,y, h:mm:ss':null:locale}}</small>
+        <small>{{lastPoolAssignment | date : 'MMM d,y':null:locale}}</small>
       </span>
     </div>
   </ng-container>

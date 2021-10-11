@@ -452,5 +452,5 @@
   "last_forged_block": "Ultimo blocco forgiato",
   "reward_income_info": "Questa è la somma dei premi di blocco che hai forgiato con questo account come se fossi un minatore solista e non riflette necessariamente il tuo reddito di mining effettivo.",
   "no_block_forged": "Nessun blocco ancora forgiato",
-  "set_reward_recipient_on": "Aderito al pool minerario su"
+  "set_reward_recipient_on": "Iscritto su"
 }

@@ -79,10 +79,10 @@ export class TokenComponent extends UnsubscribeOnDestroy implements OnInit, OnCh
     const balances = [];
     const labels = [];
     const totalEstimate = Amount.Zero();
-    tokens.forEach(({ balance, name, priceInfo }) => {
+    tokens.forEach(({ balance, name, total}) => {
       balances.push(balance);
       labels.push(name);
-      totalEstimate.add(Amount.fromSigna(priceInfo.amount));
+      totalEstimate.add(Amount.fromSigna(total));
     });
 
     this.totalEstimateAmount = totalEstimate;
