@@ -55,6 +55,7 @@ const AddressPrefix = "S-";
 
 interface Props {
   loading: boolean;
+  onReset: () => void;
   onSubmit: (form: SendAmountPayload) => void;
   onCameraIconPress: () => void;
   onGetAccount: (id: string) => Promise<Account>;
@@ -223,10 +224,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
           Amount.fromPlanck(this.props.suggestedFees.standard).getSigna()) ||
         "0",
       message: (deeplinkProps && deeplinkProps.message) || undefined,
-      messageIsText:
-        deeplinkProps && typeof deeplinkProps.messageIsText !== "undefined"
-          ? deeplinkProps.messageIsText
-          : true,
+      messageIsText: (deeplinkProps && deeplinkProps.messageIsText) || true,
       encrypt: (deeplinkProps && deeplinkProps.encrypt) || false,
       immutable: (deeplinkProps && deeplinkProps.immutable) || false,
       recipient: new Recipient(
@@ -526,6 +524,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
 
   handleReset = () => {
     this.setState(this.getInitialState());
+    this.props.onReset()
   };
 
   shouldShowAliasWarning = (): boolean => {

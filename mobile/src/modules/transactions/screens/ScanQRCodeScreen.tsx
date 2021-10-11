@@ -10,8 +10,6 @@ import { transactions } from "../translations";
 import { Screen } from "../../../core/layout/Screen";
 import { FullHeightView } from "../../../core/layout/FullHeightView";
 import { actionIcons } from "../../../assets/icons";
-import { core } from "../../../core/translations";
-import { Text } from "../../../core/components/base/Text";
 import { HeaderTitle } from "../../../core/components/header/HeaderTitle";
 import {
   getDeeplinkInfo,

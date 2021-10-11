@@ -214,7 +214,8 @@
         "selectNode": "Selecione o Nó",
         "autoNodeSelection": "Seleção Automática de Nó",
         "copyright": "Copyright © Signum Network",
-        "credits": "Kudos para blankey1337 e titanishu"
+        "credits": "Kudos para blankey1337 e titanishu",
+        "showTestnetNodes": "Mostrar nós Testnet"
       }
     }
   }

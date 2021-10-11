@@ -1,11 +1,12 @@
 import { translations } from "i18n-js";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal, SafeAreaView, StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import VersionNumber from "react-native-version-number";
 import { NavigationInjectedProps } from "react-navigation";
-import { BSelect } from "../../../core/components/base/BSelect";
+import { BSelect, SelectItem } from "../../../core/components/base/BSelect";
 import { Button, ButtonThemes } from "../../../core/components/base/Button";
+import { BCheckbox } from "../../../core/components/base/BCheckbox";
 import { Text } from "../../../core/components/base/Text";
 import { HeaderTitle } from "../../../core/components/header/HeaderTitle";
 import { i18n } from "../../../core/i18n";
@@ -29,6 +30,7 @@ import {
 import { SwitchItem } from "../../../core/components/base/SwitchItem";
 import { logos } from "../../../assets/icons";
 import { ResetModal } from "../../../core/components/modals/ResetModal";
+import { transactions } from "../../transactions/translations";
 
 interface IProps extends InjectedReduxProps {
   auth: AuthReduxState;
@@ -85,6 +87,7 @@ export const SettingsScreen: React.FC<Props> = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [erasePromptVisible, setErasePromptVisible] = useState(false);
+  const [showTestnetNodes, setShowTestnetNodes] = useState(false);
   const currentNode = useSelector(selectCurrentNode);
   const isAutomatic = useSelector(selectIsAutomaticNodeSelection);
 
@@ -118,12 +121,13 @@ export const SettingsScreen: React.FC<Props> = () => {
     dispatch(autoSelectNode(automatic));
   };
 
-  const getNodeList = () =>
-    (defaultSettings.reliableNodeHosts as String[]).map((n) => ({
+  const getNodeList = () =>{
+    const nodeHosts: String[] = defaultSettings.reliableNodeHosts.concat(showTestnetNodes ? defaultSettings.testnetNodeHosts: [])
+    return nodeHosts.map((n) => ({
       label: n,
       value: n,
-    }));
-
+    } as SelectItem<string>));
+  }
   return (
     <Screen>
       <FullHeightView>
@@ -147,6 +151,13 @@ export const SettingsScreen: React.FC<Props> = () => {
                 value={isAutomatic}
               />
             </View>
+
+            <BCheckbox
+              label={i18n.t(settings.screens.settings.showTestnetNodes)}
+              value={showTestnetNodes}
+              onCheck={(checked) => setShowTestnetNodes(checked)}
+            />
+
           </View>
           <View style={styles.dangerZone}>
             <View style={styles.dangerZoneLabel}>

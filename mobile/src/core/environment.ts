@@ -9,6 +9,7 @@ import {
   DEFAULT_PASSCODE_TIME,
   RELIABLE_NODE_HOSTS,
   BLACK_LISTED_ACCOUNT_IDS,
+  TESTNET_NODE_HOSTS,
 } from "react-native-dotenv";
 
 // So we check it like this
@@ -27,11 +28,13 @@ if (
 const fromCsvString = (csv: string): string[] =>
   toString(csv)
     .split(";")
-    .map((v) => v.trim());
+    .map((v) => v.trim())
+    .filter((v) => !!v)
 
 const defaultSettings = {
   nodeHost: toString(DEFAULT_NODE_HOST),
   reliableNodeHosts: fromCsvString(RELIABLE_NODE_HOSTS),
+  testnetNodeHosts: fromCsvString(TESTNET_NODE_HOSTS),
   passcodeTime: toNumber(DEFAULT_PASSCODE_TIME),
   cryptoCompareURL: toString(CRYPTOCOMPARE_HOST_URL),
   burstAlertsURL: toString(BURSTALERTS_HOST_URL),
