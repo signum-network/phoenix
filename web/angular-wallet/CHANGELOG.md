@@ -1,4 +1,9 @@
 # Changelog
+## 1.3.1
+
+### Bug Fixes
+- Fixed Token Amount in Dashboard Token Widget (#1576)
+- Fixed Minor Layout issued (#1574)
 
 ## 1.3
 - Multiple Dashboards for newcomers, pro-users, or miners

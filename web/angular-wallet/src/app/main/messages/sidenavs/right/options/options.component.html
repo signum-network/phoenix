@@ -10,14 +10,13 @@
 </div>
 
 <div class="sidenav-content py-32 px-24" fxFlex fxLayout="column" *ngIf="options">
-  <label>Fee</label>
   <div class="mat-form-field">
-    <mat-form-field appearance="outline">
+    <mat-form-field class="fullwidth">
       <input matInput
              [(ngModel)]="feeBurst"
              name="feeBurst"
              placeholder="{{ 'fee' | i18n }}">
-      <label matSuffix>BURST</label>
+      <label matPrefix>{{CurrencySymbol}}&nbsp;</label>
     </mat-form-field>
   </div>
 

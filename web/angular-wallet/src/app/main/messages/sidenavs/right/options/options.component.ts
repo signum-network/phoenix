@@ -4,7 +4,7 @@ import {takeUntil} from 'rxjs/operators';
 import {MessagesService} from '../../../messages.service';
 import {SuggestedFees} from '@signumjs/core';
 import {UnsubscribeOnDestroy} from '../../../../../util/UnsubscribeOnDestroy';
-import {convertNQTStringToNumber} from '@signumjs/util';
+import {convertNQTStringToNumber, Amount} from '@signumjs/util';
 
 @Component({
   selector: 'message-options-sidenav',
@@ -15,6 +15,7 @@ import {convertNQTStringToNumber} from '@signumjs/util';
 export class MessageOptionsSidenavComponent extends UnsubscribeOnDestroy implements OnInit {
   @Input() fees: SuggestedFees;
 
+  public CurrencySymbol = Amount.CurrencySymbol();
   public encrypt: boolean;
   public feeBurst: string;
   public options: any;
