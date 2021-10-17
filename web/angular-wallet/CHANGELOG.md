@@ -1,4 +1,18 @@
 # Changelog
+## 1.3.2
+
+### Bug Fixes
+- Fixed Sending to Smart Contracts
+  - caused by changes in the node software itself
+  - fixed by patching and updating SignumJS
+- Fixed Token Widget Update (#1583)
+
+## 1.3.1
+
+### Bug Fixes
+- Fixed Token Amount in Dashboard Token Widget (#1576)
+
+
 ## 1.3.1
 
 ### Bug Fixes

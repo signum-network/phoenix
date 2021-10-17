@@ -37,7 +37,6 @@ import { BalanceComponent } from './widgets/balance/balance.component';
 import { ComponentsModule } from '../../components/components.module';
 import { TransactionsTableComponent } from './widgets/transactions-table/transactions-table.component';
 import { TokenComponent } from './widgets/token/token.component';
-import { BlockrewardComponent } from './widgets/blockreward/blockreward.component';
 import { BlockforgedComponent } from './widgets/blockforged/blockforged.component';
 import { BlockinfoComponent } from './widgets/blockinfo/blockinfo.component';
 import { MiningpoolComponent } from './widgets/miningpool/miningpool.component';
@@ -67,7 +66,6 @@ const routes: Routes = [
     TransactionsTableComponent,
     TokenComponent,
     BlockinfoComponent,
-    BlockrewardComponent,
     BlockforgedComponent,
     MiningpoolComponent,
   ],
