@@ -21,7 +21,7 @@ export class TokenComponent extends UnsubscribeOnDestroy implements OnInit, OnCh
   @Input() account: Account;
 
   isLoading = true;
-  hasTokens = false;
+  hasTokens = true;
   datasets = [];
   labels = [];
   options: any = {
@@ -48,9 +48,7 @@ export class TokenComponent extends UnsubscribeOnDestroy implements OnInit, OnCh
   }
 
   async ngOnInit(): Promise<void> {
-    this.isLoading = true;
     await this.updateChart();
-    this.isLoading = false;
     this.marketService.ticker$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((data: MarketInfoCoingecko) => {
@@ -69,18 +67,20 @@ export class TokenComponent extends UnsubscribeOnDestroy implements OnInit, OnCh
   }
 
   private async updateChart(): Promise<void> {
+    this.hasTokens = true; // we are optimistic
+    this.isLoading = true;
     const tokens = await this.tokenService.fetchAccountTokens(this.account);
-
-    if (!tokens.length) {
-      this.hasTokens = false;
+    this.isLoading = false;
+    this.hasTokens = tokens.length > 0;
+    if (!this.hasTokens) {
       return;
     }
 
     const balances = [];
     const labels = [];
     const totalEstimate = Amount.Zero();
-    tokens.forEach(({ balance, name, total}) => {
-      balances.push(balance);
+    tokens.forEach(({ name, total}) => {
+      balances.push(total);
       labels.push(name);
       totalEstimate.add(Amount.fromSigna(total));
     });
