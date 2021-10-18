@@ -14,6 +14,11 @@
     width: 120px;
   }
 
+  #power-user-tokens-chart{
+    position: relative;
+    z-index: 9;
+  }
+
   .tokenCount {
     position: absolute;
     font-size: 18px;
