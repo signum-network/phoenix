@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output} from '@angular/core';
-import {convertNQTStringToNumber} from '@signumjs/util';
+import { Amount, convertNQTStringToNumber } from "@signumjs/util";
 import {SuggestedFees} from '@signumjs/core';
 import {EventEmitter} from '@angular/core';
 import {LabelType, Options} from 'ng5-slider';
@@ -46,7 +46,7 @@ export class FeeSelectorComponent implements OnInit {
   ngOnInit(): void {
 
     const floor = this.convertFeeToBurst(this.fees.minimum);
-    const ceil = this.convertFeeToBurst(this.fees.priority);
+    const ceil = this.convertFeeToBurst(Amount.fromSigna(1).getPlanck());
 
     const normalize = (v): number => (v - floor) / (ceil - floor);
 
@@ -70,7 +70,7 @@ export class FeeSelectorComponent implements OnInit {
     };
   }
 
-  convertFeeToBurst(feeNQT: number): number {
+  convertFeeToBurst(feeNQT: number|string): number {
     return convertNQTStringToNumber(feeNQT.toString());
   }
 }

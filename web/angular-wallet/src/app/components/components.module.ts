@@ -19,6 +19,7 @@ import {WarnSendDialogComponent} from './warn-send-dialog/warn-send-dialog.compo
 import {MatDialogModule} from '@angular/material/dialog';
 import { WatermarkComponent } from './watermark/watermark.component';
 import { LinkButtonComponent } from './link-button/link-button.component';
+import { FeeInputComponent } from './fee-input/fee-input.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LinkButtonComponent } from './link-button/link-button.component';
     WarnSendDialogComponent,
     WatermarkComponent,
     LinkButtonComponent,
+    FeeInputComponent
   ],
   exports: [
     SubmitTransactionComponent,
@@ -39,7 +41,8 @@ import { LinkButtonComponent } from './link-button/link-button.component';
     PageComponent,
     WarnSendDialogComponent,
     WatermarkComponent,
-    LinkButtonComponent
+    LinkButtonComponent,
+    FeeInputComponent
   ],
   imports: [
     AppSharedModule,
