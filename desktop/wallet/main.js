@@ -1,5 +1,6 @@
 const path = require('path');
 const {app, BrowserWindow, Menu, shell, ipcMain} = require('electron');
+const openAboutWindow = require('about-window').default
 const {download} = require('electron-dl');
 const {context} = require('./src/context')
 const {migrateFromBurst} = require("./src/migrateFromBurst");
@@ -173,8 +174,12 @@ function createWindow() {
                     }
                 },
                 {
-                    label: 'Credits',
-                    selector: 'orderFrontStandardAboutPanel:'
+                    label: 'About',
+                    click() {
+                        openAboutWindow({
+                            icon_path: path.join(__dirname, './assets/icons/icon.png'),
+                        });
+                    }
                 }
             ]
         }
@@ -185,8 +190,14 @@ function createWindow() {
             label: app.getName(),
 
             submenu: [
-
-                {label: `About ${app.getName()}`, selector: 'orderFrontStandardAboutPanel:'},
+                {
+                    label: 'About',
+                    click() {
+                        openAboutWindow({
+                            icon_path: path.join(__dirname, './assets/icons/icon.png'),
+                        });
+                    }
+                },
                 {type: 'separator'},
                 {role: 'services'},
                 {type: 'separator'},
@@ -326,15 +337,3 @@ if (!gotTheLock) {
         }
     });
 }
-
-// TODO: need this for other OSes
-if (isMacOS()) {
-    app.setAboutPanelOptions({
-        applicationName: app.getName(),
-        applicationVersion: app.getVersion(),
-        copyright: 'Burst Apps Team/Signum Network',
-        credits: 'ohager, blankey1337',
-        version: process.versions.electron
-    });
-}
-
