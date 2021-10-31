@@ -1,13 +1,13 @@
 // based on https://github.com/signum-network/CIPs/blob/master/cip-0031.md
 
-import { Amount, FeeQuantPlanck } from "@signumjs/util";
-import { Injectable } from "@angular/core";
+import { Amount, FeeQuantPlanck } from '@signumjs/util';
+import { Injectable } from '@angular/core';
 import {
   TransactionArbitrarySubtype,
   TransactionAssetSubtype, TransactionEscrowSubtype,
   TransactionPaymentSubtype,
   TransactionType
-} from "@signumjs/core";
+} from '@signumjs/core';
 
 
 interface FeeRegime {
@@ -17,13 +17,16 @@ interface FeeRegime {
 }
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class FeeRegimeService {
+
+  static MinimumPayloadLength = 176;
 
   constructor() {
     this.initMap();
   }
+
   feeRegimeMap = new Map<string, { min: number, max: number }>();
   private feeBase: Amount = Amount.fromPlanck(FeeQuantPlanck);
 
@@ -58,7 +61,20 @@ export class FeeRegimeService {
     return {
       maxFactor: feeRegime ? feeRegime.max : 1,
       minFactor: feeRegime ? feeRegime.min : 1,
-      feeBase: this.feeBase
+      feeBase: this.feeBase.clone()
     };
+  }
+
+  public getMaxFeeByType(type: any, subtype: any): Amount {
+    const { feeBase, maxFactor } = this.getFeeRegime(type, subtype);
+    return feeBase.multiply( maxFactor );
+  }
+
+  public calculateFeeByPayload(type: any, subtype: any, payloadLength: number = FeeRegimeService.MinimumPayloadLength): Amount {
+    const { feeBase, maxFactor, minFactor } = this.getFeeRegime(type, subtype);
+    const hasPayloadDependentFee = minFactor !== maxFactor;
+    return hasPayloadDependentFee
+      ? feeBase.multiply(Math.floor(payloadLength / FeeRegimeService.MinimumPayloadLength))
+      : feeBase.multiply( maxFactor );
   }
 }

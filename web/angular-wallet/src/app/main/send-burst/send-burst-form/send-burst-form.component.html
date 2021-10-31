@@ -30,7 +30,8 @@
     </mat-form-field>
   </div>
 
-  <app-fee-selector *ngIf="!immutable" [fees]="fees" [(fee)]="fee"></app-fee-selector>
+  <app-fee-input *ngIf="!immutable" [type]="type" [subtype]="subtype" [(feeSigna)]="fee"></app-fee-input>
+<!--  <app-fee-selector *ngIf="!immutable" [fees]="fees" [(fee)]="fee"></app-fee-selector>-->
 
   <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="showMessage"
                 name="showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-import {Account, SuggestedFees} from '@signumjs/core';
+import { Account, SuggestedFees, TransactionPaymentSubtype, TransactionType } from "@signumjs/core";
 import {Amount, convertBase64StringToString} from '@signumjs/util';
 import {NgForm} from '@angular/forms';
 import {TransactionService} from 'app/main/transactions/transaction.service';
@@ -63,6 +63,8 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
 
   private balances: AccountBalances;
   symbol = CurrencySymbol;
+  type = TransactionType.Payment;
+  subtype = TransactionPaymentSubtype.Ordinary;
 
   constructor(
     private warnDialog: MatDialog,
