@@ -106,7 +106,7 @@ void as_const(T const&&) = delete;
 //  mimic: forward_like, p0847r0
 template <typename Src, typename Dst>
 constexpr like_t<Src, Dst>&& forward_like(Dst&& dst) noexcept {
-  return static_cast<like_t<Src, Dst>&&>(std::forward<Dst>(dst));
+  return std::forward<like_t<Src, Dst>>(static_cast<Dst&&>(dst));
 }
 
 /**
@@ -247,25 +247,27 @@ struct transparent : T {
  * Example:
  *
  *   int i = 42;
- *   int &j = Identity()(i);
+ *   int &j = identity(i);
  *   assert(&i == &j);
  *
- * Warning: passing a prvalue through Identity turns it into an xvalue,
+ * Warning: passing a prvalue through identity turns it into an xvalue,
  * which can effect whether lifetime extension occurs or not. For instance:
  *
  *   auto&& x = std::make_unique<int>(42);
  *   cout << *x ; // OK, x refers to a valid unique_ptr.
  *
- *   auto&& y = Identity()(std::make_unique<int>(42));
+ *   auto&& y = identity(std::make_unique<int>(42));
  *   cout << *y ; // ERROR: y did not lifetime-extend the unique_ptr. It
  *                // is no longer valid
  */
-struct Identity {
+struct identity_fn {
   template <class T>
   constexpr T&& operator()(T&& x) const noexcept {
     return static_cast<T&&>(x);
   }
 };
+using Identity = identity_fn;
+FOLLY_INLINE_VARIABLE constexpr identity_fn identity;
 
 namespace moveonly_ { // Protection from unintended ADL.
 
@@ -289,21 +291,29 @@ class MoveOnly {
 
 using MoveOnly = moveonly_::MoveOnly;
 
-template <typename T>
-constexpr auto to_signed(T const& t) -> typename std::make_signed<T>::type {
-  using S = typename std::make_signed<T>::type;
-  // note: static_cast<S>(t) would be more straightforward, but it would also be
-  // implementation-defined behavior and that is typically to be avoided; the
-  // following code optimized into the same thing, though
-  constexpr auto m = static_cast<T>(std::numeric_limits<S>::max());
-  return m < t ? -static_cast<S>(~t) + S{-1} : static_cast<S>(t);
-}
+struct to_signed_fn {
+  template <typename..., typename T>
+  constexpr auto operator()(T const& t) const noexcept ->
+      typename std::make_signed<T>::type {
+    using S = typename std::make_signed<T>::type;
+    // note: static_cast<S>(t) would be more straightforward, but it would also
+    // be implementation-defined behavior and that is typically to be avoided;
+    // the following code optimized into the same thing, though
+    constexpr auto m = static_cast<T>(std::numeric_limits<S>::max());
+    return m < t ? -static_cast<S>(~t) + S{-1} : static_cast<S>(t);
+  }
+};
+FOLLY_INLINE_VARIABLE constexpr to_signed_fn to_signed;
 
-template <typename T>
-constexpr auto to_unsigned(T const& t) -> typename std::make_unsigned<T>::type {
-  using U = typename std::make_unsigned<T>::type;
-  return static_cast<U>(t);
-}
+struct to_unsigned_fn {
+  template <typename..., typename T>
+  constexpr auto operator()(T const& t) const noexcept ->
+      typename std::make_unsigned<T>::type {
+    using U = typename std::make_unsigned<T>::type;
+    return static_cast<U>(t);
+  }
+};
+FOLLY_INLINE_VARIABLE constexpr to_unsigned_fn to_unsigned;
 
 template <typename Src>
 class to_narrow_convertible {
@@ -354,15 +364,55 @@ class to_narrow_convertible {
 //  to take advantage of the undefined-behavior sanitizer's inspection of all
 //  implicit conversions - it checks for truncation, with suppressions in place
 //  for warnings which guard against narrowing implicit conversions.
-template <typename Src>
-constexpr auto to_narrow(Src const& src) -> to_narrow_convertible<Src> {
-  return to_narrow_convertible<Src>{src};
-}
+struct to_narrow_fn {
+  template <typename..., typename Src>
+  constexpr auto operator()(Src const& src) const noexcept
+      -> to_narrow_convertible<Src> {
+    return to_narrow_convertible<Src>{src};
+  }
+};
+FOLLY_INLINE_VARIABLE constexpr to_narrow_fn to_narrow;
 
-template <class E>
-constexpr std::underlying_type_t<E> to_underlying(E e) noexcept {
-  static_assert(std::is_enum<E>::value, "not an enum type");
-  return static_cast<std::underlying_type_t<E>>(e);
-}
+struct to_underlying_fn {
+  template <typename..., class E>
+  constexpr std::underlying_type_t<E> operator()(E e) const noexcept {
+    static_assert(std::is_enum<E>::value, "not an enum type");
+    return static_cast<std::underlying_type_t<E>>(e);
+  }
+};
+FOLLY_INLINE_VARIABLE constexpr to_underlying_fn to_underlying;
+
+/*
+ * FOLLY_DECLVAL(T)
+ *
+ * This macro works like std::declval<T>() but does the same thing in a way
+ * that does not require instantiating a function template.
+ *
+ * Use this macro instead of std::declval<T>() in places that are widely
+ * instantiated to reduce compile-time overhead of instantiating function
+ * templates.
+ *
+ * Note that, like std::declval<T>(), this macro can only be used in
+ * unevaluated contexts.
+ *
+ * There are some small differences between this macro and std::declval<T>().
+ * - This macro results in a value of type 'T' instead of 'T&&'.
+ * - This macro requires the type T to be a complete type at the
+ *   point of use.
+ *   If this is a problem then use FOLLY_DECLVAL(T&&) instead, or if T might
+ *   be 'void', then use FOLLY_DECLVAL(std::add_rvalue_reference_t<T>).
+ */
+#if __cplusplus >= 201703L
+#define FOLLY_DECLVAL(...) static_cast<__VA_ARGS__ (*)() noexcept>(nullptr)()
+#else
+// Don't have noexcept-qualified function types prior to C++17
+// so just fall back to a function-template.
+namespace detail {
+template <typename T>
+T declval() noexcept;
+} // namespace detail
+
+#define FOLLY_DECLVAL(...) ::folly::detail::declval<__VA_ARGS__>()
+#endif
 
 } // namespace folly

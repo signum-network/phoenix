@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Brushes/RNSVGSolidColorBrush.h
+../../../../../node_modules/react-native-svg/apple/Brushes/RNSVGSolidColorBrush.h

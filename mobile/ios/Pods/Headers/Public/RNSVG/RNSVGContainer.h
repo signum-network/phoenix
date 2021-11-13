@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/RNSVGContainer.h
+../../../../../node_modules/react-native-svg/apple/RNSVGContainer.h

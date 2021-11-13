@@ -17,6 +17,7 @@
 #pragma once
 
 #include <stddef.h>
+
 #include <cstdint>
 
 namespace folly {
@@ -32,9 +33,7 @@ namespace detail {
 template <int DEG>
 class FingerprintPolynomial {
  public:
-  static constexpr int size() {
-    return 1 + DEG / 64;
-  }
+  static constexpr int size() { return 1 + DEG / 64; }
 
   constexpr FingerprintPolynomial() {}
 
@@ -44,9 +43,7 @@ class FingerprintPolynomial {
     }
   }
 
-  constexpr uint64_t get(size_t i) const {
-    return val_[i];
-  }
+  constexpr uint64_t get(size_t i) const { return val_[i]; }
 
   constexpr void add(const FingerprintPolynomial<DEG>& other) {
     for (int i = 0; i < size(); i++) {

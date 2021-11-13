@@ -20,15 +20,14 @@
 #include <type_traits>
 
 #include <folly/Portability.h>
+#include <folly/lang/CArray.h>
 
 namespace folly {
 
 namespace detail {
 
 template <std::size_t S>
-struct pretty_carray {
-  char data[S];
-};
+using pretty_carray = c_array<char, S>;
 
 template <std::size_t S>
 static constexpr pretty_carray<S> pretty_carray_from(char const (&in)[S]) {
@@ -51,8 +50,7 @@ static constexpr To pretty_info_to(pretty_info info, char const (&name)[S]) {
 
 template <std::size_t S>
 static constexpr std::size_t pretty_lfind(
-    char const (&haystack)[S],
-    char const needle) {
+    char const (&haystack)[S], char const needle) {
   for (std::size_t i = 0; i < S - 1; ++i) {
     if (haystack[i] == needle) {
       return i;
@@ -63,8 +61,7 @@ static constexpr std::size_t pretty_lfind(
 
 template <std::size_t S>
 static constexpr std::size_t pretty_rfind(
-    char const (&haystack)[S],
-    char const needle) {
+    char const (&haystack)[S], char const needle) {
   for (std::size_t i = S; i != 0; --i) {
     if (haystack[i - 1] == needle) {
       return i - 1;
@@ -97,8 +94,7 @@ static constexpr auto pretty_raw(pretty_tag_gcc) {
 
 template <std::size_t S>
 static constexpr pretty_info pretty_parse(
-    pretty_tag_msc,
-    char const (&name)[S]) {
+    pretty_tag_msc, char const (&name)[S]) {
   //  void __cdecl folly::detail::pretty_raw<{...}>(
   //      folly::detail::pretty_tag_msc)
   auto const la = pretty_lfind(name, '<');
@@ -108,8 +104,7 @@ static constexpr pretty_info pretty_parse(
 
 template <std::size_t S>
 static constexpr pretty_info pretty_parse(
-    pretty_tag_gcc,
-    char const (&name)[S]) {
+    pretty_tag_gcc, char const (&name)[S]) {
   //  void folly::detail::pretty_raw(
   //      folly::detail::pretty_tag_gcc) [T = {...}]
   auto const eq = pretty_lfind(name, '=');

@@ -5,7 +5,7 @@
 
     ]
   },
-  "version": "2.1.5",
+  "version": "2.2.2",
   "license": "MIT",
   "summary": "An unified permissions API for React Native on iOS and Android",
   "authors": {
@@ -20,7 +20,7 @@
   "requires_arc": true,
   "source": {
     "git": "git+https://github.com/react-native-community/react-native-permissions.git",
-    "tag": "2.1.5"
+    "tag": "2.2.2"
   },
   "source_files": "Camera/*.{h,m}"
 }

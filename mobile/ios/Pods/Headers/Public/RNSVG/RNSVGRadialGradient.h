@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Elements/RNSVGRadialGradient.h
+../../../../../node_modules/react-native-svg/apple/Elements/RNSVGRadialGradient.h

@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/ViewManagers/RNSVGTSpanManager.h
+../../../../../node_modules/react-native-svg/apple/ViewManagers/RNSVGTSpanManager.h

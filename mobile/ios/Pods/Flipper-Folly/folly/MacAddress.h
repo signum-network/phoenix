@@ -19,12 +19,18 @@
 #include <iosfwd>
 
 #include <folly/Conv.h>
+#include <folly/Expected.h>
 #include <folly/Range.h>
+#include <folly/Unit.h>
 #include <folly/lang/Bits.h>
 
 namespace folly {
 
 class IPAddressV6;
+
+enum class MacAddressFormatError {
+  Invalid,
+};
 
 /*
  * MacAddress represents an IEEE 802 MAC address.
@@ -38,9 +44,7 @@ class MacAddress {
   /*
    * Construct a zero-initialized MacAddress.
    */
-  MacAddress() {
-    memset(&bytes_, 0, 8);
-  }
+  MacAddress() { memset(&bytes_, 0, 8); }
 
   /*
    * Parse a MacAddress from a human-readable string.
@@ -50,9 +54,33 @@ class MacAddress {
    */
   explicit MacAddress(StringPiece str);
 
+  static Expected<MacAddress, MacAddressFormatError> tryFromString(
+      StringPiece value) {
+    MacAddress ret;
+    auto ok = ret.trySetFromString(value);
+    if (!ok) {
+      return makeUnexpected(ok.error());
+    }
+    return ret;
+  }
+  static MacAddress fromString(StringPiece value) {
+    MacAddress ret;
+    ret.setFromString(value);
+    return ret;
+  }
+
   /*
    * Construct a MAC address from its 6-byte binary value
    */
+  static Expected<MacAddress, MacAddressFormatError> tryFromBinary(
+      ByteRange value) {
+    MacAddress ret;
+    auto ok = ret.trySetFromBinary(value);
+    if (!ok) {
+      return makeUnexpected(ok.error());
+    }
+    return ret;
+  }
   static MacAddress fromBinary(ByteRange value) {
     MacAddress ret;
     ret.setFromBinary(value);
@@ -68,9 +96,7 @@ class MacAddress {
    * This is a static method rather than a constructor to avoid confusion
    * between host and network byte order constructors.
    */
-  static MacAddress fromNBO(uint64_t value) {
-    return MacAddress(value);
-  }
+  static MacAddress fromNBO(uint64_t value) { return MacAddress(value); }
 
   /*
    * Construct a MacAddress from a uint64_t in host byte order.
@@ -98,9 +124,7 @@ class MacAddress {
    * object.  It is only valid as long as the MacAddress, and its contents may
    * change if the MacAddress is updated.
    */
-  const uint8_t* bytes() const {
-    return bytes_ + 2;
-  }
+  const uint8_t* bytes() const { return bytes_ + 2; }
 
   /*
    * Return the address as a uint64_t, in network byte order.
@@ -108,9 +132,7 @@ class MacAddress {
    * The first two bytes will be 0, and the subsequent 6 bytes will contain
    * the address in network byte order.
    */
-  uint64_t u64NBO() const {
-    return packedBytes();
-  }
+  uint64_t u64NBO() const { return packedBytes(); }
 
   /*
    * Return the address as a uint64_t, in host byte order.
@@ -135,22 +157,19 @@ class MacAddress {
   /*
    * Update the current MacAddress object from a human-readable string.
    */
-  void parse(StringPiece str);
+  Expected<Unit, MacAddressFormatError> trySetFromString(StringPiece value);
+  void setFromString(StringPiece value);
+  void parse(StringPiece str) { setFromString(str); }
 
   /*
    * Update the current MacAddress object from a 6-byte binary representation.
    */
+  Expected<Unit, MacAddressFormatError> trySetFromBinary(ByteRange value);
   void setFromBinary(ByteRange value);
 
-  bool isBroadcast() const {
-    return *this == BROADCAST;
-  }
-  bool isMulticast() const {
-    return getByte(0) & 0x1;
-  }
-  bool isUnicast() const {
-    return !isMulticast();
-  }
+  bool isBroadcast() const { return *this == BROADCAST; }
+  bool isMulticast() const { return getByte(0) & 0x1; }
+  bool isUnicast() const { return !isMulticast(); }
 
   /*
    * Return true if this MAC address is locally administered.
@@ -162,9 +181,7 @@ class MacAddress {
    * Note that isLocallyAdministered() will return true for the broadcast
    * address, since it has the locally administered bit set.
    */
-  bool isLocallyAdministered() const {
-    return getByte(0) & 0x2;
-  }
+  bool isLocallyAdministered() const { return getByte(0) & 0x2; }
 
   // Comparison operators.
 
@@ -178,21 +195,13 @@ class MacAddress {
     return u64HBO() < other.u64HBO();
   }
 
-  bool operator!=(const MacAddress& other) const {
-    return !(*this == other);
-  }
+  bool operator!=(const MacAddress& other) const { return !(*this == other); }
 
-  bool operator>(const MacAddress& other) const {
-    return other < *this;
-  }
+  bool operator>(const MacAddress& other) const { return other < *this; }
 
-  bool operator>=(const MacAddress& other) const {
-    return !(*this < other);
-  }
+  bool operator>=(const MacAddress& other) const { return !(*this < other); }
 
-  bool operator<=(const MacAddress& other) const {
-    return !(*this > other);
-  }
+  bool operator<=(const MacAddress& other) const { return !(*this > other); }
 
  private:
   explicit MacAddress(uint64_t valueNBO) {
@@ -204,15 +213,21 @@ class MacAddress {
     bytes_[1] = 0;
   }
 
+  template <typename OnError>
+  Expected<Unit, MacAddressFormatError> setFromString(
+      StringPiece value, OnError err);
+
+  template <typename OnError>
+  Expected<Unit, MacAddressFormatError> setFromBinary(
+      ByteRange value, OnError err);
+
   /* We store the 6 bytes starting at bytes_[2] (most significant)
      through bytes_[7] (least).
      bytes_[0] and bytes_[1] are always equal to 0 to simplify comparisons.
   */
   unsigned char bytes_[8];
 
-  inline uint64_t getByte(size_t index) const {
-    return bytes_[index + 2];
-  }
+  inline uint64_t getByte(size_t index) const { return bytes_[index + 2]; }
 
   uint64_t packedBytes() const {
     uint64_t u64;
@@ -224,8 +239,7 @@ class MacAddress {
 /* Define toAppend() so to<string> will work */
 template <class Tgt>
 typename std::enable_if<IsSomeString<Tgt>::value>::type toAppend(
-    MacAddress address,
-    Tgt* result) {
+    MacAddress address, Tgt* result) {
   toAppend(address.toString(), result);
 }
 

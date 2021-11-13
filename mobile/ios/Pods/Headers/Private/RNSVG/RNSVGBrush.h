@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Brushes/RNSVGBrush.h
+../../../../../node_modules/react-native-svg/apple/Brushes/RNSVGBrush.h

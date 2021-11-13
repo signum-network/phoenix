@@ -72,10 +72,18 @@ namespace folly {
 
 //////////////////////////////////////////////////////////////////////
 
+struct const_dynamic_view;
 struct dynamic;
+struct dynamic_view;
 struct TypeError;
 
 //////////////////////////////////////////////////////////////////////
+
+namespace dynamic_detail {
+template <typename T>
+using detect_construct_string = decltype(std::string(
+    FOLLY_DECLVAL(T const&).data(), FOLLY_DECLVAL(T const&).size()));
+}
 
 struct dynamic : private boost::operators<dynamic> {
   enum Type {
@@ -167,9 +175,13 @@ struct dynamic : private boost::operators<dynamic> {
    * String compatibility constructors.
    */
   /* implicit */ dynamic(std::nullptr_t);
-  /* implicit */ dynamic(StringPiece val);
   /* implicit */ dynamic(char const* val);
   /* implicit */ dynamic(std::string val);
+  template <
+      typename Stringish,
+      typename = std::enable_if_t<
+          is_detected_v<dynamic_detail::detect_construct_string, Stringish>>>
+  /* implicit */ dynamic(Stringish&& s);
 
   /*
    * This is part of the plumbing for array() and object(), above.
@@ -326,8 +338,6 @@ struct dynamic : private boost::operators<dynamic> {
    *
    * These will throw a TypeError if the dynamic is not a string.
    */
-  const char* data() const&;
-  const char* data() && = delete;
   const char* c_str() const&;
   const char* c_str() && = delete;
   StringPiece stringPiece() const;
@@ -565,15 +575,13 @@ struct dynamic : private boost::operators<dynamic> {
    */
   template <typename K>
   IfIsNonStringDynamicConvertible<K, dynamic> getDefault(
-      K&& k,
-      const dynamic& v = dynamic::object) const&;
-  template <typename K>
-  IfIsNonStringDynamicConvertible<K, dynamic> getDefault(K&& k, dynamic&& v)
-      const&;
+      K&& k, const dynamic& v = dynamic::object) const&;
   template <typename K>
   IfIsNonStringDynamicConvertible<K, dynamic> getDefault(
-      K&& k,
-      const dynamic& v = dynamic::object) &&;
+      K&& k, dynamic&& v) const&;
+  template <typename K>
+  IfIsNonStringDynamicConvertible<K, dynamic> getDefault(
+      K&& k, const dynamic& v = dynamic::object) &&;
   template <typename K>
   IfIsNonStringDynamicConvertible<K, dynamic> getDefault(K&& k, dynamic&& v) &&;
 
@@ -594,8 +602,7 @@ struct dynamic : private boost::operators<dynamic> {
   IfIsNonStringDynamicConvertible<K, dynamic&> setDefault(K&& k, dynamic&& v);
   template <typename K>
   IfIsNonStringDynamicConvertible<K, dynamic&> setDefault(
-      K&& k,
-      const dynamic& v = dynamic::object);
+      K&& k, const dynamic& v = dynamic::object);
 
   dynamic& setDefault(StringPiece k, dynamic&& v);
   dynamic& setDefault(StringPiece k, const dynamic& v = dynamic::object);
@@ -725,6 +732,8 @@ struct dynamic : private boost::operators<dynamic> {
   std::size_t hash() const;
 
  private:
+  friend struct const_dynamic_view;
+  friend struct dynamic_view;
   friend struct TypeError;
   struct ObjectImpl;
   template <class T>
@@ -788,6 +797,171 @@ struct dynamic : private boost::operators<dynamic> {
     aligned_storage_for_t<F14NodeMap<int, int>> objectBuffer;
   } u_;
 };
+
+//////////////////////////////////////////////////////////////////////
+
+/**
+ * This is a helper class for traversing an instance of dynamic and accessing
+ * the values within without risking throwing an exception. The primary use case
+ * is to help write cleaner code when using dynamic instances without strict
+ * schemas - eg. where keys may be missing, or present but with null values,
+ * when expecting non-null values.
+ *
+ * Some examples:
+ *
+ *   dynamic twelve = 12;
+ *   dynamic str = "string";
+ *   dynamic map = dynamic::object("str", str)("twelve", 12);
+ *
+ *   dynamic_view view{map};
+ *   assert(view.descend("str").string_or("bad") == "string");
+ *   assert(view.descend("twelve").int_or(-1) == 12);
+ *   assert(view.descend("zzz").string_or("aaa") == "aaa");
+ *
+ *   dynamic wrapper = dynamic::object("child", map);
+ *   dynamic_view wrapper_view{wrapper};
+ *
+ *   assert(wrapper_view.descend("child", "str").string_or("bad") == "string");
+ *   assert(wrapper_view.descend("wrong", 0, "huh").value_or(nullptr).isNull());
+ */
+struct const_dynamic_view {
+  // Empty view.
+  const_dynamic_view() noexcept = default;
+
+  // Basic view constructor. Creates a view of the referenced dynamic.
+  /* implicit */ const_dynamic_view(dynamic const& d) noexcept;
+
+  const_dynamic_view(const_dynamic_view const&) noexcept = default;
+  const_dynamic_view& operator=(const_dynamic_view const&) noexcept = default;
+
+  // Allow conversion from mutable to immutable view.
+  /* implicit */ const_dynamic_view(dynamic_view& view) noexcept;
+  /* implicit */ const_dynamic_view& operator=(dynamic_view& view) noexcept;
+
+  // Never view a temporary.
+  explicit const_dynamic_view(dynamic&&) = delete;
+
+  // Returns true if this view is backed by a valid dynamic, false otherwise.
+  explicit operator bool() const noexcept;
+
+  // Returns true if this view is not backed by a dynamic, false otherwise.
+  bool empty() const noexcept;
+
+  // Resets the view to a default constructed state not backed by any dynamic.
+  void reset() noexcept;
+
+  // Traverse a dynamic by repeatedly applying operator[].
+  // If all keys are valid, then the returned view will be backed by the
+  // accessed dynamic, otherwise it will be empty.
+  template <typename Key, typename... Keys>
+  const_dynamic_view descend(
+      Key const& key, Keys const&... keys) const noexcept;
+
+  // Untyped accessor. Returns a copy of the viewed dynamic, or the default
+  // value given if this view is empty, or a null dynamic otherwise.
+  dynamic value_or(dynamic&& val = nullptr) const;
+
+  // The following accessors provide a read-only exception-safe API for
+  // accessing the underlying viewed dynamic. Unlike the main dynamic APIs,
+  // these follow a stricter contract, which also requires a caller-provided
+  // default argument.
+  //  - TypeError will not be thrown. primitive accessors further are marked
+  //    noexcept.
+  //  - No type conversions are performed. If the viewed dynamic does not match
+  //    the requested type, the default argument is returned instead.
+  //  - If the view is empty, the default argument is returned instead.
+  std::string string_or(char const* val) const;
+  std::string string_or(std::string val) const;
+  template <
+      typename Stringish,
+      typename = std::enable_if_t<
+          is_detected_v<dynamic_detail::detect_construct_string, Stringish>>>
+  std::string string_or(Stringish&& val) const;
+
+  double double_or(double val) const noexcept;
+
+  int64_t int_or(int64_t val) const noexcept;
+
+  bool bool_or(bool val) const noexcept;
+
+ protected:
+  /* implicit */ const_dynamic_view(dynamic const* d) noexcept;
+
+  template <typename Key1, typename Key2, typename... Keys>
+  dynamic const* descend_(
+      Key1 const& key1, Key2 const& key2, Keys const&... keys) const noexcept;
+  template <typename Key>
+  dynamic const* descend_(Key const& key) const noexcept;
+  template <typename Key>
+  dynamic::IfIsNonStringDynamicConvertible<Key, dynamic const*>
+  descend_unchecked_(Key const& key) const noexcept;
+  dynamic const* descend_unchecked_(StringPiece key) const noexcept;
+
+  dynamic const* d_ = nullptr;
+
+  // Internal helper method for accessing a value by a type.
+  template <typename T, typename... Args>
+  T get_copy(Args&&... args) const;
+};
+
+struct dynamic_view : public const_dynamic_view {
+  // Empty view.
+  dynamic_view() noexcept = default;
+
+  // dynamic_view can be used to view non-const dynamics only.
+  /* implicit */ dynamic_view(dynamic& d) noexcept;
+
+  dynamic_view(dynamic_view const&) noexcept = default;
+  dynamic_view& operator=(dynamic_view const&) noexcept = default;
+
+  // dynamic_view can not view const dynamics.
+  explicit dynamic_view(dynamic const&) = delete;
+  // dynamic_view can not be initialized from a const_dynamic_view
+  explicit dynamic_view(const_dynamic_view const&) = delete;
+
+  // Like const_dynamic_view, but returns a dynamic_view.
+  template <typename Key, typename... Keys>
+  dynamic_view descend(Key const& key, Keys const&... keys) const noexcept;
+
+  // dynamic_view provides APIs which can mutably access the backed dynamic.
+  // 'mutably access' in this case means extracting the viewed dynamic or
+  // value to omit unnecessary copies. It does not mean writing through to
+  // the backed dynamic - this is still just a view, not a mutator.
+
+  // Moves the viewed dynamic into the returned value via std::move. If the view
+  // is not backed by a dynamic, returns a provided default, or a null dynamic.
+  // Postconditions for the backed dynamic are the same as for any dynamic that
+  // is moved-from. this->empty() == false.
+  dynamic move_value_or(dynamic&& val = nullptr) noexcept;
+
+  // Specific optimization for strings which can allocate, unlike the other
+  // scalar types. If the viewed dynamic is a string, the string value is
+  // std::move'd to initialize a new instance which is returned.
+  std::string move_string_or(std::string val) noexcept;
+  std::string move_string_or(char const* val);
+  template <
+      typename Stringish,
+      typename = std::enable_if_t<
+          is_detected_v<dynamic_detail::detect_construct_string, Stringish>>>
+  std::string move_string_or(Stringish&& val);
+
+ private:
+  template <typename T, typename... Args>
+  T get_move(Args&&... args);
+};
+
+// A helper method which returns a contextually-correct dynamic_view for the
+// given view. If passed a dynamic const&, returns a const_dynamic_view, and
+// if passed a dynamic&, returns a dynamic_view.
+inline auto make_dynamic_view(dynamic const& d) {
+  return const_dynamic_view{d};
+}
+
+inline auto make_dynamic_view(dynamic& d) {
+  return dynamic_view{d};
+}
+
+auto make_dynamic_view(dynamic&&) = delete;
 
 //////////////////////////////////////////////////////////////////////
 

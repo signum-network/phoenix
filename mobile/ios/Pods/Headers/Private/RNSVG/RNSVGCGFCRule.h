@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Utils/RNSVGCGFCRule.h
+../../../../../node_modules/react-native-svg/apple/Utils/RNSVGCGFCRule.h

@@ -73,6 +73,17 @@ void FlipperClient::addPlugin(std::shared_ptr<FlipperPlugin> plugin) {
   });
 }
 
+void FlipperClient::setCertificateProvider(
+    const std::shared_ptr<FlipperCertificateProvider> provider) {
+  socket_->setCertificateProvider(provider);
+  log("cpp setCertificateProvider called");
+}
+
+std::shared_ptr<FlipperCertificateProvider>
+FlipperClient::getCertificateProvider() {
+  return socket_->getCertificateProvider();
+}
+
 void FlipperClient::removePlugin(std::shared_ptr<FlipperPlugin> plugin) {
   performAndReportError([this, plugin]() {
     log("FlipperClient::removePlugin " + plugin->identifier());
@@ -156,7 +167,7 @@ void FlipperClient::onMessageReceived(
   // plugin, and still use it to respond with an error if we catch an exception.
   std::shared_ptr<FlipperResponder> responder = std::move(uniqueResponder);
   try {
-    std::lock_guard<std::mutex> lock(mutex_);
+    std::unique_lock<std::mutex> lock(mutex_);
     const auto& method = message["method"];
     const auto& params = message.getDefault("params");
 
@@ -222,7 +233,12 @@ void FlipperClient::onMessageReceived(
             "name", "ConnectionNotFound"));
         return;
       }
-      const auto& conn = connections_.at(params["api"].getString());
+      const auto conn = connections_.at(params["api"].getString());
+
+      // conn->call(...) may call back to FlipperClient causing a deadlock (see
+      // T92341964). Making sure the mutex is not locked.
+      lock.unlock();
+
       conn->call(
           params["method"].getString(), params.getDefault("params"), responder);
       return;

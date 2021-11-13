@@ -110,14 +110,12 @@ namespace dynamicconverter_detail {
 template <typename T>
 struct Dereferencer {
   static inline void derefToCache(
-      Optional<T>* /* mem */,
-      const dynamic::const_item_iterator& /* it */) {
+      Optional<T>* /* mem */, const dynamic::const_item_iterator& /* it */) {
     throw_exception<TypeError>("array", dynamic::Type::OBJECT);
   }
 
   static inline void derefToCache(
-      Optional<T>* mem,
-      const dynamic::const_iterator& it) {
+      Optional<T>* mem, const dynamic::const_iterator& it) {
     mem->emplace(convertTo<T>(*it));
   }
 };
@@ -125,16 +123,14 @@ struct Dereferencer {
 template <typename F, typename S>
 struct Dereferencer<std::pair<F, S>> {
   static inline void derefToCache(
-      Optional<std::pair<F, S>>* mem,
-      const dynamic::const_item_iterator& it) {
+      Optional<std::pair<F, S>>* mem, const dynamic::const_item_iterator& it) {
     mem->emplace(convertTo<F>(it->first), convertTo<S>(it->second));
   }
 
   // Intentional duplication of the code in Dereferencer
   template <typename T>
   static inline void derefToCache(
-      Optional<T>* mem,
-      const dynamic::const_iterator& it) {
+      Optional<T>* mem, const dynamic::const_iterator& it) {
     mem->emplace(convertTo<T>(*it));
   }
 };
@@ -188,9 +184,7 @@ struct DynamicConverter;
 // boolean
 template <>
 struct DynamicConverter<bool> {
-  static bool convert(const dynamic& d) {
-    return d.asBool();
-  }
+  static bool convert(const dynamic& d) { return d.asBool(); }
 };
 
 // integrals
@@ -199,9 +193,7 @@ struct DynamicConverter<
     T,
     typename std::enable_if<
         std::is_integral<T>::value && !std::is_same<T, bool>::value>::type> {
-  static T convert(const dynamic& d) {
-    return folly::to<T>(d.asInt());
-  }
+  static T convert(const dynamic& d) { return folly::to<T>(d.asInt()); }
 };
 
 // enums
@@ -220,25 +212,19 @@ template <typename T>
 struct DynamicConverter<
     T,
     typename std::enable_if<std::is_floating_point<T>::value>::type> {
-  static T convert(const dynamic& d) {
-    return folly::to<T>(d.asDouble());
-  }
+  static T convert(const dynamic& d) { return folly::to<T>(d.asDouble()); }
 };
 
 // fbstring
 template <>
 struct DynamicConverter<folly::fbstring> {
-  static folly::fbstring convert(const dynamic& d) {
-    return d.asString();
-  }
+  static folly::fbstring convert(const dynamic& d) { return d.asString(); }
 };
 
 // std::string
 template <>
 struct DynamicConverter<std::string> {
-  static std::string convert(const dynamic& d) {
-    return d.asString();
-  }
+  static std::string convert(const dynamic& d) { return d.asString(); }
 };
 
 // std::pair
@@ -314,9 +300,7 @@ struct DynamicConverter<
 // default
 template <typename C, typename Enable = void>
 struct DynamicConstructor {
-  static dynamic construct(const C& x) {
-    return dynamic(x);
-  }
+  static dynamic construct(const C& x) { return dynamic(x); }
 };
 
 // identity
@@ -324,9 +308,7 @@ template <typename C>
 struct DynamicConstructor<
     C,
     typename std::enable_if<std::is_same<C, dynamic>::value>::type> {
-  static dynamic construct(const C& x) {
-    return x;
-  }
+  static dynamic construct(const C& x) { return x; }
 };
 
 // enums
@@ -334,9 +316,7 @@ template <typename C>
 struct DynamicConstructor<
     C,
     typename std::enable_if<std::is_enum<C>::value>::type> {
-  static dynamic construct(const C& x) {
-    return dynamic(to_underlying(x));
-  }
+  static dynamic construct(const C& x) { return dynamic(to_underlying(x)); }
 };
 
 // maps

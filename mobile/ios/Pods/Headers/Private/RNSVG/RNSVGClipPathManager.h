@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/ViewManagers/RNSVGClipPathManager.h
+../../../../../node_modules/react-native-svg/apple/ViewManagers/RNSVGClipPathManager.h

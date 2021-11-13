@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Utils/RNSVGVBMOS.h
+../../../../../node_modules/react-native-svg/apple/Utils/RNSVGVBMOS.h

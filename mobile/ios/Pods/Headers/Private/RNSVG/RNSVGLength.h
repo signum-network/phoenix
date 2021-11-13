@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Utils/RNSVGLength.h
+../../../../../node_modules/react-native-svg/apple/Utils/RNSVGLength.h
