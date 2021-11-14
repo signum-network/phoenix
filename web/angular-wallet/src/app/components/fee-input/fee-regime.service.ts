@@ -74,7 +74,7 @@ export class FeeRegimeService {
     const { feeBase, maxFactor, minFactor } = this.getFeeRegime(type, subtype);
     const hasPayloadDependentFee = minFactor !== maxFactor;
     return hasPayloadDependentFee
-      ? feeBase.multiply(Math.floor(payloadLength / FeeRegimeService.MinimumPayloadLength))
+      ? feeBase.multiply(Math.floor((FeeRegimeService.MinimumPayloadLength + payloadLength) / FeeRegimeService.MinimumPayloadLength))
       : feeBase.multiply( maxFactor );
   }
 }

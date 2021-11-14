@@ -1,0 +1,24 @@
+<div class="fullwidth position-relative mb-12" fxFlex="1 0 auto" fxLayout="column" fxLayoutAlign="start">
+  <mat-form-field>
+      <textarea matInput
+                [disabled]="disabled"
+                [(ngModel)]="message"
+                (ngModelChange)="onMessageChange(message)"
+                name="message"
+                placeholder="{{ 'message' | i18n }}"
+                cdkTextareaAutosize
+      ></textarea>
+  </mat-form-field>
+  <div class="message-counter">{{message ? message.length : 0}}/{{MaxMessageLength}}</div>
+  <div class="message-options">
+    <small class="badge" [class.selected]="encrypt" (click)="toggleEncrypt()">
+      <mat-icon>{{encrypt ? 'lock' : 'no_encryption'}}</mat-icon>
+      {{'encrypt_message' | i18n}}
+    </small>
+    <small class="badge" [class.selected]="isText" (click)="toggleIsText()">
+      <mat-icon>{{isText ? 'title' : 'code'}}</mat-icon>
+      {{'message_is_text' | i18n}}
+    </small>
+  </div>
+  <div *ngIf="isMessageTooLong()" class="error-text message-toolong">{{ "message_too_long" | i18n }}</div>
+</div>

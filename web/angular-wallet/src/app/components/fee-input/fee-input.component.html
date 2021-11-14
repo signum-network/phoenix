@@ -1,0 +1,15 @@
+<div class="fullwidth position-relative" fxFlex="1 0 auto" fxLayout="column" fxLayoutAlign="start">
+  <mat-form-field>
+    <mat-label>{{ 'fee' | i18n }}</mat-label>
+    <span class="mr-8" matPrefix>{{symbol}}</span>
+    <input matInput
+           [(ngModel)]="feeSigna"
+           placeholder="{{ 'fee' | i18n }}"
+    >
+  </mat-form-field>
+  <div class="fee-type">
+      <small class="badge" [class.selected]="priority === 'cheap'" (click)="setPriority('cheap')">{{'cheap_fee' | i18n}}</small>
+      <small class="badge" [class.selected]="priority === 'standard'" (click)="setPriority('standard')">{{'standard_fee' | i18n}}</small>
+      <small class="badge" [class.selected]="priority === 'priority'" (click)="setPriority('priority')">{{'priority_fee' | i18n}}</small>
+  </div>
+</div>

@@ -1,26 +1,26 @@
-import {Component, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-import { Account, SuggestedFees, TransactionPaymentSubtype, TransactionType } from "@signumjs/core";
-import {Amount, convertBase64StringToString} from '@signumjs/util';
-import {NgForm} from '@angular/forms';
-import {TransactionService} from 'app/main/transactions/transaction.service';
-import {NotifierService} from 'angular-notifier';
-import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {StoreService} from '../../../store/store.service';
-import {takeUntil} from 'rxjs/operators';
-import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
-import {ActivatedRoute, Router, NavigationEnd, Params} from '@angular/router';
-import {getBalancesFromAccount, AccountBalances} from '../../../util/balance';
-import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
-import {Address} from '@signumjs/core';
-import {CurrencySymbol} from '@signumjs/util';
+import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Account, SuggestedFees, TransactionPaymentSubtype, TransactionType } from '@signumjs/core';
+import { Amount, convertBase64StringToString } from '@signumjs/util';
+import { NgForm } from '@angular/forms';
+import { TransactionService } from 'app/main/transactions/transaction.service';
+import { NotifierService } from 'angular-notifier';
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { StoreService } from '../../../store/store.service';
+import { takeUntil } from 'rxjs/operators';
+import { UnsubscribeOnDestroy } from '../../../util/UnsubscribeOnDestroy';
+import { ActivatedRoute, Router, NavigationEnd, Params } from '@angular/router';
+import { getBalancesFromAccount, AccountBalances } from '../../../util/balance';
+import { isKeyDecryptionError } from '../../../util/exceptions/isKeyDecryptionError';
+import { Address } from '@signumjs/core';
+import { CurrencySymbol } from '@signumjs/util';
 import {
   QRData,
   Recipient,
   RecipientValidationStatus
 } from 'app/components/recipient-input/recipient-input.component';
-import {WarnSendDialogComponent} from 'app/components/warn-send-dialog/warn-send-dialog.component';
-import {asBool, isNotEmpty} from 'app/util/forms';
+import { WarnSendDialogComponent } from 'app/components/warn-send-dialog/warn-send-dialog.component';
+import { asBool, isNotEmpty } from 'app/util/forms';
 
 interface CIP22Payload {
   amountPlanck: string | number;
@@ -40,18 +40,17 @@ interface CIP22Payload {
   styleUrls: ['./send-burst-form.component.scss']
 })
 export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
-  @ViewChild('sendBurstForm', {static: true}) public sendBurstForm: NgForm;
-  @ViewChild('amount', {static: true}) public amount: string;
+  @ViewChild('sendBurstForm', { static: true }) public sendBurstForm: NgForm;
+  @ViewChild('amount', { static: true }) public amount: string;
   @ViewChild('message', {static: true}) public message: string;
-  @ViewChild('fullHash', {static: false}) public fullHash: string;
+  @ViewChild('fullHash', { static: false }) public fullHash: string;
   @ViewChild('encrypt', {static: true}) public encrypt: boolean;
-  @ViewChild('pin', {static: true}) public pin: string;
+  @ViewChild('pin', { static: true }) public pin: string;
   @ViewChild('messageIsText', {static: true}) public messageIsText: boolean;
 
   @Input() account: Account;
   @Input() fees: SuggestedFees;
 
-  advanced = false;
   showMessage = false;
   deadline = '24';
   immutable = false;
@@ -80,7 +79,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
       .pipe(
         takeUntil(this.unsubscribeAll)
       )
-      .subscribe(async ({language}) => {
+      .subscribe(async ({ language }) => {
           this.language = language;
         }
       );
@@ -101,6 +100,8 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
 
   ngAfterViewInit(): void {
     this.messageIsText = true;
+    this.immutable = false;
+    this.encrypt = false;
 
     if (this.route.snapshot.queryParams) {
       setTimeout(() => {
@@ -122,7 +123,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   private applyCIP22DeepLinkParams(queryParams: Params): void {
-    const {payload} = queryParams;
+    const { payload } = queryParams;
     const decodedPayload = convertBase64StringToString(payload);
     const {
       amountPlanck,
@@ -132,7 +133,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
       immutable,
       message,
       messageIsText,
-      recipient,
+      recipient
     } = JSON.parse(decodedPayload) as CIP22Payload;
 
     this.onRecipientChange(new Recipient(recipient));
@@ -149,7 +150,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   private applyLegacyDeepLinkParams(queryParams: Params): void {
-    const {receiver, feeNQT, amountNQT, message, encrypt, immutable, messageIsText, feeSuggestionType} = queryParams;
+    const { receiver, feeNQT, amountNQT, message, encrypt, immutable, messageIsText, feeSuggestionType } = queryParams;
     this.onRecipientChange(new Recipient(receiver));
     if (feeNQT) {
       this.fee = Amount.fromPlanck(feeNQT).getSigna();
@@ -244,11 +245,11 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   canSubmit(): boolean {
-    return isNotEmpty(this.recipient.addressRaw) &&
-      isNotEmpty(this.amount) &&
-      isNotEmpty(this.pin) &&
-      !this.isMessageTooLong() &&
-      this.hasSufficientBalance();
+    return isNotEmpty(this.recipient.addressRaw)
+      && isNotEmpty(this.amount)
+      && isNotEmpty(this.pin)
+      && !this.isMessageTooLong();
+      // && this.hasSufficientBalance();
   }
 
   onRecipientChange(recipient: Recipient): void {
@@ -265,6 +266,16 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
     if (qrData.feeSuggestionType && this.fees[qrData.feeSuggestionType]) {
       this.fee = Amount.fromPlanck(this.fees[qrData.feeSuggestionType]).getSigna();
     }
+  }
+
+  getMaxAmount(): string {
+    if (!this.balances) {
+      return;
+    }
+
+    const available = this.balances.availableBalance.clone();
+    const fee = Amount.fromSigna(this.fee || '0');
+    return available.subtract(fee).getSigna();
   }
 
   onSpendAll(): void {

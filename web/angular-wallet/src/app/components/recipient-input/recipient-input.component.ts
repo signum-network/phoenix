@@ -6,6 +6,7 @@ import {Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {Address, AddressPrefix} from '@signumjs/core';
 import {AccountService} from '../../setup/account/account.service';
+import { AppService } from "../../app.service";
 
 // generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
 let nextId = 0;
@@ -90,7 +91,9 @@ export class RecipientInputComponent implements OnChanges {
 
   @ViewChild('file', {static: false}) file: ElementRef;
 
-  constructor(private accountService: AccountService,
+  constructor(
+    private appService: AppService,
+    private accountService: AccountService,
               private notifierService: NotifierService,
               private domainService: DomainService) {
 
@@ -105,6 +108,10 @@ export class RecipientInputComponent implements OnChanges {
 
   onRecipientFieldInputChange(query: string): void {
     this.recipientFieldInputChange$.next(query);
+  }
+
+  ngOnInit(): void {
+    this.withQrCode = this.appService.isRunningOnMobile();
   }
 
   ngOnChanges(): void {

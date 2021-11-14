@@ -20,6 +20,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { WatermarkComponent } from './watermark/watermark.component';
 import { LinkButtonComponent } from './link-button/link-button.component';
 import { FeeInputComponent } from './fee-input/fee-input.component';
+import { MessageInputComponent } from './message-input/message-input.component';
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { FeeInputComponent } from './fee-input/fee-input.component';
     WarnSendDialogComponent,
     WatermarkComponent,
     LinkButtonComponent,
-    FeeInputComponent
+    FeeInputComponent,
+    MessageInputComponent
   ],
   exports: [
     SubmitTransactionComponent,
@@ -42,7 +45,8 @@ import { FeeInputComponent } from './fee-input/fee-input.component';
     WarnSendDialogComponent,
     WatermarkComponent,
     LinkButtonComponent,
-    FeeInputComponent
+    FeeInputComponent,
+    MessageInputComponent
   ],
   imports: [
     AppSharedModule,
@@ -60,6 +64,7 @@ import { FeeInputComponent } from './fee-input/fee-input.component';
     Ng5SliderModule,
     RouterModule,
     MatDialogModule,
+    MatCheckboxModule
   ],
   entryComponents: [
     WarnSendDialogComponent

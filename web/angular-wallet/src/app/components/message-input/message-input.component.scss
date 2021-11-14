@@ -1,0 +1,56 @@
+:host {
+
+  .message-counter {
+    font-size: 10px;
+    color: #666;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .message-options {
+    position: absolute;
+    bottom: -12px;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+
+    small {
+      margin-left: 0.25rem;
+      font-size: 12px;
+      border-radius: 4px;
+      padding: 0 4px;
+      cursor: pointer;
+    }
+
+    .badge {
+      background: #E8F3FF;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      mat-icon {
+        transform: scale(0.66);
+        width: 16px;
+        height: 16px;
+        color: #666666;
+      }
+
+      &.selected {
+        background: #00FF88;
+      }
+
+      &:hover {
+        filter: brightness(75%);
+        transition: filter 125ms ease-in-out;
+      }
+    }
+  }
+
+  .message-toolong {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+  }
+}
