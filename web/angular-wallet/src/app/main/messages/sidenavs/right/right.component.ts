@@ -1,11 +1,8 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation, Input, Output, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation, ViewChild} from '@angular/core';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-
 import {fuseAnimations} from '@fuse/animations';
-
 import {MessagesService} from '../../messages.service';
-import {SuggestedFees} from '@signumjs/core/out';
 import {MessageOptionsSidenavComponent} from './options/options.component';
 
 @Component({
@@ -17,7 +14,6 @@ import {MessageOptionsSidenavComponent} from './options/options.component';
 })
 export class MessageRightSidenavComponent implements OnInit, OnDestroy {
   view: string;
-  @Input('fees') fees: SuggestedFees;
   @ViewChild(MessageOptionsSidenavComponent, { static: false }) options;
 
   private _unsubscribeAll: Subject<any>;

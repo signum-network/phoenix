@@ -23,7 +23,7 @@ import {NetworkService} from '../../../network/network.service';
   encapsulation: ViewEncapsulation.None
 })
 export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
-  @Input() feeBurst: number;
+  @Input() feeSigna: number;
   @Input() encrypt: boolean;
 
   @ViewChild('pin', {static: false})
@@ -60,6 +60,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.encrypt = false;
     this.addressPrefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
     this.selectedUser = this.messageService.user;
     this.messageService.onMessageSelected
@@ -170,7 +171,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         this.encrypt,
         this.message.contactId,
         this.replyForm.form.value.pin,
-        this.feeBurst);
+        this.feeSigna);
       this.replyForm.reset();
       this.readyToReply();
     } catch (e) {

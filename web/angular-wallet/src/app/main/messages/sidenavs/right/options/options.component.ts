@@ -2,7 +2,7 @@ import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {takeUntil} from 'rxjs/operators';
 
 import {MessagesService} from '../../../messages.service';
-import {SuggestedFees} from '@signumjs/core';
+import { SuggestedFees, TransactionArbitrarySubtype, TransactionType } from '@signumjs/core';
 import {UnsubscribeOnDestroy} from '../../../../../util/UnsubscribeOnDestroy';
 import {convertNQTStringToNumber, Amount} from '@signumjs/util';
 
@@ -16,9 +16,11 @@ export class MessageOptionsSidenavComponent extends UnsubscribeOnDestroy impleme
   @Input() fees: SuggestedFees;
 
   public CurrencySymbol = Amount.CurrencySymbol();
-  public encrypt: boolean;
-  public feeBurst: string;
+  public encrypt = false;
+  public feeSigna: string;
   public options: any;
+  public type = TransactionType.Arbitrary;
+  public subtype = TransactionArbitrarySubtype.Message;
 
   constructor(
     private _messageService: MessagesService,
@@ -27,9 +29,9 @@ export class MessageOptionsSidenavComponent extends UnsubscribeOnDestroy impleme
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.feeBurst = convertNQTStringToNumber(this.fees.standard.toString()).toString();
-    });
+    // setTimeout(() => {
+    //   this.feeSigna = convertNQTStringToNumber(this.fees.standard.toString()).toString();
+    // });
     this._messageService.onOptionsSelected
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(options => {
