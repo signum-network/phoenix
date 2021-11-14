@@ -7,11 +7,15 @@
 
   </recipient-input>
 
-  <app-amount-input [(amount)]="amount" [disabled]="immutable" [maxAmount]="getMaxAmount()"></app-amount-input>
+  <app-amount-input [(amount)]="amount"
+                    (amountChange)="onAmountChange()"
+                    [disabled]="immutable"
+                    [maxAmount]="maxAmount"></app-amount-input>
   <app-fee-input *ngIf="!immutable"
                  [type]="type"
                  [subtype]="subtype"
                  [(feeSigna)]="fee"
+                 (feeSignaChange)="onAmountChange()"
                  [payloadLength]="message ? message.length : 0"
   >
   </app-fee-input>

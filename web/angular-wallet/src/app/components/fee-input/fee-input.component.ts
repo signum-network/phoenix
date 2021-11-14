@@ -50,7 +50,7 @@ export class FeeInputComponent implements OnInit, OnChanges {
     }
 
     this.feeValue = Amount.fromSigna(feeValue).greater(this.maxFee) ? this.maxFee.getSigna() : feeValue;
-    this.feeSignaChange.emit(this.feeValue);
+    this.feeSignaChange.next(this.feeValue);
   }
 
   constructor(private feeRegimeService: FeeRegimeService,
@@ -66,10 +66,13 @@ export class FeeInputComponent implements OnInit, OnChanges {
 
 
   private updateFee(): void {
-    const feeAmount = this.feeRegimeService.calculateFeeByPayload(this.type, this.subtype, this.payloadLength);
-    this.maxFee = this.feeRegimeService.getMaxFeeByType(this.type, this.subtype);
-    this.feeSigna = feeAmount.getSigna();
-    // console.log("Max fee/amount", this.maxFee.toString(), feeAmount.getSigna());
+    setTimeout(
+      () => {
+        const feeAmount = this.feeRegimeService.calculateFeeByPayload(this.type, this.subtype, this.payloadLength);
+        this.maxFee = this.feeRegimeService.getMaxFeeByType(this.type, this.subtype);
+        this.feeSigna = feeAmount.getSigna();
+      }
+    );
   }
 
   public setPriority(prio: "cheap" | "standard" | "priority"): void {
@@ -79,7 +82,7 @@ export class FeeInputComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const {payloadLength} = changes;
+    const { payloadLength } = changes;
     if (payloadLength && payloadLength.previousValue !== payloadLength.currentValue) {
       this.updateFee();
     }
