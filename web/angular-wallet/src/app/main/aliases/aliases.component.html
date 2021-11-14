@@ -33,15 +33,6 @@
       </mat-cell>
     </ng-container>
 
-    <!-- <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let alias">
-        <button>{{ 'edit' | i18n }}</button>
-        <button>{{ 'transfer' | i18n }}</button>
-        <button>{{ 'sell' | i18n }}</button>
-      </mat-cell>
-    </ng-container> -->
-
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>

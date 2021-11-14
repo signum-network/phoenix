@@ -1,13 +1,13 @@
-import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
-import {Address, SuggestedFees, Account} from '@signumjs/core';
-import {Amount} from '@signumjs/util';
-import {NgForm} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
-import {AccountService} from 'app/setup/account/account.service';
-import {NotifierService} from 'angular-notifier';
-import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {Recipient} from 'app/components/recipient-input/recipient-input.component';
-import {isKeyDecryptionError} from '../../util/exceptions/isKeyDecryptionError';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Account, Address, SuggestedFees, TransactionMiningSubtype, TransactionType } from '@signumjs/core';
+import { Amount } from '@signumjs/util';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { AccountService } from 'app/setup/account/account.service';
+import { NotifierService } from 'angular-notifier';
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { Recipient, RecipientValidationStatus } from 'app/components/recipient-input/recipient-input.component';
+import { isKeyDecryptionError } from '../../util/exceptions/isKeyDecryptionError';
 
 @Component({
   selector: 'app-set-reward-recipient',
@@ -21,14 +21,13 @@ export class SetRewardRecipientComponent implements OnInit {
   @ViewChild('pin', {static: false}) public pin: string;
 
   @Output() submit = new EventEmitter<any>();
-  advanced = false;
   showMessage = false;
   isSending = false;
-  deadline = '24';
   account: Account;
-  fees: SuggestedFees;
   isLoadingRewardRecipient = true;
   rewardRecipient: Account;
+  type = TransactionType.Mining;
+  subtype = TransactionMiningSubtype.RewardRecipientAssignment;
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
@@ -38,7 +37,8 @@ export class SetRewardRecipientComponent implements OnInit {
 
   ngOnInit(): void {
     this.account = this.route.snapshot.data.account as Account;
-    this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
+    this.pin = '';
+    this.recipient = new Recipient();
     this.fetchRewardRecipient();
   }
 
@@ -54,7 +54,7 @@ export class SetRewardRecipientComponent implements OnInit {
       await this.accountService.setRewardRecipient({
         recipientId: Address.fromReedSolomonAddress(this.recipient.addressRS).getNumericId(),
         feePlanck: Amount.fromSigna(this.fee).getPlanck(),
-        deadline: parseFloat(this.deadline) * 60,
+        deadline: 1440,
         pin: this.pin,
         keys: this.account.keys,
       });
@@ -76,7 +76,8 @@ export class SetRewardRecipientComponent implements OnInit {
   }
 
   canSubmit(): boolean {
-    return false;
+    return this.pin
+      && this.recipient.status === RecipientValidationStatus.VALID;
   }
 
   setPin(pin: string): void {
