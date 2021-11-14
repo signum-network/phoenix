@@ -53,6 +53,27 @@
       <label class="mr-8">{{'quantity' | i18n}} (QNT):</label>
       <span>{{value.data.quantityQNT}}</span>
     </div>
+    <ng-container *ngIf="value.data.message">
+      <div>
+        <label class="mr-8">{{'message' | i18n}}:</label>
+        <span>{{value.data.message}}</span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="value.data.encryptedMessage">
+      <div *ngIf="decryptedMessage">{{decryptedMessage}}</div>
+      <div *ngIf="!decryptedMessage">
+        <mat-form-field>
+          <input matInput [(ngModel)]="pin" type="password" name="pin" placeholder="{{ 'input_pin' | i18n }}">
+        </mat-form-field>
+        <button type="submit"
+                class="mr-8"
+                mat-button
+                color="primary"
+                (click)="decrypt($event)">
+          {{ "decrypt" | i18n }}
+        </button>
+      </div>
+    </ng-container>
   </div>
 
   <div *ngSwitchCase="'Date'">{{value.data | date:'MMM d, y, h:mm:ss'}}</div>

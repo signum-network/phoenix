@@ -1,5 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Account, SuggestedFees } from '@signumjs/core';
+import {
+  Account,
+  SuggestedFees,
+  TransactionAssetSubtype,
+  TransactionType
+} from '@signumjs/core';
 import { QRData, Recipient, RecipientValidationStatus } from 'app/components/recipient-input/recipient-input.component';
 import { AccountBalances, getBalancesFromAccount } from 'app/util/balance';
 import { NgForm } from '@angular/forms';
@@ -28,12 +33,14 @@ export class TokenTransferFormComponent implements OnInit {
   public pin = '';
   public quantity = '';
   public isSubmitting = false;
-  public fee: number;
+  public fee: string;
   public immutable = false;
   public messageIsText = true;
   public encrypt = false;
   public showMessage = false;
   public message = '';
+  public type = TransactionType.Asset;
+  public subtype = TransactionAssetSubtype.AssetTransfer;
 
   private balances: AccountBalances;
 
@@ -48,7 +55,6 @@ export class TokenTransferFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fee = this.fees.standard;
     this.balances = getBalancesFromAccount(this.account);
   }
 
@@ -103,10 +109,6 @@ export class TokenTransferFormComponent implements OnInit {
     this.recipient = recipient;
   }
 
-  onQRUpload($event: QRData): void {
-    // do we need this?
-  }
-
   hasSufficientQuantity(): boolean {
     const quantity = parseFloat(this.quantity || '0');
     return quantity <= this.token.balance;
@@ -125,7 +127,7 @@ export class TokenTransferFormComponent implements OnInit {
   canSubmit(): boolean {
     return !Number.isNaN(this.getQuantity())
       && isNotEmpty(this.pin)
-      && isNotEmpty(this.fee.toString(10))
+      && isNotEmpty(this.fee)
       && isNotEmpty(this.recipient.addressRaw)
       && this.hasSufficientQuantity()
       && this.hasSufficientBalance()
@@ -168,11 +170,23 @@ export class TokenTransferFormComponent implements OnInit {
     this.pin = '';
     this.quantity = '';
     this.isSubmitting = false;
-    this.fee = this.fees.standard;
+    this.fee = '';
     this.immutable = false;
     this.messageIsText = true;
     this.encrypt = false;
     this.showMessage = false;
     this.message = '';
   }
+
+  // onAmountChange(): void {
+  //   if (!this.balances || !this.fee) {
+  //     return;
+  //   }
+  //
+  //   setTimeout(() => {
+  //     const available = this.balances.availableBalance.clone();
+  //     const fee = Amount.fromSigna(this.fee);
+  //     this.maxAmount = available.subtract(fee).getSigna();
+  //   });
+  // }
 }
