@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Image, View } from "react-native";
-import RNPickerSelect, { Item } from "react-native-picker-select";
-import { actionIcons } from "../../../assets/icons";
+import { View } from "react-native";
+// import RNPickerSelect, { Item } from "react-native-picker-select";
+import {Picker} from "@react-native-picker/picker"
+// import { actionIcons } from "../../../assets/icons";
 import { Colors } from "../../theme/colors";
 import { fonts } from "../../theme/fonts";
 import { FontSizes, Sizes } from "../../theme/sizes";
@@ -17,8 +18,9 @@ interface Props {
   disabled?: boolean;
 }
 
-export interface SelectItem<T> extends Item {
+export interface SelectItem<T> {
   value: T;
+  label: string;
 }
 
 const defaultStyles: any = {
@@ -42,50 +44,23 @@ const defaultStyles: any = {
 };
 
 const styles: any = {
-  wrapper: {
-    marginBottom: Sizes.SMALL,
+  picker: {
+    fontFamily: fonts.roboto,
+    color: Colors.WHITE,
   },
-  inputIOS: {
-    ...defaultStyles,
-  },
-  inputAndroid: {
-    ...defaultStyles,
-    borderWidth: 1,
-  },
-  iconContainer: {
-    top: 0,
-    bottom: 0,
-    right: Sizes.MEDIUM,
-    height: "100%",
-    paddingVertical: Sizes.MEDIUM,
-  },
-  placeholder: {
-    color: Colors.GREY_LIGHT,
-  },
-  chevron: {
-    width: 25,
-    height: 25,
-    marginTop: 3,
-    transform: [{ rotate: "-90deg" }],
-  },
-  disabled: {
-    opacity: 0.5,
-  },
+  pickerItem: {
+    fontSize: FontSizes.MEDIUM
+  }
 };
 
 export const BSelect: React.FC<Props> = (props) => {
   const {
-    rightElement,
     items,
     value,
     title,
     placeholder = "",
     disabled = false,
   } = props;
-  const placeholderObject = {
-    value: null,
-    label: placeholder,
-  };
 
   return (
     <View style={[styles.wrapper, disabled && styles.disabled]}>
@@ -94,22 +69,38 @@ export const BSelect: React.FC<Props> = (props) => {
           {title}
         </BText>
       )}
-      <RNPickerSelect
-        useNativeAndroidPickerStyle={true}
+      <Picker
         onValueChange={props.onChange}
-        items={items}
-        value={value}
-        style={styles}
-        placeholder={placeholderObject}
-        disabled={disabled}
-        Icon={
-          rightElement
-            ? () => rightElement
-            : () => (
-                <Image source={actionIcons.chevron} style={styles.chevron} />
-              )
-        }
-      />
+        style={styles.picker}
+        selectedValue={value}
+        enabled={!disabled}
+        prompt={placeholder}
+        dropdownIconColor={Colors.WHITE}
+        dropdownIconRippleColor={Colors.WHITE}
+        >{
+          items.map( i => <Picker.Item key={i.value}
+                                       fontFamily={fonts.roboto}
+                                       style={styles.pickerItem}
+                                       label={i.label}
+                                       value={i.value}
+          />)
+      }</Picker>
+      {/*<RNPickerSelect*/}
+      {/*  useNativeAndroidPickerStyle={true}*/}
+      {/*  onValueChange={props.onChange}*/}
+      {/*  items={items}*/}
+      {/*  value={value}*/}
+      {/*  style={styles}*/}
+      {/*  placeholder={placeholderObject}*/}
+      {/*  disabled={disabled}*/}
+      {/*  Icon={*/}
+      {/*    rightElement*/}
+      {/*      ? () => rightElement*/}
+      {/*      : () => (*/}
+      {/*          <Image source={actionIcons.chevron} style={styles.chevron} />*/}
+      {/*        )*/}
+      {/*  }*/}
+      {/*/>*/}
     </View>
   );
 };

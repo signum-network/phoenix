@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button } from "../../../../core/components/base/Button";
 import { Input } from "../../../../core/components/base/Input";
@@ -11,71 +11,59 @@ interface Props {
   onFinish: (passphrase: string) => void;
 }
 
-interface State {
-  passphrase: string;
-  showPassphrase: boolean;
-}
-
 const styles = StyleSheet.create({
   mainBlock: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   passphraseSwitch: {
-    paddingTop: 10,
+    paddingTop: 10
   },
   button: {
-    paddingTop: "10%",
-  },
+    paddingTop: "10%"
+  }
 });
 
-export class ImportActiveAccount extends React.PureComponent<Props, State> {
-  state: State = {
-    passphrase: "",
-    showPassphrase: false,
+export const ImportActiveAccount: React.FC<Props> = ({ onFinish }) => {
+  const [passphrase, setPassphrase] = useState("");
+  const [showPassphrase, setShowPassphrase] = useState(false);
+
+  const handleChangePassphrase = (phrase: string) => {
+    setPassphrase(phrase);
   };
 
-  handleChangePassphrase = (passphrase: string) => {
-    this.setState({ passphrase });
+  const handleShowPassphrase = (show: boolean) => {
+    setShowPassphrase(show);
   };
 
-  handleShowPassphrase = (showPassphrase: boolean) => {
-    this.setState({ showPassphrase });
+  const handleFinish = () => {
+    onFinish(passphrase);
   };
 
-  handleFinish = () => {
-    const { passphrase } = this.state;
-
-    this.props.onFinish(passphrase);
-  };
-
-  render() {
-    const { passphrase, showPassphrase } = this.state;
-    return (
-      <React.Fragment>
-        <View style={styles.mainBlock}>
-          <Input
-            secure={!showPassphrase}
-            hint={i18n.t(auth.models.account.passphrase)}
-            value={passphrase}
-            onChangeText={this.handleChangePassphrase}
+  return (
+    <React.Fragment>
+      <View style={styles.mainBlock}>
+        <Input
+          secure={!showPassphrase}
+          hint={i18n.t(auth.models.account.passphrase)}
+          value={passphrase}
+          onChangeText={handleChangePassphrase}
+        />
+        <AccountTypeHint>
+          {i18n.t(auth.importAccount.activeAccountHint)}
+        </AccountTypeHint>
+        <View style={styles.passphraseSwitch}>
+          <SwitchItem
+            onChange={handleShowPassphrase}
+            text={i18n.t(auth.importAccount.showPassphrase)}
+            value={showPassphrase}
           />
-          <AccountTypeHint>
-            {i18n.t(auth.importAccount.activeAccountHint)}
-          </AccountTypeHint>
-          <View style={styles.passphraseSwitch}>
-            <SwitchItem
-              onChange={this.handleShowPassphrase}
-              text={i18n.t(auth.importAccount.showPassphrase)}
-              value={showPassphrase}
-            />
-          </View>
         </View>
-        <View style={styles.button}>
-          <Button fullWidth={true} onPress={this.handleFinish}>
-            {i18n.t(auth.importAccount.import)}
-          </Button>
-        </View>
-      </React.Fragment>
-    );
-  }
-}
+      </View>
+      <View style={styles.button}>
+        <Button fullWidth={true} onPress={handleFinish} disabled={passphrase.length === 0}>
+          {i18n.t(auth.importAccount.import)}
+        </Button>
+      </View>
+    </React.Fragment>
+  );
+};
