@@ -30,7 +30,6 @@ import {
 import { SwitchItem } from "../../../core/components/base/SwitchItem";
 import { logos } from "../../../assets/icons";
 import { ResetModal } from "../../../core/components/modals/ResetModal";
-import { transactions } from "../../transactions/translations";
 
 interface IProps extends InjectedReduxProps {
   auth: AuthReduxState;

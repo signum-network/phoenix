@@ -1,5 +1,5 @@
 import { Transaction } from "@signumjs/core";
-import { Amount, BlockTime } from "@signumjs/util";
+import { Amount, ChainTime } from "@signumjs/util";
 import { startCase, toNumber } from "lodash";
 import { formatAttachmentData } from "./formatAttachmentData";
 
@@ -29,7 +29,7 @@ const KeyValueMappers = {
   }),
   timestamp: ({ key, value }: TxKeyValue): TxKeyValue => ({
     key,
-    value: `${value} - ${BlockTime.fromBlockTimestamp(toNumber(value))
+    value: `${value} - ${ChainTime.fromChainTimestamp(toNumber(value))
       .getDate()
       .toISOString()}`
   }),

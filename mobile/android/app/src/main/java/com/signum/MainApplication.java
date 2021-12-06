@@ -18,6 +18,8 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.reactnativecommunity.rnpermissions.RNPermissionsPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
+import com.reactnativecommunity.picker.RNCPickerPackage;
+import com.reactnativecommunity.checkbox.ReactCheckBoxPackage;
 // import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 
 import java.util.Arrays;
@@ -45,7 +47,9 @@ public class MainApplication extends Application implements ReactApplication {
           new RNLocalizePackage(),
           new KeychainPackage(),
           new RNGestureHandlerPackage(),
-          new SafeAreaContextPackage()
+          new SafeAreaContextPackage(),
+          new RNCPickerPackage(),
+          new ReactCheckBoxPackage()
           // new ReactNativePushNotificationPackage()
       );
     }

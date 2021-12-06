@@ -4,7 +4,7 @@ import {
   isMultiOutTransaction,
   Transaction
 } from "@signumjs/core";
-import { Amount, BlockTime } from "@signumjs/util";
+import { Amount, ChainTime } from "@signumjs/util";
 import React from "react";
 import { Image, TouchableOpacity, View } from "react-native";
 import { transactionIcons } from "../../../../assets/icons";
@@ -140,7 +140,7 @@ export class TransactionListItem extends React.PureComponent<Props> {
       accountRS = "Multi-out Payment";
     }
 
-    const date = BlockTime.fromBlockTimestamp(timestamp)
+    const date = ChainTime.fromChainTimestamp(timestamp)
       .getDate()
       .toLocaleString();
     return (

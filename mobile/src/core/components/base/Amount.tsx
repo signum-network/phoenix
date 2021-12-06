@@ -1,7 +1,7 @@
-import { Amount, SignaSymbol } from "@signumjs/util";
+import { Amount } from "@signumjs/util";
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Text, TextAlign } from "./Text";
+import { Text } from "./Text";
 import { FontSizes } from "../../theme/sizes";
 import { Colors } from "../../theme/colors";
 
@@ -34,7 +34,7 @@ export const AmountText: React.FC<Props> = ({
   return (
     <View style={[styles.root, style]}>
       <View>
-        <Text color={color} size={size}>{`${SignaSymbol} ${integer}.`}</Text>
+        <Text color={color} size={size}>{`${Amount.CurrencySymbol()} ${integer}.`}</Text>
       </View>
       <View style={{ bottom: 4 * 0.6 }}>
         <Text color={color} size={size * 0.6}>
