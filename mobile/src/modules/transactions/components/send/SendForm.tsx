@@ -224,7 +224,7 @@ export class SendForm extends React.Component<Props, SendFormState> {
           Amount.fromPlanck(this.props.suggestedFees.standard).getSigna()) ||
         "0",
       message: (deeplinkProps && deeplinkProps.message) || undefined,
-      messageIsText: (deeplinkProps && deeplinkProps.messageIsText) || true,
+      messageIsText: deeplinkProps && deeplinkProps.messageIsText !== undefined ? deeplinkProps.messageIsText : true,
       encrypt: (deeplinkProps && deeplinkProps.encrypt) || false,
       immutable: (deeplinkProps && deeplinkProps.immutable) || false,
       recipient: new Recipient(
