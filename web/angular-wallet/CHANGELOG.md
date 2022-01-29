@@ -1,4 +1,10 @@
 # Changelog
+## 1.3.3
+
+## Features
+- Forged blocks with link to explorer now.
+
+# Changelog
 ## 1.3.2
 
 ### Bug Fixes
