@@ -105,7 +105,7 @@ export const constants = {
     {
       name: 'Signum Node Latin America',
       region: 'Middle America',
-      location: 'Dominican Republic',
+      location: 'Miami',
       address: 'https://latam.signum.network',
       port: 443,
       reliable: true,

@@ -7,6 +7,8 @@
 
 ### Bug Fixes
 - Fixed all fee issues 
+- QrCode in Request Form on SIP22 (works with mobile wallet)
+- 
 
 ## 1.3.2
 
