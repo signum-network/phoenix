@@ -29,9 +29,6 @@ export class MessageOptionsSidenavComponent extends UnsubscribeOnDestroy impleme
   }
 
   ngOnInit(): void {
-    // setTimeout(() => {
-    //   this.feeSigna = convertNQTStringToNumber(this.fees.standard.toString()).toString();
-    // });
     this._messageService.onOptionsSelected
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(options => {

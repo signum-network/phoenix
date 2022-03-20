@@ -28,7 +28,7 @@
 
           <div *ngIf="isNewMessage" class="message-contact-name-input">
             <mat-form-field floatLabel="never" appearance="standard">
-              <input matInput prefix="{{addressPrefix}}-" pasteableAddress [patterns]="burstAddressPatternRef"
+              <input matInput prefix="{{addressPrefix}}-" pasteableAddress [patterns]="addressPatternRef"
                      mask="____-____-____-_____" [dropSpecialCharacters]="false" [showMaskTyped]="true"
                      [(ngModel)]="message.senderRS" name="message.senderRS" placeholder="{{ 'recipient' | i18n }}">
             </mat-form-field>
@@ -120,7 +120,7 @@
             fxLayoutAlign="start center">
 
         <mat-form-field class="message-text" fxFlex floatLabel="never" appearance="standard">
-                    <textarea matInput #replyInput placeholder="Type your message" ngModel name="message" [rows]="1"
+                    <textarea matInput #replyInput placeholder="Type your message" ngModel (ngModelChange)="onMessageChange($event)" name="message" [rows]="1" maxlength="1000"
                               [matTextareaAutosize]="true" required></textarea>
         </mat-form-field>
 
