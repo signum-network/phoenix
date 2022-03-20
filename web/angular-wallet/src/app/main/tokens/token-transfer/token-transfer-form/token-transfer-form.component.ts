@@ -177,16 +177,4 @@ export class TokenTransferFormComponent implements OnInit {
     this.showMessage = false;
     this.message = '';
   }
-
-  // onAmountChange(): void {
-  //   if (!this.balances || !this.fee) {
-  //     return;
-  //   }
-  //
-  //   setTimeout(() => {
-  //     const available = this.balances.availableBalance.clone();
-  //     const fee = Amount.fromSigna(this.fee);
-  //     this.maxAmount = available.subtract(fee).getSigna();
-  //   });
-  // }
 }
