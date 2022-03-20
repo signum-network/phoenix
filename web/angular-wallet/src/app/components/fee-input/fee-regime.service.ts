@@ -1,6 +1,6 @@
 // based on https://github.com/signum-network/CIPs/blob/master/cip-0031.md
 
-import { Amount, FeeQuantPlanck } from '@signumjs/util';
+import { Amount } from '@signumjs/util';
 import { Injectable } from '@angular/core';
 import {
   TransactionArbitrarySubtype,
@@ -28,7 +28,7 @@ export class FeeRegimeService {
   }
 
   feeRegimeMap = new Map<string, { min: number, max: number }>();
-  private feeBase: Amount = Amount.fromPlanck(FeeQuantPlanck);
+  private feeBase: Amount = Amount.fromSigna(0.1);
 
   private static asKey(type: any, subtype: any): string {
     return `${type}:${subtype}`;
@@ -74,7 +74,7 @@ export class FeeRegimeService {
     const { feeBase, maxFactor, minFactor } = this.getFeeRegime(type, subtype);
     const hasPayloadDependentFee = minFactor !== maxFactor;
     return hasPayloadDependentFee
-      ? feeBase.multiply(Math.floor((FeeRegimeService.MinimumPayloadLength + payloadLength) / FeeRegimeService.MinimumPayloadLength))
+      ? feeBase.multiply(minFactor * Math.floor((FeeRegimeService.MinimumPayloadLength + payloadLength) / FeeRegimeService.MinimumPayloadLength))
       : feeBase.multiply( maxFactor );
   }
 }

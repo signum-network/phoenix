@@ -103,6 +103,15 @@ export const constants = {
       testnet: false
     },
     {
+      name: 'Signum Node Latin America',
+      region: 'Middle America',
+      location: 'Dominican Republic',
+      address: 'https://latam.signum.network',
+      port: 443,
+      reliable: true,
+      testnet: false
+    },
+    {
       name: 'Signum Node Canada',
       region: 'North America',
       location: 'Toronto',
@@ -125,6 +134,33 @@ export const constants = {
       region: 'Europe',
       location: 'Frankfurt',
       address: 'https://europe1.signum.network',
+      port: 443,
+      reliable: true,
+      testnet: false
+    },
+    {
+      name: 'Signum Node EU #2',
+      region: 'Europe',
+      location: 'Frankfurt',
+      address: 'https://europe2.signum.network',
+      port: 443,
+      reliable: true,
+      testnet: false
+    },
+    {
+      name: 'Signum Node US East',
+      region: 'United States',
+      location: 'North Virgina',
+      address: 'https://us-east.signum.network',
+      port: 443,
+      reliable: true,
+      testnet: false
+    },
+    {
+      name: 'Signum Node Singapore',
+      region: 'Singapore',
+      location: 'North Virgina',
+      address: 'https://singapore.signum.network',
       port: 443,
       reliable: true,
       testnet: false
