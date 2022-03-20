@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Elements/RNSVGClipPath.h
+../../../../../node_modules/react-native-svg/apple/Elements/RNSVGClipPath.h

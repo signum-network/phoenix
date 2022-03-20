@@ -1,7 +1,7 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 
 target 'Phoenix' do
@@ -14,7 +14,8 @@ target 'Phoenix' do
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
 
-  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+  pod 'RNCPicker', :path => '../node_modules/@react-native-picker/picker'
 
   target 'PhoenixTests' do
     inherit! :complete
@@ -27,6 +28,9 @@ target 'Phoenix' do
   # you should disable these next few lines.
   use_flipper!
   post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+    end
     flipper_post_install(installer)
   end
 end

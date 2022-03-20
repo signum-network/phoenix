@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/ViewManagers/RNSVGCircleManager.h
+../../../../../node_modules/react-native-svg/apple/ViewManagers/RNSVGCircleManager.h

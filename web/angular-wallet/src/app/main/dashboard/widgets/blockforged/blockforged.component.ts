@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { Account, Block } from '@signumjs/core';
+import { Account, AddressPrefix, Block } from "@signumjs/core";
 import { AccountService } from '../../../../setup/account/account.service';
 import { ChainTime } from '@signumjs/util';
 import { formatCurrency } from '@angular/common';
@@ -7,6 +7,7 @@ import { Settings } from '../../../../settings';
 import { UnsubscribeOnDestroy } from '../../../../util/UnsubscribeOnDestroy';
 import { StoreService } from '../../../../store/store.service';
 import { takeUntil } from 'rxjs/operators';
+import { NetworkService } from "../../../../network/network.service";
 
 interface ForgedBlockInfo {
   count: number;
@@ -29,6 +30,7 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
   locale = 'en';
   isLoading = true;
   blockInfo: ForgedBlockInfo;
+  isMainNet: boolean = false;
   private interval: NodeJS.Timeout;
 
   private unsubscribe = takeUntil(this.unsubscribeAll);
@@ -36,6 +38,7 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
   constructor(
     private accountService: AccountService,
     private storeService: StoreService,
+    private networkService: NetworkService
   ) {
     super();
     this.blockInfo = {
@@ -51,6 +54,12 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
     this.interval = setInterval(
       () => this.updateForgedBlocks(),
       2 * 60 * 1000);
+
+    this.networkService.isMainNet$
+      .pipe(this.unsubscribe)
+      .subscribe( () => {
+        this.isMainNet = this.networkService.isMainNet()
+      })
 
     this.storeService.settings
       .pipe(this.unsubscribe)
@@ -102,4 +111,9 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
   public getPriceEur = (): string => `€${this.asCurrency(this.priceEur * this.blockInfo.minedIncomeSigna, '', '1.0-2')}`;
   public getPriceRub = (): string => `₽${this.asCurrency(this.priceRub * this.blockInfo.minedIncomeSigna, '', '1.0-2')}`;
 
+  getExplorerLink(): string {
+    return this.isMainNet
+      ? `https://chain.signum.network/blocks/?m=${this.account.account}`
+      : `https://t-chain.signum.network/blocks/?m=${this.account.account}`
+  }
 }

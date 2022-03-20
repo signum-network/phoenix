@@ -1,5 +1,5 @@
 import { Account } from "@signumjs/core";
-import { convertNQTStringToNumber, BlockTime } from "@signumjs/util";
+import { convertNQTStringToNumber, ChainTime } from "@signumjs/util";
 import * as shape from "d3-shape";
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
@@ -82,7 +82,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
     selectedDateRange: DATE_RANGES[0],
   };
 
-  calculateChartData() {
+  calculateChartData(): ChartData[] {
     const accountTransactions = this.props.accounts.map((account) => {
       if (account.transactions) {
         return getBalanceHistoryFromTransactions(
@@ -92,9 +92,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
         );
       }
     });
-    const data: ChartData[] = this.buildChartData(accountTransactions);
-
-    return data;
+    return this.buildChartData(accountTransactions);
   }
 
   addTransactionToChartData(
@@ -117,7 +115,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
           const transaction = transactions[t];
           // only match up to the most recent transaction, not beyond
           if (
-            BlockTime.fromBlockTimestamp(transaction.timestamp).getDate() > d
+            ChainTime.fromChainTimestamp(transaction.timestamp).getDate() > d
           ) {
             continue;
           }
@@ -171,7 +169,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
         historicalPrice[atThatTime] =
           price || historicalPriceData[historicalPriceData.length - 1];
       }
-      accountTransactions.map(
+      accountTransactions.forEach(
         this.addTransactionToChartData(
           data,
           i,

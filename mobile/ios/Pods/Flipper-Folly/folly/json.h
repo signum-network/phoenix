@@ -58,6 +58,7 @@ struct serialization_opts {
       : allow_non_string_keys(false),
         javascript_safe(false),
         pretty_formatting(false),
+        pretty_formatting_indent_width(2),
         encode_non_ascii(false),
         validate_utf8(false),
         allow_trailing_comma(false),
@@ -86,6 +87,9 @@ struct serialization_opts {
   // If true, the serialized json will contain space and newlines to
   // try to be minimally "pretty".
   bool pretty_formatting;
+
+  // The number of spaces to indent by when pretty_formatting is enabled.
+  unsigned int pretty_formatting_indent_width;
 
   // If true, non-ASCII utf8 characters would be encoded as \uXXXX:
   // - if the code point is in [U+0000..U+FFFF] => encode as a single \uXXXX
@@ -157,16 +161,23 @@ std::string serialize(dynamic const&, serialization_opts const&);
  */
 
 void escapeString(
-    StringPiece input,
-    std::string& out,
-    const serialization_opts& opts);
+    StringPiece input, std::string& out, const serialization_opts& opts);
 
 /*
  * Strip all C99-like comments (i.e. // and / * ... * /)
  */
 std::string stripComments(StringPiece jsonC);
 
+// Parse error can be thrown when deserializing json (ie., converting string
+// into json).
 class FOLLY_EXPORT parse_error : public std::runtime_error {
+ public:
+  using std::runtime_error::runtime_error;
+};
+
+// Print error can be thrown when serializing json (ie., converting json into
+// string).
+class FOLLY_EXPORT print_error : public std::runtime_error {
  public:
   using std::runtime_error::runtime_error;
 };

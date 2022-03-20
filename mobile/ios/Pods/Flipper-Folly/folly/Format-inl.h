@@ -30,6 +30,7 @@
 #include <folly/MapUtil.h>
 #include <folly/Traits.h>
 #include <folly/lang/Exception.h>
+#include <folly/lang/ToAscii.h>
 #include <folly/portability/Windows.h>
 
 // Ignore -Wformat-nonliteral and -Wconversion warnings within this file
@@ -161,8 +162,7 @@ size_t uintToBinary(char* buffer, size_t bufLen, Uint v) {
 
 template <class Derived, bool containerMode, class... Args>
 BaseFormatter<Derived, containerMode, Args...>::BaseFormatter(
-    StringPiece str,
-    Args&&... args)
+    StringPiece str, Args&&... args)
     : str_(str), values_(std::forward<Args>(args)...) {}
 
 template <class Derived, bool containerMode, class... Args>
@@ -278,19 +278,6 @@ void BaseFormatter<Derived, containerMode, Args...>::operator()(
   }
 }
 
-template <class Derived, bool containerMode, class... Args>
-void writeTo(
-    FILE* fp,
-    const BaseFormatter<Derived, containerMode, Args...>& formatter) {
-  auto writer = [fp](StringPiece sp) {
-    size_t n = fwrite(sp.data(), 1, sp.size(), fp);
-    if (n < sp.size()) {
-      throwSystemError("Formatter writeTo", "fwrite failed");
-    }
-  };
-  formatter(writer);
-}
-
 namespace format_value {
 
 template <class FormatCallback>
@@ -355,10 +342,7 @@ void formatString(StringPiece val, FormatArg& arg, FormatCallback& cb) {
 
 template <class FormatCallback>
 void formatNumber(
-    StringPiece val,
-    int prefixLen,
-    FormatArg& arg,
-    FormatCallback& cb) {
+    StringPiece val, int prefixLen, FormatArg& arg, FormatCallback& cb) {
   // precision means something different for numbers
   arg.precision = FormatArg::kDefaultPrecision;
   if (arg.align == FormatArg::Align::DEFAULT) {
@@ -390,7 +374,7 @@ void formatFormatter(
       arg.align != FormatArg::Align::DEFAULT) {
     // We can only avoid creating a temporary string if we align left,
     // as we'd need to know the size beforehand otherwise
-    format_value::formatString(formatter.fbstr(), arg, cb);
+    format_value::formatString(formatter.str(), arg, cb);
   } else {
     auto fn = [&arg, &cb](StringPiece sp) mutable {
       int sz = static_cast<int>(sp.size());
@@ -427,9 +411,7 @@ class FormatValue<
  public:
   explicit FormatValue(T val) : val_(val) {}
 
-  T getValue() const {
-    return val_;
-  }
+  T getValue() const { return val_; }
 
   template <class FormatCallback>
   void format(FormatArg& arg, FormatCallback& cb) const {
@@ -540,8 +522,9 @@ class FormatValue<
             "' specifier");
         valBufBegin = valBuf + 1; // room for sign
 
-        // Use uintToBuffer, faster than sprintf
-        valBufEnd = valBufBegin + uint64ToBufferUnsafe(uval, valBufBegin);
+        // Use to_ascii_decimal, faster than sprintf
+        valBufEnd = valBufBegin +
+            to_ascii_decimal(valBufBegin, valBuf + sizeof(valBuf), uval);
         if (arg.thousandsSeparator) {
           detail::insertThousandsGroupingUnsafe(valBufBegin, &valBufEnd);
         }
@@ -808,8 +791,8 @@ template <class T, class = void>
 class TryFormatValue {
  public:
   template <class FormatCallback>
-  static void
-  formatOrFail(T& /* value */, FormatArg& arg, FormatCallback& /* cb */) {
+  static void formatOrFail(
+      T& /* value */, FormatArg& arg, FormatCallback& /* cb */) {
     arg.error("No formatter available for this type");
   }
 };
@@ -932,9 +915,7 @@ struct KeyFromStringPiece;
 template <>
 struct KeyFromStringPiece<std::string> : public FormatTraitsBase {
   typedef std::string key_type;
-  static std::string convert(StringPiece s) {
-    return s.toString();
-  }
+  static std::string convert(StringPiece s) { return s.toString(); }
   typedef void enabled;
 };
 
@@ -942,18 +923,14 @@ struct KeyFromStringPiece<std::string> : public FormatTraitsBase {
 template <>
 struct KeyFromStringPiece<fbstring> : public FormatTraitsBase {
   typedef fbstring key_type;
-  static fbstring convert(StringPiece s) {
-    return s.to<fbstring>();
-  }
+  static fbstring convert(StringPiece s) { return s.to<fbstring>(); }
 };
 
 // StringPiece
 template <>
 struct KeyFromStringPiece<StringPiece> : public FormatTraitsBase {
   typedef StringPiece key_type;
-  static StringPiece convert(StringPiece s) {
-    return s;
-  }
+  static StringPiece convert(StringPiece s) { return s; }
 };
 
 // Base class for associative types keyed by strings
@@ -967,8 +944,8 @@ struct KeyableTraitsAssoc : public FormatTraitsBase {
     }
     throw_exception<FormatKeyNotFoundException>(key);
   }
-  static const value_type&
-  at(const T& map, StringPiece key, const value_type& dflt) {
+  static const value_type& at(
+      const T& map, StringPiece key, const value_type& dflt) {
     auto pos = map.find(KeyFromStringPiece<key_type>::convert(key));
     return pos != map.end() ? pos->second : dflt;
   }
@@ -1078,14 +1055,14 @@ class FormatValue<std::tuple<Args...>> {
   static constexpr size_t valueCount = std::tuple_size<Tuple>::value;
 
   template <size_t K, class Callback>
-  typename std::enable_if<K == valueCount>::type
-  doFormatFrom(size_t i, FormatArg& arg, Callback& /* cb */) const {
+  typename std::enable_if<K == valueCount>::type doFormatFrom(
+      size_t i, FormatArg& arg, Callback& /* cb */) const {
     arg.error("tuple index out of range, max=", i);
   }
 
   template <size_t K, class Callback>
-  typename std::enable_if<(K < valueCount)>::type
-  doFormatFrom(size_t i, FormatArg& arg, Callback& cb) const {
+  typename std::enable_if<(K < valueCount)>::type doFormatFrom(
+      size_t i, FormatArg& arg, Callback& cb) const {
     if (i == K) {
       FormatValue<typename std::decay<
           typename std::tuple_element<K, Tuple>::type>::type>(std::get<K>(val_))
@@ -1129,8 +1106,7 @@ class FormatValue<
  */
 template <class Tgt, class Derived, bool containerMode, class... Args>
 typename std::enable_if<IsSomeString<Tgt>::value>::type toAppend(
-    const BaseFormatter<Derived, containerMode, Args...>& value,
-    Tgt* result) {
+    const BaseFormatter<Derived, containerMode, Args...>& value, Tgt* result) {
   value.appendTo(*result);
 }
 

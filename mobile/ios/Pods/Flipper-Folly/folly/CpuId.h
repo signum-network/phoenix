@@ -82,7 +82,7 @@ class CpuId {
       __asm__(
           "pushl %%ebx\n\t"
           "cpuid\n\t"
-          "movl %%ebx, %%eax\n\r"
+          "movl %%ebx, %%eax\n\t"
           "popl %%ebx"
           : "=a"(f7b_), "=c"(f7c_)
           : "a"(7), "c"(0)
@@ -106,9 +106,7 @@ class CpuId {
   }
 
 #define FOLLY_DETAIL_CPUID_X(name, r, bit) \
-  FOLLY_ALWAYS_INLINE bool name() const {  \
-    return ((r) & (1U << bit)) != 0;       \
-  }
+  FOLLY_ALWAYS_INLINE bool name() const { return ((r) & (1U << bit)) != 0; }
 
 // cpuid(1): Processor Info and Feature Bits.
 #define FOLLY_DETAIL_CPUID_C(name, bit) FOLLY_DETAIL_CPUID_X(name, f1c_, bit)
@@ -204,6 +202,8 @@ class CpuId {
 #define FOLLY_DETAIL_CPUID_C(name, bit) FOLLY_DETAIL_CPUID_X(name, f7c_, bit)
   FOLLY_DETAIL_CPUID_C(prefetchwt1, 0)
   FOLLY_DETAIL_CPUID_C(avx512vbmi, 1)
+  FOLLY_DETAIL_CPUID_C(vaes, 9)
+  FOLLY_DETAIL_CPUID_C(vpclmulqdq, 10)
 #undef FOLLY_DETAIL_CPUID_C
 
 #undef FOLLY_DETAIL_CPUID_X

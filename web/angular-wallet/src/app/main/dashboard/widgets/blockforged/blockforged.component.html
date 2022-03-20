@@ -7,7 +7,11 @@
          fxLayout="column"
          fxLayoutAlign="center center"
     >
-      <div *ngIf="!isLoading" class="font-size-32 text-center font-weight-600">{{blockInfo.count}}</div>
+      <div *ngIf="!isLoading" class="font-size-32 text-center font-weight-600">
+        <a [href]="getExplorerLink()" rel="noreferrer noopener" target="_blank">
+          {{blockInfo.count}}
+        </a>
+      </div>
       <ngx-skeleton-loader *ngIf="isLoading" count="1" [theme]="{height: '32px', width: '48px', marginTop:'1rem'}"></ngx-skeleton-loader>
       <small class="font-size-10 text-center">{{'forged_blocks' | i18n}}</small>
     </div>

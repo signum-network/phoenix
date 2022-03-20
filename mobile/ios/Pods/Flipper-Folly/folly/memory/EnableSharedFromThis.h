@@ -25,7 +25,7 @@ namespace folly {
  *
  * To be removed once C++17 becomes a minimum requirement for folly.
  */
-#if __cplusplus >= 201700L || __cpp_lib_enable_shared_from_this >= 201603L
+#if __cpp_lib_enable_shared_from_this >= 201603L || _MSVC_LANG >= 201703L
 
 // Guaranteed to have std::enable_shared_from_this::weak_from_this(). Prefer
 // type alias over our own class.
@@ -75,8 +75,8 @@ class enable_shared_from_this : public std::enable_shared_from_this<T> {
   }
 
   template <typename U>
-  auto weak_from_this_(std::enable_shared_from_this<U> const* base_ptr) const
-      noexcept -> decltype(base_ptr->weak_from_this()) {
+  auto weak_from_this_(std::enable_shared_from_this<U> const* base_ptr)
+      const noexcept -> decltype(base_ptr->weak_from_this()) {
     return base_ptr->weak_from_this();
   }
 

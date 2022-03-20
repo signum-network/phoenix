@@ -39,21 +39,11 @@ class StringPieceLite {
   template <typename Range>
   /* implicit */ StringPieceLite(const Range& r)
       : StringPieceLite(r.data(), r.data() + r.size()) {}
-  const char* data() const {
-    return b_;
-  }
-  const char* begin() const {
-    return b_;
-  }
-  const char* end() const {
-    return e_;
-  }
-  size_t size() const {
-    return size_t(e_ - b_);
-  }
-  bool empty() const {
-    return size() == 0;
-  }
+  const char* data() const { return b_; }
+  const char* begin() const { return b_; }
+  const char* end() const { return e_; }
+  size_t size() const { return size_t(e_ - b_); }
+  bool empty() const { return size() == 0; }
   const char& operator[](size_t i) const {
     assert(size() > i);
     return b_[i];
@@ -69,8 +59,7 @@ class StringPieceLite {
 };
 
 inline size_t qfind_first_byte_of_std(
-    const StringPieceLite haystack,
-    const StringPieceLite needles) {
+    const StringPieceLite haystack, const StringPieceLite needles) {
   auto ret = std::find_first_of(
       haystack.begin(),
       haystack.end(),
@@ -81,16 +70,13 @@ inline size_t qfind_first_byte_of_std(
 }
 
 size_t qfind_first_byte_of_bitset(
-    const StringPieceLite haystack,
-    const StringPieceLite needles);
+    const StringPieceLite haystack, const StringPieceLite needles);
 
 size_t qfind_first_byte_of_byteset(
-    const StringPieceLite haystack,
-    const StringPieceLite needles);
+    const StringPieceLite haystack, const StringPieceLite needles);
 
 inline size_t qfind_first_byte_of_nosse(
-    const StringPieceLite haystack,
-    const StringPieceLite needles) {
+    const StringPieceLite haystack, const StringPieceLite needles) {
   if (UNLIKELY(needles.empty() || haystack.empty())) {
     return std::string::npos;
   }

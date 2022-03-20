@@ -1,6 +1,6 @@
 {
   "name": "ReactNativeNavigation",
-  "version": "6.10.1",
+  "version": "6.12.2",
   "summary": "React Native Navigation - truly native navigation for iOS and Android",
   "authors": "Wix.com",
   "homepage": "https://github.com/wix/react-native-navigation",
@@ -12,7 +12,7 @@
   "default_subspecs": "Core",
   "source": {
     "git": "https://github.com/wix/react-native-navigation.git",
-    "tag": "6.10.1"
+    "tag": "6.12.2"
   },
   "source_files": "lib/ios/**/*.{h,m,mm}",
   "exclude_files": [

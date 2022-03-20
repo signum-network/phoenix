@@ -3,7 +3,7 @@ import { TouchableOpacity, View } from "react-native";
 import { Colors } from "../../theme/colors";
 import { Text as BText } from "./Text";
 import CheckBox from "@react-native-community/checkbox";
-import { FontSizes, Sizes } from "../../theme/sizes";
+import { FontSizes } from "../../theme/sizes";
 
 interface Props {
   label: string;

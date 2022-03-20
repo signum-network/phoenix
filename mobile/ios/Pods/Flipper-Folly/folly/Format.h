@@ -98,15 +98,6 @@ class BaseFormatter {
   }
 
   /**
-   * Conversion to fbstring
-   */
-  fbstring fbstr() const {
-    fbstring s;
-    appendTo(s);
-    return s;
-  }
-
-  /**
    * Metadata to identify generated children of BaseFormatter
    */
   typedef detail::FormatterTag IsFormatter;
@@ -121,14 +112,14 @@ class BaseFormatter {
   }
 
   template <size_t K, class Callback>
-  typename std::enable_if<K == valueCount>::type
-  doFormatFrom(size_t i, FormatArg& arg, Callback& /*cb*/) const {
+  typename std::enable_if<K == valueCount>::type doFormatFrom(
+      size_t i, FormatArg& arg, Callback& /*cb*/) const {
     arg.error("argument index out of range, max=", i);
   }
 
   template <size_t K, class Callback>
-  typename std::enable_if<(K < valueCount)>::type
-  doFormatFrom(size_t i, FormatArg& arg, Callback& cb) const {
+  typename std::enable_if<(K < valueCount)>::type doFormatFrom(
+      size_t i, FormatArg& arg, Callback& cb) const {
     if (i == K) {
       asDerived().template doFormatArg<K>(arg, cb);
     } else {
@@ -143,8 +134,7 @@ class BaseFormatter {
 
   template <size_t K>
   typename std::enable_if<K == valueCount, int>::type getSizeArgFrom(
-      size_t i,
-      const FormatArg& arg) const {
+      size_t i, const FormatArg& arg) const {
     arg.error("argument index out of range, max=", i);
   }
 
@@ -165,9 +155,8 @@ class BaseFormatter {
   }
 
   template <size_t K>
-      typename std::enable_if <
-      K<valueCount, int>::type getSizeArgFrom(size_t i, const FormatArg& arg)
-          const {
+      typename std::enable_if < K<valueCount, int>::type getSizeArgFrom(
+                                    size_t i, const FormatArg& arg) const {
     if (i == K) {
       return getValue(getFormatValue<K>(), arg);
     }
@@ -235,6 +224,11 @@ class Formatter : public BaseFormatter<
 
   template <class... A>
   friend Formatter<false, A...> format(StringPiece fmt, A&&... arg);
+  template <class Str, class... A>
+  friend typename std::enable_if<IsSomeString<Str>::value>::type format(
+      Str* out, StringPiece fmt, A&&... args);
+  template <class... A>
+  friend std::string sformat(StringPiece fmt, A&&... arg);
   template <class C>
   friend Formatter<true, C> vformat(StringPiece fmt, C&& container);
 };
@@ -254,14 +248,6 @@ std::ostream& operator<<(
 }
 
 /**
- * Formatter objects can be written to stdio FILEs.
- */
-template <class Derived, bool containerMode, class... Args>
-void writeTo(
-    FILE* fp,
-    const BaseFormatter<Derived, containerMode, Args...>& formatter);
-
-/**
  * Create a formatter object.
  *
  * std::string formatted = format("{} {}", 23, 42).str();
@@ -269,7 +255,11 @@ void writeTo(
  * writeTo(stdout, format("{} {}", 23, 42));
  */
 template <class... Args>
-Formatter<false, Args...> format(StringPiece fmt, Args&&... args) {
+[[deprecated(
+    "Use fmt::format instead of folly::format for better performance, build "
+    "times and compatibility with std::format")]] //
+Formatter<false, Args...>
+format(StringPiece fmt, Args&&... args) {
   return Formatter<false, Args...>(fmt, std::forward<Args>(args)...);
 }
 
@@ -279,7 +269,7 @@ Formatter<false, Args...> format(StringPiece fmt, Args&&... args) {
  */
 template <class... Args>
 inline std::string sformat(StringPiece fmt, Args&&... args) {
-  return format(fmt, std::forward<Args>(args)...).str();
+  return Formatter<false, Args...>(fmt, std::forward<Args>(args)...).str();
 }
 
 /**
@@ -324,9 +314,7 @@ class FOLLY_EXPORT FormatKeyNotFoundException : public std::out_of_range {
  public:
   explicit FormatKeyNotFoundException(StringPiece key);
 
-  char const* key() const noexcept {
-    return what() + kMessagePrefix.size();
-  }
+  char const* key() const noexcept { return what() + kMessagePrefix.size(); }
 
  private:
   static constexpr StringPiece const kMessagePrefix = "format key not found: ";
@@ -352,8 +340,7 @@ struct DefaultValueWrapper {
 
 template <class Container, class Value>
 detail::DefaultValueWrapper<Container, Value> defaulted(
-    const Container& c,
-    const Value& v) {
+    const Container& c, const Value& v) {
   return detail::DefaultValueWrapper<Container, Value>(c, v);
 }
 
@@ -366,17 +353,17 @@ detail::DefaultValueWrapper<Container, Value> defaulted(
  * Shortcut for toAppend(format(...), &foo);
  */
 template <class Str, class... Args>
-typename std::enable_if<IsSomeString<Str>::value>::type
-format(Str* out, StringPiece fmt, Args&&... args) {
-  format(fmt, std::forward<Args>(args)...).appendTo(*out);
+typename std::enable_if<IsSomeString<Str>::value>::type format(
+    Str* out, StringPiece fmt, Args&&... args) {
+  Formatter<false, Args...>(fmt, std::forward<Args>(args)...).appendTo(*out);
 }
 
 /**
  * Append vformatted output to a string.
  */
 template <class Str, class Container>
-typename std::enable_if<IsSomeString<Str>::value>::type
-vformat(Str* out, StringPiece fmt, Container&& container) {
+typename std::enable_if<IsSomeString<Str>::value>::type vformat(
+    Str* out, StringPiece fmt, Container&& container) {
   vformat(fmt, std::forward<Container>(container)).appendTo(*out);
 }
 
@@ -403,10 +390,7 @@ void formatString(StringPiece val, FormatArg& arg, FormatCallback& cb);
  */
 template <class FormatCallback>
 void formatNumber(
-    StringPiece val,
-    int prefixLen,
-    FormatArg& arg,
-    FormatCallback& cb);
+    StringPiece val, int prefixLen, FormatArg& arg, FormatCallback& cb);
 
 /**
  * Format a Formatter object recursively.  Behaves just like
@@ -459,37 +443,6 @@ struct IsFormatter<
         std::is_same<typename T::IsFormatter, detail::FormatterTag>::value>::
         type> : public std::true_type {};
 } // namespace detail
-
-// Deprecated API. formatChecked() et. al. now behave identically to their
-// non-Checked counterparts.
-template <class... Args>
-Formatter<false, Args...> formatChecked(StringPiece fmt, Args&&... args) {
-  return format(fmt, std::forward<Args>(args)...);
-}
-template <class... Args>
-inline std::string sformatChecked(StringPiece fmt, Args&&... args) {
-  return formatChecked(fmt, std::forward<Args>(args)...).str();
-}
-template <class Container>
-Formatter<true, Container> vformatChecked(
-    StringPiece fmt,
-    Container&& container) {
-  return vformat(fmt, std::forward<Container>(container));
-}
-template <class Container>
-inline std::string svformatChecked(StringPiece fmt, Container&& container) {
-  return vformatChecked(fmt, std::forward<Container>(container)).str();
-}
-template <class Str, class... Args>
-typename std::enable_if<IsSomeString<Str>::value>::type
-formatChecked(Str* out, StringPiece fmt, Args&&... args) {
-  formatChecked(fmt, std::forward<Args>(args)...).appendTo(*out);
-}
-template <class Str, class Container>
-typename std::enable_if<IsSomeString<Str>::value>::type
-vformatChecked(Str* out, StringPiece fmt, Container&& container) {
-  vformatChecked(fmt, std::forward<Container>(container)).appendTo(*out);
-}
 
 } // namespace folly
 

@@ -126,38 +126,25 @@ class propagate_const {
 
   constexpr void swap(propagate_const& other) noexcept(
       noexcept(detail::propagate_const_adl::adl_swap(
-          std::declval<Pointer&>(),
-          other.pointer_))) {
+          std::declval<Pointer&>(), other.pointer_))) {
     detail::propagate_const_adl::adl_swap(pointer_, other.pointer_);
   }
 
-  constexpr element_type* get() {
-    return get_(pointer_);
-  }
+  constexpr element_type* get() { return get_(pointer_); }
 
-  constexpr element_type const* get() const {
-    return get_(pointer_);
-  }
+  constexpr element_type const* get() const { return get_(pointer_); }
 
   constexpr explicit operator bool() const {
     return static_cast<bool>(pointer_);
   }
 
-  constexpr element_type& operator*() {
-    return *get();
-  }
+  constexpr element_type& operator*() { return *get(); }
 
-  constexpr element_type const& operator*() const {
-    return *get();
-  }
+  constexpr element_type const& operator*() const { return *get(); }
 
-  constexpr element_type* operator->() {
-    return get();
-  }
+  constexpr element_type* operator->() { return get(); }
 
-  constexpr element_type const* operator->() const {
-    return get();
-  }
+  constexpr element_type const* operator->() const { return get(); }
 
   template <
       typename OtherPointer = Pointer,
@@ -173,13 +160,13 @@ class propagate_const {
       typename = std::enable_if_t<
           std::is_pointer<OtherPointer>::value ||
           std::is_convertible<OtherPointer, element_type const*>::value>>
-  constexpr operator element_type const*() const {
+  constexpr operator element_type const *() const {
     return get();
   }
 
  private:
-  friend Pointer& get_underlying<>(propagate_const&);
-  friend Pointer const& get_underlying<>(propagate_const const&);
+  friend constexpr Pointer& get_underlying<>(propagate_const&);
+  friend constexpr Pointer const& get_underlying<>(propagate_const const&);
   template <typename OtherPointer>
   friend class propagate_const;
 
@@ -224,43 +211,37 @@ constexpr bool operator!=(std::nullptr_t, propagate_const<Pointer> const& a) {
 
 template <typename Pointer>
 constexpr bool operator==(
-    propagate_const<Pointer> const& a,
-    propagate_const<Pointer> const& b) {
+    propagate_const<Pointer> const& a, propagate_const<Pointer> const& b) {
   return get_underlying(a) == get_underlying(b);
 }
 
 template <typename Pointer>
 constexpr bool operator!=(
-    propagate_const<Pointer> const& a,
-    propagate_const<Pointer> const& b) {
+    propagate_const<Pointer> const& a, propagate_const<Pointer> const& b) {
   return get_underlying(a) != get_underlying(b);
 }
 
 template <typename Pointer>
 constexpr bool operator<(
-    propagate_const<Pointer> const& a,
-    propagate_const<Pointer> const& b) {
+    propagate_const<Pointer> const& a, propagate_const<Pointer> const& b) {
   return get_underlying(a) < get_underlying(b);
 }
 
 template <typename Pointer>
 constexpr bool operator<=(
-    propagate_const<Pointer> const& a,
-    propagate_const<Pointer> const& b) {
+    propagate_const<Pointer> const& a, propagate_const<Pointer> const& b) {
   return get_underlying(a) <= get_underlying(b);
 }
 
 template <typename Pointer>
 constexpr bool operator>(
-    propagate_const<Pointer> const& a,
-    propagate_const<Pointer> const& b) {
+    propagate_const<Pointer> const& a, propagate_const<Pointer> const& b) {
   return get_underlying(a) > get_underlying(b);
 }
 
 template <typename Pointer>
 constexpr bool operator>=(
-    propagate_const<Pointer> const& a,
-    propagate_const<Pointer> const& b) {
+    propagate_const<Pointer> const& a, propagate_const<Pointer> const& b) {
   return get_underlying(a) >= get_underlying(b);
 }
 

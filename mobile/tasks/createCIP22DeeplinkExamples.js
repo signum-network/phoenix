@@ -25,7 +25,8 @@ const PayExampleA = {
   recipient: "S-BNUE-9X8X-ATP8-FF3YB",
   amountPlanck: "10000000",
   feePlanck: 735000,
-  message: "Hi, from a deep link",
+  message: "59b13cb7d10d5ead3b45b8e9039ebed100000000000000000000000000000000",
+  messageIsText: false,
   immutable: false,
 };
 

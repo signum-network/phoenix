@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Elements/RNSVGSymbol.h
+../../../../../node_modules/react-native-svg/apple/Elements/RNSVGSymbol.h

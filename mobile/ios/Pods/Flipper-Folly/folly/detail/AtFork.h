@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include <sys/types.h>
+
 #include <folly/Function.h>
 
 namespace folly {
@@ -30,6 +32,9 @@ struct AtFork {
       folly::Function<void()> parent,
       folly::Function<void()> child);
   static void unregisterHandler(void const* handle);
+
+  using fork_t = pid_t();
+  static pid_t forkInstrumented(fork_t forkFn);
 };
 
 } // namespace detail

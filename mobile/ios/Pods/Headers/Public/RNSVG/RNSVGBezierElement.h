@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Utils/RNSVGBezierElement.h
+../../../../../node_modules/react-native-svg/apple/Utils/RNSVGBezierElement.h

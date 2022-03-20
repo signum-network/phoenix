@@ -159,52 +159,6 @@ constexpr decltype(auto) fetch(Sequence&& sequence, Index&& index);
     for (auto&& _FE_ANON(s2_) = (c); !_FE_ANON(s1_); _FE_ANON(s1_) = true) \
       for (auto i = _FE_ANON(s2_).rbegin(); i != _FE_ANON(s2_).rend(); ++i)
 
-/*
- * If you just want the element values, please use this construct:
- *
- *    for (auto&& element : folly::enumerate(collection))
- *
- * If you need access to the iterators please write an explicit iterator loop
- * and use a counter variable
- */
-#define FOR_EACH_ENUMERATE(count, i, c)                                      \
-  if (bool _FE_ANON(s1_) = false) {                                          \
-  } else                                                                     \
-    for (auto&& FOR_EACH_state2 = (c); !_FE_ANON(s1_); _FE_ANON(s1_) = true) \
-      if (size_t _FE_ANON(n1_) = 0) {                                        \
-      } else if (const size_t& count = _FE_ANON(n1_)) {                      \
-      } else                                                                 \
-        for (auto i = FOR_EACH_state2.begin(); i != FOR_EACH_state2.end();   \
-             ++_FE_ANON(n1_), ++i)
-/**
- * If you just want the keys, please use this (ranges-v3) construct:
- *
- *    for (auto&& element : collection | views::keys)
- *
- * If you just want the values, please use this (ranges-v3) construct:
- *
- *    for (auto&& element : collection | views::values)
- *
- * If you need to see both, use:
- *
- *    for (auto&& element : collection) {
- *      auto const& key = element.first;
- *      auto& value = element.second;
- *      ......
- *    }
- *
- */
-#define FOR_EACH_KV(k, v, c)                                                  \
-  if (unsigned int _FE_ANON(s1_) = 0) {                                       \
-  } else                                                                      \
-    for (auto&& _FE_ANON(s2_) = (c); !_FE_ANON(s1_); _FE_ANON(s1_) = 1)       \
-      for (auto _FE_ANON(s3_) = _FE_ANON(s2_).begin();                        \
-           _FE_ANON(s3_) != _FE_ANON(s2_).end();                              \
-           _FE_ANON(s1_) == 2 ? ((_FE_ANON(s1_) = 0), ++_FE_ANON(s3_))        \
-                              : (_FE_ANON(s3_) = _FE_ANON(s2_).end()))        \
-        for (auto& k = _FE_ANON(s3_)->first; !_FE_ANON(s1_); ++_FE_ANON(s1_)) \
-          for (auto& v = _FE_ANON(s3_)->second; !_FE_ANON(s1_); ++_FE_ANON(s1_))
-
 namespace folly {
 namespace detail {
 

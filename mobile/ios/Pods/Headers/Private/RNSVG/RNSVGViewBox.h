@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Utils/RNSVGViewBox.h
+../../../../../node_modules/react-native-svg/apple/Utils/RNSVGViewBox.h

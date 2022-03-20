@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Utils/RNSVGPathParser.h
+../../../../../node_modules/react-native-svg/apple/Utils/RNSVGPathParser.h

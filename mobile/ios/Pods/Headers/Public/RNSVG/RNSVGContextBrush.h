@@ -1,1 +1,1 @@
-../../../../../node_modules/react-native-svg/ios/Brushes/RNSVGContextBrush.h
+../../../../../node_modules/react-native-svg/apple/Brushes/RNSVGContextBrush.h

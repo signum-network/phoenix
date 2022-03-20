@@ -19,17 +19,17 @@
 #include <cassert>
 #include <climits>
 #include <cstdint>
+#include <utility>
 
+#include <folly/Optional.h>
 #include <folly/Portability.h>
 #include <folly/detail/Futex.h>
 
 namespace folly {
 
 /**
- * Tiny exclusive lock that packs four lock slots into a single
- * byte. Each slot is an independent real, sleeping lock.  The default
- * lock and unlock functions operate on slot zero, which modifies only
- * the low two bits of the host byte.
+ * Tiny exclusive lock that uses 2 bits. It is stored as 1 byte and
+ * has APIs for using the remaining 6 bits for storing user data.
  *
  * You should zero-initialize the bits of a MicroLock that you intend
  * to use.
@@ -40,13 +40,15 @@ namespace folly {
  *
  * You are free to put a MicroLock in a union with some other object.
  * If, for example, you want to use the bottom two bits of a pointer
- * as a lock, you can put a MicroLock in a union with the pointer and
- * limit yourself to MicroLock slot zero, which will use the two
- * least-significant bits in the bottom byte.
+ * as a lock, you can put a MicroLock in a union with the pointer,
+ * which will use the two least-significant bits in the bottom byte.
  *
  * (Note that such a union is safe only because MicroLock is based on
  * a character type, and even under a strict interpretation of C++'s
  * aliasing rules, character types may alias anything.)
+ *
+ * Unused bits in the lock can be used to store user data via
+ * lockAndLoad() and unlockAndStore(), or LockGuardWithData.
  *
  * MicroLock uses a dirty trick: it actually operates on the full
  * 32-bit, four-byte-aligned bit of memory into which it is embedded.
@@ -93,83 +95,219 @@ namespace folly {
 class MicroLockCore {
  protected:
   uint8_t lock_;
-  inline detail::Futex<>* word() const; // Well, halfword on 64-bit systems
-  inline uint32_t baseShift(unsigned slot) const;
-  inline uint32_t heldBit(unsigned slot) const;
-  inline uint32_t waitBit(unsigned slot) const;
-  static void lockSlowPath(
+  /**
+   * Arithmetic shift required to get to the byte from the word.
+   */
+  unsigned baseShift() const noexcept;
+  /**
+   * Mask for bit indicating that the flag is held.
+   */
+  unsigned heldBit() const noexcept;
+  /**
+   * Mask for bit indicating that there is a waiter that should be woken up.
+   */
+  unsigned waitBit() const noexcept;
+
+  static uint8_t lockSlowPath(
       uint32_t oldWord,
       detail::Futex<>* wordPtr,
-      uint32_t slotHeldBit,
+      unsigned baseShift,
       unsigned maxSpins,
-      unsigned maxYields);
+      unsigned maxYields) noexcept;
+
+  /**
+   * The word (halfword on 64-bit systems) that this lock atomically operates
+   * on. Although the atomic operations access 4 bytes, only the byte used by
+   * the lock will be modified.
+   */
+  detail::Futex<>* word() const noexcept;
+
+  static constexpr unsigned kNumLockBits = 2;
+  static constexpr uint8_t kLockBits =
+      static_cast<uint8_t>((1 << kNumLockBits) - 1);
+  static constexpr uint8_t kDataBits = static_cast<uint8_t>(~kLockBits);
+  /**
+   * Decodes the value stored in the unused bits of the lock.
+   */
+  static constexpr uint8_t decodeDataFromByte(uint8_t lockByte) noexcept {
+    return static_cast<uint8_t>(lockByte >> kNumLockBits);
+  }
+  /**
+   * Encodes the value for the unused bits of the lock.
+   */
+  static constexpr uint8_t encodeDataToByte(uint8_t data) noexcept {
+    return static_cast<uint8_t>(data << kNumLockBits);
+  }
+
+  static constexpr uint8_t decodeDataFromWord(
+      uint32_t word, unsigned baseShift) noexcept {
+    return static_cast<uint8_t>(
+        static_cast<uint8_t>(word >> baseShift) >> kNumLockBits);
+  }
+  uint8_t decodeDataFromWord(uint32_t word) const noexcept {
+    return decodeDataFromWord(word, baseShift());
+  }
+  static constexpr uint32_t encodeDataToWord(
+      uint32_t word, unsigned shiftToByte, uint8_t value) noexcept {
+    const uint32_t preservedBits = word & ~(kDataBits << shiftToByte);
+    const uint32_t newBits = encodeDataToByte(value) << shiftToByte;
+    return preservedBits | newBits;
+  }
+
+  template <typename Func>
+  FOLLY_DISABLE_ADDRESS_SANITIZER FOLLY_DISABLE_MEMORY_SANITIZER void
+  unlockAndStoreWithModifier(Func modifier) noexcept;
 
  public:
-  FOLLY_DISABLE_ADDRESS_SANITIZER inline void unlock(unsigned slot);
-  inline void unlock() {
-    unlock(0);
+  /**
+   * Loads the data stored in the unused bits of the lock atomically.
+   */
+  FOLLY_DISABLE_ADDRESS_SANITIZER FOLLY_DISABLE_MEMORY_SANITIZER uint8_t
+  load(std::memory_order order = std::memory_order_seq_cst) const noexcept {
+    return decodeDataFromWord(word()->load(order));
   }
-  // Initializes all the slots.
-  inline void init() {
-    lock_ = 0;
-  }
+
+  /**
+   * Stores the data in the unused bits of the lock atomically. Since 2 bits are
+   * used by the lock, the most significant 2 bits of the provided value will be
+   * ignored.
+   */
+  FOLLY_DISABLE_ADDRESS_SANITIZER FOLLY_DISABLE_MEMORY_SANITIZER void store(
+      uint8_t value,
+      std::memory_order order = std::memory_order_seq_cst) noexcept;
+
+  /**
+   * Unlocks the lock and stores the bits of the provided value into the data
+   * bits. Since 2 bits are used by the lock, the most significant 2 bits of the
+   * provided value will be ignored.
+   */
+  void unlockAndStore(uint8_t value) noexcept;
+  void unlock() noexcept;
+
+  /**
+   * Initializes the lock state and sets the data bits to 0.
+   */
+  void init() noexcept { lock_ = 0; }
 };
 
-inline detail::Futex<>* MicroLockCore::word() const {
+inline detail::Futex<>* MicroLockCore::word() const noexcept {
   uintptr_t lockptr = (uintptr_t)&lock_;
   lockptr &= ~(sizeof(uint32_t) - 1);
   return (detail::Futex<>*)lockptr;
 }
 
-inline unsigned MicroLockCore::baseShift(unsigned slot) const {
-  assert(slot < CHAR_BIT / 2);
-
+inline unsigned MicroLockCore::baseShift() const noexcept {
   unsigned offset_bytes = (unsigned)((uintptr_t)&lock_ - (uintptr_t)word());
 
-  return (
-      unsigned)(kIsLittleEndian ? offset_bytes * CHAR_BIT + slot * 2 : CHAR_BIT * (sizeof(uint32_t) - offset_bytes - 1) + slot * 2);
+  return static_cast<unsigned>(
+      kIsLittleEndian ? CHAR_BIT * offset_bytes
+                      : CHAR_BIT * (sizeof(uint32_t) - offset_bytes - 1));
 }
 
-inline uint32_t MicroLockCore::heldBit(unsigned slot) const {
-  return 1U << (baseShift(slot) + 0);
+inline unsigned MicroLockCore::heldBit() const noexcept {
+  return 1U << (baseShift() + 0);
 }
 
-inline uint32_t MicroLockCore::waitBit(unsigned slot) const {
-  return 1U << (baseShift(slot) + 1);
+inline unsigned MicroLockCore::waitBit() const noexcept {
+  return 1U << (baseShift() + 1);
 }
 
-void MicroLockCore::unlock(unsigned slot) {
+inline void MicroLockCore::store(
+    uint8_t value, std::memory_order order) noexcept {
+  detail::Futex<>* wordPtr = word();
+
+  const auto shiftToByte = baseShift();
+  auto oldWord = wordPtr->load(std::memory_order_relaxed);
+  while (true) {
+    auto newWord = encodeDataToWord(oldWord, shiftToByte, value);
+    if (wordPtr->compare_exchange_weak(
+            oldWord, newWord, order, std::memory_order_relaxed)) {
+      break;
+    }
+  }
+}
+
+template <typename Func>
+void MicroLockCore::unlockAndStoreWithModifier(Func modifier) noexcept {
   detail::Futex<>* wordPtr = word();
   uint32_t oldWord;
   uint32_t newWord;
 
   oldWord = wordPtr->load(std::memory_order_relaxed);
   do {
-    assert(oldWord & heldBit(slot));
-    newWord = oldWord & ~(heldBit(slot) | waitBit(slot));
+    assert(oldWord & heldBit());
+    newWord = modifier(oldWord) & ~(heldBit() | waitBit());
   } while (!wordPtr->compare_exchange_weak(
       oldWord, newWord, std::memory_order_release, std::memory_order_relaxed));
 
-  if (oldWord & waitBit(slot)) {
-    detail::futexWake(wordPtr, 1, heldBit(slot));
+  if (oldWord & waitBit()) {
+    detail::futexWake(wordPtr, 1, heldBit());
   }
+}
+
+inline void MicroLockCore::unlockAndStore(uint8_t value) noexcept {
+  unlockAndStoreWithModifier(
+      [value, shiftToByte = baseShift()](uint32_t oldWord) {
+        return encodeDataToWord(oldWord, shiftToByte, value);
+      });
+}
+
+inline void MicroLockCore::unlock() noexcept {
+  unlockAndStoreWithModifier([](uint32_t oldWord) { return oldWord; });
 }
 
 template <unsigned MaxSpins = 1000, unsigned MaxYields = 0>
 class MicroLockBase : public MicroLockCore {
  public:
-  FOLLY_DISABLE_ADDRESS_SANITIZER inline void lock(unsigned slot);
-  inline void lock() {
-    lock(0);
-  }
-  FOLLY_DISABLE_ADDRESS_SANITIZER inline bool try_lock(unsigned slot);
-  inline bool try_lock() {
-    return try_lock(0);
-  }
+  /**
+   * Locks the lock and returns the data stored in the unused bits of the lock.
+   * This is useful when you want to use the unused bits of the lock to store
+   * data, in which case reading and locking should be done in one atomic
+   * operation.
+   */
+  FOLLY_DISABLE_ADDRESS_SANITIZER FOLLY_DISABLE_MEMORY_SANITIZER uint8_t
+  lockAndLoad() noexcept;
+  void lock() noexcept { lockAndLoad(); }
+  FOLLY_DISABLE_ADDRESS_SANITIZER FOLLY_DISABLE_MEMORY_SANITIZER bool
+  try_lock() noexcept;
+
+  /**
+   * A lock guard which allows reading and writing to the unused bits of the
+   * lock as data.
+   */
+  struct LockGuardWithData {
+    explicit LockGuardWithData(MicroLockBase<MaxSpins, MaxYields>& lock)
+        : lock_(lock) {
+      loadedValue_ = lock_.lockAndLoad();
+    }
+
+    ~LockGuardWithData() noexcept {
+      if (storedValue_) {
+        lock_.unlockAndStore(*storedValue_);
+      } else {
+        lock_.unlock();
+      }
+    }
+
+    /**
+     * The stored data bits at the time of locking.
+     */
+    uint8_t loadedValue() const noexcept { return loadedValue_; }
+
+    /**
+     * The value that will be stored back into data bits when it is unlocked.
+     */
+    void storeValue(uint8_t value) noexcept { storedValue_ = value; }
+
+   private:
+    MicroLockBase<MaxSpins, MaxYields>& lock_;
+    uint8_t loadedValue_;
+    folly::Optional<uint8_t> storedValue_;
+  };
 };
 
 template <unsigned MaxSpins, unsigned MaxYields>
-bool MicroLockBase<MaxSpins, MaxYields>::try_lock(unsigned slot) {
+bool MicroLockBase<MaxSpins, MaxYields>::try_lock() noexcept {
   // N.B. You might think that try_lock is just the fast path of lock,
   // but you'd be wrong.  Keep in mind that other parts of our host
   // word might be changing while we take the lock!  We're not allowed
@@ -183,12 +321,12 @@ bool MicroLockBase<MaxSpins, MaxYields>::try_lock(unsigned slot) {
   detail::Futex<>* wordPtr = word();
   uint32_t oldWord = wordPtr->load(std::memory_order_relaxed);
   do {
-    if (oldWord & heldBit(slot)) {
+    if (oldWord & heldBit()) {
       return false;
     }
   } while (!wordPtr->compare_exchange_weak(
       oldWord,
-      oldWord | heldBit(slot),
+      oldWord | heldBit(),
       std::memory_order_acquire,
       std::memory_order_relaxed));
 
@@ -196,26 +334,26 @@ bool MicroLockBase<MaxSpins, MaxYields>::try_lock(unsigned slot) {
 }
 
 template <unsigned MaxSpins, unsigned MaxYields>
-void MicroLockBase<MaxSpins, MaxYields>::lock(unsigned slot) {
+uint8_t MicroLockBase<MaxSpins, MaxYields>::lockAndLoad() noexcept {
   static_assert(MaxSpins + MaxYields < (unsigned)-1, "overflow");
 
   detail::Futex<>* wordPtr = word();
   uint32_t oldWord;
   oldWord = wordPtr->load(std::memory_order_relaxed);
-  if ((oldWord & heldBit(slot)) == 0 &&
+  if ((oldWord & heldBit()) == 0 &&
       wordPtr->compare_exchange_weak(
           oldWord,
-          oldWord | heldBit(slot),
+          oldWord | heldBit(),
           std::memory_order_acquire,
           std::memory_order_relaxed)) {
     // Fast uncontended case: memory_order_acquire above is our barrier
+    return decodeDataFromWord(oldWord | heldBit());
   } else {
-    // lockSlowPath doesn't have any slot-dependent computation; it
-    // just shifts the input bit.  Make sure its shifting produces the
-    // same result a call to waitBit for our slot would.
-    assert(heldBit(slot) << 1 == waitBit(slot));
+    // lockSlowPath doesn't call waitBit(); it just shifts the input bit.  Make
+    // sure its shifting produces the same result a call to waitBit would.
+    assert(heldBit() << 1 == waitBit());
     // lockSlowPath emits its own memory barrier
-    lockSlowPath(oldWord, wordPtr, heldBit(slot), MaxSpins, MaxYields);
+    return lockSlowPath(oldWord, wordPtr, baseShift(), MaxSpins, MaxYields);
   }
 }
 
