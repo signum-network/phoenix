@@ -1,10 +1,17 @@
 # Changelog
+
 ## 1.3.3
 
-## Features
+# Feature
+- New Fee Selector component
 - Forged blocks with link to explorer now.
 
-# Changelog
+### Bug Fixes
+- Fixed all fee issues (#1594, #1575)
+- QrCode in Request Form on SIP22 (works with mobile wallet) (#1630 )
+- Fixed About screen in Desktop (#1593)
+- New Nodes (#1617  #1618 #1616)
+
 ## 1.3.2
 
 ### Bug Fixes

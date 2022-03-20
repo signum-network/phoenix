@@ -1,0 +1,11 @@
+<div class="request-container">
+
+  <qrcode [qrdata]="getDeepLink()" [width]="300" [errorCorrectionLevel]="'M'"></qrcode>
+
+  <ul>
+    <li><strong>{{ 'recipient' | i18n }}</strong>: {{ recipientRS }}</li>
+    <li><strong>{{ 'amount' | i18n }}</strong>: {{ amount | amount }}</li>
+    <li><strong>{{ 'fee' | i18n }}</strong>: {{ fee | amount }}</li>
+    <li><strong>{{ 'immutable' | i18n }}</strong>: {{ !!immutable }}</li>
+  </ul>
+</div>

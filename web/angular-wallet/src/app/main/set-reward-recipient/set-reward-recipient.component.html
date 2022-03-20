@@ -1,4 +1,4 @@
-<app-page title="{{ 'set_reward_recipient' | i18n }}" *ngIf="fees" [wide]="true">
+<app-page title="{{ 'set_reward_recipient' | i18n }}" [wide]="false">
   <div class="account-info pl-20 pr-20 mb-8">
     <div class="account-info__field">
       <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>
@@ -28,21 +28,14 @@
   <div class="pl-20 pr-20">
     <form (ngSubmit)="onSubmit($event);" #setRewardRecipientForm="ngForm">
       <recipient-input (recipientChange)="onRecipientChange($event)"></recipient-input>
-
-      <app-fee-selector [fees]="fees" [(fee)]="fee"></app-fee-selector>
-
-      <div *ngIf="advanced">
-        <mat-form-field>
-          <label>{{ 'deadline_hours' | i18n }}</label>
-          <input matInput [(ngModel)]="deadline" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}">
-        </mat-form-field>
-<!--        <mat-checkbox [(ngModel)]="broadcast" name="broadcast" disabled>{{ "do_not_broadcast" | i18n }}</mat-checkbox>-->
-      </div>
-
-      <app-submit-transaction [disabled]="canSubmit()"
+      <app-fee-input [type]="type"
+                     [subtype]="subtype"
+                     [(feeSigna)]="fee"
+      >
+      </app-fee-input>
+      <app-submit-transaction [disabled]="!canSubmit()"
                               [isSubmitting]="isSending"
                               (pinChange)="setPin($event)"></app-submit-transaction>
     </form>
-    <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
   </div>
 </app-page>

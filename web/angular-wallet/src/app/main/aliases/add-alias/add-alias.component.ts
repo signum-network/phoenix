@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
-import {SuggestedFees, Account, AddressPrefix} from '@signumjs/core';
+import { SuggestedFees, Account, AddressPrefix, TransactionType, TransactionArbitrarySubtype } from "@signumjs/core";
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {AccountService} from 'app/setup/account/account.service';
@@ -27,7 +27,9 @@ export class AddAliasComponent implements OnInit {
   @ViewChild('accountAliasURI', {static: true}) public accountAliasURI: string;
   @Output() submit = new EventEmitter<any>();
 
-  public feeNQT: string;
+  fee = '';
+  txType = TransactionType.Arbitrary;
+  txSubtype = TransactionArbitrarySubtype.AliasAssignment;
   advanced = false;
   showMessage = false;
   addressPatternRef = AddressPattern;
@@ -60,7 +62,7 @@ export class AddAliasComponent implements OnInit {
       await this.accountService.setAlias({
         aliasName: this.alias,
         aliasURI: this.getAliasURI(),
-        feeNQT: this.feeNQT,
+        feeNQT: this.fee,
         deadline: parseFloat(this.deadline) * 60,
         pin: this.pin,
         keys: this.account.keys,
@@ -104,5 +106,21 @@ export class AddAliasComponent implements OnInit {
         value = this.alias;
     }
     return isNotEmpty(this.pin) && isNotEmpty(this.alias) && isNotEmpty(value);
+  }
+
+  getPayloadLength(): number {
+    let attachment = '"version.AliasAssignment":1,';
+    switch (this.type) {
+      case 'acct':
+        attachment += `acct: "${this.accountAliasURI}"`;
+        break;
+      case 'uri':
+        attachment += `uri: "${this.uri}"`;
+        break;
+      case 'other':
+      default:
+        attachment += `alias: "${this.alias}"`;
+    }
+    return attachment.length;
   }
 }

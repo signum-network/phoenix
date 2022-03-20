@@ -1,0 +1,31 @@
+:host {
+  .fee-type {
+    position: absolute;
+    top: 18px;
+    right: 0;
+
+    small {
+      margin-left: 0.25rem;
+      font-size: 12px;
+      border-radius: 4px;
+      padding: 2px 8px;
+      cursor: pointer;
+      &:hover {
+        filter: brightness(75%);
+        transition: all 125ms ease-in-out;
+      }
+    }
+
+    .badge {
+      background: #E8F3FF;
+      &.selected {
+        background: #00FF88;
+        &:hover {
+          filter: none;
+        }
+      }
+    }
+
+
+  }
+}

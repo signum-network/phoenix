@@ -62,7 +62,7 @@ export class MessagesService implements Resolve<any> {
     this.api = apiService.api;
     this.onMessageSelected = new BehaviorSubject({});
     this.onOptionsSelected = new BehaviorSubject({
-      encrypt: true,
+      encrypt: false,
       feeNQT: ''
     });
     this.onMessagesUpdated = new Subject();

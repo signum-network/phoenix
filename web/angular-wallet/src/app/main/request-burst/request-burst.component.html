@@ -13,15 +13,14 @@
 
           <mat-form-field>
             <span class="mr-8" matPrefix>{{symbol}}</span>
-            <input matInput [(ngModel)]="amountNQT" name="amountNQT" placeholder="{{ 'amount' | i18n }}">
+            <input matInput [(ngModel)]="amount" name="amount" placeholder="{{ 'amount' | i18n }}">
           </mat-form-field>
 
-          <mat-form-field>
-            <span class="mr-8" matPrefix>{{symbol}}</span>
-            <input matInput [(ngModel)]="feeNQT" name="feeNQT" placeholder="{{ 'fee' | i18n }}">
-          </mat-form-field>
-
-          <app-fee-selector [fees]="fees" [(fee)]="feeNQT"></app-fee-selector>
+          <app-fee-input [type]="txType"
+                         [subtype]="txSubtype"
+                         [(feeSigna)]="fee"
+          >
+          </app-fee-input>
 
           <mat-checkbox [(ngModel)]="immutable" name="immutable">{{ "immutable" | i18n }}</mat-checkbox>
 
@@ -41,13 +40,19 @@
     <mat-step>
       <ng-template matStepLabel>{{ 'qr_code' | i18n }}</ng-template>
       <div class="step-container">
-        <app-request-burst-qr
-          [imgSrc]="imgSrc"
-          [recipientRS]="account.accountRS"
-          [amountNQT]="amountNQT || '0'"
-          [feeNQT]="feeNQT"
-          [immutable]="immutable"
-        ></app-request-burst-qr>
+        <ng-container *ngIf="!paid">
+          <app-request-qr-code
+            [recipientRS]="account.accountRS"
+            [amount]="amount || '0'"
+            [fee]="fee"
+            [immutable]="immutable"
+          ></app-request-qr-code>
+        </ng-container>
+        <ng-container *ngIf="paid">
+          <div class="paid-container">
+            <mat-icon>check_circle</mat-icon>
+          </div>
+        </ng-container>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

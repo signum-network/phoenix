@@ -58,6 +58,7 @@
   },
   "dependencies": {
     "@signumjs/http": "^1.0.0-rc.4",
+    "about-window": "^1.15.1",
     "electron-dl": "^3.0.0",
     "fs-extra": "^10.0.0",
     "get-ssl-certificate": "^2.3.3",

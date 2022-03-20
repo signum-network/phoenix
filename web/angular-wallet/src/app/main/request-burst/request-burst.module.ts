@@ -18,9 +18,10 @@ import {FuseSharedModule} from '@fuse/shared.module';
 import {SuggestFeeResolver} from '../../network/suggest-fee.resolver';
 import {NetworkModule} from 'app/network/network.module';
 import {LayoutModule} from 'app/layout/layout.module';
-import {RequestBurstQrComponent} from './request-burst-qr/request-burst-qr.component';
 import {AppSharedModule} from '../../shared/shared.module';
 import {ComponentsModule} from '../../components/components.module';
+import { QRCodeModule } from 'angularx-qrcode';
+import { RequestQrCodeComponent } from './request-qr-code/request-qr-code.component';
 
 const routes = [
   {
@@ -35,28 +36,29 @@ const routes = [
 
 @NgModule({
   declarations: [
-    RequestBurstComponent, RequestBurstQrComponent,
+    RequestBurstComponent, RequestQrCodeComponent,
   ],
-    imports: [
-      AppSharedModule,
-      CommonModule,
-      FormsModule,
-      FuseSharedModule,
-      I18nModule,
-      LayoutModule,
-      MatButtonModule,
-      MatCheckboxModule,
-      MatGridListModule,
-      MatIconModule,
-      MatInputModule,
-      MatStepperModule,
-      NetworkModule,
-      NgxMaskModule,
-      NotifierModule,
-      RouterModule.forChild(routes),
-      SetupModule,
-      ComponentsModule,
-    ],
+  imports: [
+    AppSharedModule,
+    CommonModule,
+    FormsModule,
+    FuseSharedModule,
+    I18nModule,
+    LayoutModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatStepperModule,
+    NetworkModule,
+    NgxMaskModule,
+    NotifierModule,
+    RouterModule.forChild(routes),
+    SetupModule,
+    ComponentsModule,
+    QRCodeModule
+  ],
   exports: []
 })
 export class RequestBurstModule {

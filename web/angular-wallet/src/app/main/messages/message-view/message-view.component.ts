@@ -1,8 +1,17 @@
-import {AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild, ViewChildren, ViewEncapsulation} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewChildren,
+  ViewEncapsulation
+} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {Account, Address, AddressPrefix} from '@signumjs/core';
+import { Account, Address, AddressPrefix, TransactionArbitrarySubtype, TransactionType } from "@signumjs/core";
 import {ChainTime} from '@signumjs/util';
 import {decryptAES, decryptMessage, hashSHA256} from '@signumjs/crypto';
 import {Router} from '@angular/router';
@@ -15,6 +24,7 @@ import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {AddressPattern} from 'app/util/addressPattern';
 import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
 import {NetworkService} from '../../../network/network.service';
+import { FeeRegimeService } from "../../../components/fee-input/fee-regime.service";
 
 @Component({
   selector: 'message-view',
@@ -23,7 +33,7 @@ import {NetworkService} from '../../../network/network.service';
   encapsulation: ViewEncapsulation.None
 })
 export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
-  @Input() feeBurst: number;
+  @Input() feeSigna: number;
   @Input() encrypt: boolean;
 
   @ViewChild('pin', {static: false})
@@ -41,7 +51,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   pinInput: any;
   selectedUser: Account;
   isNewMessage = false;
-  burstAddressPatternRef = AddressPattern;
+  addressPatternRef = AddressPattern;
   isSending = false;
   showPin = [];
 
@@ -54,12 +64,14 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     private notifierService: NotifierService,
     private utilService: UtilService,
     private i18nService: I18nService,
-    private networkService: NetworkService
+    private networkService: NetworkService,
+    private feeRegimeService: FeeRegimeService,
   ) {
     this._unsubscribeAll = new Subject();
   }
 
   ngOnInit(): void {
+    this.encrypt = false;
     this.addressPrefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
     this.selectedUser = this.messageService.user;
     this.messageService.onMessageSelected
@@ -170,7 +182,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         this.encrypt,
         this.message.contactId,
         this.replyForm.form.value.pin,
-        this.feeBurst);
+        this.feeSigna);
       this.replyForm.reset();
       this.readyToReply();
     } catch (e) {
@@ -218,5 +230,11 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
   getIconStyle(): string {
     return this.encrypt ? 'green-300-fg' : 'warn-300-fg';
+  }
+
+  onMessageChange(msg: string): void {
+    const length = this.encrypt ? msg.length + 48 : msg.length;
+    const fee = this.feeRegimeService.calculateFeeByPayload(TransactionType.Arbitrary, TransactionArbitrarySubtype.Message, length);
+    this.feeSigna = parseFloat(fee.getSigna());
   }
 }

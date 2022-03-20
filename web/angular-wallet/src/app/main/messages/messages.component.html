@@ -11,13 +11,13 @@
         </mat-sidenav>
         <message-start *ngIf="!selectedMessage"></message-start>
         <message-view *ngIf="selectedMessage"
-                      [feeBurst]="rightSidenav && rightSidenav.options && rightSidenav.options.feeBurst"
+                      [feeSigna]="rightSidenav && rightSidenav.options && rightSidenav.options.feeSigna"
                       [encrypt]="rightSidenav && rightSidenav.options && rightSidenav.options.encrypt"
         >
         </message-view>
         <mat-sidenav class="sidenav" position="end" opened="false" mode="over"
                      fuseMatSidenavHelper="message-right-sidenav">
-          <message-right-sidenav [fees]="fees"></message-right-sidenav>
+          <message-right-sidenav></message-right-sidenav>
         </mat-sidenav>
       </mat-sidenav-container>
     </div>

@@ -12,18 +12,12 @@ mat-form-field {
     padding: 2px 8px;
     align-items: center;
     justify-content: center;
-
     &.invalid {
       background: darkorange;
     }
 
     &.valid {
-      color: white;
-      background: #00b386;
-
-      mat-icon {
-        color: white;
-      }
+      background: #00FF88;
     }
 
     &.unknown {
@@ -40,6 +34,7 @@ mat-form-field {
     }
 
     mat-icon {
+      color: #666666;
       margin: 0;
       padding: 0 0 0 4px;
       min-height: 8px;
@@ -88,11 +83,12 @@ mat-progress-bar {
 
 .inputfile:focus + .camera-icon,
 .inputfile + .camera-icon:hover {
-  color: black;
+  color: #333;
+  transition: color 125ms ease-in-out;
 }
 
 .inputfile:focus + .camera-icon {
-  outline: 1px dotted #666;
+  outline: 1px dotted red;
   outline: -webkit-focus-ring-color auto 5px;
 }
 

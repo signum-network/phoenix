@@ -20,7 +20,7 @@ export class AmountInputComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSpendAll(): void {
+  public onSpendAll(): void {
     this.amount = this.maxAmount.toString();
     this.onChange(this.amount);
   }

@@ -1,6 +1,9 @@
 <form (ngSubmit)="onSubmit();" #sendForm="ngForm">
   <mat-radio-group fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center" fxLayout.xs="column"
-                   fxLayoutAlign.xs="start start" [(ngModel)]="mode" name="mode">
+                   fxLayoutAlign.xs="start start"
+                   [(ngModel)]="mode"
+                   (ngModelChange)="onModeChange()"
+                   name="mode">
     <mat-radio-button class="mb-12" value="add"
                       [checked]="mode === 'add'">{{'add_commitment' | i18n}}</mat-radio-button>
     <mat-radio-button class="mb-12" value="revoke">{{'revoke_commitment' | i18n}}</mat-radio-button>
@@ -15,30 +18,17 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="!isRevoking() || (isRevoking() && !hasMissingBlocks() && !hasNothingCommitted())">
-    <div class="amount-wrapper">
-      <mat-form-field>
-        <mat-label>{{ 'amount' | i18n }}</mat-label>
-        <span matPrefix>{{symbol}}&nbsp;</span>
-        <input matInput [(ngModel)]="amount" name="amount">
-        <mat-icon
-          class="all-icon"
-          matSuffix
-          matTooltip="{{'spend_all' | i18n}}"
-          (click)="onSpendAll()"
-        >
-          all_inclusive
-        </mat-icon>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>{{ 'fee' | i18n }}</mat-label>
-        <span matPrefix>{{symbol}}&nbsp;</span>
-        <input matInput [(ngModel)]="fee" name="fee">
-      </mat-form-field>
-    </div>
-
-    <app-fee-selector [fees]="fees" [(fee)]="fee"></app-fee-selector>
+<!--  <ng-container *ngIf="!isRevoking() || (isRevoking() && !hasMissingBlocks() && !hasNothingCommitted())">-->
+    <app-amount-input #amountInput
+                      [(amount)]="amount"
+                      (amountChange)="onAmountChange()"
+                      [maxAmount]="maxAmount"
+    ></app-amount-input>
+    <app-fee-input [(feeSigna)]="fee"
+                   (feeSignaChange)="onAmountChange()"
+                   [type]="type"
+                   [subtype]="getSubtype()"
+    ></app-fee-input>
 
     <app-submit-transaction [disabled]="!canSubmit()"
                             [isSubmitting]="isSending"
@@ -47,6 +37,6 @@
 
     <strong>{{'total' | i18n}}:&nbsp;</strong>
     <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getSigna() | amount }}</span>
-  </ng-container>
+<!--  </ng-container>-->
 
 </form>
