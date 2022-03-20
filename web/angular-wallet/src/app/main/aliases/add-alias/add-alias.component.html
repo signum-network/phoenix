@@ -37,14 +37,6 @@
       <textarea matInput [(ngModel)]="uri" name="uri" placeholder="{{ 'data' | i18n }}"></textarea>
     </mat-form-field>
 
-<!--    <mat-form-field>-->
-<!--      <mat-label>{{ 'fee' | i18n }}</mat-label>-->
-<!--      <span class="mr-8" matPrefix>{{symbol}}</span>-->
-<!--      <input matInput [(ngModel)]="feeNQT" name="fee">-->
-<!--    </mat-form-field>-->
-
-<!--    <app-fee-selector [fees]="fees" [(fee)]="feeNQT"></app-fee-selector>-->
-
     <app-fee-input [type]="txType"
                    [subtype]="txSubtype"
                    [(feeSigna)]="fee"

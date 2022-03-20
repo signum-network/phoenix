@@ -13,7 +13,6 @@ import {RecipientInputComponent} from './recipient-input/recipient-input.compone
 import {AmountInputComponent} from './amount-input/amount-input.component';
 import {Ng5SliderModule} from 'ng5-slider';
 import {AppSharedModule} from '../shared/shared.module';
-import {FeeSelectorComponent} from './fee-selector/fee-selector.component';
 import {PageComponent} from './page/page.component';
 import {WarnSendDialogComponent} from './warn-send-dialog/warn-send-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -21,14 +20,13 @@ import { WatermarkComponent } from './watermark/watermark.component';
 import { LinkButtonComponent } from './link-button/link-button.component';
 import { FeeInputComponent } from './fee-input/fee-input.component';
 import { MessageInputComponent } from './message-input/message-input.component';
-import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
     SubmitTransactionComponent,
     RecipientInputComponent,
     AmountInputComponent,
-    FeeSelectorComponent,
     PageComponent,
     WarnSendDialogComponent,
     WatermarkComponent,
@@ -40,7 +38,6 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     SubmitTransactionComponent,
     RecipientInputComponent,
     AmountInputComponent,
-    FeeSelectorComponent,
     PageComponent,
     WarnSendDialogComponent,
     WatermarkComponent,

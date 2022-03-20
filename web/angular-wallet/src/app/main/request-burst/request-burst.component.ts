@@ -1,12 +1,11 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {Account, SuggestedFees} from '@signumjs/core';
+import { Account, SuggestedFees, TransactionPaymentSubtype, TransactionType } from '@signumjs/core';
 import {NgForm} from '@angular/forms';
-import {convertNumberToNQTString, CurrencySymbol} from '@signumjs/util';
+import { Amount, convertNumberToNQTString, CurrencySymbol } from '@signumjs/util';
 import {ActivatedRoute} from '@angular/router';
 import {AccountService} from 'app/setup/account/account.service';
 import {StoreService} from 'app/store/store.service';
 import {MatStepper} from '@angular/material/stepper';
-import {environment} from 'environments/environment';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 
@@ -18,8 +17,8 @@ import {takeUntil} from 'rxjs/operators';
 export class RequestBurstComponent extends UnsubscribeOnDestroy implements OnInit {
     @ViewChild(MatStepper, {static: true}) stepper: MatStepper;
     @ViewChild('requestBurstForm', {static: true}) public requestBurstForm: NgForm;
-    @ViewChild('amountNQT', {static: false}) public amountNQT = '0';
-    @ViewChild('feeNQT', {static: false}) public feeNQT: string;
+    @ViewChild('amount', {static: false}) public amount: string;
+    @ViewChild('fee', {static: false}) public fee: string;
     @ViewChild('immutable', {static: false}) public immutable = false;
     @Output() submit = new EventEmitter<any>();
 
@@ -27,10 +26,12 @@ export class RequestBurstComponent extends UnsubscribeOnDestroy implements OnIni
     showMessage = false;
     account: Account;
     fees: SuggestedFees;
-    imgSrc: string;
     senderRS: string;
     poller;
     symbol = CurrencySymbol;
+    txType = TransactionType.Payment;
+    txSubtype = TransactionPaymentSubtype.Ordinary;
+    paid = false;
 
     constructor(private route: ActivatedRoute,
                 private accountService: AccountService,
@@ -41,7 +42,7 @@ export class RequestBurstComponent extends UnsubscribeOnDestroy implements OnIni
     ngOnInit(): void {
         this.account = this.route.snapshot.data.account as Account;
         this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
-
+        this.amount = '0';
         this.storeService
             .ready
             .pipe(takeUntil(this.unsubscribeAll))
@@ -58,37 +59,29 @@ export class RequestBurstComponent extends UnsubscribeOnDestroy implements OnIni
     }
 
     getAmount(): number {
-        return parseFloat(this.amountNQT) || 0;
+        return parseFloat(this.amount) || 0;
     }
 
     getTotal(): number {
-        return this.getAmount() + parseFloat(this.feeNQT) || 0;
+        return this.getAmount() + parseFloat(this.fee) || 0;
     }
 
     async onSubmit(event): Promise<void> {
-        this.imgSrc = await this.accountService.generateSendTransactionQRCodeAddress(
-            this.account.account,
-            parseFloat(convertNumberToNQTString(parseFloat(this.amountNQT))) || 0,
-            undefined,
-            parseFloat(convertNumberToNQTString(parseFloat(this.feeNQT))),
-            this.immutable
-        );
-        const {node} = await this.storeService.getSettings();
-        this.imgSrc = `${node}${this.imgSrc}`;
         event.stopImmediatePropagation();
         this.stepper.selectedIndex = 1;
         // "Instant Payment" via unconfirmed transactions
-        // this.startPollingForPayment();
+        this.startPollingForPayment();
     }
 
-    startPollingForPayment() {
+    async startPollingForPayment(): Promise<void> {
         this.clearPollInterval();
         this.poller = setInterval(async () => {
             try {
                 const transactions = await this.accountService.getUnconfirmedTransactions(this.account.account);
                 transactions.unconfirmedTransactions.map((transaction) => {
-                    if (parseFloat(transaction.amountNQT) === parseFloat(convertNumberToNQTString(parseFloat(this.amountNQT)))) {
-                        this.stepper.selectedIndex = 2;
+                    if (Amount.fromPlanck(transaction.amountNQT).equals(Amount.fromSigna(this.amount)))
+                    {
+                        this.paid = true;
                         this.senderRS = transaction.senderRS;
                     }
                 });

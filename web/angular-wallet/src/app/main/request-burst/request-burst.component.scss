@@ -13,3 +13,16 @@ form {
   justify-content: space-between;
   align-items: center;
 }
+
+.paid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 240px;
+  mat-icon {
+    color: green;
+    font-size: 180px;
+    width: auto;
+    height: auto;
+  }
+}

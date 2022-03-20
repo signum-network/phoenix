@@ -1,14 +1,14 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {SuggestedFees, Account} from '@signumjs/core';
-import {Amount} from '@signumjs/util';
-import {NgForm} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
-import {AccountService} from 'app/setup/account/account.service';
-import {StoreService} from 'app/store/store.service';
-import {NotifierService} from 'angular-notifier';
-import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {AddressPattern} from 'app/util/addressPattern';
-import {isKeyDecryptionError} from '../../util/exceptions/isKeyDecryptionError';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Account, TransactionType, TransactionArbitrarySubtype } from '@signumjs/core';
+import { Amount } from '@signumjs/util';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { AccountService } from 'app/setup/account/account.service';
+import { StoreService } from 'app/store/store.service';
+import { NotifierService } from 'angular-notifier';
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { AddressPattern } from 'app/util/addressPattern';
+import { isKeyDecryptionError } from '../../util/exceptions/isKeyDecryptionError';
 
 @Component({
   selector: 'app-set-account-info',
@@ -16,11 +16,10 @@ import {isKeyDecryptionError} from '../../util/exceptions/isKeyDecryptionError';
   styleUrls: ['./set-account-info.component.scss']
 })
 export class SetAccountInfoComponent implements OnInit {
-  @ViewChild('setAccountInfoForm', {static: false}) public setAccountInfoForm: NgForm;
-  @ViewChild('name', {static: false}) public name: string;
-  @ViewChild('description', {static: false}) public description: string;
+  @ViewChild('setAccountInfoForm', { static: false }) public setAccountInfoForm: NgForm;
+  @ViewChild('name', { static: false }) public name: string;
+  @ViewChild('description', { static: false }) public description : string;
 
-  advanced = false;
   showMessage = false;
   isSending = false;
   immutable = false;
@@ -30,7 +29,8 @@ export class SetAccountInfoComponent implements OnInit {
   fee: string;
 
   account: Account;
-  fees: SuggestedFees;
+  txType = TransactionType.Arbitrary;
+  txSubtype = TransactionArbitrarySubtype.AccountInfo;
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
@@ -41,12 +41,10 @@ export class SetAccountInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.account = this.route.snapshot.data.account as Account;
-    this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
     this.immutable = this.account.type === 'offline';
     setTimeout(() => {
-      this.fee = Amount.fromPlanck(this.fees.standard + '').getSigna();
-      this.name = this.account.name;
-      this.description = this.account.description;
+      this.name = this.account.name || '';
+      this.description = this.account.description || '';
     }, 0);
   }
 
@@ -60,7 +58,7 @@ export class SetAccountInfoComponent implements OnInit {
         feePlanck: Amount.fromSigna(this.fee).getPlanck(),
         deadline: parseFloat(this.deadline) * 60,
         pin: this.pin,
-        keys: this.account.keys,
+        keys: this.account.keys
       });
       this.notifierService.notify('success', this.i18nService.getTranslation('success_set_account_info'));
       this.setPin('');
@@ -82,5 +80,10 @@ export class SetAccountInfoComponent implements OnInit {
 
   setPin(pin: string): void {
     this.pin = pin;
+  }
+
+  getPayloadLength(): number {
+    return (this.name ? this.name.length : 0) +
+      (this.description ? this.description.length : 0) + 32;
   }
 }

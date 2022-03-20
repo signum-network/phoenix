@@ -1,4 +1,13 @@
 # Changelog
+## 1.3.3
+
+# Feature
+
+- New Fee Selector component
+
+### Bug Fixes
+- Fixed all fee issues 
+
 ## 1.3.2
 
 ### Bug Fixes
