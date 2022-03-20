@@ -32,6 +32,7 @@
                                  [withQrCode]="false"></recipient-input>
           <mat-form-field [class.last]="isLastRecipientItem(i) && i !== 0" *ngIf="!sameAmount">
             <input matInput [(ngModel)]="recipient.amount"
+                   class="amount-input"
                    name="amount{{i}}"
                    placeholder="{{ 'amount' | i18n }}"
             >
@@ -49,37 +50,16 @@
     </div>
   </div>
 
-  <mat-form-field>
-    <input matInput [(ngModel)]="fee" name="fee" placeholder="{{ 'fee' | i18n }}">
-  </mat-form-field>
+  <app-fee-input [type]="type"
+                 [subtype]="subtype"
+                 [(feeSigna)]="fee"
+                 [payloadLength]="getPayloadLength()"
+  >
+  </app-fee-input>
 
-  <app-fee-selector [fees]="fees" [(fee)]="fee"></app-fee-selector>
-
-  <div *ngIf="advanced">
-    <mat-form-field>
-      <label>{{ 'deadline_hours' | i18n }}</label>
-      <input matInput [(ngModel)]="deadline" name="deadline" placeholder="{{ 'deadline_hours' | i18n }}">
-    </mat-form-field>
-  </div>
-  <div class="send-button-wrapper">
-    <mat-form-field class="message-text password-field" floatLabel="never" appearance="standard">
-      <input type="password" matInput required placeholder="{{'enter_pin' | i18n}}" [(ngModel)]="pin" name="pin">
-    </mat-form-field>
-
-    <button class="send-button" mat-icon-button type="submit" aria-label="Send message"
-            [disabled]="!canSubmit()">
-      <ng-container *ngIf="!isSending">
-        <mat-icon [class.enabled]="canSubmit() || false">send</mat-icon>
-      </ng-container>
-      <ng-container *ngIf="isSending">
-        <mat-spinner diameter="20"></mat-spinner>
-      </ng-container>
-    </button>
-  </div>
+  <app-submit-transaction [(pin)]="pin" [disabled]="!canSubmit()" [isSubmitting]="isSending">
+  </app-submit-transaction>
 
   <strong>{{'total' | i18n}}:&nbsp;</strong>
-  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getSigna() | amount }}</span> -
-  <a (click)="advanced=!advanced"><em>{{ advanced ? "basic" : "advanced" | i18n }}</em></a>
-  <br/><br/>
-
+  <span [class.no-balance]="!hasSufficientBalance()">{{ getTotal().getSigna() | amount }}</span>
 </form>

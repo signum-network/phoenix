@@ -8,18 +8,20 @@ import {
   Output,
   SimpleChanges,
   ViewChild
-} from "@angular/core";
-import { FeeRegimeService } from "./fee-regime.service";
-import { NetworkService } from "../../network/network.service";
-import { SuggestedFees } from "@signumjs/core";
-import { Amount, CurrencySymbol } from "@signumjs/util";
+} from '@angular/core';
+import { FeeRegimeService } from './fee-regime.service';
+import { NetworkService } from '../../network/network.service';
+import { SuggestedFees } from '@signumjs/core';
+import { Amount, CurrencySymbol } from '@signumjs/util';
 
-type FeeTypes = "cheap" | "standard" | "priority";
+type FeeTypes = 'cheap' | 'standard' | 'priority';
+
+const AbsoluteMaxFee = Amount.fromSigna(500);
 
 @Component({
-  selector: "app-fee-input",
-  templateUrl: "./fee-input.component.html",
-  styleUrls: ["./fee-input.component.scss"]
+  selector: 'app-fee-input',
+  templateUrl: './fee-input.component.html',
+  styleUrls: ['./fee-input.component.scss']
 })
 export class FeeInputComponent implements OnInit, OnChanges {
 
@@ -33,7 +35,7 @@ export class FeeInputComponent implements OnInit, OnChanges {
   feeValue: string;
   maxFee = Amount.Zero();
   suggestedFees: SuggestedFees;
-  priority: FeeTypes = "standard";
+  priority: FeeTypes = 'standard';
 
   @Input()
   get feeSigna(): string {
@@ -45,11 +47,11 @@ export class FeeInputComponent implements OnInit, OnChanges {
 
   set feeSigna(feeValue: string) {
     if (!feeValue) {
-      this.feeValue = "0";
+      this.feeValue = '0';
       return;
     }
 
-    this.feeValue = Amount.fromSigna(feeValue).greater(this.maxFee) ? this.maxFee.getSigna() : feeValue;
+    this.feeValue = Amount.fromSigna(feeValue).greater(AbsoluteMaxFee) ? AbsoluteMaxFee.getSigna() : feeValue;
     this.feeSignaChange.next(this.feeValue);
   }
 
@@ -75,7 +77,7 @@ export class FeeInputComponent implements OnInit, OnChanges {
     );
   }
 
-  public setPriority(prio: "cheap" | "standard" | "priority"): void {
+  public setPriority(prio: 'cheap' | 'standard' | 'priority'): void {
     this.priority = prio;
     this.feeRegimeService.setFeeBase(Amount.fromPlanck(this.suggestedFees[prio]));
     this.updateFee();

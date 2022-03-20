@@ -27,18 +27,18 @@ form {
       flex-direction: row;
       align-items: baseline;
 
-      burst-recipient-input {
+      recipient-input {
         margin-right: 8px;
         width: 100%;
       }
 
-      mat-form-field {
-        width: 30%
-      }
+      //.amount-input {
+      //  width: 50%;
+      //}
 
-      mat-form-field.last {
-        width: 20%;
-      }
+      //mat-form-field.last {
+      //  width: 10%;
+      //}
 
       mat-icon {
         cursor: pointer;

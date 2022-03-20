@@ -4,7 +4,7 @@ export const environment = {
   production: true,
   hmr: false,
   version,
-  defaultNode: 'https://wallet.burstcoin.ro',
+  defaultNode: 'https://europe.signum.network',
   market: {
     tickerUrl: 'https://api.coingecko.com/api/v3/coins/signum?tickers=false&community_data=false&developer_data=false&market_data=true',
     tickerInterval: 60 * 1000

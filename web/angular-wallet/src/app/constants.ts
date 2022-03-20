@@ -148,19 +148,19 @@ export const constants = {
       testnet: false
     },
     {
-      name: 'Testnet Node Zoh',
+      name: 'Testnet Node Local',
       region: 'Europe',
-      location: 'Denmark',
-      address: 'https://testnet.burstcoin.network',
+      location: 'UK',
+      address: 'http://europe3.testnet.signum.network',
       port: 6876,
       reliable: false,
       testnet: true
     },
     {
-      name: 'Testnet Node Nivok',
-      region: 'Europe',
-      location: 'UK',
-      address: 'http://nivbox.co.uk',
+      name: 'Testnet Local',
+      region: 'None',
+      location: 'Local',
+      address: 'http://localhost',
       port: 6876,
       reliable: false,
       testnet: true

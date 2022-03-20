@@ -1,23 +1,32 @@
-import {Component, OnInit, ViewChild, Input} from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {NotifierService} from 'angular-notifier';
-import {Amount} from '@signumjs/util';
-import {SuggestedFees, Account, MultioutRecipientAmount, Address, AddressPrefix} from '@signumjs/core';
-import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {TransactionService} from 'app/main/transactions/transaction.service';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {filter, takeUntil} from 'rxjs/operators';
-import {StoreService} from '../../../store/store.service';
-import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
-import {BatchRecipientsDialogComponent} from '../batch-recipients-dialog/batch-recipients-dialog.component';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {constants} from '../../../constants';
-import {Router} from '@angular/router';
-import {AccountBalances, getBalancesFromAccount} from '../../../util/balance';
-import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
-import {NetworkService} from '../../../network/network.service';
-import {Recipient} from '../../../components/recipient-input/recipient-input.component';
-import {WarnSendDialogComponent} from '../../../components/warn-send-dialog/warn-send-dialog.component';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { NotifierService } from 'angular-notifier';
+import { Amount } from '@signumjs/util';
+import {
+  Account,
+  Address,
+  AddressPrefix,
+  MultioutRecipientAmount,
+  SuggestedFees,
+  TransactionPaymentSubtype,
+  TransactionType
+} from '@signumjs/core';
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { TransactionService } from 'app/main/transactions/transaction.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { filter, takeUntil } from 'rxjs/operators';
+import { StoreService } from '../../../store/store.service';
+import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
+import { BatchRecipientsDialogComponent } from '../batch-recipients-dialog/batch-recipients-dialog.component';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { constants } from '../../../constants';
+import { Router } from '@angular/router';
+import { AccountBalances, getBalancesFromAccount } from '../../../util/balance';
+import { isKeyDecryptionError } from '../../../util/exceptions/isKeyDecryptionError';
+import { NetworkService } from '../../../network/network.service';
+import { Recipient } from '../../../components/recipient-input/recipient-input.component';
+import { WarnSendDialogComponent } from '../../../components/warn-send-dialog/warn-send-dialog.component';
+import {memoize} from 'lodash';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -27,29 +36,6 @@ const isNotEmpty = (value: string) => value && value.length > 0;
   styleUrls: ['./send-multi-out-form.component.scss']
 })
 export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements OnInit {
-
-  @ViewChild('sendBurstForm', {static: true}) public sendBurstForm: NgForm;
-  @ViewChild('recipientAddress', {static: false}) public recipientAddress: string;
-  @ViewChild('amount', {static: true}) public amount: string;
-  @ViewChild('message', {static: false}) public message: string;
-  @ViewChild('fullHash', {static: false}) public fullHash: string;
-  @ViewChild('encrypt', {static: false}) public encrypt: string;
-  @ViewChild('pin', {static: true}) public pin: string;
-
-  @ViewChild('recipients', {static: true}) public recipients: Array<Recipient> = [];
-
-  @Input() account: Account;
-  @Input() fees: SuggestedFees;
-
-  fee: string;
-  sameAmount = false;
-  advanced = false;
-  showMessage = false;
-
-  deadline = '24';
-  isSending = false;
-  language: string;
-  private balances: AccountBalances;
 
   constructor(
     private warnDialog: MatDialog,
@@ -70,6 +56,36 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
         }
       );
   }
+
+  @ViewChild('sendBurstForm', {static: true}) public sendBurstForm: NgForm;
+  @ViewChild('recipientAddress', {static: false}) public recipientAddress: string;
+  @ViewChild('amount', {static: true}) public amount: string;
+  @ViewChild('message', {static: false}) public message: string;
+  @ViewChild('fullHash', {static: false}) public fullHash: string;
+  @ViewChild('encrypt', {static: false}) public encrypt: string;
+  @ViewChild('pin', {static: true}) public pin: string;
+  @ViewChild('fee', { static: true }) public fee: string;
+
+  @ViewChild('recipients', {static: true}) public recipients: Array<Recipient> = [];
+
+  @Input() account: Account;
+  @Input() fees: SuggestedFees;
+
+  sameAmount = false;
+  advanced = false;
+  showMessage = false;
+
+  deadline = '24';
+  isSending = false;
+  language: string;
+  private balances: AccountBalances;
+  type = TransactionType.Payment;
+  subtype = this.sameAmount ? TransactionPaymentSubtype.MultiOutSameAmount : TransactionPaymentSubtype.MultiOut;
+
+  public getPayloadLength = memoize(this.calculatePayloadLength.bind(this),
+      () => {
+      return `${this.recipients.length}-${this.sameAmount ? 'same' : 'unsame'}`;
+    });
 
   ngOnInit(): void {
     this.balances = getBalancesFromAccount(this.account);
@@ -188,6 +204,24 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       .subscribe(this.handleBatchRecipients.bind(this));
   }
 
+  private calculatePayloadLength(): number {
+    const l = this.recipients.reduce(
+      (len, r ) => {
+        if (!r.addressRS) {
+          return len;
+        }
+        // format is <id1>;<id2>;
+        len += Address.fromReedSolomonAddress(r.addressRS).getNumericId().length + 1;
+        if (!this.sameAmount){
+          // format is <id1>:<amount>;<id2>:<amount>;
+          len += Amount.fromSigna(r.amount || '0').getPlanck().length + 1;
+        }
+        return len;
+      }, 0);
+    console.log('calculatePayloadLength', l)
+    return l;
+  }
+
   private getTotalForMultiOut(): Amount {
     return this.nonEmptyRecipients()
       .map(({amount}) => Amount.fromSigna(amount || 0))
@@ -252,6 +286,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       ...recipient,
       amount
     };
+    this.calculatePayloadLength();
   }
 
   private handleBatchRecipients(recipientAmounts: MultioutRecipientAmount[]): void {
