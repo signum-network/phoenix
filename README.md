@@ -7,14 +7,16 @@ Phoenix is an open source, cross-platform wallet for the Signum (former Burstcoi
 ![image](assets/wallet/collage.jpg)
 
 ### Key features:
-- Improved security - Private keys are encrypted with a hashed PIN, securing them in the event of data breach. That PIN is then used for locally signing transactions and decrypting messages. Passphrases are not stored locally, and never sent to the server. 
+
+- Improved security - Private keys are encrypted with a hashed PIN, securing them in the event of data breach. That PIN is then used for locally signing transactions and decrypting messages. Passphrases are not stored locally, and never sent to the server.
 - Multi-account support - Manage multiple accounts within your wallet.
 - Offline account support - Watch an account without using the passphrase for maximum security.
 - Cross-platform - Runs on all popular platforms without any additional software requirements.
 - Dashboard - with Market Information and Interactive Balance History Diagram.
-- Powered by <a href="https://signum-network.github.io/signumjs"><img src="./assets/signumjs.png" height="32" /></a>
+- Powered by <a href="https://signum-network.gitbook.io/signumjs"><img src="./assets/signumjs.png" height="32" /></a>
 
 ## Additional features:
+
 - Multi-out support - Send and view Multi-out & Multi-out-same Payments
 - QR Codes - View account QR codes and create custom QR codes for merchants/POS terminals.
 - Deep Linking - Make your apps interact with Phoenix (see [here](./DEEPLINKING.md))
@@ -28,16 +30,16 @@ Phoenix is an open source, cross-platform wallet for the Signum (former Burstcoi
 - Localized in 30 languages.
 - Responsive UI
 
-*Some features not available on mobile.*
+_Some features not available on mobile._
 
 ## Application Architecture
 
-Phoenix is comprised of two main applications: a desktop application and a mobile application 
+Phoenix is comprised of two main applications: a desktop application and a mobile application
 
 <img src="./assets/architecture.png" height="640" alt="Phoenix Architecture Diagram"/>
 
 The web application is built on Angular 8 and embedded into electron to be executable as desktop application.
-The mobile application uses React Native to be available for Android and iOS. All these apps use the [SignumJS SDK](https://github.com/signum-network/signumjs) 
+The mobile application uses React Native to be available for Android and iOS. All these apps use the [SignumJS SDK](https://github.com/signum-network/signumjs)
 to interact with the [Signum nodes](https://github.com/signum-network/signum-node).
 
 ## Installation and Build
@@ -45,10 +47,11 @@ to interact with the [Signum nodes](https://github.com/signum-network/signum-nod
 The project is structured per platform, and further build/installation instruction can be obtained from the `README.md` in their respective folders.
 
 ### Pick A Platform
+
 - [Web Wallet](/web/angular-wallet/README.md)
 - [Desktop Wallet](/desktop/wallet/README.md)
 - [Mobile Wallet](/mobile/README.md)
 
 ### See Also
-- [Development Scripts](/scripts/README.md)
 
+- [Development Scripts](/scripts/README.md)
