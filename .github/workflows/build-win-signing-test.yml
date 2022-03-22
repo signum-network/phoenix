@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ windows-latest ]
+        os: [ ubuntu-latest ]
         package_manager: [ npm ]
 
     steps:
