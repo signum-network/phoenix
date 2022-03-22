@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.3.3
+## 1.4.0
 
 # Feature
 - New Fee Selector component
