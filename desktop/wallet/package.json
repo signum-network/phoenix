@@ -6,7 +6,7 @@
   },
   "homepage": "https://phoenix-wallet.rocks",
   "productName": "Phoenix Signum Wallet",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "contributors": [
     "ohager",
     "blankey1337",
@@ -33,6 +33,8 @@
     "start": "cross-env NODE_ENV=develop npm run build electron .",
     "start:fast": "cross-env NODE_ENV=develop electron .",
     "pack": "npm run build && electron-builder -p 'never' --config electron-builder.json",
+    "build:electron": "electron-builder -p 'never' --config electron-builder.json",
+    "build:win32": "npm run build:electron -- -w",
     "release:all": "npm run pack -- -wml",
     "release:linux": "npm run pack -- -l",
     "release:win32": "npm run pack -- -w",
