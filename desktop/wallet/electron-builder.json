@@ -46,7 +46,7 @@
   },
   "win": {
     "artifactName": "${os}-phoenix-signum-wallet.${version}.${ext}",
-
+    "publisherName": "DIGITAL INDEPENDENCE CONSULTORIA E ASSESSORIA LTDA",
     "target": [
       "nsis",
       "portable"
