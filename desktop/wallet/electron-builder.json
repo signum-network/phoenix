@@ -46,6 +46,7 @@
   },
   "win": {
     "artifactName": "${os}-phoenix-signum-wallet.${version}.${ext}",
+
     "target": [
       "nsis",
       "portable"

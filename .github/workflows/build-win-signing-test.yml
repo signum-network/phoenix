@@ -1,0 +1,38 @@
+name: Sign Windows Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sign-windows:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ windows-latest ]
+        package_manager: [ npm ]
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12
+
+      - name: Prepare build environment
+        run: |
+          cd ./scripts
+          npm ci
+          cd ../web/angular-wallet
+          npm ci
+
+      - name: Build & Sign Electron app
+        uses: samuelmeuli/action-electron-builder@v1
+        with:
+          package_root: "./desktop/wallet"
+          github_token: ${{ secrets.github_token }}
+          release: false
+          windows_certs: ${{ secrets.windows_certs }}
+          windows_certs_password: ${{ secrets.windows_certs_password }}

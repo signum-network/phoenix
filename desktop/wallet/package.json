@@ -52,7 +52,7 @@
   },
   "update": {
     "repositoryRootUrl": "https://api.github.com/repos/signum-network/phoenix",
-    "certFingerprint": "0A:E3:84:BF:D4:DD:E9:D1:3E:50:C5:85:7C:05:A4:42:C9:3F:8E:01:44:5E:E4:B3:45:40:D2:2B:D1:E3:7F:1B",
+    "certFingerprint": "B7:BC:55:10:CC:1C:63:7B:5E:5F:B7:85:81:6A:77:3D:BB:39:4B:68:33:7B:1B:11:7C:A5:AB:43:CC:F7:78:CF",
     "checkIntervalMins": 10,
     "tagPrefix": "desktop-"
   },
