@@ -80,7 +80,7 @@
     "jsqr": "^1.2.0",
     "lodash": "4.17.21",
     "lokijs": "^1.5.8",
-    "moment": "2.24.0",
+    "moment": "2.29.2",
     "ng-mocks": "^8.1.0",
     "ng2-charts": "2.3.0",
     "ng5-slider": "^1.2.4",
