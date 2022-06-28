@@ -1,69 +1,64 @@
-<div class="page-layout blank simple" fusePerfectScrollbar>
-
-  <!-- HEADER -->
-  <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-      fxLayoutAlign.gt-xs="space-between center">
-
-      <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
-          <div fxLayout="row" fxLayoutAlign="start center">
-              <a [routerLink]="['/dashboard']"><mat-icon class="secondary-text s-18">home</mat-icon></a>
-              <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-              <span class="secondary-text">{{ 'peers' | i18n }}</span>
-          </div>
-          <div class="h1 mt-16">{{ 'peers' | i18n }}</div>
-      </div>
-  </div>
-  <!-- / HEADER -->
-
+<app-page title="{{ 'peers' | i18n }}" [full]="true">
   <div class="p-24">
-      <mat-table #table [dataSource]="dataSource" matSort>
-          <ng-container matColumnDef="announcedAddress">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'address' | i18n }}</mat-header-cell>
-              <mat-cell *matCellDef="let peer">
-                  {{ peer.announcedAddress }}
-              </mat-cell>
-          </ng-container>
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="announcedAddress">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'address' | i18n }}</mat-header-cell>
+        <mat-cell *matCellDef="let peer">
+          {{ peer.announcedAddress }}
+        </mat-cell>
+      </ng-container>
 
-          <ng-container matColumnDef="downloadedVolume">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>
-                {{ 'downloaded' | i18n }}
-            </mat-header-cell>
-            <mat-cell *matCellDef="let peer">
-                {{ peer.downloadedVolume }}
-            </mat-cell>
-          </ng-container>
+      <ng-container matColumnDef="downloadedVolume">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'downloaded' | i18n }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let peer">
+          {{ peer.downloadedVolume }}
+        </mat-cell>
+      </ng-container>
 
-          <ng-container matColumnDef="uploadedVolume">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>
-                {{ 'uploaded' | i18n }}
-            </mat-header-cell>
-            <mat-cell *matCellDef="let peer">
-                {{ peer.uploadedVolume }}
-            </mat-cell>
-          </ng-container>
+      <ng-container matColumnDef="lastUpdated">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'updated' | i18n }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let peer">
+          {{convertTimestampToDate(peer.lastUpdated) | timeAgo}}
+        </mat-cell>
+      </ng-container>
 
-          <ng-container matColumnDef="application">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  {{ 'application' | i18n }}
-              </mat-header-cell>
-              <mat-cell *matCellDef="let peer">
-                  <label class="pill">{{ peer.application }} {{ peer.version }}</label>
-              </mat-cell>
-          </ng-container>
+      <ng-container matColumnDef="uploadedVolume">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'uploaded' | i18n }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let peer">
+          {{ peer.uploadedVolume }}
+        </mat-cell>
+      </ng-container>
 
-          <ng-container matColumnDef="platform">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>
-                {{ 'platform' | i18n }}
-            </mat-header-cell>
-            <mat-cell *matCellDef="let peer">
-                {{ peer.platform }}
-            </mat-cell>
-          </ng-container>
+      <ng-container matColumnDef="version">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'version' | i18n }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let peer">
+          <div [class]="getVersionClass(peer)">
+              <span>{{ peer.version || '???'}}</span>
+          </div>
+        </mat-cell>
+      </ng-container>
 
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-      <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 500]" [showFirstLastButtons]="true">
-      </mat-paginator>
+      <ng-container matColumnDef="platform">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'platform' | i18n }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let peer">
+          {{ peer.platform }}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 500]" [showFirstLastButtons]="true">
+    </mat-paginator>
   </div>
-</div> 
+</app-page>

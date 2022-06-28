@@ -12,7 +12,6 @@ import {NotifierService} from 'angular-notifier';
 import {debounceTime, takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {ApiService} from '../../api.service';
-import {MatSlideToggleChange} from '@angular/material';
 
 interface NodeInformation {
   url: string;
