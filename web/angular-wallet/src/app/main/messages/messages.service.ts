@@ -147,7 +147,9 @@ export class MessagesService implements Resolve<any> {
         recipientPublicKey: recipient.publicKey,
         message: message.message,
         feePlanck: Amount.fromSigna(fee).getPlanck(),
-        senderKeys,
+        senderPrivateKey: senderKeys.signPrivateKey,
+        senderAgreementKey: senderKeys.agreementPrivateKey,
+        senderPublicKey: senderKeys.publicKey
       });
     } else {
       transactionId = await this.api.message.sendMessage({

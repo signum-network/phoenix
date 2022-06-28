@@ -68,6 +68,12 @@ function getKeyForAssetSubtype(transaction: Transaction): string {
       return 'ask_order_cancellation';
     case TransactionAssetSubtype.BidOrderCancellation:
       return 'bid_order_cancellation';
+    case TransactionAssetSubtype.AssetDistributeToHolders:
+      return 'distribution_tokenholders';
+    case TransactionAssetSubtype.AssetMint:
+      return 'mint_token';
+    case TransactionAssetSubtype.AssetAddTreasureyAccount:
+      return 'add_treasury_account';
   }
 }
 

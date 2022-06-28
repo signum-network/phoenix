@@ -147,7 +147,7 @@ export class AccountService {
 
   public setAlias({aliasName, aliasURI, feeNQT, deadline, pin, keys}: SetAliasRequest): Promise<TransactionId> {
     const senderPrivateKey = this.getPrivateKey(keys, pin);
-    return this.api.account.setAlias(aliasName, aliasURI, feeNQT, keys.publicKey, senderPrivateKey, deadline);
+    return this.api.account.setAlias(aliasName, aliasURI, feeNQT, keys.publicKey, senderPrivateKey, deadline) as Promise<TransactionId>;
   }
 
   private getPrivateKey(keys, pin): string {
@@ -201,7 +201,7 @@ export class AccountService {
       senderPrivateKey,
       senderPublicKey: keys.publicKey,
       deadline
-    });
+    }) as Promise<TransactionId>;
   }
 
   public setRewardRecipient({
@@ -218,7 +218,7 @@ export class AccountService {
       senderPublicKey: keys.publicKey,
       deadline,
       feePlanck,
-    });
+    }) as Promise<TransactionId>;
   }
 
   public async getRewardRecipient(recipientId: string): Promise<Account | null> {
@@ -238,9 +238,9 @@ export class AccountService {
       feePlanck,
     };
 
-    return isRevoking
+    return (isRevoking
       ? this.api.account.removeCommitment(args)
-      : this.api.account.addCommitment(args);
+      : this.api.account.addCommitment(args)) as Promise<TransactionId>;
   }
 
   public createActiveAccount({passphrase, pin = ''}): Promise<Account> {

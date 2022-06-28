@@ -34,6 +34,7 @@ export class ApiService {
       nodeHost: this.nodeUrl,
       apiVersion: 0
     });
+    await this.api.service.selectBestHost(true)
     this.brsVersion = undefined;
 
     if (settings.nodeAutoSelectionEnabled) {
