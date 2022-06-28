@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import {BlockCellValue, BlockCellValueMapper} from './block-cell-value-mapper';
 import {UtilService} from '../../../util.service';
 import {I18nService} from '../../../layout/components/i18n/i18n.service';
+import { NetworkService } from '../../../network/network.service';
+import { AppService } from '../../../app.service';
 
 export interface BlockDetailRow {
   k: string;
@@ -24,6 +26,8 @@ export class BlockDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private networkService: NetworkService,
+    private appService: AppService,
     private i18nService: I18nService,
     private utilService: UtilService,
   ) {
@@ -39,6 +43,9 @@ export class BlockDetailsComponent implements OnInit {
   }
 
   initializeDetailsData(block: Block): void{
+    // @ts-ignore
+    delete this.block.blockRewardNQT;
+
     this.cellValueMapper = new BlockCellValueMapper(block);
     this.detailsData = Object
       .keys(block)
@@ -61,5 +68,15 @@ export class BlockDetailsComponent implements OnInit {
 
   private getTranslatedFieldName(key: string): string {
     return this.utilService.translateBlockField(key);
+  }
+
+  openExplorer(): void {
+    const host = this.networkService.getChainExplorerHost();
+    const url = `${host}/block/${this.block.height}`;
+    if (!this.appService.isDesktop()) {
+      window.open(url, 'blank');
+    } else {
+      this.appService.openInBrowser(url);
+    }
   }
 }

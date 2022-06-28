@@ -24,6 +24,7 @@ export enum CellValueType {
   MultiOutCreation = 'MultiOutCreation',
   CommitmentAdd = 'CommitmentAdd',
   CommitmentRemove = 'CommitmentRemove',
+  AssetDistributeToHolders = 'AssetDistributeToHolders',
 }
 
 export class CellValue {
@@ -65,6 +66,7 @@ export class CellValueMapper {
       blockTimestamp: this.getTime(this.transaction.blockTimestamp),
       ecBlockId: this.getTypedValue(this.transaction.ecBlockId, CellValueType.BlockId),
       timestamp: this.getTime(this.transaction.timestamp),
+      cashBackId: this.getTypedValue(this.transaction.cashBackId, CellValueType.AccountId),
     };
   }
 
@@ -100,6 +102,8 @@ export class CellValueMapper {
         return new CellValue(attachment, CellValueType.CommitmentAdd);
       case 'CommitmentRemove':
         return new CellValue(attachment, CellValueType.CommitmentRemove);
+      case 'AssetDistributeToHolders':
+        return new CellValue(attachment, CellValueType.AssetDistributeToHolders);
       default:
         return this.transaction['attachment'];
     }
@@ -107,7 +111,7 @@ export class CellValueMapper {
   }
 
   private getAmount(nqt: string): CellValue {
-    const valueStr = `${Amount.fromPlanck(nqt).toString()}`;
+    const valueStr = Amount.fromPlanck(nqt).toString();
     return new CellValue(valueStr);
   }
 

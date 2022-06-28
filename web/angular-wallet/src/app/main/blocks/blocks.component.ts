@@ -36,107 +36,21 @@ export class BlocksComponent implements OnInit {
   }
 
   public async ngOnInit(): Promise<void> {
-    this.displayedColumns = ['block', 'height', 'numberOfTransactions', 'timestamp', 'totalAmountNQT', 'totalFeeNQT'];
+    this.displayedColumns = [
+      'block',
+      'height',
+      'numberOfTransactions',
+      'timestamp',
+      'totalAmountNQT',
+      'totalFeeNQT',
+      'totalFeeBurntNQT',
+      'averageCommitmentNQT',
+    ];
     this.dataSource = new MatTableDataSource<Block>();
     this.dataSource.data = this.route.snapshot.data.blocks.blocks;
     this.networkService.setBlocks(this.dataSource.data);
     this.networkService.blocks.subscribe((blocks) => {
       this.dataSource.data = blocks;
-      const chartData = blocks
-        .slice()
-        .splice(0, 20)
-        .map((block, i) => {
-          if (blocks[i + 1]) {
-            const timeBetween = this.convertTimestamp(block.timestamp).getTime() - this.convertTimestamp(blocks[i + 1].timestamp).getTime();
-            return new Date(timeBetween).getMinutes();
-          }
-        })
-        .filter((time) => typeof time !== 'undefined')
-        .reverse();
-
-      this.chart = {
-        chartType: 'line',
-        datasets: [
-          {
-            label: 'Block Time (mins)',
-            data: chartData,
-            fill: 'start'
-          }
-        ],
-        labels: blocks
-          .slice()
-          .splice(0, 20)
-          .map((block) => block.block)
-          .reverse(),
-        colors: [
-          {
-            borderColor: '#42a5f5',
-            backgroundColor: '#42a5f5',
-            pointBackgroundColor: '#1e88e5',
-            pointHoverBackgroundColor: '#1e88e5',
-            pointBorderColor: '#ffffff',
-            pointHoverBorderColor: '#ffffff'
-          }
-        ],
-        options: {
-          spanGaps: false,
-          legend: {
-            display: false
-          },
-          maintainAspectRatio: false,
-          layout: {
-            padding: {
-              top: 32,
-              left: 32,
-              right: 32
-            }
-          },
-          elements: {
-            point: {
-              radius: 4,
-              borderWidth: 2,
-              hoverRadius: 4,
-              hoverBorderWidth: 2
-            },
-            line: {
-              tension: 0
-            }
-          },
-          scales: {
-            xAxes: [
-              {
-                display: false,
-                gridLines: {
-                  display: false,
-                  drawBorder: false,
-                  tickMarkLength: 18
-                },
-                ticks: {
-                  fontColor: '#ffffff'
-                }
-              }
-            ],
-            yAxes: [
-              {
-                ticks: {
-                  min: Math.min(...chartData),
-                  max: Math.max(...chartData),
-                  stepSize: 2,
-                  fontColor: '#ffffff'
-                }
-              }
-            ]
-          },
-          plugins: {
-            filler: {
-              propagate: false
-            },
-            xLabelsOnTop: {
-              active: true
-            }
-          }
-        }
-      };
     });
   }
 

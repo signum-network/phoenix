@@ -32,6 +32,7 @@ import {TransactionTableModule} from './transaction-table/transaction.module';
 import {TransactionRowValueCellComponent} from './transaction-details/transaction-row-value-cell/transaction-row-value-cell.component';
 import {AppSharedModule} from '../../shared/shared.module';
 import {ComponentsModule} from '../../components/components.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const routes = [
   {
@@ -81,6 +82,7 @@ const routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     TransactionTableModule,
+    MatTooltipModule
   ],
   declarations: [
     TransactionsComponent,

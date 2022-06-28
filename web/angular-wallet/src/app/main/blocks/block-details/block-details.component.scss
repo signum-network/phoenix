@@ -1,6 +1,16 @@
 @import "src/@fuse/scss/fuse";
 
 :host {
+  .info {
+    position: relative;
+
+    .explorer-link {
+      position: absolute;
+      right: 0;
+      color: #0099ff;
+      cursor: pointer;
+    }
+  }
 
   div.table {
     .row{

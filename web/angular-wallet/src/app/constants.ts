@@ -203,6 +203,10 @@ export const constants = {
     },
   ],
   supportUrl: 'https://github.com/signum-network/phoenix/issues',
+  explorerHost: {
+    main: 'https://chain.signum.network',
+    test: 'https://t-chain.signum.network',
+  },
   transactionCount: '100',
   multiOutMinVersion: '2.3.1',
   pocPlusVersion: '3.0.0',

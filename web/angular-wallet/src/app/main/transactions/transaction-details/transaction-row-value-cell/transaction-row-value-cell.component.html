@@ -113,6 +113,12 @@
     </div>
   </div>
 
+  <div *ngSwitchCase="'AssetDistributeToHolders'">
+    <div>
+      <label class="mr-8">{{'asset' | i18n}}:</label>
+      <span>{{value.data.asset}}</span>
+    </div>
+  </div>
 
   <div *ngSwitchDefault>{{value.data | i18n}}</div>
 </div>

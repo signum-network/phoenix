@@ -104,6 +104,7 @@ export class AccountService {
   public async getAccountTransactions(args: GetAccountTransactionsArgs
   ): Promise<TransactionList> {
     args.includeIndirect = true;
+    args.resolveDistributions = true;
     try {
       const transactions = await this.api.account.getAccountTransactions(args);
       return Promise.resolve(transactions);

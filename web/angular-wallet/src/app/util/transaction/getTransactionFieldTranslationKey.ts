@@ -23,6 +23,7 @@ const keyMap = {
   height: 'block_height',
   recipient: 'recipient_id',
   recipientRS: 'recipient_address',
+  cashBackId: 'cashback_id',
 };
 
 export function getTransactionFieldTranslationKey(key: string): string {

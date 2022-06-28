@@ -95,4 +95,8 @@ export class NetworkService {
   public isMainNet(): boolean {
     return this._isMainNet;
   }
+
+  public getChainExplorerHost(): string {
+    return this._isMainNet ? constants.explorerHost.main : constants.explorerHost.test
+  }
 }
