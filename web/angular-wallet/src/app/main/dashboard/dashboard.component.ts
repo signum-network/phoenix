@@ -24,12 +24,6 @@ export class DashboardComponent extends UnsubscribeOnDestroy implements OnInit {
       .subscribe((settings: Settings) => {
         this.userProfile = settings.userProfile || 'simple';
       });
-
-    // this.accountService.currentAccount$
-    //   .pipe(takeUntil(this.unsubscribeAll))
-    //   .subscribe((account) => {
-    //     this.accountService.selectAccount(account);
-    //   });
   }
 
 }
