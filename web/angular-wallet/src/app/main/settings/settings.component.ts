@@ -12,6 +12,7 @@ import {NotifierService} from 'angular-notifier';
 import {debounceTime, takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {ApiService} from '../../api.service';
+import { AppService } from '../../app.service';
 
 interface NodeInformation {
   url: string;
@@ -33,6 +34,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
               private storeService: StoreService,
               private notifierService: NotifierService,
               private apiService: ApiService,
+              private appService: AppService,
               private route: ActivatedRoute) {
     super();
   }
@@ -47,6 +49,8 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   public showConnectionErrorIcon = false;
   public selectedNodeVersion: string;
   public isAutomatic = true;
+  public showDesktopNotifications = true;
+  public isDesktop = false;
 
   private static createNodeList(showTestnet: boolean): Array<any> {
     const nodes = constants.nodes
@@ -73,10 +77,11 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.settings = this.route.snapshot.data.settings as Settings;
+    this.isDesktop = this.appService.isDesktop() ;
     this.selectedNode.setValue(this.settings.node);
     this.showTestnet.setValue(false);
     this.isAutomatic = this.settings.nodeAutoSelectionEnabled;
-
+    this.showDesktopNotifications = this.settings.showDesktopNotifications;
     const waitASecond = debounceTime(1000);
     const updateVersion = () => {
       this.fetchNodeVersion();
@@ -175,5 +180,16 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
     if (this.isAutomatic) {
       await this.autoSelectNode();
     }
+  }
+
+  async setDesktopNotifications(): Promise<void> {
+    const currentSettings = await this.storeService.getSettings();
+    currentSettings.showDesktopNotifications = this.showDesktopNotifications;
+    await this.storeService.saveSettings(currentSettings);
+
+    if (this.showDesktopNotifications){
+      this.appService.showDesktopMessage('Phoenix', this.i18nService.getTranslation('notifications_enabled'));
+    }
+
   }
 }

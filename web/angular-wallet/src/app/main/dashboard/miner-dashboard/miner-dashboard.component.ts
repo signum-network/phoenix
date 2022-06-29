@@ -41,11 +41,11 @@ export class MinerDashboardComponent extends UnsubscribeOnDestroy implements OnI
 
   ngOnInit(): void {
 
+
     this.accountService.currentAccount$
       .pipe(this.unsubscribe)
       .subscribe((account: Account) => {
-          this.account = account;
-        }
+          this.account = account;       }
       );
 
     this.marketService.ticker$

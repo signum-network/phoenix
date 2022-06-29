@@ -26,7 +26,7 @@ import {RouterModule} from '@angular/router';
 import {LoginGuard} from 'app/login/login-guard.service';
 import {PeersResolver} from './peers.resolver';
 import {PeersComponent} from './peers.component';
-import { ComponentsModule } from "../../components/components.module";
+import { ComponentsModule } from '../../components/components.module';
 
 const routes = [
   {

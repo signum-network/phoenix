@@ -2,6 +2,7 @@
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
+ * Modified work Copyright (c) 2022 Signume Network
  */
 
 import { constants } from './constants';
@@ -25,6 +26,7 @@ export class Settings {
     public version: string;
     public marketUrl: string;
     public userProfile: UserProfileType;
+    public showDesktopNotifications: boolean;
 
     // user agreed to disclaimer
     public agree = false;
@@ -49,5 +51,6 @@ export class Settings {
         this.agree = data.agree || this.agree;
         this.welcomeMessageHiddenFrom = data.welcomeMessageHiddenFrom || [];
         this.userProfile = data.userProfile || constants.defaultUserProfile;
+        this.showDesktopNotifications = data.showDesktopNotifications || true;
     }
 }

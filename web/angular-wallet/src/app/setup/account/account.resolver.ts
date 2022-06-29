@@ -18,10 +18,11 @@ export class AccountResolver implements Resolve<Promise<Account>> {
       this.accountService.getCurrentAccount());
 
     const storedAccounts = await this.storeService.getAllAccounts();
-    const storedAccount = storedAccounts.filter(a => a.account === account.account)
+    const storedAccount = storedAccounts.filter(a => a.account === account.account);
     if (storedAccount.length) {
       account.type = storedAccount[0].type;
     }
+    await this.accountService.synchronizeAccount(account);
     return account;
   }
 }

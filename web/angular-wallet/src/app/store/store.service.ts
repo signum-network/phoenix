@@ -52,14 +52,7 @@ export class StoreService {
     if (this.isVersionMigrated(Version)) {
       return;
     }
-
-    const accounts = this.store.getCollection(CollectionName.Account);
-    accounts.chain()
-      .where(a => a.transactions.length > 0)
-      .update(a => {
-        a.transactions = [];
-      });
-
+    this.invalidateAccountTransactions();
     this.setVersionMigrated(Version);
   }
 
@@ -173,6 +166,22 @@ export class StoreService {
         reject(undefined);
       }
     });
+  }
+
+  public invalidateAccountTransactions(): void {
+    try {
+      // tslint:disable-next-line:no-console
+      console.debug('Invalidating Transactions of accounts...');
+      const accounts = this.store.getCollection(CollectionName.Account);
+      accounts.chain()
+        .where(a => a.transactions.length > 0)
+        .update(a => {
+          a.transactions = [];
+        });
+      this.store.saveDatabase();
+    } catch (e) {
+      // ignore error
+    }
   }
 
   /*

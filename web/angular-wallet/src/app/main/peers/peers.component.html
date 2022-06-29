@@ -13,7 +13,7 @@
           {{ 'downloaded' | i18n }}
         </mat-header-cell>
         <mat-cell *matCellDef="let peer">
-          {{ peer.downloadedVolume }}
+          {{ convertMibiByte(peer.downloadedVolume) | number:'1.0-2': locale }} MiB
         </mat-cell>
       </ng-container>
 
@@ -31,7 +31,7 @@
           {{ 'uploaded' | i18n }}
         </mat-header-cell>
         <mat-cell *matCellDef="let peer">
-          {{ peer.uploadedVolume }}
+          {{ convertMibiByte(peer.uploadedVolume) | number:'1.0-2': locale }} MiB
         </mat-cell>
       </ng-container>
 

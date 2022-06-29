@@ -30,6 +30,8 @@ import {NetworkService} from '../../network/network.service';
 import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';
 import {adjustLegacyAddressPrefix} from '../../util/adjustLegacyAddressPrefix';
 import {uniqBy} from 'lodash';
+import { Settings } from '../../settings';
+import { FuseProgressBarService } from "../../../@fuse/components/progress-bar/progress-bar.service";
 
 interface SetAccountInfoRequest {
   name: string;
@@ -74,13 +76,16 @@ export class AccountService {
   private api: Api;
   private transactionsSeenInNotifications: string[] = [];
   private accountPrefix: AddressPrefix.MainNet | AddressPrefix.TestNet;
+  private showDesktopNotifications: boolean;
 
   constructor(private storeService: StoreService,
               private networkService: NetworkService,
+              private progressBarService: FuseProgressBarService,
               private apiService: ApiService,
               private i18nService: I18nService) {
-    this.storeService.settings.subscribe(() => {
+    this.storeService.settings.subscribe((settings: Settings) => {
       this.api = this.apiService.api;
+      this.showDesktopNotifications = settings.showDesktopNotifications;
     });
 
     this.networkService.isMainNet$.subscribe(() => {
@@ -111,7 +116,7 @@ export class AccountService {
     } catch (e) {
       const EC_INVALID_ARG = 4;
       if (e.data.errorCode === EC_INVALID_ARG) {
-        return await this.api.account.getAccountTransactions(args);
+        return this.api.account.getAccountTransactions(args);
       } else {
         throw e;
       }
@@ -292,22 +297,21 @@ export class AccountService {
     return this.storeService.removeAccount(account).catch(error => error);
   }
 
-  public selectAccount(account: Account): Promise<Account> {
-    return new Promise((resolve, reject) => {
-      this.storeService.selectAccount(account)
-        .then(acc => {
-          this.synchronizeAccount(acc);
-        });
+  public async selectAccount(account: Account): Promise<Account> {
       this.updateCurrentAccount(account);
-      resolve(account);
-    });
+      let acc = await this.storeService.selectAccount(account);
+      acc = await this.synchronizeAccount(acc);
+      return acc;
   }
 
   public synchronizeAccount(account: Account): Promise<Account> {
     return new Promise(async (resolve, reject) => {
-      await this.syncAccountDetails(account);
-      await this.syncAccountTransactions(account);
-      await this.syncAccountUnconfirmedTransactions(account);
+      await Promise.all([
+        this.syncAccountDetails(account),
+        this.syncAccountTransactions(account),
+        this.syncAccountUnconfirmedTransactions(account),
+      ]);
+
       if (account.account === this.currentAccount$.getValue().account) {
         this.updateCurrentAccount(account); // emits update event
       }
@@ -322,6 +326,8 @@ export class AccountService {
 
   public sendNewTransactionNotification(transaction: Transaction): void {
 
+    if (!this.showDesktopNotifications) { return; }
+
 
     // TODO: create a notification factory according the type and show proper notifications
     if (transaction.type !== TransactionType.Payment) {
@@ -332,6 +338,7 @@ export class AccountService {
     const incoming = transaction.recipient === this.currentAccount$.value.account;
     const amount = Amount.fromPlanck(transaction.amountNQT);
     const totalAmount = amount.clone().add(Amount.fromPlanck(transaction.feeNQT));
+
 
     let header = '';
     let body = '';

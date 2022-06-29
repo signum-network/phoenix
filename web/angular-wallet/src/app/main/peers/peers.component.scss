@@ -1,5 +1,9 @@
 :host {
-  .chip {
+
+  .mat-column-version {
+    flex: 0 1 100px;
+  }
+    .chip {
     padding: 0.25rem 1rem;
     border-radius: 10px;
     background: #E6E6F2;
