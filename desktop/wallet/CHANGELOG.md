@@ -1,4 +1,10 @@
 # The Phoenix Desktop Wallet
+# 1.4.1 
+- relaxed cert check for CN only
+
+# 1.4.0
+- Windows exe with code signing 
+
 # 1.2.2
 
 - reverted update url

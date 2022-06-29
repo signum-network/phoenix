@@ -10,3 +10,7 @@ dist/
 Thumbs.db
 *.log
 .keys
+
+# arbitrary
+build-and-sign-win32.sh
+

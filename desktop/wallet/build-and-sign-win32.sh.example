@@ -1,0 +1,3 @@
+#!/bin/bash
+
+CSC_LINK=".keys/digital-independence.code-sign.pfx" CSC_KEY_PASSWORD="<password>" npm run build:win32

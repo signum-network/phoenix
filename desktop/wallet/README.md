@@ -50,3 +50,11 @@ The executable will be written into `./release-builds`
 _Example_:
 
 `npm run release:win32` creates an .exe for windows (x86/x64)
+
+
+## Code Signing
+
+With `electron-builder` it is sufficient to set the env vars `CSC_LINK` (path to .pfx file) and `CSC_KEY_PASSWORD` and then run the win32 build script.
+There is a bash script example called `build-and-sign-win32.sh.example` as a template.
+
+> Note that signed files must be called `win-phoenix-signum-wallet-setup-signed.1.x.y.exe` or `win-phoenix-signum-wallet-signed.1.x.y.exe`
