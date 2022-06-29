@@ -452,5 +452,19 @@
   "last_forged_block": "Darrer bloc forjat",
   "reward_income_info": "Aquesta és la suma de les recompenses que heu obtingut amb aquest compte com si fos un miner en solitari i no reflecteix necessàriament els vostres ingressos efectius de mineria.",
   "no_block_forged": "Encara no s'ha forjat cap bloc",
-  "set_reward_recipient_on": "S'ha unit"
+  "set_reward_recipient_on": "S'ha unit",
+  "add_treasury_account": "Afegeix un compte de Tresoreria",
+  "avgCommitment": "Mitjana Compromís",
+  "cashback_id": "Identificació de devolució de diners",
+  "distribution_tokenholders": "Distribució de titulars de fitxes",
+  "feeBurnt": "Taxa cremada",
+  "feeCashback": "Comissió de devolució",
+  "mint_token": "Encunyació de fitxes",
+  "notifications_disabled": "Notificacions desactivades",
+  "notifications_enabled": "Notificacions activades",
+  "settings_node": "Configuració del node",
+  "settings_notification": "Notificacions d'escriptori",
+  "show_in_explorer": "Obriu a Blockchain Explorer",
+  "toggle_desktop_notification": "Activa o desactiva les notificacions d'escriptori",
+  "updated": "Actualitzat"
 }

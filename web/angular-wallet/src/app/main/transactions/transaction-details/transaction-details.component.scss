@@ -2,7 +2,16 @@
 
 :host {
 
+  .explorer-link {
+    position: absolute;
+    right: 0;
+    color: #0099ff;
+    cursor: pointer;
+  }
+
   div.table {
+    position: relative;
+
     .row{
       display: flex;
       flex-direction: row;

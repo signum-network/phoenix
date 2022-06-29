@@ -452,5 +452,19 @@
   "last_forged_block": "Последњи фалсификовани блок",
   "reward_income_info": "Ово је збир блок награда које сте зарадили на овом рачуну као да сте самостални рудар и не одражава нужно ваш ефективни приход од рударства.",
   "no_block_forged": "Још увек није фалсификован блок",
-  "set_reward_recipient_on": "Придружио се"
+  "set_reward_recipient_on": "Придружио се",
+  "add_treasury_account": "Додајте рачун трезора",
+  "avgCommitment": "Авг. Приврженост",
+  "cashback_id": "Цасхбацк ИД",
+  "distribution_tokenholders": "Дистрибуција држача токена",
+  "feeBurnt": "Бурнт Фее",
+  "feeCashback": "Цасхбацк накнада",
+  "mint_token": "Ковање токена",
+  "notifications_disabled": "Обавештења су онемогућена",
+  "notifications_enabled": "Обавештења су омогућена",
+  "settings_node": "Конфигурација чвора",
+  "settings_notification": "Обавештења на радној површини",
+  "show_in_explorer": "Отворите у Блоцкцхаин Екплорер-у",
+  "toggle_desktop_notification": "Омогућите или онемогућите обавештења на радној површини",
+  "updated": "Ажуриран"
 }

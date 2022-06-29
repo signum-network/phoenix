@@ -79,25 +79,25 @@ export class TransactionService {
     return this.transactionApi.getTransaction(id);
   }
 
-  public async sendAmountToMultipleRecipients(request: SendBurstMultipleRequest): Promise<TransactionId> {
+  public sendAmountToMultipleRecipients(request: SendBurstMultipleRequest): Promise<TransactionId> {
     const {fee, keys, pin, recipientAmounts} = request;
-    return this.transactionApi.sendAmountToMultipleRecipients(
+    return this.transactionApi.sendAmountToMultipleRecipients({
+      senderPublicKey: keys.publicKey,
+      senderPrivateKey: getPrivateSigningKey(pin, keys),
       recipientAmounts,
-      fee,
-      keys.publicKey,
-      getPrivateSigningKey(pin, keys)
-    );
+      feePlanck: fee
+    }) as Promise<TransactionId>;
   }
 
-  public async sendSameAmountToMultipleRecipients(request: SendBurstMultipleSameRequest): Promise<TransactionId> {
+  public sendSameAmountToMultipleRecipients(request: SendBurstMultipleSameRequest): Promise<TransactionId> {
     const {amountNQT, fee, keys, pin, recipientIds} = request;
-    return this.transactionApi.sendSameAmountToMultipleRecipients(
-      amountNQT,
-      fee,
+    return this.transactionApi.sendSameAmountToMultipleRecipients({
+      amountPlanck: amountNQT,
+      feePlanck: fee,
       recipientIds,
-      keys.publicKey,
-      getPrivateSigningKey(pin, keys)
-    );
+      senderPrivateKey: getPrivateSigningKey(pin, keys),
+      senderPublicKey: keys.publicKey
+    }) as Promise<TransactionId>;
   }
 
   public async sendAmount(request: SendBurstRequest): Promise<TransactionId> {
@@ -130,6 +130,7 @@ export class TransactionService {
       attachment = new AttachmentMessage({message, messageIsText});
     }
 
+    // @ts-ignore
     return this.transactionApi.sendAmountToSingleRecipient({
       amountPlanck: amount,
       feePlanck: fee,

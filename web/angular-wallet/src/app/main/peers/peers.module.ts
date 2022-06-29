@@ -26,6 +26,7 @@ import {RouterModule} from '@angular/router';
 import {LoginGuard} from 'app/login/login-guard.service';
 import {PeersResolver} from './peers.resolver';
 import {PeersComponent} from './peers.component';
+import { ComponentsModule } from '../../components/components.module';
 
 const routes = [
   {
@@ -66,7 +67,8 @@ const routes = [
     ReactiveFormsModule,
     I18nModule,
     MatDialogModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ComponentsModule
   ],
   declarations: [
     PeersComponent,

@@ -452,5 +452,19 @@
   "last_forged_block": "Останній підроблений блок",
   "reward_income_info": "Це сума блочних винагород, які ви підробили за допомогою цього облікового запису, як якщо б ви були сольним майнером і не обов'язково відображали ваш ефективний дохід від майнінгу.",
   "no_block_forged": "Ще жодного блоку не підроблено",
-  "set_reward_recipient_on": "Приєднався"
+  "set_reward_recipient_on": "Приєднався",
+  "add_treasury_account": "Додати казначейський рахунок",
+  "avgCommitment": "Сер. Прихильність",
+  "cashback_id": "Ідентифікатор кешбеку",
+  "distribution_tokenholders": "Розповсюдження власників токенів",
+  "feeBurnt": "Спалена плата",
+  "feeCashback": "Комісія за кешбек",
+  "mint_token": "Чеканка токенів",
+  "notifications_disabled": "Сповіщення вимкнено",
+  "notifications_enabled": "Сповіщення ввімкнено",
+  "settings_node": "Конфігурація вузла",
+  "settings_notification": "Сповіщення на робочому столі",
+  "show_in_explorer": "Відкрийте в Blockchain Explorer",
+  "toggle_desktop_notification": "Увімкнути або вимкнути сповіщення на робочому столі",
+  "updated": "Оновлено"
 }

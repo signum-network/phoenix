@@ -452,5 +452,19 @@
   "last_forged_block": "Son Sahte Blok",
   "reward_income_info": "Bu, sanki tek başına bir madenciymişsiniz gibi bu hesapla oluşturduğunuz blok ödüllerinin toplamıdır ve etkin madencilik gelirinizi mutlaka yansıtmaz.",
   "no_block_forged": "Henüz sahte blok yok",
-  "set_reward_recipient_on": "katıldı"
+  "set_reward_recipient_on": "katıldı",
+  "add_treasury_account": "Hazine Hesabı Ekle",
+  "avgCommitment": "Ort. Bağlılık",
+  "cashback_id": "geri ödeme kimliği",
+  "distribution_tokenholders": "Token Sahibi Dağıtımı",
+  "feeBurnt": "Yakılan Ücret",
+  "feeCashback": "Geri Ödeme Ücreti",
+  "mint_token": "jeton basımı",
+  "notifications_disabled": "Bildirimler devre dışı bırakıldı",
+  "notifications_enabled": "Bildirimler etkinleştirildi",
+  "settings_node": "Düğüm Yapılandırması",
+  "settings_notification": "Masaüstü bildirimleri",
+  "show_in_explorer": "Blockchain Explorer'da Aç",
+  "toggle_desktop_notification": "Masaüstü Bildirimlerini etkinleştirin veya devre dışı bırakın",
+  "updated": "Güncellenmiş"
 }

@@ -452,5 +452,19 @@
   "last_forged_block": "Letzter geschmiedeter Block",
   "reward_income_info": "Dies ist die Summe der Blockbelohnungen, die Du mit diesem Konto geschmiedet hast, als ob Du ein Solo-Miner wärst, und spiegelt nicht unbedingt Dein effektives Mining-Einkommen wider.",
   "no_block_forged": "Noch kein Block geschmiedet",
-  "set_reward_recipient_on": "Beigetreten am"
+  "set_reward_recipient_on": "Beigetreten am",
+  "add_treasury_account": "Treasury-Konto hinzufügen",
+  "avgCommitment": "Durchschn. Commitment",
+  "cashback_id": "Cashback-ID",
+  "distribution_tokenholders": "Tokenholder-Verteilung",
+  "feeBurnt": "Verbrannte Gebühr",
+  "feeCashback": "Cashback-Gebühr",
+  "mint_token": "Token-Minting",
+  "notifications_disabled": "Benachrichtigungen deaktiviert",
+  "notifications_enabled": "Benachrichtigungen aktiviert",
+  "settings_node": "Knotenkonfiguration",
+  "settings_notification": "Desktop-Benachrichtigungen",
+  "show_in_explorer": "Öffne im Blockchain-Explorer",
+  "toggle_desktop_notification": "Aktivieren oder deaktivieren Sie Desktop-Benachrichtigungen",
+  "updated": "Aktualisiert"
 }

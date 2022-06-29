@@ -18,6 +18,9 @@ import {decryptAES, hashSHA256} from '@signumjs/crypto';
 import {NetworkService} from 'app/network/network.service';
 import {Amount, ChainTime} from '@signumjs/util';
 import {ApiService} from '../../api.service';
+import { Settings } from '../../settings';
+import { StoreService } from '../../store/store.service';
+import { KeyDecryptionException } from '../../util/exceptions/KeyDecryptionException';
 
 export interface ChatMessage {
   message: string;
@@ -44,7 +47,6 @@ export interface MessageOptions {
 })
 export class MessagesService implements Resolve<any> {
 
-  private api: Api;
   contacts: Account[] = [];
   messages: Messages[] = [];
   user: any;
@@ -57,9 +59,9 @@ export class MessagesService implements Resolve<any> {
 
   constructor(private accountService: AccountService,
               private networkService: NetworkService,
-              apiService: ApiService
+              private storeService: StoreService,
+              private apiService: ApiService
   ) {
-    this.api = apiService.api;
     this.onMessageSelected = new BehaviorSubject({});
     this.onOptionsSelected = new BehaviorSubject({
       encrypt: false,
@@ -132,8 +134,12 @@ export class MessagesService implements Resolve<any> {
       publicKey: this.user.keys.publicKey
     };
 
-    let transactionId;
+    if (!senderKeys.agreementPrivateKey || !senderKeys.signPrivateKey){
+      throw new KeyDecryptionException();
+    }
 
+    let transactionId;
+    const ledger = this.apiService.api;
     if (isEncrypted) {
       // @ts-ignore
       if (!recipient.publicKey) {
@@ -141,16 +147,18 @@ export class MessagesService implements Resolve<any> {
         throw new ErrorEvent('error_recipient_no_public_key');
       }
 
-      transactionId = await this.api.message.sendEncryptedMessage({
+      transactionId = await ledger.message.sendEncryptedMessage({
         recipientId,
         // @ts-ignore
         recipientPublicKey: recipient.publicKey,
         message: message.message,
         feePlanck: Amount.fromSigna(fee).getPlanck(),
-        senderKeys,
+        senderPrivateKey: senderKeys.signPrivateKey,
+        senderAgreementKey: senderKeys.agreementPrivateKey,
+        senderPublicKey: senderKeys.publicKey
       });
     } else {
-      transactionId = await this.api.message.sendMessage({
+      transactionId = await ledger.message.sendMessage({
         recipientId,
         message: message.message,
         feePlanck: Amount.fromSigna(fee).getPlanck(),

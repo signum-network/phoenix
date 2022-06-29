@@ -47,7 +47,14 @@ export class BlockCellValueMapper {
       totalFeeNQT: this.getAmount(this.block.totalFeeNQT),
       totalAmountNQT: this.getAmount(this.block.totalAmountNQT),
       timestamp: this.getTime(this.block.timestamp),
-      transactions: this.getTypedValue(this.block.transactions, BlockCellValueType.Transactions)
+      transactions: this.getTypedValue(this.block.transactions, BlockCellValueType.Transactions),
+      // @ts-ignore
+      averageCommitmentNQT: this.getCommitmentAmount(this.block.averageCommitmentNQT, true),
+      // @ts-ignore
+      totalFeeBurntNQT: this.getAmount(this.block.totalFeeBurntNQT, true),
+      // @ts-ignore
+      totalFeeCashBackNQT: this.getAmount(this.block.totalFeeCashBackNQT, true),
+
     };
   }
 
@@ -59,6 +66,12 @@ export class BlockCellValueMapper {
   private getAmount(value: string, isPlanck = true): BlockCellValue {
     const amount = isPlanck ? Amount.fromPlanck(value) : Amount.fromSigna(value);
     const valueStr = `${formatAmount(amount.getSigna())}`;
+    return new BlockCellValue(valueStr);
+  }
+
+  private getCommitmentAmount(value: string, isPlanck = true): BlockCellValue {
+    const amount = isPlanck ? Amount.fromPlanck(value) : Amount.fromSigna(value);
+    const valueStr = `${formatAmount(amount.getSigna())} per TiB`;
     return new BlockCellValue(valueStr);
   }
 

@@ -452,5 +452,19 @@
   "last_forged_block": "Последний созданный блок",
   "reward_income_info": "Это сумма вознаграждений за пойманные блоки, которую вы бы заработали на этом аккаунте, если бы были соло майнером. Статистика отображает теоретический доход от майнинга",
   "no_block_forged": "Блок еще не создан",
-  "set_reward_recipient_on": "Присоединился"
+  "set_reward_recipient_on": "Присоединился",
+  "add_treasury_account": "Добавить казначейский счет",
+  "avgCommitment": "Сред. Обязательство",
+  "cashback_id": "Идентификатор кэшбэка",
+  "distribution_tokenholders": "Распределение держателей токенов",
+  "feeBurnt": "Сгоревшая плата",
+  "feeCashback": "Комиссия за кэшбэк",
+  "mint_token": "Чеканка токенов",
+  "notifications_disabled": "Уведомления отключены",
+  "notifications_enabled": "Уведомления включены",
+  "settings_node": "Конфигурация узла",
+  "settings_notification": "Уведомления на рабочем столе",
+  "show_in_explorer": "Открыть в Blockchain Explorer",
+  "toggle_desktop_notification": "Включить или отключить уведомления на рабочем столе",
+  "updated": "Обновлено"
 }

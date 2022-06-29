@@ -452,5 +452,19 @@
   "last_forged_block": "Dernier bloc forgé",
   "reward_income_info": "Il s'agit de la somme des récompenses de bloc que vous avez forgées avec ce compte comme si vous étiez un mineur en solo et ne reflète pas nécessairement vos revenus miniers effectifs.",
   "no_block_forged": "Pas encore de bloc forgé",
-  "set_reward_recipient_on": "Inscrit le"
+  "set_reward_recipient_on": "Inscrit le",
+  "add_treasury_account": "Ajouter un compte de trésorerie",
+  "avgCommitment": "Moy. Engagement",
+  "cashback_id": "ID de remise en argent",
+  "distribution_tokenholders": "Distribution des détenteurs de jetons",
+  "feeBurnt": "Frais brûlés",
+  "feeCashback": "Frais de remboursement",
+  "mint_token": "Frappe de jetons",
+  "notifications_disabled": "Notifications désactivées",
+  "notifications_enabled": "Notifications activées",
+  "settings_node": "Configuration du nœud",
+  "settings_notification": "Notifications de bureau",
+  "show_in_explorer": "Ouvrir dans Blockchain Explorer",
+  "toggle_desktop_notification": "Activer ou désactiver les notifications de bureau",
+  "updated": "Actualisé"
 }

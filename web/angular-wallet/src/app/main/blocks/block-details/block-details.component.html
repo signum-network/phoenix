@@ -4,6 +4,9 @@
           [wide]="true"
 >
   <div class="info table">
+    <div class="explorer-link" matTooltip="{{'show_in_explorer' | i18n}}" (click)="openExplorer()">
+      <mat-icon>link</mat-icon>
+    </div>
     <div class="row" *ngFor="let row of detailsData; trackBy: trackRows">
       <div class="label">{{row.l | i18n}}</div>
       <div class="value">

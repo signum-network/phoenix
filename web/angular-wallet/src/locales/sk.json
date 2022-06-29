@@ -452,5 +452,19 @@
   "last_forged_block": "Posledný kovaný blok",
   "reward_income_info": "Toto je súčet blokových odmien, ktoré ste sfalšovali na tomto účte, ako keby ste boli sólo baník, a nemusí nevyhnutne odrážať váš skutočný príjem z ťažby.",
   "no_block_forged": "Zatiaľ nie je kovaný žiadny blok",
-  "set_reward_recipient_on": "Pripojené dňa"
+  "set_reward_recipient_on": "Pripojené dňa",
+  "add_treasury_account": "Pridať účet štátnej pokladnice",
+  "avgCommitment": "Priem. Viazanosť",
+  "cashback_id": "Cashback ID",
+  "distribution_tokenholders": "Distribúcia držiteľov tokenov",
+  "feeBurnt": "Spálený poplatok",
+  "feeCashback": "Poplatok za vrátenie peňazí",
+  "mint_token": "Razba tokenov",
+  "notifications_disabled": "Upozornenia sú vypnuté",
+  "notifications_enabled": "Upozornenia sú povolené",
+  "settings_node": "Konfigurácia uzla",
+  "settings_notification": "Upozornenia na pracovnej ploche",
+  "show_in_explorer": "Otvorte v Blockchain Explorer",
+  "toggle_desktop_notification": "Povoliť alebo zakázať upozornenia na pracovnej ploche",
+  "updated": "Aktualizované"
 }

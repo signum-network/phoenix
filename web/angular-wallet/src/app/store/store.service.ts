@@ -1,14 +1,15 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as Loki from 'lokijs';
-import {StoreConfig} from './store.config';
-import {Settings} from 'app/settings';
-import {Account} from '@signumjs/core';
-import {adjustLegacyAddressPrefix} from '../util/adjustLegacyAddressPrefix';
+import { StoreConfig } from './store.config';
+import { Settings } from 'app/settings';
+import { Account } from '@signumjs/core';
+import { adjustLegacyAddressPrefix } from '../util/adjustLegacyAddressPrefix';
 
 const CollectionName = {
   Account: 'accounts',
   Settings: 'settings',
+  Migration: '_migration'
 };
 
 @Injectable({
@@ -20,7 +21,7 @@ export class StoreService {
   public settings: BehaviorSubject<any> = new BehaviorSubject(false);
 
   constructor(
-    private storeConfig: StoreConfig,
+    private storeConfig: StoreConfig
   ) {
     this.store = new Loki(storeConfig.databaseName, {
       autoload: true,
@@ -29,19 +30,49 @@ export class StoreService {
     });
   }
 
+  private isVersionMigrated(v: string): boolean {
+    let migrations = this.store.getCollection(CollectionName.Migration);
+    if (!migrations) {
+      migrations = this.store.addCollection(CollectionName.Migration, { unique: 'version' });
+      migrations.insert({ version: v, migrated: false });
+      this.store.saveDatabase();
+    }
+    return migrations.findOne({ version: v }).migrated;
+  }
+
+  private setVersionMigrated(v: string): void {
+    const migrations = this.store.getCollection(CollectionName.Migration);
+    migrations.chain().find({ version: v }).update((m) => {
+      m.migrated = true;
+    });
+  }
+
+  private migrateVersionV1_4_1(): void {
+    const Version = '1.4.1';
+    if (this.isVersionMigrated(Version)) {
+      return;
+    }
+    this.invalidateAccountTransactions();
+    this.setVersionMigrated(Version);
+  }
+
+
   /*
   * Called on db start
   */
   public init(): void {
     let accounts = this.store.getCollection(CollectionName.Account);
     if (!accounts) {
-      accounts = this.store.addCollection(CollectionName.Account, {unique: ['account']});
+      accounts = this.store.addCollection(CollectionName.Account, { unique: ['account'] });
     }
     let settings = this.store.getCollection(CollectionName.Settings);
     if (!settings) {
-      settings = this.store.addCollection(CollectionName.Settings, {unique: ['id']});
+      settings = this.store.addCollection(CollectionName.Settings, { unique: ['id'] });
       settings.insert(new Settings());
     }
+
+
+    this.migrateVersionV1_4_1();
 
     this.store.saveDatabase();
     this.setReady(true);
@@ -70,11 +101,11 @@ export class StoreService {
       if (this.ready.value) {
         this.store.loadDatabase({}, () => {
           const accounts = this.store.getCollection(CollectionName.Account);
-          const rs = accounts.find({account: account.account});
+          const rs = accounts.find({ account: account.account });
           if (rs.length === 0) {
             accounts.insert(account);
           } else {
-            accounts.chain().find({account: account.account}).update(w => {
+            accounts.chain().find({ account: account.account }).update(w => {
               // Only update what you really need...
               // ATTENTION: Do not try to iterate over all keys and update then
               // It will fail :shrug
@@ -112,14 +143,14 @@ export class StoreService {
 
         this.store.loadDatabase({}, () => {
           const accounts = this.store.getCollection(CollectionName.Account);
-          let rs = accounts.find({selected: true});
+          let rs = accounts.find({ selected: true });
           if (rs.length > 0) {
             const account = new Account(rs[0]);
             resolve(adjustLegacyAddressPrefix(account));
           } else {
             rs = accounts.find();
             if (rs.length > 0) {
-              accounts.chain().find({account: rs[0].account}).update(a => {
+              accounts.chain().find({ account: rs[0].account }).update(a => {
                 a.selected = true;
               });
               const storedAccount = new Account(rs[0]);
@@ -137,6 +168,22 @@ export class StoreService {
     });
   }
 
+  public invalidateAccountTransactions(): void {
+    try {
+      // tslint:disable-next-line:no-console
+      console.debug('Invalidating Transactions of accounts...');
+      const accounts = this.store.getCollection(CollectionName.Account);
+      accounts.chain()
+        .where(a => a.transactions.length > 0)
+        .update(a => {
+          a.transactions = [];
+        });
+      this.store.saveDatabase();
+    } catch (e) {
+      // ignore error
+    }
+  }
+
   /*
   * Method reponsible for selecting a new Account.
   */
@@ -146,10 +193,10 @@ export class StoreService {
         this.store.loadDatabase({}, () => {
           account.selected = true;
           const accounts = this.store.getCollection(CollectionName.Account);
-          accounts.chain().find({selected: true}).update(w => {
+          accounts.chain().find({ selected: true }).update(w => {
             w.selected = false;
           });
-          accounts.chain().find({account: account.account}).update(w => {
+          accounts.chain().find({ account: account.account }).update(w => {
             w.selected = true;
           });
           this.store.saveDatabase();
@@ -188,7 +235,7 @@ export class StoreService {
     return new Promise((resolve, reject) => {
       if (this.ready.value) {
         const accounts = this.store.getCollection(CollectionName.Account);
-        const rs = accounts.find({account: accountId});
+        const rs = accounts.find({ account: accountId });
         if (accountId && rs.length > 0) {
           const storedAccount = new Account(rs[0]);
           resolve(adjustLegacyAddressPrefix(storedAccount));
@@ -209,7 +256,7 @@ export class StoreService {
       if (this.ready.value) {
         this.store.loadDatabase({}, () => {
           const accounts = this.store.getCollection(CollectionName.Account);
-          const rs = accounts.chain().find({account: account.account}).remove();
+          const rs = accounts.chain().find({ account: account.account }).remove();
           this.store.saveDatabase();
           resolve(true);
         });
@@ -227,7 +274,7 @@ export class StoreService {
 
       this.store.loadDatabase({}, () => {
         const settings = this.store.getCollection(CollectionName.Settings);
-        const rs = settings.find({id: newSettings.id});
+        const rs = settings.find({ id: newSettings.id });
 
         if (rs.length > 0) {
           settings.update(newSettings);

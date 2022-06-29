@@ -13,7 +13,7 @@ import {
   isMultiOutTransaction,
   getRecipientsAmount,
   TransactionMiningSubtype,
-  TransactionType
+  TransactionType, TransactionAssetSubtype
 } from '@signumjs/core';
 import {Amount, ChainTime} from '@signumjs/util';
 import {UtilService} from 'app/util.service';
@@ -48,8 +48,12 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
       });
   }
 
+  private isTokenHolderDistribution(transaction: Transaction): boolean {
+    return transaction.type === TransactionType.Asset && transaction.subtype === TransactionAssetSubtype.AssetDistributeToHolders;
+  }
+
   public isMultiOutPayment(transaction: Transaction): boolean {
-    return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction);
+    return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction) || this.isTokenHolderDistribution(transaction);
   }
 
   public ngAfterViewInit(): void {
@@ -110,6 +114,10 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
     const cx = className => row.confirmations === undefined ? `${className} unconfirmed` : className;
 
     const isNegative = this.isAmountNegative(row);
+
+    if (this.isTokenHolderDistribution(row)){
+      return cx(row.sender === this.account.account ?  'outgoing' : 'incoming');
+    }
 
     if (
       (!row.recipient && (row.type !== TransactionType.Payment)) ||

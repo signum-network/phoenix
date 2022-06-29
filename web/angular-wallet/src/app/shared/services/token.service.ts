@@ -134,7 +134,7 @@ export class TokenService {
     return tokens;
   }
 
-  async transferToken(request: TransferTokenRequest): Promise<TransactionId> {
+  transferToken(request: TransferTokenRequest): Promise<TransactionId> {
     const {
       pin,
       fee,
@@ -167,6 +167,6 @@ export class TokenService {
       quantity: realQuantity,
       senderPrivateKey: getPrivateSigningKey(pin, keys),
       senderPublicKey: keys.publicKey,
-    });
+    }) as Promise<TransactionId>;
   }
 }

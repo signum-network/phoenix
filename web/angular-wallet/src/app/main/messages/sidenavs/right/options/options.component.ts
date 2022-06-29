@@ -4,7 +4,7 @@ import {takeUntil} from 'rxjs/operators';
 import {MessagesService} from '../../../messages.service';
 import { SuggestedFees, TransactionArbitrarySubtype, TransactionType } from '@signumjs/core';
 import {UnsubscribeOnDestroy} from '../../../../../util/UnsubscribeOnDestroy';
-import {convertNQTStringToNumber, Amount} from '@signumjs/util';
+import {Amount} from '@signumjs/util';
 
 @Component({
   selector: 'message-options-sidenav',

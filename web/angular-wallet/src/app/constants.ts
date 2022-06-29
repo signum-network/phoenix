@@ -175,20 +175,11 @@ export const constants = {
       testnet: false
     },
     {
-      name: 'Signumcoin.ro',
-      region: 'Europe',
-      location: 'Europe',
-      address: 'https://wallet.signumcoin.ro',
-      port: 443,
-      reliable: true,
-      testnet: false
-    },
-    {
-      name: 'Testnet Node Local',
+      name: 'Testnet Node Europe',
       region: 'Europe',
       location: 'UK',
-      address: 'http://europe3.testnet.signum.network',
-      port: 6876,
+      address: 'https://europe3.testnet.signum.network',
+      port: 443,
       reliable: false,
       testnet: true
     },
@@ -203,12 +194,13 @@ export const constants = {
     },
   ],
   supportUrl: 'https://github.com/signum-network/phoenix/issues',
+  explorerHost: {
+    main: 'https://chain.signum.network',
+    test: 'https://t-chain.signum.network',
+  },
   transactionCount: '100',
   multiOutMinVersion: '2.3.1',
   pocPlusVersion: '3.0.0',
-  mainnetIndicator: {
-    block: 23,
-    previousHash: '520d5647e77106c98eeab9d1cc5753daab2a3b3e1ba0b2da388be305dd97e5f7'
-  },
+  mainnetNetworkName: 'Signum',
   defaultUserProfile: 'simple'
 };

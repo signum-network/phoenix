@@ -452,5 +452,19 @@
   "last_forged_block": "Último bloque forjado",
   "reward_income_info": "Esta es la suma de las recompensas en bloque que forjó con esta cuenta como si fuera un minero en solitario y no refleja necesariamente sus ingresos mineros efectivos.",
   "no_block_forged": "Aún no se ha forjado ningún bloque",
-  "set_reward_recipient_on": "Se unió el"
+  "set_reward_recipient_on": "Se unió el",
+  "add_treasury_account": "Añadir cuenta de tesorería",
+  "avgCommitment": "Promedio Compromiso",
+  "cashback_id": "ID de reembolso",
+  "distribution_tokenholders": "Distribución de titulares de tokens",
+  "feeBurnt": "Tarifa quemada",
+  "feeCashback": "Tarifa de reembolso",
+  "mint_token": "acuñación de fichas",
+  "notifications_disabled": "Notificaciones deshabilitadas",
+  "notifications_enabled": "Notificaciones habilitadas",
+  "settings_node": "Configuración de nodos",
+  "settings_notification": "Notificaciones de escritorio",
+  "show_in_explorer": "Abrir en Blockchain Explorer",
+  "toggle_desktop_notification": "Habilitar o deshabilitar las notificaciones de escritorio",
+  "updated": "Actualizado"
 }

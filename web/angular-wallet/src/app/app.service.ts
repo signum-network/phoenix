@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { ElectronService } from "ngx-electron";
-import { isMobile } from "is-mobile";
+import { Injectable } from '@angular/core';
+import { ElectronService } from 'ngx-electron';
+import { isMobile } from 'is-mobile';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AppService {
   constructor(
@@ -29,13 +29,13 @@ export class AppService {
 
     // @ts-ignore
     // tslint:disable-next-line:no-unused-expression
-    new window.Notification(title, { body, title: "Phoenix" });
+    new window.Notification(title, { body, title: 'Phoenix' });
 
   }
 
   public openInBrowser(url: string): Promise<void> {
     if (!this.electronService.isElectronApp) {
-      console.log("Opening url:", url);
+      console.log('Opening url:', url);
       return;
     }
     return this.electronService.shell.openExternal(url);

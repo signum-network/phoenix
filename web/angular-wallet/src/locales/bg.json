@@ -452,5 +452,19 @@
   "last_forged_block": "Последен подправен блок",
   "reward_income_info": "Това е сумата от блоковите награди, които сте подправили с тази сметка, сякаш сте самостоятелен миньор и не отразява непременно ефективния ви добив от добив.",
   "no_block_forged": "Все още не е изкован блок",
-  "set_reward_recipient_on": "Присъедини се"
+  "set_reward_recipient_on": "Присъедини се",
+  "add_treasury_account": "Добавяне на държавна сметка",
+  "avgCommitment": "Ср. Ангажимент",
+  "cashback_id": "ID за връщане на пари",
+  "distribution_tokenholders": "Разпределение на притежателите на токени",
+  "feeBurnt": "Изгорена такса",
+  "feeCashback": "Такса за връщане на пари",
+  "mint_token": "Сечене на токени",
+  "notifications_disabled": "Известията са деактивирани",
+  "notifications_enabled": "Известията са активирани",
+  "settings_node": "Конфигурация на възел",
+  "settings_notification": "Известия на работния плот",
+  "show_in_explorer": "Отворете в Blockchain Explorer",
+  "toggle_desktop_notification": "Активирайте или деактивирайте известията на работния плот",
+  "updated": "Актуализиран"
 }

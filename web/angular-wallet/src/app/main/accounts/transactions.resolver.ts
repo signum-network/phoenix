@@ -18,7 +18,11 @@ export class TransactionsResolver implements Resolve<Promise<Transaction[]>> {
       const accountId = route.params.id || account.account;
       let transactions: Transaction[] = [];
       if (route.params.id) {
-        const transactionList = await this.accountService.getAccountTransactions({accountId});
+        const transactionList = await this.accountService.getAccountTransactions({
+          accountId,
+          resolveDistributions: true,
+          includeIndirect: true
+        });
         transactions = transactionList.transactions;
       } else {
         transactions = account.transactions;

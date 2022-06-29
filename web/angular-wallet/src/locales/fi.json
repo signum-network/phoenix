@@ -452,5 +452,19 @@
   "last_forged_block": "Viimeinen taottu lohko",
   "reward_income_info": "Tämä on tällä tilillä väärennettyjen lohkopalkkioiden summa ikään kuin olisit yksin kaivosmies, eikä se välttämättä heijasta todellisia kaivosalan tulojasi.",
   "no_block_forged": "Lohkoa ei ole vielä väärennetty",
-  "set_reward_recipient_on": "Liittyi"
+  "set_reward_recipient_on": "Liittyi",
+  "add_treasury_account": "Lisää Treasury-tili",
+  "avgCommitment": "Keskim. Sitoutuminen",
+  "cashback_id": "Cashback ID",
+  "distribution_tokenholders": "Token Holder -jakelu",
+  "feeBurnt": "Poltettu maksu",
+  "feeCashback": "Cashback-maksu",
+  "mint_token": "Tokenin lyöminen",
+  "notifications_disabled": "Ilmoitukset pois käytöstä",
+  "notifications_enabled": "Ilmoitukset käytössä",
+  "settings_node": "Solmun määritys",
+  "settings_notification": "Työpöydän ilmoitukset",
+  "show_in_explorer": "Avaa Blockchain Explorerissa",
+  "toggle_desktop_notification": "Ota työpöytäilmoitukset käyttöön tai poista ne käytöstä",
+  "updated": "Päivitetty"
 }

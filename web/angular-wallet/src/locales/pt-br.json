@@ -452,5 +452,19 @@
   "last_forged_block": "Último Bloco Forjado",
   "reward_income_info": "Esta é a soma das recompensas em bloco que você forjou com esta conta como se fosse um mineiro solo e não reflete necessariamente sua receita efetiva de mineração.",
   "no_block_forged": "Nenhum bloco forjado ainda",
-  "set_reward_recipient_on": "Aderiu em"
+  "set_reward_recipient_on": "Aderiu em",
+  "add_treasury_account": "Adicionar Conta do Tesouro",
+  "avgCommitment": "Compromisso Média",
+  "cashback_id": "Código de reembolso",
+  "distribution_tokenholders": "Distribuição de Detentor de Token",
+  "feeBurnt": "Taxa queimada",
+  "feeCashback": "Taxa de reembolso",
+  "mint_token": "Cunhagem de tokens",
+  "notifications_disabled": "Notificações desativadas",
+  "notifications_enabled": "Notificações ativadas",
+  "settings_node": "Configuração do nó",
+  "settings_notification": "Notificações da área de trabalho",
+  "show_in_explorer": "Abra no Blockchain Explorer",
+  "toggle_desktop_notification": "Ativar ou desativar notificações da área de trabalho",
+  "updated": "Atualizada"
 }

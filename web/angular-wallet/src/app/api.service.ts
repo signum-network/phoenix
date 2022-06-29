@@ -35,7 +35,6 @@ export class ApiService {
       apiVersion: 0
     });
     this.brsVersion = undefined;
-
     if (settings.nodeAutoSelectionEnabled) {
       this.nodeUrl = await this.selectBestNode();
       settings.node = this.nodeUrl;

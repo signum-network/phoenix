@@ -41,7 +41,11 @@ export class NetworkService {
         return;
       }
       this.api = apiService.api;
+
       const isMainNet = await this.fetchIsMainNet();
+      if(this._isMainNet !== isMainNet){
+          this.storeService.invalidateAccountTransactions();
+      }
       this.isMainNet$.next(isMainNet);
       this._isMainNet = isMainNet;
     });
@@ -85,8 +89,8 @@ export class NetworkService {
 
   private async fetchIsMainNet(): Promise<boolean> {
     try {
-      const { previousBlockHash } = await this.api.block.getBlockByHeight(constants.mainnetIndicator.block, false);
-      return previousBlockHash === constants.mainnetIndicator.previousHash;
+      const { networkName } = await this.api.service.query('getConstants');
+      return networkName === constants.mainnetNetworkName;
     } catch (e) {
       return false;
     }
@@ -94,5 +98,9 @@ export class NetworkService {
 
   public isMainNet(): boolean {
     return this._isMainNet;
+  }
+
+  public getChainExplorerHost(): string {
+    return this._isMainNet ? constants.explorerHost.main : constants.explorerHost.test;
   }
 }

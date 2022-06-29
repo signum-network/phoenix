@@ -66,9 +66,9 @@ class UpdateService {
         throw new Error('Expired Certificate');
       }
 
-      if(cert.fingerprint256 !== fingerprint){
-        throw new Error(`Invalid fingerprint: {expected: ${fingerprint}, received: ${cert.fingerprint}`);
-      }
+      // if(cert.fingerprint256 !== fingerprint){
+      //   throw new Error(`Invalid fingerprint: {expected: ${fingerprint}, received: ${cert.fingerprint}`);
+      // }
 
       return {
         isValid: true,

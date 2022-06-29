@@ -21,7 +21,10 @@ const keyMap = {
   totalAmountNQT: 'total_amount',
   totalFeeNQT: 'total_fee',
   transactions: 'transactions',
-  version: 'version'
+  version: 'version',
+  averageCommitmentNQT: 'avgCommitment',
+  totalFeeBurntNQT: 'feeBurnt',
+  totalFeeCashBackNQT: 'feeCashback'
 };
 
 export function getBlockFieldTranslationKey(key: string): string {

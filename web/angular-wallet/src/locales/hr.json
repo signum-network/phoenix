@@ -452,5 +452,19 @@
   "last_forged_block": "Zadnji krivotvoreni blok",
   "reward_income_info": "Ovo je zbroj blok nagrada koje ste krivotvorili s ovim računom kao da ste samostalni rudar i ne odražava nužno vaš efektivni prihod od rudarstva.",
   "no_block_forged": "Nijedan blok još nije krivotvoren",
-  "set_reward_recipient_on": "Pridružio se"
+  "set_reward_recipient_on": "Pridružio se",
+  "add_treasury_account": "Dodajte račun riznice",
+  "avgCommitment": "Prosj. Predanost",
+  "cashback_id": "ID povrata novca",
+  "distribution_tokenholders": "Distribucija držača tokena",
+  "feeBurnt": "Spaljena naknada",
+  "feeCashback": "Naknada za povrat novca",
+  "mint_token": "Kovanje tokena",
+  "notifications_disabled": "Obavijesti su onemogućene",
+  "notifications_enabled": "Obavijesti su omogućene",
+  "settings_node": "Konfiguracija čvora",
+  "settings_notification": "Obavijesti na radnoj površini",
+  "show_in_explorer": "Otvorite u Blockchain Exploreru",
+  "toggle_desktop_notification": "Omogućite ili onemogućite Obavijesti na radnoj površini",
+  "updated": "Ažurirano"
 }

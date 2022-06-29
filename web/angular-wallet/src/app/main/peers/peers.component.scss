@@ -1,0 +1,23 @@
+:host {
+
+  .mat-column-version {
+    flex: 0 1 100px;
+  }
+    .chip {
+    padding: 0.25rem 1rem;
+    border-radius: 10px;
+    background: #E6E6F2;
+    width: fit-content;
+
+  }
+
+  .versionOk {
+    background: #CDFFCD;
+    color: #007F00;
+  }
+
+  .versionLow {
+    background: #FFE0E0;
+    color: #D30000;
+  }
+}

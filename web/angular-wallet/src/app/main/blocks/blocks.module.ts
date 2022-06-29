@@ -32,6 +32,7 @@ import {BlockRowValueCellComponent} from './block-details/block-row-value-cell/b
 import {ChartsModule} from 'ng2-charts';
 import {AppSharedModule} from '../../shared/shared.module';
 import {ComponentsModule} from '../../components/components.module';
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 const routes = [
   {
@@ -82,6 +83,7 @@ const routes = [
     MatTableModule,
     MatTableModule,
     MatTabsModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
   ],
