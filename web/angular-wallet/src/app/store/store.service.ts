@@ -208,9 +208,6 @@ export class StoreService {
     });
   }
 
-  /*
-  * Method reponsible for fetching all accounts from the database.
-  */
   public getAllAccounts(): Promise<Account[]> {
     return new Promise((resolve, reject) => {
       if (this.ready.value) {
@@ -218,8 +215,12 @@ export class StoreService {
         const rs = accounts.find();
         const ws = [];
         rs.map(storedAccount => {
-          const account = adjustLegacyAddressPrefix(new Account(storedAccount));
-          ws.push(account);
+          try {
+            const account = adjustLegacyAddressPrefix(new Account(storedAccount));
+            ws.push(account);
+          } catch (e) {
+            console.warn('Error in getAllAccounts:', e, { storedAccount });
+          }
         });
         resolve(ws);
       } else {
@@ -228,9 +229,6 @@ export class StoreService {
     });
   }
 
-  /*
-  * Method reponsible for finding an account by its numeric id from the database.
-  */
   public findAccount(accountId: string): Promise<Account> {
     return new Promise((resolve, reject) => {
       if (this.ready.value) {
@@ -248,15 +246,12 @@ export class StoreService {
     });
   }
 
-  /*
-  * Method reponsible for removing an account from the database.
-  */
   public removeAccount(account: Account): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (this.ready.value) {
         this.store.loadDatabase({}, () => {
           const accounts = this.store.getCollection(CollectionName.Account);
-          const rs = accounts.chain().find({ account: account.account }).remove();
+          accounts.chain().find({ account: account.account }).remove();
           this.store.saveDatabase();
           resolve(true);
         });
