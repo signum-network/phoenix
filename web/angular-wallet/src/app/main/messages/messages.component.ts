@@ -8,7 +8,6 @@ import {MessagesService} from './messages.service';
 import {SuggestedFees} from '@signumjs/core/out';
 import {ActivatedRoute} from '@angular/router';
 import {MessageRightSidenavComponent} from './sidenavs/right/right.component';
-import {convertNQTStringToNumber} from '@signumjs/util/out';
 
 @Component({
   selector: 'messages',
@@ -23,7 +22,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
   selectedMessage: any;
   fees: SuggestedFees;
   encrypt: boolean;
-  feeNQT: number;
 
   MESSAGE_FETCH_INTERVAL = 30000; // 30 secs
 
@@ -38,8 +36,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
     this.fees = this.route.snapshot.data.fees as SuggestedFees;
     this.encrypt = true;
-    this.feeNQT = convertNQTStringToNumber(this.fees.standard.toString());
-
   }
 
   ngOnInit(): void {

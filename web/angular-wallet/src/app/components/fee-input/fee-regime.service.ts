@@ -21,7 +21,7 @@ interface FeeRegime {
 })
 export class FeeRegimeService {
 
-  static MinimumPayloadLength = 176;
+  static MinimumPayloadLength = 184;
 
   constructor() {
     this.initMap();
@@ -70,7 +70,7 @@ export class FeeRegimeService {
     return feeBase.multiply( maxFactor );
   }
 
-  public calculateFeeByPayload(type: any, subtype: any, payloadLength: number = FeeRegimeService.MinimumPayloadLength): Amount {
+  public calculateFeeByPayload(type: any, subtype: any, payloadLength: number = 0): Amount {
     const { feeBase, maxFactor, minFactor } = this.getFeeRegime(type, subtype);
     const hasPayloadDependentFee = minFactor !== maxFactor;
     return hasPayloadDependentFee
