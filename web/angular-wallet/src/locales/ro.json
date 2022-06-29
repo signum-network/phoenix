@@ -452,5 +452,19 @@
   "last_forged_block": "Ultimul bloc falsificat",
   "reward_income_info": "Aceasta este suma recompenselor blocate pe care le-ați forțat cu acest cont ca și cum ați fi un miner solo și nu reflectă neapărat veniturile dvs. miniere efective.",
   "no_block_forged": "Niciun bloc falsificat încă",
-  "set_reward_recipient_on": "Alăturat pe"
+  "set_reward_recipient_on": "Alăturat pe",
+  "add_treasury_account": "Adăugați un cont de trezorerie",
+  "avgCommitment": "Mediu Angajament",
+  "cashback_id": "ID cashback",
+  "distribution_tokenholders": "Distribuția deținătorului de jetoane",
+  "feeBurnt": "Taxa Arsă",
+  "feeCashback": "Taxa de rambursare",
+  "mint_token": "Minting de jetoane",
+  "notifications_disabled": "Notificări dezactivate",
+  "notifications_enabled": "Notificări activate",
+  "settings_node": "Configurarea nodului",
+  "settings_notification": "Notificări pe ecran",
+  "show_in_explorer": "Deschideți în Blockchain Explorer",
+  "toggle_desktop_notification": "Activați sau dezactivați notificările desktop",
+  "updated": "La curent"
 }

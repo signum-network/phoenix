@@ -452,5 +452,19 @@
   "last_forged_block": "Τελευταίο σφυρηλατημένο μπλοκ",
   "reward_income_info": "Αυτό είναι το άθροισμα των ανταμοιβών μπλοκ που σφυρηλατήσατε με αυτόν τον λογαριασμό σαν να ήσασταν σόλο ανθρακωρύχος και δεν αντικατοπτρίζει απαραίτητα το πραγματικό σας εισόδημα εξόρυξης.",
   "no_block_forged": "Δεν έχει σφυρηλατηθεί ακόμα κανένα μπλοκ",
-  "set_reward_recipient_on": "Έγινε μέλος"
+  "set_reward_recipient_on": "Έγινε μέλος",
+  "add_treasury_account": "Προσθήκη λογαριασμού Δημοσίου",
+  "avgCommitment": "Μέσος όρος Δέσμευση",
+  "cashback_id": "Αναγνωριστικό επιστροφής χρημάτων",
+  "distribution_tokenholders": "Διανομή κατόχου διακριτικού",
+  "feeBurnt": "Καμμένο τέλος",
+  "feeCashback": "Προμήθεια επιστροφής μετρητών",
+  "mint_token": "Token Minting",
+  "notifications_disabled": "Οι ειδοποιήσεις απενεργοποιήθηκαν",
+  "notifications_enabled": "Οι ειδοποιήσεις ενεργοποιήθηκαν",
+  "settings_node": "Διαμόρφωση κόμβου",
+  "settings_notification": "Ειδοποιήσεις επιφάνειας εργασίας",
+  "show_in_explorer": "Ανοίξτε στον Blockchain Explorer",
+  "toggle_desktop_notification": "Ενεργοποιήστε ή απενεργοποιήστε τις Ειδοποιήσεις επιφάνειας εργασίας",
+  "updated": "ΕΠΙΚΑΙΡΟΠΟΙΗΜΕΝΟ"
 }

@@ -452,5 +452,19 @@
   "last_forged_block": "Blok Ditempa Terakhir",
   "reward_income_info": "Ini adalah jumlah hadiah blok yang Anda tempa dengan akun ini seolah-olah Anda adalah penambang solo dan tidak selalu mencerminkan pendapatan penambangan efektif Anda.",
   "no_block_forged": "Belum ada blok yang dipalsukan",
-  "set_reward_recipient_on": "Bergabung pada"
+  "set_reward_recipient_on": "Bergabung pada",
+  "add_treasury_account": "Tambahkan Akun Perbendaharaan",
+  "avgCommitment": "Rata-rata Komitmen",
+  "cashback_id": "ID uang kembali",
+  "distribution_tokenholders": "Distribusi Pemegang Token",
+  "feeBurnt": "Biaya Pembakaran",
+  "feeCashback": "Biaya Cashback",
+  "mint_token": "Pencetakan Token",
+  "notifications_disabled": "Notifikasi dinonaktifkan",
+  "notifications_enabled": "Notifikasi diaktifkan",
+  "settings_node": "Konfigurasi Node",
+  "settings_notification": "Pemberitahuan Desktop",
+  "show_in_explorer": "Buka di Blockchain Explorer",
+  "toggle_desktop_notification": "Aktifkan atau nonaktifkan Pemberitahuan Desktop",
+  "updated": "Diperbarui"
 }

@@ -452,5 +452,19 @@
   "last_forged_block": "अंतिम जाली ब्लॉक",
   "reward_income_info": "यह आपके द्वारा इस खाते के साथ जाली पुरस्कारों का योग है जैसे कि आप एक एकल खनिक थे और जरूरी नहीं कि यह आपकी प्रभावी खनन आय को दर्शाता हो।",
   "no_block_forged": "अभी तक कोई ब्लॉक जाली नहीं है",
-  "set_reward_recipient_on": "पर शामिल हुए"
+  "set_reward_recipient_on": "पर शामिल हुए",
+  "add_treasury_account": "ट्रेजरी खाता जोड़ें",
+  "avgCommitment": "औसत प्रतिबद्धता",
+  "cashback_id": "कैशबैक आईडी",
+  "distribution_tokenholders": "टोकन धारक वितरण",
+  "feeBurnt": "बर्न फीस",
+  "feeCashback": "कैशबैक शुल्क",
+  "mint_token": "टोकन मिंटिंग",
+  "notifications_disabled": "सूचनाएं अक्षम",
+  "notifications_enabled": "सूचनाएं सक्षम",
+  "settings_node": "नोड विन्यास",
+  "settings_notification": "डेस्कटॉप सूचनाएं",
+  "show_in_explorer": "ब्लॉकचेन एक्सप्लोरर में खोलें",
+  "toggle_desktop_notification": "डेस्कटॉप सूचनाएं सक्षम या अक्षम करें",
+  "updated": "अद्यतन"
 }

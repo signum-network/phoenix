@@ -452,5 +452,19 @@
   "last_forged_block": "Ostatni kuty blok",
   "reward_income_info": "Jest to suma nagród za blok, które wykułeś za pomocą tego konta, tak jakbyś był samotnym górnikiem i niekoniecznie odzwierciedla Twój efektywny dochód z wydobycia.",
   "no_block_forged": "Nie ma jeszcze sfałszowanego bloku",
-  "set_reward_recipient_on": "Dołączył w dniu"
+  "set_reward_recipient_on": "Dołączył w dniu",
+  "add_treasury_account": "Dodaj konto skarbowe",
+  "avgCommitment": "Śr. Zaangażowanie",
+  "cashback_id": "Identyfikator zwrotu gotówki",
+  "distribution_tokenholders": "Dystrybucja posiadaczy tokenów",
+  "feeBurnt": "Spalona opłata",
+  "feeCashback": "Opłata za zwrot pieniędzy",
+  "mint_token": "Wybijanie tokenów",
+  "notifications_disabled": "Powiadomienia wyłączone",
+  "notifications_enabled": "Powiadomienia włączone",
+  "settings_node": "Konfiguracja węzła",
+  "settings_notification": "Powiadomienia na pulpicie",
+  "show_in_explorer": "Otwórz w Eksploratorze Blockchain",
+  "toggle_desktop_notification": "Włącz lub wyłącz powiadomienia na pulpicie",
+  "updated": "Zaktualizowano"
 }
