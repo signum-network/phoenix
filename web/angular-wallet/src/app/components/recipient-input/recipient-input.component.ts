@@ -1,12 +1,14 @@
 import {Component, ElementRef, EventEmitter, Input, OnChanges, Output, ViewChild} from '@angular/core';
 import jsQR from 'jsqr';
 import {NotifierService} from 'angular-notifier';
-import {DomainService} from 'app/main/send-burst/domain/domain.service';
+import {DomainService} from 'app/main/send-money/domain/domain.service';
 import {Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {Address, AddressPrefix} from '@signumjs/core';
 import {AccountService} from '../../setup/account/account.service';
-import { AppService } from "../../app.service";
+import { AppService } from '../../app.service';
+import { constants } from '../../constants';
+import { NetworkService } from '../../network/network.service';
 
 // generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
 let nextId = 0;
@@ -18,13 +20,15 @@ export enum RecipientType {
   ID,
   ALIAS,
   UNSTOPPABLE,
+  BURN,
 }
 
 export enum RecipientValidationStatus {
   UNKNOWN = 'unknown',
   INVALID = 'invalid',
   VALID = 'valid',
-  UNSTOPPABLE_OUTAGE = 'unstoppable-outage'
+  UNSTOPPABLE_OUTAGE = 'unstoppable-outage',
+  BURN = 'burn'
 }
 
 export class Recipient {
@@ -93,6 +97,7 @@ export class RecipientInputComponent implements OnChanges {
 
   constructor(
     private appService: AppService,
+    private networkService: NetworkService,
     private accountService: AccountService,
               private notifierService: NotifierService,
               private domainService: DomainService) {
@@ -150,7 +155,9 @@ export class RecipientInputComponent implements OnChanges {
     this.recipient.addressRaw = r;
     this.recipient.addressRS = '';
     this.recipient.status = RecipientValidationStatus.UNKNOWN;
-    if (this.isReedSolomonAddress(r)) {
+    if (this.isBurnAddress(r)) {
+      this.recipient.type = RecipientType.BURN;
+    } else if (this.isReedSolomonAddress(r)) {
       this.recipient.type = RecipientType.ADDRESS;
     } else if (this.domainService.isUnstoppableDomain(r)) {
       this.recipient.type = RecipientType.UNSTOPPABLE;
@@ -169,6 +176,12 @@ export class RecipientInputComponent implements OnChanges {
     switch (this.recipient.type) {
       case RecipientType.ALIAS:
         id = await this.fetchAccountIdFromAlias(id);
+        break;
+      case RecipientType.BURN:
+        const burnAddress = this.networkService.getBurnAddress();
+        this.recipient.publicKey = '';
+        this.recipient.addressRS = burnAddress.getReedSolomonAddress();
+        this.recipient.status = RecipientValidationStatus.BURN;
         break;
       case RecipientType.ADDRESS:
         const address = Address.fromReedSolomonAddress(id);
@@ -197,13 +210,18 @@ export class RecipientInputComponent implements OnChanges {
       return;
     }
 
+    if (this.recipient.type === RecipientType.BURN){
+      this.recipientChange.emit(this.recipient);
+      return;
+    }
+
     this.loading = true;
     // @ts-ignore
     this.accountService.getAccount(id).then(({accountRS, publicKey}) => {
       this.recipient.addressRS = accountRS;
       this.recipient.status = RecipientValidationStatus.VALID;
       this.recipient.publicKey = publicKey;
-      if (this.recipient.publicKey.startsWith('0000000000000')){
+      if (this.recipient.publicKey === constants.smartContractPublicKey){
         this.recipient.type = RecipientType.CONTRACT;
       }
     }).catch(() => {
@@ -228,6 +246,8 @@ export class RecipientInputComponent implements OnChanges {
   getValidationHint(): string {
     // TODO: localization
     switch (this.recipient.status) {
+      case RecipientValidationStatus.BURN:
+        return 'The amount will be burnt.';
       case RecipientValidationStatus.UNKNOWN:
         return 'Address has not been verified.';
       case RecipientValidationStatus.VALID:
@@ -241,6 +261,8 @@ export class RecipientInputComponent implements OnChanges {
 
   getValidationIcon(): string {
     switch (this.recipient.status) {
+      case RecipientValidationStatus.BURN:
+        return '🔥';
       case RecipientValidationStatus.UNKNOWN:
         return 'help_outline';
       case RecipientValidationStatus.VALID:
@@ -300,5 +322,9 @@ export class RecipientInputComponent implements OnChanges {
       window.URL.revokeObjectURL(img.src);
       reader.readAsDataURL(file);
     };
+  }
+
+  private isBurnAddress(r: string): boolean {
+    return r === '0' || r.indexOf('2222-2222-2222-22222') > -1;
   }
 }

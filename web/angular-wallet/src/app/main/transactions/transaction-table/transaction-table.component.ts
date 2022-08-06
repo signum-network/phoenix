@@ -13,8 +13,8 @@ import {
   isMultiOutTransaction,
   getRecipientsAmount,
   TransactionMiningSubtype,
-  TransactionType, TransactionAssetSubtype
-} from '@signumjs/core';
+  TransactionType, TransactionAssetSubtype, TransactionArbitrarySubtype
+} from "@signumjs/core";
 import {Amount, ChainTime} from '@signumjs/util';
 import {UtilService} from 'app/util.service';
 import {takeUntil} from 'rxjs/operators';
@@ -137,6 +137,19 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   }
 
   public chopPrefix(reedSolomonAddress: string): string {
-    return reedSolomonAddress.substr(reedSolomonAddress.indexOf('-') + 1);
+    return reedSolomonAddress
+      ? reedSolomonAddress.substr(reedSolomonAddress.indexOf('-') + 1)
+      : '';
+  }
+
+  isSelf(transaction: Transaction): boolean {
+    if (transaction.sender === transaction.recipient) {
+      return true;
+    }
+    if (transaction.type === TransactionType.Arbitrary) {
+      return transaction.subtype === TransactionArbitrarySubtype.AccountInfo ||
+        transaction.subtype === TransactionArbitrarySubtype.AliasAssignment;
+    }
+    return transaction.type === TransactionType.Mining;
   }
 }

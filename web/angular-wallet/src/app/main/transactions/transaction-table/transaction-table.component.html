@@ -69,12 +69,17 @@
     </mat-header-cell>
     <mat-cell *matCellDef="let transaction">
       <ng-container *ngIf="isOwnAccount(transaction.sender)">
-        <div *ngIf="!isMultiOutPayment(transaction) && !transaction.recipientRS"
+        <div *ngIf="!isMultiOutPayment(transaction) && !isSelf(transaction) && !transaction.recipient"
+             class="text-uppercase"
+        >
+          {{"burn_address" | i18n}}
+        </div>
+        <div *ngIf="!isMultiOutPayment(transaction) && isSelf(transaction)"
              class="text-uppercase"
         >
           {{"self" | i18n}}
         </div>
-        <a *ngIf="!isMultiOutPayment(transaction) && transaction.recipientRS"
+        <a *ngIf="!isMultiOutPayment(transaction) && !isSelf(transaction)"
            [routerLink]="['/account', transaction.recipient]">{{
           chopPrefix(transaction.recipientRS)
           }}</a>

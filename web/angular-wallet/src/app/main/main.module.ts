@@ -17,7 +17,7 @@ import {LayoutModule} from 'app/layout/layout.module';
 import {MainComponent} from './main.component';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {LoginGuard} from 'app/login/login-guard.service';
-import {SendBurstModule} from './send-burst/send-burst.module';
+import {SendMoneyModule} from './send-money/send-money.module';
 import {AccountsModule} from './accounts/accounts.module';
 import {SetAccountInfoModule} from './set-account-info/set-account-info.module';
 import {SetRewardRecipientModule} from './set-reward-recipient/set-reward-recipient.module';
@@ -81,7 +81,7 @@ const mainRoutes: Routes = [
     MatIconModule,
     MatMomentDateModule,
     RouterModule.forChild(mainRoutes),
-    SendBurstModule,
+    SendMoneyModule,
     SetAccountInfoModule,
     SetCommitmentModule,
     SetRewardRecipientModule,

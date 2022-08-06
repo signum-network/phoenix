@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit($event);" #sendBurstForm="ngForm">
+<form (ngSubmit)="onSubmit($event);" #sendMoneyForm="ngForm">
 
   <recipient-input [recipientValue]="recipient.addressRaw"
                    (recipientChange)="onRecipientChange($event)"
@@ -28,6 +28,7 @@
       [(message)]="message"
       [(isText)]="messageIsText"
       [(encrypt)]="encrypt"
+      [canEncrypt]="canEncrypt()"
     >
     </app-message-input>
   </ng-container>

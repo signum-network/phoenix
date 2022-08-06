@@ -1,7 +1,7 @@
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
- * Modified work Copyright (c) 2021 Signum Network
+ * Modified work Copyright (c) 2022 Signum Network
  */
 
 export const constants = {
@@ -202,5 +202,6 @@ export const constants = {
   multiOutMinVersion: '2.3.1',
   pocPlusVersion: '3.0.0',
   mainnetNetworkName: 'Signum',
-  defaultUserProfile: 'simple'
+  defaultUserProfile: 'simple',
+  smartContractPublicKey: '0000000000000000000000000000000000000000000000000000000000000000'
 };

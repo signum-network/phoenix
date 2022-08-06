@@ -8,11 +8,11 @@ import {takeUntil} from 'rxjs/operators';
 import {getBalancesFromAccount} from '../../util/balance';
 
 @Component({
-  selector: 'app-send-burst',
-  templateUrl: './send-burst.component.html',
-  styleUrls: ['./send-burst.component.scss']
+  selector: 'app-send-money',
+  templateUrl: './send-money.component.html',
+  styleUrls: ['./send-money.component.scss']
 })
-export class SendBurstComponent extends UnsubscribeOnDestroy implements OnInit {
+export class SendMoneyComponent extends UnsubscribeOnDestroy implements OnInit {
   account: Account;
   fees: SuggestedFees;
   language: string;

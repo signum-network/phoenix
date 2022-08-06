@@ -26,7 +26,7 @@ import { isKeyDecryptionError } from '../../../util/exceptions/isKeyDecryptionEr
 import { NetworkService } from '../../../network/network.service';
 import { Recipient } from '../../../components/recipient-input/recipient-input.component';
 import { WarnSendDialogComponent } from '../../../components/warn-send-dialog/warn-send-dialog.component';
-import {memoize} from 'lodash';
+import { memoize } from 'lodash';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -57,7 +57,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       );
   }
 
-  @ViewChild('sendBurstForm', {static: true}) public sendBurstForm: NgForm;
+  @ViewChild('sendForm', {static: true}) public sendForm: NgForm;
   @ViewChild('recipientAddress', {static: false}) public recipientAddress: string;
   @ViewChild('amount', {static: true}) public amount: string;
   @ViewChild('message', {static: false}) public message: string;
@@ -100,15 +100,15 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       const dialogRef = this.openWarningDialog(nonValidAccounts);
       dialogRef.afterClosed().subscribe(ok => {
         if (ok) {
-          this.sendBurst();
+          this.sendMoney();
         }
       });
     } else {
-      this.sendBurst();
+      this.sendMoney();
     }
   }
 
-  private async sendBurstSameAmount(): Promise<void> {
+  private async sendMoneySameAmount(): Promise<void> {
 
     const fee = Amount.fromSigna(this.fee || 0);
     const amount = Amount.fromSigna(this.amount || 0);
@@ -123,7 +123,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     await this.transactionService.sendSameAmountToMultipleRecipients(request);
   }
 
-  private async sendBurstArbitraryAmount(): Promise<void> {
+  private async sendMoneyArbitraryAmount(): Promise<void> {
 
     const fee = Amount.fromSigna(this.fee || 0);
 
@@ -140,7 +140,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
 
-  private async sendBurst(): Promise<void> {
+  private async sendMoney(): Promise<void> {
     if (!this.nonEmptyRecipients().length) {
       return;
     }
@@ -148,11 +148,11 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     this.isSending = true;
     try {
       if (this.sameAmount) {
-        await this.sendBurstSameAmount();
+        await this.sendMoneySameAmount();
       } else {
-        await this.sendBurstArbitraryAmount();
+        await this.sendMoneyArbitraryAmount();
       }
-      this.sendBurstForm.resetForm();
+      this.sendForm.resetForm();
       this.resetRecipients();
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
       await this.router.navigate(['/']);
@@ -205,21 +205,19 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   }
 
   private calculatePayloadLength(): number {
-    const l = this.recipients.reduce(
-      (len, r ) => {
+    return this.recipients.reduce(
+      (len, r) => {
         if (!r.addressRS) {
           return len;
         }
         // format is <id1>;<id2>;
         len += Address.fromReedSolomonAddress(r.addressRS).getNumericId().length + 1;
-        if (!this.sameAmount){
+        if (!this.sameAmount) {
           // format is <id1>:<amount>;<id2>:<amount>;
           len += Amount.fromSigna(r.amount || '0').getPlanck().length + 1;
         }
         return len;
       }, 0);
-    console.log('calculatePayloadLength', l)
-    return l;
   }
 
   private getTotalForMultiOut(): Amount {

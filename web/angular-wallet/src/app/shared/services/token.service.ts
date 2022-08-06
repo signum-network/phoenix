@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {ApiService} from '../../api.service';
+import { Injectable } from '@angular/core';
+import { ApiService } from '../../api.service';
 import {
   Account,
   Address,
@@ -9,11 +9,12 @@ import {
 import {
   Keys
 } from '@signumjs/crypto';
-import {Amount} from '@signumjs/util';
-import {getPrivateSigningKey} from '../../util/security/getPrivateSigningKey';
-import {getPrivateEncryptionKey} from '../../util/security/getPrivateEncryptionKey';
-import {createMessageAttachment} from '../../util/transaction/createMessageAttachment';
-import {Recipient} from '../../components/recipient-input/recipient-input.component';
+import { Amount } from '@signumjs/util';
+import { getPrivateSigningKey } from '../../util/security/getPrivateSigningKey';
+import { getPrivateEncryptionKey } from '../../util/security/getPrivateEncryptionKey';
+import { createMessageAttachment } from '../../util/transaction/createMessageAttachment';
+import { Recipient } from '../../components/recipient-input/recipient-input.component';
+import { constants } from '../../constants';
 
 export interface TokenData {
   id: string;
@@ -50,7 +51,7 @@ interface TransferTokenRequest {
 export class TokenService {
 
   constructor(
-    private apiService: ApiService,
+    private apiService: ApiService
   ) {
 
   }
@@ -60,7 +61,7 @@ export class TokenService {
   }
 
   public async fetchTokenData(tokenId: string, account: Account): Promise<TokenData> {
-    const assetBalance = account.assetBalances && account.assetBalances.find(({asset}) => asset === tokenId);
+    const assetBalance = account.assetBalances && account.assetBalances.find(({ asset }) => asset === tokenId);
     if (!assetBalance) {
       throw new Error('Account doesn\'t own that token');
     }
@@ -68,7 +69,7 @@ export class TokenService {
   }
 
   public async getPriceInfo(id: string): Promise<PriceInfo> {
-    const {trades} = await this.apiService.api.service.query('getTrades', {
+    const { trades } = await this.apiService.api.service.query('getTrades', {
       asset: id,
       firstIndex: 0,
       lastIndex: 1
@@ -77,11 +78,11 @@ export class TokenService {
     if (!trades.length) {
       return {
         amount: '0',
-        change: 0,
+        change: 0
       };
     }
 
-    const {decimals, priceNQT} = trades[0];
+    const { decimals, priceNQT } = trades[0];
     const amount = Amount.fromPlanck(priceNQT).multiply(Math.pow(10, decimals)).getSigna();
     const change = trades[1] && trades[1].priceNQT > 0 ? (trades[0].priceNQT / trades[1].priceNQT) - 1 : 0;
 
@@ -118,7 +119,7 @@ export class TokenService {
     }
 
     const promises = account.assetBalances.map((balance) => {
-      const {asset, balanceQNT} = balance;
+      const { asset, balanceQNT } = balance;
       return this.gatherTokenData(asset, balanceQNT);
     });
     const tokens = await Promise.all(promises);
@@ -157,16 +158,20 @@ export class TokenService {
 
     const decimalFactor = Math.pow(10, token.decimals);
     const realQuantity = quantity * decimalFactor;
-
+    const recipientPublicKey = recipient.publicKey !== constants.smartContractPublicKey
+    && recipient.publicKey !== ''
+    && recipient.publicKey !== '0'
+      ? recipient.publicKey
+      : undefined;
     return this.apiService.api.asset.transferAsset({
       asset: token.id,
       attachment,
       feePlanck: fee.getPlanck(),
       recipientId: Address.create(recipient.addressRS).getNumericId(),
-      recipientPublicKey: recipient.publicKey,
+      recipientPublicKey,
       quantity: realQuantity,
       senderPrivateKey: getPrivateSigningKey(pin, keys),
-      senderPublicKey: keys.publicKey,
+      senderPublicKey: keys.publicKey
     }) as Promise<TransactionId>;
   }
 }

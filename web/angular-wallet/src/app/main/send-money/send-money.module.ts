@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {AccountResolver} from 'app/setup/account/account.resolver';
-import {SendBurstComponent} from './send-burst.component';
+import {SendMoneyComponent} from './send-money.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatButtonModule} from '@angular/material/button';
@@ -23,7 +23,7 @@ import {FuseSharedModule} from '@fuse/shared.module';
 import {SuggestFeeResolver} from '../../network/suggest-fee.resolver';
 import {NetworkModule} from 'app/network/network.module';
 import {LayoutModule} from 'app/layout/layout.module';
-import {SendBurstFormComponent} from './send-burst-form/send-burst-form.component';
+import {SendMoneyFormComponent} from './send-money-form/send-money-form.component';
 import {SendMultiOutFormComponent} from './send-multi-out-form/send-multi-out-form.component';
 import {LoginGuard} from 'app/login/login-guard.service';
 import {BatchRecipientsDialogComponent} from './batch-recipients-dialog/batch-recipients-dialog.component';
@@ -35,7 +35,7 @@ import {ComponentsModule} from '../../components/components.module';
 const routes = [
   {
     path: 'send',
-    component: SendBurstComponent,
+    component: SendMoneyComponent,
     canActivate: [LoginGuard],
     resolve: {
       account: AccountResolver,
@@ -54,8 +54,8 @@ const routes = [
     DomainService
   ],
   declarations: [
-    SendBurstComponent,
-    SendBurstFormComponent,
+    SendMoneyComponent,
+    SendMoneyFormComponent,
     SendMultiOutFormComponent,
     BatchRecipientsDialogComponent,
   ],
@@ -90,5 +90,5 @@ const routes = [
   ],
   exports: []
 })
-export class SendBurstModule {
+export class SendMoneyModule {
 }

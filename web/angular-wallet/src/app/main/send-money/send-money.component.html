@@ -11,7 +11,7 @@
   </div>
   <mat-tab-group class="pl-20 pr-20">
     <mat-tab label="{{ 'ordinary_payment' | i18n }}">
-      <app-send-burst-form [fees]="fees" [account]="account"></app-send-burst-form>
+      <app-send-money-form [fees]="fees" [account]="account"></app-send-money-form>
     </mat-tab>
     <mat-tab label="{{ 'multi_out_payment' | i18n }}">
       <app-send-multi-out-form [fees]="fees" [account]="account"></app-send-multi-out-form>
