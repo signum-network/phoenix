@@ -4,7 +4,13 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {FormControl} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {Transaction, Account} from '@signumjs/core';
+import {
+  Transaction,
+  Account,
+  TransactionType,
+  TransactionArbitrarySubtype,
+  isMultiOutSameTransaction, isMultiOutTransaction, TransactionAssetSubtype
+} from '@signumjs/core';
 import {ChainTime} from '@signumjs/util';
 import {MediaChange, MediaObserver} from '@angular/flex-layout';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
@@ -12,6 +18,7 @@ import {takeUntil} from 'rxjs/operators';
 import {UtilService} from '../../util.service';
 import {StoreService} from '../../store/store.service';
 import {AccountService} from '../../setup/account/account.service';
+import { I18nService } from '../../layout/components/i18n/i18n.service';
 
 
 const ColumnsQuery = {
@@ -43,13 +50,16 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
   pickerFromField = new FormControl();
   pickerToField = new FormControl();
   typesField = new FormControl();
+  recipientTypesField = new FormControl();
   searchField = new FormControl();
 
   typeOptions: string[] = [];
+  recipientTypeOptions: { k: string, v: string }[] = [];
   columns: string[] = ColumnsQuery.xl;
   today = new Date();
   minDate: Date;
   typeMap: object = {};
+  recipientTypeMap: object = {};
   language: any;
   unsubscriber = takeUntil(this.unsubscribeAll);
 
@@ -57,6 +67,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
     private accountService: AccountService,
     private storeService: StoreService,
     private utilService: UtilService,
+    private i18nService: I18nService,
     private observableMedia: MediaObserver
   ) {
     super();
@@ -90,6 +101,12 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
     this.typeOptions = Object.keys(this.typeMap);
     this.typeOptions.sort();
     this.typeOptions.unshift('');
+
+    this.recipientTypeMap[''] = '';
+    this.recipientTypeMap['self'] = this.i18nService.getTranslation('self');
+    this.recipientTypeMap['burn'] = this.i18nService.getTranslation('burn_address') ;
+
+    this.recipientTypeOptions = Object.entries(this.recipientTypeMap).map(([k, v]) => ({k, v}));
   }
 
   public ngAfterContentInit(): void {
@@ -106,7 +123,33 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
     this.dataSource.filterPredicate = (transaction, filterValue: string) =>
       this.isInDateRange(transaction)
       && this.isOfType(transaction)
+      && this.isOfRecipientType(transaction)
       && defaultFilterPredicate(transaction, filterValue);
+  }
+
+  private isTokenHolderDistribution(transaction: Transaction): boolean {
+    return transaction.type === TransactionType.Asset && transaction.subtype === TransactionAssetSubtype.AssetDistributeToHolders;
+  }
+
+  private isMultiOutPayment(transaction: Transaction): boolean {
+    return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction) || this.isTokenHolderDistribution(transaction);
+  }
+
+  private isSelf(transaction: Transaction): boolean
+  {
+    if (transaction.sender === transaction.recipient) {
+      return true;
+    }
+    if (transaction.type === TransactionType.Arbitrary) {
+      return transaction.subtype === TransactionArbitrarySubtype.AccountInfo ||
+        transaction.subtype === TransactionArbitrarySubtype.AliasAssignment;
+    }
+    return transaction.type === TransactionType.Mining;
+  }
+
+  private isBurn(transaction: Transaction): boolean
+  {
+    return !transaction.recipient && !this.isSelf(transaction);
   }
 
   private isOfType(transaction: Transaction): boolean {
@@ -143,5 +186,16 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
     this.pickerFromField.reset();
     this.searchField.reset();
     this.applyFilter();
+  }
+
+  private isOfRecipientType(transaction: Transaction): boolean {
+    const type = this.recipientTypesField.value;
+    if (type === 'self'){
+      return !this.isMultiOutPayment(transaction) && this.isSelf(transaction);
+    }
+    if (type === 'burn'){
+      return !this.isMultiOutPayment(transaction) && this.isBurn(transaction);
+    }
+    return true;
   }
 }

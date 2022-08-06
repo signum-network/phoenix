@@ -14,7 +14,7 @@ import {
   getRecipientsAmount,
   TransactionMiningSubtype,
   TransactionType, TransactionAssetSubtype, TransactionArbitrarySubtype
-} from "@signumjs/core";
+} from '@signumjs/core';
 import {Amount, ChainTime} from '@signumjs/util';
 import {UtilService} from 'app/util.service';
 import {takeUntil} from 'rxjs/operators';
