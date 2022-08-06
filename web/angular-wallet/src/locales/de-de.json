@@ -466,5 +466,9 @@
   "settings_notification": "Desktop-Benachrichtigungen",
   "show_in_explorer": "Öffne im Blockchain-Explorer",
   "toggle_desktop_notification": "Aktivieren oder deaktivieren Sie Desktop-Benachrichtigungen",
-  "updated": "Aktualisiert"
+  "updated": "Aktualisiert",
+  "burn": "Verbrennen",
+  "burn_address": "Verbrannt 🔥",
+  "burn_recipient": "Burning erkannt",
+  "burn_recipient_text": "Das Verbrennen von Signa oder Token bedeutet einen irreversiblen Verlust des verbrannten Wertes!"
 }

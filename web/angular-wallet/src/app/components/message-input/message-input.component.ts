@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-message-input',
@@ -13,6 +13,7 @@ export class MessageInputComponent implements OnInit {
   @Input() message = '';
   @Input() encrypt = false;
   @Input() isText = true;
+  @Input() canEncrypt = true;
 
   @Output() messageChange = new EventEmitter<string>();
   @Output() disabledChange = new EventEmitter<boolean>();
@@ -25,7 +26,7 @@ export class MessageInputComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onMessageChange(message: string) : void {
+  onMessageChange(message: string): void {
     this.messageChange.next(message);
   }
 

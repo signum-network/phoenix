@@ -466,5 +466,9 @@
   "settings_notification": "Ειδοποιήσεις επιφάνειας εργασίας",
   "show_in_explorer": "Ανοίξτε στον Blockchain Explorer",
   "toggle_desktop_notification": "Ενεργοποιήστε ή απενεργοποιήστε τις Ειδοποιήσεις επιφάνειας εργασίας",
-  "updated": "ΕΠΙΚΑΙΡΟΠΟΙΗΜΕΝΟ"
+  "updated": "ΕΠΙΚΑΙΡΟΠΟΙΗΜΕΝΟ",
+  "burn": "Εγκαυμα",
+  "burn_address": "Καμένο 🔥",
+  "burn_recipient": "Εντοπίστηκε καύση",
+  "burn_recipient_text": "Το Burning Signa ή Tokens σημαίνει μη αναστρέψιμη απώλεια της καμένης αξίας!"
 }

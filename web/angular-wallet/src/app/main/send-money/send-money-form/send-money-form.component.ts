@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { Account, SuggestedFees, TransactionPaymentSubtype, TransactionType } from '@signumjs/core';
-import { Amount, convertBase64StringToString } from '@signumjs/util';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Account, Address, SuggestedFees, TransactionPaymentSubtype, TransactionType } from '@signumjs/core';
+import { Amount, convertBase64StringToString, CurrencySymbol } from '@signumjs/util';
 import { NgForm } from '@angular/forms';
 import { TransactionService } from 'app/main/transactions/transaction.service';
 import { NotifierService } from 'angular-notifier';
@@ -9,11 +9,9 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { StoreService } from '../../../store/store.service';
 import { takeUntil } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from '../../../util/UnsubscribeOnDestroy';
-import { ActivatedRoute, Router, NavigationEnd, Params } from '@angular/router';
-import { getBalancesFromAccount, AccountBalances } from '../../../util/balance';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+import { AccountBalances, getBalancesFromAccount } from '../../../util/balance';
 import { isKeyDecryptionError } from '../../../util/exceptions/isKeyDecryptionError';
-import { Address } from '@signumjs/core';
-import { CurrencySymbol } from '@signumjs/util';
 import {
   QRData,
   Recipient,
@@ -21,7 +19,7 @@ import {
 } from 'app/components/recipient-input/recipient-input.component';
 import { WarnSendDialogComponent } from 'app/components/warn-send-dialog/warn-send-dialog.component';
 import { asBool, isNotEmpty } from 'app/util/forms';
-import { FeeInputComponent } from "../../../components/fee-input/fee-input.component";
+import { constants } from '../../../constants';
 
 interface CIP22Payload {
   amountPlanck: string | number;
@@ -36,12 +34,12 @@ interface CIP22Payload {
 
 
 @Component({
-  selector: 'app-send-burst-form',
-  templateUrl: './send-burst-form.component.html',
-  styleUrls: ['./send-burst-form.component.scss']
+  selector: 'app-send-money-form',
+  templateUrl: './send-money-form.component.html',
+  styleUrls: ['./send-money-form.component.scss']
 })
-export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
-  @ViewChild('sendBurstForm', { static: true }) public sendBurstForm: NgForm;
+export class SendMoneyFormComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
+  @ViewChild('sendMoneyForm', { static: true }) public sendMoneyForm: NgForm;
   @ViewChild('amount', { static: true }) public amount: string;
   @ViewChild('message', { static: true }) public message: string;
   @ViewChild('fullHash', { static: false }) public fullHash: string;
@@ -205,7 +203,7 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
         deadline: 1440
       });
       this.notifierService.notify('success', this.i18nService.getTranslation('success_send_money'));
-      this.sendBurstForm.resetForm();
+      this.sendMoneyForm.resetForm();
       await this.router.navigate(['/']);
     } catch (e) {
       if (isKeyDecryptionError(e)) {
@@ -286,5 +284,9 @@ export class SendBurstFormComponent extends UnsubscribeOnDestroy implements OnIn
       const fee = Amount.fromSigna(this.fee);
       this.maxAmount = available.subtract(fee).getSigna();
     });
+  }
+
+  canEncrypt(): boolean {
+    return this.recipient.publicKey && this.recipient.publicKey !== constants.smartContractPublicKey;
   }
 }

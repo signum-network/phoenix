@@ -466,5 +466,9 @@
   "settings_notification": "Notificações da área de trabalho",
   "show_in_explorer": "Abra no Blockchain Explorer",
   "toggle_desktop_notification": "Ativar ou desativar notificações da área de trabalho",
-  "updated": "Atualizada"
+  "updated": "Atualizada",
+  "burn": "Queimar",
+  "burn_address": "Queimado 🔥",
+  "burn_recipient": "Queima detectada",
+  "burn_recipient_text": "Queimar Signa ou Tokens significa uma perda irreversível do valor queimado!"
 }

@@ -466,5 +466,9 @@
   "settings_notification": "Notificacions d'escriptori",
   "show_in_explorer": "Obriu a Blockchain Explorer",
   "toggle_desktop_notification": "Activa o desactiva les notificacions d'escriptori",
-  "updated": "Actualitzat"
+  "updated": "Actualitzat",
+  "burn": "Cremar",
+  "burn_address": "Cremat 🔥",
+  "burn_recipient": "S'ha detectat crema",
+  "burn_recipient_text": "La crema de senyals o fitxes significa una pèrdua irreversible del valor cremat!"
 }

@@ -466,5 +466,9 @@
   "settings_notification": "桌面通知",
   "show_in_explorer": "在区块链资源管理器中打开",
   "toggle_desktop_notification": "启用或禁用桌面通知",
-  "updated": "更新"
+  "updated": "更新",
+  "burn": "烧伤",
+  "burn_address": "烧了🔥",
+  "burn_recipient": "检测到燃烧",
+  "burn_recipient_text": "Burning Signa 或 Tokens 意味着烧毁价值的不可逆损失！"
 }

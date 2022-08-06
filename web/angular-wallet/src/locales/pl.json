@@ -466,5 +466,9 @@
   "settings_notification": "Powiadomienia na pulpicie",
   "show_in_explorer": "Otwórz w Eksploratorze Blockchain",
   "toggle_desktop_notification": "Włącz lub wyłącz powiadomienia na pulpicie",
-  "updated": "Zaktualizowano"
+  "updated": "Zaktualizowano",
+  "burn": "Oparzenie",
+  "burn_address": "Spalony 🔥",
+  "burn_recipient": "Wykryto spalanie",
+  "burn_recipient_text": "Spalenie Signa lub Tokena oznacza nieodwracalną utratę spalonych wartości!"
 }

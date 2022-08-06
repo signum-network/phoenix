@@ -1,19 +1,35 @@
 <div class="warn-dialog p-24">
-  <h1 mat-dialog-title>{{ 'unknown_recipients' | i18n }}</h1>
-  <div mat-dialog-content>
-    <p>{{ 'unknown_recipients_text' | i18n }}</p>
-    <ul class="recipient-list">
-      <li *ngFor="let recipient of recipients">
-        <div>
-          {{recipient.addressRaw}}
-        </div>
-      </li>
-    </ul>
-    <p *ngIf="!hasUnknownAliasAccount">{{ 'are_you_sure' | i18n }}</p>
-  </div>
-  <div mat-dialog-actions>
-    <button *ngIf="hasUnknownAliasAccount" mat-button [mat-dialog-close]>{{ 'close' | i18n }}</button>
-    <button *ngIf="!hasUnknownAliasAccount" mat-button [mat-dialog-close]>{{ 'cancel' | i18n }}</button>
-    <button *ngIf="!hasUnknownAliasAccount" mat-button [mat-dialog-close]="true" color="accent">{{ 'submit' | i18n }}</button>
-  </div>
+
+  <ng-container *ngIf="hasBurnAccount">
+    <h1 mat-dialog-title>🔥{{ 'burn_recipient' | i18n }}🔥</h1>
+    <div mat-dialog-content>
+      <p>{{ 'burn_recipient_text' | i18n }}</p>
+      <p>{{ 'are_you_sure' | i18n }}</p>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="false">{{ 'cancel' | i18n }}</button>
+      <button mat-button [mat-dialog-close]="true" color="warn">{{ 'burn' | i18n }}</button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!hasBurnAccount">
+    <h1 mat-dialog-title>{{ 'unknown_recipients' | i18n }}</h1>
+    <div mat-dialog-content>
+      <p>{{ 'unknown_recipients_text' | i18n }}</p>
+      <ul class="recipient-list">
+        <li *ngFor="let recipient of recipients">
+          <div>
+            {{recipient.addressRaw}}
+          </div>
+        </li>
+      </ul>
+      <p *ngIf="!hasUnknownAliasAccount">{{ 'are_you_sure' | i18n }}</p>
+    </div>
+    <div mat-dialog-actions>
+      <button *ngIf="hasUnknownAliasAccount" mat-button [mat-dialog-close]="false">{{ 'close' | i18n }}</button>
+      <button *ngIf="!hasUnknownAliasAccount" mat-button [mat-dialog-close]="false">{{ 'cancel' | i18n }}</button>
+      <button *ngIf="!hasUnknownAliasAccount" mat-button [mat-dialog-close]="true"
+              color="accent">{{ 'submit' | i18n }}</button>
+    </div>
+  </ng-container>
 </div>

@@ -28,7 +28,7 @@ import {LoginGuard} from 'app/login/login-guard.service';
 import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {LayoutModule} from 'app/layout/layout.module';
 import {NgxMaskModule} from 'ngx-mask';
-import {SendBurstModule} from '../send-burst/send-burst.module';
+import {SendMoneyModule} from '../send-money/send-money.module';
 import {SuggestFeeResolver} from 'app/network/suggest-fee.resolver';
 import {NotifierModule} from 'angular-notifier';
 import {FormsModule} from '@angular/forms';
@@ -41,7 +41,7 @@ const routes: Routes = [
     path: '',
     component: MessagesComponent,
     canActivate: [LoginGuard],
-    runGuardsAndResolvers: "always",
+    runGuardsAndResolvers: 'always',
     resolve: {
       message: MessagesService,
       fees: SuggestFeeResolver
@@ -84,7 +84,7 @@ const routes: Routes = [
     NgxMaskModule,
     NotifierModule,
     RouterModule.forChild(routes),
-    SendBurstModule,
+    SendMoneyModule,
   ],
   providers: [
     MessagesService

@@ -12,6 +12,13 @@ mat-form-field {
     padding: 2px 8px;
     align-items: center;
     justify-content: center;
+    &.burn {
+      background: linear-gradient(10deg, #ff623e, #ffee00, #ce0000);
+      background-size: 600% 600%;
+      -webkit-animation: burning 10s ease infinite;
+      -moz-animation: burning 10s ease infinite;
+      animation: burning 10s ease infinite;
+    }
     &.invalid {
       background: darkorange;
     }
@@ -94,4 +101,21 @@ mat-progress-bar {
 
 .inputfile + .camera-icon * {
   pointer-events: none;
+}
+
+
+@-webkit-keyframes burning {
+  0%{background-position:83% 0%}
+  50%{background-position:18% 100%}
+  100%{background-position:83% 0%}
+}
+@-moz-keyframes burning {
+  0%{background-position:83% 0%}
+  50%{background-position:18% 100%}
+  100%{background-position:83% 0%}
+}
+@keyframes burning {
+  0%{background-position:83% 0%}
+  50%{background-position:18% 100%}
+  100%{background-position:83% 0%}
 }

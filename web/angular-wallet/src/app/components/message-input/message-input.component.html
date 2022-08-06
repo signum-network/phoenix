@@ -11,7 +11,7 @@
   </mat-form-field>
   <div class="message-counter">{{message ? message.length : 0}}/{{MaxMessageLength}}</div>
   <div class="message-options">
-    <small class="badge" [class.selected]="encrypt" (click)="toggleEncrypt()">
+    <small *ngIf="canEncrypt" class="badge" [class.selected]="encrypt" (click)="toggleEncrypt()">
       <mat-icon>{{encrypt ? 'lock' : 'no_encryption'}}</mat-icon>
       {{'encrypt_message' | i18n}}
     </small>

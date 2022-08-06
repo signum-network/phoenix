@@ -17,6 +17,7 @@ import { NotifierService } from 'angular-notifier';
 import { ExceptionHandlerService } from '../../../../shared/services/exceptionhandler.service';
 import { Router } from '@angular/router';
 import { TokenData, TokenService } from '../../../../shared/services/token.service';
+import { constants } from "../../../../constants";
 
 @Component({
   selector: 'app-token-transfer-form',
@@ -156,6 +157,9 @@ export class TokenTransferFormComponent implements OnInit {
     if (this.recipient.status === RecipientValidationStatus.INVALID) {
       return this.i18nService.getTranslation('invalid_address');
     }
+    if (this.recipient.status === RecipientValidationStatus.BURN) {
+      return this.i18nService.getTranslation('burn_address');
+    }
     if (this.recipient.status === RecipientValidationStatus.UNKNOWN) {
       return this.i18nService.getTranslation('unknown_address');
     }
@@ -176,5 +180,9 @@ export class TokenTransferFormComponent implements OnInit {
     this.encrypt = false;
     this.showMessage = false;
     this.message = '';
+  }
+
+  canEncrypt(): boolean {
+    return this.recipient.publicKey && this.recipient.publicKey !== constants.smartContractPublicKey;
   }
 }

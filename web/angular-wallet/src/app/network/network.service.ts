@@ -9,7 +9,7 @@ import {
   SuggestedFees,
   Peer,
   PeerAddressList,
-  BlockList
+  BlockList, Address
 } from '@signumjs/core';
 
 import { ApiService } from '../api.service';
@@ -43,7 +43,7 @@ export class NetworkService {
       this.api = apiService.api;
 
       const isMainNet = await this.fetchIsMainNet();
-      if(this._isMainNet !== isMainNet){
+      if (this._isMainNet !== isMainNet){
           this.storeService.invalidateAccountTransactions();
       }
       this.isMainNet$.next(isMainNet);
@@ -94,6 +94,11 @@ export class NetworkService {
     } catch (e) {
       return false;
     }
+  }
+
+  public getBurnAddress(): Address {
+    const prefix = this.isMainNet() ? 'S' : 'TS';
+    return Address.fromReedSolomonAddress(`${prefix}-2222-2222-2222-22222`);
   }
 
   public isMainNet(): boolean {

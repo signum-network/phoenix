@@ -466,5 +466,9 @@
   "settings_notification": "Obavijesti na radnoj površini",
   "show_in_explorer": "Otvorite u Blockchain Exploreru",
   "toggle_desktop_notification": "Omogućite ili onemogućite Obavijesti na radnoj površini",
-  "updated": "Ažurirano"
+  "updated": "Ažurirano",
+  "burn": "Spaliti",
+  "burn_address": "Spaljeno 🔥",
+  "burn_recipient": "Otkriveno spaljivanje",
+  "burn_recipient_text": "Spaljivanje Signa ili Tokena znači nepovratan gubitak spaljene vrijednosti!"
 }

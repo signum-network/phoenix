@@ -15,6 +15,7 @@ import {
 })
 export class WarnSendDialogComponent {
   hasUnknownAliasAccount: boolean;
+  hasBurnAccount: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<WarnSendDialogComponent>,
@@ -22,6 +23,7 @@ export class WarnSendDialogComponent {
     this.hasUnknownAliasAccount = some(recipients,
         r => r.status !== RecipientValidationStatus.VALID && r.type === RecipientType.ALIAS
     );
+    this.hasBurnAccount = some(recipients, r => r.status === RecipientValidationStatus.BURN);
   }
 
   trackByIndex(index): number {

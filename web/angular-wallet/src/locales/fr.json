@@ -466,5 +466,9 @@
   "settings_notification": "Notifications de bureau",
   "show_in_explorer": "Ouvrir dans Blockchain Explorer",
   "toggle_desktop_notification": "Activer ou désactiver les notifications de bureau",
-  "updated": "Actualisé"
+  "updated": "Actualisé",
+  "burn": "Brûler",
+  "burn_address": "Brûlé 🔥",
+  "burn_recipient": "Brûlure détectée",
+  "burn_recipient_text": "Brûler des Signa ou des Tokens signifie une perte irréversible de la valeur brûlée !"
 }

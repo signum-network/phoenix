@@ -466,5 +466,9 @@
   "settings_notification": "डेस्कटॉप सूचनाएं",
   "show_in_explorer": "ब्लॉकचेन एक्सप्लोरर में खोलें",
   "toggle_desktop_notification": "डेस्कटॉप सूचनाएं सक्षम या अक्षम करें",
-  "updated": "अद्यतन"
+  "updated": "अद्यतन",
+  "burn": "जलाना",
+  "burn_address": "जला हुआ",
+  "burn_recipient": "जलने का पता चला",
+  "burn_recipient_text": "सिग्ना या टोकन को जलाने का अर्थ है जले हुए मूल्य का अपरिवर्तनीय नुकसान!"
 }

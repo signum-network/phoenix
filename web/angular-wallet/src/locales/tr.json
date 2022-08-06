@@ -466,5 +466,9 @@
   "settings_notification": "Masaüstü bildirimleri",
   "show_in_explorer": "Blockchain Explorer'da Aç",
   "toggle_desktop_notification": "Masaüstü Bildirimlerini etkinleştirin veya devre dışı bırakın",
-  "updated": "Güncellenmiş"
+  "updated": "Güncellenmiş",
+  "burn": "Yakmak",
+  "burn_address": "yanmış 🔥",
+  "burn_recipient": "Yanma Algılandı",
+  "burn_recipient_text": "Burning Signa veya Jetonlar, yakılan değerin geri döndürülemez bir şekilde kaybolması anlamına gelir!"
 }
