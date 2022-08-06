@@ -466,5 +466,9 @@
   "settings_notification": "Työpöydän ilmoitukset",
   "show_in_explorer": "Avaa Blockchain Explorerissa",
   "toggle_desktop_notification": "Ota työpöytäilmoitukset käyttöön tai poista ne käytöstä",
-  "updated": "Päivitetty"
+  "updated": "Päivitetty",
+  "burn": "Polttaa",
+  "burn_address": "Poltettu 🔥",
+  "burn_recipient": "Palaminen havaittu",
+  "burn_recipient_text": "Signan tai Tokenien polttaminen tarkoittaa palaneen arvon peruuttamatonta menetystä!"
 }

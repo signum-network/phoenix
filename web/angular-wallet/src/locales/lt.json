@@ -466,5 +466,9 @@
   "settings_notification": "Darbalaukio pranešimai",
   "show_in_explorer": "Atidarykite „Blockchain Explorer“.",
   "toggle_desktop_notification": "Įjungti arba išjungti darbalaukio pranešimus",
-  "updated": "Atnaujinta"
+  "updated": "Atnaujinta",
+  "burn": "Deginti",
+  "burn_address": "Sudegė 🔥",
+  "burn_recipient": "Aptiktas deginimas",
+  "burn_recipient_text": "Signa arba žetonų deginimas reiškia negrįžtamą sudegintos vertės praradimą!"
 }

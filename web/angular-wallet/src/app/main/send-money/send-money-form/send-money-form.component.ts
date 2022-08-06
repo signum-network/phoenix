@@ -15,12 +15,11 @@ import { isKeyDecryptionError } from '../../../util/exceptions/isKeyDecryptionEr
 import {
   QRData,
   Recipient,
-  RecipientType,
   RecipientValidationStatus
 } from 'app/components/recipient-input/recipient-input.component';
 import { WarnSendDialogComponent } from 'app/components/warn-send-dialog/warn-send-dialog.component';
 import { asBool, isNotEmpty } from 'app/util/forms';
-import { constants } from "../../../constants";
+import { constants } from '../../../constants';
 
 interface CIP22Payload {
   amountPlanck: string | number;

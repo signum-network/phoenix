@@ -466,5 +466,9 @@
   "settings_notification": "Notificări pe ecran",
   "show_in_explorer": "Deschideți în Blockchain Explorer",
   "toggle_desktop_notification": "Activați sau dezactivați notificările desktop",
-  "updated": "La curent"
+  "updated": "La curent",
+  "burn": "A arde",
+  "burn_address": "Ars 🔥",
+  "burn_recipient": "Arsuri detectate",
+  "burn_recipient_text": "Arderea semnelor sau a jetoanelor înseamnă o pierdere ireversibilă a valorii arse!"
 }

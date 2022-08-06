@@ -466,5 +466,9 @@
   "settings_notification": "Pemberitahuan Desktop",
   "show_in_explorer": "Buka di Blockchain Explorer",
   "toggle_desktop_notification": "Aktifkan atau nonaktifkan Pemberitahuan Desktop",
-  "updated": "Diperbarui"
+  "updated": "Diperbarui",
+  "burn": "Membakar",
+  "burn_address": "Terbakar",
+  "burn_recipient": "Terdeteksi Pembakaran",
+  "burn_recipient_text": "Membakar Signa atau Token berarti kehilangan nilai yang dibakar secara tidak dapat dibalikkan!"
 }

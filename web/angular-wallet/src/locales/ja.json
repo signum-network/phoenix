@@ -466,5 +466,9 @@
   "settings_notification": "デスクトップ通知",
   "show_in_explorer": "ブロックチェーンエクスプローラーで開く",
   "toggle_desktop_notification": "デスクトップ通知を有効または無効にする",
-  "updated": "更新しました"
+  "updated": "更新しました",
+  "burn": "燃えた",
+  "burn_address": "やけどした🔥",
+  "burn_recipient": "燃焼が検出されました",
+  "burn_recipient_text": "シグナまたはトークンを燃やすことは、燃やした価値の不可逆的な損失を意味します!"
 }

@@ -466,5 +466,9 @@
   "settings_notification": "Bureaublad notificaties",
   "show_in_explorer": "Openen in Blockchain Explorer",
   "toggle_desktop_notification": "Bureaubladmeldingen in- of uitschakelen",
-  "updated": "Bijgewerkt"
+  "updated": "Bijgewerkt",
+  "burn": "Brandwond",
+  "burn_address": "verbrand",
+  "burn_recipient": "Branden gedetecteerd",
+  "burn_recipient_text": "Het verbranden van Signa of Tokens betekent een onomkeerbaar verlies van de verbrande waarde!"
 }

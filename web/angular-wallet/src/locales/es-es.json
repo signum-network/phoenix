@@ -466,5 +466,9 @@
   "settings_notification": "Notificaciones de escritorio",
   "show_in_explorer": "Abrir en Blockchain Explorer",
   "toggle_desktop_notification": "Habilitar o deshabilitar las notificaciones de escritorio",
-  "updated": "Actualizado"
+  "updated": "Actualizado",
+  "burn": "Quemar",
+  "burn_address": "Quemado 🔥",
+  "burn_recipient": "Quema detectada",
+  "burn_recipient_text": "¡Quemar Signa o Tokens significa una pérdida irreversible del valor quemado!"
 }

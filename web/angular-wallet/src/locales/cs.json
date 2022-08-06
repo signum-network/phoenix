@@ -466,5 +466,9 @@
   "settings_notification": "Oznámení na ploše",
   "show_in_explorer": "Otevřete v Blockchain Exploreru",
   "toggle_desktop_notification": "Povolit nebo zakázat upozornění na ploše",
-  "updated": "Aktualizováno"
+  "updated": "Aktualizováno",
+  "burn": "Hořet",
+  "burn_address": "Spálené 🔥",
+  "burn_recipient": "Zjištěno pálení",
+  "burn_recipient_text": "Vypálení Signa nebo Tokenů znamená nevratnou ztrátu vypálené hodnoty!"
 }

@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.4.2
+
+### Feature
+- Added Burning 🔥
+- Disabled encrypted messages for contracts
+
+### Bug Fixes
+- Sending Tokens to Smart Contracts #1661
+
+## 1.4.1
+
+### Feature
+- Improved Peer List #1642
+- Sticky Toolbar #1597
+- New :rainbow: Transaction Types supported #1655
+- Improved Block & Transactions Details (with :rainbow: features) and links to explorer
+- Desktop Notification can be disabled now #1648
+
+### Bug Fixes
+- Fixed message send when switched networks
+- More consistent dashboard data, when switching networks
+- General minor fixes and improvements
+
 ## 1.4.0
 
 # Feature

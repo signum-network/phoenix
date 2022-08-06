@@ -466,5 +466,9 @@
   "settings_notification": "Notifiche sul desktop",
   "show_in_explorer": "Apri in Blockchain Explorer",
   "toggle_desktop_notification": "Abilita o disabilita le notifiche desktop",
-  "updated": "Aggiornato"
+  "updated": "Aggiornato",
+  "burn": "Bruciare",
+  "burn_address": "Bruciato 🔥",
+  "burn_recipient": "Bruciore rilevato",
+  "burn_recipient_text": "Bruciare Signa o Token significa una perdita irreversibile del valore bruciato!"
 }

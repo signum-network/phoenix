@@ -466,5 +466,9 @@
   "settings_notification": "Upozornenia na pracovnej ploche",
   "show_in_explorer": "Otvorte v Blockchain Explorer",
   "toggle_desktop_notification": "Povoliť alebo zakázať upozornenia na pracovnej ploche",
-  "updated": "Aktualizované"
+  "updated": "Aktualizované",
+  "burn": "Spáliť",
+  "burn_address": "Spálené 🔥",
+  "burn_recipient": "Zistené horenie",
+  "burn_recipient_text": "Burning Signa alebo Tokens znamená nenávratnú stratu vypálenej hodnoty!"
 }
