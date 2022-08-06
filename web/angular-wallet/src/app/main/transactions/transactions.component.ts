@@ -9,7 +9,7 @@ import {
   Account,
   TransactionType,
   TransactionArbitrarySubtype,
-  isMultiOutSameTransaction, isMultiOutTransaction, TransactionAssetSubtype
+  isMultiOutSameTransaction, isMultiOutTransaction, TransactionAssetSubtype, TransactionPaymentSubtype
 } from '@signumjs/core';
 import {ChainTime} from '@signumjs/util';
 import {MediaChange, MediaObserver} from '@angular/flex-layout';
@@ -137,6 +137,10 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
 
   private isSelf(transaction: Transaction): boolean
   {
+    if ( this.isMultiOutPayment(transaction)) {
+      return false;
+    }
+
     if (transaction.sender === transaction.recipient) {
       return true;
     }
@@ -147,9 +151,11 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
     return transaction.type === TransactionType.Mining;
   }
 
-  private isBurn(transaction: Transaction): boolean
-  {
-    return !transaction.recipient && !this.isSelf(transaction);
+  private isBurn(transaction: Transaction): boolean {
+    return !transaction.recipient && (
+      (transaction.type === TransactionType.Asset && transaction.subtype === TransactionAssetSubtype.AssetTransfer) ||
+      (transaction.type === TransactionType.Payment && transaction.subtype === TransactionPaymentSubtype.Ordinary)
+    );
   }
 
   private isOfType(transaction: Transaction): boolean {
@@ -182,6 +188,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
 
   public resetFilter(): void {
     this.typesField.reset();
+    this.recipientTypesField.reset();
     this.pickerToField.reset();
     this.pickerFromField.reset();
     this.searchField.reset();
@@ -191,10 +198,10 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
   private isOfRecipientType(transaction: Transaction): boolean {
     const type = this.recipientTypesField.value;
     if (type === 'self'){
-      return !this.isMultiOutPayment(transaction) && this.isSelf(transaction);
+      return this.isSelf(transaction);
     }
     if (type === 'burn'){
-      return !this.isMultiOutPayment(transaction) && this.isBurn(transaction);
+      return this.isBurn(transaction);
     }
     return true;
   }

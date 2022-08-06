@@ -4,8 +4,8 @@ import {
   ViewChild,
   AfterViewInit
 } from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import {
   Transaction,
   Account,
@@ -13,27 +13,27 @@ import {
   isMultiOutTransaction,
   getRecipientsAmount,
   TransactionMiningSubtype,
-  TransactionType, TransactionAssetSubtype, TransactionArbitrarySubtype
+  TransactionType, TransactionAssetSubtype, TransactionArbitrarySubtype, TransactionPaymentSubtype
 } from '@signumjs/core';
-import {Amount, ChainTime} from '@signumjs/util';
-import {UtilService} from 'app/util.service';
-import {takeUntil} from 'rxjs/operators';
-import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
-import {StoreService} from '../../../store/store.service';
-import {formatDate} from '@angular/common';
+import { Amount, ChainTime } from '@signumjs/util';
+import { UtilService } from 'app/util.service';
+import { takeUntil } from 'rxjs/operators';
+import { UnsubscribeOnDestroy } from '../../../util/UnsubscribeOnDestroy';
+import { StoreService } from '../../../store/store.service';
+import { formatDate } from '@angular/common';
 
 
 @Component({
   selector: 'app-transaction-table',
   styleUrls: ['./transaction-table.component.scss'],
-  templateUrl: './transaction-table.component.html',
+  templateUrl: './transaction-table.component.html'
 })
 export class TransactionTableComponent extends UnsubscribeOnDestroy implements AfterViewInit {
   @Input() dataSource: MatTableDataSource<Transaction>;
   @Input() displayedColumns = ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
   @Input() account: Account;
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   public locale: string;
 
   constructor(private utilService: UtilService,
@@ -43,7 +43,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
       .pipe(
         takeUntil(this.unsubscribeAll)
       )
-      .subscribe(({language}) => {
+      .subscribe(({ language }) => {
         this.locale = language;
       });
   }
@@ -115,8 +115,8 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
     const isNegative = this.isAmountNegative(row);
 
-    if (this.isTokenHolderDistribution(row)){
-      return cx(row.sender === this.account.account ?  'outgoing' : 'incoming');
+    if (this.isTokenHolderDistribution(row)) {
+      return cx(row.sender === this.account.account ? 'outgoing' : 'incoming');
     }
 
     if (
@@ -151,5 +151,12 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
         transaction.subtype === TransactionArbitrarySubtype.AliasAssignment;
     }
     return transaction.type === TransactionType.Mining;
+  }
+
+  public isBurn(transaction: Transaction): boolean {
+    return !transaction.recipient && (
+      (transaction.type === TransactionType.Asset && transaction.subtype === TransactionAssetSubtype.AssetTransfer) ||
+      (transaction.type === TransactionType.Payment && transaction.subtype === TransactionPaymentSubtype.Ordinary)
+    );
   }
 }
