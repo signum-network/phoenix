@@ -68,7 +68,7 @@
     "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "semver": "^6.3.0",
-    "snyk": "^1.595.0",
+    "snyk": "^1.996.0",
     "winston": "^3.2.1"
   },
   "snyk": true
