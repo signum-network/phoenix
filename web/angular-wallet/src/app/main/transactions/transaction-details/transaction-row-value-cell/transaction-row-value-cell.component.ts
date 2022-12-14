@@ -30,7 +30,7 @@ export class TransactionRowValueCellComponent {
 
   public async decrypt(event): Promise<void> {
     event.stopImmediatePropagation();
-    const account = await this.accountService.currentAccount$.getValue();
+    const account = this.accountService.currentAccount$.getValue();
     let senderPublicKey = this.transaction.senderPublicKey;
     if (account.account === this.transaction.sender) {
       const recipient = await this.accountService.getAccount(this.transaction.recipient);

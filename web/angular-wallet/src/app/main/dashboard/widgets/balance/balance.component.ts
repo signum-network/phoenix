@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { Account } from '@signumjs/core';
 import { AccountBalances, getBalancesFromAccount } from 'app/util/balance';
 import { formatMetricNumber } from '../../../../util/formatMetricNumber';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
   selector: 'app-balance',
@@ -10,7 +10,7 @@ import { formatMetricNumber } from '../../../../util/formatMetricNumber';
 })
 export class BalanceComponent implements OnInit, OnChanges {
 
-  @Input() account: Account;
+  @Input() account: WalletAccount;
 
   balance: AccountBalances;
   datasets = [];

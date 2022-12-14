@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Account, Address, SuggestedFees, TransactionPaymentSubtype, TransactionType } from '@signumjs/core';
+import { Address, SuggestedFees, TransactionPaymentSubtype, TransactionType } from '@signumjs/core';
 import { Amount, convertBase64StringToString, CurrencySymbol } from '@signumjs/util';
 import { NgForm } from '@angular/forms';
 import { TransactionService } from 'app/main/transactions/transaction.service';
@@ -20,6 +20,7 @@ import {
 import { WarnSendDialogComponent } from 'app/components/warn-send-dialog/warn-send-dialog.component';
 import { asBool, isNotEmpty } from 'app/util/forms';
 import { constants } from '../../../constants';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 interface CIP22Payload {
   amountPlanck: string | number;
@@ -49,7 +50,7 @@ export class SendMoneyFormComponent extends UnsubscribeOnDestroy implements OnIn
   @ViewChild('fee', { static: true }) public fee: string;
   @ViewChild('maxAmount', { static: true }) public maxAmount: string;
 
-  @Input() account: Account;
+  @Input() account: WalletAccount;
   @Input() fees: SuggestedFees;
 
   showMessage = false;

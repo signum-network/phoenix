@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Account, TransactionType, TransactionArbitrarySubtype } from '@signumjs/core';
+import { TransactionType, TransactionArbitrarySubtype } from '@signumjs/core';
 import { Amount } from '@signumjs/util';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -9,6 +9,7 @@ import { NotifierService } from 'angular-notifier';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { AddressPattern } from 'app/util/addressPattern';
 import { isKeyDecryptionError } from '../../util/exceptions/isKeyDecryptionError';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
   selector: 'app-set-account-info',
@@ -18,7 +19,7 @@ import { isKeyDecryptionError } from '../../util/exceptions/isKeyDecryptionError
 export class SetAccountInfoComponent implements OnInit {
   @ViewChild('setAccountInfoForm', { static: false }) public setAccountInfoForm: NgForm;
   @ViewChild('name', { static: false }) public name: string;
-  @ViewChild('description', { static: false }) public description : string;
+  @ViewChild('description', { static: false }) public description: string;
 
   showMessage = false;
   isSending = false;
@@ -28,7 +29,7 @@ export class SetAccountInfoComponent implements OnInit {
   pin = '';
   fee: string;
 
-  account: Account;
+  account: WalletAccount;
   txType = TransactionType.Arbitrary;
   txSubtype = TransactionArbitrarySubtype.AccountInfo;
 
@@ -40,7 +41,7 @@ export class SetAccountInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.account = this.route.snapshot.data.account as Account;
+    this.account = this.route.snapshot.data.account as WalletAccount;
     this.immutable = this.account.type === 'offline';
     setTimeout(() => {
       this.name = this.account.name || '';

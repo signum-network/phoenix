@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  Account,
   Transaction
 } from '@signumjs/core';
 import { StoreService } from 'app/store/store.service';
@@ -9,6 +8,7 @@ import { UtilService } from '../../../util.service';
 import { CellValue, CellValueMapper } from './cell-value-mapper';
 import { NetworkService } from '../../../network/network.service';
 import { AppService } from '../../../app.service';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 export interface TransactionDetailRow {
   k: string;
@@ -24,7 +24,7 @@ export interface TransactionDetailRow {
 export class TransactionDetailsComponent implements OnInit {
 
   public detailsData: TransactionDetailRow[] = [];
-  account: Account;
+  account: WalletAccount;
   transaction: Transaction;
   recipient: Account;
   explorerLink: string;

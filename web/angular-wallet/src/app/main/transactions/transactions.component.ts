@@ -1,12 +1,10 @@
-import {AfterContentInit, AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {FormControl} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
 import {
   Transaction,
-  Account,
   TransactionType,
   TransactionArbitrarySubtype,
   isMultiOutSameTransaction, isMultiOutTransaction, TransactionAssetSubtype, TransactionPaymentSubtype
@@ -19,6 +17,7 @@ import {UtilService} from '../../util.service';
 import {StoreService} from '../../store/store.service';
 import {AccountService} from '../../setup/account/account.service';
 import { I18nService } from '../../layout/components/i18n/i18n.service';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 
 const ColumnsQuery = {
@@ -45,7 +44,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   public dataSource: MatTableDataSource<Transaction>;
-  public account: Account;
+  public account: WalletAccount;
 
   pickerFromField = new FormControl();
   pickerToField = new FormControl();
@@ -85,7 +84,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
 
     this.accountService.currentAccount$
       .pipe(this.unsubscriber)
-      .subscribe((acc: Account) => {
+      .subscribe((acc: WalletAccount) => {
         this.account = acc;
         this.dataSource.data = acc.transactions;
         this.initTypes();

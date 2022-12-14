@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../api.service';
 import {
-  Account,
   Address,
   Asset,
   TransactionId
@@ -15,6 +14,7 @@ import { getPrivateEncryptionKey } from '../../util/security/getPrivateEncryptio
 import { createMessageAttachment } from '../../util/transaction/createMessageAttachment';
 import { Recipient } from '../../components/recipient-input/recipient-input.component';
 import { constants } from '../../constants';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 export interface TokenData {
   id: string;
@@ -56,11 +56,11 @@ export class TokenService {
 
   }
 
-  private async getToken(id: string): Promise<Asset> {
-    return this.apiService.api.asset.getAsset(id);
+  private async getToken(assetId: string): Promise<Asset> {
+    return this.apiService.api.asset.getAsset({ assetId });
   }
 
-  public async fetchTokenData(tokenId: string, account: Account): Promise<TokenData> {
+  public async fetchTokenData(tokenId: string, account: WalletAccount): Promise<TokenData> {
     const assetBalance = account.assetBalances && account.assetBalances.find(({ asset }) => asset === tokenId);
     if (!assetBalance) {
       throw new Error('Account doesn\'t own that token');
@@ -113,7 +113,7 @@ export class TokenService {
     };
   }
 
-  async fetchAccountTokens(account: Account): Promise<TokenData[]> {
+  async fetchAccountTokens(account: WalletAccount): Promise<TokenData[]> {
     if (!account.assetBalances) {
       return Promise.resolve([]);
     }
@@ -164,7 +164,7 @@ export class TokenService {
       ? recipient.publicKey
       : undefined;
     return this.apiService.api.asset.transferAsset({
-      asset: token.id,
+      assetId: token.id,
       attachment,
       feePlanck: fee.getPlanck(),
       recipientId: Address.create(recipient.addressRS).getNumericId(),

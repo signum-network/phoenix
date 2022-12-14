@@ -1,25 +1,22 @@
-import { Component, Input, OnInit, SimpleChanges } from "@angular/core";
-import { Account, TransactionMiningSubtype, TransactionType } from "@signumjs/core";
-import { takeUntil } from "rxjs/operators";
-import { AccountService } from "../../../../setup/account/account.service";
-import { StoreService } from "../../../../store/store.service";
-import { Settings } from "../../../../settings";
-import { UnsubscribeOnDestroy } from "../../../../util/UnsubscribeOnDestroy";
-import { ChainTime } from "@signumjs/util";
-import { startsWith } from "lodash";
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import {TransactionMiningSubtype, TransactionType } from '@signumjs/core';
+import { AccountService } from '../../../../setup/account/account.service';
+import { UnsubscribeOnDestroy } from '../../../../util/UnsubscribeOnDestroy';
+import { ChainTime } from '@signumjs/util';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
-  selector: "app-miningpool",
-  templateUrl: "./miningpool.component.html",
-  styleUrls: ["./miningpool.component.scss", "../widget.shared.scss"]
+  selector: 'app-miningpool',
+  templateUrl: './miningpool.component.html',
+  styleUrls: ['./miningpool.component.scss', '../widget.shared.scss']
 })
 export class MiningpoolComponent extends UnsubscribeOnDestroy implements OnInit {
 
-  @Input() public account: Account;
+  @Input() public account: WalletAccount;
 
-  locale = "en";
+  locale = 'en';
   isLoading = true;
-  poolAccount: Account;
+  poolAccount: WalletAccount;
   lastPoolAssignment: Date;
   poolName: string;
 
@@ -60,9 +57,9 @@ export class MiningpoolComponent extends UnsubscribeOnDestroy implements OnInit 
 
   public getPoolUrlOrName(): string {
     try {
-      const poolUrl = this.poolAccount.name.startsWith("http")
+      const poolUrl = this.poolAccount.name.startsWith('http')
         ? this.poolAccount.name
-        : "https://" + this.poolAccount.name;
+        : 'https://' + this.poolAccount.name;
       // tslint:disable-next-line:no-unused-expression
       new URL(poolUrl);
       return poolUrl;

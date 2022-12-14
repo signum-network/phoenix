@@ -1,14 +1,12 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {environment} from 'environments/environment';
-import {StoreService} from 'app/store/store.service';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { environment } from 'environments/environment';
+import { StoreService } from 'app/store/store.service';
 
 import {
-  Account,
   Address,
   AliasList,
   Api,
-  Asset,
   AssetList,
   Balance,
   BlockList,
@@ -21,17 +19,18 @@ import {
   AddressPrefix,
   GetAccountTransactionsArgs, Alias
 } from '@signumjs/core';
-import {decryptAES, encryptAES, generateMasterKeys, hashSHA256, Keys} from '@signumjs/crypto';
-import {Amount} from '@signumjs/util';
-import {HttpClientFactory, HttpError} from '@signumjs/http';
-import {ApiService} from '../../api.service';
-import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {NetworkService} from '../../network/network.service';
-import {KeyDecryptionException} from '../../util/exceptions/KeyDecryptionException';
-import {adjustLegacyAddressPrefix} from '../../util/adjustLegacyAddressPrefix';
-import {uniqBy} from 'lodash';
+import { decryptAES, encryptAES, generateMasterKeys, hashSHA256, Keys } from '@signumjs/crypto';
+import { Amount } from '@signumjs/util';
+import { HttpClientFactory, HttpError } from '@signumjs/http';
+import { ApiService } from '../../api.service';
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { NetworkService } from '../../network/network.service';
+import { KeyDecryptionException } from '../../util/exceptions/KeyDecryptionException';
+import { adjustLegacyAddressPrefix } from '../../util/adjustLegacyAddressPrefix';
+import { uniqBy } from 'lodash';
 import { Settings } from '../../settings';
-import { FuseProgressBarService } from "../../../@fuse/components/progress-bar/progress-bar.service";
+import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -72,7 +71,7 @@ interface SetCommitmentRequest {
   providedIn: 'root'
 })
 export class AccountService {
-  public currentAccount$: BehaviorSubject<Account> = new BehaviorSubject(undefined);
+  public currentAccount$: BehaviorSubject<WalletAccount> = new BehaviorSubject(undefined);
   private api: Api;
   private transactionsSeenInNotifications: string[] = [];
   private accountPrefix: AddressPrefix.MainNet | AddressPrefix.TestNet;
@@ -93,16 +92,16 @@ export class AccountService {
     });
   }
 
-  public updateCurrentAccount(account: Account): void {
+  public updateCurrentAccount(account: WalletAccount): void {
     this.currentAccount$.next(account);
   }
 
-  public async getAddedCommitments(account: Account): Promise<TransactionList> {
+  public async getAddedCommitments(account: WalletAccount): Promise<TransactionList> {
     return this.api.account.getAccountTransactions({
       accountId: account.account,
       type: TransactionType.Mining,
       subtype: TransactionMiningSubtype.AddCommitment,
-      includeIndirect: false,
+      includeIndirect: false
     });
   }
 
@@ -142,18 +141,21 @@ export class AccountService {
     return this.api.alias.getAliasByName(name);
   }
 
-  public getAliases(id: string): Promise<AliasList> {
-    return this.api.account.getAliases(id);
+  public getAliases(accountId: string): Promise<AliasList> {
+    return this.api.account.getAliases({ accountId });
   }
 
 
-  public getAssets(id: number): Promise<AssetList> {
-    return this.api.asset.getAllAssets(id);
-  }
-
-  public setAlias({aliasName, aliasURI, feeNQT, deadline, pin, keys}: SetAliasRequest): Promise<TransactionId> {
+  public setAlias({ aliasName, aliasURI, feeNQT, deadline, pin, keys }: SetAliasRequest): Promise<TransactionId> {
     const senderPrivateKey = this.getPrivateKey(keys, pin);
-    return this.api.account.setAlias(aliasName, aliasURI, feeNQT, keys.publicKey, senderPrivateKey, deadline) as Promise<TransactionId>;
+    return this.api.account.setAlias({
+      aliasName,
+      aliasURI,
+      feePlanck: feeNQT,
+      senderPublicKey: keys.publicKey,
+      senderPrivateKey: senderPrivateKey,
+      deadline: deadline
+    }) as Promise<TransactionId>;
   }
 
   private getPrivateKey(keys, pin): string {
@@ -176,18 +178,19 @@ export class AccountService {
     return this.api.account.getUnconfirmedAccountTransactions(id);
   }
 
-  public async getAccount(accountId: string): Promise<Account> {
+  public async getAccount(accountId: string): Promise<WalletAccount> {
     const supportsPocPlus = await this.apiService.supportsPocPlus();
     const includeCommittedAmount = supportsPocPlus || undefined;
     const account = await this.api.account.getAccount({
       accountId,
-      includeCommittedAmount,
+      includeCommittedAmount
     });
 
+    // @ts-ignore
     return adjustLegacyAddressPrefix(account);
   }
 
-  public getCurrentAccount(): Promise<Account> {
+  public getCurrentAccount(): Promise<WalletAccount> {
     return Promise.resolve(this.currentAccount$.getValue());
   }
 
@@ -223,25 +226,33 @@ export class AccountService {
       senderPrivateKey,
       senderPublicKey: keys.publicKey,
       deadline,
-      feePlanck,
+      feePlanck
     }) as Promise<TransactionId>;
   }
 
-  public async getRewardRecipient(recipientId: string): Promise<Account | null> {
-    const {rewardRecipient} = await this.api.account.getRewardRecipient(recipientId);
-    return rewardRecipient
-      ? this.api.account.getAccount({accountId: rewardRecipient})
-      : null;
+  public async getRewardRecipient(recipientId: string): Promise<WalletAccount | null> {
+    const { rewardRecipient } = await this.api.account.getRewardRecipient(recipientId);
+    if (rewardRecipient) {
+      const acct = await this.api.account.getAccount({ accountId: rewardRecipient });
+      return new WalletAccount(acct);
+    }
+    return null;
   }
 
-  public setCommitment({amountPlanck, feePlanck, pin, keys, isRevoking}: SetCommitmentRequest): Promise<TransactionId> {
+  public setCommitment({
+                         amountPlanck,
+                         feePlanck,
+                         pin,
+                         keys,
+                         isRevoking
+                       }: SetCommitmentRequest): Promise<TransactionId> {
     const senderPrivateKey = this.getPrivateKey(keys, pin);
 
     const args = {
       amountPlanck,
       senderPrivateKey,
       senderPublicKey: keys.publicKey,
-      feePlanck,
+      feePlanck
     };
 
     return (isRevoking
@@ -249,10 +260,9 @@ export class AccountService {
       : this.api.account.addCommitment(args)) as Promise<TransactionId>;
   }
 
-  public createActiveAccount({passphrase, pin = ''}): Promise<Account> {
-    return new Promise(async (resolve, reject) => {
-      const account: Account = new Account();
-      // import active account
+  public createActiveAccount({ passphrase, pin = '' }): Promise<WalletAccount> {
+    return new Promise(async (resolve) => {
+      const account = new WalletAccount();
       account.type = 'active';
       account.confirmed = false;
       const keys = generateMasterKeys(passphrase);
@@ -276,8 +286,8 @@ export class AccountService {
     });
   }
 
-  public async createOfflineAccount(reedSolomonAddress: string): Promise<Account> {
-    const account: Account = new Account();
+  public async createOfflineAccount(reedSolomonAddress: string): Promise<WalletAccount> {
+    const account = new WalletAccount();
     const address = Address.fromReedSolomonAddress(reedSolomonAddress);
     const existingAccount = await this.storeService.findAccount(address.getNumericId());
     if (existingAccount === undefined) {
@@ -293,23 +303,23 @@ export class AccountService {
     }
   }
 
-  public removeAccount(account: Account): Promise<boolean> {
+  public removeAccount(account: WalletAccount): Promise<boolean> {
     return this.storeService.removeAccount(account).catch(error => error);
   }
 
-  public async selectAccount(account: Account): Promise<Account> {
-      this.updateCurrentAccount(account);
-      let acc = await this.storeService.selectAccount(account);
-      acc = await this.synchronizeAccount(acc);
-      return acc;
+  public async selectAccount(account: WalletAccount): Promise<WalletAccount> {
+    this.updateCurrentAccount(account);
+    let acc = await this.storeService.selectAccount(account);
+    acc = await this.synchronizeAccount(acc);
+    return acc;
   }
 
-  public synchronizeAccount(account: Account): Promise<Account> {
+  public synchronizeAccount(account: WalletAccount): Promise<WalletAccount> {
     return new Promise(async (resolve, reject) => {
       await Promise.all([
         this.syncAccountDetails(account),
         this.syncAccountTransactions(account),
-        this.syncAccountUnconfirmedTransactions(account),
+        this.syncAccountUnconfirmedTransactions(account)
       ]);
 
       if (account.account === this.currentAccount$.getValue().account) {
@@ -326,7 +336,9 @@ export class AccountService {
 
   public sendNewTransactionNotification(transaction: Transaction): void {
 
-    if (!this.showDesktopNotifications) { return; }
+    if (!this.showDesktopNotifications) {
+      return;
+    }
 
 
     // TODO: create a notification factory according the type and show proper notifications
@@ -368,7 +380,7 @@ export class AccountService {
 
   }
 
-  public async syncAccountUnconfirmedTransactions(account: Account): Promise<void> {
+  public async syncAccountUnconfirmedTransactions(account: WalletAccount): Promise<void> {
     try {
       const orderByTimestamp = (a, b) => a.timestamp > b.timestamp ? -1 : 1;
       const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account);
@@ -378,7 +390,7 @@ export class AccountService {
       // @ts-ignore - Send notifications for new transactions
       if (window.Notification) {
         unconfirmed
-          .filter(({transaction}) => this.isNewTransaction(transaction))
+          .filter(({ transaction }) => this.isNewTransaction(transaction))
           .map((transaction) => this.sendNewTransactionNotification(transaction));
       }
     } catch (e) {
@@ -386,19 +398,19 @@ export class AccountService {
     }
   }
 
-  public async syncAccountTransactions(account: Account): Promise<void> {
+  public async syncAccountTransactions(account: WalletAccount): Promise<void> {
     try {
-      const {account: accountId, transactions} = account;
+      const { account: accountId, transactions } = account;
       let transactionList = transactions.slice(0, 500); // max supported tx
       if (transactions.length > 0) {
         const timestamp = transactions[0].timestamp.toString(10);
-        const {transactions: recentTransactions} = await this.getAccountTransactions({
+        const { transactions: recentTransactions } = await this.getAccountTransactions({
           accountId,
           timestamp
         });
         transactionList = recentTransactions.concat(transactions);
       } else {
-        transactionList = (await this.getAccountTransactions({accountId})).transactions;
+        transactionList = (await this.getAccountTransactions({ accountId })).transactions;
       }
       account.transactions = uniqBy(transactionList, 'transaction');
     } catch (e) {
@@ -406,7 +418,7 @@ export class AccountService {
     }
   }
 
-  private async syncAccountDetails(account: Account): Promise<void> {
+  private async syncAccountDetails(account: WalletAccount): Promise<void> {
     try {
       const remoteAccount = await this.getAccount(account.account);
       // Only update what you really need...
@@ -428,7 +440,7 @@ export class AccountService {
     }
   }
 
-  public async activateAccount(account: Account): Promise<void> {
+  public async activateAccount(account: WalletAccount): Promise<void> {
     try {
 
       if (!account.keys) {
@@ -457,8 +469,8 @@ export class AccountService {
     }
   }
 
-  public async getForgedBlocks(account: Account): Promise<BlockList> {
-    return this.api.account.getAccountBlocks({accountId: account.account});
+  public async getForgedBlocks(account: WalletAccount): Promise<BlockList> {
+    return this.api.account.getAccountBlocks({ accountId: account.account });
   }
 
 

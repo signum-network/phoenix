@@ -1,6 +1,5 @@
 import {
   Transaction,
-  Account,
   TransactionType,
   TransactionPaymentSubtype,
   TransactionArbitrarySubtype,
@@ -11,6 +10,7 @@ import {
   TransactionSmartContractSubtype,
   TransactionMiningSubtype,
 } from '@signumjs/core';
+import { WalletAccount } from '../WalletAccount';
 
 function getKeyForPaymentSubtype(transaction: Transaction): string {
   switch (transaction.subtype) {
@@ -23,7 +23,7 @@ function getKeyForPaymentSubtype(transaction: Transaction): string {
   }
 }
 
-function getKeyForArbitrarySubtype(account: Account, transaction: Transaction): string {
+function getKeyForArbitrarySubtype(account: WalletAccount, transaction: Transaction): string {
 
   switch (transaction.subtype) {
     case TransactionArbitrarySubtype.Message:
@@ -167,7 +167,7 @@ export function getTransactionTypeTranslationKey(transaction: Transaction): stri
 }
 
 
-export function getTransactionSubtypeTranslationKey(transaction: Transaction, account: Account): string {
+export function getTransactionSubtypeTranslationKey(transaction: Transaction, account: WalletAccount): string {
   let translationKey;
 
   switch (transaction.type) {

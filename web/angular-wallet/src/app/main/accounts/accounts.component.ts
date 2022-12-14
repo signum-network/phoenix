@@ -7,10 +7,10 @@ import {NotifierService} from 'angular-notifier';
 import {DeleteAccountDialogComponent} from './delete-account-dialog/delete-account-dialog.component';
 import {StoreService} from 'app/store/store.service';
 import {AccountService} from 'app/setup/account/account.service';
-import {Account} from '@signumjs/core';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {I18nService} from '../../layout/components/i18n/i18n.service';
+import { WalletAccount } from "app/util/WalletAccount";
 
 @Component({
   selector: 'app-accounts',
@@ -18,10 +18,10 @@ import {I18nService} from '../../layout/components/i18n/i18n.service';
   templateUrl: './accounts.component.html'
 })
 export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
-  private dataSource: MatTableDataSource<Account>;
+  private dataSource: MatTableDataSource<WalletAccount>;
   private displayedColumns: string[];
-  public accounts: Account[];
-  public selectedAccount: Account;
+  public accounts: WalletAccount[];
+  public selectedAccount: WalletAccount;
   public selectedAccounts: object;
   public locale: string;
 
@@ -42,7 +42,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     this.accounts = [];
     this.selectedAccounts = {};
     this.displayedColumns = ['type', 'account', 'accountRS', 'name', 'balanceNQT', 'description', 'delete'];
-    this.dataSource = new MatTableDataSource<Account>();
+    this.dataSource = new MatTableDataSource<WalletAccount>();
 
     this.storeService.ready
       .pipe(
@@ -68,7 +68,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
 
   }
 
-  public getSelectedAccounts(): Array<Account> {
+  public getSelectedAccounts(): Array<WalletAccount> {
     return this.accounts.filter(({account}) => this.selectedAccounts[account]);
   }
 
@@ -123,7 +123,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     this.dataSource.filter = filterValue;
   }
 
-  async activateAccount(account: Account): Promise<void> {
+  async activateAccount(account: WalletAccount): Promise<void> {
     try {
       await this.accountService.activateAccount(account);
       this.notificationService.notify('success', this.i18nService.getTranslation('activation_success'));

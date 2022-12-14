@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { Account, Address, SuggestedFees, TransactionMiningSubtype, TransactionType } from '@signumjs/core';
+import { Address, TransactionMiningSubtype, TransactionType } from '@signumjs/core';
 import { Amount } from '@signumjs/util';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -8,6 +8,7 @@ import { NotifierService } from 'angular-notifier';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { Recipient, RecipientValidationStatus } from 'app/components/recipient-input/recipient-input.component';
 import { isKeyDecryptionError } from '../../util/exceptions/isKeyDecryptionError';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
   selector: 'app-set-reward-recipient',
@@ -23,9 +24,9 @@ export class SetRewardRecipientComponent implements OnInit {
   @Output() submit = new EventEmitter<any>();
   showMessage = false;
   isSending = false;
-  account: Account;
+  account: WalletAccount;
   isLoadingRewardRecipient = true;
-  rewardRecipient: Account;
+  rewardRecipient: WalletAccount;
   type = TransactionType.Mining;
   subtype = TransactionMiningSubtype.RewardRecipientAssignment;
 
@@ -36,7 +37,7 @@ export class SetRewardRecipientComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.account = this.route.snapshot.data.account as Account;
+    this.account = this.route.snapshot.data.account as WalletAccount;
     this.pin = '';
     this.recipient = new Recipient();
     this.fetchRewardRecipient();

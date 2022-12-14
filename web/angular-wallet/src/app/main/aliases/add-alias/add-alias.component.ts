@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
-import { SuggestedFees, Account, AddressPrefix, TransactionType, TransactionArbitrarySubtype } from "@signumjs/core";
+import { SuggestedFees, AddressPrefix, TransactionType, TransactionArbitrarySubtype } from '@signumjs/core';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {AccountService} from 'app/setup/account/account.service';
@@ -9,6 +9,7 @@ import {AddressPattern} from 'app/util/addressPattern';
 import {NetworkService} from '../../../network/network.service';
 import {CurrencySymbol} from '@signumjs/util';
 import {handleException} from '../../../util/exceptions/handleException';
+import { WalletAccount } from '../../../util/WalletAccount';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -34,7 +35,7 @@ export class AddAliasComponent implements OnInit {
   showMessage = false;
   addressPatternRef = AddressPattern;
   type = 'acct';
-  account: Account;
+  account: WalletAccount;
   deadline = '24';
   fees: SuggestedFees;
   addressPrefix: AddressPrefix.MainNet | AddressPrefix.TestNet;
@@ -49,7 +50,7 @@ export class AddAliasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.account = this.route.snapshot.data.account as Account;
+    this.account = this.route.snapshot.data.account as WalletAccount;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
     this.addressPrefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
     this.accountAliasURI = this.account.accountRS;

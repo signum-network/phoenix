@@ -21,6 +21,9 @@ import { NetworkModule } from 'app/network/network.module';
 import { LayoutModule } from 'app/layout/layout.module';
 import { LoginGuard } from 'app/login/login-guard.service';
 import {ComponentsModule} from '../../components/components.module';
+import { Src44DescriptionFormComponent } from './src44-description-form/src44-description-form.component';
+import { CustomDescriptionFormComponent } from './custom-description-form/custom-description-form.component';
+import { MatTabsModule } from "@angular/material/tabs";
 
 const routes = [
   {
@@ -37,26 +40,29 @@ const routes = [
 @NgModule({
   declarations: [
     SetAccountInfoComponent,
+    Src44DescriptionFormComponent,
+    CustomDescriptionFormComponent
   ],
-    imports: [
-        BrowserAnimationsModule,
-        BrowserModule,
-        CommonModule,
-        ComponentsModule,
-        FormsModule,
-        FuseSharedModule,
-        I18nModule,
-        LayoutModule,
-        MatButtonModule,
-        MatCheckboxModule,
-        MatGridListModule,
-        MatIconModule,
-        MatInputModule,
-        NetworkModule,
-        NgxMaskModule,
-        NotifierModule,
-        RouterModule.forChild(routes),
-        SetupModule,
-    ]
+  imports: [
+    BrowserAnimationsModule,
+    BrowserModule,
+    CommonModule,
+    ComponentsModule,
+    FormsModule,
+    FuseSharedModule,
+    I18nModule,
+    LayoutModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    NetworkModule,
+    NgxMaskModule,
+    NotifierModule,
+    RouterModule.forChild(routes),
+    SetupModule,
+    MatTabsModule
+  ]
 })
 export class SetAccountInfoModule { }

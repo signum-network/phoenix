@@ -2,9 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {StoreService} from 'app/store/store.service';
 import {AccountService} from 'app/setup/account/account.service';
-import {Account} from '@signumjs/core';
 import {FuseProgressBarService} from '../../../@fuse/components/progress-bar/progress-bar.service';
 import { TokenData, TokenService } from '../../shared/services/token.service';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
   selector: 'app-tokens',
@@ -12,7 +12,7 @@ import { TokenData, TokenService } from '../../shared/services/token.service';
   templateUrl: './tokens.component.html'
 })
 export class TokensComponent implements OnInit, OnDestroy {
-  public selectedAccount: Account;
+  public selectedAccount: WalletAccount;
   public tokens: TokenData[] = [];
 
   intervalHandle = null;
@@ -32,7 +32,7 @@ export class TokensComponent implements OnInit, OnDestroy {
       if (!ready) {
         return;
       }
-      this.selectedAccount = this.route.snapshot.data.account as Account;
+      this.selectedAccount = this.route.snapshot.data.account as WalletAccount;
       if (this.selectedAccount) {
         this.progressService.show();
         this.isLoading = true;

@@ -17,16 +17,14 @@
         >
       </mat-form-field>
 
-      <mat-form-field>
-        <textarea matInput
-                  cdkTextareaAutosize
-                  name="description"
-                  placeholder="{{ 'description' | i18n }}"
-                  [(ngModel)]="description"
-                  [disabled]="immutable"
-        >
-        </textarea>
-      </mat-form-field>
+      <mat-tab-group>
+        <mat-tab label="{{ 'standard_descriptor' | i18n }}">
+          <app-src44-description-form [(description)]="description" [disabled]="immutable"></app-src44-description-form>
+        </mat-tab>
+        <mat-tab label="{{ 'custom_descriptor' | i18n }}">
+          <app-custom-description-form [(description)]="description" [disabled]="immutable"></app-custom-description-form>
+        </mat-tab>
+      </mat-tab-group>
 
       <ng-container *ngIf="!immutable">
 

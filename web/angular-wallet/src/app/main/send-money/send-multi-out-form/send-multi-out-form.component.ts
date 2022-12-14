@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { Amount } from '@signumjs/util';
 import {
-  Account,
   Address,
   AddressPrefix,
   MultioutRecipientAmount,
@@ -27,6 +26,7 @@ import { NetworkService } from '../../../network/network.service';
 import { Recipient } from '../../../components/recipient-input/recipient-input.component';
 import { WarnSendDialogComponent } from '../../../components/warn-send-dialog/warn-send-dialog.component';
 import { memoize } from 'lodash';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -68,7 +68,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   @ViewChild('recipients', {static: true}) public recipients: Array<Recipient> = [];
 
-  @Input() account: Account;
+  @Input() account: WalletAccount;
   @Input() fees: SuggestedFees;
 
   sameAmount = false;

@@ -1,0 +1,13 @@
+<div class="fullwidth position-relative" fxFlex="1 0 auto" fxLayout="column" fxLayoutAlign="start">
+  <mat-form-field>
+    <mat-label>{{ 'description' | i18n }}</mat-label>
+    <textarea matInput
+              cdkTextareaAutosize
+              name="description"
+              placeholder="{{ 'description' | i18n }}"
+              [(ngModel)]="description"
+              [disabled]="disabled"
+    >
+    </textarea>
+  </mat-form-field>
+</div>

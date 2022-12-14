@@ -1,20 +1,21 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import { Account, SuggestedFees, TransactionPaymentSubtype, TransactionType } from '@signumjs/core';
+import { SuggestedFees, TransactionPaymentSubtype, TransactionType } from '@signumjs/core';
 import {NgForm} from '@angular/forms';
-import { Amount, convertNumberToNQTString, CurrencySymbol } from '@signumjs/util';
+import { Amount,  CurrencySymbol } from '@signumjs/util';
 import {ActivatedRoute} from '@angular/router';
 import {AccountService} from 'app/setup/account/account.service';
 import {StoreService} from 'app/store/store.service';
 import {MatStepper} from '@angular/material/stepper';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
-    selector: 'app-request-burst',
-    templateUrl: './request-burst.component.html',
-    styleUrls: ['./request-burst.component.scss']
+    selector: 'app-request-signa',
+    templateUrl: './request-signa.component.html',
+    styleUrls: ['./request-signa.component.scss']
 })
-export class RequestBurstComponent extends UnsubscribeOnDestroy implements OnInit {
+export class RequestSignaComponent extends UnsubscribeOnDestroy implements OnInit {
     @ViewChild(MatStepper, {static: true}) stepper: MatStepper;
     @ViewChild('requestBurstForm', {static: true}) public requestBurstForm: NgForm;
     @ViewChild('amount', {static: false}) public amount: string;
@@ -24,7 +25,7 @@ export class RequestBurstComponent extends UnsubscribeOnDestroy implements OnIni
 
     advanced = false;
     showMessage = false;
-    account: Account;
+    account: WalletAccount;
     fees: SuggestedFees;
     senderRS: string;
     poller;
@@ -40,7 +41,7 @@ export class RequestBurstComponent extends UnsubscribeOnDestroy implements OnIni
     }
 
     ngOnInit(): void {
-        this.account = this.route.snapshot.data.account as Account;
+        this.account = this.route.snapshot.data.account as WalletAccount;
         this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
         this.amount = '0';
         this.storeService

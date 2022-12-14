@@ -1,12 +1,11 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { NotifierService } from 'angular-notifier';
 import { StoreService } from 'app/store/store.service';
 import { AccountService } from 'app/setup/account/account.service';
-import { Account, Alias } from '@signumjs/core';
+import { Alias } from '@signumjs/core';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
   selector: 'app-aliases',
@@ -16,7 +15,7 @@ import { Account, Alias } from '@signumjs/core';
 export class AliasesComponent {
   public dataSource: MatTableDataSource<Alias>;
   public displayedColumns: string[];
-  public selectedAccount: Account;
+  public selectedAccount: WalletAccount;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -26,7 +25,7 @@ export class AliasesComponent {
     public router: Router
   ) { }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.displayedColumns = ['aliasName', 'aliasURI', 'status'];
     this.dataSource = new MatTableDataSource<Alias>();
 
@@ -44,11 +43,11 @@ export class AliasesComponent {
   openDialog(): void {
   }
 
-  public ngAfterViewInit() {
+  public ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
   }
 
-  public applyFilter(filterValue: string) {
+  public applyFilter(filterValue: string): void {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;

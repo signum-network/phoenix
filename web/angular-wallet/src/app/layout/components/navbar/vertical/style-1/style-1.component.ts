@@ -13,10 +13,10 @@ import {AccountService} from 'app/setup/account/account.service';
 import {environment} from 'environments/environment';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import {NotifierService} from 'angular-notifier';
-import {Amount} from '@signumjs/util';
 
 import hashicon from 'hashicon';
-import {FuseNavigation} from '../../../../../../@fuse/types';
+import {FuseNavigation} from '@fuse/types';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
   selector: 'navbar-vertical-style-1',
@@ -27,7 +27,7 @@ import {FuseNavigation} from '../../../../../../@fuse/types';
 export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
 
   @ViewChild('avatar', {static: false}) avatar: ElementRef<HTMLCanvasElement>;
-  @Input() selectedAccount: Account;
+  @Input() selectedAccount: WalletAccount;
   navigation: any;
   fuseConfig: any;
   selectedAccountQRCode: string;

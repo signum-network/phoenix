@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { Account, AddressPrefix, Block } from "@signumjs/core";
+import { Block } from '@signumjs/core';
 import { AccountService } from '../../../../setup/account/account.service';
 import { ChainTime } from '@signumjs/util';
 import { formatCurrency } from '@angular/common';
@@ -7,7 +7,8 @@ import { Settings } from '../../../../settings';
 import { UnsubscribeOnDestroy } from '../../../../util/UnsubscribeOnDestroy';
 import { StoreService } from '../../../../store/store.service';
 import { takeUntil } from 'rxjs/operators';
-import { NetworkService } from "../../../../network/network.service";
+import { NetworkService } from '../../../../network/network.service';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 interface ForgedBlockInfo {
   count: number;
@@ -21,7 +22,7 @@ interface ForgedBlockInfo {
   styleUrls: ['./blockforged.component.scss', '../widget.shared.scss']
 })
 export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit, OnChanges {
-  @Input() public account: Account;
+  @Input() public account: WalletAccount;
   @Input() public priceBtc: number;
   @Input() public priceUsd: number;
   @Input() public priceEur: number;
@@ -30,7 +31,7 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
   locale = 'en';
   isLoading = true;
   blockInfo: ForgedBlockInfo;
-  isMainNet: boolean = false;
+  isMainNet = false;
   private interval: NodeJS.Timeout;
 
   private unsubscribe = takeUntil(this.unsubscribeAll);
@@ -58,8 +59,8 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
     this.networkService.isMainNet$
       .pipe(this.unsubscribe)
       .subscribe( () => {
-        this.isMainNet = this.networkService.isMainNet()
-      })
+        this.isMainNet = this.networkService.isMainNet();
+      });
 
     this.storeService.settings
       .pipe(this.unsubscribe)
@@ -114,6 +115,6 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
   getExplorerLink(): string {
     return this.isMainNet
       ? `https://chain.signum.network/blocks/?m=${this.account.account}`
-      : `https://t-chain.signum.network/blocks/?m=${this.account.account}`
+      : `https://t-chain.signum.network/blocks/?m=${this.account.account}`;
   }
 }

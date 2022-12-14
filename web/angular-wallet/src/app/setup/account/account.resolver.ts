@@ -1,18 +1,18 @@
 import {Injectable} from '@angular/core';
 
 import {Resolve, ActivatedRouteSnapshot} from '@angular/router';
-import {Account} from '@signumjs/core';
 import {AccountService} from './account.service';
 import {StoreService} from 'app/store/store.service';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Injectable()
-export class AccountResolver implements Resolve<Promise<Account>> {
+export class AccountResolver implements Resolve<Promise<WalletAccount>> {
   constructor(private storeService: StoreService,
               private accountService: AccountService) {
 
   }
 
-  async resolve(route: ActivatedRouteSnapshot): Promise<Account> {
+  async resolve(route: ActivatedRouteSnapshot): Promise<WalletAccount> {
     const account = await (route.params.id ?
       this.accountService.getAccount(route.params.id) :
       this.accountService.getCurrentAccount());
