@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TransactionType, TransactionArbitrarySubtype } from '@signumjs/core';
 import { Amount } from '@signumjs/util';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
@@ -10,6 +10,7 @@ import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { AddressPattern } from 'app/util/addressPattern';
 import { isKeyDecryptionError } from '../../util/exceptions/isKeyDecryptionError';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { DescriptorData } from '@signumjs/standards';
 
 @Component({
   selector: 'app-set-account-info',
@@ -32,6 +33,8 @@ export class SetAccountInfoComponent implements OnInit {
   account: WalletAccount;
   txType = TransactionType.Arbitrary;
   txSubtype = TransactionArbitrarySubtype.AccountInfo;
+  formatTypeOptions: string[] = ['src44', 'json', 'custom'];
+  formatType: FormControl = new FormControl('src44');
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
@@ -46,6 +49,9 @@ export class SetAccountInfoComponent implements OnInit {
     setTimeout(() => {
       this.name = this.account.name || '';
       this.description = this.account.description || '';
+
+      this.detectFormat();
+
     }, 0);
   }
 
@@ -86,5 +92,34 @@ export class SetAccountInfoComponent implements OnInit {
   getPayloadLength(): number {
     return (this.name ? this.name.length : 0) +
       (this.description ? this.description.length : 0) + 32;
+  }
+
+  private detectFormat(): void {
+    let format = 'custom';
+    if (this.isFormatSRC()) {
+      format = 'src44';
+    } else if (this.isFormatJson()) {
+      format = 'json';
+    }
+
+    this.formatType.setValue(format);
+  }
+
+  private isFormatSRC(): boolean {
+    try{
+      DescriptorData.parse(this.description, false);
+      return true;
+    }catch (e){
+      return false;
+    }
+  }
+
+  private isFormatJson(): boolean {
+    try{
+      JSON.parse(this.description);
+      return true;
+    }catch (e){
+      return false;
+    }
   }
 }

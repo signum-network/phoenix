@@ -4,9 +4,18 @@
       <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>
       <p class="pb-8">{{account.accountRS}}</p>
     </div>
+    <div class="w-120">
+      <mat-form-field>
+        <mat-select [formControl]="formatType"
+                    placeholder="{{'type' | i18n}}"
+        >
+          <mat-option *ngFor="let type of formatTypeOptions" value="{{type}}">{{type | i18n}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
 
-  <div class="p-24">
+  <div class="p-20 pt-8">
     <form (ngSubmit)="onSubmit($event);" #setAccountInfoForm="ngForm">
       <mat-form-field>
         <input matInput
@@ -17,14 +26,17 @@
         >
       </mat-form-field>
 
-      <mat-tab-group>
-        <mat-tab label="{{ 'standard_descriptor' | i18n }}">
-          <app-src44-description-form [(description)]="description" [disabled]="immutable"></app-src44-description-form>
-        </mat-tab>
-        <mat-tab label="{{ 'custom_descriptor' | i18n }}">
-          <app-custom-description-form [(description)]="description" [disabled]="immutable"></app-custom-description-form>
-        </mat-tab>
-      </mat-tab-group>
+      <ng-container *ngIf="formatType.value === 'src44'">
+        <app-src44-description-form [name]="name" [(description)]="description"></app-src44-description-form>
+      </ng-container>
+      <ng-container *ngIf="formatType.value === 'json'">
+        <app-custom-description-form [(description)]="description"
+                                     [disabled]="immutable"></app-custom-description-form>
+      </ng-container>
+      <ng-container *ngIf="formatType.value === 'custom'">
+        <app-custom-description-form [(description)]="description"
+                                     [disabled]="immutable"></app-custom-description-form>
+      </ng-container>
 
       <ng-container *ngIf="!immutable">
 

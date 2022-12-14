@@ -24,6 +24,8 @@ import {ComponentsModule} from '../../components/components.module';
 import { Src44DescriptionFormComponent } from './src44-description-form/src44-description-form.component';
 import { CustomDescriptionFormComponent } from './custom-description-form/custom-description-form.component';
 import { MatTabsModule } from "@angular/material/tabs";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatSelectModule } from "@angular/material/select";
 
 const routes = [
   {
@@ -62,7 +64,9 @@ const routes = [
     NotifierModule,
     RouterModule.forChild(routes),
     SetupModule,
-    MatTabsModule
+    MatTabsModule,
+    MatRadioModule,
+    MatSelectModule
   ]
 })
 export class SetAccountInfoModule { }

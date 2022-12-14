@@ -471,6 +471,11 @@
   "reward_income_info": "This is the sum of the block rewards you forged with this account as if you were a solo miner and does not necessarily reflects your effective mining income. ",
   "no_block_forged": "No block forged yet",
   "set_reward_recipient_on": "Joined on",
-  "standard_descriptor": "Standard Compliant",
-  "custom_descriptor": "Custom"
+  "src44": "SRC-44",
+  "json": "JSON",
+  "custom": "Custom",
+  "enter_ipfs_hash": "Enter IPFS Hash",
+  "homepage": "Home Page",
+  "enter_url": "Enter URL",
+  "avatar": "Avatar"
 }
