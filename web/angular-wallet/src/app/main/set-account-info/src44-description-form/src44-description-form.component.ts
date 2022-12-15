@@ -51,7 +51,7 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
   name: string;
 
   descriptionString: string;
-  private isLoadingImage = false;
+  isLoadingImage = false;
 
 
   @Input()
@@ -118,7 +118,7 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
     };
 
 
-    if(formData.avatar && this.avatarImgSource !== formData.avatar ){
+    if (formData.avatar && this.avatarImgSource !== formData.avatar) {
       this.avatarImgSource = `https://ipfs.io/ipfs/${formData.avatar}`;
     }
 
@@ -129,8 +129,7 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
 
     try {
       const d = DescriptorData.parse(JSON.stringify(this.src44Json));
-      this.descriptionString = d.stringify();
-      console.log('updated:', this.src44Json);
+      this.description = d.stringify();
     } catch (e) {
       console.error('data not valid', e.message);
     }
@@ -138,23 +137,22 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
   }
 
   private fetchAvatarMimeType(): void {
-      console.log('loading mimetypes')
-      fetch(this.avatarImgSource).then(response => {
-        if (response.ok) {
-          const avatarType = response.headers.get('content-type') || '';
-          this.form.patchValue({
-            avatarType
-          });
-        }
-      });
+    fetch(this.avatarImgSource).then(response => {
+      if (response.ok) {
+        const avatarType = response.headers.get('content-type') || '';
+        this.form.patchValue({
+          avatarType
+        });
+      }
+    });
   }
 
   onImageLoaded(): void {
-      this.isLoadingImage = false;
-      this.fetchAvatarMimeType();
+    this.isLoadingImage = false;
+    this.fetchAvatarMimeType();
   }
 
   onImageError(): void {
-      this.isLoadingImage = false;
+    this.isLoadingImage = false;
   }
 }

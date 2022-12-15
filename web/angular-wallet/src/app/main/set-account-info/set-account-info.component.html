@@ -16,7 +16,7 @@
   </div>
 
   <div class="p-20 pt-8">
-    <form (ngSubmit)="onSubmit($event);" #setAccountInfoForm="ngForm">
+    <form (ngSubmit)="onSubmit($event)">
       <mat-form-field>
         <input matInput
                name="name"
@@ -27,15 +27,15 @@
       </mat-form-field>
 
       <ng-container *ngIf="formatType.value === 'src44'">
-        <app-src44-description-form [name]="name" [(description)]="description"></app-src44-description-form>
+        <app-src44-description-form [name]="name" [(description)]="description.src44"></app-src44-description-form>
       </ng-container>
       <ng-container *ngIf="formatType.value === 'json'">
-        <app-custom-description-form [(description)]="description"
-                                     [disabled]="immutable"></app-custom-description-form>
+        <app-json-description-form [(description)]="description.json" [disabled]="immutable"></app-json-description-form>
       </ng-container>
       <ng-container *ngIf="formatType.value === 'custom'">
-        <app-custom-description-form [(description)]="description"
-                                     [disabled]="immutable"></app-custom-description-form>
+        <app-custom-description-form [(description)]="description.custom"
+                                     [disabled]="immutable"
+        ></app-custom-description-form>
       </ng-container>
 
       <ng-container *ngIf="!immutable">

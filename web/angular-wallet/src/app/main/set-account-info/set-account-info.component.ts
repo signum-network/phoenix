@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { TransactionType, TransactionArbitrarySubtype } from '@signumjs/core';
 import { Amount } from '@signumjs/util';
 import { FormControl, NgForm } from '@angular/forms';
@@ -18,10 +18,23 @@ import { DescriptorData } from '@signumjs/standards';
   styleUrls: ['./set-account-info.component.scss']
 })
 export class SetAccountInfoComponent implements OnInit {
-  @ViewChild('setAccountInfoForm', { static: false }) public setAccountInfoForm: NgForm;
-  @ViewChild('name', { static: false }) public name: string;
-  @ViewChild('description', { static: false }) public description: string;
 
+
+
+  constructor(private route: ActivatedRoute,
+              private accountService: AccountService,
+              private storeService: StoreService,
+              private notifierService: NotifierService,
+              private i18nService: I18nService) {
+  }
+  name: string;
+  description = {
+    src44: '',
+    json: '',
+    custom: '',
+  };
+
+  descriptionCustom: string;
   showMessage = false;
   isSending = false;
   immutable = false;
@@ -36,11 +49,22 @@ export class SetAccountInfoComponent implements OnInit {
   formatTypeOptions: string[] = ['src44', 'json', 'custom'];
   formatType: FormControl = new FormControl('src44');
 
-  constructor(private route: ActivatedRoute,
-              private accountService: AccountService,
-              private storeService: StoreService,
-              private notifierService: NotifierService,
-              private i18nService: I18nService) {
+  static isFormatSRC(text: string): boolean {
+    try{
+      DescriptorData.parse(text, false);
+      return true;
+    }catch (e){
+      return false;
+    }
+  }
+
+  static isFormatJson(text: string): boolean {
+    try{
+      JSON.parse(text);
+      return true;
+    }catch (e){
+      return false;
+    }
   }
 
   ngOnInit(): void {
@@ -48,36 +72,46 @@ export class SetAccountInfoComponent implements OnInit {
     this.immutable = this.account.type === 'offline';
     setTimeout(() => {
       this.name = this.account.name || '';
-      this.description = this.account.description || '';
-
       this.detectFormat();
-
     }, 0);
+  }
+
+  // ngOnChanges(changes: SimpleChanges): void {
+  //     console.log('custom', changes);
+  //     // @ts-ignore
+  //   this.description[this.formatType] = changes.descriptionCustom
+  // }
+  private getDescription(): string {
+    // @ts-ignore
+    return this.description[this.formatType.value];
   }
 
   async onSubmit(event): Promise<void> {
     event.stopImmediatePropagation();
-    this.isSending = true;
-    try {
-      await this.accountService.setAccountInfo({
-        name: this.name,
-        description: this.description,
-        feePlanck: Amount.fromSigna(this.fee).getPlanck(),
-        deadline: parseFloat(this.deadline) * 60,
-        pin: this.pin,
-        keys: this.account.keys
-      });
-      this.notifierService.notify('success', this.i18nService.getTranslation('success_set_account_info'));
-      this.setPin('');
-    } catch (e) {
-      if (isKeyDecryptionError(e)) {
-        this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
-      } else {
-        this.notifierService.notify('error', this.i18nService.getTranslation('error_unknown'));
-      }
-    } finally {
-      this.isSending = false;
-    }
+
+    console.log('Description', this.getDescription());
+
+    // this.isSending = true;
+    // try {
+    //   await this.accountService.setAccountInfo({
+    //     name: this.name,
+    //     description: this.description,
+    //     feePlanck: Amount.fromSigna(this.fee).getPlanck(),
+    //     deadline: parseFloat(this.deadline) * 60,
+    //     pin: this.pin,
+    //     keys: this.account.keys
+    //   });
+    //   this.notifierService.notify('success', this.i18nService.getTranslation('success_set_account_info'));
+    //   this.setPin('');
+    // } catch (e) {
+    //   if (isKeyDecryptionError(e)) {
+    //     this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
+    //   } else {
+    //     this.notifierService.notify('error', this.i18nService.getTranslation('error_unknown'));
+    //   }
+    // } finally {
+    //   this.isSending = false;
+    // }
   }
 
 
@@ -89,37 +123,27 @@ export class SetAccountInfoComponent implements OnInit {
     this.pin = pin;
   }
 
+
   getPayloadLength(): number {
+    const description = this.getDescription();
     return (this.name ? this.name.length : 0) +
-      (this.description ? this.description.length : 0) + 32;
+      (description ? description.length : 0) + 32;
   }
 
   private detectFormat(): void {
     let format = 'custom';
-    if (this.isFormatSRC()) {
-      format = 'src44';
-    } else if (this.isFormatJson()) {
+    this.description.custom = this.account.description;
+
+    if (SetAccountInfoComponent.isFormatJson(this.account.description)) {
       format = 'json';
+      this.description.json = this.account.description;
     }
 
+    // most relevant.... so it comes last
+    if (SetAccountInfoComponent.isFormatSRC(this.account.description)) {
+      format = 'src44';
+      this.description.src44 = this.account.description;
+    }
     this.formatType.setValue(format);
-  }
-
-  private isFormatSRC(): boolean {
-    try{
-      DescriptorData.parse(this.description, false);
-      return true;
-    }catch (e){
-      return false;
-    }
-  }
-
-  private isFormatJson(): boolean {
-    try{
-      JSON.parse(this.description);
-      return true;
-    }catch (e){
-      return false;
-    }
   }
 }

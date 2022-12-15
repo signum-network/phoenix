@@ -23,9 +23,11 @@ import { LoginGuard } from 'app/login/login-guard.service';
 import {ComponentsModule} from '../../components/components.module';
 import { Src44DescriptionFormComponent } from './src44-description-form/src44-description-form.component';
 import { CustomDescriptionFormComponent } from './custom-description-form/custom-description-form.component';
-import { MatTabsModule } from "@angular/material/tabs";
-import { MatRadioModule } from "@angular/material/radio";
-import { MatSelectModule } from "@angular/material/select";
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { NgJsonEditorModule } from 'ang-jsoneditor';
+import { JsonDescriptionFormComponent } from './json-description-form/json-description-form.component';
 
 const routes = [
   {
@@ -43,7 +45,8 @@ const routes = [
   declarations: [
     SetAccountInfoComponent,
     Src44DescriptionFormComponent,
-    CustomDescriptionFormComponent
+    CustomDescriptionFormComponent,
+    JsonDescriptionFormComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -66,7 +69,8 @@ const routes = [
     SetupModule,
     MatTabsModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    NgJsonEditorModule
   ]
 })
 export class SetAccountInfoModule { }

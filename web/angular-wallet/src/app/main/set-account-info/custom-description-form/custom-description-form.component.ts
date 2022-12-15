@@ -1,12 +1,16 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
-import { UnsubscribeOnDestroy } from '../../../util/UnsubscribeOnDestroy';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
 
 @Component({
   selector: 'app-custom-description-form',
   templateUrl: './custom-description-form.component.html',
   styleUrls: ['./custom-description-form.component.scss']
 })
-export class CustomDescriptionFormComponent {
+export class CustomDescriptionFormComponent{
   @Input()
   disabled: boolean;
 
