@@ -1,17 +1,18 @@
 import {
   Component,
   EventEmitter,
-  Input, OnChanges, OnInit,
+  Input, OnChanges,
   Output, SimpleChanges, ViewChild
 } from '@angular/core';
 import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
+import { DescriptorData } from '@signumjs/standards';
 
 @Component({
   selector: 'app-json-description-form',
   templateUrl: './json-description-form.component.html',
   styleUrls: ['./json-description-form.component.scss']
 })
-export class JsonDescriptionFormComponent implements OnInit, OnChanges {
+export class JsonDescriptionFormComponent implements OnChanges {
   public editorOptions: JsonEditorOptions;
   public data: any;
   @ViewChild(JsonEditorComponent, { static: false }) editor: JsonEditorComponent;
@@ -20,6 +21,8 @@ export class JsonDescriptionFormComponent implements OnInit, OnChanges {
   disabled: boolean;
 
   descriptionValue: string;
+
+  isOk = true;
 
   @Input()
   get description(): string {
@@ -34,6 +37,9 @@ export class JsonDescriptionFormComponent implements OnInit, OnChanges {
     this.descriptionChange.next(this.descriptionValue);
   }
 
+  isSRC44 = false;
+  hasChanged = false;
+
   constructor() {
     this.editorOptions = new JsonEditorOptions();
     this.editorOptions.mode = 'code'; // set all allowed modes
@@ -41,11 +47,13 @@ export class JsonDescriptionFormComponent implements OnInit, OnChanges {
 
 
   onDescriptionChanged($event: any): void {
-    if ($event instanceof Event){
-      // no op
-    } else{
-      console.log('changed - t', $event);
-      this.description = JSON.stringify($event);
+    this.hasChanged = true;
+    this.isOk = this.editor.isValidJson();
+    if (this.isOk) {
+      this.validateSRC44($event);
+    }
+    else {
+      this.isSRC44 = false;
     }
   }
 
@@ -54,13 +62,29 @@ export class JsonDescriptionFormComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.description.previousValue !== changes.description.currentValue) {
-      console.log('changes', changes);
       try {
         this.data = JSON.parse(changes.description.currentValue);
+        this.validateSRC44(this.data);
       } catch (e) {
-        console.log('error', e);
         this.data = {};
       }
+    }
+  }
+
+  private validateSRC44(json: object): void {
+    try {
+      DescriptorData.parse(JSON.stringify(json));
+      this.isSRC44 = true;
+    } catch (e) {
+      this.isSRC44 = false;
+    }
+  }
+
+  commit(): void {
+    if (this.isOk) {
+      this.description = JSON.stringify(this.editor.get());
+      this.isOk = false;
+      this.hasChanged = false;
     }
   }
 }

@@ -26,7 +26,7 @@
       >
     </mat-form-field>
     <div class="avatar-type">
-      <img *ngIf="avatarImgSource" [src]="avatarImgSource" (load)="onImageLoaded()"  (error)="onImageError()" class="h-64 w-64 p-4">
+      <img [src]="avatarImgSource" (load)="onImageLoaded()"  (error)="onImageError()" class="h-64 w-64 p-4">
       <div *ngIf="isLoadingImage" class="loader"></div>
     </div>
   </div>

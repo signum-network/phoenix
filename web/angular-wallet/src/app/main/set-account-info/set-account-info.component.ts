@@ -1,7 +1,7 @@
-import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TransactionType, TransactionArbitrarySubtype } from '@signumjs/core';
 import { Amount } from '@signumjs/util';
-import { FormControl, NgForm } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
@@ -76,47 +76,42 @@ export class SetAccountInfoComponent implements OnInit {
     }, 0);
   }
 
-  // ngOnChanges(changes: SimpleChanges): void {
-  //     console.log('custom', changes);
-  //     // @ts-ignore
-  //   this.description[this.formatType] = changes.descriptionCustom
-  // }
-  private getDescription(): string {
+  getDescription(): string {
     // @ts-ignore
     return this.description[this.formatType.value];
   }
 
   async onSubmit(event): Promise<void> {
     event.stopImmediatePropagation();
-
-    console.log('Description', this.getDescription());
-
-    // this.isSending = true;
-    // try {
-    //   await this.accountService.setAccountInfo({
-    //     name: this.name,
-    //     description: this.description,
-    //     feePlanck: Amount.fromSigna(this.fee).getPlanck(),
-    //     deadline: parseFloat(this.deadline) * 60,
-    //     pin: this.pin,
-    //     keys: this.account.keys
-    //   });
-    //   this.notifierService.notify('success', this.i18nService.getTranslation('success_set_account_info'));
-    //   this.setPin('');
-    // } catch (e) {
-    //   if (isKeyDecryptionError(e)) {
-    //     this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
-    //   } else {
-    //     this.notifierService.notify('error', this.i18nService.getTranslation('error_unknown'));
-    //   }
-    // } finally {
-    //   this.isSending = false;
-    // }
+    this.isSending = true;
+    try {
+      await this.accountService.setAccountInfo({
+        name: this.name,
+        description: this.getDescription(),
+        feePlanck: Amount.fromSigna(this.fee).getPlanck(),
+        deadline: parseFloat(this.deadline) * 60,
+        pin: this.pin,
+        keys: this.account.keys
+      });
+      this.notifierService.notify('success', this.i18nService.getTranslation('success_set_account_info'));
+      this.setPin('');
+    } catch (e) {
+      if (isKeyDecryptionError(e)) {
+        this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
+      } else {
+        this.notifierService.notify('error', this.i18nService.getTranslation('error_unknown'));
+      }
+    } finally {
+      this.isSending = false;
+    }
   }
 
+  isTooLong(): boolean {
+    return this.getDescription().length >= 1000;
+  }
 
   canSubmit(): boolean {
-    return this.pin.length > 0;
+    return this.pin.length > 0 && !this.isTooLong();
   }
 
   setPin(pin: string): void {

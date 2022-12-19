@@ -28,6 +28,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { NgJsonEditorModule } from 'ang-jsoneditor';
 import { JsonDescriptionFormComponent } from './json-description-form/json-description-form.component';
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 const routes = [
   {
@@ -62,6 +63,7 @@ const routes = [
     MatGridListModule,
     MatIconModule,
     MatInputModule,
+    MatTooltipModule,
     NetworkModule,
     NgxMaskModule,
     NotifierModule,

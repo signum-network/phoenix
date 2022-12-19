@@ -30,7 +30,8 @@
         <app-src44-description-form [name]="name" [(description)]="description.src44"></app-src44-description-form>
       </ng-container>
       <ng-container *ngIf="formatType.value === 'json'">
-        <app-json-description-form [(description)]="description.json" [disabled]="immutable"></app-json-description-form>
+        <app-json-description-form [(description)]="description.json"
+                                   [disabled]="immutable"></app-json-description-form>
       </ng-container>
       <ng-container *ngIf="formatType.value === 'custom'">
         <app-custom-description-form [(description)]="description.custom"
@@ -50,6 +51,7 @@
         <app-submit-transaction [disabled]="!canSubmit()"
                                 [isSubmitting]="isSending"
                                 (pinChange)="setPin($event)"></app-submit-transaction>
+        <span *ngIf="isTooLong()" class="error-text">{{ 'message_too_long' | i18n }}</span>
       </ng-container>
     </form>
 

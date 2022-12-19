@@ -53,11 +53,11 @@
     "@ngrx/store": "7.0.0",
     "@ngrx/store-devtools": "7.0.0",
     "@ngx-translate/core": "11.0.1",
-    "@signumjs/core": "1.0.0-rc.53",
-    "@signumjs/crypto": "1.0.0-rc.53",
-    "@signumjs/http": "1.0.0-rc.53",
-    "@signumjs/standards": "1.0.0-rc.53",
-    "@signumjs/util": "1.0.0-rc.53",
+    "@signumjs/core": "1.0.0-rc.55",
+    "@signumjs/crypto": "1.0.0-rc.55",
+    "@signumjs/http": "1.0.0-rc.55",
+    "@signumjs/standards": "1.0.0-rc.55",
+    "@signumjs/util": "1.0.0-rc.55",
     "@swimlane/dragula": "3.8.0",
     "@swimlane/ngx-charts": "12.0.1",
     "@swimlane/ngx-datatable": "15.0.2",
@@ -99,7 +99,8 @@
     "semver": "^6.3.0",
     "time-ago-pipe": "^1.3.2",
     "web-animations-js": "2.3.2",
-    "zone.js": "0.9.1"
+    "zone.js": "0.9.1",
+    "jsoneditor": "^9.1.8"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.23",

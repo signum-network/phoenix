@@ -10,6 +10,7 @@ $success-color: #00cc99;
 .btn-danger {
   background: $danger-color;
 }
+
 .btn-danger:hover {
   background: darken($danger-color, 5%);
 }
@@ -17,6 +18,7 @@ $success-color: #00cc99;
 .btn-success {
   background: $success-color;
 }
+
 .btn-success:hover {
   background: darken($success-color, 5%);
 }
@@ -37,10 +39,11 @@ $success-color: #00cc99;
 
 app-market-overview {
   .mat-list-item {
-    height:43px !important;
+    height: 43px !important;
   }
+
   .mat-list-item-content {
-    padding:0 !important;
+    padding: 0 !important;
   }
 }
 
@@ -75,7 +78,7 @@ app-market-overview {
   height: 100% !important;
 }
 
-.print-hide{
+.print-hide {
   @media print {
     display: none !important;
   }
@@ -97,6 +100,16 @@ app-market-overview {
   }
   100% {
     opacity: 1;
+  }
+}
+
+.jsoneditor {
+  border: thin solid lightgray;
+  border-radius: 4px;
+
+  &-menu {
+    background-color: #039be5;
+
   }
 }
 

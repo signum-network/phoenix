@@ -36,6 +36,7 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
   ];
 
   form = new FormGroup({
+    name: new FormControl(''),
     type: new FormControl('hum'),
     desc: new FormControl(''),
     avatar: new FormControl(''),
@@ -86,6 +87,10 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
   ngOnChanges({ description, name }: SimpleChanges): void {
     if (name && name.previousValue !== name.currentValue) {
       this.src44Json['nm'] = name.currentValue;
+      // :facepalm
+      setTimeout(() => {
+        this.form.patchValue({ name });
+      });
     }
 
     if (description && description.previousValue !== description.currentValue) {
@@ -100,10 +105,18 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
           homepage: data.homePage,
           alias: data.alias
         });
+        this.updateAvatarImage(data.avatar ? data.avatar.ipfsCid : '');
       } catch (e) {
+
         console.error(e);
         // not compliant data will be ignored
       }
+    }
+  }
+
+  private updateAvatarImage(cid: string): void {
+    if (cid) {
+      this.avatarImgSource = `https://ipfs.io/ipfs/${cid}`;
     }
   }
 
@@ -117,10 +130,7 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
       ds: formData.desc || undefined
     };
 
-
-    if (formData.avatar && this.avatarImgSource !== formData.avatar) {
-      this.avatarImgSource = `https://ipfs.io/ipfs/${formData.avatar}`;
-    }
+    this.updateAvatarImage(formData.avatar);
 
     this.src44Json = {
       ...this.src44Json,
