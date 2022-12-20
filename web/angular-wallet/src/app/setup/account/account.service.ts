@@ -31,6 +31,8 @@ import { uniqBy } from 'lodash';
 import { Settings } from '../../settings';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { DescriptorData } from '@signumjs/standards';
+import { constants } from "../../constants";
 
 interface SetAccountInfoRequest {
   name: string;
@@ -473,5 +475,14 @@ export class AccountService {
     return this.api.account.getAccountBlocks({ accountId: account.account });
   }
 
+
+  public getAvatarUrlFromAccount(account: WalletAccount): string {
+    try{
+      const descriptor = DescriptorData.parse(account.description, false);
+      return `${constants.ipfsGateway}/${descriptor.avatar.ipfsCid}`;
+    }catch (e){
+      return '';
+    }
+  }
 
 }

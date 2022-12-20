@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { TransactionType, TransactionArbitrarySubtype } from '@signumjs/core';
 import { Amount } from '@signumjs/util';
 import { FormControl } from '@angular/forms';
@@ -19,19 +19,18 @@ import { DescriptorData } from '@signumjs/standards';
 })
 export class SetAccountInfoComponent implements OnInit {
 
-
-
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
               private storeService: StoreService,
               private notifierService: NotifierService,
               private i18nService: I18nService) {
   }
+
   name: string;
   description = {
     src44: '',
     json: '',
-    custom: '',
+    custom: ''
   };
 
   descriptionCustom: string;
@@ -50,19 +49,19 @@ export class SetAccountInfoComponent implements OnInit {
   formatType: FormControl = new FormControl('src44');
 
   static isFormatSRC(text: string): boolean {
-    try{
+    try {
       DescriptorData.parse(text, false);
       return true;
-    }catch (e){
+    } catch (e) {
       return false;
     }
   }
 
   static isFormatJson(text: string): boolean {
-    try{
+    try {
       JSON.parse(text);
       return true;
-    }catch (e){
+    } catch (e) {
       return false;
     }
   }

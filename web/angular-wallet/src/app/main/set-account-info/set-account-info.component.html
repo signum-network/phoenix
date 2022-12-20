@@ -27,7 +27,11 @@
       </mat-form-field>
 
       <ng-container *ngIf="formatType.value === 'src44'">
-        <app-src44-description-form [name]="name" [(description)]="description.src44"></app-src44-description-form>
+        <app-src44-description-form
+          [name]="name"
+          [(description)]="description.src44"
+          [disabled]="immutable"
+        ></app-src44-description-form>
       </ng-container>
       <ng-container *ngIf="formatType.value === 'json'">
         <app-json-description-form [(description)]="description.json"

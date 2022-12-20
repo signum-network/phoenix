@@ -8,7 +8,7 @@
       <div *ngIf="isSRC44" matTooltip="{{'src44_compliant' | i18n}}">
         <small class="badge">{{'src44' | i18n}}</small>
       </div>
-      <div  matTooltip="{{'accept_json_content' | i18n}}" (click)="commit()" >
+      <div *ngIf="!disabled" matTooltip="{{'accept_json_content' | i18n}}" (click)="commit()" >
         <div class='btn' [class.disabled]="!(isOk && hasChanged)">
           <mat-icon class="secondary-text s-20">save</mat-icon>
           {{'Accept' | i18n}}{{hasChanged ? '*' : ''}}

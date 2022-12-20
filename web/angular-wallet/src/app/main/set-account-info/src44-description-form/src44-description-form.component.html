@@ -1,7 +1,13 @@
 <div class="fullwidth position-relative pt-8" fxFlex="1 0 auto" fxLayout="column" fxLayoutAlign="start"
      [formGroup]="form">
 
-  <mat-radio-group class="mb-12" fxLayout="row" fxLayoutAlign="space-between center" formControlName="type">
+  <mat-radio-group
+    class="mb-12"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    formControlName="type"
+    [disabled]="disabled"
+  >
     <mat-radio-button *ngFor="let type of accountTypeOptions" class="ml-8"
                       value="{{type}}">{{type.toUpperCase()}}</mat-radio-button>
   </mat-radio-group>
@@ -13,6 +19,7 @@
               maxlength="256"
               placeholder="{{ 'description' | i18n }}"
               formControlName="desc"
+              [disabled]="disabled"
     >
     </textarea>
   </mat-form-field>
@@ -23,10 +30,11 @@
       <input matInput
              placeholder="{{ 'enter_ipfs_hash' | i18n }}"
              formControlName="avatar"
+             [disabled]="disabled"
       >
     </mat-form-field>
     <div class="avatar-type">
-      <img [src]="avatarImgSource" (load)="onImageLoaded()"  (error)="onImageError()" class="h-64 w-64 p-4">
+      <img [src]="avatarImgSource" (load)="onImageLoaded()"  (error)="onImageError()" class="h-64 w-64 p-4" alt="avatar-image">
       <div *ngIf="isLoadingImage" class="loader"></div>
     </div>
   </div>
@@ -38,6 +46,7 @@
            maxlength="100"
            placeholder="{{ 'enter_url' | i18n }}"
            formControlName="homepage"
+           [disabled]="disabled"
     >
   </mat-form-field>
 
@@ -48,6 +57,7 @@
            maxlength="100"
            placeholder="{{ 'alias' | i18n }}"
            formControlName="alias"
+           [disabled]="disabled"
     >
   </mat-form-field>
 </div>

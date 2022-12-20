@@ -11,6 +11,7 @@ import { DescriptorData, SRC44Descriptor } from '@signumjs/standards';
 import { takeUntil } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from '../../../util/UnsubscribeOnDestroy';
 import { FormControl, FormGroup } from '@angular/forms';
+import { NetworkService } from '../../../network/network.service';
 
 @Component({
   selector: 'app-src44-description-form',
@@ -72,7 +73,7 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
     this.descriptionChange.next(this.descriptionString);
   }
 
-  constructor() {
+  constructor(private networkService: NetworkService) {
     super();
   }
 
@@ -95,20 +96,18 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
 
     if (description && description.previousValue !== description.currentValue) {
       try {
-        const data = DescriptorData.parse(this.descriptionString, false);
-        this.src44Json = data.raw;
-        this.form.patchValue({
-          type: data.type || 'hum',
-          desc: data.description,
-          avatar: data.avatar ? data.avatar.ipfsCid : '',
-          avatarType: data.avatar ? data.avatar.mimeType : 'image/png',
-          homepage: data.homePage,
-          alias: data.alias
-        });
-        this.updateAvatarImage(data.avatar ? data.avatar.ipfsCid : '');
+        const data = DescriptorData.parse(description.currentValue, false);
+          this.src44Json = data.raw;
+          this.form.patchValue({
+            type: data.type || 'hum',
+            desc: data.description,
+            avatar: data.avatar ? data.avatar.ipfsCid : '',
+            avatarType: data.avatar ? data.avatar.mimeType : 'image/png',
+            homepage: data.homePage,
+            alias: data.alias
+          });
+          this.updateAvatarImage(data.avatar ? data.avatar.ipfsCid : '');
       } catch (e) {
-
-        console.error(e);
         // not compliant data will be ignored
       }
     }
@@ -116,12 +115,11 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
 
   private updateAvatarImage(cid: string): void {
     if (cid) {
-      this.avatarImgSource = `https://ipfs.io/ipfs/${cid}`;
+      this.avatarImgSource = this.networkService.getIpfsCidUrl(cid);
     }
   }
 
   private updateDescriptor(formData: any): void {
-
     const mergeable: any = {
       tp: formData.type || undefined,
       av: formData.avatar ? { [formData.avatar]: formData.avatarType } : undefined,
@@ -141,7 +139,7 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
       const d = DescriptorData.parse(JSON.stringify(this.src44Json));
       this.description = d.stringify();
     } catch (e) {
-      console.error('data not valid', e.message);
+      // no op
     }
 
   }

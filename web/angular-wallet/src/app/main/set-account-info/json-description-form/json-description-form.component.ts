@@ -42,7 +42,7 @@ export class JsonDescriptionFormComponent implements OnChanges {
 
   constructor() {
     this.editorOptions = new JsonEditorOptions();
-    this.editorOptions.mode = 'code'; // set all allowed modes
+    this.editorOptions.mode = this.disabled ? 'view' : 'code'; // set all allowed modes
   }
 
 
@@ -61,6 +61,7 @@ export class JsonDescriptionFormComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.editorOptions.mode = this.disabled ? 'view' : 'code'; // set all allowed modes
     if (changes.description.previousValue !== changes.description.currentValue) {
       try {
         this.data = JSON.parse(changes.description.currentValue);

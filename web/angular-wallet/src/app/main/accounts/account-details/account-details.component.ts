@@ -12,6 +12,8 @@ import {takeUntil} from 'rxjs/operators';
 import {FuseProgressBarService} from '../../../../@fuse/components/progress-bar/progress-bar.service';
 import { TokenData, TokenService } from '../../../shared/services/token.service';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { DescriptorData } from '@signumjs/standards';
+import { NetworkService } from "../../../network/network.service";
 
 type TransactionDetailsCellValue = string | AttachmentMessage | AttachmentEncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
@@ -42,10 +44,15 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
   columns: string[] = [];
   tokens: TokenData[] = [];
   isLoadingTokens = true;
+  avatarImgSrc: string;
+  bgImgSrc: string;
+
+  src44: DescriptorData;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private accountService: AccountService,
+              private networkService: NetworkService,
               private tokenService: TokenService,
               private observableMedia: MediaObserver,
               private storeService: StoreService,
@@ -89,7 +96,6 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
     this.dataSource = new MatTableDataSource<Transaction>();
     this.dataSource.data = this.transactions;
     this.language = this.storeService.settings.value.language;
-
     setTimeout(() => {
       this.updateAvatar();
     }, 100);
@@ -112,7 +118,16 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
   }
 
   private updateAvatar(): void {
-    if (this.avatar) {
+
+    try{
+      this.src44 = DescriptorData.parse(this.account.description, false);
+      this.avatarImgSrc = this.src44.avatar ? this.networkService.getIpfsCidUrl(this.src44.avatar.ipfsCid) : ''
+    }catch (e){
+      // ignore
+      this.src44 = null;
+    }
+
+    if (!this.avatarImgSrc && this.avatar) {
       hashicon(this.account.account, {
         size: 100,
         createCanvas: () => this.avatar.nativeElement
