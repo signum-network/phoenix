@@ -238,7 +238,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         // @ts-ignore
         message.message = decryptMessage(
           message.encryptedMessage,
-          sender.publicKey,
+          sender.keys.publicKey,
           privateKey
         );
       }
