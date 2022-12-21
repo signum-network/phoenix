@@ -37,7 +37,6 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
   ];
 
   form = new FormGroup({
-    name: new FormControl(''),
     type: new FormControl('hum'),
     desc: new FormControl(''),
     avatar: new FormControl(''),
@@ -67,6 +66,7 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
   avatarImgSource: string;
 
   private src44Json: SRC44Descriptor = { vs: 1 };
+  src44ErrorMsg = '';
 
   set description(descriptionValue: string) {
     this.descriptionString = descriptionValue;
@@ -85,15 +85,7 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
     });
   }
 
-  ngOnChanges({ description, name }: SimpleChanges): void {
-    if (name && name.previousValue !== name.currentValue) {
-      this.src44Json['nm'] = name.currentValue;
-      // :facepalm
-      setTimeout(() => {
-        this.form.patchValue({ name });
-      });
-    }
-
+  ngOnChanges({ description }: SimpleChanges): void {
     if (description && description.previousValue !== description.currentValue) {
       try {
         const data = DescriptorData.parse(description.currentValue, false);
@@ -120,6 +112,7 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
   }
 
   private updateDescriptor(formData: any): void {
+    this.src44ErrorMsg = '';
     const mergeable: any = {
       tp: formData.type || undefined,
       av: formData.avatar ? { [formData.avatar]: formData.avatarType } : undefined,
@@ -139,7 +132,7 @@ export class Src44DescriptionFormComponent extends UnsubscribeOnDestroy implemen
       const d = DescriptorData.parse(JSON.stringify(this.src44Json));
       this.description = d.stringify();
     } catch (e) {
-      // no op
+      this.src44ErrorMsg = e.message;
     }
 
   }

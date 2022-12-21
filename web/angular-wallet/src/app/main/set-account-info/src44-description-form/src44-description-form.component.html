@@ -16,7 +16,7 @@
     <mat-label>{{ 'description' | i18n }}</mat-label>
     <textarea matInput
               cdkTextareaAutosize
-              maxlength="256"
+              maxlength="380"
               placeholder="{{ 'description' | i18n }}"
               formControlName="desc"
               [disabled]="disabled"
@@ -43,7 +43,7 @@
     <mat-label>{{ 'homepage' | i18n }}</mat-label>
     <input matInput
            minlength="3"
-           maxlength="100"
+           maxlength="128"
            placeholder="{{ 'enter_url' | i18n }}"
            formControlName="homepage"
            [disabled]="disabled"
@@ -60,4 +60,6 @@
            [disabled]="disabled"
     >
   </mat-form-field>
+
+  <span *ngIf="src44ErrorMsg" class="error-text">{{src44ErrorMsg}}</span>
 </div>
