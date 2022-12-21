@@ -470,5 +470,16 @@
   "burn": "Deginti",
   "burn_address": "Sudegė 🔥",
   "burn_recipient": "Aptiktas deginimas",
-  "burn_recipient_text": "Signa arba žetonų deginimas reiškia negrįžtamą sudegintos vertės praradimą!"
+  "burn_recipient_text": "Signa arba žetonų deginimas reiškia negrįžtamą sudegintos vertės praradimą!",
+  "accept": "Priimti",
+  "accept_json_content": "Spustelėkite, kad priimtumėte turinį pateikti",
+  "avatar": "Avataras",
+  "custom": "Laisvas tekstas",
+  "enter_ipfs_hash": "Įveskite IPFS maišą",
+  "enter_url": "Įveskite URL",
+  "homepage": "Pagrindinis puslapis",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "Suderinamas su SRC44 / suderinamas",
+  "src44_info": "SRC44 yra struktūrinės informacijos aprašo laukuose standartas. Kitos programos taip pat gali vizualizuoti šią informaciją."
 }

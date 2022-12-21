@@ -470,5 +470,16 @@
   "burn": "Membakar",
   "burn_address": "Terbakar",
   "burn_recipient": "Terdeteksi Pembakaran",
-  "burn_recipient_text": "Membakar Signa atau Token berarti kehilangan nilai yang dibakar secara tidak dapat dibalikkan!"
+  "burn_recipient_text": "Membakar Signa atau Token berarti kehilangan nilai yang dibakar secara tidak dapat dibalikkan!",
+  "accept": "Menerima",
+  "accept_json_content": "Klik untuk menerima konten untuk dikirim",
+  "avatar": "Avatar",
+  "custom": "Teks Bebas",
+  "enter_ipfs_hash": "Masukkan Hash IPFS",
+  "enter_url": "Masukkan URL",
+  "homepage": "Halaman Beranda",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "Sesuai/kompatibel dengan SRC44",
+  "src44_info": "SRC44 adalah standar untuk informasi terstruktur dalam kolom deskripsi. Aplikasi lain juga mampu memvisualisasikan informasi ini."
 }

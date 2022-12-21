@@ -470,5 +470,16 @@
   "burn": "Verbrennen",
   "burn_address": "Verbrannt 🔥",
   "burn_recipient": "Burning erkannt",
-  "burn_recipient_text": "Das Verbrennen von Signa oder Token bedeutet einen irreversiblen Verlust des verbrannten Wertes!"
+  "burn_recipient_text": "Das Verbrennen von Signa oder Token bedeutet einen irreversiblen Verlust des verbrannten Wertes!",
+  "accept": "Akzeptieren",
+  "accept_json_content": "Klicken Sie hier, um den Inhalt zum Senden zu akzeptieren",
+  "avatar": "Avatar",
+  "custom": "Freitext",
+  "enter_ipfs_hash": "IPFS-Hash eingeben",
+  "enter_url": "URL eingeben",
+  "homepage": "Startseite",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "SRC44-konform/kompatibel",
+  "src44_info": "SRC44 ist der Standard für strukturierte Informationen in Beschreibungsfeldern. Auch andere Apps können diese Informationen visualisieren."
 }

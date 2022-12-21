@@ -470,5 +470,16 @@
   "burn": "Oparzenie",
   "burn_address": "Spalony 🔥",
   "burn_recipient": "Wykryto spalanie",
-  "burn_recipient_text": "Spalenie Signa lub Tokena oznacza nieodwracalną utratę spalonych wartości!"
+  "burn_recipient_text": "Spalenie Signa lub Tokena oznacza nieodwracalną utratę spalonych wartości!",
+  "accept": "Zaakceptować",
+  "accept_json_content": "Kliknij, aby zaakceptować zawartość do wysłania",
+  "avatar": "Awatara",
+  "custom": "Dowolny tekst",
+  "enter_ipfs_hash": "Wprowadź skrót IPFS",
+  "enter_url": "Wprowadź URL",
+  "homepage": "Strona główna",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "Zgodny/kompatybilny z SRC44",
+  "src44_info": "SRC44 to standard ustrukturyzowanych informacji w polach opisu. Inne aplikacje mogą również wizualizować te informacje."
 }

@@ -470,5 +470,16 @@
   "burn": "Spáliť",
   "burn_address": "Spálené 🔥",
   "burn_recipient": "Zistené horenie",
-  "burn_recipient_text": "Burning Signa alebo Tokens znamená nenávratnú stratu vypálenej hodnoty!"
+  "burn_recipient_text": "Burning Signa alebo Tokens znamená nenávratnú stratu vypálenej hodnoty!",
+  "accept": "súhlasiť",
+  "accept_json_content": "Kliknutím prijmete obsah na odoslanie",
+  "avatar": "Avatar",
+  "custom": "Voľný text",
+  "enter_ipfs_hash": "Zadajte hash IPFS",
+  "enter_url": "Zadajte URL",
+  "homepage": "Domovská stránka",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "SRC44 kompatibilný/kompatibilný",
+  "src44_info": "SRC44 je štandard pre štruktúrované informácie v poliach popisu. Iné aplikácie sú tiež schopné zobraziť tieto informácie."
 }

@@ -470,5 +470,16 @@
   "burn": "Brûler",
   "burn_address": "Brûlé 🔥",
   "burn_recipient": "Brûlure détectée",
-  "burn_recipient_text": "Brûler des Signa ou des Tokens signifie une perte irréversible de la valeur brûlée !"
+  "burn_recipient_text": "Brûler des Signa ou des Tokens signifie une perte irréversible de la valeur brûlée !",
+  "accept": "Accepter",
+  "accept_json_content": "Cliquez pour accepter le contenu à soumettre",
+  "avatar": "Avatar",
+  "custom": "Texte libre",
+  "enter_ipfs_hash": "Entrez le hachage IPFS",
+  "enter_url": "Entrer l'URL",
+  "homepage": "Page d'accueil",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "Conforme/compatible SRC44",
+  "src44_info": "SRC44 est la norme pour les informations structurées dans les champs de description. D'autres applications sont également capables de visualiser ces informations."
 }

@@ -470,5 +470,16 @@
   "burn": "A arde",
   "burn_address": "Ars 🔥",
   "burn_recipient": "Arsuri detectate",
-  "burn_recipient_text": "Arderea semnelor sau a jetoanelor înseamnă o pierdere ireversibilă a valorii arse!"
+  "burn_recipient_text": "Arderea semnelor sau a jetoanelor înseamnă o pierdere ireversibilă a valorii arse!",
+  "accept": "Accept",
+  "accept_json_content": "Faceți clic pentru a accepta conținutul pentru trimitere",
+  "avatar": "Avatar",
+  "custom": "Text gratuit",
+  "enter_ipfs_hash": "Introduceți IPFS Hash",
+  "enter_url": "Introdu URL-ul",
+  "homepage": "Pagina principala",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "Conform/compatibil cu SRC44",
+  "src44_info": "SRC44 este standardul pentru informațiile structurate în câmpurile de descriere. Alte aplicații sunt capabile să vizualizeze și aceste informații."
 }
