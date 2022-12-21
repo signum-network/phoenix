@@ -40,7 +40,8 @@
       class="avatar-container"
       [routerLink]="['set-account-info']"
     >
-      <canvas #avatar></canvas>
+      <canvas *ngIf="!avatarImgSrc" #avatar></canvas>
+      <img *ngIf="avatarImgSrc" [src]="avatarImgSrc" alt="avatar-image" />
     </a>
   </div>
 

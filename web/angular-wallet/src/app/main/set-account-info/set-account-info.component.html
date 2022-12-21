@@ -4,7 +4,8 @@
       <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>
       <p class="pb-8">{{account.accountRS}}</p>
     </div>
-    <div class="w-120">
+    <div class="w-120" fxLayout="row" fxLayoutAlign="center center" >
+      <mat-icon *ngIf="formatType.value === 'src44'" class="mr-8 font-size-18 grey-500-fg ml-2" matTooltip="{{ 'src44_info' | i18n }}">info</mat-icon>
       <mat-form-field>
         <mat-select [formControl]="formatType"
                     placeholder="{{'type' | i18n}}"

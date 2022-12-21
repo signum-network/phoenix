@@ -36,8 +36,8 @@ export class WalletAccount {
       this.pinHash = data.pinHash || undefined;
       this.keys = {
         publicKey: data.publicKey || data.keys.publicKey,
-        signPrivateKey: data.keys.signPrivateKey,
-        agreementPrivateKey: data.keys.agreementPrivateKey,
+        signPrivateKey: data.keys ? data.keys.signPrivateKey : undefined,
+        agreementPrivateKey: data.keys ? data.keys.agreementPrivateKey : undefined,
       };
     }
     this.name = data.name || undefined;

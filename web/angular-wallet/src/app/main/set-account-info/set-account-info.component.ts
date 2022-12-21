@@ -77,7 +77,7 @@ export class SetAccountInfoComponent implements OnInit {
 
   getDescription(): string {
     // @ts-ignore
-    return this.description[this.formatType.value];
+    return this.description[this.formatType.value] || '';
   }
 
   async onSubmit(event): Promise<void> {
@@ -138,6 +138,7 @@ export class SetAccountInfoComponent implements OnInit {
       format = 'src44';
       this.description.src44 = this.account.description;
     }
-    this.formatType.setValue(format);
+
+    this.formatType.setValue(this.account.description ? format : 'src44');
   }
 }

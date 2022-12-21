@@ -10,7 +10,7 @@ import {AccountService} from 'app/setup/account/account.service';
 import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {I18nService} from '../../layout/components/i18n/i18n.service';
-import { WalletAccount } from "app/util/WalletAccount";
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
   selector: 'app-accounts',
@@ -18,8 +18,8 @@ import { WalletAccount } from "app/util/WalletAccount";
   templateUrl: './accounts.component.html'
 })
 export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
-  private dataSource: MatTableDataSource<WalletAccount>;
-  private displayedColumns: string[];
+  dataSource: MatTableDataSource<WalletAccount>;
+  displayedColumns: string[];
   public accounts: WalletAccount[];
   public selectedAccount: WalletAccount;
   public selectedAccounts: object;
@@ -41,7 +41,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   public ngOnInit(): void {
     this.accounts = [];
     this.selectedAccounts = {};
-    this.displayedColumns = ['type', 'account', 'accountRS', 'name', 'balanceNQT', 'description', 'delete'];
+    this.displayedColumns = ['type', 'account', 'accountRS', 'name', 'balanceNQT', 'delete'];
     this.dataSource = new MatTableDataSource<WalletAccount>();
 
     this.storeService.ready
@@ -49,7 +49,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
         takeUntil(this.unsubscribeAll)
       )
       .subscribe((ready) => {
-        if (!ready) return;
+        if (!ready) { return; }
         this.storeService.getAllAccounts().then((accounts) => {
           this.accounts = accounts;
           this.dataSource.data = this.accounts;

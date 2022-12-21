@@ -85,7 +85,7 @@
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>
           <mat-icon>account_box</mat-icon>
-          Alias
+          {{'name' | i18n}}
         </mat-header-cell>
         <mat-cell *matCellDef="let account" fxHide fxShow.gt-xs> {{account.name}} </mat-cell>
       </ng-container>
@@ -97,14 +97,6 @@
         </mat-header-cell>
         <mat-cell
           *matCellDef="let account">{{account.balanceNQT | amount: 'planck':true }}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>
-          <mat-icon>description</mat-icon>
-          Description
-        </mat-header-cell>
-        <mat-cell *matCellDef="let account" fxHide fxShow.gt-xs> {{account.description}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="selected">

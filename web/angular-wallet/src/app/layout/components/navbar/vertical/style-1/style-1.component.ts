@@ -8,7 +8,6 @@ import {FuseNavigationService} from '@fuse/components/navigation/navigation.serv
 import {FusePerfectScrollbarDirective} from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import {FuseSidebarService} from '@fuse/components/sidebar/sidebar.service';
 import {StoreService} from 'app/store/store.service';
-import {Account} from '@signumjs/core';
 import {AccountService} from 'app/setup/account/account.service';
 import {environment} from 'environments/environment';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
@@ -17,6 +16,7 @@ import {NotifierService} from 'angular-notifier';
 import hashicon from 'hashicon';
 import {FuseNavigation} from '@fuse/types';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { DescriptorData } from '@signumjs/standards';
 
 @Component({
   selector: 'navbar-vertical-style-1',
@@ -33,6 +33,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
   selectedAccountQRCode: string;
   language: string;
   node = environment.defaultNode;
+  avatarImgSrc: string;
 
   // Private
   private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
@@ -144,7 +145,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
   }
 
   private async updateAvatar(): Promise<void> {
-    if (this.avatar) {
+    this.avatarImgSrc =  this._accountService.getAvatarUrlFromAccount(this.selectedAccount);
+    if (!this.avatarImgSrc && this.avatar) {
       hashicon(this.selectedAccount.account, {
         size: 100,
         createCanvas: () => this.avatar.nativeElement

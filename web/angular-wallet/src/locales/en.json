@@ -480,5 +480,6 @@
   "enter_url": "Enter URL",
   "avatar": "Avatar",
   "accept": "Accept",
-  "accept_json_content": "Click to accept the content for submitting"
+  "accept_json_content": "Click to accept the content for submitting",
+  "src44_info": "SRC44 is the standard for structured information in description fields. Other Apps are capable to visualize these information also."
 }
