@@ -7,49 +7,49 @@ import {
   ViewChild,
   ViewChildren,
   ViewEncapsulation,
-} from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
+} from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import {
   Account,
   Address,
   AddressPrefix,
   TransactionArbitrarySubtype,
   TransactionType,
-} from "@signumjs/core";
-import { ChainTime } from "@signumjs/util";
-import { decryptAES, decryptMessage, hashSHA256 } from "@signumjs/crypto";
-import { Router } from "@angular/router";
-import { FusePerfectScrollbarDirective } from "@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive";
-import { Messages, MessagesService } from "../messages.service";
-import { AccountService } from "app/setup/account/account.service";
-import { NotifierService } from "angular-notifier";
-import { UtilService } from "app/util.service";
-import { I18nService } from "app/layout/components/i18n/i18n.service";
-import { AddressPattern } from "app/util/addressPattern";
-import { isKeyDecryptionError } from "../../../util/exceptions/isKeyDecryptionError";
-import { NetworkService } from "../../../network/network.service";
-import { FeeRegimeService } from "../../../components/fee-input/fee-regime.service";
-import { WalletAccount } from "../../../util/WalletAccount";
+} from '@signumjs/core';
+import { ChainTime } from '@signumjs/util';
+import { decryptAES, decryptMessage, hashSHA256 } from '@signumjs/crypto';
+import { Router } from '@angular/router';
+import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
+import { Messages, MessagesService } from '../messages.service';
+import { AccountService } from 'app/setup/account/account.service';
+import { NotifierService } from 'angular-notifier';
+import { UtilService } from 'app/util.service';
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { AddressPattern } from 'app/util/addressPattern';
+import { isKeyDecryptionError } from '../../../util/exceptions/isKeyDecryptionError';
+import { NetworkService } from '../../../network/network.service';
+import { FeeRegimeService } from '../../../components/fee-input/fee-regime.service';
+import { WalletAccount } from '../../../util/WalletAccount';
 
 @Component({
-  selector: "message-view",
-  templateUrl: "./message-view.component.html",
-  styleUrls: ["./message-view.component.scss"],
+  selector: 'message-view',
+  templateUrl: './message-view.component.html',
+  styleUrls: ['./message-view.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() feeSigna: number;
   @Input() encrypt: boolean;
 
-  @ViewChild("pin", { static: false })
+  @ViewChild('pin', { static: false })
   pin: string;
   @ViewChild(FusePerfectScrollbarDirective, { static: true })
   directiveScroll: FusePerfectScrollbarDirective;
-  @ViewChildren("replyInput")
+  @ViewChildren('replyInput')
   replyInputField;
-  @ViewChild("replyForm", { static: false })
+  @ViewChild('replyForm', { static: false })
   replyForm: NgForm;
 
   addressPrefix = AddressPrefix.MainNet;
@@ -142,7 +142,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   selectContact(): void {
-    this.router.navigate(["/account", this.message.contactId]);
+    this.router.navigate(['/account', this.message.contactId]);
   }
 
   readyToReply(): void {
@@ -186,7 +186,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         this.isNewMessage = false;
       } catch (e) {
         // TODO: i1n8
-        return this.notifierService.notify("error", e);
+        return this.notifierService.notify('error', e);
       }
     }
 
@@ -210,12 +210,12 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     } catch (e) {
       if (isKeyDecryptionError(e)) {
         this.notifierService.notify(
-          "error",
-          this.i18nService.getTranslation("wrong_pin")
+          'error',
+          this.i18nService.getTranslation('wrong_pin')
         );
       } else {
         this.notifierService.notify(
-          "error",
+          'error',
           this.utilService.translateServerError(e.data || e)
         );
       }
@@ -263,7 +263,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   getIconStyle(): string {
-    return this.encrypt ? "green-300-fg" : "warn-300-fg";
+    return this.encrypt ? 'green-300-fg' : 'warn-300-fg';
   }
 
   onMessageChange(msg: string): void {
