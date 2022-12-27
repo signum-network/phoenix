@@ -6,50 +6,57 @@ import {
   OnInit,
   ViewChild,
   ViewChildren,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-import { Account, Address, AddressPrefix, TransactionArbitrarySubtype, TransactionType } from '@signumjs/core';
-import {ChainTime} from '@signumjs/util';
-import {decryptAES, decryptMessage, hashSHA256} from '@signumjs/crypto';
-import {Router} from '@angular/router';
-import {FusePerfectScrollbarDirective} from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
-import {Messages, MessagesService} from '../messages.service';
-import {AccountService} from 'app/setup/account/account.service';
-import {NotifierService} from 'angular-notifier';
-import {UtilService} from 'app/util.service';
-import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {AddressPattern} from 'app/util/addressPattern';
-import {isKeyDecryptionError} from '../../../util/exceptions/isKeyDecryptionError';
-import {NetworkService} from '../../../network/network.service';
+import { NgForm } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import {
+  Account,
+  Address,
+  AddressPrefix,
+  TransactionArbitrarySubtype,
+  TransactionType,
+} from '@signumjs/core';
+import { ChainTime } from '@signumjs/util';
+import { decryptAES, decryptMessage, hashSHA256 } from '@signumjs/crypto';
+import { Router } from '@angular/router';
+import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
+import { Messages, MessagesService } from '../messages.service';
+import { AccountService } from 'app/setup/account/account.service';
+import { NotifierService } from 'angular-notifier';
+import { UtilService } from 'app/util.service';
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { AddressPattern } from 'app/util/addressPattern';
+import { isKeyDecryptionError } from '../../../util/exceptions/isKeyDecryptionError';
+import { NetworkService } from '../../../network/network.service';
 import { FeeRegimeService } from '../../../components/fee-input/fee-regime.service';
+import { WalletAccount } from '../../../util/WalletAccount';
 
 @Component({
   selector: 'message-view',
   templateUrl: './message-view.component.html',
   styleUrls: ['./message-view.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() feeSigna: number;
   @Input() encrypt: boolean;
 
-  @ViewChild('pin', {static: false})
+  @ViewChild('pin', { static: false })
   pin: string;
-  @ViewChild(FusePerfectScrollbarDirective, {static: true})
+  @ViewChild(FusePerfectScrollbarDirective, { static: true })
   directiveScroll: FusePerfectScrollbarDirective;
   @ViewChildren('replyInput')
   replyInputField;
-  @ViewChild('replyForm', {static: false})
+  @ViewChild('replyForm', { static: false })
   replyForm: NgForm;
 
   addressPrefix = AddressPrefix.MainNet;
   message: Messages;
   replyInput: any;
   pinInput: any;
-  selectedUser: Account;
+  selectedUser: WalletAccount;
   isNewMessage = false;
   addressPatternRef = AddressPattern;
   isSending = false;
@@ -65,18 +72,20 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     private utilService: UtilService,
     private i18nService: I18nService,
     private networkService: NetworkService,
-    private feeRegimeService: FeeRegimeService,
+    private feeRegimeService: FeeRegimeService
   ) {
     this._unsubscribeAll = new Subject();
   }
 
   ngOnInit(): void {
     this.encrypt = false;
-    this.addressPrefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
+    this.addressPrefix = this.networkService.isMainNet()
+      ? AddressPrefix.MainNet
+      : AddressPrefix.TestNet;
     this.selectedUser = this.messageService.user;
     this.messageService.onMessageSelected
       .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe(async ({message, isNewMessage}) => {
+      .subscribe(async ({ message, isNewMessage }) => {
         if (!message) {
           return;
         }
@@ -110,16 +119,26 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   shouldShowContactAvatar(message, i): boolean {
     return (
       message.contactId === this.message.contactId &&
-      ((this.message.dialog[i + 1] && this.message.dialog[i + 1].contactId !== this.message.contactId) || !this.message.dialog[i + 1])
+      ((this.message.dialog[i + 1] &&
+        this.message.dialog[i + 1].contactId !== this.message.contactId) ||
+        !this.message.dialog[i + 1])
     );
   }
 
   isFirstMessageOfGroup(message, i): boolean {
-    return (i === 0 || this.message.dialog[i - 1] && this.message.dialog[i - 1].contactId !== message.contactId);
+    return (
+      i === 0 ||
+      (this.message.dialog[i - 1] &&
+        this.message.dialog[i - 1].contactId !== message.contactId)
+    );
   }
 
   isLastMessageOfGroup(message, i): boolean {
-    return (i === this.message.dialog.length - 1 || this.message.dialog[i + 1] && this.message.dialog[i + 1].contactId !== message.contactId);
+    return (
+      i === this.message.dialog.length - 1 ||
+      (this.message.dialog[i + 1] &&
+        this.message.dialog[i + 1].contactId !== message.contactId)
+    );
   }
 
   selectContact(): void {
@@ -161,7 +180,9 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.isNewMessage) {
       try {
         this.message.senderRS = `${this.addressPrefix}-${this.message.senderRS}`;
-        this.message.contactId = Address.fromReedSolomonAddress(this.message.senderRS).getNumericId();
+        this.message.contactId = Address.fromReedSolomonAddress(
+          this.message.senderRS
+        ).getNumericId();
         this.isNewMessage = false;
       } catch (e) {
         // TODO: i1n8
@@ -172,7 +193,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     const message = {
       contactId: this.selectedUser.account,
       message: this.replyForm.form.value.message,
-      timestamp: ChainTime.fromDate(new Date()).getChainTimestamp()
+      timestamp: ChainTime.fromDate(new Date()).getChainTimestamp(),
     };
 
     try {
@@ -182,14 +203,21 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
         this.encrypt,
         this.message.contactId,
         this.replyForm.form.value.pin,
-        this.feeSigna);
+        this.feeSigna
+      );
       this.replyForm.reset();
       this.readyToReply();
     } catch (e) {
       if (isKeyDecryptionError(e)) {
-        this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
+        this.notifierService.notify(
+          'error',
+          this.i18nService.getTranslation('wrong_pin')
+        );
       } else {
-        this.notifierService.notify('error', this.utilService.translateServerError(e.data || e));
+        this.notifierService.notify(
+          'error',
+          this.utilService.translateServerError(e.data || e)
+        );
       }
       throw e;
     } finally {
@@ -197,21 +225,26 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-
   public async submitPinPrompt(event): Promise<void> {
     event.stopImmediatePropagation();
     const account = await this.accountService.currentAccount$.getValue();
     const sender = await this.accountService.getAccount(this.message.contactId);
-    const privateKey = decryptAES(account.keys.agreementPrivateKey, hashSHA256(this.pin));
+    const privateKey = decryptAES(
+      account.keys.agreementPrivateKey,
+      hashSHA256(this.pin)
+    );
     this.message.dialog = this.message.dialog.map((message) => {
       if (message.encryptedMessage) {
         // @ts-ignore
-        message.message = decryptMessage(message.encryptedMessage, sender.publicKey, privateKey);
+        message.message = decryptMessage(
+          message.encryptedMessage,
+          sender.keys.publicKey,
+          privateKey
+        );
       }
       return message;
     });
   }
-
 
   getQRCode(id: string): Promise<string> {
     return this.accountService.generateSendTransactionQRCodeAddress(id);
@@ -225,9 +258,8 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     if (!this.replyForm) {
       return false;
     }
-    const {pin, message} = this.replyForm.form.value;
-    return (pin && pin.length > 0) &&
-      (message && message.length) > 0;
+    const { pin, message } = this.replyForm.form.value;
+    return pin && pin.length > 0 && (message && message.length) > 0;
   }
 
   getIconStyle(): string {
@@ -239,7 +271,11 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
     if (msg) {
       length = this.encrypt ? msg.length + 48 : msg.length;
     }
-    const fee = this.feeRegimeService.calculateFeeByPayload(TransactionType.Arbitrary, TransactionArbitrarySubtype.Message, length);
+    const fee = this.feeRegimeService.calculateFeeByPayload(
+      TransactionType.Arbitrary,
+      TransactionArbitrarySubtype.Message,
+      length
+    );
     this.feeSigna = parseFloat(fee.getSigna());
   }
 }

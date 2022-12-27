@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Account, SuggestedFees, TransactionMiningSubtype, TransactionType } from '@signumjs/core';
+import { SuggestedFees, TransactionMiningSubtype, TransactionType } from '@signumjs/core';
 import { Amount } from '@signumjs/util';
 import { NgForm } from '@angular/forms';
 import { TransactionService } from 'app/main/transactions/transaction.service';
@@ -14,6 +14,7 @@ import { AccountService } from '../../../setup/account/account.service';
 import { NetworkService } from '../../../network/network.service';
 import { isKeyDecryptionError } from '../../../util/exceptions/isKeyDecryptionError';
 import { AmountInputComponent } from '../../../components/amount-input/amount-input.component';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -33,7 +34,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
   @ViewChild('message', { static: true }) public message: string;
   @ViewChild(AmountInputComponent, { static: true }) public amountInput: AmountInputComponent;
 
-  @Input() account: Account;
+  @Input() account: WalletAccount;
   @Input() fees: SuggestedFees;
 
   symbol = Amount.CurrencySymbol();

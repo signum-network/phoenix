@@ -108,4 +108,9 @@ export class NetworkService {
   public getChainExplorerHost(): string {
     return this._isMainNet ? constants.explorerHost.main : constants.explorerHost.test;
   }
+
+
+  public getIpfsCidUrl(cid: string): string {
+    return `${constants.ipfsGateway}/${cid}`;
+  }
 }

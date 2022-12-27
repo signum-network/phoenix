@@ -4,7 +4,7 @@ export const environment = {
   production: false,
   hmr: true,
   version,
-  defaultNode: 'http://localhost:4200',
+  defaultNode: 'http://localhost:6876',
   market: {
     tickerUrl: 'https://api.coingecko.com/api/v3/coins/signum?tickers=false&community_data=false&developer_data=false&market_data=true',
     tickerInterval: 60 * 1000

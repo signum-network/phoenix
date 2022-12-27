@@ -3,7 +3,7 @@ import {DOCUMENT} from '@angular/common';
 import {Platform} from '@angular/cdk/platform';
 import {AccountService} from './setup/account/account.service';
 import {StoreService} from './store/store.service';
-import {Account, BlockchainStatus} from '@signumjs/core';
+import {BlockchainStatus} from '@signumjs/core';
 import {parseDeeplink} from '@signumjs/util';
 import {NotifierService} from 'angular-notifier';
 import {NetworkService} from './network/network.service';
@@ -21,6 +21,7 @@ import {AppService} from './app.service';
 import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET} from '@angular/router';
+import { WalletAccount } from './util/WalletAccount';
 
 @Component({
   selector: 'app',
@@ -39,8 +40,8 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   previousLastBlock = '0';
   lastBlock = '0';
   isLoggedIn = false;
-  selectedAccount: Account;
-  accounts: Account[];
+  selectedAccount: WalletAccount;
+  accounts: WalletAccount[];
   BLOCKCHAIN_STATUS_INTERVAL = 30000;
   urlSerializer = new DefaultUrlSerializer();
   percentDownloaded: number;

@@ -1,6 +1,5 @@
 import {Router} from '@angular/router';
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Account} from '@signumjs/core';
 import {Amount, ChainTime} from '@signumjs/util';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {takeUntil} from 'rxjs/operators';
@@ -13,6 +12,7 @@ import {
 } from 'app/util/balance';
 import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
+import { WalletAccount } from "../../../../util/WalletAccount";
 
 @Component({
   selector: 'app-balance-chart',
@@ -21,7 +21,7 @@ import {I18nService} from 'app/layout/components/i18n/i18n.service';
 })
 export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnInit, OnChanges {
 
-  @Input() public account: Account;
+  @Input() public account: WalletAccount;
   @Input() public priceBtc: number;
   @Input() public priceUsd: number;
   @Input() public priceEur: number;

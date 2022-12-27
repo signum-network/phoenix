@@ -55,7 +55,7 @@ const mainRoutes: Routes = [
   },
   {
     path: 'request',
-    loadChildren: () => import('./request-burst/request-burst.module').then(r => r.RequestBurstModule)
+    loadChildren: () => import('./request-signa/request-signa.module').then(r => r.RequestSignaModule)
   },
   {
     path: 'settings',

@@ -470,5 +470,16 @@
   "burn": "Brandwond",
   "burn_address": "verbrand",
   "burn_recipient": "Branden gedetecteerd",
-  "burn_recipient_text": "Het verbranden van Signa of Tokens betekent een onomkeerbaar verlies van de verbrande waarde!"
+  "burn_recipient_text": "Het verbranden van Signa of Tokens betekent een onomkeerbaar verlies van de verbrande waarde!",
+  "accept": "Aanvaarden",
+  "accept_json_content": "Klik om de inhoud voor verzending te accepteren",
+  "avatar": "Avatar",
+  "custom": "Vrije tekst",
+  "enter_ipfs_hash": "Voer IPFS-hash in",
+  "enter_url": "URL invoeren",
+  "homepage": "Startpagina",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "SRC44-compatibel/compatibel",
+  "src44_info": "SRC44 is de standaard voor gestructureerde informatie in beschrijvingsvelden. Andere apps kunnen deze informatie ook visualiseren."
 }

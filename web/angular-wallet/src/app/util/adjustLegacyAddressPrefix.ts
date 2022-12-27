@@ -1,7 +1,8 @@
-import {AddressPrefix, Account} from '@signumjs/core';
+import {AddressPrefix} from '@signumjs/core';
+import { WalletAccount } from './WalletAccount';
 
 // TODO: this is just a bad quick-fix - remove in the future when Signum has been stabilized
-export function adjustLegacyAddressPrefix(account: Account, isMainNet = true): Account {
+export function adjustLegacyAddressPrefix(account: WalletAccount, isMainNet = true): WalletAccount {
   const OldPrefix = 'BURST';
   const NewPrefix = isMainNet ? AddressPrefix.MainNet : AddressPrefix.TestNet;
   if (account.accountRS.startsWith(OldPrefix)) {

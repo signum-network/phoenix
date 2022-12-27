@@ -470,5 +470,16 @@
   "burn": "Bruciare",
   "burn_address": "Bruciato 🔥",
   "burn_recipient": "Bruciore rilevato",
-  "burn_recipient_text": "Bruciare Signa o Token significa una perdita irreversibile del valore bruciato!"
+  "burn_recipient_text": "Bruciare Signa o Token significa una perdita irreversibile del valore bruciato!",
+  "accept": "Accettare",
+  "accept_json_content": "Fare clic per accettare il contenuto per l'invio",
+  "avatar": "Avatar",
+  "custom": "Testo libero",
+  "enter_ipfs_hash": "Immettere l'hash IPFS",
+  "enter_url": "Inserisci l'URL",
+  "homepage": "Pagina iniziale",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "Conforme/compatibile con SRC44",
+  "src44_info": "SRC44 è lo standard per le informazioni strutturate nei campi descrittivi. Anche altre app sono in grado di visualizzare queste informazioni."
 }

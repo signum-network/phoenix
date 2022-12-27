@@ -470,5 +470,16 @@
   "burn": "Spaliti",
   "burn_address": "Spaljeno 🔥",
   "burn_recipient": "Otkriveno spaljivanje",
-  "burn_recipient_text": "Spaljivanje Signa ili Tokena znači nepovratan gubitak spaljene vrijednosti!"
+  "burn_recipient_text": "Spaljivanje Signa ili Tokena znači nepovratan gubitak spaljene vrijednosti!",
+  "accept": "Prihvatiti",
+  "accept_json_content": "Kliknite za prihvaćanje sadržaja za slanje",
+  "avatar": "Avatar",
+  "custom": "Slobodan tekst",
+  "enter_ipfs_hash": "Unesite IPFS hash",
+  "enter_url": "Unesite URL",
+  "homepage": "Početna stranica",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "SRC44 sukladan/kompatibilan",
+  "src44_info": "SRC44 je standard za strukturirane informacije u poljima opisa. Druge aplikacije također mogu vizualizirati ove informacije."
 }

@@ -21,26 +21,55 @@ h2 mat-icon {
   font-size: 19px;
 }
 
-.hashicon {
+.avatar {
+  position: relative;
   padding: 20px;
   width: 140px;
   height: 140px;
   filter: drop-shadow(2px 4px 6px black);
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
+
 
 .account-details {
   display: flex;
+  flex-direction: row;
+  position: relative;
+  background: white;
+  border-radius: 4px;
+  padding: 2rem;
+  align-items: center;
 
-  h2 {
-    margin-top: 20px;
-  }
+  .description {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    margin: 0 2rem;
 
-  h3 button {
-    padding: 0;
-    min-width: 35px;
-  }
+    .details {
+      display: flex;
+      flex-direction: column;
+    }
 
-  h3 mat-icon {
-    font-size: 19px;
+    .src44 {
+      display: flex;
+      flex-direction: column;
+
+      .homepage {
+        display: inline-flex;
+        align-items: center;
+      }
+    }
+
+    h2, h3 {
+      margin: 0;
+    }
   }
 }

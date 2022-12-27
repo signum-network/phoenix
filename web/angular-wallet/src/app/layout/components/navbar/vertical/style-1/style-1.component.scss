@@ -179,7 +179,13 @@ navbar {
 
         .avatar-container {
           cursor: pointer;
+          position: relative;
           filter: drop-shadow(0 0 4px black);
+          margin-top: 1rem;
+
+          img {
+            height: 100px;
+          }
 
           canvas {
             display: block;

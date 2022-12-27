@@ -4,10 +4,20 @@
       <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>
       <p class="pb-8">{{account.accountRS}}</p>
     </div>
+    <div class="w-120" fxLayout="row" fxLayoutAlign="center center" >
+      <mat-icon *ngIf="formatType.value === 'src44'" class="mr-8 font-size-18 grey-500-fg ml-2" matTooltip="{{ 'src44_info' | i18n }}">info</mat-icon>
+      <mat-form-field>
+        <mat-select [formControl]="formatType"
+                    placeholder="{{'type' | i18n}}"
+        >
+          <mat-option *ngFor="let type of formatTypeOptions" value="{{type}}">{{type | i18n}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
 
-  <div class="p-24">
-    <form (ngSubmit)="onSubmit($event);" #setAccountInfoForm="ngForm">
+  <div class="p-20 pt-8">
+    <form (ngSubmit)="onSubmit($event)">
       <mat-form-field>
         <input matInput
                name="name"
@@ -17,16 +27,22 @@
         >
       </mat-form-field>
 
-      <mat-form-field>
-        <textarea matInput
-                  cdkTextareaAutosize
-                  name="description"
-                  placeholder="{{ 'description' | i18n }}"
-                  [(ngModel)]="description"
-                  [disabled]="immutable"
-        >
-        </textarea>
-      </mat-form-field>
+      <ng-container *ngIf="formatType.value === 'src44'">
+        <app-src44-description-form
+          [name]="name"
+          [(description)]="description.src44"
+          [disabled]="immutable"
+        ></app-src44-description-form>
+      </ng-container>
+      <ng-container *ngIf="formatType.value === 'json'">
+        <app-json-description-form [(description)]="description.json"
+                                   [disabled]="immutable"></app-json-description-form>
+      </ng-container>
+      <ng-container *ngIf="formatType.value === 'custom'">
+        <app-custom-description-form [(description)]="description.custom"
+                                     [disabled]="immutable"
+        ></app-custom-description-form>
+      </ng-container>
 
       <ng-container *ngIf="!immutable">
 
@@ -40,6 +56,7 @@
         <app-submit-transaction [disabled]="!canSubmit()"
                                 [isSubmitting]="isSending"
                                 (pinChange)="setPin($event)"></app-submit-transaction>
+        <span *ngIf="isTooLong()" class="error-text">{{ 'message_too_long' | i18n }}</span>
       </ng-container>
     </form>
 

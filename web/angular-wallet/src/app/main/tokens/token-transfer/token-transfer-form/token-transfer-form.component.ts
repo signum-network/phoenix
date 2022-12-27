@@ -1,11 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import {
-  Account,
   SuggestedFees,
   TransactionAssetSubtype,
   TransactionType
 } from '@signumjs/core';
-import { QRData, Recipient, RecipientValidationStatus } from 'app/components/recipient-input/recipient-input.component';
+import { Recipient, RecipientValidationStatus } from 'app/components/recipient-input/recipient-input.component';
 import { AccountBalances, getBalancesFromAccount } from 'app/util/balance';
 import { NgForm } from '@angular/forms';
 import { Amount } from '@signumjs/util';
@@ -17,7 +16,8 @@ import { NotifierService } from 'angular-notifier';
 import { ExceptionHandlerService } from '../../../../shared/services/exceptionhandler.service';
 import { Router } from '@angular/router';
 import { TokenData, TokenService } from '../../../../shared/services/token.service';
-import { constants } from "../../../../constants";
+import { constants } from '../../../../constants';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
   selector: 'app-token-transfer-form',
@@ -26,7 +26,7 @@ import { constants } from "../../../../constants";
 })
 export class TokenTransferFormComponent implements OnInit {
   @ViewChild('transferForm', { static: true }) public transferForm: NgForm;
-  @Input() account: Account;
+  @Input() account: WalletAccount;
   @Input() fees: SuggestedFees;
   @Input() token: TokenData;
 

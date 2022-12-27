@@ -470,5 +470,16 @@
   "burn": "Queimar",
   "burn_address": "Queimada 🔥",
   "burn_recipient": "Queimada detectada",
-  "burn_recipient_text": "Queimar Signa ou Tokens significa unha perda irreversible do valor queimado!"
+  "burn_recipient_text": "Queimar Signa ou Tokens significa unha perda irreversible do valor queimado!",
+  "accept": "Aceptar",
+  "accept_json_content": "Fai clic para aceptar o contido para enviar",
+  "avatar": "Avatar",
+  "custom": "Texto libre",
+  "enter_ipfs_hash": "Introduza IPFS Hash",
+  "enter_url": "Introduza o URL",
+  "homepage": "Páxina de inicio",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "SRC44 compatible/compatible",
+  "src44_info": "SRC44 é o estándar para a información estruturada nos campos de descrición. Outras aplicacións tamén son capaces de visualizar esta información."
 }

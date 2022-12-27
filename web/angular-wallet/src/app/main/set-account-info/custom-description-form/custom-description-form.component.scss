@@ -1,0 +1,28 @@
+@import "src/@fuse/scss/fuse";
+
+:host {
+
+  mat-form-field {
+    width: 100%;
+    display: block;
+  }
+
+  form {
+    margin: 20px 0;
+  }
+
+  .error {
+    color: red;
+    font-weight: bold;
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+  .message-container {
+    border: 1px solid lightgray;
+    padding: 4px;
+  }
+}
+

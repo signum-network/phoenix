@@ -85,15 +85,6 @@ export const constants = {
       testnet: false
     },
     {
-      name: 'Signum Node UK',
-      region: 'Europe',
-      location: 'UK',
-      address: 'https://uk.signum.network',
-      port: 8125,
-      reliable: true,
-      testnet: false
-    },
-    {
       name: 'Signum Node Brazil',
       region: 'South America',
       location: 'Brazil',
@@ -198,6 +189,7 @@ export const constants = {
     main: 'https://chain.signum.network',
     test: 'https://t-chain.signum.network',
   },
+  ipfsGateway: 'https://ipfs.io/ipfs',
   transactionCount: '100',
   multiOutMinVersion: '2.3.1',
   pocPlusVersion: '3.0.0',

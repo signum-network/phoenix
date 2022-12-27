@@ -470,5 +470,16 @@
   "burn": "燃えた",
   "burn_address": "やけどした🔥",
   "burn_recipient": "燃焼が検出されました",
-  "burn_recipient_text": "シグナまたはトークンを燃やすことは、燃やした価値の不可逆的な損失を意味します!"
+  "burn_recipient_text": "シグナまたはトークンを燃やすことは、燃やした価値の不可逆的な損失を意味します!",
+  "accept": "承認",
+  "accept_json_content": "クリックして送信内容に同意します",
+  "avatar": "アバター",
+  "custom": "フリーテキスト",
+  "enter_ipfs_hash": "IPFS ハッシュを入力してください",
+  "enter_url": "URLを入力",
+  "homepage": "ホームページ",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "SRC44準拠/互換",
+  "src44_info": "SRC44 は、説明フィールドの構造化情報の標準です。他のアプリもこの情報を視覚化できます。"
 }

@@ -1,9 +1,10 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewChild } from "@angular/core";
 import {MatTableDataSource} from '@angular/material/table';
 import {StoreService} from '../../../store/store.service';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import { TokenData } from '../../../shared/services/token.service';
+import { MatPaginator } from "@angular/material/paginator";
 
 const DummyTokenData: TokenData = {
   id: '',
@@ -26,6 +27,7 @@ export class TokensTableComponent extends UnsubscribeOnDestroy implements OnInit
   @Input() public showActions = true;
   @Input() public isLoading = true;
   @Input() public displayedColumns = ['token', 'balance', 'lastPrice', 'supply', 'actions'];
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   public dataSource = new MatTableDataSource<TokenData>();
   public locale: string;
@@ -41,10 +43,11 @@ export class TokensTableComponent extends UnsubscribeOnDestroy implements OnInit
         this.locale = language;
       });
 
-
     this.update();
   }
-
+  public ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
   private update(): void {
     this.dataSource.data = this.isLoading ? [DummyTokenData, DummyTokenData, DummyTokenData] : this.tokens;
     if (!this.showActions) {

@@ -470,5 +470,16 @@
   "burn": "Yakmak",
   "burn_address": "yanmış 🔥",
   "burn_recipient": "Yanma Algılandı",
-  "burn_recipient_text": "Burning Signa veya Jetonlar, yakılan değerin geri döndürülemez bir şekilde kaybolması anlamına gelir!"
+  "burn_recipient_text": "Burning Signa veya Jetonlar, yakılan değerin geri döndürülemez bir şekilde kaybolması anlamına gelir!",
+  "accept": "Kabul",
+  "accept_json_content": "Gönderilecek içeriği kabul etmek için tıklayın",
+  "avatar": "avatarı",
+  "custom": "Ücretsiz Metin",
+  "enter_ipfs_hash": "IPFS Karmasını Girin",
+  "enter_url": "URL girin",
+  "homepage": "Ana Sayfa",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "SRC44 uyumlu/uyumlu",
+  "src44_info": "SRC44, açıklama alanlarındaki yapılandırılmış bilgiler için standarttır. Diğer Uygulamalar da bu bilgiyi görselleştirebilir."
 }

@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {AccountResolver} from 'app/setup/account/account.resolver';
-import {RequestBurstComponent} from './request-burst.component';
+import {RequestSignaComponent} from './request-signa.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -26,7 +26,7 @@ import { RequestQrCodeComponent } from './request-qr-code/request-qr-code.compon
 const routes = [
   {
     path: '',
-    component: RequestBurstComponent,
+    component: RequestSignaComponent,
     resolve: {
       account: AccountResolver,
       suggestedFees: SuggestFeeResolver
@@ -36,7 +36,7 @@ const routes = [
 
 @NgModule({
   declarations: [
-    RequestBurstComponent, RequestQrCodeComponent,
+    RequestSignaComponent, RequestQrCodeComponent,
   ],
   imports: [
     AppSharedModule,
@@ -61,5 +61,5 @@ const routes = [
   ],
   exports: []
 })
-export class RequestBurstModule {
+export class RequestSignaModule {
 }

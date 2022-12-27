@@ -470,5 +470,16 @@
   "burn": "Cremar",
   "burn_address": "Cremat 🔥",
   "burn_recipient": "S'ha detectat crema",
-  "burn_recipient_text": "La crema de senyals o fitxes significa una pèrdua irreversible del valor cremat!"
+  "burn_recipient_text": "La crema de senyals o fitxes significa una pèrdua irreversible del valor cremat!",
+  "accept": "Acceptar",
+  "accept_json_content": "Feu clic per acceptar el contingut per enviar-lo",
+  "avatar": "Avatar",
+  "custom": "Text lliure",
+  "enter_ipfs_hash": "Introduïu IPFS Hash",
+  "enter_url": "Introduïu l'URL",
+  "homepage": "Pàgina d'inici",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "Compatible/compatible amb SRC44",
+  "src44_info": "SRC44 és l'estàndard per a la informació estructurada en camps de descripció. Altres aplicacions també són capaços de visualitzar aquesta informació."
 }

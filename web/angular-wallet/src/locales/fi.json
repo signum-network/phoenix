@@ -470,5 +470,16 @@
   "burn": "Polttaa",
   "burn_address": "Poltettu 🔥",
   "burn_recipient": "Palaminen havaittu",
-  "burn_recipient_text": "Signan tai Tokenien polttaminen tarkoittaa palaneen arvon peruuttamatonta menetystä!"
+  "burn_recipient_text": "Signan tai Tokenien polttaminen tarkoittaa palaneen arvon peruuttamatonta menetystä!",
+  "accept": "Hyväksyä",
+  "accept_json_content": "Napsauta hyväksyäksesi sisällön lähetettäväksi",
+  "avatar": "hahmo",
+  "custom": "Ilmainen teksti",
+  "enter_ipfs_hash": "Anna IPFS Hash",
+  "enter_url": "Syötä URL",
+  "homepage": "Kotisivu",
+  "json": "JSON",
+  "src44": "SRC44",
+  "src44_compliant": "SRC44-yhteensopiva/yhteensopiva",
+  "src44_info": "SRC44 on kuvauskenttien strukturoidun tiedon standardi. Muut sovellukset pystyvät myös visualisoimaan nämä tiedot."
 }

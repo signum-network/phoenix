@@ -8,7 +8,7 @@ import {FuseNavigationService} from '@fuse/components/navigation/navigation.serv
 import {AccountService} from 'app/setup/account/account.service';
 import {MediaObserver} from '@angular/flex-layout';
 import {I18nService} from '../../../app/layout/components/i18n/i18n.service';
-import {Account} from '@signumjs/core';
+import { WalletAccount } from '../../../app/util/WalletAccount';
 
 @Component({
   selector: 'fuse-shortcuts',
@@ -21,7 +21,7 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy {
   filteredNavigationItems: any[];
   searching: boolean;
   mobileShortcutsPanelActive: boolean;
-  currentAccount: Account;
+  currentAccount: WalletAccount;
 
   @Input()
   navigation: any;
@@ -73,7 +73,7 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy {
       });
   }
 
-  private setAccount(): (value: Account) => void {
+  private setAccount(): (value: WalletAccount) => void {
     return (account) => {
       this.currentAccount = account;
       this.updateShortcuts();

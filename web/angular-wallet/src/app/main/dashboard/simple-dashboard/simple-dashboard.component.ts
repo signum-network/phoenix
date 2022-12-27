@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatGridList} from '@angular/material/grid-list';
-import {Account, Transaction} from '@signumjs/core';
+import {Transaction} from '@signumjs/core';
 import {Settings} from '../../../settings';
 import {MatTableDataSource} from '@angular/material/table';
 import {takeUntil} from 'rxjs/operators';
@@ -15,6 +15,7 @@ import {
 } from './SimpleDashboardLayoutConfiguration';
 import { MarketInfoCoingecko } from '../widgets/market/services/coingecko/types';
 import { MarketServiceCoinGecko } from '../widgets/market/services/coingecko/coingecko.market.service';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 const LayoutConfiguration = new SimpleDashboardLayoutConfiguration();
 
@@ -27,7 +28,7 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
 
   @ViewChild('gridList', {static: true}) gridList: MatGridList;
   widgets: any;
-  account: Account;
+  account: WalletAccount;
   priceBtc: number;
   priceUsd: number;
   priceEur: number;
@@ -55,7 +56,7 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
 
     this.accountService.currentAccount$
       .pipe(this.unsubscribe)
-      .subscribe((account: Account) => {
+      .subscribe((account: WalletAccount) => {
           this.account = account;
         }
       );

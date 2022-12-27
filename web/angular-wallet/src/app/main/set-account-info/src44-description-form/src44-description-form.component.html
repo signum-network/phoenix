@@ -1,0 +1,65 @@
+<div class="fullwidth position-relative pt-8" fxFlex="1 0 auto" fxLayout="column" fxLayoutAlign="start"
+     [formGroup]="form">
+
+  <mat-radio-group
+    class="mb-12"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    formControlName="type"
+    [disabled]="disabled"
+  >
+    <mat-radio-button *ngFor="let type of accountTypeOptions" class="ml-8"
+                      value="{{type}}">{{type.toUpperCase()}}</mat-radio-button>
+  </mat-radio-group>
+
+  <mat-form-field>
+    <mat-label>{{ 'description' | i18n }}</mat-label>
+    <textarea matInput
+              cdkTextareaAutosize
+              maxlength="380"
+              placeholder="{{ 'description' | i18n }}"
+              formControlName="desc"
+              [disabled]="disabled"
+    >
+    </textarea>
+  </mat-form-field>
+
+  <div class="avatar-section">
+    <mat-form-field>
+      <mat-label>{{ 'avatar' | i18n }}</mat-label>
+      <input matInput
+             placeholder="{{ 'enter_ipfs_hash' | i18n }}"
+             formControlName="avatar"
+             [disabled]="disabled"
+      >
+    </mat-form-field>
+    <div class="avatar-type">
+      <img [src]="avatarImgSource" (load)="onImageLoaded()"  (error)="onImageError()" class="h-64 w-64 p-4" alt="avatar-image">
+      <div *ngIf="isLoadingImage" class="loader"></div>
+    </div>
+  </div>
+
+  <mat-form-field>
+    <mat-label>{{ 'homepage' | i18n }}</mat-label>
+    <input matInput
+           minlength="3"
+           maxlength="128"
+           placeholder="{{ 'enter_url' | i18n }}"
+           formControlName="homepage"
+           [disabled]="disabled"
+    >
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'alias' | i18n }}</mat-label>
+    <input matInput
+           minlength="3"
+           maxlength="100"
+           placeholder="{{ 'alias' | i18n }}"
+           formControlName="alias"
+           [disabled]="disabled"
+    >
+  </mat-form-field>
+
+  <span *ngIf="src44ErrorMsg" class="error-text">{{src44ErrorMsg}}</span>
+</div>

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.0 (TBD)
+
+### Feature
+- Account Descriptions SRC44 compliant now
+
+### Bug Fixes
+
+
 ## 1.4.2
 
 ### Feature

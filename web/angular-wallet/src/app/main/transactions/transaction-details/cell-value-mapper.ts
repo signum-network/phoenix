@@ -7,6 +7,7 @@ import {
 } from '@signumjs/core';
 import {UtilService} from '../../../util.service';
 import {Amount, ChainTime, convertHexStringToString} from '@signumjs/util';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 
 export enum CellValueType {
@@ -38,7 +39,7 @@ export class CellValueMapper {
 
   constructor(
     private transaction: Transaction,
-    private account: Account,
+    private account: WalletAccount,
     private utilService: UtilService,
   ) {
     this.initializeMap();

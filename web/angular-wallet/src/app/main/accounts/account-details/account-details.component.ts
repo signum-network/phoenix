@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AttachmentEncryptedMessage, AttachmentMessage, Account, Transaction} from '@signumjs/core';
+import {AttachmentEncryptedMessage, AttachmentMessage, Transaction} from '@signumjs/core';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {AccountService} from 'app/setup/account/account.service';
@@ -10,7 +10,10 @@ import {MediaChange, MediaObserver} from '@angular/flex-layout';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {FuseProgressBarService} from '../../../../@fuse/components/progress-bar/progress-bar.service';
-import { TokenData, TokenService } from "../../../shared/services/token.service";
+import { TokenData, TokenService } from '../../../shared/services/token.service';
+import { WalletAccount } from 'app/util/WalletAccount';
+import { DescriptorData } from '@signumjs/standards';
+import { NetworkService } from "../../../network/network.service";
 
 type TransactionDetailsCellValue = string | AttachmentMessage | AttachmentEncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
@@ -32,7 +35,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
   @ViewChild('avatar', {static: false}) avatar: ElementRef<HTMLCanvasElement>;
 
   detailsData: Map<string, TransactionDetailsCellValue>;
-  account: Account;
+  account: WalletAccount;
   transactions: Transaction[] = [];
   dataSource: MatTableDataSource<Transaction>;
   accountQRCodeURL: Promise<string>;
@@ -41,10 +44,15 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
   columns: string[] = [];
   tokens: TokenData[] = [];
   isLoadingTokens = true;
+  avatarImgSrc: string;
+  bgImgSrc: string;
+
+  src44: DescriptorData;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private accountService: AccountService,
+              private networkService: NetworkService,
               private tokenService: TokenService,
               private observableMedia: MediaObserver,
               private storeService: StoreService,
@@ -81,14 +89,13 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
   }
 
   async initialize(): Promise<void> {
-    this.account = this.route.snapshot.data.account as Account;
-    this.transactions = this.route.snapshot.data.transactions as Transaction[];
+    this.account = this.route.snapshot.data.account;
+    this.transactions = this.route.snapshot.data.transactions;
     const blockDetails = Object.keys(this.account).map((key: string): TransactionDetailsCellValueMap => [key, this.account[key]]);
     this.detailsData = new Map(blockDetails);
     this.dataSource = new MatTableDataSource<Transaction>();
     this.dataSource.data = this.transactions;
     this.language = this.storeService.settings.value.language;
-
     setTimeout(() => {
       this.updateAvatar();
     }, 100);
@@ -111,7 +118,16 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
   }
 
   private updateAvatar(): void {
-    if (this.avatar) {
+
+    try{
+      this.src44 = DescriptorData.parse(this.account.description, false);
+      this.avatarImgSrc = this.src44.avatar ? this.networkService.getIpfsCidUrl(this.src44.avatar.ipfsCid) : ''
+    }catch (e){
+      // ignore
+      this.src44 = null;
+    }
+
+    if (!this.avatarImgSrc && this.avatar) {
       hashicon(this.account.account, {
         size: 100,
         createCanvas: () => this.avatar.nativeElement

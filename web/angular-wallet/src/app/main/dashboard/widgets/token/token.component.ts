@@ -1,15 +1,13 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Account } from '@signumjs/core';
 import { TokenService } from '../../../../shared/services/token.service';
-import { getBalancesFromAccount } from '../../../../util/balance';
 import { MarketInfoCoingecko } from '../market/services/coingecko/types';
 import { MarketServiceCoinGecko } from '../market/services/coingecko/coingecko.market.service';
 import { UnsubscribeOnDestroy } from '../../../../util/UnsubscribeOnDestroy';
 import { takeUntil } from 'rxjs/operators';
 import { Amount } from '@signumjs/util';
-import { formatAmount } from '../../../../util/formatAmount';
 import { formatCurrency } from '@angular/common';
 import { StoreService } from '../../../../store/store.service';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
   selector: 'app-token-overview',
@@ -18,7 +16,7 @@ import { StoreService } from '../../../../store/store.service';
 })
 export class TokenComponent extends UnsubscribeOnDestroy implements OnInit, OnChanges {
 
-  @Input() account: Account;
+  @Input() account: WalletAccount;
 
   isLoading = true;
   hasTokens = true;

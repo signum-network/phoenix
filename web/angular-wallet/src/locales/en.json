@@ -470,5 +470,16 @@
   "last_forged_block": "Last Forged Block",
   "reward_income_info": "This is the sum of the block rewards you forged with this account as if you were a solo miner and does not necessarily reflects your effective mining income. ",
   "no_block_forged": "No block forged yet",
-  "set_reward_recipient_on": "Joined on"
+  "set_reward_recipient_on": "Joined on",
+  "src44": "SRC44",
+  "src44_compliant": "SRC44 compliant/compatible",
+  "json": "JSON",
+  "custom": "Free Text",
+  "enter_ipfs_hash": "Enter IPFS Hash",
+  "homepage": "Home Page",
+  "enter_url": "Enter URL",
+  "avatar": "Avatar",
+  "accept": "Accept",
+  "accept_json_content": "Click to accept the content for submitting",
+  "src44_info": "SRC44 is the standard for structured information in description fields. Other Apps are capable to visualize this information also."
 }

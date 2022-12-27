@@ -10,7 +10,7 @@ Windows, MacOS and Linux.
 
 > Note that deep linking does not work with standalone executables like AppImage, or not installable .exe, as only with the installation process the custom protocol gets registered.
 
-In the [CIP22 spec](https://github.com/signum-network/CIPs/blob/master/cip-0022.md) it is generally defined how deep
+In the [SIP22 spec](https://github.com/signum-network/SIPs/blob/master/sip-0022.md) it is generally defined how deep
 links _should_ be formatted inside the ecosystem. The Phoenix wallet follows this spec and though allows you to open
 specific pages for different tasks. In this document the format and parameters for the supported tasks are described
 
@@ -21,7 +21,7 @@ The generally supported link format is `burst://v1?action=<name>&payload=<b64-en
 
 ## Creating Deep Links
 
-The easiest way is to use the [utility package from burstjs](https://www.npmjs.com/package/@signumjs/util), as it provides
+The easiest way is to use the [utility package from signumjs](https://www.npmjs.com/package/@signumjs/util), as it provides
 convenience functions for the deep link creation: `createDeeplink`
 
 To create a deep link for [sending amount](#send-amount-to-single-recipient) the relatedcode snippet looks like this:

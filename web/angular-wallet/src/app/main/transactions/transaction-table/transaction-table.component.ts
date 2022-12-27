@@ -8,7 +8,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   Transaction,
-  Account,
   isMultiOutSameTransaction,
   isMultiOutTransaction,
   getRecipientsAmount,
@@ -21,6 +20,7 @@ import { takeUntil } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from '../../../util/UnsubscribeOnDestroy';
 import { StoreService } from '../../../store/store.service';
 import { formatDate } from '@angular/common';
+import { WalletAccount } from '../../../util/WalletAccount';
 
 
 @Component({
@@ -32,7 +32,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   @Input() dataSource: MatTableDataSource<Transaction>;
   @Input() displayedColumns = ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
-  @Input() account: Account;
+  @Input() account: WalletAccount;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   public locale: string;
 

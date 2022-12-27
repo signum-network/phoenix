@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-import {Account, Transaction} from '@signumjs/core';
-import {takeUntil} from 'rxjs/operators';
-import {UnsubscribeOnDestroy} from '../../../../util/UnsubscribeOnDestroy';
-import {AccountService} from '../../../../setup/account/account.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { Transaction } from '@signumjs/core';
+import { takeUntil } from 'rxjs/operators';
+import { UnsubscribeOnDestroy } from '../../../../util/UnsubscribeOnDestroy';
+import { AccountService } from '../../../../setup/account/account.service';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
   selector: 'app-transactions-table-widget',
@@ -15,12 +16,12 @@ export class TransactionsTableComponent extends UnsubscribeOnDestroy implements 
   @Input() displayedColumns: string[] = undefined;
 
   transactionsDataSource = new MatTableDataSource<Transaction>();
-  account: Account;
+  account: WalletAccount;
 
   private unsubscribe = takeUntil(this.unsubscribeAll);
 
   constructor(
-    private accountService: AccountService,
+    private accountService: AccountService
   ) {
     super();
   }
@@ -29,7 +30,7 @@ export class TransactionsTableComponent extends UnsubscribeOnDestroy implements 
 
     this.accountService.currentAccount$
       .pipe(this.unsubscribe)
-      .subscribe((account: Account) => {
+      .subscribe((account: WalletAccount) => {
           this.account = account;
           this.transactionsDataSource.data = account.transactions.slice(0, 10);
         }

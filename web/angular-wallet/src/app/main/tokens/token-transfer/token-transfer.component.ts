@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Account, SuggestedFees } from '@signumjs/core';
+import { SuggestedFees } from '@signumjs/core';
 import { ActivatedRoute } from '@angular/router';
 import { StoreService } from '../../../store/store.service';
 import { takeUntil } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from '../../../util/UnsubscribeOnDestroy';
 import { getBalancesFromAccount } from '../../../util/balance';
 import { TokenData } from '../../../shared/services/token.service';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
   selector: 'app-token-transfer',
@@ -14,7 +15,7 @@ import { TokenData } from '../../../shared/services/token.service';
 })
 export class TokenTransferComponent extends UnsubscribeOnDestroy implements OnInit {
 
-  account: Account;
+  account: WalletAccount;
   fees: SuggestedFees;
   token: TokenData;
   locale: string;
@@ -27,9 +28,9 @@ export class TokenTransferComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   ngOnInit(): void {
-    this.account = this.route.snapshot.data.account as Account;
-    this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
-    this.token = this.route.snapshot.data.token as TokenData;
+    this.account = this.route.snapshot.data.account;
+    this.fees = this.route.snapshot.data.suggestedFees;
+    this.token = this.route.snapshot.data.token;
 
     this.storeService.settings
       .pipe(takeUntil(this.unsubscribeAll))

@@ -1,0 +1,68 @@
+@import "src/@fuse/scss/fuse";
+
+:host {
+
+  mat-form-field {
+    width: 100%;
+    display: block;
+  }
+
+  form {
+    margin: 20px 0;
+  }
+
+  .error {
+    color: red;
+    font-weight: bold;
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+  .message-container {
+    border: 1px solid lightgray;
+    padding: 4px;
+  }
+
+  .custom-menu {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+
+
+    small {
+      margin-right: 1rem;
+      font-size: 12px;
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+
+    .badge {
+      background: #00FF88;
+    }
+
+    .btn {
+      display: flex;
+      flex-direction: row;
+      justify-items: center;
+      align-items: center;
+      background: white;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 2px;
+
+      &:hover {
+        filter: brightness(75%);
+        transition: all 125ms ease-in-out;
+      }
+    }
+
+    .btn.disabled {
+      background: #b3b3b3;
+      cursor: not-allowed;
+      color: #494949;
+    }
+  }
+}
+

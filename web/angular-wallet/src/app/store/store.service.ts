@@ -3,9 +3,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as Loki from 'lokijs';
 import { StoreConfig } from './store.config';
 import { Settings } from 'app/settings';
-import { Account } from '@signumjs/core';
 import { adjustLegacyAddressPrefix } from '../util/adjustLegacyAddressPrefix';
-
+import { WalletAccount } from '../util/WalletAccount';
 const CollectionName = {
   Account: 'accounts',
   Settings: 'settings',
@@ -56,7 +55,6 @@ export class StoreService {
     this.setVersionMigrated(Version);
   }
 
-
   /*
   * Called on db start
   */
@@ -93,7 +91,7 @@ export class StoreService {
     this.settings.next(state);
   }
 
-  public saveAccount(account: Account): Promise<Account> {
+  public saveAccount(account: WalletAccount): Promise<WalletAccount> {
 
     account = adjustLegacyAddressPrefix(account);
 
@@ -137,7 +135,7 @@ export class StoreService {
   /*
   * Method reponsible for getting the selected account from the database.
   */
-  public getSelectedAccount(): Promise<Account> {
+  public getSelectedAccount(): Promise<WalletAccount> {
     return new Promise((resolve, reject) => {
       if (this.ready.value) {
 
@@ -145,7 +143,7 @@ export class StoreService {
           const accounts = this.store.getCollection(CollectionName.Account);
           let rs = accounts.find({ selected: true });
           if (rs.length > 0) {
-            const account = new Account(rs[0]);
+            const account = new WalletAccount(rs[0]);
             resolve(adjustLegacyAddressPrefix(account));
           } else {
             rs = accounts.find();
@@ -153,7 +151,7 @@ export class StoreService {
               accounts.chain().find({ account: rs[0].account }).update(a => {
                 a.selected = true;
               });
-              const storedAccount = new Account(rs[0]);
+              const storedAccount = new WalletAccount(rs[0]);
               this.store.saveDatabase();
               resolve(adjustLegacyAddressPrefix(storedAccount));
             } else {
@@ -187,7 +185,7 @@ export class StoreService {
   /*
   * Method reponsible for selecting a new Account.
   */
-  public selectAccount(account: Account): Promise<Account> {
+  public selectAccount(account: WalletAccount): Promise<WalletAccount> {
     return new Promise((resolve, reject) => {
       if (this.ready.value) {
         this.store.loadDatabase({}, () => {
@@ -208,7 +206,7 @@ export class StoreService {
     });
   }
 
-  public getAllAccounts(): Promise<Account[]> {
+  public getAllAccounts(): Promise<WalletAccount[]> {
     return new Promise((resolve, reject) => {
       if (this.ready.value) {
         const accounts = this.store.getCollection(CollectionName.Account);
@@ -216,7 +214,7 @@ export class StoreService {
         const ws = [];
         rs.map(storedAccount => {
           try {
-            const account = adjustLegacyAddressPrefix(new Account(storedAccount));
+            const account = adjustLegacyAddressPrefix(new WalletAccount(storedAccount));
             ws.push(account);
           } catch (e) {
             console.warn('Error in getAllAccounts:', e, { storedAccount });
@@ -229,13 +227,13 @@ export class StoreService {
     });
   }
 
-  public findAccount(accountId: string): Promise<Account> {
+  public findAccount(accountId: string): Promise<WalletAccount> {
     return new Promise((resolve, reject) => {
       if (this.ready.value) {
         const accounts = this.store.getCollection(CollectionName.Account);
         const rs = accounts.find({ account: accountId });
         if (accountId && rs.length > 0) {
-          const storedAccount = new Account(rs[0]);
+          const storedAccount = new WalletAccount(rs[0]);
           resolve(adjustLegacyAddressPrefix(storedAccount));
         } else {
           resolve(undefined);
@@ -246,7 +244,7 @@ export class StoreService {
     });
   }
 
-  public removeAccount(account: Account): Promise<boolean> {
+  public removeAccount(account: WalletAccount): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (this.ready.value) {
         this.store.loadDatabase({}, () => {
