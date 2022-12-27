@@ -1,10 +1,11 @@
-import { Component, Input, OnChanges, OnInit, ViewChild } from "@angular/core";
+import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {StoreService} from '../../../store/store.service';
 import {UnsubscribeOnDestroy} from '../../../util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import { TokenData } from '../../../shared/services/token.service';
-import { MatPaginator } from "@angular/material/paginator";
+import { MatPaginator } from '@angular/material/paginator';
+import { AppService } from '../../../app.service';
 
 const DummyTokenData: TokenData = {
   id: '',
@@ -32,7 +33,7 @@ export class TokensTableComponent extends UnsubscribeOnDestroy implements OnInit
   public dataSource = new MatTableDataSource<TokenData>();
   public locale: string;
 
-  constructor(private storeService: StoreService) {
+  constructor(private storeService: StoreService, private appService: AppService) {
     super();
   }
 
@@ -71,5 +72,14 @@ export class TokensTableComponent extends UnsubscribeOnDestroy implements OnInit
 
   getShare(token: TokenData): number {
     return token.balance / token.supply;
+  }
+
+  openSignumSwap(id: string): void {
+    const url = `https://www.signumswap.com/tokens/${id}`;
+    if (!this.appService.isDesktop()) {
+      window.open(url, 'blank');
+    } else {
+      this.appService.openInBrowser(url);
+    }
   }
 }

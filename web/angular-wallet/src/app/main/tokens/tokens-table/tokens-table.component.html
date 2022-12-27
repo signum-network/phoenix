@@ -1,6 +1,10 @@
 <div class="wrapper">
   <small class="btdex-hint">
     {{'trade_tokens_with'| i18n}}&nbsp;
+    <a href="https://signumswap.com" target="_blank" rel="noopener noreferrer">
+      <img class='mr-4' src="assets/images/logos/icon_signumswap.svg" [width]="16" alt="SignumSwap Logo">SignumSwap
+    </a>
+    &nbsp;{{'or'| i18n}}&nbsp;
     <a href="https://btdex.trade" target="_blank" rel="noopener noreferrer">
       <img src="assets/images/logos/btdex-logo.png" [width]="16" alt="BTDEX Logo">BTDEX
     </a>
@@ -86,6 +90,9 @@
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let token">
         <ng-container *ngIf="!isLoading">
+          <a href="" (click)="openSignumSwap(token.id)">
+            <mat-icon class="actions-icon" matTooltip="{{'asset_trade' | i18n}}">trending_up</mat-icon>
+          </a>
           <a [routerLink]="['/tokens/transfer', token.id]">
             <mat-icon class="actions-icon" matTooltip="{{'asset_transfer' | i18n}}">vertical_align_top</mat-icon>
           </a>
