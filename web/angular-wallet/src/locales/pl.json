@@ -340,7 +340,7 @@
   "success_alias_register": "Alias został pomyślnie zarejestrowany.",
   "success_clipboard_copy": "Skopiowano do schowka pomyślnie.",
   "success_send_money": "Signa została wysłana.",
-  "success_set_account_info": "Informacje o Twoim koncie zostały pomyślnie zapisane.",
+  "success_set_account_info": "Aktualizacja informacji o Twoim koncie została pomyślnie przesłana.",
   "success_set_reward_recipient": "Pomyślnie dołączyłeś do puli!",
   "suggested_fee": "Sugerowane opłaty",
   "tabulator": "Tabulator",

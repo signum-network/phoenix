@@ -340,7 +340,7 @@
   "success_alias_register": "Alias registrado correctamente.",
   "success_clipboard_copy": "Copiado al portapapeles con éxito.",
   "success_send_money": "Se ha enviado Signa.",
-  "success_set_account_info": "La información de su cuenta se ha guardado correctamente.",
+  "success_set_account_info": "La actualización de la información de su cuenta se ha enviado correctamente.",
   "success_set_reward_recipient": "¡Te uniste a la pool con éxito!",
   "suggested_fee": "Tarifas sugeridas",
   "tabulator": "Tabulador",

@@ -340,7 +340,7 @@
   "success_alias_register": "Alias s'ha registrat correctament.",
   "success_clipboard_copy": "S'ha copiat amb èxit al porta-retalls.",
   "success_send_money": "S'ha enviat Signa.",
-  "success_set_account_info": "La informació del vostre compte s'ha desat correctament.",
+  "success_set_account_info": "L'actualització de la informació del vostre compte s'ha enviat correctament.",
   "success_set_reward_recipient": "Us heu unit a la piscina amb èxit!",
   "suggested_fee": "Tarifes suggerides",
   "tabulator": "Tabulador",

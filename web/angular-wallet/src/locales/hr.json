@@ -340,7 +340,7 @@
   "success_alias_register": "Alias je uspješno registriran.",
   "success_clipboard_copy": "Uspješno kopirano u međuspremnik.",
   "success_send_money": "Signa je poslana.",
-  "success_set_account_info": "Podaci o vašem računu uspješno su spremljeni.",
+  "success_set_account_info": "Ažuriranje podataka o vašem računu uspješno je poslano.",
   "success_set_reward_recipient": "Uspješno ste se pridružili bazenu!",
   "suggested_fee": "Predložene naknade",
   "tabulator": "Tabulator",

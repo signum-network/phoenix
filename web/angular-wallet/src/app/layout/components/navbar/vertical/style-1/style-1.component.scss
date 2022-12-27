@@ -50,6 +50,23 @@ fuse-sidebar {
                 position: relative;
                 top: auto;
                 padding: 0;
+                cursor: pointer;
+                filter: drop-shadow(0 0 4px black);
+
+                img {
+                  position: relative;
+                  top: -18px;
+                  height: 42px;
+                  border-radius: 50%;
+                }
+
+                canvas {
+                  display: block;
+                  position: relative;
+                  width: 100%;
+                  transform: scale(1.5) translateX(33%);
+                  top: -4px;
+                }
               }
 
               .username,
@@ -185,6 +202,7 @@ navbar {
 
           img {
             height: 100px;
+            border-radius: 4px;
           }
 
           canvas {
