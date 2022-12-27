@@ -340,7 +340,7 @@
   "success_alias_register": "别名注册成功。",
   "success_clipboard_copy": "成功复制到剪贴板。",
   "success_send_money": "签名已发送。",
-  "success_set_account_info": "您的帐户信息已成功保存。",
+  "success_set_account_info": "您的帐户信息更新已成功提交。",
   "success_set_reward_recipient": "您已成功入池！",
   "suggested_fee": "建议费用",
   "tabulator": "制表机",

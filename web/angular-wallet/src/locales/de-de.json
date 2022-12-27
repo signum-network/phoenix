@@ -340,7 +340,7 @@
   "success_alias_register": "Alias erfolgreich registriert.",
   "success_clipboard_copy": "Erfolgreich in die Zwischenablage kopiert.",
   "success_send_money": "Signa wurde gesendet.",
-  "success_set_account_info": "Deine Kontoinformationen wurden erfolgreich gespeichert.",
+  "success_set_account_info": "Die Aktualisierung Ihrer Kontoinformationen wurde erfolgreich übermittelt.",
   "success_set_reward_recipient": "Du bist dem Pool erfolgreich beigetreten!",
   "suggested_fee": "Empfohlene Gebühren",
   "tabulator": "Tabulator",

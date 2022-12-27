@@ -351,7 +351,7 @@
   "success_alias_register": "Alias registered successfully.",
   "success_clipboard_copy": "Copied to the clipboard successfully.",
   "success_send_money": "Signa has been sent.",
-  "success_set_account_info": "Your account info has been saved successfully.",
+  "success_set_account_info": "Your account info update has been submitted successfully.",
   "success_set_reward_recipient": "You joined the pool successfully!",
   "suggested_fee": "Suggested fees",
   "tabulator": "Tabulator",

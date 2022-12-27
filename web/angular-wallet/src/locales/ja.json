@@ -340,7 +340,7 @@
   "success_alias_register": "エイリアスが正常に登録されました。",
   "success_clipboard_copy": "クリップボードに正常にコピーされました。",
   "success_send_money": "シグナが送信されました。",
-  "success_set_account_info": "アカウント情報が正常に保存されました。",
+  "success_set_account_info": "アカウント情報の更新が正常に送信されました。",
   "success_set_reward_recipient": "プールに正常に参加しました。",
   "suggested_fee": "推奨料金",
   "tabulator": "タブ",
