@@ -143,6 +143,10 @@ export class AccountService {
     return this.api.alias.getAliasByName(name);
   }
 
+  public getAliasById(id: string): Promise<Alias> {
+    return this.api.alias.getAliasById(id);
+  }
+
   public getAliases(accountId: string): Promise<AliasList> {
     return this.api.account.getAliases({ accountId });
   }

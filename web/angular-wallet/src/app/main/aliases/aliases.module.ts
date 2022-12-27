@@ -35,6 +35,7 @@ import {LayoutModule} from 'app/layout/layout.module';
 import {AppSharedModule} from '../../shared/shared.module';
 import {MatProgressSpinnerModule, MatRadioModule} from '@angular/material';
 import {ComponentsModule} from '../../components/components.module';
+import { AliasResolver } from './alias.resolver';
 
 const routes = [
   {
@@ -52,6 +53,16 @@ const routes = [
     resolve: {
       account: AccountResolver,
       suggestedFees: SuggestFeeResolver
+    }
+  },
+  {
+    path: ':id',
+    component: AddAliasComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      account: AccountResolver,
+      suggestedFees: SuggestFeeResolver,
+      alias: AliasResolver,
     }
   }
 ];

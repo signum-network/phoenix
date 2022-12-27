@@ -4,4 +4,32 @@
     width: 100%;
     justify-content: flex-end;
   }
+
+  .mat-column-actions {
+    flex: 0 1 64px;
+  }
+
+
+  .mat-column-name > span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .format {
+    margin-left: 0.25rem;
+    font-size: 12px;
+    border-radius: 4px;
+    padding: 2px 8px;
+    &.src44 {
+      background: #00FF88;
+    }
+    &.json {
+      background: #ffb856;
+    }
+    &.custom {
+      background: lightgrey;
+    }
+  }
+
 }
