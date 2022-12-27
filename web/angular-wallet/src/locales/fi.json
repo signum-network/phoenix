@@ -340,7 +340,7 @@
   "success_alias_register": "Alias rekisteröinti onnistui.",
   "success_clipboard_copy": "Kopiointi leikepöydälle onnistui.",
   "success_send_money": "Signa on lähetetty.",
-  "success_set_account_info": "Tilisi tiedot on tallennettu.",
+  "success_set_account_info": "Tilisi tietopäivitys on lähetetty onnistuneesti.",
   "success_set_reward_recipient": "Liityit uima-altaaseen onnistuneesti!",
   "suggested_fee": "Ehdotetut maksut",
   "tabulator": "Taulukko",

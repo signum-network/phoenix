@@ -340,7 +340,7 @@
   "success_alias_register": "Псевдоним успешно зарегистрирован.",
   "success_clipboard_copy": "Успешно скопировано в буфер обмена.",
   "success_send_money": "Signa отправлена.",
-  "success_set_account_info": "Информация о вашем аккаунте успешно сохранена.",
+  "success_set_account_info": "Обновление информации вашей учетной записи было успешно отправлено.",
   "success_set_reward_recipient": "Вы успешно присоединились к пулу!",
   "suggested_fee": "Возможная комиссия",
   "tabulator": "Табулятор",

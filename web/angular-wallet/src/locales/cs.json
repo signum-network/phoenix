@@ -340,7 +340,7 @@
   "success_alias_register": "Alias byl úspěšně zaregistrován.",
   "success_clipboard_copy": "Úspěšně zkopírováno do schránky.",
   "success_send_money": "Signa byla odeslána.",
-  "success_set_account_info": "Informace o vašem účtu byly úspěšně uloženy.",
+  "success_set_account_info": "Aktualizace informací o vašem účtu byla úspěšně odeslána.",
   "success_set_reward_recipient": "Úspěšně jste se připojili k bazénu!",
   "suggested_fee": "Navrhované poplatky",
   "tabulator": "Tabulátor",

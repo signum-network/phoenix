@@ -340,7 +340,7 @@
   "success_alias_register": "Псевдонимът се регистрира успешно.",
   "success_clipboard_copy": "Копирано в клипборда успешно.",
   "success_send_money": "Signa е изпратена.",
-  "success_set_account_info": "Информацията за вашия акаунт е запазена успешно.",
+  "success_set_account_info": "Актуализацията на информацията за вашия акаунт е изпратена успешно.",
   "success_set_reward_recipient": "Присъединихте се успешно към басейна!",
   "suggested_fee": "Предложени такси",
   "tabulator": "Табулатор",

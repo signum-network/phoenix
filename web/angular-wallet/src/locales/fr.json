@@ -340,7 +340,7 @@
   "success_alias_register": "Alias enregistré avec succès.",
   "success_clipboard_copy": "Copié dans le presse-papiers avec succès.",
   "success_send_money": "Signa a été envoyé.",
-  "success_set_account_info": "Vos informations de compte ont été enregistrées avec succès.",
+  "success_set_account_info": "La mise à jour des informations de votre compte a été soumise avec succès.",
   "success_set_reward_recipient": "Vous avez rejoint la piscine avec succès !",
   "suggested_fee": "Frais suggérés",
   "tabulator": "Tabulatrice",
