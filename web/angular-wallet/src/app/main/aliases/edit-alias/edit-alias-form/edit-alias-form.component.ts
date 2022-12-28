@@ -1,30 +1,31 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { SuggestedFees, AddressPrefix, TransactionType, TransactionArbitrarySubtype, Alias } from '@signumjs/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { SuggestedFees, TransactionType, TransactionArbitrarySubtype, Alias } from '@signumjs/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 import {AccountService} from 'app/setup/account/account.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {AddressPattern} from 'app/util/addressPattern';
-import { Amount, CurrencySymbol } from "@signumjs/util";
+import { Amount } from '@signumjs/util';
 import {handleException} from 'app/util/exceptions/handleException';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { isTextIsJson } from 'app/util/isTextIsJson';
 import { isTextIsSrc44 } from 'app/util/isTextIsSrc44';
 import { NetworkService } from 'app/network/network.service';
 
-const isNotEmpty = (value: string) => value && value.length > 0;
 
 @Component({
   selector: 'app-edit-alias-form',
   templateUrl: './edit-alias-form.component.html',
   styleUrls: ['./edit-alias-form.component.scss']
 })
-export class EditAliasFormComponent implements OnInit {
+export class EditAliasFormComponent implements OnInit, OnChanges {
 
-  @Input() alias: Alias;
+  @Input() alias?: Alias;
+  @Input() aliasName?: string;
   @Input() account: WalletAccount;
   @Input() fees: SuggestedFees;
+
+  @Input() readOnly?: boolean;
 
   description = {
     src44: '',
@@ -52,20 +53,21 @@ export class EditAliasFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.immutable = this.account.type === 'offline';
     setTimeout(() => {
-      // this.name = this.account.name || '';
-      this.detectFormat();
+      if (this.alias){
+        this.detectFormat();
+      }
     }, 0);
-
   }
+
+
 
   async onSubmit(event): Promise<void> {
     this.isSending = true;
     event.stopImmediatePropagation();
     try {
        await this.accountService.setAlias({
-         aliasName: this.alias.aliasName,
+         aliasName: this.alias ? this.alias.aliasName : this.aliasName,
          aliasURI: this.getDescription(),
          feeNQT: Amount.fromSigna(this.fee).getPlanck(),
          pin: this.pin,
@@ -121,5 +123,13 @@ export class EditAliasFormComponent implements OnInit {
     }
 
     this.formatType.setValue(this.alias.aliasURI ? format : 'src44');
+  }
+
+  ngOnChanges({ readOnly }: SimpleChanges): void {
+    this.immutable = this.account.type === 'offline';
+    if (readOnly && readOnly.previousValue !== readOnly.currentValue){
+      this.immutable = readOnly.currentValue;
+    }
+
   }
 }

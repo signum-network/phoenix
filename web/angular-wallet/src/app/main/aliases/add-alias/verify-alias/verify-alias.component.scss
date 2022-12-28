@@ -1,0 +1,28 @@
+:host {
+
+  .error {
+    color: darkred !important;
+  }
+
+  .ok {
+    color: darkgreen !important;
+  }
+
+  .container {
+    position: relative;
+
+    .input {
+      width: 100%;
+    }
+
+    .indicator {
+      position: absolute;
+      right: 8px;
+      top: 0px;
+
+      mat-icon.loader {
+        animation: rotate 1s linear infinite;
+      }
+    }
+  }
+}

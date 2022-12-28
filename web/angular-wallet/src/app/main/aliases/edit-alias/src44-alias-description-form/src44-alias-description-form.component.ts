@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { DescriptorData, SRC44Descriptor } from '@signumjs/standards';
 import { takeUntil } from 'rxjs/operators';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup} from '@angular/forms';
 import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
 import { NetworkService } from '../../../../network/network.service';
 
@@ -64,7 +64,15 @@ export class Src44AliasDescriptionFormComponent extends UnsubscribeOnDestroy imp
     });
   }
 
-  ngOnChanges({ description }: SimpleChanges): void {
+  ngOnChanges({ description, disabled }: SimpleChanges): void {
+
+    if (disabled && disabled.currentValue){
+      this.form.disable();
+    }
+    if (disabled && !disabled.currentValue){
+      this.form.enable();
+    }
+
     if (description && description.previousValue !== description.currentValue) {
       try {
         const data = DescriptorData.parse(description.currentValue, false);

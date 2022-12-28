@@ -10,6 +10,7 @@ import {NetworkService} from '../../../network/network.service';
 import {CurrencySymbol} from '@signumjs/util';
 import {handleException} from '../../../util/exceptions/handleException';
 import { WalletAccount } from '../../../util/WalletAccount';
+import { AddAliasService } from './add-alias.service';
 
 const isNotEmpty = (value: string) => value && value.length > 0;
 
@@ -45,6 +46,7 @@ export class AddAliasComponent implements OnInit {
               private accountService: AccountService,
               private notifierService: NotifierService,
               private networkService: NetworkService,
+              public  aliasService: AddAliasService,
               private i18nService: I18nService) {
   }
 

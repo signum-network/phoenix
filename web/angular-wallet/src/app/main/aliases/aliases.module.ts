@@ -41,6 +41,10 @@ import { EditAliasFormComponent } from './edit-alias/edit-alias-form/edit-alias-
 import {
   Src44AliasDescriptionFormComponent
 } from './edit-alias/src44-alias-description-form/src44-alias-description-form.component';
+import { MatStepperModule } from "@angular/material/stepper";
+import { VerifyAliasComponent } from "./add-alias/verify-alias/verify-alias.component";
+import { AddAliasService } from "./add-alias/add-alias.service";
+import { ViewAliasComponent } from "./view-alias/view-alias.component";
 
 const routes = [
   {
@@ -69,12 +73,22 @@ const routes = [
       suggestedFees: SuggestFeeResolver,
       alias: AliasResolver,
     }
+  },
+  {
+    path: ':aliasId/view',
+    component: ViewAliasComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      account: AccountResolver,
+      suggestedFees: SuggestFeeResolver,
+      alias: AliasResolver,
+    }
   }
 ];
 
 @NgModule({
-  declarations: [AliasesComponent, AddAliasComponent, EditAliasComponent, Src44AliasDescriptionFormComponent, EditAliasFormComponent],
-  providers: [AliasResolver],
+  declarations: [AliasesComponent, AddAliasComponent, EditAliasComponent, Src44AliasDescriptionFormComponent, EditAliasFormComponent, VerifyAliasComponent, ViewAliasComponent],
+  providers: [AliasResolver, AddAliasService],
   imports: [
     CommonModule,
     FormsModule,
@@ -109,6 +123,7 @@ const routes = [
     AppSharedModule,
     MatProgressSpinnerModule,
     MatRadioModule,
+    MatStepperModule
   ]
 })
 export class AliasesModule {

@@ -33,7 +33,7 @@ import { JsonDescriptionFormComponent } from 'app/components/json-description-fo
 
 const routes = [
   {
-    path: 'set-account-info',
+    path: 'set-account-profile',
     component: SetAccountInfoComponent,
     canActivate: [LoginGuard],
     resolve: {

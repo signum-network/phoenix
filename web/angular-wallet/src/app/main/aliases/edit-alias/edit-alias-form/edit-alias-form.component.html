@@ -2,8 +2,14 @@
   <div class="account-info__field">
     <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>
     <p class="pb-8">{{account.accountRS}}</p>
-    <small class="secondary-text text-uppercase">{{'alias'| i18n}}</small>
-    <p>{{alias.aliasName}}</p>
+    <ng-container *ngIf="alias">
+      <small class="secondary-text text-uppercase">{{'alias'| i18n}}</small>
+      <p>{{alias.aliasName}}</p>
+    </ng-container>
+    <ng-container *ngIf="aliasName">
+      <small class="secondary-text text-uppercase">{{'alias'| i18n}}</small>
+      <p>{{aliasName}}</p>
+    </ng-container>
   </div>
   <div class="w-120" fxLayout="row" fxLayoutAlign="center center">
     <mat-icon *ngIf="formatType.value === 'src44'" class="mr-8 font-size-18 grey-500-fg ml-2"

@@ -30,22 +30,34 @@
         </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="timestamp">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{"created" | i18n}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let alias">
+          <div class="timestamp-content stacked">
+            <div>
+              {{ getDate(alias)}}
+            </div>
+          </div>
+        </mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="content">
-        <mat-header-cell *matHeaderCellDef>{{ 'alias_content_format' | i18n }}</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_content_format' | i18n }}</mat-header-cell>
         <mat-cell *matCellDef="let alias">
           <span class="format {{getContentFormat(alias.content)}}">{{ getContentFormat(alias.content) | i18n }}</span>
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef>{{ 'alias_status' | i18n }}</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_status' | i18n }}</mat-header-cell>
         <mat-cell *matCellDef="let alias">
           <span>{{alias.status | i18n}}</span>
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="price">
-        <mat-header-cell *matHeaderCellDef>{{ 'alias_price' | i18n }}</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_price' | i18n }}</mat-header-cell>
         <mat-cell *matCellDef="let alias">
           <span *ngIf="alias.pricePlanck">{{alias.pricePlanck | amount:'planck'}}</span>
           <span *ngIf="!alias.pricePlanck">-</span>
@@ -53,7 +65,7 @@
       </ng-container>
 
       <ng-container matColumnDef="buyer">
-        <mat-header-cell *matHeaderCellDef>{{ 'alias_buyer' | i18n }}</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_buyer' | i18n }}</mat-header-cell>
         <mat-cell *matCellDef="let alias">
           <a *ngIf="alias.buyer"
              [routerLink]="['/account', alias.buyer]"
@@ -65,7 +77,7 @@
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef>{{ 'actions' | i18n }}</mat-header-cell>
         <mat-cell *matCellDef="let alias">
-          <a [routerLink]="[alias.id]"
+          <a [routerLink]="[alias.id, 'view']"
              matTooltip="{{'view' | i18n}}"
              class="mr-4"
           >
