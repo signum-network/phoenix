@@ -357,6 +357,7 @@
   "subscriptions": "Subscriptions",
   "subtype": "Subtype",
   "success_alias_register": "Alias registered successfully.",
+  "success_alias_update": "Alias updated successfully.",
   "success_clipboard_copy": "Copied to the clipboard successfully.",
   "success_send_money": "Signa has been sent.",
   "success_set_account_info": "Your account info update has been submitted successfully.",
@@ -486,8 +487,13 @@
   "enter_ipfs_hash": "Enter IPFS Hash",
   "homepage": "Home Page",
   "enter_url": "Enter URL",
+  "enter_account_id": "Enter Account Id",
+  "enter_alias_ref": "Enter Referenced Alias Name",
+  "alias_ref": "Alias Reference",
   "avatar": "Avatar",
   "accept": "Accept",
   "accept_json_content": "Click to accept the content for submitting",
-  "src44_info": "SRC44 is the standard for structured information in description fields. Other Apps are capable to visualize this information also."
+  "src44_info": "SRC44 is the standard for structured information in description fields. Other Apps are capable to visualize this information also.",
+  "view": "View",
+  "edit_alias": "Edit/Update Alias"
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import { TransactionType, TransactionArbitrarySubtype } from '@signumjs/core';
 import { Amount } from '@signumjs/util';
 import { FormControl } from '@angular/forms';
@@ -10,7 +10,9 @@ import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { AddressPattern } from 'app/util/addressPattern';
 import { isKeyDecryptionError } from '../../util/exceptions/isKeyDecryptionError';
 import { WalletAccount } from 'app/util/WalletAccount';
-import { DescriptorData } from '@signumjs/standards';
+import { isTextIsJson } from 'app/util/isTextIsJson';
+import { isTextIsSrc44 } from 'app/util/isTextIsSrc44';
+
 
 @Component({
   selector: 'app-set-account-info',
@@ -33,11 +35,9 @@ export class SetAccountInfoComponent implements OnInit {
     custom: ''
   };
 
-  descriptionCustom: string;
   showMessage = false;
   isSending = false;
   immutable = false;
-  burstAddressPatternRef = AddressPattern;
   deadline = '24';
   pin = '';
   fee: string;
@@ -48,23 +48,6 @@ export class SetAccountInfoComponent implements OnInit {
   formatTypeOptions: string[] = ['src44', 'json', 'custom'];
   formatType: FormControl = new FormControl('src44');
 
-  static isFormatSRC(text: string): boolean {
-    try {
-      DescriptorData.parse(text, false);
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  static isFormatJson(text: string): boolean {
-    try {
-      JSON.parse(text);
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
 
   ngOnInit(): void {
     this.account = this.route.snapshot.data.account as WalletAccount;
@@ -128,13 +111,13 @@ export class SetAccountInfoComponent implements OnInit {
     let format = 'custom';
     this.description.custom = this.account.description;
 
-    if (SetAccountInfoComponent.isFormatJson(this.account.description)) {
+    if (isTextIsJson(this.account.description)) {
       format = 'json';
       this.description.json = this.account.description;
     }
 
     // most relevant.... so it comes last
-    if (SetAccountInfoComponent.isFormatSRC(this.account.description)) {
+    if (isTextIsSrc44(this.account.description)) {
       format = 'src44';
       this.description.src44 = this.account.description;
     }

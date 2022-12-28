@@ -36,7 +36,6 @@ export class AddAliasComponent implements OnInit {
   addressPatternRef = AddressPattern;
   type = 'acct';
   account: WalletAccount;
-  deadline = '24';
   fees: SuggestedFees;
   addressPrefix: AddressPrefix.MainNet | AddressPrefix.TestNet;
   symbol = CurrencySymbol;
@@ -64,7 +63,6 @@ export class AddAliasComponent implements OnInit {
         aliasName: this.alias,
         aliasURI: this.getAliasURI(),
         feeNQT: this.fee,
-        deadline: parseFloat(this.deadline) * 60,
         pin: this.pin,
         keys: this.account.keys,
       });

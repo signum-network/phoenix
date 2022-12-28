@@ -1,75 +1,99 @@
 <app-page title="{{ 'aliases' | i18n }}" [wide]="true">
 
-  <div class="action-bar">
-    <a *ngIf="selectedAccount && selectedAccount.type !== 'offline'" mat-raised-button
-       class="reference-button mt-16 mt-sm-0"
-       [routerLink]="['add']"
-       matTooltip="{{ 'register_alias' | i18n }}"
+  <div class="p-20">
+    <div class="action-bar" fxLayout="row wrap" fxLayoutAlign="space-between center">
+      <mat-form-field class="search-form">
+        <input matInput
+               autocomplete="off"
+               (keyup)="applyFilter($event.target.value)"
+               [formControl]="searchField"
+               placeholder="{{ 'search' | i18n }}"
+               #query
+        >
+      </mat-form-field>
+      <a *ngIf="!watchOnly"
+         mat-mini-fab
+         matTooltip="{{'register_alias' | i18n}}"
+         class="add-button mt-16 mt-sm-0"
+         [routerLink]="['register']"
+      >
+        <mat-icon>add</mat-icon>
+      </a>
+    </div>
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_name' | i18n }}</mat-header-cell>
+        <mat-cell *matCellDef="let alias">
+          <span matTooltip="{{alias.name}}">{{ alias.name }}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="content">
+        <mat-header-cell *matHeaderCellDef>{{ 'alias_content_format' | i18n }}</mat-header-cell>
+        <mat-cell *matCellDef="let alias">
+          <span class="format {{getContentFormat(alias.content)}}">{{ getContentFormat(alias.content) | i18n }}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef>{{ 'alias_status' | i18n }}</mat-header-cell>
+        <mat-cell *matCellDef="let alias">
+          <span>{{alias.status | i18n}}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef>{{ 'alias_price' | i18n }}</mat-header-cell>
+        <mat-cell *matCellDef="let alias">
+          <span *ngIf="alias.pricePlanck">{{alias.pricePlanck | amount:'planck'}}</span>
+          <span *ngIf="!alias.pricePlanck">-</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="buyer">
+        <mat-header-cell *matHeaderCellDef>{{ 'alias_buyer' | i18n }}</mat-header-cell>
+        <mat-cell *matCellDef="let alias">
+          <a *ngIf="alias.buyer"
+             [routerLink]="['/account', alias.buyer]"
+          >{{toAddress(alias.buyer)}}</a>
+          <span *ngIf="!alias.buyer">-</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>{{ 'actions' | i18n }}</mat-header-cell>
+        <mat-cell *matCellDef="let alias">
+          <a [routerLink]="[alias.id]"
+             matTooltip="{{'view' | i18n}}"
+             class="mr-4"
+          >
+            <mat-icon>remove_red_eye</mat-icon>
+          </a>
+          <a *ngIf="!watchOnly"
+             [routerLink]="[alias.id]"
+             matTooltip="{{'edit' | i18n}}"
+             class="mr-4">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <a *ngIf="!watchOnly" [routerLink]="[alias.id, 'sale']" matTooltip="{{'sell' | i18n}}">
+            <mat-icon>monetization_on</mat-icon>
+          </a>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator
+      #paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 20, 50]"
+      [showFirstLastButtons]="true"
     >
-      <mat-icon>add</mat-icon>
-    </a>
+    </mat-paginator>
   </div>
-
-  <mat-table [dataSource]="dataSource" matSort>
-
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_name' | i18n }}</mat-header-cell>
-      <mat-cell *matCellDef="let alias">
-        <span matTooltip="{{alias.name}}">{{ alias.name }}</span>
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="content">
-      <mat-header-cell *matHeaderCellDef>{{ 'alias_content_format' | i18n }}</mat-header-cell>
-      <mat-cell *matCellDef="let alias">
-        <span class="format {{getContentFormat(alias.content)}}">{{ getContentFormat(alias.content) | i18n }}</span>
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef>{{ 'alias_status' | i18n }}</mat-header-cell>
-      <mat-cell *matCellDef="let alias">
-        <span>{{alias.status | i18n}}</span> <!-- ?? -->
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="price">
-      <mat-header-cell *matHeaderCellDef>{{ 'alias_price' | i18n }}</mat-header-cell>
-      <mat-cell *matCellDef="let alias">
-        <span *ngIf="alias.pricePlanck">{{alias.pricePlanck | amount:'planck'}}</span> <!-- ?? -->
-        <span *ngIf="!alias.pricePlanck">-</span> <!-- ?? -->
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="buyer">
-      <mat-header-cell *matHeaderCellDef>{{ 'alias_buyer' | i18n }}</mat-header-cell>
-      <mat-cell *matCellDef="let alias">
-        <a *ngIf="alias.buyer"
-           [routerLink]="['/account', alias.buyer]"
-        >{{toAddress(alias.buyer)}}</a>
-        <span *ngIf="!alias.buyer">-</span> <!-- ?? -->
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef>{{ 'actions' | i18n }}</mat-header-cell>
-      <mat-cell *matCellDef="let alias">
-        <a [routerLink]="['/alias', alias.id]" matTooltip="{{'edit' | i18n}}">
-          <mat-icon>edit</mat-icon>
-        </a>
-      </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-
-  <mat-paginator
-    #paginator
-    [pageSize]="10"
-    [pageSizeOptions]="[10, 20, 50]"
-    [showFirstLastButtons]="true"
-  >
-  </mat-paginator>
 
 </app-page>

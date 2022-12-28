@@ -12,6 +12,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MediaChange, MediaObserver } from "@angular/flex-layout";
 import { UnsubscribeOnDestroy } from "../../util/UnsubscribeOnDestroy";
 import { takeUntil } from "rxjs/operators";
+import { FormControl } from "@angular/forms";
 
 
 const ColumnsQuery = {
@@ -40,11 +41,14 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  public searchField = new FormControl('');
 
 
   public dataSource: MatTableDataSource<AliasData>;
   public displayedColumns: string[];
   public selectedAccount: WalletAccount;
+
+  public watchOnly = false;
   unsubscriber = takeUntil(this.unsubscribeAll);
 
   constructor(
@@ -53,7 +57,7 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
     public router: Router,
     private observableMedia: MediaObserver
   ) {
-    super()
+    super();
   }
 
 
@@ -84,6 +88,7 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
       .subscribe(async (ready) => {
       if (ready) {
         this.selectedAccount = await this.storeService.getSelectedAccount();
+        this.watchOnly = this.selectedAccount && this.selectedAccount.type === 'offline';
         await this.fetchAliases();
       }
     });

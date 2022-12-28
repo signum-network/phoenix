@@ -9,7 +9,7 @@ export class AliasResolver implements Resolve<Promise<Alias>> {
   }
 
   async resolve(route: ActivatedRouteSnapshot): Promise<Alias> {
-    return this.accountService.getAliasById(route.params.id);
+    return this.accountService.getAliasById(route.params.aliasId);
   }
 }
 

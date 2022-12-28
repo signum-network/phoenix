@@ -36,6 +36,11 @@ import {AppSharedModule} from '../../shared/shared.module';
 import {MatProgressSpinnerModule, MatRadioModule} from '@angular/material';
 import {ComponentsModule} from '../../components/components.module';
 import { AliasResolver } from './alias.resolver';
+import { EditAliasComponent } from './edit-alias/edit-alias.component';
+import { EditAliasFormComponent } from './edit-alias/edit-alias-form/edit-alias-form.component';
+import {
+  Src44AliasDescriptionFormComponent
+} from './edit-alias/src44-alias-description-form/src44-alias-description-form.component';
 
 const routes = [
   {
@@ -47,7 +52,7 @@ const routes = [
     }
   },
   {
-    path: 'add',
+    path: 'register',
     component: AddAliasComponent,
     canActivate: [LoginGuard],
     resolve: {
@@ -56,8 +61,8 @@ const routes = [
     }
   },
   {
-    path: ':id',
-    component: AddAliasComponent,
+    path: ':aliasId',
+    component: EditAliasComponent,
     canActivate: [LoginGuard],
     resolve: {
       account: AccountResolver,
@@ -68,7 +73,8 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [AliasesComponent, AddAliasComponent],
+  declarations: [AliasesComponent, AddAliasComponent, EditAliasComponent, Src44AliasDescriptionFormComponent, EditAliasFormComponent],
+  providers: [AliasResolver],
   imports: [
     CommonModule,
     FormsModule,

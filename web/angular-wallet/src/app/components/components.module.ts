@@ -21,6 +21,10 @@ import { LinkButtonComponent } from './link-button/link-button.component';
 import { FeeInputComponent } from './fee-input/fee-input.component';
 import { MessageInputComponent } from './message-input/message-input.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CustomDescriptionFormComponent } from './custom-description-form/custom-description-form.component';
+import { NgJsonEditorModule } from 'ang-jsoneditor';
+import { JsonDescriptionFormComponent } from './json-description-form/json-description-form.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +36,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     WatermarkComponent,
     LinkButtonComponent,
     FeeInputComponent,
-    MessageInputComponent
+    MessageInputComponent,
+    CustomDescriptionFormComponent,
+    JsonDescriptionFormComponent
   ],
   exports: [
     SubmitTransactionComponent,
@@ -43,7 +49,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     WatermarkComponent,
     LinkButtonComponent,
     FeeInputComponent,
-    MessageInputComponent
+    MessageInputComponent,
+    CustomDescriptionFormComponent,
+    JsonDescriptionFormComponent
   ],
   imports: [
     AppSharedModule,
@@ -61,7 +69,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     Ng5SliderModule,
     RouterModule,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgJsonEditorModule
   ],
   entryComponents: [
     WarnSendDialogComponent

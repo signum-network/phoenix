@@ -54,7 +54,6 @@ interface SetRewardRecipientRequest {
 interface SetAliasRequest {
   aliasName: string;
   aliasURI: string;
-  deadline: number;
   feeNQT: string;
   pin: string;
   keys: Keys;
@@ -152,7 +151,7 @@ export class AccountService {
   }
 
 
-  public setAlias({ aliasName, aliasURI, feeNQT, deadline, pin, keys }: SetAliasRequest): Promise<TransactionId> {
+  public setAlias({ aliasName, aliasURI, feeNQT, pin, keys }: SetAliasRequest): Promise<TransactionId> {
     const senderPrivateKey = this.getPrivateKey(keys, pin);
     return this.api.account.setAlias({
       aliasName,
@@ -160,7 +159,6 @@ export class AccountService {
       feePlanck: feeNQT,
       senderPublicKey: keys.publicKey,
       senderPrivateKey: senderPrivateKey,
-      deadline: deadline
     }) as Promise<TransactionId>;
   }
 

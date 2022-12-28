@@ -1,0 +1,65 @@
+@import "src/@fuse/scss/fuse";
+
+:host {
+
+  .account-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @include media-breakpoint('xs') {
+      flex-direction: column;
+      margin-top: 20px;
+      justify-content: normal;
+    }
+
+    &__field {
+      margin-right: 1em;
+
+      p {
+        font-size: 16px;
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+
+  mat-form-field {
+    width: 100%;
+    display: block;
+  }
+
+  form {
+    margin: 20px 0;
+    padding: 16px;
+
+    .submit-transaction {
+      position: relative;
+
+      .send-button {
+        position: absolute;
+        right: 16px;
+        bottom: 21px;
+
+        &:disabled {
+          opacity: 0.2;
+        }
+
+        mat-icon {
+          &.enabled {
+            color: #039be5;
+          }
+        }
+
+        mat-spinner {
+          top: 1px;
+          left: 10px;
+        }
+      }
+    }
+  }
+
+  .content {
+    max-width: 600px;
+  }
+}

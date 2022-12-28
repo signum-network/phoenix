@@ -22,13 +22,14 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { LoginGuard } from 'app/login/login-guard.service';
 import {ComponentsModule} from '../../components/components.module';
 import { Src44DescriptionFormComponent } from './src44-description-form/src44-description-form.component';
-import { CustomDescriptionFormComponent } from './custom-description-form/custom-description-form.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import { NgJsonEditorModule } from 'ang-jsoneditor';
-import { JsonDescriptionFormComponent } from './json-description-form/json-description-form.component';
-import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {
+  CustomDescriptionFormComponent
+} from 'app/components/custom-description-form/custom-description-form.component';
+import { JsonDescriptionFormComponent } from 'app/components/json-description-form/json-description-form.component';
 
 const routes = [
   {
@@ -45,9 +46,7 @@ const routes = [
 @NgModule({
   declarations: [
     SetAccountInfoComponent,
-    Src44DescriptionFormComponent,
-    CustomDescriptionFormComponent,
-    JsonDescriptionFormComponent
+    Src44DescriptionFormComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -71,8 +70,7 @@ const routes = [
     SetupModule,
     MatTabsModule,
     MatRadioModule,
-    MatSelectModule,
-    NgJsonEditorModule
+    MatSelectModule
   ]
 })
 export class SetAccountInfoModule { }

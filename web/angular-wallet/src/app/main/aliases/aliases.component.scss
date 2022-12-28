@@ -5,8 +5,14 @@
     justify-content: flex-end;
   }
 
+  .search-form {
+    min-width: 128px;
+    max-width: 256px;
+    width: inherit;
+  }
+
   .mat-column-actions {
-    flex: 0 1 64px;
+    flex: 0 1 80px;
   }
 
 
