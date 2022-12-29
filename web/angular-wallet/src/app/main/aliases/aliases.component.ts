@@ -115,7 +115,7 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
         this.aliasService.getAliases(this.selectedAccount.account),
         this.aliasService.getAliasesDirectOffers(this.selectedAccount.account),
       ]);
-      this.dataSource.data = [...offers.aliases, ...own.aliases,].map((a) => {
+      this.dataSource.data = [...offers.aliases, ...own.aliases].map((a) => {
         const result: AliasData = {
           owner: a.account,
           name: a.aliasName,
