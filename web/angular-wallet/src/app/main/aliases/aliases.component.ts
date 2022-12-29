@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { StoreService } from 'app/store/store.service';
-import { AccountService } from 'app/setup/account/account.service';
-import { Address, Alias } from '@signumjs/core';
+import { Address } from '@signumjs/core';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { ChainTime } from '@signumjs/util';
 import { MatPaginator } from '@angular/material/paginator';
@@ -22,8 +21,8 @@ const ColumnsQuery = {
   xl: ['name', 'timestamp', 'content', 'status', 'price', 'buyer', 'actions'],
   lg: ['name', 'timestamp', 'content', 'status', 'price', 'buyer', 'actions'],
   md: ['name', 'timestamp', 'content', 'status', 'price', 'buyer', 'actions'],
-  sm: ['name', 'timestamp', 'content', 'status', 'actions'],
-  xs: ['name', 'timestamp', 'content', 'actions']
+  sm: ['name', 'content', 'status', 'price', 'actions'],
+  xs: ['name', 'price', 'actions']
 };
 
 interface AliasData {
@@ -35,6 +34,7 @@ interface AliasData {
   pricePlanck?: string;
   buyer?: string;
   status: 'alias_off_sale' | 'alias_on_sale_public' | 'alias_on_sale_private';
+  isDirectOffer: boolean;
 }
 
 @Component({
@@ -110,8 +110,11 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
 
   private async fetchAliases(): Promise<void> {
     try {
-      const { aliases } = await this.aliasService.getAliases(this.selectedAccount.account);
-      this.dataSource.data = aliases.map((a) => {
+      const [own, offers] = await Promise.all([
+        this.aliasService.getAliases(this.selectedAccount.account),
+        this.aliasService.getAliasesDirectOffers(this.selectedAccount.account),
+      ]);
+      this.dataSource.data = [...offers.aliases, ...own.aliases,].map((a) => {
         const result: AliasData = {
           name: a.aliasName,
           timestamp: a.timestamp,
@@ -119,7 +122,8 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
           content: a.aliasURI,
           pricePlanck: a.priceNQT,
           buyer: a.buyer,
-          status: 'alias_off_sale'
+          status: 'alias_off_sale',
+          isDirectOffer: a.buyer === this.selectedAccount.account
         };
 
         if (a.priceNQT) {
@@ -128,7 +132,6 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
         if (a.buyer) {
           result.status = 'alias_on_sale_private';
         }
-
         return result;
       });
     } catch (e) {
@@ -164,5 +167,12 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
       }
     }
     return '';
+  }
+
+  canBuy(alias: AliasData): boolean {
+    if (alias.status === 'alias_on_sale_private') {
+      return alias.buyer === this.selectedAccount.account;
+    }
+    return false;
   }
 }

@@ -158,9 +158,7 @@ export class AccountService {
       accountId,
       includeCommittedAmount
     });
-
-    // @ts-ignore
-    return adjustLegacyAddressPrefix(account);
+    return adjustLegacyAddressPrefix(new WalletAccount(account));
   }
 
   public getCurrentAccount(): Promise<WalletAccount> {

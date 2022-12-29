@@ -4,7 +4,11 @@
     <p class="pb-8">{{account.accountRS}}</p>
     <ng-container *ngIf="alias">
       <small class="secondary-text text-uppercase">{{'alias'| i18n}}</small>
-      <p>{{alias.aliasName}}</p>
+        <p>{{alias.aliasName}}
+          <mat-icon *ngIf="alias.priceNQT" class="mr-8 font-size-18 grey-500-fg ml-2"
+                    matTooltip="{{ 'alias_on_sale' | i18n }}">monetization_on
+          </mat-icon>
+        </p>
     </ng-container>
     <ng-container *ngIf="aliasName">
       <small class="secondary-text text-uppercase">{{'alias'| i18n}}</small>

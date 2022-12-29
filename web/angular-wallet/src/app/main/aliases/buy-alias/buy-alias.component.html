@@ -1,5 +1,5 @@
 <app-page
-  title="{{ 'alias_sale' | i18n }}"
+  title="{{ 'alias_buy' | i18n }}"
   [breadcrumbs]="[{label:'aliases' | i18n, path: '/aliases'}]"
   *ngIf="fees && account && alias"
 >
@@ -16,20 +16,8 @@
 
   <form (ngSubmit)="onSubmit($event)">
 
-
-    <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="isPrivateOffer"
-                  name="showMessage">{{ "is_private_offer_q" | i18n }}</mat-checkbox>
-
-    <ng-container *ngIf="isPrivateOffer">
-      <recipient-input [recipientValue]="recipient.addressRaw"
-                       (recipientChange)="onRecipientChange($event)"
-                       [withQrCode]="false"
-                       [disabled]="immutable">
-      </recipient-input>
-    </ng-container>
-
-    <app-amount-input [(amount)]="amount"
-                      [disabled]="immutable"
+    <app-amount-input [amount]="amount.getSigna()"
+                      [disabled]="true"
     ></app-amount-input>
 
     <app-fee-input *ngIf="!immutable"
@@ -40,7 +28,6 @@
     >
     </app-fee-input>
 
-    <ng-container *ngIf="isPrivateOffer">
       <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="attachMessage"
                     name="showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>
       <ng-container *ngIf="attachMessage">
@@ -53,8 +40,9 @@
         >
         </app-message-input>
       </ng-container>
-    </ng-container>
     <app-submit-transaction [(pin)]="pin" [disabled]="!canSubmit()" [isSubmitting]="isSending">
     </app-submit-transaction>
+    <strong>{{'total' | i18n}}:&nbsp;</strong>
+    <span [class.error-text]="!hasSufficientBalance()">{{ getTotal().getSigna() | amount }}</span>
   </form>
 </app-page>

@@ -15,6 +15,12 @@
     flex: 0 1 80px;
   }
 
+  .mat-column-status > span {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+  }
+
 
   .mat-column-name > span {
     text-overflow: ellipsis;

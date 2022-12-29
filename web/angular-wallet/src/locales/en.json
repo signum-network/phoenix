@@ -506,5 +506,10 @@
   "alias_taken": "This alias was taken already",
   "created": "Created",
   "is_private_offer_q": "Is Private Offer?",
-  "enter_recipient": "Enter Address, Account Id or Alias Name"
+  "enter_recipient": "Enter Address, Account Id or Alias Name",
+  "alias_on_sale": "This Alias is on sale",
+  "alias_cancel_sale": "Cancel Alias Sale",
+  "success_alias_cancel_sale": "Sale cancelled successfully",
+  "alias_direct_offer": "This Alias is a direct offer",
+  "success_alias_buy": "Congratz. You just bought a new Alias"
 }

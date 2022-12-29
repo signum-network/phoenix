@@ -2,66 +2,56 @@ import { Component, OnInit } from '@angular/core';
 import {
   SuggestedFees,
   Alias,
-  Address,
   TransactionType,
-  TransactionPaymentSubtype,
   TransactionArbitrarySubtype
-} from "@signumjs/core";
-import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+} from '@signumjs/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { Amount } from '@signumjs/util';
 import { constants } from '../../../constants';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { TransactionService } from '../../transactions/transaction.service';
+import { MatDialog } from '@angular/material/dialog';
 import { NotifierService } from 'angular-notifier';
 import { I18nService } from '../../../layout/components/i18n/i18n.service';
 import { StoreService } from '../../../store/store.service';
 import { takeUntil } from 'rxjs/operators';
-import { getBalancesFromAccount, AccountBalances } from 'app/util/balance';
-import {
-  Recipient,
-  RecipientValidationStatus
-} from 'app/components/recipient-input/recipient-input.component';
+import { AccountBalances, getBalancesFromAccount } from "app/util/balance";
 import { isNotEmpty } from 'app/util/forms';
-import { WarnSendDialogComponent } from 'app/components/warn-send-dialog/warn-send-dialog.component';
 import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
 import { AliasService } from '../alias.service';
 import { ExceptionHandlerService } from '../../../shared/services/exceptionhandler.service';
+import { AccountService } from 'app/setup/account/account.service';
 
 @Component({
-  selector: 'app-sell-alias',
-  templateUrl: './sell-alias.component.html',
-  styleUrls: ['./sell-alias.component.scss']
+  selector: 'app-buy-alias',
+  templateUrl: './buy-alias.component.html',
+  styleUrls: ['./buy-alias.component.scss']
 })
-export class SellAliasComponent extends UnsubscribeOnDestroy implements OnInit {
+export class BuyAliasComponent extends UnsubscribeOnDestroy implements OnInit {
   alias: Alias;
   account: WalletAccount;
   fees: SuggestedFees;
-
-  recipient = new Recipient();
-
-
   language: string;
   immutable: boolean;
   messageIsText: boolean;
   encrypt: boolean;
-  amount: string;
+  amount: Amount;
   fee: string;
   message: string;
   type = TransactionType.Arbitrary;
-  subtype = TransactionArbitrarySubtype.AliasSale;
+  subtype = TransactionArbitrarySubtype.AliasBuy;
 
   pin: string;
 
   private balances: AccountBalances;
   attachMessage: boolean;
-  isPrivateOffer: boolean;
   isSending: boolean;
+  private recipientPublicKey = '';
 
 
   constructor(
     private warnDialog: MatDialog,
     private aliasService: AliasService,
+    private accountService: AccountService,
     private notifierService: NotifierService,
     private errorService: ExceptionHandlerService,
     private i18nService: I18nService,
@@ -76,11 +66,15 @@ export class SellAliasComponent extends UnsubscribeOnDestroy implements OnInit {
     this.account = this.route.snapshot.data.account as WalletAccount;
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
     this.alias = this.route.snapshot.data.alias as Alias;
-    this.balances = getBalancesFromAccount(this.account);
     this.immutable = false;
     this.messageIsText = true;
     this.encrypt = false;
-    this.isPrivateOffer = false;
+    this.balances = getBalancesFromAccount(this.account);
+    this.amount = this.alias ? Amount.fromPlanck(this.alias.priceNQT || '0') : Amount.Zero();
+
+
+    this.fetchRecipientPublicKey(this.alias.account);
+
     this.storeService.settings
       .pipe(
         takeUntil(this.unsubscribeAll)
@@ -91,36 +85,31 @@ export class SellAliasComponent extends UnsubscribeOnDestroy implements OnInit {
       );
   }
 
-  onSubmit(event): void {
-    event.stopImmediatePropagation();
-    if (this.isPrivateOffer && this.recipient.status !== RecipientValidationStatus.VALID) {
-      const dialogRef = this.openWarningDialog([this.recipient]);
-      dialogRef.afterClosed().subscribe(ok => {
-        if (ok) {
-          this.setOnSale();
-        }
-      });
-    } else {
-      this.setOnSale();
+  private async fetchRecipientPublicKey(accountId: string): Promise<void> {
+    try {
+      const account = await this.accountService.getAccount(accountId);
+      this.recipientPublicKey = account.keys.publicKey;
+    } catch (e) {
+      // ignore
     }
   }
 
-  async setOnSale(): Promise<void> {
+  async onSubmit(event): Promise<void> {
+    event.stopImmediatePropagation();
     try {
       this.isSending = true;
-      await this.aliasService.setAliasOnSale({
+      await this.aliasService.buyAlias({
         aliasName: this.alias.aliasName,
-        amountPlanck: Amount.fromSigna(this.amount).getPlanck(),
+        amountPlanck: this.amount.getPlanck(),
         feePlanck: Amount.fromSigna(this.fee).getPlanck(),
-        recipientId: this.isPrivateOffer ? Address.fromReedSolomonAddress(this.recipient.addressRS).getNumericId() : undefined,
-        recipientPublicKey: this.isPrivateOffer ? this.recipient.publicKey : undefined,
+        recipientPublicKey: this.recipientPublicKey,
         keys: this.account.keys,
         pin: this.pin,
         message: this.message,
         shouldEncryptMessage: this.encrypt,
         messageIsText: this.messageIsText
       });
-      this.notifierService.notify('success', this.i18nService.getTranslation('success_alias_sell'));
+      this.notifierService.notify('success', this.i18nService.getTranslation('success_alias_buy'));
       await this.router.navigate(['/']);
     } catch (e) {
       this.errorService.handle(e);
@@ -129,20 +118,19 @@ export class SellAliasComponent extends UnsubscribeOnDestroy implements OnInit {
     }
   }
 
-
-  private openWarningDialog(recipients: Array<Recipient>): MatDialogRef<any> {
-    return this.warnDialog.open(WarnSendDialogComponent, {
-      width: '400px',
-      data: recipients
-    });
+  getTotal(): Amount {
+    return this.amount !== undefined && this.fee !== undefined
+      ? this.amount.clone().add(Amount.fromSigna(this.fee))
+      : Amount.Zero();
   }
+
 
   hasSufficientBalance(): boolean {
     if (!this.balances) {
       return false;
     }
     const available = this.balances.availableBalance.clone();
-    return available.greaterOrEqual(Amount.fromSigna(this.fee));
+    return available.greaterOrEqual(this.getTotal());
   }
 
   isMessageTooLong(): boolean {
@@ -150,18 +138,12 @@ export class SellAliasComponent extends UnsubscribeOnDestroy implements OnInit {
   }
 
   canSubmit(): boolean {
-    return (this.isPrivateOffer ? isNotEmpty(this.recipient.addressRaw) : true)
-      && isNotEmpty(this.amount)
-      && isNotEmpty(this.pin)
+    return isNotEmpty(this.pin)
       && !this.isMessageTooLong()
       && this.hasSufficientBalance();
   }
 
-  onRecipientChange(recipient: Recipient): void {
-    this.recipient = recipient;
-  }
-
   canEncrypt(): boolean {
-    return this.recipient.publicKey && this.recipient.publicKey !== constants.smartContractPublicKey;
+    return this.recipientPublicKey && this.recipientPublicKey !== constants.smartContractPublicKey;
   }
 }

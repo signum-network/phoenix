@@ -1,19 +1,16 @@
 import {Injectable} from '@angular/core';
 import {
   TransactionId,
-  AttachmentEncryptedMessage,
-  AttachmentMessage,
-  Attachment,
   Alias, AliasList, Ledger
 } from '@signumjs/core';
-import {Keys, encryptMessage, encryptData, EncryptedMessage, EncryptedData} from '@signumjs/crypto';
+import {Keys} from '@signumjs/crypto';
 import {ApiService} from '../../api.service';
 import {AccountService} from 'app/setup/account/account.service';
-import {convertHexStringToByteArray} from '@signumjs/util';
 import {StoreService} from 'app/store/store.service';
 import {Settings} from 'app/settings';
 import {getPrivateEncryptionKey} from 'app/util/security/getPrivateEncryptionKey';
 import { getPrivateSigningKey } from 'app/util/security/getPrivateSigningKey';
+import { createMessageAttachment } from 'app/util/transaction/createMessageAttachment';
 
 interface SetAliasRequest {
   aliasName: string;
@@ -34,6 +31,26 @@ interface SetAliasOnSaleRequest {
   recipientPublicKey: string;
   messageIsText: boolean;
   shouldEncryptMessage?: boolean;
+}
+
+interface BuyAliasRequest {
+  aliasName: string;
+  amountPlanck: string;
+  feePlanck: string;
+  keys: Keys;
+  message?: string;
+  pin: string;
+  recipientPublicKey: string;
+  messageIsText: boolean;
+  shouldEncryptMessage?: boolean;
+}
+
+interface CancelAliasSaleRequest {
+  aliasName: string;
+  feePlanck: string;
+  keys: Keys;
+  pin: string;
+  recipientId: string;
 }
 
 @Injectable({
@@ -58,7 +75,11 @@ export class AliasService {
   }
 
   public getAliases(accountId: string): Promise<AliasList> {
-    return this.api.account.getAliases({ accountId });
+      return this.api.account.getAliases({ accountId });
+  }
+
+  public getAliasesDirectOffers(accountId: string): Promise<AliasList> {
+      return this.api.alias.getAliasesOnSale({ buyerId: accountId });
   }
 
 
@@ -76,27 +97,13 @@ export class AliasService {
 
     const {aliasName, pin, amountPlanck, feePlanck, recipientId, message, messageIsText, shouldEncryptMessage, keys, recipientPublicKey} = request;
 
-    let attachment: Attachment;
-    if (message && shouldEncryptMessage) {
-      const agreementPrivateKey = getPrivateEncryptionKey(pin, keys);
-      let encryptedMessage: EncryptedMessage | EncryptedData;
-      if (messageIsText) {
-        encryptedMessage = encryptMessage(
-          message,
-          recipientPublicKey,
-          agreementPrivateKey
-        );
-      } else {
-        encryptedMessage = encryptData(
-          new Uint8Array(convertHexStringToByteArray(message)),
-          recipientPublicKey,
-          agreementPrivateKey
-        );
-      }
-      attachment = new AttachmentEncryptedMessage(encryptedMessage);
-    } else if (message) {
-      attachment = new AttachmentMessage({message, messageIsText});
-    }
+    const attachment = message ? createMessageAttachment({
+      isEncrypted: shouldEncryptMessage,
+      isText: messageIsText,
+      encryptionKey: getPrivateEncryptionKey(pin, keys),
+      recipientPublicKey,
+      message
+    }) : undefined;
 
     return (await this.api.alias.sellAlias({
       aliasName,
@@ -109,6 +116,42 @@ export class AliasService {
       attachment
     })) as TransactionId;
 
+  }
+
+  public async buyAlias(request: BuyAliasRequest): Promise<TransactionId> {
+
+    const {aliasName, pin, amountPlanck, feePlanck, message, messageIsText, shouldEncryptMessage, keys, recipientPublicKey} = request;
+
+    const attachment = message ? createMessageAttachment({
+      isEncrypted: shouldEncryptMessage,
+      isText: messageIsText,
+      encryptionKey: getPrivateEncryptionKey(pin, keys),
+      recipientPublicKey,
+      message
+    }) : undefined;
+
+    return (await this.api.alias.buyAlias({
+      aliasName,
+      aliasId: undefined,
+      feePlanck,
+      amountPlanck,
+      senderPrivateKey: getPrivateSigningKey(pin, keys),
+      senderPublicKey: keys.publicKey,
+      attachment
+    })) as TransactionId;
+
+  }
+
+  public async cancelAliasSale(request: CancelAliasSaleRequest): Promise<TransactionId> {
+    const {aliasName, pin, feePlanck, recipientId, keys} = request;
+    return (await this.api.alias.sellAlias({
+      aliasName,
+      amountPlanck: '0',
+      feePlanck,
+      recipientId,
+      senderPrivateKey: getPrivateSigningKey(pin, keys),
+      senderPublicKey: keys.publicKey,
+    })) as TransactionId;
   }
 
 }

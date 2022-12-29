@@ -1,4 +1,4 @@
-<app-page title="{{ 'aliases' | i18n }}" [wide]="true">
+<app-page title="{{ 'aliases' | i18n }}" [full]="true">
 
   <div class="p-20">
     <div class="action-bar" fxLayout="row wrap" fxLayoutAlign="space-between center">
@@ -52,7 +52,9 @@
       <ng-container matColumnDef="status">
         <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'alias_status' | i18n }}</mat-header-cell>
         <mat-cell *matCellDef="let alias">
-          <span>{{alias.status | i18n}}</span>
+          <span>{{alias.status | i18n}}
+            <mat-icon *ngIf="alias.isDirectOffer" class="ml-4" matTooltip="{{ 'alias_direct_offer' | i18n }}">local_offer</mat-icon>
+          </span>
         </mat-cell>
       </ng-container>
 
@@ -77,21 +79,37 @@
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef>{{ 'actions' | i18n }}</mat-header-cell>
         <mat-cell *matCellDef="let alias">
+
           <a [routerLink]="[alias.id, 'view']"
              matTooltip="{{'view' | i18n}}"
              class="mr-4"
           >
             <mat-icon>remove_red_eye</mat-icon>
           </a>
-          <a *ngIf="!watchOnly"
-             [routerLink]="[alias.id]"
-             matTooltip="{{'edit' | i18n}}"
-             class="mr-4">
-            <mat-icon>edit</mat-icon>
-          </a>
-          <a *ngIf="!watchOnly" [routerLink]="[alias.id, 'sale']" matTooltip="{{'sell' | i18n}}">
-            <mat-icon>monetization_on</mat-icon>
-          </a>
+          <ng-container *ngIf="!watchOnly">
+            <a
+              [routerLink]="[alias.id]"
+              matTooltip="{{'edit' | i18n}}"
+              class="mr-4">
+              <mat-icon>edit</mat-icon>
+            </a>
+
+            <a *ngIf="canBuy(alias)" [routerLink]="[alias.id, 'buy']"
+               matTooltip="{{'buy' | i18n}}"
+               class="mr-4"
+            >
+              <mat-icon>shopping_cart</mat-icon>
+            </a>
+
+            <a *ngIf="alias.status === 'alias_off_sale'" [routerLink]="[alias.id, 'sale']"
+               matTooltip="{{'sell' | i18n}}">
+              <mat-icon>monetization_on</mat-icon>
+            </a>
+            <a *ngIf="alias.status !== 'alias_off_sale'" [routerLink]="[alias.id, 'sale-off']"
+               matTooltip="{{'cancel' | i18n}}">
+              <mat-icon>money_off</mat-icon>
+            </a>
+          </ng-container>
         </mat-cell>
       </ng-container>
 
