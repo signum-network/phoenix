@@ -32,7 +32,7 @@ import { Settings } from '../../settings';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { DescriptorData } from '@signumjs/standards';
-import { constants } from "../../constants";
+import { constants } from '../../constants';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -51,13 +51,6 @@ interface SetRewardRecipientRequest {
   keys: Keys;
 }
 
-interface SetAliasRequest {
-  aliasName: string;
-  aliasURI: string;
-  feeNQT: string;
-  pin: string;
-  keys: Keys;
-}
 
 interface SetCommitmentRequest {
   amountPlanck: string;
@@ -136,30 +129,6 @@ export class AccountService {
       feeNQT,
       immutable
     );
-  }
-
-  public getAlias(name: string): Promise<Alias> {
-    return this.api.alias.getAliasByName(name);
-  }
-
-  public getAliasById(id: string): Promise<Alias> {
-    return this.api.alias.getAliasById(id);
-  }
-
-  public getAliases(accountId: string): Promise<AliasList> {
-    return this.api.account.getAliases({ accountId });
-  }
-
-
-  public setAlias({ aliasName, aliasURI, feeNQT, pin, keys }: SetAliasRequest): Promise<TransactionId> {
-    const senderPrivateKey = this.getPrivateKey(keys, pin);
-    return this.api.account.setAlias({
-      aliasName,
-      aliasURI,
-      feePlanck: feeNQT,
-      senderPublicKey: keys.publicKey,
-      senderPrivateKey: senderPrivateKey,
-    }) as Promise<TransactionId>;
   }
 
   private getPrivateKey(keys, pin): string {

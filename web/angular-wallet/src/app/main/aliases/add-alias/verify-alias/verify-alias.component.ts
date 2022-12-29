@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AddAliasService } from '../add-alias.service';
+import { AddAliasWizardService } from '../add-alias-wizard.service';
 import { UnsubscribeOnDestroy } from '../../../../util/UnsubscribeOnDestroy';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -18,7 +18,7 @@ export class VerifyAliasComponent extends UnsubscribeOnDestroy implements OnInit
   public isVerifying = false;
 
   constructor(
-    public aliasService: AddAliasService,
+    public aliasService: AddAliasWizardService,
   ) {
     super();
   }

@@ -179,15 +179,15 @@ export class SendMoneyFormComponent extends UnsubscribeOnDestroy implements OnIn
       const dialogRef = this.openWarningDialog([this.recipient]);
       dialogRef.afterClosed().subscribe(ok => {
         if (ok) {
-          this.sendBurst(this.recipient.addressRS, this.recipient.publicKey);
+          this.sendSigna(this.recipient.addressRS, this.recipient.publicKey);
         }
       });
     } else {
-      this.sendBurst(this.recipient.addressRS, this.recipient.publicKey);
+      this.sendSigna(this.recipient.addressRS, this.recipient.publicKey);
     }
   }
 
-  async sendBurst(addressRS: string, recipientPublicKey = ''): Promise<void> {
+  async sendSigna(addressRS: string, recipientPublicKey = ''): Promise<void> {
     try {
       this.isSending = true;
 

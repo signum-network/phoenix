@@ -8,7 +8,7 @@ import {
   Attachment,
   MultioutRecipientAmount, Transaction
 } from '@signumjs/core';
-import {Keys, decryptAES, hashSHA256, encryptMessage, encryptData, EncryptedMessage, EncryptedData} from '@signumjs/crypto';
+import {Keys, encryptMessage, encryptData, EncryptedMessage, EncryptedData} from '@signumjs/crypto';
 import {ApiService} from '../../api.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {convertHexStringToByteArray} from '@signumjs/util';
@@ -17,20 +17,7 @@ import {Settings} from 'app/settings';
 import {getPrivateSigningKey} from '../../util/security/getPrivateSigningKey';
 import {getPrivateEncryptionKey} from '../../util/security/getPrivateEncryptionKey';
 
-interface SendMoneyMultiOutRequest {
-  transaction: {
-    feeNQT: string;
-    recipients: string;
-    deadline: number;
-    amountNQT?: string;
-    fullHash?: string;
-  };
-  pin: string;
-  sameAmount: boolean;
-  keys: Keys;
-}
-
-interface SendBurstMultipleSameRequest {
+interface SendSignaMultipleSameRequest {
   amountNQT: string;
   fee: string;
   deadline?: number;
@@ -39,7 +26,7 @@ interface SendBurstMultipleSameRequest {
   recipientIds: string[];
 }
 
-interface SendBurstMultipleRequest {
+interface SendSignaMultipleRequest {
   fee: string;
   deadline?: number;
   recipientAmounts: MultioutRecipientAmount[];
@@ -47,9 +34,21 @@ interface SendBurstMultipleRequest {
   keys: Keys;
 }
 
-interface SendBurstRequest {
+interface SendSignaRequest {
   amount: string;
   deadline?: number;
+  fee: string;
+  keys: Keys;
+  message?: string;
+  pin: string;
+  recipientId: string;
+  recipientPublicKey: string;
+  messageIsText: boolean;
+  shouldEncryptMessage?: boolean;
+}
+
+interface SetAliasOnSaleRequest {
+  price: string;
   fee: string;
   keys: Keys;
   message?: string;
@@ -79,7 +78,7 @@ export class TransactionService {
     return this.transactionApi.getTransaction(id);
   }
 
-  public sendAmountToMultipleRecipients(request: SendBurstMultipleRequest): Promise<TransactionId> {
+  public sendAmountToMultipleRecipients(request: SendSignaMultipleRequest): Promise<TransactionId> {
     const {fee, keys, pin, recipientAmounts} = request;
     return this.transactionApi.sendAmountToMultipleRecipients({
       senderPublicKey: keys.publicKey,
@@ -89,7 +88,7 @@ export class TransactionService {
     }) as Promise<TransactionId>;
   }
 
-  public sendSameAmountToMultipleRecipients(request: SendBurstMultipleSameRequest): Promise<TransactionId> {
+  public sendSameAmountToMultipleRecipients(request: SendSignaMultipleSameRequest): Promise<TransactionId> {
     const {amountNQT, fee, keys, pin, recipientIds} = request;
     return this.transactionApi.sendSameAmountToMultipleRecipients({
       amountPlanck: amountNQT,
@@ -100,7 +99,7 @@ export class TransactionService {
     }) as Promise<TransactionId>;
   }
 
-  public async sendAmount(request: SendBurstRequest): Promise<TransactionId> {
+  public async sendAmount(request: SendSignaRequest): Promise<TransactionId> {
 
     const {pin, amount, fee, recipientId, message, messageIsText, shouldEncryptMessage, keys, recipientPublicKey} = request;
 
@@ -142,5 +141,4 @@ export class TransactionService {
     });
 
   }
-
 }

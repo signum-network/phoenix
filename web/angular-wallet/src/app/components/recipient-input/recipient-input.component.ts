@@ -1,14 +1,16 @@
-import {Component, ElementRef, EventEmitter, Input, OnChanges, Output, ViewChild} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core';
 import jsQR from 'jsqr';
-import {NotifierService} from 'angular-notifier';
-import {DomainService} from 'app/main/send-money/domain/domain.service';
-import {Subject} from 'rxjs';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {Address, AddressPrefix} from '@signumjs/core';
-import {AccountService} from '../../setup/account/account.service';
+import { NotifierService } from 'angular-notifier';
+import { DomainService } from 'app/main/send-money/domain/domain.service';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Address, AddressPrefix } from '@signumjs/core';
+import { AccountService } from '../../setup/account/account.service';
 import { AppService } from '../../app.service';
 import { constants } from '../../constants';
 import { NetworkService } from '../../network/network.service';
+import { AliasService } from '../../main/aliases/alias.service';
+import { DescriptorData } from '@signumjs/standards';
 
 // generate a unique id for 'for', see https://github.com/angular/angular/issues/5145#issuecomment-226129881
 let nextId = 0;
@@ -93,14 +95,15 @@ export class RecipientInputComponent implements OnChanges {
     this.onRecipientFieldInputChange(recipientValue);
   }
 
-  @ViewChild('file', {static: false}) file: ElementRef;
+  @ViewChild('file', { static: false }) file: ElementRef;
 
   constructor(
     private appService: AppService,
     private networkService: NetworkService,
     private accountService: AccountService,
-              private notifierService: NotifierService,
-              private domainService: DomainService) {
+    private aliasService: AliasService,
+    private notifierService: NotifierService,
+    private domainService: DomainService) {
 
     this.recipientFieldInputChange$.pipe(
       debounceTime(500), distinctUntilChanged()
@@ -136,18 +139,24 @@ export class RecipientInputComponent implements OnChanges {
   }
 
   private isAlias(address: string): boolean {
-    return /^[a-zA-Z0-9-_]{4,128}$/.test(address);
+    return /^[a-zA-Z0-9]{1,100}$/.test(address);
   }
 
   private async fetchAccountIdFromAlias(alias: string): Promise<string> {
-    const {aliasURI} = await this.accountService.getAlias(alias);
-    const matches = /^acct:(burst|s|ts)?-(.+)@(burst|signum)$/i.exec(aliasURI);
-    if (matches.length < 2) {
-      throw new Error(`Unknown alias URI format: ${alias}`);
+    const { aliasURI } = await this.aliasService.getAliasByName(alias);
+
+    try{
+      const src44 = DescriptorData.parse(aliasURI);
+      return src44.account;
+    }catch (e){
+      const matches = /^acct:(burst|s|ts)?-(.+)@(burst|signum)$/i.exec(aliasURI);
+      if (matches.length >= 2) {
+        const rsAddress = `${this.isTestNet ? AddressPrefix.TestNet : AddressPrefix.MainNet}-${matches[2]}`.toUpperCase();
+        return Address.fromReedSolomonAddress(rsAddress).getNumericId();
+      }
     }
 
-    const unwrappedAddress = `${this.isTestNet ? AddressPrefix.TestNet : AddressPrefix.MainNet}-${matches[2]}`.toUpperCase();
-    return Address.fromReedSolomonAddress(unwrappedAddress).getNumericId();
+    return null;
   }
 
   applyRecipientType(recipient: string): void {
@@ -210,18 +219,18 @@ export class RecipientInputComponent implements OnChanges {
       return;
     }
 
-    if (this.recipient.type === RecipientType.BURN){
+    if (this.recipient.type === RecipientType.BURN) {
       this.recipientChange.emit(this.recipient);
       return;
     }
 
     this.loading = true;
     // @ts-ignore
-    this.accountService.getAccount(id).then(({accountRS, publicKey}) => {
+    this.accountService.getAccount(id).then(({ accountRS, publicKey }) => {
       this.recipient.addressRS = accountRS;
       this.recipient.status = RecipientValidationStatus.VALID;
       this.recipient.publicKey = publicKey;
-      if (this.recipient.publicKey === constants.smartContractPublicKey){
+      if (this.recipient.publicKey === constants.smartContractPublicKey) {
         this.recipient.type = RecipientType.CONTRACT;
       }
     }).catch(() => {
@@ -297,7 +306,7 @@ export class RecipientInputComponent implements OnChanges {
         canvas.height = height;
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, width * 4, height * 4, 0, 0, width, height);
-        const {data} = ctx.getImageData(0, 0, width, height);
+        const { data } = ctx.getImageData(0, 0, width, height);
         const qr = jsQR(data, width, height);
         if (qr) {
           const url = new URLSearchParams(qr.data);

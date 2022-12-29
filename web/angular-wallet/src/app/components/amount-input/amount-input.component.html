@@ -11,7 +11,7 @@
   >
   <mat-icon
     class="all-icon"
-    *ngIf="!disabled"
+    *ngIf="!disabled && maxAmount"
     matSuffix
     matTooltip="{{'spend_all' | i18n}}"
     (click)="onSpendAll()"

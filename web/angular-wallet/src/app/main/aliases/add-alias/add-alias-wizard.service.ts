@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
 import { Alias } from '@signumjs/core';
-import { AccountService } from '../../../setup/account/account.service';
+import { AliasService } from '../alias.service';
 
-const MaxSteps = 2
+const MaxSteps = 2;
 
 @Injectable()
-export class AddAliasService {
+export class AddAliasWizardService {
   public aliasName = '';
   private step = 0;
 
   constructor(
-    private accountService: AccountService,
+    private aliasService: AliasService,
   ) {
   }
 
@@ -41,17 +41,9 @@ export class AddAliasService {
 
   async fetchAlias(aliasName: string): Promise<Alias|null> {
     try{
-      return (await this.accountService.getAlias(aliasName));
+      return (await this.aliasService.getAliasByName(aliasName));
     } catch (e){
       return null;
     }
   }
-
-  // async createAlias() {
-  //   this.accountService.setAlias({
-  //     aliasName: this.aliasName,
-  //     aliasURI: this.description,
-  //   })
-  // }
-
 }

@@ -7,7 +7,7 @@
     <mat-horizontal-stepper #stepper
                             linear
                             [linear]="true"
-                            [selectedIndex]="this.aliasService.getStep()"
+                            [selectedIndex]="this.wizardService.getStep()"
                             labelPosition="bottom"
     >
       <mat-step>
@@ -19,62 +19,10 @@
       <mat-step>
         <ng-template matStepLabel>{{ 'edit_alias' | i18n }}</ng-template>
         <div class="step-container">
-          <app-edit-alias-form [account]="account" [fees]="fees" [aliasName]="this.aliasService.aliasName"></app-edit-alias-form>
+          <app-edit-alias-form [account]="account" [fees]="fees" [aliasName]="this.wizardService.aliasName"></app-edit-alias-form>
         </div>
       </mat-step>
     </mat-horizontal-stepper>
   </div>
-
-
-<!--  <form (ngSubmit)="onSubmit($event);" #setAliasForm="ngForm">-->
-
-<!--    <mat-radio-group fxLayout.gt-sm="row" fxLayoutAlign.gt-xs="space-between center" fxLayout.xs="column"-->
-<!--                     fxLayoutAlign.xs="start start" [(ngModel)]="type" name="type">-->
-<!--      <mat-radio-button class="mb-12" value="acct" >{{'account' | i18n}}</mat-radio-button>-->
-<!--      <mat-radio-button class="mb-12" value="uri" >URI</mat-radio-button>-->
-<!--      <mat-radio-button class="mb-12" value="other" >{{'other' | i18n}}</mat-radio-button>-->
-<!--    </mat-radio-group>-->
-
-<!--    <mat-form-field>-->
-<!--      <input matInput [(ngModel)]="alias" name="alias" placeholder="{{ 'alias' | i18n }}">-->
-<!--    </mat-form-field>-->
-
-<!--    <mat-form-field *ngIf="type==='uri'">-->
-<!--      <input matInput [(ngModel)]="uri" name="uri" placeholder="{{ 'uri' | i18n }}">-->
-<!--    </mat-form-field>-->
-
-<!--    <mat-form-field *ngIf="type==='acct'">-->
-<!--      <input matInput prefix="{{addressPrefix}}" pasteableAddress [patterns]="addressPatternRef"-->
-<!--             mask="-____-____-____-_____" [dropSpecialCharacters]="false" [showMaskTyped]="true"-->
-<!--             [(ngModel)]="accountAliasURI" name="accountAliasURI" placeholder="{{ 'address' | i18n }}">-->
-<!--    </mat-form-field>-->
-
-<!--    <mat-form-field *ngIf="type==='other'">-->
-<!--      <textarea matInput [(ngModel)]="uri" name="uri" placeholder="{{ 'data' | i18n }}"></textarea>-->
-<!--    </mat-form-field>-->
-
-<!--    <app-fee-input [type]="txType"-->
-<!--                   [subtype]="txSubtype"-->
-<!--                   [(feeSigna)]="fee"-->
-<!--                   [payloadLength]="getPayloadLength()"-->
-<!--    >-->
-<!--    </app-fee-input>-->
-
-<!--    <div class="submit-transaction">-->
-<!--      <mat-form-field class="message-text password-field" floatLabel="never" appearance="standard">-->
-<!--        <input type="password" matInput required placeholder="{{'enter_pin' | i18n}}" [(ngModel)]="pin" name="pin">-->
-<!--      </mat-form-field>-->
-
-<!--      <button class="send-button" mat-icon-button type="submit" aria-label="Send message"-->
-<!--              [disabled]="!canSubmit()">-->
-<!--        <ng-container *ngIf="!isSending">-->
-<!--          <mat-icon [class.enabled]="canSubmit() || false">send</mat-icon>-->
-<!--        </ng-container>-->
-<!--        <ng-container *ngIf="isSending">-->
-<!--          <mat-spinner diameter="20"></mat-spinner>-->
-<!--        </ng-container>-->
-<!--      </button>-->
-<!--    </div>-->
-<!--  </form>-->
 
 </app-page>

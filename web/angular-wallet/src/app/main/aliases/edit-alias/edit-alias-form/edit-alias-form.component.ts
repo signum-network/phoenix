@@ -2,7 +2,6 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { SuggestedFees, TransactionType, TransactionArbitrarySubtype, Alias } from '@signumjs/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import {AccountService} from 'app/setup/account/account.service';
 import {NotifierService} from 'angular-notifier';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
 import { Amount } from '@signumjs/util';
@@ -11,6 +10,7 @@ import { WalletAccount } from 'app/util/WalletAccount';
 import { isTextIsJson } from 'app/util/isTextIsJson';
 import { isTextIsSrc44 } from 'app/util/isTextIsSrc44';
 import { NetworkService } from 'app/network/network.service';
+import { AliasService } from '../../alias.service';
 
 
 @Component({
@@ -44,7 +44,7 @@ export class EditAliasFormComponent implements OnInit, OnChanges {
   immutable = false;
 
   constructor(private route: ActivatedRoute,
-              private accountService: AccountService,
+              private aliasService: AliasService,
               private notifierService: NotifierService,
               private networkService: NetworkService,
               private i18nService: I18nService,
@@ -66,7 +66,7 @@ export class EditAliasFormComponent implements OnInit, OnChanges {
     this.isSending = true;
     event.stopImmediatePropagation();
     try {
-       await this.accountService.setAlias({
+       await this.aliasService.setAlias({
          aliasName: this.alias ? this.alias.aliasName : this.aliasName,
          aliasURI: this.getDescription(),
          feeNQT: Amount.fromSigna(this.fee).getPlanck(),

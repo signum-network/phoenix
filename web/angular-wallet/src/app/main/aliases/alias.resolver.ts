@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Alias } from '@signumjs/core';
-import { AccountService } from '../../setup/account/account.service';
+import { AliasService } from './alias.service';
 
 @Injectable()
 export class AliasResolver implements Resolve<Promise<Alias>> {
-  constructor(private accountService: AccountService) {
+  constructor(private aliasService: AliasService) {
   }
 
   async resolve(route: ActivatedRouteSnapshot): Promise<Alias> {
-    return this.accountService.getAliasById(route.params.aliasId);
+    return this.aliasService.getAliasById(route.params.aliasId);
   }
 }
 

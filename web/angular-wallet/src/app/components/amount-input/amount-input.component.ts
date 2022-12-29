@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CurrencySymbol} from '@signumjs/util';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CurrencySymbol } from '@signumjs/util';
 
 @Component({
   selector: 'app-amount-input',
@@ -8,7 +8,7 @@ import {CurrencySymbol} from '@signumjs/util';
 })
 export class AmountInputComponent implements OnInit {
   @Input() symbol = CurrencySymbol;
-  @Input() maxAmount: string | number = '0';
+  @Input() maxAmount?: string | number;
   @Input() amount: string;
   @Input() disabled = false;
 
@@ -21,8 +21,10 @@ export class AmountInputComponent implements OnInit {
   }
 
   public onSpendAll(): void {
-    this.amount = this.maxAmount.toString();
-    this.onChange(this.amount);
+    if (this.maxAmount) {
+      this.amount = this.maxAmount.toString();
+      this.onChange(this.amount);
+    }
   }
 
   onChange(amount: string): void {

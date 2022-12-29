@@ -359,6 +359,7 @@
   "subtype": "Subtype",
   "success_alias_register": "Alias registered successfully.",
   "success_alias_update": "Alias updated successfully.",
+  "success_alias_sell": "Alias set on sale successfully.",
   "success_clipboard_copy": "Copied to the clipboard successfully.",
   "success_send_money": "Signa has been sent.",
   "success_set_account_info": "Your account info update has been submitted successfully.",
@@ -503,5 +504,7 @@
   "verify_alias": "Verify Availability",
   "verify_alias_description": "Type your alias name and check its availability",
   "alias_taken": "This alias was taken already",
-  "created": "Created"
+  "created": "Created",
+  "is_private_offer_q": "Is Private Offer?",
+  "enter_recipient": "Enter Address, Account Id or Alias Name"
 }

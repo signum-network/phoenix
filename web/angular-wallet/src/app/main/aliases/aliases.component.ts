@@ -15,6 +15,7 @@ import { FormControl } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import { isTextIsSrc44 } from '../../util/isTextIsSrc44';
 import { isTextIsJson } from '../../util/isTextIsJson';
+import { AliasService } from './alias.service';
 
 
 const ColumnsQuery = {
@@ -58,7 +59,7 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
 
   constructor(
     private storeService: StoreService,
-    private accountService: AccountService,
+    private aliasService: AliasService,
     public router: Router,
     private observableMedia: MediaObserver
   ) {
@@ -109,7 +110,7 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
 
   private async fetchAliases(): Promise<void> {
     try {
-      const { aliases } = await this.accountService.getAliases(this.selectedAccount.account);
+      const { aliases } = await this.aliasService.getAliases(this.selectedAccount.account);
       this.dataSource.data = aliases.map((a) => {
         const result: AliasData = {
           name: a.aliasName,
