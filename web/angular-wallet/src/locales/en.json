@@ -12,6 +12,7 @@
   "account_watch": "Import an account you'd like to observe only",
   "account_watch_short": "Watch Account",
   "account_profile": "Profile",
+  "account_details": "Account Details",
   "accounts": "Accounts",
   "actions": "Actions",
   "activate": "Activate",
@@ -511,5 +512,9 @@
   "alias_cancel_sale": "Cancel Alias Sale",
   "success_alias_cancel_sale": "Sale cancelled successfully",
   "alias_direct_offer": "This Alias is a direct offer",
-  "success_alias_buy": "Congratz. You just bought a new Alias"
+  "success_alias_buy": "Congratz. You just bought a new Alias",
+  "can-buy-alias": "The Alias is on sale and can be acquired. Click 'Buy' if you are willing to acquire the Alias",
+  "more_alias_on": "More about Aliases on",
+  "no_aliases_available": "No Aliases available",
+  "owner": "Owner"
 }

@@ -13,7 +13,7 @@
       <mat-step>
         <ng-template matStepLabel>{{ 'verify_alias' | i18n }}</ng-template>
         <div class="step-container">
-          <app-add-alias-verify-alias></app-add-alias-verify-alias>
+          <app-add-alias-verify-alias [account]="account"></app-add-alias-verify-alias>
         </div>
       </mat-step>
       <mat-step>

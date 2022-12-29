@@ -23,6 +23,10 @@
   </mat-form-field>
 </div>
 <div class="text-center navigation">
-  <button class="btn-success" mat-raised-button (click)="next()"
+  <button *ngIf="!canBuy" class="btn-success" mat-raised-button (click)="next()"
           [disabled]="!canProceed()">{{'next' | i18n }}</button>
+  <div *ngIf="canBuy" class="buy-container">
+    <p>{{'can-buy-alias'|i18n}}</p>
+    <a [routerLink]="['../', aliasId, 'buy']" mat-raised-button color="primary">{{'buy'|i18n}}</a>
+  </div>
 </div>

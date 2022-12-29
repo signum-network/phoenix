@@ -18,9 +18,9 @@ import { AliasService } from './alias.service';
 
 
 const ColumnsQuery = {
-  xl: ['name', 'timestamp', 'content', 'status', 'price', 'buyer', 'actions'],
-  lg: ['name', 'timestamp', 'content', 'status', 'price', 'buyer', 'actions'],
-  md: ['name', 'timestamp', 'content', 'status', 'price', 'buyer', 'actions'],
+  xl: ['name', 'owner', 'timestamp', 'content', 'status', 'price', 'buyer', 'actions'],
+  lg: ['name', 'owner', 'timestamp', 'content', 'status', 'price', 'buyer', 'actions'],
+  md: ['name', 'owner', 'timestamp', 'content', 'status', 'price', 'buyer', 'actions'],
   sm: ['name', 'content', 'status', 'price', 'actions'],
   xs: ['name', 'price', 'actions']
 };
@@ -28,6 +28,7 @@ const ColumnsQuery = {
 interface AliasData {
   name: string;
 
+  owner: string;
   timestamp: number;
   id: string;
   content: string;
@@ -116,6 +117,7 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
       ]);
       this.dataSource.data = [...offers.aliases, ...own.aliases,].map((a) => {
         const result: AliasData = {
+          owner: a.account,
           name: a.aliasName,
           timestamp: a.timestamp,
           id: a.alias,
@@ -174,5 +176,17 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
       return alias.buyer === this.selectedAccount.account;
     }
     return false;
+  }
+
+  canEdit(alias: AliasData): boolean {
+    return alias.owner === this.selectedAccount.account;
+  }
+
+  canCancel(alias: AliasData): boolean {
+    return alias.status !== 'alias_off_sale' && alias.owner === this.selectedAccount.account;
+  }
+
+  canSell(alias: AliasData): boolean {
+    return alias.status === 'alias_off_sale' && alias.owner === this.selectedAccount.account;
   }
 }

@@ -1,4 +1,12 @@
 :host {
+  .hint {
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    margin-bottom: 0.25rem;
+    padding: 0.5rem;
+  }
+
   .action-bar {
     display: flex;
     width: 100%;

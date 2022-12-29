@@ -1,24 +1,7 @@
-<div class="page-layout blank simple" fusePerfectScrollbar>
-
-  <!-- HEADER -->
-  <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-       fxLayoutAlign.gt-xs="space-between center">
-
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <a [routerLink]="['/dashboard']">
-          <mat-icon class="secondary-text s-18">home</mat-icon>
-        </a>
-        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-        <a [routerLink]="['/accounts']" class="secondary-text">{{ 'accounts' | i18n }}</a>
-        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-        <span class="secondary-text">{{ account.accountRS }} </span>
-      </div>
-      <div class="h1 mt-16">
-        <h2>{{ account.accountRS }}</h2>
-      </div>
-    </div>
-  </div>
+<app-page [full]="true"
+          [title]="'account_details' | i18n"
+          [subtitle]="account.accountRS"
+          [breadcrumbs]="[{label: 'accounts' | i18n , path: '/accounts'}]">
   <!-- / HEADER -->
 
   <div class=" p-24">
@@ -61,4 +44,4 @@
       </mat-tab>
     </mat-tab-group>
   </div>
-</div>
+</app-page>

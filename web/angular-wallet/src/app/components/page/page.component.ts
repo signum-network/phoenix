@@ -1,14 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {sample} from 'lodash';
+import { Component, Input } from '@angular/core';
+import { HistoryNavigationService } from 'app/shared/services/historyNavigation.service';
 
-const BackgroundImages = [
-  // ATTENTION: do not put trailing slashes here, otherwise in electron the images won't show up
-  'assets/images/bg/polygones0.svg',
-  'assets/images/bg/polygones1.svg',
-  'assets/images/bg/polygones2.svg',
-  'assets/images/bg/polygones3.svg',
-  'assets/images/bg/polygones4.svg',
-];
 
 export interface BreadcrumbInfo {
   path: string;
@@ -20,7 +12,7 @@ export interface BreadcrumbInfo {
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.scss']
 })
-export class PageComponent implements OnInit{
+export class PageComponent {
 
   @Input()
   title: string;
@@ -36,13 +28,19 @@ export class PageComponent implements OnInit{
 
   @Input()
   subtitle: string;
-
-  bgImgSrc: string;
-
-  ngOnInit(): void {
-    const bgSrc = sample(BackgroundImages);
-    this.bgImgSrc = `url(${bgSrc})`;
+  constructor(private navService: HistoryNavigationService) {
   }
 
+  back(): void {
+    this.navService.back();
+  }
+
+  forward(): void {
+    this.navService.forward();
+  }
+
+  canBack(): boolean {
+    return this.navService.canBack();
+  }
 
 }

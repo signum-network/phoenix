@@ -1,19 +1,25 @@
 <div class="page-layout blank simple" fusePerfectScrollbar>
-  <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-       fxLayoutAlign.gt-xs="space-between center">
+  <div class="header accent p-24 h-160 fullwidth">
 
     <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
-      <div fxLayout="row" fxLayoutAlign="start center">
-
-        <a [routerLink]="['/dashboard']"><mat-icon class="secondary-text s-18">home</mat-icon></a>
-        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-
-        <ng-container *ngFor="let breadcrumb of breadcrumbs">
-          <a class="secondary-text" [routerLink]="[breadcrumb.path]">{{breadcrumb.label}}</a>
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="fullwidth">
+        <div *ngIf="canBack()" class="nav-button" (click)="back()">
+          <mat-icon class="secondary-text s-18">arrow_back</mat-icon>
+        </div>
+        <div>
+          <a [routerLink]="['/dashboard']">
+            <mat-icon class="secondary-text s-18">home</mat-icon>
+          </a>
           <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-        </ng-container>
-
-        <span class="secondary-text">{{title}}</span>
+          <ng-container *ngFor="let breadcrumb of breadcrumbs">
+            <a class="secondary-text" [routerLink]="[breadcrumb.path]">{{breadcrumb.label}}</a>
+            <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+          </ng-container>
+          <strong class="secondary-text">{{title}}</strong>
+        </div>
+        <div class="nav-button" (click)="forward()">
+          <mat-icon class="secondary-text s-18">arrow_forward</mat-icon>
+        </div>
       </div>
       <div class="h1 mt-16">{{title}}</div>
       <div class="h3 mt-16">{{subtitle}}</div>
@@ -22,7 +28,7 @@
 
   <!-- CENTER -->
   <app-watermark></app-watermark>
-  <div class="content-container" >
+  <div class="content-container">
     <div [ngClass]="{content: true, wide:wide===true, full:full===true}">
       <ng-content></ng-content>
     </div>

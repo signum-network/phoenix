@@ -1,6 +1,5 @@
 <app-page title="{{ 'transactions' | i18n }}" [full]="true">
   <div class="p-16">
-
     <div fxLayout="row wrap" fxLayoutAlign="space-between center">
       <div>
         <mat-form-field class="search-form">
@@ -56,7 +55,8 @@
                       placeholder="{{'address' | i18n}}"
                       (selectionChange)="applyFilter()"
           >
-            <mat-option *ngFor="let recipient of recipientTypeOptions" value="{{recipient.k}}">{{recipient.v.toLocaleUpperCase()  }}</mat-option>
+            <mat-option *ngFor="let recipient of recipientTypeOptions"
+                        value="{{recipient.k}}">{{recipient.v.toLocaleUpperCase()  }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>

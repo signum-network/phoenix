@@ -1,19 +1,19 @@
-<div class="page-layout blank simple" fusePerfectScrollbar *ngIf="accounts">
+<app-page title="{{ 'account' | i18n }}" [full]="true" *ngIf="accounts">
 
-  <div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-       fxLayoutAlign.gt-xs="space-between center">
+<!--<div class="header accent p-24 h-160" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"-->
+<!--       fxLayoutAlign.gt-xs="space-between center">-->
 
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <a [routerLink]="['/dashboard']">
-          <mat-icon class="secondary-text s-18">home</mat-icon>
-        </a>
-        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
-        <span class="secondary-text">{{ 'accounts' | i18n }}</span>
-      </div>
-      <div class="h1 mt-16">{{ 'accounts' | i18n }}</div>
-    </div>
-  </div>
+<!--    <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">-->
+<!--      <div fxLayout="row" fxLayoutAlign="start center">-->
+<!--        <a [routerLink]="['/dashboard']">-->
+<!--          <mat-icon class="secondary-text s-18">home</mat-icon>-->
+<!--        </a>-->
+<!--        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>-->
+<!--        <span class="secondary-text">{{ 'accounts' | i18n }}</span>-->
+<!--      </div>-->
+<!--      <div class="h1 mt-16">{{ 'accounts' | i18n }}</div>-->
+<!--    </div>-->
+<!--  </div>-->
 
   <div class="p-24">
 
@@ -116,9 +116,8 @@
         </mat-cell>
       </ng-container>
 
-
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
   </div>
-</div>
+</app-page>
