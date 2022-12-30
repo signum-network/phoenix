@@ -23,6 +23,9 @@ import {takeUntil} from 'rxjs/operators';
 import {Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET} from '@angular/router';
 import { WalletAccount } from './util/WalletAccount';
 
+const BlockchainStatusInterval = 30_000;
+const PendingTransactionsInterval = 10_000;
+
 @Component({
   selector: 'app',
   templateUrl: './app.component.html',
@@ -42,10 +45,10 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   isLoggedIn = false;
   selectedAccount: WalletAccount;
   accounts: WalletAccount[];
-  BLOCKCHAIN_STATUS_INTERVAL = 30000;
   urlSerializer = new DefaultUrlSerializer();
   percentDownloaded: number;
-  blockchainStatusInterval: any = null;
+  private blockchainStatusInterval: NodeJS.Timeout;
+  private pendingTransactionsInterval: NodeJS.Timeout;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -77,7 +80,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
           this.updateAccounts();
           const checkBlockchainStatus = this.checkBlockchainStatus.bind(this);
           setTimeout(checkBlockchainStatus, 1000);
-          this.blockchainStatusInterval = setInterval(checkBlockchainStatus, this.BLOCKCHAIN_STATUS_INTERVAL);
+          this.blockchainStatusInterval = setInterval(checkBlockchainStatus, BlockchainStatusInterval);
         }
         this.accountService.currentAccount$
           .pipe(
@@ -85,6 +88,12 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
           )
           .subscribe(async (account) => {
             this.selectedAccount = account;
+            if (this.pendingTransactionsInterval){
+              clearInterval(this.pendingTransactionsInterval);
+            }
+            this.pendingTransactionsInterval = setInterval(() => {
+              this.checkPendingTransactions(account);
+            }, PendingTransactionsInterval);
             this.accounts = await this.storeService.getAllAccounts();
           });
       });
@@ -99,6 +108,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   ngOnDestroy(): void {
     super.ngOnDestroy();
     clearInterval(this.blockchainStatusInterval);
+    clearInterval(this.pendingTransactionsInterval);
   }
 
   private initDeepLinkHandler(): void {
@@ -222,6 +232,11 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     } catch (e) {
       return this.notifierService.notify('error', this.utilService.translateServerError(e));
     }
+  }
+
+
+  private async checkPendingTransactions(account: WalletAccount): Promise<WalletAccount>{
+    return this.accountService.synchronizeAccount(account, true);
   }
 
   private async updateAccountsAndCheckBlockchainStatus(blockchainStatus: BlockchainStatus): Promise<void> {

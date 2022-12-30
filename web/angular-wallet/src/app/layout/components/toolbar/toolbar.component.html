@@ -45,7 +45,7 @@
       <button mat-button [matMenuTriggerFor]="userMenu"
               class="action-button">
         <div fxLayout="row" fxLayoutAlign="center center">
-                    <span class="username mr-12" fxHide fxShow.gt-sm>
+                    <span class="username mr-12" fxHide fxShow.gt-xs>
                         <ng-container *ngIf="selectedAccount.type === 'offline'">
                             <mat-icon class="account-type-icon" matTooltip="{{'hint_offline_account' | i18n}}">remove_red_eye</mat-icon>
                         </ng-container>
@@ -93,8 +93,8 @@
               class="action-button"
               [matMenuTriggerFor]="languageMenu">
         <div fxLayout="row" fxLayoutAlign="center center">
-          <span class="iso text-uppercase" fxHide fxShow.gt-xs>{{selectedLanguage.name}}</span>
-          <span class="iso text-uppercase" fxHide.gt-xs>
+          <span class="iso text-uppercase" fxHide fxShow.gt-md>{{selectedLanguage.name}}</span>
+          <span class="iso text-uppercase" fxHide.gt-md>
                       <mat-icon class="secondary-text">language</mat-icon>
                     </span>
         </div>

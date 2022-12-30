@@ -112,6 +112,7 @@ export class StoreService {
               w.unconfirmedBalanceNQT = account.unconfirmedBalanceNQT;
               w.committedBalanceNQT = account.committedBalanceNQT;
               w.accountRSExtended = account.accountRSExtended;
+              w.accountRS = account.accountRS;
               w.assetBalances = account.assetBalances;
               w.type = account.type;
               w.selected = account.selected;

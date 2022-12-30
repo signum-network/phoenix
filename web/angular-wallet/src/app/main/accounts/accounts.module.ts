@@ -31,7 +31,7 @@ import {ConvertNQTStringPipe} from './account-details/convert-nqt-string';
 import {AppSharedModule} from '../../shared/shared.module';
 import {TransactionsResolver} from './transactions.resolver';
 import {TokensModule} from '../tokens/tokens.module';
-import { ComponentsModule } from "../../components/components.module";
+import { ComponentsModule } from 'app/components/components.module';
 
 
 const routes = [

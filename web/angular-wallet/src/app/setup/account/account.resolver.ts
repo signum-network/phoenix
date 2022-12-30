@@ -22,8 +22,7 @@ export class AccountResolver implements Resolve<Promise<WalletAccount>> {
     if (storedAccount.length) {
       account.type = storedAccount[0].type;
     }
-    await this.accountService.synchronizeAccount(account);
-    return account;
+    return (await this.accountService.synchronizeAccount(account));
   }
 }
 
