@@ -74,6 +74,10 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
   public getAmount(transaction: Transaction): string {
 
+    if (transaction.type === TransactionType.Arbitrary && transaction.subtype === TransactionArbitrarySubtype.AliasSale){
+      return transaction.attachment.priceNQT ? Amount.fromPlanck(transaction.attachment.priceNQT).getSigna() : Amount.Zero().getSigna();
+    }
+
     if (this.isOwnAccount(transaction.sender)) {
       return Amount.fromPlanck(transaction.amountNQT).multiply(-1).getSigna();
     }
@@ -117,6 +121,10 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
     if (this.isTokenHolderDistribution(row)) {
       return cx(row.sender === this.account.account ? 'outgoing' : 'incoming');
+    }
+
+    if (row.type === TransactionType.Arbitrary && row.subtype === TransactionArbitrarySubtype.AliasSale){
+      return cx('incoming');
     }
 
     if (

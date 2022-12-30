@@ -92,7 +92,6 @@
       <a *ngIf="!isOwnAccount(transaction.sender)"
          [routerLink]="['/account', transaction.sender]"
       >{{chopPrefix(transaction.senderRS)}}</a>
-
     </mat-cell>
   </ng-container>
 

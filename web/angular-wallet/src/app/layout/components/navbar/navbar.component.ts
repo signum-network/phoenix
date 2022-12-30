@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, Renderer2, ViewEncapsulation } from '@angular/core';
-import { Account } from '@signumjs/core';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
     selector     : 'navbar',
@@ -52,5 +52,5 @@ export class NavbarComponent
         this._renderer.addClass(this._elementRef.nativeElement, value);
     }
 
-    @Input('selectedAccount') selectedAccount: Account;
+    @Input() selectedAccount: WalletAccount;
 }

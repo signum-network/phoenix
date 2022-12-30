@@ -1,0 +1,7 @@
+<app-page
+  title="{{ 'view_alias' | i18n }}"
+  [breadcrumbs]="[{label:'aliases' | i18n, path: '/aliases'}]"
+  *ngIf="fees && account && alias"
+>
+    <app-edit-alias-form [alias]="alias" [account]="account" [fees]="fees" readOnly="true"></app-edit-alias-form>
+</app-page>

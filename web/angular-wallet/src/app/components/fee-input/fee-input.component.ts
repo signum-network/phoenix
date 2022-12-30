@@ -24,7 +24,6 @@ const AbsoluteMaxFee = Amount.fromSigna(500);
   styleUrls: ['./fee-input.component.scss']
 })
 export class FeeInputComponent implements OnInit, OnChanges {
-
   @Input() feeBase: string;
   @Input() type: number;
   @Input() subtype: number;

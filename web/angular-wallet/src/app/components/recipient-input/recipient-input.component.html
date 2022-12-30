@@ -1,10 +1,11 @@
-<mat-form-field [appearance]="appearance">
+<mat-form-field>
+  <mat-label>{{ 'recipient' | i18n }}</mat-label>
   <div class="container" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
     <input matInput
            [(ngModel)]="recipientValue"
            (ngModelChange)="onRecipientFieldInputChange(recipientValue)"
            (blur)="validateRecipient(recipientValue)"
-           placeholder="{{ 'recipient' | i18n }}"
+           placeholder="{{ 'enter_recipient' | i18n }}"
            [disabled]="disabled">
 
     <div *ngIf="recipient.type !== 1 && recipient.status !== 'unstoppable-outage'"

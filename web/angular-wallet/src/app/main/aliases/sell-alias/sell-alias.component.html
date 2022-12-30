@@ -1,0 +1,60 @@
+<app-page
+  title="{{ 'alias_sale' | i18n }}"
+  [breadcrumbs]="[{label:'aliases' | i18n, path: '/aliases'}]"
+  *ngIf="fees && account && alias"
+>
+  <div class="header pl-20 pr-20 mb-8">
+    <div>
+      <small class="secondary-text text-uppercase">{{'alias'| i18n}}</small>
+      <p>{{alias.aliasName}}</p>
+    </div>
+    <div>
+      <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>
+      <p class="pb-8">{{account.accountRS}}</p>
+    </div>
+  </div>
+
+  <form (ngSubmit)="onSubmit($event)">
+
+
+    <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="isPrivateOffer"
+                  name="showMessage">{{ "is_private_offer_q" | i18n }}</mat-checkbox>
+
+    <ng-container *ngIf="isPrivateOffer">
+      <recipient-input [recipientValue]="recipient.addressRaw"
+                       (recipientChange)="onRecipientChange($event)"
+                       [withQrCode]="false"
+                       [disabled]="immutable">
+      </recipient-input>
+    </ng-container>
+
+    <app-amount-input [(amount)]="amount"
+                      [disabled]="immutable"
+    ></app-amount-input>
+
+    <app-fee-input *ngIf="!immutable"
+                   [type]="type"
+                   [subtype]="subtype"
+                   [(feeSigna)]="fee"
+                   [payloadLength]="message ? message.length : 0"
+    >
+    </app-fee-input>
+
+    <ng-container *ngIf="isPrivateOffer">
+      <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="attachMessage"
+                    name="showMessage">{{ "add_message_q" | i18n }}</mat-checkbox>
+      <ng-container *ngIf="attachMessage">
+        <app-message-input
+          [disabled]="immutable"
+          [(message)]="message"
+          [(isText)]="messageIsText"
+          [(encrypt)]="encrypt"
+          [canEncrypt]="canEncrypt()"
+        >
+        </app-message-input>
+      </ng-container>
+    </ng-container>
+    <app-submit-transaction [(pin)]="pin" [disabled]="!canSubmit()" [isSubmitting]="isSending">
+    </app-submit-transaction>
+  </form>
+</app-page>

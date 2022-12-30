@@ -1,0 +1,39 @@
+@import "src/@fuse/scss/fuse";
+
+:host {
+
+  .account-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @include media-breakpoint('xs') {
+      flex-direction: column;
+      margin-top: 20px;
+      justify-content: normal;
+    }
+
+    &__field {
+      margin-right: 1em;
+
+      p {
+        font-size: 16px;
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+
+  mat-form-field {
+    width: 100%;
+    display: block;
+  }
+
+  form {
+    padding: 16px;
+  }
+
+  .content {
+    max-width: 600px;
+  }
+}

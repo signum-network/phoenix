@@ -1,0 +1,65 @@
+<div class="account-info pl-20 pr-20 mb-8">
+  <div class="account-info__field">
+    <small class="secondary-text text-uppercase">{{'owner'| i18n}}</small>
+    <p class="pb-8">{{alias.accountRS}}</p>
+    <ng-container *ngIf="alias">
+      <small class="secondary-text text-uppercase">{{'alias'| i18n}}</small>
+        <p>{{alias.aliasName}}
+          <mat-icon *ngIf="alias.priceNQT" class="mr-8 font-size-18 grey-500-fg ml-2"
+                    matTooltip="{{ 'alias_on_sale' | i18n }}">monetization_on
+          </mat-icon>
+        </p>
+    </ng-container>
+    <ng-container *ngIf="aliasName">
+      <small class="secondary-text text-uppercase">{{'alias'| i18n}}</small>
+      <p>{{aliasName}}</p>
+    </ng-container>
+  </div>
+  <div class="w-120" fxLayout="row" fxLayoutAlign="center center">
+    <mat-icon *ngIf="formatType.value === 'src44'" class="mr-8 font-size-18 grey-500-fg ml-2"
+              matTooltip="{{ 'src44_info' | i18n }}">info
+    </mat-icon>
+    <mat-form-field>
+      <mat-select [formControl]="formatType"
+                  placeholder="{{'type' | i18n}}"
+      >
+        <mat-option *ngFor="let type of formatTypeOptions" value="{{type}}">{{type | i18n}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
+<div>
+  <form (ngSubmit)="onSubmit($event)">
+    <ng-container *ngIf="formatType.value === 'src44'">
+      <app-src44-alias-description-form
+        [(description)]="description.src44"
+        [disabled]="immutable"
+      ></app-src44-alias-description-form>
+    </ng-container>
+    <ng-container *ngIf="formatType.value === 'json'">
+      <app-json-description-form [(description)]="description.json"
+                                 [disabled]="immutable"></app-json-description-form>
+    </ng-container>
+    <ng-container *ngIf="formatType.value === 'custom'">
+      <app-custom-description-form [(description)]="description.custom"
+                                   [disabled]="immutable"
+      ></app-custom-description-form>
+    </ng-container>
+
+    <ng-container *ngIf="!immutable">
+
+      <app-fee-input [type]="txType"
+                     [subtype]="txSubtype"
+                     [(feeSigna)]="fee"
+                     [payloadLength]="getPayloadLength()"
+      >
+      </app-fee-input>
+
+      <app-submit-transaction [disabled]="!canSubmit()"
+                              [isSubmitting]="isSending"
+                              (pinChange)="setPin($event)"></app-submit-transaction>
+      <span *ngIf="isTooLong()" class="error-text">{{ 'message_too_long' | i18n }}</span>
+    </ng-container>
+  </form>
+</div>

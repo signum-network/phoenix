@@ -1,7 +1,55 @@
 :host {
+  .hint {
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    margin-bottom: 0.25rem;
+    padding: 0.5rem;
+  }
+
   .action-bar {
     display: flex;
     width: 100%;
     justify-content: flex-end;
   }
+
+  .search-form {
+    min-width: 128px;
+    max-width: 256px;
+    width: inherit;
+  }
+
+  .mat-column-actions {
+    flex: 0 1 80px;
+  }
+
+  .mat-column-status > span {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+  }
+
+
+  .mat-column-name > span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .format {
+    margin-left: 0.25rem;
+    font-size: 12px;
+    border-radius: 4px;
+    padding: 2px 8px;
+    &.src44 {
+      background: #00FF88;
+    }
+    &.json {
+      background: #ffb856;
+    }
+    &.custom {
+      background: lightgrey;
+    }
+  }
+
 }

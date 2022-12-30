@@ -32,7 +32,7 @@ import { Settings } from '../../settings';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { DescriptorData } from '@signumjs/standards';
-import { constants } from "../../constants";
+import { constants } from '../../constants';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -51,14 +51,6 @@ interface SetRewardRecipientRequest {
   keys: Keys;
 }
 
-interface SetAliasRequest {
-  aliasName: string;
-  aliasURI: string;
-  deadline: number;
-  feeNQT: string;
-  pin: string;
-  keys: Keys;
-}
 
 interface SetCommitmentRequest {
   amountPlanck: string;
@@ -139,27 +131,6 @@ export class AccountService {
     );
   }
 
-  public getAlias(name: string): Promise<Alias> {
-    return this.api.alias.getAliasByName(name);
-  }
-
-  public getAliases(accountId: string): Promise<AliasList> {
-    return this.api.account.getAliases({ accountId });
-  }
-
-
-  public setAlias({ aliasName, aliasURI, feeNQT, deadline, pin, keys }: SetAliasRequest): Promise<TransactionId> {
-    const senderPrivateKey = this.getPrivateKey(keys, pin);
-    return this.api.account.setAlias({
-      aliasName,
-      aliasURI,
-      feePlanck: feeNQT,
-      senderPublicKey: keys.publicKey,
-      senderPrivateKey: senderPrivateKey,
-      deadline: deadline
-    }) as Promise<TransactionId>;
-  }
-
   private getPrivateKey(keys, pin): string {
     try {
       const privateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
@@ -187,9 +158,7 @@ export class AccountService {
       accountId,
       includeCommittedAmount
     });
-
-    // @ts-ignore
-    return adjustLegacyAddressPrefix(account);
+    return adjustLegacyAddressPrefix(new WalletAccount(account));
   }
 
   public getCurrentAccount(): Promise<WalletAccount> {
@@ -266,7 +235,6 @@ export class AccountService {
     return new Promise(async (resolve) => {
       const account = new WalletAccount();
       account.type = 'active';
-      account.confirmed = false;
       const keys = generateMasterKeys(passphrase);
       const encryptedKey = encryptAES(keys.signPrivateKey, hashSHA256(pin));
       const encryptedSignKey = encryptAES(keys.agreementPrivateKey, hashSHA256(pin));
@@ -276,7 +244,6 @@ export class AccountService {
         signPrivateKey: encryptedKey,
         agreementPrivateKey: encryptedSignKey
       };
-      account.pinHash = hashSHA256(pin + keys.publicKey);
 
       const address = Address.fromPublicKey(keys.publicKey, this.accountPrefix);
       account.account = address.getNumericId();
@@ -293,9 +260,7 @@ export class AccountService {
     const address = Address.fromReedSolomonAddress(reedSolomonAddress);
     const existingAccount = await this.storeService.findAccount(address.getNumericId());
     if (existingAccount === undefined) {
-      // import offline account
       account.type = 'offline';
-      account.confirmed = false;
       account.accountRS = reedSolomonAddress;
       account.account = address.getNumericId();
       await this.selectAccount(account);
@@ -434,11 +399,11 @@ export class AccountService {
       account.balanceNQT = remoteAccount.balanceNQT;
       account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
       account.accountRSExtended = remoteAccount.accountRSExtended;
-      // @ts-ignore
-      account.confirmed = !!remoteAccount.publicKey;
+      if(!remoteAccount.keys){
+        console.log('no keys - syncAccountDetails', remoteAccount);
+      }
     } catch (e) {
-      account.confirmed = false;
-      console.log(e);
+      console.warn(e);
     }
   }
 

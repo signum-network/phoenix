@@ -21,6 +21,14 @@ export const navigation: FuseNavigation[] = [
         url: '/transactions'
       },
       {
+        id: 'messages',
+        title: 'Messages',
+        type: 'item',
+        icon: 'messages',
+        url: '/messages',
+        fullAccountOnly: true
+      },
+      {
         id: 'send_burst',
         title: 'Send Burst',
         type: 'item',
@@ -39,36 +47,28 @@ export const navigation: FuseNavigation[] = [
   },
   {
     id: 'account',
-    title: 'Account',
+    title: 'Assets',
     type: 'group',
     children: [
       {
-        id: 'info',
-        title: 'Account Info',
+        id: 'account_profile',
+        title: 'Profile',
         type: 'item',
-        icon: 'account_balance_wallet',
-        url: '/set-account-info'
-      },
-      {
-        id: 'messages',
-        title: 'Messages',
-        type: 'item',
-        icon: 'messages',
-        url: '/messages',
-        fullAccountOnly: true
+        icon: 'account_circle',
+        url: '/set-account-profile'
       },
       {
         id: 'aliases',
         title: 'Aliases',
         type: 'item',
-        icon: 'group',
+        icon: 'dns',
         url: '/aliases',
       },
       {
         id: 'assets', // this is used for i18n - keep it
         title: 'Tokens',
         type: 'item',
-        icon: 'pie_chart',
+        icon: 'monetization_on',
         url: '/tokens',
       },
     ]
