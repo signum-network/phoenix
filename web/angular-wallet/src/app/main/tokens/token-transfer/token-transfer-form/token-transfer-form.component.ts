@@ -118,13 +118,16 @@ export class TokenTransferFormComponent implements OnInit {
   }
 
   hasSufficientBalance(): boolean {
-    const feeAmount = Amount.fromSigna(this.fee || 0);
-    return this.balances.availableBalance.greaterOrEqual(feeAmount);
+    return this.balances.availableBalance.greaterOrEqual(this.getSignaTotal());
   }
 
   getQuantity(): number {
     const n = asNumber(this.quantity, 0);
     return Number.isNaN(n) ? 0 : n;
+  }
+
+  getSignaTotal(): Amount {
+    return Amount.fromSigna(this.fee || 0).add(Amount.fromSigna(this.signa || 0));
   }
 
   canSubmit(): boolean {
