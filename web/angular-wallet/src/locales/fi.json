@@ -517,5 +517,7 @@
   "verify_alias": "Tarkista saatavuus",
   "verify_alias_description": "Kirjoita aliasnimesi ja tarkista sen saatavuus",
   "view": "Nähdä",
-  "view_alias": "Näytä alias"
+  "view_alias": "Näytä alias",
+  "recipient_required": "Vastaanottaja vaaditaan",
+  "unregistered_address": "Rekisteröimätön osoite"
 }

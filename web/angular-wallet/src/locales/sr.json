@@ -517,5 +517,7 @@
   "verify_alias": "Верифи Аваилабилити",
   "verify_alias_description": "Унесите своје псеудоним и проверите његову доступност",
   "view": "Видети",
-  "view_alias": "Виев Алиас"
+  "view_alias": "Виев Алиас",
+  "recipient_required": "Прималац је обавезан",
+  "unregistered_address": "Нерегистрована адреса"
 }

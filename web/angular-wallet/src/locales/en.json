@@ -383,6 +383,7 @@
   "try_again": "Try Again",
   "type": "Type",
   "unknown": "Unknown",
+  "unregistered_address": "Unregistered Address",
   "unknown_recipients": "Unknown Recipients Detected",
   "unknown_recipients_text": "The following recipient(s) could not be validated:",
   "burn": "Burn",
@@ -517,5 +518,6 @@
   "can-buy-alias": "The Alias is on sale and can be acquired. Click 'Buy' if you are willing to acquire the Alias",
   "more_alias_on": "More about Aliases on",
   "no_aliases_available": "No Aliases available",
-  "owner": "Owner"
+  "owner": "Owner",
+  "recipient_required": "Recipient is required"
 }

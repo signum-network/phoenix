@@ -517,5 +517,7 @@
   "verify_alias": "Patikrinkite prieinamumą",
   "verify_alias_description": "Įveskite savo slapyvardį ir patikrinkite jo prieinamumą",
   "view": "Matyti",
-  "view_alias": "Žiūrėti slapyvardį"
+  "view_alias": "Žiūrėti slapyvardį",
+  "recipient_required": "Reikalingas gavėjas",
+  "unregistered_address": "Neregistruotas Adresas"
 }

@@ -517,5 +517,7 @@
   "verify_alias": "Verifica la disponibilitat",
   "verify_alias_description": "Escriviu el vostre nom d'àlies i comproveu-ne la disponibilitat",
   "view": "Veure",
-  "view_alias": "Veure àlies"
+  "view_alias": "Veure àlies",
+  "recipient_required": "El destinatari és obligatori",
+  "unregistered_address": "Adreça no registrada"
 }

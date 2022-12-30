@@ -517,5 +517,7 @@
   "verify_alias": "Beschikbaarheid controleren",
   "verify_alias_description": "Typ uw aliasnaam en controleer de beschikbaarheid",
   "view": "Zien",
-  "view_alias": "Alias bekijken"
+  "view_alias": "Alias bekijken",
+  "recipient_required": "Ontvanger is vereist",
+  "unregistered_address": "Niet-geregistreerd adres"
 }

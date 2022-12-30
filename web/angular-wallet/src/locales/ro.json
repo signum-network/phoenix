@@ -517,5 +517,7 @@
   "verify_alias": "Verificați disponibilitatea",
   "verify_alias_description": "Introduceți numele alias-ului și verificați disponibilitatea acestuia",
   "view": "A vedea",
-  "view_alias": "Vedeți Alias"
+  "view_alias": "Vedeți Alias",
+  "recipient_required": "Destinatarul este necesar",
+  "unregistered_address": "Adresă neînregistrată"
 }

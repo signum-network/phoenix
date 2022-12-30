@@ -517,5 +517,7 @@
   "verify_alias": "验证可用性",
   "verify_alias_description": "输入您的别名并检查其可用性",
   "view": "查看",
-  "view_alias": "查看别名"
+  "view_alias": "查看别名",
+  "recipient_required": "需要收件人",
+  "unregistered_address": "未注册地址"
 }

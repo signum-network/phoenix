@@ -517,5 +517,7 @@
   "verify_alias": "Проверете наличността",
   "verify_alias_description": "Въведете псевдонима си и проверете наличността му",
   "view": "Да видиш",
-  "view_alias": "Преглед на псевдоним"
+  "view_alias": "Преглед на псевдоним",
+  "recipient_required": "Изисква се получател",
+  "unregistered_address": "Нерегистриран адрес"
 }

@@ -517,5 +517,7 @@
   "verify_alias": "Müsaitliği Doğrula",
   "verify_alias_description": "Takma adınızı yazın ve uygun olup olmadığını kontrol edin",
   "view": "Görmek",
-  "view_alias": "Takma Adı Görüntüle"
+  "view_alias": "Takma Adı Görüntüle",
+  "recipient_required": "alıcı gerekli",
+  "unregistered_address": "Kayıtsız Adres"
 }

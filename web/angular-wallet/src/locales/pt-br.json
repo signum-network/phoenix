@@ -18,7 +18,7 @@
   "activate_request_successful": "Ativação solicitada com sucesso. Sua conta será ativada em alguns instantes.",
   "activation_failed": "Ativação falhou:",
   "activation_success": "Ativação solicitada com sucesso. Sua conta será ativada em alguns instantes.",
-  "add_message_q": "Adicionaruma mensagem?",
+  "add_message_q": "Adicionar uma mensagem?",
   "add_note_to_self_q": "Adicionar nota a mim mesmo?",
   "add_recipient": "Adicionar Destinatário",
   "add_recipient_batch": "Adicionar vários destinatários por CSV",
@@ -517,5 +517,7 @@
   "verify_alias": "Verificar disponibilidade",
   "verify_alias_description": "Digite seu nome de alias e verifique sua disponibilidade",
   "view": "Ver",
-  "view_alias": "Ver pseudônimo"
+  "view_alias": "Ver pseudônimo",
+  "recipient_required": "O destinatário é obrigatório",
+  "unregistered_address": "Endereço não registrado"
 }

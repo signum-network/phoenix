@@ -517,5 +517,7 @@
   "verify_alias": "可用性を確認する",
   "verify_alias_description": "エイリアス名を入力し、その可用性を確認します",
   "view": "見る",
-  "view_alias": "エイリアスを表示"
+  "view_alias": "エイリアスを表示",
+  "recipient_required": "受信者が必要です",
+  "unregistered_address": "未登録住所"
 }

@@ -517,5 +517,7 @@
   "verify_alias": "उपलब्धता सत्यापित करें",
   "verify_alias_description": "अपना उपनाम नाम टाइप करें और इसकी उपलब्धता जांचें",
   "view": "देखना",
-  "view_alias": "उपनाम देखें"
+  "view_alias": "उपनाम देखें",
+  "recipient_required": "प्राप्तकर्ता आवश्यक है",
+  "unregistered_address": "अपंजीकृत पता"
 }

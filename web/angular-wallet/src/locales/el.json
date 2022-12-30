@@ -517,5 +517,7 @@
   "verify_alias": "Επαλήθευση διαθεσιμότητας",
   "verify_alias_description": "Πληκτρολογήστε το ψευδώνυμό σας και ελέγξτε τη διαθεσιμότητά του",
   "view": "Για να δω",
-  "view_alias": "Δείτε το Alias"
+  "view_alias": "Δείτε το Alias",
+  "recipient_required": "Απαιτείται ο παραλήπτης",
+  "unregistered_address": "Μη καταχωρημένη διεύθυνση"
 }

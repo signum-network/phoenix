@@ -517,5 +517,7 @@
   "verify_alias": "Overte dostupnosť",
   "verify_alias_description": "Zadajte názov svojho aliasu a skontrolujte jeho dostupnosť",
   "view": "Vidieť",
-  "view_alias": "Zobraziť alias"
+  "view_alias": "Zobraziť alias",
+  "recipient_required": "Vyžaduje sa príjemca",
+  "unregistered_address": "Neregistrovaná adresa"
 }

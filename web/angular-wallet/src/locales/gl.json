@@ -517,5 +517,7 @@
   "verify_alias": "Verifica a dispoñibilidade",
   "verify_alias_description": "Escribe o teu nome de alias e comproba a súa dispoñibilidade",
   "view": "Ver",
-  "view_alias": "Ver alias"
+  "view_alias": "Ver alias",
+  "recipient_required": "O destinatario é necesario",
+  "unregistered_address": "Enderezo non rexistrado"
 }

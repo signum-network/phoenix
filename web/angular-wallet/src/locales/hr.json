@@ -517,5 +517,7 @@
   "verify_alias": "Provjerite dostupnost",
   "verify_alias_description": "Upišite svoje alias ime i provjerite njegovu dostupnost",
   "view": "Vidjeti",
-  "view_alias": "Prikaži Alias"
+  "view_alias": "Prikaži Alias",
+  "recipient_required": "Potreban je primatelj",
+  "unregistered_address": "Neregistrirana adresa"
 }

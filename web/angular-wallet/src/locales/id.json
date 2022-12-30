@@ -517,5 +517,7 @@
   "verify_alias": "Verifikasi Ketersediaan",
   "verify_alias_description": "Ketik nama alias Anda dan periksa ketersediaannya",
   "view": "Untuk melihat",
-  "view_alias": "Lihat Alias"
+  "view_alias": "Lihat Alias",
+  "recipient_required": "Penerima diperlukan",
+  "unregistered_address": "Alamat Tidak Terdaftar"
 }

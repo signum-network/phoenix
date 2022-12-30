@@ -517,5 +517,7 @@
   "verify_alias": "Verifica disponibilità",
   "verify_alias_description": "Digita il tuo nome alias e verificane la disponibilità",
   "view": "Vedere",
-  "view_alias": "Visualizza Alias"
+  "view_alias": "Visualizza Alias",
+  "recipient_required": "Il destinatario è obbligatorio",
+  "unregistered_address": "Indirizzo non registrato"
 }
