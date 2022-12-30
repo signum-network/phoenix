@@ -12,10 +12,12 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { ToolbarComponent } from 'app/layout/components/toolbar/toolbar.component';
 import {I18nModule} from '../i18n/i18n.module';
 import {MatDividerModule} from '@angular/material/divider';
+import { AccountSelectorItemComponent } from './account-selector-item/account-selector-item.component';
 
 @NgModule({
     declarations: [
-        ToolbarComponent
+        ToolbarComponent,
+        AccountSelectorItemComponent
     ],
   imports: [
     RouterModule,

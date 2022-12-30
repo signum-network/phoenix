@@ -13,7 +13,7 @@ import {FuseProgressBarService} from '../../../../@fuse/components/progress-bar/
 import { TokenData, TokenService } from '../../../shared/services/token.service';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { DescriptorData } from '@signumjs/standards';
-import { NetworkService } from "../../../network/network.service";
+import { NetworkService } from 'app/network/network.service';
 
 type TransactionDetailsCellValue = string | AttachmentMessage | AttachmentEncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
@@ -121,7 +121,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
 
     try{
       this.src44 = DescriptorData.parse(this.account.description, false);
-      this.avatarImgSrc = this.src44.avatar ? this.networkService.getIpfsCidUrl(this.src44.avatar.ipfsCid) : ''
+      this.avatarImgSrc = this.src44.avatar ? this.networkService.getIpfsCidUrl(this.src44.avatar.ipfsCid) : '';
     }catch (e){
       // ignore
       this.src44 = null;
