@@ -92,7 +92,7 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy {
     // });
     // if (!isOfflineAccount) {
     //   this.shortcutItems.push({
-    //     title: this.i18nService.getTranslation('send_burst'),
+    //     title: this.i18nService.getTranslation('send_signa'),
     //     type: 'item',
     //     icon: 'vertical_align_top',
     //     url: '/send'

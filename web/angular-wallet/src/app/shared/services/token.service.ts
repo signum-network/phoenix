@@ -8,7 +8,7 @@ import {
 import {
   Keys
 } from '@signumjs/crypto';
-import { Amount } from '@signumjs/util';
+import { Amount, ChainValue } from "@signumjs/util";
 import { getPrivateSigningKey } from '../../util/security/getPrivateSigningKey';
 import { getPrivateEncryptionKey } from '../../util/security/getPrivateEncryptionKey';
 import { createMessageAttachment } from '../../util/transaction/createMessageAttachment';
@@ -38,7 +38,8 @@ interface TransferTokenRequest {
   fee: Amount;
   keys: Keys;
   pin: string;
-  quantity: number;
+  quantity: ChainValue;
+  signa?: Amount;
   recipient: Recipient;
   message?: string;
   isEncrypted?: boolean;
@@ -145,7 +146,8 @@ export class TokenService {
       token,
       message,
       isEncrypted,
-      isText
+      isText,
+      signa,
     } = request;
 
     const attachment = message ? createMessageAttachment({
@@ -156,8 +158,6 @@ export class TokenService {
       message
     }) : undefined;
 
-    const decimalFactor = Math.pow(10, token.decimals);
-    const realQuantity = quantity * decimalFactor;
     const recipientPublicKey = recipient.publicKey !== constants.smartContractPublicKey
     && recipient.publicKey !== ''
     && recipient.publicKey !== '0'
@@ -169,7 +169,8 @@ export class TokenService {
       feePlanck: fee.getPlanck(),
       recipientId: Address.create(recipient.addressRS).getNumericId(),
       recipientPublicKey,
-      quantity: realQuantity,
+      quantity: quantity.getAtomic(),
+      amountPlanck: signa ? signa.getPlanck() : undefined,
       senderPrivateKey: getPrivateSigningKey(pin, keys),
       senderPublicKey: keys.publicKey
     }) as Promise<TransactionId>;

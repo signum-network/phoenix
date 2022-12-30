@@ -12,6 +12,17 @@
                     [disabled]="immutable">
   </app-amount-input>
 
+
+  <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="shouldSendSigna"
+                name="showMessage">{{ "send_signa" | i18n }}
+  </mat-checkbox>
+  <ng-container *ngIf="shouldSendSigna">
+    <app-amount-input [maxAmount]="balances.availableBalance.getSigna()"
+                      [(amount)]="signa"
+                      [disabled]="immutable">
+    </app-amount-input>
+  </ng-container>
+
   <app-fee-input *ngIf="!immutable"
                  [type]="type"
                  [subtype]="subtype"

@@ -29,7 +29,7 @@ export const navigation: FuseNavigation[] = [
         fullAccountOnly: true
       },
       {
-        id: 'send_burst',
+        id: 'send_signa',
         title: 'Send Burst',
         type: 'item',
         icon: 'vertical_align_top',

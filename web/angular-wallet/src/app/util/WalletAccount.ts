@@ -32,7 +32,7 @@ export class WalletAccount {
     this.description = data.description || undefined;
     this.effectiveBalanceNQT = data.effectiveBalanceNQT || 0;
     this.keys = {
-      publicKey: data.publicKey || data.keys.publicKey,
+      publicKey: data.keys ? data.keys.publicKey : data.publicKey,
       signPrivateKey: data.keys ? data.keys.signPrivateKey : undefined,
       agreementPrivateKey: data.keys ? data.keys.agreementPrivateKey : undefined,
     };

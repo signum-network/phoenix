@@ -7,7 +7,7 @@ import {
 import { Recipient, RecipientValidationStatus } from 'app/components/recipient-input/recipient-input.component';
 import { AccountBalances, getBalancesFromAccount } from 'app/util/balance';
 import { NgForm } from '@angular/forms';
-import { Amount } from '@signumjs/util';
+import { Amount, ChainValue, CurrencySymbol } from "@signumjs/util";
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { WarnSendDialogComponent } from '../../../../components/warn-send-dialog/warn-send-dialog.component';
 import { asNumber, isNotEmpty } from '../../../../util/forms';
@@ -42,8 +42,9 @@ export class TokenTransferFormComponent implements OnInit {
   public message = '';
   public type = TransactionType.Asset;
   public subtype = TransactionAssetSubtype.AssetTransfer;
-
-  private balances: AccountBalances;
+  public balances: AccountBalances;
+  public shouldSendSigna = false;
+  public signa = '';
 
   constructor(
     private warnDialog: MatDialog,
@@ -72,9 +73,10 @@ export class TokenTransferFormComponent implements OnInit {
         keys: this.account.keys,
         pin: this.pin,
         token: this.token,
-        quantity: asNumber(this.quantity, 0),
+        quantity: ChainValue.create(this.token.decimals).setCompound(this.quantity),
         recipient: this.recipient,
         fee: Amount.fromSigna(this.fee),
+        signa: this.signa ? Amount.fromSigna(this.signa) : undefined,
         isText: this.messageIsText,
         isEncrypted: this.encrypt,
         message: this.message
