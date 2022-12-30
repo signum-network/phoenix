@@ -12,7 +12,6 @@ export class WalletAccount {
   public effectiveBalanceNQT: string;
   public keys: Keys;
   public name: string;
-  public pinHash: string;
   public selected: boolean;
   public transactions: Transaction[];
   public type: string;
@@ -32,14 +31,12 @@ export class WalletAccount {
     this.committedBalanceNQT = data.committedBalanceNQT || 0;
     this.description = data.description || undefined;
     this.effectiveBalanceNQT = data.effectiveBalanceNQT || 0;
-    if (data.publicKey || data.keys !== undefined) {
-      this.pinHash = data.pinHash || undefined;
-      this.keys = {
-        publicKey: data.publicKey || data.keys.publicKey,
-        signPrivateKey: data.keys ? data.keys.signPrivateKey : undefined,
-        agreementPrivateKey: data.keys ? data.keys.agreementPrivateKey : undefined,
-      };
-    }
+    this.keys = {
+      publicKey: data.publicKey || data.keys.publicKey,
+      signPrivateKey: data.keys ? data.keys.signPrivateKey : undefined,
+      agreementPrivateKey: data.keys ? data.keys.agreementPrivateKey : undefined,
+    };
+    this.confirmed = !!this.keys.publicKey;
     this.name = data.name || undefined;
     this.selected = data.selected || false;
     if (data.transactions !== undefined && data.transactions.length > 0) {
@@ -50,6 +47,5 @@ export class WalletAccount {
     this.type = data.type || 'offline';
     this.unconfirmedAssetBalances = data.unconfirmedAssetBalances || undefined;
     this.unconfirmedBalanceNQT = data.unconfirmedBalanceNQT || 0;
-    this.confirmed = data.confirmed || false;
   }
 }

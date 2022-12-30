@@ -12,10 +12,10 @@
           </a>
           <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
           <ng-container *ngFor="let breadcrumb of breadcrumbs">
-            <a class="secondary-text" [routerLink]="[breadcrumb.path]">{{breadcrumb.label}}</a>
+            <a class="secondary-text nav-label" [routerLink]="[breadcrumb.path]">{{breadcrumb.label}}</a>
             <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
           </ng-container>
-          <strong class="secondary-text">{{title}}</strong>
+          <strong class="secondary-text nav-label">{{title}}</strong>
         </div>
         <div class="nav-button" (click)="forward()">
           <mat-icon class="secondary-text s-18">arrow_forward</mat-icon>

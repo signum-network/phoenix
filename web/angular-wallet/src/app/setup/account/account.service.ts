@@ -235,7 +235,6 @@ export class AccountService {
     return new Promise(async (resolve) => {
       const account = new WalletAccount();
       account.type = 'active';
-      account.confirmed = false;
       const keys = generateMasterKeys(passphrase);
       const encryptedKey = encryptAES(keys.signPrivateKey, hashSHA256(pin));
       const encryptedSignKey = encryptAES(keys.agreementPrivateKey, hashSHA256(pin));
@@ -245,7 +244,6 @@ export class AccountService {
         signPrivateKey: encryptedKey,
         agreementPrivateKey: encryptedSignKey
       };
-      account.pinHash = hashSHA256(pin + keys.publicKey);
 
       const address = Address.fromPublicKey(keys.publicKey, this.accountPrefix);
       account.account = address.getNumericId();
@@ -262,9 +260,7 @@ export class AccountService {
     const address = Address.fromReedSolomonAddress(reedSolomonAddress);
     const existingAccount = await this.storeService.findAccount(address.getNumericId());
     if (existingAccount === undefined) {
-      // import offline account
       account.type = 'offline';
-      account.confirmed = false;
       account.accountRS = reedSolomonAddress;
       account.account = address.getNumericId();
       await this.selectAccount(account);
@@ -403,11 +399,11 @@ export class AccountService {
       account.balanceNQT = remoteAccount.balanceNQT;
       account.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
       account.accountRSExtended = remoteAccount.accountRSExtended;
-      // @ts-ignore
-      account.confirmed = !!remoteAccount.publicKey;
+      if(!remoteAccount.keys){
+        console.log('no keys - syncAccountDetails', remoteAccount);
+      }
     } catch (e) {
-      account.confirmed = false;
-      console.log(e);
+      console.warn(e);
     }
   }
 

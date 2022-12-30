@@ -226,10 +226,10 @@ export class RecipientInputComponent implements OnChanges {
 
     this.loading = true;
     // @ts-ignore
-    this.accountService.getAccount(id).then(({ accountRS, publicKey }) => {
+    this.accountService.getAccount(id).then(({ accountRS, keys }) => {
       this.recipient.addressRS = accountRS;
       this.recipient.status = RecipientValidationStatus.VALID;
-      this.recipient.publicKey = publicKey;
+      this.recipient.publicKey = keys.publicKey;
       if (this.recipient.publicKey === constants.smartContractPublicKey) {
         this.recipient.type = RecipientType.CONTRACT;
       }
