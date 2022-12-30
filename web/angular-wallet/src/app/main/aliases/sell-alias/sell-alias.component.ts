@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from "@angular/core";
 import {
   SuggestedFees,
   Alias,
@@ -27,6 +27,8 @@ import { WarnSendDialogComponent } from 'app/components/warn-send-dialog/warn-se
 import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
 import { AliasService } from '../alias.service';
 import { ExceptionHandlerService } from '../../../shared/services/exceptionhandler.service';
+import { MatCheckbox } from "@angular/material/checkbox";
+import { MatSort } from "@angular/material/sort";
 
 @Component({
   selector: 'app-sell-alias',
@@ -39,7 +41,6 @@ export class SellAliasComponent extends UnsubscribeOnDestroy implements OnInit {
   fees: SuggestedFees;
 
   recipient = new Recipient();
-
 
   language: string;
   immutable: boolean;
@@ -55,7 +56,7 @@ export class SellAliasComponent extends UnsubscribeOnDestroy implements OnInit {
 
   private balances: AccountBalances;
   attachMessage: boolean;
-  isPrivateOffer: boolean;
+  isPrivateOffer = false;
   isSending: boolean;
 
 
@@ -80,7 +81,6 @@ export class SellAliasComponent extends UnsubscribeOnDestroy implements OnInit {
     this.immutable = false;
     this.messageIsText = true;
     this.encrypt = false;
-    this.isPrivateOffer = false;
     this.storeService.settings
       .pipe(
         takeUntil(this.unsubscribeAll)

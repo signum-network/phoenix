@@ -17,10 +17,12 @@
   <form (ngSubmit)="onSubmit($event)">
 
 
-    <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="isPrivateOffer"
-                  name="showMessage">{{ "is_private_offer_q" | i18n }}
-    <mat-icon class="ml-8 s-16 secondary-text" matTooltip="{{'is_private_offer_hint' | i18n}}">info</mat-icon>
-    </mat-checkbox>
+    <div class="inline">
+      <mat-icon class="mr-4 s-16 secondary-text" matTooltip="{{'is_private_offer_hint' | i18n}}">info</mat-icon>
+      <mat-checkbox labelPosition="before" [disabled]="immutable" [(ngModel)]="isPrivateOffer"
+                    name="showMessage">{{ "is_private_offer_q" | i18n }}
+      </mat-checkbox>
+    </div>
 
     <ng-container *ngIf="isPrivateOffer">
       <recipient-input [recipientValue]="recipient.addressRaw"

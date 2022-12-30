@@ -1,14 +1,14 @@
 <div class="account-info pl-20 pr-20 mb-8">
   <div class="account-info__field">
-    <small class="secondary-text text-uppercase">{{'owner'| i18n}}</small>
-    <p class="pb-8">{{alias.accountRS}}</p>
     <ng-container *ngIf="alias">
+      <small class="secondary-text text-uppercase">{{'owner'| i18n}}</small>
+      <p class="pb-8">{{alias.accountRS}}</p>
       <small class="secondary-text text-uppercase">{{'alias'| i18n}}</small>
-        <p>{{alias.aliasName}}
-          <mat-icon *ngIf="alias.priceNQT" class="mr-8 font-size-18 grey-500-fg ml-2"
-                    matTooltip="{{ 'alias_on_sale' | i18n }}">monetization_on
-          </mat-icon>
-        </p>
+      <p>{{alias.aliasName}}
+        <mat-icon *ngIf="alias.priceNQT" class="mr-8 font-size-18 grey-500-fg ml-2"
+                  matTooltip="{{ 'alias_on_sale' | i18n }}">monetization_on
+        </mat-icon>
+      </p>
     </ng-container>
     <ng-container *ngIf="aliasName">
       <small class="secondary-text text-uppercase">{{'alias'| i18n}}</small>

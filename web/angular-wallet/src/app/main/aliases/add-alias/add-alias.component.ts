@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { SuggestedFees } from '@signumjs/core';
 import {ActivatedRoute} from '@angular/router';
 import { WalletAccount } from 'app/util/WalletAccount';
