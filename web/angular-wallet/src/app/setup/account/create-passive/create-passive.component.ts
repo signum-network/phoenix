@@ -4,7 +4,6 @@ import {NotifierService} from 'angular-notifier';
 import {Router} from '@angular/router';
 import {AddressPattern} from 'app/util/addressPattern';
 import {NetworkService} from '../../../network/network.service';
-import {AddressPrefix} from '@signumjs/core';
 
 @Injectable()
 @Component({
@@ -17,7 +16,7 @@ export class CreatePassiveAccountComponent implements OnInit {
   address = '';
 
   signumAddressPattern = AddressPattern;
-  addressPrefix: AddressPrefix.TestNet | AddressPrefix.MainNet;
+  addressPrefix: string;
 
   constructor(private createService: CreateService,
               private notificationService: NotifierService,
@@ -26,7 +25,9 @@ export class CreatePassiveAccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addressPrefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
+    this.networkService.networkInfo$.subscribe(() => {
+      this.addressPrefix = this.networkService.getAddressPrefix()
+    })
   }
 
   public submit(): void {

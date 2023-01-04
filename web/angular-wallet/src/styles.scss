@@ -73,6 +73,12 @@ app-market-overview {
   width: 100% !important;
 }
 
+.inline {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
 .fullheight {
   height: 100% !important;
 }

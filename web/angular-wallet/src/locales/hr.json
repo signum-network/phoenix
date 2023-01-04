@@ -245,7 +245,7 @@
   "next_block": "Sljedeći blok",
   "no": "Ne",
   "no_messages_available": "Nema dostupnih poruka.",
-  "no_public_key_activate": "Ovaj račun još nije aktiviran. Kliknite da biste aktivirali i osigurali svoj račun.",
+  "no_public_key_activate": "Ovaj račun nije siguran. Kliknite kako biste osigurali svoj račun.",
   "no_public_key_warning": "Upozorenje!: Vaš račun nema javni ključ! To znači da nije zaštićen kao drugi računi. Molimo da aktivirate svoj račun da biste dobili svoj javni ključ.",
   "no_transactions_yet": "Još nema transakcija.",
   "node_hint_no_multiout": "Nisu podržana višestruka plaćanja",
@@ -519,5 +519,9 @@
   "view": "Vidjeti",
   "view_alias": "Prikaži Alias",
   "recipient_required": "Potreban je primatelj",
-  "unregistered_address": "Neregistrirana adresa"
+  "unregistered_address": "Neregistrirana adresa",
+  "account_offline": "Samo za gledanje",
+  "account_safe": "Sef",
+  "account_unsafe": "nesigurno!",
+  "error_connection_fail": "Nije moguće povezati se s čvorom. Čini se da nije dostupno. Molim vas, izaberite drugu"
 }

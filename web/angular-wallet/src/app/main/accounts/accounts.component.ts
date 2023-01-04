@@ -11,6 +11,10 @@ import {takeUntil} from 'rxjs/operators';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
 import {I18nService} from '../../layout/components/i18n/i18n.service';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { Address } from "@signumjs/core";
+import { DescriptorData } from "@signumjs/standards";
+import hashicon from 'hashicon';
+import { NetworkService } from "../../network/network.service";
 
 @Component({
   selector: 'app-accounts',
@@ -31,6 +35,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     private storeService: StoreService,
     private accountService: AccountService,
     private notificationService: NotifierService,
+    private networkService: NetworkService,
     private i18nService: I18nService,
     private deleteDialog: MatDialog,
     public router: Router
@@ -41,7 +46,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   public ngOnInit(): void {
     this.accounts = [];
     this.selectedAccounts = {};
-    this.displayedColumns = ['type', 'account', 'accountRS', 'name', 'balanceNQT', 'delete'];
+    this.displayedColumns = ['avatar', 'account', 'name', 'balance', 'type', 'delete'];
     this.dataSource = new MatTableDataSource<WalletAccount>();
 
     this.storeService.ready
@@ -131,5 +136,30 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
       const activationFailed = this.i18nService.getTranslation('activation_failed');
       this.notificationService.notify('error', `${activationFailed} ${e.message}`);
     }
+  }
+
+  toAddress(account: WalletAccount): string {
+    if (account) {
+      try {
+        return Address.fromNumericId(account.account).getReedSolomonAddress(false);
+      } catch (e) {
+        return '';
+      }
+    }
+    return '';
+  }
+
+  getAvatarUrl(account: WalletAccount): string {
+    let src44 = null;
+    try {
+      src44 = DescriptorData.parse(account.description, false);
+    } catch (e) {
+      // ignore
+    }
+
+    if(src44 && src44.avatar){
+      return this.networkService.getIpfsCidUrl(src44.avatar.ipfsCid);
+    }
+    return hashicon(account.account).toDataURL();
   }
 }

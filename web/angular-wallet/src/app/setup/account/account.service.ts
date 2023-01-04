@@ -1,13 +1,11 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { environment } from "environments/environment";
-import { StoreService } from "app/store/store.service";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { environment } from 'environments/environment';
+import { StoreService } from 'app/store/store.service';
 
 import {
   Address,
-  AliasList,
   Api,
-  AssetList,
   Balance,
   BlockList,
   Transaction,
@@ -16,23 +14,22 @@ import {
   TransactionMiningSubtype,
   TransactionType,
   UnconfirmedTransactionList,
-  AddressPrefix,
-  GetAccountTransactionsArgs, Alias
-} from "@signumjs/core";
-import { decryptAES, encryptAES, generateMasterKeys, hashSHA256, Keys } from "@signumjs/crypto";
-import { Amount } from "@signumjs/util";
-import { HttpClientFactory, HttpError } from "@signumjs/http";
-import { ApiService } from "../../api.service";
-import { I18nService } from "app/layout/components/i18n/i18n.service";
-import { NetworkService } from "../../network/network.service";
-import { KeyDecryptionException } from "../../util/exceptions/KeyDecryptionException";
-import { adjustLegacyAddressPrefix } from "../../util/adjustLegacyAddressPrefix";
-import { uniqBy } from "lodash";
-import { Settings } from "../../settings";
-import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
-import { WalletAccount } from "app/util/WalletAccount";
-import { DescriptorData } from "@signumjs/standards";
-import { constants } from "../../constants";
+  GetAccountTransactionsArgs
+} from '@signumjs/core';
+import { decryptAES, encryptAES, generateMasterKeys, hashSHA256, Keys } from '@signumjs/crypto';
+import { Amount } from '@signumjs/util';
+import { HttpClientFactory, HttpError } from '@signumjs/http';
+import { ApiService } from '../../api.service';
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { NetworkService } from '../../network/network.service';
+import { KeyDecryptionException } from '../../util/exceptions/KeyDecryptionException';
+import { adjustLegacyAddressPrefix } from '../../util/adjustLegacyAddressPrefix';
+import { uniqBy } from 'lodash';
+import { Settings } from '../../settings';
+import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { WalletAccount } from 'app/util/WalletAccount';
+import { DescriptorData } from '@signumjs/standards';
+import { constants } from '../../constants';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -62,13 +59,13 @@ interface SetCommitmentRequest {
 
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AccountService {
   public currentAccount$: BehaviorSubject<WalletAccount> = new BehaviorSubject(undefined);
   private api: Api;
   private transactionsSeenInNotifications: string[] = [];
-  private accountPrefix: AddressPrefix.MainNet | AddressPrefix.TestNet;
+  private accountPrefix: string;
   private showDesktopNotifications: boolean;
 
   constructor(private storeService: StoreService,
@@ -81,8 +78,8 @@ export class AccountService {
       this.showDesktopNotifications = settings.showDesktopNotifications;
     });
 
-    this.networkService.isMainNet$.subscribe(() => {
-      this.accountPrefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
+    this.networkService.networkInfo$.subscribe(() => {
+      this.accountPrefix = this.networkService.getAddressPrefix();
     });
   }
 
@@ -135,7 +132,7 @@ export class AccountService {
     try {
       const privateKey = decryptAES(keys.signPrivateKey, hashSHA256(pin));
       if (!privateKey) {
-        throw new Error("Key Decryption Exception");
+        throw new Error('Key Decryption Exception');
       }
       return privateKey;
     } catch (e) {
@@ -152,11 +149,12 @@ export class AccountService {
   }
 
   public async getAccount(accountId: string): Promise<WalletAccount> {
-    const supportsPocPlus = await this.apiService.supportsPocPlus();
-    const includeCommittedAmount = supportsPocPlus || undefined;
+    // const supportsPocPlus = await this.apiService.supportsPocPlus();
+    // const includeCommittedAmount = supportsPocPlus || undefined;
     const account = await this.api.account.getAccount({
       accountId,
-      includeCommittedAmount
+      includeCommittedAmount: true,
+      includeEstimatedCommitment: true
     });
     return adjustLegacyAddressPrefix(new WalletAccount(account));
   }
@@ -231,10 +229,10 @@ export class AccountService {
       : this.api.account.addCommitment(args)) as Promise<TransactionId>;
   }
 
-  public createActiveAccount({ passphrase, pin = "" }): Promise<WalletAccount> {
+  public createActiveAccount({ passphrase, pin = '' }): Promise<WalletAccount> {
     return new Promise(async (resolve) => {
       const account = new WalletAccount();
-      account.type = "active";
+      account.type = 'active';
       const keys = generateMasterKeys(passphrase);
       const encryptedKey = encryptAES(keys.signPrivateKey, hashSHA256(pin));
       const encryptedSignKey = encryptAES(keys.agreementPrivateKey, hashSHA256(pin));
@@ -260,13 +258,13 @@ export class AccountService {
     const address = Address.fromReedSolomonAddress(reedSolomonAddress);
     const existingAccount = await this.storeService.findAccount(address.getNumericId());
     if (existingAccount === undefined) {
-      account.type = "offline";
+      account.type = 'offline';
       account.accountRS = reedSolomonAddress;
       account.account = address.getNumericId();
       await this.selectAccount(account);
       return this.synchronizeAccount(account);
     } else {
-      throw new Error("Address already imported!");
+      throw new Error('Address already imported!');
     }
   }
 
@@ -284,7 +282,7 @@ export class AccountService {
   public synchronizeAccount(account: WalletAccount, onlyPendingTransactions = false): Promise<WalletAccount> {
     return new Promise(async (resolve, reject) => {
       if (onlyPendingTransactions) {
-          await this.syncAccountUnconfirmedTransactions(account)
+          await this.syncAccountUnconfirmedTransactions(account);
       } else {
         await Promise.all([
           this.syncAccountDetails(account),
@@ -322,22 +320,22 @@ export class AccountService {
     const totalAmount = amount.clone().add(Amount.fromPlanck(transaction.feeNQT));
 
 
-    let header = "";
-    let body = "";
+    let header = '';
+    let body = '';
     if (incoming) {
       // Account __a__ got __b__ from __c__
-      header = this.i18nService.getTranslation("youve_got_burst");
-      body = this.i18nService.getTranslation("youve_got_from")
-        .replace("__a__", transaction.recipientRS)
-        .replace("__b__", amount.toString())
-        .replace("__c__", transaction.senderRS);
+      header = this.i18nService.getTranslation('youve_got_burst');
+      body = this.i18nService.getTranslation('youve_got_from')
+        .replace('__a__', transaction.recipientRS)
+        .replace('__b__', amount.toString())
+        .replace('__c__', transaction.senderRS);
     } else {
       // Account __a__ sent __b__ to __c__
-      header = this.i18nService.getTranslation("you_sent_burst");
-      body = this.i18nService.getTranslation("you_sent_to")
-        .replace("__a__", transaction.senderRS)
-        .replace("__b__", totalAmount.toString())
-        .replace("__c__", transaction.recipientRS);
+      header = this.i18nService.getTranslation('you_sent_burst');
+      body = this.i18nService.getTranslation('you_sent_to')
+        .replace('__a__', transaction.senderRS)
+        .replace('__b__', totalAmount.toString())
+        .replace('__c__', transaction.recipientRS);
     }
 
     // @ts-ignore
@@ -345,7 +343,7 @@ export class AccountService {
       header,
       {
         body,
-        title: "Phoenix"
+        title: 'Phoenix'
       });
 
   }
@@ -355,7 +353,7 @@ export class AccountService {
       const orderByTimestamp = (a, b) => a.timestamp > b.timestamp ? -1 : 1;
       const unconfirmedTransactionsResponse = await this.getUnconfirmedTransactions(account.account);
       const unconfirmed = unconfirmedTransactionsResponse.unconfirmedTransactions.sort(orderByTimestamp);
-      account.transactions = uniqBy(unconfirmed.concat(account.transactions), "transaction");
+      account.transactions = uniqBy(unconfirmed.concat(account.transactions), 'transaction');
 
       // @ts-ignore - Send notifications for new transactions
       if (window.Notification) {
@@ -382,7 +380,7 @@ export class AccountService {
       } else {
         transactionList = (await this.getAccountTransactions({ accountId })).transactions;
       }
-      account.transactions = uniqBy(transactionList, "transaction");
+      account.transactions = uniqBy(transactionList, 'transaction');
     } catch (e) {
       account.transactions = [];
     }
@@ -404,7 +402,7 @@ export class AccountService {
       account.accountRSExtended = remoteAccount.accountRSExtended;
       account.accountRS = remoteAccount.accountRS;
       if (!remoteAccount.keys) {
-        console.log("no keys - syncAccountDetails", remoteAccount);
+        console.log('no keys - syncAccountDetails', remoteAccount);
       }
     } catch (e) {
       console.warn(e);
@@ -415,7 +413,7 @@ export class AccountService {
     try {
 
       if (!account.keys) {
-        console.warn("Account does not have keys...ignored");
+        console.warn('Account does not have keys...ignored');
         return;
       }
 
@@ -430,11 +428,11 @@ export class AccountService {
         publickey: account.keys.publicKey,
         ref: `phoenix-${environment.version}`
       };
-      await http.post("/api/activate", payload);
+      await http.post('/api/activate', payload);
     } catch (e) {
       if (e instanceof HttpError) {
         const message = e.data && e.data.message;
-        throw new Error(message || "Unknown Error while requesting activation service");
+        throw new Error(message || 'Unknown Error while requesting activation service');
       }
       throw e;
     }
@@ -450,7 +448,7 @@ export class AccountService {
       const descriptor = DescriptorData.parse(account.description, false);
       return `${constants.ipfsGateway}/${descriptor.avatar.ipfsCid}`;
     } catch (e) {
-      return "";
+      return '';
     }
   }
 

@@ -245,7 +245,7 @@
   "next_block": "Siguiente bloque",
   "no": "No",
   "no_messages_available": "No hay mensajes disponibles.",
-  "no_public_key_activate": "Esta cuenta aún no está activada. Haga clic para activar y asegurar su cuenta.",
+  "no_public_key_activate": "Esta cuenta no es segura. Haga clic para asegurar su cuenta.",
   "no_public_key_warning": "¡Advertencia !: ¡Tu cuenta no tiene una clave pública! Esto significa que no está tan protegido como otras cuentas. Active su cuenta para obtener su clave pública.",
   "no_transactions_yet": "Aún no hay transacciones.",
   "node_hint_no_multiout": "No se admiten pagos múltiples",
@@ -519,5 +519,9 @@
   "view": "Para ver",
   "view_alias": "Ver alias",
   "recipient_required": "Se requiere destinatario",
-  "unregistered_address": "Dirección no registrada"
+  "unregistered_address": "Dirección no registrada",
+  "account_offline": "Ver solo",
+  "account_safe": "Seguro",
+  "account_unsafe": "¡Inseguro!",
+  "error_connection_fail": "No se pudo conectar a un nodo. Parece que no es accesible. Por favor elije otro"
 }

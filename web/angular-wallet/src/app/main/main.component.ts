@@ -11,6 +11,7 @@ import {FuseSplashScreenService} from '@fuse/services/splash-screen.service';
 import {FuseTranslationLoaderService} from '@fuse/services/translation-loader.service';
 
 import {navigation} from 'app/navigation/navigation';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
   selector: 'main',
@@ -21,8 +22,8 @@ export class MainComponent implements OnInit, OnDestroy {
   fuseConfig: any;
   navigation: any;
 
-  @Input('selectedAccount') selectedAccount: Account;
-  @Input('accounts') accounts: Account[];
+  @Input('selectedAccount') selectedAccount: WalletAccount;
+  @Input('accounts') accounts: WalletAccount[];
   private _unsubscribeAll: Subject<any>;
 
   constructor(
@@ -71,8 +72,8 @@ export class MainComponent implements OnInit, OnDestroy {
         }
 
         // Color theme - Use normal for loop for IE11 compatibility
-        for (let i = 0; i < this.document.body.classList.length; i++) {
-          const className = this.document.body.classList[i];
+        for (const element of this.document.body.classList) {
+          const className = element;
 
           if (className.startsWith('theme-')) {
             this.document.body.classList.remove(className);

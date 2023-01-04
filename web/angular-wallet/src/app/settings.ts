@@ -22,6 +22,8 @@ export class Settings {
     public language: string;
     public node: string;
     public nodeAutoSelectionEnabled: boolean;
+
+    public nodeNetworkId: string;
     public theme: string;
     public version: string;
     public marketUrl: string;
@@ -44,6 +46,7 @@ export class Settings {
         this.currency = data.currency || constants.defaultCurrency;
         this.language = data.language || constants.defaultLanguage;
         this.node = data.node || environment.defaultNode;
+        this.nodeNetworkId = data.nodeNetworkId || environment.defaultNode;
         this.nodeAutoSelectionEnabled = data.nodeAutoSelectionEnabled || true;
         this.marketUrl = data.marketUrl || environment.market.tickerUrl;
         this.theme = data.theme || constants.defaultTheme;

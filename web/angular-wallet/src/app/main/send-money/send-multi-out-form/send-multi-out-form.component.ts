@@ -292,13 +292,11 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     let previousAmount = null;
     let isSameAmount = true;
 
-    const prefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
-
     this.recipients = recipientAmounts.map(ra => {
       const r = new Recipient();
       r.amount = Amount.fromPlanck(ra.amountNQT).getSigna();
       r.addressRaw = ra.recipient;
-      r.addressRS = Address.fromNumericId(ra.recipient, prefix).getReedSolomonAddress();
+      r.addressRS = Address.fromNumericId(ra.recipient, this.networkService.getAddressPrefix()).getReedSolomonAddress();
 
       if (previousAmount) {
         isSameAmount = isSameAmount && (previousAmount === r.amount);

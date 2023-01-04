@@ -52,18 +52,4 @@ export class ApiService {
     return bestNode;
   }
 
-  async supportsPocPlus(): Promise<boolean> {
-    const brsApiVersion = await this.fetchBrsApiVersion();
-    const version = semver.coerce(brsApiVersion);
-    return semver.gte(version, constants.pocPlusVersion, {includePrerelease: true});
-  }
-
-  async fetchBrsApiVersion(): Promise<string> {
-    if (!this.brsVersion) {
-      const {version} = await this.api.network.getBlockchainStatus();
-      this.brsVersion = version;
-    }
-    return Promise.resolve(this.brsVersion);
-  }
-
 }

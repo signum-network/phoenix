@@ -245,7 +245,7 @@
   "next_block": "Sonraki blok",
   "no": "Hayır",
   "no_messages_available": "Mesaj yok.",
-  "no_public_key_activate": "Bu hesap henüz etkinleştirilmedi. Hesabınızı etkinleştirmek ve güvenliğini sağlamak için tıklayın.",
+  "no_public_key_activate": "Bu hesap güvenli değil. Hesabınızı güvence altına almak için tıklayın.",
   "no_public_key_warning": "Uyarı!: Hesabınızın açık anahtarı yok! Bu, diğer hesaplar kadar korumalı olmadığı anlamına gelir. Genel anahtarınızı almak için lütfen hesabınızı etkinleştirin.",
   "no_transactions_yet": "Henüz işlem yok.",
   "node_hint_no_multiout": "Çoklu ödeme desteklenmez",
@@ -519,5 +519,9 @@
   "view": "Görmek",
   "view_alias": "Takma Adı Görüntüle",
   "recipient_required": "alıcı gerekli",
-  "unregistered_address": "Kayıtsız Adres"
+  "unregistered_address": "Kayıtsız Adres",
+  "account_offline": "Yalnızca İzle",
+  "account_safe": "Güvenli",
+  "account_unsafe": "güvensiz!",
+  "error_connection_fail": "Bir düğüme bağlanılamadı. Ulaşılamaz gibi görünüyor. Lütfen başka birini seçiniz"
 }

@@ -18,7 +18,7 @@
             verified_user
           </mat-icon>
           <mat-icon *ngIf="account.type !== 'offline' && !account.confirmed"
-                    class="s-12"
+                    class="s-12 error-text"
                     matTooltip="{{'error_no_public_key' | i18n}}">
             lock_open
           </mat-icon>

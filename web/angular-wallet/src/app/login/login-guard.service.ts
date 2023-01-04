@@ -27,9 +27,6 @@ export class LoginGuard implements CanActivate {
         const settings = await this.storeService.getSettings().catch(errorHandler);
         const selectedAccount = await this.storeService.getSelectedAccount().catch(errorHandler);
         const allAccounts = await this.storeService.getAllAccounts().catch(errorHandler);
-        // caches the current nodes api version
-        await this.apiService.fetchBrsApiVersion();
-
         // User must agree to disclaimer
         if (!(settings && settings.agree)) {
           await this.router.navigate(['/disclaimer']);

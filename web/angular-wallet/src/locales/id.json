@@ -245,7 +245,7 @@
   "next_block": "Blok Berikutnya",
   "no": "Tidak",
   "no_messages_available": "Tidak ada pesan yang tersedia.",
-  "no_public_key_activate": "Akun ini belum diaktifkan. Klik untuk mengaktifkan dan mengamankan akun Anda.",
+  "no_public_key_activate": "Akun ini tidak aman. Klik untuk mengamankan akun Anda.",
   "no_public_key_warning": "Peringatan!: Akun Anda tidak memiliki kunci publik! Ini berarti akun tersebut tidak terlindungi seperti akun lainnya. Silakan aktifkan akun Anda untuk mendapatkan kunci publik Anda.",
   "no_transactions_yet": "Belum ada transaksi.",
   "node_hint_no_multiout": "Tidak ada pembayaran multiout yang didukung",
@@ -519,5 +519,9 @@
   "view": "Untuk melihat",
   "view_alias": "Lihat Alias",
   "recipient_required": "Penerima diperlukan",
-  "unregistered_address": "Alamat Tidak Terdaftar"
+  "unregistered_address": "Alamat Tidak Terdaftar",
+  "account_offline": "Tonton Saja",
+  "account_safe": "Aman",
+  "account_unsafe": "Tidak aman!",
+  "error_connection_fail": "Tidak dapat terhubung ke node. Sepertinya tidak terjangkau. Silakan, pilih yang lain"
 }

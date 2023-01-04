@@ -245,7 +245,7 @@
   "next_block": "Nächster Block",
   "no": "Nein",
   "no_messages_available": "Keine Nachrichten verfügbar.",
-  "no_public_key_activate": "Dieses Konto ist noch nicht aktiviert. Klicke hier, um Ihr Konto zu aktivieren und zu sichern.",
+  "no_public_key_activate": "Dieses Konto ist nicht sicher. Klicken Sie hier, um Ihr Konto zu sichern.",
   "no_public_key_warning": "Achtung!: Dein Konto hat keinen öffentlichen Schlüssel! Dies bedeutet, dass es nicht so geschützt ist wie andere Konten. Bitte aktiviere Dein Konto, um den öffentlichen Schlüssel zu erhalten.",
   "no_transactions_yet": "Noch keine Transaktionen.",
   "node_hint_no_multiout": "Keine Multiout-Zahlungen unterstützt",
@@ -519,5 +519,9 @@
   "view": "Anzeigen",
   "view_alias": "Alias anzeigen",
   "recipient_required": "Empfänger ist erforderlich",
-  "unregistered_address": "Nicht registrierte Adresse"
+  "unregistered_address": "Nicht registrierte Adresse",
+  "account_offline": "Nur ansehen",
+  "account_safe": "Sicher",
+  "account_unsafe": "Unsicher!",
+  "error_connection_fail": "Es konnte keine Verbindung zu einem Knoten hergestellt werden. Bitte wählen Sie eine anderen aus"
 }

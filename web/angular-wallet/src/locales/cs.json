@@ -245,7 +245,7 @@
   "next_block": "Další blok",
   "no": "Ne",
   "no_messages_available": "Nejsou k dispozici žádné zprávy.",
-  "no_public_key_activate": "Tento účet ještě není aktivován. Kliknutím aktivujete a zabezpečíte svůj účet.",
+  "no_public_key_activate": "Tento účet není bezpečný. Kliknutím zabezpečte svůj účet.",
   "no_public_key_warning": "Varování !: Váš účet nemá veřejný klíč! To znamená, že není tak chráněn jako jiné účty. Aktivujte prosím svůj účet, abyste získali svůj veřejný klíč.",
   "no_transactions_yet": "Zatím žádné transakce.",
   "node_hint_no_multiout": "Nejsou podporovány žádné platby multiout",
@@ -519,5 +519,9 @@
   "view": "Vidět",
   "view_alias": "Zobrazit alias",
   "recipient_required": "Je vyžadován příjemce",
-  "unregistered_address": "Neregistrovaná adresa"
+  "unregistered_address": "Neregistrovaná adresa",
+  "account_offline": "Pouze sledovat",
+  "account_safe": "Bezpečný",
+  "account_unsafe": "Nebezpečný!",
+  "error_connection_fail": "Nelze se připojit k uzlu. Zdá se, že to není dosažitelné. Prosím, vyberte jiný"
 }

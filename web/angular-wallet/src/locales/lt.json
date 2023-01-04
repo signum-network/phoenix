@@ -245,7 +245,7 @@
   "next_block": "Kitas blokas",
   "no": "Ne",
   "no_messages_available": "Nėra jokių pranešimų.",
-  "no_public_key_activate": "Ši paskyra dar nesuaktyvinta. Spustelėkite, kad suaktyvintumėte ir apsaugotumėte savo paskyrą.",
+  "no_public_key_activate": "Ši paskyra nėra saugi. Spustelėkite, kad apsaugotumėte savo paskyrą.",
   "no_public_key_warning": "Įspėjimas !: Jūsų paskyroje nėra viešojo rakto! Tai reiškia, kad ji nėra taip apsaugota kaip kitos paskyros. Norėdami gauti viešąjį raktą, suaktyvinkite savo sąskaitą.",
   "no_transactions_yet": "Dar nėra jokių operacijų.",
   "node_hint_no_multiout": "Nepalaikomi keli mokėjimai",
@@ -519,5 +519,9 @@
   "view": "Matyti",
   "view_alias": "Žiūrėti slapyvardį",
   "recipient_required": "Reikalingas gavėjas",
-  "unregistered_address": "Neregistruotas Adresas"
+  "unregistered_address": "Neregistruotas Adresas",
+  "account_offline": "Tik žiūrėti",
+  "account_safe": "Saugus",
+  "account_unsafe": "Nesaugu!",
+  "error_connection_fail": "Nepavyko prisijungti prie mazgo. Atrodo, kad jis nepasiekiamas. Prašome pasirinkti kitą"
 }

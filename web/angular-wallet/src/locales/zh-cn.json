@@ -245,7 +245,7 @@
   "next_block": "下一个区块",
   "no": "不",
   "no_messages_available": "没有可用的消息。",
-  "no_public_key_activate": "此帐户尚未激活。单击以激活并保护您的帐户。",
+  "no_public_key_activate": "此帐户不安全。单击以保护您的帐户。",
   "no_public_key_warning": "警告！：您的帐户没有公钥！这意味着它不像其他帐户那样受到保护。请激活您的帐户以获取您的公钥。",
   "no_transactions_yet": "还没有交易。",
   "node_hint_no_multiout": "不支持多出付款",
@@ -519,5 +519,9 @@
   "view": "查看",
   "view_alias": "查看别名",
   "recipient_required": "需要收件人",
-  "unregistered_address": "未注册地址"
+  "unregistered_address": "未注册地址",
+  "account_offline": "只看",
+  "account_safe": "安全的",
+  "account_unsafe": "不安全！",
+  "error_connection_fail": "无法连接到节点。似乎无法到达。请选择另一个"
 }

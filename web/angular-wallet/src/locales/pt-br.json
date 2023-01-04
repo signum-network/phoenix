@@ -245,7 +245,7 @@
   "next_block": "Próxima quadra",
   "no": "Não",
   "no_messages_available": "Nenhuma mensagem disponível.",
-  "no_public_key_activate": "Esta conta ainda não foi ativada. Clique para ativar e proteger sua conta.",
+  "no_public_key_activate": "Esta conta não é segura. Clique para proteger sua conta.",
   "no_public_key_warning": "Aviso !: Sua conta não tem uma chave pública! Isso significa que não é tão protegido quanto outras contas. Por favor, ative sua conta para obter sua chave pública.",
   "no_transactions_yet": "Ainda não há transações.",
   "node_hint_no_multiout": "Não há suporte para pagamentos multiponto",
@@ -519,5 +519,9 @@
   "view": "Ver",
   "view_alias": "Ver pseudônimo",
   "recipient_required": "O destinatário é obrigatório",
-  "unregistered_address": "Endereço não registrado"
+  "unregistered_address": "Endereço não registrado",
+  "account_offline": "Assistir apenas",
+  "account_safe": "Seguro",
+  "account_unsafe": "Inseguro!",
+  "error_connection_fail": "Não foi possível conectar a um nó. Parece que não está acessível. Por favor escolha um outro"
 }

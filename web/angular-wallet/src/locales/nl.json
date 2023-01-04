@@ -245,7 +245,7 @@
   "next_block": "Volgende blok",
   "no": "Nee",
   "no_messages_available": "Geen berichten beschikbaar.",
-  "no_public_key_activate": "Dit account is nog niet geactiveerd. Klik om uw account te activeren en te beveiligen.",
+  "no_public_key_activate": "Dit account is niet veilig. Klik om uw account te beveiligen.",
   "no_public_key_warning": "Waarschuwing!: Uw account heeft geen openbare sleutel! Dit betekent dat het niet zo beschermd is als andere accounts. Activeer uw account om uw openbare sleutel te verkrijgen.",
   "no_transactions_yet": "Nog geen transacties.",
   "node_hint_no_multiout": "Geen multi-out betalingen ondersteund",
@@ -519,5 +519,9 @@
   "view": "Zien",
   "view_alias": "Alias bekijken",
   "recipient_required": "Ontvanger is vereist",
-  "unregistered_address": "Niet-geregistreerd adres"
+  "unregistered_address": "Niet-geregistreerd adres",
+  "account_offline": "Alleen kijken",
+  "account_safe": "Veilig",
+  "account_unsafe": "Onveilig!",
+  "error_connection_fail": "Kan geen verbinding maken met een knooppunt. Het lijkt erop dat het niet bereikbaar is. Kies alstublieft een andere"
 }

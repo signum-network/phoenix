@@ -245,7 +245,7 @@
   "next_block": "Bloc següent",
   "no": "No",
   "no_messages_available": "No hi ha missatges disponibles.",
-  "no_public_key_activate": "Aquest compte encara no està activat. Feu clic per activar i protegir el vostre compte.",
+  "no_public_key_activate": "Aquest compte no és segur. Feu clic per protegir el vostre compte.",
   "no_public_key_warning": "Advertiment: el vostre compte no té una clau pública. Això significa que no està tan protegit com altres comptes. Activeu el vostre compte per obtenir la vostra clau pública.",
   "no_transactions_yet": "Encara no hi ha cap transacció.",
   "node_hint_no_multiout": "No s'admeten pagaments multipagament",
@@ -519,5 +519,9 @@
   "view": "Veure",
   "view_alias": "Veure àlies",
   "recipient_required": "El destinatari és obligatori",
-  "unregistered_address": "Adreça no registrada"
+  "unregistered_address": "Adreça no registrada",
+  "account_offline": "Només mira",
+  "account_safe": "Caixa forta",
+  "account_unsafe": "Insegur!",
+  "error_connection_fail": "No s'ha pogut connectar a un node. Sembla que no és accessible. Si us plau, trieu-ne un altre"
 }

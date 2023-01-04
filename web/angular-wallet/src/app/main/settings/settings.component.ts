@@ -1,17 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import semver from 'semver';
-import {Settings} from '../../settings';
-import {constants} from '../../constants';
-import {environment} from '../../../environments/environment.hmr';
-import {I18nService} from '../../layout/components/i18n/i18n.service';
-import {StoreService} from '../../store/store.service';
-import {ActivatedRoute} from '@angular/router';
-import {ApiComposer, ChainService, getBlockchainStatus} from '@signumjs/core';
-import {NotifierService} from 'angular-notifier';
-import {debounceTime, takeUntil} from 'rxjs/operators';
-import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
-import {ApiService} from '../../api.service';
+import { Settings } from '../../settings';
+import { constants } from '../../constants';
+import { environment } from '../../../environments/environment.hmr';
+import { I18nService } from '../../layout/components/i18n/i18n.service';
+import { StoreService } from '../../store/store.service';
+import { ActivatedRoute } from '@angular/router';
+import { ApiComposer, ChainService, getBlockchainStatus } from '@signumjs/core';
+import { NotifierService } from 'angular-notifier';
+import { debounceTime, takeUntil } from 'rxjs/operators';
+import { UnsubscribeOnDestroy } from '../../util/UnsubscribeOnDestroy';
+import { ApiService } from '../../api.service';
 import { AppService } from '../../app.service';
 
 interface NodeInformation {
@@ -20,7 +20,7 @@ interface NodeInformation {
 }
 
 const UnsupportedFeatures = {
-  [constants.multiOutMinVersion]: 'node_hint_no_multiout',
+  [constants.multiOutMinVersion]: 'node_hint_no_multiout'
 };
 
 @Component({
@@ -29,6 +29,7 @@ const UnsupportedFeatures = {
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
+  public redirectedConnectionFailure: boolean;
 
   constructor(private i18nService: I18nService,
               private storeService: StoreService,
@@ -54,8 +55,8 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
 
   private static createNodeList(showTestnet: boolean): Array<any> {
     const nodes = constants.nodes
-      .filter(({testnet}) => showTestnet === testnet)
-      .map(({address, port}) => port !== 443 ? `${address}:${port}` : address)
+      .filter(({ testnet }) => showTestnet === testnet)
+      .map(({ address, port }) => port !== 443 ? `${address}:${port}` : address)
       .sort();
     if (!environment.production) {
       nodes.push(environment.defaultNode);
@@ -65,10 +66,10 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
 
   static async fetchNodeInformation(nodeHost: string): Promise<NodeInformation> {
     const networkApi = ApiComposer
-      .create(new ChainService({nodeHost}))
-      .withNetworkApi({getBlockchainStatus})
+      .create(new ChainService({ nodeHost }))
+      .withNetworkApi({ getBlockchainStatus })
       .compose();
-    const {version} = await networkApi.network.getBlockchainStatus();
+    const { version } = await networkApi.network.getBlockchainStatus();
     return {
       url: nodeHost,
       version
@@ -77,7 +78,9 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.settings = this.route.snapshot.data.settings as Settings;
-    this.isDesktop = this.appService.isDesktop() ;
+
+
+    this.isDesktop = this.appService.isDesktop();
     this.selectedNode.setValue(this.settings.node);
     this.showTestnet.setValue(false);
     this.isAutomatic = this.settings.nodeAutoSelectionEnabled;
@@ -87,20 +90,28 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
       this.fetchNodeVersion();
     };
 
-    this.selectedNode.valueChanges.pipe(
-      takeUntil(this.unsubscribeAll),
-      waitASecond
-    ).subscribe(updateVersion);
+    this.storeService.ready
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(async ready => {
+        if (ready && this.route.snapshot.queryParams.connectionFail) {
+          this.notifierService.notify('warning', this.i18nService.getTranslation('error_connection_fail'));
+        }
+      });
+
+    this.selectedNode.valueChanges
+      .pipe(
+        takeUntil(this.unsubscribeAll),
+        waitASecond
+      ).subscribe(updateVersion);
 
     this.showTestnet.valueChanges.pipe(
-      takeUntil(this.unsubscribeAll),
+      takeUntil(this.unsubscribeAll)
     ).subscribe(() => {
       this.nodes = SettingsComponent.createNodeList(this.showTestnet.value);
     });
 
     updateVersion();
   }
-
 
   private async updateNodeSettings(value: NodeInformation): Promise<void> {
     const currentSettings = await this.storeService.getSettings();
@@ -109,7 +120,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   }
 
   private async getLastValidSettings(): Promise<void> {
-    const {node} = await this.storeService.getSettings();
+    const { node } = await this.storeService.getSettings();
     this.selectedNode.setValue(node);
   }
 
@@ -148,7 +159,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   private async fetchNodeVersion(): Promise<void> {
     try {
       this.isFetchingNodeInfo = true;
-      const {version} = await SettingsComponent.fetchNodeInformation(this.selectedNode.value);
+      const { version } = await SettingsComponent.fetchNodeInformation(this.selectedNode.value);
       this.selectedNodeVersion = version;
       this.isFetchingNodeInfo = false;
       this.showConnectionErrorIcon = false;
@@ -187,7 +198,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
     currentSettings.showDesktopNotifications = this.showDesktopNotifications;
     await this.storeService.saveSettings(currentSettings);
 
-    if (this.showDesktopNotifications){
+    if (this.showDesktopNotifications) {
       this.appService.showDesktopMessage('Phoenix', this.i18nService.getTranslation('notifications_enabled'));
     }
 

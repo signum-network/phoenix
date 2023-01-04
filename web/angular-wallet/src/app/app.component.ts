@@ -234,7 +234,6 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     }
   }
 
-
   private async checkPendingTransactions(account: WalletAccount): Promise<WalletAccount>{
     return this.accountService.synchronizeAccount(account, true);
   }

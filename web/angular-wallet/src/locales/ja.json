@@ -245,7 +245,7 @@
   "next_block": "次のブロック",
   "no": "番号",
   "no_messages_available": "メッセージはありません。",
-  "no_public_key_activate": "このアカウントはまだ有効化されていません。クリックしてアカウントをアクティブ化し、保護します。",
+  "no_public_key_activate": "このアカウントは安全ではありません。クリックしてアカウントを保護します。",
   "no_public_key_warning": "警告!: あなたのアカウントには公開鍵がありません!これは、他のアカウントほど保護されていないことを意味します。アカウントをアクティベートして公開鍵を取得してください。",
   "no_transactions_yet": "まだ取引はありません。",
   "node_hint_no_multiout": "マルチアウト支払いはサポートされていません",
@@ -519,5 +519,9 @@
   "view": "見る",
   "view_alias": "エイリアスを表示",
   "recipient_required": "受信者が必要です",
-  "unregistered_address": "未登録住所"
+  "unregistered_address": "未登録住所",
+  "account_offline": "見るだけ",
+  "account_safe": "安全",
+  "account_unsafe": "安全ではありません！",
+  "error_connection_fail": "ノードに接続できませんでした。届かないようです。別のものを選択してください"
 }

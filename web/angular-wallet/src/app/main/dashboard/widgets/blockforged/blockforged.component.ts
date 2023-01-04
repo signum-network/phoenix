@@ -31,7 +31,7 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
   locale = 'en';
   isLoading = true;
   blockInfo: ForgedBlockInfo;
-  isMainNet = false;
+  // isMainNet = false;
   private interval: NodeJS.Timeout;
 
   private unsubscribe = takeUntil(this.unsubscribeAll);
@@ -56,11 +56,11 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
       () => this.updateForgedBlocks(),
       2 * 60 * 1000);
 
-    this.networkService.isMainNet$
-      .pipe(this.unsubscribe)
-      .subscribe( () => {
-        this.isMainNet = this.networkService.isMainNet();
-      });
+    // this.networkService.networkInfo$
+    //   .pipe(this.unsubscribe)
+    //   .subscribe( () => {
+    //     this.isMainNet = this.networkService.isMainNet();
+    //   });
 
     this.storeService.settings
       .pipe(this.unsubscribe)
@@ -113,8 +113,6 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
   public getPriceRub = (): string => `₽${this.asCurrency(this.priceRub * this.blockInfo.minedIncomeSigna, '', '1.0-2')}`;
 
   getExplorerLink(): string {
-    return this.isMainNet
-      ? `https://chain.signum.network/blocks/?m=${this.account.account}`
-      : `https://t-chain.signum.network/blocks/?m=${this.account.account}`;
+    return`${this.networkService.getChainExplorerHost()}/blocks/?m=${this.account.account}`;
   }
 }

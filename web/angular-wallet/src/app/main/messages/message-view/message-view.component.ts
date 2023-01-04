@@ -52,7 +52,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('replyForm', { static: false })
   replyForm: NgForm;
 
-  addressPrefix = AddressPrefix.MainNet;
+  addressPrefix: string;
   message: Messages;
   replyInput: any;
   pinInput: any;
@@ -79,9 +79,7 @@ export class MessageViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.encrypt = false;
-    this.addressPrefix = this.networkService.isMainNet()
-      ? AddressPrefix.MainNet
-      : AddressPrefix.TestNet;
+    this.addressPrefix = this.networkService.getAddressPrefix();
     this.selectedUser = this.messageService.user;
     this.messageService.onMessageSelected
       .pipe(takeUntil(this._unsubscribeAll))

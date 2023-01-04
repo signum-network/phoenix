@@ -245,7 +245,7 @@
   "next_block": "Seuraava lohko",
   "no": "Ei",
   "no_messages_available": "Ei viestejä saatavilla.",
-  "no_public_key_activate": "Tätä tiliä ei ole vielä aktivoitu. Napsauta aktivoidaksesi ja suojata tilisi.",
+  "no_public_key_activate": "Tämä tili ei ole turvallinen. Napsauta suojataksesi tilisi.",
   "no_public_key_warning": "Varoitus !: Tililläsi ei ole julkista avainta! Tämä tarkoittaa, että se ei ole yhtä suojattu kuin muut tilit. Aktivoi tilisi saadaksesi julkisen avaimen.",
   "no_transactions_yet": "Ei tapahtumia vielä.",
   "node_hint_no_multiout": "Ei multiout-maksuja tueta",
@@ -519,5 +519,9 @@
   "view": "Nähdä",
   "view_alias": "Näytä alias",
   "recipient_required": "Vastaanottaja vaaditaan",
-  "unregistered_address": "Rekisteröimätön osoite"
+  "unregistered_address": "Rekisteröimätön osoite",
+  "account_offline": "Vain katselu",
+  "account_safe": "Turvallinen",
+  "account_unsafe": "Turvaton!",
+  "error_connection_fail": "Ei voitu muodostaa yhteyttä solmuun. Näyttää siltä, että se ei ole tavoitettavissa. Ole hyvä ja valitse toinen"
 }

@@ -245,7 +245,7 @@
   "next_block": "Bloc suivant",
   "no": "Non",
   "no_messages_available": "Aucun message disponible.",
-  "no_public_key_activate": "Ce compte n'est pas encore activé. Cliquez pour activer et sécuriser votre compte.",
+  "no_public_key_activate": "Ce compte n'est pas sécurisé. Cliquez pour sécuriser votre compte.",
   "no_public_key_warning": "Attention ! : Votre compte n'a pas de clé publique ! Cela signifie qu'il n'est pas aussi protégé que les autres comptes. Veuillez activer votre compte pour obtenir votre clé publique.",
   "no_transactions_yet": "Aucune transaction pour le moment.",
   "node_hint_no_multiout": "Aucun paiement multiple pris en charge",
@@ -519,5 +519,9 @@
   "view": "À voir",
   "view_alias": "Afficher l'alias",
   "recipient_required": "Le destinataire est requis",
-  "unregistered_address": "Adresse non enregistrée"
+  "unregistered_address": "Adresse non enregistrée",
+  "account_offline": "Regarder uniquement",
+  "account_safe": "Sûr",
+  "account_unsafe": "Peu sûr!",
+  "error_connection_fail": "Impossible de se connecter à un nœud. Apparemment ce n'est pas joignable. Veuillez en choisir un autre"
 }

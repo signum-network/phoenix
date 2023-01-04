@@ -16,6 +16,23 @@ import { ApiService } from '../api.service';
 import { StoreService } from 'app/store/store.service';
 import { BehaviorSubject } from 'rxjs';
 import { constants } from '../constants';
+import { HttpError } from '@signumjs/http';
+// TODO: newer version will have exported normally - update me
+import { NetworkInfo } from '@signumjs/core/out/typings/networkInfo';
+import { Router } from '@angular/router';
+
+// @ts-ignore
+const DefaultNetworkInfo: NetworkInfo = {
+  networkName: 'Signum',
+  genesisBlockId: '3444294670862540038',
+  genesisAccountId: 0,
+  maxBlockPayloadLength: 375360,
+  maxArbitraryMessageLength: 1000,
+  ordinaryTransactionLength: 176,
+  addressPrefix: 'S',
+  valueSuffix: 'SIGNA'
+  // add more if needed
+};
 
 export interface MiningInfo {
   height: string;
@@ -30,27 +47,29 @@ export interface MiningInfo {
 @Injectable()
 export class NetworkService {
   private api: Api;
-  private _isMainNet = true;
   public blocks: BehaviorSubject<any> = new BehaviorSubject([]);
-  public isMainNet$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  public networkInfo$: BehaviorSubject<NetworkInfo> = new BehaviorSubject(null);
+  private networkInfo: NetworkInfo = DefaultNetworkInfo;
 
-  constructor(apiService: ApiService, private storeService: StoreService) {
+  constructor(apiService: ApiService, private storeService: StoreService, private router: Router) {
 
     this.storeService.settings.subscribe(async (ready) => {
       if (!ready) {
         return;
       }
       this.api = apiService.api;
-
-      const isMainNet = await this.fetchIsMainNet();
-      if (this._isMainNet !== isMainNet){
-          this.storeService.invalidateAccountTransactions();
-      }
-      this.isMainNet$.next(isMainNet);
-      this._isMainNet = isMainNet;
+      await this.fetchNetworkInfo();
+      // TODO: refetch with nw network info
+      // if (this.networkInfo.networkName !== networkInfo){
+      //     this.storeService.invalidateAccountTransactions();
+      // }
+      this.networkInfo$.next(this.networkInfo);
     });
   }
 
+  public getNetworkInfo(): NetworkInfo {
+    return this.networkInfo;
+  }
   public suggestFee(): Promise<SuggestedFees> {
     return this.api.network.getSuggestedFees();
   }
@@ -87,30 +106,33 @@ export class NetworkService {
     this.setBlocks([block].concat(this.blocks.value));
   }
 
-  private async fetchIsMainNet(): Promise<boolean> {
+  private async fetchNetworkInfo(): Promise<void> {
     try {
-      const { networkName } = await this.api.service.query('getConstants');
-      return networkName === constants.mainnetNetworkName;
+      this.networkInfo = await this.api.network.getNetworkInfo();
     } catch (e) {
-      return false;
+      console.warn('Could not fetch Network Information. Maybe wrong node configured...?', e.message);
+      await this.router.navigate(['/settings'], {queryParams: { connectionFail: true }});
     }
   }
 
   public getBurnAddress(): Address {
-    const prefix = this.isMainNet() ? 'S' : 'TS';
-    return Address.fromReedSolomonAddress(`${prefix}-2222-2222-2222-22222`);
+    return Address.fromNumericId(this.networkInfo.genesisBlockId, this.networkInfo.addressPrefix);
   }
 
   public isMainNet(): boolean {
-    return this._isMainNet;
+    return this.networkInfo.networkName === 'Signum';
+  }
+  public getAddressPrefix(): string {
+    return this.networkInfo.addressPrefix;
   }
 
   public getChainExplorerHost(): string {
-    return this._isMainNet ? constants.explorerHost.main : constants.explorerHost.test;
+    return this.isMainNet() ? constants.explorerHost.main : constants.explorerHost.test;
   }
 
 
   public getIpfsCidUrl(cid: string): string {
     return `${constants.ipfsGateway}/${cid}`;
   }
+
 }

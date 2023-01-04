@@ -245,7 +245,7 @@
   "next_block": "Następny blok",
   "no": "Nie",
   "no_messages_available": "Brak dostępnych wiadomości.",
-  "no_public_key_activate": "To konto nie jest jeszcze aktywowane. Kliknij, aby aktywować i zabezpieczyć swoje konto.",
+  "no_public_key_activate": "To konto nie jest bezpieczne. Kliknij, aby zabezpieczyć swoje konto.",
   "no_public_key_warning": "Uwaga!: Twoje konto nie ma klucza publicznego! Oznacza to, że nie jest tak chroniony, jak inne konta. Aktywuj swoje konto, aby uzyskać klucz publiczny.",
   "no_transactions_yet": "Brak transakcji.",
   "node_hint_no_multiout": "Brak obsługi płatności wielorazowych",
@@ -519,5 +519,9 @@
   "view": "Zobaczyć",
   "view_alias": "Wyświetl alias",
   "recipient_required": "Odbiorca jest wymagany",
-  "unregistered_address": "Niezarejestrowany adres"
+  "unregistered_address": "Niezarejestrowany adres",
+  "account_offline": "Oglądaj tylko",
+  "account_safe": "Bezpieczna",
+  "account_unsafe": "Niebezpieczny!",
+  "error_connection_fail": "Nie można połączyć się z węzłem. Wydaje się, że jest nieosiągalny. Proszę wybrać inny"
 }

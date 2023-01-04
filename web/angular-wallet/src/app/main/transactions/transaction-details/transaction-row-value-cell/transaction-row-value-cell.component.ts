@@ -1,5 +1,5 @@
 import {Component, Input, ViewChild} from '@angular/core';
-import {Address, AddressPrefix, Transaction} from '@signumjs/core';
+import {Address, Transaction} from '@signumjs/core';
 import {decryptAES, decryptMessage, EncryptedMessage, hashSHA256} from '@signumjs/crypto';
 import {AccountService} from 'app/setup/account/account.service';
 import {CellValue} from '../cell-value-mapper';
@@ -46,8 +46,7 @@ export class TransactionRowValueCellComponent {
   }
 
   public getReedSolomonAddress(numericId: string): string {
-    const prefix = this.networkService.isMainNet() ? AddressPrefix.MainNet : AddressPrefix.TestNet;
-    return Address.fromNumericId(numericId, prefix).getReedSolomonAddress();
+    return Address.fromNumericId(numericId, this.networkService.getAddressPrefix()).getReedSolomonAddress();
   }
 
   convertAddressToNumericId(address: string): string {

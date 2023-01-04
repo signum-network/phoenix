@@ -1,43 +1,98 @@
+:host {
 
-.mat-header-cell.mat-sort-header-sorted {
-  color: black;
-}
+  .mat-header-cell.mat-sort-header-sorted {
+    color: black;
+  }
 
-.action-row {
-  justify-content: space-between;
-  align-items: center;
-  display: flex;
+  .action-row {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
 
-  .buttons {
-    button {
-      align-self: center;
+    .buttons {
+      button {
+        align-self: center;
+        margin-right: 8px;
+      }
+
+      button.delete {
+        margin-left: auto;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .mat-cell:first-of-type {
+    padding: 0;
+  }
+
+  .account-stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .mat-column-avatar {
+    flex: 0 1 48px;
+    justify-items: center;
+    img {
+      border-radius: 4px;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .mat-column {
+    &-type {
+      justify-content: start;
+      text-transform: uppercase;
+
+      .type-badge {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 0.25rem;
+        font-size: 12px;
+        border-radius: 4px;
+        padding: 2px 8px;
+      }
+
+      .offline {
+        background: #E8F3FF;
+        color: #000000DE;
+      }
+
+      .safe {
+        background: #00FF88;
+        color: #000000DE;
+      }
+
+      .unsafe {
+        background: red;
+        animation: pulse 5s linear infinite;
+        cursor: pointer;
+        color: white;
+
+        &:hover {
+          filter: brightness(75%);
+          transition: all 125ms ease-in-out;
+        }
+      }
     }
 
-    button.delete {
-      margin-left: auto;
-      margin-right: 10px;
+
+    &-delete {
+      flex: 0 0 50px;
     }
-  }
-}
 
-.mat-column {
-
-  &-type {
-    flex: 0 0 80px;
-    justify-content: end;
   }
 
-  &-delete {
-    flex: 0 0 50px;
+  .select-icon {
+    justify-content: center;
   }
 
-}
-
-.select-icon {
-  justify-content: center;
-}
-
-.clickable {
-  cursor: pointer;
-  color: #039be5 !important;
+  .clickable {
+    cursor: pointer;
+    color: #039be5 !important;
+  }
 }
