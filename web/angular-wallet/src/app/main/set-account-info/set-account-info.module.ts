@@ -30,6 +30,7 @@ import {
   CustomDescriptionFormComponent
 } from 'app/components/custom-description-form/custom-description-form.component';
 import { JsonDescriptionFormComponent } from 'app/components/json-description-form/json-description-form.component';
+import { AppSharedModule } from "../../shared/shared.module";
 
 const routes = [
   {
@@ -70,7 +71,8 @@ const routes = [
     SetupModule,
     MatTabsModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    AppSharedModule
   ]
 })
 export class SetAccountInfoModule { }

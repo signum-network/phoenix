@@ -5,6 +5,7 @@ import {filter, switchMap} from 'rxjs/operators';
 import {StoreService} from 'app/store/store.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {ApiService} from '../api.service';
+import { NetworkService } from "../network/network.service";
 
 const errorHandler = console.error;
 
@@ -16,6 +17,7 @@ export class LoginGuard implements CanActivate {
 
   constructor(private storeService: StoreService,
               private accountService: AccountService,
+              private networkService: NetworkService,
               private apiService: ApiService,
               private router: Router) {
   }
@@ -27,6 +29,7 @@ export class LoginGuard implements CanActivate {
         const settings = await this.storeService.getSettings().catch(errorHandler);
         const selectedAccount = await this.storeService.getSelectedAccount().catch(errorHandler);
         const allAccounts = await this.storeService.getAllAccounts().catch(errorHandler);
+        await this.networkService.fetchNetworkInfo();
         // User must agree to disclaimer
         if (!(settings && settings.agree)) {
           await this.router.navigate(['/disclaimer']);

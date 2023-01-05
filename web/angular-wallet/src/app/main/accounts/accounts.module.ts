@@ -32,6 +32,9 @@ import {AppSharedModule} from '../../shared/shared.module';
 import {TransactionsResolver} from './transactions.resolver';
 import {TokensModule} from '../tokens/tokens.module';
 import { ComponentsModule } from 'app/components/components.module';
+import { MatMenuModule } from "@angular/material/menu";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatDividerModule } from "@angular/material/divider";
 
 
 const routes = [
@@ -78,7 +81,10 @@ const routes = [
     TransactionTableModule,
     AppSharedModule,
     TokensModule,
-    ComponentsModule
+    ComponentsModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatDividerModule
   ],
   declarations: [
     AccountsComponent,

@@ -1,20 +1,22 @@
-import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {MatDialog} from '@angular/material/dialog';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {NotifierService} from 'angular-notifier';
-import {DeleteAccountDialogComponent} from './delete-account-dialog/delete-account-dialog.component';
-import {StoreService} from 'app/store/store.service';
-import {AccountService} from 'app/setup/account/account.service';
-import {takeUntil} from 'rxjs/operators';
-import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
-import {I18nService} from '../../layout/components/i18n/i18n.service';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { NotifierService } from 'angular-notifier';
+import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-account-dialog.component';
+import { StoreService } from 'app/store/store.service';
+import { AccountService } from 'app/setup/account/account.service';
+import { takeUntil } from 'rxjs/operators';
+import { UnsubscribeOnDestroy } from '../../util/UnsubscribeOnDestroy';
+import { I18nService } from '../../layout/components/i18n/i18n.service';
 import { WalletAccount } from 'app/util/WalletAccount';
-import { Address } from "@signumjs/core";
-import { DescriptorData } from "@signumjs/standards";
+import { Address } from '@signumjs/core';
+import { DescriptorData } from '@signumjs/standards';
 import hashicon from 'hashicon';
-import { NetworkService } from "../../network/network.service";
+import { NetworkService } from '../../network/network.service';
+import { AppService } from '../../app.service';
+import { MatPaginator } from "@angular/material/paginator";
 
 @Component({
   selector: 'app-accounts',
@@ -29,10 +31,12 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   public selectedAccounts: object;
   public locale: string;
 
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
 
   constructor(
     private storeService: StoreService,
+    private appService: AppService,
     private accountService: AccountService,
     private notificationService: NotifierService,
     private networkService: NetworkService,
@@ -46,7 +50,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   public ngOnInit(): void {
     this.accounts = [];
     this.selectedAccounts = {};
-    this.displayedColumns = ['avatar', 'account', 'name', 'balance', 'type', 'delete'];
+    this.displayedColumns = ['delete', 'avatar', 'account', 'name', 'balance', 'type', 'actions'];
     this.dataSource = new MatTableDataSource<WalletAccount>();
 
     this.storeService.ready
@@ -54,7 +58,9 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
         takeUntil(this.unsubscribeAll)
       )
       .subscribe((ready) => {
-        if (!ready) { return; }
+        if (!ready) {
+          return;
+        }
         this.storeService.getAllAccounts().then((accounts) => {
           this.accounts = accounts;
           this.dataSource.data = this.accounts;
@@ -67,14 +73,14 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
       .pipe(
         takeUntil(this.unsubscribeAll)
       )
-      .subscribe(({language}) => {
+      .subscribe(({ language }) => {
         this.locale = language;
       });
 
   }
 
   public getSelectedAccounts(): Array<WalletAccount> {
-    return this.accounts.filter(({account}) => this.selectedAccounts[account]);
+    return this.accounts.filter(({ account }) => this.selectedAccounts[account]);
   }
 
   public deleteSelectedAccounts(): void {
@@ -87,35 +93,23 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     });
 
     dialogRef.afterClosed()
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
-      .subscribe(confirm => {
+      .subscribe(async (confirm) => {
         if (!confirm) {
           return;
         }
-        selectedAccounts.forEach((account) => {
-          this.accountService
-            .removeAccount(account)
-            .then(() => {
-              this.notificationService.notify('success', `Account(s) Deleted`);
-              this.storeService.getAllAccounts().then((accounts) => {
-                this.accounts = accounts;
-                this.dataSource.data = this.accounts;
-
-                if (!accounts || !accounts.length) {
-                  this.router.navigate(['/']);
-                  this.accountService.selectAccount(null);
-                } else if (accounts.map(({account: a}) => a).indexOf(this.selectedAccount.account) < 0) {
-                  this.accountService.selectAccount(accounts[0]);
-                }
-              });
-            });
-        });
+        const removeRequests = selectedAccounts.map((a) => this.accountService.removeAccount(a));
+        await Promise.all(removeRequests);
+        this.accounts = await this.storeService.getAllAccounts();
+        const removedSelectedAccount = this.accounts.findIndex(a => a.account === this.selectedAccount.account) < 0;
+        this.dataSource.data = this.accounts;
+        if (!this.accounts || !this.accounts.length) {
+          this.accountService.selectAccount(null);
+          this.router.navigate(['/']);
+        } else if (removedSelectedAccount) {
+          this.accountService.selectAccount(this.accounts[0]);
+        }
+        this.notificationService.notify('success', this.i18nService.getTranslation('account_successfully_deleted'));
       });
-  }
-
-  openDialog(): void {
   }
 
   public ngAfterViewInit(): void {
@@ -157,9 +151,73 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
       // ignore
     }
 
-    if(src44 && src44.avatar){
+    if (src44 && src44.avatar) {
       return this.networkService.getIpfsCidUrl(src44.avatar.ipfsCid);
     }
     return hashicon(account.account).toDataURL();
+  }
+
+  deleteAccount(account: WalletAccount): void {
+    const dialogRef = this.deleteDialog.open(DeleteAccountDialogComponent, {
+      width: '400px',
+      data: [account]
+    });
+
+    const wasSelectedAccount = account.account === this.selectedAccount.account;
+
+    dialogRef.afterClosed().subscribe(async confirm => {
+      if (!confirm) {
+        return;
+      }
+      await this.accountService.removeAccount(account);
+      this.accounts = await this.storeService.getAllAccounts();
+      this.dataSource.data = this.accounts;
+      if (!this.accounts || !this.accounts.length) {
+        this.accountService.selectAccount(null);
+        this.router.navigate(['/']);
+      } else if (wasSelectedAccount) {
+        this.accountService.selectAccount(this.accounts[0]);
+      }
+      this.notificationService.notify('success', this.i18nService.getTranslation('account_successfully_deleted'));
+    });
+  }
+
+  async copyToClipboard(data: string): Promise<void> {
+    try {
+      await navigator.clipboard.writeText(data);
+      this.notificationService.notify('success',
+        this.i18nService.getTranslation('success_clipboard_copy')
+      );
+    } catch (e) {
+      this.notificationService.notify('error',
+        this.i18nService.getTranslation('error_clipboard_copy')
+      );
+    }
+  }
+
+  openInExplorer(account: WalletAccount): void {
+      const host = this.networkService.getChainExplorerHost();
+      const url = `${host}/address/${account.account}`;
+      if (!this.appService.isDesktop()) {
+      window.open(url, 'blank');
+    } else {
+      this.appService.openInBrowser(url);
+    }
+  }
+
+  routeToAccount(account: WalletAccount): void {
+    this.router.navigate(['/account', account.account]);
+  }
+
+  sendToAccount(account: WalletAccount): void {
+    this.router.navigate(['/send'], {
+      queryParams: {
+        receiver: account.account
+      }
+    });
+  }
+
+  isUnsafeAccount(account: WalletAccount): boolean {
+    return account.type !== 'offline' && !account.confirmed;
   }
 }

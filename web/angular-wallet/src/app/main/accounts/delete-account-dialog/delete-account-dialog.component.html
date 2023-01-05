@@ -1,13 +1,14 @@
 <div class="p-24">
-  <h1 mat-dialog-title>Delete Confirmation</h1>
+  <h1 mat-dialog-title>{{"confirm_delete_accounts" | i18n}}</h1>
   <div mat-dialog-content>
-    <p>Are you sure you want to delete these accounts?</p>
+    <p>{{'confirm_delete_accounts_q' | i18n}}</p>
+    <small>{{'confirm_delete_accounts_hint' | i18n}}</small>
     <ul>
-      <li *ngFor="let account of selectedAccounts">{{account.accountRS}}</li>
+      <li *ngFor="let account of selectedAccounts">{{account.account | address}}</li>
     </ul>
   </div>
   <div mat-dialog-actions>
-    <button mat-button [mat-dialog-close]>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" color="warn">Delete</button>
+    <button mat-button [mat-dialog-close]="false">{{"cancel" | i18n}}</button>
+    <button mat-button [mat-dialog-close]="true" color="warn">{{"delete" | i18n}}</button>
   </div>
 </div>

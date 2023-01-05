@@ -5,17 +5,11 @@ import {Amount} from '@signumjs/util';
 
 @Pipe({
   name: 'amount',
-  pure: false
+  pure: true
 })
 export class AmountPipe implements PipeTransform {
 
-  private cachedLanguageCode: string;
-
   constructor(private i18nService: I18nService) {
-  }
-
-  private shouldUpdate(): boolean {
-    return this.i18nService.currentLanguage.code !== this.cachedLanguageCode;
   }
 
   transform(value: string | number,
@@ -23,15 +17,11 @@ export class AmountPipe implements PipeTransform {
             isShortForm: boolean = false,
             noUnit: boolean = false
   ): string {
-    if (this.shouldUpdate()) {
-
       const v = inputType === 'planck' ? Amount.fromPlanck(value).getSigna() : value;
-
       return formatAmount(v, {
         isShortForm,
         noUnit,
         locale: this.i18nService.currentLanguage.code
-      });
-    }
+    });
   }
 }

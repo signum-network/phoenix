@@ -1,6 +1,6 @@
 <span class="account-item inline">
       <div class="avatar-icon">
-        <img [src]="avatarImgSrc" alt="avatar-image" />
+        <img *ngIf="avatarImgSrc" [src]="avatarImgSrc" alt="avatar-image" />
       </div>
       <div class="address-box" fxHide fxShow.gt-xs>
         <span>{{short(account.name || shortAddress)}}</span>

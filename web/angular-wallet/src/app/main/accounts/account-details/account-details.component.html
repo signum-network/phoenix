@@ -1,11 +1,12 @@
-<app-page [full]="true"
+<app-page *ngIf="account"
+          [full]="true"
           [title]="'account_details' | i18n"
-          [subtitle]="account.accountRS"
+          [subtitle]="account.account | address"
           [breadcrumbs]="[{label: 'accounts' | i18n , path: '/accounts'}]">
   <!-- / HEADER -->
 
-  <div class=" p-24">
-
+  <div *ngIf="!account.keys.publicKey" class="ribbon ribbon-top-right"><span>{{'unsafe' | i18n}}</span></div>
+  <div class="p-24">
     <div class="account-details">
       <div class="avatar">
         <canvas #avatar></canvas>
@@ -13,7 +14,8 @@
       </div>
       <div class="description">
         <div class="details">
-          <h2>{{ account.name || account.accountRS }}</h2>
+          <h2 *ngIf="account.name">{{ account.name }}</h2>
+          <h2 *ngIf="!account.name">{{ account.account | address }}</h2>
           <h3>{{ account.account }}</h3>
           <h4>{{ account.balanceNQT | amount:'planck' }}</h4>
         </div>

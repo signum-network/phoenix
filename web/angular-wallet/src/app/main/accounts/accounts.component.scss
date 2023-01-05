@@ -1,3 +1,5 @@
+@import "src/@fuse/scss/fuse";
+
 :host {
 
   .mat-header-cell.mat-sort-header-sorted {
@@ -8,7 +10,7 @@
     justify-content: space-between;
     align-items: center;
     display: flex;
-
+    flex-direction: row;
     .buttons {
       button {
         align-self: center;
@@ -20,9 +22,13 @@
         margin-right: 10px;
       }
     }
+    @include media-breakpoint('xs') {
+      flex-direction: column;
+    }
   }
 
-  .mat-cell:first-of-type {
+  .mat-cell:first-of-type,
+  .mat-cell:last-of-type {
     padding: 0;
   }
 
@@ -35,56 +41,81 @@
   .mat-column-avatar {
     flex: 0 1 48px;
     justify-items: center;
+
     img {
       border-radius: 4px;
       width: 40px;
       height: 40px;
     }
+
+    @include media-breakpoint('xs') {
+      flex: 0 1 36px;
+      justify-items: center;
+
+      img {
+        border-radius: 4px;
+        width: 32px;
+        height: 32px;
+      }
+
+    }
+
   }
 
-  .mat-column {
-    &-type {
-      justify-content: start;
-      text-transform: uppercase;
+  .mat-column-actions {
+    flex: 0 1 48px;
+  }
 
-      .type-badge {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-left: 0.25rem;
-        font-size: 12px;
-        border-radius: 4px;
-        padding: 2px 8px;
-      }
+  .mat-column-type {
+    justify-content: start;
+    text-transform: uppercase;
 
-      .offline {
-        background: #E8F3FF;
-        color: #000000DE;
-      }
-
-      .safe {
-        background: #00FF88;
-        color: #000000DE;
-      }
-
-      .unsafe {
-        background: red;
-        animation: pulse 5s linear infinite;
-        cursor: pointer;
-        color: white;
-
-        &:hover {
-          filter: brightness(75%);
-          transition: all 125ms ease-in-out;
-        }
-      }
+    @include media-breakpoint('xs') {
+      flex: 0 1 48px;
     }
 
-
-    &-delete {
-      flex: 0 0 50px;
+    .type-badge {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-left: 0.25rem;
+      font-size: 12px;
+      border-radius: 4px;
+      padding: 2px 8px;
     }
 
+    .offline {
+      background: #E8F3FF;
+      color: #000000DE;
+    }
+
+    .safe {
+      background: #00FF88;
+      color: #000000DE;
+    }
+
+    .unsafe {
+      background: red;
+      animation: pulse 5s linear infinite;
+      cursor: pointer;
+      color: white;
+
+      &:hover {
+        filter: brightness(75%);
+        transition: all 125ms ease-in-out;
+      }
+
+    }
+  }
+
+  .mat-column-delete {
+    flex: 0 0 32px;
+    padding-left: 13px;
+    @include media-breakpoint('xs') {
+      padding-left: 0;
+      flex: 0 1 24px;
+      justify-items: flex-start;
+    }
   }
 
   .select-icon {
@@ -95,4 +126,5 @@
     cursor: pointer;
     color: #039be5 !important;
   }
+
 }

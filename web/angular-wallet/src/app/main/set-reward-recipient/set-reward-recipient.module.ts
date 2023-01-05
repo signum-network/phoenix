@@ -22,6 +22,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { LoginGuard } from 'app/login/login-guard.service';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {ComponentsModule} from '../../components/components.module';
+import { AppSharedModule } from "../../shared/shared.module";
 
 const routes = [
   {
@@ -59,6 +60,7 @@ const routes = [
     NotifierModule,
     RouterModule.forChild(routes),
     SetupModule,
+    AppSharedModule
   ]
 })
 export class SetRewardRecipientModule { }

@@ -75,7 +75,7 @@ export class BlocksComponent implements OnInit {
   public applyFilter(filterValue: string): void {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
-    this.dataSource.filter = filterValue || 'burst';
+    this.dataSource.filter = filterValue;
   }
 
   public isOwnAccount(address: string): boolean {

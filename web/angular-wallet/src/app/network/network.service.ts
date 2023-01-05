@@ -106,7 +106,7 @@ export class NetworkService {
     this.setBlocks([block].concat(this.blocks.value));
   }
 
-  private async fetchNetworkInfo(): Promise<void> {
+  public async fetchNetworkInfo(): Promise<void> {
     try {
       this.networkInfo = await this.api.network.getNetworkInfo();
     } catch (e) {
