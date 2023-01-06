@@ -47,15 +47,16 @@
       </div>
     </div>
 
-    <ng-container matColumnDef="delete">
-      <mat-header-cell *matHeaderCellDef>
-        <mat-icon>delete</mat-icon>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let account" class="select-icon">
-        <mat-checkbox [(ngModel)]="selectedAccounts[account.account]"></mat-checkbox>
-      </mat-cell>
-    </ng-container>
-    <mat-table #table [dataSource]="dataSource">
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-icon>delete</mat-icon>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let account" class="select-icon">
+          <mat-checkbox [(ngModel)]="selectedAccounts[account.account]"></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="avatar">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let account">

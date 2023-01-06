@@ -114,7 +114,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     const amount = Amount.fromSigna(this.amount || 0);
 
     const request = {
-      recipientIds: this.recipients.map(r => Address.fromReedSolomonAddress(r.addressRS).getNumericId()),
+      recipientIds: this.recipients.map(r => r.addressId),
       fee: fee.getPlanck(),
       amountNQT: amount.getPlanck(),
       pin: this.pin,
@@ -129,7 +129,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
     const request = {
       recipientAmounts: this.recipients.map(r => ({
-        recipient: Address.fromReedSolomonAddress(r.addressRS).getNumericId(),
+        recipient: r.addressId,
         amountNQT: Amount.fromSigna(r.amount || 0).getPlanck(),
       })),
       fee: fee.getPlanck(),
@@ -207,11 +207,11 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
   private calculatePayloadLength(): number {
     return this.recipients.reduce(
       (len, r) => {
-        if (!r.addressRS) {
+        if (!r.addressId) {
           return len;
         }
         // format is <id1>;<id2>;
-        len += Address.fromReedSolomonAddress(r.addressRS).getNumericId().length + 1;
+        len += r.addressId.length + 1;
         if (!this.sameAmount) {
           // format is <id1>:<amount>;<id2>:<amount>;
           len += Amount.fromSigna(r.amount || '0').getPlanck().length + 1;
@@ -237,7 +237,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
 
   private nonEmptyRecipients(): Array<Recipient> {
     return this.recipients.filter(
-      r => r.amount !== '' || r.addressRS !== ''
+      r => r.amount !== '' || r.addressId !== ''
     );
   }
 
@@ -296,7 +296,6 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
       const r = new Recipient();
       r.amount = Amount.fromPlanck(ra.amountNQT).getSigna();
       r.addressRaw = ra.recipient;
-      r.addressRS = Address.fromNumericId(ra.recipient, this.networkService.getAddressPrefix()).getReedSolomonAddress();
 
       if (previousAmount) {
         isSameAmount = isSameAmount && (previousAmount === r.amount);

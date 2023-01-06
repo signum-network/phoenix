@@ -15,8 +15,6 @@ const DefaultFormattingOptions = {
 function shorten(s: string): string {
   return s.length > 18 ? `${s.substr(0, 4)}...${s.substr(s.length - 4)}` : s;
 }
-
-
 export function formatAddress(address: string, formattingOptions: AddressFormattingOptions = DefaultFormattingOptions): string {
   try{
       const prefix = formattingOptions.prefix || undefined;

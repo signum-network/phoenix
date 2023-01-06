@@ -53,7 +53,7 @@ export class SetRewardRecipientComponent implements OnInit {
     this.isSending = true;
     try {
       await this.accountService.setRewardRecipient({
-        recipientId: Address.fromReedSolomonAddress(this.recipient.addressRS).getNumericId(),
+        recipientId: this.recipient.addressId,
         feePlanck: Amount.fromSigna(this.fee).getPlanck(),
         deadline: 1440,
         pin: this.pin,

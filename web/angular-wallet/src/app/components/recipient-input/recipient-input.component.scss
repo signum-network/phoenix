@@ -103,6 +103,10 @@ mat-progress-bar {
   pointer-events: none;
 }
 
+.ok {
+  color: green !important;
+}
+
 
 @-webkit-keyframes burning {
   0%{background-position:83% 0%}

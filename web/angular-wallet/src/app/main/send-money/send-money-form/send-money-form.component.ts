@@ -179,22 +179,22 @@ export class SendMoneyFormComponent extends UnsubscribeOnDestroy implements OnIn
       const dialogRef = this.openWarningDialog([this.recipient]);
       dialogRef.afterClosed().subscribe(ok => {
         if (ok) {
-          this.sendSigna(this.recipient.addressRS, this.recipient.publicKey);
+          this.sendSigna(this.recipient.addressId, this.recipient.publicKey);
         }
       });
     } else {
-      this.sendSigna(this.recipient.addressRS, this.recipient.publicKey);
+      this.sendSigna(this.recipient.addressId, this.recipient.publicKey);
     }
   }
 
-  async sendSigna(addressRS: string, recipientPublicKey = ''): Promise<void> {
+  async sendSigna(recipientId: string, recipientPublicKey = ''): Promise<void> {
     try {
       this.isSending = true;
 
       await this.transactionService.sendAmount({
         amount: Amount.fromSigna(this.amount).getPlanck(),
         fee: Amount.fromSigna(this.fee).getPlanck(),
-        recipientId: Address.fromReedSolomonAddress(addressRS).getNumericId(),
+        recipientId: recipientId,
         recipientPublicKey,
         keys: this.account.keys,
         pin: this.pin,
@@ -242,7 +242,7 @@ export class SendMoneyFormComponent extends UnsubscribeOnDestroy implements OnIn
   }
 
   canSubmit(): boolean {
-    return isNotEmpty(this.recipient.addressRaw)
+    return this.recipient.publicKeyValid
       && isNotEmpty(this.amount)
       && isNotEmpty(this.pin)
       && !this.isMessageTooLong()

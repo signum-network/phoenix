@@ -167,7 +167,7 @@ export class TokenService {
       assetId: token.id,
       attachment,
       feePlanck: fee.getPlanck(),
-      recipientId: Address.create(recipient.addressRS).getNumericId(),
+      recipientId: recipient.addressId,
       recipientPublicKey,
       quantity: quantity.getAtomic(),
       amountPlanck: signa ? signa.getPlanck() : undefined,

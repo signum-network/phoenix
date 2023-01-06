@@ -38,10 +38,12 @@ export class Recipient {
   constructor(
     public addressRaw = '',
     public amount = '',
-    public addressRS = '',
+    // public addressRS = '',
+    public addressId = '',
     public status = RecipientValidationStatus.UNKNOWN,
     public type = RecipientType.UNKNOWN,
-    public publicKey = ''
+    public publicKey = '',
+    public publicKeyValid = false
   ) {
 
   }
@@ -71,6 +73,8 @@ export class RecipientInputComponent implements OnChanges {
   _recipientValue = '';
   recipientFieldInputChange$: Subject<string> = new Subject<string>();
 
+  needPublicKey = true;
+  isPublicKeyValid = false;
   @Input() withQrCode = true;
   // tslint:disable-next-line: no-input-rename
   @Input('appearance') appearance = '';
@@ -83,6 +87,7 @@ export class RecipientInputComponent implements OnChanges {
   recipientChange = new EventEmitter();
   @Output()
   qrCodeUpload = new EventEmitter<QRData>();
+
 
 
   @Input()
@@ -163,7 +168,7 @@ export class RecipientInputComponent implements OnChanges {
   applyRecipientType(recipient: string): void {
     const r = recipient.trim();
     this.recipient.addressRaw = r;
-    this.recipient.addressRS = '';
+    this.recipient.addressId = '';
     this.recipient.status = RecipientValidationStatus.UNKNOWN;
     if (this.isBurnAddress(r)) {
       this.recipient.type = RecipientType.BURN;
@@ -182,40 +187,39 @@ export class RecipientInputComponent implements OnChanges {
 
   async validateRecipient(recipient: string): Promise<void> {
     this.recipient.addressRaw = recipient.trim();
-    let id = this.recipient.addressRaw;
+    // let id = this.recipient.addressRaw;
     switch (this.recipient.type) {
       case RecipientType.ALIAS:
-        id = await this.fetchAccountIdFromAlias(id);
+        this.recipient.addressId = await this.fetchAccountIdFromAlias(this.recipient.addressRaw);
         break;
       case RecipientType.BURN:
         const burnAddress = this.networkService.getBurnAddress();
         this.recipient.publicKey = '';
-        this.recipient.addressRS = burnAddress.getReedSolomonAddress();
+        this.recipient.publicKeyValid = true; // pub key for Burn Address not needed
+        this.recipient.addressId = burnAddress.getNumericId();
         this.recipient.status = RecipientValidationStatus.BURN;
         break;
       case RecipientType.ADDRESS:
-        const address = Address.fromReedSolomonAddress(id);
-        this.recipient.addressRaw = address.getReedSolomonAddress();
-        id = address.getNumericId();
+        const address = Address.fromReedSolomonAddress(this.recipient.addressRaw);
+        this.recipient.addressId = address.getNumericId();
         break;
       case RecipientType.UNSTOPPABLE:
         try {
-          id = await this.domainService.getUnstoppableAddress(id);
-          if (!id) {
+          const resolvedId = await this.domainService.getUnstoppableAddress(this.recipient.addressRaw);
+          if (!resolvedId) {
             this.recipient.status = RecipientValidationStatus.INVALID;
           }
+          this.recipient.addressId = resolvedId;
         } catch (e) {
           this.recipient.status = RecipientValidationStatus.UNSTOPPABLE_OUTAGE;
         }
         break;
-      // tslint:disable-next-line:no-switch-case-fall-through
       case RecipientType.ID:
+        this.recipient.addressId = this.recipient.addressRaw;
         break;
-      default:
-        id = null;
     }
 
-    if (!id) {
+    if (!this.recipient.addressId) {
       return;
     }
 
@@ -225,23 +229,16 @@ export class RecipientInputComponent implements OnChanges {
     }
 
     this.loading = true;
-    // @ts-ignore
-    this.accountService.getAccount(id).then(({ accountRS, keys }) => {
-      this.recipient.addressRS = accountRS;
+    this.accountService.getAccount(this.recipient.addressId).then(({ account, accountRS, keys }) => {
+      this.recipient.addressId = account;
       this.recipient.status = RecipientValidationStatus.VALID;
       this.recipient.publicKey = keys.publicKey;
+      this.needPublicKey = !keys.publicKey;
+      this.recipient.publicKeyValid = !this.needPublicKey;
       if (this.recipient.publicKey === constants.smartContractPublicKey) {
         this.recipient.type = RecipientType.CONTRACT;
       }
     }).catch(() => {
-      if (this.isReedSolomonAddress(this.recipient.addressRaw)) {
-        this.recipient.addressRS = this.recipient.addressRaw;
-      } else if (this.recipient.type === RecipientType.UNSTOPPABLE) {
-        this.recipient.addressRS = id;
-      } else {
-        const prefix = this.isTestNet ? AddressPrefix.TestNet : AddressPrefix.MainNet;
-        this.recipient.addressRS = Address.fromNumericId(this.recipient.addressRaw, prefix).getReedSolomonAddress();
-      }
       this.recipient.status = RecipientValidationStatus.INVALID;
     }).finally(() => {
       this.loading = false;
@@ -253,18 +250,17 @@ export class RecipientInputComponent implements OnChanges {
   getRecipientTypeName = (): string => RecipientType[this.recipient.type];
 
   getValidationHint(): string {
-    // TODO: localization
     switch (this.recipient.status) {
       case RecipientValidationStatus.BURN:
-        return 'The amount will be burnt.';
+        return 'recipient_validation_hint_burn';
       case RecipientValidationStatus.UNKNOWN:
-        return 'Address has not been verified.';
+        return 'recipient_validation_hint_not_verified';
       case RecipientValidationStatus.VALID:
-        return 'Address was successfully verified.';
+        return 'recipient_validation_hint_verified';
       case RecipientValidationStatus.INVALID:
-        return 'Please verify address before sending.';
+        return 'recipient_validation_hint_invalid';
       case RecipientValidationStatus.UNSTOPPABLE_OUTAGE:
-        return 'Unable to fetch from the Unstoppable Domains API. Please try again later.';
+        return 'recipient_validation_hint_unstoppable_out';
     }
   }
 
@@ -335,5 +331,15 @@ export class RecipientInputComponent implements OnChanges {
 
   private isBurnAddress(r: string): boolean {
     return r === '0' || r.indexOf('2222-2222-2222-22222') > -1;
+  }
+
+  onPublickeyChange(): void {
+    try {
+      const numericIdPublicKey = Address.fromPublicKey(this.recipient.publicKey).getNumericId();
+      const numericIdRecipient = Address.create(this.recipient.addressRaw).getNumericId();
+      this.recipient.publicKeyValid = numericIdPublicKey === numericIdRecipient;
+    }catch (e) {
+      this.recipient.publicKeyValid = false;
+    }
   }
 }

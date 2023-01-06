@@ -528,5 +528,15 @@
   "confirm_delete_accounts": "Confirm Removal",
   "confirm_delete_accounts_q": "Are you sure you want to remove these accounts?",
   "confirm_delete_accounts_hint": "The accounts will be removed only from this application. All your funds are securely stored on the blockchain and you can always re-import removed accounts with your passphrase.",
-  "account_successfully_deleted": "Account(s) successfully removed"
+  "account_successfully_deleted": "Account(s) successfully removed",
+  "recipient_validation_hint_burn": "The amount will be burnt",
+  "recipient_validation_hint_not_verified": "Address has not been verified.",
+  "recipient_validation_hint_verified": "Address was successfully verified.",
+  "recipient_validation_hint_invalid": "Please verify recipients address before sending.",
+  "recipient_validation_hint_unstoppable_out": "Unable to fetch from the Unstoppable Domains API. Please try again later.",
+  "recipient_public_key": "Recipient Public Key",
+  "enter_recipient_public_key": "Enter the recipient's public key.",
+  "enter_recipient_public_key_hint": "The recipient's account is unsafe, so a transfer without the recipient's public key is not allowed.",
+  "recipient_public_key_invalid": "Recipient Address/Id does not match given public key",
+  "recipient_public_key_valid": "Recipient Address/Id and public key match"
 }
