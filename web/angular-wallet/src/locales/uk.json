@@ -115,7 +115,7 @@
   "download_at_verified_source": "Завантажте безпосередньо з перевіреного джерела",
   "download_started": "Завантаження розпочато",
   "downloaded": "Завантажено",
-  "downloading_blockchain": "Завантаження блокчейну",
+  "downloading_blockchain": "Синхронізація з Blockchain",
   "downloading_update": "Оновлення завантажується. Вам буде повідомлено, як тільки це закінчиться.",
   "ec_block_height": "Висота блоку ЕС",
   "ec_block_id": "Ідентифікатор блоку ЕС",

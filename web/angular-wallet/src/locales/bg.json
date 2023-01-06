@@ -115,7 +115,7 @@
   "download_at_verified_source": "Изтеглете директно от проверен източник",
   "download_started": "Изтеглянето започна",
   "downloaded": "Изтеглено",
-  "downloading_blockchain": "Изтегляне на блокчейн",
+  "downloading_blockchain": "Синхронизиране с Blockchain",
   "downloading_update": "Актуализацията се изтегля. Ще бъдете информирани, когато приключи.",
   "ec_block_height": "EC височина на блока",
   "ec_block_id": "ИД на блока на ЕС",

@@ -16,7 +16,7 @@ import { DescriptorData } from '@signumjs/standards';
 import hashicon from 'hashicon';
 import { NetworkService } from '../../network/network.service';
 import { AppService } from '../../app.service';
-import { MatPaginator } from "@angular/material/paginator";
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-accounts',
@@ -54,9 +54,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     this.dataSource = new MatTableDataSource<WalletAccount>();
 
     this.storeService.ready
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
+      .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((ready) => {
         if (!ready) {
           return;
@@ -64,20 +62,41 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
         this.storeService.getAllAccounts().then((accounts) => {
           this.accounts = accounts;
           this.dataSource.data = this.accounts;
+          this.dataSource.sortData = this.sortAccounts;
         });
 
         this.selectedAccount = this.accountService.currentAccount$.value;
       });
 
     this.storeService.settings
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
+      .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(({ language }) => {
         this.locale = language;
       });
 
   }
+
+  private sortAccounts(accounts: WalletAccount[], sort: MatSort): WalletAccount[] {
+
+    const dir = (result: number) => sort.direction === 'asc' ? result : -result;
+
+    const typeValue = (a: WalletAccount) => {
+      if (a.type !== 'offline' && !a.confirmed) { return 0; }
+      if (a.type !== 'offline' && a.confirmed) { return 1; }
+      if (a.type === 'offline') { return 2; }
+    }
+
+    const comparatorMap = {
+      // precision is not important here, but speed
+      balance: (a: WalletAccount, b: WalletAccount) => parseInt(a.balanceNQT, 10) - parseInt(b.balanceNQT, 10),
+      account: (a: WalletAccount, b: WalletAccount) => a.account.localeCompare(b.account),
+      name: (a: WalletAccount, b: WalletAccount) => a.name.localeCompare(b.name),
+      type: (a: WalletAccount, b: WalletAccount) => typeValue(a) - typeValue(b),
+    };
+    const comparator = comparatorMap[sort.active] || comparatorMap.account;
+    return accounts.sort((a, b) => dir(comparator(a, b)));
+  }
+
 
   public getSelectedAccounts(): Array<WalletAccount> {
     return this.accounts.filter(({ account }) => this.selectedAccounts[account]);
@@ -196,9 +215,9 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   }
 
   openInExplorer(account: WalletAccount): void {
-      const host = this.networkService.getChainExplorerHost();
-      const url = `${host}/address/${account.account}`;
-      if (!this.appService.isDesktop()) {
+    const host = this.networkService.getChainExplorerHost();
+    const url = `${host}/address/${account.account}`;
+    if (!this.appService.isDesktop()) {
       window.open(url, 'blank');
     } else {
       this.appService.openInBrowser(url);

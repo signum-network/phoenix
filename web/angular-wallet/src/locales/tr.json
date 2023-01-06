@@ -115,7 +115,7 @@
   "download_at_verified_source": "Doğrudan doğrulanmış kaynaktan indirin",
   "download_started": "İndirme başladı",
   "downloaded": "İndirildi",
-  "downloading_blockchain": "Blockchain'i İndirme",
+  "downloading_blockchain": "Blockchain ile Senkronizasyon",
   "downloading_update": "Güncelleme indiriliyor. Bittiğinde bilgilendirileceksiniz.",
   "ec_block_height": "EC Blok Yüksekliği",
   "ec_block_id": "EC Blok Kimliği",

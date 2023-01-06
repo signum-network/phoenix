@@ -115,7 +115,7 @@
   "download_at_verified_source": "Πραγματοποιήστε λήψη απευθείας από επαληθευμένη πηγή",
   "download_started": "Η λήψη ξεκίνησε",
   "downloaded": "Έγινε λήψη",
-  "downloading_blockchain": "Λήψη Blockchain",
+  "downloading_blockchain": "Συγχρονισμός με Blockchain",
   "downloading_update": "Γίνεται λήψη της ενημέρωσης. Θα ενημερωθείτε όταν τελειώσει.",
   "ec_block_height": "Ύψος μπλοκ EC",
   "ec_block_id": "Αναγνωριστικό μπλοκ EC",

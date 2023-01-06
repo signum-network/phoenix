@@ -115,7 +115,7 @@
   "download_at_verified_source": "検証済みソースから直接ダウンロード",
   "download_started": "ダウンロード開始",
   "downloaded": "ダウンロードした",
-  "downloading_blockchain": "ブロックチェーンのダウンロード",
+  "downloading_blockchain": "ブロックチェーンとの同期",
   "downloading_update": "アップデートをダウンロードしています。終了次第お知らせします。",
   "ec_block_height": "ECブロック高さ",
   "ec_block_id": "ECブロックID",

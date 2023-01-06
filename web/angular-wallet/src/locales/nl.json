@@ -115,7 +115,7 @@
   "download_at_verified_source": "Direct downloaden van geverifieerde bron",
   "download_started": "Download gestart",
   "downloaded": "gedownload",
-  "downloading_blockchain": "Blockchain downloaden",
+  "downloading_blockchain": "Synchroniseren met Blockchain",
   "downloading_update": "De update wordt gedownload. Je krijgt bericht zodra het klaar is.",
   "ec_block_height": "EC-blokhoogte",
   "ec_block_id": "EC-blok-ID",

@@ -115,7 +115,7 @@
   "download_at_verified_source": "Preuzmi izravno iz provjerenog izvora",
   "download_started": "Preuzimanje je započelo",
   "downloaded": "Preuzeto",
-  "downloading_blockchain": "Preuzimanje Blockchaina",
+  "downloading_blockchain": "Sinkronizacija s Blockchainom",
   "downloading_update": "Ažuriranje se preuzima. Bit ćete obaviješteni kad završi.",
   "ec_block_height": "Visina bloka EC",
   "ec_block_id": "EC ID bloka",

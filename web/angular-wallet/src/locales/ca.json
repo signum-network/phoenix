@@ -115,7 +115,7 @@
   "download_at_verified_source": "Baixa directament de la font verificada",
   "download_started": "S'ha iniciat la baixada",
   "downloaded": "Descarregat",
-  "downloading_blockchain": "S'està baixant Blockchain",
+  "downloading_blockchain": "Sincronització amb Blockchain",
   "downloading_update": "S'està baixant l'actualització. Se us informarà un cop acabi.",
   "ec_block_height": "Alçada del bloc EC",
   "ec_block_id": "Identificador de bloc CE",

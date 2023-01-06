@@ -115,7 +115,7 @@
   "download_at_verified_source": "Stiahnite si priamo z overeného zdroja",
   "download_started": "Sťahovanie sa začalo",
   "downloaded": "Stiahnuté",
-  "downloading_blockchain": "Sťahuje sa blockchain",
+  "downloading_blockchain": "Synchronizácia s Blockchainom",
   "downloading_update": "Aktualizácia sa sťahuje. Po dokončení budete informovaní.",
   "ec_block_height": "Výška bloku EC",
   "ec_block_id": "ID bloku EC",

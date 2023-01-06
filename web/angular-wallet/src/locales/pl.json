@@ -115,7 +115,7 @@
   "download_at_verified_source": "Pobierz bezpośrednio ze zweryfikowanego źródła",
   "download_started": "Pobieranie rozpoczęte",
   "downloaded": "Pobrano",
-  "downloading_blockchain": "Pobieranie Blockchain",
+  "downloading_blockchain": "Synchronizacja z Blockchain",
   "downloading_update": "Trwa pobieranie aktualizacji. Zostaniesz poinformowany po zakończeniu.",
   "ec_block_height": "Wysokość bloku EC",
   "ec_block_id": "Identyfikator bloku WE",

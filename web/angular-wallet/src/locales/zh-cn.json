@@ -115,7 +115,7 @@
   "download_at_verified_source": "直接从经过验证的来源下载",
   "download_started": "下载开始",
   "downloaded": "已下载",
-  "downloading_blockchain": "下载区块链",
+  "downloading_blockchain": "与区块链同步",
   "downloading_update": "正在下载更新。完成后会通知您。",
   "ec_block_height": "EC 块高度",
   "ec_block_id": "EC 区块 ID",

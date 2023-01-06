@@ -53,6 +53,13 @@ fuse-sidebar {
                 cursor: pointer;
                 filter: drop-shadow(0 0 4px black);
 
+                .unsafe-badge {
+                  position: absolute;
+                  color: red;
+                  top: 0;
+                  right: 0;
+                }
+
                 img {
                   position: relative;
                   top: -18px;
@@ -199,6 +206,15 @@ navbar {
           position: relative;
           filter: drop-shadow(0 0 4px black);
           margin-top: 1rem;
+
+          .unsafe-badge {
+            position: absolute;
+            background-color: transparent;
+            color: red;
+            bottom: 40px;
+            right: 80px;
+            filter: drop-shadow(0 0 4px black);
+          }
 
           img {
             height: 100px;

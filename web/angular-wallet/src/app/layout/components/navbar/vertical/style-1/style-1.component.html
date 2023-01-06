@@ -42,6 +42,12 @@
     >
       <canvas *ngIf="!avatarImgSrc" #avatar></canvas>
       <img *ngIf="avatarImgSrc" [src]="avatarImgSrc" alt="avatar-image" />
+      <div *ngIf="selectedAccount.type !== 'offline' && !selectedAccount.confirmed"
+           class="unsafe-badge"
+           matTooltip="{{'account_unsafe' | i18n}}"
+      >
+        <mat-icon>lock_open</mat-icon>
+      </div>
     </a>
   </div>
 

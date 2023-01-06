@@ -130,7 +130,7 @@
   "download_at_verified_source": "Download directly from verified source",
   "download_started": "Download started",
   "downloaded": "Downloaded",
-  "downloading_blockchain": "Downloading Blockchain",
+  "downloading_blockchain": "Synchronizing with Blockchain",
   "downloading_update": "The update is being downloaded. You'll be informed once it finished.",
   "ec_block_height": "EC Block Height",
   "ec_block_id": "EC Block ID",

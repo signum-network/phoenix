@@ -115,7 +115,7 @@
   "download_at_verified_source": "Unduh langsung dari sumber terverifikasi",
   "download_started": "Unduhan dimulai",
   "downloaded": "Diunduh",
-  "downloading_blockchain": "Mengunduh Blockchain",
+  "downloading_blockchain": "Sinkronisasi dengan Blockchain",
   "downloading_update": "Pembaruan sedang diunduh. Anda akan diberi tahu setelah selesai.",
   "ec_block_height": "Tinggi Blok EC",
   "ec_block_id": "ID Blok EC",

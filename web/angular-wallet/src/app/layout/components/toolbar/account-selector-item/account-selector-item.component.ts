@@ -46,6 +46,6 @@ export class AccountSelectorItemComponent implements OnChanges {
   }
 
   short(s: string): string {
-    return s.length > 18 ? `${s.substr(0, 4)}...${s.substr(s.length - 4)}` : s;
+    return s.length > 15 ? `${s.substr(0, 4)}...${s.substr(s.length - 4)}` : s;
   }
 }

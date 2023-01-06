@@ -115,7 +115,7 @@
   "download_at_verified_source": "सत्यापित स्रोत से सीधे डाउनलोड करें",
   "download_started": "डाउनलोड शुरू हुआ",
   "downloaded": "डाउनलोड",
-  "downloading_blockchain": "ब्लॉकचैन डाउनलोड करना",
+  "downloading_blockchain": "ब्लॉकचैन के साथ सिंक्रनाइज़ करना",
   "downloading_update": "अद्यतन डाउनलोड किया जा रहा है। इसके समाप्त होने के बाद आपको सूचित किया जाएगा।",
   "ec_block_height": "ईसी ब्लॉक ऊंचाई",
   "ec_block_id": "ईसी ब्लॉक आईडी",

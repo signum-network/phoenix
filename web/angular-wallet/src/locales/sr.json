@@ -115,7 +115,7 @@
   "download_at_verified_source": "Преузмите директно из провереног извора",
   "download_started": "Преузимање је започето",
   "downloaded": "Преузето",
-  "downloading_blockchain": "Преузимање Блоцкцхаин-а",
+  "downloading_blockchain": "Синхронизација са Блоцкцхаин-ом",
   "downloading_update": "Ажурирање се преузима. Бићете обавештени када заврши.",
   "ec_block_height": "Висина блока ЕЦ",
   "ec_block_id": "ЕЦ ИД блока",

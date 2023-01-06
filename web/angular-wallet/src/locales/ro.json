@@ -115,7 +115,7 @@
   "download_at_verified_source": "Descărcați direct din sursa verificată",
   "download_started": "Descărcarea a început",
   "downloaded": "Descărcat",
-  "downloading_blockchain": "Descărcarea Blockchain",
+  "downloading_blockchain": "Sincronizarea cu Blockchain",
   "downloading_update": "Actualizarea este descărcată. Veți fi informat odată ce a terminat.",
   "ec_block_height": "Înălțimea blocului CE",
   "ec_block_id": "ID bloc ID",

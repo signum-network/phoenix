@@ -115,7 +115,7 @@
   "download_at_verified_source": "Atsisiųsti tiesiogiai iš patvirtinto šaltinio",
   "download_started": "Pradėtas atsisiuntimas",
   "downloaded": "Atsisiųsta",
-  "downloading_blockchain": "Atsisiunčiama „Blockchain“",
+  "downloading_blockchain": "Sinchronizavimas su Blockchain",
   "downloading_update": "Atnaujinimas atsisiunčiamas. Jums bus pranešta, kai jis baigsis.",
   "ec_block_height": "EB blokinis aukštis",
   "ec_block_id": "EB bloko ID",

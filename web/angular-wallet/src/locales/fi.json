@@ -115,7 +115,7 @@
   "download_at_verified_source": "Lataa suoraan vahvistetusta lähteestä",
   "download_started": "Lataus aloitettu",
   "downloaded": "Ladattu",
-  "downloading_blockchain": "Blockchainin lataaminen",
+  "downloading_blockchain": "Synkronointi Blockchainin kanssa",
   "downloading_update": "Päivitystä ladataan. Sinulle ilmoitetaan, kun se on valmis.",
   "ec_block_height": "EC-lohkon korkeus",
   "ec_block_id": "EY-estotunnus",
