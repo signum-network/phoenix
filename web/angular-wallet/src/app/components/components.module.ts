@@ -24,6 +24,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CustomDescriptionFormComponent } from './custom-description-form/custom-description-form.component';
 import { NgJsonEditorModule } from 'ang-jsoneditor';
 import { JsonDescriptionFormComponent } from './json-description-form/json-description-form.component';
+import { PublickeyInputComponent } from './publickey-input/publickey-input.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { JsonDescriptionFormComponent } from './json-description-form/json-descr
     FeeInputComponent,
     MessageInputComponent,
     CustomDescriptionFormComponent,
-    JsonDescriptionFormComponent
+    JsonDescriptionFormComponent,
+    PublickeyInputComponent
   ],
   exports: [
     SubmitTransactionComponent,
@@ -51,7 +53,8 @@ import { JsonDescriptionFormComponent } from './json-description-form/json-descr
     FeeInputComponent,
     MessageInputComponent,
     CustomDescriptionFormComponent,
-    JsonDescriptionFormComponent
+    JsonDescriptionFormComponent,
+    PublickeyInputComponent
   ],
   imports: [
     AppSharedModule,

@@ -7,6 +7,13 @@
 
   </recipient-input>
 
+  <app-publickey-input
+    *ngIf="!recipient.publicKey"
+    [recipient]="recipient"
+    (publickeyChange)="onPublickeyChange($event)">
+  </app-publickey-input>
+
+
   <app-amount-input [(amount)]="amount"
                     (amountChange)="onAmountChange()"
                     [disabled]="immutable"

@@ -149,6 +149,7 @@ export class RecipientInputComponent implements OnChanges {
       const src44 = DescriptorData.parse(aliasURI);
       return src44.account;
     }catch (e){
+      // legacy format
       const matches = /^acct:(burst|s|ts)?-(.+)@(burst|signum)$/i.exec(aliasURI);
       if (matches.length >= 2) {
         const rsAddress = `${this.isTestNet ? AddressPrefix.TestNet : AddressPrefix.MainNet}-${matches[2]}`.toUpperCase();
@@ -195,7 +196,6 @@ export class RecipientInputComponent implements OnChanges {
       case RecipientType.ADDRESS:
         const address = Address.fromReedSolomonAddress(id);
         this.recipient.addressRaw = address.getReedSolomonAddress();
-        this.recipient.publicKey = address.getPublicKey();
         id = address.getNumericId();
         break;
       case RecipientType.UNSTOPPABLE:

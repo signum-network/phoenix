@@ -1,0 +1,23 @@
+<mat-form-field class="w-100-p">
+  <mat-label>{{ 'publickey' | i18n }}</mat-label>
+  <input matInput
+         type="text"
+         autocomplete="off"
+         (change)="onChange($event.target.value)"
+         name="amount"
+  >
+  <mat-icon
+    class="all-icon"
+    *ngIf="validPublicKey"
+    matSuffix
+  >
+    check_circle_outline
+  </mat-icon>
+  <mat-icon
+    class="all-icon error-text"
+    *ngIf="!validPublicKey"
+    matSuffix
+  >
+    check_circle_outline
+  </mat-icon>
+</mat-form-field>

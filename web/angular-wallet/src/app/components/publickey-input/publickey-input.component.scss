@@ -1,0 +1,13 @@
+:host {
+  .all-icon {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: #666;
+    cursor: pointer;
+    &:hover {
+      color: #333;
+      transition: color 125ms ease-in-out;
+    }
+  }
+
+}

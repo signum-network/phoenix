@@ -84,7 +84,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
       if (a.type !== 'offline' && !a.confirmed) { return 0; }
       if (a.type !== 'offline' && a.confirmed) { return 1; }
       if (a.type === 'offline') { return 2; }
-    }
+    };
 
     const comparatorMap = {
       // precision is not important here, but speed

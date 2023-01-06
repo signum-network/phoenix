@@ -290,4 +290,9 @@ export class SendMoneyFormComponent extends UnsubscribeOnDestroy implements OnIn
   canEncrypt(): boolean {
     return this.recipient.publicKey && this.recipient.publicKey !== constants.smartContractPublicKey;
   }
+
+
+  onPublickeyChange(publicKey: string): void {
+    this.recipient.publicKey = publicKey;
+  }
 }

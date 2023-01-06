@@ -47,7 +47,15 @@
       </div>
     </div>
 
-    <mat-table #table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-icon>delete</mat-icon>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let account" class="select-icon">
+        <mat-checkbox [(ngModel)]="selectedAccounts[account.account]"></mat-checkbox>
+      </mat-cell>
+    </ng-container>
+    <mat-table #table [dataSource]="dataSource">
       <ng-container matColumnDef="avatar">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let account">
@@ -83,13 +91,6 @@
           *matCellDef="let account">{{account.balanceNQT | amount: 'planck':true }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="selected">
-        <mat-header-cell *matHeaderCellDef>
-          <mat-icon>keyboard_arrow_down</mat-icon>
-          Selected
-        </mat-header-cell>
-        <mat-cell *matCellDef="let account"> {{account.selected}} </mat-cell>
-      </ng-container>
 
       <ng-container matColumnDef="type">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -169,16 +170,6 @@
               <span>{{'delete' | i18n}}</span>
             </button>
           </mat-menu>
-        </mat-cell>
-      </ng-container>
-
-
-      <ng-container matColumnDef="delete">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          <mat-icon>delete</mat-icon>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let account" class="select-icon">
-          <mat-checkbox [(ngModel)]="selectedAccounts[account.account]"></mat-checkbox>
         </mat-cell>
       </ng-container>
 
