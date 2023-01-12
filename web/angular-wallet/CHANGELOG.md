@@ -1,12 +1,17 @@
 # Changelog
 
-## 1.5.0 (TBD)
+## 1.5.0-alpha
 
 ### Feature
 - Account Descriptions SRC44 compliant now
+- Revamped Alias Section (solves also #1665)
+- Token Transfer with attached Signa ()
 
 ### Bug Fixes
 
+- Fixed Sending Issue (#1711)
+- Remove Google Fonts dependency (#1674)
+- Fixed Sending Issue (#1664)
 
 ## 1.4.2
 
