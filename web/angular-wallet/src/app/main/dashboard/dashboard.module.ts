@@ -40,6 +40,9 @@ import { TokenComponent } from './widgets/token/token.component';
 import { BlockforgedComponent } from './widgets/blockforged/blockforged.component';
 import { BlockinfoComponent } from './widgets/blockinfo/blockinfo.component';
 import { MiningpoolComponent } from './widgets/miningpool/miningpool.component';
+import {
+  AccountProtectionWarningComponent
+} from "./widgets/account-protection-warning/account-protection-warning.component";
 
 const routes: Routes = [
   {
@@ -68,6 +71,7 @@ const routes: Routes = [
     BlockinfoComponent,
     BlockforgedComponent,
     MiningpoolComponent,
+    AccountProtectionWarningComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

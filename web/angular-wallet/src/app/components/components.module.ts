@@ -38,7 +38,7 @@ import { JsonDescriptionFormComponent } from './json-description-form/json-descr
     FeeInputComponent,
     MessageInputComponent,
     CustomDescriptionFormComponent,
-    JsonDescriptionFormComponent
+    JsonDescriptionFormComponent,
   ],
   exports: [
     SubmitTransactionComponent,
@@ -51,7 +51,7 @@ import { JsonDescriptionFormComponent } from './json-description-form/json-descr
     FeeInputComponent,
     MessageInputComponent,
     CustomDescriptionFormComponent,
-    JsonDescriptionFormComponent
+    JsonDescriptionFormComponent,
   ],
   imports: [
     AppSharedModule,
