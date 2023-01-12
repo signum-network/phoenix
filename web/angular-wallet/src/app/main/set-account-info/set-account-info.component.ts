@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TransactionType, TransactionArbitrarySubtype } from '@signumjs/core';
 import { Amount } from '@signumjs/util';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from "@angular/router";
 import { AccountService } from 'app/setup/account/account.service';
 import { StoreService } from 'app/store/store.service';
 import { NotifierService } from 'angular-notifier';
@@ -22,6 +22,7 @@ import { isTextIsSrc44 } from 'app/util/isTextIsSrc44';
 export class SetAccountInfoComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private accountService: AccountService,
               private storeService: StoreService,
               private notifierService: NotifierService,
@@ -77,6 +78,7 @@ export class SetAccountInfoComponent implements OnInit {
       });
       this.notifierService.notify('success', this.i18nService.getTranslation('success_set_account_info'));
       this.setPin('');
+      await this.router.navigate(['/']);
     } catch (e) {
       if (isKeyDecryptionError(e)) {
         this.notifierService.notify('error', this.i18nService.getTranslation('wrong_pin'));
