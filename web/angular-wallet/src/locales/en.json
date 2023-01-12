@@ -263,7 +263,7 @@
   "no": "No",
   "no_messages_available": "No messages available.",
   "no_public_key_activate": "This account is not activated yet. Click to activate and secure your account.",
-  "no_public_key_title": "Warning! - This account does not have a public key!",
+  "no_public_key_title": "Warning! - This account does not own a public key!",
   "no_public_key_warning": "This means it's not protected and at risk. Never hold funds on an unprotected account. Please activate the account to obtain your public key and protect it.",
   "not_registered_title": "This account is not registered in the blockchain",
   "not_registered_warning": "This account has no transactions yet. If you intend to use this account for sending and/or receiving, it's recommended to activate this account now.",

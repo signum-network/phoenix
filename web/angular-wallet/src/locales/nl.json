@@ -519,5 +519,8 @@
   "view": "Zien",
   "view_alias": "Alias bekijken",
   "recipient_required": "Ontvanger is vereist",
-  "unregistered_address": "Niet-geregistreerd adres"
+  "unregistered_address": "Niet-geregistreerd adres",
+  "no_public_key_title": "Waarschuwing! - Dit account heeft geen openbare sleutel!",
+  "not_registered_title": "Dit account is niet geregistreerd in de blockchain",
+  "not_registered_warning": "Dit account heeft nog geen transacties. Als u van plan bent dit account te gebruiken voor verzenden en/of ontvangen, is het raadzaam om dit account nu te activeren."
 }

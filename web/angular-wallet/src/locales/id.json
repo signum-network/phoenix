@@ -519,5 +519,8 @@
   "view": "Untuk melihat",
   "view_alias": "Lihat Alias",
   "recipient_required": "Penerima diperlukan",
-  "unregistered_address": "Alamat Tidak Terdaftar"
+  "unregistered_address": "Alamat Tidak Terdaftar",
+  "no_public_key_title": "Peringatan! - Akun ini tidak memiliki kunci publik!",
+  "not_registered_title": "Akun ini tidak terdaftar di blockchain",
+  "not_registered_warning": "Akun ini belum ada transaksi. Jika Anda bermaksud menggunakan akun ini untuk mengirim dan/atau menerima, disarankan untuk mengaktifkan akun ini sekarang."
 }

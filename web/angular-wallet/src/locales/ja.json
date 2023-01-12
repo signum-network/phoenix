@@ -519,5 +519,8 @@
   "view": "見る",
   "view_alias": "エイリアスを表示",
   "recipient_required": "受信者が必要です",
-  "unregistered_address": "未登録住所"
+  "unregistered_address": "未登録住所",
+  "no_public_key_title": "警告！ - このアカウントは公開鍵を所有していません!",
+  "not_registered_title": "このアカウントはブロックチェーンに登録されていません",
+  "not_registered_warning": "このアカウントにはまだ取引がありません。このアカウントを送受信に使用する場合は、今すぐこのアカウントを有効にすることをお勧めします。"
 }

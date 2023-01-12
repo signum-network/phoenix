@@ -519,5 +519,8 @@
   "view": "Ver",
   "view_alias": "Ver pseudônimo",
   "recipient_required": "O destinatário é obrigatório",
-  "unregistered_address": "Endereço não registrado"
+  "unregistered_address": "Endereço não registrado",
+  "no_public_key_title": "Aviso! - Esta conta não possui uma chave pública!",
+  "not_registered_title": "Esta conta não está registrada no blockchain",
+  "not_registered_warning": "Esta conta ainda não tem transações. Se você pretende usar esta conta para enviar e/ou receber, é recomendável ativá-la agora."
 }

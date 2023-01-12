@@ -519,5 +519,8 @@
   "view": "A vedea",
   "view_alias": "Vedeți Alias",
   "recipient_required": "Destinatarul este necesar",
-  "unregistered_address": "Adresă neînregistrată"
+  "unregistered_address": "Adresă neînregistrată",
+  "no_public_key_title": "Avertizare! - Acest cont nu deține o cheie publică!",
+  "not_registered_title": "Acest cont nu este înregistrat în blockchain",
+  "not_registered_warning": "Acest cont nu are încă tranzacții. Dacă intenționați să utilizați acest cont pentru trimitere și/sau primire, este recomandat să activați acest cont acum."
 }

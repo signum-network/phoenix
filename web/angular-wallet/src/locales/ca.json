@@ -519,5 +519,8 @@
   "view": "Veure",
   "view_alias": "Veure àlies",
   "recipient_required": "El destinatari és obligatori",
-  "unregistered_address": "Adreça no registrada"
+  "unregistered_address": "Adreça no registrada",
+  "no_public_key_title": "Avís! - Aquest compte no posseeix una clau pública!",
+  "not_registered_title": "Aquest compte no està registrat a la cadena de blocs",
+  "not_registered_warning": "Aquest compte encara no té transaccions. Si teniu intenció d'utilitzar aquest compte per enviar i/o rebre, us recomanem que l'activeu ara."
 }

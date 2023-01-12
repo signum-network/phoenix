@@ -519,5 +519,8 @@
   "view": "Vedere",
   "view_alias": "Visualizza Alias",
   "recipient_required": "Il destinatario è obbligatorio",
-  "unregistered_address": "Indirizzo non registrato"
+  "unregistered_address": "Indirizzo non registrato",
+  "no_public_key_title": "Avvertimento! - Questo account non possiede una chiave pubblica!",
+  "not_registered_title": "Questo account non è registrato nella blockchain",
+  "not_registered_warning": "Questo account non ha ancora transazioni. Se intendi utilizzare questo account per l'invio e/o la ricezione, ti consigliamo di attivarlo ora."
 }

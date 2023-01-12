@@ -519,5 +519,8 @@
   "view": "Nähdä",
   "view_alias": "Näytä alias",
   "recipient_required": "Vastaanottaja vaaditaan",
-  "unregistered_address": "Rekisteröimätön osoite"
+  "unregistered_address": "Rekisteröimätön osoite",
+  "no_public_key_title": "Varoitus! - Tämä tili ei omista julkista avainta!",
+  "not_registered_title": "Tätä tiliä ei ole rekisteröity lohkoketjuun",
+  "not_registered_warning": "Tällä tilillä ei ole vielä tapahtumia. Jos aiot käyttää tätä tiliä lähettämiseen ja/tai vastaanottamiseen, on suositeltavaa aktivoida tämä tili nyt."
 }

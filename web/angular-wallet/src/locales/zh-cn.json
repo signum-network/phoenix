@@ -519,5 +519,8 @@
   "view": "查看",
   "view_alias": "查看别名",
   "recipient_required": "需要收件人",
-  "unregistered_address": "未注册地址"
+  "unregistered_address": "未注册地址",
+  "no_public_key_title": "警告！ - 此帐户没有公钥！",
+  "not_registered_title": "该账户未在区块链中注册",
+  "not_registered_warning": "该帐户还没有任何交易。如果您打算使用此帐户发送和/或接收，建议立即激活此帐户。"
 }

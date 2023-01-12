@@ -519,5 +519,8 @@
   "view": "Vidjeti",
   "view_alias": "Prikaži Alias",
   "recipient_required": "Potreban je primatelj",
-  "unregistered_address": "Neregistrirana adresa"
+  "unregistered_address": "Neregistrirana adresa",
+  "no_public_key_title": "Upozorenje! - Ovaj račun ne posjeduje javni ključ!",
+  "not_registered_title": "Ovaj račun nije registriran u blockchainu",
+  "not_registered_warning": "Ovaj račun još nema transakcija. Ako namjeravate koristiti ovaj račun za slanje i/ili primanje, preporučuje se da sada aktivirate ovaj račun."
 }

@@ -519,5 +519,8 @@
   "view": "Matyti",
   "view_alias": "Žiūrėti slapyvardį",
   "recipient_required": "Reikalingas gavėjas",
-  "unregistered_address": "Neregistruotas Adresas"
+  "unregistered_address": "Neregistruotas Adresas",
+  "no_public_key_title": "Įspėjimas! – Šiai paskyrai viešasis raktas nepriklauso!",
+  "not_registered_title": "Ši paskyra nėra užregistruota blokų grandinėje",
+  "not_registered_warning": "Šioje paskyroje dar nėra operacijų. Jei ketinate naudoti šią paskyrą siuntimui ir (arba) gavimui, rekomenduojama šią paskyrą suaktyvinti dabar."
 }
