@@ -519,5 +519,8 @@
   "view": "Vidět",
   "view_alias": "Zobrazit alias",
   "recipient_required": "Je vyžadován příjemce",
-  "unregistered_address": "Neregistrovaná adresa"
+  "unregistered_address": "Neregistrovaná adresa",
+  "no_public_key_title": "Varování! - Tento účet nevlastní veřejný klíč!",
+  "not_registered_title": "Tento účet není registrován v blockchainu",
+  "not_registered_warning": "Tento účet zatím nemá žádné transakce. Pokud máte v úmyslu používat tento účet pro odesílání a/nebo přijímání, doporučujeme nyní tento účet aktivovat."
 }

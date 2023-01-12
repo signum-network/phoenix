@@ -519,5 +519,8 @@
   "view": "Ver",
   "view_alias": "Ver alias",
   "recipient_required": "O destinatario é necesario",
-  "unregistered_address": "Enderezo non rexistrado"
+  "unregistered_address": "Enderezo non rexistrado",
+  "no_public_key_title": "Aviso! - Esta conta non posúe unha chave pública!",
+  "not_registered_title": "Esta conta non está rexistrada na cadea de bloques",
+  "not_registered_warning": "Esta conta aínda non ten transaccións. Se queres usar esta conta para enviar e/ou recibir, recoméndase activala agora."
 }

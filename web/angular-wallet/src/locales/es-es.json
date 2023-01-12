@@ -519,5 +519,8 @@
   "view": "Para ver",
   "view_alias": "Ver alias",
   "recipient_required": "Se requiere destinatario",
-  "unregistered_address": "Dirección no registrada"
+  "unregistered_address": "Dirección no registrada",
+  "no_public_key_title": "¡Advertencia! - ¡Esta cuenta no posee una clave pública!",
+  "not_registered_title": "Esta cuenta no está registrada en la cadena de bloques.",
+  "not_registered_warning": "Esta cuenta aún no tiene transacciones. Si tiene la intención de utilizar esta cuenta para enviar y/o recibir, se recomienda activar esta cuenta ahora."
 }

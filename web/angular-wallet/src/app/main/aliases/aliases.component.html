@@ -9,7 +9,7 @@
     </small>
 
     <div class="action-bar" fxLayout="row wrap" fxLayoutAlign="space-between center">
-      <mat-form-field *ngIf="dataSource.data.length > 0" class="search-form">
+      <mat-form-field class="search-form">
         <input matInput
                autocomplete="off"
                (keyup)="applyFilter($event.target.value)"

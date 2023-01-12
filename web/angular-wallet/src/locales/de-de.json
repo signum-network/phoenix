@@ -519,5 +519,8 @@
   "view": "Anzeigen",
   "view_alias": "Alias anzeigen",
   "recipient_required": "Empfänger ist erforderlich",
-  "unregistered_address": "Nicht registrierte Adresse"
+  "unregistered_address": "Nicht registrierte Adresse",
+  "no_public_key_title": "Warnung! - Dieses Konto besitzt keinen öffentlichen Schlüssel!",
+  "not_registered_title": "Dieses Konto ist nicht in der Blockchain registriert",
+  "not_registered_warning": "Dieses Konto hat noch keine Transaktionen. Wenn Sie beabsichtigen, dieses Konto zum Senden und/oder Empfangen zu verwenden, wird empfohlen, dieses Konto jetzt zu aktivieren."
 }

@@ -1,0 +1,22 @@
+<ng-container *ngIf="status !== 2">
+  <div ngClass.gt-sm="p-16"
+       [ngStyle.xs]="{'padding':'0 !important'}"
+       class="wrapper"
+  >
+    <div class="widget fuse-navy-500-fg">
+      <div fxFlex fxLayout="column" fxLayoutAlign="center center">
+        <h2 *ngIf="status === 1">{{'no_public_key_title' | i18n}}</h2>
+        <h2 *ngIf="status === 0">{{'not_registered_title' | i18n}}</h2>
+        <p>
+          <span *ngIf="status === 1">{{'no_public_key_warning' | i18n}}</span>
+          <span *ngIf="status === 0">{{'not_registered_warning' | i18n}}</span>
+        </p>
+        <button mat-raised-button color="warn" [ngStyle.gt-sm]="{'max-width': '200px', 'margin':'auto'}" (click)="activateAccount()">
+          <mat-icon>lock</mat-icon>
+          {{'activate' | i18n}}
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+

@@ -519,5 +519,8 @@
   "view": "Zobaczyć",
   "view_alias": "Wyświetl alias",
   "recipient_required": "Odbiorca jest wymagany",
-  "unregistered_address": "Niezarejestrowany adres"
+  "unregistered_address": "Niezarejestrowany adres",
+  "no_public_key_title": "Ostrzeżenie! - To konto nie posiada klucza publicznego!",
+  "not_registered_title": "To konto nie jest zarejestrowane w łańcuchu bloków",
+  "not_registered_warning": "Na tym koncie nie ma jeszcze żadnych transakcji. Jeśli zamierzasz używać tego konta do wysyłania i/lub odbierania, zalecamy aktywację tego konta teraz."
 }
