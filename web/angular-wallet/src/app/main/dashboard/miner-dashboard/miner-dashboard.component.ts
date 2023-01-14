@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from '@signumjs/core';
 import { takeUntil } from 'rxjs/operators';
 import { StoreService } from '../../../store/store.service';
 import { AccountService } from '../../../setup/account/account.service';

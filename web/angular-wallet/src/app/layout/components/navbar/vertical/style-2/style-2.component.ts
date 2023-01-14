@@ -7,6 +7,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
     selector     : 'navbar-vertical-style-2',
@@ -18,7 +19,7 @@ export class NavbarVerticalStyle2Component implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
-    @Input('selectedAccount') selectedAccount: Account;
+    @Input('selectedAccount') selectedAccount: WalletAccount;
 
     // Private
     private _fusePerfectScrollbar: FusePerfectScrollbarDirective;

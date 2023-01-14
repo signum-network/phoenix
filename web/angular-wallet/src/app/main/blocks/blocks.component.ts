@@ -2,10 +2,10 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Account, Block } from '@signumjs/core';
+import { Block } from '@signumjs/core';
 import { FormControl } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
-import { Amount, ChainTime } from '@signumjs/util';
+import { ChainTime } from '@signumjs/util';
 import { NetworkService } from 'app/network/network.service';
 import { ActivatedRoute } from '@angular/router';
 import { StoreService } from 'app/store/store.service';
@@ -18,11 +18,8 @@ import { StoreService } from 'app/store/store.service';
 export class BlocksComponent implements OnInit {
   public dataSource: MatTableDataSource<Block>;
   public displayedColumns: string[];
-  private account: Account;
   pickerFromField = new FormControl();
   pickerToField = new FormControl();
-  chart: any;
-
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -78,15 +75,7 @@ export class BlocksComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  public isOwnAccount(address: string): boolean {
-    return address && address === this.account.accountRS;
-  }
-
   public convertTimestamp(timestamp: number): Date {
     return ChainTime.fromChainTimestamp(timestamp).getDate();
-  }
-
-  getAmountFromPlanck(totalFeeNQT: any): string {
-    return Amount.fromPlanck(totalFeeNQT).getSigna();
   }
 }

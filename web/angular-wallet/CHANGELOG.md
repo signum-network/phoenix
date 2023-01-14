@@ -1,4 +1,13 @@
 # Changelog
+## 1.5.0 (TBD)
+
+### Feature
+- Revamped Account Management
+
+### Bug Fixes
+
+- Fixed Disabled Activate Button (#1688)
+- Fixed Sending to unknown Accounts (#1664)
 
 ## 1.5.0-alpha
 

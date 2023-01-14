@@ -223,7 +223,6 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       } else if (this.selectedAccount) {
         await this.accountService.synchronizeAccount(this.selectedAccount).catch(() => {
         });
-        this.accountService.updateCurrentAccount(this.selectedAccount);
         // hit this call again every 1 sec if the blockchain is being downloaded
       } else if (this.downloadingBlockchain) {
         setTimeout(this.checkBlockchainStatus.bind(this), 1000);

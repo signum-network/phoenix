@@ -83,9 +83,9 @@ export class AccountService {
     });
   }
 
-  public updateCurrentAccount(account: WalletAccount): void {
-    this.currentAccount$.next(account);
-  }
+  // public updateCurrentAccount(account: WalletAccount): void {
+  //   this.currentAccount$.next(account);
+  // }
 
   public async getAddedCommitments(account: WalletAccount): Promise<TransactionList> {
     return this.api.account.getAccountTransactions({
@@ -273,30 +273,28 @@ export class AccountService {
   }
 
   public async selectAccount(account: WalletAccount): Promise<WalletAccount> {
-    this.updateCurrentAccount(account);
+    this.currentAccount$.next(account);
     let acc = await this.storeService.selectAccount(account);
     acc = await this.synchronizeAccount(acc);
     return acc;
   }
 
-  public synchronizeAccount(account: WalletAccount, onlyPendingTransactions = false): Promise<WalletAccount> {
-    return new Promise(async (resolve, reject) => {
-      if (onlyPendingTransactions) {
-          await this.syncAccountUnconfirmedTransactions(account);
-      } else {
-        await Promise.all([
-          this.syncAccountDetails(account),
-          this.syncAccountTransactions(account),
-          this.syncAccountUnconfirmedTransactions(account)
-        ]);
-      }
+  public async synchronizeAccount(account: WalletAccount, onlyPendingTransactions = false): Promise<WalletAccount> {
+    if (onlyPendingTransactions) {
+      await this.syncAccountUnconfirmedTransactions(account);
+    } else {
+      await Promise.all([
+        this.syncAccountDetails(account),
+        this.syncAccountTransactions(account),
+        this.syncAccountUnconfirmedTransactions(account)
+      ]);
+    }
+    // TODO: verify if this really works
+    // if (account.account === this.currentAccount$.getValue().account) {
+    //   this.updateCurrentAccount(account); // emits update event
+    // }
 
-      if (account.account === this.currentAccount$.getValue().account) {
-        this.updateCurrentAccount(account); // emits update event
-      }
-      this.storeService.saveAccount(account).catch(reject);
-      resolve(account);
-    });
+    return this.storeService.saveAccount(account);
   }
 
   public isNewTransaction(transactionId: string): boolean {

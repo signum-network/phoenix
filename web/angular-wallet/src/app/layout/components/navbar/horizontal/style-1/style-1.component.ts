@@ -5,6 +5,7 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
     selector     : 'navbar-horizontal-style-1',
@@ -16,7 +17,7 @@ export class NavbarHorizontalStyle1Component implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
-    @Input('selectedAccount') selectedAccount: Account;
+    @Input('selectedAccount') selectedAccount: WalletAccount;
 
     // Private
     private _unsubscribeAll: Subject<any>;

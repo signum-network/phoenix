@@ -35,7 +35,6 @@ function migrateFromBurst(appDataPath) {
 
 }
 
-
 module.exports = {
     migrateFromBurst,
 }

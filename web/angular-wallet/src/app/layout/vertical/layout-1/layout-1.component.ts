@@ -4,7 +4,7 @@ import {takeUntil} from 'rxjs/operators';
 
 import {FuseConfigService} from '@fuse/services/config.service';
 import {navigation} from 'app/navigation/navigation';
-import {Account} from '@signumjs/core';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
   selector: 'vertical-layout-1',
@@ -15,8 +15,8 @@ import {Account} from '@signumjs/core';
 export class VerticalLayout1Component implements OnInit, OnDestroy {
   fuseConfig: any;
   navigation: any;
-  @Input() selectedAccount: Account;
-  @Input() accounts: Account[];
+  @Input() selectedAccount: WalletAccount;
+  @Input() accounts: WalletAccount[];
 
   // Private
   private _unsubscribeAll: Subject<any>;

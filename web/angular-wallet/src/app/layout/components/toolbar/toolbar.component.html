@@ -54,7 +54,7 @@
       <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
         <button mat-menu-item class="manage-accounts" routerLink="/accounts">
           <mat-icon>people</mat-icon>
-          <span>Manage Accounts</span>
+          <span>{{"manage_accounts" | i18n}}</span>
         </button>
         <mat-divider></mat-divider>
         <button *ngFor="let account of accounts" mat-menu-item (click)="setAccount(account)">

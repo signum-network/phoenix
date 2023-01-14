@@ -4,6 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { navigation } from 'app/navigation/navigation';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
     selector: 'horizontal-layout-1',
@@ -14,9 +15,8 @@ import { navigation } from 'app/navigation/navigation';
 export class HorizontalLayout1Component implements OnInit, OnDestroy {
     fuseConfig: any;
     navigation: any;
-    @Input('selectedAccount') selectedAccount: Account;
-    @Input('accounts') accounts: Account[];
-
+    @Input('selectedAccount') selectedAccount: WalletAccount;
+    @Input('accounts') accounts: WalletAccount[];
 
     // Private
     private _unsubscribeAll: Subject<any>;

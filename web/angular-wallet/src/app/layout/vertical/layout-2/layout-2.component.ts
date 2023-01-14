@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
+import { WalletAccount } from 'app/util/WalletAccount';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { navigation } from 'app/navigation/navigation';
 
@@ -15,8 +15,8 @@ export class VerticalLayout2Component implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
-    @Input('selectedAccount') selectedAccount: Account;
-    @Input('accounts') accounts: Account[];
+    @Input('selectedAccount') selectedAccount: WalletAccount;
+    @Input('accounts') accounts: WalletAccount[];
 
     // Private
     private _unsubscribeAll: Subject<any>;
