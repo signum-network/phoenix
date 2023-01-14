@@ -42,8 +42,7 @@ import {AppSharedModule} from '../shared/shared.module';
     VerticalLayout3Module,
     HorizontalLayout1Module,
   ],
-  declarations: [
-  ]
+  declarations: []
 })
 export class LayoutModule {
 }

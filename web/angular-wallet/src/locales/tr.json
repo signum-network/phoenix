@@ -529,4 +529,7 @@
   "confirm_delete_accounts_hint": "Hesaplar sadece bu uygulamadan kaldırılacaktır. Tüm paranız blok zincirinde güvenli bir şekilde saklanır ve kaldırılan hesapları parolanızla her zaman yeniden içe aktarabilirsiniz.",
   "confirm_delete_accounts_q": "Bu hesapları kaldırmak istediğinizden emin misiniz?",
   "account_successfully_deleted": "Hesap(lar) başarıyla kaldırıldı"
+  "no_public_key_title": "Uyarı! - Bu hesabın ortak anahtarı yok!",
+  "not_registered_title": "Bu hesap blok zincirinde kayıtlı değil",
+  "not_registered_warning": "Bu hesapta henüz işlem yok. Bu hesabı göndermek ve/veya almak için kullanmayı düşünüyorsanız, bu hesabı şimdi etkinleştirmeniz önerilir."
 }

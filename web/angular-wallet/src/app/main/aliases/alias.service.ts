@@ -110,7 +110,8 @@ export class AliasService {
       amountPlanck,
       feePlanck,
       recipientId,
-      recipientPublicKey,
+      // FIXME: this is only temporary
+      // recipientPublicKey,
       senderPrivateKey: getPrivateSigningKey(pin, keys),
       senderPublicKey: keys.publicKey,
       attachment

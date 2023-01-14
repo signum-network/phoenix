@@ -529,4 +529,7 @@
   "confirm_delete_accounts_hint": "Die Konten werden nur aus dieser Anwendung entfernt. Alle Ihre Gelder werden sicher in der Blockchain gespeichert und Sie können entfernte Konten jederzeit mit Ihrer Passphrase erneut importieren.",
   "confirm_delete_accounts_q": "Möchten Sie diese Konten wirklich entfernen?",
   "account_successfully_deleted": "Konto oder Konten erfolgreich entfernt"
+  "no_public_key_title": "Warnung! - Dieses Konto besitzt keinen öffentlichen Schlüssel!",
+  "not_registered_title": "Dieses Konto ist nicht in der Blockchain registriert",
+  "not_registered_warning": "Dieses Konto hat noch keine Transaktionen. Wenn Sie beabsichtigen, dieses Konto zum Senden und/oder Empfangen zu verwenden, wird empfohlen, dieses Konto jetzt zu aktivieren."
 }

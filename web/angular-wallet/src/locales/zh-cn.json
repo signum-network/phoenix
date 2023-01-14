@@ -529,4 +529,7 @@
   "confirm_delete_accounts_hint": "这些帐户只会从此应用程序中删除。您的所有资金都安全地存储在区块链上，您可以随时使用密码重新导入已删除的帐户。",
   "confirm_delete_accounts_q": "您确定要删除这些帐户吗？",
   "account_successfully_deleted": "帐户已成功删除"
+  "no_public_key_title": "警告！ - 此帐户没有公钥！",
+  "not_registered_title": "该账户未在区块链中注册",
+  "not_registered_warning": "该帐户还没有任何交易。如果您打算使用此帐户发送和/或接收，建议立即激活此帐户。"
 }

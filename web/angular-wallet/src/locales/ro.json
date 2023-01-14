@@ -529,4 +529,7 @@
   "confirm_delete_accounts_hint": "Conturile vor fi eliminate numai din această aplicație. Toate fondurile dvs. sunt stocate în siguranță pe blockchain și puteți oricând să reimportați conturile eliminate cu expresia dvs. de acces.",
   "confirm_delete_accounts_q": "Sigur doriți să eliminați aceste conturi?",
   "account_successfully_deleted": "Conturile au fost eliminate cu succes"
+  "no_public_key_title": "Avertizare! - Acest cont nu deține o cheie publică!",
+  "not_registered_title": "Acest cont nu este înregistrat în blockchain",
+  "not_registered_warning": "Acest cont nu are încă tranzacții. Dacă intenționați să utilizați acest cont pentru trimitere și/sau primire, este recomandat să activați acest cont acum."
 }

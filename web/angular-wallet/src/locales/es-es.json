@@ -529,4 +529,7 @@
   "confirm_delete_accounts_hint": "Las cuentas se eliminarán solo de esta aplicación. Todos sus fondos se almacenan de forma segura en la cadena de bloques y siempre puede volver a importar las cuentas eliminadas con su frase de contraseña.",
   "confirm_delete_accounts_q": "¿Está seguro de que desea eliminar estas cuentas?",
   "account_successfully_deleted": "Cuenta(s) eliminada(s) con éxito"
+  "no_public_key_title": "¡Advertencia! - ¡Esta cuenta no posee una clave pública!",
+  "not_registered_title": "Esta cuenta no está registrada en la cadena de bloques.",
+  "not_registered_warning": "Esta cuenta aún no tiene transacciones. Si tiene la intención de utilizar esta cuenta para enviar y/o recibir, se recomienda activar esta cuenta ahora."
 }

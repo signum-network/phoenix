@@ -411,7 +411,6 @@ export class AccountService {
 
   public async activateAccount(account: WalletAccount): Promise<void> {
     try {
-
       if (!account.keys) {
         console.warn('Account does not have keys...ignored');
         return;

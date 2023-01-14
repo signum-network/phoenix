@@ -529,4 +529,7 @@
   "confirm_delete_accounts_hint": "De accounts worden alleen uit deze applicatie verwijderd. Al uw geld wordt veilig opgeslagen op de blockchain en u kunt verwijderde accounts altijd opnieuw importeren met uw wachtwoordzin.",
   "confirm_delete_accounts_q": "Weet u zeker dat u deze accounts wilt verwijderen?",
   "account_successfully_deleted": "Account(s) succesvol verwijderd"
+  "no_public_key_title": "Waarschuwing! - Dit account heeft geen openbare sleutel!",
+  "not_registered_title": "Dit account is niet geregistreerd in de blockchain",
+  "not_registered_warning": "Dit account heeft nog geen transacties. Als u van plan bent dit account te gebruiken voor verzenden en/of ontvangen, is het raadzaam om dit account nu te activeren."
 }

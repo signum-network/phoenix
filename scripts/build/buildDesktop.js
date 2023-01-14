@@ -11,7 +11,7 @@ async function buildAngularWallet(cwd){
     process.chdir(cwd);
 }
 
-async function cleanDistFiles(){
+async function cleanDistFiles(cwd){
     const dest = path.join(__dirname, '../../desktop/wallet/dist');
     await fs.remove(dest);
 }
@@ -34,15 +34,6 @@ async function copyIconFiles(cwd) {
     await fs.copy(src, dest);
     await fs.copy(src, path.join(dest, './icons'));
 }
-async function copyFontFiles(cwd) {
-    const src = path.join(__dirname, '../../desktop/wallet/assets/fonts');
-    const dest = path.join(__dirname, '../../desktop/wallet/dist/');
-    log.info(`Copying icon files
-    from: ${chalk.gray(src)} 
-    to: ${chalk.gray(dest)}`);
-    await fs.copy(src, dest);
-    await fs.copy(src, path.join(dest, './fonts'));
-}
 
 // electron requires the base href to be relative, whereas most webservers assume a static root
 async function updateBaseHref(cwd) {
@@ -57,7 +48,6 @@ async function build({cwd}) {
     await cleanDistFiles(cwd);
     await copyDistFiles(cwd);
     await copyIconFiles(cwd);
-    await copyFontFiles(cwd);
     await updateBaseHref(cwd);
 }
 

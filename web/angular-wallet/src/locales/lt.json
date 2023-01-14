@@ -529,4 +529,7 @@
   "confirm_delete_accounts_hint": "Paskyros bus pašalintos tik iš šios programos. Visos jūsų lėšos saugiai saugomos „blockchain“ ir jūs visada galite iš naujo importuoti pašalintas paskyras naudodami savo slaptafrazę.",
   "confirm_delete_accounts_q": "Ar tikrai norite pašalinti šias paskyras?",
   "account_successfully_deleted": "Paskyra (-os) sėkmingai pašalinta (-os)."
+  "no_public_key_title": "Įspėjimas! – Šiai paskyrai viešasis raktas nepriklauso!",
+  "not_registered_title": "Ši paskyra nėra užregistruota blokų grandinėje",
+  "not_registered_warning": "Šioje paskyroje dar nėra operacijų. Jei ketinate naudoti šią paskyrą siuntimui ir (arba) gavimui, rekomenduojama šią paskyrą suaktyvinti dabar."
 }
