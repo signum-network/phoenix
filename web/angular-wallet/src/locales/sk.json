@@ -528,7 +528,7 @@
   "confirm_delete_accounts": "Potvrďte odstránenie",
   "confirm_delete_accounts_hint": "Účty budú odstránené iba z tejto aplikácie. Všetky vaše prostriedky sú bezpečne uložené na blockchaine a vždy môžete znova importovať odstránené účty pomocou vašej prístupovej frázy.",
   "confirm_delete_accounts_q": "Naozaj chcete odstrániť tieto účty?",
-  "account_successfully_deleted": "Účty boli úspešne odstránené"
+  "account_successfully_deleted": "Účty boli úspešne odstránené",
   "no_public_key_title": "POZOR! - Tento účet nevlastní verejný kľúč!",
   "not_registered_title": "Tento účet nie je zaregistrovaný v blockchaine",
   "not_registered_warning": "Tento účet zatiaľ neobsahuje žiadne transakcie. Ak máte v úmysle použiť tento účet na odosielanie a/alebo prijímanie, odporúčame vám teraz tento účet aktivovať."

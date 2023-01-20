@@ -528,7 +528,7 @@
   "confirm_delete_accounts": "削除の確認",
   "confirm_delete_accounts_hint": "アカウントは、このアプリケーションからのみ削除されます。すべての資金はブロックチェーンに安全に保存され、パスフレーズを使用して削除されたアカウントをいつでも再インポートできます。",
   "confirm_delete_accounts_q": "これらのアカウントを削除してもよろしいですか?",
-  "account_successfully_deleted": "アカウントが正常に削除されました"
+  "account_successfully_deleted": "アカウントが正常に削除されました",
   "no_public_key_title": "警告！ - このアカウントは公開鍵を所有していません!",
   "not_registered_title": "このアカウントはブロックチェーンに登録されていません",
   "not_registered_warning": "このアカウントにはまだ取引がありません。このアカウントを送受信に使用する場合は、今すぐこのアカウントを有効にすることをお勧めします。"

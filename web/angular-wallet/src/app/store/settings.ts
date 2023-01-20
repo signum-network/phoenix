@@ -2,14 +2,29 @@
 /**
  * Original work Copyright (c) 2018 PoC-Consortium
  * Modified work Copyright (c) 2019 Burst Apps Team
- * Modified work Copyright (c) 2022 Signume Network
+ * Modified work Copyright (c) 2023 Signum Network
  */
 
-import { constants } from './constants';
-import { environment } from '../environments/environment';
-import { version } from '../../package.json';
-import {UserProfileType} from './shared/types';
+import { constants } from '../constants';
+import { environment } from '../../environments/environment';
+import { version } from '../../../package.json';
+import {UserProfileType} from '../shared/types';
 
+export interface PartialSettings {
+  currency?: string;
+  language?: string;
+  node?: string;
+  networkName?: string;
+  nodeAutoSelectionEnabled?: boolean;
+  selectedAccountId?: string;
+  theme?: string;
+  version?: string;
+  marketUrl?: string;
+  userProfile?: UserProfileType;
+  showDesktopNotifications?: boolean;
+  agree?: boolean;
+  welcomeMessageHiddenFrom?: string[];
+}
 /*
 * Settings class
 *
@@ -21,9 +36,10 @@ export class Settings {
     public currency: string;
     public language: string;
     public node: string;
+    public networkName: string;
     public nodeAutoSelectionEnabled: boolean;
 
-    public nodeNetworkId: string;
+    public selectedAccountId: string;
     public theme: string;
     public version: string;
     public marketUrl: string;
@@ -46,7 +62,8 @@ export class Settings {
         this.currency = data.currency || constants.defaultCurrency;
         this.language = data.language || constants.defaultLanguage;
         this.node = data.node || environment.defaultNode;
-        this.nodeNetworkId = data.nodeNetworkId || environment.defaultNode;
+        this.networkName = data.networkName || environment.defaultNodeNetwork;
+        this.selectedAccountId = data.selectedAccountId || '';
         this.nodeAutoSelectionEnabled = data.nodeAutoSelectionEnabled || true;
         this.marketUrl = data.marketUrl || environment.market.tickerUrl;
         this.theme = data.theme || constants.defaultTheme;

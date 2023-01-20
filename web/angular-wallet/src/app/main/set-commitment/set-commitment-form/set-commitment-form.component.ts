@@ -61,7 +61,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
     private router: Router
   ) {
     super();
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(
         takeUntil(this.unsubscribeAll)
       )

@@ -41,7 +41,7 @@ export class PeersComponent extends UnsubscribeOnDestroy implements OnInit, Afte
     this.dataSource = new MatTableDataSource<Peer>();
     this.dataSource.data = this.route.snapshot.data.peers;
     this.calcMaxVersion();
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(({language}) => {
           this.locale = language;

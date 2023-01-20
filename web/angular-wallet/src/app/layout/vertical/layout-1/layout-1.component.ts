@@ -1,11 +1,11 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation, Input} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
 import {FuseConfigService} from '@fuse/services/config.service';
 import {navigation} from 'app/navigation/navigation';
-import { WalletAccount } from 'app/util/WalletAccount';
-
+import { WalletAccount } from "../../../util/WalletAccount";
+import { StoreService } from "../../../store/store.service";
 @Component({
   selector: 'vertical-layout-1',
   templateUrl: './layout-1.component.html',
@@ -15,19 +15,14 @@ import { WalletAccount } from 'app/util/WalletAccount';
 export class VerticalLayout1Component implements OnInit, OnDestroy {
   fuseConfig: any;
   navigation: any;
-  @Input() selectedAccount: WalletAccount;
-  @Input() accounts: WalletAccount[];
 
+  selectedAccount: WalletAccount;
   // Private
   private _unsubscribeAll: Subject<any>;
 
-  /**
-   * Constructor
-   *
-   * @param {FuseConfigService} _fuseConfigService
-   */
   constructor(
-    private _fuseConfigService: FuseConfigService
+    private _fuseConfigService: FuseConfigService,
+    private storeService: StoreService
   ) {
     this.navigation = navigation;
     this._unsubscribeAll = new Subject();
@@ -39,6 +34,12 @@ export class VerticalLayout1Component implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((config) => {
         this.fuseConfig = config;
+      });
+
+    this.storeService.accountSelected$
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((account) => {
+        this.selectedAccount = account;
       });
   }
 

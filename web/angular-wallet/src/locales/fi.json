@@ -528,7 +528,7 @@
   "confirm_delete_accounts": "Vahvista poisto",
   "confirm_delete_accounts_hint": "Tilit poistetaan vain tästä sovelluksesta. Kaikki rahasi tallennetaan turvallisesti lohkoketjuun ja voit aina tuoda poistetut tilit uudelleen tunnuslauseesi avulla.",
   "confirm_delete_accounts_q": "Haluatko varmasti poistaa nämä tilit?",
-  "account_successfully_deleted": "Tilit poistettu onnistuneesti"
+  "account_successfully_deleted": "Tilit poistettu onnistuneesti",
   "no_public_key_title": "Varoitus! - Tämä tili ei omista julkista avainta!",
   "not_registered_title": "Tätä tiliä ei ole rekisteröity lohkoketjuun",
   "not_registered_warning": "Tällä tilillä ei ole vielä tapahtumia. Jos aiot käyttää tätä tiliä lähettämiseen ja/tai vastaanottamiseen, on suositeltavaa aktivoida tämä tili nyt."

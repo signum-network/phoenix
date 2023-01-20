@@ -76,7 +76,7 @@ export class SendMoneyFormComponent extends UnsubscribeOnDestroy implements OnIn
     private router: Router,
   ) {
     super();
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(
         takeUntil(this.unsubscribeAll)
       )

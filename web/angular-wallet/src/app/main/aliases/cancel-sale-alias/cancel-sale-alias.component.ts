@@ -53,7 +53,7 @@ export class CancelSaleAliasComponent extends UnsubscribeOnDestroy implements On
     this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
     this.alias = this.route.snapshot.data.alias as Alias;
     this.immutable = false;
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(
         takeUntil(this.unsubscribeAll)
       )

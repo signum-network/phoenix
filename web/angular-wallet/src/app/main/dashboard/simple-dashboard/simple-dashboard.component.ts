@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatGridList} from '@angular/material/grid-list';
 import {Transaction} from '@signumjs/core';
-import {Settings} from '../../../settings';
+import {Settings} from '../../../store/settings';
 import {MatTableDataSource} from '@angular/material/table';
 import {takeUntil} from 'rxjs/operators';
 import {StoreService} from '../../../store/store.service';
@@ -16,6 +16,7 @@ import {
 import { MarketInfoCoingecko } from '../widgets/market/services/coingecko/types';
 import { MarketServiceCoinGecko } from '../widgets/market/services/coingecko/coingecko.market.service';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { AccountManagementService } from "../../../shared/services/account-management.service";
 
 const LayoutConfiguration = new SimpleDashboardLayoutConfiguration();
 
@@ -27,7 +28,6 @@ const LayoutConfiguration = new SimpleDashboardLayoutConfiguration();
 export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements OnInit {
 
   @ViewChild('gridList', {static: true}) gridList: MatGridList;
-  widgets: any;
   account: WalletAccount;
   priceBtc: number;
   priceUsd: number;
@@ -36,14 +36,11 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
   settings: Settings;
   layoutParameters = LayoutConfiguration.xl;
 
-  public dataSource: MatTableDataSource<Transaction>;
-  public isActivating = false;
-
   private unsubscribe = takeUntil(this.unsubscribeAll);
 
   constructor(
               private storeService: StoreService,
-              private accountService: AccountService,
+              private accountManagementService: AccountManagementService,
               private notificationService: NotifierService,
               private marketService: MarketServiceCoinGecko,
               private layoutService: DashboardLayoutService,
@@ -54,7 +51,9 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
 
   ngOnInit(): void {
 
-    this.accountService.currentAccount$
+    this.account = this.accountManagementService.getSelectedAccount();
+
+    this.storeService.accountUpdated$
       .pipe(this.unsubscribe)
       .subscribe((account: WalletAccount) => {
           this.account = account;
@@ -75,39 +74,5 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
       .subscribe((layoutParams: SimpleDashboardLayoutParameters) => {
         this.layoutParameters = layoutParams;
       });
-
-    this.storeService.settings
-      .pipe(this.unsubscribe)
-      .subscribe((settings: Settings) => {
-        this.settings = settings;
-      });
-
-  }
-
-  setTransactions = account => {
-    this.account = account;
-    this.dataSource = new MatTableDataSource<Transaction>();
-    this.dataSource.data = account.transactions.concat().splice(0, 10);
-  }
-
-  closeWelcomeNotification = () => {
-    this.settings.welcomeMessageHiddenFrom.push(this.account.account);
-    this.storeService.saveSettings(this.settings);
-  }
-
-  async activateAccount(): Promise<void> {
-    try {
-      this.isActivating = true;
-      await this.accountService.activateAccount(this.account);
-      this.notificationService.notify('success', 'Successfully requested activation. Your account will be activated in a few moments.');
-    } catch (e) {
-      this.notificationService.notify('error', `Activation failed: ${e.message}`);
-    } finally {
-      this.isActivating = false;
-    }
-  }
-
-  marketServiceName(): string {
-    return 'foo' ; // this.marketService.serviceName;
   }
 }

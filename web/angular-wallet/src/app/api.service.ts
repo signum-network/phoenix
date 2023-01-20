@@ -1,55 +1,71 @@
-import {Injectable} from '@angular/core';
-import {Api, composeApi} from '@signumjs/core';
-import {environment} from '../environments/environment';
-import {Settings} from './settings';
-import {StoreService} from './store/store.service';
-import semver from 'semver';
-import {constants} from './constants';
+import { Injectable } from '@angular/core';
+import { Api, LedgerClientFactory } from '@signumjs/core';
+import { StoreService } from './store/store.service';
+import { constants } from './constants';
+import { NodeInfo } from './shared/types';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
-  public api: Api;
-  private brsVersion: string;
-  public nodeUrl = environment.defaultNode;
+  public ledger: Api;
+  public nodeUrl: string;
 
   constructor(private storeService: StoreService) {
-    this.storeService.settings.subscribe(this.initApi.bind(this));
+    this.storeService
+      .ready$
+      .subscribe(async (ready) => {
+        if (!ready) {
+          return;
+        }
+        const { nodeAutoSelectionEnabled, node } = this.storeService.getSettings();
+        this.initApi(node);
+        if (nodeAutoSelectionEnabled) {
+          const nodeInfo = await this.selectBestNode();
+          if (nodeInfo){
+            this.storeService.setSelectedNode(nodeInfo);
+          }
+        }
+      });
+
+    this.storeService
+      .nodeSelected$
+      .subscribe((nodeInfo) => {
+        if (nodeInfo) {
+          this.initApi(nodeInfo.nodeUrl);
+        }
+      });
+
   }
 
-  private async initApi(settings: Settings): Promise<void> {
-    if (this.nodeUrl === settings.node) {
+  private initApi(nodeUrl: string): void {
+    if (this.nodeUrl === nodeUrl) {
       return;
     }
-
-    this.nodeUrl = settings.node;
+    this.nodeUrl = nodeUrl;
     const reliablePeers = constants.nodes
-      .filter(({reliable}) => reliable)
-      .map(({address, port}) => `${address}:${port}`);
+      .filter(({ reliable }) => reliable)
+      .map(({ address, port }) => `${address}:${port}`);
 
-    this.api = composeApi({
+    this.ledger = LedgerClientFactory.createClient({
       reliableNodeHosts: reliablePeers,
-      nodeHost: this.nodeUrl,
-      apiVersion: 0
+      nodeHost: this.nodeUrl
     });
-    this.brsVersion = undefined;
-    if (settings.nodeAutoSelectionEnabled) {
-      this.nodeUrl = await this.selectBestNode();
-      settings.node = this.nodeUrl;
-      await this.storeService.saveSettings(settings);
-    }
   }
 
-  async selectBestNode(): Promise<string> {
-    let bestNode = '';
+  async selectBestNode(): Promise<NodeInfo|null> {
     try {
-      bestNode = await this.api.service.selectBestHost(false);
+      const nodeUrl = await this.ledger.service.selectBestHost(false);
+      const { networkName } = await this.ledger.network.getNetworkInfo();
+      return {
+        nodeUrl,
+        networkName
+      };
     } catch (e) {
-      console.log(e);
+      console.error(e);
+      return null;
     }
-    return bestNode;
   }
 
 }

@@ -32,6 +32,7 @@ const PendingTransactionsInterval = 10_000;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDestroy {
+  isReady = false;
   firstTime = true;
   isScanning = false;
   isDownloadingUpdate = false;
@@ -71,31 +72,29 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   }
 
   ngOnInit(): void {
-    this.storeService.ready
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
+   this.storeService.ready$
+      .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((ready) => {
-        if (ready) {
-          this.updateAccounts();
-          const checkBlockchainStatus = this.checkBlockchainStatus.bind(this);
-          setTimeout(checkBlockchainStatus, 1000);
-          this.blockchainStatusInterval = setInterval(checkBlockchainStatus, BlockchainStatusInterval);
-        }
-        this.accountService.currentAccount$
-          .pipe(
-            takeUntil(this.unsubscribeAll)
-          )
-          .subscribe(async (account) => {
-            this.selectedAccount = account;
-            if (this.pendingTransactionsInterval){
-              clearInterval(this.pendingTransactionsInterval);
-            }
-            this.pendingTransactionsInterval = setInterval(() => {
-              this.checkPendingTransactions(account);
-            }, PendingTransactionsInterval);
-            this.accounts = await this.storeService.getAllAccounts();
-          });
+        if (!ready) {return; }
+
+        const checkBlockchainStatus = this.checkBlockchainStatus.bind(this);
+        setTimeout(checkBlockchainStatus, 1000);
+        this.blockchainStatusInterval = setInterval(checkBlockchainStatus, BlockchainStatusInterval);
+        this.isReady = true;
+        // this.accountService.currentAccount$
+        //   .pipe(
+        //     takeUntil(this.unsubscribeAll)
+        //   )
+        //   .subscribe(async (account) => {
+        //     this.selectedAccount = account;
+        //     if (this.pendingTransactionsInterval){
+        //       clearInterval(this.pendingTransactionsInterval);
+        //     }
+        //     this.pendingTransactionsInterval = setInterval(() => {
+        //       this.checkPendingTransactions(account);
+        //     }, PendingTransactionsInterval);
+        //     this.accounts = await this.storeService.getAllAccountsLegacy();
+        //   });
       });
 
     if (this.appService.isDesktop()) {
@@ -204,7 +203,6 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       );
     });
 
-
   }
 
   private async checkBlockchainStatus(): Promise<void> {
@@ -238,21 +236,21 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   }
 
   private async updateAccountsAndCheckBlockchainStatus(blockchainStatus: BlockchainStatus): Promise<void> {
-    this.updateAccounts();
+    // this.updateAccounts();
     const block = await this.networkService.getBlockById(blockchainStatus.lastBlock);
     this.networkService.addBlock(block);
     this.checkBlockchainStatus();
   }
 
   private async updateAccounts(): Promise<void> {
-    this.storeService.getSelectedAccount().then((account) => {
+    this.storeService.getSelectedAccountLegacy().then((account) => {
       if (account !== this.selectedAccount) {
         this.selectedAccount = account;
         this.accountService.selectAccount(account);
       }
     });
 
-    this.accounts = await this.storeService.getAllAccounts();
+    this.accounts = await this.storeService.getAllAccountsLegacy();
     this.accounts.map((account) => {
       setTimeout(() => {
         this.accountService.synchronizeAccount(account).catch(() => {

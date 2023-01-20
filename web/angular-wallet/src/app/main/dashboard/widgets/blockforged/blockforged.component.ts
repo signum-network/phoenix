@@ -3,7 +3,7 @@ import { Block } from '@signumjs/core';
 import { AccountService } from '../../../../setup/account/account.service';
 import { ChainTime } from '@signumjs/util';
 import { formatCurrency } from '@angular/common';
-import { Settings } from '../../../../settings';
+import { Settings } from 'app/store/settings';
 import { UnsubscribeOnDestroy } from '../../../../util/UnsubscribeOnDestroy';
 import { StoreService } from '../../../../store/store.service';
 import { takeUntil } from 'rxjs/operators';
@@ -62,7 +62,7 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
     //     this.isMainNet = this.networkService.isMainNet();
     //   });
 
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(this.unsubscribe)
       .subscribe((settings: Settings) => {
         this.locale = settings.language;
@@ -74,6 +74,7 @@ export class BlockforgedComponent extends UnsubscribeOnDestroy implements OnInit
   }
 
   ngOnDestroy(): void {
+    super.ngOnDestroy();
     clearInterval(this.interval);
   }
 

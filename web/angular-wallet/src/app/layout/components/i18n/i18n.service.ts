@@ -1,10 +1,10 @@
 import {Injectable, ApplicationRef} from '@angular/core';
 
 import {HttpClient} from '@angular/common/http';
-import {Subject} from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
 import {constants} from '../../../constants';
 import {StoreService} from 'app/store/store.service';
-import {Settings} from 'app/settings';
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 export interface Language {
   name: string;
@@ -16,8 +16,7 @@ export interface Language {
 })
 export class I18nService {
 
-  public state;
-  public data: {};
+  public state = new BehaviorSubject(null);
   public currentLanguage: Language = {
     name: 'default',
     code: 'en'
@@ -28,13 +27,11 @@ export class I18nService {
     private ref: ApplicationRef,
     private storeService: StoreService
   ) {
-    this.state = new Subject();
-
-    this.storeService.ready.subscribe(async ready => {
+    this.storeService.ready$.subscribe(ready => {
       if (!ready) {
         return;
       }
-      const {language} = await this.storeService.getSettings();
+      const {language} = this.storeService.getSettings();
       this.initLanguage(language);
     });
   }
@@ -42,34 +39,32 @@ export class I18nService {
   private fetch(locale: any): void {
     this.http.get(`locales/${locale}.json`)
       .subscribe((data: any) => {
-        this.data = data;
         this.state.next(data);
       });
   }
 
   private initLanguage(locale: string): void {
     const language = constants.languages.find(it => it.code === locale);
-    if (language) {
-      this.setLanguage(language);
-    } else {
-      throw new Error(`Incorrect locale used for I18nService: ${locale}`);
-    }
+    this.setLanguage(language || 'en');
   }
 
-  async setLanguage(language): Promise<void> {
+  setLanguage(language): void {
     this.currentLanguage = language;
-    const settings = await this.storeService.getSettings();
+    const settings = this.storeService.getSettings();
     settings.language = language.code;
-    await this.storeService.saveSettings(settings);
+    this.storeService.updateSettings(settings);
     this.fetch(language.code);
   }
 
-  subscribe(sub: any, err: any) {
-    return this.state.subscribe(sub, err);
+  subscribe(callback: (translations: any) => void) : Subscription {
+    return this.state.subscribe({
+      next: callback,
+    });
   }
 
-  public getTranslation(phrase: string, opts?: object): string {
-    return this.data && this.data[phrase] ? this.data[phrase] : phrase;
+  public getTranslation(phrase: string, opts?: any): string {
+    const data = this.state.getValue();
+    return data && data[phrase] ? data[phrase] : phrase;
   }
 
 }

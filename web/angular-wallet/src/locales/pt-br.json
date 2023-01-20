@@ -528,7 +528,7 @@
   "confirm_delete_accounts": "Confirmar remoção",
   "confirm_delete_accounts_hint": "As contas serão removidas apenas deste aplicativo. Todos os seus fundos são armazenados com segurança no blockchain e você sempre pode reimportar contas removidas com sua senha.",
   "confirm_delete_accounts_q": "Tem certeza de que deseja remover essas contas?",
-  "account_successfully_deleted": "Conta(s) removida(s) com sucesso"
+  "account_successfully_deleted": "Conta(s) removida(s) com sucesso",
   "no_public_key_title": "Aviso! - Esta conta não possui uma chave pública!",
   "not_registered_title": "Esta conta não está registrada no blockchain",
   "not_registered_warning": "Esta conta ainda não tem transações. Se você pretende usar esta conta para enviar e/ou receber, é recomendável ativá-la agora."

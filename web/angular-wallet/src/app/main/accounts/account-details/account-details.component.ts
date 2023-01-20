@@ -95,7 +95,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
     this.detailsData = new Map(blockDetails);
     this.dataSource = new MatTableDataSource<Transaction>();
     this.dataSource.data = this.transactions;
-    this.language = this.storeService.settings.value.language;
+    this.language = this.storeService.getSettings().language;
     setTimeout(() => {
       this.updateAvatar();
     }, 100);

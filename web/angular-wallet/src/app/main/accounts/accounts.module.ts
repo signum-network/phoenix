@@ -26,15 +26,14 @@ import {AccountDetailsComponent} from './account-details/account-details.compone
 import {LoginGuard} from 'app/login/login-guard.service';
 import {AccountResolver} from 'app/setup/account/account.resolver';
 import {TransactionTableModule} from '../transactions/transaction-table/transaction.module';
-import {AddNodeUrlPipe} from './account-details/add-node-url.pipe';
 import {ConvertNQTStringPipe} from './account-details/convert-nqt-string';
 import {AppSharedModule} from '../../shared/shared.module';
 import {TransactionsResolver} from './transactions.resolver';
 import {TokensModule} from '../tokens/tokens.module';
 import { ComponentsModule } from 'app/components/components.module';
-import { MatMenuModule } from "@angular/material/menu";
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatDividerModule } from "@angular/material/divider";
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 const routes = [
@@ -90,7 +89,6 @@ const routes = [
     AccountsComponent,
     DeleteAccountDialogComponent,
     AccountDetailsComponent,
-    AddNodeUrlPipe,
     ConvertNQTStringPipe
   ],
   providers: [

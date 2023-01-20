@@ -10,6 +10,6 @@ export class CurrentAccountResolver implements Resolve<Promise<WalletAccount>> {
   }
 
   resolve(route: ActivatedRouteSnapshot): Promise<WalletAccount> {
-    return this.storeService.getSelectedAccount();
+    return this.storeService.getSelectedAccountLegacy();
   }
 }

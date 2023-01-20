@@ -528,7 +528,7 @@
   "confirm_delete_accounts": "Confirmer la suppression",
   "confirm_delete_accounts_hint": "Les comptes seront supprimés uniquement de cette application. Tous vos fonds sont stockés en toute sécurité sur la blockchain et vous pouvez toujours réimporter les comptes supprimés avec votre mot de passe.",
   "confirm_delete_accounts_q": "Voulez-vous vraiment supprimer ces comptes ?",
-  "account_successfully_deleted": "Compte(s) supprimé(s) avec succès"
+  "account_successfully_deleted": "Compte(s) supprimé(s) avec succès",
   "no_public_key_title": "Avertissement! - Ce compte ne possède pas de clé publique !",
   "not_registered_title": "Ce compte n'est pas enregistré dans la blockchain",
   "not_registered_warning": "Ce compte n'a pas encore de transactions. Si vous avez l'intention d'utiliser ce compte pour envoyer et/ou recevoir, il est recommandé d'activer ce compte maintenant."

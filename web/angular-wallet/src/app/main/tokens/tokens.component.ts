@@ -28,7 +28,7 @@ export class TokensComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.storeService.ready.subscribe(async (ready) => {
+    this.storeService.ready$.subscribe(async (ready) => {
       if (!ready) {
         return;
       }

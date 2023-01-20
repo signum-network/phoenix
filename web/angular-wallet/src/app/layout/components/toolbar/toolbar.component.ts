@@ -14,6 +14,7 @@ import { NetworkService } from '../../../network/network.service';
 import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { UserProfileType } from '../../../shared/types';
+import { AccountManagementService } from '../../../shared/services/account-management.service';
 
 interface UserProfile {
   name: UserProfileType;
@@ -32,8 +33,7 @@ export class ToolbarComponent
   implements OnInit, OnDestroy
 {
   @Input() selectedAccount: WalletAccount;
-  @Input() accounts: WalletAccount[];
-
+  accounts: WalletAccount[];
   horizontalNavbar: boolean;
   rightNavbar: boolean;
   hiddenNavbar: boolean;
@@ -49,7 +49,7 @@ export class ToolbarComponent
     private _fuseConfigService: FuseConfigService,
     private _fuseSidebarService: FuseSidebarService,
     private i18nService: I18nService,
-    private accountService: AccountService,
+    private accountManagementService: AccountManagementService,
     private networkService: NetworkService,
     private storeService: StoreService,
     private router: Router
@@ -91,20 +91,29 @@ export class ToolbarComponent
         this.hiddenNavbar = settings.layout.navbar.hidden === true;
       });
 
-    this.networkService.networkInfo$
-      .pipe(takeUntil(this.unsubscribeAll))
-      .subscribe(() => {
-        this.isMainNet = this.networkService.isMainNet();
-      });
-
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((settings) => {
-        this.selectedLanguage = this.i18nService.currentLanguage;
-        this.selectedProfile = this.getProfileByName(
-          settings.userProfile || 'simple'
-        );
+        if (!settings) { return; }
+        this.selectedLanguage = settings.language;
+        this.selectedProfile = this.getProfileByName(settings.userProfile);
+        this.selectedAccount = this.accountManagementService.getSelectedAccount();
+        this.accounts = this.accountManagementService.getAllAccounts();
       });
+
+    this.storeService.accountUpdated$
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe((account) => {
+        this.selectedAccount = this.accountManagementService.getSelectedAccount();
+        this.accounts = this.accountManagementService.getAllAccounts();
+      });
+
+    this.storeService.nodeSelected$
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe((nodeInfo) => {
+        this.isMainNet = nodeInfo.networkName === 'Signum';
+      });
+
   }
 
   toggleSidebarOpen(key): void {
@@ -118,16 +127,13 @@ export class ToolbarComponent
 
   setProfile(profile): void {
     this.selectedProfile = this.getProfileByName(profile);
-    this.storeService.getSettings().then((s) => {
-      s.userProfile = this.selectedProfile.name;
-      this.storeService.saveSettings(s);
-    });
+    this.storeService.updateSettings({userProfile: profile});
   }
 
-  setAccount(account): void {
+  async setAccount(account): Promise<void> {
     this.selectedAccount = account;
-    this.accountService.selectAccount(account);
-    this.router.navigate(['/']);
+    await this.accountManagementService.selectAccount(account);
+    await this.router.navigate(['/']);
   }
 
   private getProfileByName(profileName: string): UserProfile {

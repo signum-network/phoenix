@@ -528,7 +528,7 @@
   "confirm_delete_accounts": "Confirmeu l'eliminació",
   "confirm_delete_accounts_hint": "Els comptes només s'eliminaran d'aquesta aplicació. Tots els vostres fons s'emmagatzemen de manera segura a la cadena de blocs i sempre podeu tornar a importar els comptes eliminats amb la vostra frase de contrasenya.",
   "confirm_delete_accounts_q": "Esteu segur que voleu eliminar aquests comptes?",
-  "account_successfully_deleted": "Els comptes s'han eliminat correctament"
+  "account_successfully_deleted": "Els comptes s'han eliminat correctament",
   "no_public_key_title": "Avís! - Aquest compte no posseeix una clau pública!",
   "not_registered_title": "Aquest compte no està registrat a la cadena de blocs",
   "not_registered_warning": "Aquest compte encara no té transaccions. Si teniu intenció d'utilitzar aquest compte per enviar i/o rebre, us recomanem que l'activeu ara."

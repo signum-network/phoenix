@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
 import {StoreService} from '../../store/store.service';
-import {Settings} from 'app/settings';
+import {Settings} from 'app/store/settings';
 
 @Injectable()
 export class SettingsResolver implements Resolve<Promise<Settings>> {
@@ -10,6 +10,6 @@ export class SettingsResolver implements Resolve<Promise<Settings>> {
   }
 
   async resolve(route: ActivatedRouteSnapshot): Promise<Settings> {
-    return await this.storeService.getSettings();
+    return await this.storeService.getSettingsLegacy();
   }
 }

@@ -1,17 +1,20 @@
-<ng-container>
-  <main [selectedAccount]="selectedAccount"
-        [accounts]="accounts"></main>
+<ng-container *ngIf="isReady">
+  <main></main>
+
+  <notifier-container></notifier-container>
+
+  <button *ngIf="newVersionAvailable" mat-icon-button class="warn mat-elevation-z2 announcement-hint"
+          (click)="onClickedNewVersion()">
+    <mat-icon *ngIf="!isDownloadingUpdate" class="newupdate-icon" matTooltip="{{'update_available' | i18n}}">
+      announcement
+    </mat-icon>
+    <mat-icon *ngIf="isDownloadingUpdate" class="downloading-icon" matTooltip="{{'downloading_update' | i18n}}">
+      autorenew
+    </mat-icon>
+  </button>
+
+  <div *ngIf="downloadingBlockchain" class="downloading">
+    {{ 'downloading_blockchain' | i18n }} ({{ numberOfBlocks }} / {{lastBlockchainFeederHeight}})
+    <mat-progress-bar mode="determinate" [value]="percentDownloaded"></mat-progress-bar>
+  </div>
 </ng-container>
-
-<notifier-container></notifier-container>
-
-<button *ngIf="newVersionAvailable" mat-icon-button class="warn mat-elevation-z2 announcement-hint"
-        (click)="onClickedNewVersion()">
-  <mat-icon *ngIf="!isDownloadingUpdate" class="newupdate-icon" matTooltip="{{'update_available' | i18n}}">announcement</mat-icon>
-  <mat-icon *ngIf="isDownloadingUpdate" class="downloading-icon" matTooltip="{{'downloading_update' | i18n}}">autorenew</mat-icon>
-</button>
-
-<div *ngIf="downloadingBlockchain" class="downloading">
-  {{ 'downloading_blockchain' | i18n }} ({{ numberOfBlocks }} / {{lastBlockchainFeederHeight}})
-  <mat-progress-bar mode="determinate" [value]="percentDownloaded"></mat-progress-bar>
-</div>

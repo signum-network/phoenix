@@ -27,7 +27,7 @@ export class PerformanceComponent extends UnsubscribeOnDestroy implements OnInit
 
   constructor(private performanceService: PerformanceService, private storeService: StoreService, private appService: AppService) {
     super();
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(
         takeUntil(this.unsubscribeAll)
       )

@@ -77,7 +77,7 @@ export class SellAliasComponent extends UnsubscribeOnDestroy implements OnInit {
     this.immutable = false;
     this.messageIsText = true;
     this.encrypt = false;
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(
         takeUntil(this.unsubscribeAll)
       )

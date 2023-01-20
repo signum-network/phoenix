@@ -80,17 +80,17 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
     this.displayedColumns = ColumnsQuery.xl;
     this.dataSource = new MatTableDataSource<AliasData>();
 
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(this.unsubscriber)
       .subscribe(({ language }) => {
         this.locale = language;
       });
 
-    this.storeService.ready
+    this.storeService.ready$
       .pipe(this.unsubscriber)
       .subscribe(async (ready) => {
         if (ready) {
-          this.selectedAccount = await this.storeService.getSelectedAccount();
+          this.selectedAccount = await this.storeService.getSelectedAccountLegacy();
           this.watchOnly = this.selectedAccount && this.selectedAccount.type === 'offline';
           await this.fetchAliases();
         }

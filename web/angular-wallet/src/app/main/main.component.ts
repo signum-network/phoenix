@@ -22,8 +22,6 @@ export class MainComponent implements OnInit, OnDestroy {
   fuseConfig: any;
   navigation: any;
 
-  @Input('selectedAccount') selectedAccount: WalletAccount;
-  @Input('accounts') accounts: WalletAccount[];
   private _unsubscribeAll: Subject<any>;
 
   constructor(

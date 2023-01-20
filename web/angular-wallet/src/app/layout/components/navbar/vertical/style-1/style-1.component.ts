@@ -1,21 +1,33 @@
-import {Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation, Input, ElementRef} from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
-import {Subject} from 'rxjs';
-import {delay, filter, take, takeUntil} from 'rxjs/operators';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+  Input,
+  ElementRef,
+  OnChanges, SimpleChanges
+} from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { forkJoin, merge, Subject } from 'rxjs';
+import { delay, filter, take, takeUntil } from 'rxjs/operators';
 
-import {FuseConfigService} from '@fuse/services/config.service';
-import {FuseNavigationService} from '@fuse/components/navigation/navigation.service';
-import {FusePerfectScrollbarDirective} from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
-import {FuseSidebarService} from '@fuse/components/sidebar/sidebar.service';
-import {StoreService} from 'app/store/store.service';
-import {AccountService} from 'app/setup/account/account.service';
-import {environment} from 'environments/environment';
-import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import {NotifierService} from 'angular-notifier';
+import { FuseConfigService } from '@fuse/services/config.service';
+import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
+import {
+  FusePerfectScrollbarDirective
+} from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
+import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import { StoreService } from 'app/store/store.service';
+import { AccountService } from 'app/setup/account/account.service';
+import { environment } from 'environments/environment';
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
+import { NotifierService } from 'angular-notifier';
 
 import hashicon from 'hashicon';
-import {FuseNavigation} from '@fuse/types';
+import { FuseNavigation } from '@fuse/types';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { UnsubscribeOnDestroy } from '../../../../../util/UnsubscribeOnDestroy';
 import { DescriptorData } from '@signumjs/standards';
 
 @Component({
@@ -24,9 +36,10 @@ import { DescriptorData } from '@signumjs/standards';
   styleUrls: ['./style-1.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
+export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implements OnInit, OnChanges {
 
-  @ViewChild('avatar', {static: false}) avatar: ElementRef<HTMLCanvasElement>;
+  @ViewChild('ipfsAvatar', { static: false }) ipfsAvatar: ElementRef<HTMLImageElement>;
+  @ViewChild('hashAvatar', { static: false }) hashAvatar: ElementRef<HTMLImageElement>;
   @Input() selectedAccount: WalletAccount;
   navigation: any;
   fuseConfig: any;
@@ -34,26 +47,28 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
   language: string;
   node = environment.defaultNode;
   avatarImgSrc: string;
+  avatarLoaded = false;
+  hashIconImgSrc = '';
 
   // Private
   private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
-  private _unsubscribeAll: Subject<any>;
+  private unsubscribe = takeUntil(this.unsubscribeAll);
 
   constructor(
-    private _fuseConfigService: FuseConfigService,
-    private _fuseNavigationService: FuseNavigationService,
-    private _fuseSidebarService: FuseSidebarService,
-    private _accountService: AccountService,
-    private _storeService: StoreService,
+    private fuseConfigService: FuseConfigService,
+    private fuseNavigationService: FuseNavigationService,
+    private fuseSidebarService: FuseSidebarService,
+    private accountService: AccountService,
+    private storeService: StoreService,
     private i18nService: I18nService,
-    private _notifierService: NotifierService,
-    private _router: Router
+    private notifierService: NotifierService,
+    private router: Router
   ) {
+    super();
     // Set the private defaults
-    this._unsubscribeAll = new Subject();
   }
 
-  @ViewChild(FusePerfectScrollbarDirective, {static: true})
+  @ViewChild(FusePerfectScrollbarDirective, { static: true })
   set directive(theDirective: FusePerfectScrollbarDirective) {
     if (!theDirective) {
       return;
@@ -62,17 +77,17 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
     this._fusePerfectScrollbar = theDirective;
 
     // Update the scrollbar on collapsable item toggle
-    this._fuseNavigationService.onItemCollapseToggled
+    this.fuseNavigationService.onItemCollapseToggled
       .pipe(
         delay(500),
-        takeUntil(this._unsubscribeAll)
+        this.unsubscribe
       )
       .subscribe(() => {
         this._fusePerfectScrollbar.update();
       });
 
     // Scroll to the active item position
-    this._router.events
+    this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
         take(1)
@@ -94,95 +109,79 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
   }
 
   async ngOnInit(): Promise<void> {
-    this._router.events
+    this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
-        takeUntil(this._unsubscribeAll)
+        this.unsubscribe
       )
       .subscribe(() => {
-          if (this._fuseSidebarService.getSidebar('navbar')) {
-            this._fuseSidebarService.getSidebar('navbar').close();
+          if (this.fuseSidebarService.getSidebar('navbar')) {
+            this.fuseSidebarService.getSidebar('navbar').close();
           }
         }
       );
 
-    this._storeService.settings
-      .pipe(
-        takeUntil(this._unsubscribeAll)
-      )
-      .subscribe(async ({language, node}) => {
+    this.storeService.settingsUpdated$
+      .pipe(this.unsubscribe)
+      .subscribe(async ({ language, node }) => {
           this.language = language;
           this.node = node;
-          await this.updateAvatar();
         }
       );
+
     // Subscribe to the config changes
-    this._fuseConfigService.config
-      .pipe(takeUntil(this._unsubscribeAll))
+    this.fuseConfigService.config
+      .pipe(this.unsubscribe)
       .subscribe((config) => {
         this.fuseConfig = config;
       });
 
     // Get current navigation
-    this._fuseNavigationService.onNavigationChanged
+    this.fuseNavigationService.onNavigationChanged
       .pipe(
         filter(value => value !== null),
-        takeUntil(this._unsubscribeAll)
+        this.unsubscribe
       )
       .subscribe(async () => {
         await this.updateAvatar();
       });
 
-    this._accountService.currentAccount$
-      .pipe(
-        delay(1),
-        takeUntil(this._unsubscribeAll)
-      )
-      .subscribe(async () => {
+    this.storeService.accountUpdated$
+      .pipe(this.unsubscribe)
+      .subscribe(() => {
         this.updateNavigation();
-        await this.updateAvatar();
+        this.updateAvatar();
       });
   }
 
-  private async updateAvatar(): Promise<void> {
-    this.avatarImgSrc =  this._accountService.getAvatarUrlFromAccount(this.selectedAccount);
-    if (!this.avatarImgSrc && this.avatar) {
-      hashicon(this.selectedAccount.account, {
-        size: 100,
-        createCanvas: () => this.avatar.nativeElement
-      });
+  private updateAvatar(): void {
+    const hashIconUrl = hashicon(this.selectedAccount.account).toDataURL();
+    if (this.hashIconImgSrc !== hashIconUrl) {
+      this.hashIconImgSrc = hashIconUrl;
+    }
+
+    const avatarUrl = this.accountService.getAvatarUrlFromAccount(this.selectedAccount);
+    if (avatarUrl !== this.avatarImgSrc) {
+      this.avatarLoaded = false;
+      this.avatarImgSrc = avatarUrl;
     }
   }
 
-  /**
-   * On destroy
-   */
-  ngOnDestroy(): void {
-    // Unsubscribe from all subscriptions
-    this._unsubscribeAll.next();
-    this._unsubscribeAll.complete();
+  onAvatarLoad(success: boolean): void {
+    this.avatarLoaded = success;
+    this.ipfsAvatar.nativeElement.style.display = success ? 'inherit' : 'none';
   }
 
-  // -----------------------------------------------------------------------------------------------------
-  // @ Public methods
-  // -----------------------------------------------------------------------------------------------------
-
-  /**
-   * Toggle sidebar opened status
-   */
   toggleSidebarOpened(): void {
-    this._fuseSidebarService.getSidebar('navbar').toggleOpen();
+    this.fuseSidebarService.getSidebar('navbar').toggleOpen();
   }
 
-  /**
-   * Toggle sidebar folded status
-   */
   toggleSidebarFolded(): void {
-    this._fuseSidebarService.getSidebar('navbar').toggleFold();
+    this.fuseSidebarService.getSidebar('navbar').toggleFold();
   }
 
   getQRCode(id: string): Promise<string> {
-    return this._accountService.generateSendTransactionQRCodeAddress(id);
+    return this.accountService.generateSendTransactionQRCodeAddress(id);
   }
 
   getAccountName(): string {
@@ -193,25 +192,14 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
     return environment.version;
   }
 
-  copy(val: string): void {
-    const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = val;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    const success = document.execCommand('copy');
-    document.body.removeChild(selBox);
-
-    if (success) {
-      this._notifierService.notify('success',
+  async copy(val: string): Promise<void> {
+    try {
+      await navigator.clipboard.writeText(val);
+      this.notifierService.notify('success',
         this.i18nService.getTranslation('success_clipboard_copy')
       );
-    } else {
-      this._notifierService.notify('error',
+    } catch (e) {
+      this.notifierService.notify('error',
         this.i18nService.getTranslation('error_clipboard_copy')
       );
     }
@@ -223,7 +211,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
 
   private updateNavigation(): void {
 
-    const navigation = this._fuseNavigationService.getCurrentNavigation() as FuseNavigation[];
+    const navigation = this.fuseNavigationService.getCurrentNavigation() as FuseNavigation[];
 
     const isFullAccount = this.selectedAccount.type !== 'offline';
 
@@ -238,4 +226,12 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
 
     this.navigation = navigation;
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.selectedAccount.currentValue !== changes.selectedAccount.previousValue) {
+      this.updateAvatar();
+      this.updateNavigation();
+    }
+  }
+
 }

@@ -89,16 +89,12 @@
 </fuse-sidebar>
 <!-- / QUICK PANEL -->
 
-<!-- ----------------------------------------------------------------------------------------------------- -->
-<!-- @ PARTIALS
-<!-- ----------------------------------------------------------------------------------------------------- -->
 
 <!-- TOOLBAR -->
 <ng-template #toolbar>
     <toolbar *ngIf="!fuseConfig.layout.toolbar.hidden"
              [ngClass]="fuseConfig.layout.toolbar.customBackgroundColor === true ? fuseConfig.layout.toolbar.position + ' ' + fuseConfig.layout.toolbar.background : fuseConfig.layout.toolbar.position"
-             [accounts]="accounts"
-             [selectedAccount]="selectedAccount">
+    >
     </toolbar>
 </ng-template>
 <!-- / TOOLBAR -->

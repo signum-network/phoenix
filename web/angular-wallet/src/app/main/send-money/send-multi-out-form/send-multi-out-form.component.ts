@@ -49,7 +49,7 @@ export class SendMultiOutFormComponent extends UnsubscribeOnDestroy implements O
     private router: Router,
   ) {
     super();
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(async ({language}) => {
           this.language = language;

@@ -6,7 +6,7 @@ class MockTranslationService extends I18nService {
   constructor() {
     // @ts-ignore
     super(null, null, {
-      ready: new BehaviorSubject(false)
+      ready$: new BehaviorSubject(false)
     });
   }
 

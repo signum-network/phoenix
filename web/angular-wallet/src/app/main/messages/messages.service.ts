@@ -18,7 +18,6 @@ import {decryptAES, hashSHA256} from '@signumjs/crypto';
 import {NetworkService} from 'app/network/network.service';
 import {Amount, ChainTime} from '@signumjs/util';
 import {ApiService} from '../../api.service';
-import { Settings } from '../../settings';
 import { StoreService } from '../../store/store.service';
 import { KeyDecryptionException } from '../../util/exceptions/KeyDecryptionException';
 
@@ -139,7 +138,7 @@ export class MessagesService implements Resolve<any> {
     }
 
     let transactionId;
-    const ledger = this.apiService.api;
+    const ledger = this.apiService.ledger;
     if (isEncrypted) {
       // @ts-ignore
       if (!recipient.publicKey) {

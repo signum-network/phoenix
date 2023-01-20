@@ -66,14 +66,6 @@ fuse-sidebar {
                   height: 42px;
                   border-radius: 50%;
                 }
-
-                canvas {
-                  display: block;
-                  position: relative;
-                  width: 100%;
-                  transform: scale(1.5) translateX(33%);
-                  top: -4px;
-                }
               }
 
               .username,
@@ -219,13 +211,6 @@ navbar {
           img {
             height: 100px;
             border-radius: 4px;
-          }
-
-          canvas {
-            display: block;
-            position: relative;
-            width: 100%;
-            transform: translateX(33%);
           }
         }
       }

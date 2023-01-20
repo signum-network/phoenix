@@ -542,5 +542,5 @@
   "enter_recipient_public_key_hint": "The recipient's account is unsafe, so a transfer without the recipient's public key is not allowed.",
   "recipient_public_key_invalid": "Recipient Address/Id does not match given public key",
   "recipient_public_key_valid": "Recipient Address/Id and public key match",
-  "manage_accounts": "Manage Accounts",
+  "manage_accounts": "Manage Accounts"
 }

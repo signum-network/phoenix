@@ -29,7 +29,7 @@ export class SendMoneyComponent extends UnsubscribeOnDestroy implements OnInit {
     this.account = this.route.snapshot.data.account;
     this.fees = this.route.snapshot.data.suggestedFees;
 
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(
         takeUntil(this.unsubscribeAll)
       )
@@ -38,7 +38,7 @@ export class SendMoneyComponent extends UnsubscribeOnDestroy implements OnInit {
         }
       );
 
-    this.storeService.ready
+    this.storeService.ready$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((ready) => {
         if (!ready) {

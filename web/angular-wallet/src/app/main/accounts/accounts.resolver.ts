@@ -11,7 +11,7 @@ export class AccountsResolver implements Resolve<Promise<void|WalletAccount[]>> 
     }
 
     resolve(route: ActivatedRouteSnapshot) {
-        return this.storeService.getAllAccounts().catch(() => {});
+        return this.storeService.getAllAccountsLegacy().catch(() => {});
     }
 }
 

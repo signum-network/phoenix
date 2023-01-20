@@ -46,56 +46,66 @@ export interface MiningInfo {
 
 @Injectable()
 export class NetworkService {
-  private api: Api;
+  // private api: Api;
   public blocks: BehaviorSubject<any> = new BehaviorSubject([]);
-  public networkInfo$: BehaviorSubject<NetworkInfo> = new BehaviorSubject(null);
-  private networkInfo: NetworkInfo = DefaultNetworkInfo;
+  public networkInfo$: BehaviorSubject<NetworkInfo> = new BehaviorSubject(DefaultNetworkInfo);
+  // private networkInfo: NetworkInfo = DefaultNetworkInfo;
 
-  constructor(apiService: ApiService, private storeService: StoreService, private router: Router) {
+  constructor(private apiService: ApiService, private storeService: StoreService, private router: Router) {
 
-    this.storeService.settings.subscribe(async (ready) => {
-      if (!ready) {
-        return;
-      }
-      this.api = apiService.api;
-      await this.fetchNetworkInfo();
-      // TODO: refetch with nw network info
-      // if (this.networkInfo.networkName !== networkInfo){
-      //     this.storeService.invalidateAccountTransactions();
-      // }
-      this.networkInfo$.next(this.networkInfo);
-    });
+    // this.storeService.settings$.subscribe(async (nodeInfo) => {
+    //   if (!nodeInfo) {
+    //     return;
+    //   }
+    //   this.api = apiService.ledger;
+    //   await this.fetchNetworkInfo();
+    //   // TODO: refetch with nw network info
+    //   // if (this.networkInfo.networkName !== networkInfo){
+    //   //     this.storeService.invalidateAccountTransactions();
+    //   // }
+    // });
+    // this.storeService.nodeChanged$.subscribe(async (nodeInfo) => {
+    //   if (!nodeInfo) {
+    //     return;
+    //   }
+    //   this.api = apiService.ledger;
+    //   await this.fetchNetworkInfo();
+    //   // TODO: refetch with nw network info
+    //   // if (this.networkInfo.networkName !== networkInfo){
+    //   //     this.storeService.invalidateAccountTransactions();
+    //   // }
+    // });
   }
 
   public getNetworkInfo(): NetworkInfo {
-    return this.networkInfo;
+    return this.networkInfo$.getValue();
   }
   public suggestFee(): Promise<SuggestedFees> {
-    return this.api.network.getSuggestedFees();
+    return this.apiService.ledger.network.getSuggestedFees();
   }
 
   public getBlockchainStatus(): Promise<BlockchainStatus> {
-    return this.api.network.getBlockchainStatus();
+    return this.apiService.ledger.network.getBlockchainStatus();
   }
 
   public getBlockById(id?: string): Promise<Block> {
-    return this.api.block.getBlockById(id, false);
+    return this.apiService.ledger.block.getBlockById(id, false);
   }
 
   public getBlocks(firstIndex?: number, lastIndex?: number, includeTransactions?: boolean): Promise<BlockList> {
-    return this.api.block.getBlocks(firstIndex, lastIndex, includeTransactions);
+    return this.apiService.ledger.block.getBlocks(firstIndex, lastIndex, includeTransactions);
   }
 
   public getMiningInfo(): Promise<MiningInfo> {
-    return this.api.service.query('getMiningInfo');
+    return this.apiService.ledger.service.query('getMiningInfo');
   }
 
   public getPeer(address: string): Promise<Peer> {
-    return this.api.network.getPeer(address);
+    return this.apiService.ledger.network.getPeer(address);
   }
 
   public getPeers(): Promise<PeerAddressList> {
-    return this.api.network.getPeers();
+    return this.apiService.ledger.network.getPeers();
   }
 
   public setBlocks(blocks: Block[]): void {
@@ -106,9 +116,13 @@ export class NetworkService {
     this.setBlocks([block].concat(this.blocks.value));
   }
 
+  // FIXME: move this to store - and cache these information.
+  // TODO: Move all the node selection things entirely to store...
+  // TODO: Services must not be dependent on StoreService in their constructors
   public async fetchNetworkInfo(): Promise<void> {
     try {
-      this.networkInfo = await this.api.network.getNetworkInfo();
+      const networkInfo = await this.apiService.ledger.network.getNetworkInfo();
+      this.networkInfo$.next(networkInfo);
     } catch (e) {
       console.warn('Could not fetch Network Information. Maybe wrong node configured...?', e.message);
       await this.router.navigate(['/settings'], {queryParams: { connectionFail: true }});
@@ -116,14 +130,15 @@ export class NetworkService {
   }
 
   public getBurnAddress(): Address {
-    return Address.fromNumericId(this.networkInfo.genesisBlockId, this.networkInfo.addressPrefix);
+    const {genesisBlockId, addressPrefix} = this.getNetworkInfo();
+    return Address.fromNumericId(genesisBlockId, addressPrefix);
   }
 
   public isMainNet(): boolean {
-    return this.networkInfo.networkName === 'Signum';
+    return this.getNetworkInfo().networkName === 'Signum';
   }
   public getAddressPrefix(): string {
-    return this.networkInfo.addressPrefix;
+    return this.getNetworkInfo().addressPrefix;
   }
 
   public getChainExplorerHost(): string {

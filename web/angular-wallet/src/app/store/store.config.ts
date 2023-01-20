@@ -13,14 +13,6 @@ const appConfigFactory = () => {
     return config;
 };
 
-const testConfigFactory = () => {
-    const config = new StoreConfig();
-    config.databaseName = 'loki.test.db';
-    config.persistenceAdapter = null; // in memory database
-    return config;
-};
-
 export {
-    testConfigFactory,
     appConfigFactory
-}
+};

@@ -1,4 +1,4 @@
-<mat-toolbar class="p-0 mat-elevation-z1">
+<mat-toolbar *ngIf="selectedProfile" class="p-0 mat-elevation-z1">
 
   <div *ngIf="!isMainNet" class="testnet-stamp">TestNet</div>
 
@@ -15,7 +15,7 @@
 
       <div fxLayout="row" fxLayoutAlign="start center" *ngIf="horizontalNavbar">
         <div class="logo ml-16">
-          <img class="logo-icon" src="assets/images/logos/icon_white.svg">
+          <img class="logo-icon" src="assets/images/logos/icon_white.svg" alt="White Signum Logo">
         </div>
       </div>
 

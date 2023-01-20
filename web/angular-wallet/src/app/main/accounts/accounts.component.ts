@@ -53,13 +53,13 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     this.displayedColumns = ['delete', 'avatar', 'account', 'name', 'balance', 'type', 'actions'];
     this.dataSource = new MatTableDataSource<WalletAccount>();
 
-    this.storeService.ready
+    this.storeService.ready$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((ready) => {
         if (!ready) {
           return;
         }
-        this.storeService.getAllAccounts().then((accounts) => {
+        this.storeService.getAllAccountsLegacy().then((accounts) => {
           this.accounts = accounts;
           this.dataSource.data = this.accounts;
           this.dataSource.sortData = this.sortAccounts;
@@ -68,7 +68,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
         this.selectedAccount = this.accountService.currentAccount$.value;
       });
 
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(({ language }) => {
         this.locale = language;
@@ -118,7 +118,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
         }
         const removeRequests = selectedAccounts.map((a) => this.accountService.removeAccount(a));
         await Promise.all(removeRequests);
-        this.accounts = await this.storeService.getAllAccounts();
+        this.accounts = await this.storeService.getAllAccountsLegacy();
         const removedSelectedAccount = this.accounts.findIndex(a => a.account === this.selectedAccount.account) < 0;
         this.dataSource.data = this.accounts;
         if (!this.accounts || !this.accounts.length) {
@@ -189,7 +189,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
         return;
       }
       await this.accountService.removeAccount(account);
-      this.accounts = await this.storeService.getAllAccounts();
+      this.accounts = await this.storeService.getAllAccountsLegacy();
       this.dataSource.data = this.accounts;
       if (!this.accounts || !this.accounts.length) {
         this.accountService.selectAccount(null);

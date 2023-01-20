@@ -15,8 +15,6 @@ export class VerticalLayout2Component implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
-    @Input('selectedAccount') selectedAccount: WalletAccount;
-    @Input('accounts') accounts: WalletAccount[];
 
     // Private
     private _unsubscribeAll: Subject<any>;

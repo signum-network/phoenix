@@ -29,17 +29,19 @@ import { WalletAccount } from '../../../util/WalletAccount';
   templateUrl: './transaction-table.component.html'
 })
 export class TransactionTableComponent extends UnsubscribeOnDestroy implements AfterViewInit {
-  @Input() dataSource: MatTableDataSource<Transaction>;
+  @Input()
+  dataSource: MatTableDataSource<Transaction>;
   @Input() displayedColumns = ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'];
   @Input() paginationEnabled = true;
   @Input() account: WalletAccount;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  public locale: string;
+
+  locale: string;
 
   constructor(private utilService: UtilService,
               private storeService: StoreService) {
     super();
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(
         takeUntil(this.unsubscribeAll)
       )

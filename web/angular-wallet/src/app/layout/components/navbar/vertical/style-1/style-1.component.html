@@ -40,8 +40,9 @@
       class="avatar-container"
       [routerLink]="['set-account-profile']"
     >
-      <canvas *ngIf="!avatarImgSrc" #avatar></canvas>
-      <img *ngIf="avatarImgSrc" [src]="avatarImgSrc" alt="avatar-image" />
+      <img #hashAvatar *ngIf="hashIconImgSrc && !avatarLoaded" [src]="hashIconImgSrc" alt="avatar-image" />
+      <img #ipfsAvatar [src]="avatarImgSrc" (error)="onAvatarLoad(false)" (load)="onAvatarLoad(true)" alt="avatar-image" />
+
       <div *ngIf="selectedAccount.type !== 'offline' && !selectedAccount.confirmed"
            class="unsafe-badge"
            matTooltip="{{'account_unsafe' | i18n}}"

@@ -7,7 +7,7 @@ import {Keys} from '@signumjs/crypto';
 import {ApiService} from '../../api.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {StoreService} from 'app/store/store.service';
-import {Settings} from 'app/settings';
+import {Settings} from 'app/store/settings';
 import {getPrivateEncryptionKey} from 'app/util/security/getPrivateEncryptionKey';
 import { getPrivateSigningKey } from 'app/util/security/getPrivateSigningKey';
 import { createMessageAttachment } from 'app/util/transaction/createMessageAttachment';
@@ -60,9 +60,9 @@ export class AliasService {
   private api: Ledger;
 
   constructor(apiService: ApiService, private accountService: AccountService, private storeService: StoreService) {
-    this.api = apiService.api;
-    this.storeService.settings.subscribe((settings: Settings) => {
-      this.api = apiService.api;
+    this.api = apiService.ledger;
+    this.storeService.settingsUpdated$.subscribe((settings: Settings) => {
+      this.api = apiService.ledger;
     });
   }
 

@@ -528,7 +528,7 @@
   "confirm_delete_accounts": "Potvrdite uklanjanje",
   "confirm_delete_accounts_hint": "Računi će biti uklonjeni samo iz ove aplikacije. Sva vaša sredstva sigurno su pohranjena na blockchainu i uvijek možete ponovno uvesti uklonjene račune sa svojom šifrom.",
   "confirm_delete_accounts_q": "Jeste li sigurni da želite ukloniti ove račune?",
-  "account_successfully_deleted": "Računi su uspješno uklonjeni"
+  "account_successfully_deleted": "Računi su uspješno uklonjeni",
   "no_public_key_title": "Upozorenje! - Ovaj račun ne posjeduje javni ključ!",
   "not_registered_title": "Ovaj račun nije registriran u blockchainu",
   "not_registered_warning": "Ovaj račun još nema transakcija. Ako namjeravate koristiti ovaj račun za slanje i/ili primanje, preporučuje se da sada aktivirate ovaj račun."

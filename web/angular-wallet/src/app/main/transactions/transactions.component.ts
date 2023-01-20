@@ -74,7 +74,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
 
   public ngOnInit(): void {
     this.dataSource = new MatTableDataSource<Transaction>();
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(this.unsubscriber)
       .subscribe(({language}) => {
           this.language = language;

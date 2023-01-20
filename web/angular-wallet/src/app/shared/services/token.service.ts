@@ -58,7 +58,7 @@ export class TokenService {
   }
 
   private async getToken(assetId: string): Promise<Asset> {
-    return this.apiService.api.asset.getAsset({ assetId });
+    return this.apiService.ledger.asset.getAsset({ assetId });
   }
 
   public async fetchTokenData(tokenId: string, account: WalletAccount): Promise<TokenData> {
@@ -70,7 +70,7 @@ export class TokenService {
   }
 
   public async getPriceInfo(id: string): Promise<PriceInfo> {
-    const { trades } = await this.apiService.api.service.query('getTrades', {
+    const { trades } = await this.apiService.ledger.service.query('getTrades', {
       asset: id,
       firstIndex: 0,
       lastIndex: 1
@@ -163,7 +163,7 @@ export class TokenService {
     && recipient.publicKey !== '0'
       ? recipient.publicKey
       : undefined;
-    return this.apiService.api.asset.transferAsset({
+    return this.apiService.ledger.asset.transferAsset({
       assetId: token.id,
       attachment,
       feePlanck: fee.getPlanck(),

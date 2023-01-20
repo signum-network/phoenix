@@ -45,7 +45,7 @@ export class TransactionDetailsComponent implements OnInit {
     // @ts-ignore
     delete this.transaction.attachmentBytes;
 
-    this.account = await this.storeService.getSelectedAccount();
+    this.account = await this.storeService.getSelectedAccountLegacy();
     this.cellValueMapper = new CellValueMapper(this.transaction, this.account, this.utilService);
 
     const host = this.networkService.getChainExplorerHost();

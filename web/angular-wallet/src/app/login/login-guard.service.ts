@@ -1,44 +1,67 @@
-import {Injectable} from '@angular/core';
-import {CanActivate, Router} from '@angular/router';
-import {Observable} from 'rxjs';
-import {filter, switchMap} from 'rxjs/operators';
-import {StoreService} from 'app/store/store.service';
-import {AccountService} from 'app/setup/account/account.service';
-import {ApiService} from '../api.service';
-import { NetworkService } from "../network/network.service";
-
-const errorHandler = console.error;
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { filter, switchMap } from 'rxjs/operators';
+import { StoreService } from 'app/store/store.service';
+import { AccountService } from 'app/setup/account/account.service';
+import { NetworkService } from '../network/network.service';
+import { LedgerClientFactory } from '@signumjs/core';
+import { AccountManagementService } from '../shared/services/account-management.service';
+import { NodeInfo } from "../shared/types";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class LoginGuard implements CanActivate {
   authorized = false;
 
   constructor(private storeService: StoreService,
-              private accountService: AccountService,
+              private accountService: AccountManagementService,
               private networkService: NetworkService,
-              private apiService: ApiService,
               private router: Router) {
   }
 
+  private async fetchNodeInfo(nodeHost: string): Promise<NodeInfo|null> {
+    try {
+      const ledger = LedgerClientFactory.createClient({ nodeHost });
+      const info = await ledger.network.getNetworkInfo();
+      // all fine - could
+      return {
+        nodeUrl: nodeHost,
+        networkName: info.networkName
+      };
+    } catch (e) {
+      console.warn('Cannot reach node: ', nodeHost);
+      return null;
+    }
+  }
+
   canActivate(): Observable<boolean> {
-    return this.storeService.ready.pipe(
+    return this.storeService.ready$.pipe(
       filter(Boolean),
       switchMap(async () => {
-        const settings = await this.storeService.getSettings().catch(errorHandler);
-        const selectedAccount = await this.storeService.getSelectedAccount().catch(errorHandler);
-        const allAccounts = await this.storeService.getAllAccounts().catch(errorHandler);
-        await this.networkService.fetchNetworkInfo();
+        const settings = this.storeService.getSettings();
+
         // User must agree to disclaimer
         if (!(settings && settings.agree)) {
           await this.router.navigate(['/disclaimer']);
           return false;
-        } else if (selectedAccount) {
-          // TODO: review if we need this in the guard
+        }
+
+        const selectedAccount = this.storeService.getSelectedAccount();
+        const allAccounts = this.storeService.getAllAccounts();
+        const nodeInfo = await this.fetchNodeInfo(settings.node);
+        if (!nodeInfo){
+          await this.router.navigate(['/settings'], {queryParams: { connectionFail: true }});
+          return false;
+        }
+
+        this.storeService.setSelectedNode(nodeInfo);
+
+        if (selectedAccount) {
           await this.accountService.selectAccount(selectedAccount);
           return true;
-        } else if (allAccounts && allAccounts.length) {
+        } else if (allAccounts.length) {
           await this.router.navigate(['/dashboard']);
           return false;
         } else {

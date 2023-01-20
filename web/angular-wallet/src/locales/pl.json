@@ -528,7 +528,7 @@
   "confirm_delete_accounts": "Potwierdź usunięcie",
   "confirm_delete_accounts_hint": "Konta zostaną usunięte tylko z tej aplikacji. Wszystkie Twoje środki są bezpiecznie przechowywane w łańcuchu bloków i zawsze możesz ponownie zaimportować usunięte konta za pomocą hasła.",
   "confirm_delete_accounts_q": "Czy na pewno chcesz usunąć te konta?",
-  "account_successfully_deleted": "Konta zostały pomyślnie usunięte"
+  "account_successfully_deleted": "Konta zostały pomyślnie usunięte",
   "no_public_key_title": "Ostrzeżenie! - To konto nie posiada klucza publicznego!",
   "not_registered_title": "To konto nie jest zarejestrowane w łańcuchu bloków",
   "not_registered_warning": "Na tym koncie nie ma jeszcze żadnych transakcji. Jeśli zamierzasz używać tego konta do wysyłania i/lub odbierania, zalecamy aktywację tego konta teraz."

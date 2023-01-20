@@ -30,9 +30,9 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
   chart: any;
   firstDate = '';
   transactionCount = 50;
+  accountBalances: AccountBalances;
 
   private balanceHistory: BalanceHistoryItem[];
-  private accountBalances: AccountBalances;
   private isMobile = false;
 
   constructor(private router: Router,
@@ -52,7 +52,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
 
     this.i18nService.subscribe(() => {
       this.updateChart();
-    }, null);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

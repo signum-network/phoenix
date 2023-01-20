@@ -36,14 +36,14 @@ export class SetCommitmentComponent extends UnsubscribeOnDestroy implements OnIn
     // );
 
     const unsubscribeAll = takeUntil(this.unsubscribeAll);
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(unsubscribeAll)
       .subscribe(({language}) => {
           this.language = language;
         }
       );
 
-    this.storeService.ready
+    this.storeService.ready$
       .pipe(unsubscribeAll)
       .subscribe((ready) => {
         if (!ready) {

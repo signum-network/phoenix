@@ -45,7 +45,7 @@ export class RequestSignaComponent extends UnsubscribeOnDestroy implements OnIni
         this.fees = this.route.snapshot.data.suggestedFees as SuggestedFees;
         this.amount = '0';
         this.storeService
-            .ready
+            .ready$
             .pipe(takeUntil(this.unsubscribeAll))
             .subscribe((ready) => {
                 if (ready) {

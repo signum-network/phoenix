@@ -13,7 +13,7 @@ import {ApiService} from '../../api.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {convertHexStringToByteArray} from '@signumjs/util';
 import {StoreService} from 'app/store/store.service';
-import {Settings} from 'app/settings';
+import {Settings} from 'app/store/settings';
 import {getPrivateSigningKey} from '../../util/security/getPrivateSigningKey';
 import {getPrivateEncryptionKey} from '../../util/security/getPrivateEncryptionKey';
 
@@ -68,9 +68,9 @@ export class TransactionService {
   public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
   constructor(apiService: ApiService, private accountService: AccountService, private storeService: StoreService) {
-    this.transactionApi = apiService.api.transaction;
-    this.storeService.settings.subscribe((settings: Settings) => {
-      this.transactionApi = apiService.api.transaction;
+    this.transactionApi = apiService.ledger.transaction;
+    this.storeService.settingsUpdated$.subscribe((settings: Settings) => {
+      this.transactionApi = apiService.ledger.transaction;
     });
   }
 

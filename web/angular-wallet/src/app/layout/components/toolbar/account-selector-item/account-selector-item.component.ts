@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from "@angular/core";
+import { Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { DescriptorData } from '@signumjs/standards';
 import { NetworkService } from '../../../../network/network.service';
@@ -23,7 +23,7 @@ export class AccountSelectorItemComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    if(changes.account.previousValue === changes.account.currentValue){
+    if (changes.account.previousValue === changes.account.currentValue){
       return;
     }
 

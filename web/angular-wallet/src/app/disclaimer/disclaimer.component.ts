@@ -42,9 +42,9 @@ export class DisclaimerComponent
     async agree() {
       try {
 
-        const settings = await this.storeService.getSettings();
+        const settings = await this.storeService.getSettingsLegacy();
         settings.agree = true;
-        await this.storeService.saveSettings(settings);
+        await this.storeService.saveSettingsLegacy(settings);
         this.router.navigate(['/login']);
 
       } catch (e) {

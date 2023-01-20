@@ -75,7 +75,7 @@ export class BuyAliasComponent extends UnsubscribeOnDestroy implements OnInit {
 
     this.fetchRecipientPublicKey(this.alias.account);
 
-    this.storeService.settings
+    this.storeService.settingsUpdated$
       .pipe(
         takeUntil(this.unsubscribeAll)
       )

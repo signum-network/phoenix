@@ -528,7 +528,7 @@
   "confirm_delete_accounts": "Confirmar a eliminación",
   "confirm_delete_accounts_hint": "As contas eliminaranse só desta aplicación. Todos os teus fondos almacénanse de forma segura na cadea de bloques e sempre podes volver importar as contas eliminadas coa túa frase de acceso.",
   "confirm_delete_accounts_q": "Estás seguro de que queres eliminar estas contas?",
-  "account_successfully_deleted": "Elimináronse as contas correctamente"
+  "account_successfully_deleted": "Elimináronse as contas correctamente",
   "no_public_key_title": "Aviso! - Esta conta non posúe unha chave pública!",
   "not_registered_title": "Esta conta non está rexistrada na cadea de bloques",
   "not_registered_warning": "Esta conta aínda non ten transaccións. Se queres usar esta conta para enviar e/ou recibir, recoméndase activala agora."

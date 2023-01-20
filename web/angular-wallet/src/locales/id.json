@@ -528,7 +528,7 @@
   "confirm_delete_accounts": "Konfirmasi Penghapusan",
   "confirm_delete_accounts_hint": "Akun hanya akan dihapus dari aplikasi ini. Semua dana Anda disimpan dengan aman di blockchain dan Anda selalu dapat mengimpor kembali akun yang dihapus dengan frasa sandi Anda.",
   "confirm_delete_accounts_q": "Yakin ingin menghapus akun ini?",
-  "account_successfully_deleted": "Akun berhasil dihapus"
+  "account_successfully_deleted": "Akun berhasil dihapus",
   "no_public_key_title": "Peringatan! - Akun ini tidak memiliki kunci publik!",
   "not_registered_title": "Akun ini tidak terdaftar di blockchain",
   "not_registered_warning": "Akun ini belum ada transaksi. Jika Anda bermaksud menggunakan akun ini untuk mengirim dan/atau menerima, disarankan untuk mengaktifkan akun ini sekarang."

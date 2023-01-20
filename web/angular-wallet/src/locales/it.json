@@ -528,7 +528,7 @@
   "confirm_delete_accounts": "Conferma rimozione",
   "confirm_delete_accounts_hint": "Gli account verranno rimossi solo da questa applicazione. Tutti i tuoi fondi sono archiviati in modo sicuro sulla blockchain e puoi sempre reimportare gli account rimossi con la tua passphrase.",
   "confirm_delete_accounts_q": "Sei sicuro di voler rimuovere questi account?",
-  "account_successfully_deleted": "Account rimossi con successo"
+  "account_successfully_deleted": "Account rimossi con successo",
   "no_public_key_title": "Avvertimento! - Questo account non possiede una chiave pubblica!",
   "not_registered_title": "Questo account non è registrato nella blockchain",
   "not_registered_warning": "Questo account non ha ancora transazioni. Se intendi utilizzare questo account per l'invio e/o la ricezione, ti consigliamo di attivarlo ora."
