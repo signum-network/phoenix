@@ -4,11 +4,13 @@ import { takeUntil } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
 import { PowerDashboardLayoutParameters, PowerDashboardLayoutConfiguration } from './PowerDashboardLayoutConfiguration';
 import { Account } from '@signumjs/core';
-import { StoreService } from '../../../store/store.service';
+import { StoreService } from 'app/store/store.service';
 import { AccountService } from '../../../setup/account/account.service';
 import { NotifierService } from 'angular-notifier';
 import { MarketServiceCoinGecko } from '../widgets/market/services/coingecko/coingecko.market.service';
 import { MarketInfoCoingecko } from '../widgets/market/services/coingecko/types';
+import { WalletAccount } from 'app/util/WalletAccount';
+import { AccountManagementService } from "../../../shared/services/account-management.service";
 
 const LayoutConfiguration = new PowerDashboardLayoutConfiguration();
 
@@ -19,7 +21,7 @@ const LayoutConfiguration = new PowerDashboardLayoutConfiguration();
 })
 export class PowerDashboardComponent extends UnsubscribeOnDestroy implements OnInit {
 
-  account: Account;
+  account: WalletAccount;
   priceBtc: number;
   priceUsd: number;
   priceEur: number;
@@ -30,8 +32,7 @@ export class PowerDashboardComponent extends UnsubscribeOnDestroy implements OnI
 
   constructor(
     private storeService: StoreService,
-    private accountService: AccountService,
-    private notificationService: NotifierService,
+    private accountManagementService: AccountManagementService,
     private marketService: MarketServiceCoinGecko,
     private layoutService: DashboardLayoutService
   ) {
@@ -41,9 +42,11 @@ export class PowerDashboardComponent extends UnsubscribeOnDestroy implements OnI
 
   ngOnInit(): void {
 
-    this.accountService.currentAccount$
+    this.account = this.accountManagementService.getSelectedAccount();
+
+    this.storeService.accountUpdated$
       .pipe(this.unsubscribe)
-      .subscribe((account: Account) => {
+      .subscribe((account: WalletAccount) => {
           this.account = account;
         }
       );
@@ -60,10 +63,8 @@ export class PowerDashboardComponent extends UnsubscribeOnDestroy implements OnI
     this.layoutService.layout$
       .pipe(this.unsubscribe)
       .subscribe((layoutParams: PowerDashboardLayoutParameters) => {
-        setTimeout(() => {
           this.layoutParameters = layoutParams;
-        }, 500);
-      });
+        });
   }
 
 }

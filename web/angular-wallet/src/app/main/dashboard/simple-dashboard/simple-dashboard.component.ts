@@ -41,7 +41,6 @@ export class SimpleDashboardComponent extends UnsubscribeOnDestroy implements On
   constructor(
               private storeService: StoreService,
               private accountManagementService: AccountManagementService,
-              private notificationService: NotifierService,
               private marketService: MarketServiceCoinGecko,
               private layoutService: DashboardLayoutService,
   ) {
