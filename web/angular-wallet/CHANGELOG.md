@@ -3,6 +3,7 @@
 
 ### Feature
 - Revamped Account Management
+- Transaction Table allows loading up to 10k transactions now. 
 
 ### Bug Fixes
 

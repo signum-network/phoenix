@@ -58,7 +58,7 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
    */
   ngOnInit(): void {
     this.user = this._messageService.user;
-    this.messages = this._messageService.messages;
+    this.messages = this._messageService.chats;
     this.contacts = this._messageService.contacts;
 
     this._messageService.onMessagesUpdated

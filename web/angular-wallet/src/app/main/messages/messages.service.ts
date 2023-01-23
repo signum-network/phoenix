@@ -5,21 +5,20 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {
   Account,
   Address,
-  Api,
   AttachmentEncryptedMessage,
-  SuggestedFees,
-  Transaction,
+  SuggestedFees, Transaction,
   TransactionArbitrarySubtype,
   TransactionId,
-  TransactionType,
+  TransactionType
 } from '@signumjs/core';
-import {AccountService} from 'app/setup/account/account.service';
-import {decryptAES, hashSHA256} from '@signumjs/crypto';
 import {NetworkService} from 'app/network/network.service';
 import {Amount, ChainTime} from '@signumjs/util';
 import {ApiService} from '../../api.service';
 import { StoreService } from '../../store/store.service';
-import { KeyDecryptionException } from '../../util/exceptions/KeyDecryptionException';
+import { AccountManagementService } from 'app/shared/services/account-management.service';
+import { WalletAccount } from 'app/util/WalletAccount';
+import { getPrivateEncryptionKey } from 'app/util/security/getPrivateEncryptionKey';
+import { getPrivateSigningKey } from 'app/util/security/getPrivateSigningKey';
 
 export interface ChatMessage {
   message: string;
@@ -28,7 +27,7 @@ export interface ChatMessage {
   encryptedMessage?: AttachmentEncryptedMessage;
 }
 
-export interface Messages {
+export interface Chat {
   dialog: ChatMessage[];
   contactId: string;
   senderRS: string;
@@ -47,8 +46,8 @@ export interface MessageOptions {
 export class MessagesService implements Resolve<any> {
 
   contacts: Account[] = [];
-  messages: Messages[] = [];
-  user: any;
+  chats: Chat[] = [];
+  user: WalletAccount;
   onMessageSelected: BehaviorSubject<any>;
   onOptionsSelected: BehaviorSubject<MessageOptions>;
   onMessagesUpdated: Subject<any>;
@@ -56,7 +55,7 @@ export class MessagesService implements Resolve<any> {
   onLeftSidenavViewChanged: Subject<any>;
   onRightSidenavViewChanged: Subject<any>;
 
-  constructor(private accountService: AccountService,
+  constructor(private accountManagementService: AccountManagementService,
               private networkService: NetworkService,
               private storeService: StoreService,
               private apiService: ApiService
@@ -72,47 +71,21 @@ export class MessagesService implements Resolve<any> {
     this.mergeWithExistingChatSession = this.mergeWithExistingChatSession.bind(this);
   }
 
-  /**
-   * Resolver
-   *
-   * @param {ActivatedRouteSnapshot} route
-   * @param {RouterStateSnapshot} state
-   * @returns {Observable<any> | Promise<any> | any}
-   */
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
     return this.populateMessages();
   }
 
   public async populateMessages(): Promise<void> {
     try {
-      this.user = await this.accountService.currentAccount$.getValue();
-      const messages = await this.getMessages();
-      this.messages = messages.reduce((acc, val) => {
-        const isSentMessage = this.user.account === val.sender;
-        val.attachment.timestamp = val.timestamp;
-        val.attachment.contactId = val.sender;
-        const existingMessage = acc.find((item) => {
-          return isSentMessage ? item.contactId === val.recipient :
-            item.contactId === val.sender;
-        });
-        if (existingMessage) {
-          existingMessage.dialog.unshift(val.attachment);
-          return acc;
-        }
-        return acc.concat({
-          contactId: isSentMessage ? val.recipient : val.sender,
-          dialog: [val.attachment],
-          senderRS: isSentMessage ? val.recipientRS : val.senderRS,
-          timestamp: val.timestamp // relies on default order being reverse chrono
-        });
-      }, []);
+      this.user = this.accountManagementService.getSelectedAccount();
+      this.chats = await this.loadChats();
     } catch (e) {
       console.warn(e);
-      this.messages = [];
+      this.chats = [];
       this.contacts = [];
     }
 
-    this.onMessagesUpdated.next(this.messages);
+    this.onMessagesUpdated.next(this.chats);
   }
 
   getMessage(message, isNewMessage?: boolean): void {
@@ -126,19 +99,15 @@ export class MessagesService implements Resolve<any> {
     pin: string,
     fee: number): Promise<TransactionId> {
 
-    const recipient = await this.accountService.getAccount(recipientId);
+    const ledger = this.apiService.ledger;
+    const recipient = await ledger.account.getAccount({accountId: recipientId});
     const senderKeys = {
-      agreementPrivateKey: decryptAES(this.user.keys.agreementPrivateKey, hashSHA256(pin)),
-      signPrivateKey: decryptAES(this.user.keys.signPrivateKey, hashSHA256(pin)),
+      agreementPrivateKey: getPrivateEncryptionKey(pin, this.user.keys),
+      signPrivateKey: getPrivateSigningKey(pin, this.user.keys),
       publicKey: this.user.keys.publicKey
     };
 
-    if (!senderKeys.agreementPrivateKey || !senderKeys.signPrivateKey){
-      throw new KeyDecryptionException();
-    }
-
     let transactionId;
-    const ledger = this.apiService.ledger;
     if (isEncrypted) {
       // @ts-ignore
       if (!recipient.publicKey) {
@@ -148,7 +117,6 @@ export class MessagesService implements Resolve<any> {
 
       transactionId = await ledger.message.sendEncryptedMessage({
         recipientId,
-        // @ts-ignore
         recipientPublicKey: recipient.publicKey,
         message: message.message,
         feePlanck: Amount.fromSigna(fee).getPlanck(),
@@ -166,42 +134,55 @@ export class MessagesService implements Resolve<any> {
       });
     }
 
-    // Check to see if existing chat session exists (ios-style), if so, merge it
     this.mergeWithExistingChatSession(message, recipientId);
     return transactionId;
   }
 
-  /**
-   * Get messages
-   *
-   * @returns {Promise<any>}
-   */
-  async getMessages(): Promise<any> {
+  private async fetchMessagesPerAccount(): Promise<Transaction[]> {
+      const accountId = this.user.account;
 
-    // TODO: in the future we should allow scrolling to older messages (if > maxNumberMessages)
-    const maxNumberMessages = 100;
-    const accountId = this.accountService.currentAccount$.getValue().account;
+      const fetchConfirmedMessages = this.apiService.ledger.account.getAccountTransactions({
+        accountId,
+        type: TransactionType.Arbitrary,
+        subtype: TransactionArbitrarySubtype.Message,
+        includeIndirect: false,
+      });
+      const fetchUnconfirmedMessages = this.apiService.ledger.account.getUnconfirmedAccountTransactions(accountId, false);
 
-    const getConfirmedMessages = this.accountService.getAccountTransactions({
-      accountId,
-      firstIndex: 0,
-      lastIndex: maxNumberMessages,
-      type: TransactionType.Arbitrary,
-      subtype: TransactionArbitrarySubtype.Message,
-      includeIndirect: false,
-    });
-    const getUnconfirmedMessages = this.accountService.getUnconfirmedTransactions(accountId);
+      const [confirmed, pending] = await Promise.all([fetchConfirmedMessages, fetchUnconfirmedMessages]);
 
-    const messages = await Promise.all([getConfirmedMessages, getUnconfirmedMessages]);
-    const allMessages =
-      messages[1].unconfirmedTransactions.filter((t: Transaction) =>
-        t.type === TransactionType.Arbitrary &&
-        t.subtype === TransactionArbitrarySubtype.Message
-      )
-        .concat(messages[0].transactions)
-        .sort((a, b) => a.timestamp > b.timestamp ? -1 : 1);
+      const allMessages =
+        pending.unconfirmedTransactions.filter((t: Transaction) =>
+          t.type === TransactionType.Arbitrary &&
+          t.subtype === TransactionArbitrarySubtype.Message
+        ).concat(confirmed.transactions);
 
-    return Promise.resolve(allMessages);
+      allMessages.sort((a, b) => a.timestamp > b.timestamp ? -1 : 1);
+      return allMessages;
+  }
+
+  async loadChats(): Promise<Chat[]> {
+    const messageTransactions = await this.fetchMessagesPerAccount();
+
+    return messageTransactions.reduce((acc, val) => {
+      const isSentMessage = this.user.account === val.sender;
+      val.attachment.timestamp = val.timestamp;
+      val.attachment.contactId = val.sender;
+      const existingMessage = acc.find((item) => {
+        return isSentMessage ? item.contactId === val.recipient :
+          item.contactId === val.sender;
+      });
+      if (existingMessage) {
+        existingMessage.dialog.unshift(val.attachment);
+        return acc;
+      }
+      return acc.concat({
+        contactId: isSentMessage ? val.recipient : val.sender,
+        dialog: [val.attachment],
+        senderRS: isSentMessage ? val.recipientRS : val.senderRS,
+        timestamp: val.timestamp // relies on default order being reverse chrono
+      });
+    }, []);
   }
 
   sendNewMessage(recipient): void {
@@ -212,8 +193,8 @@ export class MessagesService implements Resolve<any> {
       timestamp: ChainTime.fromDate(new Date()).getChainTimestamp()
     };
     if (recipient) {
-      this.messages.push(message);
-      this.onMessagesUpdated.next(this.messages);
+      this.chats.push(message);
+      this.onMessagesUpdated.next(this.chats);
     }
     this.getMessage(message, true);
   }
@@ -225,13 +206,13 @@ export class MessagesService implements Resolve<any> {
    * @param recipientRS the recipient to scan for
    */
   mergeWithExistingChatSession(message: ChatMessage, recipientRS: string): void {
-    const existingMessage = this.messages.find(({contactId}) => contactId === recipientRS);
+    const existingMessage = this.chats.find(({contactId}) => contactId === recipientRS);
     if (!existingMessage) {
       return;
     }
     existingMessage.dialog.push(message);
-    this.messages = this.messages.filter(({dialog}) => dialog[0] !== message);
-    this.onMessagesUpdated.next(this.messages);
+    this.chats = this.chats.filter(({dialog}) => dialog[0] !== message);
+    this.onMessagesUpdated.next(this.chats);
     this.getMessage(existingMessage);
   }
 }
