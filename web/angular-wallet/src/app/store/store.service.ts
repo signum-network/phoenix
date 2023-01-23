@@ -175,6 +175,7 @@ export class StoreService {
     this.withReady<void>(() => {
       const accounts = this.store.getCollection(CollectionName.AccountV2);
       const existingAccount = accounts.by('_id', createAccountSurrogateKey(account));
+      console.log("Save Account - tx.length", account.transactions.length)
       if (!existingAccount) {
         accounts.insert(account);
         return;
@@ -394,15 +395,21 @@ export class StoreService {
   public updateSettings(partialSettings: PartialSettings, propagateUpdate = true): void {
     this.withReady<void>(() => {
       const collection = this.store.getCollection(CollectionName.Settings);
+      const settings = this.getSettings();
       const newSettings = {
-        ...this.getSettings(),
+        ...settings,
         ...partialSettings
       };
 
+
       collection.update(newSettings);
+
       this.persist();
       if (propagateUpdate){
         this.settingsUpdated$.next(newSettings);
+        if (partialSettings.language){
+          this.languageSelected$.next(newSettings.language);
+        }
       }
     });
   }
@@ -456,7 +463,9 @@ export class StoreService {
       const settings = this.getSettings();
       const collection = this.store.getCollection(CollectionName.AccountV2);
       if (settings.selectedAccountId) {
-        return collection.by('_id', settings.selectedAccountId);
+        const acc =  collection.by('_id', settings.selectedAccountId);
+        console.log("Get Selected Account - tx.length", acc.transactions.length);
+        return acc;
       } else {
         const accounts = collection.chain().data();
         return accounts.length ? new WalletAccount(accounts[0]) : null;

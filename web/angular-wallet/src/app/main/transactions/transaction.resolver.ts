@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { TransactionService } from './transaction.service';
 import { Transaction } from '@signumjs/core';
+import { ApiService } from 'app/api.service';
 
 @Injectable()
 export class TransactionResolver implements Resolve<Promise<Transaction>> {
-  constructor(private transactionService: TransactionService) {
-      this.transactionService = transactionService;
+  constructor(private apiService: ApiService) {
   }
 
   resolve(route: ActivatedRouteSnapshot): Promise<Transaction> {
-    return this.transactionService.getTransaction(route.paramMap.get('id'));
+    return this.apiService.ledger.transaction.getTransaction(route.paramMap.get('id'));
   }
 }

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Address, AddressPrefix } from "@signumjs/core";
+import { Address } from '@signumjs/core';
 
 interface UnstoppableResponse {
   addresses: {
@@ -27,7 +27,7 @@ export class DomainService {
     const address = response.addresses.BURST || response.addresses.SIGNA;
     try{
       return Address.fromReedSolomonAddress(address).getNumericId();
-    }catch(e){
+    }catch (e){
       return null;
     }
   }

@@ -1,5 +1,16 @@
 <app-page title="{{ 'transactions' | i18n }}" [full]="true">
   <div class="p-16">
+    <div class="fullwidth since-text">
+      <small *ngIf="account.transactions.length" class="grey-500-fg font-size-10">{{"recent_transactions_since" | i18n}}&nbsp;{{oldestTransactionDate | date:'short':null:language}}</small>
+      <button
+        *ngIf="!isMobile"
+        class="ml-8"
+        mat-button
+        matTooltip="{{'load_all_transactions_hint' | i18n}}"
+        (click)="loadAllTransactions()"
+        [disabled]="isFetching"
+      >{{'load_all_transactions' | i18n }}</button>
+    </div>
     <div fxLayout="row wrap" fxLayoutAlign="space-between center">
       <div>
         <mat-form-field class="search-form">
@@ -32,7 +43,7 @@
                  [formControl]="pickerFromField"
                  (dateChange)="applyFilter()">
           <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
-          <mat-datepicker #pickerFrom></mat-datepicker>
+          <mat-datepicker #pickerFrom [startAt]="oldestTransactionDate"></mat-datepicker>
         </mat-form-field>
       </div>
       <div>

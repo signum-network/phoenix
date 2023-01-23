@@ -36,6 +36,8 @@ export class AccountManagementService {
     const lastKnownTransactionTimestamp = account.transactions.length
       ? account.transactions[0].timestamp
       : 0;
+
+
     const { transactions } = await this.apiService.ledger.account.getAccountTransactions({
       accountId: account.account,
       includeIndirect: true,
@@ -75,6 +77,7 @@ export class AccountManagementService {
     if (this.accountPolling$){
       this.accountPolling$.unsubscribe();
     }
+    // check for pending tx all 10 secs, but only all 30 secs for confirmed tx
     this.accountPolling$ = interval(10_000)
       .pipe(
         tap(async () => this.synchronizeAccount(account, true)),
@@ -123,6 +126,9 @@ export class AccountManagementService {
 
   private async syncAccountTransactions(accountRef: WalletAccount): Promise<void> {
     const { transactions } = accountRef;
+
+    console.log('syncAccountTransactions', transactions.length);
+
     const [recentTransactions, pendingTransactions] = await Promise.all([
       this.fetchAccountsRecentTransactions(accountRef),
       this.fetchAccountsPendingTransactions(accountRef)
@@ -144,7 +150,7 @@ export class AccountManagementService {
     const remoteAccount = await this.fetchAccountFromChain(accountRef.account);
     // Only update what you really need...
     // ATTENTION: Do not try to iterate over all keys and update then
-    // It will fail :shrug
+    // It will fail!!!
     accountRef.networkName = this.networkService.getNetworkInfo().networkName;
     accountRef.name = remoteAccount.name;
     accountRef.description = remoteAccount.description;

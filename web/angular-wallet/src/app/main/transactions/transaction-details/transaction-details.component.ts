@@ -9,6 +9,9 @@ import { CellValue, CellValueMapper } from './cell-value-mapper';
 import { NetworkService } from '../../../network/network.service';
 import { AppService } from '../../../app.service';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { AccountManagementService } from "../../../shared/services/account-management.service";
+import { takeUntil } from "rxjs/operators";
+import { UnsubscribeOnDestroy } from "../../../util/UnsubscribeOnDestroy";
 
 export interface TransactionDetailRow {
   k: string;
@@ -21,22 +24,26 @@ export interface TransactionDetailRow {
   templateUrl: './transaction-details.component.html',
   styleUrls: ['./transaction-details.component.scss']
 })
-export class TransactionDetailsComponent implements OnInit {
+export class TransactionDetailsComponent extends UnsubscribeOnDestroy implements OnInit {
 
   public detailsData: TransactionDetailRow[] = [];
   account: WalletAccount;
   transaction: Transaction;
   recipient: Account;
   explorerLink: string;
+
+  locale: string;
   private cellValueMapper: CellValueMapper;
 
   constructor(
+    private accountManagementService: AccountManagementService,
     private storeService: StoreService,
     private utilService: UtilService,
     private networkService: NetworkService,
     private appService: AppService,
     private route: ActivatedRoute
   ) {
+    super();
   }
 
   async ngOnInit(): Promise<void> {
@@ -45,11 +52,20 @@ export class TransactionDetailsComponent implements OnInit {
     // @ts-ignore
     delete this.transaction.attachmentBytes;
 
-    this.account = await this.storeService.getSelectedAccountLegacy();
+    this.account = await this.accountManagementService.getSelectedAccount();
     this.cellValueMapper = new CellValueMapper(this.transaction, this.account, this.utilService);
 
     const host = this.networkService.getChainExplorerHost();
     this.explorerLink = `${host}/tx/${this.transaction.transaction}`;
+
+    this.storeService.languageSelected$
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(() => {
+        this.updateDetailsData();
+      })
+  }
+
+  private updateDetailsData(): void {
     this.detailsData = Object
       .keys(this.transaction)
       .map(k => ({

@@ -1,6 +1,8 @@
-<h1 matDialogTitle>Confirm</h1>
-<div mat-dialog-content>{{confirmMessage}}</div>
-<div mat-dialog-actions class="pt-24">
-    <button mat-raised-button class="mat-accent mr-16" (click)="dialogRef.close(true)">Confirm</button>
-    <button mat-button (click)="dialogRef.close(false)">Cancel</button>
+<div class="confirm-dialog p-24">
+  <h1 matDialogTitle>{{data.title}}</h1>
+  <div mat-dialog-content>{{data.message}}</div>
+  <div mat-dialog-actions class="pt-16 mt-16">
+    <button mat-button (click)="dialogRef.close(false)">{{"cancel" | i18n}}</button>
+    <button mat-raised-button class="mat-accent" (click)="dialogRef.close(true)">{{"confirm" | i18n}}</button>
+  </div>
 </div>

@@ -16,11 +16,13 @@ export interface Language {
 })
 export class I18nService {
 
-  public state = new BehaviorSubject(null);
+  // public state = new BehaviorSubject(null);
   public currentLanguage: Language = {
     name: 'default',
     code: 'en'
   };
+
+  private translations = {};
 
   constructor(
     private http: HttpClient,
@@ -37,10 +39,6 @@ export class I18nService {
   }
 
   private fetch(locale: any): void {
-    this.http.get(`locales/${locale}.json`)
-      .subscribe((data: any) => {
-        this.state.next(data);
-      });
   }
 
   private initLanguage(locale: string): void {
@@ -52,18 +50,15 @@ export class I18nService {
     this.currentLanguage = language;
     const settings = this.storeService.getSettings();
     settings.language = language.code;
-    this.storeService.updateSettings(settings);
-    this.fetch(language.code);
-  }
-
-  subscribe(callback: (translations: any) => void) : Subscription {
-    return this.state.subscribe({
-      next: callback,
-    });
+    this.http.get(`locales/${language.code}.json`)
+      .subscribe((data: any) => {
+        this.translations = data;
+        this.storeService.updateSettings({ language: language.code });
+      });
   }
 
   public getTranslation(phrase: string, opts?: any): string {
-    const data = this.state.getValue();
+    const data = this.translations;
     return data && data[phrase] ? data[phrase] : phrase;
   }
 

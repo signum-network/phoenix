@@ -1,26 +1,33 @@
-.indicator {
+:host {
+
+  .indicator {
     padding-top: 5px;
-}
+  }
 
-.mat-table {
-  overflow: auto;
-  max-height: calc(100vh - 280px);
-}
+  .mat-table {
+    overflow: auto;
+    max-height: calc(100vh - 280px);
+  }
 
-.search-form {
+  .search-form {
     width: 300px;
-}
+  }
 
-mat-form-field {
-  width:100%;
-}
+  mat-form-field {
+    width: 100%;
+  }
 
-.sync-icon {
+  .sync-icon {
     height: 40px;
     width: 40px;
     font-size: 40px;
-}
+  }
 
-.transactions-table {
-  min-width:800px;
+  .transactions-table {
+    min-width: 800px;
+  }
+
+  .since-text {
+    text-align: right;
+  }
 }

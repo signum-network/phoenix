@@ -8,19 +8,21 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   Transaction,
-  isMultiOutSameTransaction,
-  isMultiOutTransaction,
   getRecipientsAmount,
   TransactionMiningSubtype,
-  TransactionType, TransactionAssetSubtype, TransactionArbitrarySubtype, TransactionPaymentSubtype
+  TransactionType, TransactionArbitrarySubtype
 } from '@signumjs/core';
 import { Amount, ChainTime } from '@signumjs/util';
 import { UtilService } from 'app/util.service';
 import { takeUntil } from 'rxjs/operators';
-import { UnsubscribeOnDestroy } from '../../../util/UnsubscribeOnDestroy';
+import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
 import { StoreService } from '../../../store/store.service';
 import { formatDate } from '@angular/common';
-import { WalletAccount } from '../../../util/WalletAccount';
+import { WalletAccount } from 'app/util/WalletAccount';
+import { isSelf } from 'app/util/transaction/isSelf';
+import { isBurn } from 'app/util/transaction/isBurn';
+import { isMultiOutPayment } from 'app/util/transaction/isMultiOut';
+import { isTokenHolderDistribution } from 'app/util/transaction/isTokenHolderDistribution';
 
 
 @Component({
@@ -50,12 +52,8 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
       });
   }
 
-  private isTokenHolderDistribution(transaction: Transaction): boolean {
-    return transaction.type === TransactionType.Asset && transaction.subtype === TransactionAssetSubtype.AssetDistributeToHolders;
-  }
-
   public isMultiOutPayment(transaction: Transaction): boolean {
-    return isMultiOutSameTransaction(transaction) || isMultiOutTransaction(transaction) || this.isTokenHolderDistribution(transaction);
+    return isMultiOutPayment(transaction);
   }
 
   public ngAfterViewInit(): void {
@@ -121,7 +119,7 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
 
     const isNegative = this.isAmountNegative(row);
 
-    if (this.isTokenHolderDistribution(row)) {
+    if (isTokenHolderDistribution(row)) {
       return cx(row.sender === this.account.account ? 'outgoing' : 'incoming');
     }
 
@@ -153,20 +151,10 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   }
 
   isSelf(transaction: Transaction): boolean {
-    if (transaction.sender === transaction.recipient) {
-      return true;
-    }
-    if (transaction.type === TransactionType.Arbitrary) {
-      return transaction.subtype === TransactionArbitrarySubtype.AccountInfo ||
-        transaction.subtype === TransactionArbitrarySubtype.AliasAssignment;
-    }
-    return transaction.type === TransactionType.Mining;
+    return isSelf(transaction);
   }
 
   public isBurn(transaction: Transaction): boolean {
-    return !transaction.recipient && (
-      (transaction.type === TransactionType.Asset && transaction.subtype === TransactionAssetSubtype.AssetTransfer) ||
-      (transaction.type === TransactionType.Payment && transaction.subtype === TransactionPaymentSubtype.Ordinary)
-    );
+    return isBurn(transaction);
   }
 }

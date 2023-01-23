@@ -1,21 +1,17 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {
-  TransactionApi,
   TransactionId,
   AttachmentEncryptedMessage,
   AttachmentMessage,
   Attachment,
-  MultioutRecipientAmount, Transaction
+  MultioutRecipientAmount
 } from '@signumjs/core';
 import {Keys, encryptMessage, encryptData, EncryptedMessage, EncryptedData} from '@signumjs/crypto';
 import {ApiService} from '../../api.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {convertHexStringToByteArray} from '@signumjs/util';
-import {StoreService} from 'app/store/store.service';
-import {Settings} from 'app/store/settings';
-import {getPrivateSigningKey} from '../../util/security/getPrivateSigningKey';
-import {getPrivateEncryptionKey} from '../../util/security/getPrivateEncryptionKey';
+import {getPrivateSigningKey} from 'app/util/security/getPrivateSigningKey';
+import {getPrivateEncryptionKey} from 'app/util/security/getPrivateEncryptionKey';
 
 interface SendSignaMultipleSameRequest {
   amountNQT: string;
@@ -47,40 +43,18 @@ interface SendSignaRequest {
   shouldEncryptMessage?: boolean;
 }
 
-interface SetAliasOnSaleRequest {
-  price: string;
-  fee: string;
-  keys: Keys;
-  message?: string;
-  pin: string;
-  recipientId: string;
-  recipientPublicKey: string;
-  messageIsText: boolean;
-  shouldEncryptMessage?: boolean;
-}
-
 @Injectable({
   providedIn: 'root'
 })
-export class TransactionService {
-  private transactionApi: TransactionApi;
+export class SendMoneyService {
 
-  public currentAccount: BehaviorSubject<any> = new BehaviorSubject(undefined);
-
-  constructor(apiService: ApiService, private accountService: AccountService, private storeService: StoreService) {
-    this.transactionApi = apiService.ledger.transaction;
-    this.storeService.settingsUpdated$.subscribe((settings: Settings) => {
-      this.transactionApi = apiService.ledger.transaction;
-    });
-  }
-
-  public getTransaction(id: string): Promise<Transaction> {
-    return this.transactionApi.getTransaction(id);
+  constructor(private apiService: ApiService,
+              private accountService: AccountService) {
   }
 
   public sendAmountToMultipleRecipients(request: SendSignaMultipleRequest): Promise<TransactionId> {
     const {fee, keys, pin, recipientAmounts} = request;
-    return this.transactionApi.sendAmountToMultipleRecipients({
+    return this.apiService.ledger.transaction.sendAmountToMultipleRecipients({
       senderPublicKey: keys.publicKey,
       senderPrivateKey: getPrivateSigningKey(pin, keys),
       recipientAmounts,
@@ -90,7 +64,7 @@ export class TransactionService {
 
   public sendSameAmountToMultipleRecipients(request: SendSignaMultipleSameRequest): Promise<TransactionId> {
     const {amountNQT, fee, keys, pin, recipientIds} = request;
-    return this.transactionApi.sendSameAmountToMultipleRecipients({
+    return this.apiService.ledger.transaction.sendSameAmountToMultipleRecipients({
       amountPlanck: amountNQT,
       feePlanck: fee,
       recipientIds,
@@ -130,7 +104,7 @@ export class TransactionService {
     }
 
     // @ts-ignore
-    return this.transactionApi.sendAmountToSingleRecipient({
+    return this.apiService.ledger.transaction.sendAmountToSingleRecipient({
       amountPlanck: amount,
       feePlanck: fee,
       recipientId,

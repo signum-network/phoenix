@@ -35,7 +35,7 @@ import {NewVersionDialogComponent} from './components/new-version-dialog/new-ver
 import {MatProgressBarModule, MatProgressSpinnerModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
-import { ApiService } from "./api.service";
+import { ApiService } from './api.service';
 
 registerLocales();
 

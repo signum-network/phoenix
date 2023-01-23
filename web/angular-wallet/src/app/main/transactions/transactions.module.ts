@@ -33,6 +33,7 @@ import {TransactionRowValueCellComponent} from './transaction-details/transactio
 import {AppSharedModule} from '../../shared/shared.module';
 import {ComponentsModule} from '../../components/components.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { FuseConfirmDialogModule } from '@fuse/components';
 
 const routes = [
   {
@@ -82,7 +83,8 @@ const routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     TransactionTableModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FuseConfirmDialogModule,
   ],
   declarations: [
     TransactionsComponent,
@@ -91,7 +93,7 @@ const routes = [
   ],
   providers: [
     TransactionResolver
-  ]
+  ],
 })
 export class TransactionsModule {
 }

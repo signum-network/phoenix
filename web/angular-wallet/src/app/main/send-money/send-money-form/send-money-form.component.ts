@@ -1,8 +1,7 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Address, SuggestedFees, TransactionPaymentSubtype, TransactionType } from '@signumjs/core';
+import { SuggestedFees, TransactionPaymentSubtype, TransactionType } from '@signumjs/core';
 import { Amount, convertBase64StringToString, CurrencySymbol } from '@signumjs/util';
 import { NgForm } from '@angular/forms';
-import { TransactionService } from 'app/main/transactions/transaction.service';
 import { NotifierService } from 'angular-notifier';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -21,6 +20,7 @@ import { WarnSendDialogComponent } from 'app/components/warn-send-dialog/warn-se
 import { asBool, isNotEmpty } from 'app/util/forms';
 import { constants } from '../../../constants';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { SendMoneyService } from '../send-money.service';
 
 interface CIP22Payload {
   amountPlanck: string | number;
@@ -68,7 +68,7 @@ export class SendMoneyFormComponent extends UnsubscribeOnDestroy implements OnIn
 
   constructor(
     private warnDialog: MatDialog,
-    private transactionService: TransactionService,
+    private sendMoneyService: SendMoneyService,
     private notifierService: NotifierService,
     private i18nService: I18nService,
     private storeService: StoreService,
@@ -77,9 +77,7 @@ export class SendMoneyFormComponent extends UnsubscribeOnDestroy implements OnIn
   ) {
     super();
     this.storeService.settingsUpdated$
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
+      .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(async ({ language }) => {
           this.language = language;
         }
@@ -191,7 +189,7 @@ export class SendMoneyFormComponent extends UnsubscribeOnDestroy implements OnIn
     try {
       this.isSending = true;
 
-      await this.transactionService.sendAmount({
+      await this.sendMoneyService.sendAmount({
         amount: Amount.fromSigna(this.amount).getPlanck(),
         fee: Amount.fromSigna(this.fee).getPlanck(),
         recipientId: recipientId,

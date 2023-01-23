@@ -542,5 +542,8 @@
   "enter_recipient_public_key_hint": "The recipient's account is unsafe, so a transfer without the recipient's public key is not allowed.",
   "recipient_public_key_invalid": "Recipient Address/Id does not match given public key",
   "recipient_public_key_valid": "Recipient Address/Id and public key match",
-  "manage_accounts": "Manage Accounts"
+  "manage_accounts": "Manage Accounts",
+  "confirm": "Confirm",
+  "load_all_transactions": "Load All",
+  "load_all_transactions_hint": "Loading all transactions eventually causes a lot of requests with high bandwidth usage. Depending on yours and the nodes internet connection and the number of transactions this action can take some time. Once fetched, the transactions are cached locally. Do you really want to load all transactions? (Fetching limit is capped to 10K transactions)"
 }

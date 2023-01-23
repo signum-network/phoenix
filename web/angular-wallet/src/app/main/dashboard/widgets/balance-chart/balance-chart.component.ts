@@ -12,7 +12,8 @@ import {
 } from 'app/util/balance';
 import {UnsubscribeOnDestroy} from 'app/util/UnsubscribeOnDestroy';
 import {I18nService} from 'app/layout/components/i18n/i18n.service';
-import { WalletAccount } from "../../../../util/WalletAccount";
+import { WalletAccount } from 'app/util/WalletAccount';
+import { StoreService } from "../../../../store/store.service";
 
 @Component({
   selector: 'app-balance-chart',
@@ -28,14 +29,18 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
   @Input() public priceRub: number;
 
   chart: any;
-  firstDate = '';
+  firstDate = new Date();
   transactionCount = 50;
   accountBalances: AccountBalances;
+  locale: string;
 
   private balanceHistory: BalanceHistoryItem[];
   private isMobile = false;
 
+  private unsubscriber = takeUntil(this.unsubscribeAll);
+
   constructor(private router: Router,
+              private storeService: StoreService,
               private i18nService: I18nService,
               private breakpointObserver: BreakpointObserver) {
     super();
@@ -44,15 +49,25 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
   ngOnInit(): void {
     this.breakpointObserver
       .observe(Breakpoints.Handset)
-      .pipe(takeUntil(this.unsubscribeAll))
+      .pipe(this.unsubscriber)
       .subscribe(({matches}) => {
         this.isMobile = matches;
         this.updateChart();
       });
 
-    this.i18nService.subscribe(() => {
-      this.updateChart();
-    });
+    this.storeService.languageSelected$
+      .pipe(this.unsubscriber)
+      .subscribe((locale: string) => {
+        this.locale = locale;
+        this.updateChart();
+      });
+
+    this.storeService.accountUpdated$
+      .pipe(this.unsubscriber)
+      .subscribe(() => {
+        this.updateChart();
+      });
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -77,8 +92,8 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
     const min = Math.min(...chartData);
     this.firstDate = this.balanceHistory.length &&
       this.balanceHistory[0].timestamp &&
-      this.toDateString(ChainTime.fromChainTimestamp(this.balanceHistory[0].timestamp).getDate()) ||
-      this.toDateString(new Date());
+      ChainTime.fromChainTimestamp(this.balanceHistory[0].timestamp).getDate() ||
+      new Date();
 
     this.chart = {
       datasets: [

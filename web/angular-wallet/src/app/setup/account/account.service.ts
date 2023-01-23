@@ -293,7 +293,7 @@ export class AccountService {
     //   this.updateCurrentAccount(account); // emits update event
     // }
 
-    this.storeService.saveAccount(account);
+    // this.storeService.saveAccount(account);
     return account;
   }
 
@@ -367,7 +367,7 @@ export class AccountService {
   private async syncAccountTransactions(account: WalletAccount): Promise<void> {
     try {
       const { account: accountId, transactions } = account;
-      let transactionList = transactions.slice(0, 500); // max supported tx
+      let transactionList = transactions ;// transactions.slice(0, 500); // max supported tx
       if (transactions.length > 0) {
         const timestamp = transactions[0].timestamp.toString(10);
         const { transactions: recentTransactions } = await this.getAccountTransactions({

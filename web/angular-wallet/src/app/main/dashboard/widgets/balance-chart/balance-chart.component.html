@@ -1,7 +1,7 @@
 <div class="fullwidth fullheight" (mouseenter)="showPoints()" (mouseleave)="hidePoints()">
   <div class="main-widget" *ngIf="chart">
     <div class="fuse-navy-500-fg">
-      <small *ngIf="account.transactions.length" class="grey-500-fg font-size-10 since-text">{{"recent_transactions_since" | i18n}}&nbsp;{{firstDate}}</small>
+      <small *ngIf="account.transactions.length" class="grey-500-fg font-size-10 since-text">{{"recent_transactions_since" | i18n}}&nbsp;{{firstDate|date:'short':null:locale}}</small>
       <div class="balance-info mt-16">
         <h1 class="pr-8 mb-0">{{accountBalances.totalBalance.getSigna() | amount}}</h1>
         <div class="inline">

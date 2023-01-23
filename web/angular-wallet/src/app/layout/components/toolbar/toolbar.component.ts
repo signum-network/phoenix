@@ -39,7 +39,7 @@ export class ToolbarComponent
   hiddenNavbar: boolean;
   languages: any;
   navigation: any;
-  selectedLanguage: any;
+  languageName: string;
   userStatusOptions: any[];
   isMainNet = false;
   profiles: UserProfile[];
@@ -95,7 +95,7 @@ export class ToolbarComponent
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((settings) => {
         if (!settings) { return; }
-        this.selectedLanguage = settings.language;
+        this.languageName = this.getLanguageName(settings.language);
         this.selectedProfile = this.getProfileByName(settings.userProfile);
         this.selectedAccount = this.accountManagementService.getSelectedAccount();
         this.accounts = this.accountManagementService.getAllAccounts();
@@ -121,7 +121,7 @@ export class ToolbarComponent
   }
 
   setLanguage(lang): void {
-    this.selectedLanguage = lang;
+    this.languageName = lang;
     this.i18nService.setLanguage(lang);
   }
 
@@ -138,5 +138,14 @@ export class ToolbarComponent
 
   private getProfileByName(profileName: string): UserProfile {
     return this.profiles.find((p) => p.name === profileName);
+  }
+
+  private getLanguageName(languageCode: string): string {
+    for (const l of constants.languages){
+      if (l.code === languageCode){
+        return l.name;
+      }
+    }
+    console.warn(`Language '${languageCode}' not found`);
   }
 }

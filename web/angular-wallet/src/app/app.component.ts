@@ -205,6 +205,7 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
 
   }
 
+  // TODO: refactor this ...
   private async checkBlockchainStatus(): Promise<void> {
     try {
       const blockchainStatus = await this.networkService.getBlockchainStatus();
@@ -218,10 +219,6 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         setTimeout(async () => {
           await this.updateAccountsAndCheckBlockchainStatus(blockchainStatus);
         }, 1000);
-      } else if (this.selectedAccount) {
-        await this.accountService.synchronizeAccount(this.selectedAccount).catch(() => {
-        });
-        // hit this call again every 1 sec if the blockchain is being downloaded
       } else if (this.downloadingBlockchain) {
         setTimeout(this.checkBlockchainStatus.bind(this), 1000);
       }
@@ -231,34 +228,11 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
     }
   }
 
-  private async checkPendingTransactions(account: WalletAccount): Promise<WalletAccount>{
-    return this.accountService.synchronizeAccount(account, true);
-  }
-
   private async updateAccountsAndCheckBlockchainStatus(blockchainStatus: BlockchainStatus): Promise<void> {
-    // this.updateAccounts();
     const block = await this.networkService.getBlockById(blockchainStatus.lastBlock);
     this.networkService.addBlock(block);
-    this.checkBlockchainStatus();
+    await this.checkBlockchainStatus();
   }
-
-  private async updateAccounts(): Promise<void> {
-    this.storeService.getSelectedAccountLegacy().then((account) => {
-      if (account !== this.selectedAccount) {
-        this.selectedAccount = account;
-        this.accountService.selectAccount(account);
-      }
-    });
-
-    this.accounts = await this.storeService.getAllAccountsLegacy();
-    this.accounts.map((account) => {
-      setTimeout(() => {
-        this.accountService.synchronizeAccount(account).catch(() => {
-        });
-      }, 1);
-    });
-  }
-
 
   private openNewVersionDialog(): MatDialogRef<NewVersionDialogComponent> {
     return this.newVersionDialog.open(NewVersionDialogComponent, {
