@@ -56,7 +56,6 @@ export class StoreService {
   public accountUpdated$: Subject<WalletAccount> = new Subject();
 
 
-
   constructor(
     private storeConfig: StoreConfig
   ) {
@@ -147,16 +146,16 @@ export class StoreService {
     // hacky shit to dispatch first selections
     timer(1).subscribe(() => {
       const selectedAccount = this.getSelectedAccount();
-      if (selectedAccount){
+      if (selectedAccount) {
         this.accountSelected$.next(selectedAccount);
       }
       const selectedNode = this.getSelectedNode();
-      if (selectedNode){
+      if (selectedNode) {
         this.nodeSelected$.next(selectedNode);
       }
 
       const selectedLanguage = this.getSelectedLanguage();
-      if (selectedLanguage){
+      if (selectedLanguage) {
         this.languageSelected$.next(selectedLanguage);
       }
     });
@@ -173,31 +172,35 @@ export class StoreService {
 
   public saveAccount(account: WalletAccount): void {
     this.withReady<void>(() => {
-      const accounts = this.store.getCollection(CollectionName.AccountV2);
-      const existingAccount = accounts.by('_id', createAccountSurrogateKey(account));
+      const accounts = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
+      const _id = createAccountSurrogateKey(account);
+      const existingAccount = accounts.by('_id', _id);
       if (!existingAccount) {
-        accounts.insert(account);
-        return;
+        const dbAccount = new WalletAccount(account) as DbWalletAccount;
+        dbAccount._id = _id;
+        accounts.insert(dbAccount);
+        this.accountUpdated$.next(new WalletAccount(dbAccount));
+      } else {
+        // Only update what you really need...
+        // ATTENTION: Do not try to iterate over all keys and update then
+        // It will fail :shrug
+        // look at account.service.ts for the counter part
+        existingAccount.balanceNQT = account.balanceNQT;
+        existingAccount.unconfirmedBalanceNQT = account.unconfirmedBalanceNQT;
+        existingAccount.committedBalanceNQT = account.committedBalanceNQT;
+        existingAccount.accountRSExtended = account.accountRSExtended;
+        existingAccount.accountRS = account.accountRS;
+        existingAccount.assetBalances = account.assetBalances;
+        existingAccount.type = account.type;
+        existingAccount.name = account.name;
+        existingAccount.description = account.description;
+        existingAccount.keys = account.keys;
+        existingAccount.transactions = account.transactions;
+        existingAccount.confirmed = account.confirmed;
+        accounts.update(existingAccount);
+        this.accountUpdated$.next(new WalletAccount(existingAccount));
       }
-      // Only update what you really need...
-      // ATTENTION: Do not try to iterate over all keys and update then
-      // It will fail :shrug
-      // look at account.service.ts for the counter part
-      existingAccount.balanceNQT = account.balanceNQT;
-      existingAccount.unconfirmedBalanceNQT = account.unconfirmedBalanceNQT;
-      existingAccount.committedBalanceNQT = account.committedBalanceNQT;
-      existingAccount.accountRSExtended = account.accountRSExtended;
-      existingAccount.accountRS = account.accountRS;
-      existingAccount.assetBalances = account.assetBalances;
-      existingAccount.type = account.type;
-      existingAccount.name = account.name;
-      existingAccount.description = account.description;
-      existingAccount.keys = account.keys;
-      existingAccount.transactions = account.transactions;
-      existingAccount.confirmed = account.confirmed;
-      accounts.update(existingAccount);
 
-      this.accountUpdated$.next(new WalletAccount(existingAccount));
     });
   }
 
@@ -315,16 +318,16 @@ export class StoreService {
       collection.update(newSettings);
 
       this.persist();
-      if (propagateUpdate){
+      if (propagateUpdate) {
         this.settingsUpdated$.next(newSettings);
-        if (partialSettings.language){
+        if (partialSettings.language) {
           this.languageSelected$.next(newSettings.language);
         }
-        if (partialSettings.node){
+        if (partialSettings.node) {
           this.nodeSelected$.next({
             nodeUrl: partialSettings.node,
             addressPrefix: partialSettings.addressPrefix,
-            networkName: partialSettings.networkName,
+            networkName: partialSettings.networkName
           });
         }
       }
@@ -336,7 +339,7 @@ export class StoreService {
       const currentSettings = this.getSettings();
       const id = createAccountSurrogateKey(account);
       if (id !== currentSettings.selectedAccountId) {
-        this.updateSettings({selectedAccountId: createAccountSurrogateKey(account)}, false);
+        this.updateSettings({ selectedAccountId: createAccountSurrogateKey(account) }, false);
         const selectedAccount = this.getSelectedAccount();
         this.accountSelected$.next(selectedAccount);
       }
@@ -364,17 +367,17 @@ export class StoreService {
   public removeAccountsByAccountId(accountId: string): void {
     this.withReady(() => {
       const accounts = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
-      accounts.chain().find({account: accountId}).remove();
+      accounts.chain().find({ account: accountId }).remove();
       this.persist();
     });
   }
 
   public setSelectedNode(nodeInfo: NodeInfo, forced = false): void {
     this.withReady(() => {
-      const {nodeUrl, networkName, addressPrefix} = nodeInfo;
+      const { nodeUrl, networkName, addressPrefix } = nodeInfo;
       const currentSettings = this.getSettings();
       if (currentSettings.node !== nodeUrl || currentSettings.networkName !== networkName || forced) {
-        this.updateSettings({node: nodeUrl, networkName, addressPrefix}, false);
+        this.updateSettings({ node: nodeUrl, networkName, addressPrefix }, false);
         this.nodeSelected$.next(nodeInfo);
       }
     });
@@ -383,10 +386,10 @@ export class StoreService {
   public getSelectedAccount(): WalletAccount | null {
     return this.withReady<WalletAccount | null>(() => {
 
-      const fallbackSelection =  () => {
+      const fallbackSelection = () => {
         const accounts = collection.chain().data();
-        if (accounts.length){
-          this.updateSettings({selectedAccountId: accounts[0]._id}, false);
+        if (accounts.length) {
+          this.updateSettings({ selectedAccountId: accounts[0]._id }, false);
           return new WalletAccount(accounts[0]);
         }
         return null;
@@ -395,7 +398,7 @@ export class StoreService {
       const settings = this.getSettings();
       const collection = this.store.getCollection(CollectionName.AccountV2);
       if (settings.selectedAccountId) {
-        const acc =  collection.by('_id', settings.selectedAccountId);
+        const acc = collection.by('_id', settings.selectedAccountId);
         return acc ? new WalletAccount(acc) : fallbackSelection();
       } else {
         fallbackSelection();
