@@ -73,7 +73,7 @@ export class RecipientInputComponent implements OnChanges {
   _recipientValue = '';
   recipientFieldInputChange$: Subject<string> = new Subject<string>();
 
-  needPublicKey = true;
+  needPublicKey = false;
   isPublicKeyValid = false;
   @Input() withQrCode = true;
   // tslint:disable-next-line: no-input-rename

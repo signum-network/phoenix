@@ -1,4 +1,4 @@
-<app-page title="{{ 'send_signa' | i18n }}" *ngIf="fees" [wide]="false">
+<app-page title="{{ 'send_signa' | i18n }}" *ngIf="fees && account" [wide]="false">
   <div class="account-info pl-20 pr-20 mb-8">
     <div class="account-info__field">
       <small class="secondary-text text-uppercase">{{'account'| i18n}}</small>

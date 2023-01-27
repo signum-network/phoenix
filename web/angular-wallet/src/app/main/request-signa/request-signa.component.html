@@ -1,37 +1,33 @@
-<app-page title="{{'request_burst' | i18n}}">
+<app-page *ngIf="account" title="{{'request_burst' | i18n}}">
 
   <mat-horizontal-stepper #stepper [linear]="true" labelPosition="bottom">
     <mat-step>
       <ng-template matStepLabel>{{ 'qr_code_data' | i18n }}</ng-template>
       <div class="step-container">
 
-        <form (ngSubmit)="onSubmit($event);" #requestBurstForm="ngForm">
-          <mat-form-field>
-            <input matInput [(ngModel)]="account.accountRS" name="recipientRS" disabled>
-            <label matSuffix class="font-size-12">{{ 'your_address' | i18n }}</label>
-          </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="account.accountRS" name="recipientRS" disabled>
+          <label matSuffix class="font-size-12">{{ 'your_address' | i18n }}</label>
+        </mat-form-field>
 
-          <mat-form-field>
-            <span class="mr-8" matPrefix>{{symbol}}</span>
-            <input matInput [(ngModel)]="amount" name="amount" placeholder="{{ 'amount' | i18n }}">
-          </mat-form-field>
+        <app-amount-input [(amount)]="amount"></app-amount-input>
 
-          <app-fee-input [type]="txType"
-                         [subtype]="txSubtype"
-                         [(feeSigna)]="fee"
-          >
-          </app-fee-input>
+        <app-fee-input [type]="txType"
+                       [subtype]="txSubtype"
+                       [(feeSigna)]="fee"
+        >
+        </app-fee-input>
 
-          <mat-checkbox [(ngModel)]="immutable" name="immutable">{{ "immutable" | i18n }}</mat-checkbox>
+        <mat-checkbox [(ngModel)]="immutable" name="immutable">{{ "immutable" | i18n }}</mat-checkbox>
 
-        </form>
         <div class="submit-qr">
           <span><strong>{{'total' | i18n}}:</strong> {{ getTotal() | amount }}</span>
           <button type="submit"
                   class="mr-8"
                   mat-raised-button
                   mat-button color="primary"
-                  (click)="onSubmit($event)"
+                  matStepperNext
+                  (click)="checkForPayment()"
                   disabled="{{getAmount()===0}}"
           >{{ "generate_qr" | i18n }}</button>
         </div>
@@ -40,17 +36,17 @@
     <mat-step>
       <ng-template matStepLabel>{{ 'qr_code' | i18n }}</ng-template>
       <div class="step-container">
-        <ng-container *ngIf="!paid">
-          <app-request-qr-code
-            [recipientRS]="account.accountRS"
-            [amount]="amount || '0'"
-            [fee]="fee"
-            [immutable]="immutable"
-          ></app-request-qr-code>
-        </ng-container>
-        <ng-container *ngIf="paid">
+        <app-request-qr-code
+          [recipientRS]="account.accountRS"
+          [amount]="amount || '0'"
+          [fee]="fee"
+          [immutable]="immutable"
+        ></app-request-qr-code>
+        <ng-container>
           <div class="paid-container">
-            <mat-icon>check_circle</mat-icon>
+            <mat-icon *ngIf="paid" class="paid">check_circle</mat-icon>
+            <mat-icon *ngIf="!paid" class="rotate">refresh</mat-icon>
+            <small>{{(paid ? "paid" : "waiting_for_payment") |  i18n}}</small>
           </div>
         </ng-container>
       </div>

@@ -18,11 +18,18 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 240px;
+
   mat-icon {
-    color: green;
-    font-size: 180px;
     width: auto;
     height: auto;
+    font-size: 120px;
   }
+  .paid {
+    color: green;
+  }
+  .rotate {
+    color: grey;
+    animation: rotate 1s linear infinite;
+  }
+
 }
