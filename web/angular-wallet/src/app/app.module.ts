@@ -28,7 +28,6 @@ import {NotifierModule} from 'angular-notifier';
 import {UtilService} from './util.service';
 import {I18nModule} from './layout/components/i18n/i18n.module';
 import {DisclaimerModule} from './disclaimer/disclaimer.module';
-import {SettingsResolver} from './store/settings.resolver';
 import {registerLocales} from './layout/components/i18n/locales';
 import {NgxElectronModule} from 'ngx-electron';
 import {NewVersionDialogComponent} from './components/new-version-dialog/new-version-dialog.component';
@@ -90,7 +89,6 @@ const appRoutes: Routes = [
         StoreService,
         UtilService,
         ApiService,
-        SettingsResolver
     ],
     entryComponents: [
         NewVersionDialogComponent

@@ -417,7 +417,6 @@
   "vote": "Vote",
   "vote_casting": "Vote Casting",
   "warning": "Warning",
-  "watch_burst_account": "Observe Account",
   "wrong_pin": "Wrong PIN",
   "yes": "Yes",
   "you": "You",
@@ -545,5 +544,6 @@
   "manage_accounts": "Manage Accounts",
   "confirm": "Confirm",
   "load_all_transactions": "Load All",
-  "load_all_transactions_hint": "Loading all transactions eventually causes a lot of requests with high bandwidth usage. Depending on yours and the nodes internet connection and the number of transactions this action can take some time. Once fetched, the transactions are cached locally. Do you really want to load all transactions? (Fetching limit is capped to 10K transactions)"
+  "load_all_transactions_hint": "Loading all transactions eventually causes a lot of requests with high bandwidth usage. Depending on yours and the nodes internet connection and the number of transactions this action can take some time. Once fetched, the transactions are cached locally. Do you really want to load all transactions? (Fetching limit is capped to 10K transactions)",
+  "select_account": "Select"
 }

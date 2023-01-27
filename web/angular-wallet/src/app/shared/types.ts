@@ -2,6 +2,7 @@
  export interface NodeInfo {
    nodeUrl: string;
    networkName: string;
+   addressPrefix: string;
  }
 
 

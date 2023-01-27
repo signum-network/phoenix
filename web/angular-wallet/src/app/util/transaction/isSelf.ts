@@ -1,9 +1,9 @@
 import {
   Transaction,
-  TransactionArbitrarySubtype, TransactionEscrowSubtype,
+  TransactionArbitrarySubtype, TransactionAssetSubtype, TransactionEscrowSubtype,
   TransactionSmartContractSubtype,
   TransactionType
-} from '@signumjs/core';
+} from "@signumjs/core";
 import { isMultiOutPayment } from './isMultiOut';
 
 export function isSelf(transaction: Transaction): boolean {
@@ -27,6 +27,11 @@ export function isSelf(transaction: Transaction): boolean {
 
   if (transaction.type === TransactionType.Escrow) {
     return transaction.subtype === TransactionEscrowSubtype.SubscriptionCancel;
+  }
+
+  if (transaction.type === TransactionType.Asset) {
+    return transaction.subtype !== TransactionAssetSubtype.AssetTransfer
+     && transaction.subtype !== TransactionAssetSubtype.AssetMultiTransfer
   }
 
   return transaction.type === TransactionType.Mining;

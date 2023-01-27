@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { StoreService } from 'app/store/store.service';
-import { Account, Transaction } from '@signumjs/core';
+import { Account, Address, Transaction } from '@signumjs/core';
 import { ApiService } from '../../api.service';
 import { NetworkService } from '../../network/network.service';
 import { uniqBy } from 'lodash';
@@ -9,7 +9,7 @@ import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-b
 import { WalletAccount } from 'app/util/WalletAccount';
 import { interval, Subscription } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
-
+import { Recipient } from '../../components/recipient-input/recipient-input.component';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,9 @@ export class AccountManagementService {
     this.storeService
       .settingsUpdated$
       .subscribe((settings: Settings) => {
-        if (!settings) { return; }
+        if (!settings) {
+          return;
+        }
         this.showDesktopNotifications = settings.showDesktopNotifications;
       });
   }
@@ -67,21 +69,23 @@ export class AccountManagementService {
 
   public async selectAccount(account: WalletAccount): Promise<void> {
     this.storeService.setSelectedAccount(account);
-    this.progressBarService.show();
-    await this.synchronizeAccount(account, false);
-    this.progressBarService.hide();
-    this.listenToAccount(account);
+    if (account) {
+      this.progressBarService.show();
+      await this.synchronizeAccount(account, false);
+      this.progressBarService.hide();
+      this.listenToAccount(account);
+    }
   }
 
   private listenToAccount(account: WalletAccount): void {
-    if (this.accountPolling$){
+    if (this.accountPolling$) {
       this.accountPolling$.unsubscribe();
     }
     // check for pending tx all 10 secs, but only all 30 secs for confirmed tx
     this.accountPolling$ = interval(10_000)
       .pipe(
         tap(async () => this.synchronizeAccount(account, true)),
-        filter( i => i % 3 === 0)
+        filter(i => i % 3 === 0)
       )
       .subscribe(async () => {
         await this.synchronizeAccount(account, false);
@@ -91,9 +95,9 @@ export class AccountManagementService {
 
   private async synchronizeAccount(accountRef: WalletAccount, pendingOnly: boolean): Promise<WalletAccount> {
     try {
-      if (pendingOnly){
+      if (pendingOnly) {
         await this.syncPendingAccountTransactions(accountRef);
-      }else{
+      } else {
         await Promise.all([
           this.syncAccountDetails(accountRef),
           this.syncAccountTransactions(accountRef)
@@ -151,7 +155,7 @@ export class AccountManagementService {
     // Only update what you really need...
     // ATTENTION: Do not try to iterate over all keys and update then
     // It will fail!!!
-    accountRef.networkName = this.networkService.getNetworkInfo().networkName;
+    accountRef.networkName = this.storeService.getSettings().networkName;
     accountRef.name = remoteAccount.name;
     accountRef.description = remoteAccount.description;
     accountRef.assetBalances = remoteAccount.assetBalances;
@@ -162,19 +166,30 @@ export class AccountManagementService {
     accountRef.accountRSExtended = remoteAccount.accountRSExtended;
     accountRef.accountRS = remoteAccount.accountRS;
 
-    if (!accountRef.keys.publicKey && remoteAccount.publicKey){
+    if (!accountRef.keys.publicKey && remoteAccount.publicKey) {
       accountRef.keys.publicKey = remoteAccount.publicKey;
     }
   }
 
-  public addAccount() {
-
+  public async addAccount(account: WalletAccount): Promise<WalletAccount> {
+    const existingAccount = this.findAccountById(account.account);
+    if (!existingAccount) {
+      this.storeService.saveAccount(account);
+      await this.selectAccount(account);
+      return account;
+    } else {
+      throw new Error('Address already imported!');
+    }
   }
 
-  public removeAccount() {
 
+  public removeAccount(account: WalletAccount): void {
+    this.storeService.removeAccountsByAccountId(account.account);
   }
 
+  public findAccountById(accountId: string): WalletAccount | null {
+    return this.getAllAccounts().find( ({account}) => account === accountId);
+  }
   public getAllAccounts(): WalletAccount[] {
     return this.storeService.getAllAccountsDistinct();
   }

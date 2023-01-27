@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as Loki from 'lokijs';
 import { StoreConfig } from './store.config';
-import { PartialSettings, Settings } from 'app/store/settings';
+import { Settings } from 'app/store/settings';
 import { adjustLegacyAddressPrefix } from '../util/adjustLegacyAddressPrefix';
 import { WalletAccount } from '../util/WalletAccount';
 import { Subject, timer } from 'rxjs';
@@ -175,7 +175,6 @@ export class StoreService {
     this.withReady<void>(() => {
       const accounts = this.store.getCollection(CollectionName.AccountV2);
       const existingAccount = accounts.by('_id', createAccountSurrogateKey(account));
-      console.log("Save Account - tx.length", account.transactions.length)
       if (!existingAccount) {
         accounts.insert(account);
         return;
@@ -297,93 +296,6 @@ export class StoreService {
     });
   }
 
-  public getAllAccountsLegacy(): Promise<WalletAccount[]> {
-    return new Promise((resolve, reject) => {
-      if (this.ready$.value) {
-        const accounts = this.store.getCollection(CollectionName.Account);
-        const rs = accounts.find();
-        const ws = [];
-        rs.map(storedAccount => {
-          try {
-            const account = adjustLegacyAddressPrefix(new WalletAccount(storedAccount));
-            ws.push(account);
-          } catch (e) {
-            console.warn('Error in getAllAccounts:', e, { storedAccount });
-          }
-        });
-        resolve(ws);
-      } else {
-        reject([]);
-      }
-    });
-  }
-
-  public findAccountByIdLegacy(accountId: string): Promise<WalletAccount> {
-    return new Promise((resolve, reject) => {
-      if (this.ready$.value) {
-        const accounts = this.store.getCollection(CollectionName.Account);
-        const rs = accounts.find({ account: accountId });
-        if (accountId && rs.length > 0) {
-          const storedAccount = new WalletAccount(rs[0]);
-          resolve(adjustLegacyAddressPrefix(storedAccount));
-        } else {
-          resolve(undefined);
-        }
-      } else {
-        reject(undefined);
-      }
-    });
-  }
-
-  public removeAccountLegacy(account: WalletAccount): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      if (this.ready$.value) {
-        this.store.loadDatabase({}, () => {
-          const accounts = this.store.getCollection(CollectionName.Account);
-          accounts.chain().find({ account: account.account }).remove();
-          this.store.saveDatabase();
-          resolve(true);
-        });
-      } else {
-        reject(false);
-      }
-    });
-  }
-
-  public saveSettingsLegacy(newSettings: Settings): Promise<Settings> {
-    return new Promise((resolve, reject) => {
-      if (!this.ready$.value) {
-        return reject();
-      }
-
-      this.store.loadDatabase({}, () => {
-        const settings = this.store.getCollection(CollectionName.Settings);
-        const rs = settings.find({ id: newSettings.id });
-
-        if (rs.length > 0) {
-          settings.update(newSettings);
-        } else {
-          settings.insert(newSettings);
-        }
-        this.store.saveDatabase();
-        this.settingsUpdated$.next(newSettings);
-        resolve(newSettings);
-      });
-    });
-  }
-
-  public getSettingsLegacy(): Promise<Settings> {
-    return new Promise((resolve, reject) => {
-      if (this.ready$.value) {
-        const settings = this.store.getCollection(CollectionName.Settings);
-        const rs = settings.find();
-        resolve(rs[0]);
-      } else {
-        resolve(new Settings());
-      }
-    });
-  }
-
   public getSettings(): Settings {
     return this.withReady<Settings>(() => {
       const settings = this.store.getCollection<Settings>(CollectionName.Settings);
@@ -392,7 +304,7 @@ export class StoreService {
     });
   }
 
-  public updateSettings(partialSettings: PartialSettings, propagateUpdate = true): void {
+  public updateSettings(partialSettings: Partial<Settings>, propagateUpdate = true): void {
     this.withReady<void>(() => {
       const collection = this.store.getCollection(CollectionName.Settings);
       const settings = this.getSettings();
@@ -400,8 +312,6 @@ export class StoreService {
         ...settings,
         ...partialSettings
       };
-
-
       collection.update(newSettings);
 
       this.persist();
@@ -409,6 +319,13 @@ export class StoreService {
         this.settingsUpdated$.next(newSettings);
         if (partialSettings.language){
           this.languageSelected$.next(newSettings.language);
+        }
+        if (partialSettings.node){
+          this.nodeSelected$.next({
+            nodeUrl: partialSettings.node,
+            addressPrefix: partialSettings.addressPrefix,
+            networkName: partialSettings.networkName,
+          });
         }
       }
     });
@@ -444,31 +361,44 @@ export class StoreService {
     });
   }
 
-  public setSelectedNode(nodeInfo: NodeInfo): void {
+  public removeAccountsByAccountId(accountId: string): void {
     this.withReady(() => {
-      const {nodeUrl, networkName} = nodeInfo;
+      const accounts = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
+      accounts.chain().find({account: accountId}).remove();
+      this.persist();
+    });
+  }
+
+  public setSelectedNode(nodeInfo: NodeInfo, forced = false): void {
+    this.withReady(() => {
+      const {nodeUrl, networkName, addressPrefix} = nodeInfo;
       const currentSettings = this.getSettings();
-      if (currentSettings.node !== nodeUrl || currentSettings.networkName !== networkName) {
-        this.updateSettings({node: nodeUrl, networkName}, false);
-        this.nodeSelected$.next({
-          nodeUrl,
-          networkName
-        });
+      if (currentSettings.node !== nodeUrl || currentSettings.networkName !== networkName || forced) {
+        this.updateSettings({node: nodeUrl, networkName, addressPrefix}, false);
+        this.nodeSelected$.next(nodeInfo);
       }
     });
   }
 
   public getSelectedAccount(): WalletAccount | null {
     return this.withReady<WalletAccount | null>(() => {
+
+      const fallbackSelection =  () => {
+        const accounts = collection.chain().data();
+        if (accounts.length){
+          this.updateSettings({selectedAccountId: accounts[0]._id}, false);
+          return new WalletAccount(accounts[0]);
+        }
+        return null;
+      };
+
       const settings = this.getSettings();
       const collection = this.store.getCollection(CollectionName.AccountV2);
       if (settings.selectedAccountId) {
         const acc =  collection.by('_id', settings.selectedAccountId);
-        console.log("Get Selected Account - tx.length", acc.transactions.length);
-        return acc;
+        return acc ? new WalletAccount(acc) : fallbackSelection();
       } else {
-        const accounts = collection.chain().data();
-        return accounts.length ? new WalletAccount(accounts[0]) : null;
+        fallbackSelection();
       }
     });
   }

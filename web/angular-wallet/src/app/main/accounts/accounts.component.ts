@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -17,6 +17,7 @@ import hashicon from 'hashicon';
 import { NetworkService } from '../../network/network.service';
 import { AppService } from '../../app.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { AccountManagementService } from 'app/shared/services/account-management.service';
 
 @Component({
   selector: 'app-accounts',
@@ -31,7 +32,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   public selectedAccounts: object;
   public locale: string;
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
   constructor(
@@ -39,6 +40,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     private storeService: StoreService,
     private appService: AppService,
     private accountService: AccountService,
+    private accountManagementService: AccountManagementService,
     private notificationService: NotifierService,
     private networkService: NetworkService,
     private i18nService: I18nService,
@@ -51,16 +53,22 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   public ngOnInit(): void {
     this.accounts = [];
     this.selectedAccounts = {};
+    this.selectedAccount = this.storeService.getSelectedAccount();
     this.displayedColumns = ['delete', 'avatar', 'account', 'name', 'balance', 'type', 'actions'];
     this.dataSource = new MatTableDataSource<WalletAccount>();
     this.accounts = this.route.snapshot.data.accounts;
     this.dataSource.data = this.accounts;
-    this.dataSource.sortData = this.sortAccounts;
 
     this.storeService.languageSelected$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((language) => {
         this.locale = language;
+      });
+
+    this.storeService.accountSelected$
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe((acc) => {
+        this.selectedAccount = acc;
       });
 
   }
@@ -87,17 +95,25 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   }
 
 
-  public getSelectedAccounts(): Array<WalletAccount> {
+  public getSelectedAccounts(): WalletAccount[] {
     return this.accounts.filter(({ account }) => this.selectedAccounts[account]);
   }
 
   public deleteSelectedAccounts(): void {
+    this.deleteAccounts(this.getSelectedAccounts());
+  }
 
-    const selectedAccounts = this.getSelectedAccounts();
+  public deleteAccount(account: WalletAccount): void {
+    this.deleteAccounts([account]);
+  }
+
+  private deleteAccounts(accounts: WalletAccount[]): void {
+
+    if (!accounts.length) { return; }
 
     const dialogRef = this.deleteDialog.open(DeleteAccountDialogComponent, {
       width: '400px',
-      data: selectedAccounts
+      data: accounts
     });
 
     dialogRef.afterClosed()
@@ -105,23 +121,24 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
         if (!confirm) {
           return;
         }
-        const removeRequests = selectedAccounts.map((a) => this.accountService.removeAccount(a));
-        await Promise.all(removeRequests);
-        this.accounts = await this.storeService.getAllAccountsLegacy();
-        const removedSelectedAccount = this.accounts.findIndex(a => a.account === this.selectedAccount.account) < 0;
+        const isRemovingSelectedAccount = accounts.findIndex(a => a.account === this.selectedAccount.account) !== -1;
+        accounts.forEach( a => this.accountManagementService.removeAccount(a));
+        this.accounts = this.accountManagementService.getAllAccounts();
         this.dataSource.data = this.accounts;
         if (!this.accounts || !this.accounts.length) {
-          this.accountService.selectAccount(null);
-          this.router.navigate(['/']);
-        } else if (removedSelectedAccount) {
-          this.accountService.selectAccount(this.accounts[0]);
+          await this.accountManagementService.selectAccount(null);
+          await this.router.navigate(['/']);
+        } else if (isRemovingSelectedAccount) {
+          await this.accountManagementService.selectAccount(this.accounts[0]);
         }
         this.notificationService.notify('success', this.i18nService.getTranslation('account_successfully_deleted'));
       });
   }
 
   public ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.dataSource.sortData = this.sortAccounts;
   }
 
   public applyFilter(filterValue: string): void {
@@ -137,6 +154,13 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     } catch (e) {
       const activationFailed = this.i18nService.getTranslation('activation_failed');
       this.notificationService.notify('error', `${activationFailed} ${e.message}`);
+    }
+  }
+  async selectAccount(account: WalletAccount): Promise<void> {
+    try {
+      await this.accountManagementService.selectAccount(account);
+    } catch (e) {
+      console.warn('selectAccount', e.message);
     }
   }
 
@@ -165,30 +189,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     return hashicon(account.account).toDataURL();
   }
 
-  deleteAccount(account: WalletAccount): void {
-    const dialogRef = this.deleteDialog.open(DeleteAccountDialogComponent, {
-      width: '400px',
-      data: [account]
-    });
 
-    const wasSelectedAccount = account.account === this.selectedAccount.account;
-
-    dialogRef.afterClosed().subscribe(async confirm => {
-      if (!confirm) {
-        return;
-      }
-      await this.accountService.removeAccount(account);
-      this.accounts = await this.storeService.getAllAccountsLegacy();
-      this.dataSource.data = this.accounts;
-      if (!this.accounts || !this.accounts.length) {
-        this.accountService.selectAccount(null);
-        this.router.navigate(['/']);
-      } else if (wasSelectedAccount) {
-        this.accountService.selectAccount(this.accounts[0]);
-      }
-      this.notificationService.notify('success', this.i18nService.getTranslation('account_successfully_deleted'));
-    });
-  }
 
   async copyToClipboard(data: string): Promise<void> {
     try {

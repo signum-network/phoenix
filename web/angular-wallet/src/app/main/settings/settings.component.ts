@@ -18,6 +18,7 @@ interface NodeInformation {
   url: string;
   networkName: string;
   version: string;
+  addressPrefix: string;
 }
 
 const UnsupportedFeatures = {
@@ -77,7 +78,8 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
     return {
       url: nodeHost,
       version: blockchainStatus.version,
-      networkName: networkInfo.networkName
+      networkName: networkInfo.networkName,
+      addressPrefix: networkInfo.addressPrefix
     };
   }
 
@@ -129,7 +131,8 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
       this.storeService.setSelectedNode({
         nodeUrl: nodeInformation.url,
         networkName: nodeInformation.networkName,
-      });
+        addressPrefix: nodeInformation.addressPrefix
+      }, true);
       this.notifierService.notify('success', this.i18nService.getTranslation('node_set_success'));
     } catch (e) {
       await this.getLastValidSettings();

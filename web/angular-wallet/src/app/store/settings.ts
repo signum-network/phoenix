@@ -10,21 +10,6 @@ import { environment } from '../../environments/environment';
 import { version } from '../../../package.json';
 import {UserProfileType} from '../shared/types';
 
-export interface PartialSettings {
-  currency?: string;
-  language?: string;
-  node?: string;
-  networkName?: string;
-  nodeAutoSelectionEnabled?: boolean;
-  selectedAccountId?: string;
-  theme?: string;
-  version?: string;
-  marketUrl?: string;
-  userProfile?: UserProfileType;
-  showDesktopNotifications?: boolean;
-  agree?: boolean;
-  welcomeMessageHiddenFrom?: string[];
-}
 /*
 * Settings class
 *
@@ -37,8 +22,8 @@ export class Settings {
     public language: string;
     public node: string;
     public networkName: string;
+    public addressPrefix: string;
     public nodeAutoSelectionEnabled: boolean;
-
     public selectedAccountId: string;
     public theme: string;
     public version: string;
@@ -63,6 +48,7 @@ export class Settings {
         this.language = data.language || constants.defaultLanguage;
         this.node = data.node || environment.defaultNode;
         this.networkName = data.networkName || environment.defaultNodeNetwork;
+        this.addressPrefix = data.addressPrefix || environment.defaultNodeNetwork === 'Signum' ? 'S' : 'TS';
         this.selectedAccountId = data.selectedAccountId || '';
         this.nodeAutoSelectionEnabled = data.nodeAutoSelectionEnabled || true;
         this.marketUrl = data.marketUrl || environment.market.tickerUrl;

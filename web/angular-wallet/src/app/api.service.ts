@@ -57,10 +57,11 @@ export class ApiService {
   async selectBestNode(): Promise<NodeInfo|null> {
     try {
       const nodeUrl = await this.ledger.service.selectBestHost(false);
-      const { networkName } = await this.ledger.network.getNetworkInfo();
+      const { networkName, addressPrefix } = await this.ledger.network.getNetworkInfo();
       return {
         nodeUrl,
-        networkName
+        networkName,
+        addressPrefix
       };
     } catch (e) {
       console.error(e);

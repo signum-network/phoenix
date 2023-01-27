@@ -1,15 +1,15 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { StoreService } from "app/store/store.service";
-import { AccountService } from "app/setup/account/account.service";
-import { FuseProgressBarService } from "../../../@fuse/components/progress-bar/progress-bar.service";
-import { TokenData, TokenService } from "../../shared/services/token.service";
-import { WalletAccount } from "app/util/WalletAccount";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { StoreService } from 'app/store/store.service';
+import { AccountService } from 'app/setup/account/account.service';
+import { FuseProgressBarService } from '../../../@fuse/components/progress-bar/progress-bar.service';
+import { TokenData, TokenService } from '../../shared/services/token.service';
+import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
-  selector: "app-tokens",
-  styleUrls: ["./tokens.component.scss"],
-  templateUrl: "./tokens.component.html"
+  selector: 'app-tokens',
+  styleUrls: ['./tokens.component.scss'],
+  templateUrl: './tokens.component.html'
 })
 export class TokensComponent implements OnInit, OnDestroy {
   public selectedAccount: WalletAccount;

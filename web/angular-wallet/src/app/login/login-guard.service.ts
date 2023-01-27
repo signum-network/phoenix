@@ -28,7 +28,8 @@ export class LoginGuard implements CanActivate {
       // all fine - could
       return {
         nodeUrl: nodeHost,
-        networkName: info.networkName
+        networkName: info.networkName,
+        addressPrefix: info.addressPrefix,
       };
     } catch (e) {
       console.warn('Cannot reach node: ', nodeHost);
@@ -48,16 +49,15 @@ export class LoginGuard implements CanActivate {
           return false;
         }
 
-        const selectedAccount = this.storeService.getSelectedAccount();
-        const allAccounts = this.storeService.getAllAccounts();
         const nodeInfo = await this.fetchNodeInfo(settings.node);
         if (!nodeInfo){
           await this.router.navigate(['/settings'], {queryParams: { connectionFail: true }});
           return false;
         }
+        this.storeService.setSelectedNode(nodeInfo, true);
 
-        this.storeService.setSelectedNode(nodeInfo);
-
+        const selectedAccount = this.storeService.getSelectedAccount();
+        const allAccounts = this.storeService.getAllAccountsDistinct();
         if (selectedAccount) {
           await this.accountService.selectAccount(selectedAccount);
           return true;

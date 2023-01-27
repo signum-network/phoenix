@@ -6,8 +6,11 @@
   <!-- / HEADER -->
 
   <div *ngIf="!account.keys.publicKey" class="ribbon ribbon-top-right"><span>{{'unsafe' | i18n}}</span></div>
-  <div class="p-24">
+  <div ngClass.gt-sm="p-24">
     <div class="account-details">
+      <div class="explorer-link" matTooltip="{{'show_in_explorer' | i18n}}" (click)="openInExplorer()">
+        <mat-icon>link</mat-icon>
+      </div>
       <div class="avatar">
         <canvas #avatar></canvas>
         <img *ngIf="avatarImgSrc" [src]="avatarImgSrc" alt="avatar-image" />

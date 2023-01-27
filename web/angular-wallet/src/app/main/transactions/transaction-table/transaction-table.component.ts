@@ -2,7 +2,7 @@ import {
   Component,
   Input,
   ViewChild,
-  AfterViewInit
+  AfterViewInit, OnChanges, SimpleChanges
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -30,7 +30,7 @@ import { isTokenHolderDistribution } from 'app/util/transaction/isTokenHolderDis
   styleUrls: ['./transaction-table.component.scss'],
   templateUrl: './transaction-table.component.html'
 })
-export class TransactionTableComponent extends UnsubscribeOnDestroy implements AfterViewInit {
+export class TransactionTableComponent extends UnsubscribeOnDestroy implements AfterViewInit, OnChanges {
   @Input()
   dataSource: MatTableDataSource<Transaction>;
   @Input() displayedColumns = ['transaction_id', 'timestamp', 'type', 'amount', 'account', 'confirmations'];
@@ -43,11 +43,10 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   constructor(private utilService: UtilService,
               private storeService: StoreService) {
     super();
-    this.storeService.settingsUpdated$
-      .pipe(
-        takeUntil(this.unsubscribeAll)
+    this.storeService.languageSelected$
+      .pipe(takeUntil(this.unsubscribeAll)
       )
-      .subscribe(({ language }) => {
+      .subscribe( (language) => {
         this.locale = language;
       });
   }
@@ -59,6 +58,13 @@ export class TransactionTableComponent extends UnsubscribeOnDestroy implements A
   public ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.account && changes.account.previousValue !== changes.account.currentValue){
+      this.dataSource.paginator = this.paginator;
+    }
+  }
+
 
   public convertTimestamp(timestamp: number): Date {
     return ChainTime.fromChainTimestamp(timestamp).getDate();

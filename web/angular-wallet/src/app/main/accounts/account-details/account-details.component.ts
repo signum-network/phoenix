@@ -14,6 +14,7 @@ import { TokenData, TokenService } from '../../../shared/services/token.service'
 import { WalletAccount } from 'app/util/WalletAccount';
 import { DescriptorData } from '@signumjs/standards';
 import { NetworkService } from 'app/network/network.service';
+import { AppService } from "../../../app.service";
 
 type TransactionDetailsCellValue = string | AttachmentMessage | AttachmentEncryptedMessage | number;
 type TransactionDetailsCellValueMap = [string, TransactionDetailsCellValue];
@@ -51,6 +52,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
 
   constructor(private route: ActivatedRoute,
               private router: Router,
+              private appService: AppService,
               private accountService: AccountService,
               private networkService: NetworkService,
               private tokenService: TokenService,
@@ -73,6 +75,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
   }
 
   ngOnInit(): void {
+
     this.initialize();
     this.intervalHandle = setInterval(() => {
       this.updateTransactions();
@@ -99,7 +102,7 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
     setTimeout(() => {
       this.updateAvatar();
     }, 100);
-    this.updateTokens();
+    await this.updateTokens();
   }
 
   async updateTransactions(): Promise<void> {
@@ -145,5 +148,15 @@ export class AccountDetailsComponent extends UnsubscribeOnDestroy implements OnI
       this.tokens = await this.tokenService.fetchAccountTokens(this.account);
       this.isLoadingTokens = false;
       this.progressService.hide();
+  }
+
+    openInExplorer(): void {
+      const host = this.networkService.getChainExplorerHost();
+      const url = `${host}/address/${this.account.account}`;
+      if (!this.appService.isDesktop()) {
+      window.open(url, 'blank');
+    } else {
+      this.appService.openInBrowser(url);
+    }
   }
 }

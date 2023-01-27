@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { StoreService } from 'app/store/store.service';
@@ -46,11 +46,10 @@ interface AliasData {
 export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
   public searchField = new FormControl('');
 
-
-  public dataSource: MatTableDataSource<AliasData>;
+  public dataSource = new MatTableDataSource<AliasData>();
   public displayedColumns: string[];
   public account: WalletAccount;
 
@@ -62,7 +61,8 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
     private route: ActivatedRoute,
     private storeService: StoreService,
     private aliasService: AliasService,
-    public router: Router,
+    private  router: Router,
+    private cdr: ChangeDetectorRef,
     private observableMedia: MediaObserver
   ) {
     super();
@@ -77,9 +77,8 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
     }
   }
 
-  public ngOnInit(): void {
+  public async ngOnInit(): Promise<void> {
     this.displayedColumns = ColumnsQuery.xl;
-    this.dataSource = new MatTableDataSource<AliasData>();
     this.account = this.route.snapshot.data.account;
     this.watchOnly = this.account && this.account.type === 'offline';
     this.storeService.languageSelected$
@@ -87,13 +86,14 @@ export class AliasesComponent extends UnsubscribeOnDestroy implements OnInit, Af
       .subscribe((language: string) => {
         this.locale = language;
       });
-    this.fetchAliases();
+    await this.fetchAliases();
+
   }
 
   public ngAfterViewInit(): void {
+
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-
     this.observableMedia.asObservable()
       .pipe(this.unsubscriber)
       .subscribe((change: MediaChange[]) => {

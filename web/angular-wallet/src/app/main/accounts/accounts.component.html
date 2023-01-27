@@ -138,6 +138,11 @@
               <mat-icon>lock</mat-icon>
               <span>{{'activate' | i18n}}</span>
             </button>
+            <button
+              mat-menu-item (click)="selectAccount(account)">
+              <mat-icon>check_box</mat-icon>
+              <span>{{'select_account' | i18n}}</span>
+            </button>
             <button mat-menu-item (click)="copyToClipboard(account.account)">
               <mat-icon>file_copy</mat-icon>
               <span>{{'copy_account_id' | i18n}}</span>

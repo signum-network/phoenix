@@ -44,6 +44,14 @@ h2 mat-icon {
   padding: 2rem;
   align-items: center;
 
+  .explorer-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #0099ff;
+    cursor: pointer;
+  }
+
   .description {
     display: flex;
     flex-direction: row;
