@@ -13,7 +13,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 import { I18nModule } from 'app/layout/components/i18n/i18n.module';
 import { LoginGuard } from 'app/login/login-guard.service';
-import { AccountResolver } from 'app/setup/account/account.resolver';
+import { AccountResolver } from 'app/shared/resolvers/account.resolver';
 
 import { TransactionTableModule } from '../transactions/transaction-table/transaction.module';
 

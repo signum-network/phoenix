@@ -41,10 +41,10 @@
         <ng-container matColumnDef="owner">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'owner' | i18n }}</mat-header-cell>
           <mat-cell *matCellDef="let alias">
-            <a *ngIf="alias.owner !== selectedAccount.account"
+            <a *ngIf="alias.owner !== account.account"
                [routerLink]="['/account', alias.owner]"
             >{{toAddress(alias.owner)}}</a>
-            <span class="text-uppercase" *ngIf="alias.owner === selectedAccount.account">{{'self' | i18n}}</span>
+            <span class="text-uppercase" *ngIf="alias.owner === account.account">{{'self' | i18n}}</span>
           </mat-cell>
         </ng-container>
 

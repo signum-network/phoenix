@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
-import {AccountResolver} from 'app/setup/account/account.resolver';
+import {AccountResolver} from 'app/shared/resolvers/account.resolver';
 import {RequestSignaComponent} from './request-signa.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';

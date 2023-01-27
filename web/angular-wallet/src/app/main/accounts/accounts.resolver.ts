@@ -5,13 +5,13 @@ import { StoreService } from 'app/store/store.service';
 import { WalletAccount } from '../../util/WalletAccount';
 
 @Injectable()
-export class AccountsResolver implements Resolve<Promise<void|WalletAccount[]>> {
+export class AccountsResolver implements Resolve<WalletAccount[]> {
     constructor(private storeService: StoreService) {
 
     }
 
-    resolve(route: ActivatedRouteSnapshot) {
-        return this.storeService.getAllAccountsLegacy().catch(() => {});
+    resolve(route: ActivatedRouteSnapshot): WalletAccount[] {
+      return this.storeService.getAllAccountsDistinct();
     }
 }
 

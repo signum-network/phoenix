@@ -31,7 +31,6 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {I18nModule} from '../layout/components/i18n/i18n.module';
 import {NgxMaskModule} from 'ngx-mask';
 import {AccountCreateExistingComponent} from './account/create-active/existing/existing.component';
-import {AccountResolver} from './account/account.resolver';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AccountActivateComponent} from './account/create-active/activate/activate.component';
 import {AppSharedModule} from '../shared/shared.module';
@@ -81,7 +80,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
   ],
   providers: [
     CreateService,
-    AccountResolver
   ],
   exports: [
     CreateActiveAccountComponent,

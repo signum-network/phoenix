@@ -30,7 +30,6 @@ export class BuyAliasComponent extends UnsubscribeOnDestroy implements OnInit {
   alias: Alias;
   account: WalletAccount;
   fees: SuggestedFees;
-  language: string;
   immutable: boolean;
   messageIsText: boolean;
   encrypt: boolean;
@@ -55,7 +54,6 @@ export class BuyAliasComponent extends UnsubscribeOnDestroy implements OnInit {
     private notifierService: NotifierService,
     private errorService: ExceptionHandlerService,
     private i18nService: I18nService,
-    private storeService: StoreService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -71,18 +69,7 @@ export class BuyAliasComponent extends UnsubscribeOnDestroy implements OnInit {
     this.encrypt = false;
     this.balances = getBalancesFromAccount(this.account);
     this.amount = this.alias ? Amount.fromPlanck(this.alias.priceNQT || '0') : Amount.Zero();
-
-
     this.fetchRecipientPublicKey(this.alias.account);
-
-    this.storeService.settingsUpdated$
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
-      .subscribe(async ({ language }) => {
-          this.language = language;
-        }
-      );
   }
 
   private async fetchRecipientPublicKey(accountId: string): Promise<void> {

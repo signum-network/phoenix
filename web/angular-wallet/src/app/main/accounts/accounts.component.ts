@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -35,6 +35,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
   constructor(
+    private route: ActivatedRoute,
     private storeService: StoreService,
     private appService: AppService,
     private accountService: AccountService,
@@ -52,25 +53,13 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
     this.selectedAccounts = {};
     this.displayedColumns = ['delete', 'avatar', 'account', 'name', 'balance', 'type', 'actions'];
     this.dataSource = new MatTableDataSource<WalletAccount>();
+    this.accounts = this.route.snapshot.data.accounts;
+    this.dataSource.data = this.accounts;
+    this.dataSource.sortData = this.sortAccounts;
 
-    this.storeService.ready$
+    this.storeService.languageSelected$
       .pipe(takeUntil(this.unsubscribeAll))
-      .subscribe((ready) => {
-        if (!ready) {
-          return;
-        }
-        this.storeService.getAllAccountsLegacy().then((accounts) => {
-          this.accounts = accounts;
-          this.dataSource.data = this.accounts;
-          this.dataSource.sortData = this.sortAccounts;
-        });
-
-        this.selectedAccount = this.accountService.currentAccount$.value;
-      });
-
-    this.storeService.settingsUpdated$
-      .pipe(takeUntil(this.unsubscribeAll))
-      .subscribe(({ language }) => {
+      .subscribe((language) => {
         this.locale = language;
       });
 
@@ -90,7 +79,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
       // precision is not important here, but speed
       balance: (a: WalletAccount, b: WalletAccount) => parseInt(a.balanceNQT, 10) - parseInt(b.balanceNQT, 10),
       account: (a: WalletAccount, b: WalletAccount) => a.account.localeCompare(b.account),
-      name: (a: WalletAccount, b: WalletAccount) => a.name.localeCompare(b.name),
+      name: (a: WalletAccount, b: WalletAccount) => a.name ? a.name.localeCompare(b.name) : 0,
       type: (a: WalletAccount, b: WalletAccount) => typeValue(a) - typeValue(b),
     };
     const comparator = comparatorMap[sort.active] || comparatorMap.account;

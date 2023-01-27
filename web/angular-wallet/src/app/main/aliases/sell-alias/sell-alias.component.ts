@@ -38,7 +38,6 @@ export class SellAliasComponent extends UnsubscribeOnDestroy implements OnInit {
 
   recipient = new Recipient();
 
-  language: string;
   immutable: boolean;
   messageIsText: boolean;
   encrypt: boolean;
@@ -77,14 +76,6 @@ export class SellAliasComponent extends UnsubscribeOnDestroy implements OnInit {
     this.immutable = false;
     this.messageIsText = true;
     this.encrypt = false;
-    this.storeService.settingsUpdated$
-      .pipe(
-        takeUntil(this.unsubscribeAll)
-      )
-      .subscribe(async ({ language }) => {
-          this.language = language;
-        }
-      );
   }
 
   onSubmit(event): void {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { AccountService } from './account.service';
+import { AccountService } from '../../setup/account/account.service';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { AccountManagementService } from 'app/shared/services/account-management.service';
 
@@ -16,7 +16,7 @@ export class AccountResolver implements Resolve<Promise<WalletAccount>> {
   async resolve(route: ActivatedRouteSnapshot): Promise<WalletAccount> {
     return route.params.id ?
       this.accountService.getAccount(route.params.id) :
-      this.accountManagementService.getSelectedAccount();
+      Promise.resolve(this.accountManagementService.getSelectedAccount());
   }
 }
 

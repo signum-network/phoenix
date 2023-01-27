@@ -11,6 +11,19 @@
     align-items: center;
     display: flex;
     flex-direction: row;
+
+    .inputs {
+      width: 100%;
+      mat-form-field {
+        width: 50%
+      }
+      @include media-breakpoint('xs') {
+        mat-form-field {
+          width: 100%
+        }
+      }
+    }
+
     .buttons {
       button {
         align-self: center;
@@ -21,9 +34,6 @@
         margin-left: auto;
         margin-right: 10px;
       }
-    }
-    @include media-breakpoint('xs') {
-      flex-direction: column;
     }
   }
 
@@ -109,7 +119,7 @@
   }
 
   .mat-column-delete {
-    flex: 0 0 32px;
+    flex: 0 0 48px;
     padding-left: 13px;
     @include media-breakpoint('xs') {
       padding-left: 0;

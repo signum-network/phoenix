@@ -110,7 +110,7 @@ export class SetCommitmentFormComponent extends UnsubscribeOnDestroy implements 
 
     return this.amount !== undefined && this.fee !== undefined
       ? Amount.fromSigna(this.amount).add(Amount.fromSigna(this.fee))
-      : Amount.Zero();
+      : Amount.fromSigna(this.fee);
   }
 
   async onSubmit(): Promise<void> {

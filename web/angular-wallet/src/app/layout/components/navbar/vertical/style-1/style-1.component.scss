@@ -135,9 +135,8 @@ navbar {
       padding: 12px 12px 12px 20px;
 
       @include media-breakpoint('xs') {
-        min-height: 56px;
-        max-height: 56px;
-        height: 56px;
+        min-height: 60px;
+        height: 60px;
       }
 
       .logo {
@@ -145,8 +144,8 @@ navbar {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        width: 80%
-      ;
+        top: 4px;
+        width: 80%;
         .logo-folded {
           display: none;
         }

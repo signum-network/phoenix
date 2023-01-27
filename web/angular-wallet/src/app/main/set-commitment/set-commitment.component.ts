@@ -31,30 +31,13 @@ export class SetCommitmentComponent extends UnsubscribeOnDestroy implements OnIn
     this.account = this.route.snapshot.data.account;
     this.fees = this.route.snapshot.data.suggestedFees;
 
-    // this.apiService.supportsPocPlus().then(supportsPocPlus =>
-    //   this.isSupported = supportsPocPlus
-    // );
-
     const unsubscribeAll = takeUntil(this.unsubscribeAll);
-    this.storeService.settingsUpdated$
+    this.storeService.languageSelected$
       .pipe(unsubscribeAll)
-      .subscribe(({language}) => {
+      .subscribe((language: string) => {
           this.language = language;
         }
       );
-
-    this.storeService.ready$
-      .pipe(unsubscribeAll)
-      .subscribe((ready) => {
-        if (!ready) {
-          return;
-        }
-        this.accountService.currentAccount$
-          .pipe(unsubscribeAll)
-          .subscribe((account: WalletAccount) => {
-            this.account = account;
-          });
-      });
   }
 
   getBalance(): string {
