@@ -8,13 +8,12 @@ import { navigation } from 'app/navigation/navigation';
 import { I18nService } from '../i18n/i18n.service';
 import { constants } from 'app/constants';
 import { StoreService } from 'app/store/store.service';
-import { AccountService } from 'app/setup/account/account.service';
 import { Router } from '@angular/router';
 import { NetworkService } from '../../../network/network.service';
 import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
 import { WalletAccount } from 'app/util/WalletAccount';
-import { UserProfileType } from '../../../shared/types';
-import { AccountManagementService } from '../../../shared/services/account-management.service';
+import { UserProfileType } from 'app/shared/types';
+import { AccountManagementService } from 'app/shared/services/account-management.service';
 
 interface UserProfile {
   name: UserProfileType;
@@ -112,6 +111,7 @@ export class ToolbarComponent
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((nodeInfo) => {
         this.isMainNet = nodeInfo.networkName === 'Signum';
+        this.accounts = this.accountManagementService.getAllAccounts();
       });
 
   }

@@ -3,7 +3,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as Loki from 'lokijs';
 import { StoreConfig } from './store.config';
 import { Settings } from 'app/store/settings';
-import { adjustLegacyAddressPrefix } from '../util/adjustLegacyAddressPrefix';
 import { WalletAccount } from '../util/WalletAccount';
 import { Subject, timer } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -21,7 +20,13 @@ type DbWalletAccount = WalletAccount & { _id: string };
 function createAccountSurrogateKey(account: WalletAccount): string {
   return `${account.networkName || environment.defaultNodeNetwork}-${account.account}`;
 }
-
+function getNetworknameFromAccount(account: DbWalletAccount): string {
+  if (account.networkName){
+    return account.networkName;
+  }
+  const _id = account._id;
+  return  _id.substr(0, _id.lastIndexOf('-'));
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -112,7 +117,9 @@ export class StoreService {
     const result = accounts.chain().data();
     for (const a of result) {
       const walletAccount = new WalletAccount(a) as DbWalletAccount;
-      walletAccount._id = createAccountSurrogateKey(a);
+      const _id = createAccountSurrogateKey(a);
+      walletAccount._id = _id;
+      walletAccount.networkName = getNetworknameFromAccount(walletAccount);
       walletAccount.transactions = [];
       accountsV2.insert(walletAccount);
     }
@@ -178,6 +185,7 @@ export class StoreService {
       if (!existingAccount) {
         const dbAccount = new WalletAccount(account) as DbWalletAccount;
         dbAccount._id = _id;
+        dbAccount.networkName = getNetworknameFromAccount(dbAccount);
         accounts.insert(dbAccount);
         this.accountUpdated$.next(new WalletAccount(dbAccount));
       } else {
@@ -204,41 +212,6 @@ export class StoreService {
     });
   }
 
-
-  /**
-   * @deprecated use getSelectedAccount
-   */
-  public getSelectedAccountLegacy(): Promise<WalletAccount> {
-    return new Promise((resolve, reject) => {
-      if (this.ready$.value) {
-
-        this.store.loadDatabase({}, () => {
-          const accounts = this.store.getCollection(CollectionName.Account);
-          let rs = accounts.find({ selected: true });
-          if (rs.length > 0) {
-            const account = new WalletAccount(rs[0]);
-            resolve(adjustLegacyAddressPrefix(account));
-          } else {
-            rs = accounts.find();
-            if (rs.length > 0) {
-              accounts.chain().find({ account: rs[0].account }).update(a => {
-                a.selected = true;
-              });
-              const storedAccount = new WalletAccount(rs[0]);
-              this.store.saveDatabase();
-              resolve(adjustLegacyAddressPrefix(storedAccount));
-            } else {
-              reject(undefined);
-            }
-            reject(undefined);
-          }
-        });
-      } else {
-        reject(undefined);
-      }
-    });
-  }
-
   public invalidateAccountTransactions(): void {
     try {
       // tslint:disable-next-line:no-console
@@ -255,40 +228,26 @@ export class StoreService {
     }
   }
 
-  public selectAccountLegacy(account: WalletAccount): Promise<WalletAccount> {
-    return new Promise((resolve, reject) => {
-      if (this.ready$.value) {
-        this.store.loadDatabase({}, () => {
-          // @ts-ignore
-          account.selected = true;
-          const accounts = this.store.getCollection(CollectionName.Account);
-          accounts.chain().find({ selected: true }).update(w => {
-            w.selected = false;
-          });
-          accounts.chain().find({ account: account.account }).update(w => {
-            w.selected = true;
-          });
-          this.store.saveDatabase();
-          resolve(account);
-        });
-      } else {
-        reject(undefined);
+
+  public getAllDistinctAccountIds(): string[] {
+    return this.withReady(() => {
+      const accounts = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
+      const distinctIds = new Set<string>();
+      const allAccounts = accounts.find();
+      for (const a of allAccounts) {
+        if (!distinctIds.has(a.account)) {
+          distinctIds.add(a.account);
+        }
       }
+      return Array.from(distinctIds.values());
     });
   }
 
-  // returns only with unique ids....
-  public getAllAccountsDistinct(): WalletAccount[] {
+  public getAllAccountsByNetwork(network: string): WalletAccount[] {
     return this.withReady(() => {
       const accounts = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
-      const distinctMap = new Map<string, WalletAccount>();
-      const allAccounts = accounts.find();
-      for (const a of allAccounts) {
-        if (!distinctMap.has(a.account)) {
-          distinctMap.set(a.account, new WalletAccount(a));
-        }
-      }
-      return Array.from(distinctMap.values());
+      const dbWalletAccounts = accounts.where( (a) =>  getNetworknameFromAccount(a) === network);
+      return dbWalletAccounts.map( a => new WalletAccount(a));
     });
   }
 
@@ -337,37 +296,24 @@ export class StoreService {
   public setSelectedAccount(account: WalletAccount): void {
     this.withReady<void>(() => {
       const currentSettings = this.getSettings();
-      const id = createAccountSurrogateKey(account);
+      const id = account.account;
       if (id !== currentSettings.selectedAccountId) {
-        this.updateSettings({ selectedAccountId: createAccountSurrogateKey(account) }, false);
+        this.updateSettings({ selectedAccountId: id }, false);
         const selectedAccount = this.getSelectedAccount();
         this.accountSelected$.next(selectedAccount);
       }
     });
   }
 
-  private findAccount(account: WalletAccount): DbWalletAccount {
-    return this.withReady(() => {
-      const accounts = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
-      return accounts.by('_id', createAccountSurrogateKey(account));
-    });
-  }
-
-  public removeAccount(account: WalletAccount): void {
+  public removeAccount(account: WalletAccount, allNetworks = false): void {
     this.withReady(() => {
       const accounts = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
-      const found = accounts.by('_id', createAccountSurrogateKey(account));
-      if (found) {
+      if (allNetworks){
+            accounts.chain().find({ account: account.account }).remove();
+      } else {
+        const found = accounts.by('_id', createAccountSurrogateKey(account));
         accounts.remove(found);
-        this.persist();
       }
-    });
-  }
-
-  public removeAccountsByAccountId(accountId: string): void {
-    this.withReady(() => {
-      const accounts = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
-      accounts.chain().find({ account: accountId }).remove();
       this.persist();
     });
   }
@@ -387,19 +333,19 @@ export class StoreService {
     return this.withReady<WalletAccount | null>(() => {
 
       const fallbackSelection = () => {
-        const accounts = collection.chain().data();
+        const accounts = collection.where(a => getNetworknameFromAccount(a) === settings.networkName);
         if (accounts.length) {
-          this.updateSettings({ selectedAccountId: accounts[0]._id }, false);
+          this.updateSettings({ selectedAccountId: accounts[0].account }, false);
           return new WalletAccount(accounts[0]);
         }
         return null;
       };
 
       const settings = this.getSettings();
-      const collection = this.store.getCollection(CollectionName.AccountV2);
+      const collection = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
       if (settings.selectedAccountId) {
-        const acc = collection.by('_id', settings.selectedAccountId);
-        return acc ? new WalletAccount(acc) : fallbackSelection();
+        const accList = collection.where((a) => a.account === settings.selectedAccountId && getNetworknameFromAccount(a) === settings.networkName);
+        return accList.length ? new WalletAccount(accList[0]) : fallbackSelection();
       } else {
         fallbackSelection();
       }

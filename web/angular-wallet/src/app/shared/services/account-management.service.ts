@@ -110,24 +110,6 @@ export class AccountManagementService {
     }
   }
 
-  // private async syncAccountUnconfirmedTransactions(account: WalletAccount): Promise<void> {
-  //   try {
-  //     const unconfirmedTransactionsResponse = await this.fetchAccountsPendingTransactions(account.account);
-  //     const orderByTimestamp = (a, b) => a.timestamp > b.timestamp ? -1 : 1;
-  //     const unconfirmed = unconfirmedTransactionsResponse.unconfirmedTransactions.sort(orderByTimestamp);
-  //     account.transactions = uniqBy(unconfirmed.concat(account.transactions), 'transaction');
-  //
-  //     // @ts-ignore - Send notifications for new transactions
-  //     if (window.Notification) {
-  //       unconfirmed
-  //         .filter(({ transaction }) => this.isNewTransaction(transaction))
-  //         .map((transaction) => this.sendNewTransactionNotification(transaction));
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
-
   private async syncAccountTransactions(accountRef: WalletAccount): Promise<void> {
     const { transactions } = accountRef;
 
@@ -148,6 +130,14 @@ export class AccountManagementService {
     const prunedTransactions = uniqBy([...pendingTransactions, ...transactions], 'transaction');
     prunedTransactions.sort((a, b) => b.timestamp - a.timestamp);
     accountRef.transactions = prunedTransactions;
+
+    // TODO: desktop notifications - maybe better in a central component?
+    //     // @ts-ignore - Send notifications for new transactions
+    //     if (window.Notification) {
+    //       unconfirmed
+    //         .filter(({ transaction }) => this.isNewTransaction(transaction))
+    //         .map((transaction) => this.sendNewTransactionNotification(transaction));
+    //     }
   }
 
   private async syncAccountDetails(accountRef: WalletAccount): Promise<void> {
@@ -184,13 +174,14 @@ export class AccountManagementService {
 
 
   public removeAccount(account: WalletAccount): void {
-    this.storeService.removeAccountsByAccountId(account.account);
+    this.storeService.removeAccount(account);
   }
 
   public findAccountById(accountId: string): WalletAccount | null {
     return this.getAllAccounts().find( ({account}) => account === accountId);
   }
   public getAllAccounts(): WalletAccount[] {
-    return this.storeService.getAllAccountsDistinct();
+    const  {networkName} = this.storeService.getSelectedNode();
+    return this.storeService.getAllAccountsByNetwork(networkName);
   }
 }

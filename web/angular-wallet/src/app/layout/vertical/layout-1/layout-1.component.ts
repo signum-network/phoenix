@@ -4,8 +4,8 @@ import {takeUntil} from 'rxjs/operators';
 
 import {FuseConfigService} from '@fuse/services/config.service';
 import {navigation} from 'app/navigation/navigation';
-import { WalletAccount } from "../../../util/WalletAccount";
-import { StoreService } from "../../../store/store.service";
+import { WalletAccount } from 'app/util/WalletAccount';
+import { StoreService } from 'app/store/store.service';
 @Component({
   selector: 'vertical-layout-1',
   templateUrl: './layout-1.component.html',
@@ -36,10 +36,19 @@ export class VerticalLayout1Component implements OnInit, OnDestroy {
         this.fuseConfig = config;
       });
 
+    this.selectedAccount = this.storeService.getSelectedAccount();
     this.storeService.accountSelected$
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((account) => {
         this.selectedAccount = account;
+      });
+
+    this.storeService.accountUpdated$
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((account) => {
+        if (account.account === this.selectedAccount.account){
+          this.selectedAccount = account;
+        }
       });
   }
 

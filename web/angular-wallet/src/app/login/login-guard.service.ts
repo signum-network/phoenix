@@ -3,11 +3,10 @@ import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
 import { StoreService } from 'app/store/store.service';
-import { AccountService } from 'app/setup/account/account.service';
 import { NetworkService } from '../network/network.service';
 import { LedgerClientFactory } from '@signumjs/core';
-import { AccountManagementService } from '../shared/services/account-management.service';
-import { NodeInfo } from "../shared/types";
+import { AccountManagementService } from 'app/shared/services/account-management.service';
+import { NodeInfo } from 'app/shared/types';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,7 @@ export class LoginGuard implements CanActivate {
   authorized = false;
 
   constructor(private storeService: StoreService,
-              private accountService: AccountManagementService,
+              private accountManagementService: AccountManagementService,
               private networkService: NetworkService,
               private router: Router) {
   }
@@ -54,14 +53,14 @@ export class LoginGuard implements CanActivate {
           await this.router.navigate(['/settings'], {queryParams: { connectionFail: true }});
           return false;
         }
-        this.storeService.setSelectedNode(nodeInfo, true);
+        this.storeService.setSelectedNode(nodeInfo);
 
         const selectedAccount = this.storeService.getSelectedAccount();
-        const allAccounts = this.storeService.getAllAccountsDistinct();
+        const hasAccounts = this.storeService.getAllAccounts().length > 0;
         if (selectedAccount) {
-          await this.accountService.selectAccount(selectedAccount);
+          await this.accountManagementService.selectAccount(selectedAccount);
           return true;
-        } else if (allAccounts.length) {
+        } else if (hasAccounts) {
           await this.router.navigate(['/dashboard']);
           return false;
         } else {

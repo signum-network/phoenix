@@ -21,10 +21,8 @@ import {AppService} from './app.service';
 import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET} from '@angular/router';
-import { WalletAccount } from './util/WalletAccount';
 
 const BlockchainStatusInterval = 30_000;
-const PendingTransactionsInterval = 10_000;
 
 @Component({
   selector: 'app',
@@ -42,10 +40,6 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   numberOfBlocks: number;
   lastBlockchainFeederHeight: number;
   previousLastBlock = '0';
-  lastBlock = '0';
-  isLoggedIn = false;
-  selectedAccount: WalletAccount;
-  accounts: WalletAccount[];
   urlSerializer = new DefaultUrlSerializer();
   percentDownloaded: number;
   private blockchainStatusInterval: NodeJS.Timeout;
@@ -81,20 +75,6 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
         setTimeout(checkBlockchainStatus, 1000);
         this.blockchainStatusInterval = setInterval(checkBlockchainStatus, BlockchainStatusInterval);
         this.isReady = true;
-        // this.accountService.currentAccount$
-        //   .pipe(
-        //     takeUntil(this.unsubscribeAll)
-        //   )
-        //   .subscribe(async (account) => {
-        //     this.selectedAccount = account;
-        //     if (this.pendingTransactionsInterval){
-        //       clearInterval(this.pendingTransactionsInterval);
-        //     }
-        //     this.pendingTransactionsInterval = setInterval(() => {
-        //       this.checkPendingTransactions(account);
-        //     }, PendingTransactionsInterval);
-        //     this.accounts = await this.storeService.getAllAccountsLegacy();
-        //   });
       });
 
     if (this.appService.isDesktop()) {
@@ -102,12 +82,29 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       this.initDeepLinkHandler();
       this.initRouteToHandler();
     }
+
+    this.storeService.nodeSelected$
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(() => {
+        this.updateAccounts();
+      });
   }
 
   ngOnDestroy(): void {
     super.ngOnDestroy();
     clearInterval(this.blockchainStatusInterval);
     clearInterval(this.pendingTransactionsInterval);
+  }
+
+  private updateAccounts(): void {
+    this.storeService
+      .getAllDistinctAccountIds()
+      .forEach((id) =>
+        this.accountService.getAccount(id)
+          .then( account => this.storeService.saveAccount(account))
+          .catch(e => console.warn('Could not update account', e.message))
+      );
+
   }
 
   private initDeepLinkHandler(): void {

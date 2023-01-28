@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { StoreService } from 'app/store/store.service';
-import { WalletAccount } from '../../util/WalletAccount';
+import { WalletAccount } from 'app/util/WalletAccount';
+import { AccountManagementService } from 'app/shared/services/account-management.service';
 
 @Injectable()
 export class AccountsResolver implements Resolve<WalletAccount[]> {
-    constructor(private storeService: StoreService) {
+    constructor(private accountManagementService: AccountManagementService) {
 
     }
 
     resolve(route: ActivatedRouteSnapshot): WalletAccount[] {
-      return this.storeService.getAllAccountsDistinct();
+      return this.accountManagementService.getAllAccounts();
     }
 }
 
