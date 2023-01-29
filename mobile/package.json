@@ -76,7 +76,7 @@
     "react-native-touch-id": "^4.4.1",
     "react-native-version-number": "^0.3.6",
     "react-navigation": "^4.4.0",
-    "react-redux": "^7.2.4",
+    "react-redux": "^8.0.5",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "rn-swipe-button": "^1.3.8"
@@ -101,8 +101,6 @@
     "@types/react-native-svg-charts": "^5.0.2",
     "@types/react-native-touch-id": "^4.0.1",
     "@types/react-native-vector-icons": "^6.4.1",
-    "@types/react-navigation": "^3.0.7",
-    "@types/react-redux": "^7.1.16",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.2.1",
     "babel-plugin-transform-remove-console": "^6.9.4",
