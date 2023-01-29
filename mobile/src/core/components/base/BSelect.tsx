@@ -1,12 +1,11 @@
-import * as React from "react";
-import { View } from "react-native";
-// import RNPickerSelect, { Item } from "react-native-picker-select";
-import {Picker} from "@react-native-picker/picker"
+import * as React from 'react';
+import {View} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 // import { actionIcons } from "../../../assets/icons";
-import { Colors } from "../../theme/colors";
-import { fonts } from "../../theme/fonts";
-import { FontSizes, Sizes } from "../../theme/sizes";
-import { Text as BText } from "./Text";
+import {Colors} from '../../theme/colors';
+import {fonts} from '../../theme/fonts';
+import {FontSizes, Sizes} from '../../theme/sizes';
+import {Text as BText} from './Text';
 
 interface Props {
   value: any;
@@ -27,7 +26,7 @@ const defaultStyles: any = {
   fontSize: FontSizes.LARGER,
   fontFamily: fonts.roboto,
   letterSpacing: -1,
-  fontWeight: "500",
+  fontWeight: '500',
   color: Colors.WHITE,
   borderColor: Colors.BLUE,
   borderWidth: 1,
@@ -49,18 +48,12 @@ const styles: any = {
     color: Colors.WHITE,
   },
   pickerItem: {
-    fontSize: FontSizes.MEDIUM
-  }
+    fontSize: FontSizes.MEDIUM,
+  },
 };
 
-export const BSelect: React.FC<Props> = (props) => {
-  const {
-    items,
-    value,
-    title,
-    placeholder = "",
-    disabled = false,
-  } = props;
+export const BSelect: React.FC<Props> = props => {
+  const {items, value, title, placeholder = '', disabled = false} = props;
 
   return (
     <View style={[styles.wrapper, disabled && styles.disabled]}>
@@ -76,31 +69,17 @@ export const BSelect: React.FC<Props> = (props) => {
         enabled={!disabled}
         prompt={placeholder}
         dropdownIconColor={Colors.WHITE}
-        dropdownIconRippleColor={Colors.WHITE}
-        >{
-          items.map( i => <Picker.Item key={i.value}
-                                       fontFamily={fonts.roboto}
-                                       style={styles.pickerItem}
-                                       label={i.label}
-                                       value={i.value}
-          />)
-      }</Picker>
-      {/*<RNPickerSelect*/}
-      {/*  useNativeAndroidPickerStyle={true}*/}
-      {/*  onValueChange={props.onChange}*/}
-      {/*  items={items}*/}
-      {/*  value={value}*/}
-      {/*  style={styles}*/}
-      {/*  placeholder={placeholderObject}*/}
-      {/*  disabled={disabled}*/}
-      {/*  Icon={*/}
-      {/*    rightElement*/}
-      {/*      ? () => rightElement*/}
-      {/*      : () => (*/}
-      {/*          <Image source={actionIcons.chevron} style={styles.chevron} />*/}
-      {/*        )*/}
-      {/*  }*/}
-      {/*/>*/}
+        dropdownIconRippleColor={Colors.WHITE}>
+        {items.map(i => (
+          <Picker.Item
+            key={i.value}
+            fontFamily={fonts.roboto}
+            style={styles.pickerItem}
+            label={i.label}
+            value={i.value}
+          />
+        ))}
+      </Picker>
     </View>
   );
 };
