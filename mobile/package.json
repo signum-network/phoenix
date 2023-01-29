@@ -62,7 +62,6 @@
     "react-native-keychain": "^6.1.1",
     "react-native-localize": "^1.4.1",
     "react-native-markdown-package": "^1.8.2",
-    "react-native-push-notification": "^4.0.0",
     "react-native-qrcode-svg": "^6.1.1",
     "react-native-reanimated": "^1.13.4",
     "react-native-safe-area-context": "^4.5.0",
