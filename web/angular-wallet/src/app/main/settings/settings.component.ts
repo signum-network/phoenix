@@ -11,8 +11,8 @@ import { LedgerClientFactory } from '@signumjs/core';
 import { NotifierService } from 'angular-notifier';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from '../../util/UnsubscribeOnDestroy';
-import { ApiService } from '../../api.service';
 import { AppService } from '../../app.service';
+import { LedgerService } from 'app/ledger.service';
 
 interface NodeInformation {
   url: string;
@@ -31,12 +31,10 @@ const UnsupportedFeatures = {
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
-  public redirectedConnectionFailure: boolean;
-
   constructor(private i18nService: I18nService,
               private storeService: StoreService,
               private notifierService: NotifierService,
-              private apiService: ApiService,
+              private ledgerService: LedgerService,
               private appService: AppService,
               private route: ActivatedRoute) {
     super();
@@ -178,7 +176,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
       return;
     }
     this.isFetchingNodeInfo = true;
-    const bestNode = await this.apiService.selectBestNode();
+    const bestNode = await this.ledgerService.determineBestNode();
     if (!bestNode) {
       this.notifierService.notify('error', this.i18nService.getTranslation('no_reliable_node_reachable'));
     } else if (bestNode.nodeUrl !== this.selectedNode.value) {

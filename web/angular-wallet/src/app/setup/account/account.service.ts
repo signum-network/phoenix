@@ -19,17 +19,16 @@ import {
 import { decryptAES, encryptAES, generateMasterKeys, hashSHA256, Keys } from '@signumjs/crypto';
 import { Amount } from '@signumjs/util';
 import { HttpClientFactory, HttpError } from '@signumjs/http';
-import { ApiService } from '../../api.service';
 import { I18nService } from 'app/layout/components/i18n/i18n.service';
-import { NetworkService } from '../../network/network.service';
-import { KeyDecryptionException } from '../../util/exceptions/KeyDecryptionException';
-import { adjustLegacyAddressPrefix } from '../../util/adjustLegacyAddressPrefix';
-import { uniqBy } from 'lodash';
-import { Settings } from '../../store/settings';
+import { NetworkService } from 'app/network/network.service';
+import { KeyDecryptionException } from 'app/util/exceptions/KeyDecryptionException';
+import { adjustLegacyAddressPrefix } from 'app/util/adjustLegacyAddressPrefix';
+import { Settings } from 'app/store/settings';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { DescriptorData } from '@signumjs/standards';
-import { constants } from '../../constants';
+import { constants } from 'app/constants';
+import { LedgerService } from 'app/ledger.service';
 
 interface SetAccountInfoRequest {
   name: string;
@@ -70,7 +69,7 @@ export class AccountService {
   constructor(private storeService: StoreService,
               private networkService: NetworkService,
               private progressBarService: FuseProgressBarService,
-              private apiService: ApiService,
+              private ledgerService: LedgerService,
               private i18nService: I18nService) {
     this.storeService.settingsUpdated$.subscribe((settings: Settings) => {
       if (!settings){ return; }
@@ -87,7 +86,7 @@ export class AccountService {
   // }
 
   public async getAddedCommitments(account: WalletAccount): Promise<TransactionList> {
-    return this.apiService.ledger.account.getAccountTransactions({
+    return this.ledgerService.ledger.account.getAccountTransactions({
       accountId: account.account,
       type: TransactionType.Mining,
       subtype: TransactionMiningSubtype.AddCommitment,
@@ -100,12 +99,12 @@ export class AccountService {
     args.includeIndirect = true;
     args.resolveDistributions = true;
     try {
-      const transactions = await this.apiService.ledger.account.getAccountTransactions(args);
+      const transactions = await this.ledgerService.ledger.account.getAccountTransactions(args);
       return Promise.resolve(transactions);
     } catch (e) {
       const EC_INVALID_ARG = 4;
       if (e.data.errorCode === EC_INVALID_ARG) {
-        return this.apiService.ledger.account.getAccountTransactions(args);
+        return this.ledgerService.ledger.account.getAccountTransactions(args);
       } else {
         throw e;
       }
@@ -118,7 +117,7 @@ export class AccountService {
     feeSuggestionType?: string,
     feeNQT?: number,
     immutable?: boolean): Promise<string> {
-    return this.apiService.ledger.account.generateSendTransactionQRCodeAddress(
+    return this.ledgerService.ledger.account.generateSendTransactionQRCodeAddress(
       id,
       amountNQT,
       feeSuggestionType,
@@ -140,17 +139,17 @@ export class AccountService {
   }
 
   public getAccountBalance(id: string): Promise<Balance> {
-    return this.apiService.ledger.account.getAccountBalance(id);
+    return this.ledgerService.ledger.account.getAccountBalance(id);
   }
 
   public getUnconfirmedTransactions(id: string): Promise<UnconfirmedTransactionList> {
-    return this.apiService.ledger.account.getUnconfirmedAccountTransactions(id);
+    return this.ledgerService.ledger.account.getUnconfirmedAccountTransactions(id);
   }
 
   public async getAccount(accountId: string): Promise<WalletAccount> {
     // const supportsPocPlus = await this.apiService.supportsPocPlus();
     // const includeCommittedAmount = supportsPocPlus || undefined;
-    const account = await this.apiService.ledger.account.getAccount({
+    const account = await this.ledgerService.ledger.account.getAccount({
       accountId,
       includeCommittedAmount: true,
       includeEstimatedCommitment: true
@@ -167,7 +166,7 @@ export class AccountService {
                           keys
                         }: SetAccountInfoRequest): Promise<TransactionId> {
     const senderPrivateKey = this.getPrivateKey(keys, pin);
-    return this.apiService.ledger.account.setAccountInfo({
+    return this.ledgerService.ledger.account.setAccountInfo({
       name,
       description,
       feePlanck,
@@ -185,7 +184,7 @@ export class AccountService {
                               keys
                             }: SetRewardRecipientRequest): Promise<TransactionId> {
     const senderPrivateKey = this.getPrivateKey(keys, pin);
-    return this.apiService.ledger.account.setRewardRecipient({
+    return this.ledgerService.ledger.account.setRewardRecipient({
       recipientId,
       senderPrivateKey,
       senderPublicKey: keys.publicKey,
@@ -195,9 +194,9 @@ export class AccountService {
   }
 
   public async getRewardRecipient(recipientId: string): Promise<WalletAccount | null> {
-    const { rewardRecipient } = await this.apiService.ledger.account.getRewardRecipient(recipientId);
+    const { rewardRecipient } = await this.ledgerService.ledger.account.getRewardRecipient(recipientId);
     if (rewardRecipient) {
-      const acct = await this.apiService.ledger.account.getAccount({ accountId: rewardRecipient });
+      const acct = await this.ledgerService.ledger.account.getAccount({ accountId: rewardRecipient });
       return new WalletAccount(acct);
     }
     return null;
@@ -220,8 +219,8 @@ export class AccountService {
     };
 
     return (isRevoking
-      ? this.apiService.ledger.account.removeCommitment(args)
-      : this.apiService.ledger.account.addCommitment(args)) as Promise<TransactionId>;
+      ? this.ledgerService.ledger.account.removeCommitment(args)
+      : this.ledgerService.ledger.account.addCommitment(args)) as Promise<TransactionId>;
   }
 
   // public createActiveAccount({ passphrase, pin = '' }): Promise<WalletAccount> {
@@ -432,7 +431,7 @@ export class AccountService {
   }
 
   public async getForgedBlocks(account: WalletAccount): Promise<BlockList> {
-    return this.apiService.ledger.account.getAccountBlocks({ accountId: account.account });
+    return this.ledgerService.ledger.account.getAccountBlocks({ accountId: account.account });
   }
 
 

@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '../../api.service';
 import {
-  Address,
   Asset,
   TransactionId
 } from '@signumjs/core';
 import {
   Keys
 } from '@signumjs/crypto';
-import { Amount, ChainValue } from "@signumjs/util";
-import { getPrivateSigningKey } from '../../util/security/getPrivateSigningKey';
-import { getPrivateEncryptionKey } from '../../util/security/getPrivateEncryptionKey';
-import { createMessageAttachment } from '../../util/transaction/createMessageAttachment';
-import { Recipient } from '../../components/recipient-input/recipient-input.component';
-import { constants } from '../../constants';
+import { Amount, ChainValue } from '@signumjs/util';
+import { getPrivateSigningKey } from 'app/util/security/getPrivateSigningKey';
+import { getPrivateEncryptionKey } from 'app/util/security/getPrivateEncryptionKey';
+import { createMessageAttachment } from 'app/util/transaction/createMessageAttachment';
+import { Recipient } from 'app/components/recipient-input/recipient-input.component';
+import { constants } from 'app/constants';
 import { WalletAccount } from 'app/util/WalletAccount';
+import { LedgerService } from 'app/ledger.service';
 
 export interface TokenData {
   id: string;
@@ -52,13 +51,13 @@ interface TransferTokenRequest {
 export class TokenService {
 
   constructor(
-    private apiService: ApiService
+    private ledgerService: LedgerService
   ) {
 
   }
 
   private async getToken(assetId: string): Promise<Asset> {
-    return this.apiService.ledger.asset.getAsset({ assetId });
+    return this.ledgerService.ledger.asset.getAsset({ assetId });
   }
 
   public async fetchTokenData(tokenId: string, account: WalletAccount): Promise<TokenData> {
@@ -70,7 +69,7 @@ export class TokenService {
   }
 
   public async getPriceInfo(id: string): Promise<PriceInfo> {
-    const { trades } = await this.apiService.ledger.service.query('getTrades', {
+    const { trades } = await this.ledgerService.ledger.service.query('getTrades', {
       asset: id,
       firstIndex: 0,
       lastIndex: 1
@@ -163,7 +162,7 @@ export class TokenService {
     && recipient.publicKey !== '0'
       ? recipient.publicKey
       : undefined;
-    return this.apiService.ledger.asset.transferAsset({
+    return this.ledgerService.ledger.asset.transferAsset({
       assetId: token.id,
       attachment,
       feePlanck: fee.getPlanck(),

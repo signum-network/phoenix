@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Transaction } from '@signumjs/core';
-import { ApiService } from 'app/api.service';
 import { AccountManagementService } from '../../shared/services/account-management.service';
+import { LedgerService } from 'app/ledger.service';
 
 @Injectable()
 export class TransactionResolver implements Resolve<Promise<Transaction>> {
-  constructor(private apiService: ApiService, private accountManagementService: AccountManagementService) {
+  constructor(private ledgerService: LedgerService, private accountManagementService: AccountManagementService) {
   }
 
   resolve(route: ActivatedRouteSnapshot): Promise<Transaction> {
@@ -18,6 +18,6 @@ export class TransactionResolver implements Resolve<Promise<Transaction>> {
         return Promise.resolve(tx);
       }
     }
-    return this.apiService.ledger.transaction.getTransaction(route.params.id);
+    return this.ledgerService.ledger.transaction.getTransaction(route.params.id);
   }
 }

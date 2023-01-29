@@ -11,11 +11,11 @@ import {
   BlockList, Address
 } from '@signumjs/core';
 
-import { ApiService } from '../api.service';
 import { StoreService } from 'app/store/store.service';
 import { BehaviorSubject } from 'rxjs';
 import { constants } from '../constants';
 import { MiningInfo } from '@signumjs/core';
+import { LedgerService } from 'app/ledger.service';
 
 @Injectable()
 export class NetworkService {
@@ -23,35 +23,35 @@ export class NetworkService {
   // TODO: find a better way to deal with blocks
   public blocks: BehaviorSubject<any> = new BehaviorSubject([]);
 
-  constructor(private apiService: ApiService, private storeService: StoreService) {
+  constructor(private ledgerService: LedgerService, private storeService: StoreService) {
   }
 
   public getSuggestedFees(): Promise<SuggestedFees> {
-    return this.apiService.ledger.network.getSuggestedFees();
+    return this.ledgerService.ledger.network.getSuggestedFees();
   }
 
   public getBlockchainStatus(): Promise<BlockchainStatus> {
-    return this.apiService.ledger.network.getBlockchainStatus();
+    return this.ledgerService.ledger.network.getBlockchainStatus();
   }
 
   public getBlockById(id?: string): Promise<Block> {
-    return this.apiService.ledger.block.getBlockById(id, false);
+    return this.ledgerService.ledger.block.getBlockById(id, false);
   }
 
   public getBlocks(firstIndex?: number, lastIndex?: number, includeTransactions?: boolean): Promise<BlockList> {
-    return this.apiService.ledger.block.getBlocks(firstIndex, lastIndex, includeTransactions);
+    return this.ledgerService.ledger.block.getBlocks(firstIndex, lastIndex, includeTransactions);
   }
 
   public getMiningInfo(): Promise<MiningInfo> {
-    return this.apiService.ledger.network.getMiningInfo();
+    return this.ledgerService.ledger.network.getMiningInfo();
   }
 
   public getPeer(address: string): Promise<Peer> {
-    return this.apiService.ledger.network.getPeer(address);
+    return this.ledgerService.ledger.network.getPeer(address);
   }
 
   public getPeers(): Promise<PeerAddressList> {
-    return this.apiService.ledger.network.getPeers();
+    return this.ledgerService.ledger.network.getPeers();
   }
 
   public setBlocks(blocks: Block[]): void {

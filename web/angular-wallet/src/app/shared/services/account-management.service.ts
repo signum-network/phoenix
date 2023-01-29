@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { StoreService } from 'app/store/store.service';
-import { Account, Address, Transaction } from '@signumjs/core';
-import { ApiService } from '../../api.service';
+import { Account, Transaction } from '@signumjs/core';
 import { NetworkService } from '../../network/network.service';
 import { uniqBy } from 'lodash';
-import { Settings } from '../../store/settings';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { interval, Subscription } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
-import { Recipient } from '../../components/recipient-input/recipient-input.component';
+import { LedgerService } from 'app/ledger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +19,7 @@ export class AccountManagementService {
   constructor(private storeService: StoreService,
               private networkService: NetworkService,
               private progressBarService: FuseProgressBarService,
-              private apiService: ApiService
+              private ledgerService: LedgerService
   ) {
   }
 
@@ -31,7 +29,7 @@ export class AccountManagementService {
       : 0;
 
 
-    const { transactions } = await this.apiService.ledger.account.getAccountTransactions({
+    const { transactions } = await this.ledgerService.ledger.account.getAccountTransactions({
       accountId: account.account,
       includeIndirect: true,
       resolveDistributions: true,
@@ -41,12 +39,12 @@ export class AccountManagementService {
   }
 
   private async fetchAccountsPendingTransactions(account: WalletAccount): Promise<Transaction[]> {
-    const { unconfirmedTransactions } = await this.apiService.ledger.account.getUnconfirmedAccountTransactions(account.account);
+    const { unconfirmedTransactions } = await this.ledgerService.ledger.account.getUnconfirmedAccountTransactions(account.account);
     return unconfirmedTransactions;
   }
 
   private async fetchAccountFromChain(accountId: string): Promise<Account> {
-    return this.apiService.ledger.account.getAccount({
+    return this.ledgerService.ledger.account.getAccount({
       accountId,
       includeCommittedAmount: true,
       includeEstimatedCommitment: true

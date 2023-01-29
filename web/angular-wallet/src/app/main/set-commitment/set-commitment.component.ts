@@ -6,7 +6,6 @@ import {StoreService} from '../../store/store.service';
 import {takeUntil} from 'rxjs/operators';
 import {getBalancesFromAccount} from '../../util/balance';
 import {UnsubscribeOnDestroy} from '../../util/UnsubscribeOnDestroy';
-import {ApiService} from '../../api.service';
 import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
@@ -21,7 +20,6 @@ export class SetCommitmentComponent extends UnsubscribeOnDestroy implements OnIn
   isSupported = true;
 
   constructor(private route: ActivatedRoute,
-              private apiService: ApiService,
               private accountService: AccountService,
               private storeService: StoreService) {
     super();

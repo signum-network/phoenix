@@ -4,13 +4,12 @@ import {
   Alias, AliasList, Ledger
 } from '@signumjs/core';
 import {Keys} from '@signumjs/crypto';
-import {ApiService} from '../../api.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {StoreService} from 'app/store/store.service';
-import {Settings} from 'app/store/settings';
 import {getPrivateEncryptionKey} from 'app/util/security/getPrivateEncryptionKey';
 import { getPrivateSigningKey } from 'app/util/security/getPrivateSigningKey';
 import { createMessageAttachment } from 'app/util/transaction/createMessageAttachment';
+import { LedgerService } from "../../ledger.service";
 
 interface SetAliasRequest {
   aliasName: string;
@@ -57,35 +56,30 @@ interface CancelAliasSaleRequest {
   providedIn: 'root'
 })
 export class AliasService {
-  private api: Ledger;
 
-  constructor(apiService: ApiService, private accountService: AccountService, private storeService: StoreService) {
-    this.api = apiService.ledger;
-    this.storeService.settingsUpdated$.subscribe((settings: Settings) => {
-      this.api = apiService.ledger;
-    });
+  constructor(private ledgerService: LedgerService, private accountService: AccountService, private storeService: StoreService) {
   }
 
   public getAliasById(id: string): Promise<Alias> {
-    return this.api.alias.getAliasById(id);
+    return this.ledgerService.ledger.alias.getAliasById(id);
   }
 
   public getAliasByName(name: string): Promise<Alias> {
-    return this.api.alias.getAliasByName(name);
+    return this.ledgerService.ledger.alias.getAliasByName(name);
   }
 
   public getAliases(accountId: string): Promise<AliasList> {
-      return this.api.account.getAliases({ accountId });
+      return this.ledgerService.ledger.account.getAliases({ accountId });
   }
 
   public getAliasesDirectOffers(accountId: string): Promise<AliasList> {
-      return this.api.alias.getAliasesOnSale({ buyerId: accountId });
+      return this.ledgerService.ledger.alias.getAliasesOnSale({ buyerId: accountId });
   }
 
 
   public setAlias({ aliasName, aliasURI, feeNQT, pin, keys }: SetAliasRequest): Promise<TransactionId> {
     const senderPrivateKey = getPrivateSigningKey(pin, keys);
-    return this.api.account.setAlias({
+    return this.ledgerService.ledger.account.setAlias({
       aliasName,
       aliasURI,
       feePlanck: feeNQT,
@@ -105,7 +99,7 @@ export class AliasService {
       message
     }) : undefined;
 
-    return (await this.api.alias.sellAlias({
+    return (await this.ledgerService.ledger.alias.sellAlias({
       aliasName,
       amountPlanck,
       feePlanck,
@@ -131,7 +125,7 @@ export class AliasService {
       message
     }) : undefined;
 
-    return (await this.api.alias.buyAlias({
+    return (await this.ledgerService.ledger.alias.buyAlias({
       aliasName,
       aliasId: undefined,
       feePlanck,
@@ -145,7 +139,7 @@ export class AliasService {
 
   public async cancelAliasSale(request: CancelAliasSaleRequest): Promise<TransactionId> {
     const {aliasName, pin, feePlanck, recipientId, keys} = request;
-    return (await this.api.alias.sellAlias({
+    return (await this.ledgerService.ledger.alias.sellAlias({
       aliasName,
       amountPlanck: '0',
       feePlanck,

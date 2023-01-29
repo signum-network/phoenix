@@ -25,18 +25,18 @@ import { ChainTime } from '@signumjs/util';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { UnsubscribeOnDestroy } from '../../util/UnsubscribeOnDestroy';
 import { takeUntil } from 'rxjs/operators';
-import { UtilService } from '../../util.service';
-import { StoreService } from '../../store/store.service';
-import { I18nService } from '../../layout/components/i18n/i18n.service';
+import { UtilService } from 'app/util.service';
+import { StoreService } from 'app/store/store.service';
+import { I18nService } from 'app/layout/components/i18n/i18n.service';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { AccountManagementService } from 'app/shared/services/account-management.service';
 import { isSelf } from 'app/util/transaction/isSelf';
 import { isBurn } from 'app/util/transaction/isBurn';
-import { ApiService } from '../../api.service';
 import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { AppService } from '../../app.service';
+import { AppService } from 'app/app.service';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { LedgerService } from 'app/ledger.service';
 
 
 const ColumnsQuery = {
@@ -63,7 +63,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
 
   constructor(
     private appService: AppService,
-    private apiService: ApiService,
+    private ledgerService: LedgerService,
     private accountManagementService: AccountManagementService,
     private storeService: StoreService,
     private utilService: UtilService,
@@ -239,7 +239,7 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
     try {
       this.account.transactions = [];
       while (hasMore) {
-        const { transactions } = await this.apiService.ledger.account.getAccountTransactions({
+        const { transactions } = await this.ledgerService.ledger.account.getAccountTransactions({
           accountId: this.account.account,
           resolveDistributions: true,
           includeIndirect: true,

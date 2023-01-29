@@ -7,11 +7,11 @@ import {
   MultioutRecipientAmount
 } from '@signumjs/core';
 import {Keys, encryptMessage, encryptData, EncryptedMessage, EncryptedData} from '@signumjs/crypto';
-import {ApiService} from '../../api.service';
 import {AccountService} from 'app/setup/account/account.service';
 import {convertHexStringToByteArray} from '@signumjs/util';
 import {getPrivateSigningKey} from 'app/util/security/getPrivateSigningKey';
 import {getPrivateEncryptionKey} from 'app/util/security/getPrivateEncryptionKey';
+import { LedgerService } from 'app/ledger.service';
 
 interface SendSignaMultipleSameRequest {
   amountNQT: string;
@@ -48,13 +48,13 @@ interface SendSignaRequest {
 })
 export class SendMoneyService {
 
-  constructor(private apiService: ApiService,
+  constructor(private ledgerService: LedgerService,
               private accountService: AccountService) {
   }
 
   public sendAmountToMultipleRecipients(request: SendSignaMultipleRequest): Promise<TransactionId> {
     const {fee, keys, pin, recipientAmounts} = request;
-    return this.apiService.ledger.transaction.sendAmountToMultipleRecipients({
+    return this.ledgerService.ledger.transaction.sendAmountToMultipleRecipients({
       senderPublicKey: keys.publicKey,
       senderPrivateKey: getPrivateSigningKey(pin, keys),
       recipientAmounts,
@@ -64,7 +64,7 @@ export class SendMoneyService {
 
   public sendSameAmountToMultipleRecipients(request: SendSignaMultipleSameRequest): Promise<TransactionId> {
     const {amountNQT, fee, keys, pin, recipientIds} = request;
-    return this.apiService.ledger.transaction.sendSameAmountToMultipleRecipients({
+    return this.ledgerService.ledger.transaction.sendSameAmountToMultipleRecipients({
       amountPlanck: amountNQT,
       feePlanck: fee,
       recipientIds,
@@ -104,7 +104,7 @@ export class SendMoneyService {
     }
 
     // @ts-ignore
-    return this.apiService.ledger.transaction.sendAmountToSingleRecipient({
+    return this.ledgerService.ledger.transaction.sendAmountToSingleRecipient({
       amountPlanck: amount,
       feePlanck: fee,
       recipientId,

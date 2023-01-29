@@ -13,12 +13,12 @@ import {
 } from '@signumjs/core';
 import {NetworkService} from 'app/network/network.service';
 import {Amount, ChainTime} from '@signumjs/util';
-import {ApiService} from '../../api.service';
 import { StoreService } from '../../store/store.service';
 import { AccountManagementService } from 'app/shared/services/account-management.service';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { getPrivateEncryptionKey } from 'app/util/security/getPrivateEncryptionKey';
 import { getPrivateSigningKey } from 'app/util/security/getPrivateSigningKey';
+import { LedgerService } from 'app/ledger.service';
 
 export interface ChatMessage {
   message: string;
@@ -58,7 +58,7 @@ export class MessagesService implements Resolve<any> {
   constructor(private accountManagementService: AccountManagementService,
               private networkService: NetworkService,
               private storeService: StoreService,
-              private apiService: ApiService
+              private ledgerService: LedgerService
   ) {
     this.onMessageSelected = new BehaviorSubject({});
     this.onOptionsSelected = new BehaviorSubject({
@@ -99,7 +99,7 @@ export class MessagesService implements Resolve<any> {
     pin: string,
     fee: number): Promise<TransactionId> {
 
-    const ledger = this.apiService.ledger;
+    const ledger = this.ledgerService.ledger;
     const recipient = await ledger.account.getAccount({accountId: recipientId});
     const senderKeys = {
       agreementPrivateKey: getPrivateEncryptionKey(pin, this.user.keys),
@@ -141,13 +141,13 @@ export class MessagesService implements Resolve<any> {
   private async fetchMessagesPerAccount(): Promise<Transaction[]> {
       const accountId = this.user.account;
 
-      const fetchConfirmedMessages = this.apiService.ledger.account.getAccountTransactions({
+      const fetchConfirmedMessages = this.ledgerService.ledger.account.getAccountTransactions({
         accountId,
         type: TransactionType.Arbitrary,
         subtype: TransactionArbitrarySubtype.Message,
         includeIndirect: false,
       });
-      const fetchUnconfirmedMessages = this.apiService.ledger.account.getUnconfirmedAccountTransactions(accountId, false);
+      const fetchUnconfirmedMessages = this.ledgerService.ledger.account.getUnconfirmedAccountTransactions(accountId, false);
 
       const [confirmed, pending] = await Promise.all([fetchConfirmedMessages, fetchUnconfirmedMessages]);
 
