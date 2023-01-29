@@ -21,6 +21,7 @@ import {AppService} from './app.service';
 import {UnsubscribeOnDestroy} from './util/UnsubscribeOnDestroy';
 import {takeUntil} from 'rxjs/operators';
 import {Router, DefaultUrlSerializer, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET} from '@angular/router';
+import { AccountManagementService } from "./shared/services/account-management.service";
 
 const BlockchainStatusInterval = 30_000;
 
@@ -43,13 +44,13 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
   urlSerializer = new DefaultUrlSerializer();
   percentDownloaded: number;
   private blockchainStatusInterval: NodeJS.Timeout;
-  private pendingTransactionsInterval: NodeJS.Timeout;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
     private _platform: Platform,
     private storeService: StoreService,
     private accountService: AccountService,
+    private accountManagementService: AccountManagementService,
     private networkService: NetworkService,
     private notifierService: NotifierService,
     private utilService: UtilService,
@@ -83,24 +84,24 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       this.initRouteToHandler();
     }
 
-    this.storeService.nodeSelected$
+    this.storeService.networkChanged$
       .pipe(takeUntil(this.unsubscribeAll))
-      .subscribe(() => {
-        this.updateAccounts();
+      .subscribe((network) => {
+        console.log('Network changed', network);
+        this.updateAccounts(network);
       });
   }
 
   ngOnDestroy(): void {
     super.ngOnDestroy();
     clearInterval(this.blockchainStatusInterval);
-    clearInterval(this.pendingTransactionsInterval);
   }
 
-  private updateAccounts(): void {
+  private updateAccounts(network:string): void {
     this.storeService
-      .getAllDistinctAccountIds()
+      .getAllAccountsByNetwork(network)
       .forEach((id) =>
-        this.accountService.getAccount(id)
+        this.accountService.getAccount(id.account)
           .then( account => this.storeService.saveAccount(account))
           .catch(e => console.warn('Could not update account', e.message))
       );

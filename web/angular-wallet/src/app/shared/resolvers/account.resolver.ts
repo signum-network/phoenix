@@ -14,7 +14,6 @@ export class AccountResolver implements Resolve<Promise<WalletAccount>> {
   }
 
   async resolve(route: ActivatedRouteSnapshot): Promise<WalletAccount> {
-
     return route.params.id ?
       this.accountService.getAccount(route.params.id) :
       Promise.resolve(this.accountManagementService.getSelectedAccount());

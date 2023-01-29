@@ -7,6 +7,7 @@ import { WalletAccount } from '../util/WalletAccount';
 import { Subject, timer } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { NodeInfo } from 'app/shared/types';
+import { Address } from '@signumjs/core';
 
 const CollectionName = {
   Account: 'accounts',
@@ -50,13 +51,19 @@ export class StoreService {
    */
   public nodeSelected$: Subject<NodeInfo> = new Subject();
 
+
+  /**
+   * Triggers when the network changes, i.e. Signum <-> Signum-TEST
+   */
+  public networkChanged$: Subject<string> = new Subject();
+
   /**
    * Triggers everytime a new account was selected
    */
   public accountSelected$: Subject<WalletAccount> = new Subject();
 
   /**
-   * Triggers everytime the current account was updated, i.e. new balance, new transactions, new description etc.
+   * Triggers everytime the selected account was updated, i.e. new balance, new transactions, new description etc.
    */
   public accountUpdated$: Subject<WalletAccount> = new Subject();
 
@@ -117,8 +124,7 @@ export class StoreService {
     const result = accounts.chain().data();
     for (const a of result) {
       const walletAccount = new WalletAccount(a) as DbWalletAccount;
-      const _id = createAccountSurrogateKey(a);
-      walletAccount._id = _id;
+      walletAccount._id = createAccountSurrogateKey(a);
       walletAccount.networkName = getNetworknameFromAccount(walletAccount);
       walletAccount.transactions = [];
       accountsV2.insert(walletAccount);
@@ -155,12 +161,12 @@ export class StoreService {
       const selectedAccount = this.getSelectedAccount();
       if (selectedAccount) {
         this.accountSelected$.next(selectedAccount);
+        this.accountUpdated$.next(selectedAccount);
       }
       const selectedNode = this.getSelectedNode();
       if (selectedNode) {
         this.nodeSelected$.next(selectedNode);
       }
-
       const selectedLanguage = this.getSelectedLanguage();
       if (selectedLanguage) {
         this.languageSelected$.next(selectedLanguage);
@@ -182,17 +188,14 @@ export class StoreService {
       const accounts = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
       const _id = createAccountSurrogateKey(account);
       const existingAccount = accounts.by('_id', _id);
+      let updatedAccount = new WalletAccount(existingAccount);
       if (!existingAccount) {
-        const dbAccount = new WalletAccount(account) as DbWalletAccount;
-        dbAccount._id = _id;
-        dbAccount.networkName = getNetworknameFromAccount(dbAccount);
-        accounts.insert(dbAccount);
-        this.accountUpdated$.next(new WalletAccount(dbAccount));
+        const newAccount = new WalletAccount(account) as DbWalletAccount;
+        newAccount._id = _id;
+        newAccount.networkName = getNetworknameFromAccount(newAccount);
+        accounts.insert(newAccount);
+        updatedAccount = new WalletAccount(newAccount);
       } else {
-        // Only update what you really need...
-        // ATTENTION: Do not try to iterate over all keys and update then
-        // It will fail :shrug
-        // look at account.service.ts for the counter part
         existingAccount.balanceNQT = account.balanceNQT;
         existingAccount.unconfirmedBalanceNQT = account.unconfirmedBalanceNQT;
         existingAccount.committedBalanceNQT = account.committedBalanceNQT;
@@ -202,13 +205,18 @@ export class StoreService {
         existingAccount.type = account.type;
         existingAccount.name = account.name;
         existingAccount.description = account.description;
-        existingAccount.keys = account.keys;
+        // do not overwrite potentially stored private keys, but update public key
+        if (!existingAccount.keys.publicKey && account.keys.publicKey){
+          existingAccount.keys.publicKey = account.keys.publicKey;
+        }
         existingAccount.transactions = account.transactions;
         existingAccount.confirmed = account.confirmed;
         accounts.update(existingAccount);
-        this.accountUpdated$.next(new WalletAccount(existingAccount));
       }
 
+      if (this.getSelectedAccount().account === account.account){
+        this.accountUpdated$.next(updatedAccount);
+      }
     });
   }
 
@@ -226,21 +234,6 @@ export class StoreService {
     } catch (e) {
       // ignore error
     }
-  }
-
-
-  public getAllDistinctAccountIds(): string[] {
-    return this.withReady(() => {
-      const accounts = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
-      const distinctIds = new Set<string>();
-      const allAccounts = accounts.find();
-      for (const a of allAccounts) {
-        if (!distinctIds.has(a.account)) {
-          distinctIds.add(a.account);
-        }
-      }
-      return Array.from(distinctIds.values());
-    });
   }
 
   public getAllAccountsByNetwork(network: string): WalletAccount[] {
@@ -295,13 +288,10 @@ export class StoreService {
 
   public setSelectedAccount(account: WalletAccount): void {
     this.withReady<void>(() => {
-      const currentSettings = this.getSettings();
       const id = account.account;
-      if (id !== currentSettings.selectedAccountId) {
-        this.updateSettings({ selectedAccountId: id }, false);
-        const selectedAccount = this.getSelectedAccount();
-        this.accountSelected$.next(selectedAccount);
-      }
+      this.updateSettings({ selectedAccountId: id }, false);
+      const selectedAccount = this.getSelectedAccount();
+      this.accountSelected$.next(selectedAccount);
     });
   }
 
@@ -322,16 +312,46 @@ export class StoreService {
     this.withReady(() => {
       const { nodeUrl, networkName, addressPrefix } = nodeInfo;
       const currentSettings = this.getSettings();
-      if (currentSettings.node !== nodeUrl || currentSettings.networkName !== networkName || forced) {
+      const previousNetworkName = currentSettings.networkName;
+      const hasNetworkChanged = previousNetworkName !== networkName;
+      if (currentSettings.node !== nodeUrl || hasNetworkChanged || forced) {
         this.updateSettings({ node: nodeUrl, networkName, addressPrefix }, false);
         this.nodeSelected$.next(nodeInfo);
       }
+      if (hasNetworkChanged){
+
+        // migrate accounts from one network to another
+
+        this.migrateAccountsBetweenNetworks(previousNetworkName, networkName, addressPrefix);
+        this.networkChanged$.next(networkName);
+       }
     });
+  }
+
+  private migrateAccountsBetweenNetworks(fromNetwork: string, toNetwork: string, addressPrefix: string): void {
+      const collection = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
+      const accountsToBeMigrated = collection.where(a => getNetworknameFromAccount(a) === fromNetwork);
+      accountsToBeMigrated.forEach( a => {
+        const targetId = `${toNetwork}-${a.account}`;
+        const hasMigrated = collection.by('_id', targetId);
+        if (!hasMigrated){
+            const newAccount = new WalletAccount() as DbWalletAccount;
+            newAccount._id = targetId;
+            const address = a.keys.publicKey ? Address.fromPublicKey(a.keys.publicKey, addressPrefix) : Address.fromNumericId(a.account, addressPrefix)
+            newAccount.account = address.getNumericId();
+            newAccount.accountRS = address.getReedSolomonAddress();
+            newAccount.accountRSExtended = a.keys.publicKey ? address.getReedSolomonAddressExtended() : undefined;
+            newAccount.keys = a.keys;
+            newAccount.type = a.type;
+            collection.insert(newAccount);
+        }
+      });
   }
 
   public getSelectedAccount(): WalletAccount | null {
     return this.withReady<WalletAccount | null>(() => {
 
+      const collection = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
       const fallbackSelection = () => {
         const accounts = collection.where(a => getNetworknameFromAccount(a) === settings.networkName);
         if (accounts.length) {
@@ -342,7 +362,6 @@ export class StoreService {
       };
 
       const settings = this.getSettings();
-      const collection = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
       if (settings.selectedAccountId) {
         const accList = collection.where((a) => a.account === settings.selectedAccountId && getNetworknameFromAccount(a) === settings.networkName);
         return accList.length ? new WalletAccount(accList[0]) : fallbackSelection();

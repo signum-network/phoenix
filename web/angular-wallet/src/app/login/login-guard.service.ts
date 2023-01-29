@@ -7,7 +7,25 @@ import { NetworkService } from '../network/network.service';
 import { LedgerClientFactory } from '@signumjs/core';
 import { AccountManagementService } from 'app/shared/services/account-management.service';
 import { NodeInfo } from 'app/shared/types';
+import * as pMemoize from 'p-memoize';
 
+async function fetchNodeInfo(nodeHost: string): Promise<NodeInfo|null> {
+  try {
+    console.log('fetchNodeInfo', nodeHost)
+    const ledger = LedgerClientFactory.createClient({ nodeHost });
+    const info = await ledger.network.getNetworkInfo();
+    // all fine - could
+    return {
+      nodeUrl: nodeHost,
+      networkName: info.networkName,
+      addressPrefix: info.addressPrefix,
+    };
+  } catch (e) {
+    console.warn('Cannot reach node: ', nodeHost);
+    return null;
+  }
+}
+const mFetchNodeInfo = pMemoize(fetchNodeInfo);
 @Injectable({
   providedIn: 'root'
 })
@@ -20,21 +38,6 @@ export class LoginGuard implements CanActivate {
               private router: Router) {
   }
 
-  private async fetchNodeInfo(nodeHost: string): Promise<NodeInfo|null> {
-    try {
-      const ledger = LedgerClientFactory.createClient({ nodeHost });
-      const info = await ledger.network.getNetworkInfo();
-      // all fine - could
-      return {
-        nodeUrl: nodeHost,
-        networkName: info.networkName,
-        addressPrefix: info.addressPrefix,
-      };
-    } catch (e) {
-      console.warn('Cannot reach node: ', nodeHost);
-      return null;
-    }
-  }
 
   canActivate(): Observable<boolean> {
     return this.storeService.ready$.pipe(
@@ -48,7 +51,7 @@ export class LoginGuard implements CanActivate {
           return false;
         }
 
-        const nodeInfo = await this.fetchNodeInfo(settings.node);
+        const nodeInfo = await mFetchNodeInfo(settings.node);
         if (!nodeInfo){
           await this.router.navigate(['/settings'], {queryParams: { connectionFail: true }});
           return false;

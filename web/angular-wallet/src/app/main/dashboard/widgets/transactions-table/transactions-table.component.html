@@ -5,7 +5,7 @@
       [paginationEnabled]="false"
       [displayedColumns]="displayedColumns"
     ></app-transaction-table>
-    <div class="button-link-container">
+    <div *ngIf="account.transactions.length > 10" class="button-link-container">
       <app-link-button [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</app-link-button>
     </div>
   <ng-container *ngIf="!account.transactions.length">

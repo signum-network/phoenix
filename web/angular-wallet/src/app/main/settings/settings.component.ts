@@ -115,6 +115,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
       this.nodes = SettingsComponent.createNodeList(this.showTestnet.value);
     });
 
+
     updateVersion();
   }
 
@@ -133,6 +134,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
         networkName: nodeInformation.networkName,
         addressPrefix: nodeInformation.addressPrefix
       }, true);
+
       this.notifierService.notify('success', this.i18nService.getTranslation('node_set_success'));
     } catch (e) {
       await this.getLastValidSettings();

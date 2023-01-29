@@ -18,7 +18,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTableModule} from '@angular/material/table';
 import {DeleteAccountDialogComponent} from './delete-account-dialog/delete-account-dialog.component';
 import {RouterModule} from '@angular/router';
-import {AccountsResolver} from './accounts.resolver';
 import {I18nModule} from 'app/layout/components/i18n/i18n.module';
 import {NotifierModule} from 'angular-notifier';
 import {FuseSharedModule} from '@fuse/shared.module';
@@ -40,9 +39,6 @@ const routes = [
     path: 'accounts',
     component: AccountsComponent,
     canActivate: [LoginGuard],
-    resolve: {
-      accounts: AccountsResolver
-    }
   },
   {
     path: 'account/:id',
@@ -90,7 +86,6 @@ const routes = [
     AccountDetailsComponent,
   ],
   providers: [
-    AccountsResolver
   ],
   entryComponents: [DeleteAccountDialogComponent]
 })

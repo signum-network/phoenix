@@ -16,7 +16,6 @@ import { Recipient } from '../../components/recipient-input/recipient-input.comp
 })
 export class AccountManagementService {
 
-  private showDesktopNotifications: boolean;
   private accountPolling$: Subscription;
 
   constructor(private storeService: StoreService,
@@ -24,14 +23,6 @@ export class AccountManagementService {
               private progressBarService: FuseProgressBarService,
               private apiService: ApiService
   ) {
-    this.storeService
-      .settingsUpdated$
-      .subscribe((settings: Settings) => {
-        if (!settings) {
-          return;
-        }
-        this.showDesktopNotifications = settings.showDesktopNotifications;
-      });
   }
 
   private async fetchAccountsRecentTransactions(account: WalletAccount): Promise<Transaction[]> {
@@ -155,7 +146,6 @@ export class AccountManagementService {
     accountRef.unconfirmedBalanceNQT = remoteAccount.unconfirmedBalanceNQT;
     accountRef.accountRSExtended = remoteAccount.accountRSExtended;
     accountRef.accountRS = remoteAccount.accountRS;
-
     if (!accountRef.keys.publicKey && remoteAccount.publicKey) {
       accountRef.keys.publicKey = remoteAccount.publicKey;
     }

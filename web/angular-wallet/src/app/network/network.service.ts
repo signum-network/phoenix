@@ -26,7 +26,7 @@ export class NetworkService {
   constructor(private apiService: ApiService, private storeService: StoreService) {
   }
 
-  public suggestFee(): Promise<SuggestedFees> {
+  public getSuggestedFees(): Promise<SuggestedFees> {
     return this.apiService.ledger.network.getSuggestedFees();
   }
 

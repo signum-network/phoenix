@@ -53,10 +53,10 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
   public ngOnInit(): void {
     this.accounts = [];
     this.selectedAccounts = {};
-    this.selectedAccount = this.storeService.getSelectedAccount();
+    this.selectedAccount = this.accountManagementService.getSelectedAccount();
+    this.accounts = this.accountManagementService.getAllAccounts();
     this.displayedColumns = ['delete', 'avatar', 'account', 'name', 'balance', 'type', 'actions'];
     this.dataSource = new MatTableDataSource<WalletAccount>();
-    this.accounts = this.route.snapshot.data.accounts;
     this.dataSource.data = this.accounts;
 
     this.storeService.languageSelected$
@@ -70,7 +70,6 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
       .subscribe((acc) => {
         this.selectedAccount = acc;
       });
-
   }
 
   private sortAccounts(accounts: WalletAccount[], sort: MatSort): WalletAccount[] {
