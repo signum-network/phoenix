@@ -14,6 +14,7 @@ import { Recipient } from 'app/components/recipient-input/recipient-input.compon
 import { constants } from 'app/constants';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { LedgerService } from 'app/ledger.service';
+import { expMemo, memo } from '../../util/memo';
 
 export interface TokenData {
   id: string;
@@ -49,11 +50,16 @@ interface TransferTokenRequest {
   providedIn: 'root'
 })
 export class TokenService {
+  public memoizedFetchAccountTokens: (key: string, account: WalletAccount) => Promise<TokenData[]>;
 
   constructor(
     private ledgerService: LedgerService
   ) {
-
+    this.memoizedFetchAccountTokens = expMemo((key: string, account: WalletAccount) => {
+      return this.fetchAccountTokensImpl(account);
+    }, {
+      expiry: 120_000
+    });
   }
 
   private async getToken(assetId: string): Promise<Asset> {
@@ -68,7 +74,7 @@ export class TokenService {
     return this.gatherTokenData(tokenId, assetBalance.balanceQNT);
   }
 
-  public async getPriceInfo(id: string): Promise<PriceInfo> {
+  private async getPriceInfo(id: string): Promise<PriceInfo> {
     const { trades } = await this.ledgerService.ledger.service.query('getTrades', {
       asset: id,
       firstIndex: 0,
@@ -93,7 +99,7 @@ export class TokenService {
   }
 
 
-  async gatherTokenData(tokenId: string, balanceQNT: string): Promise<TokenData> {
+  private async gatherTokenData(tokenId: string, balanceQNT: string): Promise<TokenData> {
     const [token, priceInfo] = await Promise.all([this.getToken(tokenId), this.getPriceInfo(tokenId)]);
 
     const decimalFactor = Math.pow(10, token.decimals);
@@ -113,13 +119,18 @@ export class TokenService {
     };
   }
 
-  async fetchAccountTokens(account: WalletAccount): Promise<TokenData[]> {
+  async fetchAccountTokens(account: WalletAccount): Promise<TokenData[]>{
+    return this.memoizedFetchAccountTokens(`fetchAccountTokens-${account._id}`, account);
+  }
+
+  private async fetchAccountTokensImpl(account: WalletAccount): Promise<TokenData[]> {
     if (!account.assetBalances) {
       return Promise.resolve([]);
     }
 
     const promises = account.assetBalances.map((balance) => {
       const { asset, balanceQNT } = balance;
+
       return this.gatherTokenData(asset, balanceQNT);
     });
     const tokens = await Promise.all(promises);

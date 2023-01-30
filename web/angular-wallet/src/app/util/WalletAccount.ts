@@ -4,6 +4,7 @@ import { AssetBalance, Transaction, UnconfirmedAssetBalance } from '@signumjs/co
 
 export class WalletAccount {
 
+  public _id: string;
   public networkName: string;
   public account: string;
   public accountRS: string;
@@ -23,6 +24,7 @@ export class WalletAccount {
   public confirmed: boolean;
 
   constructor(data: any = {}) {
+    this._id = data._id;
     this.account = data.account || undefined;
     this.accountRS = data.accountRS || undefined;
     this.accountRSExtended = data.accountRSExtended || undefined;
@@ -48,5 +50,9 @@ export class WalletAccount {
     this.unconfirmedAssetBalances = data.unconfirmedAssetBalances || undefined;
     this.unconfirmedBalanceNQT = data.unconfirmedBalanceNQT || 0;
     this.networkName = data.networkName || undefined;
+  }
+
+  public isStored() {
+    return !!this._id;
   }
 }

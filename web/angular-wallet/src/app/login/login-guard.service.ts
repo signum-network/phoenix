@@ -7,11 +7,11 @@ import { NetworkService } from '../network/network.service';
 import { LedgerClientFactory } from '@signumjs/core';
 import { AccountManagementService } from 'app/shared/services/account-management.service';
 import { NodeInfo } from 'app/shared/types';
-import * as pMemoize from 'p-memoize';
+import { memo } from 'app/util/memo';
 
-async function fetchNodeInfo(nodeHost: string): Promise<NodeInfo|null> {
+async function _fetchNodeInfo(nodeHost: string): Promise<NodeInfo|null> {
   try {
-    console.log('fetchNodeInfo', nodeHost)
+    console.log('fetchNodeInfo', nodeHost);
     const ledger = LedgerClientFactory.createClient({ nodeHost });
     const info = await ledger.network.getNetworkInfo();
     // all fine - could
@@ -25,7 +25,7 @@ async function fetchNodeInfo(nodeHost: string): Promise<NodeInfo|null> {
     return null;
   }
 }
-const mFetchNodeInfo = pMemoize(fetchNodeInfo);
+const fetchNodeInfo = memo(_fetchNodeInfo);
 @Injectable({
   providedIn: 'root'
 })
@@ -51,7 +51,7 @@ export class LoginGuard implements CanActivate {
           return false;
         }
 
-        const nodeInfo = await mFetchNodeInfo(settings.node);
+        const nodeInfo = await fetchNodeInfo(settings.node);
         if (!nodeInfo){
           await this.router.navigate(['/settings'], {queryParams: { connectionFail: true }});
           return false;

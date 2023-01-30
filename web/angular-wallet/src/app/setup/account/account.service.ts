@@ -138,23 +138,18 @@ export class AccountService {
     }
   }
 
-  public getAccountBalance(id: string): Promise<Balance> {
-    return this.ledgerService.ledger.account.getAccountBalance(id);
-  }
 
   public getUnconfirmedTransactions(id: string): Promise<UnconfirmedTransactionList> {
     return this.ledgerService.ledger.account.getUnconfirmedAccountTransactions(id);
   }
 
   public async getAccount(accountId: string): Promise<WalletAccount> {
-    // const supportsPocPlus = await this.apiService.supportsPocPlus();
-    // const includeCommittedAmount = supportsPocPlus || undefined;
     const account = await this.ledgerService.ledger.account.getAccount({
       accountId,
       includeCommittedAmount: true,
       includeEstimatedCommitment: true
     });
-    return adjustLegacyAddressPrefix(new WalletAccount(account));
+    return new WalletAccount(account);
   }
 
   public setAccountInfo({

@@ -2,7 +2,8 @@
     "extends": "../tsconfig.json",
     "compilerOptions": {
         "outDir": "../out-tsc/app",
-        "module": "esnext"
+        "module": "esnext",
+        "allowSyntheticDefaultImports": true,
     },
     "include": [
       "**/*.ts",

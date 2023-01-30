@@ -16,12 +16,12 @@ const CollectionName = {
   Migration: '_migration'
 };
 
-type DbWalletAccount = WalletAccount & { _id: string };
+// type WalletAccount = WalletAccount & { _id: string };
 
 function createAccountSurrogateKey(account: WalletAccount): string {
   return `${account.networkName || environment.defaultNodeNetwork}-${account.account}`;
 }
-function getNetworknameFromAccount(account: DbWalletAccount): string {
+function getNetworknameFromAccount(account: WalletAccount): string {
   if (account.networkName){
     return account.networkName;
   }
@@ -120,10 +120,10 @@ export class StoreService {
     if (!accounts) {
       return;
     }
-    const accountsV2 = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
+    const accountsV2 = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
     const result = accounts.chain().data();
     for (const a of result) {
-      const walletAccount = new WalletAccount(a) as DbWalletAccount;
+      const walletAccount = new WalletAccount(a);
       walletAccount._id = createAccountSurrogateKey(a);
       walletAccount.networkName = getNetworknameFromAccount(walletAccount);
       walletAccount.transactions = [];
@@ -185,17 +185,16 @@ export class StoreService {
 
   public saveAccount(account: WalletAccount): void {
     this.withReady<void>(() => {
-      const accounts = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
-      const _id = createAccountSurrogateKey(account);
-      const existingAccount = accounts.by('_id', _id);
-      let updatedAccount = new WalletAccount(existingAccount);
-      if (!existingAccount) {
-        const newAccount = new WalletAccount(account) as DbWalletAccount;
-        newAccount._id = _id;
+      const accounts = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
+      let updatedAccount;
+      if (!account.isStored()) {
+        const newAccount = account;
+        newAccount._id = createAccountSurrogateKey(newAccount);
         newAccount.networkName = getNetworknameFromAccount(newAccount);
         accounts.insert(newAccount);
-        updatedAccount = new WalletAccount(newAccount);
+        updatedAccount = newAccount;
       } else {
+        const existingAccount = accounts.by('_id', account._id);
         existingAccount.balanceNQT = account.balanceNQT;
         existingAccount.unconfirmedBalanceNQT = account.unconfirmedBalanceNQT;
         existingAccount.committedBalanceNQT = account.committedBalanceNQT;
@@ -212,6 +211,7 @@ export class StoreService {
         existingAccount.transactions = account.transactions;
         existingAccount.confirmed = account.confirmed;
         accounts.update(existingAccount);
+        updatedAccount = existingAccount;
       }
 
       if (this.getSelectedAccount().account === account.account){
@@ -238,15 +238,15 @@ export class StoreService {
 
   public getAllAccountsByNetwork(network: string): WalletAccount[] {
     return this.withReady(() => {
-      const accounts = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
-      const dbWalletAccounts = accounts.where( (a) =>  getNetworknameFromAccount(a) === network);
-      return dbWalletAccounts.map( a => new WalletAccount(a));
+      const accounts = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
+      const WalletAccounts = accounts.where( (a) =>  getNetworknameFromAccount(a) === network);
+      return WalletAccounts.map( a => new WalletAccount(a));
     });
   }
 
   public getAllAccounts(): WalletAccount[] {
     return this.withReady(() => {
-      const accounts = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
+      const accounts = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
       return accounts.find().map((dba) => new WalletAccount(dba));
     });
   }
@@ -297,7 +297,7 @@ export class StoreService {
 
   public removeAccount(account: WalletAccount, allNetworks = false): void {
     this.withReady(() => {
-      const accounts = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
+      const accounts = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
       if (allNetworks){
             accounts.chain().find({ account: account.account }).remove();
       } else {
@@ -329,15 +329,15 @@ export class StoreService {
   }
 
   private migrateAccountsBetweenNetworks(fromNetwork: string, toNetwork: string, addressPrefix: string): void {
-      const collection = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
+      const collection = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
       const accountsToBeMigrated = collection.where(a => getNetworknameFromAccount(a) === fromNetwork);
       accountsToBeMigrated.forEach( a => {
         const targetId = `${toNetwork}-${a.account}`;
         const hasMigrated = collection.by('_id', targetId);
         if (!hasMigrated){
-            const newAccount = new WalletAccount() as DbWalletAccount;
+            const newAccount = new WalletAccount();
             newAccount._id = targetId;
-            const address = a.keys.publicKey ? Address.fromPublicKey(a.keys.publicKey, addressPrefix) : Address.fromNumericId(a.account, addressPrefix)
+            const address = a.keys.publicKey ? Address.fromPublicKey(a.keys.publicKey, addressPrefix) : Address.fromNumericId(a.account, addressPrefix);
             newAccount.account = address.getNumericId();
             newAccount.accountRS = address.getReedSolomonAddress();
             newAccount.accountRSExtended = a.keys.publicKey ? address.getReedSolomonAddressExtended() : undefined;
@@ -351,7 +351,7 @@ export class StoreService {
   public getSelectedAccount(): WalletAccount | null {
     return this.withReady<WalletAccount | null>(() => {
 
-      const collection = this.store.getCollection<DbWalletAccount>(CollectionName.AccountV2);
+      const collection = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
       const fallbackSelection = () => {
         const accounts = collection.where(a => getNetworknameFromAccount(a) === settings.networkName);
         if (accounts.length) {

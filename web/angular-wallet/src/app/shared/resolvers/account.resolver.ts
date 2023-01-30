@@ -1,22 +1,29 @@
 import { Injectable } from '@angular/core';
 
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { AccountService } from '../../setup/account/account.service';
+import { AccountService } from 'app/setup/account/account.service';
 import { WalletAccount } from 'app/util/WalletAccount';
-import { AccountManagementService } from 'app/shared/services/account-management.service';
+import { StoreService } from 'app/store/store.service';
+import { expMemo } from 'app/util/memo';
+
+
+const fetchAccount = expMemo((key: string, accountId: string, accountService: AccountService) => {
+  return accountService.getAccount(accountId);
+});
 
 @Injectable()
 export class AccountResolver implements Resolve<Promise<WalletAccount>> {
   constructor(private accountService: AccountService,
-              private accountManagementService: AccountManagementService
+              private storeService: StoreService,
   ) {
 
   }
 
   async resolve(route: ActivatedRouteSnapshot): Promise<WalletAccount> {
-    return route.params.id ?
-      this.accountService.getAccount(route.params.id) :
-      Promise.resolve(this.accountManagementService.getSelectedAccount());
+    const {networkName} = this.storeService.getSelectedNode();
+    const accountId = route.params.id || this.storeService.getSelectedAccount().account;
+    const cacheKey = `${networkName}-${accountId}`;
+    return fetchAccount(cacheKey, accountId, this.accountService);
   }
 }
 
