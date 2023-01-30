@@ -319,11 +319,12 @@ export class StoreService {
         this.nodeSelected$.next(nodeInfo);
       }
       if (hasNetworkChanged){
-
-        // migrate accounts from one network to another
-
         this.migrateAccountsBetweenNetworks(previousNetworkName, networkName, addressPrefix);
         this.networkChanged$.next(networkName);
+        const selectedAccount = this.getSelectedAccount();
+        const accounts = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
+        const newSelectedAccount = accounts.by('_id', `${networkName}-${selectedAccount.account}`);
+        this.accountSelected$.next(newSelectedAccount);
        }
     });
   }

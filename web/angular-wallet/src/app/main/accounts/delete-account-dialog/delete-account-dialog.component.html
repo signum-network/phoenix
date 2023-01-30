@@ -4,7 +4,7 @@
     <p>{{'confirm_delete_accounts_q' | i18n}}</p>
     <small>{{'confirm_delete_accounts_hint' | i18n}}</small>
     <ul>
-      <li *ngFor="let account of selectedAccounts">{{account.account | address}}</li>
+      <li *ngFor="let account of selectedAccounts">{{account.account | address:false:true}}</li>
     </ul>
   </div>
   <div mat-dialog-actions>

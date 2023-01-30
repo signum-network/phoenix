@@ -44,8 +44,11 @@
     }
 
     &__text {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       font-weight: 100;
-      width: 50%;
+      //width: 50%;
     }
   }
 
@@ -81,4 +84,21 @@
   .navigation {
     margin: 10px;
   }
+
+  mat-icon {
+    &.is-verifying {
+      animation: rotate 1s linear infinite;
+      color: grey !important;
+    }
+
+    &.not-verified {
+      color: darkred !important;
+    }
+
+    &.verified {
+      color: darkgreen !important;
+    }
+  }
+
+
 }

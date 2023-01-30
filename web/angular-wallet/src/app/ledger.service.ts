@@ -39,7 +39,7 @@ export class LedgerService {
     });
   }
 
-  async determineBestNode(): Promise<NodeInfo|null> {
+  async determineBestNode(): Promise<NodeInfo> {
     try {
       const nodeUrl = await this.ledger.service.selectBestHost(false);
       const { networkName, addressPrefix } = await this.ledger.network.getNetworkInfo();
@@ -49,8 +49,8 @@ export class LedgerService {
         addressPrefix
       };
     } catch (e) {
-      console.error(e);
-      return null;
+      console.warn(e);
+      return this.storeService.getSelectedNode();
     }
   }
 

@@ -12,12 +12,13 @@ export class AddressPipe implements PipeTransform {
   }
 
   transform(accountIdOrAddress: string,
-            isShortForm: boolean = false
+            isShortForm: boolean = false,
+            noPrefix: boolean = false
   ): string {
     const currentPrefix = this.networkService.getAddressPrefix();
     return formatAddress(accountIdOrAddress, {
       isShortForm,
-      prefix: currentPrefix
+      prefix: noPrefix ? undefined : currentPrefix
     });
   }
 }

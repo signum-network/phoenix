@@ -40,7 +40,6 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
 
   @ViewChild('ipfsAvatar', { static: false }) ipfsAvatar: ElementRef<HTMLImageElement>;
   @ViewChild('hashAvatar', { static: false }) hashAvatar: ElementRef<HTMLImageElement>;
-  @Input() selectedAccount: WalletAccount;
   navigation: any;
   fuseConfig: any;
   selectedAccountQRCode: string;
@@ -50,6 +49,7 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
   avatarLoaded = false;
   hashIconImgSrc = '';
 
+  selectedAccount: WalletAccount;
   // Private
   private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
   private unsubscribe = takeUntil(this.unsubscribeAll);
@@ -109,6 +109,8 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
   }
 
   async ngOnInit(): Promise<void> {
+    this.selectedAccount = this.storeService.getSelectedAccount();
+
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -146,9 +148,19 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
         await this.updateAvatar();
       });
 
+
+
     this.storeService.accountUpdated$
       .pipe(this.unsubscribe)
       .subscribe(() => {
+        this.updateNavigation();
+        this.updateAvatar();
+      });
+
+    this.storeService.accountSelected$
+      .pipe(this.unsubscribe)
+      .subscribe((account: WalletAccount) => {
+        this.selectedAccount = account;
         this.updateNavigation();
         this.updateAvatar();
       });

@@ -104,7 +104,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
     this.selectedNode.valueChanges
       .pipe(
         takeUntil(this.unsubscribeAll),
-        waitASecond
+        // waitASecond
       ).subscribe(updateVersion);
 
     this.showTestnet.valueChanges.pipe(
@@ -177,9 +177,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
     }
     this.isFetchingNodeInfo = true;
     const bestNode = await this.ledgerService.determineBestNode();
-    if (!bestNode) {
-      this.notifierService.notify('error', this.i18nService.getTranslation('no_reliable_node_reachable'));
-    } else if (bestNode.nodeUrl !== this.selectedNode.value) {
+    if (bestNode.nodeUrl !== this.selectedNode.value) {
       this.selectedNode.setValue(bestNode.nodeUrl);
       await this.selectNode();
     }

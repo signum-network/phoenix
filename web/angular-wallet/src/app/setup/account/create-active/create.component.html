@@ -26,7 +26,7 @@
     <mat-step>
       <ng-template matStepLabel>{{ 'record' | i18n }}</ng-template>
       <div class="step-container">
-        <app-account-create-record></app-account-create-record>
+        <app-account-create-record [newUser]="newUser"></app-account-create-record>
       </div>
     </mat-step>
     <mat-step>

@@ -5,6 +5,12 @@ import {NetworkService} from '../../network/network.service';
 import { WalletAccount } from 'app/util/WalletAccount';
 import { AccountManagementService } from 'app/shared/services/account-management.service';
 
+export enum AccountStatus {
+  New,
+  IsVerified,
+  IsNotVerified
+}
+
 
 @Injectable()
 export class CreateService {
@@ -14,7 +20,7 @@ export class CreateService {
   private account: WalletAccount;
   private pin: string;
   private step = 0;
-
+  private accountStatus = AccountStatus.New;
   constructor(
     // private accountService: AccountService,
     private accountManagementService: AccountManagementService,
@@ -139,6 +145,14 @@ export class CreateService {
     this.account.accountRS = address.getReedSolomonAddress();
     this.account.account = address.getNumericId();
     return this.account;
+  }
+
+  public setAccountStatus(accountStatus: AccountStatus) {
+    this.accountStatus = accountStatus;
+  }
+
+  public getAccountStatus(): AccountStatus {
+    return this.accountStatus;
   }
 
 }
