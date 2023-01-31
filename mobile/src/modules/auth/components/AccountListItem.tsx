@@ -88,7 +88,7 @@ export class AccountListItem extends React.PureComponent<Props> {
     const {
       type,
       accountRS = "",
-      balanceNQT = "",
+      balanceNQT = '0',
       name = "",
     } = this.props.account;
     const { priceApi, accountIndex } = this.props;

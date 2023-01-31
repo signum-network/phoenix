@@ -73,13 +73,13 @@ export const createActiveAccount = createActionFn<string, Account>(
     }
 
     const pinHash = hashSHA256(pin + keys.publicKey);
-    const account = new Account({
-      type: "active",
+    const account: Account = {
+      type: 'active',
       account: address.getNumericId(),
       accountRS: address.getReedSolomonAddress(),
       keys: encryptedKeys,
       pinHash,
-    });
+    };
     if (isBlacklistedAccount(account)) {
       throw new Error("This is a blacklisted account. Creation aborted");
     }
@@ -103,11 +103,11 @@ export const createOfflineAccount = createActionFn<string, Account>(
     if (hasAccount) {
       throw new Error(i18n.t(auth.errors.accountExist));
     }
-    const account = new Account({
-      type: "offline",
+    const account: Account = {
+      type: 'offline',
       account: address.getNumericId(),
       accountRS: address.getReedSolomonAddress(),
-    });
+    };
     if (isBlacklistedAccount(account)) {
       throw new Error("This is a blacklisted account. Creation aborted");
     }
