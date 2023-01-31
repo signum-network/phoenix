@@ -66,7 +66,10 @@ export class NetworkService {
   }
 
   public isMainNet(): boolean {
-    return this.storeService.getSettings().networkName === 'Signum';
+    return this.getNetworkName() === 'Signum';
+  }
+  public getNetworkName(): string {
+    return this.storeService.getSettings().networkName;
   }
   public getAddressPrefix(): string {
     return this.storeService.getSettings().addressPrefix;

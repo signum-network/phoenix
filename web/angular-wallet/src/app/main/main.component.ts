@@ -11,7 +11,6 @@ import {FuseSplashScreenService} from '@fuse/services/splash-screen.service';
 import {FuseTranslationLoaderService} from '@fuse/services/translation-loader.service';
 
 import {navigation} from 'app/navigation/navigation';
-import { WalletAccount } from 'app/util/WalletAccount';
 
 @Component({
   selector: 'main',

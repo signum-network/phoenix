@@ -16,6 +16,8 @@ export class AddressPipe implements PipeTransform {
             noPrefix: boolean = false
   ): string {
     const currentPrefix = this.networkService.getAddressPrefix();
+
+    console.log('AddressPipe prefix', currentPrefix)
     return formatAddress(accountIdOrAddress, {
       isShortForm,
       prefix: noPrefix ? undefined : currentPrefix

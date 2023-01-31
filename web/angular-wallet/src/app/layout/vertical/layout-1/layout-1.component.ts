@@ -16,7 +16,7 @@ export class VerticalLayout1Component implements OnInit, OnDestroy {
   fuseConfig: any;
   navigation: any;
 
-  selectedAccount: WalletAccount;
+  // selectedAccount: WalletAccount;
   // Private
   private _unsubscribeAll: Subject<any>;
 
@@ -36,20 +36,21 @@ export class VerticalLayout1Component implements OnInit, OnDestroy {
         this.fuseConfig = config;
       });
 
-    this.selectedAccount = this.storeService.getSelectedAccount();
-    this.storeService.accountSelected$
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((account) => {
-        this.selectedAccount = account;
-      });
-
-    this.storeService.accountUpdated$
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((account) => {
-        if (account.account === this.selectedAccount.account){
-          this.selectedAccount = account;
-        }
-      });
+    // this.selectedAccount = this.storeService.getSelectedAccount();
+    //
+    // this.storeService.accountSelected$
+    //   .pipe(takeUntil(this._unsubscribeAll))
+    //   .subscribe((account) => {
+    //     this.selectedAccount = account;
+    //   });
+    //
+    // this.storeService.accountUpdated$
+    //   .pipe(takeUntil(this._unsubscribeAll))
+    //   .subscribe((account) => {
+    //     if (account.account === this.selectedAccount.account){
+    //       this.selectedAccount = account;
+    //     }
+    //   });
   }
 
   ngOnDestroy(): void {

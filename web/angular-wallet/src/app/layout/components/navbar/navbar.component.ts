@@ -9,6 +9,8 @@ import { WalletAccount } from 'app/util/WalletAccount';
 })
 export class NavbarComponent
 {
+
+    @Input() selectedAccount: WalletAccount;
     // Private
     _variant: string;
 

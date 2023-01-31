@@ -19,11 +19,19 @@ export class AccountResolver implements Resolve<Promise<WalletAccount>> {
 
   }
 
-  async resolve(route: ActivatedRouteSnapshot): Promise<WalletAccount> {
+  async resolve(route: ActivatedRouteSnapshot): Promise<WalletAccount|null> {
     const {networkName} = this.storeService.getSelectedNode();
-    const accountId = route.params.id || this.storeService.getSelectedAccount().account;
-    const cacheKey = `${networkName}-${accountId}`;
-    return fetchAccount(cacheKey, accountId, this.accountService);
+    if(!route.params.id){
+      return this.storeService.getSelectedAccount();
+    }
+
+    try{
+      const accountId = route.params.id;
+      const cacheKey = `${networkName}-${accountId}`;
+      return (await fetchAccount(cacheKey, accountId, this.accountService) );
+    } catch(e) {
+      return null;
+    }
   }
 }
 

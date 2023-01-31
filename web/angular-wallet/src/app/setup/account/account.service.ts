@@ -63,7 +63,6 @@ interface SetCommitmentRequest {
 export class AccountService {
   public currentAccount$: BehaviorSubject<WalletAccount> = new BehaviorSubject(undefined);
   private transactionsSeenInNotifications: string[] = [];
-  private accountPrefix: string;
   private showDesktopNotifications: boolean;
 
   constructor(private storeService: StoreService,
@@ -75,15 +74,7 @@ export class AccountService {
       if (!settings){ return; }
       this.showDesktopNotifications = settings.showDesktopNotifications;
     });
-
-    // this.networkService.networkInfo$.subscribe(() => {
-    //   this.accountPrefix = this.networkService.getAddressPrefix();
-    // });
   }
-
-  // public updateCurrentAccount(account: WalletAccount): void {
-  //   this.currentAccount$.next(account);
-  // }
 
   public async getAddedCommitments(account: WalletAccount): Promise<TransactionList> {
     return this.ledgerService.ledger.account.getAccountTransactions({

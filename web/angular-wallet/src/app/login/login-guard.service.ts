@@ -58,10 +58,10 @@ export class LoginGuard implements CanActivate {
         }
         this.storeService.setSelectedNode(nodeInfo);
 
-        const selectedAccount = this.storeService.getSelectedAccount();
-        const hasAccounts = this.storeService.getAllAccounts().length > 0;
+        const selectedAccount = this.accountManagementService.getSelectedAccount();
+        const hasAccounts = this.accountManagementService.hasAccounts();
         if (selectedAccount) {
-          await this.accountManagementService.selectAccount(selectedAccount);
+          //await this.accountManagementService.selectAccount(selectedAccount);
           return true;
         } else if (hasAccounts) {
           await this.router.navigate(['/dashboard']);

@@ -59,12 +59,6 @@
 
         </div>
 
-        <!-- NAVBAR: Right -->
-        <ng-container *ngIf="fuseConfig.layout.navbar.position === 'right'">
-            <ng-container *ngTemplateOutlet="rightNavbar"></ng-container>
-        </ng-container>
-        <!-- / NAVBAR: Right -->
-
     </div>
 
     <!-- FOOTER: Above -->
@@ -93,7 +87,6 @@
 <ng-template #toolbar>
     <toolbar *ngIf="!fuseConfig.layout.toolbar.hidden"
              [ngClass]="fuseConfig.layout.toolbar.customBackgroundColor === true ? fuseConfig.layout.toolbar.position + ' ' + fuseConfig.layout.toolbar.background : fuseConfig.layout.toolbar.position"
-             [selectedAccount]="selectedAccount"
     >
     </toolbar>
 </ng-template>
@@ -112,19 +105,8 @@
     <fuse-sidebar name="navbar" class="navbar-fuse-sidebar"
                   [folded]="fuseConfig.layout.navbar.folded"
                   lockedOpen="gt-md"
-                  *ngIf="!fuseConfig.layout.navbar.hidden && selectedAccount">
+                  *ngIf="!fuseConfig.layout.navbar.hidden">
         <navbar [variant]="fuseConfig.layout.navbar.variant" class="left-navbar"></navbar>
     </fuse-sidebar>
 </ng-template>
 <!-- / LEFT NAVBAR -->
-
-<!-- RIGHT NAVBAR -->
-<ng-template #rightNavbar>
-    <fuse-sidebar name="navbar" position="right" class="navbar-fuse-sidebar"
-                  [folded]="fuseConfig.layout.navbar.folded"
-                  lockedOpen="gt-md"
-                  *ngIf="!fuseConfig.layout.navbar.hidden">
-        <navbar [variant]="fuseConfig.layout.navbar.variant" class="right-navbar"></navbar>
-    </fuse-sidebar>
-</ng-template>
-<!-- / RIGHT NAVBAR -->

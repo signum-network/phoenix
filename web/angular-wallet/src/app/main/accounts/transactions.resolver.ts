@@ -5,6 +5,7 @@ import {Transaction} from '@signumjs/core';
 import {AccountService} from 'app/setup/account/account.service';
 import {uniqBy} from 'lodash';
 
+// TODO: cache with expMemo
 @Injectable({
   providedIn: 'root'
 })

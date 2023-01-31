@@ -121,7 +121,7 @@ export class AccountsComponent extends UnsubscribeOnDestroy implements OnInit, A
           return;
         }
         const isRemovingSelectedAccount = accounts.findIndex(a => a.account === this.selectedAccount.account) !== -1;
-        accounts.forEach( a => this.accountManagementService.removeAccount(a));
+        accounts.forEach( a => this.accountManagementService.removeAccount(a.account));
         this.accounts = this.accountManagementService.getAllAccounts();
         this.dataSource.data = this.accounts;
         if (!this.accounts || !this.accounts.length) {

@@ -6,8 +6,8 @@ import {
   ViewEncapsulation,
   Input,
   ElementRef,
-  OnChanges, SimpleChanges
-} from '@angular/core';
+  OnChanges, SimpleChanges, ApplicationRef
+} from "@angular/core";
 import { NavigationEnd, Router } from '@angular/router';
 import { forkJoin, merge, Subject } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
@@ -36,7 +36,7 @@ import { DescriptorData } from '@signumjs/standards';
   styleUrls: ['./style-1.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implements OnInit, OnChanges {
+export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implements OnInit {
 
   @ViewChild('ipfsAvatar', { static: false }) ipfsAvatar: ElementRef<HTMLImageElement>;
   @ViewChild('hashAvatar', { static: false }) hashAvatar: ElementRef<HTMLImageElement>;
@@ -44,7 +44,6 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
   fuseConfig: any;
   selectedAccountQRCode: string;
   language: string;
-  node = environment.defaultNode;
   avatarImgSrc: string;
   avatarLoaded = false;
   hashIconImgSrc = '';
@@ -62,7 +61,8 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
     private storeService: StoreService,
     private i18nService: I18nService,
     private notifierService: NotifierService,
-    private router: Router
+    private router: Router,
+    private appRef: ApplicationRef
   ) {
     super();
     // Set the private defaults
@@ -123,11 +123,20 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
         }
       );
 
-    this.storeService.settingsUpdated$
+    this.storeService.languageSelected$
       .pipe(this.unsubscribe)
-      .subscribe(async ({ language, node }) => {
+      .subscribe((language: string) => {
           this.language = language;
-          this.node = node;
+        }
+      );
+
+    this.storeService.accountSelected$
+      .pipe(this.unsubscribe)
+      .subscribe((account: WalletAccount) => {
+          this.selectedAccount = account;
+          this.updateAvatar();
+          this.updateNavigation();
+          this.appRef.tick();
         }
       );
 
@@ -144,24 +153,7 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
         filter(value => value !== null),
         this.unsubscribe
       )
-      .subscribe(async () => {
-        await this.updateAvatar();
-      });
-
-
-
-    this.storeService.accountUpdated$
-      .pipe(this.unsubscribe)
       .subscribe(() => {
-        this.updateNavigation();
-        this.updateAvatar();
-      });
-
-    this.storeService.accountSelected$
-      .pipe(this.unsubscribe)
-      .subscribe((account: WalletAccount) => {
-        this.selectedAccount = account;
-        this.updateNavigation();
         this.updateAvatar();
       });
   }
@@ -190,10 +182,6 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
 
   toggleSidebarFolded(): void {
     this.fuseSidebarService.getSidebar('navbar').toggleFold();
-  }
-
-  getQRCode(id: string): Promise<string> {
-    return this.accountService.generateSendTransactionQRCodeAddress(id);
   }
 
   getAccountName(): string {
@@ -233,17 +221,8 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
         n.children.forEach(traverse);
       }
     };
-
     navigation.forEach(traverse);
-
     this.navigation = navigation;
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.selectedAccount.currentValue !== changes.selectedAccount.previousValue) {
-      this.updateAvatar();
-      this.updateNavigation();
-    }
   }
 
 }

@@ -160,9 +160,12 @@ export class AccountManagementService {
     }
   }
 
+  public hasAccounts(): boolean {
+      return this.storeService.getAllAccounts().length > 0;
+  }
 
-  public removeAccount(account: WalletAccount): void {
-    this.storeService.removeAccount(account);
+  public removeAccount(accountId: string): void {
+    this.storeService.removeAccount(accountId);
   }
 
   public findAccountById(accountId: string): WalletAccount | null {
@@ -170,6 +173,7 @@ export class AccountManagementService {
   }
   public getAllAccounts(): WalletAccount[] {
     const  {networkName} = this.storeService.getSelectedNode();
-    return this.storeService.getAllAccountsByNetwork(networkName);
+    // this forces change detection
+    return [...this.storeService.getAllAccountsByNetwork(networkName)];
   }
 }

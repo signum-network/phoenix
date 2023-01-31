@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { ApplicationRef, Injectable } from "@angular/core";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as Loki from 'lokijs';
 import { StoreConfig } from './store.config';
@@ -185,12 +185,15 @@ export class StoreService {
 
   public saveAccount(account: WalletAccount): void {
     this.withReady<void>(() => {
+
+      console.log('Saving account', account._id)
+
       const accounts = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
       let updatedAccount;
       if (!account.isStored()) {
         const newAccount = account;
+        newAccount.networkName = newAccount.networkName || this.getSelectedNode().networkName;
         newAccount._id = createAccountSurrogateKey(newAccount);
-        newAccount.networkName = getNetworknameFromAccount(newAccount);
         accounts.insert(newAccount);
         updatedAccount = newAccount;
       } else {
@@ -238,9 +241,9 @@ export class StoreService {
 
   public getAllAccountsByNetwork(network: string): WalletAccount[] {
     return this.withReady(() => {
-      const accounts = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
-      const WalletAccounts = accounts.where( (a) =>  getNetworknameFromAccount(a) === network);
-      return WalletAccounts.map( a => new WalletAccount(a));
+      const collection = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
+      const accounts = collection.where( (a) =>  getNetworknameFromAccount(a) === network);
+      return accounts.map( a => new WalletAccount(a));
     });
   }
 
@@ -295,15 +298,11 @@ export class StoreService {
     });
   }
 
-  public removeAccount(account: WalletAccount, allNetworks = false): void {
+  public removeAccount(accountId: string): void {
     this.withReady(() => {
+      // we remove all accounts of all networks
       const accounts = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
-      if (allNetworks){
-            accounts.chain().find({ account: account.account }).remove();
-      } else {
-        const found = accounts.by('_id', createAccountSurrogateKey(account));
-        accounts.remove(found);
-      }
+      accounts.chain().find({ account: accountId }).remove();
       this.persist();
     });
   }
@@ -324,7 +323,7 @@ export class StoreService {
         const selectedAccount = this.getSelectedAccount();
         const accounts = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
         const newSelectedAccount = accounts.by('_id', `${networkName}-${selectedAccount.account}`);
-        this.accountSelected$.next(newSelectedAccount);
+        this.accountSelected$.next(new WalletAccount(newSelectedAccount));
        }
     });
   }

@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ApplicationRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from "@angular/core";
 import { takeUntil } from 'rxjs/operators';
 
 import { FuseConfigService } from '@fuse/services/config.service';
@@ -51,7 +51,8 @@ export class ToolbarComponent
     private accountManagementService: AccountManagementService,
     private networkService: NetworkService,
     private storeService: StoreService,
-    private router: Router
+    private router: Router,
+    private appRef: ApplicationRef
   ) {
     super();
     this.languages = constants.languages;
@@ -90,28 +91,29 @@ export class ToolbarComponent
         this.hiddenNavbar = settings.layout.navbar.hidden === true;
       });
 
+    this.selectedAccount = this.accountManagementService.getSelectedAccount();
+    this.accounts = this.accountManagementService.getAllAccounts();
+
     this.storeService.settingsUpdated$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((settings) => {
         if (!settings) { return; }
         this.languageName = this.getLanguageName(settings.language);
         this.selectedProfile = this.getProfileByName(settings.userProfile);
-        this.selectedAccount = this.accountManagementService.getSelectedAccount();
-        this.accounts = this.accountManagementService.getAllAccounts();
       });
 
-    this.storeService.accountUpdated$
+    this.storeService.accountSelected$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((account) => {
-        this.selectedAccount = this.accountManagementService.getSelectedAccount();
+        this.selectedAccount = account;
         this.accounts = this.accountManagementService.getAllAccounts();
       });
 
     this.storeService.nodeSelected$
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((nodeInfo) => {
-        this.isMainNet = nodeInfo.networkName === 'Signum';
-        this.accounts = this.accountManagementService.getAllAccounts();
+          this.accounts = this.accountManagementService.getAllAccounts();
+          this.isMainNet = nodeInfo.networkName === 'Signum';
       });
 
   }

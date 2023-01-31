@@ -104,6 +104,7 @@ export class CreateService {
     const address = Address.fromPublicKey(keys.publicKey, this.networkService.getAddressPrefix());
     account.account = address.getNumericId();
     account.accountRS = address.getReedSolomonAddress();
+    account.networkName = this.networkService.getNetworkName();
 
     return this.accountManagementService.addAccount(account);
   }
@@ -114,6 +115,7 @@ export class CreateService {
     account.type = 'offline';
     account.accountRS = address.getReedSolomonAddress();
     account.account = address.getNumericId();
+    account.networkName = this.networkService.getNetworkName();
     await  this.accountManagementService.addAccount(account);
     return account;
   }
