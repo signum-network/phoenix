@@ -78,7 +78,7 @@ class ImportAccount extends React.PureComponent<IProps, State> {
       }
       this.props.dispatch(addAccount(account));
       this.props.dispatch(hydrateAccount({account}));
-      this.props.navigation.navigate('Home');
+      this.props.navigation.navigate('Accounts');
     } catch (error) {
       Alert.alert((error as any).message);
     }

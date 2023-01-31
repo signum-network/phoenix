@@ -101,7 +101,7 @@ const Settings = ({}: Props) => {
 
   const confirmErase = () => {
     dispatch(resetAuthState());
-    navigation.navigate('Home');
+    navigation.navigate('Accounts');
     toggleConfirmDeletePrompt();
   };
 
