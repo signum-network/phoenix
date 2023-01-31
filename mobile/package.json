@@ -19,24 +19,20 @@
     "url": "https://github.com/signum-network/phoenix"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=16"
   },
   "license": "GPL-3.0",
   "private": true,
   "scripts": {
-    "check": "npm run check:lint && npm run check:tsc",
-    "check:lint": "tslint --project tsconfig.json 'src/**/*.{ts,tsx}'",
-    "check:tsc": "tsc --noEmit",
-    "dev": "npm run dev:ios",
-    "dev:ios": "react-native run-ios --simulator=\"iPhone SE\"",
-    "start:android": "react-native run-android",
-    "start:metro": "react-native start",
-    "start": "IS_RELEASE=false && concurrently npm:start:*",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
     "translations:sort": "node tasks/sortJsonDir.js src/translations && git add src/translations/*.json",
     "test": "jest",
     "tsc": "tsc --init --pretty --jsx react",
     "prepare": "cd .. && husky install",
-    "lint": "lint-staged"
+    "lint": "eslint .",
+    "lint:staged": "lint-staged"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.11",
