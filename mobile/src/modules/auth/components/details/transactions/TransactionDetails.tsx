@@ -7,7 +7,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   Alert,
-  Clipboard,
 } from 'react-native';
 import {Text, TextAlign} from '../../../../../core/components/base/Text';
 import {Colors} from '../../../../../core/theme/colors';
@@ -17,6 +16,7 @@ import {mountTxTypeString} from './mountTxTypeString';
 import {FontSizes} from '../../../../../core/theme/sizes';
 import {i18n} from '../../../../../core/i18n';
 import {auth} from '../../../translations';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 interface Props {
   transaction: Transaction;

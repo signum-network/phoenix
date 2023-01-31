@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {Clipboard, Share, StyleSheet, View, Alert} from 'react-native';
+import {Share, StyleSheet, View, Alert} from 'react-native';
 import {Button} from '../../../core/components/base/Button';
 import {i18n} from '../../../core/i18n';
 import {FullHeightView} from '../../../core/layout/FullHeightView';
@@ -17,6 +17,7 @@ import {LabeledTextField} from '../../../core/components/base/LabeledTextField';
 import {isIOS} from '../../../core/utils/platform';
 import {HeaderWithBackButton} from '../../../core/layout/HeaderWithBackButton';
 import {auth} from '../../auth/translations';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 type ScanRouteProps = RouteProp<RootStackParamList, 'Scan'>;
 

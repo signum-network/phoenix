@@ -1,15 +1,9 @@
+import Clipboard from '@react-native-clipboard/clipboard';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Account, Address, Transaction} from '@signumjs/core';
 import React, {useEffect, useRef} from 'react';
-import {
-  Alert,
-  Clipboard,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Alert, Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import {actionIcons} from '../../../assets/icons';
 import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
