@@ -1,14 +1,14 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Button } from "../../../../core/components/base/Button";
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import {Button} from '../../../../core/components/base/Button';
 import {
   Text,
   TextAlign,
   TextThemes,
-} from "../../../../core/components/base/Text";
-import { i18n } from "../../../../core/i18n";
-import { flexGrowStyle } from "../../../../core/utils/styles";
-import { auth } from "../../translations";
+} from '../../../../core/components/base/Text';
+import {i18n} from '../../../../core/i18n';
+import {flexGrowStyle} from '../../../../core/utils/styles';
+import {auth} from '../../translations';
 
 const WORDS_PER_PAGE = 3;
 
@@ -33,20 +33,20 @@ export class NotePassphraseStage extends React.PureComponent<Props, State> {
   };
 
   handleNextButtonPress = () => {
-    const { offset } = this.state;
-    const { phrase } = this.props;
+    const {offset} = this.state;
+    const {phrase} = this.props;
     if (offset + WORDS_PER_PAGE < phrase.length - 1) {
-      this.setState({ offset: offset + WORDS_PER_PAGE });
+      this.setState({offset: offset + WORDS_PER_PAGE});
     } else {
       this.props.onFinish();
     }
   };
 
   render() {
-    const { offset } = this.state;
+    const {offset} = this.state;
     const words = this.props.phrase
       .slice(offset, offset + WORDS_PER_PAGE)
-      .join(" ");
+      .join(' ');
 
     return (
       <React.Fragment>

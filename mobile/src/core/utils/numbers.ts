@@ -1,6 +1,6 @@
-import { convertNQTStringToNumber } from "@signumjs/util";
+import {convertNQTStringToNumber} from '@signumjs/util';
 
-export const AmountPrefix = "Ꞩ";
+export const AmountPrefix = 'Ꞩ';
 
 export const NQTAmountToString = (amount: string): string => {
   return amountToString(convertNQTStringToNumber(amount));
@@ -13,8 +13,8 @@ export const NQTAmountToString = (amount: string): string => {
  */
 export const amountToString = (
   amount: number,
-  prefix: string | null = null
+  prefix: string | null = null,
 ): string => {
-  const result = amount.toFixed(8).replace(/\.?0+$/, "");
+  const result = amount.toFixed(8).replace(/\.?0+$/, '');
   return prefix ? `${prefix} ${result}` : result;
 };

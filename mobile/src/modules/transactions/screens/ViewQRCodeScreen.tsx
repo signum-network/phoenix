@@ -1,39 +1,39 @@
-import React, { useMemo } from "react";
-import { Clipboard, Share, StyleSheet, View, Alert } from "react-native";
-import { Button } from "../../../core/components/base/Button";
-import { i18n } from "../../../core/i18n";
-import { FullHeightView } from "../../../core/layout/FullHeightView";
-import { Screen } from "../../../core/layout/Screen";
-import { Colors } from "../../../core/theme/colors";
-import { defaultSideOffset } from "../../../core/theme/sizes";
-import { ReceiveAmountPayload } from "../store/actions";
-import { transactions } from "../translations";
-import { RouteProp, useRoute } from "@react-navigation/native";
-import { RootStackParamList } from "../../auth/navigation/mainStack";
-import { Amount, createDeeplink, EncoderFormat } from "@signumjs/util";
-import { AddressPrefix, Address } from "@signumjs/core";
-import QRCode from "react-native-qrcode-svg";
-import { LabeledTextField } from "../../../core/components/base/LabeledTextField";
-import { isIOS } from "../../../core/utils/platform";
-import { HeaderWithBackButton } from "../../../core/layout/HeaderWithBackButton";
-import { auth } from "../../auth/translations";
+import React, {useMemo} from 'react';
+import {Clipboard, Share, StyleSheet, View, Alert} from 'react-native';
+import {Button} from '../../../core/components/base/Button';
+import {i18n} from '../../../core/i18n';
+import {FullHeightView} from '../../../core/layout/FullHeightView';
+import {Screen} from '../../../core/layout/Screen';
+import {Colors} from '../../../core/theme/colors';
+import {defaultSideOffset} from '../../../core/theme/sizes';
+import {ReceiveAmountPayload} from '../store/actions';
+import {transactions} from '../translations';
+import {RouteProp, useRoute} from '@react-navigation/native';
+import {RootStackParamList} from '../../auth/navigation/mainStack';
+import {Amount, createDeeplink, EncoderFormat} from '@signumjs/util';
+import {AddressPrefix, Address} from '@signumjs/core';
+import QRCode from 'react-native-qrcode-svg';
+import {LabeledTextField} from '../../../core/components/base/LabeledTextField';
+import {isIOS} from '../../../core/utils/platform';
+import {HeaderWithBackButton} from '../../../core/layout/HeaderWithBackButton';
+import {auth} from '../../auth/translations';
 
-type ScanRouteProps = RouteProp<RootStackParamList, "Scan">;
+type ScanRouteProps = RouteProp<RootStackParamList, 'Scan'>;
 
 const styles = StyleSheet.create({
   col: {
     flex: 1,
   },
   row: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   details: {
     paddingHorizontal: defaultSideOffset,
-    display: "flex",
-    flexDirection: "column",
-    height: "95%",
+    display: 'flex',
+    flexDirection: 'column',
+    height: '95%',
   },
   imageWrapper: {
     flex: 3,
@@ -45,14 +45,14 @@ const styles = StyleSheet.create({
     flex: 2,
   },
   alignCenter: {
-    alignItems: "center",
-    justifyContent: "center",
-    alignContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
   },
 });
 
 function buildPhoenixDeepLinkURL(requestPayload: ReceiveAmountPayload): string {
-  const { amount, fee, recipient, immutable, message = "" } = requestPayload;
+  const {amount, fee, recipient, immutable, message = ''} = requestPayload;
 
   let payload = {
     amountPlanck: Amount.fromSigna(amount).getPlanck(),
@@ -63,16 +63,16 @@ function buildPhoenixDeepLinkURL(requestPayload: ReceiveAmountPayload): string {
 
   if (message) {
     // @ts-ignore
-    payload = { ...payload, message, messageIsText: true };
+    payload = {...payload, message, messageIsText: true};
   }
 
   const deeplink = createDeeplink({
     encoderFormat: EncoderFormat.Base64,
-    action: "pay",
+    action: 'pay',
     payload,
   });
 
-  console.log("Created deeplink:", deeplink);
+  console.log('Created deeplink:', deeplink);
   return deeplink;
 }
 
@@ -87,16 +87,16 @@ export const ViewQRCodeScreen: React.FC = () => {
       immutable: route.params.form.immutable,
       message: route.params.form.message,
     }),
-    [route]
+    [route],
   );
 
   const deeplinkUrl = useMemo(
     () => buildPhoenixDeepLinkURL(route.params.form),
-    [route]
+    [route],
   );
 
   const handleShare = async () => {
-    const androidLink = isIOS ? "" : `Your Link: ${deeplinkUrl}`;
+    const androidLink = isIOS ? '' : `Your Link: ${deeplinkUrl}`;
     try {
       await Share.share(
         {
@@ -109,23 +109,23 @@ ${androidLink}
 
 Pay using the Phoenix Wallet from https://phoenix-wallet.rocks
 `,
-          title: `Signum Payment Request`,
+          title: 'Signum Payment Request',
           url: deeplinkUrl,
         },
         {
-          dialogTitle: `Signum Payment Request`,
+          dialogTitle: 'Signum Payment Request',
           subject: `Signum Payment Request from ${data.recipient.getReedSolomonAddress()}`,
-        }
+        },
       );
     } catch (error) {
-      console.log("Sharing error", error);
+      console.log('Sharing error', error);
     }
   };
 
   const handleCopy = () => {
     Clipboard.setString(deeplinkUrl);
     Alert.alert(
-      i18n.t(auth.transactionDetails.copiedSuccessfully, { value: "Link" })
+      i18n.t(auth.transactionDetails.copiedSuccessfully, {value: 'Link'}),
     );
   };
 
@@ -185,7 +185,7 @@ Pay using the Phoenix Wallet from https://phoenix-wallet.rocks
             )}
             <LabeledTextField
               label={i18n.t(transactions.screens.receive.immutable)}
-              text={data.immutable ? "Yes" : "No"}
+              text={data.immutable ? 'Yes' : 'No'}
               color={Colors.WHITE}
             />
           </View>

@@ -2,21 +2,21 @@ import {
   getRecipientsAmount,
   isMultiOutSameTransaction,
   isMultiOutTransaction,
-  Transaction
-} from "@signumjs/core";
-import { Amount, ChainTime } from "@signumjs/util";
-import React from "react";
-import { Image, TouchableOpacity, View } from "react-native";
-import { transactionIcons } from "../../../../assets/icons";
-import { Text, TextAlign } from "../../../../core/components/base/Text";
-import { Colors } from "../../../../core/theme/colors";
+  Transaction,
+} from '@signumjs/core';
+import {Amount, ChainTime} from '@signumjs/util';
+import React from 'react';
+import {Image, TouchableOpacity, View} from 'react-native';
+import {transactionIcons} from '../../../../assets/icons';
+import {Text, TextAlign} from '../../../../core/components/base/Text';
+import {Colors} from '../../../../core/theme/colors';
 import {
   defaultSideOffset,
   FontSizes,
-  Sizes
-} from "../../../../core/theme/sizes";
-import { trimAddressPrefix } from "../../../../core/utils/account";
-import { AmountText } from "../../../../core/components/base/Amount";
+  Sizes,
+} from '../../../../core/theme/sizes';
+import {trimAddressPrefix} from '../../../../core/utils/account';
+import {AmountText} from '../../../../core/components/base/Amount';
 
 interface Props {
   transaction: Transaction;
@@ -26,55 +26,55 @@ interface Props {
 
 const styles: any = {
   view: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "nowrap",
-    justifyContent: "space-between",
-    paddingVertical: Sizes.SMALL
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-between',
+    paddingVertical: Sizes.SMALL,
   },
   iconView: {
     width: 40,
     marginLeft: 0,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   mainView: {
     marginRight: 0,
     paddingRight: defaultSideOffset,
-    display: "flex",
-    flexDirection: "column",
-    flexWrap: "wrap",
-    flexGrow: 1
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    flexGrow: 1,
   },
   hintView: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between"
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   dataView: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    maxWidth: "100%"
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    maxWidth: '100%',
   },
   icon: {
     width: 24,
-    height: 24
+    height: 24,
   },
   incomingAmount: {
     marginRight: Sizes.MEDIUM,
-    flexDirection: "row"
+    flexDirection: 'row',
   },
   outcomingAmount: {
     marginRight: Sizes.MEDIUM,
-    flexDirection: "row"
+    flexDirection: 'row',
   },
   account: {
-    flexWrap: "wrap",
-    right: 0
-  }
+    flexWrap: 'wrap',
+    right: 0,
+  },
 };
 
 export class TransactionListItem extends React.PureComponent<Props> {
@@ -92,12 +92,12 @@ export class TransactionListItem extends React.PureComponent<Props> {
   getAmount = (transaction: Transaction): Amount => {
     let result: Amount;
     if (this.isAmountNegative(transaction)) {
-      result = Amount.fromPlanck(transaction.amountNQT || "0").multiply(-1);
+      result = Amount.fromPlanck(transaction.amountNQT || '0').multiply(-1);
     } else {
       result = this.isMultiOutPayment(transaction)
         ? // here is an inconsistency in the signumjs lib
-        Amount.fromSigna(getRecipientsAmount(this.props.account, transaction))
-        : Amount.fromPlanck(transaction.amountNQT || "0");
+          Amount.fromSigna(getRecipientsAmount(this.props.account, transaction))
+        : Amount.fromPlanck(transaction.amountNQT || '0');
     }
     return result;
   };
@@ -107,12 +107,12 @@ export class TransactionListItem extends React.PureComponent<Props> {
   };
 
   handlePress = () => {
-    const { onPress, transaction } = this.props;
+    const {onPress, transaction} = this.props;
     onPress(transaction);
   };
 
   renderIcon = () => {
-    const { confirmations = 0 } = this.props.transaction;
+    const {confirmations = 0} = this.props.transaction;
 
     const icon =
       confirmations > 0 ? transactionIcons.done : transactionIcons.waiting;
@@ -122,11 +122,11 @@ export class TransactionListItem extends React.PureComponent<Props> {
 
   render() {
     const {
-      transaction = "",
+      transaction = '',
       timestamp = 0,
-      recipientRS = "",
-      senderRS = "",
-      confirmations
+      recipientRS = '',
+      senderRS = '',
+      confirmations,
     } = this.props.transaction;
     const isPending = confirmations === undefined;
     const isNegative = this.isAmountNegative(this.props.transaction);
@@ -137,7 +137,7 @@ export class TransactionListItem extends React.PureComponent<Props> {
       this.isMultiOutPayment(this.props.transaction) &&
       this.isOwnAccount(this.props.transaction.sender)
     ) {
-      accountRS = "Multi-out Payment";
+      accountRS = 'Multi-out Payment';
     }
 
     const date = ChainTime.fromChainTimestamp(timestamp)
@@ -145,9 +145,8 @@ export class TransactionListItem extends React.PureComponent<Props> {
       .toLocaleString();
     return (
       <TouchableOpacity
-        style={[styles.view, { opacity: isPending ? 0.75 : 1 }]}
-        onPress={this.handlePress}
-      >
+        style={[styles.view, {opacity: isPending ? 0.75 : 1}]}
+        onPress={this.handlePress}>
         <View style={styles.iconView}>
           <Image
             source={
@@ -167,8 +166,7 @@ export class TransactionListItem extends React.PureComponent<Props> {
               <Text
                 color={Colors.WHITE}
                 size={FontSizes.SMALLER}
-                textAlign={TextAlign.RIGHT}
-              >
+                textAlign={TextAlign.RIGHT}>
                 {date}
               </Text>
             </View>

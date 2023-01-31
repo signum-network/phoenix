@@ -1,23 +1,23 @@
-import { Account } from "@signumjs/core";
-import { convertNQTStringToNumber, ChainTime } from "@signumjs/util";
-import * as shape from "d3-shape";
-import React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
-import { Grid, StackedAreaChart, YAxis } from "react-native-svg-charts";
-import { AccountColors, Colors } from "../../../core/theme/colors";
-import { getBalanceHistoryFromTransactions } from "../../../core/utils/balance/getBalanceHistoryFromTransactions";
-import { BalanceHistoryItem } from "../../../core/utils/balance/typings";
-import { isSameDay } from "../../../core/utils/date";
+import {Account} from '@signumjs/core';
+import {convertNQTStringToNumber, ChainTime} from '@signumjs/util';
+import * as shape from 'd3-shape';
+import React from 'react';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import {Grid, StackedAreaChart, YAxis} from 'react-native-svg-charts';
+import {AccountColors, Colors} from '../../../core/theme/colors';
+import {getBalanceHistoryFromTransactions} from '../../../core/utils/balance/getBalanceHistoryFromTransactions';
+import {BalanceHistoryItem} from '../../../core/utils/balance/typings';
+import {isSameDay} from '../../../core/utils/date';
 import {
   HistoricalPriceTypeStrings,
   Metric,
   PriceInfoReduxState,
   PriceTypeStrings,
-} from "../../price-api/store/reducer";
-import { FontSizes } from "../../../core/theme/sizes";
-import { Text } from "../../../core/components/base/Text";
+} from '../../price-api/store/reducer';
+import {FontSizes} from '../../../core/theme/sizes';
+import {Text} from '../../../core/components/base/Text';
 
-const ACCOUNT_TOKEN = "account";
+const ACCOUNT_TOKEN = 'account';
 
 interface ChartData {
   [key: string]: number | Date;
@@ -37,9 +37,9 @@ interface State {
 }
 
 const styles = StyleSheet.create({
-  stackedAreaChart: { height: 200, paddingVertical: 16, zIndex: 1 },
+  stackedAreaChart: {height: 200, paddingVertical: 16, zIndex: 1},
   yAxis: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 5,
     height: 200,
@@ -47,14 +47,14 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   button: {
-    position: "absolute",
+    position: 'absolute',
     top: 142,
     right: 5,
     backgroundColor: Colors.BLUE_DARKEST,
     zIndex: 10,
     flex: 1,
-    alignContent: "center",
-    justifyContent: "center",
+    alignContent: 'center',
+    justifyContent: 'center',
     borderRadius: 3,
     borderWidth: 1,
     borderColor: Colors.BLUE_LIGHT,
@@ -68,11 +68,11 @@ const styles = StyleSheet.create({
 
 const svgStyles: StyleMedia = {
   fontSize: 8,
-  stroke: "white",
+  stroke: 'white',
   strokeWidth: 0.1,
-  alignmentBaseline: "baseline",
-  baselineShift: "3",
-  fill: "white",
+  alignmentBaseline: 'baseline',
+  baselineShift: '3',
+  fill: 'white',
 };
 
 const DATE_RANGES = [7, 30, 100];
@@ -83,12 +83,12 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
   };
 
   calculateChartData(): ChartData[] {
-    const accountTransactions = this.props.accounts.map((account) => {
+    const accountTransactions = this.props.accounts.map(account => {
       if (account.transactions) {
         return getBalanceHistoryFromTransactions(
           account.account,
           convertNQTStringToNumber(account.balanceNQT),
-          account.transactions
+          account.transactions,
         );
       }
     });
@@ -101,11 +101,11 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
     d: Date,
     historicalPrice: Metric[],
     atThatTime: number,
-    showPricesIn: PriceTypeStrings
+    showPricesIn: PriceTypeStrings,
   ): (
     value: BalanceHistoryItem[] | undefined,
     index: number,
-    array: Array<BalanceHistoryItem[] | undefined>
+    array: Array<BalanceHistoryItem[] | undefined>,
   ) => void {
     return (transactions, accountIndex) => {
       // set to 0 by default, in case we can't match a transaction
@@ -136,7 +136,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
   }
 
   private buildChartData(
-    accountTransactions: Array<BalanceHistoryItem[] | undefined>
+    accountTransactions: Array<BalanceHistoryItem[] | undefined>,
   ): ChartData[] {
     const now = new Date();
     const data: ChartData[] = [];
@@ -144,7 +144,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
     // tslint:disable-next-line: one-variable-per-declaration
     for (
       let d = new Date(
-          new Date().setDate(now.getDate() - this.state.selectedDateRange)
+          new Date().setDate(now.getDate() - this.state.selectedDateRange),
         ),
         i = 0;
       d <= now;
@@ -162,7 +162,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
           this.props.priceApi.historicalPriceInfo[
             this.props.priceApi.selectedCurrency as HistoricalPriceTypeStrings
           ].Data;
-        const price = historicalPriceData.find((metric) => {
+        const price = historicalPriceData.find(metric => {
           return isSameDay(new Date(metric.time * 1000), d);
         });
 
@@ -176,8 +176,8 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
           d,
           historicalPrice,
           atThatTime,
-          this.props.priceApi.selectedCurrency
-        )
+          this.props.priceApi.selectedCurrency,
+        ),
       );
     }
     return data;
@@ -193,7 +193,7 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
   };
 
   render() {
-    console.log("Stacked Chart");
+    console.log('Stacked Chart');
 
     const data = this.calculateChartData();
     const keys = Object.keys(data[0]).slice(1); // remove 'day' from the keys to get the account names
@@ -216,33 +216,30 @@ export class HomeStackedAreaChart extends React.PureComponent<Props, State> {
           keys={keys}
           colors={accountColors}
           curve={shape.curveNatural}
-          showGrid={false}
-        >
+          showGrid={false}>
           <Grid />
         </StackedAreaChart>
 
         <YAxis
           style={styles.yAxis as StyleMedia}
           data={StackedAreaChart.extractDataPoints(data, keys)}
-          contentInset={{ top: 10, bottom: 10 }}
+          contentInset={{top: 10, bottom: 10}}
           svg={svgStyles}
         />
 
         <TouchableOpacity
           onPress={this.props.selectCurrency}
-          style={styles.button as StyleMedia}
-        >
+          style={styles.button as StyleMedia}>
           <Text color={Colors.BLUE_LIGHT} size={FontSizes.SMALLER}>
-            {this.props.priceApi.selectedCurrency === "BURST"
-              ? "SIGNA"
+            {this.props.priceApi.selectedCurrency === 'BURST'
+              ? 'SIGNA'
               : this.props.priceApi.selectedCurrency}
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={this.selectDateRange}
-          style={[styles.button, styles.dateRange]}
-        >
+          style={[styles.button, styles.dateRange]}>
           <Text color={Colors.BLUE_LIGHT} size={FontSizes.SMALLER}>
             {this.state.selectedDateRange.toString()}d
           </Text>

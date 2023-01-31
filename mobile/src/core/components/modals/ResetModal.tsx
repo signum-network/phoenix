@@ -1,30 +1,30 @@
-import React from "react";
-import { Modal, SafeAreaView, View, StyleSheet } from "react-native";
-import { Text } from "../base/Text";
-import { FontSizes, Sizes } from "../../theme/sizes";
-import { i18n } from "../../i18n";
-import { auth } from "../../../modules/auth/translations";
-import { Button, ButtonThemes } from "../base/Button";
-import { settings } from "../../../modules/settings/translations";
+import React from 'react';
+import {Modal, SafeAreaView, View, StyleSheet} from 'react-native';
+import {Text} from '../base/Text';
+import {FontSizes, Sizes} from '../../theme/sizes';
+import {i18n} from '../../i18n';
+import {auth} from '../../../modules/auth/translations';
+import {Button, ButtonThemes} from '../base/Button';
+import {settings} from '../../../modules/settings/translations';
 
 const modalStyles = StyleSheet.create({
   container: {
-    height: "100%",
-    display: "flex",
-    justifyContent: "center",
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
     padding: Sizes.LARGER,
   },
   title: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    paddingVertical: "10%",
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingVertical: '10%',
     fontSize: FontSizes.LARGER,
   },
   body: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     fontSize: FontSizes.MEDIUM,
   },
 });
@@ -35,11 +35,7 @@ interface Props {
   onConfirm: () => void;
 }
 
-export const ResetModal: React.FC<Props> = ({
-  visible,
-  onConfirm,
-  onCancel,
-}) => {
+export const ResetModal: React.FC<Props> = ({visible, onConfirm, onCancel}) => {
   return (
     <Modal animationType="slide" transparent={false} visible={visible}>
       <SafeAreaView>

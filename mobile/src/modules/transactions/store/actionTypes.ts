@@ -1,4 +1,4 @@
-export const PATH = "TRANSACTIONS_";
+export const PATH = 'TRANSACTIONS_';
 
 export const actionTypes = {
   sendMoney: `${PATH}_SEND_MONEY`,

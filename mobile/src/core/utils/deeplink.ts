@@ -1,5 +1,5 @@
-import { DeeplinkParts, parseDeeplink } from "@signumjs/util";
-import { stableAmountFormat } from "./amount";
+import {DeeplinkParts, parseDeeplink} from '@signumjs/util';
+import {stableAmountFormat} from './amount';
 
 /**
  import {createDeeplink} from './createDeeplink';
@@ -34,7 +34,7 @@ export interface DeeplinkPayPayload {
 }
 
 export const SupportedDeeplinkActions = {
-  Pay: "pay",
+  Pay: 'pay',
 };
 
 enum DeeplinkType {
@@ -45,15 +45,15 @@ enum DeeplinkType {
 
 function parseURLParams(queryString: string): any {
   const query = {};
-  const firstVar = queryString.indexOf("?");
+  const firstVar = queryString.indexOf('?');
   const pairs = (
     firstVar > -1 ? queryString.substr(firstVar + 1) : queryString
-  ).split("&");
+  ).split('&');
   // tslint:disable-next-line: prefer-for-of
   for (let i = 0; i < pairs.length; i++) {
-    const pair = pairs[i].split("=");
+    const pair = pairs[i].split('=');
     // @ts-ignore
-    query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || "");
+    query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
   }
   return query;
 }
@@ -62,17 +62,17 @@ const parseLegacyDeeplink = (url: string): DeeplinkParts => {
   const params = parseURLParams(url);
 
   const sendPayload: DeeplinkPayPayload = {
-    recipient: params.receiver || "",
-    feePlanck: params.feeNQT || "",
-    amountPlanck: params.amountNQT || "",
-    message: params.message || "",
-    messageIsText: params.messageIsText?.toLowerCase() !== "false",
-    encrypt: params.encrypt?.toLowerCase() === "true",
-    immutable: params.immutable?.toLowerCase() === "true",
+    recipient: params.receiver || '',
+    feePlanck: params.feeNQT || '',
+    amountPlanck: params.amountNQT || '',
+    message: params.message || '',
+    messageIsText: params.messageIsText?.toLowerCase() !== 'false',
+    encrypt: params.encrypt?.toLowerCase() === 'true',
+    immutable: params.immutable?.toLowerCase() === 'true',
   };
 
   return {
-    version: "legacy",
+    version: 'legacy',
     action: SupportedDeeplinkActions.Pay,
     decodedPayload: sendPayload,
     payload: params,
@@ -86,10 +86,10 @@ const parseCIP22Deeplink = (url: string): DeeplinkParts => {
 
   // direct 1:1 explicit mapping to avoid injections
   parsed.decodedPayload = {
-    recipient: decoded.recipient || "",
-    feePlanck: decoded.feePlanck || "",
-    amountPlanck: decoded.amountPlanck || "",
-    message: decoded.message || "",
+    recipient: decoded.recipient || '',
+    feePlanck: decoded.feePlanck || '',
+    amountPlanck: decoded.amountPlanck || '',
+    message: decoded.message || '',
     messageIsText: decoded.messageIsText == null ? true : decoded.messageIsText,
     encrypt: decoded.encrypt || false,
     immutable: decoded.immutable || false,
@@ -99,9 +99,9 @@ const parseCIP22Deeplink = (url: string): DeeplinkParts => {
 };
 
 const isLegacyDeepLink = (url: string): boolean => {
-  const route = url.replace(/.*?:\/\//g, "");
-  const routeName = route.split("/")[0];
-  return routeName.indexOf("requestBurst") !== -1;
+  const route = url.replace(/.*?:\/\//g, '');
+  const routeName = route.split('/')[0];
+  return routeName.indexOf('requestBurst') !== -1;
 };
 
 function isCIP22DeepLink(url: string): boolean {
@@ -134,11 +134,11 @@ export const getDeeplinkInfo = (url: string): DeeplinkParts => {
       case DeeplinkType.LEGACY:
         return parseLegacyDeeplink(url);
       case DeeplinkType.UNKNOWN:
-        throw new Error("Unsupported link");
+        throw new Error('Unsupported link');
     }
     // @ts-ignore
     return null;
   } catch (e) {
-    throw new Error("Invalid Deeplink received");
+    throw new Error('Invalid Deeplink received');
   }
 };

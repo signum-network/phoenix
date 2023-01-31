@@ -6,7 +6,7 @@
  * adb shell am start -W -a android.intent.action.VIEW -d "signum://v1?action=pay..."
  */
 
-const { createDeeplink } = require("@signumjs/util");
+const {createDeeplink} = require('@signumjs/util');
 
 /**
 {
@@ -22,34 +22,34 @@ const { createDeeplink } = require("@signumjs/util");
 */
 
 const PayExampleA = {
-  recipient: "S-BNUE-9X8X-ATP8-FF3YB",
-  amountPlanck: "10000000",
+  recipient: 'S-BNUE-9X8X-ATP8-FF3YB',
+  amountPlanck: '10000000',
   feePlanck: 735000,
-  message: "59b13cb7d10d5ead3b45b8e9039ebed100000000000000000000000000000000",
+  message: '59b13cb7d10d5ead3b45b8e9039ebed100000000000000000000000000000000',
   messageIsText: false,
   immutable: false,
 };
 
 const PayExampleB = {
-  recipient: "S-9K9L-4CB5-88Y5-F5G4Z",
+  recipient: 'S-9K9L-4CB5-88Y5-F5G4Z',
   immutable: false,
   deadline: 24,
   encrypt: true,
 };
 
-const exampleA = createDeeplink({ action: "pay", payload: PayExampleA });
-const exampleB = createDeeplink({ action: "pay", payload: PayExampleB });
+const exampleA = createDeeplink({action: 'pay', payload: PayExampleA});
+const exampleB = createDeeplink({action: 'pay', payload: PayExampleB});
 
-console.info("Example A");
-console.info("=========");
+console.info('Example A');
+console.info('=========');
 console.info(exampleA);
-console.info("");
-console.info("Bash Escaped");
-console.info(exampleA.replace("&", "\\&"));
-console.info("--------------------");
-console.info("Example B");
-console.info("=========");
+console.info('');
+console.info('Bash Escaped');
+console.info(exampleA.replace('&', '\\&'));
+console.info('--------------------');
+console.info('Example B');
+console.info('=========');
 console.info(exampleB);
-console.info("");
-console.info("Bash Escaped");
-console.info(exampleB.replace("&", "\\&"));
+console.info('');
+console.info('Bash Escaped');
+console.info(exampleB.replace('&', '\\&'));

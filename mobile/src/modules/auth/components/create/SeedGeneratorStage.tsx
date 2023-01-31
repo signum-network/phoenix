@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   GestureResponderEvent,
   PanResponder,
@@ -6,17 +6,17 @@ import {
   PanResponderInstance,
   StyleSheet,
   View,
-} from "react-native";
+} from 'react-native';
 import {
   Text,
   TextAlign,
   TextThemes,
-} from "../../../../core/components/base/Text";
-import { i18n } from "../../../../core/i18n";
-import { Colors } from "../../../../core/theme/colors";
-import { BorderRadiusSizes } from "../../../../core/theme/sizes";
-import { flexGrowStyle } from "../../../../core/utils/styles";
-import { auth } from "../../translations";
+} from '../../../../core/components/base/Text';
+import {i18n} from '../../../../core/i18n';
+import {Colors} from '../../../../core/theme/colors';
+import {BorderRadiusSizes} from '../../../../core/theme/sizes';
+import {flexGrowStyle} from '../../../../core/utils/styles';
+import {auth} from '../../translations';
 
 const SEED_LIMIT = 256;
 
@@ -54,25 +54,25 @@ export class SeedGeneratorStage extends React.PureComponent<Props, State> {
     this._panResponder = PanResponder.create({
       onMoveShouldSetPanResponder: (
         _e: GestureResponderEvent,
-        _state: PanResponderGestureState
+        _state: PanResponderGestureState,
       ) => true,
       onPanResponderMove: async (
         _e: GestureResponderEvent,
-        state: PanResponderGestureState
+        state: PanResponderGestureState,
       ) => {
-        const { seed, seedGenerated } = this.state;
+        const {seed, seedGenerated} = this.state;
 
         if (!seedGenerated) {
           if (seed.length < SEED_LIMIT) {
             const seedItem: any[] = [state.moveX, state.moveY, Date.now()];
             seed.push(seedItem);
-            this.setState({ seed });
+            this.setState({seed});
             this.forceUpdate();
           } else {
-            console.log("seed", seed);
+            console.log('seed', seed);
             this.props.onSeedGenerated(seed);
 
-            this.setState({ seedGenerated: true });
+            this.setState({seedGenerated: true});
           }
         }
       },
@@ -90,7 +90,7 @@ export class SeedGeneratorStage extends React.PureComponent<Props, State> {
           </Text>
         </View>
         <Text textAlign={TextAlign.CENTER}>
-          {i18n.t(auth.createAccount.generatedPercent, { percent })}
+          {i18n.t(auth.createAccount.generatedPercent, {percent})}
         </Text>
         <View
           style={styles.panResponderView}

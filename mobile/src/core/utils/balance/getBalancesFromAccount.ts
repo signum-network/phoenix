@@ -1,5 +1,5 @@
-import { Account } from "@signumjs/core";
-import { Amount } from "@signumjs/util";
+import {Account} from '@signumjs/core';
+import {Amount} from '@signumjs/util';
 
 export interface AccountBalances {
   readonly availableBalance: Amount;
@@ -16,18 +16,18 @@ export const ZeroAcountBalances: AccountBalances = {
 };
 
 export function getBalancesFromAccount(
-  account?: Account | null
+  account?: Account | null,
 ): AccountBalances {
   if (!account) {
     return ZeroAcountBalances;
   }
 
-  const totalBalance = Amount.fromPlanck(account.balanceNQT || "0");
+  const totalBalance = Amount.fromPlanck(account.balanceNQT || '0');
   const availableBalance = Amount.fromPlanck(
-    account.unconfirmedBalanceNQT || "0"
+    account.unconfirmedBalanceNQT || '0',
   );
   const committedBalance = Amount.fromPlanck(
-    account.committedBalanceNQT || "0"
+    account.committedBalanceNQT || '0',
   );
   // other locked balances
   const lockedBalance = totalBalance

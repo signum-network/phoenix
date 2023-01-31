@@ -1,4 +1,4 @@
-export const PATH = "PRICE_API_";
+export const PATH = 'PRICE_API_';
 
 export const actionTypes = {
   updatePriceInfo: `${PATH}_UPDATE_PRICE_INFO`,

@@ -1,6 +1,6 @@
 export async function asyncTryRun(
   tag: string,
-  fn: () => Promise<void>
+  fn: () => Promise<void>,
 ): Promise<void> {
   try {
     console.log(`tryApply [${tag}] executing`);

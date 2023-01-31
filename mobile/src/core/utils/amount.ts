@@ -1,4 +1,4 @@
-import { Amount } from "@signumjs/util";
+import {Amount} from '@signumjs/util';
 
 /**
  * Converts a string into valid positive amount/float string
@@ -7,12 +7,12 @@ import { Amount } from "@signumjs/util";
  */
 export const stableAmountFormat = (amount: string): string => {
   return amount
-    .replace(/,/gi, ".") // substitute all comma by dots
-    .replace(/\.{2,}/gi, ".") // substitute all multiple consecutive dots
-    .replace(/(.+\..+)\..*/gi, "$1") // remove multiple dots
-    .replace(/[^0-9.]/gi, "") // remove all non-digits except dot
-    .replace(/^0+([0-9.]+)/gi, "$1") // trim leading zeroes before digits
-    .replace(/^\.(.*)/gi, "0.$1");
+    .replace(/,/gi, '.') // substitute all comma by dots
+    .replace(/\.{2,}/gi, '.') // substitute all multiple consecutive dots
+    .replace(/(.+\..+)\..*/gi, '$1') // remove multiple dots
+    .replace(/[^0-9.]/gi, '') // remove all non-digits except dot
+    .replace(/^0+([0-9.]+)/gi, '$1') // trim leading zeroes before digits
+    .replace(/^\.(.*)/gi, '0.$1');
 };
 
 /**
@@ -20,7 +20,7 @@ export const stableAmountFormat = (amount: string): string => {
  * @param amountSigna string representing Signa amount
  * @return Amount object, or Amount.Zero() in case of failure
  */
-export const stableParseSignaAmount = (amountSigna: string = "0"): Amount => {
+export const stableParseSignaAmount = (amountSigna: string = '0'): Amount => {
   try {
     return Amount.fromSigna(amountSigna);
   } catch (e) {
@@ -33,7 +33,7 @@ export const stableParseSignaAmount = (amountSigna: string = "0"): Amount => {
  * @param amountPlanck string representing Planck amount
  * @return Amount object, or Amount.Zero() in case of failure
  */
-export const stableParsePlanckAmount = (amountPlanck: string = "0"): Amount => {
+export const stableParsePlanckAmount = (amountPlanck: string = '0'): Amount => {
   try {
     return Amount.fromPlanck(amountPlanck);
   } catch (e) {

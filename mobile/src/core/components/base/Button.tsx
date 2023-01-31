@@ -1,24 +1,24 @@
-import React from "react";
+import React from 'react';
 import {
   ActivityIndicator,
   StyleSheet,
   TouchableOpacity,
   View,
-} from "react-native";
-import { Colors } from "../../theme/colors";
-import { BorderRadiusSizes, FontSizes, Sizes } from "../../theme/sizes";
-import { Text, TextAlign } from "./Text";
+} from 'react-native';
+import {Colors} from '../../theme/colors';
+import {BorderRadiusSizes, FontSizes, Sizes} from '../../theme/sizes';
+import {Text, TextAlign} from './Text';
 
 export enum ButtonThemes {
-  DEFAULT = "DEFAULT",
-  ACCENT = "ACCENT",
-  DANGER = "DANGER",
+  DEFAULT = 'DEFAULT',
+  ACCENT = 'ACCENT',
+  DANGER = 'DANGER',
 }
 
 export enum ButtonSizes {
-  DEFAULT = "DEFAULT",
-  SMALL = "SMALL",
-  LARGE = "LARGE",
+  DEFAULT = 'DEFAULT',
+  SMALL = 'SMALL',
+  LARGE = 'LARGE',
 }
 
 interface Props {
@@ -91,8 +91,8 @@ const themeStyles = StyleSheet.create({
   [ButtonThemes.DEFAULT]: {},
 });
 
-export const Button: React.FunctionComponent<Props> = (props) => {
-  const { size = defaultSize, theme = defaultTheme, disabled } = props;
+export const Button: React.FunctionComponent<Props> = props => {
+  const {size = defaultSize, theme = defaultTheme, disabled} = props;
 
   const textSize = textSizes[size];
   const childrenColor = disabled ? Colors.BLACK : childrenColors[theme];
@@ -126,15 +126,14 @@ export const Button: React.FunctionComponent<Props> = (props) => {
   };
 
   const renderChildren = () => {
-    const { children } = props;
-    if (typeof children === "string") {
+    const {children} = props;
+    if (typeof children === 'string') {
       return (
         <Text
           color={childrenColor}
           textAlign={TextAlign.CENTER}
           size={textSize}
-          disabled={props.disabled}
-        >
+          disabled={props.disabled}>
           {children}
         </Text>
       );

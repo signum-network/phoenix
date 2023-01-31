@@ -63,12 +63,13 @@ export const ScanQRCodeScreen = () => {
     }
   }, []);
 
-  if (device == null)
+  if (device == null) {
     return (
       <Screen>
-        <View></View>
+        <View />
       </Screen>
     );
+  }
 
   return (
     <Screen>

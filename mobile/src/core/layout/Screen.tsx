@@ -1,7 +1,7 @@
-import React from "react";
-import { StatusBar, StatusBarStyle, StyleSheet, Platform } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Colors } from "../theme/colors";
+import React from 'react';
+import {StatusBar, StatusBarStyle, StyleSheet, Platform} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {Colors} from '../theme/colors';
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 });
 
 export const Screen = (props: Props) => {
-  const { barStyle = "light-content", children, style } = props;
+  const {barStyle = 'light-content', children, style} = props;
 
   return (
     <React.Fragment>

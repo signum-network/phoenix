@@ -1,30 +1,30 @@
-import React from "react";
+import React from 'react';
 import {
   Image,
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
   View,
-} from "react-native";
-import { logos } from "../../../../assets/icons";
+} from 'react-native';
+import {logos} from '../../../../assets/icons';
 import {
   Text,
   TextAlign,
   TextThemes,
-} from "../../../../core/components/base/Text";
-import { NumericKeyboard } from "../../../../core/components/keyboards/numeric/NumericKeyboard";
-import { i18n } from "../../../../core/i18n";
-import { FullHeightView } from "../../../../core/layout/FullHeightView";
-import { Screen } from "../../../../core/layout/Screen";
-import { Colors } from "../../../../core/theme/colors";
-import { Sizes } from "../../../../core/theme/sizes";
+} from '../../../../core/components/base/Text';
+import {NumericKeyboard} from '../../../../core/components/keyboards/numeric/NumericKeyboard';
+import {i18n} from '../../../../core/i18n';
+import {FullHeightView} from '../../../../core/layout/FullHeightView';
+import {Screen} from '../../../../core/layout/Screen';
+import {Colors} from '../../../../core/theme/colors';
+import {Sizes} from '../../../../core/theme/sizes';
 import {
   authWithTouchId,
   isTouchIDSupported,
-} from "../../../../core/utils/keychain";
-import { PASSCODE_LENGTH } from "../../consts";
-import { auth } from "../../translations";
-import { ResetModal } from "../../../../core/components/modals/ResetModal";
+} from '../../../../core/utils/keychain';
+import {PASSCODE_LENGTH} from '../../consts';
+import {auth} from '../../translations';
+import {ResetModal} from '../../../../core/components/modals/ResetModal';
 
 interface Props {
   passcode: string;
@@ -42,20 +42,20 @@ interface State {
 const styles = StyleSheet.create({
   view: {
     backgroundColor: Colors.BLUE,
-    display: "flex",
-    alignItems: "center",
-    height: "100%",
+    display: 'flex',
+    alignItems: 'center',
+    height: '100%',
   },
   header: {
-    textAlign: "center",
+    textAlign: 'center',
     flex: 1,
-    alignSelf: "center",
-    justifyContent: "flex-end",
+    alignSelf: 'center',
+    justifyContent: 'flex-end',
     marginTop: Sizes.LARGER * 2,
   },
   keyboard: {
     flex: 1.5,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   hint: {
     marginBottom: Sizes.MEDIUM,
@@ -66,22 +66,22 @@ const styles = StyleSheet.create({
   logo: {
     width: 200,
     height: 200,
-    resizeMode: "contain",
-    alignSelf: "center",
+    resizeMode: 'contain',
+    alignSelf: 'center',
   },
   footer: {
     // marginBottom: 20
   },
 });
 
-const touchIDReason = " ";
+const touchIDReason = ' ';
 
 export class EnterPasscodeModalScreen extends React.PureComponent<
   Props,
   State
 > {
   state = {
-    code: "",
+    code: '',
     hasError: false,
     hasTouchID: false,
     erasePromptVisible: false,
@@ -90,29 +90,29 @@ export class EnterPasscodeModalScreen extends React.PureComponent<
   async componentDidMount(): Promise<void> {
     this.handleTouchID();
     const hasTouchID = await isTouchIDSupported();
-    this.setState({ hasTouchID });
+    this.setState({hasTouchID});
   }
 
   handleNumberPress = (value: string) => {
-    const { code } = this.state;
+    const {code} = this.state;
     const newCode = code + value;
     if (newCode.length > PASSCODE_LENGTH) {
       return;
     }
-    this.setState({ hasError: false, code: newCode }, async () => {
+    this.setState({hasError: false, code: newCode}, async () => {
       if (newCode.length === PASSCODE_LENGTH) {
-        const { passcode, onSuccess } = this.props;
+        const {passcode, onSuccess} = this.props;
         if (newCode === passcode) {
           setTimeout(onSuccess, 250);
         } else {
-          setTimeout(() => this.setState({ code: "", hasError: true }), 250);
+          setTimeout(() => this.setState({code: '', hasError: true}), 250);
         }
       }
     });
   };
 
   handleDelPress = () => {
-    const { code } = this.state;
+    const {code} = this.state;
 
     if (code.length > 0) {
       this.setState({
@@ -123,7 +123,7 @@ export class EnterPasscodeModalScreen extends React.PureComponent<
 
   handleTouchID = () => {
     authWithTouchId(touchIDReason)
-      .then((value) => {
+      .then(value => {
         if (value === true) {
           this.props.onSuccess();
         }
@@ -134,19 +134,19 @@ export class EnterPasscodeModalScreen extends React.PureComponent<
   };
 
   confirmErase = () => {
-    const { onReset } = this.props;
+    const {onReset} = this.props;
     onReset && onReset();
     this.toggleConfirmDeletePrompt();
   };
 
   toggleConfirmDeletePrompt = () => {
-    this.setState({ erasePromptVisible: !this.state.erasePromptVisible });
+    this.setState({erasePromptVisible: !this.state.erasePromptVisible});
   };
 
   render() {
-    const { hasError, hasTouchID } = this.state;
-    const { onReset } = this.props;
-    const code = this.state.code.replace(/./g, "* ");
+    const {hasError, hasTouchID} = this.state;
+    const {onReset} = this.props;
+    const code = this.state.code.replace(/./g, '* ');
 
     return (
       <Screen style={styles.view}>
@@ -158,16 +158,14 @@ export class EnterPasscodeModalScreen extends React.PureComponent<
                 <Text
                   theme={TextThemes.HINT}
                   textAlign={TextAlign.CENTER}
-                  color={Colors.WHITE}
-                >
+                  color={Colors.WHITE}>
                   {i18n.t(auth.enterPasscodeModal.passcodeHint)}
                 </Text>
                 {hasError && (
                   <Text
                     theme={TextThemes.HINT}
                     textAlign={TextAlign.CENTER}
-                    color={Colors.WHITE}
-                  >
+                    color={Colors.WHITE}>
                     {i18n.t(auth.errors.incorrectPasscode)}
                   </Text>
                 )}
@@ -175,8 +173,7 @@ export class EnterPasscodeModalScreen extends React.PureComponent<
               <Text
                 theme={TextThemes.HEADER}
                 color={Colors.WHITE}
-                textAlign={TextAlign.CENTER}
-              >
+                textAlign={TextAlign.CENTER}>
                 {code}
               </Text>
             </View>
@@ -194,8 +191,7 @@ export class EnterPasscodeModalScreen extends React.PureComponent<
                   <Text
                     theme={TextThemes.HINT}
                     textAlign={TextAlign.CENTER}
-                    color={Colors.WHITE}
-                  >
+                    color={Colors.WHITE}>
                     {i18n.t(auth.enterPasscodeModal.forgotPin)}
                   </Text>
                 </TouchableOpacity>

@@ -1,17 +1,17 @@
-import React from "react";
-import { StyleSheet, TextInput, View } from "react-native";
-import { Colors } from "../../theme/colors";
-import { fonts } from "../../theme/fonts";
-import { FontSizes } from "../../theme/sizes";
-import { Text, TextThemes } from "./Text";
+import React from 'react';
+import {StyleSheet, TextInput, View} from 'react-native';
+import {Colors} from '../../theme/colors';
+import {fonts} from '../../theme/fonts';
+import {FontSizes} from '../../theme/sizes';
+import {Text, TextThemes} from './Text';
 
 // TODO: maybe add themes?
 
 export enum KeyboardTypes {
-  DEFAULT = "default",
-  EMAIL = "email-address",
-  NUMERIC = "numeric",
-  PHONE = "phone-pad",
+  DEFAULT = 'default',
+  EMAIL = 'email-address',
+  NUMERIC = 'numeric',
+  PHONE = 'phone-pad',
 }
 
 interface Props {
@@ -23,7 +23,7 @@ interface Props {
   secure?: boolean;
   placeholder?: string;
   disabled?: boolean;
-  autoCapitalize?: "none" | "sentences" | "words" | "characters" | undefined;
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters' | undefined;
 }
 
 const color = Colors.BLUE;
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Input: React.FunctionComponent<Props> = (props) => {
+export const Input: React.FunctionComponent<Props> = props => {
   const {
     keyboardType,
     maxLength,
@@ -60,7 +60,7 @@ export const Input: React.FunctionComponent<Props> = (props) => {
         editable={!disabled}
         keyboardType={keyboardType}
         onChangeText={onChangeText}
-        returnKeyType={"done"}
+        returnKeyType={'done'}
         secureTextEntry={secure}
         style={styles.text}
         selectionColor={color}

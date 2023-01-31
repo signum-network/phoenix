@@ -1,7 +1,7 @@
-import { isFunction } from "lodash";
-import { AnyAction as ReduxAction, Reducer } from "redux";
-import { ThunkDispatch } from "redux-thunk";
-import { AsyncParticleStates } from "../enums";
+import {isFunction} from 'lodash';
+import {AnyAction as ReduxAction, Reducer} from 'redux';
+import {ThunkDispatch} from 'redux-thunk';
+import {AsyncParticleStates} from '../enums';
 import {
   Action,
   AnyAction,
@@ -9,8 +9,8 @@ import {
   CustomAction,
   GetState,
   Reducers,
-} from "../interfaces";
-import { ApplicationState } from "../store/initialState";
+} from '../interfaces';
+import {ApplicationState} from '../store/initialState';
 
 /**
  * Helper-function to get rid of switch statements and typecasting in every app module.
@@ -21,7 +21,7 @@ import { ApplicationState } from "../store/initialState";
  */
 export function createReducers<State>(
   defaultState: State,
-  reducers: Reducers<any>
+  reducers: Reducers<any>,
 ): Reducer {
   return (state: State = defaultState, action: ReduxAction) => {
     const reducerFn = reducers[action.type];
@@ -40,12 +40,12 @@ export function createReducers<State>(
  * @param {CustomAction<Payload, Result>} action Function, where we doing something.
  */
 export function createActionFn<Payload, Result>(
-  action: CustomAction<Payload, Result>
+  action: CustomAction<Payload, Result>,
 ): Action<Payload, Result> {
   return (payload: Payload) => {
     return (
       dispatch: ThunkDispatch<ApplicationState, any, any>,
-      getState: GetState
+      getState: GetState,
     ) => {
       return action(dispatch, getState, payload);
     };
@@ -57,9 +57,9 @@ export function createActionFn<Payload, Result>(
  * @param {string} type Action type.
  */
 export function createAction<Payload>(
-  type: string
+  type: string,
 ): (payload: Payload) => AnyAction<Payload> {
-  return (payload) => ({ type, payload });
+  return payload => ({type, payload});
 }
 
 /**
@@ -68,7 +68,7 @@ export function createAction<Payload>(
  * @param {keyof State} key Async particle key.
  */
 export function createAsyncParticleReducers<State, B = any, S = any, F = any>(
-  key: keyof State
+  key: keyof State,
 ): AsyncParticleReducers<State, B, S, F> {
   return {
     begin: (state: State, _action: AnyAction<B>): State => {

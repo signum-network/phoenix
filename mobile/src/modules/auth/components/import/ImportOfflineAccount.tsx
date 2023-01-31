@@ -1,11 +1,11 @@
-import React from "react";
-import { View } from "react-native";
-import { Button } from "../../../../core/components/base/Button";
-import { Input } from "../../../../core/components/base/Input";
-import { i18n } from "../../../../core/i18n";
-import { flexGrowStyle } from "../../../../core/utils/styles";
-import { auth } from "../../translations";
-import { AccountTypeHint } from "./AccountTypeHint";
+import React from 'react';
+import {View} from 'react-native';
+import {Button} from '../../../../core/components/base/Button';
+import {Input} from '../../../../core/components/base/Input';
+import {i18n} from '../../../../core/i18n';
+import {flexGrowStyle} from '../../../../core/utils/styles';
+import {auth} from '../../translations';
+import {AccountTypeHint} from './AccountTypeHint';
 
 interface Props {
   onFinish: (address: string) => void;
@@ -17,11 +17,11 @@ interface State {
 
 export class ImportOfflineAccount extends React.PureComponent<Props, State> {
   state: State = {
-    address: "S-",
+    address: 'S-',
   };
 
   handleChangeAddress = (address: string) => {
-    this.setState({ address });
+    this.setState({address});
   };
 
   handleFinish = () => {
@@ -29,7 +29,7 @@ export class ImportOfflineAccount extends React.PureComponent<Props, State> {
   };
 
   render() {
-    const { address } = this.state;
+    const {address} = this.state;
 
     return (
       <React.Fragment>
@@ -37,14 +37,14 @@ export class ImportOfflineAccount extends React.PureComponent<Props, State> {
           <Input
             hint={i18n.t(auth.models.account.address)}
             value={address}
-            autoCapitalize={"characters"}
+            autoCapitalize={'characters'}
             onChangeText={this.handleChangeAddress}
           />
           <AccountTypeHint>
             {i18n.t(auth.importAccount.passiveAccountHint)}
           </AccountTypeHint>
         </View>
-        <View style={{ paddingTop: "10%" }}>
+        <View style={{paddingTop: '10%'}}>
           <Button fullWidth={true} onPress={this.handleFinish}>
             {i18n.t(auth.importAccount.import)}
           </Button>

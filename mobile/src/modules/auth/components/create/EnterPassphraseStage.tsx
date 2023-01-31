@@ -1,7 +1,7 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Button } from "../../../../core/components/base/Button";
-import { Text, TextThemes } from "../../../../core/components/base/Text";
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import {Button} from '../../../../core/components/base/Button';
+import {Text, TextThemes} from '../../../../core/components/base/Text';
 
 const WORDS_PER_TRY = 3;
 
@@ -31,8 +31,8 @@ export class EnterPassphraseStage extends React.PureComponent<Props, State> {
   };
 
   handleWordPress = (word: string) => () => {
-    const { offset } = this.state;
-    const { phrase } = this.props;
+    const {offset} = this.state;
+    const {phrase} = this.props;
     const currentWord = phrase[offset];
 
     if (currentWord === word) {
@@ -48,8 +48,8 @@ export class EnterPassphraseStage extends React.PureComponent<Props, State> {
   };
 
   getWords = (): string[] => {
-    const { offset } = this.state;
-    const { phrase } = this.props;
+    const {offset} = this.state;
+    const {phrase} = this.props;
     const wordsCount = phrase.length;
     const currentWord = phrase[offset];
 
@@ -67,7 +67,7 @@ export class EnterPassphraseStage extends React.PureComponent<Props, State> {
 
   render() {
     const words = this.getWords();
-    const passphrase = this.props.phrase.slice(0, this.state.offset).join(" ");
+    const passphrase = this.props.phrase.slice(0, this.state.offset).join(' ');
 
     return (
       <React.Fragment>
@@ -80,8 +80,7 @@ export class EnterPassphraseStage extends React.PureComponent<Props, State> {
             return (
               <Button
                 key={`${idx}_${word}`}
-                onPress={this.handleWordPress(word)}
-              >
+                onPress={this.handleWordPress(word)}>
                 {word}
               </Button>
             );

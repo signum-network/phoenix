@@ -1,9 +1,9 @@
-import React from "react";
-import { TouchableOpacity, View } from "react-native";
-import { Colors } from "../../theme/colors";
-import { Text as BText } from "./Text";
-import CheckBox from "@react-native-community/checkbox";
-import { FontSizes } from "../../theme/sizes";
+import React from 'react';
+import {TouchableOpacity, View} from 'react-native';
+import {Colors} from '../../theme/colors';
+import {Text as BText} from './Text';
+import CheckBox from '@react-native-community/checkbox';
+import {FontSizes} from '../../theme/sizes';
 
 interface Props {
   label: string;
@@ -14,7 +14,7 @@ interface Props {
   labelFontSize?: number;
 }
 
-export const BCheckbox: React.FunctionComponent<Props> = (props) => {
+export const BCheckbox: React.FunctionComponent<Props> = props => {
   const {
     onCheck,
     label,
@@ -25,14 +25,14 @@ export const BCheckbox: React.FunctionComponent<Props> = (props) => {
   } = props;
 
   return (
-    <View style={{ flexDirection: "row" }}>
+    <View style={{flexDirection: 'row'}}>
       <CheckBox
         disabled={disabled}
         value={value}
         onValueChange={onCheck}
-        tintColors={{ true: color, false: color }}
+        tintColors={{true: color, false: color}}
       />
-      <View style={{ marginTop: 2, marginLeft: 8 }}>
+      <View style={{marginTop: 2, marginLeft: 8}}>
         <TouchableOpacity onPress={() => onCheck(value)}>
           <BText bebasFont color={color} size={labelFontSize}>
             {label}

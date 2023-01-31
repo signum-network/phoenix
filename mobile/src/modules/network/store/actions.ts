@@ -1,7 +1,7 @@
-import { SuggestedFees } from "@signumjs/core";
-import { createAction, createActionFn } from "../../../core/utils/store";
-import { actionTypes } from "./actionTypes";
-import { selectChainApi } from "../../../core/store/app/selectors";
+import {SuggestedFees} from '@signumjs/core';
+import {createAction, createActionFn} from '../../../core/utils/store';
+import {actionTypes} from './actionTypes';
+import {selectChainApi} from '../../../core/store/app/selectors';
 
 const actions = {
   getSuggestedFees: createAction(actionTypes.getSuggestedFees),

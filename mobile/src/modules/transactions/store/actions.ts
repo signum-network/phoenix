@@ -4,7 +4,7 @@ import {
   AttachmentMessage,
   TransactionId,
   SendAmountArgs,
-} from "@signumjs/core";
+} from '@signumjs/core';
 import {
   decryptAES,
   encryptData,
@@ -12,28 +12,28 @@ import {
   EncryptedMessage,
   encryptMessage,
   hashSHA256,
-} from "@signumjs/crypto";
-import { convertHexStringToByteArray, Amount } from "@signumjs/util";
-import { Alert } from "react-native";
-import { i18n } from "../../../core/i18n";
-import { createAction, createActionFn } from "../../../core/utils/store";
-import { getAccount } from "../../auth/store/actions";
-import { transactions } from "../translations";
-import { actionTypes } from "./actionTypes";
-import { selectChainApi } from "../../../core/store/app/selectors";
+} from '@signumjs/crypto';
+import {convertHexStringToByteArray, Amount} from '@signumjs/util';
+import {Alert} from 'react-native';
+import {i18n} from '../../../core/i18n';
+import {createAction, createActionFn} from '../../../core/utils/store';
+import {getAccount} from '../../auth/store/actions';
+import {transactions} from '../translations';
+import {actionTypes} from './actionTypes';
+import {selectChainApi} from '../../../core/store/app/selectors';
 
 const actions = {
   sendMoney: createAction<SendAmountPayload>(actionTypes.sendMoney),
   sendMoneySuccess: createAction<TransactionId>(actionTypes.sendMoneySuccess),
   sendMoneyFailed: createAction<Error>(actionTypes.sendMoneyFailed),
   generateQRAddress: createAction<SendAmountPayload>(
-    actionTypes.generateQRAddress
+    actionTypes.generateQRAddress,
   ),
   generateQRAddressSuccess: createAction<string>(
-    actionTypes.generateQRAddressSuccess
+    actionTypes.generateQRAddressSuccess,
   ),
   generateQRAddressFailed: createAction<Error>(
-    actionTypes.generateQRAddressFailed
+    actionTypes.generateQRAddressFailed,
   ),
 };
 
@@ -61,12 +61,12 @@ export const sendMoney = createActionFn<
   Promise<TransactionId>
 >(async (dispatch, getState, payload): Promise<TransactionId> => {
   const state = getState();
-  const { amount, address, fee, sender, message, encrypt, messageIsText } =
+  const {amount, address, fee, sender, message, encrypt, messageIsText} =
     payload;
   const senderPublicKey = sender.keys.publicKey;
   const senderPrivateKey = decryptAES(
     sender.keys.signPrivateKey,
-    hashSHA256(state.auth.passcode)
+    hashSHA256(state.auth.passcode),
   );
 
   const sendMoneyPayload: SendAmountArgs = {
@@ -86,11 +86,11 @@ export const sendMoney = createActionFn<
         sender,
         messageIsText,
         message,
-        state.auth.passcode
+        state.auth.passcode,
       );
 
     sendMoneyPayload.attachment = new AttachmentEncryptedMessage(
-      encryptedMessage
+      encryptedMessage,
     );
   } else if (message) {
     sendMoneyPayload.attachment = new AttachmentMessage({
@@ -102,13 +102,13 @@ export const sendMoney = createActionFn<
   try {
     const api = selectChainApi(state);
     const result = await api.transaction.sendAmountToSingleRecipient(
-      sendMoneyPayload
+      sendMoneyPayload,
     );
     Alert.alert(
       i18n.t(transactions.screens.send.success, {
         amount: Amount.fromPlanck(sendMoneyPayload.amountPlanck).getSigna(),
         address: sendMoneyPayload.recipientId,
-      })
+      }),
     );
     dispatch(actions.sendMoneySuccess(result));
     return result;
@@ -125,25 +125,25 @@ async function getEncryptedMessage(
   sender: Account,
   messageIsText: boolean | undefined,
   message: string,
-  passcode: string
+  passcode: string,
 ): Promise<EncryptedMessage | EncryptedData> {
   const recipient = await dispatch(getAccount(address));
   const agreementPrivateKey = decryptAES(
     sender.keys.agreementPrivateKey,
-    hashSHA256(passcode)
+    hashSHA256(passcode),
   );
   let encryptedMessage: EncryptedMessage | EncryptedData;
   if (messageIsText) {
     encryptedMessage = encryptMessage(
       message,
       recipient.publicKey,
-      agreementPrivateKey
+      agreementPrivateKey,
     );
   } else {
     encryptedMessage = encryptData(
       new Uint8Array(convertHexStringToByteArray(message)),
       recipient.publicKey,
-      agreementPrivateKey
+      agreementPrivateKey,
     );
   }
   return encryptedMessage;

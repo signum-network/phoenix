@@ -1,6 +1,6 @@
 export enum RecipientType {
   UNKNOWN = 0,
-  ADDRESS ,
+  ADDRESS,
   CONTRACT,
   ID,
   ALIAS,
@@ -8,17 +8,17 @@ export enum RecipientType {
 }
 
 export enum RecipientValidationStatus {
-  UNKNOWN = "unknown",
-  INVALID = "invalid",
-  VALID = "valid",
-  UNSTOPPABLE_OUTAGE = "unstoppable_outage",
+  UNKNOWN = 'unknown',
+  INVALID = 'invalid',
+  VALID = 'valid',
+  UNSTOPPABLE_OUTAGE = 'unstoppable_outage',
 }
 
 export class Recipient {
   constructor(
-    public addressRaw = "",
-    public addressRS = "",
+    public addressRaw = '',
+    public addressRS = '',
     public status = RecipientValidationStatus.UNKNOWN,
-    public type = RecipientType.UNKNOWN
+    public type = RecipientType.UNKNOWN,
   ) {}
 }
