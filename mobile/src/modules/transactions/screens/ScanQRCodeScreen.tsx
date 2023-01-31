@@ -17,6 +17,10 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {Camera, useCameraDevices} from 'react-native-vision-camera';
 import {BarcodeFormat, useScanBarcodes} from 'vision-camera-code-scanner';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {SendStackParamList} from '../../auth/navigation/mainStack';
+
+type ScanQRCodeScreenNavProp = StackNavigationProp<SendStackParamList, 'Scan'>;
 
 const styles = StyleSheet.create({
   topView: {
@@ -33,8 +37,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ScanQRCodeScreen: React.FC = () => {
-  const navigation = useNavigation();
+export const ScanQRCodeScreen = () => {
+  const navigation = useNavigation<ScanQRCodeScreenNavProp>();
   const devices = useCameraDevices();
   const device = devices.back;
 
@@ -52,8 +56,7 @@ export const ScanQRCodeScreen: React.FC = () => {
         if (action !== SupportedDeeplinkActions.Pay) {
           return Alert.alert(`Unsupported Deeplink Action: ${action}`);
         }
-        // @ts-ignore
-        navigation.navigate(routes.send, {payload: decodedPayload});
+        navigation.navigate('Send', {payload: decodedPayload});
       } catch (e) {
         return Alert.alert('Unknown QR Code');
       }

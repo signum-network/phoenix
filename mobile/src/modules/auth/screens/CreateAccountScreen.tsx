@@ -1,34 +1,34 @@
-import { Account } from "@signumjs/core";
-import { PassPhraseGenerator } from "@signumjs/crypto";
-import React from "react";
-import { Alert, View, StyleSheet } from "react-native";
-import { connect } from "react-redux";
-import { HeaderTitle } from "../../../core/components/header/HeaderTitle";
-import { i18n } from "../../../core/i18n";
-import { InjectedReduxProps } from "../../../core/interfaces";
-import { FullHeightView } from "../../../core/layout/FullHeightView";
-import { Screen } from "../../../core/layout/Screen";
-import { routes } from "../../../core/navigation/routes";
-import { ApplicationState } from "../../../core/store/initialState";
-import { Colors } from "../../../core/theme/colors";
-import { EnterPassphraseStage } from "../components/create/EnterPassphraseStage";
-import { NotePassphraseStage } from "../components/create/NotePassphraseStage";
-import { SeedGeneratorStage } from "../components/create/SeedGeneratorStage";
-import { StepCounter } from "../components/create/StepCounter";
+import {Account} from '@signumjs/core';
+import {PassPhraseGenerator} from '@signumjs/crypto';
+import React from 'react';
+import {Alert, View, StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
+import {HeaderTitle} from '../../../core/components/header/HeaderTitle';
+import {i18n} from '../../../core/i18n';
+import {InjectedReduxProps} from '../../../core/interfaces';
+import {FullHeightView} from '../../../core/layout/FullHeightView';
+import {Screen} from '../../../core/layout/Screen';
+import {routes} from '../../../core/navigation/routes';
+import {ApplicationState} from '../../../core/store/initialState';
+import {Colors} from '../../../core/theme/colors';
+import {EnterPassphraseStage} from '../components/create/EnterPassphraseStage';
+import {NotePassphraseStage} from '../components/create/NotePassphraseStage';
+import {SeedGeneratorStage} from '../components/create/SeedGeneratorStage';
+import {StepCounter} from '../components/create/StepCounter';
 import {
   addAccount,
   createActiveAccount,
   hydrateAccount,
-} from "../store/actions";
-import { AuthReduxState } from "../store/reducer";
-import { auth } from "../translations";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../navigation/mainStack";
-import { HeaderWithBackButton } from "../../../core/layout/HeaderWithBackButton";
+} from '../store/actions';
+import {AuthReduxState} from '../store/reducer';
+import {auth} from '../translations';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '../navigation/mainStack';
+import {HeaderWithBackButton} from '../../../core/layout/HeaderWithBackButton';
 
 type CreateAccountNavProp = StackNavigationProp<
   RootStackParamList,
-  "CreateAccount"
+  'CreateAccount'
 >;
 
 interface IProps extends InjectedReduxProps {
@@ -59,7 +59,7 @@ const getDefaultState = (): State => ({
 
 const styles = StyleSheet.create({
   center: {
-    minHeight: "80%",
+    minHeight: '80%',
     padding: 10,
   },
 });
@@ -74,22 +74,22 @@ class CreateAccount extends React.PureComponent<IProps, State> {
   state: State = getDefaultState();
 
   createAccount = async () => {
-    const { phrase } = this.state;
+    const {phrase} = this.state;
 
     try {
-      const joinedPhrase = phrase.join(" ");
+      const joinedPhrase = phrase.join(' ');
       const account = await this.props.dispatch(
-        createActiveAccount(joinedPhrase)
+        createActiveAccount(joinedPhrase),
       );
       // @ts-ignore because we have account here 100%
       await this.props.dispatch(addAccount(account));
-      await this.props.dispatch(hydrateAccount({ account }));
+      await this.props.dispatch(hydrateAccount({account}));
     } catch (error) {
       // This error shouldn't be possible, but still
       this.setState(getDefaultState());
       Alert.alert(error.message);
     }
-    this.props.navigation.navigate(routes.home);
+    this.props.navigation.navigate('Accounts');
   };
 
   handlePhraseNoted = () => {
@@ -107,7 +107,7 @@ class CreateAccount extends React.PureComponent<IProps, State> {
   };
 
   renderStage = () => {
-    const { stage, phrase } = this.state;
+    const {stage, phrase} = this.state;
 
     switch (stage) {
       case Stages.GENERATE_SEED:
@@ -133,10 +133,7 @@ class CreateAccount extends React.PureComponent<IProps, State> {
   render() {
     return (
       <Screen>
-        <FullHeightView
-          style={{ backgroundColor: Colors.WHITE }}
-          withoutPaddings
-        >
+        <FullHeightView style={{backgroundColor: Colors.WHITE}} withoutPaddings>
           <HeaderWithBackButton title={i18n.t(auth.createAccount.title)} />
           <View style={styles.center}>
             <StepCounter stage={this.state.stage} />

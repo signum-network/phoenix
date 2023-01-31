@@ -73,7 +73,7 @@ const AccountDetails = (props: Props) => {
 
   const handleTransactionPress = (transaction: Transaction) => {
     // @ts-ignore
-    navigation.navigate(routes.transactionDetails, {transaction});
+    navigation.navigate('TransactionDetails', {transaction});
   };
 
   const handleCopy = () => {

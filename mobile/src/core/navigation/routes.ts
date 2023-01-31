@@ -20,7 +20,7 @@ export interface Routes {
 export const routes: Routes = {
   accounts: 'accounts',
   addAccount: 'addAccount',
-  createAccount: 'createAccount',
+  createAccount: 'CreateAccount',
   importAccount: 'importAccount',
   home: 'Home',
   send: 'send',

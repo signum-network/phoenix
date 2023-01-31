@@ -18,8 +18,8 @@ const Stack = createStackNavigator();
 
 export const sendStack = () => (
   <Stack.Navigator
-    initialRouteName={routes.settings}
+    initialRouteName={'Settings'}
     screenOptions={defaultStackOptions}>
-    <Stack.Screen name={'settings'} component={SettingsScreen} />
+    <Stack.Screen name={'Settings'} component={SettingsScreen} />
   </Stack.Navigator>
 );
