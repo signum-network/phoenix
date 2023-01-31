@@ -6,11 +6,9 @@ module.exports = {
         globals: ['__scanCodes'],
       },
     ],
-  ],
-  presets: [
-    'module:metro-react-native-babel-preset',
     'module:react-native-dotenv',
   ],
+  presets: ['module:metro-react-native-babel-preset'],
   env: {
     production: {
       plugins: ['transform-remove-console'],

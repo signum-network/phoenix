@@ -1,15 +1,15 @@
-import React, { useRef, useEffect } from "react";
-import { Modal, View, StyleSheet } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
-import { resetAuthState, setPasscodeModalVisible } from "../../store/actions";
-import { EnterPasscodeModalScreen } from "./EnterPasscodeModalScreen";
-import { SetPasscodeModalScreen } from "./SetPasscodeModalScreen";
+import React, {useRef, useEffect} from 'react';
+import {Modal, View, StyleSheet} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import {resetAuthState, setPasscodeModalVisible} from '../../store/actions';
+import {EnterPasscodeModalScreen} from './EnterPasscodeModalScreen';
+import {SetPasscodeModalScreen} from './SetPasscodeModalScreen';
 import {
   selectIsPasscodeModalVisible,
   selectPasscode,
-} from "../../store/selectors";
-import { resetAppState } from "../../../../core/store/app/actions";
-import { defaultSettings } from "../../../../core/environment";
+} from '../../store/selectors';
+import {resetAppState} from '../../../../core/store/app/actions';
+import {defaultSettings} from '../../../../core/environment';
 
 const styles = StyleSheet.create({
   view: {
@@ -18,7 +18,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export const PasscodeProtection: React.FC = ({ children }) => {
+interface Props {
+  children: React.ReactNode;
+}
+
+export const PasscodeProtection = ({children}: Props) => {
   const timeoutHandle = useRef<number>();
   const dispatch = useDispatch();
   const passcode = useSelector(selectPasscode);
@@ -41,13 +45,13 @@ export const PasscodeProtection: React.FC = ({ children }) => {
     stopPasscodeTimer();
     // FIXME: dont let me commmented out
     timeoutHandle.current = setTimeout(() => {
-      console.log("Protection active...");
+      console.log('Protection active...');
       dispatch(setPasscodeModalVisible(true));
     }, defaultSettings.passcodeTime);
   };
 
   const handleSuccess = () => {
-    console.log("Correct passcode...");
+    console.log('Correct passcode...');
     dispatch(setPasscodeModalVisible(false));
     restartPasscodeTimer();
   };
@@ -64,10 +68,9 @@ export const PasscodeProtection: React.FC = ({ children }) => {
   return (
     <>
       <Modal
-        animationType={"slide"}
+        animationType={'slide'}
         visible={isPasscodeModalVisible}
-        transparent={false}
-      >
+        transparent={false}>
         {passcode ? (
           <EnterPasscodeModalScreen
             passcode={passcode}

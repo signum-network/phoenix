@@ -1,25 +1,27 @@
-import * as React from "react";
-import { createStackNavigator, StackNavigatorConfig } from "react-navigation";
-import { tabbarIcons } from "../../../assets/icons";
-import { TabBarIcon } from "../../../core/components/tabbar/TabBarIcon";
-import { defaultStackOptions } from "../../../core/navigation/defaultStackOptions";
-import { routes, RoutesMap } from "../../../core/navigation/routes";
-import { ReceiveScreen } from "../screens/ReceiveScreen";
-import { ViewQRCodeScreen } from "../screens/ViewQRCodeScreen";
+import {createStackNavigator} from '@react-navigation/stack';
+import * as React from 'react';
+import {tabbarIcons} from '../../../assets/icons';
+import {TabBarIcon} from '../../../core/components/tabbar/TabBarIcon';
+import {defaultStackOptions} from '../../../core/navigation/defaultStackOptions';
+import {routes} from '../../../core/navigation/routes';
+import {ReceiveScreen} from '../screens/ReceiveScreen';
+import {ViewQRCodeScreen} from '../screens/ViewQRCodeScreen';
 
-const stackConfig: StackNavigatorConfig = {
-  initialRouteName: routes.receive,
+/*const stackConfig: StackNavigatorConfig = {
   navigationOptions: {
     tabBarIcon: (options) => (
       <TabBarIcon source={tabbarIcons.receive} {...options} />
     ),
   },
-  defaultNavigationOptions: defaultStackOptions,
-};
+};*/
 
-const routesMap: RoutesMap = {
-  [routes.receive]: ReceiveScreen,
-  [routes.viewQRCode]: ViewQRCodeScreen,
-};
+const Stack = createStackNavigator();
 
-export const receiveStack = createStackNavigator(routesMap, stackConfig);
+export const sendStack = () => (
+  <Stack.Navigator
+    initialRouteName={routes.receive}
+    screenOptions={defaultStackOptions}>
+    <Stack.Screen name={routes.receive} component={ReceiveScreen} />
+    <Stack.Screen name={routes.viewQRCode} component={ViewQRCodeScreen} />
+  </Stack.Navigator>
+);
