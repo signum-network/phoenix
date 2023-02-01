@@ -28,7 +28,7 @@ target 'Phoenix' do
   flags = get_default_flags()
 
   use_react_native!(
-    :path => config["reactNativePath"],
+    :path => config[:reactNativePath],
     # Hermes is now enabled by default. Disable by setting this flag to false.
     # Upcoming versions of React Native may rely on get_default_flags(), but
     # we make it explicit here to aid in the React Native upgrade process.
@@ -42,14 +42,6 @@ target 'Phoenix' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
-
-  ## QR Code stuff
-  pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
-  permissions_path = '../node_modules/react-native-permissions/ios'
-  pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
-
-
-  pod 'RNCPicker', :path => '../node_modules/@react-native-picker/picker'
 
   target 'PhoenixTests' do
     inherit! :complete
