@@ -69,7 +69,6 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((ready) => {
         if (!ready) {return; }
-
         const checkBlockchainStatus = this.checkBlockchainStatus.bind(this);
         setTimeout(checkBlockchainStatus, 1000);
         this.blockchainStatusInterval = setInterval(checkBlockchainStatus, BlockchainStatusInterval);
@@ -82,12 +81,6 @@ export class AppComponent extends UnsubscribeOnDestroy implements OnInit, OnDest
       this.initRouteToHandler();
     }
 
-    // this.storeService.networkChanged$
-    //   .pipe(takeUntil(this.unsubscribeAll))
-    //   .subscribe((network) => {
-    //     console.log('Network changed', network);
-    //     this.updateAccounts(network);
-    //   });
   }
 
   ngOnDestroy(): void {

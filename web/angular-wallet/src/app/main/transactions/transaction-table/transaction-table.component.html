@@ -110,6 +110,14 @@
            [class]="getRowClass(row)"
   >
   </mat-row>
+
+  <ng-container matColumnDef="nodata">
+    <td mat-footer-row *matFooterCellDef [colSpan]="displayedColumns.length"
+        style="margin: 0 auto"><h2>{{'no_transactions_yet'|i18n}}</h2></td>
+  </ng-container>
+
+  <mat-footer-row [hidden]="dataSource.data.length>0" *matFooterRowDef="['nodata']"></mat-footer-row>
+
 </mat-table>
 
 <mat-paginator

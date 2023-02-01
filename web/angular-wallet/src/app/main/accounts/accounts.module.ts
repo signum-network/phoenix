@@ -26,7 +26,6 @@ import {LoginGuard} from 'app/login/login-guard.service';
 import {AccountResolver} from 'app/shared/resolvers/account.resolver';
 import {TransactionTableModule} from '../transactions/transaction-table/transaction.module';
 import {AppSharedModule} from '../../shared/shared.module';
-import {TransactionsResolver} from './transactions.resolver';
 import {TokensModule} from '../tokens/tokens.module';
 import { ComponentsModule } from 'app/components/components.module';
 import { MatMenuModule } from '@angular/material/menu';
@@ -46,7 +45,7 @@ const routes = [
     canActivate: [LoginGuard],
     resolve: {
       account: AccountResolver,
-      transactions: TransactionsResolver
+      // transactions: TransactionsResolver
     }
   }
 ];

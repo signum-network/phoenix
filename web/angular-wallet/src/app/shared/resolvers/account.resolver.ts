@@ -21,7 +21,7 @@ export class AccountResolver implements Resolve<Promise<WalletAccount>> {
 
   async resolve(route: ActivatedRouteSnapshot): Promise<WalletAccount|null> {
     const {networkName} = this.storeService.getSelectedNode();
-    if(!route.params.id){
+    if (!route.params.id){
       return this.storeService.getSelectedAccount();
     }
 
@@ -29,7 +29,7 @@ export class AccountResolver implements Resolve<Promise<WalletAccount>> {
       const accountId = route.params.id;
       const cacheKey = `${networkName}-${accountId}`;
       return (await fetchAccount(cacheKey, accountId, this.accountService) );
-    } catch(e) {
+    } catch (e) {
       return null;
     }
   }

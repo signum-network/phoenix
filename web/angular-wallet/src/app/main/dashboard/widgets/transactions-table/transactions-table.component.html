@@ -8,9 +8,4 @@
     <div *ngIf="account.transactions.length > 10" class="button-link-container">
       <app-link-button [routerLink]="'/transactions'">{{ 'all_transactions' | i18n }}</app-link-button>
     </div>
-  <ng-container *ngIf="!account.transactions.length">
-    <div>
-      {{ 'no_transactions_yet' | i18n }}
-    </div>
-  </ng-container>
 </div>

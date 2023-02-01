@@ -1,4 +1,4 @@
-import { ApplicationRef, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as Loki from 'lokijs';
 import { StoreConfig } from './store.config';
@@ -185,9 +185,6 @@ export class StoreService {
 
   public saveAccount(account: WalletAccount): void {
     this.withReady<void>(() => {
-
-      console.log('Saving account', account._id)
-
       const accounts = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
       let updatedAccount;
       if (!account.isStored()) {
@@ -217,8 +214,9 @@ export class StoreService {
         updatedAccount = existingAccount;
       }
 
+      this.persist();
       if (this.getSelectedAccount().account === account.account){
-        this.accountUpdated$.next(updatedAccount);
+        this.accountUpdated$.next(new WalletAccount(updatedAccount));
       }
     });
   }
@@ -233,7 +231,7 @@ export class StoreService {
         .update(a => {
           a.transactions = [];
         });
-      this.store.saveDatabase();
+      this.persist();
     } catch (e) {
       // ignore error
     }
@@ -321,14 +319,15 @@ export class StoreService {
         this.migrateAccountsBetweenNetworks(previousNetworkName, networkName, addressPrefix);
         this.networkChanged$.next(networkName);
         const selectedAccount = this.getSelectedAccount();
-        const accounts = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
-        const newSelectedAccount = accounts.by('_id', `${networkName}-${selectedAccount.account}`);
-        this.accountSelected$.next(new WalletAccount(newSelectedAccount));
+        // const accounts = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
+        // const newSelectedAccount = accounts.by('_id', `${networkName}-${selectedAccount.account}`);
+        // this.accountSelected$.next(new WalletAccount(newSelectedAccount));
        }
     });
   }
 
   private migrateAccountsBetweenNetworks(fromNetwork: string, toNetwork: string, addressPrefix: string): void {
+      // eventually creates an account object stored for one network for the other network
       const collection = this.store.getCollection<WalletAccount>(CollectionName.AccountV2);
       const accountsToBeMigrated = collection.where(a => getNetworknameFromAccount(a) === fromNetwork);
       accountsToBeMigrated.forEach( a => {
@@ -343,9 +342,11 @@ export class StoreService {
             newAccount.accountRSExtended = a.keys.publicKey ? address.getReedSolomonAddressExtended() : undefined;
             newAccount.keys = a.keys;
             newAccount.type = a.type;
+            newAccount.networkName = toNetwork;
             collection.insert(newAccount);
         }
       });
+      this.persist();
   }
 
   public getSelectedAccount(): WalletAccount | null {

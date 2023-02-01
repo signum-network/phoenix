@@ -1,15 +1,12 @@
 import {
   Component,
-  OnDestroy,
   OnInit,
   ViewChild,
   ViewEncapsulation,
-  Input,
   ElementRef,
-  OnChanges, SimpleChanges, ApplicationRef
-} from "@angular/core";
+  ApplicationRef
+} from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { forkJoin, merge, Subject } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
 
 import { FuseConfigService } from '@fuse/services/config.service';
@@ -27,8 +24,7 @@ import { NotifierService } from 'angular-notifier';
 import hashicon from 'hashicon';
 import { FuseNavigation } from '@fuse/types';
 import { WalletAccount } from 'app/util/WalletAccount';
-import { UnsubscribeOnDestroy } from '../../../../../util/UnsubscribeOnDestroy';
-import { DescriptorData } from '@signumjs/standards';
+import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
 
 @Component({
   selector: 'navbar-vertical-style-1',
@@ -42,7 +38,6 @@ export class NavbarVerticalStyle1Component extends UnsubscribeOnDestroy implemen
   @ViewChild('hashAvatar', { static: false }) hashAvatar: ElementRef<HTMLImageElement>;
   navigation: any;
   fuseConfig: any;
-  selectedAccountQRCode: string;
   language: string;
   avatarImgSrc: string;
   avatarLoaded = false;

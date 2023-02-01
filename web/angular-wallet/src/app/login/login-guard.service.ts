@@ -11,7 +11,6 @@ import { memo } from 'app/util/memo';
 
 async function _fetchNodeInfo(nodeHost: string): Promise<NodeInfo|null> {
   try {
-    console.log('fetchNodeInfo', nodeHost);
     const ledger = LedgerClientFactory.createClient({ nodeHost });
     const info = await ledger.network.getNetworkInfo();
     // all fine - could
@@ -61,7 +60,6 @@ export class LoginGuard implements CanActivate {
         const selectedAccount = this.accountManagementService.getSelectedAccount();
         const hasAccounts = this.accountManagementService.hasAccounts();
         if (selectedAccount) {
-          //await this.accountManagementService.selectAccount(selectedAccount);
           return true;
         } else if (hasAccounts) {
           await this.router.navigate(['/dashboard']);

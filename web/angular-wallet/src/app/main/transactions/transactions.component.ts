@@ -61,20 +61,6 @@ interface Types {
 export class TransactionsComponent extends UnsubscribeOnDestroy implements OnInit, AfterContentInit, AfterViewInit {
   isFetching = false;
 
-  constructor(
-    private appService: AppService,
-    private ledgerService: LedgerService,
-    private accountManagementService: AccountManagementService,
-    private storeService: StoreService,
-    private utilService: UtilService,
-    private i18nService: I18nService,
-    private observableMedia: MediaObserver,
-    private warnDialog: MatDialog,
-    private progressBarService: FuseProgressBarService
-  ) {
-    super();
-  }
-
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
@@ -100,6 +86,21 @@ export class TransactionsComponent extends UnsubscribeOnDestroy implements OnIni
   oldestTransactionDate: Date;
 
   isMobile = false;
+
+  constructor(
+    private appService: AppService,
+    private ledgerService: LedgerService,
+    private accountManagementService: AccountManagementService,
+    private storeService: StoreService,
+    private utilService: UtilService,
+    private i18nService: I18nService,
+    private observableMedia: MediaObserver,
+    private warnDialog: MatDialog,
+    private progressBarService: FuseProgressBarService
+  ) {
+    super();
+  }
+
 
   public ngOnInit(): void {
     this.account = this.accountManagementService.getSelectedAccount();

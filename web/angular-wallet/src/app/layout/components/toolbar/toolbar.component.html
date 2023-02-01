@@ -57,7 +57,7 @@
           <span>{{"manage_accounts" | i18n}}</span>
         </button>
         <mat-divider></mat-divider>
-        <button *ngFor="let account of accounts" mat-menu-item (click)="setAccount(account)">
+        <button *ngFor="let account of accounts" mat-menu-item (click)="selectAccount(account)">
               <app-account-selector-item [account]="account"></app-account-selector-item>
         </button>
       </mat-menu>

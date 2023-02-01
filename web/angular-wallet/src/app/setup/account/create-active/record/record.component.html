@@ -47,8 +47,7 @@
     </td>
     <td class="table__text">
       <pre class="bordered">{{ createService.getPhrase() }}</pre>
-    </td>
-    <td class="print-hide">
+      <div class="print-hide buttons">
       <button class="icon-button" matTooltip="{{'click_to_copy_passphrase' | i18n}}"
               color="primary"
               mat-raised-button
@@ -61,6 +60,7 @@
               (click)="print()">
         <mat-icon>print</mat-icon>
       </button>
+      </div>
     </td>
   </tr>
 </table>

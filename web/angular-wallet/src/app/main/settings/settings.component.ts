@@ -13,6 +13,7 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from '../../util/UnsubscribeOnDestroy';
 import { AppService } from '../../app.service';
 import { LedgerService } from 'app/ledger.service';
+import { AccountManagementService } from '../../shared/services/account-management.service';
 
 interface NodeInformation {
   url: string;
@@ -35,6 +36,7 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
               private storeService: StoreService,
               private notifierService: NotifierService,
               private ledgerService: LedgerService,
+              private accountManagementService: AccountManagementService,
               private appService: AppService,
               private route: ActivatedRoute) {
     super();
@@ -113,7 +115,6 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
       this.nodes = SettingsComponent.createNodeList(this.showTestnet.value);
     });
 
-
     updateVersion();
   }
 
@@ -125,13 +126,22 @@ export class SettingsComponent extends UnsubscribeOnDestroy implements OnInit {
   async selectNode(): Promise<void> {
     try {
       this.isFetchingNodeInfo = true;
-      const nodeInformation = await SettingsComponent.fetchNodeInformation(this.selectedNode.value);
+
+      const {networkName: previousNetworkName} = this.storeService.getSelectedNode();
+      const newNode = await SettingsComponent.fetchNodeInformation(this.selectedNode.value);
+      const networkChanged = newNode.networkName !== previousNetworkName;
       this.isFetchingNodeInfo = false;
       this.storeService.setSelectedNode({
-        nodeUrl: nodeInformation.url,
-        networkName: nodeInformation.networkName,
-        addressPrefix: nodeInformation.addressPrefix
+        nodeUrl: newNode.url,
+        networkName: newNode.networkName,
+        addressPrefix: newNode.addressPrefix
       }, true);
+
+      if (networkChanged){
+        const selectedAccount = this.accountManagementService.getSelectedAccount();
+        const accountToBeSelected = this.accountManagementService.findAccount(selectedAccount.account, newNode.networkName);
+        this.accountManagementService.selectAccount(accountToBeSelected).then(); // non-blocking update
+      }
 
       this.notifierService.notify('success', this.i18nService.getTranslation('node_set_success'));
     } catch (e) {

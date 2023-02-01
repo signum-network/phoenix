@@ -149,7 +149,7 @@ export class CreateService {
     return this.account;
   }
 
-  public setAccountStatus(accountStatus: AccountStatus) {
+  public setAccountStatus(accountStatus: AccountStatus): void {
     this.accountStatus = accountStatus;
   }
 

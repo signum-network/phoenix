@@ -23,9 +23,10 @@ export class CreateActiveAccountComponent extends UnsubscribeOnDestroy implement
 
   ngOnInit(): void {
     this.router.events
-      .pipe(takeUntil(this.unsubscribeAll)).subscribe(() => {
-      this.createService.reset();
-    });
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(() => {
+        this.createService.reset();
+      });
   }
 
 }

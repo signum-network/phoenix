@@ -5,7 +5,7 @@ import {Amount} from '@signumjs/util';
 
 @Pipe({
   name: 'amount',
-  pure: true
+  pure: false
 })
 export class AmountPipe implements PipeTransform {
 

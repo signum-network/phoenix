@@ -1,7 +1,6 @@
 import {Component, Inject, OnDestroy, OnInit, Input} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {Platform} from '@angular/cdk/platform';
-import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
 import {FuseConfigService} from '@fuse/services/config.service';
@@ -11,17 +10,17 @@ import {FuseSplashScreenService} from '@fuse/services/splash-screen.service';
 import {FuseTranslationLoaderService} from '@fuse/services/translation-loader.service';
 
 import {navigation} from 'app/navigation/navigation';
+import { UnsubscribeOnDestroy } from 'app/util/UnsubscribeOnDestroy';
 
 @Component({
   selector: 'main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit, OnDestroy {
+export class MainComponent extends UnsubscribeOnDestroy implements OnInit, OnDestroy {
   fuseConfig: any;
   navigation: any;
 
-  private _unsubscribeAll: Subject<any>;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -32,6 +31,8 @@ export class MainComponent implements OnInit, OnDestroy {
     private _fuseTranslationLoaderService: FuseTranslationLoaderService,
     private _platform: Platform
   ) {
+
+    super();
     this.navigation = navigation;
     this._fuseNavigationService.register('main', this.navigation);
     this._fuseNavigationService.setCurrentNavigation('main');
@@ -40,23 +41,13 @@ export class MainComponent implements OnInit, OnDestroy {
     if (this._platform.ANDROID || this._platform.IOS) {
       this.document.body.classList.add('is-mobile');
     }
-
-    // Set the private defaults
-    this._unsubscribeAll = new Subject();
   }
 
-  // -----------------------------------------------------------------------------------------------------
-  // @ Lifecycle hooks
-  // -----------------------------------------------------------------------------------------------------
-
-  /**
-   * On init
-   */
   ngOnInit(): void {
 
     // Subscribe to config changes
     this._fuseConfigService.config
-      .pipe(takeUntil(this._unsubscribeAll))
+      .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((config) => {
 
         this.fuseConfig = config;
@@ -79,26 +70,10 @@ export class MainComponent implements OnInit, OnDestroy {
 
         this.document.body.classList.add(this.fuseConfig.colorTheme);
       });
+
+
   }
 
-  /**
-   * On destroy
-   */
-  ngOnDestroy(): void {
-    // Unsubscribe from all subscriptions
-    this._unsubscribeAll.next();
-    this._unsubscribeAll.complete();
-  }
-
-  // -----------------------------------------------------------------------------------------------------
-  // @ Public methods
-  // -----------------------------------------------------------------------------------------------------
-
-  /**
-   * Toggle sidebar open
-   *
-   * @param key
-   */
   toggleSidebarOpen(key): void {
     this._fuseSidebarService.getSidebar(key).toggleOpen();
   }

@@ -8,6 +8,8 @@ import { WalletAccount } from 'app/util/WalletAccount';
 import { interval, Subscription } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 import { LedgerService } from 'app/ledger.service';
+import { NotifierService } from 'angular-notifier';
+import { I18nService } from '../../layout/components/i18n/i18n.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,8 @@ export class AccountManagementService {
   constructor(private storeService: StoreService,
               private networkService: NetworkService,
               private progressBarService: FuseProgressBarService,
+              private notificationService: NotifierService,
+              private i18nService: I18nService,
               private ledgerService: LedgerService
   ) {
   }
@@ -57,6 +61,7 @@ export class AccountManagementService {
   }
 
   public async selectAccount(account: WalletAccount): Promise<void> {
+    // FIXME: check if null accounts is acceptable - or how to deal with "nulled" accounts
     this.storeService.setSelectedAccount(account);
     if (account) {
       this.progressBarService.show();
@@ -82,7 +87,7 @@ export class AccountManagementService {
   }
 
 
-  private async synchronizeAccount(accountRef: WalletAccount, pendingOnly: boolean): Promise<WalletAccount> {
+  private async synchronizeAccount(accountRef: WalletAccount, pendingOnly: boolean): Promise<void> {
     try {
       if (pendingOnly) {
         await this.syncPendingAccountTransactions(accountRef);
@@ -93,17 +98,19 @@ export class AccountManagementService {
         ]);
       }
       this.storeService.saveAccount(accountRef);
-      return accountRef;
     } catch (e) {
       console.warn('Error while syncing account', accountRef.accountRS, e);
+      if (e.name === 'QuotaExceededError'){
+        this.notificationService.show({
+          type: 'error',
+          message: this.i18nService.getTranslation('error_storage_quota_exceeded')
+        });
+      }
     }
   }
 
   private async syncAccountTransactions(accountRef: WalletAccount): Promise<void> {
     const { transactions } = accountRef;
-
-    console.log('syncAccountTransactions', transactions.length);
-
     const [recentTransactions, pendingTransactions] = await Promise.all([
       this.fetchAccountsRecentTransactions(accountRef),
       this.fetchAccountsPendingTransactions(accountRef)
@@ -150,7 +157,7 @@ export class AccountManagementService {
   }
 
   public async addAccount(account: WalletAccount): Promise<WalletAccount> {
-    const existingAccount = this.findAccountById(account.account);
+    const existingAccount = this.findAccount(account.account);
     if (!existingAccount) {
       this.storeService.saveAccount(account);
       await this.selectAccount(account);
@@ -168,9 +175,15 @@ export class AccountManagementService {
     this.storeService.removeAccount(accountId);
   }
 
-  public findAccountById(accountId: string): WalletAccount | null {
-    return this.getAllAccounts().find( ({account}) => account === accountId);
+  public findAccount(accountId: string, network?: string): WalletAccount | null {
+    return this.getAllAccounts().find( ({account, networkName}) => {
+      const hasFound = account === accountId;
+      if (network){
+        return hasFound && network === networkName;
+      }
+    });
   }
+
   public getAllAccounts(): WalletAccount[] {
     const  {networkName} = this.storeService.getSelectedNode();
     // this forces change detection

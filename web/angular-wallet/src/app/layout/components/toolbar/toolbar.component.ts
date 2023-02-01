@@ -132,8 +132,7 @@ export class ToolbarComponent
     this.storeService.updateSettings({userProfile: profile});
   }
 
-  async setAccount(account): Promise<void> {
-    this.selectedAccount = account;
+  async selectAccount(account): Promise<void> {
     await this.accountManagementService.selectAccount(account);
     await this.router.navigate(['/']);
   }
