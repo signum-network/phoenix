@@ -550,5 +550,7 @@
   "account_verified": "Account trovato sulla rete",
   "error_storage_quota_exceeded": "La quota di archiviazione lato client è stata superata. Prova a rimuovere uno o più account per liberare spazio.",
   "you_own_no_token": "Non hai ancora alcun token",
-  "chart_balance_change": "Variazione del saldo nel periodo visualizzato"
+  "chart_balance_change": "Variazione del saldo nel periodo visualizzato",
+  "waiting_for_payment": "In attesa del pagamento",
+  "paid": "Pagamento registrato"
 }

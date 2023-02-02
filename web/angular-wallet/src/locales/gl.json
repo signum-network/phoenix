@@ -550,5 +550,7 @@
   "account_verified": "Atopouse unha conta na rede",
   "error_storage_quota_exceeded": "Superouse a cota de almacenamento do cliente. Proba a eliminar unha ou máis contas para liberar espazo.",
   "you_own_no_token": "Aínda non tes ningunha ficha",
-  "chart_balance_change": "Cambio de saldo durante o período mostrado"
+  "chart_balance_change": "Cambio de saldo durante o período mostrado",
+  "waiting_for_payment": "Agardando o pago",
+  "paid": "Pago rexistrado"
 }

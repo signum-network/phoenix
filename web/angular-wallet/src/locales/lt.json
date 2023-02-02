@@ -550,5 +550,7 @@
   "account_verified": "Paskyra rasta tinkle",
   "error_storage_quota_exceeded": "Viršyta kliento saugyklos kvota. Pabandykite pašalinti vieną ar daugiau paskyrų, kad atlaisvintumėte vietos.",
   "you_own_no_token": "Dar neturite jokių žetonų",
-  "chart_balance_change": "Likučio pokytis per rodomą laikotarpį"
+  "chart_balance_change": "Likučio pokytis per rodomą laikotarpį",
+  "waiting_for_payment": "Laukiama apmokėjimo",
+  "paid": "Mokėjimas užregistruotas"
 }

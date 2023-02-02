@@ -550,5 +550,7 @@
   "account_verified": "Účet sa našiel v sieti",
   "error_storage_quota_exceeded": "Kvóta úložiska na strane klienta bola prekročená. Skúste odstrániť jeden alebo viacero účtov, aby ste uvoľnili miesto.",
   "you_own_no_token": "Zatiaľ nemáte žiadne tokeny",
-  "chart_balance_change": "Zmena zostatku za zobrazené obdobie"
+  "chart_balance_change": "Zmena zostatku za zobrazené obdobie",
+  "waiting_for_payment": "Čakanie na platbu",
+  "paid": "Platba zaregistrovaná"
 }

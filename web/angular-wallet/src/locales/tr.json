@@ -550,5 +550,7 @@
   "account_verified": "Ağda bulunan hesap",
   "error_storage_quota_exceeded": "İstemci tarafı depolama kotası aşıldı. Biraz yer açmak için bir veya daha fazla hesabı kaldırmayı deneyin.",
   "you_own_no_token": "Henüz jetonunuz yok",
-  "chart_balance_change": "Gösterilen süre boyunca bakiye değişimi"
+  "chart_balance_change": "Gösterilen süre boyunca bakiye değişimi",
+  "waiting_for_payment": "Ödeme için bekleniyor",
+  "paid": "ödeme kaydedildi"
 }

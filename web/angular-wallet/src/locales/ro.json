@@ -550,5 +550,7 @@
   "account_verified": "Cont găsit în rețea",
   "error_storage_quota_exceeded": "Cota de stocare pe partea clientului a fost depășită. Încercați să eliminați unul sau mai multe conturi pentru a elibera spațiu.",
   "you_own_no_token": "Încă nu ai niciun token",
-  "chart_balance_change": "Modificarea soldului pe perioada afișată"
+  "chart_balance_change": "Modificarea soldului pe perioada afișată",
+  "waiting_for_payment": "Asteptand plata",
+  "paid": "Plata inregistrata"
 }

@@ -550,5 +550,7 @@
   "account_verified": "Compte trouvé sur le réseau",
   "error_storage_quota_exceeded": "Le quota de stockage côté client a été dépassé. Essayez de supprimer un ou plusieurs comptes pour libérer de l'espace.",
   "you_own_no_token": "Vous n'avez pas encore de jetons",
-  "chart_balance_change": "Variation du solde sur la période affichée"
+  "chart_balance_change": "Variation du solde sur la période affichée",
+  "waiting_for_payment": "En attente de paiement",
+  "paid": "Paiement enregistré"
 }

@@ -550,5 +550,7 @@
   "account_verified": "Konto im Netzwerk gefunden",
   "error_storage_quota_exceeded": "Das clientseitige Speicherkontingent wurde überschritten. Versuchen Sie, ein oder mehrere Konten zu entfernen, um Speicherplatz freizugeben.",
   "you_own_no_token": "Du hast noch keine Token",
-  "chart_balance_change": "Saldoänderung über den angezeigten Zeitraum"
+  "chart_balance_change": "Saldoänderung über den angezeigten Zeitraum",
+  "waiting_for_payment": "Warte auf Zahlung",
+  "paid": "Zahlung registriert"
 }

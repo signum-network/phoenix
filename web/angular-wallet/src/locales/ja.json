@@ -550,5 +550,7 @@
   "account_verified": "ネットワーク上で見つかったアカウント",
   "error_storage_quota_exceeded": "クライアント側のストレージ クォータを超えました。 1 つまたは複数のアカウントを削除して、スペースを解放してみてください。",
   "you_own_no_token": "まだトークンを持っていません",
-  "chart_balance_change": "表示期間の残高推移"
+  "chart_balance_change": "表示期間の残高推移",
+  "waiting_for_payment": "入金待ち",
+  "paid": "支払いが登録されました"
 }

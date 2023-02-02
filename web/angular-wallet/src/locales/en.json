@@ -550,5 +550,7 @@
   "account_verified": "Account found on network",
   "account_not_verified": "Account not found on network. Did you choose the correct network? Is it the correct recovery phrase?",
   "you_own_no_token": "You don't have any tokens yet",
-  "chart_balance_change": "Balance change over displayed period"
+  "chart_balance_change": "Balance change over displayed period",
+  "waiting_for_payment": "Waiting for Payment",
+  "paid": "Payment registered"
 }

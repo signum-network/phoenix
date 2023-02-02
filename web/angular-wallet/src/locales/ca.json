@@ -550,5 +550,7 @@
   "account_verified": "S'ha trobat un compte a la xarxa",
   "error_storage_quota_exceeded": "S'ha superat la quota d'emmagatzematge del costat del client. Proveu d'eliminar un o més comptes per alliberar espai.",
   "you_own_no_token": "Encara no tens cap fitxes",
-  "chart_balance_change": "Canvi de saldo durant el període mostrat"
+  "chart_balance_change": "Canvi de saldo durant el període mostrat",
+  "waiting_for_payment": "Esperant el pagament",
+  "paid": "Pagament registrat"
 }

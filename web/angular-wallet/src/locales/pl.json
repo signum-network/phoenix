@@ -550,5 +550,7 @@
   "account_verified": "Konto znalezione w sieci",
   "error_storage_quota_exceeded": "Limit miejsca po stronie klienta został przekroczony. Spróbuj usunąć jedno lub więcej kont, aby zwolnić trochę miejsca.",
   "you_own_no_token": "Nie masz jeszcze żadnych tokenów",
-  "chart_balance_change": "Zmiana salda w wyświetlanym okresie"
+  "chart_balance_change": "Zmiana salda w wyświetlanym okresie",
+  "waiting_for_payment": "Czekać na wypłatę",
+  "paid": "Płatność zarejestrowana"
 }

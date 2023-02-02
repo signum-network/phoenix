@@ -550,5 +550,7 @@
   "account_verified": "Tili löydetty verkosta",
   "error_storage_quota_exceeded": "Asiakaspuolen tallennuskiintiö ylitettiin. Yritä vapauttaa tilaa poistamalla yksi tai useampi tili.",
   "you_own_no_token": "Sinulla ei ole vielä tunnuksia",
-  "chart_balance_change": "Saldon muutos näytetyn ajanjakson aikana"
+  "chart_balance_change": "Saldon muutos näytetyn ajanjakson aikana",
+  "waiting_for_payment": "Odottaa maksua",
+  "paid": "Maksu rekisteröity"
 }

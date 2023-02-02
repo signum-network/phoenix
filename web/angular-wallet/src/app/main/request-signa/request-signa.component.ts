@@ -59,7 +59,7 @@ export class RequestSignaComponent extends UnsubscribeOnDestroy implements OnIni
         const foundTransaction = unconfirmedTransactions.find((transaction) =>
           Amount.fromPlanck(transaction.amountNQT).equals(Amount.fromSigna(this.amount))
         );
-        if (!foundTransaction) {
+        if (foundTransaction) {
           this.paid = true;
           this.senderRS = foundTransaction.senderRS;
         } else {

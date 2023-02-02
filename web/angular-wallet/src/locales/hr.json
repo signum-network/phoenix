@@ -550,5 +550,7 @@
   "account_verified": "Račun pronađen na mreži",
   "error_storage_quota_exceeded": "Kvota pohrane na strani klijenta je premašena. Pokušajte ukloniti jedan ili više računa da biste oslobodili prostor.",
   "you_own_no_token": "Još nemate nijedan token",
-  "chart_balance_change": "Promjena stanja tijekom prikazanog razdoblja"
+  "chart_balance_change": "Promjena stanja tijekom prikazanog razdoblja",
+  "waiting_for_payment": "Čeka se plaćanje",
+  "paid": "Uplata registrirana"
 }

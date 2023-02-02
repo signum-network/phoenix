@@ -550,5 +550,7 @@
   "account_verified": "Účet nalezen v síti",
   "error_storage_quota_exceeded": "Kvóta úložiště na straně klienta byla překročena. Zkuste odebrat jeden nebo více účtů, abyste uvolnili místo.",
   "you_own_no_token": "Zatím nemáte žádné tokeny",
-  "chart_balance_change": "Změna zůstatku za zobrazené období"
+  "chart_balance_change": "Změna zůstatku za zobrazené období",
+  "waiting_for_payment": "Čekání na platbu",
+  "paid": "Platba zaregistrována"
 }

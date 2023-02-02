@@ -550,5 +550,7 @@
   "account_verified": "在网络上找到帐户",
   "error_storage_quota_exceeded": "已超出客户端存储配额。尝试删除一个或多个帐户以释放一些空间。",
   "you_own_no_token": "您还没有任何代币",
-  "chart_balance_change": "显示期间的余额变化"
+  "chart_balance_change": "显示期间的余额变化",
+  "waiting_for_payment": "等待付款",
+  "paid": "付款已注册"
 }

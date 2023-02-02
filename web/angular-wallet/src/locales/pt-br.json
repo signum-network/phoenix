@@ -550,5 +550,7 @@
   "account_verified": "Conta encontrada na rede",
   "error_storage_quota_exceeded": "A cota de armazenamento do lado do cliente foi excedida. Tente remover uma ou mais contas para liberar espaço.",
   "you_own_no_token": "Você ainda não possui tokens",
-  "chart_balance_change": "Mudança de saldo durante o período exibido"
+  "chart_balance_change": "Mudança de saldo durante o período exibido",
+  "waiting_for_payment": "À espera de pagamento",
+  "paid": "Pagamento registrado"
 }

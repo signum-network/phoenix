@@ -550,5 +550,7 @@
   "account_verified": "Cuenta encontrada en la red",
   "error_storage_quota_exceeded": "Se excedió la cuota de almacenamiento del lado del cliente. Intente eliminar una o más cuentas para liberar espacio.",
   "you_own_no_token": "Aún no tienes fichas",
-  "chart_balance_change": "Cambio de saldo durante el período mostrado"
+  "chart_balance_change": "Cambio de saldo durante el período mostrado",
+  "waiting_for_payment": "A la espera del pago",
+  "paid": "Pago registrado"
 }
