@@ -96,7 +96,7 @@
     "ngx-skeleton-loader": "^1.2.6",
     "p-memoize": "^4.0.4",
     "perfect-scrollbar": "1.4.0",
-    "prismjs": "^1.23.0",
+    "prismjs": "^1.27.0",
     "rxjs": "6.5.2",
     "rxjs-compat": "6.5.3",
     "semver": "^6.3.0",
