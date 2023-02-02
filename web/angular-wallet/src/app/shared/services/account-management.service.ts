@@ -176,7 +176,7 @@ export class AccountManagementService {
   }
 
   public findAccount(accountId: string, network?: string): WalletAccount | null {
-    return this.storeService.findAccount(accountId, network)
+    return this.storeService.findAccount(accountId, network);
   }
 
   public getAllAccounts(): WalletAccount[] {
@@ -184,4 +184,5 @@ export class AccountManagementService {
     // this forces change detection
     return [...this.storeService.getAllAccountsByNetwork(networkName)];
   }
+
 }

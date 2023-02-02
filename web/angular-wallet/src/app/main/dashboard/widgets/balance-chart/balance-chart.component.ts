@@ -132,7 +132,7 @@ export class BalanceChartComponent extends UnsubscribeOnDestroy implements OnIni
         ({timestamp, relativeAmount}) => {
           const rawDate = timestamp ? ChainTime.fromChainTimestamp(timestamp).getDate() : new Date();
           const formattedDate = this.toDateString(rawDate);
-          const change = `${CurrencySymbol} ${relativeAmount < 0 ? '-' : '+'}${relativeAmount.toFixed(4)}`;
+          const change = `${CurrencySymbol} ${relativeAmount > 0 ? '+' : ''}${relativeAmount.toFixed(4)}`;
           return `${formattedDate} (${change})`;
         }),
       colors: [

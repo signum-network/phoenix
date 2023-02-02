@@ -1,0 +1,37 @@
+<mat-table #table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef >{{"name" | i18n}}</mat-header-cell>
+    <mat-cell *matCellDef="let contact">
+      <h2>{{contact.name}}</h2>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="accountId">
+    <mat-header-cell *matHeaderCellDef >{{"account_id" | i18n}}</mat-header-cell>
+    <mat-cell *matCellDef="let contact">
+        <h2>{{contact.name}}</h2>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"
+  >
+  </mat-row>
+
+  <ng-container matColumnDef="nodata">
+    <td mat-footer-row *matFooterCellDef [colSpan]="displayedColumns.length"
+        style="margin: 0 auto"><h2>{{'no_contacts_yet'|i18n}}</h2></td>
+  </ng-container>
+
+  <mat-footer-row [hidden]="dataSource.data.length!==0" *matFooterRowDef="['nodata']"></mat-footer-row>
+
+</mat-table>
+
+<mat-paginator
+  *ngIf="paginationEnabled"
+  #paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[10, 20, 50]"
+  [showFirstLastButtons]="true"
+>
+</mat-paginator>

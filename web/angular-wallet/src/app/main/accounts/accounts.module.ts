@@ -30,6 +30,7 @@ import { ComponentsModule } from 'app/components/components.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDividerModule } from '@angular/material/divider';
+import { ContactsTableComponent } from './contacts-table/contacts-table.component';
 
 
 const routes = [
@@ -81,6 +82,7 @@ const routes = [
     AccountsComponent,
     DeleteAccountDialogComponent,
     AccountDetailsComponent,
+    ContactsTableComponent,
   ],
   providers: [
   ],

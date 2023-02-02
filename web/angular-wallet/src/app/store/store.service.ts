@@ -3,15 +3,17 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as Loki from 'lokijs';
 import { StoreConfig } from './store.config';
 import { Settings } from 'app/store/settings';
-import { WalletAccount } from '../util/WalletAccount';
+import { WalletAccount } from 'app/util/WalletAccount';
 import { Subject, timer } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { NodeInfo } from 'app/shared/types';
 import { Address } from '@signumjs/core';
+import { WalletContact } from 'app/util/WalletContact';
 
 const CollectionName = {
   Account: 'accounts',
   AccountV2: 'accounts_V2',
+  Contacts: 'contacts',
   Settings: 'settings',
   Migration: '_migration'
 };
@@ -141,6 +143,11 @@ export class StoreService {
     if (!this.store.getCollection(CollectionName.AccountV2)) {
       this.store.addCollection(CollectionName.AccountV2, { unique: ['_id'] });
     }
+
+    if (!this.store.getCollection(CollectionName.Contacts)) {
+      this.store.addCollection(CollectionName.Contacts, { indices: ['name'],  unique: ['account'] });
+    }
+
     let settingsCollection = this.store.getCollection(CollectionName.Settings);
     if (!settingsCollection) {
       settingsCollection = this.store.addCollection(CollectionName.Settings, { unique: ['id'] });
@@ -396,6 +403,52 @@ export class StoreService {
     return this.withReady<string>(() => {
       const { language } = this.getSettings();
       return language;
+    });
+  }
+
+  // CONTACTS
+
+  public saveContact(contact: WalletContact): void {
+    this.withReady<void>(() => {
+      const collection = this.store.getCollection<WalletContact>(CollectionName.Contacts);
+      const existingContact = collection.by('account', contact.account);
+      if (!existingContact) {
+        collection.insert(contact);
+      } else {
+        existingContact.name = contact.name;
+        collection.update(existingContact);
+      }
+      this.persist();
+    });
+  }
+
+  findContactByAccountId(accountId: string): WalletContact|null {
+    return this.withReady<WalletContact>(() => {
+      const collection = this.store.getCollection<WalletContact>(CollectionName.Contacts);
+      const existingContact = collection.by('account', accountId);
+      return existingContact || null;
+    });
+  }
+  findContactsByName(name: string): WalletContact[] {
+    return this.withReady<WalletContact[]>(() => {
+      const collection = this.store.getCollection<WalletContact>(CollectionName.Contacts);
+      return collection.chain().find({'name': { '$regex': [name, 'i']}}).simplesort('name').data();
+    });
+  }
+
+  public getAllContacts(): WalletContact[] {
+    return this.withReady(() => {
+      const contacts = this.store.getCollection<WalletContact>(CollectionName.Contacts);
+      return contacts.find().map((dbc) => new WalletContact(dbc));
+    });
+  }
+
+  public removeContact(contactId: string): void {
+    this.withReady(() => {
+      // we remove all accounts of all networks
+      const collection = this.store.getCollection<WalletContact>(CollectionName.Contacts);
+      collection.chain().find({ account: contactId }).remove();
+      this.persist();
     });
   }
 }
